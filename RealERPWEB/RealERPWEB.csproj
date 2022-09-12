@@ -151,17 +151,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -3142,6 +3138,7 @@
     <Content Include="F_99_Allinterface\BusinessDashboard.aspx" />
     <Content Include="F_99_Allinterface\CRMDashboard02.aspx" />
     <Content Include="F_99_Allinterface\CRMDashboard.aspx" />
+    <Content Include="F_99_Allinterface\CustomerList.aspx" />
     <Content Include="F_99_Allinterface\Defaulthide.aspx" />
     <Content Include="F_99_Allinterface\FeasibilityInterface.aspx" />
     <Content Include="F_99_Allinterface\HRInterfaceTopSheet.aspx" />
@@ -5114,6 +5111,13 @@
     </Compile>
     <Compile Include="F_99_Allinterface\CRMDashboard.aspx.designer.cs">
       <DependentUpon>CRMDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\CustomerList.aspx.cs">
+      <DependentUpon>CustomerList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\CustomerList.aspx.designer.cs">
+      <DependentUpon>CustomerList.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\HRMAllInOne.aspx.cs">
       <DependentUpon>HRMAllInOne.aspx</DependentUpon>
