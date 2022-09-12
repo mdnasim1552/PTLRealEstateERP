@@ -12559,7 +12559,7 @@
   <ItemGroup>
     <Content Include="Report\RptPaymentSchedule.rdlc" />
     <Content Include="Report\RptPurchaseOrder.rdlc" />
-    <Content Include="Report\RptPurchaseOrderAcme.rdlc" />
+    <Content Include="Report\RptPurchaseOrderAcme_old.rdlc" />
     <Content Include="Report\RptPurchaseOrderEdison.rdlc" />
     <Content Include="Report\RptPurchaseOrderGreenwood.rdlc" />
     <Content Include="Report\RptPurchaseOrderInnstar.rdlc" />
@@ -12593,6 +12593,7 @@
     <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderFinlayInd.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderFinlay.rdlc" />
+    <Content Include="Report\RptPurchaseOrderAcme.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderP2P_O.rdlc" />
   </ItemGroup>
   <ItemGroup>
