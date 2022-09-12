@@ -145,9 +145,9 @@
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.Common.dll</HintPath>
+      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -3668,6 +3668,7 @@
     <Content Include="Technology.aspx" />
     <Content Include="Tickets\CreateTicket.aspx" />
     <Content Include="Tickets\Index.aspx" />
+    <Content Include="Tickets\RequestTicketId.aspx" />
     <Content Include="Tickets\TicketDetails.aspx" />
     <Content Include="tinymce\jquery.tinymce.min.js" />
     <Content Include="tinymce\license.txt" />
@@ -5240,6 +5241,13 @@
     </Compile>
     <Compile Include="Tickets\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tickets\RequestTicketId.aspx.cs">
+      <DependentUpon>RequestTicketId.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tickets\RequestTicketId.aspx.designer.cs">
+      <DependentUpon>RequestTicketId.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tickets\TicketDetails.aspx.cs">
       <DependentUpon>TicketDetails.aspx</DependentUpon>
