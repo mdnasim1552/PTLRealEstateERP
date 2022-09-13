@@ -325,6 +325,28 @@ namespace RealERPWEB.F_23_CR
             }
         }
 
+        private string GetReceiptOnlyRecon()
+        {
+
+            string comcod = this.GetComeCode();
+            string recon = "";
+            switch (comcod)
+            {
+                case "3368"://Finlay
+               case "3101"://Finlay
+                    recon = "reconcile";
+                    break;
+
+                default:
+                    break;
+            
+            }
+
+            return recon;
+
+
+        }
+
         private void showClLedger()
         {
             string comcod = this.GetComeCode();
@@ -334,16 +356,11 @@ namespace RealERPWEB.F_23_CR
 
             string CallType = this.ClientCalltype();
             string length = comcod == "3348" ? "length" : "";
+            string Procedure = this.ProcedureType ();
+            string reconcile = this.GetReceiptOnlyRecon();
 
 
-            string Procedure = this.ProcedureType();
-            // DataSet ds5 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, custid, Date, "", "", "", "", "", "");
-            DataSet ds2 = purData.GetTransInfo(comcod, Procedure, CallType, pactcode, custid, Date, length, "", "", "", "", "");
-
-
-          //  DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, custid, Date, length, "", "", "", "", "");
-            //DataSet ds2= purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", "INSTALLMANTWITHMRR", pactcode, custid, Date, "", "", "", "", "", "");
-
+            DataSet ds2 = purData.GetTransInfo(comcod, Procedure, CallType, pactcode, custid, Date, length, reconcile, "", "", "", "");
             if (ds2 == null)
             {
                 this.gvCustLedger.DataSource = null;
@@ -1339,6 +1356,29 @@ namespace RealERPWEB.F_23_CR
             return Calltype;
 
         }
+        private string ProcedureType()
+        {
+
+           
+
+            string Type = this.Request["Type"].ToString();
+            string procedure = "";
+            switch (Type)
+            {
+                case "LOClLedger":
+                    procedure = "SP_REPORT_LANDOWNERMGT01";
+                    break;
+
+                default:
+                    procedure = "SP_REPORT_SALSMGT01";
+                    break;
+
+
+
+            }
+            return procedure;
+
+        }
 
 
         private void PrintCleintLedgerSuvastu()
@@ -2230,27 +2270,7 @@ namespace RealERPWEB.F_23_CR
 
         }
 
-        private string ProcedureType()
-        {
-
-            string Type = this.Request["Type"].ToString();
-            string procedure = "";
-            switch (Type)
-            {
-                case "LOClLedger":
-                    procedure = "SP_REPORT_LANDOWNERMGT01";
-                    break;
-
-                default:
-                    procedure = "SP_REPORT_SALSMGT01";
-                    break;
-
-
-
-            }
-            return procedure;
-        
-        }
+   
         private void PrintCleintLedgerFinlay()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -2266,7 +2286,9 @@ namespace RealERPWEB.F_23_CR
 
             string CallType = this.ClientCalltype();
             string Procedure = this.ProcedureType();
-            DataSet ds5 = purData.GetTransInfo(comcod, Procedure, CallType, pactcode, custid, Date, "", "", "", "", "", "");
+            string length = "";
+            string reconcile = this.GetReceiptOnlyRecon();
+            DataSet ds5 = purData.GetTransInfo(comcod, Procedure, CallType, pactcode, custid, Date, length, reconcile, "", "", "", "", "");
 
             DataTable tblins = this.HiddenSameDate2(ds5.Tables[0]);
 
@@ -2966,7 +2988,7 @@ namespace RealERPWEB.F_23_CR
                     break;
 
 
-                case "3101":// MOdel
+               // case "3101":// MOdel
                 case "3368":
                     this.PrintCleintLedgerFinlay();
                     break;

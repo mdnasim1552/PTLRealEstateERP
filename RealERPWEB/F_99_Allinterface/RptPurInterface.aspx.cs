@@ -1816,10 +1816,11 @@ namespace RealERPWEB.F_99_Allinterface
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrint"); // crystal print link
+                HyperLink hlnkcrystal = (HyperLink)e.Row.FindControl("HyInprPrint"); // crystal print link
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntry");
 
-                //HyperLink hlink3 = (HyperLink)e.Row.FindControl("HyperLink2");
+                HyperLink hlnkrldc = (HyperLink)e.Row.FindControl("HyperLink2");
+                LinkButton lnktbnrdlc = (LinkButton)e.Row.FindControl("lnkRdlcPrint_Recived"); 
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
@@ -1831,7 +1832,7 @@ namespace RealERPWEB.F_99_Allinterface
                 switch (comcod)
                 {
                     // hide crystal print options
-                    case "3101":
+                    //case "3101":
                     case "3355":
                     case "3353":
                     case "1205":
@@ -1852,7 +1853,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                     case "3357": // Cube
                     case "3367": // Epic
-                    case "3368": // Finlay
+
 
                     case "3358": // Entrust
                     case "3359": // Entrust
@@ -1863,16 +1864,26 @@ namespace RealERPWEB.F_99_Allinterface
                     case "1207": // acme 
                     case "3338": // acme 
                     case "3369": // acme 
-
-                        hlink1.Visible = false;
+                        hlnkcrystal.Visible = false;
+                        lnktbnrdlc.Visible = false;
                         break;
+
+                    //case "3101":
+                    case "3368": // finlay 
+                        hlnkcrystal.Visible = false;
+                        hlnkrldc.Visible = false;
+                        lnktbnrdlc.Visible = true;
+                        break;
+
                     default:
-                        hlink1.Visible = true;
+                        hlnkcrystal.Visible = true;
+                        lnktbnrdlc.Visible = false;
                         break;
                 }
 
-                hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrint&orderno=" + orderno;
-                //hlink3.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno+ "&PrintOpt="+ PrintOpt;
+                hlnkcrystal.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrint&orderno=" + orderno;
+                hlnkrldc.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno;
+
                 if (orderno.Substring(0, 3) == "POR")
                     hlink2.NavigateUrl = "~/F_12_Inv/PurMRREntry?Type=Entry&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + sircode;
                 else
