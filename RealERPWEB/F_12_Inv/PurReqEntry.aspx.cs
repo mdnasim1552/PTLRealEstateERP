@@ -247,17 +247,7 @@ namespace RealERPWEB.F_12_Inv
                     this.gvReqInfo.Columns[16].Visible = true;
                     this.gvReqInfo.Columns[17].Visible = true;
                     break;
-
-
-
-
-
             }
-
-
-
-
-
         }
 
 
@@ -740,6 +730,8 @@ namespace RealERPWEB.F_12_Inv
                 dr1["preqty"] = 0;
                 dr1["areqty"] = 0;
                 dr1["lpurrate"] = 0;
+                dr1["acrcvqty"] = dr3[0]["acrcvqty"];
+
                 string comcod = this.GetCompCode();
                 switch (comcod)
                 {
@@ -860,6 +852,7 @@ namespace RealERPWEB.F_12_Inv
                     dt1.Rows[j]["bbgdamt"] = 0.00;
                     dt1.Rows[j]["bgdqty"] = 0.00;
                     dt1.Rows[j]["treceived"] = 0.00;
+                    dt1.Rows[j]["acrcvqty"] = 0.00;
 
 
                 }
@@ -2177,11 +2170,8 @@ namespace RealERPWEB.F_12_Inv
             string comcod = this.GetCompCode();
             DataTable tbl1 = (DataTable)ViewState["tblReq"];
             this.gvReqInfo.DataSource = tbl1;
-            this.gvReqInfo.Columns[21].Visible = true && (comcod == "3325" || comcod == "2325");
-
-
             this.gvReqInfo.Columns[22].Visible = true && (comcod == "3325" || comcod == "2325");
-
+            this.gvReqInfo.Columns[23].Visible = true && (comcod == "3325" || comcod == "2325");
             this.gvReqInfo.DataBind();
             if (Request.QueryString["InputType"].ToString() == "Approval") // "Entry"
             {
@@ -2249,16 +2239,12 @@ namespace RealERPWEB.F_12_Inv
                 //case "3101":
                 case "3336":
                 case "3337":
-
-                    this.gvReqInfo.Columns[20].Visible = false;
+                    this.gvReqInfo.Columns[21].Visible = false;
                     ((CheckBox)this.gvReqInfo.FooterRow.FindControl("crChkbox")).Visible = false;
-
                     break;
 
                 default:
-
                     ((CheckBox)this.gvReqInfo.FooterRow.FindControl("crChkbox")).Visible = false;
-
                     break;
             }
 
@@ -2279,6 +2265,7 @@ namespace RealERPWEB.F_12_Inv
             }
             this.lbtnResFooterTotal_Click(null, null);
         }
+       
 
 
         protected void ddlPageNo_SelectedIndexChanged(object sender, EventArgs e)
@@ -2552,6 +2539,7 @@ namespace RealERPWEB.F_12_Inv
                     dr1["stdrat"] = dt.Rows[i]["stdrat"].ToString();
                     dr1["tbgdqty"] = dt.Rows[i]["tbgdqty"].ToString();
                     dr1["tbbgdqty"] = dt.Rows[i]["tbbgdqty"].ToString();
+                    dr1["acrcvqty"] = dt.Rows[i]["acrcvqty"].ToString();
                     rowid++;
                     dt2.Rows.Add(dr1);
 
@@ -2580,6 +2568,7 @@ namespace RealERPWEB.F_12_Inv
                     dr1["stdrat"] = dt.Rows[i]["stdrat"].ToString();
                     dr1["tbgdqty"] = dt.Rows[i]["tbgdqty"].ToString();
                     dr1["tbbgdqty"] = dt.Rows[i]["tbbgdqty"].ToString();
+                    dr1["acrcvqty"] = dt.Rows[i]["acrcvqty"].ToString();
                     rowid++;
                     dt2.Rows.Add(dr1);
 
@@ -2994,6 +2983,25 @@ namespace RealERPWEB.F_12_Inv
             if (IscheckDuplicateMPR())
             {
                 return;
+            }
+        }
+
+        protected void gvReqInfo_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlnkacrcvqty = (HyperLink)e.Row.FindControl("hlnkgvacrcvqty");
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string rsircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "rsircode")).ToString(); 
+                string pactcode =ASTUtility.Left(this.ddlProject.SelectedItem.Text.Trim(),12);
+
+                //hlnkacrcvqty.NavigateUrl = "~/F_14_Pro/RptPurchasetracking?Type=Purchasetrk&reqno=" + reqno + "&comcod=" + comcod1;
+                hlnkacrcvqty.NavigateUrl = "~/F_14_Pro/LinkRptPurchaseStatusUr?Type=Purchase&Rpt=BgdBal&pactcode=" + pactcode + "&rsircode=" + rsircode;
+
+
+
             }
         }
     }
