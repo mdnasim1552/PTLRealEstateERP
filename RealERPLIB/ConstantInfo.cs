@@ -1843,11 +1843,11 @@ namespace RealERPLIB
 
 
 
-            //37. Automated Identify Tasks (AI)
-            #region Automated Identify Tasks
+            //37. Artificial intelligence (AI) 
+            #region Artificial intelligence (AI) 
 
-            tblObj.Rows.Add(new Object[] { "3802000", "3802001", "F_38_AI", "AIGenCodeBook?", "Type=", "Basic Information Field", "Automated Identify Tasks", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "3851000", "3851001", "F_99_Allinterface", "AIinterface", "", "Automated Identify Tasks -Interface", "Automated Identify Tasks", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3802000", "3802001", "F_38_AI", "AIGenCodeBook?", "Type=", "Basic Information Field", "Artificial intelligence (AI)", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3851000", "3851001", "F_99_Allinterface", "AIinterface", "", "AI -Interface", "Artificial intelligence (AI)", "False", "False", "False", "False" });
 
             #endregion
 
@@ -3352,8 +3352,8 @@ namespace RealERPLIB
                 case "37": // Land OWner Management
                     MenuLO(mnuTbl1);
                     break;
-                case "38": // Automated Identify Tasks
-                    MenuAutomatedTtasks(mnuTbl1);
+                case "38": // Artificial intelligence
+                    MenuArtificialIntelligence(mnuTbl1);
                     break;
                 case "39":   // Product Part
                     MenuMyPage(mnuTbl1);
@@ -10390,7 +10390,7 @@ namespace RealERPLIB
         }
 
 
-        private static void MenuAutomatedTtasks(DataTable mnuTbl1)
+        private static void MenuArtificialIntelligence(DataTable mnuTbl1)
         {
 
             mnuTbl1.Rows.Add(new Object[] { "0201000000", "Information", "", "", false, "b" });
