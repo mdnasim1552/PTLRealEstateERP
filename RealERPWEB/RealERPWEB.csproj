@@ -161,7 +161,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\_rnd\PTLRealEstateERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -233,7 +233,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\BAckup_DWLd\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
       <HintPath>..\..\..\..\..\bin\RealERPRPT.dll</HintPath>
@@ -2216,6 +2216,7 @@
     <Content Include="F_12_Inv\MatTransfer02.aspx" />
     <Content Include="F_12_Inv\MatTransStatus.aspx" />
     <Content Include="F_12_Inv\PurReqEntry.aspx" />
+    <Content Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx" />
     <Content Include="F_14_Pro\RptPurOrderTopSheet.aspx" />
     <Content Include="F_14_Pro\RptSupAdvanceDetails.aspx" />
     <Content Include="F_17_Acc\AccIssueUpdate.aspx" />
@@ -4025,6 +4026,13 @@
     </Compile>
     <Compile Include="F_12_Inv\PurReqEntry.aspx.designer.cs">
       <DependentUpon>PurReqEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx.cs">
+      <DependentUpon>LinkRptPurchaseStatusUr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx.designer.cs">
+      <DependentUpon>LinkRptPurchaseStatusUr.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\RptPurOrderTopSheet.aspx.cs">
       <DependentUpon>RptPurOrderTopSheet.aspx</DependentUpon>

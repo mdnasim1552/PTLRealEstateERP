@@ -26,9 +26,6 @@ namespace RealERPWEB.F_38_AI
         ProcessAccess da = new ProcessAccess();
         //static string tempddl1 = "", tempddl2 = "";
 
-
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -37,7 +34,7 @@ namespace RealERPWEB.F_38_AI
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "";
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Basic Information";
 
 
             }
@@ -154,17 +151,21 @@ namespace RealERPWEB.F_38_AI
             string Desc = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvDesc")).Text.Trim();
 
 
-            string tgcod = gcode1.Substring(0, 2) + gcode2;
+            string gcod = gcode1.Substring(0, 2) + gcode2;
             string gdesc = ((TextBox)this.grvacc.Rows[e.RowIndex].FindControl("txtgvDesc")).Text.Trim();
             string gtype = ((TextBox)this.grvacc.Rows[e.RowIndex].FindControl("txtgvttpe")).Text.Trim();
-            string Gtype = (gtype.ToString() == "") ? "T" : gtype;
-            string Rate = Convert.ToDouble("0" + ((TextBox)this.grvacc.Rows[e.RowIndex].FindControl("txtgvrate")).Text.Trim()).ToString();
+            gtype = (gtype.ToString() == "") ? "T" : gtype;
+            string Rate = Convert.ToDouble("0" + ((TextBox)this.grvacc.Rows[e.RowIndex].FindControl("txtrate")).Text.Trim()).ToString();
             string slno = Convert.ToDouble("0" + ((TextBox)this.grvacc.Rows[e.RowIndex].FindControl("txtslno")).Text.Trim()).ToString();
 
-            string gdescbn = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvDescbn")).Text.Trim();
+            //string ischeck = ((CheckBox)this.grvacc.Rows[e.RowIndex].FindControl("chkStatus"));
 
-            bool result = da.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "INSERTUPSALINF", tgcod,
-                           gdesc, Gtype, Rate, "", slno, gdescbn, "", "", "", "", "", "", "");
+            CheckBox chk = ((CheckBox)grvacc.Rows[e.RowIndex].FindControl("chkStatus"));
+            string checkstatus = (chk.Checked == true) ? "True" : "False";
+
+
+            bool result = da.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "INSERTUPSALINF", gcod,
+                           gdesc, gtype, Rate, checkstatus, slno, "", "", "", "", "", "", "", "");
 
             if (result == true)
             {
@@ -184,9 +185,9 @@ namespace RealERPWEB.F_38_AI
             this.grvacc_DataBind();
             if (ConstantInfo.LogStatus == true)
             {
-                string eventtype = "Sales Code Book";
-                string eventdesc = "Update CodeBook";
-                string eventdesc2 = tgcod;
+                string eventtype = "AI Code Book";
+                string eventdesc = gdesc;
+                string eventdesc2 = gcod;
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
         }
