@@ -1910,12 +1910,8 @@
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
-                                <TextRun>
-<<<<<<< HEAD
-                                  <Value>=Format((Fields!casuallev.Value + Fields!spl.Value+Fields!siclev.Value+Fields!mtl.Value+Fields!withpaylev.Value+Fields!absnt.Value+Fields!holyday.Value),"#,##0;(#,##0); ")</Value>
-=======
+                                <TextRun>                                 
                                   <Value>=format(Fields!casuallev.Value+Fields!siclev.Value+Fields!spl.Value+Fields!mtl.Value+Fields!withpaylev.Value+Fields!absnt.Value+Fields!holyday.Value,"#,##0;(#,##0); ")</Value>
->>>>>>> d8fdd1c5f968a91b6028288e084fe8d6f31c6f35
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
