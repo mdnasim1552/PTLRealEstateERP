@@ -138,7 +138,7 @@
                                                     <asp:Label ID="lblCurReqNo1" runat="server" CssClass="smLbl" Text="REQ00"></asp:Label>
                                                     <asp:TextBox ID="txtCurReqNo2" runat="server" CssClass="xsDropDow inputTxt disabled readonlyValue" ReadOnly="True" TabIndex="8">00000</asp:TextBox>
                                                     <asp:Label ID="lblmrfno" runat="server" CssClass=" smLbl_to" Text="M.R.F. No."></asp:Label>
-                                                    <asp:TextBox ID="txtMRFNo" runat="server" TabIndex="7" CssClass="inputtextbox" Style="width: 120px;"  AutoPostBack="true" OnTextChanged="txtMRFNo_TextChanged"></asp:TextBox>
+                                                    <asp:TextBox ID="txtMRFNo" runat="server" TabIndex="7" CssClass="inputtextbox" Style="width: 120px;" AutoPostBack="true" OnTextChanged="txtMRFNo_TextChanged"></asp:TextBox>
                                                 </div>
 
                                                 <div class="col-md-3 pading5px">
@@ -224,27 +224,18 @@
                                         <div class="ddlListPart">
                                             <asp:DropDownList ID="ddlFloor" runat="server" AutoPostBack="True" TabIndex="15" Visible="False" Width="120px"></asp:DropDownList>
                                         </div>
-
                                     </div>
-
-
-
-
                                 </div>
                             </fieldset>
-
-
-
                         </asp:Panel>
                         <asp:Panel ID="Panel2" runat="server" Visible="False">
-
-
                             <div class="table-responsive">
-                                <asp:GridView ID="gvReqInfo" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowCancelingEdit="gvReqInfo_RowCancelingEdit" OnRowDeleting="gvReqInfo_RowDeleting" OnRowEditing="gvReqInfo_RowEditing" OnRowUpdating="gvReqInfo_RowUpdating" PageSize="15" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea">
+                                <asp:GridView ID="gvReqInfo" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowCancelingEdit="gvReqInfo_RowCancelingEdit" OnRowDeleting="gvReqInfo_RowDeleting" OnRowEditing="gvReqInfo_RowEditing" OnRowUpdating="gvReqInfo_RowUpdating" 
+                                    PageSize="15" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvReqInfo_RowDataBound">
                                     <PagerSettings Visible="False" />
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl.No.">
+                                        <asp:TemplateField HeaderText="SL">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo0" runat="server" Height="16px" Style="text-align: right" Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:Label>
                                             </ItemTemplate>
@@ -397,17 +388,24 @@
                                             </FooterTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Total Received">
+                                        <asp:TemplateField HeaderText="Total MRF">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvtoreceived" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "treceived")).ToString("#,##0.000;-#,##0.000; ") %>' Width="65px"></asp:Label>
                                             </ItemTemplate>
-
-
                                             <FooterTemplate>
-
-
                                                 <asp:LinkButton ID="lbtnFirstApproval" runat="server" OnClientClick="return Confirmation();" OnClick="lbtnFirstApproval_Click" CssClass="btn  btn-primary primarygrdBtn">Approval</asp:LinkButton>
                                             </FooterTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Actual Received">
+                                            <ItemTemplate>
+                                                <asp:HyperLink ID="hlnkgvacrcvqty" runat="server" BorderStyle="none"
+                                                    Font-Size="11px" Style="background-color: Transparent; color: blue;" Font-Underline="false"
+                                                    Target="_blank" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "acrcvqty")).ToString("#,##0.000;-#,##0.000;0") %>'
+                                                    Width="70px">                                      
+                                                </asp:HyperLink>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Balance Amount">
@@ -461,6 +459,8 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
+
+                                       
                                         <%--  <asp:TemplateField HeaderText="Chk Qty" >
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvchqty" runat="server" style="text-align: right" 

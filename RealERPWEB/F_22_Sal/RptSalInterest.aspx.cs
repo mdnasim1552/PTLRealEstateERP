@@ -163,17 +163,12 @@ namespace RealERPWEB.F_22_Sal
         private void GetCustomerName()
         {
             string custotype = this.Request.QueryString["Type"].ToString();
-            string calltype = "GETCUSTOMERNAME";
-
-            if (custotype == "LO")
-            {
-
-                calltype = "GETCUSTOMERNAMELANDOWNER";
-            }
+            //string calltype = custotype=="LO"? "GETCUSTOMERNAMELANDOWNER" : "GETCUSTOMERNAME";          
             string comcod = this.GetCompCode();
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
             string txtSProject = "%" + this.txtSrcCustomer.Text.Trim() + "%";
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", calltype, pactcode, txtSProject, custotype, "", "", "", "", "", "");
+            string islandowner = this.Request.QueryString["Type"] == "LO" ? "1" : "0";
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTOMERNAME", pactcode, txtSProject, islandowner, "", "", "", "", "", "");
             this.ddlCustName.DataTextField = "custnam";
             this.ddlCustName.DataValueField = "custid";
             this.ddlCustName.DataSource = ds2.Tables[0];

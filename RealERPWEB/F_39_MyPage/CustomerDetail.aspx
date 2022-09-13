@@ -351,11 +351,13 @@
                                 <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" Height="30px" />
                             </asp:GridView>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-4" id="divAttachedfiles" runat="server">
+                            <div class="row">
+                                   <div class="col-md-12">
                             <a href="../F_22_Sal/ProjectFileDetailsEntry"  class="btn btn-success"  target="_blank" ><i class="fas fa-layer-plus">&nbsp;Add Files</i></a>
                             <%--<asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-success" NavigateUrl="~/F_22_Sal/ProjectFileDetailsEntry"><i class="fas fa-layer-plus">&nbsp;Add Files</i></asp:LinkButton>--%>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-12">
                             <div class="row-fluid">
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">
@@ -427,13 +429,16 @@
                             </div>
                         </div>
                         <!-- The Modal -->
-                        <div class="col-md-6 col-md-offset-3">
+                        <div class="col-md-12">
                             <div id="myModal" class="modal">
                                 <span class="close">&times;</span>
                                 <img class=" modal-content img img-responsive" id="img01">
                                 <div id="caption"></div>
                             </div>
                         </div>
+                            </div>
+                        </div>
+                     
                     </div>
                     <!-- End of contentpart-->
 
