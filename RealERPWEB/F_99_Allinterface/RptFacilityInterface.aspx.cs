@@ -27,7 +27,7 @@ namespace RealERPWEB.F_99_Allinterface
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Complaint Management Interface";//
                 this.GetFromDate();
                 //  txtfrmdate.Text = this.GetFromDate(); 
-                //txttoDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
+                this.txttoDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
                 ModuleName();
                 getComplainList();
                 txtRejectDesc.Text = "";
