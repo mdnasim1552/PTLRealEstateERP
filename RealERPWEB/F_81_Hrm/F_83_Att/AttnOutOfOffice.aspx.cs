@@ -31,11 +31,17 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.GetCompany();
                     this.topPanle.Visible = true;
                    
-                    if (comcod == "3365" || comcod=="3102")
+                    if (comcod == "3365")
                     {
                         this.GetEmpName();
                         this.WorkComments.Visible = false;
                         this.ReasonType.Visible = false;
+                    }
+                    if (comcod == "3102")
+                    {
+                        this.GetEmpName();
+                        this.WorkComments.Visible = true;
+                        this.ReasonType.Visible = true;
                     }
                 }
                 else

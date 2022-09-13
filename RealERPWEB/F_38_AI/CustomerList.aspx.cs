@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace RealERPWEB.F_99_Allinterface
+namespace RealERPWEB.F_38_AI
 {
     public partial class CustomerList : System.Web.UI.Page
     {

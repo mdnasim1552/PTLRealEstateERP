@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB.F_99_Allinterface
+namespace RealERPWEB.F_38_AI
 {
 
 
