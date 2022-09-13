@@ -48,7 +48,8 @@ namespace RealERPWEB.F_14_Pro
                 CommonButton();
 
                 string Type = this.Request.QueryString["Rpt"].ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (Type == "DaywPur") ? "Day Wise Purchase" : (Type == "PurSum") ? "Purchase Summary (Project Wise)"
+                ((Label)this.Master.FindControl("lblTitle")).Text = (Type == "DaywPur") ? "Day Wise Purchase" 
+                    : (Type == "PurSum") ? "Purchase Summary (Project Wise)"
                     : (Type == "PenBill") ? "Pending Bill" : (Type == "IndSup") ? "Purchase History-Supplier Wise Report"
                     : (Type == "Purchasetrk") ? "Purchase Tracking-01 " : (Type == "Purchasetrk02") ? "Purchase Tracking-02"
                     : (Type == "PurBilltk") ? "Bill Tracking"
@@ -155,12 +156,16 @@ namespace RealERPWEB.F_14_Pro
             this.ddlProjectName.DataSource = ds1.Tables[0];
             this.ddlProjectName.DataBind();
 
-
             string qpactcode = Request.QueryString["prjcode"] ?? "";
 
             if (qpactcode.Length > 0)
             {
                 ddlProjectName.SelectedValue = (Request.QueryString["prjcode"].ToString());
+                ddlProjectName.Enabled = false;
+            }
+            if(Request.QueryString["Rpt"].ToString() == "BgdBal" && Request.QueryString.AllKeys.Contains("pactcode"))
+            {
+                ddlProjectName.SelectedValue = (Request.QueryString["pactcode"].ToString());
                 ddlProjectName.Enabled = false;
             }
 
@@ -426,6 +431,12 @@ namespace RealERPWEB.F_14_Pro
             this.ddlMaterial.DataValueField = "rsircode";
             this.ddlMaterial.DataSource = ds1.Tables[0];
             this.ddlMaterial.DataBind();
+
+            if (Request.QueryString["Rpt"].ToString() == "BgdBal" && Request.QueryString.AllKeys.Contains("rsircode"))
+            {
+                ddlMaterial.SelectedValue = (Request.QueryString["rsircode"].ToString());
+                this.ShowBgdBal();
+            }
 
         }
 

@@ -359,7 +359,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3355"://Green Wood
                 case "3368"://finlay
                 case "3367"://Epic
-                case "3101":
+                //case "3101":
                 case "3340":
 
                     Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -372,6 +372,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3316":
                 case "3317":
                 case "3354": // Edison  
+                case "3101": // Edison  
                     this.txtfrmdate.Text = Convert.ToDateTime(date.ToString()).AddMonths(-3).ToString("dd-MMM-yyyy");
                     break;
 
