@@ -2806,6 +2806,7 @@
     <Content Include="F_36_Vehcl\VehicleInfoEntry.aspx" />
     <Content Include="F_36_Vehcl\VehicleMgt.aspx" />
     <Content Include="F_37_LOwner\LOMoneyReciptapp.aspx" />
+    <Content Include="F_38_AI\AddProject.aspx" />
     <Content Include="F_38_AI\AIGenCodeBook.aspx" />
     <Content Include="F_39_MyPage\ClientCodeBook.aspx" />
     <Content Include="F_39_MyPage\ClientDetail.aspx" />
@@ -4529,6 +4530,13 @@
     </Compile>
     <Compile Include="F_37_LOwner\LOMoneyReciptapp.aspx.designer.cs">
       <DependentUpon>LOMoneyReciptapp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_38_AI\AddProject.aspx.cs">
+      <DependentUpon>AddProject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_38_AI\AddProject.aspx.designer.cs">
+      <DependentUpon>AddProject.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_38_AI\AIGenCodeBook.aspx.cs">
       <DependentUpon>AIGenCodeBook.aspx</DependentUpon>
