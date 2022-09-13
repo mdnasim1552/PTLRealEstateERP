@@ -105,6 +105,15 @@ namespace RealERPWEB.F_39_MyPage
         protected global::System.Web.UI.WebControls.GridView gvPersonalInfo;
 
         /// <summary>
+        /// divAttachedfiles control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAttachedfiles;
+
+        /// <summary>
         /// btnDelall control.
         /// </summary>
         /// <remarks>
