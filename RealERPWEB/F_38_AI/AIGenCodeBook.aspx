@@ -78,12 +78,12 @@
                                     <asp:Label ID="lblserialnoid" runat="server" Style="text-align: right"
                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                 </ItemTemplate>
-                                <HeaderStyle Font-Bold="True" Font-Size="13px" />
+                                <HeaderStyle Font-Bold="True" Font-Size="16px" CssClass="py-2" />
                                 <ItemStyle Font-Size="12px" />
                             </asp:TemplateField>
                             <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText=""
                                 SelectText="" ShowEditButton="True">
-                                <HeaderStyle Font-Bold="True" Font-Size="13px" />
+                                <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                 <ItemStyle Font-Bold="True" Font-Size="12px" ForeColor="#0000C0" />
                             </asp:CommandField>
                             <asp:TemplateField HeaderText=" ">
@@ -107,7 +107,7 @@
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod3")) %>'
                                         Width="50px"></asp:Label>
                                 </ItemTemplate>
-                                <HeaderStyle Font-Bold="True" Font-Size="13px" />
+                                <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                 <ItemStyle Font-Size="12px" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Description of Code">
@@ -125,10 +125,10 @@
                                         Width="250px"></asp:Label>
                                 </ItemTemplate>
                                  <FooterTemplate>
-                                    <asp:LinkButton ID="lnkbtnUpdate" runat="server" Font-Bold="True" Width="60px" CssClass="btn btn-success btn-sm"
+                                    <asp:LinkButton ID="lnkbtnUpdate" runat="server" Font-Bold="True" Width="80px" CssClass="btn btn-success btn-sm"
                                         Font-Size="12px" OnClick="lnkbtnUpdate_Click">Update</asp:LinkButton>
                                 </FooterTemplate>
-                                <HeaderStyle Font-Bold="True" Font-Size="13px" HorizontalAlign="Left" />
+                                <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
                                 <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
                             </asp:TemplateField>
                              
@@ -151,24 +151,38 @@
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'
                                         Width="50px"></asp:Label>
                                 </ItemTemplate>
-                                <HeaderStyle HorizontalAlign="Center" />
+                                <HeaderStyle HorizontalAlign="Center" Font-Size="16px" />
                             </asp:TemplateField>
 
                         
-
+                            
+                            <asp:TemplateField HeaderText="Rate">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtrate" runat="server" BackColor="White" BorderStyle="None"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rate")).ToString("#,##0;(#,##0); ") %>'
+                                        Width="50px" Style="text-align: right"></asp:TextBox>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:TextBox ID="lblrate" runat="server" BackColor="White" BorderStyle="None"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rate")).ToString("#,##0;(#,##0); ") %>'
+                                        Width="50px" Style="text-align: right"></asp:TextBox>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" Font-Size="16px" />
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Order by">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txtslno" runat="server" BackColor="White" BorderStyle="None"
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "slno")).ToString("#,##0;(#,##0); ") %>'
-                                        Width="50px" Style="text-align: right"></asp:TextBox>
+                                        Width="100px" Style="text-align: right"></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:TextBox ID="lblslno" runat="server" BackColor="White" BorderStyle="None"
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "slno")).ToString("#,##0;(#,##0); ") %>'
-                                        Width="50px" Style="text-align: right"></asp:TextBox>
+                                        Width="100px" Style="text-align: right"></asp:TextBox>
                                 </ItemTemplate>
-                                <HeaderStyle HorizontalAlign="Center" />
+                                <HeaderStyle HorizontalAlign="Center" Font-Size="16px" />
                                 <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
 
@@ -178,15 +192,15 @@
                                 </ItemTemplate>
                                
 
-                                <HeaderStyle HorizontalAlign="Center" />
+                                <HeaderStyle HorizontalAlign="Center" Font-Size="16px" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </asp:TemplateField>
 
                         </Columns>
 
                         <PagerStyle CssClass="gvPagination" />
-                        <HeaderStyle CssClass="grvHeader" />
-                        <FooterStyle CssClass="grvFooter" />
+                        <HeaderStyle CssClass="" />
+                        <FooterStyle CssClass="" />
                         <AlternatingRowStyle BackColor="" />
                     </asp:GridView>
                      

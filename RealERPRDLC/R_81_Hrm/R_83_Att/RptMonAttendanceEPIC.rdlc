@@ -1912,6 +1912,7 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Format((Fields!casuallev.Value + Fields!spl.Value+Fields!siclev.Value+Fields!mtl.Value+Fields!withpaylev.Value+Fields!absnt.Value+Fields!holyday.Value),"#,##0;(#,##0); ")</Value>
+
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
