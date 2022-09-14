@@ -65,6 +65,10 @@ namespace RealEntity.C_81_Hrm.C_92_Mgt
             public double numofday { get; set; }
             public double perday { get; set; }
             public double ttlamt { get; set; }
+           //public string frmdat { get; set; }
+           // public string todat { get; set; }
+
+
         }
         [Serializable]
         public class SummarySalarySheet

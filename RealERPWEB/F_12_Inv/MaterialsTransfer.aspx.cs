@@ -233,18 +233,30 @@ namespace RealERPWEB.F_12_Inv
             {
                 case "3301":
                 case "1301":
-                case "3101":
                     conbal = "notcon";
                     break;
-
                 default:
-                    conbal = "GetProjResList";
+                    conbal = "";
                     break;
-
-
             }
-
             return conbal;
+
+        }
+        private string CompanyBGDRes()
+        { 
+            string comcod = this.GetCompCode();
+            string bdgRes = "";
+            switch (comcod)
+            {
+                case "3368":     
+                case "3101":
+                    bdgRes = "BgdResource";
+                    break;
+                default:
+                    bdgRes = "";
+                    break;
+            }
+            return bdgRes;
 
         }
 
@@ -256,9 +268,10 @@ namespace RealERPWEB.F_12_Inv
             string FindResDesc = this.txtSearchRes.Text.Trim() + "%";
             string curdate = this.txtCurTransDate.Text.ToString().Trim();
             string balcon = this.CompBalConMat();
+            string bgdres = this.CompanyBGDRes();
             Session.Remove("projectreslist");
             ViewState.Remove("tblspcf");
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GetProjResList", ProjectCode, curdate, FindResDesc, balcon, "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GetProjResList", ProjectCode, curdate, FindResDesc, balcon, bgdres, "", "", "", "");
             Session["projectreslist"] = ds1.Tables[0];
             ViewState["tblspcf"] = ds1.Tables[1];
 
@@ -295,9 +308,13 @@ namespace RealERPWEB.F_12_Inv
         private void GetSpecification()
         {
             string mResCode = this.ddlreslist.SelectedValue.ToString().Substring(0, 9);
+<<<<<<< HEAD
             string ResCode = this.ddlreslist.SelectedValue.ToString();
 
             //string spcfcod1 = this.ddlResSpcf.SelectedValue.ToString();
+=======
+            string mResCode1 = this.ddlreslist.SelectedValue.ToString();
+>>>>>>> ce3a6ac438d0182a723e95e8b5e72497b7133fd3
             this.ddlResSpcf.Items.Clear();
             DataTable tbl1 = (DataTable)ViewState["tblspcf"];
             DataView dv1 = tbl1.DefaultView;
@@ -306,7 +323,7 @@ namespace RealERPWEB.F_12_Inv
             {
                 case "3101":
                 case "3368":
-                    dv1.RowFilter = "mspcfcod = '" + mResCode + "'";
+                    dv1.RowFilter = "mspcfcod = '" + mResCode1 + "'";
                     break;
                 default:
                     dv1.RowFilter = "mspcfcod = '" + mResCode + "' or spcfcod = '000000000000'";
