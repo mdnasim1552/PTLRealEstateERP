@@ -1833,7 +1833,7 @@ namespace RealERPWEB.F_99_Allinterface
                 switch (comcod)
                 {
                     // hide crystal print options
-                    //case "3101":
+                    case "3101":
                     case "3355":
                     case "3353":
                     case "1205":
