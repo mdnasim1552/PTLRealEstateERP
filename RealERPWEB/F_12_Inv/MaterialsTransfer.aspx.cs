@@ -233,17 +233,12 @@ namespace RealERPWEB.F_12_Inv
             {
                 case "3301":
                 case "1301":
-                case "3101":
                     conbal = "notcon";
                     break;
-
                 default:
-                    conbal = "GetProjResList";
+                    conbal = "";
                     break;
-
-
             }
-
             return conbal;
 
         }
@@ -322,7 +317,7 @@ namespace RealERPWEB.F_12_Inv
             {
                 case "3101":
                 case "3368":
-                    dv1.RowFilter = "mspcfcod = '" + mResCode1 + "' or spcfcod = '000000000000'";
+                    dv1.RowFilter = "mspcfcod = '" + mResCode1 + "'";
                     break;
                 default:
                     dv1.RowFilter = "mspcfcod = '" + mResCode + "' or spcfcod = '000000000000'";
