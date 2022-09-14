@@ -308,7 +308,13 @@ namespace RealERPWEB.F_12_Inv
         private void GetSpecification()
         {
             string mResCode = this.ddlreslist.SelectedValue.ToString().Substring(0, 9);
+<<<<<<< HEAD
+            string ResCode = this.ddlreslist.SelectedValue.ToString();
+
+            //string spcfcod1 = this.ddlResSpcf.SelectedValue.ToString();
+=======
             string mResCode1 = this.ddlreslist.SelectedValue.ToString();
+>>>>>>> ce3a6ac438d0182a723e95e8b5e72497b7133fd3
             this.ddlResSpcf.Items.Clear();
             DataTable tbl1 = (DataTable)ViewState["tblspcf"];
             DataView dv1 = tbl1.DefaultView;
