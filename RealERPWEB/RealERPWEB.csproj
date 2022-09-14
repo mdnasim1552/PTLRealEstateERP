@@ -233,7 +233,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Backup\Projects\Project Reference\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
       <HintPath>..\..\..\..\..\bin\RealERPRPT.dll</HintPath>
