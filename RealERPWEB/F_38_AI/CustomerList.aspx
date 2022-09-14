@@ -54,48 +54,20 @@
                           <asp:LinkButton ID="tblAddCustomerModal" runat="server" CssClass="btn btn-primary ml-auto  btn-sm mt20 mr-1" OnClick="AddCustomerModal_Click"><i class="fa fa-plus"></i>Add Customer</asp:LinkButton>
                      </div>
 
-                       <div class="row">
-                            <table class="table table-hover table-bordered table-responsive-md" id="tblDefault">
-                                <thead>
-                                    <tr style="background-color: #ECF3ED;">
-                                        <th>Sl #</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Country</th>
-                                        <th>Email</th>
-                                        <th>Phone Number</th>
-                                        <th>Present Address</th>
-                                        <th>Permanent Address</th>                                      
-                                       
-                                    </tr>
-                                </thead>
-                                <tbody class="text-center">
-                                    <tr>
-                                        <td>1</td>
-                                        <td>MD. HARUN-UR RASHID (FCMA)</td>
-                                        <td>HARUN-UR RASHID (FCMA)</td>
-                                        <td>Bangladesh</td>
-                                        <td>abc@gmail.com</td>
-                                        <td>1258795</td>
-                                        <td>Famget,Dhaka-1215</td>
-                                        <td>Tejkunipara, Farmgate, Dhaka-1215, Bangladesh</td>
-                                       
-                                       
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>MD KAMRUL</td>
-                                        <td> HASSAN</td>
-                                        <td>Bangladesh</td>
-                                        <td>abc@gmail.com</td>
-                                        <td>124658795</td>
-                                        <td>Famget,Dhaka-1215</td>
-                                        <td>Tejkunipara, Farmgate, Dhaka-1215, Bangladesh</td>
-                                        
-                                    </tr>
-                                </tbody>
-                            </table>
+                    
+                       
+                        <!-- The Modal -->
+                        <div class="col-md-12">
+                            <div id="myModal" class="modal">
+                                <span class="close">&times;</span>
+                                <img class=" modal-content img img-responsive" id="img01">
+                                <div id="caption"></div>
+                            </div>
                         </div>
+                            </div>
+                        </div>
+                     
+                    </div>
 
 
 
@@ -111,41 +83,87 @@
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-lg-3 ">
-                                                <asp:Label ID="ltbProject" runat="server">First Name</asp:Label>
-                                                <asp:TextBox ID="txtfName" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                                <%-- <cc1:CalendarExtender  runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>--%>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <asp:Label ID="lbtCustName" runat="server">Last Name</asp:Label>
-                                                <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <asp:Label ID="Label9" runat="server">Country</asp:Label>
-                                                <asp:TextBox ID="txtCountry" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <asp:Label ID="Label17" runat="server">Email</asp:Label>
-                                                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                            </div>
+                                       
+                                         <div class="row">
+                                             <div class="col-md-8">
+                                                 <asp:GridView ID="gvPersonalInfo" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                                     ShowFooter="True" Visible="True" Width="890px">
+                                                     <RowStyle />
+                                                     <Columns>
+                                                         <asp:TemplateField HeaderText="Sl.No.">
+                                                             <ItemTemplate>
+                                                                 <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
+                                                                     Style="text-align: right; font-size: 12px;"
+                                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"
+                                                                     ForeColor="Black"></asp:Label>
+                                                             </ItemTemplate>
+                                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                         </asp:TemplateField>
+                                                         <asp:TemplateField HeaderText="Code" Visible="False">
+                                                             <ItemTemplate>
+                                                                 <asp:Label ID="lblgvItmCode" runat="server" Height="16px"
+                                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'
+                                                                     Width="49px" ForeColor="Black"></asp:Label>
+                                                             </ItemTemplate>
+                                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                         </asp:TemplateField>
+                                                         <asp:TemplateField HeaderText="Description">
+                                                             <ItemTemplate>
+                                                                 <asp:Label ID="lgcResDesc1" runat="server"
+                                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'
+                                                                     Width="220px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                             </ItemTemplate>
+                                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                         </asp:TemplateField>
+                                                         <asp:TemplateField HeaderText="Type" Visible="False">
+                                                             <ItemTemplate>
+                                                                 <asp:Label ID="lgvgval" runat="server"
+                                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>
+                                                             </ItemTemplate>
+                                                         </asp:TemplateField>
+                                                         <asp:TemplateField HeaderText="Information">
+                                                             <ItemTemplate>
+                                                                 <asp:Label ID="lgvgdatat" runat="server"
+                                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdatat")) %>' Width="220px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                             </ItemTemplate>
+                                                                 <ItemTemplate>
+                                                                 <asp:TextBox ID="txtgvVal" runat="server" 
+                                                                     CssClass="form-control" BackColor="Transparent"
+                                                                     BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdatat")) %>'>
+                                                                 </asp:TextBox>
+                                                                 <asp:TextBox ID="txtgvdVal" runat="server" AutoCompleteType="Disabled" 
+                                                                     CssClass="form-control" BackColor="Transparent"
+                                                                     BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdatat")) %>'>
+                                                                 </asp:TextBox>
 
-                                        </div>
-                                        <div class="row mt-3">
+                                                                 <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server" 
+                                                                     Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdVal" PopupPosition="TopLeft" PopupButtonID="txtgvdVal"></cc1:CalendarExtender>
+                                                                 <asp:Panel ID="Panegrd" runat="server">
+                                                                     <div class="  mb-0">
+                                                                         <asp:DropDownList ID="ddlval" runat="server" Visible="false"
+                                                                             CssClass="select2 form-control" AutoPostBack="true" TabIndex="2">
+                                                                         </asp:DropDownList>
 
-                                            <div class="col-lg-3">
-                                                <asp:Label ID="Label18" runat="server">Phone Number</asp:Label>
-                                                <asp:TextBox ID="txtphoneNumber" runat="server" CssClass="form-control form-control-sm" TextMode="Number"></asp:TextBox>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <asp:Label ID="Label19" runat="server">Present Address</asp:Label>
-                                                <asp:TextBox ID="tblEndDate" runat="server" CssClass="form-control form-control-sm" TextMode="MultiLine"></asp:TextBox>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <asp:Label ID="Label20" runat="server">Permanent Address</asp:Label>
-                                                <asp:TextBox ID="txtperAddress" runat="server" CssClass="form-control form-control-sm" TextMode="MultiLine"></asp:TextBox>
-                                            </div>
-                                        </div>
+                                                                     </div>
+                                                                 </asp:Panel>
+                                                             </ItemTemplate>
+                                                         </asp:TemplateField>
+                                                         
+                                                     </Columns>
+
+
+                                                     <%--<FooterStyle CssClass="grvFooter" />--%>
+                                                     <EditRowStyle />
+                                                     <AlternatingRowStyle />
+                                                     <PagerStyle CssClass="gvPagination" />
+
+                                                     <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" Height="30px" />
+                                                 </asp:GridView>
+                                             </div>
+                                         </div>
 
                                     </div>
                                     <div class="modal-footer row">

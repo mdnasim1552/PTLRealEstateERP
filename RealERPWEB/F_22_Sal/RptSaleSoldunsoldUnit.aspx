@@ -316,7 +316,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFParking" runat="server" Font-Bold="True"
-                                                        ForeColor="Black" Style="text-align: right" Width="35px"></asp:Label>
+                                                        ForeColor="Black" Style="text-align: right" Width="70px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
@@ -331,7 +331,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFutility" runat="server" Font-Bold="True"
-                                                        ForeColor="Black" Style="text-align: right" Width="35px"></asp:Label>
+                                                        ForeColor="Black" Style="text-align: right" Width="70px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />

@@ -120,9 +120,7 @@
     <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
       <HintPath>..\..\..\Doc\Lib\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Build.Framework">
-      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.Build.Framework.dll</HintPath>
-    </Reference>
+    <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Backup\PROJECT\Project Reference\Real Estate Bin 211213\bin\Microsoft.Build.Tasks.Core.dll</HintPath>
@@ -151,17 +149,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
-    <Reference Include="microsoft.reportviewer.datavisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\microsoft.reportviewer.datavisualization.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2216,7 +2210,6 @@
     <Content Include="F_12_Inv\MatTransfer02.aspx" />
     <Content Include="F_12_Inv\MatTransStatus.aspx" />
     <Content Include="F_12_Inv\PurReqEntry.aspx" />
-    <Content Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx" />
     <Content Include="F_14_Pro\RptPurOrderTopSheet.aspx" />
     <Content Include="F_14_Pro\RptSupAdvanceDetails.aspx" />
     <Content Include="F_17_Acc\AccIssueUpdate.aspx" />
@@ -2806,8 +2799,6 @@
     <Content Include="F_36_Vehcl\VehicleInfoEntry.aspx" />
     <Content Include="F_36_Vehcl\VehicleMgt.aspx" />
     <Content Include="F_37_LOwner\LOMoneyReciptapp.aspx" />
-    <Content Include="F_38_AI\AddProject.aspx" />
-    <Content Include="F_38_AI\AIGenCodeBook.aspx" />
     <Content Include="F_39_MyPage\ClientCodeBook.aspx" />
     <Content Include="F_39_MyPage\ClientDetail.aspx" />
     <Content Include="F_39_MyPage\CustomerDetail.aspx" />
@@ -3145,7 +3136,6 @@
     <Content Include="F_99_Allinterface\BusinessDashboard.aspx" />
     <Content Include="F_99_Allinterface\CRMDashboard02.aspx" />
     <Content Include="F_99_Allinterface\CRMDashboard.aspx" />
-    <Content Include="F_38_AI\CustomerList.aspx" />
     <Content Include="F_99_Allinterface\Defaulthide.aspx" />
     <Content Include="F_99_Allinterface\FeasibilityInterface.aspx" />
     <Content Include="F_99_Allinterface\HRInterfaceTopSheet.aspx" />
@@ -4026,13 +4016,6 @@
     <Compile Include="F_12_Inv\PurReqEntry.aspx.designer.cs">
       <DependentUpon>PurReqEntry.aspx</DependentUpon>
     </Compile>
-    <Compile Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx.cs">
-      <DependentUpon>LinkRptPurchaseStatusUr.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx.designer.cs">
-      <DependentUpon>LinkRptPurchaseStatusUr.aspx</DependentUpon>
-    </Compile>
     <Compile Include="F_14_Pro\RptPurOrderTopSheet.aspx.cs">
       <DependentUpon>RptPurOrderTopSheet.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4529,20 +4512,6 @@
     </Compile>
     <Compile Include="F_37_LOwner\LOMoneyReciptapp.aspx.designer.cs">
       <DependentUpon>LOMoneyReciptapp.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="F_38_AI\AddProject.aspx.cs">
-      <DependentUpon>AddProject.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_38_AI\AddProject.aspx.designer.cs">
-      <DependentUpon>AddProject.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="F_38_AI\AIGenCodeBook.aspx.cs">
-      <DependentUpon>AIGenCodeBook.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_38_AI\AIGenCodeBook.aspx.designer.cs">
-      <DependentUpon>AIGenCodeBook.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_70_Services\QuotationEntry.aspx.cs">
       <DependentUpon>QuotationEntry.aspx</DependentUpon>
@@ -5138,13 +5107,6 @@
     </Compile>
     <Compile Include="F_99_Allinterface\CRMDashboard.aspx.designer.cs">
       <DependentUpon>CRMDashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="F_38_AI\CustomerList.aspx.cs">
-      <DependentUpon>CustomerList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_38_AI\CustomerList.aspx.designer.cs">
-      <DependentUpon>CustomerList.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\HRMAllInOne.aspx.cs">
       <DependentUpon>HRMAllInOne.aspx</DependentUpon>
@@ -12363,6 +12325,7 @@
     <Folder Include="ExcelFile\" />
     <Folder Include="ftpdown\" />
     <Folder Include="ftp\" />
+    <Folder Include="F_38_AI\" />
     <Folder Include="F_81_Hrm\F_88_Res\" />
     <Folder Include="Image1\" />
     <Folder Include="Log Files\" />
