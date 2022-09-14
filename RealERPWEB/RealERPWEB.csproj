@@ -233,7 +233,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Doc\Lib\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>F:\BAckup_DWLd\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
       <HintPath>..\..\..\..\..\bin\RealERPRPT.dll</HintPath>
@@ -3886,7 +3886,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="Bundle.config" />
-    <Content Include="Upload\Code of Conduct Bangla.pdf" />
     <Content Include="tinymce\langs\readme.md" />
     <Content Include="tinymce\skins\lightgray\fonts\tinymce-small.eot" />
     <Content Include="tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
@@ -12370,6 +12369,7 @@
     <Folder Include="SqlServerTypes\x64\" />
     <Folder Include="SqlServerTypes\x86\" />
     <Folder Include="SupWorkOreder\" />
+    <Folder Include="Upload\Attndancefiles\" />
     <Folder Include="Upload\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
@@ -12551,10 +12551,6 @@
     <Content Include="Upload\CV\000000002_Md. Ahasan Habib.docx" />
     <Content Include="Upload\CV\000000003_Md Mahbubur Rahman.doc" />
     <Content Include="Upload\CV\000000004_Md Habibur Rahman.doc" />
-    <Content Include="Upload\GBL20180800004.xlsx" />
-    <Content Include="Upload\GBL20190300001.pdf" />
-    <Content Include="Upload\GBL20190300008.pdf" />
-    <Content Include="Upload\Portland Int Anc Final.xls" />
     <Content Include="Upload\PROJECT\16010001000127703.csv" />
     <Content Include="Upload\PROJECT\16010001000140626.xlsx" />
     <Content Include="Upload\PROJECT\16010001000177981.csv" />
