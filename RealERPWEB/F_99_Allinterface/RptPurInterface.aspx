@@ -534,7 +534,7 @@
                     case 'gvmrrapp':
                         tblData = document.getElementById("<%=this.gvmrrapp.ClientID %>");
                         break;
-                        
+
                     case 'gvPurBill':
                         tblData = document.getElementById("<%=this.gvPurBill.ClientID %>");
                         break;
@@ -632,7 +632,7 @@
 
 
                     case 3354:  //Edison Real Estate
-                   
+
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval                      
@@ -648,7 +648,7 @@
 
 
 
-                    
+
                     case 1205:  //P2P Construction
                     case 3351:  //wecon Properties
                     case 3352:  //p2p360
@@ -704,7 +704,7 @@
                         $(".tbMenuWrp table tr td:nth-child(8)").hide();
                         $(".tbMenuWrp table tr td:nth-child(9)").hide();
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(14)").hide();                       
+                        $(".tbMenuWrp table tr td:nth-child(14)").hide();
                         $(".tbMenuWrp table tr td:nth-child(18)").hide();
 
                         break;
@@ -729,15 +729,15 @@
                         break;
 
                     case 3368:  //Finlay
-                  
+
 
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
-                      //  $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
+                        //  $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval                      
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
                         $(".tbMenuWrp table tr td:nth-child(8)").hide()
                         $(".tbMenuWrp table tr td:nth-child(9)").hide();
-                       //$(".tbMenuWrp table tr td:nth-child(13)").hide();  //Work Order(1st Appr)
+                        //$(".tbMenuWrp table tr td:nth-child(13)").hide();  //Work Order(1st Appr)
                         //$(".tbMenuWrp table tr td:nth-child(14)").hide(); //Work Order(2nd Appr)
                         $(".tbMenuWrp table tr td:nth-child(16)").hide();
                         $(".tbMenuWrp table tr td:nth-child(18)").hide();
@@ -745,8 +745,8 @@
 
 
                     case 3367:  //Epic  
-                    //case 3101:  //Epic
-                                             
+                        //case 3101:  //Epic
+
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check      
                         //$(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
@@ -936,7 +936,7 @@
                                 <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-primary" OnClick="lbtnOk_Click">Ok</asp:LinkButton></li>
                             </div>
                         </div>
-                        
+
 
                         <div class="col-md-1">
                             <div class=" btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -975,14 +975,14 @@
                             <asp:Button ID="lblMIMEInfo" runat="server" CssClass="smLbl_to" Height="20px" Style="text-align: center; line-height: 20px; padding: 0; float: right;" Text="Search" />
                         </div>
 
-                          <div class="col-md-1">
-                            <div class="form-group">     
+                        <div class="col-md-1">
+                            <div class="form-group">
 
                                 <asp:HyperLink ID="hlnkMktInterface" runat="server" Target="_blank" NavigateUrl="~/F_99_Allinterface/MKTProInterface?Type=Report" Visible="false" CssClass=" btn btn-warning">Mar. Interface</asp:HyperLink>
                             </div>
                         </div>
 
-                      
+
 
                     </div>
 
@@ -1013,7 +1013,8 @@
                                                         <asp:ListItem Value="12"></asp:ListItem>
                                                         <asp:ListItem Value="13"></asp:ListItem>
                                                         <asp:ListItem Value="14"></asp:ListItem>
-                                                      <asp:ListItem Value="15"></asp:ListItem>  <%--Material Received(Approved)--%>
+                                                        <asp:ListItem Value="15"></asp:ListItem>
+                                                        <%--Material Received(Approved)--%>
                                                         <asp:ListItem Value="16"></asp:ListItem>
                                                         <asp:ListItem Value="17"></asp:ListItem>
                                                         <asp:ListItem Value="18"></asp:ListItem>
@@ -3441,9 +3442,7 @@
                                                         ShowFooter="True" OnRowDataBound="grvMRec_RowDataBound">
                                                         <RowStyle />
                                                         <Columns>
-
-
-                                                            <asp:TemplateField HeaderText="Sl">
+                                                            <asp:TemplateField HeaderText="SL">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvDSlNo" runat="server" Font-Bold="True" Style="text-align: right"
                                                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
@@ -3611,17 +3610,13 @@
                                                                     <asp:HyperLink ID="HyInprPrint" runat="server" ToolTip="Print Crystal" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
                                                                     </asp:HyperLink>
 
-                                                                    <asp:LinkButton ID="lnkRdlcPrint_Recived" OnClick="lnkRdlcPrint_Recived_Click" Visible="true" runat="server" ToolTip="Print RDLC" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span></asp:LinkButton>
-                                                                    
-                                                                    <%--<asp:Button ID="HyperLink2" runat="server" CssClass="btn btn-default btn-xs" Visible="true" OnClientClick="" ToolTip="Print RDLC"><span class="fa fa-print"></span> </asp:Button>--%>
-                                                                   <%-- <asp:HyperLink ID="HyperLink2" runat="server" ToolTip="Print RDLC" Target="_blank"   CssClass="btn btn-default btn-xs" Visible="true"><span class="fa fa-print"></span>
+                                                                    <asp:LinkButton ID="lnkRdlcPrint_Recived" OnClick="lnkRdlcPrint_Recived_Click" runat="server" ToolTip="Print RDLC" CssClass="btn btn-default btn-xs" Visible="false"><span class="fa fa-print"></span></asp:LinkButton>
 
-                                                                    </asp:HyperLink>--%>
-                                                                     <%--<asp:HyperLink ID="HyperLink2" runat="server" ToolTip="Print RDLC" Target="_blank"    CssClass="btn btn-default btn-xs" Visible="true"><span class="fa fa-print"></span>
-                                                                    </asp:HyperLink>--%>
+                                                                    <asp:HyperLink ID="HyperLink2" runat="server" ToolTip="Print RDLC" Target="_blank" CssClass="btn btn-default btn-xs" Visible="true"><span class="fa fa-print"></span>
+                                                                    </asp:HyperLink>
+
 
                                                                     <asp:HyperLink ID="lnkbtnEntry" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
-
                                                                     </asp:HyperLink>
 
                                                                     <asp:LinkButton ID="btnDelOrder" OnClick="btnDelOrder_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
@@ -3653,12 +3648,12 @@
                                             </div>
                                         </asp:Panel>
 
-                                         <asp:Panel ID="pnlmrrapp" Visible="false" runat="server">
-                                              <div class="row">
+                                        <asp:Panel ID="pnlmrrapp" Visible="false" runat="server">
+                                            <div class="row">
                                                 <div class="table-responsive col-lg-12">
 
                                                     <asp:GridView ID="gvmrrapp" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                                        ShowFooter="True"  OnRowDataBound="gvmrrapp_RowDataBound" >
+                                                        ShowFooter="True" OnRowDataBound="gvmrrapp_RowDataBound">
                                                         <RowStyle />
                                                         <Columns>
 
@@ -3781,7 +3776,7 @@
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
-                                                            
+
 
 
 
@@ -3811,7 +3806,7 @@
                                                                 </FooterTemplate>
                                                                 <FooterStyle HorizontalAlign="Right" Font-Bold="true" Width="50px" />
                                                             </asp:TemplateField>
-                                                           
+
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
@@ -3822,7 +3817,7 @@
                                                                     <asp:HyperLink ID="lnkbtnEntrymapp" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
 
                                                                     </asp:HyperLink>
-                                                                    <asp:LinkButton ID="btnDelBillmapp" OnClick="btnDelBillmapp_Click"  OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
+                                                                    <asp:LinkButton ID="btnDelBillmapp" OnClick="btnDelBillmapp_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
                                                                     <%--                                                                    <asp:HyperLink ID="lnkbtnEditIN" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span class="glyphicon glyphicon-pencil"></span>
                                                                     </asp:HyperLink>
                                                     
@@ -3845,7 +3840,7 @@
                                                 </div>
                                             </div>
 
-                                             </asp:Panel>
+                                        </asp:Panel>
 
                                         <asp:Panel ID="PanelBill" Visible="false" runat="server">
                                             <div class="row">
