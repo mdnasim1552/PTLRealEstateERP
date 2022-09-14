@@ -295,6 +295,8 @@ namespace RealERPWEB.F_12_Inv
         private void GetSpecification()
         {
             string mResCode = this.ddlreslist.SelectedValue.ToString().Substring(0, 9);
+            string ResCode = this.ddlreslist.SelectedValue.ToString();
+
             //string spcfcod1 = this.ddlResSpcf.SelectedValue.ToString();
             this.ddlResSpcf.Items.Clear();
             DataTable tbl1 = (DataTable)ViewState["tblspcf"];
