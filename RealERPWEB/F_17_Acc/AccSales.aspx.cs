@@ -233,7 +233,7 @@ namespace RealERPWEB.F_17_Acc
             double vcode1 = Convert.ToDouble(Request.QueryString["tcode"]);
             string ConAccHead = Cactcode;
             string VNo1 = (ConAccHead.Substring(0, 4) == "1901" ? "C"
-                : ((ConAccHead.Substring(0, 2) == "22" || ConAccHead.Substring(0, 2) == "23" || ConAccHead.Substring(0, 2) == "24" || ConAccHead.Substring(0, 2) == "16" || ConAccHead.Substring(0, 2) == "13") ? "J" : "B"));
+                : ((ConAccHead.Substring(0, 2) == "22" || ConAccHead.Substring(0, 2) == "23" || ConAccHead.Substring(0, 2) == "24" || ConAccHead.Substring(0, 2) == "16" || ConAccHead.Substring(0, 2) == "13" || ConAccHead.Substring(0, 2) =="26") ? "J" : "B"));
 
 
 

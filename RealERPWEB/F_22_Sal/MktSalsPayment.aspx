@@ -63,8 +63,14 @@
 
         function CloseModalAddJob() {
             $('#AddJob').modal('hide');
+        }
 
+        function openViewModal() {
+            $('#viewconfrimation').modal('toggle');
+        }
 
+        function CloseViewModal() {
+            $('#viewconfrimation').modal('hide');
         }
 
     </script>
@@ -956,7 +962,7 @@
                                             <div class="form-group">
                                                 <asp:Label ID="lPays" runat="server" CssClass="lblTxt lblName">Payment Shedule</asp:Label>
                                                 <asp:Label ID="Label8" runat="server" CssClass="lblTxt lblName"></asp:Label>
-                                                <asp:CheckBox ID="chkVisible" runat="server" AutoPostBack="True"
+                                                <asp:CheckBox ID="chkVisible" runat="server" AutoPostBack="true" ToolTip="New Shedule"
                                                     CssClass="chkBoxControl"
                                                     OnCheckedChanged="chkVisible_CheckedChanged" Text="Gen. Installment" />
                                                 <asp:CheckBox ID="chkSegment" runat="server" AutoPostBack="True"
@@ -1265,6 +1271,38 @@
                         <div class="modal-footer ">
                             <asp:LinkButton ID="lbtnAddJob" runat="server" CssClass="btn btn-sm btn-success" OnClientClick="CloseModalAddJob();" OnClick="lbtnAddJob_Click"><span class="glyphicon glyphicon-plus"></span> Add </asp:LinkButton>
 
+
+                            <%--<button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>--%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="viewconfrimation" class="modal fade  " role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-dialog-sm-width">
+                    <div class="modal-content modal-content-mid-width">
+                        <div class="modal-header">
+                            <h4 class="modal-title">
+                                <i class="fa fa-hand-point-right"></i> Payment Schedule Generate</h4>
+                            <button type="button" class="btn btn-xs pull-right" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+                            <asp:Label ID="lblmSupCode" runat="server" CssClass="form-control" Text="" Visible="false"></asp:Label>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card">
+                                <div class="card-header"></div>
+                                <div class="card-body" style="min-height: 200px;">
+                                    <div class="form-group">
+                                        <h4 class="modal-title"><i class="fa fa-info" aria-hidden="true"></i>  Are you sure...? Delete Previous Schedule </h4>
+                                        
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer ">                            
+                            <asp:LinkButton ID="lnkNewSchdule" runat="server" CssClass="btn btn-primary" OnClientClick="CloseViewModal();" OnClick="lnkNewSchdule_Click">Yes</asp:LinkButton>
+                            <button class="btn btn-primary" data-dismiss="modal">Close</button>
 
                             <%--<button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>--%>
                         </div>
