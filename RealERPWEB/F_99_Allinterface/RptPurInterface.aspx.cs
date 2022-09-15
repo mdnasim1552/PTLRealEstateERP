@@ -570,6 +570,7 @@ namespace RealERPWEB.F_99_Allinterface
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_PURCHASE_INTERFACE02", "RPTPURCHASEDASHBOARD", frmdate, ptype, length, usrid, mrfno, todate, "", "", "");
 
             Session["Alltable"] = ds1;
+            Session["tblreqChk1"] =(ds1.Tables[1]).Copy();
 
             if (ds1 == null)
                 return;
@@ -805,7 +806,6 @@ namespace RealERPWEB.F_99_Allinterface
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
-            this.lblprintstkl.Text = "";
             string value = this.RadioButtonList1.SelectedValue.ToString();
             DataSet ds1 = (DataSet)Session["Alltable"];
             DataTable dt = new DataTable();
@@ -2687,9 +2687,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             string comcod = this.GetCompCode();
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
-
             string url = "PurReqEntry?InputType=Entry";
-
 
             DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["delete"]))
@@ -2700,54 +2698,22 @@ namespace RealERPWEB.F_99_Allinterface
 
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string genno = ((Label)this.gvReqChk.Rows[RowIndex].FindControl("lblgvreqnorq")).Text.Trim();
+            string pactcode = ((Label)this.gvReqChk.Rows[RowIndex].FindControl("lblgvpactcode")).Text.Trim();
+            string catdesc = ((Label)this.gvReqChk.Rows[RowIndex].FindControl("lblgvcatagorychk")).Text.Trim(); 
+            string mrfno = ((Label)this.gvReqChk.Rows[RowIndex].FindControl("lblgvmrfno")).Text.Trim(); 
 
+            DataTable dt = (DataTable)Session["tblreqChk1"];
+            string pactdesc = dt.Select("pactcode='"+ pactcode + "'")[0]["pactdesc"].ToString();
+            //pactcode 
+            spanReqInfo.InnerText = "MPR No - "+ mrfno + " ( Delete )";
+            spanpactdec.InnerText = pactdesc.ToString();
+            this.lblreqno.Text = genno.ToString();
+            this.lblmrfno.Text = mrfno.ToString();
+            this.lblpactcode.Text = pactcode.ToString();
+            this.lblresdesc.Text = "Material : "+catdesc.ToString();
+            //catdesc
 
-            //accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "RPTACCOUNTDASHBOARD", "%", Date, "%", "", "", "", "", "", "");
-
-
-
-            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETPURREQINFO", genno, "", "", "", "", "", "", "", "");
-            //  DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPURBILLINFO", genno, "",
-
-            if (ds1 == null)
-                return;
-
-            /**/
-            if (ds1.Tables[5].Rows.Count > 0)
-            {
-                bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEREQCRMBACKDATA", genno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-
-                if (!resulbill)
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Back  Fail');", true);
-                    return;
-                }
-                else
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Removed Successfully.');", true);
-            }
-
-            else
-            {
-                bool result = this.XmlDataInsertReq(genno, ds1);
-                if (!result)
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Fail');", true);
-                    return;
-                }
-                bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEREQINFO", genno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-
-                if (!resulbill)
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted  Fail');", true);
-                    return;
-                }
-                else
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
-            }
-
-
-            this.PurchaseInfoRpt();
-            this.RadioButtonList1_SelectedIndexChanged(null, null);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openReqModal();", true);
 
         }
 
@@ -5392,6 +5358,60 @@ namespace RealERPWEB.F_99_Allinterface
             ScriptManager.RegisterStartupScript(this, GetType(), "target", "FunPurchaseOrder('" + totalpath + "');", true);
 
             //hlink3.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno+ "&PrintOpt="+ PrintOpt;
+        }
+
+        protected void btnSaveReqNote_Click(object sender, EventArgs e)
+        {
+
+            string comcod = this.GetCompCode();
+            string genno = this.lblreqno.Text.ToString(); 
+            string mrfno = this.lblmrfno.Text.ToString(); 
+            string pactcode = this.lblpactcode.Text.ToString();
+            string notes = this.txtReqNote.Text.Trim().ToString();
+
+            //accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "RPTACCOUNTDASHBOARD", "%", Date, "%", "", "", "", "", "", "");
+
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETPURREQINFO", genno, "", "", "", "", "", "", "", "");
+
+            if (ds1 == null)
+                return;
+
+            if (ds1.Tables[5].Rows.Count > 0)
+            {
+                bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEREQCRMBACKDATA", genno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+                if (!resulbill)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Back  Fail');", true);
+                    return;
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Removed Successfully.');", true);
+            }
+
+            else
+            {
+                bool result = this.XmlDataInsertReq(genno, ds1);
+                if (!result)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Fail');", true);
+                    return;
+                }
+                bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEREQINFO", genno, pactcode, mrfno, notes, "", "", "", "", "", "", "", "", "", "", "");
+
+                if (!resulbill)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted  Fail');", true);
+                    return;
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
+            }
+
+
+            this.PurchaseInfoRpt();
+            this.RadioButtonList1_SelectedIndexChanged(null, null);
+
         }
     }
 }
