@@ -56,7 +56,7 @@ namespace RealERPWEB.F_23_CR
 
         }
 
-        protected void lbtnOk_Click(object sender, EventArgs e) 
+        protected void lbtnOk_Click(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
             string comcod = this.GetCompCode();
@@ -102,16 +102,55 @@ namespace RealERPWEB.F_23_CR
             {
 
                 HyperLink hlnkMoneyRcptEdit = (HyperLink)e.Row.FindControl("hlnkMoneyRcptEdit");
-                HyperLink hlnkPrintMoneyRcpt = (HyperLink)e.Row.FindControl("hlnkMoneyRcptPrint");
+                HyperLink hlnkrcptPrint = (HyperLink)e.Row.FindControl("hlnkMoneyRcptPrint");
+                LinkButton btnrcptPrint = (LinkButton)e.Row.FindControl("lnkMoneyRcptPrint");
+                string comcod = this.GetCompCode();
+                switch (comcod)
+                {
+                    case "3101":
+                    case "3368":
+                        btnrcptPrint.Visible = true;
+                        hlnkrcptPrint.Visible = false;
+                        break;
+                    default:
+                        btnrcptPrint.Visible = false;
+                        hlnkrcptPrint.Visible = true;
+                        break;
+                }
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string usircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usircode")).ToString();
                 string mrno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mrno")).ToString();
                 string mrdate = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mrdate")).ToString();
 
                 hlnkMoneyRcptEdit.NavigateUrl = "~/F_23_CR/MktMoneyReceipt?Type=Management&prjcode=" + pactcode + "&usircode=" + usircode + "&genno=" + mrno;
-                hlnkPrintMoneyRcpt.NavigateUrl = "~/F_17_Acc/PrintMoneyReceipt?Type=moneyReceipt&pactcode=" + pactcode + "&usircode=" + usircode + "&mrno=" + mrno + "&mrdate=" + mrdate;
+                hlnkrcptPrint.NavigateUrl = "~/F_17_Acc/PrintMoneyReceipt?Type=moneyReceipt&pactcode=" + pactcode + "&usircode=" + usircode + "&mrno=" + mrno + "&mrdate=" + mrdate;
 
             }
+        }
+
+        protected void lnkMoneyRcptPrint_Click(object sender, EventArgs e)
+        {
+
+            string PrintOpt = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
+
+            int index = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            //LinkButton rcptPrint = ((LinkButton)this.gvAccMR.Rows[index].FindControl("lnkMoneyRcptPrint"));
+
+            string pactcode = ((Label)this.gvAccMR.Rows[index].FindControl("lgvpactcode")).Text.Trim().ToString();
+            string usircode = ((Label)this.gvAccMR.Rows[index].FindControl("lgvusircode")).Text.Trim().ToString();
+            string mrno = ((Label)this.gvAccMR.Rows[index].FindControl("lblgvMRNo")).Text.Trim().ToString();
+            string mrdate = ((Label)this.gvAccMR.Rows[index].FindControl("lgvmrdate")).Text.Trim();
+
+            //rcptPrint.PostBackUrl = "~/F_17_Acc/PrintMoneyReceipt?Type=moneyReceipt&pactcode=" + pactcode + "&usircode=" + usircode + "&mrno=" + mrno + "&mrdate=" + mrdate;
+
+
+            string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_17_Acc/";
+            string currentptah = "PrintMoneyReceipt?Type=moneyReceipt&pactcode=" + pactcode + "&usircode=" + usircode + "&mrno=" + mrno + "&mrdate=" + mrdate + "&PrintOpt=" + PrintOpt;
+            string totalpath = hostname + currentptah;
+            ScriptManager.RegisterStartupScript(this, GetType(), "target", "FunMoneyReceipt('" + totalpath + "');", true);
+
+
+         
         }
     }
 }
