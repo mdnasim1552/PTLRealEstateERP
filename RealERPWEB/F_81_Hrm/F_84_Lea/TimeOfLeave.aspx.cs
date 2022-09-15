@@ -157,7 +157,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             if (datSetup == null)
                 return;
             string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
-            //  string curdate=System.DateTime.Today.ToString("")
+            //  string curdate=System.DateTime.Today.ToString("")https://localhost:44359/login
             string frmdate = Convert.ToInt32(date.ToString("dd")) > Convert.ToInt32(startdate) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
             frmdate = startdate + frmdate.Substring(2);
 

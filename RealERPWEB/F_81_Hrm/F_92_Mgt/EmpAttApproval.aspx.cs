@@ -98,8 +98,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string atttyp= dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["lvtype"].ToString();
             string reqdate= dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["strtdat"].ToString();
             string restatus = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["lvstatus1"].ToString();
+            string intime = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["intime"].ToString();
 
             this.lbldadte.Text =Convert.ToDateTime(reqdate).ToString("dd-MMM-yyyy");
+            this.lbldadteTime.Text = Convert.ToDateTime(intime).ToString("hh:mm tt");
             this.ddlReqType.SelectedValue = reqtype;
 
             string comcod = this.GetCompCode();
@@ -368,6 +370,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 /// this.SaveLeave();
                 string reqtype = this.ddlReqType.SelectedValue.ToString();
                 string remarks = this.txtremarks.Text.ToString();
+                string intime = this.lbldadteTime.Text.Trim();
+                string ldate = Convert.ToDateTime(this.lbldadte.Text.Trim()).ToString("yyyyMMdd");
+
 
                 string roletype = this.Request.QueryString["RoleType"].ToString();
                 string approvdat = System.DateTime.Now.ToString("dd-MMM-yyyy");
@@ -395,7 +400,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     else
                     {
                         this.SendNotificaion(Orderno, Centrid, roletype, "", compsms, compmail, ssl, sendUsername, sendDptdesc, sendUsrdesig, compName);
+                        result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_MGT_INTERFACE", "UPDATETIME",Centrid,reqtype, intime, "", "", "", "", "");
+
                         string Messagesd = "Request Approved";
+
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
 
                         string eventdesc2 = "Details: " + sendUsername + sendDptdesc + sendUsrdesig + compName;

@@ -437,7 +437,11 @@
                                         </label>
                                         <asp:Label ID="lbldadteOuttime" Visible="false" runat="server" class="form-control"></asp:Label>
                                         <asp:Label ID="lbldadteIntime" Visible="false" runat="server" class="form-control"></asp:Label>
-                                        <asp:Label ID="lbldadteTime" runat="server" class="form-control"></asp:Label>
+                                        <%--<asp:Label ID="lbldadteTime" runat="server" class="form-control"></asp:Label>--%>
+                         
+                       
+                                        <asp:TextBox ID="lbldadteTime" class="form-control" runat="server" ></asp:TextBox>
+
 
                                     </div>
                                     <!-- /form grid -->

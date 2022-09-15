@@ -570,7 +570,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string reqfor = reqtype == "AB" ? "Absent Approval" : reqtype == "LP" ? "Late Present Approval" : reqtype == "LA"? "Late Approval" : "Time of Correction";
             string reqdate = this.lbldadte.Text.Trim();
             string dayID =  Convert.ToDateTime(this.lbldadte.Text.Trim()).ToString("yyyyMMdd");
-            string reqtimeIN = this.lbldadteIntime.Text.Trim();
+            string reqtimeIN = this.lbldadteTime.Text.Trim();
             string reqtimeOUT = this.lbldadteOuttime.Text.Trim();
             string txtReson = txtAreaReson.Text.Trim();
             string reqid = this.ReqID.Value;
