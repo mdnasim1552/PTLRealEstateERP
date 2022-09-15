@@ -307,37 +307,27 @@ namespace RealERPWEB.F_12_Inv
 
         private void GetSpecification()
         {
-            //nahid comments 20220914 for conflig
-            //            string mResCode = this.ddlreslist.SelectedValue.ToString().Substring(0, 9);
-            //<<<<<<< HEAD
-            //            string ResCode = this.ddlreslist.SelectedValue.ToString();
-
-            //            //string spcfcod1 = this.ddlResSpcf.SelectedValue.ToString();
-            //=======
-            //            string mResCode1 = this.ddlreslist.SelectedValue.ToString();
-            //>>>>>>> ce3a6ac438d0182a723e95e8b5e72497b7133fd3
-            //            this.ddlResSpcf.Items.Clear();
-            //            DataTable tbl1 = (DataTable)ViewState["tblspcf"];
-            //            DataView dv1 = tbl1.DefaultView;
-            //            string comcod = this.GetCompCode();
-            //            switch (comcod)
-            //            {
-            //                case "3101":
-            //                case "3368":
-            //                    dv1.RowFilter = "mspcfcod = '" + mResCode1 + "'";
-            //                    break;
-            //                default:
-            //                    dv1.RowFilter = "mspcfcod = '" + mResCode + "' or spcfcod = '000000000000'";
-            //                    break;
-            //            }
-
-            //            DataTable dt = dv1.ToTable();
-            //            this.ddlResSpcf.DataTextField = "spcfdesc";
-            //            this.ddlResSpcf.DataValueField = "spcfcod";
-            //            this.ddlResSpcf.DataSource = dt;
-            //            this.ddlResSpcf.DataBind();
-
-
+            string mResCode = this.ddlreslist.SelectedValue.ToString().Substring(0, 9);
+            string mResCode1 = this.ddlreslist.SelectedValue.ToString();
+            this.ddlResSpcf.Items.Clear();
+            DataTable tbl1 = (DataTable)ViewState["tblspcf"];
+            DataView dv1 = tbl1.DefaultView;
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "3101":
+                case "3368":
+                    dv1.RowFilter = "mspcfcod = '" + mResCode1 + "'";
+                    break;
+                default:
+                    dv1.RowFilter = "mspcfcod = '" + mResCode + "' or spcfcod = '000000000000'";
+                    break;
+            }
+            DataTable dt = dv1.ToTable();
+            this.ddlResSpcf.DataTextField = "spcfdesc";
+            this.ddlResSpcf.DataValueField = "spcfcod";
+            this.ddlResSpcf.DataSource = dt;
+            this.ddlResSpcf.DataBind();
         }
         protected void lnkselect_Click(object sender, EventArgs e)
         {
