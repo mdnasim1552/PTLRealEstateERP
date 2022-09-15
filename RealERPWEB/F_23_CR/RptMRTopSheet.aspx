@@ -45,6 +45,10 @@
             }
         };
 
+        function FunMoneyReceipt(url) {
+            window.open('' + url + '', '_blank');
+        }
+
     </script>
 
 
@@ -234,7 +238,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Project Name">
+                                        <asp:TemplateField HeaderText="">
                                             <HeaderTemplate>
                                                 <asp:TextBox ID="txtSearchproj" BackColor="Transparent" BorderStyle="None" runat="server" Width="150px" placeholder="Project Name" onkeyup="Search_Gridview(this,5)"></asp:TextBox><br />
                                             </HeaderTemplate>
@@ -246,26 +250,26 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Unit Name">
+                                        <asp:TemplateField HeaderText="">
                                             <HeaderTemplate>
-                                                <asp:TextBox ID="txtSearchunit" BackColor="Transparent" BorderStyle="None" runat="server" Width="150px" placeholder="Unit Name" onkeyup="Search_Gridview(this,5)"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtSearchunit" BackColor="Transparent" BorderStyle="None" runat="server" Width="140px" placeholder="Unit Name" onkeyup="Search_Gridview(this,5)"></asp:TextBox><br />
                                             </HeaderTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvunitdesc" runat="server" BackColor="Transparent"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "unitdesc")) %>'
-                                                    Width="180px"></asp:Label>
+                                                    Width="140px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Cust Name">
+                                        <asp:TemplateField HeaderText="">
                                             <HeaderTemplate>
-                                                <asp:TextBox ID="txtSearchcust" BackColor="Transparent" BorderStyle="None" runat="server" Width="150px" placeholder="Cust Name" onkeyup="Search_Gridview(this,5)"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtSearchcust" BackColor="Transparent" BorderStyle="None" runat="server" Width="160px" placeholder="Customer Name" onkeyup="Search_Gridview(this,5)"></asp:TextBox><br />
                                             </HeaderTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvcustdesc" runat="server" BackColor="Transparent"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custdesc")) %>'
-                                                    Width="180px"></asp:Label>
+                                                    Width="160px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
@@ -291,10 +295,11 @@
                                                     CssClass="btn  btn-primary  btn-xs" ToolTip="Export Excel"><span class="fa  fa-file-excel "></span></asp:HyperLink>
                                             </HeaderTemplate>
                                             <ItemTemplate>
-                                                <asp:HyperLink ID="hlnkMoneyRcptPrint" runat="server" Target="_blank" ToolTip="Money Receipt Print" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span></asp:HyperLink>
+                                                <asp:LinkButton ID="lnkMoneyRcptPrint" OnClick="lnkMoneyRcptPrint_Click" runat="server" ToolTip="Money Receipt Print" CssClass="btn btn-default btn-xs" Visible="false"><span class="fa fa-print"></span></asp:LinkButton>
+                                                <asp:HyperLink ID="hlnkMoneyRcptPrint" runat="server" Target="_blank" ToolTip="Money Receipt Print" CssClass="btn btn-default btn-xs" Visible="false"><span class="fa fa-print"></span></asp:HyperLink>
                                             </ItemTemplate>
-                                            <ItemStyle Width="40px" />
-                                            <HeaderStyle HorizontalAlign="Center" Width="80px" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="Center" Width="50px" />
+                                            <HeaderStyle HorizontalAlign="Center" Width="50px" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="">
@@ -302,8 +307,8 @@
                                                 <asp:HyperLink ID="hlnkMoneyRcptEdit" ToolTip="Edit" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class=" fa fa-edit"></span>
                                                 </asp:HyperLink>
                                             </ItemTemplate>
-                                            <ItemStyle Width="40px" />
-                                            <HeaderStyle HorizontalAlign="Center" Width="80px" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="Center" Width="50px" />
+                                            <HeaderStyle HorizontalAlign="Center" Width="50px" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="">
@@ -318,7 +323,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Voucher" Visible="False">
+                                        <asp:TemplateField HeaderText="pactcode" Visible="False">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvpactcode" runat="server" BackColor="Transparent"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactcode")) %>'
@@ -326,10 +331,19 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                         <asp:TemplateField HeaderText="Voucher" Visible="False">
+                                        <asp:TemplateField HeaderText="usircode" Visible="False">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvusircode" runat="server" BackColor="Transparent"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "usircode")) %>'
+                                                    Width="60px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="usircode" Visible="False">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvmrdate" runat="server" BackColor="Transparent"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrdate")) %>'
                                                     Width="60px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
