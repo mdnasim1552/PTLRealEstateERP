@@ -91,14 +91,14 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="row">
                         <div class="col-lg-10">
                             <asp:Label ID="Label2" runat="server" Text="Upload File "></asp:Label>
                             <input id="File1" runat="server"  name="File1" type="file" class="form-control" />
                         </div>
                         <div class="col-lg-2">
-                            <asp:LinkButton ID="CmdUpload" runat="server" CssClass="btn btn-primary btn-sm mt-4" OnClick="UploadFile" TabIndex="4">UpLoad</asp:LinkButton>
+                            <asp:LinkButton ID="CmdUpload" runat="server" CssClass="btn btn-primary btn-sm mt-4" OnClick="UploadFile" TabIndex="4">UpLoad Files</asp:LinkButton>
                         </div>
 
                     </div>
@@ -106,7 +106,7 @@
 
 
                
-                <div class="col-lg-1">
+                <div class="col-lg-2">
                     <div class="form-group">
                         <asp:Label ID="lblPage" runat="server" Text="Page Size"></asp:Label>
 

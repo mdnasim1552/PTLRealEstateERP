@@ -1198,10 +1198,10 @@
                   <Width>0.11007in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.13333in</Width>
+                  <Width>3.01875in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.30833in</Width>
+                  <Width>1.42376in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.1in</Width>
@@ -1541,7 +1541,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Apt./Shop/Off. No</Value>
+                                  <Value>Apt./Shop/Com. Space</Value>
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Cambria</FontFamily>
@@ -1866,7 +1866,7 @@
             <Top>0.11111in</Top>
             <Left>0.00021in</Left>
             <Height>0.6375in</Height>
-            <Width>7.64874in</Width>
+            <Width>7.64959in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>

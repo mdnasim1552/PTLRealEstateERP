@@ -48,6 +48,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
     public partial class HRDailyAttenUpload : System.Web.UI.Page
     {
         //Attendance _AppLib = new Attendance();
+        string Msg;
 
         ProcessAccess HRData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
@@ -281,7 +282,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                     else
                     {
-                        File1.PostedFile.SaveAs(Server.MapPath("..\\..\\Upload\\" + StrFileName));
+                        File1.PostedFile.SaveAs(Server.MapPath("..\\..\\Upload\\Attndancefiles\\" + StrFileName));
                         ((Label)this.Master.FindControl("lblmsg")).Text = "Data Uploading Successfully";
                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
                     }
@@ -303,7 +304,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 }
 
 
-                string filename1 = Server.MapPath("~") + ("\\Upload\\" + StrFileName); //IIS Path
+                string filename1 = Server.MapPath("~") + ("\\Upload\\Attndancefiles\\" + StrFileName); //IIS Path
 
                 //string filename1 = Server.MapPath("~") + ("../Upload/" + StrFileName); //IIS Path
                 //string filename1 = Server.MapPath("~") + ("Upload/" + StrFileName); Local Path
@@ -465,7 +466,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
 
                 //Delete File
-                string savelocation = Server.MapPath("~") + "\\Upload";
+                string savelocation = Server.MapPath("~") + "\\Upload\\Attndancefiles\\";
                 string[] filePaths = Directory.GetFiles(savelocation);
                 foreach (string filePath in filePaths)
                     File.Delete(filePath);
@@ -587,7 +588,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                     else
                     {
-                        File1.PostedFile.SaveAs(Server.MapPath("..\\..\\Upload\\" + StrFileName));
+                        File1.PostedFile.SaveAs(Server.MapPath("..\\..\\Upload\\Attndancefiles\\" + StrFileName));
                         ((Label)this.Master.FindControl("lblmsg")).Text = "Data Uploading Successfully";
                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
                     }
@@ -609,7 +610,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 }
 
 
-                string filename1 = Server.MapPath("~") + ("\\Upload\\" + StrFileName); //IIS Path
+                string filename1 = Server.MapPath("~") + ("\\Upload\\Attndancefiles\\" + StrFileName); //IIS Path
 
                 //string filename1 = Server.MapPath("~") + ("../Upload/" + StrFileName); //IIS Path
                 //string filename1 = Server.MapPath("~") + ("Upload/" + StrFileName); Local Path
@@ -716,7 +717,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
 
                 //Delete File
-                string savelocation = Server.MapPath("~") + "\\Upload";
+                string savelocation = Server.MapPath("~") + "\\Upload\\Attndancefiles\\";
                 string[] filePaths = Directory.GetFiles(savelocation);
                 foreach (string filePath in filePaths)
                     File.Delete(filePath);
@@ -808,7 +809,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
 
 
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+        
             try
             {
                 string StrFileName = string.Empty;
@@ -819,35 +820,41 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     int IntFileSize = File1.PostedFile.ContentLength;
                     if (IntFileSize <= 0)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Uploading of file failed";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        Msg = "Uploading of file failed";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+                         
                     }
 
                     else
                     {
-                        File1.PostedFile.SaveAs(Server.MapPath("..\\..\\Upload\\" + StrFileName));
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Data Uploading Successfully";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                        File1.PostedFile.SaveAs(Server.MapPath("..\\..\\Upload\\Attndancefiles\\" + StrFileName));
+                        Msg = "Data Uploading Successfully";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Msg + "');", true);
+
+ 
                     }
                 }
                 if (StrFileName == "")
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Please fill a file";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    Msg = "Please fill a file";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+                     
                     return;
 
                 }
 
                 if (txtMrrDate.Text.Trim() == "")
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = " Date can not be a blank";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    Msg = " Date can not be a blank";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+
+                     
                     return;
 
                 }
 
 
-                string filename1 = Server.MapPath("~") + ("\\Upload\\" + StrFileName); //IIS Path
+                string filename1 = Server.MapPath("~") + ("\\Upload\\Attndancefiles\\" + StrFileName); //IIS Path
 
                 //string filename1 = Server.MapPath("~") + ("../Upload/" + StrFileName); //IIS Path
                 //string filename1 = Server.MapPath("~") + ("Upload/" + StrFileName); Local Path
@@ -918,17 +925,21 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             Convert.ToDateTime(ATIME).ToString(), MACHID, "", "", "", "", "", "", "", "", "", "");
                     if (!result)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Fail";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        Msg = "Updated Fail";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+
+                       
                     }
                     
 
                 }
 
-             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                Msg = "Updated Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+
+                
                 //Delete File
-                string savelocation = Server.MapPath("~") + "\\Upload";
+                string savelocation = Server.MapPath("~") + "\\Upload\\Attndancefiles\\";
                 string[] filePaths = Directory.GetFiles(savelocation);
                 foreach (string filePath in filePaths)
                     File.Delete(filePath);
@@ -940,8 +951,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                Msg = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+ 
             }
 
 
@@ -950,7 +962,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         }
         private void UploadDataGreenLand()
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            string Msg;
             try
             {
                 string StrFileName = string.Empty;
@@ -962,36 +974,41 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     int IntFileSize = File1.PostedFile.ContentLength;
                     if (IntFileSize <= 0)
                     {
-
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Uploading of file failed";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        Msg = "Uploading of file failed";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+                         
                     }
 
                     else
                     {
-                        File1.PostedFile.SaveAs(Server.MapPath("..\\..\\Upload\\" + StrFileName));
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Data Uploading Successfully";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                        File1.PostedFile.SaveAs(Server.MapPath("..\\..\\Upload\\Attndancefiles\\" + StrFileName));
+
+                        Msg = "Data Uploading Successfully";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Msg + "');", true);
+                         
                     }
                 }
                 if (StrFileName == "")
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Please fill a file";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    Msg = "Please fill a file";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+                     
                     return;
 
                 }
 
                 if (txtMrrDate.Text.Trim() == "")
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = " Date can not be a blank";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    Msg = " Date can not be a blank";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+
+                    
                     return;
 
                 }
 
 
-                string filename1 = Server.MapPath("~") + ("\\Upload\\" + StrFileName); //IIS Path
+                string filename1 = Server.MapPath("~") + ("\\Upload\\Attndancefiles\\" + StrFileName); //IIS Path
 
                 //string filename1 = Server.MapPath("~") + ("../Upload/" + StrFileName); //IIS Path
                 //string filename1 = Server.MapPath("~") + ("Upload/" + StrFileName); Local Path
@@ -1088,7 +1105,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
 
                 //Delete File
-                string savelocation = Server.MapPath("~") + "\\Upload";
+                string savelocation = Server.MapPath("~") + "\\Upload\\Attndancefiles\\";
                 string[] filePaths = Directory.GetFiles(savelocation);
                 foreach (string filePath in filePaths)
                     File.Delete(filePath);
@@ -1100,7 +1117,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                 
+                Msg = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+
             }
 
 
