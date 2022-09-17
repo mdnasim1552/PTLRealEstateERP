@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB.F_38_AI
+namespace RealERPWEB.F_23_CR
 {
 
 
-    public partial class AddProject
+    public partial class RptCollectionStatusLO
     {
 
         /// <summary>
@@ -33,52 +33,75 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-<<<<<<< HEAD
-        /// tblAddCustomerModal control.
-=======
-        /// gvPrjDetails control.
+        /// txtfrmdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPrjDetails;
+        protected global::System.Web.UI.WebControls.TextBox txtfrmdate;
 
         /// <summary>
-        /// Label4 control.
->>>>>>> c63fd4eae8ef0e9390b0f730780e422405cc3024
+        /// txtfrmdate_CalendarExtender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton tblAddCustomerModal;
+        protected global::AjaxControlToolkit.CalendarExtender txtfrmdate_CalendarExtender;
 
         /// <summary>
-        /// gvProjectInfo control.
+        /// txttodate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvProjectInfo;
+        protected global::System.Web.UI.WebControls.TextBox txttodate;
 
         /// <summary>
-        /// btnProjectSave control.
+        /// txttodate_CalendarExtender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnProjectSave;
+        protected global::AjaxControlToolkit.CalendarExtender txttodate_CalendarExtender;
 
         /// <summary>
-        /// GridcusDetails control.
+        /// ddlPrjName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridcusDetails;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPrjName;
+
+        /// <summary>
+        /// ddlbenefname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlbenefname;
+
+        /// <summary>
+        /// lnkbtnOk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnOk;
+
+        /// <summary>
+        /// gvcollStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvcollStatus;
     }
 }

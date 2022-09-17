@@ -32,19 +32,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Cquential.Microsoft.ReportViewer.Common.10.0.40219.1\lib\net35\Microsoft.ReportViewer.Common.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
     <Reference Include="microsoft.reportviewer.datavisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\microsoft.reportviewer.datavisualization.dll</HintPath>
+      <HintPath>C:\Users\Administrator\Downloads\microsoft.reportviewer.datavisualization.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -254,6 +255,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+RptMonthlySalaryTaxFinlay.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+SalSummary2.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_mgt.BO_ClassEmployee+EmployeeInfo.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+AttgraphLbl.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EInterfaceAttApp.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EInterfaceLeave.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+Elvlateabbs.datasource" />

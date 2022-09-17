@@ -372,7 +372,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbldadteTime;
+        protected global::System.Web.UI.WebControls.TextBox lbldadteTime;
 
         /// <summary>
         /// txtAreaReson control.

@@ -145,17 +145,17 @@
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="microsoft.reportviewer.datavisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
+      <HintPath>C:\Users\Administrator\Downloads\microsoft.reportviewer.datavisualization.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -230,7 +230,7 @@
       <HintPath>..\..\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
-      <HintPath>..\..\..\..\..\bin\RealERPRPT.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\RealERPRPT.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -2221,6 +2221,7 @@
     <Content Include="F_22_Sal\EntryClientNameTransfer.aspx" />
     <Content Include="F_22_Sal\MktSalsLOPayment.aspx" />
     <Content Include="F_23_CR\MktLOMoneyReceipt.aspx" />
+    <Content Include="F_23_CR\RptCollectionStatusLO.aspx" />
     <Content Include="F_23_CR\RptDuesReportAll.aspx" />
     <Content Include="F_23_CR\RptMonthlyProbCollection.aspx" />
     <Content Include="F_23_CR\RptOtherCollHistory.aspx" />
@@ -4095,6 +4096,13 @@
     </Compile>
     <Compile Include="F_23_CR\MktLOMoneyReceipt.aspx.designer.cs">
       <DependentUpon>MktLOMoneyReceipt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_23_CR\RptCollectionStatusLO.aspx.cs">
+      <DependentUpon>RptCollectionStatusLO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_23_CR\RptCollectionStatusLO.aspx.designer.cs">
+      <DependentUpon>RptCollectionStatusLO.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_23_CR\RptDuesReportAll.aspx.cs">
       <DependentUpon>RptDuesReportAll.aspx</DependentUpon>
