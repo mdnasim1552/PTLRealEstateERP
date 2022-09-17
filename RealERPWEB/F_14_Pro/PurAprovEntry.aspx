@@ -94,7 +94,7 @@
                                         <asp:LinkButton ID="lbtnPrevAprovList" runat="server" CssClass="lblTxt lblName" OnClick="lbtnPrevAprovList_Click"
                                             TabIndex="3">Previous List</asp:LinkButton>
 
-                                        <asp:DropDownList ID="ddlPrevAprovList" runat="server" Width="180px" CssClass="inputTxt inpPixedWidth" TabIndex="6">
+                                        <asp:DropDownList ID="ddlPrevAprovList" runat="server" Width="180px" CssClass="chzn-select inputTxt inpPixedWidth" TabIndex="6">
                                         </asp:DropDownList>
 
                                     </div>
