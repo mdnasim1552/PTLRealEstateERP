@@ -1829,6 +1829,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3703000", "3703010", "F_23_CR", "RptCustPayStatus?", "Type=LOClLedger", "Client Ledger (L/O)", "Landowner Management", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "3703000", "3703020", "F_23_CR", "RptMonthlyProbCollection?", "Type=LoMonProColl", "Monthly Probable Collection(L/O)", "Landowner Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3703000", "3703021", "F_23_CR", "RptCollectionStatusLO?", "Type=Report", "Collection Status (L/O)", "Landowner Management", "False", "False", "False", "False" });
 
             #endregion
 
@@ -10329,7 +10330,9 @@ namespace RealERPLIB
 
 
           
-            mnuTbl1.Rows.Add(new Object[] { "0402000000", "", "", "", true, "" });
+
+
+            mnuTbl1.Rows.Add(new Object[] { "0402000000", "01. Collection Status (L/O)", "F_23_CR/RptCollectionStatusLO?Type=Report", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0403000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0404000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0405000000", "", "", "", true, "" });

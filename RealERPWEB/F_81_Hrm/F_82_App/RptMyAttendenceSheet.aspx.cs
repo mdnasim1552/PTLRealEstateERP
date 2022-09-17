@@ -432,6 +432,22 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         }
 
                         break;
+                    case "3368":
+                        if (ahleave == "A" || ahleave == "H" || ahleave == "Lv")
+                        {
+                            ((Label)e.Item.FindControl("lblactualout")).Visible = false;
+                            ((Label)e.Item.FindControl("lblactualin")).Visible = false;
+                            ((Label)e.Item.FindControl("lblstatus")).Attributes["style"] = "font-weight:bold;";
+
+                        }
+                        else if ((offimein < actualin) && lateapp == "False")
+                        {
+                            ((Label)e.Item.FindControl("lblactualout")).Attributes["style"] = "font-weight:bold; color:red;";
+                            ((Label)e.Item.FindControl("lblactualin")).Attributes["style"] = "font-weight:bold; color:red;";
+                            ((Label)e.Item.FindControl("lbldtimehour")).Attributes["style"] = "font-weight:bold; color:red;";
+                        }
+
+                        break;
                     default:
                         if (ahleave == "A" || ahleave == "H" || ahleave == "Lv")
                         {
@@ -495,6 +511,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             Label lblisremarks = (Label)Rptitem.FindControl("lblisremarks");
             Label lblRequid = (Label)Rptitem.FindControl("lblRequid");
             Label lblapremarks = (Label)Rptitem.FindControl("lblapremarks");
+   
 
             string attstatus = lblstatus.Text.Trim();
             ddlReqType.SelectedValue = (attstatus == "" && comcod == "3365" ? "TC" : attstatus == "A" ? "AB" : "LA");
@@ -570,7 +587,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string reqfor = reqtype == "AB" ? "Absent Approval" : reqtype == "LP" ? "Late Present Approval" : reqtype == "LA"? "Late Approval" : "Time of Correction";
             string reqdate = this.lbldadte.Text.Trim();
             string dayID =  Convert.ToDateTime(this.lbldadte.Text.Trim()).ToString("yyyyMMdd");
-            string reqtimeIN = this.lbldadteIntime.Text.Trim();
+            string reqtimeIN = this.lbldadteTime.Text.Trim();
             string reqtimeOUT = this.lbldadteOuttime.Text.Trim();
             string txtReson = txtAreaReson.Text.Trim();
             string reqid = this.ReqID.Value;
@@ -816,6 +833,20 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         protected void lnkbtnRefresh_Click(object sender, EventArgs e)
         {
             getMyAttData();
+        }
+
+        protected void ddlReqType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModalAbs();", true);
+
+            if (ddlReqType.SelectedValue.ToString() == "TC")
+            {
+                this.lbldadteTime.Enabled = true;
+            }
+            else
+            {
+                this.lbldadteTime.Enabled = false;
+            }
         }
     }
 }

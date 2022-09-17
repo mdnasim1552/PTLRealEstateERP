@@ -132,6 +132,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string rpttype = this.rbtnstatement.SelectedIndex.ToString();
             var emplist = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSepEmployee>)ViewState["empdata"];
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ACR_EMPLOYEE", "GET_EMP_SETTLEMENT_INFO", empid, rpttype, "", "", "", "", "", "");
+            if (ds3 == null)
+                return;
             ViewState["tblsttlmnt"] = ds3.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>();
 
             var shorempdata = emplist.FindAll(d => d.empid == empid);

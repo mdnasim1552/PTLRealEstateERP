@@ -188,7 +188,7 @@
                                         <asp:TemplateField HeaderText="Credit Information">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblcreditinfo" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgdesc")) %>'
-                                                    Width="200px"></asp:Label>
+                                                    Width="150px"></asp:Label>
                                                 <asp:Label ID="lblhrgcod" Visible="false" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgcod")) %>'
                                                     Width="200px"></asp:Label>
                                             </ItemTemplate>
@@ -197,7 +197,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="From">
                                             <ItemTemplate>
-                                                
+                                                 <asp:Label ID="lblfrmdat" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "frmdat")) %>' Width="75px" ></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" Width="80px" />
                                         </asp:TemplateField>
@@ -205,14 +205,14 @@
 
                                         <asp:TemplateField HeaderText="To">
                                             <ItemTemplate>
-                                                
+                                               <asp:Label ID="lblfrmdat" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "todat")) %>' Width="75px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" Width="80px" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="D/Y">
                                             <ItemTemplate>
-                                                
+                                               <asp:Label ID="lblfrmdat" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "numofday")) %>'></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" Width="80px"  />
                                         </asp:TemplateField>
@@ -222,7 +222,7 @@
 
                                           <asp:TemplateField HeaderText="Gross">
                                             <ItemTemplate>
-                                        <asp:TextBox ID="txtnumofday" Style="text-align: right" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "numofday")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:TextBox>
+                                        <asp:TextBox ID="txtnumofday" Style="text-align: right" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amount")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:TextBox>
 
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
