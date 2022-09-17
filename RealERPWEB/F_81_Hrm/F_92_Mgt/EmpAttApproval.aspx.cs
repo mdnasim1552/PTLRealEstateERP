@@ -400,7 +400,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     else
                     {
                         this.SendNotificaion(Orderno, Centrid, roletype, "", compsms, compmail, ssl, sendUsername, sendDptdesc, sendUsrdesig, compName);
-                        result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_MGT_INTERFACE", "UPDATETIME",Centrid,reqtype, intime, "", "", "", "", "");
+                        result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_MGT_INTERFACE", "UPDATETIME", Orderno, reqtype, intime, "", "", "", "", "");
 
                         string Messagesd = "Request Approved";
 
@@ -545,6 +545,19 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagessd + "');", true);
             }
 
+        }
+
+        protected void ddlReqType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+     
+            if (ddlReqType.SelectedValue.ToString() == "TC")
+            {
+                this.lbldadteTime.Enabled = true;
+            }
+            else
+            {
+                this.lbldadteTime.Enabled = false;
+            }
         }
     }
 }

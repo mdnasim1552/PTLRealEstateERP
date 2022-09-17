@@ -255,6 +255,19 @@ namespace RealEntity.C_81_Hrm.C_92_Mgt
 
             }
         }
+
+        [Serializable]
+        public class AttgraphLbl
+        {
+            public string lbl { get; set; }
+            public double val { get; set; }
+ 
+            public AttgraphLbl()
+            {
+
+            }
+        }
+
         [Serializable]
         public class Elvlateabbs
         {

@@ -207,7 +207,7 @@
 
 
 
-            <div id="modalSupSatergy" class="modal fade  " role="dialog" data-keyboard="false" data-backdrop="static">
+            <div id="modalSupSatergy" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
                 <div class="modal-dialog modal-dialog-sm-width">
                     <div class="modal-content modal-content-mid-width">
                         <div class="modal-header">
