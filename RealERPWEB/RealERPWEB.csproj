@@ -227,11 +227,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-<<<<<<< HEAD
-      <HintPath>..\..\..\..\..\Newton json\Newtonsoft.Json.dll</HintPath>
-=======
       <HintPath>..\..\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
->>>>>>> 9e56963d518641c11f4a095a3298b823be2a6705
     </Reference>
     <Reference Include="RealERPRPT">
       <HintPath>..\..\..\..\..\bin\RealERPRPT.dll</HintPath>
@@ -2225,6 +2221,7 @@
     <Content Include="F_22_Sal\EntryClientNameTransfer.aspx" />
     <Content Include="F_22_Sal\MktSalsLOPayment.aspx" />
     <Content Include="F_23_CR\MktLOMoneyReceipt.aspx" />
+    <Content Include="F_23_CR\RptCollectionStatusLO.aspx" />
     <Content Include="F_23_CR\RptDuesReportAll.aspx" />
     <Content Include="F_23_CR\RptMonthlyProbCollection.aspx" />
     <Content Include="F_23_CR\RptOtherCollHistory.aspx" />
@@ -4099,6 +4096,13 @@
     </Compile>
     <Compile Include="F_23_CR\MktLOMoneyReceipt.aspx.designer.cs">
       <DependentUpon>MktLOMoneyReceipt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_23_CR\RptCollectionStatusLO.aspx.cs">
+      <DependentUpon>RptCollectionStatusLO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_23_CR\RptCollectionStatusLO.aspx.designer.cs">
+      <DependentUpon>RptCollectionStatusLO.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_23_CR\RptDuesReportAll.aspx.cs">
       <DependentUpon>RptDuesReportAll.aspx</DependentUpon>
