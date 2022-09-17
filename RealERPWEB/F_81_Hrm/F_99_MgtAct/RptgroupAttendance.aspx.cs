@@ -90,6 +90,7 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
             }
             ViewState["tblgroupAttendace"] = ds.Tables[0];
             ViewState["tblgroupAttenPersen"] = ds.Tables[1];
+            ViewState["tblattgraph"] = ds.Tables[2];
             this.Data_Bind();
         }
 
@@ -187,14 +188,20 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
             string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_GROUP_ATTENDENCE02", "RPTLATEEONANDABSENTDET", todydate, "", "", "", "", "", "", "", "");
             ViewState["tblLVatlet"] = ds1.Tables[2];
-            DataTable dt = (DataTable)ViewState["tblgroupAttendace"];
+            
+            DataTable dt = (DataTable)ViewState["tblgroupAttenPersen"];
             DataTable dt1 = (DataTable)ViewState["tblLVatlet"];
+            DataTable dt3 = (DataTable)ViewState["tblattgraph"];
+
+            if (dt1 == null || dt1.Rows.Count == 0)
+                return;
 
             var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.ERptGroupAtt>();
             var lst1 = dt1.DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.Elvlateabbs02>();
+            var lst3 = dt3.DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.AttgraphLbl>();
 
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_92_Mgt.RptGroupAtt", lst, lst1, null);
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_92_Mgt.RptGroupAtt", lst, lst1, lst3);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compname", comname));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));

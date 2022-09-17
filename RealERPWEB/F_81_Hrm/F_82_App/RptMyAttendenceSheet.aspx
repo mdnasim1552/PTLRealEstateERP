@@ -397,6 +397,8 @@
 
             <div id="absmodal" class="modal animated zoomIn" role="dialog">
                 <div class="modal-dialog   modal-lg">
+                        <asp:UpdatePanel runat="server">
+                        <ContentTemplate>
                     <div class="modal-content  ">
                         <div class="modal-header">
                             <button type="button" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>
@@ -418,7 +420,7 @@
                            
                                             <abbr title="Required">*</abbr>
                                         </label>
-                                        <asp:DropDownList runat="server" ID="ddlReqType" class="form-control" required="">
+                                        <asp:DropDownList runat="server" ID="ddlReqType" class="form-control" OnSelectedIndexChanged="ddlReqType_SelectedIndexChanged" AutoPostBack="true">
                                         </asp:DropDownList>
 
                                     </div>
@@ -437,7 +439,11 @@
                                         </label>
                                         <asp:Label ID="lbldadteOuttime" Visible="false" runat="server" class="form-control"></asp:Label>
                                         <asp:Label ID="lbldadteIntime" Visible="false" runat="server" class="form-control"></asp:Label>
-                                        <asp:Label ID="lbldadteTime" runat="server" class="form-control"></asp:Label>
+                                        <%--<asp:Label ID="lbldadteTime" runat="server" class="form-control"></asp:Label>--%>
+                         
+                       
+                                        <asp:TextBox ID="lbldadteTime" class="form-control" runat="server" ></asp:TextBox>
+
 
                                     </div>
                                     <!-- /form grid -->
@@ -468,6 +474,9 @@
 
                         </div>
                     </div>
+
+                                         </ContentTemplate>
+                        </asp:UpdatePanel>
                 </div>
             </div>
 
