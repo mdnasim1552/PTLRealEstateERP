@@ -2033,7 +2033,7 @@ namespace RealERPWEB.F_12_Inv
             {
                 //F_12_Inv/PurReqEntry?InputType=ReqSecondApproved&prjcode=110200010003&genno=REQ20220700015&comcod=3101
 
-                string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_12_Inv/F_84_Lea/";
+                string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_12_Inv/";
                 string currentptah = "PurReqEntry?InputType=ReqSecondApproved&prjcode=" + prjcode + "&genno=" + txtMRFNo.Text + "&comcod=" + comcod;
                 string apprlink = uhostname + currentptah;
 

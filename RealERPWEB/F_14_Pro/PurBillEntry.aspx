@@ -296,7 +296,7 @@
                                                 <asp:LinkButton ID="lbtnPrevBillList" runat="server" CssClass="lblTxt lblName" OnClick="lbtnPrevBillList_Click"
                                                     TabIndex="3">Previous List</asp:LinkButton>
 
-                                                <asp:DropDownList ID="ddlPrevBillList" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="6">
+                                                <asp:DropDownList ID="ddlPrevBillList" runat="server" CssClass="chzn-select inputTxt inpPixedWidth" TabIndex="6">
                                                 </asp:DropDownList>
 
                                             </div>
