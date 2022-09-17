@@ -22,33 +22,40 @@ namespace RealERPWEB.F_38_AI
                 //    Response.Redirect("../AcceessError.aspx");
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Customer List";
 
-
+                this.GetCustomerList();
+                this.isFiledClear();
+                this.GetCountry();
+                this.LoadGrid();
             }
         }
-
+        // create by robi
         private string GetComdCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
         }
-        protected void AddCustomerModal_Click(object sender, EventArgs e)
+
+        private void GetCustomerList()
         {
-            this.LoadGrid();
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddCustomer();", true);
+            string comcod = this.GetComdCode();
+            DataSet dt= MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "GETCUSTOMERLIST", "", "", "", "", "", "");
+            if (dt == null)
+                return;
+            
+            Session["tblCustlist"] = dt.Tables[0];
+            this.GridcusDetails.DataSource = dt;
+            this.GridcusDetails.DataBind();
         }
+
+
         private void LoadGrid()
         {
 
             string comcod = this.GetComdCode();
-
-            DataSet ds1 = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "AICUSTOMERINSERTUPDATE", "", "", "", "", "", "");
-
-
+            string sircode = "";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "AICUSTOMERINSERTUPDATE", sircode, "", "", "", "", "");
             DataTable dt = ds1.Tables[0];
-
             ViewState["tblcustinf"] = dt;
-
-
             this.gvPersonalInfo.DataSource = dt;
             this.gvPersonalInfo.DataBind();
             DropDownList ddlgval;
@@ -56,43 +63,34 @@ namespace RealERPWEB.F_38_AI
             {
 
                 string Gcode = dt.Rows[i]["gcod"].ToString();
-
                 switch (Gcode)
                 {
+
+
                     case "01015": //country
+                        DataTable dtc = (DataTable)Session["tblCunt"];
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
-                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Clear();
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = true;
+                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                        ddlgval = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval"));
+                        ddlgval.DataTextField = "curdesc";
+                        ddlgval.DataValueField = "curdesc";
+                        ddlgval.DataSource = dtc;
+                        ddlgval.DataBind();
+                        ddlgval.SelectedValue = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
 
-
-                        //dv1 = dt1.DefaultView;
-                        //dv1.RowFilter = ("gcod like '85%'");
-                        //((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-                        //((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
-                        //string gdesc1 = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
-
-                        //string provcode = (comcod == "3365" || comcod == "3101") ? "85006" : comcod == "3354" ? "85099" : "85001";
-
-                        //ddlgval = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval"));
-                        //ddlgval.DataTextField = "gdesc";
-                        //ddlgval.DataValueField = "gcod";
-                        //ddlgval.DataSource = dv1.ToTable();
-                        //ddlgval.DataBind();
-                        //ddlgval.SelectedValue = gdesc1 == "" ? provcode : gdesc1;
-                        //ddlval_SelectedIndexChanged(null, null);
                         break;
                     case "01009"://date time 
                         string gdatat = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
-                        // ((Panel)this.gvPersonalInfo.Rows[i].FindControl("Panegrd")).Visible = false;
+                       
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Clear();
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-                        //((LinkButton)this.gvPersonalInfo.Rows[i].FindControl("ibtngrdEmpList")).Visible = false;
-                        //string Joindate = (gdatat == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
-                        //string Joindate = (gdatat == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
+                        
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text = gdatat;
                         break;
+
 
                     default:
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
@@ -100,39 +98,46 @@ namespace RealERPWEB.F_38_AI
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Clear();
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
 
-
                         break;
 
                 }
 
             }
 
-            //\\this.ddlimgperson_SelectedIndexChanged(null, null);
-
         }
-        // create by robi
+
+
+        private void GetCountry()
+        {
+            string comcod = this.GetComdCode();
+            Session.Remove("tblCunt");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "GETCOUNTRY", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            Session["tblCunt"] = ds1.Tables[0];
+        }
 
 
         protected void btnCustomerSave_Click(object sender, EventArgs e)
         {
             try
             {
-                DataTable dt1 = new DataTable();
-                dt1.Clear();
-                dt1.Columns.Add("gcod");
-                dt1.Columns.Add("gval");
-                string comcod = GetComdCode();
+ 
+                string comcod = this.GetComdCode();
+                string sircode = this.GetLastid();
+
                 for (int i = 0; i < this.gvPersonalInfo.Rows.Count; i++)
                 {
                     string Gcode = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
                     string gtype = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
-                    string sircode = "";
+                   
 
                     string Gvalue = (((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
                     if (Gcode == "01009")
                     {
                         Gvalue = (((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? "01-Jan-1900" : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
                     }
+
                     Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : Gvalue;
 
                     bool result = MktData.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "INSERTUPDATECUSTOMER", sircode, Gcode, gtype, Gvalue, "", "", "", "", "");
@@ -142,17 +147,29 @@ namespace RealERPWEB.F_38_AI
                         return;
                     }
                 }
-                this.isFiledClear();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Customer Saved Successfully');", true);
-                
-                   
-               
 
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Customer Saved Successfully');", true);
+                this.isFiledClear();
             }
             catch (Exception exp)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
             }
+
+        }
+
+        private string GetLastid()
+        {
+            string sircode="";
+
+            string comcod = this.GetComdCode();
+
+            DataSet ds1 = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "GETSIRCODEID", "", "", "", "", "", "");
+            if (ds1 == null)
+                return sircode;
+            sircode = ds1.Tables[0].Rows[0]["sircode"].ToString();
+
+            return sircode;
 
         }
 
@@ -162,13 +179,12 @@ namespace RealERPWEB.F_38_AI
             {
                 ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text = "";
                 ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text = "";
-                ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Clear();
 
             }
-            
+
         }
 
-        
+
     }
 }
 
