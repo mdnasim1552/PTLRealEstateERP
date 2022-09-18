@@ -1707,6 +1707,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3502000", "3502251", "F_34_Mgt", "ProsclntCodeBook?", "Type=Mgt", "Client Code", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502260", "F_17_Acc", "AccBankRecon?", "Type=Mgt", "Bank Reconcilation", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502270", "F_17_Acc", "AccChqueDeposit?", "Type=MgtChqdepEntry", "Cheque Deposit Edit", "Management", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3502000", "3502271", "F_17_Acc", "AccInterComVoucherDel?", "Type=Mgt", "Intercom Voucher Delete", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502280", "F_22_Sal", "SalesRegister?", "Type=Management", "Sales Register", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502290", "F_02_Fea", "ProjectFeasibility02?", "Type=Management", "Project Feasibility 02", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502291", "F_02_Fea", "ProjectFeasibility03?", "Type=Management", "Feasibility City Development", "Management", "False", "False", "False", "False" }); ;
@@ -9901,6 +9902,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0309000011", "16. Post Dated Cheque Update", "F_17_Acc/AccPayUpdate?Type=Mgt", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0309000012", "17. Bank Reconcilation", "F_17_Acc/AccBankRecon?Type=Mgt", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0309000013", "18. Cancellation Post Dated Cheque", "F_17_Acc/DeletePDC", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0309000014", "19. Intercom Voucher Delete", "F_17_Acc/AccInterComVoucherDel?Type=Mgt", "", true, "" });
 
 
             mnuTbl1.Rows.Add(new Object[] { "0310000000", "Marketing", "", "", false, "b" });
