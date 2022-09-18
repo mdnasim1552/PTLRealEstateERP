@@ -1253,11 +1253,12 @@
 
             }
             catch (e) {
-                /*showContentFail('Notification Not Found');*/
+                var urll='<%=ResolveClientUrl("~/Notification/GetNotification ? Id = All & RefId=& notiytype=& ntype=")%>';
+                location.href = urll;
             }
         }
 
-
+       
 
     </script>
 
