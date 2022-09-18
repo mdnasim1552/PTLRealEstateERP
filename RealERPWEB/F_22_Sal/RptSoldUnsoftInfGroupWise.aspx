@@ -201,6 +201,21 @@
 
                                     </asp:TemplateField>
 
+                                      <asp:TemplateField HeaderText="Total Salable <br> Area">
+                                           <FooterTemplate>
+                                                    <asp:Label ID="lblFtotalsize" runat="server" Font-Bold="True" Font-Size="12px"
+                                                        ForeColor="#000" Style="text-align: right"></asp:Label>
+                                         </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvtotalsize" runat="server"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tusize")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="90px"></asp:Label>
+                                        </ItemTemplate>
+                                           <ItemStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="center" />
+                                         <FooterStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+
                                      <asp:TemplateField HeaderText="Sold</br> Unit">
                                            <FooterTemplate>
                                                     <asp:Label ID="lblFsoldunit" runat="server" Font-Bold="True" Font-Size="12px"
@@ -214,21 +229,6 @@
                                            <ItemStyle HorizontalAlign="Center" />
                                         <HeaderStyle HorizontalAlign="center" />
                                          <FooterStyle HorizontalAlign="Center" />
-                                    </asp:TemplateField>
-                                    
-                                     <asp:TemplateField HeaderText="UnSold </br> Unit">
-                                         <FooterTemplate>
-                                                    <asp:Label ID="lblFunsoldunit" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        ForeColor="#000" Style="text-align: right"></asp:Label>
-                                         </FooterTemplate>
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblgvunsoldunit" runat="server"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "usqty")).ToString("#,##0;(#,##0); ") %>'
-                                                Width="80px"></asp:Label>
-                                        </ItemTemplate>
-                                        <ItemStyle HorizontalAlign="center" />
-                                        <HeaderStyle HorizontalAlign="center" />
-                                        <FooterStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Sold Area">
@@ -246,6 +246,23 @@
                                         <HeaderStyle HorizontalAlign="center" />
                                         <FooterStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
+                                    
+                                     <asp:TemplateField HeaderText="UnSold </br> Unit">
+                                         <FooterTemplate>
+                                                    <asp:Label ID="lblFunsoldunit" runat="server" Font-Bold="True" Font-Size="12px"
+                                                        ForeColor="#000" Style="text-align: right"></asp:Label>
+                                         </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvunsoldunit" runat="server"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "usqty")).ToString("#,##0;(#,##0); ") %>'
+                                                Width="80px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="center" />
+                                        <HeaderStyle HorizontalAlign="center" />
+                                        <FooterStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+
+                                    
 
 
                                         <asp:TemplateField HeaderText="UnSold Area">
@@ -257,6 +274,21 @@
                                             <asp:Label ID="lblgvunsoldarea" runat="server"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "usize")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="80px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="center" />
+                                        <FooterStyle HorizontalAlign="Right" />
+                                    </asp:TemplateField>
+
+                                      <asp:TemplateField HeaderText="UnSold Amount">
+                                            <FooterTemplate>
+                                                    <asp:Label ID="lblFgvunsoldamt" runat="server" Font-Bold="True" Font-Size="12px"
+                                                        ForeColor="#000" Style="text-align: right" Width="90px"></asp:Label>
+                                         </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvunsoldamt" runat="server"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "usuamt")).ToString("#,##0;(#,##0); ") %>'
+                                                Width="90px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="center" />
@@ -324,7 +356,7 @@
                                         <FooterStyle HorizontalAlign="Right"/>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Total Cost">
+                                    <asp:TemplateField HeaderText="Total Value">
                                         <FooterTemplate>
                                                     <asp:Label ID="lblFgvtcost" runat="server" Font-Bold="True" Font-Size="12px"
                                                         ForeColor="#000" Style="text-align: right" Width="90px"></asp:Label>
@@ -356,7 +388,7 @@
                                     </asp:TemplateField>
 
 
-                                    <asp:TemplateField HeaderText="Balance">
+                                    <asp:TemplateField HeaderText="Receivable Amount">
 
                                           <FooterTemplate>
                                                     <asp:Label ID="lblFgvbalance" runat="server" Font-Bold="True" Font-Size="12px"

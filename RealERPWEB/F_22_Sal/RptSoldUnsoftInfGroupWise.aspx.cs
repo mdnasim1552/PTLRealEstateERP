@@ -101,7 +101,9 @@ namespace RealERPWEB.F_22_Sal
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT02", "GETSOLDUNSOLDUNITYPEWISE", prjcode, date, grpcode, "", "", "", "", "", "");
             if (ds1 == null)
             {
-                this.gvsoldunsold.DataSource = null;
+                //this.gvsoldunsold.DataSource = null;
+                //this.gvsoldunsold.DataBind();
+
                 return;
             }
                
@@ -129,6 +131,9 @@ namespace RealERPWEB.F_22_Sal
             ((Label)this.gvsoldunsold.FooterRow.FindControl("lblFsalableunit")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(tqty)", "")) ? 0.00 :
                 dt.Compute("sum(tqty)", ""))).ToString("#,##0;(#,##0); ");
 
+            ((Label)this.gvsoldunsold.FooterRow.FindControl("lblFtotalsize")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(tusize)", "")) ? 0.00 :
+              dt.Compute("sum(tusize)", ""))).ToString("#,##0;(#,##0); ");
+
             ((Label)this.gvsoldunsold.FooterRow.FindControl("lblFsoldunit")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(sqty)", "")) ? 0.00 :
              dt.Compute("sum(sqty)", ""))).ToString("#,##0;(#,##0); ");
 
@@ -142,7 +147,10 @@ namespace RealERPWEB.F_22_Sal
             dt.Compute("sum(usize)", ""))).ToString("#,##0.00;(#,##0); "); 
 
             ((Label)this.gvsoldunsold.FooterRow.FindControl("lblFgvtsoldamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(suamt)", "")) ? 0.00 :
-            dt.Compute("sum(suamt)", ""))).ToString("#,##0;(#,##0); "); 
+            dt.Compute("sum(suamt)", ""))).ToString("#,##0;(#,##0); ");
+
+            ((Label)this.gvsoldunsold.FooterRow.FindControl("lblFgvunsoldamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(usuamt)", "")) ? 0.00 :
+            dt.Compute("sum(usuamt)", ""))).ToString("#,##0;(#,##0); ");
 
             ((Label)this.gvsoldunsold.FooterRow.FindControl("lblFgvcarparking")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(parking)", "")) ? 0.00 :
             dt.Compute("sum(parking)", ""))).ToString("#,##0;(#,##0); ");
