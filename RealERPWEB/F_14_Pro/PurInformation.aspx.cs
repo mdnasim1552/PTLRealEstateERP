@@ -78,6 +78,7 @@ namespace RealERPWEB.F_14_Pro
             this.GetDayWisePay();
             //this.pnlbtn.Visible = true;
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteMyGraph();", true);
+      
 
         }
 

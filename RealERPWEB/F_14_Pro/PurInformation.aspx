@@ -3,8 +3,8 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-     <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
-    
+     <%--<script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>--%>
+    <script src="../Scripts/highchartwithmap.js"></script>
     <script language="javascript" type="text/javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
@@ -20,6 +20,162 @@
 
             });
         }
+
+       
+            function ExecuteMyGraph()
+            {
+            
+
+            try {
+
+
+
+
+                s1 = parseFloat($('#<%=this.s1.ClientID%>').val());
+                s2 = parseFloat($('#<%=this.s2.ClientID%>').val());
+                s3 = parseFloat($('#<%=this.s3.ClientID%>').val());
+                s4 = parseFloat($('#<%=this.s4.ClientID%>').val());
+                s5 = parseFloat($('#<%=this.s5.ClientID%>').val());
+                s6 = parseFloat($('#<%=this.s6.ClientID%>').val());
+                s7 = parseFloat($('#<%=this.s7.ClientID%>').val());
+                s8 = parseFloat($('#<%=this.s8.ClientID%>').val());
+                s9 = parseFloat($('#<%=this.s9.ClientID%>').val());
+                s10 = parseFloat($('#<%=this.s10.ClientID%>').val());
+                s11 = parseFloat($('#<%=this.s11.ClientID%>').val());
+                s12 = parseFloat($('#<%=this.s12.ClientID%>').val());
+
+
+
+
+                c1 = parseFloat($('#<%=this.c1.ClientID%>').val());
+                c2 = parseFloat($('#<%=this.c2.ClientID%>').val());
+                c3 = parseFloat($('#<%=this.c3.ClientID%>').val());
+                c4 = parseFloat($('#<%=this.c4.ClientID%>').val());
+                c5 = parseFloat($('#<%=this.c5.ClientID%>').val());
+                c6 = parseFloat($('#<%=this.c6.ClientID%>').val());
+                c7 = parseFloat($('#<%=this.c7.ClientID%>').val());
+                c8 = parseFloat($('#<%=this.c8.ClientID%>').val());
+                c9 = parseFloat($('#<%=this.c9.ClientID%>').val());
+                c10 = parseFloat($('#<%=this.c10.ClientID%>').val());
+                c11 = parseFloat($('#<%=this.c11.ClientID%>').val());
+                c12 = parseFloat($('#<%=this.c12.ClientID%>').val());
+
+
+
+
+
+
+                funMonthlyGraph();
+            }
+                catch (e)
+                {
+                    alert(e.message);
+
+            }
+
+
+           
+        }
+                function funMonthlyGraph() {
+
+                    Highcharts.setOptions({
+                        lang: {
+                            decimalPoint: ',',
+                            thousandsSep: ' '
+                        }
+                    });
+
+
+
+
+                $('#barchart').highcharts({
+
+
+                    chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: ''
+                },
+                //subtitle: {
+                    //    text: 'Source: '
+                    //},
+                    xAxis: {
+                    categories: [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec'
+                ],
+                crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                title: {
+                    text: 'Amount'
+                    }
+                },
+
+
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y:0f}</b></td></tr>',
+                    footerFormat: '</table>',
+                shared: true,
+                useHTML: true,
+
+                    //pointFormat: "{point.y:, .5f} Lac <br>"
+                    //pointFormat: '{point.percentage:.0f}%'
+
+
+
+                    //pointFormat: '{series.name}: <b>{point.percentage}%</b>',  pointFormat: '{series.name}: <b>{point.y}%</b>',
+
+
+                    //<b>{point.y:.1f} mm</b>
+
+
+                },
+                    plotOptions: {
+                        column: {
+                        pointPadding: 0.1,
+                    borderWidth: 0
+
+
+                    }
+                },
+                    series: [{
+                        name: 'Purchase',
+                    data: [s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12],
+                    color: '#2C9B3E'
+
+                }, {
+
+                        name: 'Payment',
+                    //color:red,
+                    data: [c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12],
+                    color: '#C3312A'
+                }]
+            });
+
+        }
+
+
+
+
+
+
+
+
     </script>
     <style>
         .gvTopHeader tr:nth-child(1) {
@@ -836,146 +992,7 @@
                </div></div>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <script type="text/javascript">
-        function ExecuteMyGraph() {
 
-            s1 = parseFloat($('#<%=this.s1.ClientID%>').val());
-            s2 = parseFloat($('#<%=this.s2.ClientID%>').val());
-            s3 = parseFloat($('#<%=this.s3.ClientID%>').val());
-            s4 = parseFloat($('#<%=this.s4.ClientID%>').val());
-            s5 = parseFloat($('#<%=this.s5.ClientID%>').val());
-            s6 = parseFloat($('#<%=this.s6.ClientID%>').val());
-            s7 = parseFloat($('#<%=this.s7.ClientID%>').val());
-            s8 = parseFloat($('#<%=this.s8.ClientID%>').val());
-            s9 = parseFloat($('#<%=this.s9.ClientID%>').val());
-            s10 = parseFloat($('#<%=this.s10.ClientID%>').val());
-            s11 = parseFloat($('#<%=this.s11.ClientID%>').val());
-            s12 = parseFloat($('#<%=this.s12.ClientID%>').val());
-
-
-
-
-            c1 = parseFloat($('#<%=this.c1.ClientID%>').val());
-            c2 = parseFloat($('#<%=this.c2.ClientID%>').val());
-            c3 = parseFloat($('#<%=this.c3.ClientID%>').val());
-            c4 = parseFloat($('#<%=this.c4.ClientID%>').val());
-            c5 = parseFloat($('#<%=this.c5.ClientID%>').val());
-            c6 = parseFloat($('#<%=this.c6.ClientID%>').val());
-            c7 = parseFloat($('#<%=this.c7.ClientID%>').val());
-            c8 = parseFloat($('#<%=this.c8.ClientID%>').val());
-            c9 = parseFloat($('#<%=this.c9.ClientID%>').val());
-            c10 = parseFloat($('#<%=this.c10.ClientID%>').val());
-            c11 = parseFloat($('#<%=this.c11.ClientID%>').val());
-            c12 = parseFloat($('#<%=this.c12.ClientID%>').val());
-
-
-
-
-
-
-            funMonthlyGraph();
-
-
-            //    Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-        }
-        function funMonthlyGraph() {
-
-            Highcharts.setOptions({
-                lang: {
-                    decimalPoint: ',',
-                    thousandsSep: ' '
-                }
-            });
-
-
-
-
-            $('#barchart').highcharts({
-
-
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: ''
-                },
-                //subtitle: {
-                //    text: 'Source: '
-                //},
-                xAxis: {
-                    categories: [
-                        'Jan',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug',
-                        'Sep',
-                        'Oct',
-                        'Nov',
-                        'Dec'
-                    ],
-                    crosshair: true
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: 'Amount'
-                    }
-                },
-
-
-                tooltip: {
-                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                        '<td style="padding:0"><b>{point.y:0f}</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true,
-
-                    //pointFormat: "{point.y:, .5f} Lac <br>"
-                    //pointFormat: '{point.percentage:.0f}%'
-
-
-
-                    //pointFormat: '{series.name}: <b>{point.percentage}%</b>',  pointFormat: '{series.name}: <b>{point.y}%</b>',
-
-
-                    //<b>{point.y:.1f} mm</b>
-
-
-                },
-                plotOptions: {
-                    column: {
-                        pointPadding: 0.1,
-                        borderWidth: 0
-
-
-                    }
-                },
-                series: [{
-                    name: 'Purchase',
-                    data: [s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12],
-                    color: '#2C9B3E'
-
-                }, {
-
-                    name: 'Payment',
-                    //color:red,
-                    data: [c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12],
-                    color: '#C3312A'
-                }]
-            });
-
-        }
-
-
-
-
-
-    </script>
 </asp:Content>
 
 
