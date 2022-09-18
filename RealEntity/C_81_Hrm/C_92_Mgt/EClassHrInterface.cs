@@ -261,7 +261,7 @@ namespace RealEntity.C_81_Hrm.C_92_Mgt
         {
             public string lbl { get; set; }
             public double val { get; set; }
- 
+            public int seq { get; set; }
             public AttgraphLbl()
             {
 
