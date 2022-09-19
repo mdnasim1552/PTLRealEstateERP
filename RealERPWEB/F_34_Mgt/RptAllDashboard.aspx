@@ -2646,38 +2646,66 @@
 
         }
 
-        // A $( document ).ready() block.
-        $(document).ready(function () {
+       
+        $(document).ready(function ()
+        {
 
-            const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-            let current_datetime = new Date()
-            let formatted_date = current_datetime.getDate() + "-" + months[current_datetime.getMonth()] + "-" + current_datetime.getFullYear()
+            try {
+
+                <%--var type = '<%=this.Request.QueryString["Type"].ToString()%>';
+              
+                switch (type)
+                { 
+                  
+                    case "Sales":
+                        alert(type);
+                        $('#<%=this.rbtList.ClientID%>').css({ "display": "none" });
+                   
+                    break;
+                    default:
+                        alert(type);
+                        $('#<%=this.rbtList.ClientID%>').css({ "display": "none" });
+                        break;
+                }--%>
+
+               // alert(type);
+
+                const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                let current_datetime = new Date()
+                let formatted_date = current_datetime.getDate() + "-" + months[current_datetime.getMonth()] + "-" + current_datetime.getFullYear()
 
 
-            var year = localStorage.getItem("year");
-            var tdate = new Date();
-            var dd = tdate.getDate(); //yields day
-            var MM = tdate.getMonth(); //yields month
-            var yyyy = tdate.getFullYear(); //yields year
-            var currentDate;
-            if (localStorage.getItem("year") === null) {
-                // currentDate = dd + "-" + (MM + 1) + "-" + yyyy;
-                currentDate = current_datetime.getDate() + "-" + months[current_datetime.getMonth()] + "-" + current_datetime.getFullYear()
-            }
-            else {
-                // currentDate = dd + "-" + (MM + 1) + "-" + year;
-                currentDate = current_datetime.getDate() + "-" + months[current_datetime.getMonth()] + "-" + year
-            }
+                var year = localStorage.getItem("year");
+                var tdate = new Date();
+                var dd = tdate.getDate(); //yields day
+                var MM = tdate.getMonth(); //yields month
+                var yyyy = tdate.getFullYear(); //yields year
+                var currentDate;
+                if (localStorage.getItem("year") === null) {
+                    // currentDate = dd + "-" + (MM + 1) + "-" + yyyy;
+                    currentDate = current_datetime.getDate() + "-" + months[current_datetime.getMonth()] + "-" + current_datetime.getFullYear()
+                }
+                else {
+                    // currentDate = dd + "-" + (MM + 1) + "-" + year;
+                    currentDate = current_datetime.getDate() + "-" + months[current_datetime.getMonth()] + "-" + year
+                }
 
 
 
-            $('#<%=txtCurTransDate.ClientID%>').val(currentDate);
+                $('#<%=txtCurTransDate.ClientID%>').val(currentDate);
 
 
-            jQuery(function () {
+               jQuery(function () {
 
-                jQuery('#<%=OkBtn.ClientID%>').click();
+                    jQuery('#<%=OkBtn.ClientID%>').click();
                 });
+
+            }
+            catch (e)
+            {
+
+                alert(e.message);
+            }
 
 
         });
@@ -2742,6 +2770,7 @@
                             <div class="form-group">
 
                                 <asp:Button ID="OkBtn" OnClick="OkBtn_Click" CssClass="btn btn-sm btn-primary" runat="server" Text="Ok" />
+                                <asp:HiddenField ID="hdntype" runat="server" />
                             </div>
 
 

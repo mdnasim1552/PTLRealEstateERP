@@ -82,7 +82,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
         }
         protected void lbtnSelect_OnClick(object sender, EventArgs e)
         {
-            this.GetEmployeeName();
+            //this.GetEmployeeName(); // comment - tarik - recom nahid sir why ?? 
             string empid = this.ddlEmpName.SelectedValue.ToString().Trim();
             DataTable dt = (DataTable)ViewState["tblConfm"];
             DataRow[] dr = dt.Select("empid='" + empid + "'");
