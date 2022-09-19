@@ -33,26 +33,22 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-<<<<<<< HEAD
         /// tblAddCustomerModal control.
-=======
-        /// gvPrjDetails control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPrjDetails;
-
-        /// <summary>
-        /// Label4 control.
->>>>>>> c63fd4eae8ef0e9390b0f730780e422405cc3024
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton tblAddCustomerModal;
+
+        /// <summary>
+        /// none control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl none;
 
         /// <summary>
         /// gvProjectInfo control.
@@ -71,6 +67,15 @@ namespace RealERPWEB.F_38_AI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnProjectSave;
+
+        /// <summary>
+        /// gridcol control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gridcol;
 
         /// <summary>
         /// GridcusDetails control.
