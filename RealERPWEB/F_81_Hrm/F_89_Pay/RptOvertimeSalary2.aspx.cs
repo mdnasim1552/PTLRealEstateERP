@@ -35,10 +35,32 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Overtime salary Sheet ";
                 this.GetCompany();
+                this.visibilityBracnh();
+
                 this.GetDate();
 
             }
 
+        }
+        private void visibilityBracnh()
+        {
+            string comcod = this.GetCompCode();
+
+            switch (comcod)
+            {
+                case "3315":
+                case "3347":
+                case "3353":
+                case "3358":
+                    this.divBracnhLsit.Visible = false;
+                    this.ddlBranch.Items.Clear();
+                    break;
+
+                default:
+                    this.divBracnhLsit.Visible = true;
+                    break;
+
+            }
         }
         private void GetDate()
         {
@@ -75,7 +97,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string userid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
             string txtCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETCOMPANYNAME1", txtCompany, userid, "", "", "", "", "", "", "");
+           
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GET_ACCESSED_COMPANYLIST", txtCompany, userid, "", "", "", "", "", "", "");
+            // DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETCOMPANYNAME1", txtCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
             this.ddlCompany.DataSource = ds1.Tables[0];
@@ -88,12 +112,18 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         private void GetProjectName()
         {
 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
             if (this.ddlCompany.Items.Count == 0)
                 return;
-            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
-            string txtSProject = "%" + this.txtSrcPro.Text.Trim() + "%";
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETPROJECTNAME", Company, txtSProject, "", "", "", "", "", "", "");
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
+            string branch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" || this.ddlBranch.SelectedValue.ToString() == "" ? Company : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
+            
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETDPTLIST_NEW", branch, userid, "", "", "", "", "", "", "");
+
+            //DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETPROJECTNAME", Company, txtSProject, "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "actdesc";
             this.ddlProjectName.DataValueField = "actcode";
             this.ddlProjectName.DataSource = ds1.Tables[0];
@@ -113,11 +143,13 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
         private void SectionName()
         {
-
-            string comcod = this.GetCompCode();
-            string projectcode = this.ddlProjectName.SelectedValue.ToString();
-            string txtSSec = "%" + this.txtSrcSec.Text.Trim() + "%";
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "SECTIONNAME", projectcode, txtSSec, "", "", "", "", "", "", "");
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            string comcod = this.GetCompCode();            
+            string projectcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9)) + "%";   
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETSECTION_LIST", projectcode, userid, "", "", "", "", "", "", "");
+          
+            //DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "SECTIONNAME", projectcode, txtSSec, "", "", "", "", "", "", "");
             this.ddlSection.DataTextField = "sectionname";
             this.ddlSection.DataValueField = "section";
             this.ddlSection.DataSource = ds2.Tables[0];
@@ -156,7 +188,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string section = this.ddlSection.SelectedValue.ToString();
             string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, 2);
             string overtimeafter10 = this.GetOverTimeafter10();
-            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_OVRTIMESALARY", "OVERTIMESALARY", frmdate, todate, projectcode, section, CompanyName, overtimeafter10, "", "", "");
+
+            string calltype = (comcod == "3368" ? "OVERTIMESALARY_FINLAY" : "OVERTIMESALARY");
+
+
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_OVRTIMESALARY", calltype, frmdate, todate, projectcode, section, CompanyName, overtimeafter10, "", "", "");
             Session["tblOvertime"] = this.HiddenSameData(ds.Tables[0]);
             this.Data_Bind();
 
@@ -275,10 +311,53 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         protected void ddlCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.GetProjectName();
+
+            string comcod = this.GetCompCode();
+
+            switch (comcod)
+            {
+                case "3315":
+                case "3347":
+                case "3353":
+                case "3358":
+                    this.divBracnhLsit.Visible = false;
+                    this.ddlBranch.Items.Clear();
+                    this.GetProjectName();
+                    break;
+
+                default:
+                    this.GetBranch();
+                    break;
+
+            }
+
+          
+        }
+        private void GetBranch()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            string comcod = this.GetCompCode();
+            if (this.ddlCompany.Items.Count == 0)
+                return;
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
+            string txtSProject = "%";
+            //DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETBRANCH", Company, txtSProject, "", "", "", "", "", "", "");
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETBRANCH_NEW", Company, userid, "", "", "", "", "", "", "");
+
+            this.ddlBranch.DataTextField = "actdesc";
+            this.ddlBranch.DataValueField = "actcode";
+            this.ddlBranch.DataSource = ds1.Tables[0];
+            this.ddlBranch.DataBind();
+            this.ddlBranch_SelectedIndexChanged(null, null);
         }
 
-
+        protected void ddlBranch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetProjectName();
+        }
 
         protected void gvovertime_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
