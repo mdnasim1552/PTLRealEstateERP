@@ -326,7 +326,7 @@ namespace RealERPWEB.F_22_Sal
 
             DataTable basicinfo = (DataTable)ViewState["tblData"];
             string PactCode = this.ddlProjectName.SelectedValue.ToString();
-            string UsirCode = basicinfo.Rows[0]["usircode"].ToString(); /*this.lblCode.Text;*/
+            string UsirCode = this.lblCode.Text.ToString(); ;
             string prjName = (ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim().ToString() : this.ddlProjectName.SelectedItem.Text.Substring(13));
             string aprtno = basicinfo.Rows[0]["udesc"].ToString();
             string floorno = "";
