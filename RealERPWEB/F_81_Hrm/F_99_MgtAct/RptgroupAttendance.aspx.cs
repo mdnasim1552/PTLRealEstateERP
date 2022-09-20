@@ -187,6 +187,8 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_GROUP_ATTENDENCE02", "RPTLATEEONANDABSENTDET", todydate, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
             ViewState["tblLVatlet"] = ds1.Tables[2];
             
             DataTable dt = (DataTable)ViewState["tblgroupAttenPersen"];
