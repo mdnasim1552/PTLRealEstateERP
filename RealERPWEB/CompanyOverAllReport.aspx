@@ -2510,13 +2510,11 @@
                                     <br />
                                     <div class="btn-group">
                                         <a target="_blank" href="<%=this.ResolveUrl("~/F_99_Allinterface/BudgetInterface.aspx")%>" class="btn btn-primary">Interfaces</a>
-                                        <a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-danger">Analysis Graph</a>
+                                        <%--<a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-danger">Analysis Graph</a>--%>
                                         <a target="_blank" href="<%=this.ResolveUrl("~/StepofOperationNew.aspx?moduleid=04")%>" class="btn btn-primary">Module</a>
                                     </div>
 
-                                    <%--<div class="col-md-12" style="margin-top: 6px; margin-bottom: 6px;">
-                                        <asp:HyperLink runat="server" NavigateUrl="~/F_16_Bill/RptBilligSummary.aspx" CssClass="btn btn-success btn-xs" target="_blank"  id="hlnkDetails" >Details</asp:HyperLink>
-                                    </div>--%>
+                                    
                                 </div>
                                 <div class="col-md-7">
                                     <div id="conprodt" style="width: 480px; height: 220px; margin: 0 auto"></div>
@@ -2545,7 +2543,7 @@
                                     <br />
                                     <div class="btn-group">
                                         <a target="_blank" href="<%=this.ResolveUrl("~/F_99_Allinterface/SalesInterface.aspx?Type=Report")%>" class="btn btn-primary">Interfaces</a>
-                                        <a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-danger">Analysis Graph</a>
+                                        <a target="_blank" href="<%=this.ResolveUrl("~/F_34_Mgt/RptAllDashboard?Type=Sales")%>" class="btn btn-danger">Analysis Graph</a>
                                         <a target="_blank" href="<%=this.ResolveUrl("~/StepofOperationNew.aspx?moduleid=22")%>" class="btn btn-primary">Module</a>
                                     </div>
                                 </div>
@@ -2575,7 +2573,7 @@
                                     <br />
                                     <div class="btn-group">
                                         <a target="_blank" href="<%=this.ResolveUrl("~/F_99_Allinterface/RptPurInterface.aspx?Type=Report")%>" class="btn btn-primary">Interfaces</a>
-                                        <a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-danger">Analysis Graph</a>
+                                        <a target="_blank" href="<%=this.ResolveUrl("~/F_34_Mgt/RptAllDashboard?Type=Purchase")%>" class="btn btn-danger">Analysis Graph</a>
                                         <a target="_blank" href="<%=this.ResolveUrl("~/StepofOperationNew.aspx?moduleid=14")%>" class="btn btn-primary">Module</a>
                                     </div>
 
@@ -2609,7 +2607,7 @@
                                     <br />
                                     <div class="btn-group">
                                         <a target="_blank" href="<%=this.ResolveUrl("~/F_99_Allinterface/SubContractorBillInterface.aspx?Type=Report")%>" class="btn btn-primary">Interfaces</a>
-                                        <a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-danger">Analysis Graph</a>
+                                        <a target="_blank" href="<%=this.ResolveUrl("~/F_34_Mgt/RptAllDashboard?Type=Construction")%>" class="btn btn-danger">Analysis Graph</a>
                                         <a target="_blank" href="<%=this.ResolveUrl("~/StepofOperationNew.aspx?moduleid=08")%>" class="btn btn-primary">Module</a>
                                     </div>
 
@@ -2644,7 +2642,7 @@
                                     <br />
                                     <div class="btn-group">
                                         <a target="_blank" href="<%=this.ResolveUrl("~/F_99_Allinterface/InventoryInterface.aspx")%>" class="btn btn-primary">Interfaces</a>
-                                        <a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-danger">Analysis Graph</a>
+                                        <%--<a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-danger">Analysis Graph</a>--%>
                                         <a target="_blank" href="<%=this.ResolveUrl("~/StepofOperationNew.aspx?moduleid=12")%>" class="btn btn-primary">Module</a>
                                     </div>
 
@@ -2678,7 +2676,7 @@
                                     <br />
                                     <div class="btn-group">
                                         <a target="_blank" href="<%=this.ResolveUrl("~/F_99_Allinterface/AccountInterface.aspx?Type=Report")%>" class="btn btn-primary">Interfaces</a>
-                                        <a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-danger">Analysis Graph</a>
+                                        <a target="_blank" href="<%=this.ResolveUrl("~/F_34_Mgt/RptAllDashboard?Type=Accounts")%>" class="btn btn-danger">Analysis Graph</a>
                                         <a target="_blank" href="<%=this.ResolveUrl("~/StepofOperationNew.aspx?moduleid=17")%>" class="btn btn-primary">Module</a>
                                         <div class=" btn-group" role="group" aria-label="Button group with nested dropdown">
                                             <button type="button" class="btn btn-danger">Ratio Analysis</button>
@@ -2724,7 +2722,7 @@
                                     <br />
                                     <div class="btn-group">
                                         <a target="_blank" href="<%=this.ResolveUrl("~/F_15_DPayReg/BillRegInterface.aspx?Type=Report")%>" class="btn btn-primary">Interfaces</a>
-                                        <a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-danger">Analysis Graph</a>
+                                        <%--<a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-danger">Analysis Graph</a>--%>
                                         <a target="_blank" href="<%=this.ResolveUrl("~/StepofOperationNew.aspx?moduleid=17")%>" class="btn btn-primary">Module</a>
                                     </div>
 
@@ -2758,7 +2756,7 @@
                                     <br />
                                     <div class="btn-group">
                                         <a target="_blank" href="<%=this.ResolveUrl("~/F_15_DPayReg/BillRegInterface.aspx?Type=Report")%>" class="btn btn-primary">Interfaces</a>
-                                        <a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-danger">Analysis Graph</a>
+                                        <%--<a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-danger">Analysis Graph</a>--%>
                                         <a target="_blank" href="<%=this.ResolveUrl("~/StepofOperationNew.aspx?moduleid=17")%>" class="btn btn-primary">Module</a>
                                     </div>
 
@@ -2792,7 +2790,7 @@
                                     <br />
                                     <div class="btn-group">
                                         <a target="_blank" href="<%=this.ResolveUrl("~/F_99_Allinterface/SalesInterface.aspx?Type=Report")%>" class="btn btn-primary">Interfaces</a>
-                                        <a target="_blank" href="<%=this.ResolveUrl("~/")%>" class="btn btn-danger">Analysis Graph</a>
+                                        <%--<a target="_blank" href="<%=this.ResolveUrl("~/")%>" class="btn btn-danger">Analysis Graph</a>--%>
                                         <a target="_blank" href="<%=this.ResolveUrl("~/StepofOperationNew.aspx?moduleid=23")%>" class="btn btn-primary">Module</a>
                                     </div>
 
@@ -2826,7 +2824,7 @@
                                     <br />
                                     <div class="btn-group">
                                         <a target="_blank" href="<%=this.ResolveUrl("~/F_99_Allinterface/SalesInterface.aspx?Type=Report")%>" class="btn btn-primary">Interfaces</a>
-                                        <a target="_blank" href="<%=this.ResolveUrl("~/")%>" class="btn btn-danger">Analysis Graph</a>
+                                        <%--<a target="_blank" href="<%=this.ResolveUrl("~/")%>" class="btn btn-danger">Analysis Graph</a>--%>
 
                                         <a target="_blank" href="<%=this.ResolveUrl("~/StepofOperationNew.aspx?moduleid=23")%>" class="btn btn-primary">Module</a>
                                     </div>
@@ -2861,7 +2859,7 @@
                                     <br />
                                     <div class="btn-group">
                                         <a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-primary">Interfaces</a>
-                                        <a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-danger">Analysis Graph</a>
+                                        <%--<a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-danger">Analysis Graph</a>--%>
                                         <a target="_blank" href="<%=this.ResolveUrl("~/StepofOperationNew.aspx?moduleid=23")%>" class="btn btn-primary">Module</a>
                                     </div>
 
@@ -2895,7 +2893,7 @@
                                     <br />
                                     <div class="btn-group">
                                         <a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-primary">Interfaces</a>
-                                        <a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-danger">Analysis Graph</a>
+                                        <%--<a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-danger">Analysis Graph</a>--%>
                                         <a target="_blank" href="<%=this.ResolveUrl("~/StepofOperationNew.aspx?moduleid=23")%>" class="btn btn-primary">Module</a>
                                     </div>
 
@@ -2929,7 +2927,7 @@
                                     <br />
                                     <div class="btn-group">
                                         <a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-primary">Interfaces</a>
-                                        <a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-danger">Analysis Graph</a>
+                                        <%--<a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-danger">Analysis Graph</a>--%>
                                         <a target="_blank" href="<%=this.ResolveUrl("~/StepofOperationNew.aspx?moduleid=23")%>" class="btn btn-primary">Module</a>
                                     </div>
 
@@ -2965,7 +2963,7 @@
                                     <br />
                                     <div class="btn-group">
                                         <a target="_blank" href="<%=this.ResolveUrl("~/F_99_Allinterface/BudgetInterface.aspx")%>" class="btn btn-primary">Interfaces</a>
-                                        <a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-danger">Analysis Graph</a>
+                                        <a target="_blank" href="<%=this.ResolveUrl("~/F_32_Mis/ProjectAnalysis?Type=Report&comcod=")%>" class="btn btn-danger">Analysis Graph</a>
                                         <a target="_blank" href="<%=this.ResolveUrl("~/StepofOperationNew.aspx?moduleid=04")%>" class="btn btn-primary">Module</a>
                                     </div>
 
@@ -3000,7 +2998,7 @@
                                     <br />
                                     <div class="btn-group">
                                         <a target="_blank" href="<%=this.ResolveUrl("~/F_99_Allinterface/RptPurInterface.aspx?Type=Report")%>" class="btn btn-primary">Interfaces</a>
-                                        <a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-danger">Analysis Graph</a>
+                                        <%--<a target="_blank" href="<%=this.ResolveUrl("~")%>" class="btn btn-danger">Analysis Graph</a>--%>
                                         <a target="_blank" href="<%=this.ResolveUrl("~/StepofOperationNew.aspx?moduleid=14")%>" class="btn btn-primary">Module</a>
                                     </div>
 
