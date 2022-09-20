@@ -43,7 +43,21 @@ namespace RealERPWEB.F_39_MyPage
 
                 this.GetClientID();
                 this.LoadGrid();
+                this.ComponentVisibility();
 
+            }
+        }
+
+        private void ComponentVisibility()
+        {
+            string comcod = this.GetComdCode();
+            switch (comcod)
+            {
+                case "3101":
+                case "3368":
+                    divAttachedfiles.Visible = false;
+                    break;
+                   
             }
         }
 
@@ -182,7 +196,7 @@ namespace RealERPWEB.F_39_MyPage
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = true;
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlFileNo")).Visible = false;
-                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text="";
+                        //((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text = "";
                         break;
 
                     case "01021": //File No

@@ -63,7 +63,7 @@ namespace RealERPWEB.F_17_Acc
         private void GetConAccCode()
         {
             string comcod = this.GetComcode();
-            string srchconhead = "%" + this.txtsercacc.Text.Trim() + "%";
+            string srchconhead = "%";
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETCONACCHEAD", srchconhead, "", "", "", "", "", "", "", "");
             this.ddlConAccHead.DataSource = ds1.Tables[0];
             this.ddlConAccHead.DataTextField = "actdesc1";
@@ -74,7 +74,7 @@ namespace RealERPWEB.F_17_Acc
         private void GetHeadAccout()
         {
             string comcod = this.GetComcode();
-            string filter = this.txtsercacc.Text + "%";
+            string filter = "%";
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETHEADACCOUNT", filter, "", "", "", "", "", "", "", "");
             this.ddlAccHead.DataSource = ds1.Tables[0];
             this.ddlAccHead.DataTextField = "actdesc";
@@ -86,7 +86,7 @@ namespace RealERPWEB.F_17_Acc
         private void GetContAccCode()
         {
             string comcod = this.ddlToCompany.SelectedValue.ToString();
-            string srchconhead = "%" + this.txtsetrcacc.Text.Trim() + "%";
+            string srchconhead = "%";
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETCONACCHEAD", srchconhead, "", "", "", "", "", "", "", "");
             this.ddlContAccHead.DataSource = ds1.Tables[0];
             this.ddlContAccHead.DataTextField = "actdesc1";
@@ -112,7 +112,7 @@ namespace RealERPWEB.F_17_Acc
         private void GetToHeadAccount()
         {
             string comcod = this.ddlToCompany.SelectedValue.ToString();
-            string filter = this.txtsertoheacc.Text + "%";
+            string filter = "%";
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETHEADACCOUNT", filter, "", "", "", "", "", "", "", "");
             this.ddlAcctoHead.DataSource = ds1.Tables[0];
             this.ddlAcctoHead.DataTextField = "actdesc";
@@ -133,15 +133,13 @@ namespace RealERPWEB.F_17_Acc
                 if (ds2.Tables[0].Rows.Count == 0)
                 {
                     return;
-
                 }
-
                 DateTime txtopndate = Convert.ToDateTime(ds2.Tables[0].Rows[0]["voudat"]);
 
                 if (txtopndate > Convert.ToDateTime(ASTUtility.DateFormat(this.txtfdate.Text.Trim())))
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Voucher Date Must  Be Greater then Opening Date";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    string msg = "Voucher Date Must  Be Greater then Opening Date";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     return;
 
                 }
@@ -154,8 +152,7 @@ namespace RealERPWEB.F_17_Acc
             }
             catch (Exception ex)
             {
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('" + ex.Message + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
 
             }
 
@@ -186,8 +183,7 @@ namespace RealERPWEB.F_17_Acc
 
                 if (txtopndate > Convert.ToDateTime(ASTUtility.DateFormat(this.txttdate.Text.Trim())))
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Voucher Date Must  Be Greater then Opening Date";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Voucher Date Must  Be Greater then Opening Date" + "');", true);
                     return;
 
                 }
@@ -201,8 +197,7 @@ namespace RealERPWEB.F_17_Acc
             }
             catch (Exception ex)
             {
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('" + ex.Message + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
 
             }
 
@@ -220,95 +215,6 @@ namespace RealERPWEB.F_17_Acc
             string comname = (this.rbtnList1.SelectedIndex == 0) ? hst["comnam"].ToString() : this.ddlToCompany.SelectedItem.Text;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('AccPrint.aspx?Type=PostDatVou&comcod=" + comcod + "&comname=" + comname + "&vounum=" + vounum + "', target='_blank');</script>";
 
-
-
-
-
-            //try
-            //{
-            //    Hashtable hst = (Hashtable)Session["tblLogin"];
-            //    string comcod =  hst["comcod"].ToString();
-            //    string comnam = hst["comnam"].ToString();
-            //    string comadd = hst["comadd1"].ToString();
-            //    string compname = hst["compname"].ToString();
-            //    string username = hst["username"].ToString();
-            //    string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            //    string voudat = Convert.ToDateTime(this.txtfdate.Text.Trim()).ToString("dd-MMM-yyyy");
-            //    string vounum = (this.rbtnList1.SelectedIndex==0)?(this.lblfVoucherNo.Text.Trim().Substring(0, 2) + voudat.Substring(7, 4) +
-            //        this.lblfVoucherNo.Text.Trim().Substring(2, 2) + this.lblfVoucherNo.Text.Trim().Substring(5)) : (this.lbltVoucherNo.Text.Trim().Substring(0, 2) + voudat.Substring(7, 4) +
-            //                    this.lbltVoucherNo.Text.Trim().Substring(2, 2) + this.lbltVoucherNo.Text.Trim().Substring(5));
-
-            //    DataSet _ReportDataSet = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_VOUCHER", "PRINTVOUCHER01", vounum, "", "", "", "", "", "", "", "");
-            //    if (_ReportDataSet == null)
-            //        return;
-            //    DataTable dt = _ReportDataSet.Tables[0];
-            //    double dramt, cramt;
-            //    dramt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(Dr)", "")) ? 0.00 : dt.Compute("sum(Dr)", "")));
-            //    cramt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(Cr)", "")) ? 0.00 : dt.Compute("sum(Cr)", "")));
-
-
-
-            //    if (dramt > 0 && cramt > 0)
-            //    {
-            //        TAmount = cramt;
-
-            //    }
-            //    else if (dramt > 0 && cramt <= 0)
-            //    {
-            //        TAmount = dramt;
-            //    }
-            //    else
-            //    {
-            //        TAmount = cramt;
-            //    }
-
-            //    DataTable dt1 = _ReportDataSet.Tables[1];
-            //    string Vounum = dt1.Rows[0]["vounum"].ToString();
-            //    string refnum = dt1.Rows[0]["refnum"].ToString();
-            //    string voutype = dt1.Rows[0]["voutyp"].ToString();
-            //    string venar = dt1.Rows[0]["venar"].ToString();
-            //    ReportDocument rptinfo = new RealERPRPT.R_17_Acc.rptPrintVoucher();
-            //    rptinfo.SetDataSource(_ReportDataSet.Tables[0]);
-            //    TextObject txtCompanyName = rptinfo.ReportDefinition.ReportObjects["txtCompanyName"] as TextObject;
-            //    txtCompanyName.Text = comnam;
-            //    TextObject txtcAdd = rptinfo.ReportDefinition.ReportObjects["compadd"] as TextObject;
-            //    txtcAdd.Text = comadd;
-            //    TextObject vounum1 = rptinfo.ReportDefinition.ReportObjects["vounum"] as TextObject;
-            //    vounum1.Text = "Voucher No.: " + vounum;
-            //    TextObject date = rptinfo.ReportDefinition.ReportObjects["date"] as TextObject;
-            //    date.Text = " Date:" + voudat;
-            //    TextObject Refnum = rptinfo.ReportDefinition.ReportObjects["Refnum"] as TextObject;
-            //    Refnum.Text = "Reference No.: " + refnum;
-            //    TextObject voutype1 = rptinfo.ReportDefinition.ReportObjects["voutype"] as TextObject;
-            //    voutype1.Text = voutype;
-            //    TextObject naration = rptinfo.ReportDefinition.ReportObjects["venar"] as TextObject;
-            //    naration.Text = "Naration: " + venar;
-
-            //    //TextObject txtBname = rptinfo.ReportDefinition.ReportObjects["bankname"] as TextObject;
-            //    //txtBname.Text = this.ddlConAccHead.SelectedItem.Text.Substring(13);
-            //    TextObject rpttxtamt = rptinfo.ReportDefinition.ReportObjects["txtamt"] as TextObject;
-            //    rpttxtamt.Text = ASTUtility.Trans(TAmount, 2);
-
-            //    TextObject txtuserinfo = rptinfo.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
-            //    txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
-
-            //    if (ConstantInfo.LogStatus == true)
-            //    {
-            //        string eventtype = "Inter Company Payment Voucher";
-            //        string eventdesc = "Print Voucher";
-            //        string eventdesc2 = "Voucher No.: " + vounum;
-            //        bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-            //    }
-
-            //    Session["Report1"] = rptinfo;
-            //    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-            //                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-            //}
-            //catch (Exception ex)
-            //{
-            // ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-            // ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-            //}
         }
 
 
@@ -349,13 +255,66 @@ namespace RealERPWEB.F_17_Acc
         }
         protected void lbtnRefresh_Click(object sender, EventArgs e)
         {
+            if (lbtnRefresh.Text == "NEW")
+            {
+                this.txttdate.Text = this.txtfdate.Text;
+                this.lbltRefNum.Text = "";
+                this.lbltcramt.Text = "";
+                this.txtDrAmt.Text = "";
+                this.txtDrAmt2.Visible = true;
+                this.txtDrAmt.Visible = false;
+                this.lbtnRefresh.Text = "SELECT";
+                this.lbtnRefresh.Enabled = true;
+                this.lbtnUpdate.Enabled = true;
+                this.txtfdate.Enabled = true;
+                this.txtDrAmt.Text = "";
 
-            this.txttdate.Text = this.txtfdate.Text;
-            this.lbltRefNum.Text = this.txtRefNum.Text;
-            this.lbltcramt.Text = Convert.ToDouble("0" + this.txtDrAmt.Text).ToString("#,##0.00;(#,##0.00); ");
-            this.txtDrAmt.Text = Convert.ToDouble("0" + this.txtDrAmt.Text).ToString("#,##0.00;(#,##0.00); ");
+            }
+            else
+            {
+                if (isRefnoInValid())
+                {
+                    txtSrinfo.Focus();
+                    return;
+                }
+                this.txttdate.Text = this.txtfdate.Text;
+                this.lbltRefNum.Text = this.txtRefNum.Text;
+                this.txtDrAmt.Visible = true;
+                this.lbltcramt.Text = Convert.ToDouble("0" + this.txtDrAmt2.Text.Trim()).ToString("#,##0.00;(#,##0.00); ");
+                this.txtDrAmt.Text = Convert.ToDouble("0" + this.txtDrAmt2.Text.Trim()).ToString("#,##0.00;(#,##0.00); ");
+                this.txtDrAmt2.Visible = false;
+                this.lbtnRefresh.Text = "NEW";
+            }
+
             //this.GetfVoucherNo();
             //this.GettVoucherNo();
+
+
+        }
+
+        private bool isRefnoInValid()
+        {
+            string refNo = this.txtSrinfo.Text.Trim().ToString();
+            string comcod = this.GetComcode();
+            string msg = "";
+            if (refNo.Length == 0)
+            {
+                msg = "Ref No. Should Not Be Empty";               
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                return true;
+            }
+            refNo = "%" + refNo + "%";
+            DataSet ds2 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "CHECKEDDUPREFNO", refNo, "", "", "", "", "", "", "", "");
+
+            if (ds2.Tables[0].Rows.Count == 0)
+                return false;
+
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Found Duplicate Ref No" + "');", true);
+                return true;
+            }
+
         }
 
         private string GetIssueNo()
@@ -378,6 +337,8 @@ namespace RealERPWEB.F_17_Acc
         {
 
             string isunum = "";
+            string msg = "";
+
 
             //issunum1 = this.GettoIssueNo();
             //return;
@@ -387,15 +348,17 @@ namespace RealERPWEB.F_17_Acc
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
-
-            this.lbtnRefresh_Click(null, null);
+            if (isRefnoInValid())
+            {
+                txtSrinfo.Focus();
+                return;
+            }
+            
             Hashtable hst = (Hashtable)Session["tblLogin"];
-
-
             string PostedByid = hst["usrid"].ToString();
             string toPostedByid = this.ddlToCompany.SelectedValue.ToString() + ASTUtility.Right(hst["usrid"].ToString(), 3);
             string Postedtrmid = hst["compname"].ToString();
@@ -411,8 +374,7 @@ namespace RealERPWEB.F_17_Acc
             string vounum2 = this.lbltVoucherNo.Text.Trim().Substring(0, 2) + voudat.Substring(7, 4) +
                            this.lbltVoucherNo.Text.Trim().Substring(2, 2) + this.lbltVoucherNo.Text.Trim().Substring(5);
             string refnum = this.txtRefNum.Text.Trim();
-            string srinfo1 = this.txtSrinfo.Text.Trim();
-            string srinfo2 = this.txttSrinfo.Text.Trim();
+            string refno = this.txtSrinfo.Text.Trim();
             string vounarration1, vounarration2, vouno, voutype, cactcode, trnamt;
             vounarration1 = this.txtNarration.Text.Trim();
             vounarration2 = (vounarration1.Length > 200 ? vounarration1.Substring(200) : "");
@@ -430,23 +392,24 @@ namespace RealERPWEB.F_17_Acc
             string insofissueno = "";
 
             double Dramt, Cramt;
-            Dramt = Convert.ToDouble(this.txtDrAmt.Text.Trim());
+            Cramt = Convert.ToDouble(this.lbltcramt.Text.Trim().ToString());
+            Dramt = Convert.ToDouble(this.txtDrAmt.Text.Trim().ToString());
             string trnremarks = "";
             isunum = this.GetIssueNo();
+
+
             try
             {
                 //-----------Update Transaction B Table-----------------//
 
                 bool resultb = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "INOFUPACPMNTB", vounum1, voudat, vounarration1,
-                              vounarration2, voutype, vtcode, edit, PostedByid, Postedtrmid, PostedSession, Posteddat, "", "", "", "");
-
-
+                              vounarration2, voutype, vtcode, edit, PostedByid, Postedtrmid, PostedSession, Posteddat, "", "", refno, "");
 
 
                 if (!resultb)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = accData.ErrorObject["Msg"].ToString();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    msg = accData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     return;
                 }
                 //-----------Update Transaction A Table-----------------//
@@ -460,8 +423,8 @@ namespace RealERPWEB.F_17_Acc
 
                 if (!resulta)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = accData.ErrorObject["Msg"].ToString();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    msg = accData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     return;
                 }
 
@@ -485,12 +448,12 @@ namespace RealERPWEB.F_17_Acc
 
 
                 resultb = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "INOFUPACPMNTB", vounum2, voudat, vounarration1,
-                          vounarration2, voutype, vtcode, edit, toPostedByid, Postedtrmid, PostedSession, Posteddat, "", "", "", "");
+                          vounarration2, voutype, vtcode, edit, toPostedByid, Postedtrmid, PostedSession, Posteddat, "", "", refno, "");
 
                 if (!resultb)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = accData.ErrorObject["Msg"].ToString();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    msg = accData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     return;
                 }
 
@@ -502,24 +465,23 @@ namespace RealERPWEB.F_17_Acc
 
                 if (!resulta)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = accData.ErrorObject["Msg"].ToString();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    msg = accData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     return;
                 }
 
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
 
-             ((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully.";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-
-                this.lbtnRefresh.Enabled = false;
+                this.lbtnRefresh.Enabled = true;
                 this.lbtnUpdate.Enabled = false;
                 this.txtfdate.Enabled = false;
 
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                msg = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
             }
 
             if (ConstantInfo.LogStatus == true)

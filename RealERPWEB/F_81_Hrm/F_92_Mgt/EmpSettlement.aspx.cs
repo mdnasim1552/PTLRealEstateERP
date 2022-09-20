@@ -132,6 +132,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string rpttype = this.rbtnstatement.SelectedIndex.ToString();
             var emplist = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSepEmployee>)ViewState["empdata"];
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ACR_EMPLOYEE", "GET_EMP_SETTLEMENT_INFO", empid, rpttype, "", "", "", "", "", "");
+            if (ds3 == null)
+                return;
             ViewState["tblsttlmnt"] = ds3.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>();
 
             var shorempdata = emplist.FindAll(d => d.empid == empid);
@@ -150,7 +152,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             }
             else
             {
-               
+
             }
 
             this.Data_Bind();
@@ -170,6 +172,53 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.gvsttlededuct.DataSource = sttlmntinfo.FindAll(p => p.hrgcod.Substring(0, 3) == "352");
             this.gvsttlededuct.DataBind();
             this.FooterCalculation();
+
+   
+    //        var paycount = sttlmntinfo.FindAll(p => p.hrgcod.Substring(0, 3) == "351");
+
+
+
+
+    //        int i = 0;
+    //        foreach (var item in paycount)
+    //        {
+    //            i++;
+    //            string gcod = item.hrgcod;
+    //            switch (gcod)
+    //            {
+
+    //                //salary
+    //                case "35101":
+    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txtfrmdat")).Visible = true;
+    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txttodat")).Visible = true;
+
+    //                    ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = false;
+    //                    ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = false;
+    //                    break;
+    //                case "35108":
+    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txtfrmdat")).Visible = true;
+    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txttodat")).Visible = true;
+
+    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = false;
+    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = false;
+    //                    break;
+    //                case "35110":
+    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txtfrmdat")).Visible = true;
+    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txttodat")).Visible = true;
+
+    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = false;
+    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = false;
+    //                    break;
+    //                default:
+
+    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txtfrmdat")).Visible = false;
+    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txttodat")).Visible = false;
+
+    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = true;
+    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = true;
+    //                    break;
+    //            }
+    //}
         }
 
         private void Save_Value()
@@ -423,5 +472,23 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
             this.ShowPerformance();
         }
+
+
+
+
+
+        //protected void copy_Click(object sender, EventArgs e)
+        //{
+        //    GridViewRow gvRow = this.gvsettlemntcredit.SelectedRow;
+        //    DataTable dt = null;
+        //    if (ViewState["tblsttlmnt"] != null)
+        //    {
+        //        dt = ViewState["tblsttlmnt"] as DataTable;
+        //        dt.Rows.Add(gvRow.Cells[0].Text, gvRow.Cells[1].Text, gvRow.Cells[2].Text, gvRow.Cells[3].Text,
+        //            gvRow.Cells[4].Text, gvRow.Cells[5].Text, gvRow.Cells[6].Text, gvRow.Cells[7].Text);
+        //        ViewState["tblsttlmnt"] = dt;
+        //    }
+        //    this.Data_Bind();
+        //}
     }
 }

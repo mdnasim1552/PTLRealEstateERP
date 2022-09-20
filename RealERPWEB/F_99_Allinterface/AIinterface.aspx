@@ -593,23 +593,32 @@
 
                         </div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-lg-5 col-md-6 col-sm-6">
 
-                                <asp:LinkButton ID="tblAddCustomerModal" runat="server" Visible="false" CssClass="btn btn-primary ml-auto  btn-sm mt20 mr-1" OnClick="AddCustomerModal_Click"><i class="fa fa-plus"></i>Add Customer</asp:LinkButton>
-
-
+                               
                                 <asp:LinkButton ID="tblAddProjectModal" runat="server" CssClass="btn btn-primary ml-auto bw-100 btn-sm mt20 mr-2" OnClick="tblAddProjectModal_Click"><i class="fa fa-plus"></i>Add Project</asp:LinkButton>
-
                                 <asp:LinkButton ID="tblTaskCreateModal" runat="server" CssClass="btn btn-primary ml-auto bw-100 btn-sm mt20 mr-2" OnClick="tblTaskCreateModal_Click"><i class="fa fa-plus"></i>Add Tasks</asp:LinkButton>
+                                <div class=" btn-group" role="group" aria-label="Button group with nested dropdown">
+                               
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop4" type="button" class="btn btn-success ml-auto bw-100 btn-sm mt20 mr-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Operation</button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop4" style="">
+                                        <div class="dropdown-arrow"></div>
+                                        <asp:HyperLink ID="HyperLink1" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/CustomerList" CssClass="dropdown-item" Style="padding: 0 10px">Customer List</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink2" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/AddProject" CssClass="dropdown-item" Style="padding: 0 10px">New Project</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink3" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/CreateTask" CssClass="dropdown-item" Style="padding: 0 10px">Create Task</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink4" runat="server" Target="_blank" NavigateUrl="~/StepofOperationNew?moduleid=14" CssClass="dropdown-item" Style="padding: 0 10px">Assign Team Leader</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink5" runat="server" Target="_blank" NavigateUrl="~/StepofOperationNew?moduleid=14" CssClass="dropdown-item" Style="padding: 0 10px">Creating Invoice</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/StepofOperationNew?moduleid=14" CssClass="dropdown-item" Style="padding: 0 10px">Day Wise Work Status</asp:HyperLink>
+                                       
+                                    </div>
+                                </div>
                             </div>
-
-
-
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
                         <%-- <div class="panel with-nav-tabs panel-primary">
-
                         </div>--%>
                         <fieldset class="tabMenu">
                             <div class="form-horizontal">
@@ -776,32 +785,7 @@
 
 
                                         </div>
-                                       <%-- <div class="row">
-                                            <div class="col-lg-3">
-                                                <asp:Label ID="tblName" Visible="false" runat="server"> Name</asp:Label>
-                                                <asp:TextBox ID="textName" Visible="false" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                               
-                                            </div>
-                                            <div class="col-lg-2">
-                                                <asp:Label ID="tblNumber" Visible="false" runat="server"> Phone Number</asp:Label>
-                                                <asp:TextBox ID="TextNumber" Visible="false" runat="server" TextMode="Number" CssClass="form-control form-control-sm"></asp:TextBox>
-                                               
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <asp:Label ID="tblEmail" Visible="false" runat="server"> Email</asp:Label>
-                                                <asp:TextBox ID="TextEmail" Visible="false" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                               
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <asp:Label ID="textAddess" Visible="false" runat="server"> Address</asp:Label>
-                                                <asp:TextBox ID="TextAddress" Visible="false" runat="server" TextMode="MultiLine" CssClass="form-control form-control-sm"></asp:TextBox>
-                                               
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <asp:LinkButton ID="tbnAdd" runat="server" Visible="false" CssClass="btn btn-primary ml-auto  btn-sm mt20 mr-1" OnClick="tbnAdd_Click"><i class="fa fa-plus"></i>Add</asp:LinkButton>
-                                               
-                                            </div>
-                                        </div>--%>
+                                        
                                         <div class="row">
                                             <div class="col-lg-3 mt20">
                                                 <asp:Label ID="Label10" runat="server">Project Type</asp:Label>

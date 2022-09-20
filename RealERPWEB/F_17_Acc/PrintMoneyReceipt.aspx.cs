@@ -116,7 +116,7 @@ namespace RealERPWEB.F_17_Acc
             string mrno = this.Request.QueryString["mrno"].ToString();
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string mrDate = Convert.ToDateTime(this.Request.QueryString["mrdate"].ToString()).ToString("dd-MMM-yyyy");
-
+            //string PrintOpt=this.Request.QueryString["PrintOpt"].ToString() ?? "";
             DataSet ds2 = accData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSTALLMANTWITHMRR", pactCode, usirCode, mrDate, "", "", "", "", "", "");
             DataTable dtstatus = ds2.Tables[0];
             DataView dv1 = dtstatus.DefaultView;
@@ -554,9 +554,12 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
                 Rpt1.SetParameters(new ReportParameter("paytype", paytype1));
 
+                string PrintOpt = Request.QueryString.AllKeys.Contains("PrintOpt") ? this.Request.QueryString["PrintOpt"].ToString() : "";
+                PrintOpt = PrintOpt.Length > 0 ? PrintOpt : ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
+
                 Session["Report1"] = Rpt1;
-                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+                //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" + PrintOpt + "', target='_self');</script>";
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" + PrintOpt + "', target='_self');</script>";
             }
 
             else

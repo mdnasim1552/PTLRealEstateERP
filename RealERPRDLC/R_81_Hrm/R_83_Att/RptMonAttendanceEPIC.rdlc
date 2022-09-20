@@ -676,10 +676,10 @@
                   <Width>0.34819in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.56298in</Width>
+                  <Width>1.77965in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.04947in</Width>
+                  <Width>1.2078in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.32292in</Width>
@@ -1537,7 +1537,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox215</rd:DefaultName>
@@ -1909,7 +1911,8 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!casuallev.Value),"#,##0;(#,##0); ") + Format(Sum(Fields!siclev.Value),"#,##0;(#,##0); ") + Format(Sum(Fields!spl.Value),"#,##0;(#,##0); ") + Format(Sum(Fields!mtl.Value),"#,##0;(#,##0); ") + Format(Sum(Fields!withpaylev.Value),"#,##0;(#,##0); ") + Format(Sum(Fields!absnt.Value),"#,##0;(#,##0); ") + Format(Sum(Fields!holyday.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format((Fields!casuallev.Value + Fields!spl.Value+Fields!siclev.Value+Fields!mtl.Value+Fields!withpaylev.Value+Fields!absnt.Value+Fields!holyday.Value),"#,##0;(#,##0); ")</Value>
+
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1944,7 +1947,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format((Fields!tpayable.Value-Fields!holyday.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!tpayable.Value - Fields!holyday.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1979,7 +1982,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format((Fields!tpayable.Value)-(Fields!casuallev.Value+Fields!holyday.Value+Fields!siclev.Value+Fields!spl.Value+Fields!mtl.Value+Fields!withpaylev.Value+Fields!absnt.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format((Fields!tpayable.Value)-(Fields!casuallev.Value+Fields!siclev.Value+Fields!spl.Value+Fields!mtl.Value+Fields!withpaylev.Value+Fields!absnt.Value+Fields!holyday.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2132,15 +2135,126 @@
             <Top>0.2071in</Top>
             <Left>0.00445in</Left>
             <Height>1.05609in</Height>
-            <Width>10.78402in</Width>
+            <Width>11.15902in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
             </Style>
           </Tablix>
+          <Textbox Name="Textbox210">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Prepared By</Value>
+                    <Style>
+                      <FontFamily>Cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox210</rd:DefaultName>
+            <Top>2.14423in</Top>
+            <Left>0.97867in</Left>
+            <Height>0.25in</Height>
+            <Width>1.26667in</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <TopBorder>
+                <Style>Solid</Style>
+              </TopBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox211">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Checked By</Value>
+                    <Style>
+                      <FontFamily>Cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox211</rd:DefaultName>
+            <Top>2.14423in</Top>
+            <Left>4.90847in</Left>
+            <Height>0.25in</Height>
+            <Width>1.26667in</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <TopBorder>
+                <Style>Solid</Style>
+              </TopBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox212">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Authorised By</Value>
+                    <Style>
+                      <FontFamily>Cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox212</rd:DefaultName>
+            <Top>2.14423in</Top>
+            <Left>9.012in</Left>
+            <Height>0.25in</Height>
+            <Width>1.26667in</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <TopBorder>
+                <Style>Solid</Style>
+              </TopBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>1.28846in</Height>
+        <Height>2.50513in</Height>
         <Style>
           <Border>
             <Color>White</Color>
@@ -2148,7 +2262,7 @@
           </Border>
         </Style>
       </Body>
-      <Width>10.78847in</Width>
+      <Width>11.16347in</Width>
       <Page>
         <PageHeader>
           <Height>0.79167in</Height>
@@ -2282,7 +2396,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>1.49394in</Height>
+          <Height>0.69811in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -2306,9 +2420,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
-              <Top>1.24394in</Top>
-              <Left>0.10292in</Left>
-              <Height>0.25in</Height>
+              <Top>0.48977in</Top>
+              <Left>0.09459in</Left>
+              <Height>0.1625in</Height>
               <Width>8.04194in</Width>
               <Style>
                 <Border>
@@ -2340,10 +2454,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox5</rd:DefaultName>
-              <Top>0.96617in</Top>
+              <Top>0.15139in</Top>
               <Left>0.10292in</Left>
-              <Height>0.25in</Height>
-              <Width>8.2168in</Width>
+              <Height>0.1875in</Height>
+              <Width>11.06055in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -2375,113 +2489,11 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox6</rd:DefaultName>
-              <Top>1.24394in</Top>
-              <Left>8.2143in</Left>
-              <Height>0.25in</Height>
-              <Width>2.57417in</Width>
+              <Top>0.48977in</Top>
+              <Left>8.20597in</Left>
+              <Height>0.1625in</Height>
+              <Width>2.94917in</Width>
               <ZIndex>2</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox210">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Prepared By</Value>
-                      <Style>
-                        <FontFamily>Cambria</FontFamily>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox210</rd:DefaultName>
-              <Top>0.32647in</Top>
-              <Left>0.22884in</Left>
-              <Height>0.25in</Height>
-              <Width>1in</Width>
-              <ZIndex>3</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox211">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Checked By</Value>
-                      <Style>
-                        <FontFamily>Cambria</FontFamily>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox211</rd:DefaultName>
-              <Top>0.32647in</Top>
-              <Left>4.53869in</Left>
-              <Height>0.25in</Height>
-              <Width>1in</Width>
-              <ZIndex>4</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox212">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Authorised By</Value>
-                      <Style>
-                        <FontFamily>Cambria</FontFamily>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox212</rd:DefaultName>
-              <Top>0.32647in</Top>
-              <Left>8.43498in</Left>
-              <Height>0.25in</Height>
-              <Width>1in</Width>
-              <ZIndex>5</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>

@@ -3554,8 +3554,8 @@ namespace RealERPWEB.F_21_MKT
             string comcod = this.GetComeCode();
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             int rowno = (this.gvSummary.PageSize) * (this.gvSummary.PageIndex) + RowIndex;
-            string proscod = dt.Rows[RowIndex]["sircode"].ToString();
-            string proscod1 = dt.Rows[RowIndex]["sircode1"].ToString();
+            string proscod = dt.Rows[rowno]["sircode"].ToString();
+            string proscod1 = dt.Rows[rowno]["sircode1"].ToString();
 
 
             if (Chkpdelete.Checked)
