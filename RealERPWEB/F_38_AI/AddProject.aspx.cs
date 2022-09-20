@@ -20,16 +20,16 @@ namespace RealERPWEB.F_38_AI
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Add Project";
                 this.none.Attributes.Add("class", "d-none");
                 this.gridcol.Attributes.Add("class", "col-md-12");
-          
+
                 this.isFiledClear();
                 this.GetEmployeeName();
-                this.GetProjectList();               
+                this.GetProjectList();
                 this.GetCountry();
                 this.GetProjectDetails();
                 this.GetCustomerList();
                 this.GetLastid();
                 this.LoadGrid();
-               
+
             }
         }
 
@@ -57,22 +57,22 @@ namespace RealERPWEB.F_38_AI
                 return;
 
             Session["tblCustlist"] = dt.Tables[0];
-            
+
         }
         private void GetEmployeeName()
         {
             Session.Remove("tblempname");
             string comcod = this.GetComdCode();
             string company = "94%";
-            string projectName ="%";
+            string projectName = "%";
 
             string txtSEmployee = "%%";
             DataSet ds3 = MktData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "GETEMPNAME", company, projectName, txtSEmployee, "", "", "", "", "", "");
             if (ds3 == null)
                 return;
-            
+
             Session["tblempname"] = ds3.Tables[0];
-           
+
         }
         private void GetProjectDetails()
         {
@@ -88,8 +88,8 @@ namespace RealERPWEB.F_38_AI
             string comcod = this.GetComdCode();
             string sircode = "";
             DataSet ds1 = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "AIPROJECTDETAILS", sircode, "", "", "", "", "");
-            DataTable dt = ds1.Tables[0];           
-            DataTable dt2;         
+            DataTable dt = ds1.Tables[0];
+            DataTable dt2;
             DataTable dt3 = (DataTable)Session["tblprojectdetails"];
             DataView dv2;
             DataTable dt4 = (DataTable)Session["tblCustlist"];
@@ -254,15 +254,15 @@ namespace RealERPWEB.F_38_AI
             try
             {
 
-           
-            for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
-            {
-                ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text = "";
-                ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text = "";
 
+                for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
+                {
+                    ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text = "";
+                    ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text = "";
+
+                }
             }
-            }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
@@ -289,8 +289,8 @@ namespace RealERPWEB.F_38_AI
                     }
 
                     Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : Gvalue;
-                    Gvalue = (gtype == "N") ? Convert.ToDouble("0"+Gvalue).ToString() : Gvalue;
-               
+                    Gvalue = (gtype == "N") ? Convert.ToDouble("0" + Gvalue).ToString() : Gvalue;
+
 
 
                     bool result = MktData.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "PROJECT_INSERTUPDATE", sircode, Gcode, gtype, Gvalue, "", "", "", "");
@@ -302,7 +302,7 @@ namespace RealERPWEB.F_38_AI
                 }
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Project Saved Successfully');", true);
-     
+
             }
             catch (Exception exp)
             {
