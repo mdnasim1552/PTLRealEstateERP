@@ -69,6 +69,15 @@ namespace RealERPWEB.F_17_Acc
         protected global::AjaxControlToolkit.CalendarExtender txttodate_CalendarExtender;
 
         /// <summary>
+        /// txtSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSearch;
+
+        /// <summary>
         /// txtrefno control.
         /// </summary>
         /// <remarks>

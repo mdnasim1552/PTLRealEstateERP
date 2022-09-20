@@ -17,7 +17,7 @@ using RealERPRPT;
 namespace RealERPWEB.F_17_Acc
 {
 
-    public partial class AccInterComVoucherDel : System.Web.UI.Page 
+    public partial class AccInterComVoucherDel : System.Web.UI.Page
     {
         public static double TAmount;
         ProcessAccess AccData = new ProcessAccess();
@@ -29,7 +29,7 @@ namespace RealERPWEB.F_17_Acc
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-               
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Inertcompany Voucher List";
                 this.Master.Page.Title = "Intercom Voucher";
@@ -81,18 +81,38 @@ namespace RealERPWEB.F_17_Acc
             this.gvAccIntercom.DataSource = dt;
             this.gvAccIntercom.DataBind();
             this.FooterCalCulation();
-
-
         }
+
+        //private DataTable HiddenSameData(DataTable dt1)
+        //{
+        //    if (dt1.Rows.Count == 0)
+        //        return dt1;
+
+        //    string comcod = dt1.Rows[0]["comcod"].ToString();
+        //    string comsname = dt1.Rows[0]["comsname"].ToString();
+        //    for (int j = 1; j < dt1.Rows.Count; j++)
+        //    {
+        //        if (dt1.Rows[j]["comcod"].ToString() == comcod)
+        //        {
+        //            comcod = dt1.Rows[j]["comcod"].ToString();
+        //            dt1.Rows[j]["comsname"] = "";
+        //        }
+        //        else
+        //        {
+        //            comcod = dt1.Rows[j]["comcod"].ToString();
+        //            comsname = dt1.Rows[j]["comsname"].ToString();
+        //        }
+
+        //    }
+
+        //    return dt1;
+        //}
 
         private void FooterCalCulation()
         {
             DataTable dt = (DataTable)Session["tblintercom"];
             if (dt.Rows.Count == 0)
                 return;
-
-            ((Label)this.gvAccIntercom.FooterRow.FindControl("lblgvFvouamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(trnam)", "")) ?
-            0 : dt.Compute("sum(trnam)", ""))).ToString("#,##0;(#,##0);");
 
         }
         protected void lnkPrint_Click(object sender, EventArgs e)
@@ -135,17 +155,17 @@ namespace RealERPWEB.F_17_Acc
             string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_17_Acc/";
             //string currentptah = "AccPrint.aspx?Type=PostDatVou&vounum=" + vounum;
             string currentptah = "AccPrint.aspx?Type=accVou&vounum=" + vounum;
-            
+
             string totalpath = hostname + currentptah;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
 
-        }    
+        }
 
         protected void lbtnDeleteVoucher_Click(object sender, EventArgs e)
         {
 
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
-            DataTable dt = (DataTable)Session["tblintercom"];
+            
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
             int index = row.RowIndex;
 
@@ -153,21 +173,54 @@ namespace RealERPWEB.F_17_Acc
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetCompCode();
             string userid = hst["usrid"].ToString();
+            string date1 = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
             string Terminal = hst["trmid"].ToString();
             string Sessionid = hst["session"].ToString();
+
+            DataTable dt = ((DataTable)Session["tblintercom"]).Copy();
+            string comcod2 = dt.Rows[index]["comcod"].ToString(); 
             string vounum = dt.Rows[index]["vounum"].ToString();
-            
-            bool result = AccData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "DELETEVOUCHERUNPOSTED", vounum, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-            if (result == false)
+            string refnum1 = dt.Rows[index]["refnum"].ToString();
+
+            string refnum = "";
+            bool result = false;
+            string msg = "";
+
+            if (refnum1 == "")
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Deleted";
-                return;
+                refnum = "";
+                result = AccData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "DELINTERCOMVOUCHER", vounum, refnum, comcod2, userid, date1, Terminal, Sessionid, "", "", "", "", "", "", "", "");
+                if (result == false)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Voucher Delete Failed ..!" + "');", true);
+                    return;
 
+                }
             }
+            else
+            {
+                DataView dv1 = dt.DefaultView;
+                dv1.RowFilter = ("refnum ='"+ refnum1 + "'");
+                dt = dv1.ToTable();
 
-         ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            this.Data_Bind();
-        }     
+                foreach(DataRow dr1 in dt.Rows)
+                {
+                    refnum = dr1["refnum"].ToString();
+                    result = AccData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "DELINTERCOMVOUCHER", vounum, refnum, comcod2, userid, date1, Terminal, Sessionid, "", "", "", "", "", "", "", "");
+                    
+                    if (result == false)
+                    {
+                        msg = AccData.ErrorObject["Msg"].ToString();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Voucher Delete Failed..!.." + "');", true);
+                        return;
+                    }
+                }
+            }
+             
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Voucher Deleted Successfully" + "');", true);
+            this.lbtnOk_Click(null, null);
+
+        }
 
         protected void chkAllCheckid_CheckedChanged(object sender, EventArgs e)
         {
@@ -206,7 +259,7 @@ namespace RealERPWEB.F_17_Acc
             string ApprovedSession = hst["session"].ToString();
             string Approvedddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
             string msg = "";
-            DataTable dt = (DataTable)Session["tblintercom"];          
+            DataTable dt = (DataTable)Session["tblintercom"];
 
             foreach (DataRow dr in dt.Rows)
             {
@@ -222,15 +275,15 @@ namespace RealERPWEB.F_17_Acc
                         if (!resultb)
                         {
                             msg = AccData.ErrorObject["Msg"].ToString();
-                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Voucher Posted Failed..!.."+ msg + "');", true);
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Voucher Posted Failed..!.." + msg + "');", true);
                             return;
                         }
-                    }                    
+                    }
                 }
             }
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Voucher Posted Successfully" + "');", true);
             this.lbtnOk_Click(null, null);
-        }       
+        }
 
         protected void chkvmrno_CheckedChanged(object sender, EventArgs e)
         {
@@ -240,6 +293,6 @@ namespace RealERPWEB.F_17_Acc
             dt.Rows[index]["chkmv"] = "True";
             Session["tblintercom"] = dt;
         }
-        
+
     }
 }

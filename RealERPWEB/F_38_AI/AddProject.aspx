@@ -51,7 +51,7 @@
                                         <div class="col-md-4">
                                             <div>
                                                 <h6>Project Entry
-                                            <asp:LinkButton ID="tblAddCustomerModal" runat="server" OnClick="tblAddCustomerModal_Click" CssClass="btn btn-primary ml-auto btn-sm mt20 mr-1 float-right"><i class="fa fa-plus"></i>Add Customer</asp:LinkButton>
+                                            <asp:LinkButton ID="tblAddCustomerModal" runat="server" OnClick="tblAddCustomerModal_Click" CssClass="btn btn-primary ml-auto btn-sm mt20 mr-1 float-right"><i class="fa fa-plus"></i>Add Project</asp:LinkButton>
 
                                                 </h6>
                                             </div>
