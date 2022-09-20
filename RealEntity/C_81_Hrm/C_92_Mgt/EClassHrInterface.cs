@@ -67,6 +67,7 @@ namespace RealEntity.C_81_Hrm.C_92_Mgt
             public double ttlamt { get; set; }
             public string frmdat { get; set; }
             public string todat { get; set; }
+            public string  calculation {get;set;}
 
 
         }
