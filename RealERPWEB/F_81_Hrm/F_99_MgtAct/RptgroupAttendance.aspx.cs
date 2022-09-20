@@ -32,15 +32,16 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 this.txtFdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Group Attendence";
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Attendence Summery";
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
-                this.ShowGroupAttendance();
+               
                 if (hst["comcod"].ToString().Substring(0, 1) == "8")
                 {
                     this.comlist.Visible = true;
                     this.Company();
                 }
+                this.ShowGroupAttendance();
             }
         }
 
@@ -86,6 +87,9 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
             DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_GROUP_ATTENDENCE", calltype, todydate, "", "", "", "", "", "", "", "");
             if (ds == null || ds.Tables[0].Rows.Count == 0)
             {
+                string totmsg = "No Data Found";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + totmsg + "');", true);
+
                 return;
             }
             ViewState["tblgroupAttendace"] = ds.Tables[0];
@@ -105,9 +109,12 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
             this.gvRptAttn.DataBind();
 
             //ClientScript.RegisterStartupScript(this.GetType(), "alert", "drawChart();", true);
-
-            this.gvAttPersent.DataSource = dt2;
-            this.gvAttPersent.DataBind();
+            if(this.Request.QueryString["Type"] != "Dept")
+            {
+                this.gvAttPersent.DataSource = dt2;
+                this.gvAttPersent.DataBind();
+            }
+           
 
 
             double tostaff = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(ttlstap)", "")) ? 0.00 : dt.Compute("Sum(ttlstap)", "")));
@@ -187,9 +194,11 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_GROUP_ATTENDENCE02", "RPTLATEEONANDABSENTDET", todydate, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
             ViewState["tblLVatlet"] = ds1.Tables[2];
             
-            DataTable dt = (DataTable)ViewState["tblgroupAttenPersen"];
+            DataTable dt = (DataTable)ViewState["tblgroupAttendace"];
             DataTable dt1 = (DataTable)ViewState["tblLVatlet"];
             DataTable dt3 = (DataTable)ViewState["tblattgraph"];
 
