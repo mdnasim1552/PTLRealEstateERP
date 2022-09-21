@@ -173,6 +173,7 @@ namespace RealERPWEB
                     this.GetWinList();
                     this.OrganoGram();
                     this.getConduct();
+                    this.getForm();
                     break;
                 case "3354":
                     this.PaySlipPart.Visible = true;
@@ -259,6 +260,29 @@ namespace RealERPWEB
             {
                 DataTable dt = ds1.Tables[2];
                 this.conductid.InnerHtml = "<iframe src='" + dt.Rows[0]["fileurl"].ToString() + "' width='50%' height='700px'></iframe>";
+            }
+
+        }
+
+        private void getForm()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETEMPMONTHLYWINLIST", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null || ds1.Tables[4].Rows.Count == 0)
+            {
+                return;
+            }
+            else
+            {
+                DataTable dt = ds1.Tables[4];
+
+                string winlist = "";
+                for (int j = 0; j < dt.Rows.Count; j++)
+                {
+                    winlist += "<li class='list-group-item pt-1 pb-1'><a class='list-group-item-body'  href='" + dt.Rows[j]["fileurl"].ToString() + "' target='_blank'>" + dt.Rows[j]["title"].ToString() + "</a></li>";
+
+                }
+                this.frmid.InnerHtml = winlist;
             }
 
         }
