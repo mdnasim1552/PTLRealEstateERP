@@ -593,9 +593,7 @@
 
                         </div>
                         <div class="row">
-                            <div class="col-lg-5 col-md-6 col-sm-6">
-
-                               
+                            <div class="col-lg-5 col-md-6 col-sm-6">                               
                                 <asp:LinkButton ID="tblAddProjectModal" runat="server" CssClass="btn btn-primary ml-auto bw-100 btn-sm mt20 mr-2" OnClick="tblAddProjectModal_Click"><i class="fa fa-plus"></i>Add Project</asp:LinkButton>
                                 <asp:LinkButton ID="tblTaskCreateModal" runat="server" CssClass="btn btn-primary ml-auto bw-100 btn-sm mt20 mr-2" OnClick="tblTaskCreateModal_Click"><i class="fa fa-plus"></i>Add Tasks</asp:LinkButton>
                                 <div class=" btn-group" role="group" aria-label="Button group with nested dropdown">

@@ -16,7 +16,7 @@ namespace RealERPWEB.F_38_AI
         DataTable vt = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
-            vt.Columns.AddRange(new DataColumn[] { new DataColumn("member"),new DataColumn("type") });
+            vt.Columns.AddRange(new DataColumn[] { new DataColumn("lblmember"),new DataColumn("tbltype"), new DataColumn("tblValoquantity"), new DataColumn("tblworkhour") });
             if (!IsPostBack)
             {
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Create Task";

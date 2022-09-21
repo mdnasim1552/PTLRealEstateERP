@@ -29,6 +29,7 @@ namespace RealERPWEB.F_38_AI
                 this.GetCustomerList();
                 this.GetLastid();
                 this.LoadGrid();
+                btnbatchadd_Click(null, null);
 
             }
         }
@@ -314,6 +315,12 @@ namespace RealERPWEB.F_38_AI
         {
             this.none.Attributes.Add("class", "d-block");
             this.gridcol.Attributes.Add("class", "col-md-8");
+        }
+
+        protected void btnbatchadd_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
+
         }
     }
 }
