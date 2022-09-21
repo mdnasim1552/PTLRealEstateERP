@@ -38,6 +38,31 @@
             }
         }
 
+        function Search_Gridview2(strKey) {
+            try {
+                var strData = strKey.value.toLowerCase().split(" ");
+                var tblData = document.getElementById("<%=this.gvAccIntercom.ClientID %>");                     
+                var rowData;
+                for (var i = 1; i < tblData.rows.length; i++) {
+                    rowData = tblData.rows[i].innerHTML;
+                    var styleDisplay = 'none';
+                    for (var j = 0; j < strData.length; j++) {
+                        if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                            styleDisplay = '';
+                        else {
+                            styleDisplay = 'none';
+                            break;
+                        }
+                    }
+                    tblData.rows[i].style.display = styleDisplay;
+                }
+            }
+            catch (e) {
+                alert(e.message);
+            }
+
+        }
+
     </script>
 
     <style>
@@ -87,6 +112,10 @@
                             <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server"
                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                         </div>
+                        <div class="col-md-1">
+                            <label for="lblrefno" runat="server" class="control-label">Search</label>
+                            <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search..." onkeyup="Search_Gridview2(this)"></asp:TextBox>
+                        </div>
 
                         <div class="col-md-1">
                             <label for="lblrefno" runat="server" class="control-label">Voucher Ref</label>
@@ -98,7 +127,7 @@
                         </div>
 
                     </div>
-                    <div class="row">
+                    <div class="row" style="margin-top: 10px">
                         <div class="table-responsive">
                             <asp:GridView ID="gvAccIntercom" runat="server" AutoGenerateColumns="False"
                                 CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvAccIntercom_RowDataBound" ShowFooter="True">
@@ -107,15 +136,24 @@
                                     <asp:TemplateField HeaderText="SL">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvINSlNo0" runat="server" Font-Bold="True"
-                                                Style="text-align: right"
-                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
+                                                Style="text-align: center"
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Company">
+                                        <ItemTemplate>
+                                            <asp:Label ID="txtcomsname" runat="server" BackColor="Transparent"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "comsname")) %>'
+                                                Width="140px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Voucher Date">
                                         <ItemTemplate>
-                                            <asp:Label ID="lgvvoudat" runat="server"
+                                            <asp:Label ID="lgvvoudat" runat="server" Style="text-align: center"
                                                 Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "voudat")).ToString("dd-MMM-yyyy") %>'
                                                 Width="80px"></asp:Label>
 
@@ -126,9 +164,6 @@
 
 
                                     <asp:TemplateField HeaderText="Voucher">
-                                        <HeaderTemplate>
-                                            <asp:TextBox ID="txtSearchvounum1" BackColor="Transparent" BorderStyle="None" runat="server" Width="80px" placeholder="Voucher No" onkeyup="Search_Gridview(this,2)"></asp:TextBox><br />
-                                        </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblvounum" runat="server" BackColor="Transparent"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "vounum1")) %>'
@@ -138,9 +173,6 @@
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Reference">
-                                        <HeaderTemplate>
-                                            <asp:TextBox ID="txtSearchrefnum" SortExpression="refnum" BackColor="Transparent" BorderStyle="None" runat="server" Width="80px" placeholder="Reference No" onkeyup="Search_Gridview(this,3)"></asp:TextBox><br />
-                                        </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="txtINgvteamdesc" runat="server" BackColor="Transparent"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "refnum")) %>'
@@ -149,10 +181,16 @@
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
 
+                                    <asp:TemplateField HeaderText="Cheque No">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvchequeno" runat="server" BackColor="Transparent"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chequeno")) %>'
+                                                Width="80px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Project Name">
-                                        <HeaderTemplate>
-                                            <asp:TextBox ID="txtSearchproj" BackColor="Transparent" BorderStyle="None" runat="server" Width="150px" placeholder="Project Name" onkeyup="Search_Gridview(this,5)"></asp:TextBox><br />
-                                        </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvpactdesc" runat="server" BackColor="Transparent"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
@@ -162,9 +200,6 @@
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Party Name">
-                                        <HeaderTemplate>
-                                            <asp:TextBox ID="txtSearchpayto" BackColor="Transparent" BorderStyle="None" runat="server" Width="150px" placeholder="Party Name" onkeyup="Search_Gridview(this,7)"></asp:TextBox><br />
-                                        </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvsirdesc" runat="server" BackColor="Transparent"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "payto")) %>'
@@ -174,9 +209,6 @@
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Accounts Name">
-                                        <HeaderTemplate>
-                                            <asp:TextBox ID="txtcactdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="120px" placeholder="Accounts Name" onkeyup="Search_Gridview(this,8)"></asp:TextBox><br />
-                                        </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvcactdesc" runat="server" BackColor="Transparent"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cactdesc")) %>'
@@ -186,9 +218,6 @@
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Resource Name">
-                                        <HeaderTemplate>
-                                            <asp:TextBox ID="txtresdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="120px" placeholder="Resource Name" onkeyup="Search_Gridview(this,8)"></asp:TextBox><br />
-                                        </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvresdesc" runat="server" BackColor="Transparent"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "resdesc")) %>'
@@ -198,42 +227,29 @@
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Voucher Amount">
-                                        <HeaderTemplate>
-                                            <asp:TextBox ID="txtSearchamt" BackColor="Transparent" BorderStyle="None" runat="server" Width="90px" placeholder="Vou. Amount" onkeyup="Search_Gridview(this,9)"></asp:TextBox><br />
-                                        </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvvouamt" runat="server" Style="text-align: right"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnam")).ToString("#,##0.00;(#,##0.00); ") %>' Width="90px"></asp:Label>
                                         </ItemTemplate>
-                                        <FooterTemplate>
-                                            <asp:Label ID="lblgvFvouamt" runat="server" Style="text-align: right" Width="90px"></asp:Label>
-                                        </FooterTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
-                                        <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Narration">
-                                        <HeaderTemplate>
-                                            <asp:TextBox ID="txtSearchvenar" BackColor="Transparent" BorderStyle="None" runat="server" Width="150px" placeholder="Narration" onkeyup="Search_Gridview(this,6)"></asp:TextBox><br />
-                                        </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvvounar" runat="server" BackColor="Transparent"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "vounar")) %>'
-                                                Width="100px"></asp:Label>
+                                                Width="160px"></asp:Label>
                                         </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField>
-                                        <HeaderTemplate>
-                                            <asp:CheckBox ID="chkAllCheckid" runat="server" AutoPostBack="True" OnCheckedChanged="chkAllCheckid_CheckedChanged" Width="20px" />
-                                        </HeaderTemplate>
+                                    <asp:TemplateField Visible="false">
                                         <ItemTemplate>
                                             <asp:CheckBox ID="chkvmrno" runat="server" AutoPostBack="true" OnCheckedChanged="chkvmrno_CheckedChanged" Enabled='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chkmv")) == "True" ? false : true %>'
                                                 Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chkmv"))=="True" %>'
                                                 Width="30px" CssClass="btn btn-default btn-xs" />
                                         </ItemTemplate>
                                         <FooterTemplate>
-                                            <asp:LinkButton ID="lnkbtnChekedId" runat="server" OnClientClick="return FunAppConfirm();" OnClick="lnkbtnChekedId_Click" ToolTip="Cheked"><span class=" fa fa-check "></span>
+                                            <asp:LinkButton ID="lnkbtnChekedId" runat="server" OnClientClick="return FunAppConfirm();" OnClick="lnkbtnChekedId_Click" ToolTip="Delete"><span class=" fa fa-check "></span>
                                             </asp:LinkButton>
                                         </FooterTemplate>
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -242,23 +258,27 @@
 
                                     <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
-                                            <asp:HyperLink ID="hlnkVoucherPrint" runat="server" Target="_blank" ToolTip="Voucher Print" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span></asp:HyperLink>
-                                            <asp:HyperLink ID="hlnkVoucherEdit" runat="server" ToolTip="Edit" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-edit"></span></asp:HyperLink>
+                                            <asp:HyperLink ID="hlnkVoucherPrint" runat="server" Target="_blank" ToolTip="Voucher Print" CssClass="btn btn-default btn-xs" Visible="false"><span class="fa fa-print"></span></asp:HyperLink>
+                                            <asp:HyperLink ID="hlnkVoucherEdit" runat="server" ToolTip="Edit" Target="_blank" CssClass="btn btn-default btn-xs" Visible="false"><span class="fa fa-edit"></span></asp:HyperLink>
                                             <asp:LinkButton ID="lbtnDeleteVoucher" runat="server" ToolTip="Delete" OnClick="lbtnDeleteVoucher_Click" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
                                         </ItemTemplate>
                                         <ItemStyle Width="110px" />
                                         <HeaderStyle HorizontalAlign="Center" Width="90px" VerticalAlign="Middle" />
                                     </asp:TemplateField>
 
-
-
                                     <asp:TemplateField HeaderText="User Name">
-                                        <HeaderTemplate>
-                                            <asp:TextBox ID="txtSearusrname" BackColor="Transparent" BorderStyle="None" runat="server" Width="80px" placeholder="User Name" onkeyup="Search_Gridview(this,12)"></asp:TextBox><br />
-                                        </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvusrname" runat="server" BackColor="Transparent"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "usrname")) %>'
+                                                Width="70px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+
+                                     <asp:TemplateField HeaderText="Comcod" Visible="false">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvcomcod" runat="server" BackColor="Transparent"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) %>'
                                                 Width="70px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
