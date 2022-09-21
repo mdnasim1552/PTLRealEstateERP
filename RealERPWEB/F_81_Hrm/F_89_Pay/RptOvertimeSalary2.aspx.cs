@@ -104,6 +104,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             this.ddlCompany.DataValueField = "actcode";
             this.ddlCompany.DataSource = ds1.Tables[0];
             this.ddlCompany.DataBind();
+            Session["tblcompany"] = ds1.Tables[0];
+
             this.ddlCompany_SelectedIndexChanged(null, null);
             ds1.Dispose();
 
