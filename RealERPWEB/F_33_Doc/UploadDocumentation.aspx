@@ -132,20 +132,24 @@
 
 
                                 <div class="col-lg-12">
+                                     <asp:Panel ID="pnlFile" runat="server" Visible="false">
                                     <div class="form-group">
                                         <asp:Label ID="lblimg" runat="server" Text="Documents:"></asp:Label>
                                         <asp:FileUpload ID="imgFileUpload" CssClass="form-control" runat="server" AllowMultiple="true" accept=".pdf"/>
   <%--                                      <asp:RequiredFieldValidator ForeColor="Red" runat="server" ControlToValidate="imgFileUpload" ValidationGroup="group1" ErrorMessage="Please enter an image" />--%>
                                     </div>
+                                         </asp:Panel>
                                 </div>
 
                                 
                                 <div class="col-lg-12">
+                                                                         <asp:Panel ID="pnlEditor" runat="server" >
                                     <div class="form-group">
                                         <asp:Label ID="Label19" runat="server" Text="Details:"></asp:Label>
                                         <div id="summernote"></div>
                                         <asp:TextBox ID="txtDetails1" runat="server" Rows="5" CssClass="form-control " TextMode="MultiLine"></asp:TextBox>
                                     </div>
+                                                                              </asp:Panel>
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="form-group">
@@ -198,7 +202,7 @@
                                                 <asp:Label ID="lblid" runat="server" Text='<%#Eval("id")%>' Visible="false"></asp:Label>
 
 
-                                                <asp:HyperLink runat="server" CssClass="btn btn-primary btn-sm text-white" NavigateUrl='<%#Eval("imgpath")%>' Target="_blank"><i class="fa fa-eye"></i> </asp:HyperLink>
+                                                <asp:HyperLink runat="server" CssClass="text-info" NavigateUrl='<%#Eval("imgpath")%>' Target="_blank"><i class="fa fa-eye"></i> </asp:HyperLink>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>

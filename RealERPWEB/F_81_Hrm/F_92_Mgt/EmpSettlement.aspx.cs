@@ -173,52 +173,43 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.gvsttlededuct.DataBind();
             this.FooterCalculation();
 
-   
-    //        var paycount = sttlmntinfo.FindAll(p => p.hrgcod.Substring(0, 3) == "351");
+
+            var paycount = sttlmntinfo.FindAll(p => p.hrgcod.Substring(0, 3) == "351");
 
 
 
 
-    //        int i = 0;
-    //        foreach (var item in paycount)
-    //        {
-    //            i++;
-    //            string gcod = item.hrgcod;
-    //            switch (gcod)
-    //            {
+            int i = 0;
+            foreach (var item in paycount)
+            {
+                i++;
+                string gcod = item.hrgcod;
+                switch (gcod)
+                {
 
-    //                //salary
-    //                case "35101":
-    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txtfrmdat")).Visible = true;
-    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txttodat")).Visible = true;
+                    //salary
+                    case "35101":
+                        ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txtfrmdat")).Visible = true;
+                        ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txttodat")).Visible = true;
 
-    //                    ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = false;
-    //                    ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = false;
-    //                    break;
-    //                case "35108":
-    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txtfrmdat")).Visible = true;
-    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txttodat")).Visible = true;
-
-    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = false;
-    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = false;
-    //                    break;
-    //                case "35110":
-    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txtfrmdat")).Visible = true;
-    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txttodat")).Visible = true;
-
-    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = false;
-    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = false;
-    //                    break;
-    //                default:
-
-    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txtfrmdat")).Visible = false;
-    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txttodat")).Visible = false;
-
-    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = true;
-    //                    ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = true;
-    //                    break;
-    //            }
-    //}
+                        ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = false;
+                        ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = false;
+                        break;
+                    case "35108":
+                        ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txtfrmdat")).Visible = true;
+                        ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txttodat")).Visible = true;
+                        ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = false;
+                        ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = false;
+                        break;
+                    case "35110":
+                        ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txtfrmdat")).Visible = true;
+                        ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txttodat")).Visible = true;
+                        ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = false;
+                        ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = false;
+                        break;
+        
+                }
+            }
         }
 
         private void Save_Value()

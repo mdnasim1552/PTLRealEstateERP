@@ -496,6 +496,12 @@
                                     <li class="nav-item">
                                         <asp:HyperLink ID="HyperCodeofConduct" CssClass="nav-link smooth-scrol" Visible="true" data-toggle="tab" href="#CodeofConduct" runat="server">Code of Conduct</asp:HyperLink>
 
+                                        </li>
+
+                                                   <li class="nav-item">
+                                        <asp:HyperLink ID="hyperform" CssClass="nav-link smooth-scrol" Visible="true" data-toggle="tab" href="#LnkFrm" runat="server">Form</asp:HyperLink>
+
+                                        </li>
                                     <li class="nav-item">
                                         <asp:HyperLink ID="HypOrganogram" CssClass="nav-link smooth-scrol" Visible="true" NavigateUrl='#Organogram' data-toggle="tab" runat="server">Organogram</asp:HyperLink>
 
@@ -1701,6 +1707,39 @@
 
                                 </div>
 
+
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                                <div class="tab-pane fade" id="LnkFrm">
+                    <section class="card card-fluid">
+                        <div class="card-body" style="min-height: 550px">
+                            <div class="col-12">
+                
+                                             <div class="card-body">
+                                    <h1 class="text-center">Download Form</h1>
+
+                                    <div class="row">
+                                        <div class="col-4">
+
+                                            <ul class="list-group list-group-flush list-group-bordered" id="frmid" runat="server">
+                                            </ul>
+
+
+
+
+
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
 
 
                             </div>
