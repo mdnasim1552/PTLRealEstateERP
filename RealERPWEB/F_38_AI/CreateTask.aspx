@@ -174,7 +174,7 @@
                     <hr />
                     <div class="table-responsive">
                         <asp:GridView ID="GridVirtual" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                            ShowFooter="True">
+                            ShowFooter="True" Width="" >
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="SL # ">
@@ -188,22 +188,33 @@
                                 </asp:TemplateField>  
                                 <asp:TemplateField HeaderText="Member">
                                     <ItemTemplate>
-                                       <asp:Label ID="lblmember" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "member")) %>' Width="120px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                       <asp:Label ID="lblmember" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lblmember")) %>' Width="120px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>              
-                                 <asp:TemplateField HeaderText="Annotation">
+                                <%-- <asp:TemplateField HeaderText="Annotation">
                                     <ItemTemplate>
                                          <asp:Label ID="tblAnnotation" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "anotation")) %>' Width="120px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                     </ItemTemplate>
-                                </asp:TemplateField> 
-                                     <asp:TemplateField HeaderText="Type">
+                                </asp:TemplateField> --%>
+                                     <asp:TemplateField HeaderText="Valocity Type">
                                     <ItemTemplate>
-                                         <asp:Label ID="tbltype" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "type")) %>' Width="120px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                         <asp:Label ID="tbltype" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "tbltype")) %>' Width="120px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                       
                                     </ItemTemplate>
-                                </asp:TemplateField>                      
-                                                         
-                                                          
+                                </asp:TemplateField>   
+                                 <asp:TemplateField HeaderText="Valocity Quantity">
+                                    <ItemTemplate>
+                                         <asp:Label ID="tblValoquantity" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "tblValoquantity")) %>' Width="120px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                      
+                                    </ItemTemplate>
+                                </asp:TemplateField> 
+                                 <asp:TemplateField HeaderText="Work Hour">
+                                    <ItemTemplate>
+                                         <asp:Label ID="tblworkhour" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "tblworkhour")) %>' Width="120px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                      
+                                    </ItemTemplate>
+                                </asp:TemplateField>                                 
+                                                  
                             </Columns>
                             <%--<FooterStyle CssClass="grvFooter" />--%>
                             <EditRowStyle />
