@@ -26,6 +26,18 @@
             border-color: #c6c9d5 !important;
         }
     </style>
+    <script>
+        function checkEmptyNote() {
+            OpenAddBatch();
+            
+        }
+
+        function OpenAddBatch() {
+            $('#btnbatchadd').modal('toggle');
+        }
+
+
+    </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -51,7 +63,7 @@
                                         <div class="col-md-4">
                                             <div>
                                                 <h6>Project Entry
-                                            <asp:LinkButton ID="tblAddCustomerModal" runat="server" OnClick="tblAddCustomerModal_Click" CssClass="btn btn-primary ml-auto btn-sm mt20 mr-1 float-right"><i class="fa fa-plus"></i>Add Customer</asp:LinkButton>
+                                            <asp:LinkButton ID="tblAddCustomerModal" runat="server" OnClick="tblAddCustomerModal_Click" CssClass="btn btn-primary ml-auto btn-sm mt20 mr-1 float-right"><i class="fa fa-plus"></i>Add Project</asp:LinkButton>
 
                                                 </h6>
                                             </div>
@@ -190,6 +202,7 @@
                                                                 <asp:Label ID="tbladdress" runat="server" Width="80px"
                                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "quantity")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                             </ItemTemplate>
+                                                             <ItemStyle Width="50px" />
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Hour" Visible="false">
                                                             <ItemTemplate>
@@ -199,12 +212,17 @@
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Action">
                                                             <ItemTemplate>
-                                                                <asp:LinkButton ID="lnkView" runat="server" CssClass="text-primary pr-2 pl-2"><i class="fa fa-eye"></i></asp:LinkButton>
-
-                                                                <asp:LinkButton ID="btnRemove" runat="server" CssClass="text-danger pr-2"><i class="fa fa-trash"></i></asp:LinkButton>
-                                                                <asp:LinkButton ID="btnEdit" runat="server" CssClass="text-primary"><i class="fa fa-edit"></i></asp:LinkButton>
+                                                                <asp:LinkButton ID="lnkView" runat="server" CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-eye"></i></asp:LinkButton>
+                                                                <asp:LinkButton ID="btnRemove" runat="server" CssClass="text-danger pr-2" ToolTip="delete"><i class="fa fa-trash"></i></asp:LinkButton>
+                                                                <asp:LinkButton ID="btnEdit" runat="server" CssClass="text-primary" ToolTip="edit"><i class="fa fa-edit"></i></asp:LinkButton>
                                                             </ItemTemplate>
-                                                            
+                                                            <ItemStyle Width="80px" />
+                                                        </asp:TemplateField>
+                                                         <asp:TemplateField HeaderText="AddBatch">
+                                                            <ItemTemplate>
+                                                                <asp:LinkButton ID="btnbatchadd" runat="server" OnClick="btnbatchadd_Click" CssClass="text-primary btn-sm pr-2 pl-2" ToolTip="addbatch"><i class="fas fa-plus"></i></asp:LinkButton>                                                                
+                                                            </ItemTemplate>
+                                                            <ItemStyle Width="80px" />
                                                         </asp:TemplateField>
                                                     </Columns>
                                                     <%--<FooterStyle CssClass="grvFooter" />--%>
@@ -218,6 +236,22 @@
                                         </div>
                                     </div>
                                 </div>
+
+                       <%--// Batch Add modal--%>
+                        <div id="btnbatchadd" class="modal " role="dialog" data-keyboard="false" data-backdrop="static">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-light">
+                                        <h6 class="modal-title">Batch Add</h6>
+                                        <%--<asp:LinkButton ID="ModalLoanClose" runat="server" CssClass="close close_btn"  data-dismiss="modal"> &times; </asp:LinkButton>--%>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    <div class="modal-body">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                             </div>
         </ContentTemplate>
     </asp:UpdatePanel>

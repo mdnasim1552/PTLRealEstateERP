@@ -139,8 +139,9 @@ namespace RealERPWEB.F_33_Doc
                     this.pnlDept.Visible = false;
                     this.pnlMonth.Visible = false;
                     this.pnlTxt.Visible = true;
-                    this.lblimg.Visible = true;
-                    this.imgFileUpload.Visible = true;
+                    this.pnlFile.Visible = true;
+                    this.pnlEditor.Visible = true;
+
                     break;
 
                 case "99902":
@@ -150,9 +151,9 @@ namespace RealERPWEB.F_33_Doc
                     this.pnlDept.Visible = false;
                     this.pnlMonth.Visible = false;
                     this.pnlTxt.Visible = true;
-                    this.lblimg.Visible = true;
-                    this.imgFileUpload.Visible = true;
+                    this.pnlFile.Visible = true;
                     break;
+                    this.pnlEditor.Visible = true;
 
                 case "99903":
                     this.lbltitle.Text = "Month";
@@ -160,8 +161,9 @@ namespace RealERPWEB.F_33_Doc
                     this.pnlDept.Visible = false;
                     this.pnlMonth.Visible = true;
                     this.pnlTxt.Visible = false;
-                    this.lblimg.Visible = true;
-                    this.imgFileUpload.Visible = true;
+                    this.pnlFile.Visible = true;
+                    this.pnlEditor.Visible = true;
+
                     break;
 
 
@@ -173,8 +175,17 @@ namespace RealERPWEB.F_33_Doc
                     this.pnlTxt.Visible = true;
                     this.pnlDept.Visible = false;
                     this.pnlMonth.Visible = false;
-                    this.lblimg.Visible = false;
-                    this.imgFileUpload.Visible = false;
+                    this.pnlFile.Visible = false;
+                    this.pnlEditor.Visible = true;
+
+
+                    break;
+                default:
+                    this.lbltitle.Text = "Title";
+                    this.txtsName.Text = this.ddlType.SelectedItem.Text.ToString();
+                    this.pnlTxt.Visible = true;
+                    this.pnlFile.Visible = true;
+                    this.pnlEditor.Visible = false;
                     break;
             }
 

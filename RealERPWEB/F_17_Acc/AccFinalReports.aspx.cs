@@ -708,8 +708,8 @@ namespace RealERPWEB.F_17_Acc
                 case "SS":
                     this.GetProjectStatusForPrint();
                     break;
-                case "BE":
-                    if (this.ddlRptGroupbve.SelectedIndex == 4)
+                case "BE":                  
+                    if (this.ddlRptGroupbve.SelectedIndex !=0)
                     {
                         this.ReportBudgetvsExpensesDetails();
                     }
@@ -1708,7 +1708,18 @@ namespace RealERPWEB.F_17_Acc
             Session["BvsE"] = ds2.Tables[0];
             this.dgvBE.DataSource = ds2.Tables[0];
             this.dgvBE.DataBind();
-            if (mRptGroup != "12")
+            //if (mRptGroup != "12" || mRptGroup != "9" || mRptGroup != "7" || mRptGroup != "4")
+            //{
+            //    this.dgvBE.Columns[3].Visible = false;
+            //    this.dgvBE.Columns[4].Visible = false;
+            //    this.dgvBE.Columns[5].Visible = false;
+            //    this.dgvBE.Columns[7].Visible = false;
+            //    this.dgvBE.Columns[8].Visible = false;
+            //    this.dgvBE.Columns[10].Visible = false;
+            //    this.dgvBE.Columns[11].Visible = false;
+            //}
+
+            if (mRptGroup == "2" )
             {
                 this.dgvBE.Columns[3].Visible = false;
                 this.dgvBE.Columns[4].Visible = false;
@@ -1718,6 +1729,7 @@ namespace RealERPWEB.F_17_Acc
                 this.dgvBE.Columns[10].Visible = false;
                 this.dgvBE.Columns[11].Visible = false;
             }
+
             else
             {
                 this.dgvBE.Columns[3].Visible = true;

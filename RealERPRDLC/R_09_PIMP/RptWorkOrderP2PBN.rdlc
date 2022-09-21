@@ -846,7 +846,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Terms &amp; Condition:</Value>
+                    <Value>Terms &amp; Conditions / Scope of Work:</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                     </Style>
@@ -857,9 +857,8 @@
             </Paragraphs>
             <rd:DefaultName>Textbox12</rd:DefaultName>
             <Top>4.27604in</Top>
-            <Left>0.00002in</Left>
             <Height>0.25in</Height>
-            <Width>1.23958in</Width>
+            <Width>2.32291in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
