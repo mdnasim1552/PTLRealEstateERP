@@ -115,11 +115,8 @@ namespace RealERPWEB.F_14_Pro
             Rpt1.SetParameters(new ReportParameter("comlogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("project", ""));
             Rpt1.SetParameters(new ReportParameter("material", ""));
-            Rpt1.SetParameters(new ReportParameter("opening", this.lblvalOpenig.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("bgdqty", this.lblvalBudget.Text.Trim()));
+            Rpt1.SetParameters(new ReportParameter("opening", this.lblvalOpenig.Text.Trim()));          
             Rpt1.SetParameters(new ReportParameter("transfer", this.lblvaltrans.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("ttlsuply", this.lblvalTotalSupp.Text.Trim()));
-            Rpt1.SetParameters(new ReportParameter("balqty", this.lblvalBalance.Text.Trim()));
             Rpt1.SetParameters(new ReportParameter("printFooter", txtuserinfo));
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
@@ -145,14 +142,12 @@ namespace RealERPWEB.F_14_Pro
                     return;
                 }
                 Session["tblpurchase"] = ds1.Tables[0];
-                this.lblvalBudget.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["bgdqty"]).ToString("#,##0;(#,##0); ");
+
                 this.lblvalOpenig.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["opqty"]).ToString("#,##0;(#,##0); ");
-                this.lbltxtvaldqty.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["dqty"]).ToString("#,##0;(#,##0); ");
-                this.lblvalRequisition.Text = Convert.ToDouble((Convert.IsDBNull(ds1.Tables[0].Compute("sum(areqty)", "")) ?
-                                             0 : ds1.Tables[0].Compute("sum(areqty)", ""))).ToString("#,##0;(#,##0); ");
+                this.lblvalrecvqty.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["recvqty"]).ToString("#,##0;(#,##0); ");
                 this.lblvaltrans.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["trnqty"]).ToString("#,##0;(#,##0); ");
-                this.lblvalTotalSupp.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["tosupqty"]).ToString("#,##0;(#,##0); ");
-                this.lblvalBalance.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["bgdbal"]).ToString("#,##0;(#,##0); ");
+                this.lblvalacrecvqty.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["acrecvqty"]).ToString("#,##0;(#,##0); ");
+
                 this.LoadGrid();
             }
 
