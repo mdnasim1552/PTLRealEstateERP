@@ -25,23 +25,23 @@ namespace RealERPWEB.F_99_Allinterface
                 //((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
 
                 //this.txtcreateDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
-                DateTime now = DateTime.Now;
-                var startDate = new DateTime(now.Year, now.Month, 1);
-                var endDate = startDate.AddMonths(1).AddDays(-1);
+                //DateTime now = DateTime.Now;
+                //var startDate = new DateTime(now.Year, now.Month, 1);
+                //var endDate = startDate.AddMonths(1).AddDays(-1);
                 
 
-                this.txtfrmdate.Text = Convert.ToDateTime(startDate).ToString("dd-MMM-yyyy");
-                this.txttodate.Text = Convert.ToDateTime(endDate).ToString("dd-MMM-yyyy");
-                this.GetEmplist();
+                //this.txtfrmdate.Text = Convert.ToDateTime(startDate).ToString("dd-MMM-yyyy");
+                //this.txttodate.Text = Convert.ToDateTime(endDate).ToString("dd-MMM-yyyy");
+                //this.GetEmplist();
 
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = this.GetCompCode();
+                //Hashtable hst = (Hashtable)Session["tblLogin"];
+                //string comcod = this.GetCompCode();
                 
 
-                //this.getAllData();
+                ////this.getAllData();
 
-                this.TaskSteps.SelectedIndex = 0;
-                this.TaskSteps_SelectedIndexChanged(null, null);
+                //this.TaskSteps.SelectedIndex = 0;
+                //this.TaskSteps_SelectedIndexChanged(null, null);
 
 
 
