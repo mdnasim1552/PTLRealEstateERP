@@ -85,44 +85,13 @@ namespace RealERPWEB.F_23_CR
             this.ddlbenefname.DataValueField = "benefcode";
             this.ddlbenefname.DataSource = ds1.Tables[0];
             this.ddlbenefname.DataBind();
-
         }
-
-
-
-
-
-
-        //private string GetLoMonColl()
-        //{
-        //    string Type = this.Request.QueryString["Type"];
-        //    string LoMonColl = "";
-        //    switch (Type)
-        //    {
-        //        case "LoMonProColl":
-        //            LoMonColl = "lomoncoll";
-        //            break;
-
-
-        //        default:
-        //            break;
-
-
-
-
-        //    }
-
-        //    return LoMonColl;
-
-
-
-        //}
 
 
 
         protected void lnkbtnOk_Click(object sender, EventArgs e)
         {
-            Session.Remove("tblcollstatus");
+            Session.Remove("tbllocollstatus");
             string comcod = this.GetComeCode();
             string frmdate = this.txtfrmdate.Text.Trim();
             string todate = this.txttodate.Text.Trim();        
@@ -132,14 +101,14 @@ namespace RealERPWEB.F_23_CR
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_LANDOWNERMGT", "GETCOLLLANDOWNERBENESTATUS", prjcode, frmdate, todate, benefname, "", "", "", "", "");
             if (ds1 == null)
                 return;
-            Session["tblcollstatus"] = ds1.Tables[0];
+            Session["tbllocollstatus"] = ds1.Tables[0];
             this.Data_Bind();
         }
 
         private void Data_Bind()
         {
 
-            this.gvcollStatus.DataSource = (DataTable)Session["tblcollstatus"];
+            this.gvcollStatus.DataSource = (DataTable)Session["tbllocollstatus"];
             this.gvcollStatus.DataBind();
             this.FooterCal();
 
@@ -150,7 +119,7 @@ namespace RealERPWEB.F_23_CR
 
         private void FooterCal()
         {
-            DataTable dt = (DataTable)Session["tblcollstatus"];
+            DataTable dt = (DataTable)Session["tbllocollstatus"];
             if (dt.Rows.Count == 0)
                 return;
             ((Label)this.gvcollStatus.FooterRow.FindControl("lblFamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(paidamt)", "")) ? 0.00 :
@@ -174,17 +143,13 @@ namespace RealERPWEB.F_23_CR
             string fromdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            DataTable dt = (DataTable)Session["tblpcollection"];
-            DataView dv = dt.DefaultView;
-            dv.RowFilter = ("pactcode <> ' ' ");
-            dt = dv.ToTable();
+            DataTable dt = (DataTable)Session["tbllocollstatus"]; 
 
-            string RptTittle = this.Request.QueryString["Type"] == "LoMonProColl" ? "Monthly Probable Collection Report(L/O)" : "Monthly Probable Collection Report";
+            string RptTittle = "Monthly Collection Report(L/O)" ;
 
             LocalReport Rpt1 = new LocalReport();
-            var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.RptMonthlyProbCollection>();
-            Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptMonthlyProbCollection", list, null, null);
-
+            var list = dt.DataTableToList<RealEntity.C_23_CR.EClassLand.RptLandownerColStatus>();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_23_CR.RptCollectionStatusLO", list, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("printdate", printdate));
