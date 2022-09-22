@@ -49,7 +49,7 @@ namespace RealERPWEB.F_38_AI
             Session["tblprojectlist"] = dt.Tables[0];
             this.GridcusDetails.DataSource = dt;
             this.GridcusDetails.DataBind();
-            this.tblAddBatch_Click(null, null);
+           // this.tblAddBatch_Click(null, null);
         }
         private void GetCustomerList()
         {
@@ -322,9 +322,69 @@ namespace RealERPWEB.F_38_AI
 
         protected void tblAddBatch_Click(object sender, EventArgs e)
         {
-            //int rowIndex = Convert.ToInt32(((senderas LinkButton).NamingContaineras GridViewRow).RowIndex);
-            //GridViewRow row = GridcusDetails.Rows[rowIndex];
+            
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string project = ((Label)this.GridcusDetails.Rows[index].FindControl("lblpactcode")).Text.ToString();
+            string projectName = ((Label)this.GridcusDetails.Rows[index].FindControl("lblinfdesc")).Text.ToString();
+            this.txtproj.Text = projectName;
+            this.tblpactcode.Text = project;
+            this.txtstartdate.Text = DateTime.Now.ToString("dd-MMM-yyyy");
+            this.textdelevery.Text = DateTime.Now.ToString("dd-MMM-yyyy");
+            this.GetBatchAssingList();
+
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
         }
+
+        protected void GridcusDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridcusDetails.PageIndex = e.NewPageIndex;
+            GetProjectList();
+        }
+
+        protected void tblAddBatch_Click1(object sender, EventArgs e)
+        {
+
+            try { 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComdCode();           
+            string userid = hst["usrid"].ToString();
+            string Terminal = hst["compname"].ToString();
+            string Sessionid = hst["session"].ToString();
+            string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+            string batchcreateid = "";
+            string batch = this.txtBatch.Text.ToString();
+            string projectname = this.tblpactcode.Text.ToString(); 
+            string createdate = this.txtstartdate.Text.ToString();
+            string veliverydate = this.textdelevery.Text.ToString();
+            bool result = MktData.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "BATCH_INSERTUPDATE", batchcreateid, batch, projectname, createdate, veliverydate, userid, Terminal, Sessionid,Date, "", "", "", "");
+
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail..!!');", true);
+                return;
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Batch  Saved Successfully');", true);
+            }
+            catch(Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message.ToString() + "');", true);
+            }
+        }
+
+        private void GetBatchAssingList()
+        {
+            string comcod = this.GetComdCode();
+            DataSet dt = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "BATCHASSIGNLIST", "", "", "", "", "", "");
+            if (dt == null)
+                return;
+
+            Session["tblbatchassignlist"] = dt.Tables[0];
+            this.gv_BatchList.DataSource = dt;
+            this.gv_BatchList.DataBind();
+
+        }
+
+
     }
 }
