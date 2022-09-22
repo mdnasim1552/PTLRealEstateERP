@@ -238,7 +238,7 @@ margin-bottom:05px;
 
                                         <asp:TemplateField HeaderText="Punce Out">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgvactout" runat="server" CssClass="mr-4 text-center" Text='<%#  Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "offintime")).ToString("hh:mm tt") %>'
+                                                <asp:Label ID="lgvactout" runat="server" CssClass="mr-4 text-center" Text='<%#  Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "outtime")).ToString("hh:mm tt") %>'
                                                     Width="45px" Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" />
