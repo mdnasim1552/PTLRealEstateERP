@@ -186,42 +186,6 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.Panel Panelbgdbal;
 
         /// <summary>
-        /// lbltxtConfirmation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltxtConfirmation;
-
-        /// <summary>
-        /// lbltxtOpenig1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltxtOpenig1;
-
-        /// <summary>
-        /// lblvalBudget control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblvalBudget;
-
-        /// <summary>
-        /// lbltxtSuppinchain control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltxtSuppinchain;
-
-        /// <summary>
         /// lbltxtOpenig control.
         /// </summary>
         /// <remarks>
@@ -240,40 +204,22 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.Label lblvalOpenig;
 
         /// <summary>
-        /// lbltxtdqty control.
+        /// lbltxtrecvqty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltxtdqty;
+        protected global::System.Web.UI.WebControls.Label lbltxtrecvqty;
 
         /// <summary>
-        /// lbltxtvaldqty control.
+        /// lblvalrecvqty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltxtvaldqty;
-
-        /// <summary>
-        /// lbltxtRequisition control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltxtRequisition;
-
-        /// <summary>
-        /// lblvalRequisition control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblvalRequisition;
+        protected global::System.Web.UI.WebControls.Label lblvalrecvqty;
 
         /// <summary>
         /// lbltxttransfer control.
@@ -294,39 +240,21 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.Label lblvaltrans;
 
         /// <summary>
-        /// lbltxtOpenig3 control.
+        /// lbltxtacrecvqty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltxtOpenig3;
+        protected global::System.Web.UI.WebControls.Label lbltxtacrecvqty;
 
         /// <summary>
-        /// lblvalTotalSupp control.
+        /// lblvalacrecvqty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblvalTotalSupp;
-
-        /// <summary>
-        /// lbltxtOpenig2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltxtOpenig2;
-
-        /// <summary>
-        /// lblvalBalance control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblvalBalance;
+        protected global::System.Web.UI.WebControls.Label lblvalacrecvqty;
     }
 }

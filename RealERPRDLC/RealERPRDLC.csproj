@@ -45,7 +45,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\_rnd\PTLRealEstateERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -151,6 +151,7 @@
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassDuesAOverDues.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassDuesAOverDuesIndPro.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassRevenue.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+PaymentStatus.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_24_CC.RptClientModification.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_28_Mpro.EClassMktProcurement+RptMktMatIssue.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_28_Mpro.EClassMktProcurement+RptMktPurchaseMrr.datasource" />

@@ -375,7 +375,8 @@ namespace RealEntity.C_23_CRR
          public double schamt { get; set; }
          public string paiddate { get; set; }
          public double paidamt { get; set; }
-         public PaymentStatus() { }
+         public double advamt { get; set; }
+            public PaymentStatus() { }
      }
 
 
