@@ -3,6 +3,9 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <style type="text/css">
+        .grvContentarea {}
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
@@ -143,7 +146,7 @@
                                 </div>
 
                                 <asp:GridView ID="gvCustPayment" runat="server" AutoGenerateColumns="False"
-                                    ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea ">
+                                    ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea " Width="1006px">
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl.No.">
@@ -247,22 +250,8 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Excess Amount">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lgvexessamt" runat="server" BorderStyle="None"
-                                                    Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "exessamt")).ToString("#,##0;(#,##0); ") %>'
-                                                    Width="80px"></asp:Label>
-                                            </ItemTemplate>
-                                            <FooterTemplate>
-                                                <asp:Label ID="lfexessAmt" runat="server" Font-Bold="True" Font-Size="12px"
-                                                    ForeColor="Black" Style="text-align: right" Width="80px"></asp:Label>
-                                            </FooterTemplate>
-                                            <FooterStyle HorizontalAlign="Right" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            <ItemStyle HorizontalAlign="Right" />
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Balance Amount">
+                                       
+                                        <asp:TemplateField HeaderText=" Dues Balance">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvbalamt" runat="server" BorderStyle="None"
                                                     Style="text-align: right"
@@ -273,6 +262,23 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
+
+                                         <asp:TemplateField HeaderText="Advanced Amount">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvexessamt" runat="server" BorderStyle="None"
+                                                    Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "advamt")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="80px"></asp:Label>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lfexessAmt" runat="server" Font-Bold="True" Font-Size="12px"
+                                                    ForeColor="Black" Style="text-align: right" Width="80px"></asp:Label>
+                                            </FooterTemplate>
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
                                     </Columns>
                                     <FooterStyle BackColor="#F5F5F5" />
                                     <EditRowStyle />

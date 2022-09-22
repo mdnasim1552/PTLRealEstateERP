@@ -434,16 +434,27 @@ namespace RealERPWEB.F_12_Inv
             string mtreqno = this.lblCurTransNo1.Text.ToString().Trim().Substring(0, 3) + mtreqdat.Substring(7, 4) + this.lblCurTransNo1.Text.ToString().Trim().Substring(3, 2) + this.txtCurTransNo2.Text.ToString().Trim();
             string mtrref = this.txtrefno.Text.ToString();
             string mtrnar = this.txtReqNarr.Text.ToString();
-
+            string fromprj = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
+            string toprj = this.ddlprjlistto.SelectedValue.ToString().Trim();
 
             dr1 = dt.Select("balqty<qty");
 
-            if (dr1.Length > 0)
+            if ((comcod=="3367") && ASTUtility.Left(fromprj, 2) == "11")
             {
-                msg1 = "Not Within the Balance";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg1 + "');", true);
-                return;
+
             }
+
+            else
+            {
+                if (dr1.Length > 0)
+                {
+                    msg1 = "Not Within the Balance";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg1 + "');", true);
+                    return;
+                }
+
+            }
+           
 
             if (mtrref.Length == 0)
             {
@@ -495,8 +506,7 @@ namespace RealERPWEB.F_12_Inv
                     break;
             }
 
-            string fromprj = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
-            string toprj = this.ddlprjlistto.SelectedValue.ToString().Trim();
+           
             string reqno = this.lblreqno.Text.Trim();
             string reqApproval = this.getCompReApproval();
 
@@ -591,15 +601,18 @@ namespace RealERPWEB.F_12_Inv
             string mtrref = this.txtrefno.Text.ToString();
             string mtrnar = this.txtReqNarr.Text.ToString();
 
+       
 
-            dr1 = dt.Select("balqty<qty");
-
-            if (dr1.Length > 0)
+            dr1 = dt.Select("balqty<qty");          
+           if (dr1.Length > 0)
             {
                 string Messaged = "Not Within the Balance";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 return;
             }
+
+
+            
 
             if (mtrref.Length == 0)
             {
