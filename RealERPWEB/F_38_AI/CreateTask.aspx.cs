@@ -16,7 +16,7 @@ namespace RealERPWEB.F_38_AI
         DataTable vt = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
-            vt.Columns.AddRange(new DataColumn[] { new DataColumn("member"),new DataColumn("type") });
+            vt.Columns.AddRange(new DataColumn[] { new DataColumn("lblmember"),new DataColumn("tbltype"), new DataColumn("tblValoquantity"), new DataColumn("tblworkhour") });
             if (!IsPostBack)
             {
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Create Task";
@@ -46,23 +46,23 @@ namespace RealERPWEB.F_38_AI
             this.ddlcustomer.DataValueField = "infcod";
             this.ddlcustomer.DataSource = dt.Tables[0];
             this.ddlcustomer.DataBind();
-            Session["tblCustlist"] = dt.Tables[0];
-
+            
+            this.ddlcustomer_SelectedIndexChanged(null,null);
         }
         private void GetProjectList()
         {
             string comcod = this.GetComdCode();
-            DataSet dt = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETALLPRJLIST", "", "", "", "", "", "");
-            if (dt == null)
+            string prjtype = this.ddlprotype.SelectedValue.ToString();
+            string customer = this.ddlcustomer.SelectedValue.ToString()==""?"51%": this.ddlcustomer.SelectedValue.ToString();
+            DataSet ds = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETALLPRJLISTCUSTOMERWISE", prjtype, customer, "", "", "", "");
+            if (ds == null)
                 return;
-            DataTable dt2 = dt.Tables[0];
-            
-            Session["tblprojectlist"] = dt.Tables[0];
-            DataView dv2 = dt2.DefaultView;
+           
             this.ddlproject.DataTextField = "projectName";
             this.ddlproject.DataValueField = "pactcode";
-            this.ddlproject.DataSource = dv2.ToTable();
+            this.ddlproject.DataSource = ds.Tables[0];
             this.ddlproject.DataBind();
+            this.ddlproject_SelectedIndexChanged(null, null);
 
         }
         private void GetEmployeeName()
@@ -89,6 +89,8 @@ namespace RealERPWEB.F_38_AI
         private void GetProjectInformation()
         {
             string comcod = this.GetComdCode();
+            string prjcode = this.ddlproject.SelectedValue.ToString();
+            DataSet ds = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "PROJECTGETINFORMATIONCODE", prjcode, "", "", "", "", "");
             DataSet dt2 = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETINFORMATIONCODE", "", "", "", "", "", "");
 
             if (dt2 == null)
@@ -103,6 +105,8 @@ namespace RealERPWEB.F_38_AI
             this.ddlworktype.DataValueField = "gcod";
             this.ddlworktype.DataSource = dv1.ToTable();
             this.ddlworktype.DataBind();
+            this.ddlworktype.SelectedValue = ds.Tables[0].Rows[2]["gcod"].ToString();
+            this.ddlworktype.Enabled = false;
             //task type
             DataView dv2 = dt.DefaultView;
             dv1.RowFilter = " gcod like'71%' ";
@@ -118,6 +122,9 @@ namespace RealERPWEB.F_38_AI
             this.ddlprotype.DataValueField = "gcod";
             this.ddlprotype.DataSource = dv3.ToTable();
             this.ddlprotype.DataBind();
+            this.ddlprotype.Enabled = false;
+            this.ddlprotype.SelectedValue = ds.Tables[0].Rows[0]["gcod"].ToString();
+
             //Dataset
             DataView dv4 = dt.DefaultView;
             dv1.RowFilter = " gcod like'60%' and gcod not like'%00'";
@@ -125,6 +132,9 @@ namespace RealERPWEB.F_38_AI
             this.ddldataset.DataValueField = "gcod";
             this.ddldataset.DataSource = dv4.ToTable();
             this.ddldataset.DataBind();
+            this.ddldataset.Enabled = false;
+            this.ddldataset.SelectedValue = ds.Tables[0].Rows[1]["gcod"].ToString();
+
             //order type
             DataView dv5 = dt.DefaultView;
             dv1.RowFilter = " gcod like'80%' and gcod like'%00'";
@@ -194,7 +204,7 @@ namespace RealERPWEB.F_38_AI
 
         protected void ddlproject_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            GetProjectInformation();
         }
         private void VirtualGrid()
         {

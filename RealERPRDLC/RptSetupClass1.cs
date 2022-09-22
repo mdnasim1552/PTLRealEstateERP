@@ -693,6 +693,11 @@ namespace RealERPRDLC
                 //periodic sales collection robi
                 case "R_22_Sal.RptPeriodicSalesWithCollection": Rpt1a = SetRptPeriodicSalesWithCollection(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
+                // Sold & Unsold Information (Group Wise) Create by robi
+
+                case "R_22_Sal.RptSoldUnsoftInfGroupWise": Rpt1a= SetRptSoldUnsoftInfGroupWise(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                
+
                 #endregion
                 #region Credit Realization(CR)
                 case "R_23_CR.RptCustomer_Due_inf": Rpt1a = SetRptCustomer_Due_inf(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -770,6 +775,7 @@ namespace RealERPRDLC
 
                 case "R_23_CR.RptUtilityAndOtherCollAll": Rpt1a = SetRptUtilityAndOtherCollAll(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_23_CR.RptUtilityAndOtherCollInd": Rpt1a = SetRptUtilityAndOtherCollInd(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_23_CR.RptCollectionStatusLO": Rpt1a = SetRptCollectionStatusLO(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
 
@@ -3639,6 +3645,11 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_23_CRR.EClassSales_03.RptUtilityAndOtherCollection>)RptDataSet));
             return Rpt1a;
         }
+        private static LocalReport SetRptCollectionStatusLO(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_23_CR.EClassLand.RptLandownerColStatus>)RptDataSet));
+            return Rpt1a;
+        } 
         private static LocalReport SetRptMonCollcScheduleSummaryENG(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_23_CRR.EClassSalesStatus.MonCollScheSummmay>)RptDataSet));
@@ -4193,15 +4204,16 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet3", (List<RealEntity.C_22_Sal.EClassSales_02.RptSalPaySchedules>)UserDataset));
             return Rpt1a;
         }
-
-
         private static LocalReport SetRptPeriodicSalesWithCollection(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.Sales_BO.perodicsalesColl>)RptDataSet));
             return Rpt1a;
         }
-
-
+        private static LocalReport SetRptSoldUnsoftInfGroupWise(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales.SoldUnsoftInfGroupWise>)RptDataSet));
+            return Rpt1a;
+        }       
 
         private static LocalReport SetRptSalClntInterestBr(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
