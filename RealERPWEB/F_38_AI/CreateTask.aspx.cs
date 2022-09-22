@@ -46,8 +46,8 @@ namespace RealERPWEB.F_38_AI
             this.ddlcustomer.DataValueField = "infcod";
             this.ddlcustomer.DataSource = dt.Tables[0];
             this.ddlcustomer.DataBind();
-            Session["tblCustlist"] = dt.Tables[0];
-
+            
+            this.ddlcustomer_SelectedIndexChanged(null,null);
         }
         private void GetProjectList()
         {
@@ -62,6 +62,7 @@ namespace RealERPWEB.F_38_AI
             this.ddlproject.DataValueField = "pactcode";
             this.ddlproject.DataSource = ds.Tables[0];
             this.ddlproject.DataBind();
+            this.ddlproject_SelectedIndexChanged(null, null);
 
         }
         private void GetEmployeeName()
@@ -122,7 +123,7 @@ namespace RealERPWEB.F_38_AI
             this.ddlprotype.DataSource = dv3.ToTable();
             this.ddlprotype.DataBind();
             this.ddlprotype.Enabled = false;
-            this.ddlworktype.SelectedValue = ds.Tables[0].Rows[0]["gcod"].ToString();
+            this.ddlprotype.SelectedValue = ds.Tables[0].Rows[0]["gcod"].ToString();
 
             //Dataset
             DataView dv4 = dt.DefaultView;
@@ -132,7 +133,7 @@ namespace RealERPWEB.F_38_AI
             this.ddldataset.DataSource = dv4.ToTable();
             this.ddldataset.DataBind();
             this.ddldataset.Enabled = false;
-            this.ddlworktype.SelectedValue = ds.Tables[0].Rows[1]["gcod"].ToString();
+            this.ddldataset.SelectedValue = ds.Tables[0].Rows[1]["gcod"].ToString();
 
             //order type
             DataView dv5 = dt.DefaultView;

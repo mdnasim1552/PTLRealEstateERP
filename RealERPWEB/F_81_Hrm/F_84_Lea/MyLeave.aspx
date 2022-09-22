@@ -276,7 +276,7 @@
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                     <ItemStyle HorizontalAlign="Center" />
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Desription">
+                                                <asp:TemplateField HeaderText="Description">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvDescription0" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'
                                                             Width="120px"></asp:Label>
@@ -437,7 +437,7 @@
 
 
 
-                                            <asp:TemplateField HeaderText="Desription">
+                                            <asp:TemplateField HeaderText="Description">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvledescription" runat="server"
                                                         Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) + "</B>"+

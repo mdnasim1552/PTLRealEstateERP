@@ -29,12 +29,13 @@ namespace RealERPWEB
             {
                 try
                 {
-                    //string sysID = "1";
-                    //string qs = "ptldbd2021Nahid#$CompbDb*%Process";
-                    string qs = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(this.Request.QueryString["AccessToken"].ToString()));
-                    string sysID = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(this.Request.QueryString["sysID"].ToString()));
-                    string pnlType = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(this.Request.QueryString["sysType"].ToString()));
-                    //string pnlType = "sysMsg";
+                    string sysID = "1";
+                    string qs = "ptldbd2021Nahid#$CompbDb*%Process";
+                    string pnlType = "sysMsg";
+
+                    //string qs = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(this.Request.QueryString["AccessToken"].ToString()));
+                    //string sysID = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(this.Request.QueryString["sysID"].ToString()));
+                    //string pnlType = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(this.Request.QueryString["sysType"].ToString()));
 
 
                     if (qs == "ptldbd2021Nahid#$CompbDb*%Process")
