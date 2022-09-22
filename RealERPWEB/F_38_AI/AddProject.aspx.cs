@@ -29,7 +29,7 @@ namespace RealERPWEB.F_38_AI
                 this.GetCustomerList();
                 this.GetLastid();
                 this.LoadGrid();
-                btnbatchadd_Click(null, null);
+               // btnbatchadd_Click(null, null);
 
             }
         }
@@ -49,6 +49,7 @@ namespace RealERPWEB.F_38_AI
             Session["tblprojectlist"] = dt.Tables[0];
             this.GridcusDetails.DataSource = dt;
             this.GridcusDetails.DataBind();
+            this.tblAddBatch_Click(null, null);
         }
         private void GetCustomerList()
         {
@@ -317,10 +318,13 @@ namespace RealERPWEB.F_38_AI
             this.gridcol.Attributes.Add("class", "col-md-8");
         }
 
-        protected void btnbatchadd_Click(object sender, EventArgs e)
-        {
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
+       
 
+        protected void tblAddBatch_Click(object sender, EventArgs e)
+        {
+            //int rowIndex = Convert.ToInt32(((senderas LinkButton).NamingContaineras GridViewRow).RowIndex);
+            //GridViewRow row = GridcusDetails.Rows[rowIndex];
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
         }
     }
 }
