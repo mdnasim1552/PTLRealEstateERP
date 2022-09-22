@@ -167,14 +167,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         private void Data_Bind()
         {
             var sttlmntinfo = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt"];
-            this.gvsettlemntcredit.DataSource = sttlmntinfo.FindAll(p => p.hrgcod.Substring(0, 3) == "351");
+            this.gvsettlemntcredit.DataSource = sttlmntinfo.FindAll(p => p.hrgcod.Substring(0, 3) == "351").OrderBy(x=>x.seq);
             this.gvsettlemntcredit.DataBind();
             this.gvsttlededuct.DataSource = sttlmntinfo.FindAll(p => p.hrgcod.Substring(0, 3) == "352");
             this.gvsttlededuct.DataBind();
             this.FooterCalculation();
 
 
-            var paycount = sttlmntinfo.FindAll(p => p.hrgcod.Substring(0, 3) == "351");
+            var paycount = sttlmntinfo.FindAll(p => p.hrgcod.Substring(0, 3) == "351").OrderBy(x => x.seq);
 
 
 
@@ -182,7 +182,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             int i = 0;
             foreach (var item in paycount)
             {
-                i++;
+               
                 string gcod = item.hrgcod;
                 switch (gcod)
                 {
@@ -207,8 +207,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                         ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = false;
                         ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = false;
                         break;
-        
+                    default:
+                        ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txtfrmdat")).Visible = false;
+                        ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txttodat")).Visible = false;
+                        ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = true;
+                        ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = true;
+                        break;
+
                 }
+                i++;
             }
         }
 
@@ -462,26 +469,72 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
 
             this.ShowPerformance();
+     
         }
 
-        
+        protected void addRow_Click(object sender, EventArgs e)
+        {
+
+            DataTable dt = ASITUtility03.ListToDataTable((List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt"]);
 
 
+            DataRow dr;
 
 
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+          string comcod = this.GetComeCode();
+            string hrgdesc = ((Label)this.gvsettlemntcredit.Rows[index].FindControl("lblcreditinfo")).Text.ToString();
+            string hrgcod = ((Label)this.gvsettlemntcredit.Rows[index].FindControl("lblhrgcod")).Text.ToString();
+            string frmdat = "";
+            string todat = "";
+            double numofday = 0.00;
+            string calculation = "";
+            double amount = 0.00;
+            double ttlamt = 0.00;
+            double perday = 0.00;
+            int seq = Convert.ToInt32(((Label)this.gvsettlemntcredit.Rows[index].FindControl("lblseq")).Text.ToString().Trim()?? "99");
 
-        //protected void copy_Click(object sender, EventArgs e)
-        //{
-        //    GridViewRow gvRow = this.gvsettlemntcredit.SelectedRow;
-        //    DataTable dt = null;
-        //    if (ViewState["tblsttlmnt"] != null)
-        //    {
-        //        dt = ViewState["tblsttlmnt"] as DataTable;
-        //        dt.Rows.Add(gvRow.Cells[0].Text, gvRow.Cells[1].Text, gvRow.Cells[2].Text, gvRow.Cells[3].Text,
-        //            gvRow.Cells[4].Text, gvRow.Cells[5].Text, gvRow.Cells[6].Text, gvRow.Cells[7].Text);
-        //        ViewState["tblsttlmnt"] = dt;
-        //    }
-        //    this.Data_Bind();
-        //}
+            if (hrgcod== "35101" || hrgcod== "35108" || hrgcod == "35110")
+            {
+                 frmdat = "01-Jan-1900";
+                 todat =  "01-Jan-1900";
+            }
+            else
+            {
+                frmdat = "";
+                todat = "";
+
+            }
+
+            //double numofday = Convert.ToDouble(((Label)this.gvsettlemntcredit.Rows[index].FindControl("lblnumday")).Text.ToString().Trim()=="0" ? "0.0" : ((Label)this.gvsettlemntcredit.Rows[index].FindControl("lblnumday")).Text.ToString().Trim());
+
+            ////double numofday = Convert.ToDouble(((Label)this.gvsettlemntcredit.Rows[index].FindControl("lblnumday")).Text.ToString().Trim() ?? "0.0");
+            //string calculation = ((Label)this.gvsettlemntcredit.Rows[index].FindControl("lblcalculation")).Text.ToString().Trim() ?? "";
+            //double amount = Convert.ToDouble(((TextBox)this.gvsettlemntcredit.Rows[index].FindControl("txtnumofday")).Text.ToString().Trim()=="0" ? "0.0" : ((TextBox)this.gvsettlemntcredit.Rows[index].FindControl("txtnumofday")).Text.ToString().Trim());
+            //double ttlamt = Convert.ToDouble(((TextBox)this.gvsettlemntcredit.Rows[index].FindControl("TtlAmout")).Text.ToString().Trim()=="0" ? "0.0" : ((TextBox)this.gvsettlemntcredit.Rows[index].FindControl("TtlAmout")).Text.ToString().Trim());
+            //double perday =Convert.ToDouble( ((Label)this.gvsettlemntcredit.Rows[index].FindControl("lblperday")).Text.ToString().Trim()=="0" ? "0.0" : ((Label)this.gvsettlemntcredit.Rows[index].FindControl("lblperday")).Text.ToString().Trim());
+
+
+            dr = dt.NewRow();
+            dr["comcod"] = comcod;
+            dr["hrgdesc"] = hrgdesc;
+            dr["hrgcod"] = hrgcod;
+            dr["frmdat"] = frmdat;
+            dr["todat"] = todat;
+            dr["numofday"] = numofday;
+            dr["amount"] = amount;
+            dr["calculation"] = calculation;
+            dr["ttlamt"] = ttlamt;
+            dr["perday"] = perday;
+            dr["seq"] = seq;
+            dt.Rows.Add(dr);
+
+            ViewState["tblsttlmnt"] = dt.DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>();
+            this.Data_Bind();
+          
+        }
+
+
     }
 }
