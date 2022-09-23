@@ -1188,7 +1188,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2203130", "F_22_Sal", "RptBgdSales?", "Type=Report", "Budgeted Sales", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203140", "F_22_Sal", "RptCalTotalAvgValue", "", "Sold Information", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203141", "F_22_Sal", "RptSoldUnsoftInfGroupWise?", "Type=Report", "Sold & Unsold Information (Group Wise)", "Sales & Recovery", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2203000", "2203142", "F_22_Sal", "RptSoldUnsoldUnitAvgPrice?", "Type=AvgPrice", "Sold & Unsold Unit (Average Price)", "Sales & Recovery", "False", "False", "False", "False" }); ;
 
+            
             tblObj.Rows.Add(new Object[] { "2203000", "2203150", "F_22_Sal", "RptRateChart?", "Type=Report", "Sales Inventory(Details)", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203160", "F_22_Sal", "RptSalesInventory?", "Type=Report", "Sales Inventory Report", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203170", "F_22_Sal", "RptAvailChart?", "Type=Details", "Availability Chart 1", "Sales & Recovery", "False", "False", "False", "False" }); ;
@@ -7391,6 +7393,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301000008", "10. Budgeted Sales", "F_22_Sal/RptBgdSales?Type=Report&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000009", "11. Sold Information", "F_22_Sal/RptCalTotalAvgValue", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000010", "12. Sold & Unsold Information (Group Wise)", "F_22_Sal/RptSoldUnsoftInfGroupWise?Type=Report", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000010", "13. Sold & Unsold Unit (Average Price)", "F_22_Sal/RptSoldUnsoldUnitAvgPrice?Type=AvgPrice", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000011", "12. Customer Note Sheet", "F_22_Sal/RptSalInterest?Type=CustNoteSheet", "", true, "" });
            // mnuTbl1.Rows.Add(new Object[] { "0301000009", "11. Sold Information", "F_22_Sal/RptCalTotalAvgValue", "", true, "" });
 
