@@ -1748,7 +1748,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3502000", "3502400", "F_34_Mgt", "Trigger", "", "Trigger Information", "Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "3502000", "3502410", "Notices", "Notice", "", "Notice Information", "Management", "False", "False", "False", "False" });
             
-            tblObj.Rows.Add(new Object[] { "3502000", "3502411", "F_81_Hrm/F_92_Mgt", "HrLeaveApprovalForm", "", "HR Leave Approval Setup ", "Management", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3502000", "3502411", "F_99_Allinterface", "InterfaceApprovalForm", "", "Interface Approval Setup ", "Management", "False", "False", "False", "False" }); ;
 
 
  
@@ -9951,7 +9951,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000013", "07. User Log Information", "F_34_Mgt/RptUserLogStatus", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000014", "08. Auto Data Backup", "F_34_Mgt/DataBackup", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000015", "11. Approving Authority", "F_15_DPayReg/AccPayLimit", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000016", "12. HR Leave Approval Setup", "F_81_Hrm/F_92_Mgt/HrLeaveApprovalForm", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000016", "12. Interface Approval Setup", "F_99_Allinterface/InterfaceApprovalForm", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000017", "13. Project Group", "F_22_Sal/ProjectGroup", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000018", "08. SMS/Mail Template Code", "F_34_Mgt/SMCodeBook", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000019", "15. Group User Management", "F_34_Mgt/UserfrmGroup", "", true, "" });

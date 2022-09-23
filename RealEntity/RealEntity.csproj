@@ -93,6 +93,7 @@
     <Compile Include="C_22_Sal\SalesInvoice_BL.cs" />
     <Compile Include="C_22_Sal\Sales_BO.cs" />
     <Compile Include="C_23_CR\EClassCutomer.cs" />
+    <Compile Include="C_23_CR\EClassLand.cs" />
     <Compile Include="C_23_CR\EClassSalesStatus.cs" />
     <Compile Include="C_23_CR\EClassSales_03.cs" />
     <Compile Include="C_24_CC\EClassAddwork.cs" />
@@ -205,7 +206,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="Properties\DataSources\RealEntity.C_08_PPlan.BO_Class_Con+RptTenderProposal.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_09_PIMP.SubConBill+RptSubConBillOverAll.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+PurchaseOrderInfo.datasource" />
