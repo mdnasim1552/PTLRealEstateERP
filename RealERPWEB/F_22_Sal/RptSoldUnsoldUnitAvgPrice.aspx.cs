@@ -38,6 +38,8 @@ namespace RealERPWEB.F_22_Sal
                 //this.txtfrmdate.Text = new System.DateTime(dtoday.Year, dtoday.Month, 1).ToString("dd-MMM-yyyy");
                 this.ProjectName();
                 
+                //this.GetGroup();
+
 
             }
 
@@ -67,17 +69,43 @@ namespace RealERPWEB.F_22_Sal
             string comcod = this.GetComeCode();
             string Srchpactcode = "%%";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "GETPROJECTNAME", Srchpactcode, "", "", "", "", "", "", "", "");
-            this.ddlPrjName.DataTextField = "pactdesc";
-            this.ddlPrjName.DataValueField = "pactcode";
-            this.ddlPrjName.DataSource = ds1.Tables[0];
-            this.ddlPrjName.DataBind();
+
+
+            DataTable dt = ds1.Tables[0];
+            DataRow dr1 = dt.NewRow();
+            dr1["pactcode"] = "000000000000";
+            dr1["pactdesc"] = "All Project";           
+            dt.Rows.Add(dr1);
+
+            //this.DropCheck1.DataTextField = "pactdesc1";
+            //this.DropCheck1.DataValueField = "pactdesc1";
+            //this.DropCheck1.DataSource = dt;
+            //this.DropCheck1.Text = "000000000000-All Project";
+            //this.DropCheck1.DataBind();
+
+            this.chkProjectName.DataTextField = "pactdesc";
+            this.chkProjectName.DataValueField = "pactcode";
+            this.chkProjectName.DataSource = dt;
+            this.chkProjectName.DataBind();
 
 
         }
 
+        //private void GetGroup()
+        //{
+        //    string comcod = this.GetComeCode();
+        //    DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT02", "GETGROUP", "", "", "", "", "", "", "", "", "");
+        //    this.ddlgrp.DataTextField = "grpdesc";
+        //    this.ddlgrp.DataValueField = "grpcode";
+        //    this.ddlgrp.DataSource = ds1.Tables[0];
+        //    this.ddlgrp.DataBind();
 
 
-        
+        //}
+
+
+
+
 
 
 
@@ -85,9 +113,28 @@ namespace RealERPWEB.F_22_Sal
         {
             Session.Remove("tblsoldunsoldavg");
             string comcod = this.GetComeCode();
-            string prjcode = this.ddlPrjName.SelectedValue.ToString()=="000000000000"? "18%": this.ddlPrjName.SelectedValue.ToString()+"%";
+
+            string prjcode = "";
+            string gp = this.chkProjectName.SelectedValue.Trim();
+            if (gp.Length > 0)
+            {
+                if (gp.Trim() == "000000000000" || gp.Trim() == "")
+                    prjcode = "";
+                else
+                    foreach (ListItem s1 in chkProjectName.Items)
+                    {
+                        if (s1.Selected)
+                        {
+                            prjcode = prjcode + s1.Value.Substring(0, 12);
+                        }
+                    }
+
+            }
+
+           
+            string type = rbtnStatus.SelectedValue.ToString();         
             string date = this.txtfrmdate.Text.Trim();       
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT02", "GETSOLDUNSOLDAVERAGEPRICE", prjcode, date, "", "", "", "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT02", "GETSOLDUNSOLDAVERAGEPRICE", prjcode, date, type, "", "", "", "", "", "");
             if (ds1 == null)
             {
                 //this.gvsoldunsold.DataSource = null;
@@ -204,7 +251,7 @@ namespace RealERPWEB.F_22_Sal
             //Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             //Rpt1.SetParameters(new ReportParameter("printdate", printdate));
             //Rpt1.SetParameters(new ReportParameter("projectName", projectName));
-            //Rpt1.SetParameters(new ReportParameter("RptTitle", "Floor Wise " + groupname + " Status"));
+            //Rpt1.SetParameters(new ReportParameter("RptTitle", "Floor Wise " + this.ddlgrp.SelectedItem.Text.ToString() + " Status"));
             //Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             ////Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
