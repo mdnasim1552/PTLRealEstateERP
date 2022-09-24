@@ -784,6 +784,9 @@
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trndram")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                         Width="70px" Font-Size="12px" ForeColor="Black" Style="text-align: right"
                                                         TabIndex="81"></asp:TextBox>
+
+                                                    <asp:HiddenField ID="hntrndram" runat="server" />
+
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:TextBox ID="txtTgvDrAmt" runat="server" BackColor="Transparent" ForeColor="Black"
@@ -791,6 +794,7 @@
                                                         Font-Bold="True" Font-Size="12px" ReadOnly="True"
                                                         Width="70px" Style="text-align: right"></asp:TextBox>
                                                 </FooterTemplate>
+                                                
                                                 <FooterStyle HorizontalAlign="right" />
                                                 <HeaderStyle Width="70px" />
                                                 <ItemStyle HorizontalAlign="right" />
@@ -867,6 +871,11 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>--%>
 
+                                            <%--<asp: ID="HiddenField1" runat="server" Value='<%# Bind("ProductId") %>' />--%>
+
+                                            <asp:TemplateField>
+                                                <asp:
+                                            </asp:TemplateField>
                                         </Columns>
                                         <FooterStyle BackColor="#F5F5F5" />
                                         <EditRowStyle />
