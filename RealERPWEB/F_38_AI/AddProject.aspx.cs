@@ -18,8 +18,9 @@ namespace RealERPWEB.F_38_AI
             if (!IsPostBack)
             {
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Add Project";
-                this.none.Attributes.Add("class", "d-none");
+                this.none.Attributes.Add("class", "d-none col-md-4");
                 this.gridcol.Attributes.Add("class", "col-md-12");
+
 
                 this.isFiledClear();
                 this.GetEmployeeName();
@@ -29,7 +30,7 @@ namespace RealERPWEB.F_38_AI
                 this.GetCustomerList();
                 this.GetLastid();
                 this.LoadGrid();
-               // btnbatchadd_Click(null, null);
+                // btnbatchadd_Click(null, null);
 
             }
         }
@@ -49,7 +50,7 @@ namespace RealERPWEB.F_38_AI
             Session["tblprojectlist"] = dt.Tables[0];
             this.GridcusDetails.DataSource = dt;
             this.GridcusDetails.DataBind();
-           // this.tblAddBatch_Click(null, null);
+            // this.tblAddBatch_Click(null, null);
         }
         private void GetCustomerList()
         {
@@ -209,7 +210,21 @@ namespace RealERPWEB.F_38_AI
 
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text = gdatat;
                         break;
-
+                    case "03018":
+                        dv2 = dt3.DefaultView;
+                        dv2.RowFilter = ("gcod like '80%' and gcod not like'%00'");
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                        ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = true;
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                        ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
+                        ddlgval.DataTextField = "gdesc";
+                        ddlgval.DataValueField = "gcod";
+                        ddlgval.DataSource = dv2.ToTable();
+                        ddlgval.DataBind();
+                        ddlgval.SelectedValue = ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                        break;
 
                     default:
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
@@ -314,24 +329,25 @@ namespace RealERPWEB.F_38_AI
 
         protected void tblAddCustomerModal_Click(object sender, EventArgs e)
         {
-            this.none.Attributes.Add("class", "d-block");
+            this.none.Attributes.Add("class", "d-block col-md-4");
             this.gridcol.Attributes.Add("class", "col-md-8");
         }
 
-       
+
 
         protected void tblAddBatch_Click(object sender, EventArgs e)
         {
-            
+
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
             int index = row.RowIndex;
             string project = ((Label)this.GridcusDetails.Rows[index].FindControl("lblpactcode")).Text.ToString();
             string projectName = ((Label)this.GridcusDetails.Rows[index].FindControl("lblinfdesc")).Text.ToString();
+            this.hiddPrjid.Value = project;
             this.txtproj.Text = projectName;
             this.tblpactcode.Text = project;
             this.txtstartdate.Text = DateTime.Now.ToString("dd-MMM-yyyy");
             this.textdelevery.Text = DateTime.Now.ToString("dd-MMM-yyyy");
-            this.GetBatchAssingList();
+            this.GetBatchAssingList(project);
 
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
         }
@@ -345,37 +361,41 @@ namespace RealERPWEB.F_38_AI
         protected void tblAddBatch_Click1(object sender, EventArgs e)
         {
 
-            try { 
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = this.GetComdCode();           
-            string userid = hst["usrid"].ToString();
-            string Terminal = hst["compname"].ToString();
-            string Sessionid = hst["session"].ToString();
-            string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-            string batchcreateid = "";
-            string batch = this.txtBatch.Text.ToString();
-            string projectname = this.tblpactcode.Text.ToString(); 
-            string createdate = this.txtstartdate.Text.ToString();
-            string veliverydate = this.textdelevery.Text.ToString();
-            bool result = MktData.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "BATCH_INSERTUPDATE", batchcreateid, batch, projectname, createdate, veliverydate, userid, Terminal, Sessionid,Date, "", "", "", "");
-
-            if (!result)
+            try
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail..!!');", true);
-                return;
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = this.GetComdCode();
+                string userid = hst["usrid"].ToString();
+                string Terminal = hst["compname"].ToString();
+                string Sessionid = hst["session"].ToString();
+                string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+                string batchcreateid = "";
+                string batch = this.txtBatch.Text.ToString();
+                string projectname = this.hiddPrjid.Value;
+                string createdate = this.txtstartdate.Text.ToString();
+                string veliverydate = this.textdelevery.Text.ToString();
+                string dtquantity = this.txtdatasetQuantity.Text.ToString();
+                bool result = MktData.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "BATCH_INSERTUPDATE", batchcreateid, batch, projectname, createdate, veliverydate, userid, Terminal, Sessionid, Date, dtquantity, "", "", "", "");
+
+                if (!result)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail..!!');", true);
+                    return;
+                }
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Batch  Saved Successfully');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
             }
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Batch  Saved Successfully');", true);
-            }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message.ToString() + "');", true);
             }
         }
 
-        private void GetBatchAssingList()
+        private void GetBatchAssingList(string project)
         {
             string comcod = this.GetComdCode();
-            DataSet dt = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "BATCHASSIGNLIST", "", "", "", "", "", "");
+            string prjid = project + "%";
+            DataSet dt = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "BATCHASSIGNLIST", prjid, "", "", "", "", "", "");
             if (dt == null)
                 return;
 
@@ -385,6 +405,10 @@ namespace RealERPWEB.F_38_AI
 
         }
 
-
+        protected void removefield_Click(object sender, EventArgs e)
+        {
+            this.none.Attributes.Add("class", "d-none col-md-4");
+            this.gridcol.Attributes.Add("class", "col-md-12");
+        }
     }
 }

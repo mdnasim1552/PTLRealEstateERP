@@ -553,12 +553,12 @@
                             <div class="col-lg-2">
                                 <asp:Label ID="Label1" runat="server">From</asp:Label>
                                 <asp:TextBox ID="txtfrmdate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                 <cc1:CalendarExtender  runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>
+                                <cc1:CalendarExtender runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>
                             </div>
                             <div class="col-lg-2">
                                 <asp:Label ID="Label2" runat="server">To</asp:Label>
                                 <asp:TextBox ID="txttodate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                <cc1:CalendarExtender  runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
+                                <cc1:CalendarExtender runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                             </div>
                             <div class="col-lg-2">
                                 <asp:Label ID="Label3" runat="server">Project Type</asp:Label>
@@ -593,25 +593,24 @@
 
                         </div>
                         <div class="row">
-                            <div class="col-lg-5 col-md-6 col-sm-6">                               
-                                <asp:LinkButton ID="tblAddProjectModal" runat="server" CssClass="btn btn-primary ml-auto bw-100 btn-sm mt20 mr-2" OnClick="tblAddProjectModal_Click"><i class="fa fa-plus"></i>Add Project</asp:LinkButton>
-                                <asp:LinkButton ID="tblTaskCreateModal" runat="server" CssClass="btn btn-primary ml-auto bw-100 btn-sm mt20 mr-2" OnClick="tblTaskCreateModal_Click"><i class="fa fa-plus"></i>Add Tasks</asp:LinkButton>
+                            <div class="col-lg-5 col-md-6 col-sm-6">
+                                <%--<asp:LinkButton ID="tblAddProjectModal" runat="server" CssClass="btn btn-primary ml-auto bw-100 btn-sm mt20 mr-2" OnClick="tblAddProjectModal_Click"><i class="fa fa-plus"></i>Add Project</asp:LinkButton>
+                                <asp:LinkButton ID="tblTaskCreateModal" runat="server" CssClass="btn btn-primary ml-auto bw-100 btn-sm mt20 mr-2" OnClick="tblTaskCreateModal_Click"><i class="fa fa-plus"></i>Add Tasks</asp:LinkButton>--%>
                                 <div class=" btn-group" role="group" aria-label="Button group with nested dropdown">
-                               
-                                <div class="btn-group" role="group">
-                                    <button id="btnGroupDrop4" type="button" class="btn btn-success ml-auto bw-100 btn-sm mt20 mr-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Operation</button>
-                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop4" style="">
-                                        <div class="dropdown-arrow"></div>
-                                        <asp:HyperLink ID="HyperLink1" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/CustomerList" CssClass="dropdown-item" Style="padding: 0 10px">Customer List</asp:HyperLink>
-                                        <asp:HyperLink ID="HyperLink2" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/AddProject" CssClass="dropdown-item" Style="padding: 0 10px">New Project</asp:HyperLink>
-                                        <asp:HyperLink ID="HyperLink3" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/CreateTask" CssClass="dropdown-item" Style="padding: 0 10px">Create Task</asp:HyperLink>
-                                        <asp:HyperLink ID="HyperLink4" runat="server" Target="_blank" NavigateUrl="~/StepofOperationNew?moduleid=14" CssClass="dropdown-item" Style="padding: 0 10px">Assign Team Leader</asp:HyperLink>
-                                        <asp:HyperLink ID="HyperLink5" runat="server" Target="_blank" NavigateUrl="~/StepofOperationNew?moduleid=14" CssClass="dropdown-item" Style="padding: 0 10px">Creating Invoice</asp:HyperLink>
-                                        <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/StepofOperationNew?moduleid=14" CssClass="dropdown-item" Style="padding: 0 10px">Day Wise Work Status</asp:HyperLink>
-                                       
+                                    <div class="btn-group" role="group">
+                                        <button id="btnGroupDrop4" type="button" class="btn btn-success ml-auto bw-100 btn-sm mt20 mr-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Operation</button>
+                                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop4" style="">
+                                            <div class="dropdown-arrow"></div>
+                                            <asp:HyperLink ID="HyperLink1" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/CustomerList" CssClass="dropdown-item" Style="padding: 0 10px">Customer List</asp:HyperLink>
+                                            <asp:HyperLink ID="HyperLink2" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/AddProject" CssClass="dropdown-item" Style="padding: 0 10px">New Project</asp:HyperLink>
+                                            <asp:HyperLink ID="HyperLink3" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/CreateTask" CssClass="dropdown-item" Style="padding: 0 10px">Create Task</asp:HyperLink>
+                                            <asp:HyperLink ID="HyperLink4" runat="server" Target="_blank" NavigateUrl="~/StepofOperationNew?moduleid=14" CssClass="dropdown-item" Style="padding: 0 10px">Assign Team Leader</asp:HyperLink>
+                                            <asp:HyperLink ID="HyperLink5" runat="server" Target="_blank" NavigateUrl="~/StepofOperationNew?moduleid=14" CssClass="dropdown-item" Style="padding: 0 10px">Creating Invoice</asp:HyperLink>
+                                            <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/StepofOperationNew?moduleid=14" CssClass="dropdown-item" Style="padding: 0 10px">Day Wise Work Status</asp:HyperLink>
+
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                     </div>
@@ -639,291 +638,125 @@
                             </div>
                         </fieldset>
                         <hr />
-                        <div class="row">
-                            <table class="table table-hover table-bordered table-responsive-md" id="tblDefault">
-                                <thead>
-                                    <tr style="background-color: #ECF3ED;">
-                                        <th>Sl #</th>
-                                        <th>Project Type</th>
-                                        <th>Date</th>
-                                        <th>No</th>
-                                        <th>Work Type</th>
-                                        <th>Customer</th>
-                                        <th>Total Price(USD)</th>
-                                        <th>Total Price(BDT)</th>
-                                        <th>Country</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="text-center">
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Pilot</td>
-                                        <td>30-Aug-2022</td>
-                                        <td>No-001</td>
-                                        <td>Image Annotation</td>
-                                        <td>Annotation Support</td>
-                                        <td>$301.60</td>
-                                        <td>10,0000.00</td>
-                                        <td>UK</td>
-                                        <td>SOW</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>SOW</td>
-                                        <td>30-Aug-2022</td>
-                                        <td>No-002</td>
-                                        <td>Software Development</td>
-                                        <td>Software Developer</td>
-                                        <td>$305.80</td>
-                                        <td>120,0000.00</td>
-                                        <td>UK</td>
-                                        <td>Asign</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
                         <asp:Panel ID="pnlStatus" runat="server" Visible="false">
-                            <h2>Status</h2>
+                            <div class="table-responsive">
+                                <asp:GridView ID="gvInterface" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                    ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnPageIndexChanging="gvInterface_PageIndexChanging">
+
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="SL # ">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
+                                                    Style="text-align: right; font-size: 12px;"
+                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"
+                                                    ForeColor="Black"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="ProjectName" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblpactcode" runat="server" Text='<%#Eval("pactcode").ToString()%>' Width="10px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Customer Name">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblinfdesc" runat="server" Height="16px"
+                                                    Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "custname"))%>'
+                                                    ForeColor="Black"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Order Type">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblinfdesc" runat="server" Height="16px"
+                                                    Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype"))%>'
+                                                    ForeColor="Black"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="ProjectName">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblinfdesc" runat="server" Height="16px"
+                                                    Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "projectName"))%>'
+                                                    ForeColor="Black"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="ProjectType">
+                                            <ItemTemplate>
+                                                <asp:Label ID="tblproj" runat="server"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "typedesc")) %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="DataSet">
+                                            <ItemTemplate>
+                                                <asp:Label ID="tbldataset" runat="server"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "dataset")) %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="WorkType">
+                                            <ItemTemplate>
+                                                <asp:Label ID="tblwrktype" runat="server"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "worktype")) %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Create date">
+                                            <ItemTemplate>
+                                                <asp:Label ID="tblcreatedate" runat="server" Width="80px"
+                                                    Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "createdate")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "createdate")).ToString("dd-MMM-yyyy")%>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Quantity">
+                                            <ItemTemplate>
+                                                <asp:Label ID="tbladdress" runat="server" Width="80px"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "quantity")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle Width="50px" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Hour">
+                                            <ItemTemplate>
+                                                <asp:Label ID="tblcountry" runat="server" Width="80px"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "totalhour")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Action">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="lnkView" runat="server" CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-eye"></i></asp:LinkButton>
+                                                <asp:LinkButton ID="btnRemove" runat="server" CssClass="text-danger pr-2" ToolTip="delete"><i class="fa fa-trash"></i></asp:LinkButton>
+                                                <asp:LinkButton ID="btnEdit" runat="server" CssClass="text-primary" ToolTip="edit"><i class="fa fa-edit"></i></asp:LinkButton>
+                                            </ItemTemplate>
+                                            <ItemStyle Width="80px" />
+                                        </asp:TemplateField>
+
+                                    </Columns>
+                                    <%--<FooterStyle CssClass="grvFooter" />--%>
+
+                                    <PagerStyle CssClass="gvPagination" />
+
+                                    <HeaderStyle CssClass="grvHeader" />
+                                </asp:GridView>
+                            </div>
                         </asp:Panel>
                         <asp:Panel ID="pnlAssign" runat="server" Visible="false">
-                             <h2>Assign</h2>
+                            <h2>Assign</h2>
                         </asp:Panel>
                         <asp:Panel ID="pnlProduction" runat="server" Visible="false">
-                             <h2>Production</h2>
+                            <h2>Production</h2>
                         </asp:Panel>
                         <asp:Panel ID="pnelQC" runat="server" Visible="false">
-                             <h2>QC</h2>
+                            <h2>QC</h2>
                         </asp:Panel>
                         <asp:Panel ID="pnelAReject" runat="server" Visible="false">
-                             <h2>Acept/ Reject</h2>
+                            <h2>Acept/ Reject</h2>
                         </asp:Panel>
                         <asp:Panel ID="penlInvoice" runat="server" Visible="false">
-                             <h2>Invoice</h2>
+                            <h2>Invoice</h2>
                         </asp:Panel>
                         <asp:Panel ID="pnelCollection" runat="server" Visible="false">
-                             <h2>Collection</h2>
+                            <h2>Collection</h2>
                         </asp:Panel>
 
-
-
-
-
-
-
-
-
-
-                        <%-- // add customer Modal--%>
-                        <div id="AddCustomerModal" class="modal " role="dialog" data-keyboard="false" data-backdrop="static">
-                            <div class="modal-dialog modal-xl">
-                                <div class="modal-content">
-                                    <div class="modal-header bg-light">
-                                        <h6 class="modal-title">Add Customer </h6>
-                                        <%--<asp:LinkButton ID="ModalLoanClose" runat="server" CssClass="close close_btn"  data-dismiss="modal"> &times; </asp:LinkButton>--%>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                    <div class="modal-body">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <%-- End  customer Modal--%>
-
-                        <%-- Add Project Modal --%>
-                        <div id="AddProjectModal" class="modal " role="dialog" data-keyboard="false" data-backdrop="static">
-                            <div class="modal-dialog modal-xl">
-                                <div class="modal-content">
-                                    <div class="modal-header bg-light">
-                                        <h6 class="modal-title">
-                                            <h3>Add Project  </h3>
-                                        </h6>
-                                        <%--<asp:LinkButton ID="ModalLoanClose" runat="server" CssClass="close close_btn"  data-dismiss="modal"> &times; </asp:LinkButton>--%>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-lg-3">
-                                                <asp:Label ID="Label6" runat="server">Project Name</asp:Label>
-                                                <asp:TextBox ID="tblProjectNam" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                                <%-- <cc1:CalendarExtender  runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>--%>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <asp:Label ID="Label7" runat="server">Project Label</asp:Label>
-                                                <asp:DropDownList ID="ddProjectlb" runat="server" CssClass="form-control chzn-select">
-                                                    <asp:ListItem Value="0">Pilot</asp:ListItem>
-                                                    <asp:ListItem Value="1">sow</asp:ListItem>
-
-                                                </asp:DropDownList>
-                                            </div>
-                                            <div class="col-lg-3 ">
-                                                <asp:Label ID="Label8" runat="server">Work Type</asp:Label>
-                                                <asp:DropDownList ID="ddWorkType" runat="server" CssClass="form-control chzn-select">
-                                                    <asp:ListItem Value="0">Image Annotation</asp:ListItem>
-                                                    <asp:ListItem Value="1">Software Development</asp:ListItem>
-                                                    <asp:ListItem Value="2">Web Desgin</asp:ListItem>
-                                                    <asp:ListItem Value="3">3D Animation</asp:ListItem>
-                                                    <asp:ListItem Value="4">Graphis Desgin</asp:ListItem>
-
-                                                </asp:DropDownList>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <asp:Label ID="tblClientName" runat="server">Client Name  &nbsp;<asp:LinkButton ID="btnClient" runat="server" OnClick="btnClient_Click" >+</asp:LinkButton></asp:Label>
-                                                <asp:DropDownList ID="ddClientName" runat="server" CssClass="form-control chzn-select">
-                                                    <asp:ListItem Value="0">MD. HARUN-UR RASHID (FCMA)</asp:ListItem>
-                                                    <asp:ListItem Value="1">MD. EMDADUL HAQUE</asp:ListItem>
-                                                    <asp:ListItem Value="2">UZZAL KUMAR PRAMANIK</asp:ListItem>
-                                                    <asp:ListItem Value="3">MD. AHASAN ULLAH NAHID</asp:ListItem>
-
-
-                                                </asp:DropDownList>
-                                            </div>
-
-
-                                        </div>
-                                        
-                                        <div class="row">
-                                            <div class="col-lg-3 mt20">
-                                                <asp:Label ID="Label10" runat="server">Project Type</asp:Label>
-                                                <asp:DropDownList ID="ddProjectType" runat="server" CssClass="form-control chzn-select">
-                                                    <asp:ListItem Value="0">Image Annotation</asp:ListItem>
-                                                    <asp:ListItem Value="1">Software Development</asp:ListItem>
-                                                    <asp:ListItem Value="2">Web Desgin</asp:ListItem>
-                                                    <asp:ListItem Value="3">3D Animation</asp:ListItem>
-                                                    <asp:ListItem Value="4">Graphis Desgin</asp:ListItem>
-
-                                                </asp:DropDownList>
-                                            </div>
-                                           <div class="col-lg-3 mt20">
-                                                <asp:Label ID="Label13" runat="server">Quantity</asp:Label>
-                                                <asp:TextBox ID="tblQuantity" runat="server"  CssClass="form-control form-control-sm" TextMode="Number"></asp:TextBox>
-                                               <%--<asp:TextBox ID="tblQuantity" runat="server" CssClass="form-control form-control-sm" onkeydown = "return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>--%>
-
-                                            </div>
-                                            <div class="col-lg-3 mt20">
-                                                <asp:Label ID="lblSrtTime" runat="server">StartTime
-                                                   
-                                                </asp:Label>
-                                                <asp:TextBox ID="tblstarttime" runat="server" CssClass="form-control form-control-sm" TextMode="DateTimeLocal"></asp:TextBox>
-                                                <%--<cc1:CalendarExtender ID="txtdate_CalendarExtender" runat="server"
-                                                    Enabled="True" Format="dd-MMM-yyyy hh:mm:ss" TargetControlID="tblstarttime"></cc1:CalendarExtender>--%>
-
-                                            </div>
-                                            <div class="col-lg-3 mt20">
-                                                <asp:Label ID="Label12" runat="server">DeadLine </asp:Label>
-                                                <asp:TextBox ID="tblDeadLine" runat="server" TextMode="DateTimeLocal" CssClass="form-control form-control-sm"></asp:TextBox>
-
-                                                <%--<cc1:CalendarExtender ID="CalendarExtender1" runat="server"
-                                                    Enabled="True" Format="dd-MMM-yyyy" TargetControlID="tblDeadLine"></cc1:CalendarExtender>--%>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-3 mt20">
-                                                <asp:Label ID="Label15" runat="server">Currency Type</asp:Label>
-                                                <asp:DropDownList ID="DropDownList3" runat="server" CssClass="form-control chzn-select">
-                                                    <asp:ListItem Value="0">BDT</asp:ListItem>
-                                                    <asp:ListItem Value="1">USD</asp:ListItem>
-                                                   
-                                                </asp:DropDownList>
-                                            </div>
-                                             <div class="col-lg-3 mt20">
-                                                <asp:Label ID="Label11" runat="server">Cost</asp:Label>
-                                                <asp:TextBox ID="tblCost" runat="server" CssClass="form-control form-control-sm" TextMode="Number"></asp:TextBox>
-                                                <%-- <cc1:CalendarExtender  runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>--%>
-                                            </div>
-                                            <div class="col-lg-6 mt20">
-                                                <asp:Label ID="Label14" runat="server">Remarks</asp:Label>
-                                                <asp:TextBox ID="tblRemarks" runat="server" CssClass="form-control form-control-sm" TextMode="MultiLine"></asp:TextBox>
-
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                             <div class="col-lg-5 mt20">
-                                                  <asp:Label ID="Label16" runat="server">Images</asp:Label>
-                                                 
-                                                 <ajaxToolkit:AjaxFileUpload Width="600px" ID="AjaxFileUpload1" runat="server" ThrobberID="myThrobber" MaximumNumberOfFiles="10" AllowedFileTypes="jpg,jpeg,pdf"></ajaxToolkit:AjaxFileUpload>
-
-                                             </div>
-                                        </div>
-                                        <div class="modal-footer row">
-                                            <div class="d-flex justify-content-center">
-
-                                                <%-- <button type="button" class="btn btn-danger  ml-auto  btn-md mt20 mr-1" data-bs-dismiss="modal">Close</button>--%>
-                                                <asp:LinkButton ID="btnSave" runat="server" CssClass="btn btn-primary ml-auto  btn-md mt20 mr-1" OnClick="btnSave_Click">Save</asp:LinkButton>
-
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <%-- End Project Modal --%>
-
-
-                        <%-- start New Task Modal  --%>
-                        <div id="TaskCreateModal" class="modal " role="dialog" data-keyboard="false" data-backdrop="static">
-                            <div class="modal-dialog modal-xl">
-                                <div class="modal-content">
-                                    <div class="modal-header bg-light">
-                                        <h6 class="modal-title">Add Tasks </h6>
-                                        <%--<asp:LinkButton ID="ModalLoanClose" runat="server" CssClass="close close_btn"  data-dismiss="modal"> &times; </asp:LinkButton>--%>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row">
-                                        <div class="col-lg-3 ">
-                                                <asp:Label ID="ltbProject" runat="server">Project Name</asp:Label>
-                                                <asp:TextBox ID="tblProjectName" runat="server" CssClass="form-control form-control-sm" ></asp:TextBox>
-                                                <%-- <cc1:CalendarExtender  runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>--%>
-                                            </div>
-                                        <div class="col-lg-3">
-                                            <asp:Label ID="lbtCustName" runat="server">Customer Name</asp:Label>
-                                                <asp:TextBox ID="tblCustName" runat="server" CssClass="form-control form-control-sm" ></asp:TextBox>
-                                        </div>
-                                        <div class="col-lg-5">
-                                             <asp:Label ID="Label9" runat="server">Task Description</asp:Label>
-                                                <asp:TextBox ID="tblDescription" runat="server" CssClass="form-control form-control-sm" TextMode="MultiLine" ></asp:TextBox>
-                                        </div>
-                                        
-                                    </div>
-                                        <div class="row mt-3">
-                                            <div class="col-lg-3">
-                                                <asp:Label ID="Label17" runat="server">Assign Team</asp:Label>
-                                                <asp:TextBox ID="tblAssginTeam" runat="server" CssClass="form-control form-control-sm" ></asp:TextBox>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <asp:Label ID="Label18" runat="server">Quantity</asp:Label>
-                                                <asp:TextBox ID="tblTaskQuantity" runat="server" CssClass="form-control form-control-sm" TextMode="Number" ></asp:TextBox>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                 <asp:Label ID="Label19" runat="server">DeadLine</asp:Label>
-                                                <asp:TextBox ID="tblEndDate" runat="server" CssClass="form-control form-control-sm" TextMode="DateTimeLocal" ></asp:TextBox>
-                                            </div>
-                                        </div>
-                                        <div class="row mt-3">
-                                            <div class="col-lg-5">
-                                                <asp:Label ID="Label20" runat="server">Remarks</asp:Label>
-                                                <asp:TextBox ID="tblTRemarks" runat="server" CssClass="form-control form-control-sm" TextMode="MultiLine" ></asp:TextBox>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    <div class="modal-footer row">
-                                         <div class="d-flex justify-content-center float-right ">
-
-                                                <%-- <button type="button" class="btn btn-danger  ml-auto  btn-md mt20 mr-1" data-bs-dismiss="modal">Close</button>--%>
-                                                <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary ml-auto  btn-md mt20 mr-1" >Task Save</asp:LinkButton>
-
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <%-- end New Task Modal --%>
                     </div>
 
                 </div>
