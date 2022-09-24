@@ -104,12 +104,8 @@
                                 <asp:DropDownList ID="ddlproject" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlproject_SelectedIndexChanged" AutoPostBack="true">
                                 </asp:DropDownList>
                             </div>
-                            <div class="form-group row">
-                                <div class="pl-0 col-lg-6 col-md-6 col-sm-12">
-                                    <asp:Label ID="Label15" runat="server">Dataset Quantity</asp:Label>
-                                    <asp:TextBox ID="txtworkquantity" runat="server" CssClass="form-control"></asp:TextBox>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group row">                               
+                                <div class="col-lg-6 col-md-6 col-sm-12 pl-0 ">
                                     <asp:Label ID="Label4" runat="server">Batch</asp:Label>
                                     <asp:DropDownList ID="ddlbatch" runat="server" CssClass="form-control chzn-select">
                                         <asp:ListItem Value="1">1</asp:ListItem>
@@ -117,6 +113,10 @@
                                         <asp:ListItem Value="3">3</asp:ListItem>
                                         <asp:ListItem Value="4">4</asp:ListItem>
                                     </asp:DropDownList>
+                                </div>
+                                 <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <asp:Label ID="Label15" runat="server">Dataset Quantity</asp:Label>
+                                    <asp:TextBox ID="txtworkquantity" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="form-group row ">

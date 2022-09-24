@@ -8,7 +8,7 @@
         table tr th {
             text-align: center;
         }
-    </style>
+    </style> 
 
     <script type="text/javascript">
         $(document).ready(function () {

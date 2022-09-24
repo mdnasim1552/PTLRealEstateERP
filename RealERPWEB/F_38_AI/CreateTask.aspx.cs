@@ -16,17 +16,19 @@ namespace RealERPWEB.F_38_AI
         DataTable vt = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
-            vt.Columns.AddRange(new DataColumn[] { new DataColumn("lblmember"),new DataColumn("tbltype"), new DataColumn("tblValoquantity"), new DataColumn("tblworkhour") });
+            vt.Columns.AddRange(new DataColumn[] { new DataColumn("lblmember"), new DataColumn("tbltype"), new DataColumn("tblValoquantity"), new DataColumn("tblworkhour") });
             if (!IsPostBack)
             {
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Create Task";
-                
+
                 this.VirtualGrid();
                 this.Txtdate.Text = DateTime.Now.ToString("dd-MMM-yyyy");
                 this.GetComdCode();
                 this.GetCustomerList();
                 this.GetEmployeeName();
                 this.GetProjectList();
+                this.GetBatchList();
+                this.GetAnnotationList();
                 this.GetProjectInformation();
             }
         }
@@ -46,18 +48,18 @@ namespace RealERPWEB.F_38_AI
             this.ddlcustomer.DataValueField = "infcod";
             this.ddlcustomer.DataSource = dt.Tables[0];
             this.ddlcustomer.DataBind();
-            
-            this.ddlcustomer_SelectedIndexChanged(null,null);
+
+            this.ddlcustomer_SelectedIndexChanged(null, null);
         }
         private void GetProjectList()
         {
             string comcod = this.GetComdCode();
             string prjtype = this.ddlprotype.SelectedValue.ToString();
-            string customer = this.ddlcustomer.SelectedValue.ToString()==""?"51%": this.ddlcustomer.SelectedValue.ToString();
+            string customer = this.ddlcustomer.SelectedValue.ToString() == "" ? "51%" : this.ddlcustomer.SelectedValue.ToString();
             DataSet ds = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETALLPRJLISTCUSTOMERWISE", prjtype, customer, "", "", "", "");
             if (ds == null)
                 return;
-           
+
             this.ddlproject.DataTextField = "projectName";
             this.ddlproject.DataValueField = "pactcode";
             this.ddlproject.DataSource = ds.Tables[0];
@@ -65,6 +67,38 @@ namespace RealERPWEB.F_38_AI
             this.ddlproject_SelectedIndexChanged(null, null);
 
         }
+
+        private void GetBatchList()
+        {
+            string comcod = this.GetComdCode();
+            string prjlist = this.ddlproject.SelectedValue.ToString() == "" ? "16%" : this.ddlproject.SelectedValue.ToString() + "%";
+            DataSet ds = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "BATCHASSIGNLIST", prjlist, "", "", "", "", "");
+            if (ds == null)
+                return;
+
+            this.ddlbatch.DataTextField = "batchdesc";
+            this.ddlbatch.DataValueField = "batchid";
+            this.ddlbatch.DataSource = ds.Tables[0];
+            this.ddlbatch.DataBind();
+
+        }
+
+
+        private void GetAnnotationList()
+        {
+            string comcod = this.GetComdCode();
+            string prjlist = this.ddlproject.SelectedValue.ToString() == "" ? "16%" : this.ddlproject.SelectedValue.ToString() + "%";
+            DataSet ds = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETANNOTAIONID", prjlist, "", "", "", "", "");
+            if (ds == null)
+                return;
+
+            this.ddlbatch.DataTextField = "batchdesc";
+            this.ddlbatch.DataValueField = "batchid";
+            this.ddlbatch.DataSource = ds.Tables[0];
+            this.ddlbatch.DataBind();
+
+        }
+
         private void GetEmployeeName()
         {
             Session.Remove("tblempname");
@@ -91,6 +125,8 @@ namespace RealERPWEB.F_38_AI
             string comcod = this.GetComdCode();
             string prjcode = this.ddlproject.SelectedValue.ToString();
             DataSet ds = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "PROJECTGETINFORMATIONCODE", prjcode, "", "", "", "", "");
+            if (ds == null)
+                return;
             DataSet dt2 = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETINFORMATIONCODE", "", "", "", "", "", "");
 
             if (dt2 == null)
@@ -182,7 +218,7 @@ namespace RealERPWEB.F_38_AI
                 string assmember = this.ddlassignmember.SelectedValue.ToString();
                 string annotation = this.ddlAnnotationid.SelectedValue.ToString();
 
-                bool result = MktData.UpdateTransInfo2(comcod, "dbo_ai.SP_ENTRY_AI", "TASK_INSERTUPDATE", batchid, tasktitle, taskdesc, tasktype, createtask, remarks, estimationtime, dataset, qty, worktype, perhourqty, userid, Terminal, Sessionid, Date, projid, taskid, "","","","");
+                bool result = MktData.UpdateTransInfo2(comcod, "dbo_ai.SP_ENTRY_AI", "TASK_INSERTUPDATE", batchid, tasktitle, taskdesc, tasktype, createtask, remarks, estimationtime, dataset, qty, worktype, perhourqty, userid, Terminal, Sessionid, Date, projid, taskid, "", "", "", "");
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail..!!');", true);
