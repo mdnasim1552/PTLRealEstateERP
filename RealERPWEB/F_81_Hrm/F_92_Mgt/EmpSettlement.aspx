@@ -211,6 +211,12 @@
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl#" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
+                                  
+                                                            <%--<asp:Link ID="addRow" runat="server" OnClick="copy_Click" Text="Add"/>--%>
+                            <%--<asp:LinkButton ID="addRow" runat="server" CssClass="btn btn-sm btn-success btn-sm" Width="100px" OnClick="copy_Click"> +</asp:LinkButton>--%>
+
+                            <asp:LinkButton ID="addRow" runat="server" CssClass="btn btn-sm btn-success" OnClick="addRow_Click">+</asp:LinkButton>
+
                                                 <asp:Label ID="lblgvSlNo0" runat="server"  Height="16px" Style="text-align: center" 
                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="40px"></asp:Label>
                                             </ItemTemplate>
@@ -221,6 +227,12 @@
                                                 <asp:Label ID="lblcreditinfo" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgdesc")) %>'
                                                     Width="200px"></asp:Label>
                                                 <asp:Label ID="lblhrgcod" Visible="false" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgcod")) %>'
+                                                    Width="200px"></asp:Label>
+
+                                                                <asp:Label ID="lblseq" Visible="false" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "seq")) %>'
+                                                    Width="200px"></asp:Label>
+
+                                                             <asp:Label ID="lblperday" Visible="false" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "perday")) %>'
                                                     Width="200px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
@@ -249,7 +261,8 @@
 
                                         <asp:TemplateField HeaderText="D/Y" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblnumday" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "numofday")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
+                                                <asp:TextBox ID="lblnumday" runat="server" CssClass="form-control form-control-sm" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "numofday")).ToString("#,##0.00;(#,##0.00); ") %>' Width="60px"></asp:TextBox>
+                                                <%--<asp:Label ID="lblnumday" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "numofday")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>--%>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                         </asp:TemplateField>
