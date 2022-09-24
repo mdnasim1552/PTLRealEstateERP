@@ -155,6 +155,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
       <HintPath>..\..\..\Doc\Lib\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -2208,6 +2209,7 @@
     <Content Include="F_22_Sal\EntryClientNameTransfer.aspx" />
     <Content Include="F_22_Sal\MktSalsLOPayment.aspx" />
     <Content Include="F_22_Sal\RptSoldUnsoftInfGroupWise.aspx" />
+    <Content Include="F_22_Sal\RptSoldUnsoldUnitAvgPrice.aspx" />
     <Content Include="F_23_CR\MktLOMoneyReceipt.aspx" />
     <Content Include="F_23_CR\RptCollectionStatusLO.aspx" />
     <Content Include="F_23_CR\RptDuesReportAll.aspx" />
@@ -4100,6 +4102,13 @@
     </Compile>
     <Compile Include="F_22_Sal\RptSoldUnsoftInfGroupWise.aspx.designer.cs">
       <DependentUpon>RptSoldUnsoftInfGroupWise.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_22_Sal\RptSoldUnsoldUnitAvgPrice.aspx.cs">
+      <DependentUpon>RptSoldUnsoldUnitAvgPrice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\RptSoldUnsoldUnitAvgPrice.aspx.designer.cs">
+      <DependentUpon>RptSoldUnsoldUnitAvgPrice.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_23_CR\MktLOMoneyReceipt.aspx.cs">
       <DependentUpon>MktLOMoneyReceipt.aspx</DependentUpon>
