@@ -154,7 +154,7 @@
                           
                                 <div class="table-responsive">
                                     <asp:GridView ID="GridcusDetails" runat="server" AutoGenerateColumns="False" Width="100%" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15">
+                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnPageIndexChanging="GridcusDetails_PageIndexChanging">
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="SL # ">

@@ -128,6 +128,7 @@
             word-break: break-word !important;
         }
     </style>
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 

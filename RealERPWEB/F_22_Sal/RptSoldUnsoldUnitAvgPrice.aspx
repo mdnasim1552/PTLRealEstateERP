@@ -5,34 +5,70 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
+    <style type="text/css">
+        .modalcss {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            overflow: scroll;
+        }
+
+        .multiselect {
+            width: 300px !important;
+            text-wrap: initial !important;
+            height: 27px !important;
+        }
+
+        .multiselect-text {
+            width: 300px !important;
+        }
+
+        .multiselect-container {
+            height: 350px !important;
+            width: 350px !important;
+            overflow-y: scroll !important;
+        }
+
+        span.multiselect-selected-text {
+            width: 300px !important;
+        }
+
+        .form-control {
+            height: 34px;
+        }
+    </style>
+
+ <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
     <script type="text/javascript" language="javascript">
 
         $(document).ready(function () {
-
+            $(".select2").select2();
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
         });
 
+
+
+
         function pageLoaded() {
-
-            $('.chzn-select').chosen({ search_contains: true });
-          <%--  $('#<%=this.gvsupstatus.ClientID%>').tblScrollable();--%>
-            $(function () {
-                $('[id*=chkSupCategory').multiselect({
-                    includeSelectAllOption: true,
-
-                    enableCaseInsensitiveFiltering: true,
-                    //enableFiltering: true,
-
+            $('.select2').each(function () {
+                var select = $(this);
+                select.select2({
+                    placeholder: 'Select an option',
+                    width: '100%',
+                    allowClear: !select.prop('required'),
+                    language: {
+                        noResults: function () {
+                            return "{{ __('No results found') }}";
+                        }
+                    }
                 });
-
-                var gvsoldunsoldavg = $('#<%=this.gvsoldunsoldavg.ClientID %>');
-
-                gvsoldunsoldavg.Scrollable();
-
-            });
+            });        
 
         }
 
@@ -82,9 +118,13 @@
                         <div class="col-md-3">
                             <div class="from-group">
                                 <label class="control-label">Project Name</label>
-                                <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="chzn-select form-control  inputTxt" AutoPostBack="True" ></asp:DropDownList>
+                                <asp:ListBox ID="chkProjectName" runat="server" ClientIDMode="Static" CssClass="form-control select2" Style="min-width: 200px !important;" SelectionMode="Multiple"></asp:ListBox>
+                               <%-- <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="chzn-select form-control  inputTxt" AutoPostBack="True" ></asp:DropDownList>--%>
                             </div>
                         </div>
+
+
+                         
 
                         
 
@@ -103,6 +143,22 @@
                             <div class="form-group">
                                 <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="margin-top30px btn btn-primary" OnClick="lnkbtnOk_Click" AutoPostBack="True">Ok</asp:LinkButton>
                             </div>
+                        </div>
+
+                        <div class="col-md-2" >
+                            
+                             <asp:Label ID="Label1" runat="server" Font-Size="12px">Type</asp:Label>
+                            <asp:RadioButtonList ID="rbtnStatus" runat="server" AutoPostBack="True"  Style="border-radius: 5px; padding: 0 5px;"
+                                CssClass="custom-control custom-control-inline custom-checkbox rbtnAtStatus d-block p-0 mt-3"
+                                Font-Bold="True" Font-Size="12px" ForeColor="Black" 
+                                RepeatDirection="Horizontal">
+                                <asp:ListItem  Value="Sold">&nbsp; Sold &nbsp;&nbsp;</asp:ListItem>
+                                <asp:ListItem Value="Unsold">&nbsp; Unsold</asp:ListItem>
+                                <asp:ListItem Selected="True">&nbsp; both</asp:ListItem>
+
+
+                            </asp:RadioButtonList>
+
                         </div>
 
 
@@ -135,13 +191,31 @@
                                     <asp:TemplateField HeaderText="Project Name">
                                         
                                        <FooterTemplate>
+                                                    <asp:Label ID="lblFprjdesc" runat="server" Font-Bold="True" Font-Size="12px"
+                                                        ForeColor="#000" Style="text-align: right"></asp:Label>
+                                         </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvprjdesc" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "Pactdesc")) %>'
+                                                Width="180px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="left" />
+                                        <HeaderStyle HorizontalAlign="center" />
+                                        <FooterStyle HorizontalAlign="Right" />
+
+                                    </asp:TemplateField>
+
+
+                                    <asp:TemplateField HeaderText="Type">
+                                        
+                                       <FooterTemplate>
                                                     <asp:Label ID="lblFflr" runat="server" Font-Bold="True" Font-Size="12px"
                                                         ForeColor="#000" Style="text-align: right"></asp:Label>
                                          </FooterTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvflr" runat="server"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "Pactdesc")) %>'
-                                                Width="180px"></asp:Label>
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrdesc")) %>'
+                                                Width="100px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="left" />
                                         <HeaderStyle HorizontalAlign="center" />
