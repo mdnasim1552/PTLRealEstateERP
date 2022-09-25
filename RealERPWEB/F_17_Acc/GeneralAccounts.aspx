@@ -873,9 +873,9 @@
 
                                             <%--<asp: ID="HiddenField1" runat="server" Value='<%# Bind("ProductId") %>' />--%>
 
-                                            <asp:TemplateField>
-                                                <asp:
-                                            </asp:TemplateField>
+<%--                                            <asp:TemplateField>
+                              
+                                            </asp:TemplateField>--%>
                                         </Columns>
                                         <FooterStyle BackColor="#F5F5F5" />
                                         <EditRowStyle />
