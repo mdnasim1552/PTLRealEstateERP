@@ -215,9 +215,10 @@
                                                             <%--<asp:Link ID="addRow" runat="server" OnClick="copy_Click" Text="Add"/>--%>
                             <%--<asp:LinkButton ID="addRow" runat="server" CssClass="btn btn-sm btn-success btn-sm" Width="100px" OnClick="copy_Click"> +</asp:LinkButton>--%>
 
-                            <asp:LinkButton ID="addRow" runat="server" CssClass="btn btn-sm btn-success" OnClick="addRow_Click">+</asp:LinkButton>
+                            <asp:LinkButton ID="addRow" runat="server" CssClass="text-success pr-1 pl-1" OnClick="addRow_Click"><i class="fa fa-plus-circle"></i></asp:LinkButton>
+                       <asp:LinkButton ID="removeRow" runat="server" CssClass="text-danger pr-2" OnClick="removeRow_Click"><i class="fa fa-trash"></i></asp:LinkButton>
 
-                                                <asp:Label ID="lblgvSlNo0" runat="server"  Height="16px" Style="text-align: center" 
+                                                <asp:Label ID="lblgvSlNo0" runat="server"  Height="16px" Style="text-align: center" Visible="false"
                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="40px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -249,7 +250,6 @@
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top"  />
                                         </asp:TemplateField>
 
-
                                         <asp:TemplateField HeaderText="To" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
                                                 <asp:Label ID="lbltodat" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "todat")) %>' Width="100px"></asp:Label>
@@ -267,9 +267,6 @@
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-
-
-
                                         <asp:TemplateField HeaderText="Gross" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtnumofday" CssClass="form-control form-control-sm" Style="text-align: right" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amount")).ToString("#,##0.00;(#,##0.00); ") %>' Width="100px"></asp:TextBox>
@@ -278,12 +275,9 @@
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-
-
-
                                         <asp:TemplateField HeaderText="Calculation" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblcalculation" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "calculation")) %>' BackColor="Yellow" ForeColor="Black"></asp:Label>
+                                                <asp:Label ID="lblcalculation" CssClass="badge badge-pill badge-info" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "calculation")) %>'></asp:Label>
 
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
@@ -320,10 +314,18 @@
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl#" HeaderStyle-CssClass="font-weight-bold text-muted">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblgvSlNo0" runat="server"  Height="16px" Style="text-align: center"
-                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="40px"></asp:Label>
+                     <ItemTemplate>
+                                  
+            
+                            <asp:LinkButton ID="addRow" runat="server" CssClass="text-success pr-1 [;-1" OnClick="addRowD_Click"><i class="fa fa-plus-circle"></i></asp:LinkButton>
+                       <asp:LinkButton ID="removeRow" runat="server" CssClass="text-danger pr-2" OnClick="removeRowD_Click"><i class="fa fa-trash"></i></asp:LinkButton>
+
+                                                <asp:Label ID="lblgvSlNo0" runat="server"  Height="16px" Style="text-align: center"  Visible="false"
+                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                          <asp:Label ID="lblseq" Visible="false" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "seq")) %>'
+                                                    Width="200px"></asp:Label>
                                             </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Deduct Information" HeaderStyle-CssClass="font-weight-bold text-muted">
@@ -369,7 +371,7 @@
 
                                         <asp:TemplateField HeaderText="Calculation" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblcalculation" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "calculation")) %>' BackColor="Yellow" ForeColor="Black"></asp:Label>
+                                                <asp:Label ID="lblcalculation" CssClass="badge badge-pill badge-info" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "calculation")) %>' ></asp:Label>
 
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
@@ -396,7 +398,7 @@
                                 </asp:GridView>
                                                  <table class="table-striped table-hover table-bordered">
                             <tr>
-                                <td class="text-right"  color: black; font-weight: bolder; font-size: 13px;">Net Payable Amount</td>
+                                <td class="text-right font-weight-bold text-muted" color: black; font-weight: bolder; font-size: 13px;">Net Payable Amount</td>
                                 <td style="width: 130px" class="text-right">
                                     <asp:Label ID="NetAmount" runat="server" Font-Bold="true" Style="color: black; font-weight: bolder; font-size: 13px;"></asp:Label>
                                 </td>

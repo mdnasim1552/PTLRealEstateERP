@@ -35,7 +35,20 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 this.GetACGCode();
                 this.GetGropCode();
                 this.GetAttGrpCode();
-                // this.GetCode();
+
+                string type = Request.QueryString["Type"].ToString();
+                if (type == "Payroll")
+                {
+                    this.pnlAtt.Visible = false;
+                    this.pnlPayroll.Visible = true;
+                }
+                else if (type == "HR")
+                {
+                    this.pnlAtt.Visible = true;
+                    this.pnlPayroll.Visible = false;
+                }
+
+
             }
 
         }
@@ -92,6 +105,171 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.grvacc_DataBind();
         }
 
+        protected void grvaccAtt_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            this.grvaccAtt.EditIndex = -1;
+            this.grvacc_DataBind();
+        }
+
+        //protected void grvacc_RowEditing(object sender, GridViewEditEventArgs e)
+        //{
+
+        //    this.grvacc.EditIndex = e.NewEditIndex;
+        //    this.grvacc_DataBind();
+        //    ViewState["gindex"] = e.NewEditIndex;
+
+        //    int rowindex = (grvacc.PageSize) * (this.grvacc.PageIndex) + e.NewEditIndex;
+        //    string acgcode = ((DataTable)Session["storedata"]).Rows[rowindex]["acgcode"].ToString();
+        //    //string actcode = ((Label)grvacc.Rows[e.NewEditIndex].FindControl("lblgvactcode")).Text.Trim().Replace("-", "");
+        //    string agccode = ((DataTable)Session["storedata"]).Rows[rowindex]["acgcode"].ToString();
+        //    string gropcode = ((DataTable)Session["storedata"]).Rows[rowindex]["gropcode"].ToString();
+        //    string attgropcode = ((DataTable)Session["storedata"]).Rows[rowindex]["attgropcode"].ToString();
+        //    DropDownList ddlteam = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlteam");
+        //    DropDownList ddlgroup = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlgroup");
+        //    DropDownList ddlattgroup = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlattgroup");
+
+        //    //string deptname = ((DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlteam")).SelectedItem.ToString();
+        //    //string grpname = ((DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlgroup")).SelectedItem.ToString();
+        //    //string attgrpname = ((DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlattgroup")).SelectedItem.ToString();
+        //    TextBox deptname = (TextBox)this.grvacc.Rows[e.NewEditIndex].FindControl("txtdescdept");
+        //    TextBox grpname = (TextBox)this.grvacc.Rows[e.NewEditIndex].FindControl("txtgdesc");
+        //    TextBox attgrpname = (TextBox)this.grvacc.Rows[e.NewEditIndex].FindControl("txtattgdesc");
+        //    ///-for department wise group (salary statement)
+        //    ddlteam.DataTextField = "acgdesc";
+        //    ddlteam.DataValueField = "acgcode";
+        //    ddlteam.DataSource = (DataTable)ViewState["tblgencode"];
+        //    ddlteam.DataBind();
+        //    //ddlteam.SelectedValue = agccode; //((Label)this.gvCodeBook.Rows[e.NewEditIndex].FindControl("lblgvProName")).Text.Trim();
+        //    ddlteam.SelectedItem.Text = deptname.Text;
+
+        //    // for Group Description (Salary Sheet)
+        //    ddlgroup.DataTextField = "gropdesc";
+        //    ddlgroup.DataValueField = "gropcode";
+        //    ddlgroup.DataSource = (DataTable)ViewState["tblgroupcode"];
+        //    ddlgroup.DataBind();
+        //    ddlgroup.SelectedItem.Text = grpname.Text;
+        //    //ddlgroup.SelectedValue = gropcode; //((Label)this.gvCodeBook.Rows[e.NewEditIndex].FindControl("lblgvProName")).Text.Trim();
+
+        //    // for Attadance Part 
+        //    ddlattgroup.DataTextField = "attgropdesc";
+        //    ddlattgroup.DataValueField = "attgropcode";
+        //    ddlattgroup.DataSource = (DataTable)ViewState["tblattgroupcode"];
+        //    ddlattgroup.DataBind();
+        //    ddlattgroup.SelectedItem.Text = attgrpname.Text;
+        //    //ddlattgroup.SelectedValue = attgropcode;
+
+        //}
+
+        //protected void grvacc_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        //{
+
+        //    ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+        //    DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+        //    if (!Convert.ToBoolean(dr1[0]["entry"]))
+        //    {
+        //        ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+        //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+        //        return;
+        //    }
+
+        //    string actcode = ((Label)grvacc.Rows[e.RowIndex].FindControl("lblgvactcode")).Text.Trim().Replace("-", "");
+        //    string acgcode = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlteam")).SelectedValue.ToString();
+        //    string gropcode = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlgroup")).SelectedValue.ToString();
+        //    string attgropcode = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlattgroup")).SelectedValue.ToString();
+        //    string acgdesc = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlteam")).SelectedItem.ToString();
+        //    string gropdesc = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlgroup")).SelectedItem.ToString();
+        //    string attgropdesc = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlattgroup")).SelectedItem.ToString();
+        //    DataTable tbl1 = (DataTable)Session["storedata"];
+        //    Hashtable hst = (Hashtable)Session["tblLogin"];
+        //    string comcod = hst["comcod"].ToString();
+        //    int Index = grvacc.PageSize * grvacc.PageIndex + e.RowIndex;
+        //    tbl1.Rows[Index]["acgcode"] = acgcode;
+        //    tbl1.Rows[Index]["acgdesc"] = acgdesc;
+        //    tbl1.Rows[Index]["gropdesc"] = gropdesc;
+        //    tbl1.Rows[Index]["attgropdesc"] = attgropdesc;
+        //    Session["storedata"] = tbl1;
+        //    this.grvacc.EditIndex = -1;
+        //    bool result = this.accData.UpdateTransInfo(comcod, "[dbo_hrm].[SP_REPORT_CODEBOOK]", "UPDATEDEPTCODE", actcode, acgcode, gropcode, attgropcode, "", "", "", "", "", "",
+        //        "", "", "", "", "");
+
+
+        //    if (result)
+        //    {
+        //        ((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully";
+        //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+        //        if (ConstantInfo.LogStatus == true)
+        //        {
+        //            string eventtype = "Accounts CodeBook";
+        //            string eventdesc = "Update CodeBook";
+        //            string eventdesc2 = actcode;
+        //            bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+        //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+        //        return;
+        //    }
+        //    this.grvacc_DataBind();
+        //}
+
+        //protected void grvacc_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        //{
+
+        //    ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+        //    DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+        //    if (!Convert.ToBoolean(dr1[0]["entry"]))
+        //    {
+        //        ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+        //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+        //        return;
+        //    }
+
+        //    string actcode = ((Label)grvacc.Rows[e.RowIndex].FindControl("lblgvactcode")).Text.Trim().Replace("-", "");
+        //    string acgcode = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlteam")).SelectedValue.ToString();
+        //    string gropcode = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlgroup")).SelectedValue.ToString();
+        //    string attgropcode = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlattgroup")).SelectedValue.ToString();
+        //    string acgdesc = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlteam")).SelectedItem.ToString();
+        //    string gropdesc = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlgroup")).SelectedItem.ToString();
+        //    string attgropdesc = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlattgroup")).SelectedItem.ToString();
+        //    DataTable tbl1 = (DataTable)Session["storedata"];
+        //    Hashtable hst = (Hashtable)Session["tblLogin"];
+        //    string comcod = hst["comcod"].ToString();
+        //    int Index = grvacc.PageSize * grvacc.PageIndex + e.RowIndex;
+        //    tbl1.Rows[Index]["acgcode"] = acgcode;
+        //    tbl1.Rows[Index]["acgdesc"] = acgdesc;
+        //    tbl1.Rows[Index]["gropdesc"] = gropdesc;
+        //    tbl1.Rows[Index]["attgropdesc"] = attgropdesc;
+        //    Session["storedata"] = tbl1;
+        //    this.grvacc.EditIndex = -1;
+        //    bool result = this.accData.UpdateTransInfo(comcod, "[dbo_hrm].[SP_REPORT_CODEBOOK]", "UPDATEDEPTCODE", actcode, acgcode, gropcode, attgropcode, "", "", "", "", "", "",
+        //        "", "", "", "", "");
+
+
+        //    if (result)
+        //    {
+        //        ((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully";
+        //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+        //        if (ConstantInfo.LogStatus == true)
+        //        {
+        //            string eventtype = "Accounts CodeBook";
+        //            string eventdesc = "Update CodeBook";
+        //            string eventdesc2 = actcode;
+        //            bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+        //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+        //        return;
+        //    }
+        //    this.grvacc_DataBind();
+        //}
+
+
+
         protected void grvacc_RowEditing(object sender, GridViewEditEventArgs e)
         {
 
@@ -100,45 +278,29 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             ViewState["gindex"] = e.NewEditIndex;
 
             int rowindex = (grvacc.PageSize) * (this.grvacc.PageIndex) + e.NewEditIndex;
-            string acgcode = ((DataTable)Session["storedata"]).Rows[rowindex]["acgcode"].ToString();
-            //string actcode = ((Label)grvacc.Rows[e.NewEditIndex].FindControl("lblgvactcode")).Text.Trim().Replace("-", "");
-            string agccode = ((DataTable)Session["storedata"]).Rows[rowindex]["acgcode"].ToString();
-            string gropcode = ((DataTable)Session["storedata"]).Rows[rowindex]["gropcode"].ToString();
-            string attgropcode = ((DataTable)Session["storedata"]).Rows[rowindex]["attgropcode"].ToString();
+
+          
             DropDownList ddlteam = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlteam");
             DropDownList ddlgroup = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlgroup");
-            DropDownList ddlattgroup = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlattgroup");
 
-            //string deptname = ((DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlteam")).SelectedItem.ToString();
-            //string grpname = ((DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlgroup")).SelectedItem.ToString();
-            //string attgrpname = ((DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlattgroup")).SelectedItem.ToString();
+
             TextBox deptname = (TextBox)this.grvacc.Rows[e.NewEditIndex].FindControl("txtdescdept");
             TextBox grpname = (TextBox)this.grvacc.Rows[e.NewEditIndex].FindControl("txtgdesc");
-            TextBox attgrpname = (TextBox)this.grvacc.Rows[e.NewEditIndex].FindControl("txtattgdesc");
-            ///-for department wise group (salary statement)
+  
             ddlteam.DataTextField = "acgdesc";
             ddlteam.DataValueField = "acgcode";
             ddlteam.DataSource = (DataTable)ViewState["tblgencode"];
             ddlteam.DataBind();
-            //ddlteam.SelectedValue = agccode; //((Label)this.gvCodeBook.Rows[e.NewEditIndex].FindControl("lblgvProName")).Text.Trim();
             ddlteam.SelectedItem.Text = deptname.Text;
 
-            // for Group Description (Salary Sheet)
             ddlgroup.DataTextField = "gropdesc";
             ddlgroup.DataValueField = "gropcode";
             ddlgroup.DataSource = (DataTable)ViewState["tblgroupcode"];
             ddlgroup.DataBind();
             ddlgroup.SelectedItem.Text = grpname.Text;
-            //ddlgroup.SelectedValue = gropcode; //((Label)this.gvCodeBook.Rows[e.NewEditIndex].FindControl("lblgvProName")).Text.Trim();
 
-            // for Attadance Part 
-            ddlattgroup.DataTextField = "attgropdesc";
-            ddlattgroup.DataValueField = "attgropcode";
-            ddlattgroup.DataSource = (DataTable)ViewState["tblattgroupcode"];
-            ddlattgroup.DataBind();
-            ddlattgroup.SelectedItem.Text = attgrpname.Text;
-            //ddlattgroup.SelectedValue = attgropcode;
-           
+
+
         }
 
         protected void grvacc_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -156,10 +318,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string actcode = ((Label)grvacc.Rows[e.RowIndex].FindControl("lblgvactcode")).Text.Trim().Replace("-", "");
             string acgcode = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlteam")).SelectedValue.ToString();
             string gropcode = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlgroup")).SelectedValue.ToString();
-            string attgropcode = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlattgroup")).SelectedValue.ToString();
+         
+
             string acgdesc = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlteam")).SelectedItem.ToString();
             string gropdesc = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlgroup")).SelectedItem.ToString();
-            string attgropdesc = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlattgroup")).SelectedItem.ToString();
+
             DataTable tbl1 = (DataTable)Session["storedata"];
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
@@ -167,10 +330,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             tbl1.Rows[Index]["acgcode"] = acgcode;
             tbl1.Rows[Index]["acgdesc"] = acgdesc;
             tbl1.Rows[Index]["gropdesc"] = gropdesc;
-            tbl1.Rows[Index]["attgropdesc"] = attgropdesc;
+
             Session["storedata"] = tbl1;
             this.grvacc.EditIndex = -1;
-            bool result = this.accData.UpdateTransInfo(comcod, "[dbo_hrm].[SP_REPORT_CODEBOOK]", "UPDATEDEPTCODE", actcode, acgcode, gropcode, attgropcode, "", "", "", "", "", "",
+            bool result = this.accData.UpdateTransInfo(comcod, "[dbo_hrm].[SP_REPORT_CODEBOOK]", "UPDATEDEPTCODE", actcode, acgcode, gropcode, "Payroll", "", "", "", "", "", "",
                 "", "", "", "", "");
 
 
@@ -197,29 +360,136 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
 
 
+        protected void grvaccAtt_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
+            this.grvaccAtt.EditIndex = e.NewEditIndex;
+            this.grvacc_DataBind();
+            ViewState["gindex"] = e.NewEditIndex;
+
+            int rowindex = (grvacc.PageSize) * (this.grvaccAtt.PageIndex) + e.NewEditIndex;
+
+            DropDownList ddlattgroup = (DropDownList)this.grvaccAtt.Rows[e.NewEditIndex].FindControl("ddlattgroup");
+
+            TextBox attgrpname = (TextBox)this.grvaccAtt.Rows[e.NewEditIndex].FindControl("txtattgdesc");
+
+
+            // for Attadance Part 
+            ddlattgroup.DataTextField = "attgropdesc";
+            ddlattgroup.DataValueField = "attgropcode";
+            ddlattgroup.DataSource = (DataTable)ViewState["tblattgroupcode"];
+            ddlattgroup.DataBind();
+            ddlattgroup.SelectedItem.Text = attgrpname.Text;
+            //ddlattgroup.SelectedValue = attgropcode;
+
+
+
+
+
+
+
+            //this.grvacc.EditIndex = e.NewEditIndex;
+            //this.grvacc_DataBind();
+            //ViewState["gindex"] = e.NewEditIndex;
+
+            //int rowindex = (grvacc.PageSize) * (this.grvacc.PageIndex) + e.NewEditIndex;
+
+
+            //DropDownList ddlteam = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlteam");
+            //DropDownList ddlgroup = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlgroup");
+
+
+            //TextBox deptname = (TextBox)this.grvacc.Rows[e.NewEditIndex].FindControl("txtdescdept");
+            //TextBox grpname = (TextBox)this.grvacc.Rows[e.NewEditIndex].FindControl("txtgdesc");
+
+            //ddlteam.DataTextField = "acgdesc";
+            //ddlteam.DataValueField = "acgcode";
+            //ddlteam.DataSource = (DataTable)ViewState["tblgencode"];
+            //ddlteam.DataBind();
+            //ddlteam.SelectedItem.Text = deptname.Text;
+
+            //ddlgroup.DataTextField = "gropdesc";
+            //ddlgroup.DataValueField = "gropcode";
+            //ddlgroup.DataSource = (DataTable)ViewState["tblgroupcode"];
+            //ddlgroup.DataBind();
+            //ddlgroup.SelectedItem.Text = grpname.Text;
+        }
+
+        protected void grvaccAtt_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["entry"]))
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+            }
+
+            string actcode = ((Label)grvaccAtt.Rows[e.RowIndex].FindControl("lblgvactcode")).Text.Trim().Replace("-", "");
+
+           
+            string attgropcode = ((DropDownList)this.grvaccAtt.Rows[e.RowIndex].FindControl("ddlattgroup")).SelectedValue.ToString();
+
+          
+            string attgropdesc = ((DropDownList)this.grvaccAtt.Rows[e.RowIndex].FindControl("ddlattgroup")).SelectedItem.ToString();
+            DataTable tbl1 = (DataTable)Session["storedata"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            int Index = grvaccAtt.PageSize * grvaccAtt.PageIndex + e.RowIndex;
+
+            tbl1.Rows[Index]["attgropdesc"] = attgropdesc;
+            Session["storedata"] = tbl1;
+            this.grvaccAtt.EditIndex = -1;
+            bool result = this.accData.UpdateTransInfo(comcod, "[dbo_hrm].[SP_REPORT_CODEBOOK]", "UPDATEDEPTCODE", actcode, "", attgropcode, "HR", "", "", "", "", "",
+                "", "", "", "", "");
+
+
+            if (result)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                if (ConstantInfo.LogStatus == true)
+                {
+                    string eventtype = "Accounts CodeBook";
+                    string eventdesc = "Update CodeBook";
+                    string eventdesc2 = actcode;
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                }
+            }
+            else
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+            }
+            this.grvacc_DataBind();
+        }
+
+
+
+
         protected void grvacc_DataBind()
         {
-            this.grvacc.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-            this.grvacc.DataSource = (DataTable)Session["storedata"]; ;
-            this.grvacc.DataBind();
+            string type = Request.QueryString["Type"].ToString();
+            if (type == "Payroll")
+            {
+                this.grvacc.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                this.grvacc.DataSource = (DataTable)Session["storedata"]; ;
+                this.grvacc.DataBind();
+
+            }
+            else if (type == "HR")
+            {
+                this.grvaccAtt.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                this.grvaccAtt.DataSource = (DataTable)Session["storedata"]; ;
+                this.grvaccAtt.DataBind();
+
+            }
+   
            
 
-            //int rowindex = grvacc.CurrentCell.RowIndex;
-
-            //int rowindex = (int)ViewState["gindex"];
-
-            //    //int rowindex = (grvacc.PageSize) * (this.grvacc.PageIndex) + i;
-            //string actcode1 = ((Label)grvacc.Rows[rowindex].FindControl("lbgrcode")).Text.Trim().Replace("-", "");
-            //string actcode2 = ((TextBox)grvacc.Rows[rowindex].FindControl("txtgrcode")).Text.Trim().Replace("-", "");
-            //string actcode = actcode1 + actcode2;
-
-
-            //if (ASTUtility.Left(actcode, 4) == "5723")
-            //{
-            //    this.grvacc.Columns[10].Visible = true;
-
-
-            //}
 
 
         }
@@ -236,9 +506,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
         }
 
-
-
-
         private void ShowInformation()
         {
 
@@ -248,13 +515,47 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             DataSet ds1 = this.accData.GetTransInfo(comcod, "[dbo_hrm].[SP_REPORT_CODEBOOK]", "GETDEPTCODEINFO", srchoption, "", "", "", "", "", "", "", "");
             if (ds1.Tables[0].Rows.Count == 0)
             {
-                this.grvacc.DataSource = null;
-                this.grvacc.DataBind();
-                return;
+
+                string type = Request.QueryString["Type"].ToString();
+                if (type == "Payroll")
+                {
+                    this.grvacc.DataSource = null;
+                    this.grvacc.DataBind();
+                    return;
+
+                }
+                else if (type == "HR")
+                {
+                    this.grvaccAtt.DataSource = null;
+                    this.grvaccAtt.DataBind();
+                    return;
+
+                }
+
             }
             Session["storedata"] = ds1.Tables[0];
             this.grvacc_DataBind();
         }
+
+
+
+
+        //private void ShowInformation()
+        //{
+
+        //    Hashtable hst = (Hashtable)Session["tblLogin"];
+        //    string comcod = hst["comcod"].ToString();
+        //    string srchoption = "%";
+        //    DataSet ds1 = this.accData.GetTransInfo(comcod, "[dbo_hrm].[SP_REPORT_CODEBOOK]", "GETDEPTCODEINFO", srchoption, "", "", "", "", "", "", "", "");
+        //    if (ds1.Tables[0].Rows.Count == 0)
+        //    {
+        //        this.grvacc.DataSource = null;
+        //        this.grvacc.DataBind();
+        //        return;
+        //    }
+        //    Session["storedata"] = ds1.Tables[0];
+        //    this.grvacc_DataBind();
+        //}
 
         protected void ibtnSrch_Click(object sender, EventArgs e)
         {
