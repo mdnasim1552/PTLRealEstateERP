@@ -213,20 +213,20 @@ namespace RealERPWEB.F_22_Sal
 
         private void lbtnPrint_Click(object sender, EventArgs e)
         {
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //string comcod = GetComeCode();
-            //string comnam = hst["comnam"].ToString();
-            //string compname = hst["compname"].ToString();
-            //string username = hst["username"].ToString();
-            //string comadd = hst["comadd1"].ToString();
-            //string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            //string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetComeCode();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
             //string type = this.ddlgrp.SelectedValue.ToString();
             //string projectName = this.ddlPrjName.SelectedItem.Text.ToString();
             //string groupname = "";
-            //DataTable dt = (DataTable)Session["tblgrpsoldunsold"];
-            //LocalReport Rpt1 = new LocalReport();
-            //var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.SoldUnsoftInfGroupWise>();
+            DataTable dt = (DataTable)Session["tblsoldunsoldavg"];
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.SoldUnsoltInfavg>();
             //switch (type)
             //{
             //    case "510100100000":
@@ -245,20 +245,20 @@ namespace RealERPWEB.F_22_Sal
 
             //        break;
             //}
-            //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSoldUnsoftInfGroupWise", lst, null, null);
-            //Rpt1.EnableExternalImages = true;
-            //Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-            //Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            //Rpt1.SetParameters(new ReportParameter("printdate", printdate));
-            //Rpt1.SetParameters(new ReportParameter("projectName", projectName));
-            //Rpt1.SetParameters(new ReportParameter("RptTitle", "Floor Wise " + this.ddlgrp.SelectedItem.Text.ToString() + " Status"));
-            //Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
-            //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-            ////Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSoldUnsoldUnitAvgPrice", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+           // Rpt1.SetParameters(new ReportParameter("projectName", projectName));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", ""+ this.rbtnStatus.SelectedValue+ " Unit (Average Price)"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            //Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
 
-            //Session["Report1"] = Rpt1;
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-            //            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
 
