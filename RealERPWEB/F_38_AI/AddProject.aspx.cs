@@ -347,9 +347,10 @@ namespace RealERPWEB.F_38_AI
             this.tblpactcode.Text = project;
             this.txtstartdate.Text = DateTime.Now.ToString("dd-MMM-yyyy");
             this.textdelevery.Text = DateTime.Now.ToString("dd-MMM-yyyy");
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
             this.GetBatchAssingList(project);
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
+           
         }
 
         protected void GridcusDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)

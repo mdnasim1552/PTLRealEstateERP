@@ -54,10 +54,7 @@
         function OpenAddBatch() {
             $('#CreateModalBatch').modal('toggle');
         }
-        function showAddBatch() {
-            $('#CreateModalBatch').modal('show');
-           this.OpenAddBatch();
-        }
+       
 
 
     </script>
@@ -380,7 +377,7 @@
                                                 </asp:TemplateField>
                                                    <asp:TemplateField HeaderText="Dataset Quantity">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lbldeliverydate" runat="server" Height="16px"
+                                                        <asp:Label ID="lbldatasetqty" runat="server" Height="16px"
                                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "datasetqty")).ToString("dd-MMM-yyyy") %>' Width="150px"
                                                            ></asp:Label>
                                                     </ItemTemplate>
