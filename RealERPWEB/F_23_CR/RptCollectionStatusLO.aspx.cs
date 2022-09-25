@@ -33,10 +33,9 @@ namespace RealERPWEB.F_23_CR
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Collection Status";
 
-                DateTime date = System.DateTime.Today;
-                DateTime frmdate = Convert.ToDateTime("01" + date.ToString("dd-MMM-yyyy").Substring(2));
-                this.txtfrmdate.Text = frmdate.ToString("dd-MMM-yyyy");
-                this.txttodate.Text = frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+               // DateTime date = System.DateTime.Today;
+               // DateTime frmdate = Convert.ToDateTime("01" + date.ToString("dd-MMM-yyyy").Substring(2));
+                this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");                
                 this.ProjectName();
                 this.Benefname();
 
@@ -92,13 +91,12 @@ namespace RealERPWEB.F_23_CR
         protected void lnkbtnOk_Click(object sender, EventArgs e)
         {
             Session.Remove("tbllocollstatus");
-            string comcod = this.GetComeCode();
-            string frmdate = this.txtfrmdate.Text.Trim();
+            string comcod = this.GetComeCode();        
             string todate = this.txttodate.Text.Trim();        
             string prjcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18%" : this.ddlPrjName.SelectedValue.ToString() + "%";
             string benefname = this.ddlbenefname.SelectedValue.ToString() == "0000000" ? "%" : this.ddlbenefname.SelectedValue.ToString() + "%";
            // string LomonColl = this.GetLoMonColl();
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_LANDOWNERMGT", "GETCOLLLANDOWNERBENESTATUS", prjcode, frmdate, todate, benefname, "", "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_LANDOWNERMGT", "GETCOLLLANDOWNERBENESTATUS", prjcode, "", todate, benefname, "", "", "", "", "");
             if (ds1 == null)
                 return;
             Session["tbllocollstatus"] = ds1.Tables[0];
@@ -140,7 +138,7 @@ namespace RealERPWEB.F_23_CR
             string username = hst["username"].ToString();
             string comadd = hst["comadd1"].ToString();
             string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
-            string fromdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
+            //string fromdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             DataTable dt = (DataTable)Session["tbllocollstatus"]; 
@@ -157,7 +155,7 @@ namespace RealERPWEB.F_23_CR
             Rpt1.SetParameters(new ReportParameter("RptTitle", RptTittle));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-            Rpt1.SetParameters(new ReportParameter("date", "( From " + fromdate + " To " + todate + ") "));
+            Rpt1.SetParameters(new ReportParameter("date", "Date : " + todate ));
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
