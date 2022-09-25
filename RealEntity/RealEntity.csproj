@@ -93,6 +93,7 @@
     <Compile Include="C_22_Sal\SalesInvoice_BL.cs" />
     <Compile Include="C_22_Sal\Sales_BO.cs" />
     <Compile Include="C_23_CR\EClassCutomer.cs" />
+    <Compile Include="C_23_CR\EClassLand.cs" />
     <Compile Include="C_23_CR\EClassSalesStatus.cs" />
     <Compile Include="C_23_CR\EClassSales_03.cs" />
     <Compile Include="C_24_CC\EClassAddwork.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="C_30_Facility\EClass_Facility_Mgt.cs" />
     <Compile Include="C_32_Mis\EClassAcc_03.cs" />
     <Compile Include="C_33_Doc\EClassDoc.cs" />
+    <Compile Include="C_34_Mgt\EClassEnventory.cs" />
     <Compile Include="C_34_Mgt\EClassSalPurAcc.cs" />
     <Compile Include="C_34_Mgt\EClassUserLog.cs" />
     <Compile Include="C_34_Mgt\EntityClassConversion.cs" />
@@ -212,10 +214,12 @@
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+RptSupAdvanceDetails.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+OppPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptProspectWorking.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SoldUnsoftInfGroupWise.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+CustomerMoneyrecipt.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassClientLedger.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_24_CC.RptClientModification.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_32_Mis.EClassAcc_03+RptProjectAnalysis.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_34_Mgt.EClassEnventory+RequisationAdjust.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL+EmpMnthAttendence.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL+EmpMnthAttn.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+BonusSheet.datasource" />

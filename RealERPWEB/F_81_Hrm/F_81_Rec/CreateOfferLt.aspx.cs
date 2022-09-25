@@ -331,7 +331,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             string lettype = "Offer Letter";
             string txtsin = "Yours sincerely,";
             string txtsngn = "Signature: 	____________________";
-            string txtdesig = "HR Executive";
+            string txtdesig = "";
             //string comp = "Acme Technologies Ltd";
             string recon =
                 "I ______________________________ confirm that I accept the employment with the terms and conditions specified above.";
@@ -359,12 +359,12 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     //mobilep = list4.FindAll(l => l.hrgcod == "04008")[0].percnt;
                     //internet = list4.FindAll(l => l.hrgcod == "04009")[0].hrgdesc;
                     //internetp = list4.FindAll(l => l.hrgcod == "04009")[0].percnt;
-
+                    txtdesig = "Sr Executive (HR)";
                     Rpt1 = RDLCAccountSetup.GetLocalReport("R_81_Hrm.R_81_Rec.RptCreateOffLtAcme", list1, list2, list3);
                     break;
                 default:
                     Rpt1 = RDLCAccountSetup.GetLocalReport("R_81_Hrm.R_81_Rec.RptCreateOffLt", list1, list2, list3);
-
+                    txtdesig = "HR Executive";
                     break;
 
             }

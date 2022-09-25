@@ -77,7 +77,7 @@
 
 
 
-                        <asp:GridView ID="grvacc" runat="server" CssClass="table-condensed table-hover table-bordered grvContentarea" AutoGenerateColumns="False" OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
+                       <%-- <asp:GridView ID="grvacc" runat="server" CssClass="table-condensed table-hover table-bordered grvContentarea" AutoGenerateColumns="False" OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
                             OnRowUpdating="grvacc_RowUpdating" PageSize="15" OnRowDataBound="grvacc_RowDataBound"
                             OnPageIndexChanging="grvacc_PageIndexChanging" ShowFooter="True" BorderStyle="None" Width="724px" >
                             <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top" 
@@ -194,8 +194,196 @@
                             <HeaderStyle CssClass="grvHeader" />
                             <FooterStyle CssClass="grvFooter" />
                             <RowStyle CssClass="grvRows" />
-                        </asp:GridView>
+                        </asp:GridView>--%>
 
+                        <asp:Panel runat="server" ID="pnlPayroll">
+                         <asp:GridView ID="grvacc" runat="server" CssClass="table-condensed table-hover table-bordered grvContentarea" AutoGenerateColumns="False" OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
+                            OnRowUpdating="grvacc_RowUpdating" PageSize="15" OnRowDataBound="grvacc_RowDataBound"
+                            OnPageIndexChanging="grvacc_PageIndexChanging" ShowFooter="True" BorderStyle="None" Width="724px" >
+                            <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top" 
+                                Mode="NumericFirstLast" />
+
+                            <Columns>
+                                <asp:TemplateField HeaderText="Sl.No." HeaderStyle-Width="30px">
+                                    <ItemTemplate>
+                                        <asp:Label ID="serialnoid" runat="server" Style="text-align: right"
+                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle />
+                                </asp:TemplateField>
+                                <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText=""
+                                    SelectText="" ShowEditButton="True">
+                                    <HeaderStyle />
+                                    <ItemStyle ForeColor="#0000C0" />
+                                </asp:CommandField>
+                                <asp:TemplateField HeaderText=" Account Code" HeaderStyle-Width="100px">
+
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvactcode" runat="server" Style="text-align: left;"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actcode")) %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Left" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Description of Accounts">
+
+                                    <HeaderTemplate>
+                                        <table class="table-responsive">
+                                            <tr>
+                                                <td class="style63">
+                                                    <asp:Label ID="Label8" runat="server" Text="Head of Accounts"></asp:Label>
+                                                </td>
+                                                <td>&nbsp;</td>
+                                                <td class="style61">&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="Label3" runat="server" Style="font-size: 12px"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Left" />
+                                    <HeaderStyle />
+                                </asp:TemplateField>
+
+
+                                <asp:TemplateField HeaderText=" Description">
+                                    <EditItemTemplate>
+                                         <asp:TextBox ID="txtdescdept" runat="server" MaxLength="150" Visible="false"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "acgdesc")) %>'
+                                                Width="80px"></asp:TextBox>
+                                        <asp:DropDownList ID="ddlteam" runat="server" CssClass="chzn-select form-control  inputTxt" TabIndex="6">
+                                        </asp:DropDownList>
+                                       
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvcatdesc" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "acgdesc")) %>'
+                                            Width="320px"></asp:Label>
+
+                                            <asp:Label ID="lblgvcatcode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "acgcode")) %>' Visible="false"></asp:Label>
+                                    </ItemTemplate>
+
+
+                                    <HeaderStyle Width="150px" />
+                                </asp:TemplateField>
+
+
+
+                                <asp:TemplateField HeaderText="Group Description">
+                                    <EditItemTemplate>
+                                           <asp:TextBox ID="txtgdesc" runat="server" MaxLength="150" Visible="false"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gropdesc")) %>'
+                                                Width="80px"></asp:TextBox>
+                                       
+                                        <asp:DropDownList ID="ddlgroup" runat="server" CssClass="chzn-select form-control  inputTxt" TabIndex="6">
+                                        </asp:DropDownList>
+                                        
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvgpcatcode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gropcode")) %>' Visible="false"></asp:Label>
+                                        <asp:Label ID="lblgvgpcatdesc" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gropdesc")) %>'
+                                            Width="320px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle Width="150px" />
+                                </asp:TemplateField>
+
+
+     
+
+                            </Columns>
+
+                            <PagerStyle CssClass="gvPagination" />
+                            <HeaderStyle CssClass="grvHeader" />
+                            <FooterStyle CssClass="grvFooter" />
+                            <RowStyle CssClass="grvRows" />
+                        </asp:GridView>
+            
+                        </asp:Panel>
+
+
+                        <asp:Panel runat="server" ID="pnlAtt">
+                            - <asp:GridView ID="grvaccAtt" runat="server" CssClass="table-condensed table-hover table-bordered grvContentarea" AutoGenerateColumns="False" OnRowCancelingEdit="grvaccAtt_RowCancelingEdit" OnRowEditing="grvaccAtt_RowEditing"
+                            OnRowUpdating="grvaccAtt_RowUpdating" PageSize="15" 
+                            ShowFooter="True" BorderStyle="None" Width="724px" >
+                            <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top" 
+                                Mode="NumericFirstLast" />
+
+                            <Columns>
+                                <asp:TemplateField HeaderText="Sl.No." HeaderStyle-Width="30px">
+                                    <ItemTemplate>
+                                        <asp:Label ID="serialnoid" runat="server" Style="text-align: right"
+                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle />
+                                </asp:TemplateField>
+                                <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText=""
+                                    SelectText="" ShowEditButton="True">
+                                    <HeaderStyle />
+                                    <ItemStyle ForeColor="#0000C0" />
+                                </asp:CommandField>
+                                <asp:TemplateField HeaderText=" Account Code" HeaderStyle-Width="100px">
+
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvactcode" runat="server" Style="text-align: left;"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actcode")) %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Left" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Description of Accounts">
+
+                                    <HeaderTemplate>
+                                        <table class="table-responsive">
+                                            <tr>
+                                                <td class="style63">
+                                                    <asp:Label ID="Label8" runat="server" Text="Head of Accounts"></asp:Label>
+                                                </td>
+                                                <td>&nbsp;</td>
+                                                <td class="style61">&nbsp;</td>
+                                            </tr>
+                                        </table>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="Label3" runat="server" Style="font-size: 12px"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Left" />
+                                    <HeaderStyle />
+                                </asp:TemplateField>
+
+
+    
+
+
+
+                                <asp:TemplateField HeaderText="Attandance Description">
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="txtattgdesc" runat="server" MaxLength="150" Visible="false"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attgropdesc")) %>'
+                                                Width="80px"></asp:TextBox>
+                                        <asp:DropDownList ID="ddlattgroup" runat="server" CssClass="chzn-select form-control  inputTxt" TabIndex="6">
+                                        </asp:DropDownList>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvgcatcode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attgropcode")) %>' Visible="false"></asp:Label>
+
+                                        <asp:Label ID="lblgvgcatdesc" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "attgropdesc")) %>'
+                                            Width="320px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle Width="150px" />
+                                </asp:TemplateField>
+
+                            </Columns>
+
+                            <PagerStyle CssClass="gvPagination" />
+                            <HeaderStyle CssClass="grvHeader" />
+                            <FooterStyle CssClass="grvFooter" />
+                            <RowStyle CssClass="grvRows" />
+                        </asp:GridView>
+                        </asp:Panel>
 
                     </div>
                 </div>

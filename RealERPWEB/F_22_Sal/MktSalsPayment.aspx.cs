@@ -34,10 +34,10 @@ namespace RealERPWEB.F_22_Sal
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 string TypeDesc = this.Request.QueryString["Type"].ToString().Trim();
-                
-                
-                ((Label)this.Master.FindControl("lblTitle")).Text = (TypeDesc == "Sales" ? "SALES WITH PAYMENT " : (TypeDesc == "Cust" ? "SALES WITH PAYMENT " : 
-                    (TypeDesc == "Loan" ? "CUSTOMER LOAN " : (TypeDesc == "Registration" ? " Registration  " : (TypeDesc=="SalesLO"?"": "SALES(LAND OWNER) WITH PAYMENT"))))) + " INFORMATIOIN ";
+
+
+                ((Label)this.Master.FindControl("lblTitle")).Text = (TypeDesc == "Sales" ? "SALES WITH PAYMENT " : (TypeDesc == "Cust" ? "SALES WITH PAYMENT " :
+                    (TypeDesc == "Loan" ? "CUSTOMER LOAN " : (TypeDesc == "Registration" ? " Registration  " : (TypeDesc == "SalesLO" ? "" : "SALES(LAND OWNER) WITH PAYMENT"))))) + " INFORMATIOIN ";
 
                 Session.Remove("Unit");
                 this.chkVisible.Checked = false;
@@ -224,7 +224,7 @@ namespace RealERPWEB.F_22_Sal
                 //this.lblProjectdesc.Text = this.ddlProjectName.SelectedItem.Text;
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string ddldesc = hst["ddldesc"].ToString();
-                this.lblProjectmDesc.Text = (ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim().ToString() : 
+                this.lblProjectmDesc.Text = (ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim().ToString() :
                     this.ddlProjectName.SelectedItem.Text.Substring(13));
 
                 // this.lblProjectmDesc.Text = this.ddlProjectName.SelectedItem.Text.Substring(13);
@@ -326,7 +326,7 @@ namespace RealERPWEB.F_22_Sal
 
             DataTable basicinfo = (DataTable)ViewState["tblData"];
             string PactCode = this.ddlProjectName.SelectedValue.ToString();
-            string UsirCode = basicinfo.Rows[0]["usircode"].ToString(); /*this.lblCode.Text;*/
+            string UsirCode = this.lblCode.Text.ToString(); ;
             string prjName = (ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim().ToString() : this.ddlProjectName.SelectedItem.Text.Substring(13));
             string aprtno = basicinfo.Rows[0]["udesc"].ToString();
             string floorno = "";
@@ -342,21 +342,21 @@ namespace RealERPWEB.F_22_Sal
             string appatn = basicinfo.Rows[0]["custname"].ToString();
             //direct cost
             string txtdisamt = this.ldiscountt.Text.ToString();
-           // double disamt = Convert.ToDouble(txtdisamt);
+            // double disamt = Convert.ToDouble(txtdisamt);
             string ldiscountpP = this.ldiscountp.Text.ToString();
             string txtunitamt = tamt.ToString("#,##0.00;(#,##0.00); ");
 
 
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "COMBINEDTABLEFORSALES", PactCode, UsirCode, "", "", "", "", "", "", "");
 
-            if (ds1 == null || ds1.Tables[0].Rows.Count==0)
+            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
                 return;
 
             string cname = ds1.Tables[1].Rows[0]["cname"].ToString();
             string cphone = ds1.Tables[1].Rows[0]["cphone"].ToString();
             string caddress = ds1.Tables[1].Rows[0]["caddress"].ToString();
             string paddress = ds1.Tables[1].Rows[0]["paddress"].ToString();
-            string salesteam ="" /*this.ddlSalesTeam.SelectedItem.Text.ToString()*/;
+            string salesteam = "" /*this.ddlSalesTeam.SelectedItem.Text.ToString()*/;
             string bkdate = Convert.ToDateTime(this.txtBookDate.Text).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(this.txtBookDate.Text).ToString("dd-MMM-yyyy");
             string agdate = Convert.ToDateTime(this.txtAggrementdate.Text).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(this.txtAggrementdate.Text).ToString("dd-MMM-yyyy");
             string hodate = Convert.ToDateTime(this.txthandoverdate.Text).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(this.txthandoverdate.Text).ToString("dd-MMM-yyyy");
@@ -420,7 +420,7 @@ namespace RealERPWEB.F_22_Sal
                     rpt.SetParameters(new ReportParameter("salesteam", salesteam));
                     rpt.SetParameters(new ReportParameter("bkdate", bkdate));
                     rpt.SetParameters(new ReportParameter("agdate", agdate));
-                    rpt.SetParameters(new ReportParameter("hodate", hodate));                  
+                    rpt.SetParameters(new ReportParameter("hodate", hodate));
 
                     break;
 
@@ -440,7 +440,7 @@ namespace RealERPWEB.F_22_Sal
             rpt.SetParameters(new ReportParameter("aprtsize", aprtsize));
             rpt.SetParameters(new ReportParameter("appatn", appatn));
             rpt.SetParameters(new ReportParameter("lbldisamt", lbldisamt));
-           // rpt.SetParameters(new ReportParameter("txtdisamt", txtdisamt));
+            // rpt.SetParameters(new ReportParameter("txtdisamt", txtdisamt));
             rpt.SetParameters(new ReportParameter("lblunitamt", ""));
             rpt.SetParameters(new ReportParameter("txtunitamt", txtunitamt));
             rpt.SetParameters(new ReportParameter("txtgntamt", actuamt.ToString("#,##0.00;(#,##0.00); ")));
@@ -1146,7 +1146,7 @@ namespace RealERPWEB.F_22_Sal
 
                     //if (Amount != 0)
                     //{
-                    MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEPAYMENTINF", PactCode, Usircode, Gcode, schDate, Amount.ToString(), rmrks, Gdesc, percent.ToString(), jobcode, jobdesc,"", PostedByid, Posteddat, Posttrmid, PostSession);
+                    MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEPAYMENTINF", PactCode, Usircode, Gcode, schDate, Amount.ToString(), rmrks, Gdesc, percent.ToString(), jobcode, jobdesc, "", PostedByid, Posteddat, Posttrmid, PostSession);
                     //}
 
                 }
@@ -1425,6 +1425,20 @@ namespace RealERPWEB.F_22_Sal
         {
             if (this.chkVisible.Checked == true)
             {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openViewModal();", true);
+                
+            }
+            else
+            {
+                this.Panel3.Visible = false;
+            }
+        }
+
+        protected void lnkNewSchdule_Click(object sender, EventArgs e)
+        {
+            if (this.chkVisible.Checked == true)
+            {
+               
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string PactCode = this.ddlProjectName.SelectedValue.ToString();
@@ -1442,12 +1456,13 @@ namespace RealERPWEB.F_22_Sal
                 DataTable dt1 = (DataTable)Session["tpripay"];
                 Session["tblPay"] = dt1;
                 this.Panel3.Visible = true;
-
             }
             else
             {
                 this.Panel3.Visible = false;
             }
+
+            
         }
 
 
@@ -1638,7 +1653,7 @@ namespace RealERPWEB.F_22_Sal
         }
         protected void gvSpayment_RowEditing(object sender, GridViewEditEventArgs e)
         {
-           
+
             var indx = e.NewEditIndex;
             string usircode = ((Label)this.gvSpayment.Rows[e.NewEditIndex].FindControl("lblgvItmCod")).Text.Trim();
 

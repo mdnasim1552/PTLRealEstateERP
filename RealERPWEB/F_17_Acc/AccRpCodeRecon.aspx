@@ -135,20 +135,36 @@
                                         </asp:DropDownList>
 
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-2">
                                       <asp:Label ID="lblsegment" runat="server" CssClass=" smLbl_to">Slap </asp:Label>
                                         <asp:DropDownList ID="ddlRange" runat="server" AutoPostBack="True" CssClass="ddlPage" Width="120px">
-                                        <asp:ListItem Value="rang1" Selected="True">Slab = 1-5000</asp:ListItem>
+                                        <asp:ListItem Value="rang1">Slab = 1-5000</asp:ListItem>
                                         <asp:ListItem Value="rang2">Slab = 5001-50000</asp:ListItem>
                                         <asp:ListItem Value="rang3" >Slab = 50001-100000</asp:ListItem>
-                                        <asp:ListItem Value="rang4">Slab = 100001-Above</asp:ListItem>                                       
-                                        </asp:DropDownList>  
-                                        <asp:CheckBox ID="AssenCheque" runat="server" CssClass="chkBoxControl margin5px" Text="Assending (Issue Number)" />
+                                        <asp:ListItem Value="rang4">Slab = 100001-Above</asp:ListItem>
+                                        <asp:ListItem Value="rang5" Selected="True">Slab = ALL </asp:ListItem>                                       
+                                            
+                                        </asp:DropDownList> 
+                                        
+                                        
+
+                                         
+
                                     </div>
 
-                                    <%--<div class="col-md-2">
-                                        <asp:CheckBox ID="AssenCheque" runat="server" CssClass="chkBoxControl margin5px" Text="Assending (Issue Number)" />
-                                    </div>--%>
+                                    <div class="col-md-4">
+                             <asp:RadioButtonList ID="rbtnordering" runat="server" CssClass="rbtnList1"
+                                            RepeatColumns="6"
+                                            RepeatDirection="Horizontal" Style="text-align: left">
+                                            <asp:ListItem Value="Issue">Issue No</asp:ListItem>
+                                            <asp:ListItem Value="Hourneddate">Hourned Date</asp:ListItem>
+                                            <asp:ListItem Selected="True" Value="rpname">RP group</asp:ListItem>                                          
+                                        </asp:RadioButtonList>
+
+
+                                    </div>
+                                        <%--<asp:CheckBox ID="AssenCheque" runat="server" CssClass="chkBoxControl margin5px" Text="Assending (Issue Number)" />--%>
+
 
                                 </div>
                             </div>

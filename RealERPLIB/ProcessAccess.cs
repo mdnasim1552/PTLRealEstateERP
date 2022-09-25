@@ -1581,6 +1581,73 @@ namespace RealERPLIB
                 return null;
             }
         }
+
+        public DataSet InsertTicketUser(string comcod, string username, string UserEmail, string RoleId, string MAC, string FullName)
+        {
+            try
+            {
+                string connectionString = @"Server=123.200.23.58\MSSQL2K14;Database=DB_PINBOARD;uid=sa;pwd=@*asit1qaz`123#";
+
+                try
+                {
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        SqlCommand command = new SqlCommand();
+                        command.CommandText = "SP_TASK_MANAGMENT";
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.Add(new SqlParameter("@Comp1", comcod));
+                        command.Parameters.Add(new SqlParameter("@CallType", "INSERTDATA"));
+                        command.Parameters.Add(new SqlParameter("@Desc1", username));
+                        command.Parameters.Add(new SqlParameter("@Desc2", UserEmail));
+                        command.Parameters.Add(new SqlParameter("@Desc3", "321321"));
+                        command.Parameters.Add(new SqlParameter("@Desc4", RoleId));
+                        command.Parameters.Add(new SqlParameter("@Desc5", MAC));
+                        command.Parameters.Add(new SqlParameter("@Desc6", FullName));
+                        command.Parameters.Add(new SqlParameter("@Desc7", ""));
+                        command.Parameters.Add(new SqlParameter("@Desc8", ""));
+                        command.Parameters.Add(new SqlParameter("@Desc9", ""));
+                       
+                        command.Connection = connection;
+                        try
+                        {
+                            DataSet result = _dataAccess.GetDataSetTicket(command);
+                            if (result == null)  //_result==false
+                            {
+                                this.SetError(_dataAccess.ErrorObject);
+                            }
+                            return result;
+                        }
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
+                        finally
+                        {
+                            connection.Close();
+                            connection.Dispose();
+                        }
+
+                    }
+
+
+
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 
 }

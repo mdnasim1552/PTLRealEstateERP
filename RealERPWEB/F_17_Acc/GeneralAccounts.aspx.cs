@@ -1227,6 +1227,8 @@ namespace RealERPWEB.F_17_Acc
 
                // double trnoutstbal = Convert.ToDouble(ASTUtility.ExprToValue("0" + lbltrnoutstbal.ToString()));
 
+                double lblBalance = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.lblBalance.Text.ToString())); 
+
                 string TrnRemarks = this.txtremarks.Text.Trim();
                 DataTable tblt01 = (DataTable)Session["tblt01"];
                 DataTable tblt02 = (DataTable)Session["tblt02"];
@@ -1258,6 +1260,8 @@ namespace RealERPWEB.F_17_Acc
                     string billno1 = ((TextBox)this.dgv1.Rows[i].FindControl("lblgvBillno")).Text;
                     string dgsectcode = ((Label)this.dgv1.Rows[i].FindControl("lblgvcostcenter")).Text;
 
+                    ((HiddenField)this.dgv1.Rows[i].FindControl("hntrndram")).Value = lblBalance.ToString();
+      
 
 
 

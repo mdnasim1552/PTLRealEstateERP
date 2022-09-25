@@ -204,13 +204,13 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.DropDownList ddlRange;
 
         /// <summary>
-        /// AssenCheque control.
+        /// rbtnordering control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox AssenCheque;
+        protected global::System.Web.UI.WebControls.RadioButtonList rbtnordering;
 
         /// <summary>
         /// gv1 control.

@@ -120,9 +120,7 @@
     <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
       <HintPath>..\..\..\Doc\Lib\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Build.Framework">
-      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.Build.Framework.dll</HintPath>
-    </Reference>
+    <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Backup\PROJECT\Project Reference\Real Estate Bin 211213\bin\Microsoft.Build.Tasks.Core.dll</HintPath>
@@ -144,6 +142,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Doc\Lib\bin\Microsoft.NET.StringTools.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
@@ -152,8 +157,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ScriptManager.MSAjax">
-      <HintPath>..\..\..\..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+    <Reference Include="Microsoft.ScriptManager.MSAjax, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -182,23 +188,8 @@
     <Reference Include="Microsoft.VisualStudio.OLE.Interop">
       <HintPath>..\..\..\Backup\PROJECT\Project Reference\Real Estate Bin 211213\bin\Microsoft.VisualStudio.OLE.Interop.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.Shell.Immutable.10.0">
-      <HintPath>..\..\..\Backup\PROJECT\Project Reference\Real Estate Bin 211213\bin\Microsoft.VisualStudio.Shell.Immutable.10.0.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.Shell.Immutable.11.0">
-      <HintPath>..\..\..\Backup\PROJECT\Project Reference\Real Estate Bin 211213\bin\Microsoft.VisualStudio.Shell.Immutable.11.0.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.Shell.Immutable.12.0">
-      <HintPath>..\..\..\Backup\PROJECT\Project Reference\Real Estate Bin 211213\bin\Microsoft.VisualStudio.Shell.Immutable.12.0.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualStudio.Shell.Immutable.14.0">
       <HintPath>..\..\..\Backup\PROJECT\Project Reference\Real Estate Bin 211213\bin\Microsoft.VisualStudio.Shell.Immutable.14.0.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.Shell.Interop">
-      <HintPath>..\..\..\Backup\PROJECT\Project Reference\Real Estate Bin 211213\bin\Microsoft.VisualStudio.Shell.Interop.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.Shell.Interop.8.0">
-      <HintPath>..\..\..\Backup\PROJECT\Project Reference\Real Estate Bin 211213\bin\Microsoft.VisualStudio.Shell.Interop.8.0.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.Shell.Interop.9.0">
       <HintPath>..\..\..\Backup\PROJECT\Project Reference\Real Estate Bin 211213\bin\Microsoft.VisualStudio.Shell.Interop.9.0.dll</HintPath>
@@ -220,12 +211,11 @@
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\..\..\Doc\Lib\bin\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
-      <HintPath>..\..\..\..\..\bin\RealERPRPT.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\RealERPRPT.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -2205,17 +2195,22 @@
     <Content Include="F_12_Inv\MatTransfer02.aspx" />
     <Content Include="F_12_Inv\MatTransStatus.aspx" />
     <Content Include="F_12_Inv\PurReqEntry.aspx" />
+    <Content Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx" />
     <Content Include="F_14_Pro\RptPurOrderTopSheet.aspx" />
     <Content Include="F_14_Pro\RptSupAdvanceDetails.aspx" />
     <Content Include="F_17_Acc\AccIssueUpdate.aspx" />
     <Content Include="F_17_Acc\AccIndentUpdate.aspx" />
+    <Content Include="F_17_Acc\AccInterComVoucherDel.aspx" />
     <Content Include="F_17_Acc\RptOPPaymentTopSheet.aspx" />
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
     <Content Include="F_21_MKT\RptPerDeleteProspect.aspx" />
     <Content Include="F_22_Sal\EntryClientNameTransfer.aspx" />
     <Content Include="F_22_Sal\MktSalsLOPayment.aspx" />
+    <Content Include="F_22_Sal\RptSoldUnsoftInfGroupWise.aspx" />
+    <Content Include="F_22_Sal\RptSoldUnsoldUnitAvgPrice.aspx" />
     <Content Include="F_23_CR\MktLOMoneyReceipt.aspx" />
+    <Content Include="F_23_CR\RptCollectionStatusLO.aspx" />
     <Content Include="F_23_CR\RptDuesReportAll.aspx" />
     <Content Include="F_23_CR\RptMonthlyProbCollection.aspx" />
     <Content Include="F_23_CR\RptOtherCollHistory.aspx" />
@@ -2794,6 +2789,10 @@
     <Content Include="F_36_Vehcl\VehicleInfoEntry.aspx" />
     <Content Include="F_36_Vehcl\VehicleMgt.aspx" />
     <Content Include="F_37_LOwner\LOMoneyReciptapp.aspx" />
+    <Content Include="F_38_AI\AddProject.aspx" />
+    <Content Include="F_38_AI\AIGenCodeBook.aspx" />
+    <Content Include="F_38_AI\CreateTask.aspx" />
+    <Content Include="F_38_AI\CustomerList.aspx" />
     <Content Include="F_39_MyPage\ClientCodeBook.aspx" />
     <Content Include="F_39_MyPage\ClientDetail.aspx" />
     <Content Include="F_39_MyPage\CustomerDetail.aspx" />
@@ -3135,6 +3134,7 @@
     <Content Include="F_99_Allinterface\FeasibilityInterface.aspx" />
     <Content Include="F_99_Allinterface\HRInterfaceTopSheet.aspx" />
     <Content Include="F_99_Allinterface\HRMAllInOne.aspx" />
+    <Content Include="F_99_Allinterface\InterfaceApprovalForm.aspx" />
     <Content Include="F_99_Allinterface\InventoryInterface.aspx" />
     <Content Include="F_99_Allinterface\KPIDashboard.aspx" />
     <Content Include="F_99_Allinterface\LandInterface_Land.aspx" />
@@ -3659,6 +3659,7 @@
     <Content Include="Technology.aspx" />
     <Content Include="Tickets\CreateTicket.aspx" />
     <Content Include="Tickets\Index.aspx" />
+    <Content Include="Tickets\RequestTicketId.aspx" />
     <Content Include="Tickets\TicketDetails.aspx" />
     <Content Include="tinymce\jquery.tinymce.min.js" />
     <Content Include="tinymce\license.txt" />
@@ -3870,7 +3871,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="Bundle.config" />
-    <Content Include="Upload\Code of Conduct Bangla.pdf" />
     <Content Include="tinymce\langs\readme.md" />
     <Content Include="tinymce\skins\lightgray\fonts\tinymce-small.eot" />
     <Content Include="tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
@@ -4011,6 +4011,13 @@
     <Compile Include="F_12_Inv\PurReqEntry.aspx.designer.cs">
       <DependentUpon>PurReqEntry.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx.cs">
+      <DependentUpon>LinkRptPurchaseStatusUr.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx.designer.cs">
+      <DependentUpon>LinkRptPurchaseStatusUr.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_14_Pro\RptPurOrderTopSheet.aspx.cs">
       <DependentUpon>RptPurOrderTopSheet.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4038,6 +4045,13 @@
     </Compile>
     <Compile Include="F_17_Acc\AccIndentUpdate.aspx.designer.cs">
       <DependentUpon>AccIndentUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_17_Acc\AccInterComVoucherDel.aspx.cs">
+      <DependentUpon>AccInterComVoucherDel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_17_Acc\AccInterComVoucherDel.aspx.designer.cs">
+      <DependentUpon>AccInterComVoucherDel.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_17_Acc\RptOPPaymentTopSheet.aspx.cs">
       <DependentUpon>RptOPPaymentTopSheet.aspx</DependentUpon>
@@ -4081,12 +4095,33 @@
     <Compile Include="F_22_Sal\MktSalsLOPayment.aspx.designer.cs">
       <DependentUpon>MktSalsLOPayment.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_22_Sal\RptSoldUnsoftInfGroupWise.aspx.cs">
+      <DependentUpon>RptSoldUnsoftInfGroupWise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\RptSoldUnsoftInfGroupWise.aspx.designer.cs">
+      <DependentUpon>RptSoldUnsoftInfGroupWise.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_22_Sal\RptSoldUnsoldUnitAvgPrice.aspx.cs">
+      <DependentUpon>RptSoldUnsoldUnitAvgPrice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\RptSoldUnsoldUnitAvgPrice.aspx.designer.cs">
+      <DependentUpon>RptSoldUnsoldUnitAvgPrice.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_23_CR\MktLOMoneyReceipt.aspx.cs">
       <DependentUpon>MktLOMoneyReceipt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_23_CR\MktLOMoneyReceipt.aspx.designer.cs">
       <DependentUpon>MktLOMoneyReceipt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_23_CR\RptCollectionStatusLO.aspx.cs">
+      <DependentUpon>RptCollectionStatusLO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_23_CR\RptCollectionStatusLO.aspx.designer.cs">
+      <DependentUpon>RptCollectionStatusLO.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_23_CR\RptDuesReportAll.aspx.cs">
       <DependentUpon>RptDuesReportAll.aspx</DependentUpon>
@@ -4507,6 +4542,34 @@
     </Compile>
     <Compile Include="F_37_LOwner\LOMoneyReciptapp.aspx.designer.cs">
       <DependentUpon>LOMoneyReciptapp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_38_AI\AddProject.aspx.cs">
+      <DependentUpon>AddProject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_38_AI\AddProject.aspx.designer.cs">
+      <DependentUpon>AddProject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_38_AI\AIGenCodeBook.aspx.cs">
+      <DependentUpon>AIGenCodeBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_38_AI\AIGenCodeBook.aspx.designer.cs">
+      <DependentUpon>AIGenCodeBook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_38_AI\CreateTask.aspx.cs">
+      <DependentUpon>CreateTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_38_AI\CreateTask.aspx.designer.cs">
+      <DependentUpon>CreateTask.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_38_AI\CustomerList.aspx.cs">
+      <DependentUpon>CustomerList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_38_AI\CustomerList.aspx.designer.cs">
+      <DependentUpon>CustomerList.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_70_Services\QuotationEntry.aspx.cs">
       <DependentUpon>QuotationEntry.aspx</DependentUpon>
@@ -5110,6 +5173,13 @@
     <Compile Include="F_99_Allinterface\HRMAllInOne.aspx.designer.cs">
       <DependentUpon>HRMAllInOne.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_99_Allinterface\InterfaceApprovalForm.aspx.cs">
+      <DependentUpon>InterfaceApprovalForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\InterfaceApprovalForm.aspx.designer.cs">
+      <DependentUpon>InterfaceApprovalForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_99_Allinterface\MKTProInterface.aspx.cs">
       <DependentUpon>MKTProInterface.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5231,6 +5301,13 @@
     </Compile>
     <Compile Include="Tickets\Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tickets\RequestTicketId.aspx.cs">
+      <DependentUpon>RequestTicketId.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tickets\RequestTicketId.aspx.designer.cs">
+      <DependentUpon>RequestTicketId.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tickets\TicketDetails.aspx.cs">
       <DependentUpon>TicketDetails.aspx</DependentUpon>
@@ -12310,17 +12387,16 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="assets\images\AIimage\" />
-    <Folder Include="bin\" />
     <Folder Include="ExcelFile\" />
     <Folder Include="ftpdown\" />
     <Folder Include="ftp\" />
-    <Folder Include="F_38_AI\" />
     <Folder Include="F_81_Hrm\F_88_Res\" />
     <Folder Include="Image1\" />
     <Folder Include="Log Files\" />
     <Folder Include="SqlServerTypes\x64\" />
     <Folder Include="SqlServerTypes\x86\" />
     <Folder Include="SupWorkOreder\" />
+    <Folder Include="Upload\Attndancefiles\" />
     <Folder Include="Upload\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
@@ -12502,10 +12578,6 @@
     <Content Include="Upload\CV\000000002_Md. Ahasan Habib.docx" />
     <Content Include="Upload\CV\000000003_Md Mahbubur Rahman.doc" />
     <Content Include="Upload\CV\000000004_Md Habibur Rahman.doc" />
-    <Content Include="Upload\GBL20180800004.xlsx" />
-    <Content Include="Upload\GBL20190300001.pdf" />
-    <Content Include="Upload\GBL20190300008.pdf" />
-    <Content Include="Upload\Portland Int Anc Final.xls" />
     <Content Include="Upload\PROJECT\16010001000127703.csv" />
     <Content Include="Upload\PROJECT\16010001000140626.xlsx" />
     <Content Include="Upload\PROJECT\16010001000177981.csv" />
@@ -12540,7 +12612,7 @@
   <ItemGroup>
     <Content Include="Report\RptPaymentSchedule.rdlc" />
     <Content Include="Report\RptPurchaseOrder.rdlc" />
-    <Content Include="Report\RptPurchaseOrderAcme.rdlc" />
+    <Content Include="Report\RptPurchaseOrderAcme_old.rdlc" />
     <Content Include="Report\RptPurchaseOrderEdison.rdlc" />
     <Content Include="Report\RptPurchaseOrderGreenwood.rdlc" />
     <Content Include="Report\RptPurchaseOrderInnstar.rdlc" />
@@ -12574,6 +12646,7 @@
     <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderFinlayInd.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderFinlay.rdlc" />
+    <Content Include="Report\RptPurchaseOrderAcme.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderP2P_O.rdlc" />
   </ItemGroup>
   <ItemGroup>
@@ -12609,6 +12682,9 @@
       <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>
       <Name>RealERPRDLC</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <!--<Analyzer Include="C:\Users\Administrator\Downloads\microsoft.reportviewer.datavisualization.dll" />-->
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

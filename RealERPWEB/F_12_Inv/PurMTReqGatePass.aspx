@@ -256,6 +256,20 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
+                                             <asp:TemplateField HeaderText="Actual Stock <br>Qty">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvacstockqty" runat="server" Font-Size="11px" Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "stockbal")).ToString("#,##0.000;(#,##0.000); ") %>'
+                                                    Width="55px"></asp:Label>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                              
+
+                                            </FooterTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
+
                                         <asp:TemplateField HeaderText="Req. Qty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvmtrfqty" runat="server" Font-Size="11px" Style="text-align: right"

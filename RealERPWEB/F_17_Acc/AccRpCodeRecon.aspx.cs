@@ -72,9 +72,12 @@ namespace RealERPWEB.F_17_Acc
             string chqno = this.txtChqSearch.Text + "%";
             string grprpt = ((this.rbtnGroup.SelectedIndex == 0) ? "A" : (this.rbtnGroup.SelectedIndex == 1) ? "B" : "") + "%";
             string rpname = ((this.ddlRpName.SelectedValue == "BBBBBBB") ? "" : this.ddlRpName.SelectedValue.ToString()) + "%";
-            string chequeno = this.AssenCheque.Checked ? "chequeno" : "";
+            //string chequeno = this.AssenCheque.Checked ? "chequeno" : "";
+
+            string ordering = (this.rbtnordering.SelectedIndex == 0) ? "Issueno" : (this.rbtnGroup.SelectedIndex == 2) ? "hondate" : "";
+
             string range = this.ddlRange.SelectedValue.ToString();
-            DataSet ds1 = accData.GetTransInfo(mCOMCOD, "SP_ENTRY_ACCOUNTS_VOUCHER", "SHOWRPCODRECON", "", mTRNDAT1, mTRNDAT2, chqno, grprpt, rpname, chequeno, range, "");
+            DataSet ds1 = accData.GetTransInfo(mCOMCOD, "SP_ENTRY_ACCOUNTS_VOUCHER", "SHOWRPCODRECON", "", mTRNDAT1, mTRNDAT2, chqno, grprpt, rpname, ordering, range, "");
             if (ds1 == null)
             {
                 this.gv1.DataSource = null;

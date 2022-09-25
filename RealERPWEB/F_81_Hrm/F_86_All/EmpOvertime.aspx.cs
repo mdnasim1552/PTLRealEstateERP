@@ -204,11 +204,11 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETYEARMON", "", "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
-            //this.ddlpreyearmonoth.DataTextField = "yearmon";
-            //this.ddlpreyearmonoth.DataValueField = "ymon";
-            //this.ddlpreyearmonoth.DataSource = ds1.Tables[0];
-            //this.ddlpreyearmonoth.SelectedValue = System.DateTime.Today.AddMonths(-1).ToString("yyyyMM");
-            //this.ddlpreyearmonoth.DataBind();
+            this.ddlpreyearmonoth.DataTextField = "yearmon";
+            this.ddlpreyearmonoth.DataValueField = "ymon";
+            this.ddlpreyearmonoth.DataSource = ds1.Tables[0];
+            this.ddlpreyearmonoth.SelectedValue = System.DateTime.Today.AddMonths(-1).ToString("yyyyMM");
+            this.ddlpreyearmonoth.DataBind();
 
             ds1.Dispose();
         }
@@ -491,35 +491,35 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             if (this.lnkbtnShow.Text == "Ok")
             {
                 this.ddlyearmon.Enabled = false;
-                this.ddlCompanyName.Visible = false;
-                this.ddlDepartment.Visible = false;
-                this.ddlSection.Enabled = false;
-
-                this.lblCompanyName.Visible = true;
-                this.lblDeptDesc.Visible = true;
+               //this.ddlCompanyName.Visible = false;
+                //this.ddlDepartment.Visible = false;
+                //this.ddlSection.Enabled = false;
+                
+               // this.lblCompanyName.Visible = true;
+                //this.lblDeptDesc.Visible = true;
 
                 //this.lblPage.Visible = true;
                 //this.ddlpagesize.Visible = true;
                 this.lnkbtnShow.Text = "New";
-                this.lblCompanyName.Text = this.ddlCompanyName.SelectedItem.Text;
-                this.lblDeptDesc.Text = this.ddlDepartment.SelectedItem.Text;
+                //this.lblCompanyName.Text = this.ddlCompanyName.SelectedItem.Text;
+               // this.lblDeptDesc.Text = this.ddlDepartment.SelectedItem.Text;
                 this.SectionView();
                 return;
             }
             this.MultiView1.ActiveViewIndex = -1;
             this.ddlyearmon.Enabled = true;
-            this.ddlCompanyName.Visible = true;
-            this.ddlDepartment.Visible = true;
+            //this.ddlCompanyName.Visible = true;
+            //this.ddlDepartment.Visible = true;
             this.ddlSection.Enabled = true;
 
-            this.lblCompanyName.Visible = false;
-            this.lblDeptDesc.Visible = false;
+           // this.lblCompanyName.Visible = false;
+            //this.lblDeptDesc.Visible = false;
             //this.lblPage.Visible = false;
             //this.ddlpagesize.Visible = false;
             this.gvEmpOverTime.DataSource = null;
             this.gvEmpOverTime.DataBind();
             this.lnkbtnShow.Text = "Ok";
-            this.lblCompanyName.Text = "";
+            //this.lblCompanyName.Text = "";
 
 
 
@@ -651,6 +651,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPADDITIONALBONUS", compname, MonthId, date, deptname, Empcode, section, "", "", "");
             if (ds2 == null)
             {
+                string msg = "No Data Found";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 this.GvAddiBonus.DataSource = null;
                 this.GvAddiBonus.DataBind();
                 return;
@@ -954,6 +956,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             {
                 this.gvsalreduction.DataSource = null;
                 this.gvsalreduction.DataBind();
+                 
+
                 return;
             }
             Session["tblover"] = this.HiddenSameData(ds2.Tables[0]);
