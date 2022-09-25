@@ -36,6 +36,7 @@ namespace RealERPWEB.F_12_Inv
                 {
                     this.ImgbtnFindRes_Click();
                     this.lbtnOk_Click(null, null);
+                 
 
                     if (this.Request.QueryString["Type"].ToString() == "GpaEdit")
                     {
@@ -309,7 +310,32 @@ namespace RealERPWEB.F_12_Inv
             this.lbtnOk.Text = "New";
             this.Get_Pass_Info();
             this.VisibleEntry();
+            this.StockBal();
+
+
+
+
         }
+
+        private void StockBal()
+        {
+            string comcod = this.GetCompCode();
+            // this.Request.QueryString["genno"].ToString().Length > 0)
+
+
+            string ProjectCode = this.Request.QueryString.AllKeys.Contains("frmpactcode") ? this.Request.QueryString["frmpactcode"].ToString() : this.ddlprjlistfrom.SelectedValue.ToString().Trim();
+            string FindResDesc =  "%";
+            string curdate = this.GetStdDate(this.txtCurAprovDate.Text.Trim());
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_04", "STOCKBALANCEGETPASS", ProjectCode, curdate, FindResDesc, "", "", "", "", "", "");
+            Session["tblStockbal"] = ds1.Tables[0];
+            if (ds1 == null)
+                return;
+
+
+        }
+
+        
 
 
         private void VisibleEntry()
@@ -556,6 +582,9 @@ namespace RealERPWEB.F_12_Inv
             //string mProgNo = this.ddlResList.SelectedValue.ToString().Substring(14, 14);
             string mResCode = this.ddlSpecification.SelectedValue.ToString().Substring(14, 12);
             string mSpcfCod = this.ddlSpecification.SelectedValue.ToString().Substring(26, 12);
+           
+            string frmprjcode = this.Request.QueryString.AllKeys.Contains("frmpactcode") ? this.Request.QueryString["frmpactcode"].ToString() : this.ddlprjlistfrom.SelectedValue.ToString().Trim();
+            DataTable dt5 = (DataTable)Session["tblStockbal"];
 
             DataRow[] dr2 = tbl1.Select("mtreqno = '" + mReqNo + "' and rsircode = '" + mResCode +
                                         "' and spcfcod = '" + mSpcfCod + "'");
@@ -588,6 +617,13 @@ namespace RealERPWEB.F_12_Inv
                 dr1["balqty"] = dr3[0]["balqty"];
                 dr1["rate"] = dr3[0]["mtrfrat"];
                 dr1["getpamt"] = dr3[0]["mtrfamt"];
+                dr1["stockbal"] = dt5.Select("pactcode = '" + frmprjcode + "' and rsircode = '" + mResCode + "' and spcfcod = '" + mSpcfCod + "'")[0]["balqty"].ToString();
+
+
+                //((DataTable)Session["tblStockbal"]).Select("pactcode='" + frmprjcode + "'")[0]["balqty"].ToString();
+
+
+
                 tbl1.Rows.Add(dr1);
             }
 
@@ -722,14 +758,28 @@ namespace RealERPWEB.F_12_Inv
                 return;
             }
 
+            DataRow[] dr5 = tbl1.Select("getpqty<=stockbal");
+            string frmprjcode = this.Request.QueryString.AllKeys.Contains("frmpactcode") ? this.Request.QueryString["frmpactcode"].ToString() : this.ddlprjlistfrom.SelectedValue.ToString().Trim();                    
+            if(comcod=="3101" || comcod=="3367")
+            {               
+                if (ASTUtility.Left(frmprjcode, 2)=="11" && dr5.Length == 0)
+                {
+                    message = "Materials are not available for Store ";
+                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
+                     return;
+
+                }
+
+            }
+
+            
+
+
 
             //log Report
             string mmGetpdat = this.GetStdDate(this.txtCurAprovDate.Text.Trim());
             string getpref = this.txtGatemPassNo.Text.ToString();
             string mtrnar = this.txtgetpNarr.Text.ToString();
-
-
-
             string PostedByid = userid;
             string Posttrmid = Terminal;
             string PostSession = Sessionid;
@@ -1109,6 +1159,7 @@ namespace RealERPWEB.F_12_Inv
         protected void ddlprjlistfrom_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.Load_Project_To_Combo();
+            this.StockBal();
         }
         protected void lbtnPrject_Click(object sender, EventArgs e)
         {

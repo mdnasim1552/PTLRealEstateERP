@@ -59,6 +59,7 @@ namespace RealEntity.C_81_Hrm.C_92_Mgt
         [Serializable]
         public class EclassSttlemntInfo
         {
+            public string comcod { get; set; }
             public string hrgcod { get; set; }
             public string hrgdesc { get; set; }
             public double amount { get; set; }
@@ -67,6 +68,8 @@ namespace RealEntity.C_81_Hrm.C_92_Mgt
             public double ttlamt { get; set; }
             public string frmdat { get; set; }
             public string todat { get; set; }
+            public string  calculation {get;set;}
+            public int seq { get; set; }
 
 
         }
@@ -261,7 +264,7 @@ namespace RealEntity.C_81_Hrm.C_92_Mgt
         {
             public string lbl { get; set; }
             public double val { get; set; }
- 
+            public int seq { get; set; }
             public AttgraphLbl()
             {
 

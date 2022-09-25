@@ -184,7 +184,11 @@ namespace RealERPWEB.F_38_AI
 
         }
 
-
+        protected void GridcusDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridcusDetails.PageIndex = e.NewPageIndex;
+            this.GetCustomerList();
+        }
     }
 }
 

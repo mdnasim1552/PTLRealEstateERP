@@ -70,7 +70,7 @@
                         <div class="col-md-8">
                                 <h6>Customer List</h6>
 
-                        <asp:LinkButton ID="tblAddCustomerModal" runat="server" CssClass="btn btn-primary ml-auto d-none  btn-sm mt20 mr-1 float-right" OnClick="AddCustomerModal_Click"><i class="fa fa-plus"></i>Add Customer</asp:LinkButton>
+                        <asp:LinkButton ID="tblAddCustomerModal" runat="server" CssClass="btn btn-primary ml-auto d-none  btn-sm mt20 mr-1 float-right" ><i class="fa fa-plus"></i>Add Customer</asp:LinkButton>
 
                         </div>
                     </div>
@@ -154,7 +154,7 @@
                           
                                 <div class="table-responsive">
                                     <asp:GridView ID="GridcusDetails" runat="server" AutoGenerateColumns="False" Width="100%" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15">
+                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnPageIndexChanging="GridcusDetails_PageIndexChanging">
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="SL # ">

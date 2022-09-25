@@ -1056,6 +1056,19 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
+
+                                        
+
+                                        <asp:TemplateField HeaderText="From Prj code" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgtfprjgpcode" runat="server"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "tfpactcode"))%>'
+                                                    Width="90px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <FooterStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="From Project">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgtfprjgp" runat="server"

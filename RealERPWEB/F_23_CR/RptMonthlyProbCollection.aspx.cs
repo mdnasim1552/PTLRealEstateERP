@@ -101,20 +101,11 @@ namespace RealERPWEB.F_23_CR
                 case "LoMonProColl":
                     LoMonColl = "lomoncoll";
                     break;
-
-
                 default:
-                    break;
-            
-
-
+                    break;        
 
             }
-
             return LoMonColl;
-
-
-
         }
 
 

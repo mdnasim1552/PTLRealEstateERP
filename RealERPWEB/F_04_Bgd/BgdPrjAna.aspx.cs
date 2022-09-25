@@ -662,18 +662,18 @@ namespace RealERPWEB.F_04_Bgd
                 return;
 
 
-
-            DataRow[] dr2 = ((DataTable)ViewState["tblItmCod"]).Select("isircode='" + ItmCode + "'");
+            DataTable dt01 = (DataTable)ViewState["tblItmCod"];
+            DataRow[] dr2 = dt01.Select("isircode='" + ItmCode + "'");
             string ItmUnit = dr2[0]["isirunit"].ToString();
             DataRow dr3 = tbl1.NewRow();
-            dr3["misircode"] = (((DataTable)ViewState["tblItmCod"]).Select("isircode='" + ItmCode + "'"))[0]["misircode7"].ToString();
-            dr3["misirdesc"] = (((DataTable)ViewState["tblItmCod"]).Select("isircode='" + ItmCode + "'"))[0]["misirdesc7"].ToString();
+            dr3["misircode"] = dt01.Select("isircode='" + ItmCode + "'")[0]["misircode7"].ToString();
+            dr3["misirdesc"] = dt01.Select("isircode='" + ItmCode + "'")[0]["misirdesc7"].ToString();
             dr3["isircode"] = ItmCode;
             dr3["isirdesc1"] = ItmDesc;
             dr3["isirunit"] = ItmUnit;
             dr3["bgdwqty"] = 0;
             dr3["edited"] = "Eidted";
-            dr3["link"] = Convert.ToBoolean((((DataTable)ViewState["tblItmCod"]).Select("isircode='" + ItmCode + "'"))[0]["link"].ToString());
+            dr3["link"] = Convert.ToBoolean(dt01.Select("isircode='" + ItmCode + "'")[0]["link"].ToString());
             tbl1.Rows.Add(dr3);
             Session["tblActAna1"] = this.HiddenSameDataEn(tbl1);
             this.gvAnalysis.EditIndex = -1;
@@ -724,13 +724,10 @@ namespace RealERPWEB.F_04_Bgd
                 return dt1;
             int i = 0;
             string misircode = dt1.Rows[0]["misircode"].ToString();
-
             foreach (DataRow dr1 in dt1.Rows)
             {
                 if (i == 0)
                 {
-
-
                     misircode = dr1["misircode"].ToString();
                     i++;
                     continue;
@@ -738,22 +735,11 @@ namespace RealERPWEB.F_04_Bgd
 
                 if (dr1["misircode"].ToString() == misircode)
                 {
-
                     dr1["misirdesc"] = "";
-
                 }
-
-
                 misircode = dr1["misircode"].ToString();
             }
-
-
-
             return dt1;
-
-
-
-
         }
 
         protected void rbtnList1_SelectedIndexChanged(object sender, EventArgs e)
@@ -1484,11 +1470,11 @@ namespace RealERPWEB.F_04_Bgd
                 tbl1.DefaultView.Sort = "rsirdesc Asc";
                 tbl1 = tbl1.DefaultView.ToTable();
             }
-            //else
-            //{
-            //    tbl1.DefaultView.Sort = "rsircode Asc";
-            //    tbl1 = tbl1.DefaultView.ToTable();
-            //}
+            else
+            {
+                tbl1.DefaultView.Sort = "rsircode Asc";
+                tbl1 = tbl1.DefaultView.ToTable();
+            }
 
 
 

@@ -23,25 +23,25 @@ namespace RealERPWEB.F_99_Allinterface
                 //if (dr1.Length == 0)
                 //    Response.Redirect("../AcceessError.aspx");
                 //((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
-
+                ((Label)this.Master.FindControl("lblTitle")).Text = "AI Interface";
                 //this.txtcreateDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
-                DateTime now = DateTime.Now;
-                var startDate = new DateTime(now.Year, now.Month, 1);
-                var endDate = startDate.AddMonths(1).AddDays(-1);
-                
+                //DateTime now = DateTime.Now;
+                //var startDate = new DateTime(now.Year, now.Month, 1);
+                //var endDate = startDate.AddMonths(1).AddDays(-1);
 
-                this.txtfrmdate.Text = Convert.ToDateTime(startDate).ToString("dd-MMM-yyyy");
-                this.txttodate.Text = Convert.ToDateTime(endDate).ToString("dd-MMM-yyyy");
-                this.GetEmplist();
 
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = this.GetCompCode();
-                
+                //this.txtfrmdate.Text = Convert.ToDateTime(startDate).ToString("dd-MMM-yyyy");
+                //this.txttodate.Text = Convert.ToDateTime(endDate).ToString("dd-MMM-yyyy");
+                //this.GetEmplist();
 
-                //this.getAllData();
+                //Hashtable hst = (Hashtable)Session["tblLogin"];
+                //string comcod = this.GetCompCode();
 
-                this.TaskSteps.SelectedIndex = 0;
-                this.TaskSteps_SelectedIndexChanged(null, null);
+
+                ////this.getAllData();
+
+                //this.TaskSteps.SelectedIndex = 0;
+                //this.TaskSteps_SelectedIndexChanged(null, null);
 
 
 
@@ -78,7 +78,17 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
-       
+       private void GetAIInterface()
+        {
+            string comcod = this.GetCompCode();
+            DataSet dt = HRData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETINTERFACE", "", "", "", "", "", "");
+            if (dt == null)
+                return;
+
+            Session["tblprojectlist"] = dt.Tables[0];
+            this.gvInterface.DataSource = dt;
+            this.gvInterface.DataBind();
+        }
 
         protected void TasktState_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -94,6 +104,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelAReject.Visible = false;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
+                    this.GetAIInterface();
                     break;
                 case "1":
                     this.pnlStatus.Visible = false;
@@ -161,17 +172,6 @@ namespace RealERPWEB.F_99_Allinterface
 
        
 
-        protected void tblAddProjectModal_Click(object sender, EventArgs e)
-        {
-            this.btnClient_Click(null, null);
-            this.tbnSave_Click(null, null);
-            //this.AjaxFileUpload1_UploadComplete(null, null);
-            //string srttime = System.DateTime.Now.ToLocalTime().ToString();
-            this.tblstarttime.Text = DateTime.Now.ToLocalTime().ToString("yyyy-MM-ddTHH:mm"); 
-
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddProject();", true);
-        }
-
         protected void tblTaskCreateModal_Click(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddTask();", true);
@@ -220,6 +220,12 @@ namespace RealERPWEB.F_99_Allinterface
         protected void btnSave_Click(object sender, EventArgs e)
         {
            
+        }
+
+        protected void gvInterface_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvInterface.PageIndex = e.NewPageIndex;
+            this.GetAIInterface();
         }
         //protected void AjaxFileUpload1_UploadComplete(object sender, AjaxControlToolkit.AjaxFileUploadEventArgs e)
         //{
