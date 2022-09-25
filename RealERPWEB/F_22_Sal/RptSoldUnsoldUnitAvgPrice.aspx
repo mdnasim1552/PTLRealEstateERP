@@ -38,6 +38,10 @@
         .form-control {
             height: 34px;
         }
+        th{
+            font-size:10px;
+            font-weight:bold;
+        }
     </style>
 
  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -154,7 +158,7 @@
                                 RepeatDirection="Horizontal">
                                 <asp:ListItem  Value="Sold">&nbsp; Sold &nbsp;&nbsp;</asp:ListItem>
                                 <asp:ListItem Value="Unsold">&nbsp; Unsold</asp:ListItem>
-                                <asp:ListItem Selected="True">&nbsp; both</asp:ListItem>
+                                <asp:ListItem Selected="True" Value="Sold & Unsold">&nbsp; both</asp:ListItem>
 
 
                             </asp:RadioButtonList>
@@ -484,7 +488,7 @@
                                 <EditRowStyle />
                                 <AlternatingRowStyle />
                                 <PagerStyle CssClass="gvPagination" />
-                                <HeaderStyle CssClass="grvHeader" />
+                                <HeaderStyle />
                             </asp:GridView>
 
 
