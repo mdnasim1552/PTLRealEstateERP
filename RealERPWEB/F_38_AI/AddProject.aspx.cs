@@ -347,8 +347,9 @@ namespace RealERPWEB.F_38_AI
             this.tblpactcode.Text = project;
             this.txtstartdate.Text = DateTime.Now.ToString("dd-MMM-yyyy");
             this.textdelevery.Text = DateTime.Now.ToString("dd-MMM-yyyy");
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
             this.GetBatchAssingList(project);
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
 
            
         }
@@ -359,9 +360,30 @@ namespace RealERPWEB.F_38_AI
             GetProjectList();
         }
 
-        protected void tblAddBatch_Click1(object sender, EventArgs e)
-        {
+       
 
+        private void GetBatchAssingList(string project)
+        {
+            string comcod = this.GetComdCode();
+            string prjid = project + "%";
+            DataSet dt = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "BATCHASSIGNLIST", prjid, "", "", "", "", "", "");
+            if (dt == null)
+                return;
+
+            Session["tblbatchassignlist"] = dt.Tables[0];
+            this.gv_BatchList.DataSource = dt;
+            this.gv_BatchList.DataBind();
+
+        }
+
+        protected void removefield_Click(object sender, EventArgs e)
+        {
+            this.none.Attributes.Add("class", "d-none col-md-4");
+            this.gridcol.Attributes.Add("class", "col-md-12");
+        }
+
+        protected void tblSaveBatch_Click(object sender, EventArgs e)
+        {
             try
             {
                 Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -384,32 +406,13 @@ namespace RealERPWEB.F_38_AI
                     return;
                 }
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Batch  Saved Successfully');", true);
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
             }
             catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message.ToString() + "');", true);
             }
-        }
 
-        private void GetBatchAssingList(string project)
-        {
-            string comcod = this.GetComdCode();
-            string prjid = project + "%";
-            DataSet dt = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "BATCHASSIGNLIST", prjid, "", "", "", "", "", "");
-            if (dt == null)
-                return;
-
-            Session["tblbatchassignlist"] = dt.Tables[0];
-            this.gv_BatchList.DataSource = dt;
-            this.gv_BatchList.DataBind();
-
-        }
-
-        protected void removefield_Click(object sender, EventArgs e)
-        {
-            this.none.Attributes.Add("class", "d-none col-md-4");
-            this.gridcol.Attributes.Add("class", "col-md-12");
         }
     }
 }

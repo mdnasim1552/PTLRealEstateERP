@@ -42,6 +42,24 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.LinkButton tblAddCustomerModal;
 
         /// <summary>
+        /// none control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl none;
+
+        /// <summary>
+        /// removefield control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton removefield;
+
+        /// <summary>
         /// gvPersonalInfo control.
         /// </summary>
         /// <remarks>
@@ -60,6 +78,24 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.LinkButton btnCustomerSave;
 
         /// <summary>
+        /// gridcol control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gridcol;
+
+        /// <summary>
+        /// lblinfocode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblinfocode;
+
+        /// <summary>
         /// GridcusDetails control.
         /// </summary>
         /// <remarks>
@@ -67,5 +103,41 @@ namespace RealERPWEB.F_38_AI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridcusDetails;
+
+        /// <summary>
+        /// txtcustname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl txtcustname;
+
+        /// <summary>
+        /// custphn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl custphn;
+
+        /// <summary>
+        /// custAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl custAddress;
+
+        /// <summary>
+        /// custCountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl custCountry;
     }
 }

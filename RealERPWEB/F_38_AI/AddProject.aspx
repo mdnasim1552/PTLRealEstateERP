@@ -54,6 +54,9 @@
         function OpenAddBatch() {
             $('#CreateModalBatch').modal('toggle');
         }
+        function showAddBatch() {
+            $('#CreateModalBatch').modal('show');
+        }
        
 
 
@@ -251,10 +254,10 @@
                                             <ItemTemplate>
                                                 <%--//<asp:LinkButton ID="lnkVieww" runat="server" OnClick="tblAddBatch_Click" CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-eye"></i></asp:LinkButton>--%>
 
-                                                <asp:LinkButton runat="server" ID="tblAddBatch" OnClick="tblAddBatch_Click" ToolTip="batchadd" CssClass="btn  btn-sm pr-2 pl-2"><i class="fas fa-plus"></i>
+                                                <asp:LinkButton runat="server" ID="tblAddBatch" OnClick="tblAddBatch_Click" ToolTip="batchadd" CssClass="btn  btn-sm pr-2 pl-2"><i class="fas fa-plus"></i> </asp:LinkButton>
                                                     (<asp:Label ID="tblcount" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ttlbatch")) %>'></asp:Label>)
-                                                </asp:LinkButton>
+                                               
                                             </ItemTemplate>
                                             <ItemStyle Width="80px" />
                                         </asp:TemplateField>
@@ -279,12 +282,13 @@
                                 <div class="modal-body">
                                     <div class="row">                                        
                                         <div class="col-lg-3 col-md-3 col-sm-6">
+                                              <asp:HiddenField ID="hiddPrjid" runat="server" />
                                             <div class="form-group">
                                                 <asp:Label ID="Label3" runat="server">Project Name</asp:Label>
                                                 <asp:TextBox ID="txtproj" runat="server" CssClass="form-control"></asp:TextBox>
                                                 <asp:Label ID="tblpactcode" runat="server" Visible="false"  Text='<%#Eval("pactcode").ToString()%>'></asp:Label>
                                                  <%--<asp:Label ID="" runat="server"  Text='<%#Eval("prjid").ToString()%>'></asp:Label>--%>                                              
-                                                <asp:HiddenField ID="hiddPrjid" runat="server" />
+                                              
                                             </div>
                                         </div>
                                         <div class="col-lg-3 col-md-3 col-sm-6">
@@ -319,8 +323,7 @@
                                     </div>
 
                                     <div class="row center">
-
-                                        <asp:LinkButton runat="server" ID="tblAddBatch" OnClick="tblAddBatch_Click1" OnClientClick="showAddBatch()" CssClass="btn btn-primary float-right  btn-sm pr-2 pl-2">Save</asp:LinkButton>
+                                        <asp:LinkButton runat="server" ID="tblSaveBatch" OnClick="tblSaveBatch_Click" OnClientClick="showAddBatch()" CssClass="btn btn-primary float-right  btn-sm pr-2 pl-2">Save</asp:LinkButton>
 
                                     </div>
 
@@ -344,7 +347,7 @@
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblinfdesc" runat="server" Height="16px"
                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projname")) %>'
-                                                            Width="250px"></asp:Label>
+                                                            Width="200px"></asp:Label>
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:TemplateField>
@@ -352,7 +355,7 @@
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblbatchid" runat="server" Height="16px"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "batchid")) %>'
-                                                            Width="100px"></asp:Label>
+                                                            Width="80px"></asp:Label>
                                                     </ItemTemplate>
                                                      <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -361,7 +364,7 @@
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblstartdate" runat="server" Height="16px"
                                                             Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "startdate")).ToString("dd-MMM-yyyy") %>'
-                                                            Width="150px"></asp:Label>
+                                                            Width="130px"></asp:Label>
                                                     </ItemTemplate>
                                                      <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -369,7 +372,7 @@
                                                  <asp:TemplateField HeaderText="Delivery Date">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lbldeliverydate" runat="server" Height="16px"
-                                                            Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "deliverydate")).ToString("dd-MMM-yyyy") %>' Width="150px"
+                                                            Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "deliverydate")).ToString("dd-MMM-yyyy") %>' Width="130px"
                                                            ></asp:Label>
                                                     </ItemTemplate>
                                                      <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -378,7 +381,7 @@
                                                    <asp:TemplateField HeaderText="Dataset Quantity">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lbldatasetqty" runat="server" Height="16px"
-                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "datasetqty")).ToString("dd-MMM-yyyy") %>' Width="150px"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "datasetqty")) %>' Width="150px"
                                                            ></asp:Label>
                                                     </ItemTemplate>
                                                      <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />

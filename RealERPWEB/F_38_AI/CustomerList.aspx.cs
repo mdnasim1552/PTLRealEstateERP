@@ -21,6 +21,8 @@ namespace RealERPWEB.F_38_AI
                 //if (dr1.Length == 0)
                 //    Response.Redirect("../AcceessError.aspx");
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Customer List";
+                this.none.Attributes.Add("class", "d-none col-md-4");
+                this.gridcol.Attributes.Add("class", "col-md-12");
 
                 this.GetCustomerList();
                 this.isFiledClear();
@@ -188,6 +190,85 @@ namespace RealERPWEB.F_38_AI
         {
             GridcusDetails.PageIndex = e.NewPageIndex;
             this.GetCustomerList();
+        }
+
+        protected void tblAddCustomerModal_Click(object sender, EventArgs e)
+        {
+            this.none.Attributes.Add("class", "d-block col-md-4");
+            this.gridcol.Attributes.Add("class", "col-md-8");
+        }
+
+        protected void removefield_Click(object sender, EventArgs e)
+        {
+            this.none.Attributes.Add("class", "d-none col-md-4");
+            this.gridcol.Attributes.Add("class", "col-md-12");
+        }
+
+        protected void lnkView_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string custcod = ((Label)this.GridcusDetails.Rows[index].FindControl("lblinfcode")).Text.ToString();
+            string customername = ((Label)this.GridcusDetails.Rows[index].FindControl("lblinfdesc")).Text.ToString();
+            string custphone = ((Label)this.GridcusDetails.Rows[index].FindControl("tblpnoe")).Text.ToString();
+            string custcity = ((Label)this.GridcusDetails.Rows[index].FindControl("tblcountry")).Text.ToString();
+            string custaddress = ((Label)this.GridcusDetails.Rows[index].FindControl("tbladdress")).Text.ToString();
+            this.txtcustname.InnerText = customername;
+            this.custAddress.InnerText = custaddress;
+            this.custphn.InnerText = custphone;
+            this.custCountry.InnerText = custcity;
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenCustomerView();", true);
+        }
+
+        protected void btnRemove_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetComdCode();
+            string msg = "";
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string id = ((Label)this.GridcusDetails.Rows[index].FindControl("lblinfcode")).Text.ToString();
+            bool result = MktData.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "CETCUSTOMER_DELETE", id, "", "", "", "", "", "", "");
+            if (result)
+            {
+                msg = "Deleted Successfully";
+                this.GetCustomerList();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+            }
+            else
+            {
+                msg = "Delete Failed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+            }
+        }
+
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            this.none.Attributes.Add("class", "d-block col-md-4");
+            this.gridcol.Attributes.Add("class", "col-md-8");
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string id = ((Label)this.GridcusDetails.Rows[index].FindControl("lblinfcode")).Text.ToString();
+            this.lblinfocode.Text = id;
+            this.CustomerEdit();
+
+        }
+
+        private void CustomerEdit()
+        {
+            string comcod = this.GetComdCode();
+            string sircode = this.lblinfocode.Text;
+            DataSet ds = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "GETCUSTOMER_CODE", sircode, "", "", "", "", "", "");
+
+            if (ds == null)
+                return;
+            DataTable dt = ds.Tables[0];
+            gvPersonalInfo.DataSource = ds.Tables[0];
+            gvPersonalInfo.DataBind();
+
+            this.LoadGrid();
+
+
+
         }
     }
 }
