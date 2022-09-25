@@ -103,6 +103,9 @@ namespace RealERPWEB.F_22_Sal
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string fromdate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodat.Text).ToString("dd-MMM-yyyy");
+
 
 
             string Date = "Date: " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
@@ -115,7 +118,7 @@ namespace RealERPWEB.F_22_Sal
             var lst = dt.DataTableToList<RealEntity.C_22_Sal.Sales_BO.perodicsalesColl>();
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptPeriodicSalesWithCollection", lst, null, null);
-            //Rpt1.EnableExternalImages = true;
+            Rpt1.EnableExternalImages = true;
             //Rpt1.SetParameters(new ReportParameter("comname", comnam));
             //Rpt1.SetParameters(new ReportParameter("Date", Date));
             //Rpt1.SetParameters(new ReportParameter("ProjectName", ProjectName));
@@ -123,8 +126,8 @@ namespace RealERPWEB.F_22_Sal
             //Rpt1.SetParameters(new ReportParameter("txtTitle", "Project Wise Collection Status"));
             // Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_32_Mis.RptProjCancellationUnit", lst, null, null);
            Rpt1.SetParameters(new ReportParameter("comname", comnam));
-            //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-            Rpt1.SetParameters(new ReportParameter("date1", "Date: " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("date1", "From  " + fromdate + " To " + todate));
             Rpt1.SetParameters(new ReportParameter("Rpttitle", ProjectName));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
 
