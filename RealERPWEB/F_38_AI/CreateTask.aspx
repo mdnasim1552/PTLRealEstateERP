@@ -46,7 +46,7 @@
             <div class="card mt-5">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-12">
+                        <div class="col-lg-4 col-md-4 col-sm-12" style="background:#F6F7F9">
                             <div class="form-group row">
                                 <div class="p-0 col-lg-6 col-md-6 col-sm-12">
                                     <asp:Label ID="Label14" runat="server">Date</asp:Label>
@@ -61,26 +61,23 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <asp:Label ID="Label1" runat="server">Customer</asp:Label>
+                                <asp:DropDownList ID="ddlcustomer" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlcustomer_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                            </div>
+                            <div class="form-group row">
+                                <asp:Label ID="Label2" runat="server">Project</asp:Label>
+                                <asp:DropDownList ID="ddlproject" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlproject_SelectedIndexChanged" AutoPostBack="true">
+                                </asp:DropDownList>
+                            </div>
+
+                            <div class="form-group row">
                                 <asp:Label ID="Label5" runat="server">Project Type</asp:Label>
                                 <asp:DropDownList ID="ddlprotype" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
                                 </asp:DropDownList>
                             </div>
 
                             <div class="form-group row">
-                                <asp:Label ID="Label11" runat="server">Task Title</asp:Label>
-                                <asp:TextBox ID="txttasktitle" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-4  col-md-4 col-sm-12">
-                            <div class="form-group row">
-                                <asp:Label ID="Label1" runat="server">Customer</asp:Label>
-                                <asp:DropDownList ID="ddlcustomer" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlcustomer_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                            </div>
-
-
-                            <div class="form-group row">
-                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="col-lg-6 col-md-6 col-sm-12 pl-0">
                                     <asp:Label ID="Label6" runat="server">Work Type</asp:Label>
                                     <asp:DropDownList ID="ddlworktype" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
                                     </asp:DropDownList>
@@ -91,20 +88,13 @@
                                     </asp:DropDownList>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <asp:Label ID="Label12" runat="server">Task Description</asp:Label>
-                                <asp:TextBox ID="txtdesc" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
-                            </div>
+
+
 
 
                         </div>
-                        <div class=" col-lg-4  col-md-4 col-sm-12">
+                        <div class="col-lg-4  col-md-4 col-sm-12">
                             <div class="form-group row">
-                                <asp:Label ID="Label2" runat="server">Project</asp:Label>
-                                <asp:DropDownList ID="ddlproject" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlproject_SelectedIndexChanged" AutoPostBack="true">
-                                </asp:DropDownList>
-                            </div>
-                            <div class="form-group row">                               
                                 <div class="col-lg-6 col-md-6 col-sm-12 pl-0 ">
                                     <asp:Label ID="Label4" runat="server">Batch</asp:Label>
                                     <asp:DropDownList ID="ddlbatch" runat="server" CssClass="form-control chzn-select">
@@ -114,37 +104,39 @@
                                         <asp:ListItem Value="4">4</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
-                                 <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
                                     <asp:Label ID="Label15" runat="server">Dataset Quantity</asp:Label>
                                     <asp:TextBox ID="txtworkquantity" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
-                            <div class="form-group row ">
+                            <div class="form-group row">
+                                <asp:Label ID="Label11" runat="server">Task Title</asp:Label>
+                                <asp:TextBox ID="txttasktitle" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <asp:Label ID="Label12" runat="server">Task Description</asp:Label>
+                                <asp:TextBox ID="txtdesc" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="7"></asp:TextBox>
+                            </div>
+                            <div class="form-group row d-none">
                                 <asp:Label ID="Label13" runat="server">Remakrs</asp:Label>
                                 <asp:TextBox ID="txtremaks" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
                             </div>
 
                         </div>
-                    </div>
-                    <hr />
-                    <div class="row">
-                        <div class="col-lg-4  col-md-4 col-sm-12">
+                        <div class=" col-lg-4  col-md-4 col-sm-12">
+
                             <div class="form-group row">
-                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                
                                     <asp:Label ID="Label16" runat="server">Assign Team Members</asp:Label>
                                     <asp:DropDownList ID="ddlassignmember" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
                                     </asp:DropDownList>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <asp:Label ID="Label17" runat="server">Annotation ID</asp:Label>
-                                    <asp:DropDownList ID="ddlAnnotationid" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
-                                    </asp:DropDownList>
-                                </div>
+                                
+                                
                             </div>
-                        </div>
-                        <div class="col-lg-4  col-md-4 col-sm-12">
                             <div class="form-group row">
-                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="col-lg-6 col-md-6 col-sm-12 pl-0">
                                     <asp:Label ID="Label8" runat="server">Valocity Type</asp:Label>
                                     <asp:DropDownList ID="ddltasktype" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
                                     </asp:DropDownList>
@@ -155,20 +147,25 @@
                                 </div>
 
                             </div>
-                        </div>
-                        <div class="col-lg-4  col-md-4 col-sm-12">
-                            <div class=" form-group row">
-                                <div class=" col-lg-6 col-md-6 col-sm-12">
+                            <div class="form-group row">
+                                <div class=" col-lg-3 col-md-3 col-sm-12 pl-0">
                                     <asp:Label ID="Label10" runat="server">Work Hour</asp:Label>
                                     <asp:TextBox ID="txtworkhour" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
-                                <div class=" col-lg-6 col-md-6 col-sm-12 mt-4 float-left pl-0">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <asp:Label ID="Label17" runat="server">Annotation ID</asp:Label>
+                                    <asp:DropDownList ID="ddlAnnotationid" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
+                                    </asp:DropDownList>
+                                </div>
+                                <div class=" col-lg-3 col-md-3 col-sm-12 mt-4 ">
                                     <asp:LinkButton ID="btnaddrow" runat="server" OnClick="btnaddrow_Click" CssClass=" btn btn-primary ml-auto btn-sm mt20 mr-1 float-left"><i class="fa fa-plus"></i></asp:LinkButton>
 
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <hr />
+                 
                     <hr />
                     <div class="table-responsive">
                         <asp:GridView ID="GridVirtual" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"

@@ -186,27 +186,29 @@ namespace RealERPWEB.F_22_Sal
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
             string type = this.ddlgrp.SelectedValue.ToString();
-            string projectName = this.ddlPrjName.SelectedItem.Text.ToString();
-            string groupname = "";
+            string projectName = "";
             DataTable dt = (DataTable)Session["tblgrpsoldunsold"];
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.SoldUnsoftInfGroupWise>();
             switch (type)
             {
                 case "510100100000":
-                     groupname = this.ddlgrp.SelectedItem.Text.ToString();
+                    projectName = this.ddlPrjName.SelectedItem.Text.ToString() + " (Commercial)";                    
                     break;
-                case "510100200000":
-                     groupname = this.ddlgrp.SelectedItem.Text.ToString();
+                //case "510100200000":
+                //     groupname = this.ddlgrp.SelectedItem.Text.ToString();
 
-                    break;
+                //    break;
                 case "510100300000":
-                     groupname = this.ddlgrp.SelectedItem.Text.ToString();
+                     projectName = this.ddlPrjName.SelectedItem.Text.ToString() + " (Residential)";                 
 
                     break;
-                case "510100500000":
-                     groupname = this.ddlgrp.SelectedItem.Text.ToString();
+                //case "510100500000":
+                //     groupname = this.ddlgrp.SelectedItem.Text.ToString();
 
+                //    break;
+                default:
+                    projectName = this.ddlPrjName.SelectedItem.Text.ToString();                   
                     break;
             }
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSoldUnsoftInfGroupWise", lst, null, null);
@@ -215,7 +217,7 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("printdate", printdate));
             Rpt1.SetParameters(new ReportParameter("projectName", projectName));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Floor Wise " + groupname + " Status"));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Floor Wise " + this.ddlgrp.SelectedItem.Text.ToString() + " Status"));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat( compname, username, printdate)));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             //Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
