@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="BgdStdAna.aspx.cs" Inherits="RealERPWEB.F_04_Bgd.BgdStdAna" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -158,16 +159,16 @@
 
                                     <div class="form-group">
 
-                                        
+
                                         <div class="col-md-1">
                                             <asp:CheckBox ID="ChkZeroQty" runat="server" Text="Ignoe Zero" CssClass="btn btn-primary primaryBtn chkBoxControl" />
                                         </div>
                                         <div class="col-md-6">
-                                            <asp:LinkButton ID="lbtnInputSame" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnInputSame_Click" Style="padding-left:5px;padding-right:5px">Put same value for all floors</asp:LinkButton>
+                                            <asp:LinkButton ID="lbtnInputSame" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnInputSame_Click" Style="padding-left: 5px; padding-right: 5px">Put same value for all floors</asp:LinkButton>
                                             <asp:LinkButton ID="lbtnUpdateAna" runat="server" class="btn btn-danger primaryBtn" OnClick="lbtnUpdateAna_Click" Style="margin-left: 5px;">Update Analysis</asp:LinkButton>
 
                                         </div>
-                                        
+
 
                                         <div class="clearfix"></div>
                                     </div>
@@ -184,7 +185,14 @@
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:CommandField ShowDeleteButton="True" />
+                                    <%--<asp:CommandField ShowDeleteButton="True" />--%>
+
+                                    <asp:TemplateField ShowHeader="true">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="lbtnDelAnalysis" runat="server" OnClick="lbtnDelAnalysis_Click" ToolTip="Delete Analysis" OnClientClick="javascript:return FunConfirm();"><span class="glyphicon glyphicon-trash" style="color:red"> </span> </asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Res. Code" Visible="False">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvResCod" runat="server" Height="16px"
@@ -293,7 +301,7 @@
                                     </asp:TemplateField>
 
 
-                                     <asp:TemplateField HeaderText="Mz. Floor-1" Visible="False">
+                                    <asp:TemplateField HeaderText="Mz. Floor-1" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty012" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty012")).ToString("#,##0.0000;(#,##0.0000); ") %>'
@@ -301,7 +309,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                     <asp:TemplateField HeaderText="Mz. Floor-2" Visible="False">
+                                    <asp:TemplateField HeaderText="Mz. Floor-2" Visible="False">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty013" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty013")).ToString("#,##0.0000;(#,##0.0000); ") %>'
