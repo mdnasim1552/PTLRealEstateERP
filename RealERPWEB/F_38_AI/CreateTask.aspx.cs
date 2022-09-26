@@ -30,6 +30,7 @@ namespace RealERPWEB.F_38_AI
                 this.GetBatchList();
                 this.GetAnnotationList();
                 this.GetProjectInformation();
+                this.CreateTableAssign();
             }
         }
         private string GetComdCode()
@@ -49,7 +50,13 @@ namespace RealERPWEB.F_38_AI
             this.ddlcustomer.DataSource = dt.Tables[0];
             this.ddlcustomer.DataBind();
 
-            this.ddlcustomer_SelectedIndexChanged(null, null);
+            ListItem li = new ListItem();
+            li.Text = "--- Select Customer----";
+            li.Value = "%%";
+            ddlcustomer.Items.Add(li);
+            this.ddlcustomer.SelectedValue = "%%";
+
+            //this.ddlcustomer_SelectedIndexChanged(null, null);
         }
         private void GetProjectList()
         {
@@ -92,10 +99,10 @@ namespace RealERPWEB.F_38_AI
             if (ds == null)
                 return;
 
-            this.ddlbatch.DataTextField = "batchdesc";
-            this.ddlbatch.DataValueField = "batchid";
-            this.ddlbatch.DataSource = ds.Tables[0];
-            this.ddlbatch.DataBind();
+            this.ddlAnnotationid.DataTextField = "item";
+            this.ddlAnnotationid.DataValueField = "itemvalue";
+            this.ddlAnnotationid.DataSource = ds.Tables[0];
+            this.ddlAnnotationid.DataBind();
 
         }
 
@@ -178,15 +185,7 @@ namespace RealERPWEB.F_38_AI
             this.ddlordertype.DataValueField = "gcod";
             this.ddlordertype.DataSource = dv5.ToTable();
             this.ddlordertype.DataBind();
-
-            // annotation id
-            DataView dv6 = dt.DefaultView;
-            dv1.RowFilter = "gcod like '03%' and gcod like'%10'";
-            this.ddlAnnotationid.DataTextField = "gdesc";
-            this.ddlAnnotationid.DataValueField = "gcod";
-            this.ddlAnnotationid.DataSource = dv6.ToTable();
-            this.ddlAnnotationid.DataBind();
-
+             
         }
 
         protected void btntaskcreate_Click(object sender, EventArgs e)
@@ -241,6 +240,7 @@ namespace RealERPWEB.F_38_AI
         protected void ddlproject_SelectedIndexChanged(object sender, EventArgs e)
         {
             GetProjectInformation();
+            GetAnnotationList();
         }
         private void VirtualGrid()
         {
@@ -248,11 +248,32 @@ namespace RealERPWEB.F_38_AI
             this.GridVirtual.DataBind();
         }
 
+        private void CreateTableAssign()
+        { 
+        
+            DataTable tblt01 = new DataTable();
+            tblt01.Columns.Add("jobid", Type.GetType("System.String"));
+            tblt01.Columns.Add("batchid", Type.GetType("System.String"));
+            tblt01.Columns.Add("pactcode", Type.GetType("System.String"));
+            tblt01.Columns.Add("empid", Type.GetType("System.String"));
+            tblt01.Columns.Add("empname", Type.GetType("System.String"));
+            tblt01.Columns.Add("valocitycode", Type.GetType("System.String"));
+            tblt01.Columns.Add("valocitydesc", Type.GetType("System.String"));
+            tblt01.Columns.Add("annoid", Type.GetType("System.String"));          
+            tblt01.Columns.Add("valocityqty", Type.GetType("System.Double"));
+            tblt01.Columns.Add("workhour", Type.GetType("System.Double"));
+            
+            ViewState["tblt01"] = tblt01;
+        }
+
         protected void btnaddrow_Click(object sender, EventArgs e)
         {
-            vt.Rows.Add(ddlassignmember.SelectedValue.Trim(), ddltasktype.SelectedValue.Trim());
-            //vt.DefaultView.Sort = "txtmember";
-            VirtualGrid();
+            DataTable tblt01 = (DataTable)ViewState["tblt01"];
+
+
+            //vt.Rows.Add(ddlassignmember.SelectedValue.Trim(), ddltasktype.SelectedValue.Trim());
+            ////vt.DefaultView.Sort = "txtmember";
+            //VirtualGrid();
         }
     }
 }
