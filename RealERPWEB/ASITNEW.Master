@@ -1027,6 +1027,7 @@
 
 
         $(document).ready(function () {
+            console.log('notification123');
             GetNotifications();
             var functionIsRunning = 0;
             closeNav();
@@ -1217,6 +1218,7 @@
                 var userid =  <%=this.GetUserId()%>;
                 var objnotification = new RealERPScript();
                 var data = objnotification.GetNotifications(userid, url);
+                console.log('notification',data)
 
                 var row = "";
                 var img = "";

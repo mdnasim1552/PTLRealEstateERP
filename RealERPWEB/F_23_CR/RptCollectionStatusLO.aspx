@@ -95,17 +95,17 @@
             <div class="card card-fluid">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-2">
+                       <%-- <div class="col-md-2">
                             <div class="form-group">
                                 <label class="control-label" for="FromDate">From Date</label>
                                 <asp:TextBox ID="txtfrmdate" runat="server" CssClass="form-control flatpickr-input" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txtfrmdate_CalendarExtender" runat="server"
                                     Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>
                             </div>
-                        </div>
+                        </div>--%>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label class="control-label" for="ToDate">To Date</label>
+                                <label class="control-label" for="ToDate"> Date :</label>
                                 <asp:TextBox ID="txttodate" runat="server" CssClass="form-control flatpickr-input" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server"
                                     Format="dd-MMM-yyyy" TargetControlID="txttoDate"></cc1:CalendarExtender>
@@ -118,10 +118,10 @@
                             </div>
                         </div>
 
-                         <div class="col-md-3">
+                         <div class="col-md-2">
                             <div class="from-group">
                                 <label class="control-label">Beneficiary</label>
-                                <asp:DropDownList ID="ddlbenefname" runat="server" CssClass="chzn-select form-control  inputTxt" Width="200px" AutoPostBack="True"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlbenefname" runat="server" CssClass="chzn-select form-control  inputTxt" Width="350px" AutoPostBack="True"></asp:DropDownList>
                             
                               
                          
@@ -142,7 +142,7 @@
                 </div>
             </div>
 
-            <div class="card card-fluid" style="min-height: 250px;">
+            <div class="card card-fluid">
                 <div class="card-body">
                
 
@@ -163,7 +163,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvbenename" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "benefnamedesc")) %>'
-                                                Width="150px"></asp:Label>
+                                                Width="200px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="left" />
                                         <HeaderStyle HorizontalAlign="center" />

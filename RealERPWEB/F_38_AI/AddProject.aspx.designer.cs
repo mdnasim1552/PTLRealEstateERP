@@ -105,6 +105,15 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.GridView GridcusDetails;
 
         /// <summary>
+        /// hiddPrjid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hiddPrjid;
+
+        /// <summary>
         /// Label3 control.
         /// </summary>
         /// <remarks>
@@ -130,15 +139,6 @@ namespace RealERPWEB.F_38_AI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label tblpactcode;
-
-        /// <summary>
-        /// hiddPrjid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddPrjid;
 
         /// <summary>
         /// Label1 control.
@@ -213,13 +213,13 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.TextBox txtdatasetQuantity;
 
         /// <summary>
-        /// tblAddBatch control.
+        /// tblSaveBatch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton tblAddBatch;
+        protected global::System.Web.UI.WebControls.LinkButton tblSaveBatch;
 
         /// <summary>
         /// gv_BatchList control.
