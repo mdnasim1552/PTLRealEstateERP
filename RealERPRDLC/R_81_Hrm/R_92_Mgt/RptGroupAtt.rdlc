@@ -1251,7 +1251,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Present</Value>
+                                  <Value>Present(%)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1287,7 +1287,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Absent</Value>
+                                  <Value>Absent(%)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1323,7 +1323,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Leave</Value>
+                                  <Value>Leave(%)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1359,7 +1359,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Late</Value>
+                                  <Value>Late(%)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1918,8 +1918,8 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.01736in</Top>
             <Left>0.01389in</Left>
-            <Height>0.64321in</Height>
-            <Width>6.81588in</Width>
+            <Height>0.64322in</Height>
+            <Width>6.81587in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -2457,8 +2457,8 @@
             <DataSetName>DataSet2</DataSetName>
             <Top>0.66665in</Top>
             <Left>0.01389in</Left>
-            <Height>0.49999in</Height>
-            <Width>6.81588in</Width>
+            <Height>0.5in</Height>
+            <Width>6.81586in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -3000,8 +3000,8 @@
             <DataSetName>DataSet2</DataSetName>
             <Top>1.16665in</Top>
             <Left>0.01599in</Left>
-            <Height>0.50695in</Height>
-            <Width>6.81378in</Width>
+            <Height>0.50696in</Height>
+            <Width>6.81376in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -3536,8 +3536,8 @@
             <DataSetName>DataSet2</DataSetName>
             <Top>1.6875in</Top>
             <Left>0.01389in</Left>
-            <Height>0.51041in</Height>
-            <Width>6.81588in</Width>
+            <Height>0.51042in</Height>
+            <Width>6.81586in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -4073,7 +4073,7 @@
             <Top>2.22569in</Top>
             <Left>0.01179in</Left>
             <Height>0.49999in</Height>
-            <Width>6.81798in</Width>
+            <Width>6.81796in</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -4241,7 +4241,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox42</rd:DefaultName>
-              <Top>0in</Top>
               <Left>9.47307in</Left>
               <Height>0.17708in</Height>
               <Width>1.55604in</Width>

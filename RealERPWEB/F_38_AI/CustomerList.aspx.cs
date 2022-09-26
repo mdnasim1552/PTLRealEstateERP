@@ -40,11 +40,12 @@ namespace RealERPWEB.F_38_AI
         private void GetCustomerList()
         {
             string comcod = this.GetComdCode();
-            DataSet dt= MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "GETCUSTOMERLIST", "", "", "", "", "", "");
+            DataSet dt = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "GETCUSTOMERLIST", "", "", "", "", "", "");
             if (dt == null)
                 return;
-            
+
             Session["tblCustlist"] = dt.Tables[0];
+            this.GridcusDetails.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.GridcusDetails.DataSource = dt;
             this.GridcusDetails.DataBind();
         }
@@ -54,13 +55,22 @@ namespace RealERPWEB.F_38_AI
         {
 
             string comcod = this.GetComdCode();
-            string sircode = "";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "AICUSTOMERINSERTUPDATE", sircode, "", "", "", "", "");
+            DropDownList ddlgval;
+
+            string sircode = this.lblinfocode.Text ?? "";
+            if (sircode != "")
+            {
+                this.none.Attributes.Add("class", "d-block col-md-4");
+                this.gridcol.Attributes.Add("class", "col-md-8");
+            }
+            string gvalue = "";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "GETCUSTOMER_CODE", sircode, "", "", "", "", "");
             DataTable dt = ds1.Tables[0];
             ViewState["tblcustinf"] = dt;
             this.gvPersonalInfo.DataSource = dt;
             this.gvPersonalInfo.DataBind();
-            DropDownList ddlgval;
+
+
             for (int i = 0; i < dt.Rows.Count; i++)
             {
 
@@ -70,6 +80,7 @@ namespace RealERPWEB.F_38_AI
 
 
                     case "01015": //country
+                        gvalue = dt.Rows[i]["value"].ToString();
                         DataTable dtc = (DataTable)Session["tblCunt"];
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
@@ -80,25 +91,30 @@ namespace RealERPWEB.F_38_AI
                         ddlgval.DataValueField = "curdesc";
                         ddlgval.DataSource = dtc;
                         ddlgval.DataBind();
-                        ddlgval.SelectedValue = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                        ddlgval.SelectedValue = gvalue;
 
                         break;
                     case "01009"://date time 
+                        gvalue = dt.Rows[i]["value"].ToString();
+
                         string gdatat = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
-                       
+
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Clear();
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-                        
-                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text = gdatat;
+
+                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text = gvalue;
                         break;
 
 
                     default:
+                        gvalue = dt.Rows[i]["value"].ToString();
+
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
 
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Clear();
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text = gvalue;
 
                         break;
 
@@ -124,15 +140,16 @@ namespace RealERPWEB.F_38_AI
         {
             try
             {
- 
+
                 string comcod = this.GetComdCode();
                 string sircode = this.GetLastid();
+                string srcode = this.lblinfocode.Text;
 
                 for (int i = 0; i < this.gvPersonalInfo.Rows.Count; i++)
                 {
                     string Gcode = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
                     string gtype = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
-                   
+
 
                     string Gvalue = (((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
                     if (Gcode == "01009")
@@ -148,6 +165,7 @@ namespace RealERPWEB.F_38_AI
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail..!!');", true);
                         return;
                     }
+
                 }
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Customer Saved Successfully');", true);
@@ -162,7 +180,7 @@ namespace RealERPWEB.F_38_AI
 
         private string GetLastid()
         {
-            string sircode="";
+            string sircode = "";
 
             string comcod = this.GetComdCode();
 
@@ -249,27 +267,30 @@ namespace RealERPWEB.F_38_AI
             int index = row.RowIndex;
             string id = ((Label)this.GridcusDetails.Rows[index].FindControl("lblinfcode")).Text.ToString();
             this.lblinfocode.Text = id;
-            this.CustomerEdit();
-
-        }
-
-        private void CustomerEdit()
-        {
-            string comcod = this.GetComdCode();
-            string sircode = this.lblinfocode.Text;
-            DataSet ds = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "GETCUSTOMER_CODE", sircode, "", "", "", "", "", "");
-
-            if (ds == null)
-                return;
-            DataTable dt = ds.Tables[0];
-            gvPersonalInfo.DataSource = ds.Tables[0];
-            gvPersonalInfo.DataBind();
-
             this.LoadGrid();
 
-
-
         }
+
+        protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetCustomerList();
+           
+        }
+
+        //private void Pageload()
+        //{
+
+
+        //    DataTable dt = (DataTable)Session["tblCustlist"];
+        //    int TblRowIndex;
+        //    for (int i = 0; i < this.GridcusDetails.Rows.Count; i++)
+        //    {
+        //        string entitlement = ((TextBox)this.GridcusDetails.Rows[i].FindControl("lblinfcode")).Text.Trim().ToString();
+        //        TblRowIndex = (GridcusDetails.PageIndex) * GridcusDetails.PageSize + i;
+        //        dt.Rows[TblRowIndex]["infcod"] = entitlement;
+        //    }
+        //    Session["tblCustlist"] = dt;
+        //}
     }
 }
 
