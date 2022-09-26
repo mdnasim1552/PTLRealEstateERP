@@ -441,9 +441,11 @@ namespace RealERPWEB.F_17_Acc
                 mCPRNo = this.ddlPrevList.SelectedValue.ToString();
             if (mCPRNo == "NEWBILL")
             {
-                //string SrchProject = "%" + this.txtSrchProjectName.Text.Trim() + "%";
+                //string SrchProject = "%" + this.txtSrchProjectName.Text.Trim() + "%";GET_LAST_PETTYBILL
                 string comcod = this.GetCompCode();
-                DataSet ds = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GET_LAST_PEnaTTYBILL", CurDate1);
+                //DataSet ds = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GET_LAST_PEnaTTYBILL", CurDate1);
+                DataSet ds = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GET_LAST_PETTYBILL", CurDate1);
+
                 if (ds == null)
                     return;
                 this.lblCurNo1.Text = ds.Tables[0].Rows[0]["maxpcblno1"].ToString().Substring(0, 6);
