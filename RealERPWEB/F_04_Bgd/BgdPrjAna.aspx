@@ -406,13 +406,13 @@
                                     ShowFooter="True" OnRowDeleting="gvAnalysis_RowDeleting">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl.No.">
+                                        <asp:TemplateField HeaderText="SL">
                                             <HeaderTemplate>
-                                                <table style="width: 40px;">
+                                                <table style="width: 30px;">
                                                     <tr>
                                                         <td class="style58">
                                                             <asp:Label ID="Label4" runat="server" Font-Bold="True"
-                                                                Text="Sl.No." Width="40px"></asp:Label>
+                                                                Text="SL" Width="30px"></asp:Label>
                                                         </td>
                                                         <td class="style60">&nbsp;</td>
                                                         <td>
@@ -425,7 +425,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
                                                     Style="text-align: right"
-                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="40px"></asp:Label>
+                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <%--<asp:CommandField ShowDeleteButton="True" />--%>

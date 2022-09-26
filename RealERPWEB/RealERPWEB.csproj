@@ -2207,6 +2207,7 @@
     <Content Include="F_21_MKT\RptPerDeleteProspect.aspx" />
     <Content Include="F_22_Sal\EntryClientNameTransfer.aspx" />
     <Content Include="F_22_Sal\MktSalsLOPayment.aspx" />
+    <Content Include="F_22_Sal\RptSalesVsAchievement.aspx" />
     <Content Include="F_22_Sal\RptSoldUnsoftInfGroupWise.aspx" />
     <Content Include="F_22_Sal\RptSoldUnsoldUnitAvgPrice.aspx" />
     <Content Include="F_23_CR\MktLOMoneyReceipt.aspx" />
@@ -4094,6 +4095,13 @@
     </Compile>
     <Compile Include="F_22_Sal\MktSalsLOPayment.aspx.designer.cs">
       <DependentUpon>MktSalsLOPayment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_22_Sal\RptSalesVsAchievement.aspx.cs">
+      <DependentUpon>RptSalesVsAchievement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\RptSalesVsAchievement.aspx.designer.cs">
+      <DependentUpon>RptSalesVsAchievement.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_22_Sal\RptSoldUnsoftInfGroupWise.aspx.cs">
       <DependentUpon>RptSoldUnsoftInfGroupWise.aspx</DependentUpon>
