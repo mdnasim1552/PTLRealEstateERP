@@ -160,6 +160,16 @@
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
+                             <asp:TemplateField HeaderText="Department Name">
+                                <ItemTemplate>
+                                    <asp:HyperLink ID="hlnkgvdept" runat="server" BorderColor="#99CCFF"
+                                        BorderStyle="none" Font-Size="11px" Font-Underline="false" ForeColor="Black"
+                                        Style="text-align: left; background-color: Transparent" Target="_blank"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptdesc")) %>'
+                                        Width="200px"></asp:HyperLink>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
 
 
                             <asp:TemplateField HeaderText="Total Staff">
