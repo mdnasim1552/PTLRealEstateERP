@@ -1467,8 +1467,8 @@
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:CheckBox ID="chkack" runat="server"
-                                                Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lateapp"))=="True" ? true : false %>'
-                                                Enabled='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lateapp"))=="True" ? false : true%>'
+                                                Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lateapp"))=="1" ? true : false %>'
+                                                Enabled='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lateapp"))=="1" ? false : true%>'
                                                 Width="20px" />
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
