@@ -211,9 +211,8 @@
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\..\..\Doc\Lib\bin\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
       <HintPath>..\..\..\Doc\Lib\bin\RealERPRPT.dll</HintPath>
@@ -4189,6 +4188,7 @@
     </Compile>
     <Compile Include="F_14_Pro\RptMrfDeleteLog.aspx.cs">
       <DependentUpon>RptMrfDeleteLog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_14_Pro\RptMrfDeleteLog.aspx.designer.cs">
       <DependentUpon>RptMrfDeleteLog.aspx</DependentUpon>
@@ -4468,6 +4468,7 @@
     </Compile>
     <Compile Include="F_34_Mgt\CreateTagSetup.aspx.cs">
       <DependentUpon>CreateTagSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_34_Mgt\CreateTagSetup.aspx.designer.cs">
       <DependentUpon>CreateTagSetup.aspx</DependentUpon>
@@ -4719,6 +4720,7 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\RptAttendenceSheet.aspx.cs">
       <DependentUpon>RptAttendenceSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\RptAttendenceSheet.aspx.designer.cs">
       <DependentUpon>RptAttendenceSheet.aspx</DependentUpon>
@@ -5019,6 +5021,7 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_87_Tra\HREmpTransferReport.aspx.cs">
       <DependentUpon>HREmpTransferReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_81_Hrm\F_87_Tra\HREmpTransferReport.aspx.designer.cs">
       <DependentUpon>HREmpTransferReport.aspx</DependentUpon>
@@ -5116,6 +5119,7 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\LetterInterface.aspx.cs">
       <DependentUpon>LetterInterface.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\LetterInterface.aspx.designer.cs">
       <DependentUpon>LetterInterface.aspx</DependentUpon>
@@ -5192,6 +5196,7 @@
     </Compile>
     <Compile Include="F_99_Allinterface\RptVehicleMgt.aspx.cs">
       <DependentUpon>RptVehicleMgt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_99_Allinterface\RptVehicleMgt.aspx.designer.cs">
       <DependentUpon>RptVehicleMgt.aspx</DependentUpon>
@@ -5879,6 +5884,7 @@
     </Compile>
     <Compile Include="F_04_Bgd\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_04_Bgd\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -5955,6 +5961,7 @@
     </Compile>
     <Compile Include="F_04_Bgd\LinkMatRequirement.aspx.cs">
       <DependentUpon>LinkMatRequirement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_04_Bgd\LinkMatRequirement.aspx.designer.cs">
       <DependentUpon>LinkMatRequirement.aspx</DependentUpon>
@@ -6157,6 +6164,7 @@
     </Compile>
     <Compile Include="F_07_Ten\TASActAnalysis.aspx.cs">
       <DependentUpon>TASActAnalysis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_07_Ten\TASActAnalysis.aspx.designer.cs">
       <DependentUpon>TASActAnalysis.aspx</DependentUpon>
@@ -6247,6 +6255,7 @@
     </Compile>
     <Compile Include="F_08_PPlan\LandOwnerPayment.aspx.cs">
       <DependentUpon>LandOwnerPayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_08_PPlan\LandOwnerPayment.aspx.designer.cs">
       <DependentUpon>LandOwnerPayment.aspx</DependentUpon>
@@ -6624,6 +6633,7 @@
     </Compile>
     <Compile Include="F_09_PImp\SubConBillEntry.aspx.cs">
       <DependentUpon>SubConBillEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_09_PImp\SubConBillEntry.aspx.designer.cs">
       <DependentUpon>SubConBillEntry.aspx</DependentUpon>
@@ -6777,12 +6787,14 @@
     </Compile>
     <Compile Include="F_12_Inv\RptDayWiseAdvance.aspx.cs">
       <DependentUpon>RptDayWiseAdvance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_12_Inv\RptDayWiseAdvance.aspx.designer.cs">
       <DependentUpon>RptDayWiseAdvance.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_12_Inv\RptIndPrjAmtBasisRes.aspx.cs">
       <DependentUpon>RptIndPrjAmtBasisRes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_12_Inv\RptIndPrjAmtBasisRes.aspx.designer.cs">
       <DependentUpon>RptIndPrjAmtBasisRes.aspx</DependentUpon>
@@ -6901,6 +6913,7 @@
     </Compile>
     <Compile Include="F_14_Pro\LandResLink.aspx.cs">
       <DependentUpon>LandResLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_14_Pro\LandResLink.aspx.designer.cs">
       <DependentUpon>LandResLink.aspx</DependentUpon>
@@ -7201,6 +7214,7 @@
     </Compile>
     <Compile Include="F_14_Pro\RptSuppierBgd.aspx.cs">
       <DependentUpon>RptSuppierBgd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_14_Pro\RptSuppierBgd.aspx.designer.cs">
       <DependentUpon>RptSuppierBgd.aspx</DependentUpon>
@@ -7977,6 +7991,7 @@
     </Compile>
     <Compile Include="F_17_Acc\LinkIncomeSt.aspx.cs">
       <DependentUpon>LinkIncomeSt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_17_Acc\LinkIncomeSt.aspx.designer.cs">
       <DependentUpon>LinkIncomeSt.aspx</DependentUpon>
@@ -8291,6 +8306,7 @@
     </Compile>
     <Compile Include="F_17_Acc\RptMonthWiseBankLedger.aspx.cs">
       <DependentUpon>RptMonthWiseBankLedger.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_17_Acc\RptMonthWiseBankLedger.aspx.designer.cs">
       <DependentUpon>RptMonthWiseBankLedger.aspx</DependentUpon>
@@ -8437,6 +8453,7 @@
     </Compile>
     <Compile Include="F_17_Acc\TransectionPrint.aspx.cs">
       <DependentUpon>TransectionPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_17_Acc\TransectionPrint.aspx.designer.cs">
       <DependentUpon>TransectionPrint.aspx</DependentUpon>
@@ -8562,6 +8579,7 @@
     </Compile>
     <Compile Include="F_21_MKT\linkMktEmpKpiEntry.aspx.cs">
       <DependentUpon>linkMktEmpKpiEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_21_MKT\linkMktEmpKpiEntry.aspx.designer.cs">
       <DependentUpon>linkMktEmpKpiEntry.aspx</DependentUpon>
@@ -8659,6 +8677,7 @@
     </Compile>
     <Compile Include="F_21_MKT\RptFindClient.aspx.cs">
       <DependentUpon>RptFindClient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_21_MKT\RptFindClient.aspx.designer.cs">
       <DependentUpon>RptFindClient.aspx</DependentUpon>
@@ -9687,6 +9706,7 @@
     </Compile>
     <Compile Include="F_31_EDAct\GenCodeBook.aspx.cs">
       <DependentUpon>GenCodeBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_31_EDAct\GenCodeBook.aspx.designer.cs">
       <DependentUpon>GenCodeBook.aspx</DependentUpon>
@@ -9728,6 +9748,7 @@
     </Compile>
     <Compile Include="F_32_Mis\LinkConstruProgress.aspx.cs">
       <DependentUpon>LinkConstruProgress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_32_Mis\LinkConstruProgress.aspx.designer.cs">
       <DependentUpon>LinkConstruProgress.aspx</DependentUpon>
@@ -9741,6 +9762,7 @@
     </Compile>
     <Compile Include="F_32_Mis\LinkIndProjectStatus.aspx.cs">
       <DependentUpon>LinkIndProjectStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_32_Mis\LinkIndProjectStatus.aspx.designer.cs">
       <DependentUpon>LinkIndProjectStatus.aspx</DependentUpon>
@@ -9859,6 +9881,7 @@
     </Compile>
     <Compile Include="F_32_Mis\RptConstruProgressSum.aspx.cs">
       <DependentUpon>RptConstruProgressSum.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_32_Mis\RptConstruProgressSum.aspx.designer.cs">
       <DependentUpon>RptConstruProgressSum.aspx</DependentUpon>
@@ -10036,6 +10059,7 @@
     </Compile>
     <Compile Include="F_34_Mgt\CACodeLink.aspx.cs">
       <DependentUpon>CACodeLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_34_Mgt\CACodeLink.aspx.designer.cs">
       <DependentUpon>CACodeLink.aspx</DependentUpon>
@@ -10525,6 +10549,7 @@
     </Compile>
     <Compile Include="F_39_MyPage\RptEmpEvaSheetGen.aspx.cs">
       <DependentUpon>RptEmpEvaSheetGen.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_39_MyPage\RptEmpEvaSheetGen.aspx.designer.cs">
       <DependentUpon>RptEmpEvaSheetGen.aspx</DependentUpon>
@@ -10559,6 +10584,7 @@
     </Compile>
     <Compile Include="F_39_MyPage\RptEmpMonthWiseEva02.aspx.cs">
       <DependentUpon>RptEmpMonthWiseEva02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_39_MyPage\RptEmpMonthWiseEva02.aspx.designer.cs">
       <DependentUpon>RptEmpMonthWiseEva02.aspx</DependentUpon>
@@ -11349,6 +11375,7 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_81_Rec\RecAccCodeBook.aspx.cs">
       <DependentUpon>RecAccCodeBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_81_Hrm\F_81_Rec\RecAccCodeBook.aspx.designer.cs">
       <DependentUpon>RecAccCodeBook.aspx</DependentUpon>
@@ -11481,6 +11508,7 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\ImgUpload.aspx.cs">
       <DependentUpon>ImgUpload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\ImgUpload.aspx.designer.cs">
       <DependentUpon>ImgUpload.aspx</DependentUpon>
