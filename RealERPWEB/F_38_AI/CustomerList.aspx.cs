@@ -249,7 +249,7 @@ namespace RealERPWEB.F_38_AI
             int index = row.RowIndex;
             string id = ((Label)this.GridcusDetails.Rows[index].FindControl("lblinfcode")).Text.ToString();
             this.lblinfocode.Text = id;
-            this.CustomerEdit();
+           // this.CustomerEdit();
 
         }
 
@@ -265,7 +265,7 @@ namespace RealERPWEB.F_38_AI
             gvPersonalInfo.DataSource = ds.Tables[0];
             gvPersonalInfo.DataBind();
 
-            this.LoadGrid();
+           // this.LoadGrid();
 
 
 
