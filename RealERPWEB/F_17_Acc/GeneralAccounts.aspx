@@ -862,20 +862,18 @@
                                                         Width="80px" TabIndex="60"></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <%--<asp:TemplateField HeaderText="OutStanding Balance">
+
+                                            <asp:TemplateField HeaderText="" Visible="false">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvtrnoutstbal" runat="server"
+                                                    <asp:Label ID="lblgvssbalamt" runat="server"
                                                         Font-Size="12px"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnoutstbal")).ToString("#,##0.00;-#,##0.00; ") %>'
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ssbalamt")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                         Width="80px" TabIndex="60"></asp:Label>
                                                 </ItemTemplate>
-                                            </asp:TemplateField>--%>
+                                            </asp:TemplateField>
 
                                             <%--<asp: ID="HiddenField1" runat="server" Value='<%# Bind("ProductId") %>' />--%>
 
-<%--                                            <asp:TemplateField>
-                              
-                                            </asp:TemplateField>--%>
                                         </Columns>
                                         <FooterStyle BackColor="#F5F5F5" />
                                         <EditRowStyle />
