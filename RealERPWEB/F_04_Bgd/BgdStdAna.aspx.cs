@@ -870,7 +870,64 @@ namespace RealERPWEB.F_04_Bgd
             this.ddlResource.DataBind();
         }
 
+        protected void lbtnDelAnalysis_Click(object sender, EventArgs e)
+        {
 
+            DataTable dt = (DataTable)ViewState["tblStdAna"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string Itemcode = this.ddlItem.SelectedValue.ToString();
+
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string Rescode = ((Label)this.gvAnalysis.Rows[rowIndex].FindControl("lblgvResCod")).Text.Trim();
+
+            bool result = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_IRSTDANA", "DELETERESOURCE", Itemcode,
+                           Rescode, "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+
+            if (result)
+            {
+                bool result2 = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_IRSTDANA", "DELETERESOURCE02", Itemcode, Rescode, "", "", "", "", "", "", "", "", "", "", "", "", "");
+                int rowindex2 = (this.gvAnalysis.PageSize) * (this.gvAnalysis.PageIndex) + rowIndex;
+                dt.Rows[rowindex2].Delete(); 
+            }
+
+            DataView dv = dt.DefaultView;
+            this.gvAnalysis.DataSource = dv.ToTable();
+            this.gvAnalysis.DataBind();
+            ViewState.Remove("tblStdAna");
+            ViewState["tblStdAna"] = dv.ToTable();
+            this.ShowColoumGroup(1);
+
+            //DataTable dt = (DataTable)Session["tblActAna1"];
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            //int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            //string comcod = hst["comcod"].ToString();
+            //string Prjcode = this.ddlProject.SelectedValue.ToString();
+            //string Itemcode = ((Label)this.gvAnalysis.Rows[rowIndex].FindControl("lblgvItmCod")).Text.Trim();
+            //bool result = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_PRJ_BUDGET", "DELETEITEME", Prjcode, Itemcode,
+            //                "", "", "", "", "", "", "", "", "", "", "", "", "");
+            //if (result == true)
+            //{
+            //    int rowindex = (this.gvAnalysis.PageSize) * (this.gvAnalysis.PageIndex) + rowIndex;
+            //    dt.Rows[rowindex].Delete();
+            //}
+
+            //DataView dv = dt.DefaultView;
+            //this.gvAnalysis.DataSource = dv.ToTable();
+            //this.gvAnalysis.DataBind();
+            //Session.Remove("tblActAna1");
+            //Session["tblActAna1"] = dv.ToTable();
+            //this.ShowScheduledItemList();
+
+            //if (ConstantInfo.LogStatus == true)
+            //{
+            //    string eventtype = "Constraction Budget(Indevidual Floor)";
+            //    string eventdesc = "Floor Delete";
+            //    string eventdesc2 = Itemcode;
+            //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            //}
+        }
     }
 }
 
