@@ -2205,7 +2205,9 @@
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
     <Content Include="F_21_MKT\RptPerDeleteProspect.aspx" />
+    <Content Include="F_22_Sal\SalsurverPCodeBook.aspx" />
     <Content Include="F_22_Sal\EntryClientNameTransfer.aspx" />
+    <Content Include="F_22_Sal\SaleSurGenCodeBook.aspx" />
     <Content Include="F_22_Sal\MktSalsLOPayment.aspx" />
     <Content Include="F_22_Sal\RptSoldUnsoftInfGroupWise.aspx" />
     <Content Include="F_22_Sal\RptSoldUnsoldUnitAvgPrice.aspx" />
@@ -4070,12 +4072,26 @@
     <Compile Include="F_21_MKT\RptPerDeleteProspect.aspx.designer.cs">
       <DependentUpon>RptPerDeleteProspect.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_22_Sal\SalsurverPCodeBook.aspx.cs">
+      <DependentUpon>SalsurverPCodeBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\SalsurverPCodeBook.aspx.designer.cs">
+      <DependentUpon>SalsurverPCodeBook.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_22_Sal\EntryClientNameTransfer.aspx.cs">
       <DependentUpon>EntryClientNameTransfer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_22_Sal\EntryClientNameTransfer.aspx.designer.cs">
       <DependentUpon>EntryClientNameTransfer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_22_Sal\SaleSurGenCodeBook.aspx.cs">
+      <DependentUpon>SaleSurGenCodeBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\SaleSurGenCodeBook.aspx.designer.cs">
+      <DependentUpon>SaleSurGenCodeBook.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_22_Sal\MktSalsLOPayment.aspx.cs">
       <DependentUpon>MktSalsLOPayment.aspx</DependentUpon>
