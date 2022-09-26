@@ -113,13 +113,9 @@ namespace RealERPWEB.F_23_CR
             {
                     if (dt1.Rows[j]["pactcode"].ToString() == pactcode)
                         dt1.Rows[j]["pactdesc"] = "";
-
                        pactcode = dt1.Rows[j]["pactcode"].ToString();
 
-
             }
-
-            
 
             return dt1;
         }
