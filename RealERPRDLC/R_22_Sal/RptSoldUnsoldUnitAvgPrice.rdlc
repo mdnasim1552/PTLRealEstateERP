@@ -124,16 +124,16 @@
                   <Width>1.16444in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.65402in</Width>
+                  <Width>0.52902in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.47916in</Width>
+                  <Width>0.36458in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.53124in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.49778in</Width>
+                  <Width>0.48736in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.68154in</Width>
@@ -142,10 +142,10 @@
                   <Width>0.625in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.65845in</Width>
+                  <Width>1.01262in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.64362in</Width>
+                  <Width>0.8832in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.92708in</Width>
@@ -163,10 +163,10 @@
                   <Width>0.97693in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.39361in</Width>
+                  <Width>1.15403in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.0521in</Width>
+                  <Width>0.94793in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -836,7 +836,6 @@ Rate from unsold unit
                           </Style>
                         </Textbox>
                         <ColSpan>16</ColSpan>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
@@ -1756,9 +1755,9 @@ Rate from unsold unit
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
               <Top>0.01389in</Top>
-              <Left>11.42584in</Left>
+              <Left>10.86333in</Left>
               <Height>0.21181in</Height>
-              <Width>2.06376in</Width>
+              <Width>2.62627in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
