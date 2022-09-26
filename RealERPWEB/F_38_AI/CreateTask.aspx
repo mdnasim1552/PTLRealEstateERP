@@ -46,7 +46,7 @@
             <div class="card mt-5">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-12" style="background:#F6F7F9">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
                             <div class="form-group row">
                                 <div class="p-0 col-lg-6 col-md-6 col-sm-12">
                                     <asp:Label ID="Label14" runat="server">Date</asp:Label>
