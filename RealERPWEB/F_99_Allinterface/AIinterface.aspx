@@ -550,12 +550,12 @@
                 <div class="card mt-4">
                     <div class="card-header pt-2 pb-2">
                         <div class="row">
-                            <div class="col-lg-2">
+                            <div class="col-lg-1">
                                 <asp:Label ID="Label1" runat="server">From</asp:Label>
                                 <asp:TextBox ID="txtfrmdate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                 <cc1:CalendarExtender runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-1">
                                 <asp:Label ID="Label2" runat="server">To</asp:Label>
                                 <asp:TextBox ID="txttodate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                 <cc1:CalendarExtender runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
@@ -590,12 +590,8 @@
                                     <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-primary btn-sm mt20">Ok</asp:LinkButton></li>
                                 </div>
                             </div>
+                            <div class="col-md-2">
 
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-5 col-md-6 col-sm-6">
-                                <%--<asp:LinkButton ID="tblAddProjectModal" runat="server" CssClass="btn btn-primary ml-auto bw-100 btn-sm mt20 mr-2" OnClick="tblAddProjectModal_Click"><i class="fa fa-plus"></i>Add Project</asp:LinkButton>
-                                <asp:LinkButton ID="tblTaskCreateModal" runat="server" CssClass="btn btn-primary ml-auto bw-100 btn-sm mt20 mr-2" OnClick="tblTaskCreateModal_Click"><i class="fa fa-plus"></i>Add Tasks</asp:LinkButton>--%>
                                 <div class=" btn-group" role="group" aria-label="Button group with nested dropdown">
                                     <div class="btn-group" role="group">
                                         <button id="btnGroupDrop4" type="button" class="btn btn-success ml-auto bw-100 btn-sm mt20 mr-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Operation</button>
@@ -611,6 +607,14 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-5 col-md-6 col-sm-6">
+                                <%--<asp:LinkButton ID="tblAddProjectModal" runat="server" CssClass="btn btn-primary ml-auto bw-100 btn-sm mt20 mr-2" OnClick="tblAddProjectModal_Click"><i class="fa fa-plus"></i>Add Project</asp:LinkButton>
+                                <asp:LinkButton ID="tblTaskCreateModal" runat="server" CssClass="btn btn-primary ml-auto bw-100 btn-sm mt20 mr-2" OnClick="tblTaskCreateModal_Click"><i class="fa fa-plus"></i>Add Tasks</asp:LinkButton>--%>
                             </div>
                         </div>
                     </div>

@@ -2038,12 +2038,12 @@ namespace RealERPWEB.F_17_Acc
                         }
                     }
 
-                    //For Dupllicate MR and check 98 and 99 payment balance .........
+                    //For Dupllicate MR and check 98 and 99 payment balance ......... 
                     DataTable dt = (DataTable)Session["tblvoucher"];
                     string mrrref = this.txtSrinfo.Text;
                     switch (comcod)
                     {
-                        case "3340":
+                        case "3340": // urban 
                             // case "3101":
                             DataRow[] dr1 = dt.Select("actcode like '16%' and (subcode like '01%' or subcode like '04%')");
                             if (dr1.Length > 0)
@@ -2061,7 +2061,7 @@ namespace RealERPWEB.F_17_Acc
                             break;
 
                         case "3101":
-                        case "3356":
+                        case "3356": // intech
                             for (int i = 0; i < dgv1.Rows.Count; i++)
                             {
                                 string actcode = ((Label)this.dgv1.Rows[i].FindControl("lblAccCod")).Text.Trim();
