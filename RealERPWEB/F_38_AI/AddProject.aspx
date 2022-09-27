@@ -52,6 +52,7 @@
         function checkEmptyNote() {
             OpenAddBatch();
             showAddBatch();
+            viewToProj();
 
         }
 
@@ -61,7 +62,13 @@
         function showAddBatch() {
             $('#CreateModalBatch').modal('show');
         }
+        function ViewModel() {
+            $('#CreateModalBatch').modal('show');
 
+        }
+        function viewToProj(){
+            $('#ProjectModalView').modal('toggle');
+        }
 
 
     </script>
@@ -263,9 +270,9 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Action">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="lnkView" runat="server" CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-eye"></i></asp:LinkButton>
-                                                <asp:LinkButton ID="btnRemove" runat="server" CssClass="text-danger pr-2" ToolTip="delete"><i class="fa fa-trash"></i></asp:LinkButton>
-                                                <asp:LinkButton ID="btnEdit" runat="server" CssClass="text-primary" ToolTip="edit"><i class="fa fa-edit"></i></asp:LinkButton>
+                                                <asp:LinkButton ID="lnkView" runat="server" CssClass="text-primary pr-2 pl-2" OnClick="lnkView_Click" ToolTip="view"><i class="fa fa-eye"></i></asp:LinkButton>
+                                                <asp:LinkButton ID="btnRemove" runat="server"  OnClientClick="return confirm('Are You Sure?')" CssClass="text-danger pr-2" OnClick="btnRemove_Click" ToolTip="delete"><i class="fa fa-trash"></i></asp:LinkButton>
+                                                <asp:LinkButton ID="btnEdit" runat="server" OnClick="btnEdit_Click" CssClass="text-primary" ToolTip="edit"><i class="fa fa-edit"></i></asp:LinkButton>
                                             </ItemTemplate>
                                             <ItemStyle Width="80px" />
                                         </asp:TemplateField>
@@ -300,7 +307,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-3 col-sm-6">
+                                        <div class="col-lg-4 col-md-4 col-sm-6">
                                             <asp:HiddenField ID="hiddPrjid" runat="server" />
                                             <div class="form-group">
                                                 <asp:Label ID="Label3" runat="server">Project Name</asp:Label>
@@ -309,7 +316,23 @@
                                                 <%--<asp:Label ID="" runat="server"  Text='<%#Eval("prjid").ToString()%>'></asp:Label>--%>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3 col-md-3 col-sm-6">
+                                       
+                                        <div class="col-lg-4 col-md-4 col-sm-6">
+                                            <div class="form-group">
+                                                 <asp:Label ID="Label10" runat="server">DataSet Type</asp:Label>
+                                                <asp:TextBox ID="txtdataset" runat="server" CssClass="form-control"></asp:TextBox>
+                                            </div>
+                                            </div>
+                                         <div class="col-lg-4 col-md-4 col-sm-6">
+                                            <div class="form-group">
+                                                 <asp:Label ID="Label11" runat="server">Work Type</asp:Label>
+                                                <asp:TextBox ID="txtworktype" runat="server" CssClass="form-control"></asp:TextBox>
+                                            </div>
+                                            </div>
+                                       
+                                    </div>
+                                    <div class="row">
+                                         <div class="col-lg-3 col-md-3 col-sm-6">
                                             <div class="form-group">
                                                 <asp:Label ID="Label1" runat="server">Batch Name</asp:Label>
                                                 <asp:TextBox ID="txtBatch" runat="server" CssClass="form-control"></asp:TextBox>
@@ -317,12 +340,19 @@
                                         </div>
                                         <div class="col-lg-3 col-md-3 col-sm-6">
                                             <div class="form-group">
+                                                <asp:Label ID="Label5" runat="server">Batch Quantity</asp:Label>
+                                                <asp:TextBox ID="txtbatchQuantity" runat="server" CssClass="form-control"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-lg-3 col-md-3 col-sm-6">
+                                            <div class="form-group">
                                                 <asp:Label ID="Label2" runat="server">Start Date</asp:Label>
                                                 <asp:TextBox ID="txtstartdate" runat="server" CssClass="form-control"></asp:TextBox>
                                                 <cc1:CalendarExtender runat="server" Format="dd-MMM-yyyy" TargetControlID="txtstartdate"></cc1:CalendarExtender>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3 col-md-3 col-sm-6">
+                                         <div class="col-lg-3 col-md-3 col-sm-6">
                                             <div class="form-group">
                                                 <asp:Label ID="Label4" runat="server">Delivery Date</asp:Label>
                                                 <asp:TextBox ID="textdelevery" runat="server" CssClass="form-control"></asp:TextBox>
@@ -331,12 +361,6 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-3 col-sm-6">
-                                            <div class="form-group">
-                                                <asp:Label ID="Label5" runat="server">DataSet Quantity</asp:Label>
-                                                <asp:TextBox ID="txtdatasetQuantity" runat="server" CssClass="form-control"></asp:TextBox>
-                                            </div>
-                                        </div>
                                         <div class="col-lg-3 col-md-6 col-sm-6">
                                             <div class="form-group row">                                               
                                                     <asp:Label ID="Label6" runat="server">Total Hour</asp:Label>
@@ -347,7 +371,7 @@
                                          <div class="col-lg-2 col-md-3 col-sm-6">
                                             <div class="form-group mt-4">                                            
                                                     
-                                                    <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control chzn-select">
+                                                    <asp:DropDownList ID="ddlphdm" runat="server" CssClass="form-control chzn-select">
                                                         <asp:ListItem Value="0">Hour</asp:ListItem>
                                                         <asp:ListItem Value="1">Minute</asp:ListItem>
                                                         <asp:ListItem Value="2">Day</asp:ListItem>
@@ -465,6 +489,35 @@
                             </div>
                         </div>
                     </div>
+
+
+                    <%-- edit modal --%>
+                    <div id="ProjectModalView" class="modal " role="dialog" data-keyboard="false" data-backdrop="static">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header bg-light">
+                                    <h6 class="modal-title">paroject Details</h6>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">                              
+                                     
+                                     <p><strong>Project Name :</strong> <span id="txtprjname" runat="server"></span></p>
+                                    <p><strong>Project Type :</strong> <span id="prjtype" runat="server"></span></p>
+                                    <p><strong>DataSet :</strong> <span id="dataset" runat="server"></span></p>
+                                    <p><strong>Work Type :</strong> <span id="worktype" runat="server"></span></p>
+                                    <p><strong>Create Date :</strong> <span id="createdate" runat="server"></span></p>
+                                    <p><strong>quantity :</strong> <span id="txtquantity" runat="server"></span></p>                                 
+                                                                          
+                                   
+                                </div>
+                                <div class="modal-footer">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </ContentTemplate>
