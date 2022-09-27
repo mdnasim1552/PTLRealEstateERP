@@ -761,108 +761,121 @@ namespace RealERPWEB.F_34_Mgt
 
         private void ShowAllData()
         {
-            string comcod = this.GetComeCode();
-            string usrid = this.lblusrid.Text;
-            this.lblusrid.Text = usrid;
-            string modname = (this.ddlModuleName.SelectedValue.Trim() == "AA" ? "" : this.ddlModuleName.SelectedValue.ToString()) + "%";
-            DataSet ds4 = User.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWUSERPERFORMASITUSER", "", "", "", "", "", "", "", "", "");
-            if (ds4 == null)
-            {
-                this.gvPermission.DataSource = null;
-                this.gvPermission.DataBind();
-                return;
-            }
-            Session["tblusrper"] = this.HiddenSameData(ds4.Tables[0]);
 
-            string coml1digit = this.GetComeCode().Substring(0, 1);
-            DataTable dt = coml1digit == "8" ? ConstantInfo.WebObjTableGroupACC() : coml1digit == "7" ? ConstantInfo.WebObjTablConComAcc() : ConstantInfo.WebObjTable();
-
-
-            dt.Columns.Add("frmdesc", Type.GetType("System.String"));
-
-
-
-            DataView dv = dt.DefaultView;
-            DataTable dt2;
-
-            if (modname == "%")
-            {
-                DataTable dtallmod = (DataTable)ViewState["tblmoduleName"];
-
-                var JoinResult = (from p in dt.AsEnumerable()
-                                  join t in dtallmod.AsEnumerable()
-                                  on p.Field<string>("frmid").Substring(0, 2) equals t.Field<string>("moduleid")
-                                  select new
-                                  {
-                                      frmid1 = p.Field<string>("frmid1"),
-                                      frmid = p.Field<string>("frmid"),
-                                      floc = p.Field<string>("floc"),
-                                      frmname = p.Field<string>("frmname"),
-                                      qrytype = p.Field<string>("qrytype"),
-                                      dscrption = p.Field<string>("dscrption"),
-                                      modulename = p.Field<string>("modulename"),
-                                      chkper = p.Field<string>("chkper"),
-                                      entry = p.Field<string>("entry"),
-                                      printable = p.Field<string>("printable"),
-                                      delete = p.Field<string>("delete"),
-                                      frmdesc = p.Field<string>("frmdesc")
-
-                                  }).ToList();
-
-                dt2 = ASITUtility03.ListToDataTable(JoinResult);// dv.ToTable();
-            }
-            else
-            {
-                dv.RowFilter = "frmid like '" + modname + "'";
-                dt2 = dv.ToTable();
-            }
-
-
-
-            foreach (DataRow dr in dt2.Rows)
+            try
             {
 
-                string frmid1 = dr["frmid1"].ToString();
-                dr["frmdesc"] = (frmid1.Substring(2, 2) == "01") ? "One Time Input" : (frmid1.Substring(2, 2) == "02") ? "Entry"
-                    : (frmid1.Substring(2, 2) == "51") ? "Interface" : (frmid1.Substring(2, 2) == "91") ? "Dashboard" : "Reports";
 
-            }
-            DataTable dt1 = (DataTable)Session["tblusrper"];
 
-            for (int i = 0; i < dt1.Rows.Count; i++)
-            {
-                string frmname = dt1.Rows[i]["frmname"].ToString().Trim();
-                string qrytype = dt1.Rows[i]["qrytype"].ToString().Trim();
-                string chkper = dt1.Rows[i]["chkper"].ToString().Trim();
-                string entry = dt1.Rows[i]["entry"].ToString().Trim();
-                string printable = dt1.Rows[i]["printable"].ToString().Trim();
-                string delete = dt1.Rows[i]["delete"].ToString().Trim();
-                //string dscrption = dt1.Rows[i]["dscrption"].ToString().Trim();
-                string confrmqry = frmname + qrytype;
-                DataRow[] dr1 = dt2.Select("(frmname+qrytype)='" + confrmqry + "'");
-                if (dr1.Length > 0)
+                string comcod = this.GetComeCode();
+                string usrid = this.lblusrid.Text;
+                this.lblusrid.Text = usrid;
+                string modname = (this.ddlModuleName.SelectedValue.Trim() == "AA" ? "" : this.ddlModuleName.SelectedValue.ToString()) + "%";
+                DataSet ds4 = User.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWUSERPERFORMASITUSER", "", "", "", "", "", "", "", "", "");
+                if (ds4 == null)
                 {
-                    dr1[0]["chkper"] = chkper;
-                    dr1[0]["entry"] = entry;
-                    dr1[0]["printable"] = printable;
-                    dr1[0]["delete"] = delete;
-                    //dr1[0]["dscrption"] = dscrption;
+                    this.gvPermission.DataSource = null;
+                    this.gvPermission.DataBind();
+                    return;
+                }
+                Session["tblusrper"] = this.HiddenSameData(ds4.Tables[0]);
+
+                string coml1digit = this.GetComeCode().Substring(0, 1);
+                DataTable dt = coml1digit == "8" ? ConstantInfo.WebObjTableGroupACC() : coml1digit == "7" ? ConstantInfo.WebObjTablConComAcc() : ConstantInfo.WebObjTable();
 
 
-                    //dr1[0]["delete"] = delete;
+                dt.Columns.Add("frmdesc", Type.GetType("System.String"));
+
+
+
+                DataView dv = dt.DefaultView;
+                DataTable dt2;
+
+                if (modname == "%")
+                {
+                    DataTable dtallmod = (DataTable)ViewState["tblmoduleName"];
+
+                    var JoinResult = (from p in dt.AsEnumerable()
+                                      join t in dtallmod.AsEnumerable()
+                                      on p.Field<string>("frmid").Substring(0, 2) equals t.Field<string>("moduleid")
+                                      select new
+                                      {
+                                          frmid1 = p.Field<string>("frmid1"),
+                                          frmid = p.Field<string>("frmid"),
+                                          floc = p.Field<string>("floc"),
+                                          frmname = p.Field<string>("frmname"),
+                                          qrytype = p.Field<string>("qrytype"),
+                                          dscrption = p.Field<string>("dscrption"),
+                                          modulename = p.Field<string>("modulename"),
+                                          chkper = p.Field<string>("chkper"),
+                                          entry = p.Field<string>("entry"),
+                                          printable = p.Field<string>("printable"),
+                                          delete = p.Field<string>("delete"),
+                                          frmdesc = p.Field<string>("frmdesc")
+
+                                      }).ToList();
+
+                    dt2 = ASITUtility03.ListToDataTable(JoinResult);// dv.ToTable();
+                }
+                else
+                {
+                    dv.RowFilter = "frmid like '" + modname + "'";
+                    dt2 = dv.ToTable();
+                }
+
+
+
+                foreach (DataRow dr in dt2.Rows)
+                {
+
+                    string frmid1 = dr["frmid1"].ToString();
+                    dr["frmdesc"] = (frmid1.Substring(2, 2) == "01") ? "One Time Input" : (frmid1.Substring(2, 2) == "02") ? "Entry"
+                        : (frmid1.Substring(2, 2) == "51") ? "Interface" : (frmid1.Substring(2, 2) == "91") ? "Dashboard" : "Reports";
+
+                }
+                DataTable dt1 = (DataTable)Session["tblusrper"];
+
+                for (int i = 0; i < dt1.Rows.Count; i++)
+                {
+                    string frmname = dt1.Rows[i]["frmname"].ToString().Trim();
+                    string qrytype = dt1.Rows[i]["qrytype"].ToString().Trim();
+                    string chkper = dt1.Rows[i]["chkper"].ToString().Trim();
+                    string entry = dt1.Rows[i]["entry"].ToString().Trim();
+                    string printable = dt1.Rows[i]["printable"].ToString().Trim();
+                    string delete = dt1.Rows[i]["delete"].ToString().Trim();
+                    //string dscrption = dt1.Rows[i]["dscrption"].ToString().Trim();
+                    string confrmqry = frmname + qrytype;
+                    DataRow[] dr1 = dt2.Select("(frmname+qrytype)='" + confrmqry + "'");
+                    if (dr1.Length > 0)
+                    {
+                        dr1[0]["chkper"] = chkper;
+                        dr1[0]["entry"] = entry;
+                        dr1[0]["printable"] = printable;
+                        dr1[0]["delete"] = delete;
+                        //dr1[0]["dscrption"] = dscrption;
+
+
+                        //dr1[0]["delete"] = delete;
+
+                    }
 
                 }
 
+                DataView dvsp = dt2.DefaultView;
+                dvsp.Sort = "frmid1 asc";
+
+                //dt2.DefaultView.Sort = "frmid asc";
+                Session["tblusrper"] = this.HiddenSameData(dvsp.ToTable());
+
+
+                this.ShowPer();
             }
 
-            DataView dvsp = dt2.DefaultView;
-            dvsp.Sort = "frmid1 asc";
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
 
-            //dt2.DefaultView.Sort = "frmid asc";
-            Session["tblusrper"] = this.HiddenSameData(dvsp.ToTable());
-
-
-            this.ShowPer();
+            }
         }
         private void ShowData()
         {
