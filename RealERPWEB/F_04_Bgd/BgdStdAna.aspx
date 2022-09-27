@@ -12,6 +12,19 @@
         }
     </style>
 
+    <script type="text/javascript" language="javascript">
+
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+        });
+        function pageLoaded() {
+
+            var gvAnalysis = $('#<%=this.gvAnalysis.ClientID%>');
+            gvAnalysis.Scrollable();
+            $('.chzn-select').chosen({ search_contains: true });
+        }
+    </script>
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -87,19 +100,14 @@
                                 <div class="form-horizontal">
                                     <div class="form-group">
                                         <div class="col-md-3 pading5px asitCol3" style="width: 215px;">
-
                                             <asp:Label ID="Label2" runat="server" Font-Size="11px" CssClass="smLbl_to">Desc of Resources</asp:Label>
-
                                             <asp:TextBox ID="txtResSearch" AutoCompleteType="Disabled" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
                                             <asp:LinkButton ID="ImgbtnFindResource" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ImgbtnFindResource_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
                                         </div>
-
 
                                         <div class="col-md-3 pading5px">
                                             <asp:DropDownList ID="ddlResource" runat="server" CssClass="form-control inputTxt chzn-select" AutoPostBack="True" OnSelectedIndexChanged="ddlResource_SelectedIndexChanged">
                                             </asp:DropDownList>
-
                                         </div>
                                         <div class="col-md-1 pading5px">
                                             <asp:LinkButton ID="lbtnOk2" runat="server" CssClass="btn btn-primary primaryBtn" AutoPostBack="True" OnClick="lbtnOk2_Click">Select Res</asp:LinkButton>
@@ -108,9 +116,7 @@
                                         </div>
                                         <div class="col-md-3 pading5px asitCol3" style="width: 245px;">
                                             <asp:Label ID="Label5" runat="server" CssClass="smLbl_to" Text="Current Column Group:"></asp:Label>
-
                                             <asp:Label ID="lblColGroup" runat="server" Text=" " CssClass="inputTxt inpPixedWidth"></asp:Label>
-
 
                                         </div>
                                         <div class="col-md-2 pading5px asitCol3">
@@ -158,24 +164,19 @@
                                     </div>
 
                                     <div class="form-group">
-
-
                                         <div class="col-md-1">
                                             <asp:CheckBox ID="ChkZeroQty" runat="server" Text="Ignoe Zero" CssClass="btn btn-primary primaryBtn chkBoxControl" />
                                         </div>
                                         <div class="col-md-6">
                                             <asp:LinkButton ID="lbtnInputSame" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnInputSame_Click" Style="padding-left: 5px; padding-right: 5px">Put same value for all floors</asp:LinkButton>
                                             <asp:LinkButton ID="lbtnUpdateAna" runat="server" class="btn btn-danger primaryBtn" OnClick="lbtnUpdateAna_Click" Style="margin-left: 5px;">Update Analysis</asp:LinkButton>
-
                                         </div>
-
-
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
                             </fieldset>
                             <asp:GridView ID="gvAnalysis" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                Width="16px" OnRowDeleting="gvAnalysis_RowDeleting" HeaderStyle-CssClass="HeaderStyle">
+                                Width="16px" OnRowDeleting="gvAnalysis_RowDeleting" HeaderStyle-CssClass="HeaderStyle" ShowFooter="true">
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="SL">
@@ -185,12 +186,29 @@
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <%--<asp:CommandField ShowDeleteButton="True" />--%>
+                                    <%--<asp:CommandField ShowDeleteButton="True" />  OnCheckedChanged="chkvmrno_CheckedChanged"--%>
 
                                     <asp:TemplateField ShowHeader="true">
                                         <ItemTemplate>
                                             <asp:LinkButton ID="lbtnDelAnalysis" runat="server" OnClick="lbtnDelAnalysis_Click" ToolTip="Delete Analysis" OnClientClick="javascript:return FunConfirm();"><span class="glyphicon glyphicon-trash" style="color:red"> </span> </asp:LinkButton>
                                         </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField>
+                                        <HeaderTemplate>
+                                            <asp:CheckBox ID="chkAllCheckid" runat="server" AutoPostBack="True" OnCheckedChanged="chkAllCheckid_CheckedChanged" Width="20px" />
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <asp:CheckBox ID="chkvmrno" runat="server" AutoPostBack="false" Enabled='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chkmv")) == "True" ? false : true %>'
+                                                Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chkmv"))=="True" %>'
+                                                Width="30px" CssClass="btn btn-default btn-xs" />
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:LinkButton ID="lnkbtnChekedId" runat="server" OnClientClick="return FunAppConfirm();" OnClick="lnkbtnChekedId_Click" ToolTip="Delete"><span class=" fa fa-check "></span>
+                                            </asp:LinkButton>
+                                        </FooterTemplate>
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        <FooterStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Res. Code" Visible="False">
@@ -200,6 +218,7 @@
                                                 Width="49px"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Description of Resources">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvResDesc" runat="server" Font-Bold="True"
@@ -646,23 +665,5 @@
                 </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-
-
-    <script type="text/javascript" language="javascript">
-
-        $(document).ready(function () {
-
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-        });
-
-        function pageLoaded() {
-
-            var gvAnalysis = $('#<%=this.gvAnalysis.ClientID%>');
-            gvAnalysis.Scrollable();
-            $('.chzn-select').chosen({ search_contains: true });
-        }
-
-    </script>
 </asp:Content>
 
