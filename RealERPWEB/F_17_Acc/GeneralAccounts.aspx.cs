@@ -1455,57 +1455,68 @@ namespace RealERPWEB.F_17_Acc
 
         private void Data_Bind()
         {
-            DataTable dt = (DataTable)Session["tblvoucher"];
-            dgv1.DataSource = dt;
-            dgv1.DataBind();
-            string comcod = this.GetCompCode();
-            string billno = dt.Rows[0]["billno"].ToString();
-            string trnrmrk = dt.Rows[0]["trnrmrk"].ToString();
-            switch (comcod)
+            try
+
             {
-                case "3330":
-                case "3333":
-                case "3338":
-                case "3336":
-                case "3337":
-                    break;
+                DataTable dt = (DataTable)Session["tblvoucher"];
+                dgv1.DataSource = dt;
+                dgv1.DataBind();
+                string comcod = this.GetCompCode();
+                string billno = dt.Rows[0]["billno"].ToString();
+                string trnrmrk = dt.Rows[0]["trnrmrk"].ToString();
+                switch (comcod)
+                {
+                    case "3330":
+                    case "3333":
+                    case "3338":
+                    case "3336":
+                    case "3337":
+                        break;
 
 
 
-                default:
-                    //  this.lnkFinalUpdate.Visible = (billno == "" && trnrmrk == "");
-                    break;
+                    default:
+                        //  this.lnkFinalUpdate.Visible = (billno == "" && trnrmrk == "");
+                        break;
 
 
 
+                }
+
+                string Mod = this.Request.QueryString["Mod"].ToString();
+
+                switch (Mod)
+                {
+
+                    case "Management":
+                        // string voucher = this.ddlvoucher.SelectedValue.ToString().Substring(0,2);
+
+                        // this.dgv1.Columns[1].Visible = (voucher=="JV")?false:true;
+                        this.dgv1.Columns[1].Visible = true;
+                        break;
+
+                    default:
+                        this.dgv1.Columns[1].Visible = true;
+                        break;
+
+
+                }
+
+
+
+
+
+                // ((LinkButton)this.gvBillInfo.FooterRow.FindControl("lbtnUpdateBill")).Visible = (this.lblvalvounum.Text.Trim() == "00000000000000" || this.lblvalvounum.Text.Trim() == "");
+
+                this.CalculatrGridTotal();
             }
 
-            string Mod = this.Request.QueryString["Mod"].ToString();
 
-            switch (Mod)
+            catch (Exception ex)
             {
 
-                case "Management":
-                    // string voucher = this.ddlvoucher.SelectedValue.ToString().Substring(0,2);
-
-                    // this.dgv1.Columns[1].Visible = (voucher=="JV")?false:true;
-                    this.dgv1.Columns[1].Visible = true;
-                    break;
-
-                default:
-                    this.dgv1.Columns[1].Visible = true;
-                    break;
-
-
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('"+ex.Message+"');", true);
             }
-
-
-
-
-
-            // ((LinkButton)this.gvBillInfo.FooterRow.FindControl("lbtnUpdateBill")).Visible = (this.lblvalvounum.Text.Trim() == "00000000000000" || this.lblvalvounum.Text.Trim() == "");
-
-            this.CalculatrGridTotal();
 
             //this.columnVisibility(); // show narration
         }
@@ -2060,7 +2071,7 @@ namespace RealERPWEB.F_17_Acc
                             }
                             break;
 
-                        case "3101":
+                      
                         case "3356": // intech
                             for (int i = 0; i < dgv1.Rows.Count; i++)
                             {
