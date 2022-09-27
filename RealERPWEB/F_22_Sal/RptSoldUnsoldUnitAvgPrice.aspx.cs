@@ -221,30 +221,11 @@ namespace RealERPWEB.F_22_Sal
             string comadd = hst["comadd1"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
-            //string type = this.ddlgrp.SelectedValue.ToString();
-            //string projectName = this.ddlPrjName.SelectedItem.Text.ToString();
-            //string groupname = "";
+         
             DataTable dt = (DataTable)Session["tblsoldunsoldavg"];
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.SoldUnsoltInfavg>();
-            //switch (type)
-            //{
-            //    case "510100100000":
-            //        groupname = this.ddlgrp.SelectedItem.Text.ToString();
-            //        break;
-            //    case "510100200000":
-            //        groupname = this.ddlgrp.SelectedItem.Text.ToString();
-
-            //        break;
-            //    case "510100300000":
-            //        groupname = this.ddlgrp.SelectedItem.Text.ToString();
-
-            //        break;
-            //    case "510100500000":
-            //        groupname = this.ddlgrp.SelectedItem.Text.ToString();
-
-            //        break;
-            //}
+           
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSoldUnsoldUnitAvgPrice", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));

@@ -24,18 +24,21 @@ namespace RealERPWEB.F_22_Sal
         ProcessAccess MktData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                Response.Redirect("../AcceessError.aspx");
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-            ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+            if (!IsPostBack)
+            {
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
+                    Response.Redirect("../AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
-            ((Label)this.Master.FindControl("lblTitle")).Text = "Monthly Sales Vs Achievement";
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Monthly Sales Vs Achievement";
 
-            string Date = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-            this.txtfrmdate.Text = "01-" + ASTUtility.Right(Date, 8);
-            this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-            this.ProjectName();
-            this.GetGroup();
+                string Date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                this.txtfrmdate.Text = "01-" + ASTUtility.Right(Date, 8);
+                this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                this.ProjectName();
+                this.GetGroup();
+            }
 
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -116,7 +119,7 @@ namespace RealERPWEB.F_22_Sal
             string comcod = this.GetComeCode();
             string prjcode = this.ddlPrjName.SelectedValue.ToString()=="000000000000"?"18%":this.ddlPrjName.SelectedValue.ToString()+"%";
             string frmdate = this.txtfrmdate.Text.Trim();
-            string todate = this.txtfrmdate.Text.Trim();
+            string todate = this.txttodate.Text.Trim();
 
             string grpcode = this.ddlgrp.SelectedValue.ToString() == "000000000000" ? "51%" : this.ddlgrp.SelectedValue.ToString() + "%";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "GETSALESVUCOLLECTION", prjcode, frmdate, todate, grpcode, "", "", "", "", "");
@@ -224,31 +227,11 @@ namespace RealERPWEB.F_22_Sal
             string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
             string type = this.ddlgrp.SelectedValue.ToString();
             string projectName = "";
-            DataTable dt = (DataTable)Session["tblgrpsoldunsold"];
+            DataTable dt = (DataTable)Session["tblsalesvscoll"];
             LocalReport Rpt1 = new LocalReport();
-            var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.SoldUnsoftInfGroupWise>();
-            switch (type)
-            {
-                case "510100100000":
-                    projectName = this.ddlPrjName.SelectedItem.Text.ToString() + " (Commercial)";
-                    break;
-                //case "510100200000":
-                //     groupname = this.ddlgrp.SelectedItem.Text.ToString();
-
-                //    break;
-                case "510100300000":
-                    projectName = this.ddlPrjName.SelectedItem.Text.ToString() + " (Residential)";
-
-                    break;
-                //case "510100500000":
-                //     groupname = this.ddlgrp.SelectedItem.Text.ToString();
-
-                //    break;
-                default:
-                    projectName = this.ddlPrjName.SelectedItem.Text.ToString();
-                    break;
-            }
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSoldUnsoftInfGroupWise", lst, null, null);
+            var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesvsAchievement>();
+           
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSalesVsAchivement", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
@@ -264,7 +247,7 @@ namespace RealERPWEB.F_22_Sal
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
-
+       
     }
 
 }
