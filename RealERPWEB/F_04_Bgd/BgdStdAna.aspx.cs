@@ -374,68 +374,68 @@ namespace RealERPWEB.F_04_Bgd
 
 
             i = (i > 8 ? 1 : (i < 1 ? 8 : i));
-            this.gvAnalysis.Columns[4].Visible = (i == 1);
             this.gvAnalysis.Columns[5].Visible = (i == 1);
             this.gvAnalysis.Columns[6].Visible = (i == 1);
             this.gvAnalysis.Columns[7].Visible = (i == 1);
             this.gvAnalysis.Columns[8].Visible = (i == 1);
             this.gvAnalysis.Columns[9].Visible = (i == 1);
             this.gvAnalysis.Columns[10].Visible = (i == 1);
+            this.gvAnalysis.Columns[11].Visible = (i == 1);
 
-            this.gvAnalysis.Columns[11].Visible = (i == 2);
             this.gvAnalysis.Columns[12].Visible = (i == 2);
             this.gvAnalysis.Columns[13].Visible = (i == 2);
             this.gvAnalysis.Columns[14].Visible = (i == 2);
             this.gvAnalysis.Columns[15].Visible = (i == 2);
             this.gvAnalysis.Columns[16].Visible = (i == 2);
             this.gvAnalysis.Columns[17].Visible = (i == 2);
+            this.gvAnalysis.Columns[18].Visible = (i == 2);
 
-            this.gvAnalysis.Columns[18].Visible = (i == 3);
             this.gvAnalysis.Columns[19].Visible = (i == 3);
             this.gvAnalysis.Columns[20].Visible = (i == 3);
             this.gvAnalysis.Columns[21].Visible = (i == 3);
             this.gvAnalysis.Columns[22].Visible = (i == 3);
             this.gvAnalysis.Columns[23].Visible = (i == 3);
             this.gvAnalysis.Columns[24].Visible = (i == 3);
+            this.gvAnalysis.Columns[25].Visible = (i == 3);
 
-            this.gvAnalysis.Columns[25].Visible = (i == 4);
             this.gvAnalysis.Columns[26].Visible = (i == 4);
             this.gvAnalysis.Columns[27].Visible = (i == 4);
             this.gvAnalysis.Columns[28].Visible = (i == 4);
             this.gvAnalysis.Columns[29].Visible = (i == 4);
             this.gvAnalysis.Columns[30].Visible = (i == 4);
             this.gvAnalysis.Columns[31].Visible = (i == 4);
+            this.gvAnalysis.Columns[32].Visible = (i == 4);
 
-            this.gvAnalysis.Columns[32].Visible = (i == 5);
             this.gvAnalysis.Columns[33].Visible = (i == 5);
             this.gvAnalysis.Columns[34].Visible = (i == 5);
             this.gvAnalysis.Columns[35].Visible = (i == 5);
             this.gvAnalysis.Columns[36].Visible = (i == 5);
             this.gvAnalysis.Columns[37].Visible = (i == 5);
             this.gvAnalysis.Columns[38].Visible = (i == 5);
+            this.gvAnalysis.Columns[39].Visible = (i == 5);
 
-            this.gvAnalysis.Columns[39].Visible = (i == 6);
             this.gvAnalysis.Columns[40].Visible = (i == 6);
             this.gvAnalysis.Columns[41].Visible = (i == 6);
             this.gvAnalysis.Columns[42].Visible = (i == 6);
             this.gvAnalysis.Columns[43].Visible = (i == 6);
             this.gvAnalysis.Columns[44].Visible = (i == 6);
             this.gvAnalysis.Columns[45].Visible = (i == 6);
+            this.gvAnalysis.Columns[46].Visible = (i == 6);
 
-            this.gvAnalysis.Columns[46].Visible = (i == 7);
             this.gvAnalysis.Columns[47].Visible = (i == 7);
             this.gvAnalysis.Columns[48].Visible = (i == 7);
             this.gvAnalysis.Columns[49].Visible = (i == 7);
             this.gvAnalysis.Columns[50].Visible = (i == 7);
             this.gvAnalysis.Columns[51].Visible = (i == 7);
             this.gvAnalysis.Columns[52].Visible = (i == 7);
+            this.gvAnalysis.Columns[53].Visible = (i == 7);
 
-            this.gvAnalysis.Columns[53].Visible = (i == 8);
             this.gvAnalysis.Columns[54].Visible = (i == 8);
             this.gvAnalysis.Columns[55].Visible = (i == 8);
             this.gvAnalysis.Columns[56].Visible = (i == 8);
             this.gvAnalysis.Columns[57].Visible = (i == 8);
             this.gvAnalysis.Columns[58].Visible = (i == 8);
+            this.gvAnalysis.Columns[59].Visible = (i == 8);
 
 
             this.lblColGroup.Text = Convert.ToString(i);
@@ -674,12 +674,7 @@ namespace RealERPWEB.F_04_Bgd
             tblt01.Columns.Add("rstdqty", Type.GetType("System.Double"));
             // tblt01.Columns.Add("ZeroQty", Type.GetType("System.String"));
             Session["tblirstdana"] = tblt01;
-
-
-
-
         }
-
 
         protected void lbtngvSlNo_Click(object sender, EventArgs e)
         {
@@ -811,9 +806,6 @@ namespace RealERPWEB.F_04_Bgd
         }
         protected void ddlResource_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-
-
             DataTable dt = (DataTable)Session["tblResCod"];
             int tindex = dt.Rows.Count;
             if (tindex > 15)
@@ -856,7 +848,6 @@ namespace RealERPWEB.F_04_Bgd
 
         }
 
-
         private void ddlBound()
         {
 
@@ -881,8 +872,7 @@ namespace RealERPWEB.F_04_Bgd
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string Rescode = ((Label)this.gvAnalysis.Rows[rowIndex].FindControl("lblgvResCod")).Text.Trim();
 
-            bool result = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_IRSTDANA", "DELETERESOURCE", Itemcode,
-                           Rescode, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            bool result = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_IRSTDANA", "DELETERESOURCE", Itemcode,Rescode, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
 
             if (result)
@@ -899,34 +889,178 @@ namespace RealERPWEB.F_04_Bgd
             ViewState["tblStdAna"] = dv.ToTable();
             this.ShowColoumGroup(1);
 
-            //DataTable dt = (DataTable)Session["tblActAna1"];
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            //string comcod = hst["comcod"].ToString();
-            //string Prjcode = this.ddlProject.SelectedValue.ToString();
-            //string Itemcode = ((Label)this.gvAnalysis.Rows[rowIndex].FindControl("lblgvItmCod")).Text.Trim();
-            //bool result = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_PRJ_BUDGET", "DELETEITEME", Prjcode, Itemcode,
-            //                "", "", "", "", "", "", "", "", "", "", "", "", "");
-            //if (result == true)
-            //{
-            //    int rowindex = (this.gvAnalysis.PageSize) * (this.gvAnalysis.PageIndex) + rowIndex;
-            //    dt.Rows[rowindex].Delete();
-            //}
+            
+        }      
 
-            //DataView dv = dt.DefaultView;
-            //this.gvAnalysis.DataSource = dv.ToTable();
-            //this.gvAnalysis.DataBind();
-            //Session.Remove("tblActAna1");
-            //Session["tblActAna1"] = dv.ToTable();
-            //this.ShowScheduledItemList();
 
-            //if (ConstantInfo.LogStatus == true)
-            //{
-            //    string eventtype = "Constraction Budget(Indevidual Floor)";
-            //    string eventdesc = "Floor Delete";
-            //    string eventdesc2 = Itemcode;
-            //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-            //}
+        protected void chkAllCheckid_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)ViewState["tblStdAna"];
+
+            int i, index;
+            if (((CheckBox)this.gvAnalysis.HeaderRow.FindControl("chkAllCheckid")).Checked)
+            {
+
+                for (i = 0; i < this.gvAnalysis.Rows.Count; i++)
+                {
+                    ((CheckBox)this.gvAnalysis.Rows[i].FindControl("chkvmrno")).Checked = true;
+                    index = (this.gvAnalysis.PageSize) * (this.gvAnalysis.PageIndex) + i;
+                    dt.Rows[index]["chkmv"] = "True";
+                }
+            }
+            else
+            {
+                for (i = 0; i < this.gvAnalysis.Rows.Count; i++)
+                {
+                    ((CheckBox)this.gvAnalysis.Rows[i].FindControl("chkvmrno")).Checked = false;
+                    index = (this.gvAnalysis.PageSize) * (this.gvAnalysis.PageIndex) + i;
+                    dt.Rows[index]["chkmv"] = "False";
+                }
+            }
+            ViewState["tblStdAna"] = dt;
+        }
+
+        protected void lnkbtnChekedId_Click(object sender, EventArgs e)
+        {
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string ApprovedByid = hst["usrid"].ToString();
+            string Approvedtrmid = hst["compname"].ToString();
+            string ApprovedSession = hst["session"].ToString();
+            string Approvedddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+            string msg = "";
+            DataTable dt = (DataTable)ViewState["tblStdAna"];
+            string Itemcode = this.ddlItem.SelectedValue.ToString();
+
+            foreach (GridViewRow row in gvAnalysis.Rows)
+            {
+                CheckBox chk = (CheckBox)row.FindControl("chkvmrno");
+                string rsircode = Convert.ToString(((Label)row.FindControl("lblgvResCod")).Text.ToString());
+                if (chk != null && chk.Checked)
+                {
+                    bool result = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_IRSTDANA", "DELETERESOURCE", Itemcode, rsircode, "", "", "", "", "", "", "", "", "", "", "", "", "");
+                    if (result)
+                    {
+                        bool result2 = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_IRSTDANA", "DELETERESOURCE02", Itemcode, rsircode, "", "", "", "", "", "", "", "", "", "", "", "", "");
+                    }
+                    else
+                    {
+                        msg = bgdData.ErrorObject["Msg"].ToString();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Analysis Delete Failed..!.." + msg + "');", true);
+                        return;
+                    }
+                }
+            }
+            /*
+            foreach (DataRow dr in dt.Rows)
+            {
+                string chkemerge = dr["chkmv"].ToString();
+                string rsircode = dr["rsircode"].ToString(); 
+                if (chkemerge == "True")
+                {
+                    bool result = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_IRSTDANA", "DELETERESOURCE", Itemcode, rsircode, "", "", "", "", "", "", "", "", "", "", "", "", "");
+                    if (result)
+                    { 
+                        bool result2 = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_IRSTDANA", "DELETERESOURCE02", Itemcode, rsircode, "", "", "", "", "", "", "", "", "", "", "", "", "");
+                    }
+                    else
+                    {
+                        msg = bgdData.ErrorObject["Msg"].ToString();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Analysis Delete Failed..!.." + msg + "');", true);
+                        return;
+                    }
+                }
+            }*/
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Analysis Deleted Successfully" + "');", true);
+            this.ShowAnalysisSheet(Itemcode, "", "0");
+            this.ShowColoumGroup02(1);
+        }
+
+        protected void chkvmrno_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)ViewState["tblStdAna"];
+            GridViewRow row = (GridViewRow)((CheckBox)sender).NamingContainer;
+            int index = row.RowIndex;
+            dt.Rows[index]["chkmv"] = "True";
+            ViewState["tblStdAna"] = dt;
+        }
+
+        protected void ShowColoumGroup02(int i)
+        {
+            this.GridHeeader();
+            DataTable dt = (DataTable)ViewState["tblStdAna"];
+            this.gvAnalysis.DataSource = (DataTable)ViewState["tblStdAna"];
+            this.gvAnalysis.DataBind();
+
+
+            i = (i > 8 ? 1 : (i < 1 ? 8 : i));
+            this.gvAnalysis.Columns[5].Visible = (i == 1);
+            this.gvAnalysis.Columns[6].Visible = (i == 1);
+            this.gvAnalysis.Columns[7].Visible = (i == 1);
+            this.gvAnalysis.Columns[8].Visible = (i == 1);
+            this.gvAnalysis.Columns[9].Visible = (i == 1);
+            this.gvAnalysis.Columns[10].Visible = (i == 1);
+            this.gvAnalysis.Columns[11].Visible = (i == 1);
+
+            this.gvAnalysis.Columns[12].Visible = (i == 2);
+            this.gvAnalysis.Columns[13].Visible = (i == 2);
+            this.gvAnalysis.Columns[14].Visible = (i == 2);
+            this.gvAnalysis.Columns[15].Visible = (i == 2);
+            this.gvAnalysis.Columns[16].Visible = (i == 2);
+            this.gvAnalysis.Columns[17].Visible = (i == 2);
+            this.gvAnalysis.Columns[18].Visible = (i == 2);
+
+            this.gvAnalysis.Columns[19].Visible = (i == 3);
+            this.gvAnalysis.Columns[20].Visible = (i == 3);
+            this.gvAnalysis.Columns[21].Visible = (i == 3);
+            this.gvAnalysis.Columns[22].Visible = (i == 3);
+            this.gvAnalysis.Columns[23].Visible = (i == 3);
+            this.gvAnalysis.Columns[24].Visible = (i == 3);
+            this.gvAnalysis.Columns[25].Visible = (i == 3);
+
+            this.gvAnalysis.Columns[26].Visible = (i == 4);
+            this.gvAnalysis.Columns[27].Visible = (i == 4);
+            this.gvAnalysis.Columns[28].Visible = (i == 4);
+            this.gvAnalysis.Columns[29].Visible = (i == 4);
+            this.gvAnalysis.Columns[30].Visible = (i == 4);
+            this.gvAnalysis.Columns[31].Visible = (i == 4);
+            this.gvAnalysis.Columns[32].Visible = (i == 4);
+
+            this.gvAnalysis.Columns[33].Visible = (i == 5);
+            this.gvAnalysis.Columns[34].Visible = (i == 5);
+            this.gvAnalysis.Columns[35].Visible = (i == 5);
+            this.gvAnalysis.Columns[36].Visible = (i == 5);
+            this.gvAnalysis.Columns[37].Visible = (i == 5);
+            this.gvAnalysis.Columns[38].Visible = (i == 5);
+            this.gvAnalysis.Columns[39].Visible = (i == 5);
+
+            this.gvAnalysis.Columns[40].Visible = (i == 6);
+            this.gvAnalysis.Columns[41].Visible = (i == 6);
+            this.gvAnalysis.Columns[42].Visible = (i == 6);
+            this.gvAnalysis.Columns[43].Visible = (i == 6);
+            this.gvAnalysis.Columns[44].Visible = (i == 6);
+            this.gvAnalysis.Columns[45].Visible = (i == 6);
+            this.gvAnalysis.Columns[46].Visible = (i == 6);
+
+            this.gvAnalysis.Columns[47].Visible = (i == 7);
+            this.gvAnalysis.Columns[48].Visible = (i == 7);
+            this.gvAnalysis.Columns[49].Visible = (i == 7);
+            this.gvAnalysis.Columns[50].Visible = (i == 7);
+            this.gvAnalysis.Columns[51].Visible = (i == 7);
+            this.gvAnalysis.Columns[52].Visible = (i == 7);
+            this.gvAnalysis.Columns[53].Visible = (i == 7);
+
+            this.gvAnalysis.Columns[54].Visible = (i == 8);
+            this.gvAnalysis.Columns[55].Visible = (i == 8);
+            this.gvAnalysis.Columns[56].Visible = (i == 8);
+            this.gvAnalysis.Columns[57].Visible = (i == 8);
+            this.gvAnalysis.Columns[58].Visible = (i == 8);
+            this.gvAnalysis.Columns[59].Visible = (i == 8);
+
+
+            this.lblColGroup.Text = Convert.ToString(i);
+
         }
     }
 }
