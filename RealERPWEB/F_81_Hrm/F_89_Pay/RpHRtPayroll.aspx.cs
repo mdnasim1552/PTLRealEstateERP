@@ -130,6 +130,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         case "3332":
                         case "3330":
                         case "3338":
+                        case "3369":
                         case "3336"://Suvastu
                             //case "4305"://Rupayan
                             this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
@@ -306,6 +307,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
                 //case"3101":
                 case "3338"://Acme
+                case "3369":
                     this.rbtSalSheet.SelectedIndex = 12;
                     this.rbtnlistsaltypeAddItem();
                     break;
@@ -440,6 +442,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 //case "3101":
                 case "3338":// ACME
+                case "3369":
                 case "3344":// Terranova
                     this.rbtlBonSheet.SelectedIndex = 8;
                     break;
@@ -769,6 +772,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             switch (comcod)
             {
                 case "3338":
+                case "3369":
                     mantype = (this.rbtnlistsaltype.SelectedIndex == 0) ? "86001%" : (this.rbtnlistsaltype.SelectedIndex == 1) ? "86002%" : "86%";
                     break;
                 //case "3101":
@@ -3655,6 +3659,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
                     case "3338":
+                    case "3367":
+                    case "3369":
                         this.PrintBonusSheetAcme();
                         break;
 
@@ -4567,6 +4573,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
                 case "3338":
+                case "3369":
                     //case "3101":
                     //case "3101":
                     for (i = 0; i < this.gvBonus.Rows.Count; i++)
@@ -4754,6 +4761,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 switch (comcod)
                 {
                     case "3338":
+                    case "3369":
                         mantype = (this.rbtnlistsaltype.SelectedIndex == 0) ? "86001%" : (this.rbtnlistsaltype.SelectedIndex == 1) ? "86002%" : "86%";
                         break;
                     default:

@@ -16,7 +16,7 @@ namespace RealERPWEB.F_38_AI
         DataTable vt = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
-            vt.Columns.AddRange(new DataColumn[] { new DataColumn("lblmember"), new DataColumn("tbltype"), new DataColumn("tblValoquantity"), new DataColumn("tblworkhour") });
+            vt.Columns.AddRange(new DataColumn[] { new DataColumn("lblmember"), new DataColumn("anotation"), new DataColumn("tbltype"), new DataColumn("tblValoquantity"), new DataColumn("tblworkhour") });
             if (!IsPostBack)
             {
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Create Task";
@@ -271,9 +271,9 @@ namespace RealERPWEB.F_38_AI
             DataTable tblt01 = (DataTable)ViewState["tblt01"];
 
 
-            //vt.Rows.Add(ddlassignmember.SelectedValue.Trim(), ddltasktype.SelectedValue.Trim());
-            ////vt.DefaultView.Sort = "txtmember";
-            //VirtualGrid();
+            vt.Rows.Add(ddlassignmember.SelectedItem.Text.Trim(), ddlAnnotationid.SelectedItem.Text.Trim(), ddltasktype.SelectedItem.Text.Trim(), txtquantity.Text.Trim(), txtworkhour.Text.Trim());
+            //vt.DefaultView.Sort = "txtmember";
+            VirtualGrid();
         }
     }
 }
