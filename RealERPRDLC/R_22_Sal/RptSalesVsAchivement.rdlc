@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>dba232ce-3a85-4ee0-8fbd-cc0b1e8df7f3</rd:DataSourceID>
+      <rd:DataSourceID>48689af3-c371-47e3-94f9-63d667924a06</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -21,36 +21,24 @@
           <DataField>comcod</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="cooperative">
-          <DataField>cooperative</DataField>
+        <Field Name="custname">
+          <DataField>custname</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="downpamt">
+          <DataField>downpamt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="ctwcarutility">
-          <DataField>ctwcarutility</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="expcarutilyrate">
-          <DataField>expcarutilyrate</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="expuscarutilityrate">
-          <DataField>expuscarutilityrate</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
+        <Field Name="downstatus">
+          <DataField>downstatus</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="flrdesc">
           <DataField>flrdesc</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="Inccarutilyrate">
-          <DataField>Inccarutilyrate</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="incunsoldavgrate">
-          <DataField>incunsoldavgrate</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="incunsoldcarutility">
-          <DataField>incunsoldcarutility</DataField>
+        <Field Name="netvalue">
+          <DataField>netvalue</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="pactcode">
@@ -61,55 +49,43 @@
           <DataField>pactdesc</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="parking">
-          <DataField>parking</DataField>
+        <Field Name="ramt">
+          <DataField>ramt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="recievable">
-          <DataField>recievable</DataField>
+        <Field Name="srate">
+          <DataField>srate</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="sqty">
-          <DataField>sqty</DataField>
+        <Field Name="steamdesc">
+          <DataField>steamdesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="tsalval">
+          <DataField>tsalval</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="suamt">
-          <DataField>suamt</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
+        <Field Name="typecode">
+          <DataField>typecode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="susize">
-          <DataField>susize</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
+        <Field Name="typedesc">
+          <DataField>typedesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="tqty">
-          <DataField>tqty</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="tramt">
-          <DataField>tramt</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="tusize">
-          <DataField>tusize</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
+        <Field Name="udesc">
+          <DataField>udesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="usize">
           <DataField>usize</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="usqty">
-          <DataField>usqty</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="usuamt">
-          <DataField>usuamt</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_22_Sal</rd:DataSetName>
-        <rd:TableName>SoldUnsoltInfavg</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_22_Sal.EClassSales+SoldUnsoltInfavg, RealERPEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>SalesvsAchievement</rd:TableName>
+        <rd:ObjectDataSourceType>RealEntity.C_22_Sal.EClassSales+SalesvsAchievement, RealERPEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -117,75 +93,63 @@
     <ReportSection>
       <Body>
         <ReportItems>
-          <Tablix Name="Tablix1">
+          <Tablix Name="Tablix2">
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1.16444in</Width>
+                  <Width>0.3125in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.52902in</Width>
+                  <Width>0.57292in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.36458in</Width>
+                  <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.53124in</Width>
+                  <Width>1.29167in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.48736in</Width>
+                  <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.68154in</Width>
+                  <Width>1.16667in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.625in</Width>
+                  <Width>0.85417in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.01262in</Width>
+                  <Width>0.80208in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.8832in</Width>
+                  <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.92708in</Width>
+                  <Width>1.14583in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.9978in</Width>
+                  <Width>0.71875in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.0171in</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>1.17931in</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>0.97693in</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>1.15403in</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>0.94793in</Width>
+                  <Width>0.98958in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.47918in</Height>
+                  <Height>0.34201in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox17">
+                        <Textbox Name="Textbox40">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Type</Value>
+                                  <Value>Sl.</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -195,7 +159,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox17</rd:DefaultName>
+                          <rd:DefaultName>Textbox40</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -213,17 +177,17 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox19">
+                        <Textbox Name="Textbox42">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Saleable Unit Apt</Value>
+                                  <Value>Apt. Type</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -233,7 +197,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox19</rd:DefaultName>
+                          <rd:DefaultName>Textbox42</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -251,17 +215,17 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox21">
+                        <Textbox Name="Textbox44">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Sold Unit</Value>
+                                  <Value>Size(sft)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -271,7 +235,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox21</rd:DefaultName>
+                          <rd:DefaultName>Textbox44</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -289,17 +253,17 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox23">
+                        <Textbox Name="Textbox46">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Sold Area</Value>
+                                  <Value>Name of the Clients</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -309,7 +273,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox23</rd:DefaultName>
+                          <rd:DefaultName>Textbox46</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -327,17 +291,17 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox25">
+                        <Textbox Name="Textbox48">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>	UnSold Unit</Value>
+                                  <Value>Followed By</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -347,7 +311,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox25</rd:DefaultName>
+                          <rd:DefaultName>Textbox48</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -365,17 +329,17 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox27">
+                        <Textbox Name="Textbox50">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>UnSold Area</Value>
+                                  <Value>Rate per sit (TK)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -385,7 +349,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox27</rd:DefaultName>
+                          <rd:DefaultName>Textbox50</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -403,17 +367,17 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox29">
+                        <Textbox Name="Textbox52">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>UnSold Amount</Value>
+                                  <Value>Status of DIP</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -423,7 +387,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox29</rd:DefaultName>
+                          <rd:DefaultName>Textbox52</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -441,7 +405,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox31">
+                        <Textbox Name="Textbox54">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -451,7 +415,7 @@
                                   <Value>Total Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -461,7 +425,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox31</rd:DefaultName>
+                          <rd:DefaultName>Textbox54</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -479,17 +443,17 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox33">
+                        <Textbox Name="Textbox56">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Total Collection</Value>
+                                  <Value>Net Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -499,7 +463,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox33</rd:DefaultName>
+                          <rd:DefaultName>Textbox56</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -517,17 +481,17 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox35">
+                        <Textbox Name="Textbox58">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Recievable</Value>
+                                  <Value>Down Payement Amount(20%)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -537,7 +501,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox35</rd:DefaultName>
+                          <rd:DefaultName>Textbox58</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -555,19 +519,17 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox37">
+                        <Textbox Name="Textbox60">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Per SFT Rate
-from sold units
-(Except Car Park &amp; Utilities)</Value>
+                                  <Value>Recieved Amount</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -577,7 +539,7 @@ from sold units
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox37</rd:DefaultName>
+                          <rd:DefaultName>Textbox60</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -595,19 +557,17 @@ from sold units
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox6">
+                        <Textbox Name="Textbox62">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Total Value
-(Inc. Apt./Shop/Comm.
-Cost + Car Parking + Utility)</Value>
+                                  <Value>Remarks</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -617,169 +577,7 @@ Cost + Car Parking + Utility)</Value>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox6</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>Solid</Style>
-                              <Width>0.5pt</Width>
-                            </Border>
-                            <BackgroundColor>LightGrey</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox8">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Per Sft Rate
-from sold units
-(Inc. Apt. + Car Parking + Utility)</Value>
-                                  <Style>
-                                    <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox8</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>Solid</Style>
-                              <Width>0.5pt</Width>
-                            </Border>
-                            <BackgroundColor>LightGrey</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox10">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Average Per Sft
-Rate from unsold
-unit(Except Car Park &amp; Utilities)</Value>
-                                  <Style>
-                                    <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox10</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>Solid</Style>
-                              <Width>0.5pt</Width>
-                            </Border>
-                            <BackgroundColor>LightGrey</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox12">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Amount receivable
-from unsold unit
-(Inc. Apt./Shop/Comm. Cost + Car Parking + Utilities))</Value>
-                                  <Style>
-                                    <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox12</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>Solid</Style>
-                              <Width>0.5pt</Width>
-                            </Border>
-                            <BackgroundColor>LightGrey</BackgroundColor>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox18">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Average Per Sft
-Rate from unsold unit
-(Inc. Apt./Shop/Cost + Car Parking + Utilities))</Value>
-                                  <Style>
-                                    <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                    <TextDecoration>None</TextDecoration>
-                                    <Color>#000000</Color>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox18</rd:DefaultName>
+                          <rd:DefaultName>Textbox62</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -802,82 +600,25 @@ Rate from unsold unit
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="pactdesc">
+                        <Textbox Name="typedesc1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!pactdesc.Value</Value>
+                                  <Value>=Fields!typedesc.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Left</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>pactdesc</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>Solid</Style>
-                              <Width>0.5pt</Width>
-                            </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                        <ColSpan>16</ColSpan>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.25in</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="flrdesc">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Fields!flrdesc.Value</Value>
-                                  <Style>
-                                    <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>flrdesc</rd:DefaultName>
+                          <rd:DefaultName>typedesc1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -890,18 +631,35 @@ Rate from unsold unit
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <ColSpan>12</ColSpan>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="tqty">
+                        <Textbox Name="Textbox41">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!tqty.Value</Value>
+                                  <Value>=RowNumber(nothing)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -913,7 +671,7 @@ Rate from unsold unit
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>tqty</rd:DefaultName>
+                          <rd:DefaultName>Textbox41</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -930,14 +688,14 @@ Rate from unsold unit
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="sqty">
+                        <Textbox Name="typedesc">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!sqty.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Fields!typedesc.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -949,79 +707,7 @@ Rate from unsold unit
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>sqty</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>Solid</Style>
-                              <Width>0.5pt</Width>
-                            </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="susize">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Format(Fields!susize.Value,"#,##0;(#,##0); ")</Value>
-                                  <Style>
-                                    <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>susize</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>Solid</Style>
-                              <Width>0.5pt</Width>
-                            </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="usqty">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Format(Fields!usqty.Value,"#,##0;(#,##0); ")</Value>
-                                  <Style>
-                                    <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>usqty</rd:DefaultName>
+                          <rd:DefaultName>typedesc</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1045,7 +731,7 @@ Rate from unsold unit
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!usize.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Fields!usize.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1053,7 +739,7 @@ Rate from unsold unit
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -1074,14 +760,14 @@ Rate from unsold unit
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="usuamt">
+                        <Textbox Name="custname">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!usuamt.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Fields!custname.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1089,11 +775,11 @@ Rate from unsold unit
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Left</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>usuamt</rd:DefaultName>
+                          <rd:DefaultName>custname</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1110,14 +796,14 @@ Rate from unsold unit
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="suamt">
+                        <Textbox Name="steamdesc">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!suamt.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Fields!steamdesc.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1125,11 +811,11 @@ Rate from unsold unit
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>suamt</rd:DefaultName>
+                          <rd:DefaultName>steamdesc</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1146,14 +832,14 @@ Rate from unsold unit
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="tramt">
+                        <Textbox Name="srate">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!tramt.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Fields!srate.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1161,11 +847,11 @@ Rate from unsold unit
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>tramt</rd:DefaultName>
+                          <rd:DefaultName>srate</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1182,14 +868,14 @@ Rate from unsold unit
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="recievable">
+                        <Textbox Name="downstatus">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!recievable.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Fields!downstatus.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1197,11 +883,11 @@ Rate from unsold unit
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>recievable</rd:DefaultName>
+                          <rd:DefaultName>downstatus</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1218,14 +904,14 @@ Rate from unsold unit
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="expcarutilyrate">
+                        <Textbox Name="tsalval">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!expcarutilyrate.Value,"#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=Fields!tsalval.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1237,7 +923,7 @@ Rate from unsold unit
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>expcarutilyrate</rd:DefaultName>
+                          <rd:DefaultName>tsalval</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1254,14 +940,14 @@ Rate from unsold unit
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="ctwcarutility">
+                        <Textbox Name="netvalue">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!ctwcarutility.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Fields!netvalue.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1273,7 +959,7 @@ Rate from unsold unit
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>ctwcarutility</rd:DefaultName>
+                          <rd:DefaultName>netvalue</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1290,14 +976,14 @@ Rate from unsold unit
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Inccarutilyrate">
+                        <Textbox Name="downpamt">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!Inccarutilyrate.Value,"#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=Fields!downpamt.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1309,7 +995,7 @@ Rate from unsold unit
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Inccarutilyrate</rd:DefaultName>
+                          <rd:DefaultName>downpamt</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1326,14 +1012,14 @@ Rate from unsold unit
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="expuscarutilityrate">
+                        <Textbox Name="ramt">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!expuscarutilityrate.Value,"#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=Fields!ramt.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1345,7 +1031,7 @@ Rate from unsold unit
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>expuscarutilityrate</rd:DefaultName>
+                          <rd:DefaultName>ramt</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1362,14 +1048,14 @@ Rate from unsold unit
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="incunsoldcarutility">
+                        <Textbox Name="Textbox63">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!incunsoldcarutility.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1377,47 +1063,11 @@ Rate from unsold unit
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>incunsoldcarutility</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Style>Solid</Style>
-                              <Width>0.5pt</Width>
-                            </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="incunsoldavgrate">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Format(Fields!incunsoldavgrate.Value,"#,##0.00;(#,##0.00); ")</Value>
-                                  <Style>
-                                    <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>incunsoldavgrate</rd:DefaultName>
+                          <rd:DefaultName>Textbox63</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1450,37 +1100,41 @@ Rate from unsold unit
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
-                <TablixMember />
-                <TablixMember />
-                <TablixMember />
-                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
               <TablixMembers>
+                <TablixMember />
                 <TablixMember>
-                  <KeepWithGroup>After</KeepWithGroup>
-                  <RepeatOnNewPage>true</RepeatOnNewPage>
-                </TablixMember>
-                <TablixMember>
-                  <Group Name="pactcode">
+                  <Group Name="typecode">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!pactcode.Value</GroupExpression>
+                      <GroupExpression>=Fields!typecode.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!pactcode.Value</Value>
+                      <Value>=Fields!typecode.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                   <TablixMembers>
                     <TablixMember>
-                      <KeepWithGroup>After</KeepWithGroup>
-                    </TablixMember>
-                    <TablixMember>
-                      <Group Name="Details" />
+                      <Group Name="typecode1">
+                        <GroupExpressions>
+                          <GroupExpression>=Fields!typecode.Value</GroupExpression>
+                        </GroupExpressions>
+                      </Group>
+                      <SortExpressions>
+                        <SortExpression>
+                          <Value>=Fields!typecode.Value</Value>
+                        </SortExpression>
+                      </SortExpressions>
                       <TablixMembers>
-                        <TablixMember />
+                        <TablixMember>
+                          <KeepWithGroup>After</KeepWithGroup>
+                        </TablixMember>
+                        <TablixMember>
+                          <Group Name="Details" />
+                        </TablixMember>
                       </TablixMembers>
                     </TablixMember>
                   </TablixMembers>
@@ -1488,24 +1142,158 @@ Rate from unsold unit
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>0.03472in</Top>
-            <Left>0.01042in</Left>
-            <Height>0.97918in</Height>
-            <Width>13.47918in</Width>
+            <Height>0.84201in</Height>
+            <Width>10.85417in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
             </Style>
           </Tablix>
+          <Textbox Name="Textbox84">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox84</rd:DefaultName>
+            <Top>0.86978in</Top>
+            <Height>0.20833in</Height>
+            <Width>10.85417in</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox85">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Total Sale:</Value>
+                    <Style>
+                      <FontFamily>Cambria</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox85</rd:DefaultName>
+            <Top>1.1059in</Top>
+            <Height>0.1875in</Height>
+            <Width>0.98958in</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Line Name="Line2">
+            <Top>1.59201in</Top>
+            <Height>0in</Height>
+            <Width>1.58333in</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
+          <Textbox Name="Textbox86">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>General Manager</Value>
+                    <Style>
+                      <FontFamily>Cambria</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox86</rd:DefaultName>
+            <Top>1.63367in</Top>
+            <Height>0.1875in</Height>
+            <Width>0.98958in</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox87">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Sales &amp; CMD</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox87</rd:DefaultName>
+            <Top>1.83333in</Top>
+            <Left>0.01958in</Left>
+            <Height>0.18056in</Height>
+            <Width>0.97in</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>1.0139in</Height>
+        <Height>2.08333in</Height>
         <Style />
       </Body>
-      <Width>13.4896in</Width>
+      <Width>10.85417in</Width>
       <Page>
         <PageHeader>
-          <Height>0.97743in</Height>
+          <Height>0.94667in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1530,8 +1318,8 @@ Rate from unsold unit
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox3</rd:DefaultName>
-              <Top>0.02604in</Top>
-              <Left>3.41194in</Left>
+              <Top>0.03472in</Top>
+              <Left>2.21403in</Left>
               <Height>0.25in</Height>
               <Width>5.95264in</Width>
               <Style>
@@ -1564,8 +1352,8 @@ Rate from unsold unit
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
-              <Top>0.27604in</Top>
-              <Left>3.41194in</Left>
+              <Top>0.28472in</Top>
+              <Left>2.21403in</Left>
               <Height>0.19444in</Height>
               <Width>5.95264in</Width>
               <ZIndex>1</ZIndex>
@@ -1600,8 +1388,8 @@ Rate from unsold unit
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox5</rd:DefaultName>
-              <Top>0.43578in</Top>
-              <Left>3.41194in</Left>
+              <Top>0.44446in</Top>
+              <Left>2.21403in</Left>
               <Height>0.22569in</Height>
               <Width>5.95264in</Width>
               <ZIndex>2</ZIndex>
@@ -1620,8 +1408,8 @@ Rate from unsold unit
               <Source>External</Source>
               <Value>=Parameters!ComLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
-              <Top>0.02604in</Top>
-              <Left>0.01042in</Left>
+              <Top>0.03472in</Top>
+              <Left>0.06251in</Left>
               <Height>0.68055in</Height>
               <Width>1.33208in</Width>
               <ZIndex>3</ZIndex>
@@ -1631,29 +1419,16 @@ Rate from unsold unit
                 </Border>
               </Style>
             </Image>
-            <Rectangle Name="Rectangle2">
-              <KeepTogether>true</KeepTogether>
-              <Top>0.73091in</Top>
-              <Height>0.21527in</Height>
-              <Width>13.4896in</Width>
-              <ZIndex>4</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <BackgroundColor>White</BackgroundColor>
-              </Style>
-            </Rectangle>
-            <Textbox Name="Textbox69">
+            <Textbox Name="Textbox83">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>  Print Date : </Value>
+                      <Value>Print Date:</Value>
                       <Style>
-                        <FontFamily>cambria</FontFamily>
+                        <FontFamily>Cambria</FontFamily>
                         <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -1661,7 +1436,7 @@ Rate from unsold unit
                     <TextRun>
                       <Value>=Parameters!printdate.Value</Value>
                       <Style>
-                        <FontFamily>cambria</FontFamily>
+                        <FontFamily>Cambria</FontFamily>
                         <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -1672,12 +1447,12 @@ Rate from unsold unit
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <rd:DefaultName>Textbox69</rd:DefaultName>
-              <Top>0.72744in</Top>
-              <Left>11.95835in</Left>
-              <Height>0.17708in</Height>
-              <Width>1.53125in</Width>
-              <ZIndex>5</ZIndex>
+              <rd:DefaultName>Textbox83</rd:DefaultName>
+              <Top>0.68278in</Top>
+              <Left>9.33334in</Left>
+              <Height>0.20833in</Height>
+              <Width>1.42708in</Width>
+              <ZIndex>4</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1697,7 +1472,7 @@ Rate from unsold unit
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.28125in</Height>
+          <Height>0.23785in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1720,10 +1495,9 @@ Rate from unsold unit
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.04167in</Top>
-              <Left>0.01042in</Left>
+              <Top>0.03993in</Top>
               <Height>0.19792in</Height>
-              <Width>10.78347in</Width>
+              <Width>7.66193in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1754,10 +1528,10 @@ Rate from unsold unit
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0.01389in</Top>
-              <Left>10.86333in</Left>
+              <Top>0.01215in</Top>
+              <Left>7.71749in</Left>
               <Height>0.21181in</Height>
-              <Width>2.62627in</Width>
+              <Width>3.13668in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -1776,8 +1550,8 @@ Rate from unsold unit
             </Border>
           </Style>
         </PageFooter>
-        <PageHeight>8.5in</PageHeight>
-        <PageWidth>14in</PageWidth>
+        <PageHeight>8.27in</PageHeight>
+        <PageWidth>11.69in</PageWidth>
         <LeftMargin>0.25in</LeftMargin>
         <RightMargin>0.25in</RightMargin>
         <TopMargin>0.25in</TopMargin>
@@ -1800,6 +1574,12 @@ Rate from unsold unit
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="printdate">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="projectName">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>
@@ -1847,15 +1627,20 @@ Rate from unsold unit
         <CellDefinition>
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>0</RowIndex>
-          <ParameterName>RptTitle</ParameterName>
+          <ParameterName>projectName</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>1</RowIndex>
-          <ParameterName>printFooter</ParameterName>
+          <ParameterName>RptTitle</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>printFooter</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
           <RowIndex>1</RowIndex>
           <ParameterName>ComLogo</ParameterName>
         </CellDefinition>
@@ -1863,5 +1648,5 @@ Rate from unsold unit
     </GridLayoutDefinition>
   </ReportParametersLayout>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
-  <rd:ReportID>a1969f8d-3e27-4110-93dc-1f41c1f38f42</rd:ReportID>
+  <rd:ReportID>58f58cac-a2c6-4b94-8386-348df1ffc8e8</rd:ReportID>
 </Report>

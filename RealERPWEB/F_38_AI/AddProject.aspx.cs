@@ -48,6 +48,8 @@ namespace RealERPWEB.F_38_AI
                 return;
 
             Session["tblprojectlist"] = dt.Tables[0];
+            this.GridcusDetails.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+
             this.GridcusDetails.DataSource = dt;
             this.GridcusDetails.DataBind();
             // this.tblAddBatch_Click(null, null);
@@ -413,6 +415,11 @@ namespace RealERPWEB.F_38_AI
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message.ToString() + "');", true);
             }
 
+        }
+
+        protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetProjectList();
         }
     }
 }

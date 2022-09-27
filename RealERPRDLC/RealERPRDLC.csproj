@@ -141,6 +141,7 @@
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+SpLedger.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassYearlySalesCRM.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptProspectTransfer.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesvsAchievement.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SoldUnsoftInfGroupWise.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SoldUnsoltInfavg.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+AccCustPayLedgerCHL.datasource" />
@@ -793,6 +794,7 @@
     <EmbeddedResource Include="R_22_Sal\RptSalClntInterestRup.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSaleSoldUsold.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalesTarget.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptSalesVsAchivement.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalPayScheduleLanco.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalPaySchedule.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalRegisClearence.rdlc" />
