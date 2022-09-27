@@ -58,8 +58,6 @@
             $('.chzn-select').chosen({ search_contains: true });
         }
 
-
-
     </script>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -82,37 +80,37 @@
                 </asp:UpdateProgress>
             </div>
 
-            <div class="card card-fluid">
+            <div class="card mt-4 pb-2">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-2">
-                            <div class="form-group">
+                            
                                 <label class="control-label" for="FromDate">From Date</label>
                                 <asp:TextBox ID="txtfrmdate" runat="server" CssClass="form-control flatpickr-input" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txtfrmdate_CalendarExtender" runat="server"
                                     Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>
-                            </div>
+                            
                         </div>
                         <div class="col-md-2">
-                            <div class="form-group">
+                           
                                 <label class="control-label" for="ToDate">To Date</label>
                                 <asp:TextBox ID="txttodate" runat="server" CssClass="form-control flatpickr-input" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server"
                                     Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
-                            </div>
+                           
                         </div>
                         <div class="col-md-3">
-                            <div class="from-group">
+                            
                                 <label class="control-label">Project Name</label>
-                                <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="chzn-select form-control  inputTxt" AutoPostBack="True" ></asp:DropDownList>
-                            </div>
+                                <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="chzn-select form-control  inp" AutoPostBack="True" ></asp:DropDownList>
+                           
                         </div>
 
                         <div class="col-md-2">
-                            <div class="from-group">
+                           
                                 <label class="control-label"> Group Name </label>
                                 <asp:DropDownList ID="ddlgrp" runat="server"  CssClass="chzn-select form-control" AutoPostBack="True"></asp:DropDownList>
-                            </div>
+                           
                         </div>
 
                         
@@ -120,9 +118,9 @@
 
 
                         <div class="col-md-1">
-                            <div class="form-group">
-                                <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="margin-top30px btn btn-primary" OnClick="lnkbtnOk_Click" AutoPostBack="True">Ok</asp:LinkButton>
-                            </div>
+                           
+                                <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="btn btn-sm btn-primary mt-4" OnClick="lnkbtnOk_Click" AutoPostBack="True">Ok</asp:LinkButton>
+                            
                         </div>
 
 
@@ -131,10 +129,11 @@
                 </div>
             </div>
 
-            <div class="card card-fluid">
+            <div class="card">
                 <div class="card-body">
                 <div class="table-responsive">
-                     <asp:GridView ID="gvsalesvscoll" runat="server" AutoGenerateColumns="False"
+                    <div class="row">
+                         <asp:GridView ID="gvsalesvscoll" runat="server" AutoGenerateColumns="False"
                                 ShowFooter="True" AllowPaging="false" CssClass=" table-striped table-hover table-bordered grvContentarea">
                                 <RowStyle />
                                 <Columns>
@@ -341,6 +340,8 @@
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
+                    </div>
+                    
                     </div>
 
                            
