@@ -95,7 +95,8 @@ namespace RealERPWEB.F_38_AI
         {
             string comcod = this.GetComdCode();
             string prjlist = this.ddlproject.SelectedValue.ToString() == "" ? "16%" : this.ddlproject.SelectedValue.ToString() + "%";
-            DataSet ds = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETANNOTAIONID", prjlist, "", "", "", "", "");
+            string usrrole = this.ddlUserRoleType.SelectedValue.ToString();
+            DataSet ds = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETANNOTAIONID", prjlist, usrrole, "", "", "", "");
             if (ds == null)
                 return;
 
@@ -152,7 +153,7 @@ namespace RealERPWEB.F_38_AI
             this.ddlworktype.Enabled = false;
             //task type
             DataView dv2 = dt.DefaultView;
-            dv1.RowFilter = " gcod like'71%' ";
+            dv2.RowFilter = " gcod like'71%' ";
             this.ddltasktype.DataTextField = "gdesc";
             this.ddltasktype.DataValueField = "gcod";
             this.ddltasktype.DataSource = dv2.ToTable();
@@ -160,7 +161,7 @@ namespace RealERPWEB.F_38_AI
 
             //project type
             DataView dv3 = dt.DefaultView;
-            dv1.RowFilter = " gcod like'60%' and gcod like '%00' ";
+            dv3.RowFilter = " gcod like'60%' and gcod like '%00' ";
             this.ddlprotype.DataTextField = "gdesc";
             this.ddlprotype.DataValueField = "gcod";
             this.ddlprotype.DataSource = dv3.ToTable();
@@ -170,7 +171,7 @@ namespace RealERPWEB.F_38_AI
 
             //Dataset
             DataView dv4 = dt.DefaultView;
-            dv1.RowFilter = " gcod like'60%' and gcod not like'%00'";
+            dv4.RowFilter = " gcod like'60%' and gcod not like'%00'";
             this.ddldataset.DataTextField = "gdesc";
             this.ddldataset.DataValueField = "gcod";
             this.ddldataset.DataSource = dv4.ToTable();
@@ -180,12 +181,20 @@ namespace RealERPWEB.F_38_AI
 
             //order type
             DataView dv5 = dt.DefaultView;
-            dv1.RowFilter = " gcod like'80%' and gcod like'%00'";
+            dv5.RowFilter = "gcod like'80%' and gcod like'%00'";
             this.ddlordertype.DataTextField = "gdesc";
             this.ddlordertype.DataValueField = "gcod";
             this.ddlordertype.DataSource = dv5.ToTable();
             this.ddlordertype.DataBind();
-             
+
+            //order type
+            DataView dv6 = dt.DefaultView;
+            dv6.RowFilter = "gcod like'95%' and gcod not like'%00'";
+            this.ddlUserRoleType.DataTextField = "gdesc";
+            this.ddlUserRoleType.DataValueField = "gcod";
+            this.ddlUserRoleType.DataSource = dv6.ToTable();
+            this.ddlUserRoleType.DataBind();
+
         }
 
         protected void btntaskcreate_Click(object sender, EventArgs e)
@@ -240,6 +249,7 @@ namespace RealERPWEB.F_38_AI
         protected void ddlproject_SelectedIndexChanged(object sender, EventArgs e)
         {
             GetProjectInformation();
+            GetBatchList();
             GetAnnotationList();
         }
         private void VirtualGrid()
@@ -274,6 +284,22 @@ namespace RealERPWEB.F_38_AI
             vt.Rows.Add(ddlassignmember.SelectedItem.Text.Trim(), ddlAnnotationid.SelectedItem.Text.Trim(), ddltasktype.SelectedItem.Text.Trim(), txtquantity.Text.Trim(), txtworkhour.Text.Trim());
             //vt.DefaultView.Sort = "txtmember";
             VirtualGrid();
+        }
+
+        protected void ddlbatch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string comcod = this.GetComdCode();
+            string batchlist = this.ddlbatch.SelectedValue.ToString();
+            DataSet ds = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETBATCHINFOBYID", batchlist, "", "", "", "", "");
+            if (ds == null)
+                return;
+
+            
+        }
+
+        protected void ddlUserRoleType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetAnnotationList();
         }
     }
 }

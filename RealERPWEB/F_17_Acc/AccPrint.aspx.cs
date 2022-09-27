@@ -760,6 +760,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintCredence";
                     break;
 
+                case "3101": // islam brothers 
                 case "1102": // islam brothers 
                     vouprint = "VocherPrintISBL";
                     break;
