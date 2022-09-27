@@ -125,11 +125,32 @@ namespace RealERPWEB.F_23_CR
                 if (ds1 == null)
                     return;
 
-                Session["tblpcollection"] = ds1.Tables[0];
-                this.Data_Bind();
+               
+            Session["tblpcollection"] = this.HiddenSameData(ds1.Tables[0]);
+            this.Data_Bind();
+            }
+        private DataTable HiddenSameData(DataTable dt1)
+        {
+            if (dt1.Rows.Count == 0)
+                return dt1;
+            string pactcode = dt1.Rows[0]["pactcode"].ToString();
+
+            for (int j = 1; j < dt1.Rows.Count; j++)
+            {
+                if (dt1.Rows[j]["pactcode"].ToString() == pactcode)
+                    dt1.Rows[j]["pactdesc"] = "";
+
+                pactcode = dt1.Rows[j]["pactcode"].ToString();
+
+
             }
 
-            private void Data_Bind()
+
+
+            return dt1;
+        }
+
+        private void Data_Bind()
             {
 
                 this.gvprobacoll.DataSource = (DataTable)Session["tblpcollection"];

@@ -131,6 +131,36 @@ namespace RealEntity.C_22_Sal
 
 
         }
+        [Serializable]
+
+        public class SalesvsAchievement
+        {
+            public string comcod { get; set; }
+            public string flrdesc { get; set; }
+            public string pactdesc { get; set; }
+            public string pactcode { get; set; }
+            public string typecode { get; set; }
+            public string typedesc { get; set; }
+            public string udesc { get; set; }
+            public double usize { get; set; }
+            public string custname { get; set; }
+            public double srate { get; set; }
+            public string steamdesc { get; set; }
+            public string downstatus { get; set; }
+            public double tsalval { get; set; }
+            public double netvalue { get; set; }
+            public double downpamt { get; set; }
+            public double ramt { get; set; }
+
+
+
+            public SalesvsAchievement()
+            {
+
+            }
+
+
+        }
 
 
     }

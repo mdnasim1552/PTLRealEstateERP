@@ -99,9 +99,27 @@ namespace RealERPWEB.F_23_CR
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_LANDOWNERMGT", "GETCOLLLANDOWNERBENESTATUS", prjcode, "", todate, benefname, "", "", "", "", "");
             if (ds1 == null)
                 return;
-            Session["tbllocollstatus"] = ds1.Tables[0];
+     
+            Session["tbllocollstatus"] = this.HiddenSameData(ds1.Tables[0]);
             this.Data_Bind();
         }
+        private DataTable HiddenSameData(DataTable dt1)
+        {
+            if (dt1.Rows.Count == 0)
+                return dt1;
+            string pactcode = dt1.Rows[0]["pactcode"].ToString();
+       
+            for (int j = 1; j < dt1.Rows.Count; j++)
+            {
+                    if (dt1.Rows[j]["pactcode"].ToString() == pactcode)
+                        dt1.Rows[j]["pactdesc"] = "";
+                       pactcode = dt1.Rows[j]["pactcode"].ToString();
+
+            }
+
+            return dt1;
+        }
+
 
         private void Data_Bind()
         {
