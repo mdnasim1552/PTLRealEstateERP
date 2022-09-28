@@ -880,7 +880,7 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink hlinkproceed = (HyperLink)e.Row.FindControl("lnkProceed");
 
                 string pactcode = "18"+ ASTUtility.Right(Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mapactcode")).ToString(), 10);
-                hlinkproceed.NavigateUrl = "~/F_23_CR/CustOthMoneyReceipt?Type=Billing";               
+                hlinkproceed.NavigateUrl = "~/F_23_CR/CustOthMoneyReceipt?Type=Billing&pactcode=" + pactcode;               
                 hlinkproceed.Visible = true;
             }
         }
