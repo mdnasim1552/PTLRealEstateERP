@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB.F_23_CR
+namespace RealERPWEB.F_22_Sal
 {
 
 
-    public partial class RptCollectionStatusLO
+    public partial class RptSalesVsAchievement
     {
 
         /// <summary>
@@ -31,6 +31,24 @@ namespace RealERPWEB.F_23_CR
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
+
+        /// <summary>
+        /// txtfrmdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtfrmdate;
+
+        /// <summary>
+        /// txtfrmdate_CalendarExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender txtfrmdate_CalendarExtender;
 
         /// <summary>
         /// txttodate control.
@@ -60,13 +78,13 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.WebControls.DropDownList ddlPrjName;
 
         /// <summary>
-        /// ddlbenefname control.
+        /// ddlgrp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlbenefname;
+        protected global::System.Web.UI.WebControls.DropDownList ddlgrp;
 
         /// <summary>
         /// lnkbtnOk control.
@@ -78,12 +96,12 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnOk;
 
         /// <summary>
-        /// gvcollStatus control.
+        /// gvsalesvscoll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvcollStatus;
+        protected global::System.Web.UI.WebControls.GridView gvsalesvscoll;
     }
 }

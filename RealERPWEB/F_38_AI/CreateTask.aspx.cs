@@ -16,7 +16,7 @@ namespace RealERPWEB.F_38_AI
         DataTable vt = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
-            vt.Columns.AddRange(new DataColumn[] { new DataColumn("lblmember"), new DataColumn("tbltype"), new DataColumn("tblValoquantity"), new DataColumn("tblworkhour") });
+            vt.Columns.AddRange(new DataColumn[] { new DataColumn("lblmember"), new DataColumn("anotation"), new DataColumn("tbltype"), new DataColumn("tblValoquantity"), new DataColumn("tblworkhour") });
             if (!IsPostBack)
             {
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Create Task";
@@ -30,6 +30,7 @@ namespace RealERPWEB.F_38_AI
                 this.GetBatchList();
                 this.GetAnnotationList();
                 this.GetProjectInformation();
+                this.CreateTableAssign();
             }
         }
         private string GetComdCode()
@@ -49,7 +50,13 @@ namespace RealERPWEB.F_38_AI
             this.ddlcustomer.DataSource = dt.Tables[0];
             this.ddlcustomer.DataBind();
 
-            this.ddlcustomer_SelectedIndexChanged(null, null);
+            ListItem li = new ListItem();
+            li.Text = "--- Select Customer----";
+            li.Value = "%%";
+            ddlcustomer.Items.Add(li);
+            this.ddlcustomer.SelectedValue = "%%";
+
+            //this.ddlcustomer_SelectedIndexChanged(null, null);
         }
         private void GetProjectList()
         {
@@ -88,14 +95,15 @@ namespace RealERPWEB.F_38_AI
         {
             string comcod = this.GetComdCode();
             string prjlist = this.ddlproject.SelectedValue.ToString() == "" ? "16%" : this.ddlproject.SelectedValue.ToString() + "%";
-            DataSet ds = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETANNOTAIONID", prjlist, "", "", "", "", "");
+            string usrrole = this.ddlUserRoleType.SelectedValue.ToString();
+            DataSet ds = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETANNOTAIONID", prjlist, usrrole, "", "", "", "");
             if (ds == null)
                 return;
 
-            this.ddlbatch.DataTextField = "batchdesc";
-            this.ddlbatch.DataValueField = "batchid";
-            this.ddlbatch.DataSource = ds.Tables[0];
-            this.ddlbatch.DataBind();
+            this.ddlAnnotationid.DataTextField = "item";
+            this.ddlAnnotationid.DataValueField = "itemvalue";
+            this.ddlAnnotationid.DataSource = ds.Tables[0];
+            this.ddlAnnotationid.DataBind();
 
         }
 
@@ -145,7 +153,7 @@ namespace RealERPWEB.F_38_AI
             this.ddlworktype.Enabled = false;
             //task type
             DataView dv2 = dt.DefaultView;
-            dv1.RowFilter = " gcod like'71%' ";
+            dv2.RowFilter = " gcod like'71%' ";
             this.ddltasktype.DataTextField = "gdesc";
             this.ddltasktype.DataValueField = "gcod";
             this.ddltasktype.DataSource = dv2.ToTable();
@@ -153,7 +161,7 @@ namespace RealERPWEB.F_38_AI
 
             //project type
             DataView dv3 = dt.DefaultView;
-            dv1.RowFilter = " gcod like'60%' and gcod like '%00' ";
+            dv3.RowFilter = " gcod like'60%' and gcod like '%00' ";
             this.ddlprotype.DataTextField = "gdesc";
             this.ddlprotype.DataValueField = "gcod";
             this.ddlprotype.DataSource = dv3.ToTable();
@@ -163,7 +171,7 @@ namespace RealERPWEB.F_38_AI
 
             //Dataset
             DataView dv4 = dt.DefaultView;
-            dv1.RowFilter = " gcod like'60%' and gcod not like'%00'";
+            dv4.RowFilter = " gcod like'60%' and gcod not like'%00'";
             this.ddldataset.DataTextField = "gdesc";
             this.ddldataset.DataValueField = "gcod";
             this.ddldataset.DataSource = dv4.ToTable();
@@ -173,19 +181,19 @@ namespace RealERPWEB.F_38_AI
 
             //order type
             DataView dv5 = dt.DefaultView;
-            dv1.RowFilter = " gcod like'80%' and gcod like'%00'";
+            dv5.RowFilter = "gcod like'80%' and gcod like'%00'";
             this.ddlordertype.DataTextField = "gdesc";
             this.ddlordertype.DataValueField = "gcod";
             this.ddlordertype.DataSource = dv5.ToTable();
             this.ddlordertype.DataBind();
 
-            // annotation id
+            //order type
             DataView dv6 = dt.DefaultView;
-            dv1.RowFilter = "gcod like '03%' and gcod like'%10'";
-            this.ddlAnnotationid.DataTextField = "gdesc";
-            this.ddlAnnotationid.DataValueField = "gcod";
-            this.ddlAnnotationid.DataSource = dv6.ToTable();
-            this.ddlAnnotationid.DataBind();
+            dv6.RowFilter = "gcod like'95%' and gcod not like'%00'";
+            this.ddlUserRoleType.DataTextField = "gdesc";
+            this.ddlUserRoleType.DataValueField = "gcod";
+            this.ddlUserRoleType.DataSource = dv6.ToTable();
+            this.ddlUserRoleType.DataBind();
 
         }
 
@@ -241,6 +249,8 @@ namespace RealERPWEB.F_38_AI
         protected void ddlproject_SelectedIndexChanged(object sender, EventArgs e)
         {
             GetProjectInformation();
+            GetBatchList();
+            GetAnnotationList();
         }
         private void VirtualGrid()
         {
@@ -248,11 +258,48 @@ namespace RealERPWEB.F_38_AI
             this.GridVirtual.DataBind();
         }
 
+        private void CreateTableAssign()
+        { 
+        
+            DataTable tblt01 = new DataTable();
+            tblt01.Columns.Add("jobid", Type.GetType("System.String"));
+            tblt01.Columns.Add("batchid", Type.GetType("System.String"));
+            tblt01.Columns.Add("pactcode", Type.GetType("System.String"));
+            tblt01.Columns.Add("empid", Type.GetType("System.String"));
+            tblt01.Columns.Add("empname", Type.GetType("System.String"));
+            tblt01.Columns.Add("valocitycode", Type.GetType("System.String"));
+            tblt01.Columns.Add("valocitydesc", Type.GetType("System.String"));
+            tblt01.Columns.Add("annoid", Type.GetType("System.String"));          
+            tblt01.Columns.Add("valocityqty", Type.GetType("System.Double"));
+            tblt01.Columns.Add("workhour", Type.GetType("System.Double"));
+            
+            ViewState["tblt01"] = tblt01;
+        }
+
         protected void btnaddrow_Click(object sender, EventArgs e)
         {
-            vt.Rows.Add(ddlassignmember.SelectedValue.Trim(), ddltasktype.SelectedValue.Trim());
+            DataTable tblt01 = (DataTable)ViewState["tblt01"];
+
+
+            vt.Rows.Add(ddlassignmember.SelectedItem.Text.Trim(), ddlAnnotationid.SelectedItem.Text.Trim(), ddltasktype.SelectedItem.Text.Trim(), txtquantity.Text.Trim(), txtworkhour.Text.Trim());
             //vt.DefaultView.Sort = "txtmember";
             VirtualGrid();
+        }
+
+        protected void ddlbatch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string comcod = this.GetComdCode();
+            string batchlist = this.ddlbatch.SelectedValue.ToString();
+            DataSet ds = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETBATCHINFOBYID", batchlist, "", "", "", "", "");
+            if (ds == null)
+                return;
+
+            
+        }
+
+        protected void ddlUserRoleType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetAnnotationList();
         }
     }
 }

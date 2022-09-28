@@ -207,9 +207,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 case "3348":
                     this.chkbod.Visible = true;
                     this.lblforward.Visible = true;
-                    break; 
+                    break;
             }
-             
+
         }
 
         protected void ImgbtnFindProjectName_Click(object sender, EventArgs e)
@@ -336,17 +336,17 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.lblclenj.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["enjcleave"]).ToString("#,##0.00;(#,##0.00); ");
                 this.lblslenj.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["enjsleave"]).ToString("#,##0.00;(#,##0.00); ");
 
-                 this.elvallow.Text = dtstatus.Rows.Count == 0 ? "" :  dtstatus.Rows[0]["upachivelv"].ToString();
-                this.clvallow.Text = dtstatus.Rows.Count == 0 ? "" :   dtstatus.Rows[0]["upachivclv"].ToString();
-                this.slvallow.Text = dtstatus.Rows.Count == 0 ? "" :  dtstatus.Rows[0]["upachivslv"].ToString();
+                this.elvallow.Text = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["upachivelv"].ToString();
+                this.clvallow.Text = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["upachivclv"].ToString();
+                this.slvallow.Text = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["upachivslv"].ToString();
 
                 this.elvenjoy.Text = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["enjenleave"].ToString();
                 this.clvenjoy.Text = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["enjcleave"].ToString();
-                this.slvenjoy.Text = dtstatus.Rows.Count == 0 ? "" :  dtstatus.Rows[0]["enjsleave"].ToString();
+                this.slvenjoy.Text = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["enjsleave"].ToString();
 
                 this.elvbalanc.Text = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["balleleave"].ToString();
-                this.clvbalanc.Text = dtstatus.Rows.Count == 0 ? "" :  dtstatus.Rows[0]["ballcleave"].ToString();
-                this.slvbalanc.Text = dtstatus.Rows.Count == 0 ? "" :  dtstatus.Rows[0]["ballsleave"].ToString();
+                this.clvbalanc.Text = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["ballcleave"].ToString();
+                this.slvbalanc.Text = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["ballsleave"].ToString();
 
 
                 string elst = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["elst"].ToString();
@@ -358,7 +358,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
                 this.spEmpInfo.InnerText = "Employee ID: " + idcard + "," + "Employee Name : " + empname + "," + "Designation: " + empdesig + "," +
-                    "Department Name : " + deptName+","+"Service Length : "+servlength+" Years";
+                    "Department Name : " + deptName + "," + "Service Length : " + servlength + " Years";
                 this.lblDutesInfo.Text = denameadesig;
                 //end head data
                 this.ShowEmppLeave(ds.Tables[0].Rows[0]["empid"].ToString());
@@ -1346,7 +1346,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
 
-                int index = row.RowIndex+1;
+                int index = row.RowIndex + 1;
 
                 string lvtype = ((Label)this.gvLvReq.Rows[index].FindControl("lglvtype")).Text.ToString();
                 string aplydat = ((Label)this.gvLvReq.Rows[index].FindControl("lblgvaplydat")).Text.ToString();
@@ -1410,23 +1410,26 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     else
                     {
 
+                        if (compmail == "true")
+                        {
+                            htmtableboyd = "<table style='border: 1px solid black;border-collapse: collapse;'>" +
+                          "<tr>" +
+                           "<th style='border-collapse: collapse;border: 1px solid black;'>From Date</th>" +
+                           "<th style='border-collapse: collapse;border: 1px solid black;'>To Date</th>" +
+                           "<th style='border-collapse: collapse;border: 1px solid black;'>Days</th>" +
+                          "</tr>";
 
-                        htmtableboyd = "<table style='border: 1px solid black;border-collapse: collapse;'>" +
-                           "<tr>" +
-                            "<th style='border-collapse: collapse;border: 1px solid black;'>From Date</th>" +
-                            "<th style='border-collapse: collapse;border: 1px solid black;'>To Date</th>" +
-                            "<th style='border-collapse: collapse;border: 1px solid black;'>Days</th>" +
-                           "</tr>";
 
-                      
-                        htmtableboyd += "<tr>" +
-                            "<td style='border: 1px solid black;border-collapse: collapse;'>" + strtdat + "</td>" +
-                            "<td style='border: 1px solid black;border-collapse: collapse;'>" + endat + "</td>" +
-                            "<td style='border: 1px solid black;border-collapse: collapse;'>(" + duration.Remove(1,3) + ") day</td>" +
-                            "</tr>";
-                        htmtableboyd += "</table>";
+                            htmtableboyd += "<tr>" +
+                                "<td style='border: 1px solid black;border-collapse: collapse;'>" + strtdat + "</td>" +
+                                "<td style='border: 1px solid black;border-collapse: collapse;'>" + endat + "</td>" +
+                                "<td style='border: 1px solid black;border-collapse: collapse;'>(" + duration.Remove(1, 3) + ") day</td>" +
+                                "</tr>";
+                            htmtableboyd += "</table>";
 
-                        this.SendNotificaion(Orderno, Centrid, roletype, isForward, compsms, compmail, ssl, sendUsername, sendDptdesc, sendUsrdesig, compName, htmtableboyd);
+                            this.SendNotificaion(Orderno, Centrid, roletype, isForward, compsms, compmail, ssl, sendUsername, sendDptdesc, sendUsrdesig, compName, htmtableboyd);
+                        }
+
                         string Messagesd = "Leave Approved";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
 
@@ -1528,7 +1531,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string totalpath = uhostname + currentptah;
 
                     string maildescription = "Dear Sir, Please Approve Leave Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
-                      "Department Name : " + deptName + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>"+ htmtableboyd;
+                      "Department Name : " + deptName + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>" + htmtableboyd;
                     maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
 
 
@@ -1560,7 +1563,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
                 toMSgBody = "Hi !! ," + toMSgBody + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
-                   "Department Name : " + deptName + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>"+ htmtableboyd;
+                   "Department Name : " + deptName + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>" + htmtableboyd;
 
 
                 string toEmpsub = "Leave Request Approved";
@@ -1599,7 +1602,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         }
 
-  
+
 
         private void GetComNameAAdd()
         {

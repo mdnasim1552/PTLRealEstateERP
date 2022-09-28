@@ -97,6 +97,71 @@ namespace RealEntity.C_22_Sal
 
 
         }
+        [Serializable]
+
+        public class SoldUnsoltInfavg
+        {
+            public string comcod { get; set; }
+            public string flrdesc { get; set; }
+            public string pactdesc { get; set; }
+            public string pactcode { get; set; }
+            public double tqty { get; set; }
+            public double tusize { get; set; }
+            public double sqty { get; set; }
+            public double susize { get; set; }
+            public double usqty { get; set; }
+            public double usize { get; set; }
+            public double usuamt { get; set; }
+            public double tramt { get; set; }
+            public double suamt { get; set; }
+            public double parking { get; set; }
+            public double recievable { get; set; }
+            public double expcarutilyrate { get; set; }
+            public double cooperative { get; set; }
+            public double ctwcarutility { get; set; }
+            public double Inccarutilyrate { get; set; }
+            public double expuscarutilityrate { get; set; }
+            public double incunsoldcarutility { get; set; }
+            public double incunsoldavgrate { get; set; }
+
+            public SoldUnsoltInfavg()
+            {
+
+            }
+
+
+        }
+        [Serializable]
+
+        public class SalesvsAchievement
+        {
+            public string comcod { get; set; }
+            public string flrdesc { get; set; }
+            public string pactdesc { get; set; }
+            public string pactcode { get; set; }
+            public string typecode { get; set; }
+            public string typedesc { get; set; }
+            public string udesc { get; set; }
+            public double usize { get; set; }
+            public string custname { get; set; }
+            public double srate { get; set; }
+            public string steamdesc { get; set; }
+            public string downstatus { get; set; }
+            public double tsalval { get; set; }
+            public double netvalue { get; set; }
+            public double downpamt { get; set; }
+            public double ramt { get; set; }
+
+
+
+            public SalesvsAchievement()
+            {
+
+            }
+
+
+        }
+      
 
 
     }

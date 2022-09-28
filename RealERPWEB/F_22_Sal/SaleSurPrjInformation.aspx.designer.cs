@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB.F_23_CR
+namespace RealERPWEB.F_22_Sal
 {
 
 
-    public partial class RptCollectionStatusLO
+    public partial class SaleSurPrjInformation
     {
 
         /// <summary>
@@ -33,24 +33,6 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// txttodate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txttodate;
-
-        /// <summary>
-        /// txttodate_CalendarExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txttodate_CalendarExtender;
-
-        /// <summary>
         /// ddlPrjName control.
         /// </summary>
         /// <remarks>
@@ -60,30 +42,21 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.WebControls.DropDownList ddlPrjName;
 
         /// <summary>
-        /// ddlbenefname control.
+        /// lbtnOk control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlbenefname;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
 
         /// <summary>
-        /// lnkbtnOk control.
+        /// gvPrjInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnOk;
-
-        /// <summary>
-        /// gvcollStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvcollStatus;
+        protected global::System.Web.UI.WebControls.GridView gvPrjInfo;
     }
 }

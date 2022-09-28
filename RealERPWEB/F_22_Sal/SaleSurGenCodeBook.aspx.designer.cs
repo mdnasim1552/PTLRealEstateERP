@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB.F_23_CR
+namespace RealERPWEB.F_22_Sal
 {
 
 
-    public partial class RptCollectionStatusLO
+    public partial class SaleSurGenCodeBook
     {
 
         /// <summary>
@@ -33,57 +33,48 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// txttodate control.
+        /// ddlOthersBook control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txttodate;
+        protected global::System.Web.UI.WebControls.DropDownList ddlOthersBook;
 
         /// <summary>
-        /// txttodate_CalendarExtender control.
+        /// ddlOthersBookSegment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txttodate_CalendarExtender;
+        protected global::System.Web.UI.WebControls.DropDownList ddlOthersBookSegment;
 
         /// <summary>
-        /// ddlPrjName control.
+        /// lnkok control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPrjName;
+        protected global::System.Web.UI.WebControls.LinkButton lnkok;
 
         /// <summary>
-        /// ddlbenefname control.
+        /// ddlpagesize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlbenefname;
+        protected global::System.Web.UI.WebControls.DropDownList ddlpagesize;
 
         /// <summary>
-        /// lnkbtnOk control.
+        /// grvacc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnOk;
-
-        /// <summary>
-        /// gvcollStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvcollStatus;
+        protected global::System.Web.UI.WebControls.GridView grvacc;
     }
 }

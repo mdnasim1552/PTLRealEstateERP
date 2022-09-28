@@ -50,23 +50,14 @@
 
         function pageLoaded() {
 
-            $('.chzn-select').chosen({ search_contains: true });
-          <%--  $('#<%=this.gvsupstatus.ClientID%>').tblScrollable();--%>
-            $(function () {
-                $('[id*=chkSupCategory').multiselect({
-                    includeSelectAllOption: true,
-
-                    enableCaseInsensitiveFiltering: true,
-                    //enableFiltering: true,
-
-                });
-                var gvcollStatus = $('#<%=this.gvcollStatus.ClientID %>');
-
-                gvcollStatus.Scrollable();
-
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
             });
 
+            $('.chzn-select').chosen({ search_contains: true });
         }
+
 
 
 
@@ -92,47 +83,43 @@
                 </asp:UpdateProgress>
             </div>
 
-            <div class="card card-fluid">
+            <div class="card card-fluid pb-4 mt-4">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-2">
+                       <%-- <div class="col-md-2">
                             <div class="form-group">
                                 <label class="control-label" for="FromDate">From Date</label>
                                 <asp:TextBox ID="txtfrmdate" runat="server" CssClass="form-control flatpickr-input" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txtfrmdate_CalendarExtender" runat="server"
                                     Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>
                             </div>
-                        </div>
+                        </div>--%>
                         <div class="col-md-2">
-                            <div class="form-group">
-                                <label class="control-label" for="ToDate">To Date</label>
+                            
+                                <label class="control-label" for="ToDate"> Date :</label>
                                 <asp:TextBox ID="txttodate" runat="server" CssClass="form-control flatpickr-input" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server"
                                     Format="dd-MMM-yyyy" TargetControlID="txttoDate"></cc1:CalendarExtender>
-                            </div>
+                           
                         </div>
                         <div class="col-md-3">
-                            <div class="from-group">
+                            
                                 <label class="control-label">Project Name</label>
-                                <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="chzn-select form-control  inputTxt" AutoPostBack="True"></asp:DropDownList>
-                            </div>
+                                <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="True"></asp:DropDownList>
+                          
                         </div>
 
-                         <div class="col-md-3">
-                            <div class="from-group">
-                                <label class="control-label">Beneficiary</label>
-                                <asp:DropDownList ID="ddlbenefname" runat="server" CssClass="chzn-select form-control  inputTxt" Width="200px" AutoPostBack="True"></asp:DropDownList>
+                         <div class="col-md-2">
                             
-                              
-                         
-                       
-                         
-                            </div>
+                                <label class="control-label">Beneficiary</label>
+                                <asp:DropDownList ID="ddlbenefname" runat="server" CssClass="chzn-select form-control form-control-sm"  AutoPostBack="True"></asp:DropDownList>
+                            
+                           
                         </div>
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="margin-top30px btn btn-primary" OnClick="lnkbtnOk_Click" AutoPostBack="True">Ok</asp:LinkButton>
-                            </div>
+                        <div class="col-md-1 ">
+                            
+                                <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="btn btn-sm btn-primary" style="margin-top:30px;" OnClick="lnkbtnOk_Click" AutoPostBack="True">Ok</asp:LinkButton>
+                           
                         </div>
 
 
@@ -142,11 +129,10 @@
                 </div>
             </div>
 
-            <div class="card card-fluid" style="min-height: 250px;">
+            <div class="card card-fluid" style="min-height:480px;">
                 <div class="card-body">
-               
-
-                            <asp:GridView ID="gvcollStatus" runat="server" AutoGenerateColumns="False"
+               <div class="row">
+                    <asp:GridView ID="gvcollStatus" runat="server" AutoGenerateColumns="False"
                                 ShowFooter="True" AllowPaging="false" CssClass=" table-striped table-hover table-bordered grvContentarea">
                                 <RowStyle />
                                 <Columns>
@@ -163,7 +149,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvbenename" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "benefnamedesc")) %>'
-                                                Width="150px"></asp:Label>
+                                                Width="200px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="left" />
                                         <HeaderStyle HorizontalAlign="center" />
@@ -271,6 +257,9 @@
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
+               </div>
+
+                           
 
 
                     

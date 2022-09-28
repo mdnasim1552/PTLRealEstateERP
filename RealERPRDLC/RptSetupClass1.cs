@@ -342,6 +342,8 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_92_Mgt.RptInterfaceAttApp": Rpt1a = SetRptInterfaceAttApp(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_92_Mgt.RptGroupAtt": Rpt1a = SetRptGroupAtt(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_34_Mgt.RptReqAdjustment": Rpt1a = SetRptReqAdjustment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptSoldUnsoldUnitAvgPrice": Rpt1a = SetRptSoldUnsoldUnitAvgPrice(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptSalesVsAchivement": Rpt1a = SetRptSalesVsAchivement(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 #region General Accounts 17
                 case "R_17_Acc.TransectionPrint": Rpt1a = SetRptTrnPrint(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -6422,6 +6424,17 @@ namespace RealERPRDLC
         private static LocalReport SetRptReqAdjustment(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_34_Mgt.EClassEnventory.RequisationAdjust>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptSoldUnsoldUnitAvgPrice(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales.SoldUnsoltInfavg>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptSalesVsAchivement(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales.SalesvsAchievement>)RptDataSet));
+           
             return Rpt1a;
         }
         
