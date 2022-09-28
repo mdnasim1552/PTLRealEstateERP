@@ -2570,6 +2570,43 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
         }
+        private void PrintSalaryAcmeAI()
+        {
+
+            DataTable dt = (DataTable)Session["tblpay"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comname = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd \\'MMM");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd \\'MMM");
+            string todate1 = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM, yyyy");
+            double netpay = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
+            double netpayatax = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
+
+            LocalReport Rpt1 = new LocalReport();
+
+            var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalarySheet>();
+
+            Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryDetailsAcmeAI", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", this.ddlCompany.SelectedItem.Text.Trim()));
+            Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Statement of Salary : " + "Month of " + todate1 + "(" + frmdate + "- " + todate + ")"));
+            Rpt1.SetParameters(new ReportParameter("TkInWord", "In Word: " + ASTUtility.Trans(netpayatax, 2)));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+        }
 
 
         private void PrintSalaryPEB()
