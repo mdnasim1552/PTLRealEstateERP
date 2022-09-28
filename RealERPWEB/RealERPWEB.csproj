@@ -2205,6 +2205,7 @@
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
     <Content Include="F_21_MKT\RptPerDeleteProspect.aspx" />
+    <Content Include="F_22_Sal\SaleSurvey.aspx" />
     <Content Include="F_22_Sal\SaleSurPrjInformation.aspx" />
     <Content Include="F_22_Sal\SaleSurPCodeBook.aspx" />
     <Content Include="F_22_Sal\EntryClientNameTransfer.aspx" />
@@ -4084,6 +4085,13 @@
     </Compile>
     <Compile Include="F_21_MKT\RptPerDeleteProspect.aspx.designer.cs">
       <DependentUpon>RptPerDeleteProspect.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_22_Sal\SaleSurvey.aspx.cs">
+      <DependentUpon>SaleSurvey.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\SaleSurvey.aspx.designer.cs">
+      <DependentUpon>SaleSurvey.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_22_Sal\SaleSurPrjInformation.aspx.cs">
       <DependentUpon>SaleSurPrjInformation.aspx</DependentUpon>
