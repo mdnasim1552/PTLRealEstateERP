@@ -219,9 +219,6 @@ namespace RealERPWEB.F_32_Mis
                 advance = "ADVANCE";
             }
 
-
-
-
             // DataSet ds2 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TB", CallType, "", date1, actcode, mRptGroup, "", "", "", "", "");
 
             DataSet ds2 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TB", CallType, "", date1, actcode, mRptGroup, "", advance, "", "", "");
