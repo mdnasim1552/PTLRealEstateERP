@@ -969,6 +969,8 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptSalaryLeisure": Rpt1a = SetRptSalaryLeisure(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSalaryDetailsAlliance": Rpt1a = SetRptSalaryDetailsAlliance(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSalaryDetailsAcme": Rpt1a = SetRptSalaryDetailsAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.RptSalaryDetailsAcmeAI": Rpt1a = SetRptSalaryDetailsAcmeAI(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
                 case "R_81_Hrm.R_89_Pay.RptSalaryDetailsSuvastuHeadOffice": Rpt1a = SetRptSalaryDetailsSuvastuHeadOffice(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSalaryDetailsSuvastu": Rpt1a = SetRptSalaryDetailsSuvastu(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSalaryDetailsPEBCash": Rpt1a = SetRptSalaryDetailsPEBCash(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -5187,6 +5189,12 @@ namespace RealERPRDLC
             return Rpt1a;
         }
         private static LocalReport SetRptSalaryDetailsAcme(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalarySheet>)RptDataSet));
+            return Rpt1a;
+        }
+
+        private static LocalReport SetRptSalaryDetailsAcmeAI(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalarySheet>)RptDataSet));
             return Rpt1a;
