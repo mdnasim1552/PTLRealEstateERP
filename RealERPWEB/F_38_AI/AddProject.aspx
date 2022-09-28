@@ -298,7 +298,7 @@
                         </div>
                     </div>
                     <%--// Batch Add modal--%>
-                    <div id="CreateModalBatch" class="modal " role="dialog" data-keyboard="false" data-backdrop="static">
+                    <div id="CreateModalBatch" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header bg-light">
@@ -311,7 +311,7 @@
                                             <asp:HiddenField ID="hiddPrjid" runat="server" />
                                             <div class="form-group">
                                                 <asp:Label ID="Label3" runat="server">Project Name</asp:Label>
-                                                <asp:TextBox ID="txtproj" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="txtproj" runat="server" Enabled="false" ReadOnly="true" CssClass="form-control"></asp:TextBox>
                                                 <asp:Label ID="tblpactcode" runat="server" Visible="false" Text='<%#Eval("pactcode").ToString()%>'></asp:Label>
                                                 <%--<asp:Label ID="" runat="server"  Text='<%#Eval("prjid").ToString()%>'></asp:Label>--%>
                                             </div>
@@ -320,19 +320,19 @@
                                         <div class="col-lg-4 col-md-4 col-sm-6">
                                             <div class="form-group">
                                                  <asp:Label ID="Label10" runat="server">DataSet Type</asp:Label>
-                                                <asp:TextBox ID="txtdataset" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="txtdataset" runat="server" CssClass="form-control" Enabled="false" ReadOnly="true"></asp:TextBox>
                                             </div>
                                             </div>
                                          <div class="col-lg-4 col-md-4 col-sm-6">
                                             <div class="form-group">
                                                  <asp:Label ID="Label11" runat="server">Work Type</asp:Label>
-                                                <asp:TextBox ID="txtworktype" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="txtworktype" runat="server" CssClass="form-control" Enabled="false" ReadOnly="true"></asp:TextBox>
                                             </div>
                                             </div>
                                        
                                     </div>
                                     <div class="row">
-                                         <div class="col-lg-3 col-md-3 col-sm-6">
+                                         <div class="col-lg-4 col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <asp:Label ID="Label1" runat="server">Batch Name</asp:Label>
                                                 <asp:TextBox ID="txtBatch" runat="server" CssClass="form-control"></asp:TextBox>
@@ -344,8 +344,31 @@
                                                 <asp:TextBox ID="txtbatchQuantity" runat="server" CssClass="form-control"></asp:TextBox>
                                             </div>
                                         </div>
-                                        
-                                        <div class="col-lg-3 col-md-3 col-sm-6">
+                                          <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="form-group row">                                               
+                                                    <asp:Label ID="Label6" runat="server">Total Hour</asp:Label>
+                                                    <asp:TextBox ID="tbltotalOur" runat="server" CssClass="form-control"></asp:TextBox>                                               
+                                               
+                                            </div>
+                                        </div>
+                                         <div class="col-lg-2 col-md-3 col-sm-6">
+
+                                            <div class="form-group">                                            
+                                                    <asp:Label ID="Label12" runat="server">Time Type</asp:Label>
+                                                    
+                                                    <asp:DropDownList ID="ddlphdm" runat="server" CssClass="form-control">
+                                                        <asp:ListItem Value="0">Hour</asp:ListItem>
+                                                        <asp:ListItem Value="1">Minute</asp:ListItem>
+                                                        <asp:ListItem Value="2">Day</asp:ListItem>
+                                                        <asp:ListItem Value="3">Mounth</asp:ListItem>
+                                                    </asp:DropDownList>
+                                            
+                                            </div>
+                                        </div>
+                                     
+                                    </div>
+                                    <div class="row">
+                                         <div class="col-lg-3 col-md-3 col-sm-6">
                                             <div class="form-group">
                                                 <asp:Label ID="Label2" runat="server">Start Date</asp:Label>
                                                 <asp:TextBox ID="txtstartdate" runat="server" CssClass="form-control"></asp:TextBox>
@@ -360,30 +383,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-6 col-sm-6">
-                                            <div class="form-group row">                                               
-                                                    <asp:Label ID="Label6" runat="server">Total Hour</asp:Label>
-                                                    <asp:TextBox ID="tbltotalOur" runat="server" CssClass="form-control"></asp:TextBox>                                               
-                                               
-                                            </div>
-                                        </div>
-                                         <div class="col-lg-2 col-md-3 col-sm-6">
-                                            <div class="form-group mt-4">                                            
-                                                    
-                                                    <asp:DropDownList ID="ddlphdm" runat="server" CssClass="form-control chzn-select">
-                                                        <asp:ListItem Value="0">Hour</asp:ListItem>
-                                                        <asp:ListItem Value="1">Minute</asp:ListItem>
-                                                        <asp:ListItem Value="2">Day</asp:ListItem>
-                                                        <asp:ListItem Value="3">Mounth</asp:ListItem>
-                                                    </asp:DropDownList>
-                                            
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card">
-                                        <div class="card-header" id="cardstyle">
-                                            <h5 class="text-center">Analysis</h5>
+                                    <div class="card well p-0">
+                                        <div class="card-header pt-1 pb-1">
+                                            <h5 class="text-center">Project Planing Analysis</h5>
                                         </div>
                                         <div class="card-body">
                                             <div class="row">
@@ -412,9 +414,10 @@
 
                                     </div>
 
-                                    <div class="row center">
-                                        <asp:LinkButton runat="server" ID="tblSaveBatch" OnClick="tblSaveBatch_Click" OnClientClick="showAddBatch()" CssClass="btn btn-primary from-control float-right  btn-sm pr-2 pl-2">Save</asp:LinkButton>
-
+                                    <div class="row">
+                                        <div class="col-md-12 text-center mt-1">
+                                        <asp:LinkButton runat="server" ID="tblSaveBatch" OnClick="tblSaveBatch_Click" OnClientClick="showAddBatch()" CssClass="btn btn-primary btn-sm">Save</asp:LinkButton>
+                                            </div>
                                     </div>
 
                                     <hr />
