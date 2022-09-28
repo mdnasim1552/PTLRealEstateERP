@@ -2235,6 +2235,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 this.PrintSalaryEpic();
 
             }
+            else if (this.rbtSalSheet.SelectedIndex == 26)
+            {
+                this.PrintSalaryAcmeAI();
+
+            }
+           
             else
                 this.PrintSalaryBridge();
         }
