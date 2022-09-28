@@ -59,14 +59,15 @@ namespace RealERPWEB.F_22_Sal
         {
             string comcod = this.GetComCode();
             Session.Remove("tblcdesc");
-            DataSet ds1 = this.MktData.GetTransInfo(comcod, "SP_ENTRY_PRJ_BUDGET", "GETCATAGORY", "", "", "", "", "", "", "", "", "");
+            DataSet ds1 = this.MktData.GetTransInfo(comcod, "SP_ENTRY_SALESURVEY_ENTRY", "GETCATAGORY", "", "", "", "", "", "", "", "", "");
             if (ds1 == null)
             {
-                //this.ddlcatagory.DataSource = null;
-                //this.ddlcatagory.DataBind();
+                
                 return;
             }
             Session["tblcdesc"] = ds1.Tables[0];
+
+            ds1.Dispose();
 
 
 
@@ -83,16 +84,16 @@ namespace RealERPWEB.F_22_Sal
 
         private void GetProjectName()
         {
-            Session.Remove("tblpro");
+        
             string comcod = this.GetComCode();
             string txtSProject = "%%";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_PRJ_INFO", "GETEXPRJNAME", txtSProject, "", "", "", "", "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALESURVEY_ENTRY", "GETPROJECTNAME", txtSProject, "", "", "", "", "", "", "", "");
             this.ddlPrjName.DataTextField = "actdesc";
             this.ddlPrjName.DataValueField = "actcode";
             this.ddlPrjName.DataSource = ds1.Tables[0];
             this.ddlPrjName.DataBind();
            // this.ddlPrjName.SelectedValue = this.Request.QueryString["prjcode"];
-            Session["tblpro"] = ds1.Tables[0];
+          
 
 
         }
@@ -107,8 +108,7 @@ namespace RealERPWEB.F_22_Sal
                 this.lbtnOk.Text = "New";
                 
                 this.ddlPrjName.Enabled = false;
-               
-                this.LoadGrid();
+                this.ShowData();
                 
             }
             else
@@ -126,90 +126,96 @@ namespace RealERPWEB.F_22_Sal
             this.gvPrjInfo.DataBind();
         }
 
-        private void LoadGrid()
+        private void ShowData()
         {
+            try
+            {
 
-            string comcod = this.GetComCode();
-            string ProjectCode = this.ddlPrjName.SelectedValue.ToString();
-            string fpactcode = (((DataTable)Session["tblpro"]).Select("actcode='" + ProjectCode + "'"))[0]["factcode"].ToString();
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_PRJ_INFO", "PROJECTINFO", ProjectCode, fpactcode, "", "", "", "", "", "", "");
+                string comcod = this.GetComCode();
+                string ProjectCode = this.ddlPrjName.SelectedValue.ToString();
+                
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALESURVEY_ENTRY", "GETSURPROJECTINFO", ProjectCode, "", "", "", "", "", "", "", "");
+                if (ds1 == null)
+                {
+                    this.gvPrjInfo.DataSource = null;
+                    this.gvPrjInfo.DataBind();
 
-            this.gvPrjInfo.DataSource = ds1.Tables[0];
-            this.gvPrjInfo.DataBind();
-            ViewState["projectEntry"] = ds1.Tables[0];
-        
-          
+                }
+                ViewState["projectEntry"] = ds1.Tables[0];
+                this.Data_Bind();
+            }
 
-
+            catch (Exception ex)
+            { 
             
-
-
+            
+            
+            }
 
         }
 
+        private void Data_Bind()
+        {
+
+
+            this.gvPrjInfo.DataSource = (DataTable)ViewState["projectEntry"];
+            this.gvPrjInfo.DataBind();
+            this.GridTextDDLVisible();
+
+        }
+
+     
+
         private void GridTextDDLVisible()
         {
-            string comcod = this.GetComCode();
+            
             DataTable dt = (DataTable)ViewState["projectEntry"];
-
+            DataTable dtcabtype = (DataTable)Session["tblcdesc"];
+            DataView dv= dtcabtype.DefaultView;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 string Gcode = dt.Rows[i]["gcod"].ToString();
                 string val = dt.Rows[i]["gdesc1"].ToString();
                 switch (Gcode)
                 {
-                    case "01003": //Start Date                
+                    case "01045": //Handover Date              
 
                         ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((DropDownList)this.gvPrjInfo.Rows[i].FindControl("ddlcataloc")).Visible = false;
                         break;
 
-                    case "01004": //Start Date                   
-                        ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-                        ((DropDownList)this.gvPrjInfo.Rows[i].FindControl("ddlcataloc")).Visible = false;
-                        break;
 
-                    case "02041": //Location                
+
+                    case "01001": //Building Type
+                                  //
+                        dv.RowFilter = ("catcode like '02%'");
                         ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((DropDownList)this.gvPrjInfo.Rows[i].FindControl("ddlcataloc")).Visible = true;
                         ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
-                        DropDownList ddlcataloc = ((DropDownList)this.gvPrjInfo.Rows[i].FindControl("ddlcataloc"));
+                        DropDownList ddlbuildtype = ((DropDownList)this.gvPrjInfo.Rows[i].FindControl("ddlcataloc"));
+                       ddlbuildtype.DataTextField = "catdesc";
+                       ddlbuildtype.DataValueField = "catcode";
+                       ddlbuildtype.DataSource = dv.ToTable();
+                       ddlbuildtype.DataBind();
+                        ddlbuildtype.SelectedValue = val;
+                        break;
 
-                        DataSet dsloc = MktData.GetTransInfo(comcod, "SP_ENTRY_LP_PROFEASIBILITY", "GETLOCATION", "", "", "", "", "", "", "", "", "");
-                        ddlcataloc.DataTextField = "prgdesc";
-                        ddlcataloc.DataValueField = "prgcod";
-                        ddlcataloc.DataSource = dsloc.Tables[0];
+
+
+                    case "01050": //Location
+                        dv.RowFilter = ("catcode like '07%'");
+                        ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((DropDownList)this.gvPrjInfo.Rows[i].FindControl("ddlcataloc")).Visible = true;
+                        ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                         DropDownList ddlcataloc = ((DropDownList)this.gvPrjInfo.Rows[i].FindControl("ddlcataloc"));
+                        ddlcataloc.DataTextField = "catdesc";
+                        ddlcataloc.DataValueField = "catcode";
+                        ddlcataloc.DataSource = dv.ToTable();
                         ddlcataloc.DataBind();
-                        ddlcataloc.SelectedValue = val.Length==3 ? "17"+val : val;
+                        ddlcataloc.SelectedValue = val;
                         break;
 
-                    case "02045": //Category                  
-                        ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-                        ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
-
-                        ((DropDownList)this.gvPrjInfo.Rows[i].FindControl("ddlcataloc")).Visible = true;
-                        DropDownList ddlcatag = ((DropDownList)this.gvPrjInfo.Rows[i].FindControl("ddlcataloc"));
-
-                        DataSet dscatg = MktData.GetTransInfo(comcod, "SP_ENTRY_LP_PROFEASIBILITY", "GETCATAGORY", "", "", "", "", "", "", "", "", "");
-                        ddlcatag.DataTextField = "prgdesc";
-                        ddlcatag.DataValueField = "prgcod";
-                        ddlcatag.DataSource = dscatg.Tables[0];
-                        ddlcatag.DataBind();
-                        ddlcatag.SelectedValue = val.Length == 3 ? "99" + val : val;
-                        break;
-
-                    case "02050": //Construcation                  
-                        ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-                        ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
-
-                        ((DropDownList)this.gvPrjInfo.Rows[i].FindControl("ddlcataloc")).Visible = true;
-                        DropDownList contype = ((DropDownList)this.gvPrjInfo.Rows[i].FindControl("ddlcataloc"));
-                        contype.DataTextField = "description";
-                        contype.DataValueField = "code";
-                        contype.DataSource = (DataTable)Session["tblcdesc"];
-                        contype.DataBind();
-                        contype.SelectedValue = val;
-                        break;
+                   
 
                     default:
                         ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
@@ -287,48 +293,77 @@ namespace RealERPWEB.F_22_Sal
                 string pactcode = this.ddlPrjName.SelectedValue.ToString();
 
 
-                // (((DataTable)Session["tblpro"]).Select("infcod='"+fpactcode+"'"))[0]["pactcode"];
+             
 
-                string fpactcode = (((DataTable)Session["tblpro"]).Select("actcode='" + pactcode + "'"))[0]["factcode"].ToString();
+               
 
                 for (int i = 0; i < this.gvPrjInfo.Rows.Count; i++)
                 {
                     string Gcode = ((Label)this.gvPrjInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
                     string gtype = ((Label)this.gvPrjInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
-                    //string Gvalue = ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
-                    string Gunit = ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtResunit")).Text.Trim();
-
-
-                    string Gvalue1 = ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                 //   string Gvalue1 = ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                     DropDownList ddlloc = ((DropDownList)this.gvPrjInfo.Rows[i].FindControl("ddlcataloc")) as DropDownList;
 
                     string Gvalue = "";
-
-                    if (Gcode == "02041" || Gcode == "02045" || Gcode == "02050")
+                    switch (Gcode)
                     {
-                      //  Gvalue = ASTUtility.Right(ddlloc.SelectedValue.ToString(),3);
-                        Gvalue =ddlloc.SelectedValue.ToString();  //comment by tarik 
+
+                        case "01045"://Handover Date
+                            Gvalue = (((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
+                            break;
+
+                            
+                        case "01001"://Building type
+                        case "01050"://Catagory
+                            Gvalue = ddlloc.SelectedValue.ToString();  
+                            break;
+
+
+                        //case "01009":
+                        //case "01011":
+                        //case "01015":
+                        //case "01020":
+                        //case "01025":
+                        //case "01030":
+                        //case "01040":
+                        //    Gvalue = ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                        //    break;
+                        
+                        default:
+                            Gvalue = ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                            break;
+
+
+
+
 
                     }
-                    else
-                    {
-                        Gvalue = Gvalue1;
-                    }
 
-                    if (Gcode == "01003" || Gcode == "01004")
-                    {
-                        Gvalue = (((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
-                    }
+
+
+                    //if (Gcode == "01050")
+                    //{
+                     
+                    //    Gvalue =ddlloc.SelectedValue.ToString();  //comment by tarik 
+
+                    //}
+                    //else
+                    //{
+                    //    Gvalue = Gvalue1;
+                    //}
+
+                    //if (Gcode == "01003" || Gcode == "01004")
+                    //{
+                    //    Gvalue = (((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
+                    //}
 
                     Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : (gtype == "N") ? Convert.ToDouble("0" + Gvalue).ToString() : Gvalue;
-                    MktData.UpdateTransInfo(comcod, "SP_ENTRY_PRJ_INFO", "INSERTORUPDATEPRJINF", pactcode, Gcode, gtype, Gvalue, Gunit, fpactcode, "", "", "", "", "", "", "", "", "");
+                    MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALESURVEY_ENTRY", "INSERTORUPDATESALESURPRJINF", pactcode, Gcode, gtype, Gvalue, "", "", "", "", "", "", "", "", "", "", "");
                 }
 
 
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-                // ((Label)this.Master.FindControl("lblmsg")).Attributes["Style"] = "color:white; background:green; border:none;";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
 
 
 
@@ -344,10 +379,7 @@ namespace RealERPWEB.F_22_Sal
             catch (Exception ex)
             {
 
-                ((Label)this.Master.FindControl("lblmsg")).Text = ex.Message;
-                //((Label)this.Master.FindControl("lblmsg")).Attributes["Style"] = "color:white; background:red; border:none;";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+ex.Message+"');", true);
             }
 
 
