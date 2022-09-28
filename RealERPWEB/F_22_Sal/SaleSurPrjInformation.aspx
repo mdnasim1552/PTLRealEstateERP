@@ -20,6 +20,7 @@
             function pageLoaded()
             {
 
+                $('.chzn-select').chosen({ search_contains: true });
 
                 $("input, select").bind("keydown", function (event) {
                     var k1 = new KeyPress();
@@ -32,7 +33,7 @@
 
 
 
-    </script>
+        </script>
     <style>
         .lblHead {
             color: blue;
@@ -232,19 +233,11 @@
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Unit">
-
-                                <ItemTemplate>
-                                    <asp:TextBox ID="txtResunit" runat="server" BackColor="Transparent"
-                                        BorderStyle="None"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gunit")) %>'
-                                        Width="50px" Font-Size="11px"></asp:TextBox>
-                                </ItemTemplate>
-                            </asp:TemplateField>
+                           
 
                             <asp:TemplateField>
                                 <FooterTemplate>
-                                    <asp:LinkButton ID="lUpdatPerInfo" runat="server" OnClick="lUpdatPerInfo_Click" CssClass="btn btn-danger primaryBtn">Update Information</asp:LinkButton>
+                                    <asp:LinkButton ID="lUpdatPerInfo" runat="server" OnClick="lUpdatPerInfo_Click" CssClass="btn btn-danger primaryBtn">Final Update</asp:LinkButton>
 
                                 </FooterTemplate>
 
@@ -252,19 +245,19 @@
                                     <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent"
                                         BorderStyle="None" Font-Size="11px"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'
-                                        Width="150px" Style="text-align: left"></asp:TextBox>
+                                        Width="180px" Style="text-align: left"></asp:TextBox>
 
 
                                     <asp:TextBox
                                         ID="txtgvdVal" runat="server" BackColor="Transparent" BorderStyle="None" Font-Size="11px"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'
-                                        Width="150"></asp:TextBox>
+                                        Width="180"></asp:TextBox>
 
                                     <cc1:CalendarExtender ID="CalendarExtender_txtgvdVal" runat="server"
                                         Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdVal"></cc1:CalendarExtender>
 
 
-                                    <asp:DropDownList ID="ddlcataloc" runat="server" CssClass=" chzn-select form-control" Width="150px" AutoPostBack="true"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlcataloc" runat="server" CssClass=" chzn-select form-control" Width="180px" AutoPostBack="true"></asp:DropDownList>
 
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
