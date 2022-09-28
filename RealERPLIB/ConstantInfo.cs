@@ -1210,17 +1210,19 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2203212", "F_22_Sal", "RptSalSummery?", "Type=mSalesTarget", "Monthly Sales Target-Market", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2201000", "2201220", "F_22_Sal", "SalesPlaningCodeBook", "", "Sales Planning Code Book", "Sales & Recovery", "False", "False", "False", "False" });
 
-            tblObj.Rows.Add(new Object[] { "2201000", "2201230", "F_22_Sal", "SaleSurGenCodeBook?", "Type=Entry", "Information Code(Survery)", "Sales & Recovery", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2201000", "2201230", "F_22_Sal", "SaleSurGenCodeBook?", "Type=Entry", "Information Code(Survey)", "Sales & Recovery", "False", "False", "False", "False" });
 
-            tblObj.Rows.Add(new Object[] { "2201000", "2201240", "F_22_Sal", "SalsurverPCodeBook?", "Type=Entry", "Project Code(Survery)", "Sales & Recovery", "False", "False", "False", "False" });
-
-            
-          
-            //tblObj.Rows.Add(new Object[] { "2201000", "2201250", "F_22_Sal", "SalesPlaningCodeBook", "", "Project Information(Survery)", "Sales & Recovery", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2201000", "2201240", "F_22_Sal", "SaleSurPCodeBook?", "Type=Entry", "Project Code(Survey)", "Sales & Recovery", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2201000", "2201250", "F_22_Sal", "SaleSurPrjInformation?", "Type=Entry", "Project Information(Survey)", "Sales & Recovery", "False", "False", "False", "False" });
 
 
             tblObj.Rows.Add(new Object[] { "2202000", "2202221", "F_22_Sal", "MktEntryUnitFH", "", "Unsold Unit- Finishing Project", "Sales & Recovery", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2202000", "2202230", "F_22_Sal", "MktEntryUnitFH", "", "Competitive Price Survery", "Sales & Recovery", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2202000", "2202230", "F_22_Sal", "SaleSurvey?", "Type=CS", "Competitive Price Survey", "Sales & Recovery", "False", "False", "False", "False" });
+
+
+        
+
+
 
 
             tblObj.Rows.Add(new Object[] { "2203000", "2203230", "F_22_Sal", "RptSaleOpening?", "Type=SalesSummary", "Sales Opening -Summary", "Sales & Recovery", "False", "False", "False", "False" }); ;
@@ -7328,11 +7330,11 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0202000004", "05. Monthly Charges", "F_22_Sal/EntryMonCharges", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000005", "Competitive Survey", "", "", false, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000006", "05. Information Code", "F_22_Sal/SaleSurGenCodeBook?Type=Entry", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0202000007", "05. Project Code", "F_22_Sal/SalsurverPCodeBook?Type=Entry", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0202000008", "05. Project Information", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000007", "05. Project Code", "F_22_Sal/SaleSurPCodeBook?Type=Entry", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000008", "05. Project Information", "F_22_Sal/SaleSurPrjInformation?Type=Entry", "", true, "" });
 
 
-           
+
 
 
             //mnuTbl1.Rows.Add(new Object[] { "0306000000", "06. Dues Input - Finishing Project", "F_22_Sal/EntryDuesFProject", "", true, "" });
@@ -7440,8 +7442,10 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000014", "19. Client Data File", "F_22_Sal/RptClientDateFile", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000015", "20. Month Wise Sale Report (New Sale)", "F_22_Sal/RptMonthWiseNewSales", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000017", "Competitive Survey", "", "", false, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0302000017", "20. Competitive Price Survery", "F_22_Sal/RptMonthWiseNewSales", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000017", "20. Competitive Price Survey", "F_22_Sal/SaleSurvey?Type=CS", "", true, "" });
 
+
+          
 
             //mnuTbl1.Rows.Add(new Object[] { "0324000000", "", "", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0325000000", "", "", "", true, "" });

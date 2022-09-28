@@ -132,6 +132,7 @@ namespace RealERPWEB.F_22_Sal
             }
 
             Session["tblsalesvscoll"] = this.HiddenSameData(ds1.Tables[0]);
+            Session["tbltypecount"] = ds1.Tables[1];
           
             this.Data_Bind();
         }
@@ -225,19 +226,35 @@ namespace RealERPWEB.F_22_Sal
             string comadd = hst["comadd1"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            string date = Convert.ToDateTime(this.txtfrmdate.Text).ToString("MMMM-yyyy");
             string type = this.ddlgrp.SelectedValue.ToString();
             string projectName = "";
             DataTable dt = (DataTable)Session["tblsalesvscoll"];
+            DataTable dt1 = (DataTable)Session["tbltypecount"];
+
+
+            string shopno = dt1.Rows[0]["shopno"].ToString();
+            string aptno = dt1.Rows[0]["aptno"].ToString();
+            string officeno = dt1.Rows[0]["officeno"].ToString();
+
+
+
+
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesvsAchievement>();
+           // var lst1 = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesvsAchievementtypecount>();
            
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSalesVsAchivement", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+            Rpt1.SetParameters(new ReportParameter("date", date));
             Rpt1.SetParameters(new ReportParameter("projectName", projectName));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Floor Wise " + this.ddlgrp.SelectedItem.Text.ToString() + " Status"));
+            Rpt1.SetParameters(new ReportParameter("shopno", shopno + " Units"));
+            Rpt1.SetParameters(new ReportParameter("aptno", aptno +" Units"));
+            //Rpt1.SetParameters(new ReportParameter("officeno", officeno));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Achivement for month of "+date+" "));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             //Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));

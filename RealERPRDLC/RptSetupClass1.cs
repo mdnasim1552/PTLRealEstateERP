@@ -6434,6 +6434,7 @@ namespace RealERPRDLC
         private static LocalReport SetRptSalesVsAchivement(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales.SalesvsAchievement>)RptDataSet));
+           
             return Rpt1a;
         }
         
