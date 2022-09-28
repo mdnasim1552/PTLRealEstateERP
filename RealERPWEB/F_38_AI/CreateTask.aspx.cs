@@ -84,7 +84,7 @@ namespace RealERPWEB.F_38_AI
                 return;
 
             this.ddlbatch.DataTextField = "batchdesc";
-            this.ddlbatch.DataValueField = "batchid";
+            this.ddlbatch.DataValueField = "id";
             this.ddlbatch.DataSource = ds.Tables[0];
             this.ddlbatch.DataBind();
 
@@ -221,7 +221,7 @@ namespace RealERPWEB.F_38_AI
                 string dataset = this.ddldataset.SelectedValue.ToString();
                 string qty = this.txtquantity.Text.ToString();
                 string worktype = this.ddlworktype.SelectedValue.ToString();
-                string perhourqty = this.txtworkquantity.Text.ToString();
+                string perhourqty = "";//this.txtworkquantity.Text.ToString();
                 string taskid = "";
                 string assmember = this.ddlassignmember.SelectedValue.ToString();
                 string annotation = this.ddlAnnotationid.SelectedValue.ToString();
@@ -289,12 +289,17 @@ namespace RealERPWEB.F_38_AI
         protected void ddlbatch_SelectedIndexChanged(object sender, EventArgs e)
         {
             string comcod = this.GetComdCode();
-            string batchlist = this.ddlbatch.SelectedValue.ToString();
-            DataSet ds = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETBATCHINFOBYID", batchlist, "", "", "", "", "");
+            string batchid = this.ddlbatch.SelectedValue.ToString();
+            DataSet ds = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETBATCHINFOBYID", batchid, "", "", "", "", "");
             if (ds == null)
                 return;
+            this.txtDatasetType.Text = ds.Tables[0].Rows[0]["datasettype"].ToString();
+            this.txtDSqty.Text = Convert.ToDouble(ds.Tables[0].Rows[0]["datasetqty"]).ToString("#,##0;-#,##0; ");
+            this.txtTTLhour.Text = Convert.ToDouble(ds.Tables[0].Rows[0]["totalhour"]).ToString("#,##0;-#,##0; ");
+            this.txtManpower.Text = Convert.ToDouble(ds.Tables[0].Rows[0]["empcapacity"]).ToString("#,##0;-#,##0; ");
+            this.txtbcdate.Text = Convert.ToDateTime(ds.Tables[0].Rows[0]["startdate"]).ToString("dd-MMM-yyyy");
+            this.txtbdeldate.Text = Convert.ToDateTime(ds.Tables[0].Rows[0]["deliverydate"]).ToString("dd-MMM-yyyy");
 
-            
         }
 
         protected void ddlUserRoleType_SelectedIndexChanged(object sender, EventArgs e)
