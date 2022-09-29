@@ -93,7 +93,7 @@
                                     <asp:Label ID="lblConTrolCode" runat="server" CssClass="form-label">Control Code</asp:Label>
                                     <asp:LinkButton ID="ImgbtnFindProject" runat="server"  OnClick="ImgbtnFindProject_Click"><span class="fa fa-search"> </span></asp:LinkButton>
 
-                                    <asp:DropDownList ID="ddlConTrolCode" runat="server" CssClass="form-control form-control-sm">
+                                    <asp:DropDownList ID="ddlConTrolCode" runat="server" CssClass="form-control form-control-sm chzn-select">
                                     </asp:DropDownList>
                                 </div>
 
