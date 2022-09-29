@@ -109,29 +109,29 @@
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-12">
                                     <asp:Label ID="Label18" runat="server">Dataset Type</asp:Label>
-                                    <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" Enabled="false" ReadOnly="true"></asp:TextBox>
+                                    <asp:TextBox ID="txtDatasetType" runat="server" CssClass="form-control" Enabled="false" ReadOnly="true"></asp:TextBox>
                                 </div>
 
                                 <div class="col-lg-2 col-md-2 col-sm-12">
                                     <asp:Label ID="Label15" runat="server">Dataset QTY</asp:Label>
-                                    <asp:TextBox ID="txtworkquantity" runat="server" CssClass="form-control" Enabled="false" ReadOnly="true"></asp:TextBox>
+                                    <asp:TextBox ID="txtDSqty" runat="server" CssClass="form-control" Enabled="false" ReadOnly="true"></asp:TextBox>
                                 </div>
                                 <div class="col-lg-1 col-md-1 col-sm-12">
                                     <asp:Label ID="Label22" runat="server">Total Hour</asp:Label>
-                                    <asp:TextBox ID="TextBox5" runat="server" CssClass="form-control"  Enabled="false" ReadOnly="true"></asp:TextBox>
+                                    <asp:TextBox ID="txtTTLhour" runat="server" CssClass="form-control"  Enabled="false" ReadOnly="true"></asp:TextBox>
                                 </div>
                                  <div class="col-lg-1 col-md-1 col-sm-12">
                                     <asp:Label ID="Label21" runat="server">Manpower</asp:Label>
-                                    <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control" Enabled="false" ReadOnly="true"></asp:TextBox>
+                                    <asp:TextBox ID="txtManpower" runat="server" CssClass="form-control" Enabled="false" ReadOnly="true"></asp:TextBox>
                                 </div>
 
                                 <div class="col-lg-2 col-md-2 col-sm-12">
                                     <asp:Label ID="Label19" runat="server">Create Date</asp:Label>
-                                    <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                                    <asp:TextBox ID="txtbcdate" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
                                 </div>
                                 <div class="col-lg-2 col-md-2 col-sm-12">
                                     <asp:Label ID="Label20" runat="server">Delivery Date</asp:Label>
-                                    <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                                    <asp:TextBox ID="txtbdeldate" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
                                 </div>
                                
                             </div>
