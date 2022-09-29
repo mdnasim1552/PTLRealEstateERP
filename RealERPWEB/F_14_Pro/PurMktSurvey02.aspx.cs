@@ -99,7 +99,7 @@ namespace RealERPWEB.F_14_Pro
         {
             if (this.lbtnMSROk.Text == "New")
             {
-                this.ImgbtnFindPreMR.Visible = true;
+                this.lnkbtnFindPreMR.Visible = true;
                 this.ddlPrevMSRList.Visible = true;
                 this.lblPreMrList.Visible = true;
                 this.txtPreMSRSearch.Visible = true;
@@ -117,7 +117,7 @@ namespace RealERPWEB.F_14_Pro
                 this.lbtnMSROk.Text = "Ok";
                 return;
             }
-            this.ImgbtnFindPreMR.Visible = false;
+            this.lnkbtnFindPreMR.Visible = false;
             this.ddlPrevMSRList.Visible = false;
             this.lblPreMrList.Visible = false;
             this.txtPreMSRSearch.Visible = false;
@@ -1569,6 +1569,11 @@ namespace RealERPWEB.F_14_Pro
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
+        protected void lnkbtnFindPreMR_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

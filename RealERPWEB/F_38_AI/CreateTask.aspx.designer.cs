@@ -186,13 +186,13 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.Label Label18;
 
         /// <summary>
-        /// TextBox1 control.
+        /// txtDatasetType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtDatasetType;
 
         /// <summary>
         /// Label15 control.
@@ -204,13 +204,13 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.Label Label15;
 
         /// <summary>
-        /// txtworkquantity control.
+        /// txtDSqty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtworkquantity;
+        protected global::System.Web.UI.WebControls.TextBox txtDSqty;
 
         /// <summary>
         /// Label22 control.
@@ -222,13 +222,13 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.Label Label22;
 
         /// <summary>
-        /// TextBox5 control.
+        /// txtTTLhour control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox5;
+        protected global::System.Web.UI.WebControls.TextBox txtTTLhour;
 
         /// <summary>
         /// Label21 control.
@@ -240,13 +240,13 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.Label Label21;
 
         /// <summary>
-        /// TextBox4 control.
+        /// txtManpower control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        protected global::System.Web.UI.WebControls.TextBox txtManpower;
 
         /// <summary>
         /// Label19 control.
@@ -258,13 +258,13 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.Label Label19;
 
         /// <summary>
-        /// TextBox2 control.
+        /// txtbcdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox txtbcdate;
 
         /// <summary>
         /// Label20 control.
@@ -276,13 +276,13 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.Label Label20;
 
         /// <summary>
-        /// TextBox3 control.
+        /// txtbdeldate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.TextBox txtbdeldate;
 
         /// <summary>
         /// Label11 control.

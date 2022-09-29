@@ -38,27 +38,70 @@
             height: 34px;
         }
     </style>--%>
+     <script type="text/javascript" language="javascript">
 
-    <script type="text/javascript" language="javascript">
-        $(document).ready(function () {
+<<<<<<< HEAD
+         $(document).ready(function () {
 
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
-        });
-        
+         });
 
-        }
-        function pageLoaded() {
+         function pageLoaded() {
 
-            $("input, select").bind("keydown", function (event) {
-                var k1 = new KeyPress();
-                k1.textBoxHandler(event);
+             $('.chzn-select').chosen({ search_contains: true });
+          <%--  $('#<%=this.gvsupstatus.ClientID%>').tblScrollable();--%>
+            $(function () {
+                $('[id*=chkSupCategory').multiselect({
+                    includeSelectAllOption: true,
+
+                    enableCaseInsensitiveFiltering: true,
+                    //enableFiltering: true,
+
+                });
+
+                var gvsoldunsold = $('#<%=this.gvsalesvscoll.ClientID %>');
+
+                gvsalesvscoll.Scrollable();
+
             });
 
-            $('.chzn-select').chosen({ search_contains: true });
-        }
+         }
 
-    </script>
+
+
+     </script>
+
+   <%-- <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+=======
+     <script type="text/javascript" language="javascript">
+>>>>>>> 8b9e565b7286781fd39cc620f8e5ba135014e5e0
+
+         $(document).ready(function () {
+
+             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+         });
+
+         function pageLoaded() {
+
+             $("input, select").bind("keydown", function (event) {
+                 var k1 = new KeyPress();
+                 k1.textBoxHandler(event);
+             });
+
+             $('.chzn-select').chosen({ search_contains: true });
+         }
+
+
+<<<<<<< HEAD
+    </script>--%>
+=======
+
+
+     </script>
+>>>>>>> 8b9e565b7286781fd39cc620f8e5ba135014e5e0
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -80,7 +123,7 @@
                 </asp:UpdateProgress>
             </div>
 
-            <div class="card mt-4 pb-2">
+            <div class="card mt-4 pb-4">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-2">
@@ -102,14 +145,14 @@
                         <div class="col-md-3">
                             
                                 <label class="control-label">Project Name</label>
-                                <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="chzn-select form-control  inp" AutoPostBack="True" ></asp:DropDownList>
+                                <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="chzn-select form-control form-control-sm chzn-single" AutoPostBack="True" ></asp:DropDownList>
                            
                         </div>
 
                         <div class="col-md-2">
                            
-                                <label class="control-label"> Group Name </label>
-                                <asp:DropDownList ID="ddlgrp" runat="server"  CssClass="chzn-select form-control" AutoPostBack="True"></asp:DropDownList>
+                                <label class="control-label" >Group Name</label>
+                                <asp:DropDownList ID="ddlgrp" runat="server"  CssClass="chzn-select form-control form-control-sm form-control-sm chzn-single" AutoPostBack="True"></asp:DropDownList>
                            
                         </div>
 
@@ -119,7 +162,7 @@
 
                         <div class="col-md-1">
                            
-                                <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="btn btn-sm btn-primary mt-4" OnClick="lnkbtnOk_Click" AutoPostBack="True">Ok</asp:LinkButton>
+                                <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="btn btn-sm btn-primary" style="margin-top:28px;" OnClick="lnkbtnOk_Click" AutoPostBack="True">Ok</asp:LinkButton>
                             
                         </div>
 
@@ -129,7 +172,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" style="min-height:480px;">
                 <div class="card-body">
                 <div class="table-responsive">
                     <div class="row">
@@ -185,7 +228,7 @@
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "usize")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="100px"></asp:Label>
                                         </ItemTemplate>
-                                        <ItemStyle HorizontalAlign="center" />
+                                        <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="center" />
                                         <FooterStyle HorizontalAlign="Right" />
 
@@ -238,7 +281,7 @@
                                          <FooterStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
-                                     <asp:TemplateField HeaderText="Rate Per </br> sft (TK)">
+                                     <asp:TemplateField HeaderText="Rate Per </br> Sft (TK)">
                                            <FooterTemplate>
                                                     <asp:Label ID="lblFRate" runat="server" Font-Bold="True" Font-Size="12px"
                                                         ForeColor="#000" Style="text-align: right"></asp:Label>

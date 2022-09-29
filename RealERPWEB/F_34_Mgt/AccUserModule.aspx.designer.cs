@@ -33,15 +33,6 @@ namespace RealERPWEB.F_34_Mgt
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// lblUser1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUser1;
-
-        /// <summary>
         /// txtUserSearch1 control.
         /// </summary>
         /// <remarks>
@@ -58,6 +49,15 @@ namespace RealERPWEB.F_34_Mgt
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton ImgbtnFindUser1;
+
+        /// <summary>
+        /// lblUser1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUser1;
 
         /// <summary>
         /// ddlUserList control.
@@ -96,15 +96,6 @@ namespace RealERPWEB.F_34_Mgt
         protected global::System.Web.UI.WebControls.Panel Panel2;
 
         /// <summary>
-        /// lblConTrolCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblConTrolCode;
-
-        /// <summary>
         /// txtProSearch control.
         /// </summary>
         /// <remarks>
@@ -112,6 +103,15 @@ namespace RealERPWEB.F_34_Mgt
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtProSearch;
+
+        /// <summary>
+        /// lblConTrolCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblConTrolCode;
 
         /// <summary>
         /// ImgbtnFindProject control.

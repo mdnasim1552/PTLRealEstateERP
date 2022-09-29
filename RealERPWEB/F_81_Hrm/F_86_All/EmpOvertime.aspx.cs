@@ -909,6 +909,15 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             Session["tblover"] = this.HiddenSameData(ds2.Tables[0]);
             this.Data_Bind();
 
+            if (comcod == "3369")
+            {
+                this.gvothearn.Columns[13].HeaderText = "Project Bonus";
+                this.gvothearn.Columns[5].HeaderText = "Ref Fee";
+                this.gvothearn.Columns[12].HeaderText = "Extra Day Amount";
+
+
+            }
+
         }
         private void SalaryDayAdj()
         {
@@ -1048,6 +1057,13 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         this.gvEmpOtherded.Columns[17].Visible = false;
                         this.gvEmpOtherded.Columns[18].Visible = false;
 
+                    }
+                    if (comcod == "3369")
+                    {
+                       
+                            this.gvothearn.Columns[8].HeaderText = "Penalized";
+                            this.gvothearn.Columns[14].HeaderText = "Trainning";
+  
                     }
 
                   

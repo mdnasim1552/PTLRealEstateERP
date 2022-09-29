@@ -24,14 +24,20 @@ namespace RealERPWEB.F_23_CR
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                    Response.Redirect("~/AcceessError.aspx");
+
+                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
+                //    Response.Redirect("../AcceessError.aspx");
+
                 this.txtReceiveDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtpaydate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.GetProjectName();
                 this.GetCustomer();
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = true;
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Collection -Other's";
                 this.PrintDupOrOrginal();
                 Session.Remove("tblfincoll");
@@ -42,13 +48,11 @@ namespace RealERPWEB.F_23_CR
                     this.chkPrevious.Visible = false;
 
                 }
-
                 string pactcode = Request.QueryString["pactcode"] == null ? "" : Request.QueryString["pactcode"].ToString();
-
                 if (pactcode != "")
                 {
                     ddlProjectName.SelectedValue = pactcode;
-                    ddlProjectName.Enabled = false;
+                    //ddlProjectName.Enabled = false;
                     ddlProjectName_SelectedIndexChanged(null, null);
                 }
 
