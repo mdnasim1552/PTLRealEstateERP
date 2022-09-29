@@ -113,7 +113,7 @@ namespace RealERPWEB.F_38_AI
             this.gvProjectInfo.DataSource = dt;
             this.gvProjectInfo.DataBind();
             DropDownList ddlgval;
-         
+
             for (int i = 0; i < dt.Rows.Count; i++)
             {
 
@@ -137,7 +137,7 @@ namespace RealERPWEB.F_38_AI
                         ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
                         break;
                     case "03003"://Dataset type
-                       // gvalue = dt.Rows[i]["value"].ToString();
+                                 // gvalue = dt.Rows[i]["value"].ToString();
                         dv2 = dt3.DefaultView;
                         dv2.RowFilter = ("gcod like '60%' and gcod not like'%00'");
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
@@ -150,10 +150,10 @@ namespace RealERPWEB.F_38_AI
                         ddlgval.DataValueField = "gcod";
                         ddlgval.DataSource = dv2.ToTable();
                         ddlgval.DataBind();
-                        ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString(); 
+                        ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
                         break;
                     case "03004"://work type
-                       // gvalue = dt.Rows[i]["value"].ToString();
+                                 // gvalue = dt.Rows[i]["value"].ToString();
                         dv2 = dt3.DefaultView;
                         dv2.RowFilter = ("gcod like '70%' and gcod not like'%00'");
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
@@ -186,7 +186,7 @@ namespace RealERPWEB.F_38_AI
                         break;
 
                     case "03025"://get team leader
-                       // gvalue = dt.Rows[i]["value"].ToString();
+                                 // gvalue = dt.Rows[i]["value"].ToString();
                         dv4 = dt5.DefaultView;
                         //dv3.RowFilter = ("infcod like '51%' and infcod not like'%00'");
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
@@ -202,7 +202,7 @@ namespace RealERPWEB.F_38_AI
                         ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
                         break;
                     case "03011": //country
-                        
+
                         DataTable dtc = (DataTable)Session["tblCunt"];
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = true;
@@ -219,7 +219,7 @@ namespace RealERPWEB.F_38_AI
                         break;
                     case "03008"://date time 
                     case "03009"://date time 
-                        
+
                         string gdatat = ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
 
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
@@ -229,7 +229,7 @@ namespace RealERPWEB.F_38_AI
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text = gdatat;
                         break;
                     case "03018":
-                       
+
                         dv2 = dt3.DefaultView;
                         dv2.RowFilter = ("gcod like '80%' and gcod not like'%00'");
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
@@ -246,7 +246,7 @@ namespace RealERPWEB.F_38_AI
                         break;
 
                     default:
-                       
+
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
 
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
@@ -376,7 +376,7 @@ namespace RealERPWEB.F_38_AI
 
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
 
-           
+
         }
 
         protected void GridcusDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -385,7 +385,7 @@ namespace RealERPWEB.F_38_AI
             GetProjectList();
         }
 
-       
+
 
         private void GetBatchAssingList(string project)
         {
@@ -430,7 +430,7 @@ namespace RealERPWEB.F_38_AI
                 string workperhour = this.txtPerhour.Text.ToString();
                 string textEmpcap = this.textEmpcap.Text.ToString();
 
-                bool result = MktData.UpdateTransInfo2(comcod, "dbo_ai.SP_ENTRY_AI", "BATCH_INSERTUPDATE", batchcreateid, batch, projectname, createdate, veliverydate, userid, Terminal, Sessionid, Date, dtquantity, dataset, totalhour, worktype, phdm, workperhour, textEmpcap,"", "", "", "", "");
+                bool result = MktData.UpdateTransInfo2(comcod, "dbo_ai.SP_ENTRY_AI", "BATCH_INSERTUPDATE", batchcreateid, batch, projectname, createdate, veliverydate, userid, Terminal, Sessionid, Date, dtquantity, dataset, totalhour, worktype, phdm, workperhour, textEmpcap, "", "", "", "", "");
 
                 if (!result)
                 {
@@ -438,6 +438,7 @@ namespace RealERPWEB.F_38_AI
                     return;
                 }
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Batch  Saved Successfully');", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#CustomerModalAdd", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#CustomerModalAdd').hide();", true);
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
             }
             catch (Exception ex)
@@ -468,7 +469,7 @@ namespace RealERPWEB.F_38_AI
             this.txtprjname.InnerText = prjname;
             this.prjtype.InnerText = prjtype;
             this.dataset.InnerText = dataset;
-            this.worktype.InnerText = worktype;
+            this.viewworktype.InnerText = worktype;
             this.createdate.InnerText = createdate;
             this.txtquantity.InnerText = quantity;
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "viewToProj();", true);
@@ -510,6 +511,10 @@ namespace RealERPWEB.F_38_AI
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string id = ((Label)this.gvProjectInfo.Rows[index].FindControl("lblpactcode")).Text.ToString();
+
 
         }
     }
