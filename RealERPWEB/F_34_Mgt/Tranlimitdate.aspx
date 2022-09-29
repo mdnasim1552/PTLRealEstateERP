@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="Tranlimitdate.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.Tranlimitdate" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="Tranlimitdate.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.Tranlimitdate" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -30,28 +30,27 @@
                 </asp:UpdateProgress>
             </div>
 
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+            <div class="card mt-4">
+                <div class="card-header">
                     <div class="row">
-                            <div class="col-md-12">
-                        <fieldset class="scheduler-border fieldset_A">
-
-                            <div class="form-horizontal">
-                               <div class="colMdbtn">
-                                            <asp:LinkButton ID="lbtnOk0" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
-
+                            
+                               <div class="col-md-1">
+                                            <asp:LinkButton ID="lbtnOk0" runat="server" CssClass="btn  btn-primary okBtn" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                                    <asp:Label ID="lmsg" Visible="false" runat="server" CssClass="pull-right btn btn-danger primaryBtn"></asp:Label>
                                         </div>
-                                 <asp:Label ID="lmsg" runat="server" CssClass="pull-right btn btn-danger primaryBtn"></asp:Label>
-                            </div>
-                        </fieldset>
-                                </div>
+                       
+                              
                     </div>
-                    <div class="col-md-12">
+                    </div>
+                </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                         
                         <asp:GridView ID="gvcomlimit" runat="server" AutoGenerateColumns="False"
                             ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvcomlimit_RowDataBound">
                             <RowStyle />
                             <Columns>
-
 
                                 <asp:TemplateField HeaderText="Company Name">
 
@@ -64,8 +63,6 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     <ItemStyle HorizontalAlign="right" />
                                 </asp:TemplateField>
-
-
 
                                 <asp:TemplateField HeaderText="Back Day">
                                     <FooterTemplate>
@@ -117,9 +114,13 @@
                             <PagerStyle CssClass="gvPagination" />
                             <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" />
                         </asp:GridView>
+                    
                     </div>
-                </div>
             </div>
+
+                  
+                </div>
+           
 
 
 

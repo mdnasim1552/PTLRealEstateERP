@@ -1,5 +1,5 @@
 ﻿
-<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="AccPayLimit.aspx.cs" Inherits="RealERPWEB.F_15_DPayReg.AccPayLimit" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="AccPayLimit.aspx.cs" Inherits="RealERPWEB.F_15_DPayReg.AccPayLimit" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -17,8 +17,8 @@
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
             });
-
-
+            $('.chzn-select').chosen({ search_contains: true });
+           
         }
 
     </script>
@@ -29,28 +29,25 @@
         <ContentTemplate>
 
 
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+            <div class="card mt-4 pb-4">
+                <div class="card-body">
                     <div class="row">
 
-                        <fieldset class="scheduler-border fieldset_A">
-
-                            <div class="form-horizontal">
-
-                                <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
+                        
+                                    <div class="col-md-3 pading5px asitCol3 d-none">
                                         <asp:Label ID="lblUser" runat="server" CssClass="lblTxt lblName">User Name</asp:Label>
                                         <asp:TextBox ID="txtUserSearch1" runat="server" CssClass=" inputtextbox"></asp:TextBox>
                                         <asp:LinkButton ID="ImgbtnFindUser1" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ImgbtnFindUser1_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                     </div>
-                                    <div class="col-md-4 pading5px ">
-                                        <asp:DropDownList ID="ddlUserList" runat="server" CssClass=" form-control inputTxt chzn-select " Width="350px">
+                                    <div class="col-md-3">
+                                        <asp:Label ID="Label1" runat="server" CssClass="form-label">User Name</asp:Label>
+                                        <asp:DropDownList ID="ddlUserList" runat="server" CssClass="form-control form-control-sm chzn-select">
                                         </asp:DropDownList>
                                     </div>
-                                    <div class="col-md-2 pading5px asitCol2">
-                                        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-primary  primaryBtn" OnClick="lbtnSelectSupl1_Click">Select</asp:LinkButton>
-                                        <asp:LinkButton ID="lbtnSelectAll" runat="server" CssClass="btn btn-primary  primaryBtn" OnClick="lbtnSelectAll_Click" Style="margin-left:10px;">Select All</asp:LinkButton>
+                                    <div class="col-md-2 ml-4 mt-4">
+                                        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnSelectSupl1_Click">Select</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnSelectAll" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnSelectAll_Click">Select All</asp:LinkButton>
 
                                         
                                     </div>
@@ -62,12 +59,12 @@
                                     </div>
 
 
-                                </div>
-
-
-                            </div>
-                        </fieldset>
-
+                               </div>
+                    </div>
+                </div>
+            <div class="card" style="min-height:480px;">
+                <div class="card-body">
+                    <div class="row">
                         <asp:GridView ID="gvPayLimit" runat="server" AutoGenerateColumns="False" ShowFooter="True"
                             Width="16px" OnRowDeleting="gvPayLimit_RowDeleting" CssClass="table table-striped table-hover table-bordered grvContentarea">
                             <PagerSettings Visible="False" />
@@ -79,7 +76,7 @@
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:CommandField ShowDeleteButton="True" />
+                                <asp:CommandField ShowDeleteButton="True" DeleteText="" ControlStyle-CssClass="fa fa-trash text-red btn-xs"/>
                                 <asp:TemplateField HeaderText="userid" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvUserid" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "userid")) %>'
