@@ -53,12 +53,26 @@
             OpenAddBatch();
             showAddBatch();
             viewToProj();
+            CustomerCreate();
+           
+            
 
         }
+        function ModalLoanClose() {
+            $('#ApplyLoan').appendTo("body").modal('hide');
 
+            $('.modal').remove();
+
+
+            $('.modal-backdrop show').remove();
+            $('body').removeClass("modal-open");
+            $('.modal-backdrop').remove()
+            $(document.body).removeClass("modal-open");
+        }
         function OpenAddBatch() {
             $('#CreateModalBatch').modal('toggle');
         }
+       
         function showAddBatch() {
             $('#CreateModalBatch').modal('show');
         }
@@ -69,7 +83,10 @@
         function viewToProj(){
             $('#ProjectModalView').modal('toggle');
         }
-
+        function CustomerCreate() {
+            $('#CustomerModalAdd').modal('toggle');
+        }
+       
 
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -158,7 +175,7 @@
 
                                         <asp:TemplateField HeaderText="">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="btnAdd" Visible="false" runat="server" CssClass="text-primary pr-2 pl-2"><i class="fa fa-plus"></i></asp:LinkButton>
+                                                <asp:LinkButton ID="btnAdd" Visible="false" runat="server" OnClick="btnAdd_Click" OnClientClick="ModalLoanClose();" CssClass="text-primary pr-2 pl-2"><i class="fa fa-plus"></i></asp:LinkButton>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -507,7 +524,7 @@
                                      <p><strong>Project Name :</strong> <span id="txtprjname" runat="server"></span></p>
                                     <p><strong>Project Type :</strong> <span id="prjtype" runat="server"></span></p>
                                     <p><strong>DataSet :</strong> <span id="dataset" runat="server"></span></p>
-                                    <p><strong>Work Type :</strong> <span id="worktype" runat="server"></span></p>
+                                    <p><strong>Work Type :</strong> <span id="viewworktype" runat="server"></span></p>
                                     <p><strong>Create Date :</strong> <span id="createdate" runat="server"></span></p>
                                     <p><strong>quantity :</strong> <span id="txtquantity" runat="server"></span></p>                                 
                                                                           
@@ -519,8 +536,24 @@
                             </div>
                         </div>
                     </div>
+                    <%-- Add Customer Modal --%>
+                     <div id="CustomerModalAdd" class="modal " role="dialog" data-keyboard="false" data-backdrop="static">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header bg-light">
+                                    <h6 class="modal-title">Customer Create</h6>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">                              
+                                                                  
+                                   
+                                </div>
+                                <div class="modal-footer">
 
-
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </ContentTemplate>
