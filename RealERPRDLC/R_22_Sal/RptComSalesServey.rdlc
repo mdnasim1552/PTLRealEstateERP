@@ -131,10 +131,10 @@
                   <Width>0.70833in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1in</Width>
+                  <Width>0.73264in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.42708in</Width>
+                  <Width>0.62361in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.51737in</Width>
@@ -143,7 +143,7 @@
                   <Width>0.48958in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.53125in</Width>
+                  <Width>0.60208in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.59375in</Width>
@@ -814,7 +814,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox16</rd:DefaultName>
@@ -848,7 +850,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox18</rd:DefaultName>
@@ -868,24 +872,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox20">
+                        <Textbox Name="pactdesc">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!pactdesc.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox20</rd:DefaultName>
+                          <rd:DefaultName>pactdesc</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -916,7 +922,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>buildtype</rd:DefaultName>
@@ -950,7 +958,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>location</rd:DefaultName>
@@ -984,7 +994,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>aptsize</rd:DefaultName>
@@ -1018,7 +1030,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>landarea</rd:DefaultName>
@@ -1052,7 +1066,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>storied</rd:DefaultName>
@@ -1086,7 +1102,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox35</rd:DefaultName>
@@ -1106,24 +1124,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox37">
+                        <Textbox Name="askingprice">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!askingprice.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox37</rd:DefaultName>
+                          <rd:DefaultName>askingprice</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1154,7 +1174,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>selprice</rd:DefaultName>
@@ -1188,7 +1210,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>utlityprice</rd:DefaultName>
@@ -1222,7 +1246,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>prkingpirce</rd:DefaultName>
@@ -1242,24 +1268,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox45">
+                        <Textbox Name="hoverdate">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!hoverdate.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox45</rd:DefaultName>
+                          <rd:DefaultName>hoverdate</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1290,7 +1318,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>procatagory</rd:DefaultName>
@@ -1324,7 +1354,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox49</rd:DefaultName>
@@ -1404,7 +1436,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox50</rd:DefaultName>
-            <Top>1.52859in</Top>
+            <Top>1.40359in</Top>
             <Left>0.00917in</Left>
             <Height>0.20833in</Height>
             <Width>1.19792in</Width>
@@ -1499,13 +1531,13 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>2.01817in</Height>
+        <Height>2.05081in</Height>
         <Style />
       </Body>
       <Width>10.99181in</Width>
       <Page>
         <PageHeader>
-          <Height>0.93891in</Height>
+          <Height>0.82557in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1537,7 +1569,9 @@
               <Style>
                 <Border>
                   <Style>None</Style>
+                  <Width>0.5pt</Width>
                 </Border>
+                <BackgroundColor>LightGrey</BackgroundColor>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
@@ -1572,6 +1606,7 @@
               <Style>
                 <Border>
                   <Style>None</Style>
+                  <Width>0.5pt</Width>
                 </Border>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
@@ -1608,6 +1643,7 @@
               <Style>
                 <Border>
                   <Style>None</Style>
+                  <Width>0.5pt</Width>
                 </Border>
                 <BackgroundColor>White</BackgroundColor>
                 <PaddingLeft>2pt</PaddingLeft>
@@ -1642,6 +1678,7 @@
               <Style>
                 <Border>
                   <Style>None</Style>
+                  <Width>0.5pt</Width>
                 </Border>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
@@ -1745,6 +1782,7 @@
               <Style>
                 <Border>
                   <Style>None</Style>
+                  <Width>0.5pt</Width>
                 </Border>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
@@ -1775,6 +1813,7 @@
               <Style>
                 <Border>
                   <Style>None</Style>
+                  <Width>0.5pt</Width>
                 </Border>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
@@ -1805,6 +1844,7 @@
               <Style>
                 <Border>
                   <Style>None</Style>
+                  <Width>0.5pt</Width>
                 </Border>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
@@ -1839,6 +1879,7 @@
               <Style>
                 <Border>
                   <Style>None</Style>
+                  <Width>0.5pt</Width>
                 </Border>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
@@ -1869,6 +1910,7 @@
               <Style>
                 <Border>
                   <Style>None</Style>
+                  <Width>0.5pt</Width>
                 </Border>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
@@ -1907,7 +1949,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Left>0in</Left>
               <Height>0.19792in</Height>
               <Width>8.5925in</Width>
               <Style>
@@ -1963,10 +2004,10 @@
         </PageFooter>
         <PageHeight>8.27in</PageHeight>
         <PageWidth>11.69in</PageWidth>
-        <LeftMargin>0.25in</LeftMargin>
-        <RightMargin>0.25in</RightMargin>
-        <TopMargin>0.25in</TopMargin>
-        <BottomMargin>0.25in</BottomMargin>
+        <LeftMargin>0.15in</LeftMargin>
+        <RightMargin>0.15in</RightMargin>
+        <TopMargin>0.15in</TopMargin>
+        <BottomMargin>0.15in</BottomMargin>
         <Style />
       </Page>
     </ReportSection>

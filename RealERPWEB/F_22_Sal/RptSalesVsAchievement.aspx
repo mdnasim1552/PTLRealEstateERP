@@ -38,45 +38,11 @@
             height: 34px;
         }
     </style>--%>
+    
+
+
      <script type="text/javascript" language="javascript">
 
-<<<<<<< HEAD
-         $(document).ready(function () {
-
-             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-         });
-
-         function pageLoaded() {
-
-             $('.chzn-select').chosen({ search_contains: true });
-          <%--  $('#<%=this.gvsupstatus.ClientID%>').tblScrollable();--%>
-            $(function () {
-                $('[id*=chkSupCategory').multiselect({
-                    includeSelectAllOption: true,
-
-                    enableCaseInsensitiveFiltering: true,
-                    //enableFiltering: true,
-
-                });
-
-                var gvsoldunsold = $('#<%=this.gvsalesvscoll.ClientID %>');
-
-                gvsalesvscoll.Scrollable();
-
-            });
-
-         }
-
-
-
-     </script>
-
-   <%-- <script type="text/javascript" language="javascript">
-        $(document).ready(function () {
-=======
-     <script type="text/javascript" language="javascript">
->>>>>>> 8b9e565b7286781fd39cc620f8e5ba135014e5e0
 
          $(document).ready(function () {
 
@@ -95,13 +61,9 @@
          }
 
 
-<<<<<<< HEAD
-    </script>--%>
-=======
 
+    </script>
 
-     </script>
->>>>>>> 8b9e565b7286781fd39cc620f8e5ba135014e5e0
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>

@@ -130,15 +130,15 @@
                   <Width>0.8589in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.84375in</Width>
+                  <Width>0.86458in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.65626in</Width>
+                  <Width>0.58126in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.34201in</Height>
+                  <Height>0.28993in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -187,10 +187,25 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Apt. Type</Value>
+                                  <Value>Apt./Shop/</Value>
                                   <Style>
-                                    <FontFamily>Cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontFamily>cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Comm. Space</Value>
+                                  <Style>
+                                    <FontFamily>cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -637,7 +652,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.19792in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -1715,9 +1730,9 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.01042in</Top>
-            <Left>0.02625in</Left>
-            <Height>0.99826in</Height>
-            <Width>11.2625in</Width>
+            <Left>0in</Left>
+            <Height>0.89409in</Height>
+            <Width>11.20833in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1725,7 +1740,7 @@
             </Style>
           </Tablix>
           <Line Name="Line1">
-            <Top>2.20903in</Top>
+            <Top>1.83403in</Top>
             <Left>0.02208in</Left>
             <Height>0in</Height>
             <Width>1.875in</Width>
@@ -1746,7 +1761,7 @@
                     <Value>General Manager</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
-                      <FontSize>9pt</FontSize>
+                      <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1755,9 +1770,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox84</rd:DefaultName>
-            <Top>2.22847in</Top>
+            <Top>1.84097in</Top>
             <Left>0.02208in</Left>
-            <Height>0.20833in</Height>
+            <Height>0.15278in</Height>
             <Width>1.7661in</Width>
             <ZIndex>2</ZIndex>
             <Style>
@@ -1780,7 +1795,7 @@
                     <Value>Sales &amp; CMD</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
-                      <FontSize>9pt</FontSize>
+                      <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1789,9 +1804,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox85</rd:DefaultName>
-            <Top>2.43681in</Top>
+            <Top>1.96181in</Top>
             <Left>0.02208in</Left>
-            <Height>0.1875in</Height>
+            <Height>0.10139in</Height>
             <Width>1.7661in</Width>
             <ZIndex>3</ZIndex>
             <Style>
@@ -1811,22 +1826,23 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Total Sale:</Value>
+                    <Value>Total Sale : </Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
-                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox86</rd:DefaultName>
-            <Top>1.02778in</Top>
-            <Left>0.025in</Left>
-            <Height>0.22917in</Height>
-            <Width>1.66667in</Width>
+            <Top>0.92361in</Top>
+            <Left>0in</Left>
+            <Height>0.14584in</Height>
+            <Width>1.55209in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -1845,10 +1861,10 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Apartment   :  </Value>
+                    <Value>Apartment    : </Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
-                      <FontSize>9pt</FontSize>
+                      <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1856,19 +1872,21 @@
                     <Value>=Parameters!aptno.Value</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
-                      <FontSize>9pt</FontSize>
+                      <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox87</rd:DefaultName>
-            <Top>1.25695in</Top>
-            <Left>0.025in</Left>
+            <Top>1.06945in</Top>
+            <Left>0in</Left>
             <Height>0.17083in</Height>
-            <Width>1.67625in</Width>
+            <Width>1.55209in</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -1887,10 +1905,10 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Shop              :  </Value>
+                    <Value>Shop                 : </Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
-                      <FontSize>9pt</FontSize>
+                      <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1898,19 +1916,21 @@
                     <Value>=Parameters!shopno.Value</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
-                      <FontSize>9pt</FontSize>
+                      <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox88</rd:DefaultName>
-            <Top>1.44583in</Top>
-            <Left>0.025in</Left>
+            <Top>1.20833in</Top>
+            <Left>0in</Left>
             <Height>0.16667in</Height>
-            <Width>1.67625in</Width>
+            <Width>1.52709in</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -1923,13 +1943,13 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>2.64097in</Height>
+        <Height>2.0632in</Height>
         <Style />
       </Body>
-      <Width>11.28875in</Width>
+      <Width>11.21375in</Width>
       <Page>
         <PageHeader>
-          <Height>0.8668in</Height>
+          <Height>0.68402in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -2053,8 +2073,7 @@
               <Value>=Parameters!ComLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
               <Top>0.03472in</Top>
-              <Left>0.02208in</Left>
-              <Height>0.68055in</Height>
+              <Height>0.61043in</Height>
               <Width>1.43626in</Width>
               <ZIndex>3</ZIndex>
               <Style>
@@ -2092,8 +2111,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox83</rd:DefaultName>
-              <Top>0.62722in</Top>
-              <Left>9.78667in</Left>
+              <Top>0.43972in</Top>
+              <Left>9.73667in</Left>
               <Height>0.20833in</Height>
               <Width>1.42708in</Width>
               <ZIndex>4</ZIndex>
@@ -2116,7 +2135,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.17327in</Height>
+          <Height>0.15869in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -2139,9 +2158,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.01701in</Top>
-              <Height>0.125in</Height>
-              <Width>7.66193in</Width>
+              <Left>0in</Left>
+              <Height>0.15869in</Height>
+              <Width>7.6897in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -2172,9 +2191,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Left>7.73137in</Left>
-              <Height>0.12987in</Height>
-              <Width>3.55738in</Width>
+              <Left>7.71748in</Left>
+              <Height>0.15869in</Height>
+              <Width>3.49627in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -2195,9 +2214,10 @@
         </PageFooter>
         <PageHeight>8.27in</PageHeight>
         <PageWidth>11.69in</PageWidth>
-        <LeftMargin>0.15in</LeftMargin>
+        <LeftMargin>0.25in</LeftMargin>
         <RightMargin>0.15in</RightMargin>
         <TopMargin>0.15in</TopMargin>
+        <BottomMargin>0.1in</BottomMargin>
         <Style />
       </Page>
     </ReportSection>
