@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptUserLogStatus.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.RptUserLogStatus" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptUserLogStatus.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.RptUserLogStatus" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -19,17 +19,18 @@
 
         });
         function pageLoaded() {
+
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+            $('.chzn-select').chosen({ search_contains: true });
             var gv = $('#<%=this.gvUserLog.ClientID %>');
            gv.Scrollable();
        }
     </script>
 
 
-
-
-
-
-    
     
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -50,59 +51,62 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+            <div class="card mt-4 pb-4">
+                <div class="card-body">
                     <div class="row">
 
-                        <fieldset class="scheduler-border fieldset_A">
-
-                            <div class="form-horizontal">
-                                <div class="form-group">
-                                    <div class="col-md-6 pading5px">
-                                        <asp:Label ID="Label15" runat="server" CssClass="lblTxt lblName">From</asp:Label>
+                               
+                                    <div class="col-md-3">
+                                        <asp:Label ID="Label15" runat="server" CssClass="form-label">From</asp:Label>
 
 
-                                        <asp:TextBox ID="txtfromdate" runat="server" CssClass="inputTxt inputName inpPixedWidth" ToolTip="(dd.mm.yyyy)"></asp:TextBox>
+                                        <asp:TextBox ID="txtfromdate" runat="server" CssClass="form-control form-control-sm" ToolTip="(dd.mm.yyyy)"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtfromdate_CalendarExtender" runat="server"
                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtfromdate">
                                         </cc1:CalendarExtender>
-                                        <asp:Label ID="lbltodate" runat="server" CssClass="lblTxt smLbl_to">To</asp:Label>
+                                       
 
-                                        <asp:TextBox ID="txttodate" runat="server" AutoPostBack="True" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
+                                    </div>   
+                                    <div class="col-md-3">
+                                         <asp:Label ID="lbltodate" runat="server" CssClass="lblTxt smLbl_to">To</asp:Label>
+
+                                        <asp:TextBox ID="txttodate" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm"></asp:TextBox>
                                                 <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server"
                                                     Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txttodate">
                                                 </cc1:CalendarExtender>
+                                    </div>
 
-                                    </div>                                   
-
-                                    
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName">Name</asp:Label>
+                    </div>
+                    </div>
+                </div>
+            <div class="card" style="min-height:480px;">
+                <div class="card-body">
+                    <div class="row">
+                        
+                                    <div class="col-md-3 d-none">
+                                        
                                         <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
                                         <asp:LinkButton ID="ibtnFindProject" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ibtnFindProject_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                     </div>
 
 
-                                    <div class="col-md-4 pading5px ">
-                                        <asp:DropDownList ID="ddlUserName" runat="server" CssClass="form-control inputTxt">
+                                    <div class="col-md-3">
+                                        <asp:Label ID="Label4" runat="server" CssClass="form-label">Name</asp:Label>
+                                        <asp:DropDownList ID="ddlUserName" runat="server" CssClass="form-control form-control-sm chzn-select">
                                         </asp:DropDownList>
 
                                     </div>
-                                      <div class="colMdbtn">
-                                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                                      <div class="col-md-1 ml-3" style="margin-top:22px;">
+                                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
 
                                         </div>
                                 
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-3 pading5px">
-                                        <asp:Label ID="lblPage" runat="server" CssClass="lblTxt lblName" Visible="false" >Page</asp:Label>
-                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="ddlPage62"                                               
+                                    <div class="col-md-1">
+                                        <asp:Label ID="lblPage" runat="server" CssClass="form-label" Visible="false" >Page</asp:Label>
+                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm"                                               
                                                 OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Visible="False"
-                                                Width="85px">
+                                                >
                                                 <asp:ListItem Value="10">10</asp:ListItem>
                                                 <asp:ListItem Value="20">20</asp:ListItem>
                                                 <asp:ListItem Value="30">30</asp:ListItem>
@@ -113,16 +117,9 @@
                                                 <asp:ListItem Value="300">300</asp:ListItem>
                                             </asp:DropDownList>
                                     </div>
-                                    </div>
-
-
-
-
-
-                            </div>
-                        </fieldset>
                     </div>
-                    <asp:Panel ID="PanelVou" runat="server">
+                    <div class="row mt-4" style="margin-left:10px;">
+                        <asp:Panel ID="PanelVou" runat="server">
                    <asp:GridView ID="gvUserLog" runat="server" AutoGenerateColumns="False"
                                     ShowFooter="True" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     OnPageIndexChanging="gvLogType_PageIndexChanging">
@@ -209,6 +206,9 @@
                             <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" />
                                 </asp:GridView>
                 </asp:Panel>
+                    </div>
+                </div>
+                    
                 </div>
         </ContentTemplate>
     </asp:UpdatePanel>
