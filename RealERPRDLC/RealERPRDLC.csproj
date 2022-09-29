@@ -140,6 +140,7 @@
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+SpLedger.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassYearlySalesCRM.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptProspectTransfer.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesSurveyEntry.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesvsAchievement.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesvsAchievementtypecount.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SoldUnsoftInfGroupWise.datasource" />
@@ -747,6 +748,7 @@
     <EmbeddedResource Include="R_22_Sal\RptBookingtDues.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCalTValAvgVal.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCollDetailsInfo.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptComSalesServey.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptConAssess.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptConMonthlyAss.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCurrentDues.rdlc" />
