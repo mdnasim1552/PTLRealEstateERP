@@ -1743,11 +1743,12 @@ namespace RealERPWEB.F_99_Allinterface
 
                 string aprovno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "aprovno")).ToString();
                 string approvdat = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "aprovdat1")).ToString();
+                string ssircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ssircode")).ToString(); 
 
                 //hlink1.NavigateUrl = "~/F_20_Service/Ser_Print?Type=ProReceived&comcod=" + comcod + "&centrid=" + centrid + "&recvno=" + recvno + "&imesimeno=" + imesimeno;
                 hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=PurApproval&approvno=" + aprovno + "&approvdat=" + approvdat;
 
-                hlink2.NavigateUrl = "~/F_14_Pro/PurWrkOrderEntry?InputType=OrderEntry&genno=" + aprovno;
+                hlink2.NavigateUrl = "~/F_14_Pro/PurWrkOrderEntry?InputType=OrderEntry&genno=" + aprovno+ "&ssircode="+ ssircode;
 
             }
         }
