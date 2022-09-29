@@ -134,6 +134,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ACR_EMPLOYEE", "GET_EMP_SETTLEMENT_INFO", empid, rpttype, "", "", "", "", "", "");
             if (ds3 == null)
                 return;
+            ViewState["tblsttlmnt"] = ds3.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>();
+
             ViewState["tblsttlmnt1"] = ds3.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>().FindAll(p => p.hrgcod.Substring(0, 3) == "351").OrderBy(x => x.seq).ToList();
             ViewState["tblsttlmnt2"] = ds3.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>().FindAll(p => p.hrgcod.Substring(0, 3) == "352").OrderBy(x => x.seq).ToList();
 
@@ -224,33 +226,74 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
         private void Save_Value()
         {
-            //var sttlmntinfo = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt"];
-            //for (int i = 0; i < this.gvsettlemntcredit.Rows.Count; i++)
-            //{
-            //    string hrgcod = ((Label)gvsettlemntcredit.Rows[i].FindControl("lblhrgcod")).Text.ToString();
-            //    double numofday = Convert.ToDouble("0" + ((TextBox)gvsettlemntcredit.Rows[i].FindControl("txtnumofday")).Text.Trim());
-            //    double perday = Convert.ToDouble("0" + ((TextBox)gvsettlemntcredit.Rows[i].FindControl("txtperday")).Text.Trim());
-            //    double ttlamt = Convert.ToDouble("0" + ((TextBox)gvsettlemntcredit.Rows[i].FindControl("TtlAmout")).Text.Trim());
+            var sttlmntinfo1 = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt1"];
 
-            //    var index = sttlmntinfo.FindIndex(p => p.hrgcod == hrgcod);
-            //    sttlmntinfo[index].numofday = numofday;
-            //    sttlmntinfo[index].perday = perday;
-            //    sttlmntinfo[index].ttlamt = (numofday * perday == 0) ? ttlamt : numofday * perday;
-            //}
+            var sttlmntinfo2 = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt2"];
+            for (int i = 0; i < this.gvsettlemntcredit.Rows.Count; i++)
+            {
+                string hrgcod = ((Label)gvsettlemntcredit.Rows[i].FindControl("lblhrgcod")).Text.ToString();
+                double gross = Convert.ToDouble("0" + ((TextBox)gvsettlemntcredit.Rows[i].FindControl("txtgross")).Text.Trim());
+                double ttlamt = Convert.ToDouble("0" + ((TextBox)gvsettlemntcredit.Rows[i].FindControl("TtlAmout")).Text.Trim());
+                double numofday =Convert.ToDouble("0"+ ((TextBox)gvsettlemntcredit.Rows[i].FindControl("lblnmday")).Text.Trim());
+                var index = sttlmntinfo1.FindIndex(p => p.hrgcod == hrgcod);
+                sttlmntinfo1[index].numofday = gross;
+                sttlmntinfo1[index].numofday = numofday;
 
-            //for (int i = 0; i < this.gvsttlededuct.Rows.Count; i++)
-            //{
-            //    string hrgcod = ((Label)gvsttlededuct.Rows[i].FindControl("lblhrgcod")).Text.ToString();
-            //    double numofday = Convert.ToDouble("0" + ((TextBox)gvsttlededuct.Rows[i].FindControl("txtnumofday")).Text.Trim());
-            //    double perday = Convert.ToDouble("0" + ((TextBox)gvsttlededuct.Rows[i].FindControl("txtperday")).Text.Trim());
-            //    double ttlamt = Convert.ToDouble("0" + ((TextBox)gvsttlededuct.Rows[i].FindControl("TtlAmout")).Text.Trim());
 
-            //    var index2 = sttlmntinfo.FindIndex(p => p.hrgcod == hrgcod);
-            //    sttlmntinfo[index2].numofday = numofday;
-            //    sttlmntinfo[index2].perday = perday;
-            //    sttlmntinfo[index2].ttlamt = (numofday * perday == 0) ? ttlamt : numofday * perday;
-            //}
-            //ViewState["tblsttlmnt"] = sttlmntinfo;
+                switch (hrgcod)
+                {
+                    case "35101"://salary 36,513/30*23	
+                        sttlmntinfo1[index].ttlamt = (gross / 30) * numofday;
+                        break;
+
+                    case "35108"://earn leave 36,513 * 12 / 365 * 0
+                        sttlmntinfo1[index].ttlamt = gross * 12 / 365 * numofday;
+                        
+                       break;
+  
+
+                }
+
+
+
+            }
+
+            for (int i = 0; i < this.gvsttlededuct.Rows.Count; i++)
+            {
+                string hrgcod = ((Label)gvsttlededuct.Rows[i].FindControl("lblhrgcod")).Text.ToString();
+                double gross = Convert.ToDouble("0" + ((TextBox)gvsttlededuct.Rows[i].FindControl("txtgross")).Text.Trim());
+                double ttlamt = Convert.ToDouble("0" + ((TextBox)gvsttlededuct.Rows[i].FindControl("TtlAmout")).Text.Trim());
+                double numofday = Convert.ToDouble("0" + ((TextBox)gvsttlededuct.Rows[i].FindControl("lblnmday")).Text.Trim());
+                var index2 = sttlmntinfo2.FindIndex(p => p.hrgcod == hrgcod);
+                sttlmntinfo1[index2].numofday = numofday;
+
+                switch (hrgcod)
+                {
+                    case "35206"://absent
+                        sttlmntinfo1[index2].ttlamt = (gross / 30) * numofday;
+                        break;
+
+                    //case "35216"://transport leave 36,513 * 12 / 365 * 0
+                    //    sttlmntinfo1[index2].ttlamt = gross * 12 / 365 * numofday;
+                    //    break;
+
+                    case "35224"://cl 	
+                        sttlmntinfo1[index2].ttlamt = gross*12/365* numofday;
+                        break;
+
+                    case "35226"://sl leave 
+                        sttlmntinfo1[index2].ttlamt = gross * 12 / 365 * numofday;
+
+                        break;
+                    case "35228"://el leave
+                        sttlmntinfo1[index2].ttlamt = gross * 12 / 365 * numofday;
+
+                        break;
+
+                }
+            }
+            ViewState["tblsttlmnt1"] = sttlmntinfo1;
+            ViewState["tblsttlmnt2"] = sttlmntinfo2;
         }
 
         protected void lbtnPrint_Click(object sender, EventArgs e)
@@ -403,25 +446,25 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             try
             {
-                //this.Save_Value();
-                //var sttlmntinfo = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt"];
+                this.Save_Value();
+                var sttlmntinfo = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt"];
 
-                //string comcod = this.GetComeCode();
-                //string empid = this.ddlEmpName.SelectedValue.ToString();
-                //string curdate = Convert.ToDateTime(this.txtCurDate.Text.Trim()).ToString("dd-MMM-yyyy");
-                //string refno = this.txtrefno.Text.Trim();
-                //Hashtable hst = (Hashtable)Session["tblLogin"];
-                //string PostedByid = hst["usrid"].ToString();
-                //string Posttrmid = hst["compname"].ToString();
-                //string PostSession = hst["session"].ToString();
-                //string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-                //DataTable dt = ASITUtility03.ListToDataTable(sttlmntinfo);
-                //DataSet ds = new DataSet("ds1");
-                //ds.Tables.Add(dt);
-                //ds.Tables[0].TableName = "tbl1";
-                //bool result = HRData.UpdateXmlTransInfo(comcod, "dbo_hrm.SP_ENTRY_ACR_EMPLOYEE", "INSERT_UPDATE_EMP_SETTLEMNT", ds, null, null, empid, curdate, refno, PostedByid, Posttrmid, PostSession, Posteddat, "", "", "", "", "");
-                //if (!result)
-                //    return;
+                string comcod = this.GetComeCode();
+                string empid = this.ddlEmpName.SelectedValue.ToString();
+                string curdate = Convert.ToDateTime(this.txtCurDate.Text.Trim()).ToString("dd-MMM-yyyy");
+                string refno = this.txtrefno.Text.Trim();
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string PostedByid = hst["usrid"].ToString();
+                string Posttrmid = hst["compname"].ToString();
+                string PostSession = hst["session"].ToString();
+                string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+                DataTable dt = ASITUtility03.ListToDataTable(sttlmntinfo);
+                DataSet ds = new DataSet("ds1");
+                ds.Tables.Add(dt);
+                ds.Tables[0].TableName = "tbl1";
+                bool result = HRData.UpdateXmlTransInfo(comcod, "dbo_hrm.SP_ENTRY_ACR_EMPLOYEE", "INSERT_UPDATE_EMP_SETTLEMNT", ds, null, null, empid, curdate, refno, PostedByid, Posttrmid, PostSession, Posteddat, "", "", "", "", "");
+                if (!result)
+                    return;
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
             }
@@ -485,7 +528,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             int index = row.RowIndex;
    
 
-            string hrgdesc = ((Label)this.gvsettlemntcredit.Rows[index].FindControl("lblcreditinfo")).Text.ToString();
+            string hrgdesc = ((TextBox)this.gvsettlemntcredit.Rows[index].FindControl("lblcreditinfo")).Text.ToString();
             string hrgcod = ((Label)this.gvsettlemntcredit.Rows[index].FindControl("lblhrgcod")).Text.ToString();
             string calculation = ((Label)this.gvsettlemntcredit.Rows[index].FindControl("lblcalculation")).Text.ToString().Trim() ?? "";
             int seq = Convert.ToInt32(((Label)this.gvsettlemntcredit.Rows[index].FindControl("lblseq")).Text.ToString().Trim() ?? "99");
@@ -540,7 +583,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             int index = row.RowIndex;
 
 
-            string hrgdesc = ((Label)this.gvsttlededuct.Rows[index].FindControl("lblcreditinfo")).Text.ToString();
+            string hrgdesc = ((TextBox)this.gvsttlededuct.Rows[index].FindControl("lblcreditinfo")).Text.ToString();
             string hrgcod = ((Label)this.gvsttlededuct.Rows[index].FindControl("lblhrgcod")).Text.ToString();
             string calculation = ((Label)this.gvsttlededuct.Rows[index].FindControl("lblcalculation")).Text.ToString().Trim() ?? "";
             int seq = Convert.ToInt32(((Label)this.gvsttlededuct.Rows[index].FindControl("lblseq")).Text.ToString().Trim() ?? "99");
@@ -596,7 +639,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
             int index = row.RowIndex;
             string comcod = this.GetComeCode();
-            string hrgdesc = ((Label)this.gvsettlemntcredit.Rows[index].FindControl("lblcreditinfo")).Text.ToString();
+            string hrgdesc = ((TextBox)this.gvsettlemntcredit.Rows[index].FindControl("lblcreditinfo")).Text.ToString();
             string hrgcod = ((Label)this.gvsettlemntcredit.Rows[index].FindControl("lblhrgcod")).Text.ToString();
 
 
@@ -618,7 +661,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
             int index = row.RowIndex;
             string comcod = this.GetComeCode();
-            string hrgdesc = ((Label)this.gvsttlededuct.Rows[index].FindControl("lblcreditinfo")).Text.ToString();
+            string hrgdesc = ((TextBox)this.gvsttlededuct.Rows[index].FindControl("lblcreditinfo")).Text.ToString();
             string hrgcod = ((Label)this.gvsttlededuct.Rows[index].FindControl("lblhrgcod")).Text.ToString();
 
 
