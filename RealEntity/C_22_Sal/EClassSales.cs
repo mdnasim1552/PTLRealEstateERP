@@ -161,7 +161,37 @@ namespace RealEntity.C_22_Sal
 
 
         }
-      
+        [Serializable]
+
+        public class SalesSurveyEntry
+        {
+            public string comcod { get; set; }
+            public string flrdesc { get; set; }
+            public string pactdesc { get; set; }
+            public string pactcode { get; set; }
+            public string location { get; set; }
+            public string aptsize { get; set; }
+            public string storied { get; set; }
+            public double landarea { get; set; }
+            public double aptunit { get; set; }
+            public double askingprice { get; set; }
+            public double selprice { get; set; }
+            public double utlityprice { get; set; }
+            public double prkingpirce { get; set; }
+            public DateTime hoverdate { get; set; }
+            public string procatagory { get; set; }
+            public string buildtype { get; set; }
+            public string companyname { get; set; }
+
+
+
+            public SalesSurveyEntry()
+            {
+
+            }
+
+
+        }
 
 
     }

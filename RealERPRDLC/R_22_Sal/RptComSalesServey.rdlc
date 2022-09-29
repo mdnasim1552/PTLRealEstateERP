@@ -1,6 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="RealEntityC_22_Sal">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>f95796e8-2bc6-404a-9e02-bf440a58df2f</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>RealEntityC_22_Sal</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="aptsize">
+          <DataField>aptsize</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="aptunit">
+          <DataField>aptunit</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="askingprice">
+          <DataField>askingprice</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="buildtype">
+          <DataField>buildtype</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="comcod">
+          <DataField>comcod</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="companyname">
+          <DataField>companyname</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="flrdesc">
+          <DataField>flrdesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="hoverdate">
+          <DataField>hoverdate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="landarea">
+          <DataField>landarea</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="location">
+          <DataField>location</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="pactcode">
+          <DataField>pactcode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="pactdesc">
+          <DataField>pactdesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="prkingpirce">
+          <DataField>prkingpirce</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="procatagory">
+          <DataField>procatagory</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="selprice">
+          <DataField>selprice</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="storied">
+          <DataField>storied</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="utlityprice">
+          <DataField>utlityprice</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>RealEntity.C_22_Sal</rd:DataSetName>
+        <rd:TableName>SalesSurveyEntry</rd:TableName>
+        <rd:ObjectDataSourceType>RealEntity.C_22_Sal.EClassSales+SalesSurveyEntry, RealERPEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -715,7 +807,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=RowNumber(nothing)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -810,14 +902,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox25">
+                        <Textbox Name="buildtype">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!buildtype.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -827,7 +919,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox25</rd:DefaultName>
+                          <rd:DefaultName>buildtype</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -844,14 +936,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox27">
+                        <Textbox Name="location">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!location.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -861,7 +953,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox27</rd:DefaultName>
+                          <rd:DefaultName>location</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -878,14 +970,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox29">
+                        <Textbox Name="aptsize">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!aptsize.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -895,7 +987,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox29</rd:DefaultName>
+                          <rd:DefaultName>aptsize</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -912,14 +1004,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox31">
+                        <Textbox Name="landarea">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!landarea.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -929,7 +1021,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox31</rd:DefaultName>
+                          <rd:DefaultName>landarea</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -946,14 +1038,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox33">
+                        <Textbox Name="storied">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!storied.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -963,7 +1055,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox33</rd:DefaultName>
+                          <rd:DefaultName>storied</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1048,14 +1140,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox39">
+                        <Textbox Name="selprice">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!selprice.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1065,7 +1157,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox39</rd:DefaultName>
+                          <rd:DefaultName>selprice</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1082,14 +1174,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox41">
+                        <Textbox Name="utlityprice">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!utlityprice.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1099,7 +1191,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox41</rd:DefaultName>
+                          <rd:DefaultName>utlityprice</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1116,14 +1208,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox43">
+                        <Textbox Name="prkingpirce">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!prkingpirce.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1133,7 +1225,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox43</rd:DefaultName>
+                          <rd:DefaultName>prkingpirce</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1184,14 +1276,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox47">
+                        <Textbox Name="procatagory">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!procatagory.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1201,7 +1293,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox47</rd:DefaultName>
+                          <rd:DefaultName>procatagory</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1284,6 +1376,7 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
+            <DataSetName>DataSet1</DataSetName>
             <Top>0.02235in</Top>
             <Height>1.13542in</Height>
             <Width>10.99181in</Width>
@@ -1406,7 +1499,7 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>1.99734in</Height>
+        <Height>2.01817in</Height>
         <Style />
       </Body>
       <Width>10.99181in</Width>
@@ -1423,7 +1516,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Parameters!RptTitle.Value</Value>
+                      <Value />
                       <Style>
                         <FontFamily>cambria</FontFamily>
                         <FontSize>11pt</FontSize>
@@ -1523,20 +1616,6 @@
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
-            <Image Name="ComLogo">
-              <Source>External</Source>
-              <Value>=Parameters!ComLogo.Value</Value>
-              <Sizing>FitProportional</Sizing>
-              <Top>0.14502in</Top>
-              <Height>0.68055in</Height>
-              <Width>1.32166in</Width>
-              <ZIndex>3</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-              </Style>
-            </Image>
             <Textbox Name="Textbox7">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
@@ -1556,10 +1635,10 @@
               </Paragraphs>
               <rd:DefaultName>Textbox7</rd:DefaultName>
               <Top>0.43in</Top>
-              <Left>1.34944in</Left>
+              <Left>1.32861in</Left>
               <Height>0.17417in</Height>
-              <Width>1.58612in</Width>
-              <ZIndex>4</ZIndex>
+              <Width>1.60695in</Width>
+              <ZIndex>3</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1589,10 +1668,10 @@
               </Paragraphs>
               <rd:DefaultName>Textbox8</rd:DefaultName>
               <Top>0.64458in</Top>
-              <Left>1.36333in</Left>
+              <Left>1.33208in</Left>
               <Height>0.17486in</Height>
-              <Width>1.56181in</Width>
-              <ZIndex>5</ZIndex>
+              <Width>1.59306in</Width>
+              <ZIndex>4</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1627,7 +1706,7 @@
               <Left>5.40486in</Left>
               <Height>0.17417in</Height>
               <Width>1.30569in</Width>
-              <ZIndex>6</ZIndex>
+              <ZIndex>5</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1662,7 +1741,7 @@
               <Left>5.40834in</Left>
               <Height>0.20486in</Height>
               <Width>1.28833in</Width>
-              <ZIndex>7</ZIndex>
+              <ZIndex>6</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1692,7 +1771,7 @@
               <Left>6.72444in</Left>
               <Height>0.16666in</Height>
               <Width>3.14098in</Width>
-              <ZIndex>8</ZIndex>
+              <ZIndex>7</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1722,7 +1801,7 @@
               <Left>6.72444in</Left>
               <Height>0.22141in</Height>
               <Width>3.15487in</Width>
-              <ZIndex>9</ZIndex>
+              <ZIndex>8</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1756,7 +1835,7 @@
               <Left>9.87931in</Left>
               <Height>0.25in</Height>
               <Width>1.04167in</Width>
-              <ZIndex>10</ZIndex>
+              <ZIndex>9</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1786,7 +1865,7 @@
               <Left>9.87931in</Left>
               <Height>0.39974in</Height>
               <Width>1.04167in</Width>
-              <ZIndex>11</ZIndex>
+              <ZIndex>10</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1816,7 +1895,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Parameters!printFooter.Value</Value>
+                      <Value EvaluationMode="Constant" />
                       <Style>
                         <FontFamily>cambria</FontFamily>
                         <FontSize>8pt</FontSize>
@@ -1828,7 +1907,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Left>0.01389in</Left>
+              <Left>0in</Left>
               <Height>0.19792in</Height>
               <Width>8.5925in</Width>
               <Style>
@@ -1848,7 +1927,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=IIF(Globals!TotalPages="1","","Page " &amp; Globals!PageNumber &amp; " of " &amp; Globals!TotalPages)</Value>
+                      <Value />
                       <Style>
                         <FontFamily>cambria</FontFamily>
                         <FontSize>8pt</FontSize>
