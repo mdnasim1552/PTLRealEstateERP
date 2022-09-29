@@ -26,14 +26,13 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="container moduleItemWrpper">
-                <div class="contentPart">
+                <fieldset class="contentPart contentPartSmall">
 
 
-                    <div class="row">
-                        <fieldset class="scheduler-border">
+                   <fieldset class="scheduler-border fieldset_A">
 
                             <div class="form-horizontal">
-                                <div class="form-group">
+                                 <div class="form-group">
 
                                     <asp:Label ID="lblgroup" runat="server" CssClass="lblTxt lblName" Text="Group:"></asp:Label>
 
@@ -64,11 +63,11 @@
                                         </div>
                                     </div>
 
+                                </div>
+                       </fieldset>
+                        
+                              
 
-
-                            </div>
-                        </fieldset>
-                    </div>
                     <div class="table-responsive">
                         <ASP:GridView runat="server" ID="gvProject" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                         ShowFooter="True" Style="text-align: left">

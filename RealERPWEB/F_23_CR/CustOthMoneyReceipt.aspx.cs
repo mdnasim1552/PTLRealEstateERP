@@ -52,7 +52,7 @@ namespace RealERPWEB.F_23_CR
                 if (pactcode != "")
                 {
                     ddlProjectName.SelectedValue = pactcode;
-                    ddlProjectName.Enabled = false;
+                    //ddlProjectName.Enabled = false;
                     ddlProjectName_SelectedIndexChanged(null, null);
                 }
 

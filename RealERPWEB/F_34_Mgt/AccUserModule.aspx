@@ -93,11 +93,12 @@
                                <div class="col-md-3 d-none" style="width:201px;">
                                     
                                     <asp:TextBox ID="txtProSearch" runat="server" CssClass="inputtextbox"></asp:TextBox>
-                                    <asp:LinkButton ID="ImgbtnFindProject" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="ImgbtnFindProject_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                 </div>
                                 <div class="col-md-2">
                                     <asp:Label ID="lblConTrolCode" runat="server" CssClass="form-label">Module</asp:Label>
+                              <asp:LinkButton ID="ImgbtnFindProject" runat="server"  OnClick="ImgbtnFindProject_Click"><span class="fa fa-search"> </span></asp:LinkButton>
+
                                     <asp:DropDownList ID="ddlConTrolCode" runat="server" CssClass="form-control form-control-sm chzn-select">
                                     </asp:DropDownList>
                                 </div>

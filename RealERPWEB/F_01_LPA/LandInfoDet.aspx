@@ -561,8 +561,14 @@
 
         function CloseModaldis() {
 
-            $('#mdiscussion').modal('toggle');
+            $('#mdiscussion').modal('hide');
         }
+
+        $("#btnModalClose").on("click", function (e) {
+            e.preventDefault();
+            $("#mdiscussion").modal("hide");
+            $('#mdiscussion').data("modal", null);
+        });
 
 
         //function CloseModaldisReschedule() {
@@ -3487,7 +3493,7 @@
                                 <i class="fa fa-hand-point-right"></i>
                                 Discussion </h4>
 
-                            <button type="button" class="btn btn-xs pull-right" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+                            <button type="button" id="btnModalClose" class="btn btn-xs pull-right close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times" aria-hidden="true"></i></button>
 
 
                         </div>
@@ -3831,7 +3837,7 @@
 
 
 
-                                                            <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal"
+                                                            <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal" OnTextChanged="ChkBoxLstFollow_TextChanged" AutoPostBack="true"
                                                                 runat="server" CssClass="col-md-12 checkbox">
                                                             </asp:CheckBoxList>
 
