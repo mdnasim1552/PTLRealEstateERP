@@ -209,7 +209,7 @@
                                     ShowFooter="True">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl#" HeaderStyle-CssClass="font-weight-bold text-muted">
+                                        <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
                                   
                                                             <%--<asp:Link ID="addRow" runat="server" OnClick="copy_Click" Text="Add"/>--%>
@@ -225,8 +225,10 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Credit Information" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblcreditinfo" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgdesc")) %>'
-                                                    Width="200px"></asp:Label>
+                                     <%--           <asp:Label ID="lblcreditinfo" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgdesc")) %>'
+                                                    Width="200px"></asp:Label>--%>
+                                                <asp:TextBox ID="lblcreditinfo" CssClass="form-control form-control-sm" Style="text-align:left" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgdesc")) %>' Width="200px"></asp:TextBox>
+
                                                 <asp:Label ID="lblhrgcod" Visible="false" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgcod")) %>'
                                                     Width="200px"></asp:Label>
 
@@ -261,7 +263,7 @@
 
                                         <asp:TemplateField HeaderText="D/Y" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="lblnumday" runat="server" CssClass="form-control form-control-sm" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "numofday")).ToString("#,##0.00;(#,##0.00); ") %>' Width="60px"></asp:TextBox>
+                                                <asp:TextBox ID="lblnmday" runat="server" CssClass="form-control form-control-sm" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "numofday")).ToString("#,##0.00;(#,##0.00); ") %>' Width="60px"></asp:TextBox>
                                                 <%--<asp:Label ID="lblnumday" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "numofday")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>--%>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
@@ -269,7 +271,7 @@
 
                                         <asp:TemplateField HeaderText="Gross" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtnumofday" CssClass="form-control form-control-sm" Style="text-align: right" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amount")).ToString("#,##0.00;(#,##0.00); ") %>' Width="100px"></asp:TextBox>
+                                                <asp:TextBox ID="txtgross" CssClass="form-control form-control-sm" Style="text-align: right" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amount")).ToString("#,##0.00;(#,##0.00); ") %>' Width="100px"></asp:TextBox>
 
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
@@ -313,11 +315,11 @@
                                     ShowFooter="True">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl#" HeaderStyle-CssClass="font-weight-bold text-muted">
+                                        <asp:TemplateField HeaderText="Action" HeaderStyle-CssClass="font-weight-bold text-muted">
                      <ItemTemplate>
                                   
             
-                            <asp:LinkButton ID="addRow" runat="server" CssClass="text-success pr-1 [;-1" OnClick="addRowD_Click"><i class="fa fa-plus-circle"></i></asp:LinkButton>
+                            <asp:LinkButton ID="addRow" runat="server" CssClass="text-success pr-1 " OnClick="addRowD_Click"><i class="fa fa-plus-circle"></i></asp:LinkButton>
                        <asp:LinkButton ID="removeRow" runat="server" CssClass="text-danger pr-2" OnClick="removeRowD_Click"><i class="fa fa-trash"></i></asp:LinkButton>
 
                                                 <asp:Label ID="lblgvSlNo0" runat="server"  Height="16px" Style="text-align: center"  Visible="false"
@@ -330,8 +332,10 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Deduct Information" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblcreditinfo" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgdesc")) %>'
-                                                    Width="250px"></asp:Label>
+                                     <%--           <asp:Label ID="lblcreditinfo" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgdesc")) %>'
+                                                    Width="250px"></asp:Label>--%>
+                                                                 <asp:TextBox ID="lblcreditinfo" CssClass="form-control form-control-sm" Style="text-align:left" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgdesc")) %>' Width="200px"></asp:TextBox>
+
                                                 <asp:Label ID="lblhrgcod" Visible="false" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgcod")) %>'
                                                     Width="200px"></asp:Label>
                                             </ItemTemplate>
@@ -353,7 +357,8 @@
 
                                         <asp:TemplateField HeaderText="D/Y" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblnmday" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "numofday")).ToString("#,##0.00;(#,##0.00); ") %>' Width="75px"></asp:Label>
+                                                <%--<asp:Label ID="lblnmday" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "numofday")).ToString("#,##0.00;(#,##0.00); ") %>' Width="75px"></asp:Label>--%>
+                                                <asp:TextBox ID="lblnmday" runat="server" CssClass="form-control form-control-sm" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "numofday")).ToString("#,##0.00;(#,##0.00); ") %>' Width="60px"></asp:TextBox>
 
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" Width="50px" />
@@ -363,7 +368,7 @@
 
                                         <asp:TemplateField HeaderText="Gross" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtnumofday" CssClass="form-control form-control-sm" Style="text-align: right" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amount")).ToString("#,##0.00;(#,##0.00); ") %>' Width="100px"></asp:TextBox>
+                                                <asp:TextBox ID="txtgross" CssClass="form-control form-control-sm" Style="text-align: right" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amount")).ToString("#,##0.00;(#,##0.00); ") %>' Width="100px"></asp:TextBox>
 
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />

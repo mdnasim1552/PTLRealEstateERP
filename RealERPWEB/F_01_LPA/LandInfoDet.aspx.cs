@@ -6135,12 +6135,23 @@ namespace RealERPWEB.F_01_LPA
 
         private void Modal_Data_Bind()
         {
-
+            string comcod = this.GetComeCode();
             try
             {
                 DataTable dt = (DataTable)ViewState["tbModalData"];
-                this.gvInfo.DataSource = dt;
-                this.gvInfo.DataBind();
+                if(comcod=="3348")
+                {
+                    DataView dvm = dt.DefaultView;
+                    dvm.RowFilter = ("gcod<>'810100102010'");
+                    this.gvInfo.DataSource = dvm.ToTable();
+                    this.gvInfo.DataBind();
+                }
+                else
+                {
+                    this.gvInfo.DataSource = dt;
+                    this.gvInfo.DataBind();
+                }
+              
 
 
                 this.GetFollow();
@@ -7699,7 +7710,261 @@ namespace RealERPWEB.F_01_LPA
             this.autoClickBtn_tempBTN();
         }
 
-       
+        protected void ChkBoxLstFollow_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
+               
+                DataTable dt = (DataTable)ViewState["tbModalData"];               
+                this.gvInfo.DataSource = dt;
+                this.gvInfo.DataBind();
+
+
+                this.GetFollow();
+                DataTable dt5 = ((DataTable)ViewState["tblFollow"]).Copy();
+                DataView dv1;
+                dv1 = dt5.DefaultView;
+                dv1.RowFilter = ("gcod like '96%'");
+
+                this.GetParcipants();
+                DataTable dt6 = (DataTable)ViewState["tblparti"];
+
+                //GetVisitoraStatinfo();
+                DataView dv;
+                DataTable dtvs = ((DataTable)ViewState["tblFollow"]).Copy();
+
+
+                //  Status
+                dv = dtvs.DefaultView;
+                dv.RowFilter = ("gcod like '95%'");
+
+                //DataTable dts = dv.ToTable();
+                //dts.Rows.Add("0000", "0000000", "----Select Status----");
+                //dts.DefaultView.Sort = "gcod asc";
+                //dts = dts.DefaultView.ToTable();
+                //DataView dv1;
+
+
+                //DataView dv1;
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string empid = (hst["empid"].ToString() == "" ? "93" : hst["empid"].ToString()) + "%";
+
+                DropDownList ddlgval1, ddlgval2, ddlgval3;
+                ListBox ddlPartic;
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+                    string Gcode = dt.Rows[i]["gcod"].ToString();
+
+                    switch (Gcode)
+                    {
+
+
+
+                        case "810100102001": //Followup Date
+
+                            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = true;
+                            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
+                            ((Panel)this.gvInfo.Rows[i].FindControl("pnlParicdis")).Visible = false;
+                            ((Panel)this.gvInfo.Rows[i].FindControl("pnlFollow")).Visible = true;
+                            ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Visible = false;
+                            ((Panel)this.gvInfo.Rows[i].FindControl("pnlTime")).Visible = true;
+                            ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
+
+                            DateTime datetime = System.DateTime.Now;
+
+                            string gTime = ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Text.Trim();
+
+                            ddlgval1 = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlhour"));
+                            ddlgval1.SelectedValue = (gTime.Length == 0) ? datetime.ToString("hh") : ASTUtility.Left(gTime, 2);
+                            ddlgval2 = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlMmin"));
+                            ddlgval2.SelectedValue = (gTime.Length == 0) ? datetime.ToString("mm") : gTime.Substring(3, 2);
+                            ddlgval3 = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlslb"));
+                            ddlgval3.SelectedValue = (gTime.Length == 0) ? datetime.ToString("tt") : ASTUtility.Right(gTime, 2);
+
+
+                            //((TextBox)this.gvInfo.Rows[i].FindControl("txtgvVal")).Height=100;
+                            break;
+
+                        case "810100102002":
+                        case "810100102019"://Follow
+
+                            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
+                            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
+                            ((Panel)this.gvInfo.Rows[i].FindControl("pnlParicdis")).Visible = false;
+                            ((Panel)this.gvInfo.Rows[i].FindControl("pnlFollow")).Visible = true;
+                            ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Visible = false;
+                            ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
+                            //((DropDownList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow")).Visible = true;                        
+                            //ChkBoxLstFollow = ((DropDownList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow"));
+                            //ChkBoxLstFollow.DataTextField = "gdesc";
+                            //ChkBoxLstFollow.DataValueField = "gcod";
+                            //ChkBoxLstFollow.DataSource = dt5;
+                            //ChkBoxLstFollow.DataBind();
+                            //ChkBoxLstFollow.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+
+
+                            ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow")).Visible = true;
+                            CheckBoxList ChkBoxLstFollow = ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow"));
+                            ChkBoxLstFollow.DataTextField = "gdesc";
+                            ChkBoxLstFollow.DataValueField = "gcod";
+                            ChkBoxLstFollow.DataSource = dv1.ToTable();
+                            ChkBoxLstFollow.DataBind();
+                            ChkBoxLstFollow.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+
+                            break;
+
+
+
+
+
+                        case "810100102016": //Status
+
+                            ((Panel)this.gvInfo.Rows[i].FindControl("pnlStatus")).Visible = true;
+                            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
+                            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
+                            ((Panel)this.gvInfo.Rows[i].FindControl("pnlParicdis")).Visible = false;
+                            ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Visible = false;
+                            ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstStatus")).Visible = true;
+                            ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
+
+                            CheckBoxList ChkBoxLstStatus = ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstStatus"));
+                            ChkBoxLstStatus.DataTextField = "gdesc";
+                            ChkBoxLstStatus.DataValueField = "gcod";
+                            ChkBoxLstStatus.DataSource = dv.ToTable();
+                            ChkBoxLstStatus.DataBind();
+                            ChkBoxLstStatus.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+                            break;
+
+                        case "810100102018": //PARTICIPANTS  
+
+                            ((Panel)this.gvInfo.Rows[i].FindControl("pnlFollow")).Visible = false;
+                            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
+                            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
+                            ((Panel)this.gvInfo.Rows[i].FindControl("pnlParicdis")).Visible = true;
+                            ((ListBox)this.gvInfo.Rows[i].FindControl("ddlParticdis")).Visible = true;
+                            ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Visible = false;
+                            ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
+
+
+                            ddlPartic = ((ListBox)this.gvInfo.Rows[i].FindControl("ddlParticdis"));
+                            ddlPartic.DataTextField = "gdesc";
+                            ddlPartic.DataValueField = "gcod";
+                            ddlPartic.DataSource = dt6;
+                            ddlPartic.DataBind();
+                            if (((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim() != "")
+                            {
+                                ddlPartic.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+                            }
+                            int count = Convert.ToInt32(dt.Rows[i]["gdesc1"].ToString().Count());
+                            if (count == 0)
+                            {
+
+
+                                if (empid.Length == 13)
+                                {
+
+                                    empid = empid.Replace("%", "");
+                                    ddlPartic.SelectedValue = empid;
+
+
+                                }
+                                //string empid1 = empid.Substring(0, 12);
+                                //int index = 0;
+                                //DataRow[] rows = dt6.Select("gcod='" + empid1 + "'");
+
+                                //if (rows.Length > 0)
+                                //{
+                                //    index = Convert.ToInt32(dt6.Rows.IndexOf(rows[0]));
+                                //}
+                                //ddlPartic.SelectedIndex = index;
+                            }
+
+
+                            int j;
+                            int k = 0;
+                            string data = "";
+                            for (j = 0; j < count / 12; j++)
+                            {
+                                data = dt.Rows[i]["gdesc1"].ToString().Substring(k, 12);
+                                foreach (ListItem item in ddlPartic.Items)
+                                {
+                                    if (item.Value == data)
+                                    {
+                                        item.Selected = true;
+                                    }
+
+                                }
+                                k = k + 12;
+                            }
+
+
+                            break;
+
+
+
+                        case "810100102015":
+                        case "810100102025"://Muliline
+                            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
+                            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).TextMode = TextBoxMode.MultiLine;
+                            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Rows = 3;
+                            ((Panel)this.gvInfo.Rows[i].FindControl("pnlFollow")).Visible = false;
+                            ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Visible = false;
+                            ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
+
+                            //((DropDownList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow")).Items.Clear();
+                            //((DropDownList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow")).Visible = false;
+
+                            TextBox sd = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis"));
+                            sd.Style.Add("background", "#DFF0D8");
+                            sd.Style.Add("width", "100%");
+
+
+                            //((TextBox)this.gvInfo.Rows[i].FindControl("txtgvVal")).Height=100;
+                            break;
+
+                        case "810100102020": //next Followup date
+
+                            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = true;
+                            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
+                            ((Panel)this.gvInfo.Rows[i].FindControl("pnlParicdis")).Visible = false;
+                            ((Panel)this.gvInfo.Rows[i].FindControl("pnlFollow")).Visible = true;
+                            ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Visible = false;
+                            ((Panel)this.gvInfo.Rows[i].FindControl("pnlTime")).Visible = true;
+                            ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = true;
+
+
+                            string gTime20 = ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Text.Trim();
+
+                            ddlgval1 = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlhour"));
+                            ddlgval1.SelectedValue = (gTime20.Length == 0) ? "" : ASTUtility.Left(gTime20, 2);
+                            ddlgval2 = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlMmin"));
+                            ddlgval2.SelectedValue = (gTime20.Length == 0) ? "" : gTime20.Substring(3, 2);
+                            ddlgval3 = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlslb"));
+                            ddlgval3.SelectedValue = (gTime20.Length == 0) ? "" : ASTUtility.Right(gTime20, 2);
+
+                            break;
+
+                        default:
+                            ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
+                            ((ListBox)this.gvInfo.Rows[i].FindControl("ddlParticdis")).Items.Clear();
+                            ((ListBox)this.gvInfo.Rows[i].FindControl("ddlParticdis")).Visible = false;
+                            ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Visible = false;
+
+                            break;
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
+            }
+        }
     }
 }
 

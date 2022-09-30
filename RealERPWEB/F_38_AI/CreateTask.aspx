@@ -149,11 +149,6 @@
                                 <asp:Label ID="Label13" runat="server">Remakrs</asp:Label>
                                 <asp:TextBox ID="txtremaks" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
                             </div>
-
-
-
-
-
                             <div class="form-group row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 pl-0">
                                     <asp:Label ID="Label23" runat="server">Assign Team Members</asp:Label>
@@ -178,7 +173,7 @@
 
                                  <div class="col-lg-6 col-md-6 col-sm-12 pl-0">
                                     <asp:Label ID="Label8" runat="server">Valocity Type</asp:Label>
-                                    <asp:DropDownList ID="ddltasktype" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
+                                    <asp:DropDownList ID="ddlvalocitytype" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
                                     </asp:DropDownList>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-12">
@@ -211,32 +206,42 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Member" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblmember" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'  ForeColor="Black" Font-Size="12px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Member">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblmember" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lblmember")) %>' Width="120px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                <asp:Label ID="lblmember" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>' Width="250px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                         <asp:TemplateField HeaderText="Role Type">
+                                            <ItemTemplate>
+                                                <asp:Label ID="tblroleType" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "valocitycode")) %>' Width="100px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Annotation ID">
                                             <ItemTemplate>
-                                                <asp:Label ID="tblAnnotation" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "anotation")) %>' ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                <asp:Label ID="tblAnnotation" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "annoid")) %>' ForeColor="Black" Font-Size="12px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Valocity  <br> Type">
                                             <ItemTemplate>
-                                                <asp:Label ID="tbltype" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "tbltype")) %>' ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                <asp:Label ID="tbltype" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "valocitydesc")) %>' Width="130px" ForeColor="Black" Font-Size="12px"></asp:Label>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Valocity <br> QTY">
                                             <ItemTemplate>
-                                                <asp:Label ID="tblValoquantity" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "tblValoquantity")) %>' ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                <asp:Label ID="tblValoquantity" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "valocityqty")) %>' Width="100px" ForeColor="Black" Font-Size="12px"></asp:Label>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Work <br> Hour">
                                             <ItemTemplate>
-                                                <asp:Label ID="tblworkhour" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "tblworkhour")) %>' ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                <asp:Label ID="tblworkhour" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "workhour")) %>' Width="100px" ForeColor="Black" Font-Size="12px"></asp:Label>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>

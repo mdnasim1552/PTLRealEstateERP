@@ -13,15 +13,15 @@ namespace RealERPWEB.F_38_AI
     public partial class CreateTask : System.Web.UI.Page
     {
         ProcessAccess MktData = new ProcessAccess();
-        DataTable vt = new DataTable();
+       
         protected void Page_Load(object sender, EventArgs e)
         {
-            vt.Columns.AddRange(new DataColumn[] { new DataColumn("lblmember"), new DataColumn("anotation"), new DataColumn("tbltype"), new DataColumn("tblValoquantity"), new DataColumn("tblworkhour") });
+           
             if (!IsPostBack)
             {
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Create Task";
 
-                this.VirtualGrid();
+                this.VirtualGrid_DataBind();
                 this.Txtdate.Text = DateTime.Now.ToString("dd-MMM-yyyy");
                 this.GetComdCode();
                 this.GetCustomerList();
@@ -154,10 +154,10 @@ namespace RealERPWEB.F_38_AI
             //task type
             DataView dv2 = dt.DefaultView;
             dv2.RowFilter = " gcod like'71%' ";
-            this.ddltasktype.DataTextField = "gdesc";
-            this.ddltasktype.DataValueField = "gcod";
-            this.ddltasktype.DataSource = dv2.ToTable();
-            this.ddltasktype.DataBind();
+            this.ddlvalocitytype.DataTextField = "gdesc";
+            this.ddlvalocitytype.DataValueField = "gcod";
+            this.ddlvalocitytype.DataSource = dv2.ToTable();
+            this.ddlvalocitytype.DataBind();
 
             //project type
             DataView dv3 = dt.DefaultView;
@@ -214,7 +214,7 @@ namespace RealERPWEB.F_38_AI
                 string projid = this.ddlproject.SelectedValue.ToString();
                 string tasktitle = this.txttasktitle.Text.Trim().ToString();
                 string taskdesc = this.txtdesc.Text.ToString();
-                string tasktype = this.ddltasktype.SelectedValue.ToString();
+                string tasktype = this.ddlvalocitytype.SelectedValue.ToString();
                 string createtask = Txtdate.Text.ToString();
                 string remarks = this.txtremaks.Text.ToString();
                 string estimationtime = this.txtworkhour.Text.ToString();
@@ -252,9 +252,10 @@ namespace RealERPWEB.F_38_AI
             GetBatchList();
             GetAnnotationList();
         }
-        private void VirtualGrid()
+        private void VirtualGrid_DataBind()
         {
-            this.GridVirtual.DataSource = vt;
+            DataTable tbl1 = (DataTable)ViewState["tblt01"];
+            this.GridVirtual.DataSource = tbl1;
             this.GridVirtual.DataBind();
         }
 
@@ -278,12 +279,37 @@ namespace RealERPWEB.F_38_AI
 
         protected void btnaddrow_Click(object sender, EventArgs e)
         {
-            DataTable tblt01 = (DataTable)ViewState["tblt01"];
 
+            try
+            {
+                DataTable tblt01 = (DataTable)ViewState["tblt01"];
 
-            vt.Rows.Add(ddlassignmember.SelectedItem.Text.Trim(), ddlAnnotationid.SelectedItem.Text.Trim(), ddltasktype.SelectedItem.Text.Trim(), txtquantity.Text.Trim(), txtworkhour.Text.Trim());
-            //vt.DefaultView.Sort = "txtmember";
-            VirtualGrid();
+                //DataTable tbl1 = (DataTable)ViewState["tblReq"];
+                string empid = this.ddlassignmember.SelectedValue.ToString();
+                DataRow[] dr2 = tblt01.Select("empid = '" + empid + "'");
+                if (dr2.Length == 0)
+                {
+                    DataRow dr1 = tblt01.NewRow();
+                    DataTable tbl2 = (DataTable)ViewState["tblMat"];
+                    dr1["empid"] = this.ddlassignmember.SelectedValue.ToString();
+                    dr1["empname"] = this.ddlassignmember.SelectedItem.Text;
+                    dr1["valocitycode"] = this.ddlUserRoleType.SelectedItem.Text.Trim();
+                    dr1["annoid"] = this.ddlAnnotationid.SelectedValue.ToString();
+                    dr1["valocitydesc"] = this.ddlvalocitytype.SelectedItem.Text.Trim();
+                    dr1["valocityqty"] = this.txtquantity.Text.Trim();
+                    dr1["workhour"] = this.txtworkhour.Text.Trim();
+                    tblt01.Rows.Add(dr1);
+
+                }
+
+                ViewState["tblt01"] = tblt01;
+                this.VirtualGrid_DataBind();
+            }
+            catch(Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message.ToString() + "');", true);
+            }
+           
         }
 
         protected void ddlbatch_SelectedIndexChanged(object sender, EventArgs e)

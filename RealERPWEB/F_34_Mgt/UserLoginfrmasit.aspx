@@ -110,7 +110,7 @@
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
-                                <asp:CommandField CancelText="Can" ShowEditButton="True" UpdateText="Up" EditText="" ControlStyle-CssClass="fa fa-edit btn-info btn-xs"/>
+                                <asp:CommandField CancelText="Can" ShowEditButton="True" UpdateText="Up" EditText="Edit"/>
                                 <asp:TemplateField HeaderText="User Id">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lbtnUserId" runat="server"

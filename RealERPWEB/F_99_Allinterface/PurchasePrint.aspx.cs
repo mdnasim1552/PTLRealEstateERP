@@ -4019,7 +4019,7 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
                     // Epic ratepbyid	ratepname	ratepdate
-                    case "3101":
+                    //case "3101":
                     case "3357":
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
@@ -4357,7 +4357,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderJBS.rdlc";
                         break;
 
-                    case "3101": 
+                    //case "3101": 
                     case "3357": //Cube
                         Reportpath = "~/Report/RptPurchaseOrderCube.rdlc";
                         break;
@@ -5175,7 +5175,6 @@ namespace RealERPWEB.F_99_Allinterface
                 Rpt1.SetParameters(new ReportParameter("pordnar", pordnar));
 
 
-                Rpt1.SubreportProcessing += new SubreportProcessingEventHandler(LoadSubReport);
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                             ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
