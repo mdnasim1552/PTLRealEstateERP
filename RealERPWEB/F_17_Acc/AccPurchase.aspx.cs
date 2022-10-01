@@ -264,7 +264,7 @@ namespace RealERPWEB.F_17_Acc
                 this.pnlBill.Visible = true;
                 this.PnlNarration.Visible = true;
                 this.GetPreNarration();
-                
+
                 Session.Remove("tblt01");
                 this.CreateTable();
 
@@ -365,7 +365,7 @@ namespace RealERPWEB.F_17_Acc
                 return;
             }
             //for cr dr amount check (without click total button)
-            lbtnTotal_Click(null,null);
+            lbtnTotal_Click(null, null);
             //this.calculation();
             //end nahid 
 
@@ -1073,7 +1073,7 @@ namespace RealERPWEB.F_17_Acc
             switch (comcod)
             {
                 case "3330": // Bridge
-                //case "3101":
+                             //case "3101":
                     advadj = "advancedadj";
                     break;
 
@@ -1189,7 +1189,6 @@ namespace RealERPWEB.F_17_Acc
             this.GetAdvanced();
             this.SupplierOverallAdvanced(pactcode);
             this.Data_Bind();
-
             this.GetNarration();
 
 
@@ -1226,21 +1225,22 @@ namespace RealERPWEB.F_17_Acc
             dgv2.DataSource = tbl1;
             dgv2.DataBind();
             this.GridColoumnVisible();
-            calculation();
+            this.calculation();
             //this.GetNarration();
             string comcod = this.GetCompCode();
-            if(comcod=="3355")
+            switch (comcod)
             {
-                this.SelectPaytoName();
+                case "3101":
+                case "3355":
+                case "3368":
+                    this.txtPayto.Text = ddlSupList.SelectedItem.Text.Trim();
+                    break;
+                default:
+                    this.txtPayto.Text = "";
+                    break;
 
             }
         }
-
-        private void SelectPaytoName()
-        {
-            this.txtPayto.Text = ddlSupList.SelectedItem.Text.Trim();
-        }
-
 
         private void GetNarration()
         {
@@ -1510,6 +1510,10 @@ namespace RealERPWEB.F_17_Acc
 
                 //Specification           
                 ddlspcfdesc.Enabled = (actcode.Substring(0, 2) == "23") ? true : false;
+                if(actcode.Substring(0, 2) == "23")
+                {
+                    ddlspcfdesc.SelectedValue = ddlSupList.SelectedValue.ToString();
+                }
 
             }
         }

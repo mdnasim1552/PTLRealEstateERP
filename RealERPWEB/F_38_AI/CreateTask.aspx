@@ -136,7 +136,7 @@
                                
                             </div>
                             <div class="form-group row">
-                                <asp:Label ID="Label11" runat="server">Task Title</asp:Label>
+                                <asp:Label ID="Label11" runat="server">Task Name</asp:Label>
                                 <asp:TextBox ID="txttasktitle" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
                             </div>
 
@@ -151,7 +151,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 pl-0">
-                                    <asp:Label ID="Label23" runat="server">Assign Team Members</asp:Label>
+                                    <asp:Label ID="Label23" runat="server">Assigne Team Members</asp:Label>
                                     <asp:DropDownList ID="ddlassignmember" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
                                     </asp:DropDownList>
                                 </div>

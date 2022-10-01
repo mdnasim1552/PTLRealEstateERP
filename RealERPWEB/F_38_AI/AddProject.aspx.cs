@@ -438,7 +438,7 @@ namespace RealERPWEB.F_38_AI
                     return;
                 }
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Batch  Saved Successfully');", true);
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#CustomerModalAdd", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#CustomerModalAdd').hide();", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#CreateModalBatch", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#CreateModalBatch').hide();", true);
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
             }
             catch (Exception ex)
