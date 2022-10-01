@@ -70,15 +70,27 @@ namespace RealERPWEB.F_99_Allinterface
        private void GetAIInterface()
         {
             string comcod = this.GetCompCode();
-            DataSet dt = HRData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETINTERFACE", "", "", "", "", "", "");
-            if (dt == null)
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETINTERFACE", "", "", "", "", "", "");
+            if (ds == null)
                 return;
 
-            Session["tblprojectlist"] = dt.Tables[0];
-            this.gvInterface.DataSource = dt;
-            this.gvInterface.DataBind();
+            Session["tblprojectlist"] = ds.Tables[0];
+            Session["tblassinglist"] = ds.Tables[1];
+            this.data_Bind();
         }
 
+        private void data_Bind()
+        {
+            DataTable tbl1 = (DataTable)Session["tblprojectlist"];
+            DataTable tblasing = (DataTable)Session["tblassinglist"];
+
+            this.gvInterface.DataSource = tbl1;
+            this.gvInterface.DataBind();
+
+            this.gvAssingJob.DataSource = tblasing;
+            this.gvAssingJob.DataBind();
+
+        }
         protected void TasktState_SelectedIndexChanged(object sender, EventArgs e)
         {
 
