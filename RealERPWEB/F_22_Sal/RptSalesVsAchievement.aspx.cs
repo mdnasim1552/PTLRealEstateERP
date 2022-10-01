@@ -57,9 +57,6 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
-
-
-
         private void ProjectName()
         {
             string comcod = this.GetComeCode();
@@ -72,8 +69,6 @@ namespace RealERPWEB.F_22_Sal
 
 
         }
-
-
 
         private void GetGroup()
         {
@@ -110,8 +105,6 @@ namespace RealERPWEB.F_22_Sal
 
 
         }
-
-
 
         protected void lnkbtnOk_Click(object sender, EventArgs e)
         {
@@ -160,7 +153,6 @@ namespace RealERPWEB.F_22_Sal
 
             return dt1;
         }
-
 
         private void Data_Bind()
         {
@@ -242,7 +234,7 @@ namespace RealERPWEB.F_22_Sal
 
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesvsAchievement>();
-           // var lst1 = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesvsAchievementtypecount>();
+          
            
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSalesVsAchivement", lst, null, null);
             Rpt1.EnableExternalImages = true;

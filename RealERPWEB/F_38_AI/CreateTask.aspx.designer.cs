@@ -402,13 +402,13 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.Label Label8;
 
         /// <summary>
-        /// ddltasktype control.
+        /// ddlvalocitytype control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddltasktype;
+        protected global::System.Web.UI.WebControls.DropDownList ddlvalocitytype;
 
         /// <summary>
         /// Label9 control.
