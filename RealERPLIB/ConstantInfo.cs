@@ -1244,7 +1244,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2202269", "F_22_Sal", "RptCollSumOfCurMSale", "", "Collection Summary Of Current Month Sales ", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202270", "F_22_Sal", "RptClientDateFile", "", "Client Data File ", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202271", "F_22_Sal", "RptPeriodicSalesWithCollection", "", "Periodic Sales With Collection ", "Sales", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2203000", "2202275", "F_22_Sal", "RptSalesVsAchievement?", "Type=MonsalVsAchieve", "Monthly Sales Vs Achievement ", "Sales", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2203000", "2202275", "F_22_Sal", "RptSalesVsAchievement?", "Type=MonsalVsAchieve", "Month Wise Sales (Reconcilation)", "Sales", "False", "False", "False", "False" });
 
 
 
@@ -7445,7 +7445,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000017", "20. Competitive Price Survey", "F_22_Sal/SaleSurvey?Type=CS", "", true, "" });
 
 
-          
+
 
             //mnuTbl1.Rows.Add(new Object[] { "0324000000", "", "", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0325000000", "", "", "", true, "" });
@@ -7487,6 +7487,7 @@ namespace RealERPLIB
 
 
 
+          
 
 
 
@@ -7494,7 +7495,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000001", "18. Daily Sales & Collection Status", "F_22_Sal/RptSalSummery?Type=dSaleVsColl&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000002", "15. Month Wise Sales", "F_17_Acc/RptAccCollVsClearance?Type=MonSales&comcod=", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0401000003", "15. Customer Bill Info", "F_22_Sal/RptCustomerBill?Type=CustBill", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000004", "16. Monthly Sales Vs Achievement ", "F_22_Sal/RptSalesVsAchievement?Type=MonsalVsAchieve", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000004", "16. Month Wise Sales (Reconcilation)", "F_22_Sal/RptSalesVsAchievement?Type=MonsalVsAchieve", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000004", "17. Periodic Sales With Collection ", "F_22_Sal/RptPeriodicSalesWithCollection", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0401000005", "18. Monthly Sales Target-Market", "F_22_Sal/RptSalSummery?Type=mSalesTarget", "", true, "" });

@@ -218,7 +218,8 @@ namespace RealERPWEB.F_22_Sal
             string comadd = hst["comadd1"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
-            string date = Convert.ToDateTime(this.txtfrmdate.Text).ToString("MMMM-yyyy");
+            string frmdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMMM-yyyy");
             string type = this.ddlgrp.SelectedValue.ToString();
             string projectName = "";
             DataTable dt = (DataTable)Session["tblsalesvscoll"];
@@ -241,12 +242,13 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("printdate", printdate));
-            Rpt1.SetParameters(new ReportParameter("date", date));
+           
             Rpt1.SetParameters(new ReportParameter("projectName", projectName));
             Rpt1.SetParameters(new ReportParameter("shopno", shopno + " Units"));
             Rpt1.SetParameters(new ReportParameter("aptno", aptno +" Units"));
             //Rpt1.SetParameters(new ReportParameter("officeno", officeno));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Achivement for month of "+date+" "));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Achievement for month of "+ frmdate + " to " + todate));
+            Rpt1.SetParameters(new ReportParameter("RptTitle1", "Monthly Sales Report"));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             //Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
