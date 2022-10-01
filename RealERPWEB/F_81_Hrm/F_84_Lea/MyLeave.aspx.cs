@@ -52,8 +52,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     ((Label)this.Master.FindControl("lblTitle")).Text = "APPLY LEAVE (MGT)";
                     this.empMgt.Visible = true;
                     GetEmpLoyee();
+                    getVisibilty();
                     // GetSupvisorCheck();
-                   // this.ddlEmpName_SelectedIndexChanged(null, null);
+                    // this.ddlEmpName_SelectedIndexChanged(null, null);
                 }
                 else if (qtype == "COMMON")
                 {
@@ -234,7 +235,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.chkBoxSkippWH.Checked = true;
                 chkBoxSkippWH_CheckedChanged(null, null);
                 // this part for BTI Resign Employee show
-                if ((comcod == "3365" || (comcod == "3101")) && qtype == "MGT")
+                if ((comcod == "3365" || comcod == "3101") && qtype == "MGT")
                 {
                     this.SpResign.Visible = true;
                 }
@@ -1414,7 +1415,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             {
                 this.GetEmpLoyee();
             }
-            this.ddlEmpName_SelectedIndexChanged(null, null);
+          //  this.ddlEmpName_SelectedIndexChanged(null, null);
 
         }
 
