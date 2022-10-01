@@ -3837,7 +3837,7 @@
 
 
 
-                                                            <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal" OnTextChanged="ChkBoxLstFollow_TextChanged" AutoPostBack="true"
+                                                            <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal"
                                                                 runat="server" CssClass="col-md-12 checkbox">
                                                             </asp:CheckBoxList>
 
