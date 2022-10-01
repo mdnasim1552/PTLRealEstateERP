@@ -159,6 +159,7 @@ namespace RealERPWEB.F_22_Sal
                 return;
 
             Session["tblt02"] = ds1.Tables[0];
+            Session["tblsalsurvery"] = ds1.Tables[1];
             //Session["tblt02"] = this.HiddenSameData(ds1.Tables[2]);
 
 
@@ -206,21 +207,37 @@ namespace RealERPWEB.F_22_Sal
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string CurDate1 = this.GetStdDate(this.txtCurMSRDate.Text.Trim());
             string comments = "";
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printdate = System.DateTime.Now.ToString("dd/MM/yyyy");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string usrname = ((DataTable)Session["tblsalsurvery"]).Rows[0]["username"].ToString();
+            string usrdesig = ((DataTable)Session["tblsalsurvery"]).Rows[0]["usrdesig"].ToString();
 
-            string mMSRNo = this.Request.QueryString["msrno"].ToString() == "" ? "" : this.Request.QueryString["msrno"].ToString();
+           // string usernameadesig = usrname + "/" + usrdesig;
+           // string mMSRNo = this.Request.QueryString["msrno"].ToString() == "" ? "" : this.Request.QueryString["msrno"].ToString();
 
             LocalReport Rpt1 = new LocalReport();
 
 
             //string surveyNo = this.lblCurMSRNo1.Text + this.txtCurMSRNo2.Text;
-            string surveyNo = mMSRNo;
+            //string surveyNo = mMSRNo;
 
             DataTable dtdetails = (DataTable)Session["tblt02"];
 
             var lst = dtdetails.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesSurveyEntry>();
-           
+            string developer = "";
+            string proaddress = "";
+
+            foreach (var lst1 in lst)
+            {
+                developer = developer + lst1.companyname + ", ";
+                proaddress = proaddress + lst1.location + ", ";
+
+
+
+            }
+            developer = developer.Length > 0 ? developer.Substring(0, developer.Length - 2) : developer;
+            proaddress = proaddress.Length > 0 ? proaddress.Substring(0, proaddress.Length - 2) : proaddress;
+
 
 
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptComSalesServey", lst, null, null);
@@ -231,17 +248,16 @@ namespace RealERPWEB.F_22_Sal
             
             Rpt1.SetParameters(new ReportParameter("SurveyDate", printdate));
             Rpt1.SetParameters(new ReportParameter("PurposeOfSurvey", "Price Survey"));
-            Rpt1.SetParameters(new ReportParameter("AreaOfSurvey", "Nasirabad H/S, Road No-4,5 & 6"));
-            Rpt1.SetParameters(new ReportParameter("TxtCompCompare", "Sanmar,CPDL,Ranks FC"));
+            Rpt1.SetParameters(new ReportParameter("AreaOfSurvey", proaddress));
+            Rpt1.SetParameters(new ReportParameter("TxtCompCompare", developer));
             Rpt1.SetParameters(new ReportParameter("CitySurvey", "Chattogram"));
             Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Price Survey"));
             Rpt1.SetParameters(new ReportParameter("comments", comments));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
-            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("PrepName", usrname));
+            Rpt1.SetParameters(new ReportParameter("PrepDesig", usrdesig));
+            
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-
-
-
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
