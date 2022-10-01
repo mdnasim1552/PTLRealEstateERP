@@ -236,20 +236,23 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 double ttlamt = Convert.ToDouble("0" + ((TextBox)gvsettlemntcredit.Rows[i].FindControl("TtlAmout")).Text.Trim());
                 double numofday =Convert.ToDouble("0"+ ((TextBox)gvsettlemntcredit.Rows[i].FindControl("lblnmday")).Text.Trim());
                 var index = sttlmntinfo1.FindIndex(p => p.hrgcod == hrgcod);
-                sttlmntinfo1[index].numofday = gross;
-                sttlmntinfo1[index].numofday = numofday;
+
 
 
                 switch (hrgcod)
                 {
                     case "35101"://salary 36,513/30*23	
                         sttlmntinfo1[index].ttlamt = (gross / 30) * numofday;
+                        sttlmntinfo1[index].amount = gross;
+                        sttlmntinfo1[index].numofday = numofday;
                         break;
 
                     case "35108"://earn leave 36,513 * 12 / 365 * 0
                         sttlmntinfo1[index].ttlamt = gross * 12 / 365 * numofday;
-                        
-                       break;
+                        sttlmntinfo1[index].amount = gross;
+                        sttlmntinfo1[index].numofday = numofday;
+
+                        break;
   
 
                 }
@@ -265,12 +268,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 double ttlamt = Convert.ToDouble("0" + ((TextBox)gvsttlededuct.Rows[i].FindControl("TtlAmout")).Text.Trim());
                 double numofday = Convert.ToDouble("0" + ((TextBox)gvsttlededuct.Rows[i].FindControl("lblnmday")).Text.Trim());
                 var index2 = sttlmntinfo2.FindIndex(p => p.hrgcod == hrgcod);
-                sttlmntinfo1[index2].numofday = numofday;
+    
 
                 switch (hrgcod)
                 {
                     case "35206"://absent
-                        sttlmntinfo1[index2].ttlamt = (gross / 30) * numofday;
+                        sttlmntinfo2[index2].ttlamt = (gross / 30) * numofday;
+                        sttlmntinfo2[index2].amount = gross;
+                        sttlmntinfo2[index2].numofday = numofday;
                         break;
 
                     //case "35216"://transport leave 36,513 * 12 / 365 * 0
@@ -278,16 +283,21 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     //    break;
 
                     case "35224"://cl 	
-                        sttlmntinfo1[index2].ttlamt = gross*12/365* numofday;
+                        sttlmntinfo2[index2].ttlamt = gross*12/365* numofday;
+                        sttlmntinfo2[index2].amount = gross;
+                        sttlmntinfo2[index2].numofday = numofday;
                         break;
 
                     case "35226"://sl leave 
-                        sttlmntinfo1[index2].ttlamt = gross * 12 / 365 * numofday;
+                        sttlmntinfo2[index2].ttlamt = gross * 12 / 365 * numofday;
+                        sttlmntinfo2[index2].amount = gross;
+                        sttlmntinfo2[index2].numofday = numofday;
 
                         break;
                     case "35228"://el leave
-                        sttlmntinfo1[index2].ttlamt = gross * 12 / 365 * numofday;
-
+                        sttlmntinfo2[index2].ttlamt = gross * 12 / 365 * numofday;
+                        sttlmntinfo2[index2].amount = gross;
+                        sttlmntinfo2[index2].numofday = numofday;
                         break;
 
                 }
