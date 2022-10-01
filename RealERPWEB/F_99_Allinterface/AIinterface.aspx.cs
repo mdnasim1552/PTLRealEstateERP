@@ -24,14 +24,13 @@ namespace RealERPWEB.F_99_Allinterface
                 //    Response.Redirect("../AcceessError.aspx");
                 //((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "AI Interface";
-                //this.txtcreateDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
-                //DateTime now = DateTime.Now;
-                //var startDate = new DateTime(now.Year, now.Month, 1);
-                //var endDate = startDate.AddMonths(1).AddDays(-1);
+                
+                DateTime now = DateTime.Now;
+                var startDate = new DateTime(now.Year, now.Month, 1);
+                var endDate = startDate.AddMonths(1).AddDays(-1);
+                this.txtfrmdate.Text = Convert.ToDateTime(startDate).ToString("dd-MMM-yyyy");
+                this.txttodate.Text = Convert.ToDateTime(endDate).ToString("dd-MMM-yyyy");
 
-
-                //this.txtfrmdate.Text = Convert.ToDateTime(startDate).ToString("dd-MMM-yyyy");
-                //this.txttodate.Text = Convert.ToDateTime(endDate).ToString("dd-MMM-yyyy");
                 //this.GetEmplist();
 
                 //Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -40,8 +39,8 @@ namespace RealERPWEB.F_99_Allinterface
 
                 ////this.getAllData();
 
-                //this.TaskSteps.SelectedIndex = 0;
-                //this.TaskSteps_SelectedIndexChanged(null, null);
+                this.TaskSteps.SelectedIndex = 0;
+                this.TaskSteps_SelectedIndexChanged(null, null);
 
 
 
@@ -52,17 +51,7 @@ namespace RealERPWEB.F_99_Allinterface
         {
             string comcod = this.GetCompCode();
             string txtEmpname = "%%";
-            string type = "";
-            switch (comcod)
-            {
-                case "3365":
-                case "3101":
-                    type = "lnemp";
-                    break;
-                default:
-                    type = "";
-                    break;
-            }
+            string type = "";       
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string empid = hst["empid"].ToString() ?? "";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLNEMPLIST", txtEmpname, type, "", "", "", "", "", "", "");
@@ -81,15 +70,27 @@ namespace RealERPWEB.F_99_Allinterface
        private void GetAIInterface()
         {
             string comcod = this.GetCompCode();
-            DataSet dt = HRData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETINTERFACE", "", "", "", "", "", "");
-            if (dt == null)
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETINTERFACE", "", "", "", "", "", "");
+            if (ds == null)
                 return;
 
-            Session["tblprojectlist"] = dt.Tables[0];
-            this.gvInterface.DataSource = dt;
-            this.gvInterface.DataBind();
+            Session["tblprojectlist"] = ds.Tables[0];
+            Session["tblassinglist"] = ds.Tables[1];
+            this.data_Bind();
         }
 
+        private void data_Bind()
+        {
+            DataTable tbl1 = (DataTable)Session["tblprojectlist"];
+            DataTable tblasing = (DataTable)Session["tblassinglist"];
+
+            this.gvInterface.DataSource = tbl1;
+            this.gvInterface.DataBind();
+
+            this.gvAssingJob.DataSource = tblasing;
+            this.gvAssingJob.DataBind();
+
+        }
         protected void TasktState_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -167,7 +168,7 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void TaskSteps_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            this.GetAIInterface();
         }
 
        

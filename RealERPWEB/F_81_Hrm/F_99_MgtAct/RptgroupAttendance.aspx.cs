@@ -187,6 +187,7 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
             string comadd = hst["comadd1"].ToString();
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
+            string fdate = this.txtFdate.ToString();
 
             string todydate = this.txtFdate.Text;
             string title = this.Request.QueryString["Type"].ToString() == "Dept" ? "Daily Attendence Department wise" : "Daily Attendence Group";
@@ -217,6 +218,7 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
             Rpt1.SetParameters(new ReportParameter("rptTitle", title));
             Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+            Rpt1.SetParameters(new ReportParameter("Fdate", fdate));
 
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
 
