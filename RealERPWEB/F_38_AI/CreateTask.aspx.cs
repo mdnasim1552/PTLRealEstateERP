@@ -277,6 +277,12 @@ namespace RealERPWEB.F_38_AI
             ViewState["tblt01"] = tblt01;
         }
 
+        private void CreateDataTable()
+        {
+            this.CreateTableAssign();
+
+        }
+
         protected void btnaddrow_Click(object sender, EventArgs e)
         {
 
