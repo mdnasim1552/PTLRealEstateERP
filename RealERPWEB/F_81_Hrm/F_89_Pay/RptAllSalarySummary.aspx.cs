@@ -153,7 +153,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case 3:
                     this.GetGrossPayComparison();
                     break;
-                case 4:
+                case 4:// Gross Reconcilation
                     this.GetGrossPayRecon();
                     break;
                 case 5:

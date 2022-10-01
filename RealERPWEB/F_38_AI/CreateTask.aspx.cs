@@ -88,6 +88,7 @@ namespace RealERPWEB.F_38_AI
             this.ddlbatch.DataSource = ds.Tables[0];
             this.ddlbatch.DataBind();
 
+            ddlbatch_SelectedIndexChanged(null,null);
         }
 
 
@@ -95,7 +96,8 @@ namespace RealERPWEB.F_38_AI
         {
             string comcod = this.GetComdCode();
             string prjlist = this.ddlproject.SelectedValue.ToString() == "" ? "16%" : this.ddlproject.SelectedValue.ToString() + "%";
-            string usrrole = this.ddlUserRoleType.SelectedValue.ToString();
+            string usrrole = this.ddlUserRoleType.SelectedValue.ToString() == "95002" ? "03402" :
+                            this.ddlUserRoleType.SelectedValue.ToString() == "95003" ? "03403" : "03401";
             DataSet ds = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETANNOTAIONID", prjlist, usrrole, "", "", "", "");
             if (ds == null)
                 return;
@@ -204,7 +206,12 @@ namespace RealERPWEB.F_38_AI
             {
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = this.GetComdCode();
-                // batchid = @Desc1,tasktitle = @Desc2,taskdesc = @Desc3,tasktype = @Desc4,createtask = @Desc5,remarks = @Desc6,estimationtime = @Desc7,dataset = @Desc8,qty = @Desc9,worktype = @Desc10,perhourqty = @Desc11
+                DataTable tbl1 = (DataTable)ViewState["tblt01"];
+
+                DataSet ds1 = new DataSet("ds1");
+                ds1.Tables.Add(tbl1);
+                ds1.Tables[0].TableName = "tbl1";
+
 
                 string userid = hst["usrid"].ToString();
                 string Terminal = hst["compname"].ToString();
@@ -214,19 +221,19 @@ namespace RealERPWEB.F_38_AI
                 string projid = this.ddlproject.SelectedValue.ToString();
                 string tasktitle = this.txttasktitle.Text.Trim().ToString();
                 string taskdesc = this.txtdesc.Text.ToString();
-                string tasktype = this.ddlvalocitytype.SelectedValue.ToString();
+                string tasktype = "";// this.ddlvalocitytype.SelectedValue.ToString();
                 string createtask = Txtdate.Text.ToString();
-                string remarks = this.txtremaks.Text.ToString();
-                string estimationtime = this.txtworkhour.Text.ToString();
-                string dataset = this.ddldataset.SelectedValue.ToString();
-                string qty = this.txtquantity.Text.ToString();
-                string worktype = this.ddlworktype.SelectedValue.ToString();
-                string perhourqty = "";//this.txtworkquantity.Text.ToString();
+                string remarks = ""; //this.txtremaks.Text.ToString();
+                string estimationtime = "0"; //this.txtworkhour.Text.ToString();
+                string dataset = ""; //this.ddldataset.SelectedValue.ToString();
+                string qty = "0"; //this.txtquantity.Text.ToString();
+                string worktype = ""; //this.ddlworktype.SelectedValue.ToString();
+                string perhourqty = "0";//this.txtworkquantity.Text.ToString();
                 string taskid = "";
-                string assmember = this.ddlassignmember.SelectedValue.ToString();
-                string annotation = this.ddlAnnotationid.SelectedValue.ToString();
+                string assmember = ""; //this.ddlassignmember.SelectedValue.ToString();
+                string annotation = ""; //this.ddlAnnotationid.SelectedValue.ToString();
 
-                bool result = MktData.UpdateTransInfo2(comcod, "dbo_ai.SP_ENTRY_AI", "TASK_INSERTUPDATE", batchid, tasktitle, taskdesc, tasktype, createtask, remarks, estimationtime, dataset, qty, worktype, perhourqty, userid, Terminal, Sessionid, Date, projid, taskid, "", "", "", "");
+                bool result = MktData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "TASK_INSERTUPDATE", ds1, null,null, batchid, tasktitle, taskdesc, tasktype, createtask, remarks, estimationtime, dataset, qty, worktype, perhourqty, userid, Terminal, Sessionid, Date, projid, taskid, "", "", "", "");
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail..!!');", true);
@@ -260,8 +267,8 @@ namespace RealERPWEB.F_38_AI
         }
 
         private void CreateTableAssign()
-        { 
-        
+        {
+
             DataTable tblt01 = new DataTable();
             tblt01.Columns.Add("jobid", Type.GetType("System.String"));
             tblt01.Columns.Add("batchid", Type.GetType("System.String"));
@@ -270,13 +277,14 @@ namespace RealERPWEB.F_38_AI
             tblt01.Columns.Add("empname", Type.GetType("System.String"));
             tblt01.Columns.Add("valocitycode", Type.GetType("System.String"));
             tblt01.Columns.Add("valocitydesc", Type.GetType("System.String"));
-            tblt01.Columns.Add("annoid", Type.GetType("System.String"));          
+            tblt01.Columns.Add("annoid", Type.GetType("System.String"));
             tblt01.Columns.Add("valocityqty", Type.GetType("System.Double"));
             tblt01.Columns.Add("workhour", Type.GetType("System.Double"));
-            
+
             ViewState["tblt01"] = tblt01;
         }
 
+       
         protected void btnaddrow_Click(object sender, EventArgs e)
         {
 
@@ -291,6 +299,7 @@ namespace RealERPWEB.F_38_AI
                 {
                     DataRow dr1 = tblt01.NewRow();
                     DataTable tbl2 = (DataTable)ViewState["tblMat"];
+                    dr1["batchid"] = this.ddlbatch.SelectedValue.ToString();
                     dr1["empid"] = this.ddlassignmember.SelectedValue.ToString();
                     dr1["empname"] = this.ddlassignmember.SelectedItem.Text;
                     dr1["valocitycode"] = this.ddlUserRoleType.SelectedItem.Text.Trim();
@@ -299,7 +308,7 @@ namespace RealERPWEB.F_38_AI
                     dr1["valocityqty"] = this.txtquantity.Text.Trim();
                     dr1["workhour"] = this.txtworkhour.Text.Trim();
                     tblt01.Rows.Add(dr1);
-
+                    
                 }
 
                 ViewState["tblt01"] = tblt01;

@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB.F_22_Sal
+namespace RealERPWEB.F_38_AI
 {
 
 
-    public partial class SaleSurvey
+    public partial class Projects
     {
 
         /// <summary>
@@ -24,102 +24,147 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
-        /// lblCurMSRNo1 control.
+        /// UpdateProgress2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCurMSRNo1;
+        protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// txtCurMSRDate control.
+        /// HyperLink1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCurMSRDate;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
 
         /// <summary>
-        /// txtCurMSRDate_CalendarExtender control.
+        /// HyperLink3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtCurMSRDate_CalendarExtender;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink3;
 
         /// <summary>
-        /// lblprevious control.
+        /// HyperLink4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblprevious;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink4;
 
         /// <summary>
-        /// lnkbtnFindPreMR control.
+        /// HyperLink5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnFindPreMR;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink5;
 
         /// <summary>
-        /// ddlPrevMSRList control.
+        /// HyperLink2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPrevMSRList;
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
 
         /// <summary>
-        /// lbtnMSROk control.
+        /// TasktState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnMSROk;
+        protected global::System.Web.UI.WebControls.RadioButtonList TasktState;
 
         /// <summary>
-        /// lblprojectname control.
+        /// MultiView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblprojectname;
+        protected global::System.Web.UI.WebControls.MultiView MultiView1;
 
         /// <summary>
-        /// chkProjectName control.
+        /// OverView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox chkProjectName;
+        protected global::System.Web.UI.WebControls.View OverView;
 
         /// <summary>
-        /// lbtnSelect control.
+        /// ListView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnSelect;
+        protected global::System.Web.UI.WebControls.View ListView;
 
         /// <summary>
-        /// gvMSRInfo2 control.
+        /// BoardView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvMSRInfo2;
+        protected global::System.Web.UI.WebControls.View BoardView;
+
+        /// <summary>
+        /// TimelineView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View TimelineView;
+
+        /// <summary>
+        /// CalendarView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View CalendarView;
+
+        /// <summary>
+        /// WorkflowView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View WorkflowView;
+
+        /// <summary>
+        /// DashboardView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View DashboardView;
+
+        /// <summary>
+        /// FileView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View FileView;
     }
 }
