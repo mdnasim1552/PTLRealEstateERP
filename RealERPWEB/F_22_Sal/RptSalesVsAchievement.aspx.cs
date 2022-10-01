@@ -123,8 +123,10 @@ namespace RealERPWEB.F_22_Sal
 
                 return;
             }
+            Session["tblsalesvscoll02"] = ((DataTable)ds1.Tables[0]).Copy();
 
             Session["tblsalesvscoll"] = this.HiddenSameData(ds1.Tables[0]);
+
             Session["tbltypecount"] = ds1.Tables[1];
           
             this.Data_Bind();
@@ -222,7 +224,7 @@ namespace RealERPWEB.F_22_Sal
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMMM-yyyy");
             string type = this.ddlgrp.SelectedValue.ToString();
             string projectName = "";
-            DataTable dt = (DataTable)Session["tblsalesvscoll"];
+            DataTable dt = (DataTable)Session["tblsalesvscoll02"];
             DataTable dt1 = (DataTable)Session["tbltypecount"];
 
 
