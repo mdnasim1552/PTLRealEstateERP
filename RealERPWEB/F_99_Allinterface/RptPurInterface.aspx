@@ -486,7 +486,6 @@
 
                 var strData = strKey.value.toLowerCase().split(" ");
                 var tbldata;
-
                 switch (gvname) {
 
                     case 'gvReqInfo':
@@ -534,20 +533,14 @@
                     case 'gvmrrapp':
                         tblData = document.getElementById("<%=this.gvmrrapp.ClientID %>");
                         break;
-                        
+
                     case 'gvPurBill':
                         tblData = document.getElementById("<%=this.gvPurBill.ClientID %>");
                         break;
                     default:
                         tblData = document.getElementById("<%=gvReqInfo.ClientID %>");
-
                         break;
-
-
-
                 }
-
-
                 var rowData;
                 for (var i = 0; i < tblData.rows.length; i++) {
                     rowData = tblData.rows[i].cells[cellNr].innerHTML;
@@ -566,25 +559,19 @@
 
             catch (e) {
                 alert(e.message);
-
             }
 
         }
 
 
         $(document).ready(function () {
-
             //For navigating using left and right arrow of the keyboard
             pageLoaded();
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
         function pageLoaded() {
-
             try {
-
-
                 var comcod = <%=this.GetCompCode()%>;
-
                 switch (comcod) {
 
                     case 1206:   // ACME   
@@ -629,10 +616,8 @@
                         $(".tbMenuWrp table tr td:nth-child(18)").hide();
                         break;
 
-
-
                     case 3354:  //Edison Real Estate
-                   
+
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval                      
@@ -645,10 +630,6 @@
                         $(".tbMenuWrp table tr td:nth-child(18)").hide();
                         break;
 
-
-
-
-                    
                     case 1205:  //P2P Construction
                     case 3351:  //wecon Properties
                     case 3352:  //p2p360
@@ -664,11 +645,6 @@
                         $(".tbMenuWrp table tr td:nth-child(16)").hide();
                         $(".tbMenuWrp table tr td:nth-child(18)").hide();
                         break;
-
-
-
-
-
 
                     case 1103:   //Tanvir
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
@@ -704,7 +680,7 @@
                         $(".tbMenuWrp table tr td:nth-child(8)").hide();
                         $(".tbMenuWrp table tr td:nth-child(9)").hide();
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(14)").hide();                       
+                        $(".tbMenuWrp table tr td:nth-child(14)").hide();
                         $(".tbMenuWrp table tr td:nth-child(18)").hide();
 
                         break;
@@ -729,15 +705,15 @@
                         break;
 
                     case 3368:  //Finlay
-                  
+
 
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
-                      //  $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
+                        //  $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval                      
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
                         $(".tbMenuWrp table tr td:nth-child(8)").hide()
                         $(".tbMenuWrp table tr td:nth-child(9)").hide();
-                       //$(".tbMenuWrp table tr td:nth-child(13)").hide();  //Work Order(1st Appr)
+                        //$(".tbMenuWrp table tr td:nth-child(13)").hide();  //Work Order(1st Appr)
                         //$(".tbMenuWrp table tr td:nth-child(14)").hide(); //Work Order(2nd Appr)
                         $(".tbMenuWrp table tr td:nth-child(16)").hide();
                         $(".tbMenuWrp table tr td:nth-child(18)").hide();
@@ -745,8 +721,8 @@
 
 
                     case 3367:  //Epic  
-                    case 3101:  //Epic
-                                             
+                    //case 3101:  //Epic
+
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check      
                         //$(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
@@ -771,14 +747,8 @@
                         $(".tbMenuWrp table tr td:nth-child(18)").hide();
                         //Added 
                         // $(".tbMenuWrp table tr td:nth-child(16)").hide();
-
                         break;
-
-
-
                 }
-
-
 
                 var gv1 = $('#<%=this.gvReqInfo.ClientID %>');
                 var gv2 = $('#<%=this.gvReqChk.ClientID%>');
@@ -814,8 +784,6 @@
                 gvmapp.Scrollable();
                 gv14.Scrollable();
                 gv15.Scrollable();
-
-
                 //$("input, select").bind("keydown", function (event) {
                 //    var k1 = new KeyPress();
                 //    k1.textBoxHandler(event);
@@ -833,21 +801,19 @@
             }
 
             catch (e) {
-
                 alert(e.message);
-
             }
-
-
         };
-
-
-
         function FunPurchaseOrder(url) {
             window.open('' + url + '', '_blank');
-
+        }
+        function openReqModal() {
+            $('#modalReqNote').modal('toggle');
         }
 
+        function closeReqModal() {
+            $('#modalReqNote').modal('hide');
+        }
     </script>
 
 
@@ -863,12 +829,6 @@
 
     <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick">
     </asp:Timer>
-
-
-
-
-
-
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -936,7 +896,7 @@
                                 <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-primary" OnClick="lbtnOk_Click">Ok</asp:LinkButton></li>
                             </div>
                         </div>
-                        
+
 
                         <div class="col-md-1">
                             <div class=" btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -975,14 +935,14 @@
                             <asp:Button ID="lblMIMEInfo" runat="server" CssClass="smLbl_to" Height="20px" Style="text-align: center; line-height: 20px; padding: 0; float: right;" Text="Search" />
                         </div>
 
-                          <div class="col-md-1">
-                            <div class="form-group">     
+                        <div class="col-md-1">
+                            <div class="form-group">
 
                                 <asp:HyperLink ID="hlnkMktInterface" runat="server" Target="_blank" NavigateUrl="~/F_99_Allinterface/MKTProInterface?Type=Report" Visible="false" CssClass=" btn btn-warning">Mar. Interface</asp:HyperLink>
                             </div>
                         </div>
 
-                      
+
 
                     </div>
 
@@ -1013,7 +973,8 @@
                                                         <asp:ListItem Value="12"></asp:ListItem>
                                                         <asp:ListItem Value="13"></asp:ListItem>
                                                         <asp:ListItem Value="14"></asp:ListItem>
-                                                      <asp:ListItem Value="15"></asp:ListItem>  <%--Material Received(Approved)--%>
+                                                        <asp:ListItem Value="15"></asp:ListItem>
+                                                        <%--Material Received(Approved)--%>
                                                         <asp:ListItem Value="16"></asp:ListItem>
                                                         <asp:ListItem Value="17"></asp:ListItem>
                                                         <asp:ListItem Value="18"></asp:ListItem>
@@ -1488,7 +1449,7 @@
 
                                                                     </asp:HyperLink>
 
-                                                                    <asp:LinkButton ID="btnDelReq" OnClick="btnDelReq_Click" CssClass="btn btn-default  btn-xs" ToolTip="Cancel" OnClientClick="javascript:return FunConfirm();" runat="server"><span  style="color:red"  class="fa   fa-recycle "></span> </asp:LinkButton>
+                                                                    <asp:LinkButton ID="btnDelReq" OnClick="btnDelReq_Click" CssClass="btn btn-default  btn-xs" ToolTip="Cancel" runat="server"><span  style="color:red"  class="fa   fa-recycle "></span> </asp:LinkButton>
 
                                                                     <%-- <asp:HyperLink ID="lnkbtnEditIN" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span class="glyphlabelicon glyphicon-pencil"></span>
                                                                     </asp:HyperLink>
@@ -2886,7 +2847,7 @@
                                                         <Columns>
 
 
-                                                            <asp:TemplateField HeaderText="Sl">
+                                                            <asp:TemplateField HeaderText="SL">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvDSlNo" runat="server" Font-Bold="True" Style="text-align: right"
                                                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
@@ -3441,9 +3402,7 @@
                                                         ShowFooter="True" OnRowDataBound="grvMRec_RowDataBound">
                                                         <RowStyle />
                                                         <Columns>
-
-
-                                                            <asp:TemplateField HeaderText="Sl">
+                                                            <asp:TemplateField HeaderText="SL">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvDSlNo" runat="server" Font-Bold="True" Style="text-align: right"
                                                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
@@ -3611,17 +3570,13 @@
                                                                     <asp:HyperLink ID="HyInprPrint" runat="server" ToolTip="Print Crystal" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
                                                                     </asp:HyperLink>
 
-                                                                    <asp:LinkButton ID="lnkRdlcPrint_Recived" OnClick="lnkRdlcPrint_Recived_Click" Visible="true" runat="server" ToolTip="Print RDLC" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span></asp:LinkButton>
-                                                                    
-                                                                    <%--<asp:Button ID="HyperLink2" runat="server" CssClass="btn btn-default btn-xs" Visible="true" OnClientClick="" ToolTip="Print RDLC"><span class="fa fa-print"></span> </asp:Button>--%>
-                                                                   <%-- <asp:HyperLink ID="HyperLink2" runat="server" ToolTip="Print RDLC" Target="_blank"   CssClass="btn btn-default btn-xs" Visible="true"><span class="fa fa-print"></span>
+                                                                    <asp:LinkButton ID="lnkRdlcPrint_Recived" OnClick="lnkRdlcPrint_Recived_Click" runat="server" ToolTip="Print RDLC" CssClass="btn btn-default btn-xs" Visible="false"><span class="fa fa-print"></span></asp:LinkButton>
 
-                                                                    </asp:HyperLink>--%>
-                                                                     <%--<asp:HyperLink ID="HyperLink2" runat="server" ToolTip="Print RDLC" Target="_blank"    CssClass="btn btn-default btn-xs" Visible="true"><span class="fa fa-print"></span>
-                                                                    </asp:HyperLink>--%>
+                                                                    <asp:HyperLink ID="HyperLink2" runat="server" ToolTip="Print RDLC" Target="_blank" CssClass="btn btn-default btn-xs" Visible="true"><span class="fa fa-print"></span>
+                                                                    </asp:HyperLink>
+
 
                                                                     <asp:HyperLink ID="lnkbtnEntry" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
-
                                                                     </asp:HyperLink>
 
                                                                     <asp:LinkButton ID="btnDelOrder" OnClick="btnDelOrder_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
@@ -3653,12 +3608,12 @@
                                             </div>
                                         </asp:Panel>
 
-                                         <asp:Panel ID="pnlmrrapp" Visible="false" runat="server">
-                                              <div class="row">
+                                        <asp:Panel ID="pnlmrrapp" Visible="false" runat="server">
+                                            <div class="row">
                                                 <div class="table-responsive col-lg-12">
 
                                                     <asp:GridView ID="gvmrrapp" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                                        ShowFooter="True"  OnRowDataBound="gvmrrapp_RowDataBound" >
+                                                        ShowFooter="True" OnRowDataBound="gvmrrapp_RowDataBound">
                                                         <RowStyle />
                                                         <Columns>
 
@@ -3781,7 +3736,7 @@
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
-                                                            
+
 
 
 
@@ -3811,7 +3766,7 @@
                                                                 </FooterTemplate>
                                                                 <FooterStyle HorizontalAlign="Right" Font-Bold="true" Width="50px" />
                                                             </asp:TemplateField>
-                                                           
+
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
@@ -3822,7 +3777,7 @@
                                                                     <asp:HyperLink ID="lnkbtnEntrymapp" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
 
                                                                     </asp:HyperLink>
-                                                                    <asp:LinkButton ID="btnDelBillmapp" OnClick="btnDelBillmapp_Click"  OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
+                                                                    <asp:LinkButton ID="btnDelBillmapp" OnClick="btnDelBillmapp_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
                                                                     <%--                                                                    <asp:HyperLink ID="lnkbtnEditIN" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span class="glyphicon glyphicon-pencil"></span>
                                                                     </asp:HyperLink>
                                                     
@@ -3845,7 +3800,7 @@
                                                 </div>
                                             </div>
 
-                                             </asp:Panel>
+                                        </asp:Panel>
 
                                         <asp:Panel ID="PanelBill" Visible="false" runat="server">
                                             <div class="row">
@@ -4516,11 +4471,6 @@
 
             </div>
 
-
-
-
-
-
             <cc1:ModalPopupExtender ID="mp1" runat="server" PopupControlID="Panel1" TargetControlID="lblMIMEInfo"
                 CancelControlID="btnClose" BackgroundCssClass="modalBackground">
             </cc1:ModalPopupExtender>
@@ -4670,25 +4620,43 @@
             </asp:Panel>
             <!-- ModalPopupExtender -->
 
+            <div id="modalReqNote" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-dialog-sm-width">
+                    <div class="modal-content modal-content-mid-width">
+                        <div class="modal-header">
+                            <h4 class="modal-title">
+                                <i class="fa fa-hand-point-right"></i><span id="spanpactdec" runat="server" style="color: darkgreen"></span></h4>
+                            <button type="button" class="btn btn-xs pull-right" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+                            <asp:Label ID="lblreqno" runat="server" CssClass="form-control" Text="" Visible="false"></asp:Label>
+                            <asp:Label ID="lblmrfno" runat="server" CssClass="form-control" Text="" Visible="false"></asp:Label>
+                            <asp:Label ID="lblpactcode" runat="server" CssClass="form-control" Text="" Visible="false"></asp:Label>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h5 class="modal-title"><span id="spanReqInfo" runat="server"></span></h5>
+                                            <%--<asp:Label ID="lblmSupName" runat="server" CssClass="form-control" Text=""></asp:Label>
+                                            </div>--%>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <asp:Label ID="lblresdesc" runat="server" CssClass="form-label" Text="" Font-Size="Medium"></asp:Label>
+                                            <asp:TextBox ID="txtReqNote" runat="server" class="form-control" Rows="3" TextMode="MultiLine"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-
+                        <div class="modal-footer">
+                            <asp:LinkButton ID="btnSaveReqNote" runat="server" OnClick="btnSaveReqNote_Click" OnClientClick="closeReqModal();" CssClass="btn btn-primary">Delete</asp:LinkButton>
+                            <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
-
-
-
-            </div>
-
-
-                     
-
         </ContentTemplate>
-
-
-
     </asp:UpdatePanel>
-    <asp:Label ID="lblprintstkl" runat="server"></asp:Label>
-
 </asp:Content>
 

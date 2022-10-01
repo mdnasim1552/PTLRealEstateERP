@@ -778,8 +778,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     if (this.gvcashpay.Rows.Count > 0)
                     {
                         this.FooterCalculation((DataTable)Session["tblSalSum"]);
-                        Session["Report1"] = gvcashpay;
-                        ((HyperLink)this.gvcashpay.HeaderRow.FindControl("hlbtntbCdataExcel22")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                        //Session["Report1"] = gvcashpay;
+                        //((HyperLink)this.gvcashpay.HeaderRow.FindControl("hlbtntbCdataExcel22")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     }
                     if ((comcod=="3365")|| comcod=="3101")
                     {
@@ -944,10 +944,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 case "CashSalary":
                     ((Label)this.gvcashpay.FooterRow.FindControl("lgvFTNetmtcash")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", ""))).ToString("#,##0;(#,##0); ");
-                    //Session["Report1"] = gvcashpay;
+                    Session["Report1"] = gvcashpay;
                     //((HyperLink)this.gvcashpay.HeaderRow.FindControl("hlbtntbCdataExcel22")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    ((HyperLink)this.gvcashpay.HeaderRow.FindControl("hlbtntbCdataExcel22")).NavigateUrl = "../../RDLCViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
 
-                    
+
+
 
 
 

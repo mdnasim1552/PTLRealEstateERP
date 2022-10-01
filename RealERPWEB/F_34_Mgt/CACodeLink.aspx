@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="CACodeLink.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.CACodeLink" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="CACodeLink.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.CACodeLink" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -36,11 +36,6 @@
 
 
 
-
-
-
-
-
     </script>
 
 
@@ -66,28 +61,28 @@
                 </asp:UpdateProgress>
             </div>
 
-            <div class="card card-fluid" style="min-height: 550px;">
+            <div class="card  mt-4 pb-4">
                 <div class="card-body">
 
                     <div class="row">
 
                         <div class="col-md-2">
-                            <div class="form-group">
+                           
                                 <label class="control-label" for="ddlUserName">User Name</label>
-                                <asp:DropDownList ID="ddlUserList" runat="server" CssClass="custom-select chzn-select">
+                                <asp:DropDownList ID="ddlUserList" runat="server" CssClass="custom-select form-control form-control-sm chzn-select">
                                 </asp:DropDownList>
 
-                            </div>
+                            
                         </div>
                         <div class="col-md-1">
-                            <div class="form-group">
+                           
                                 <label class="control-label d-block" for="ddlUserName">&nbsp; </label>
-                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass=" btn btn-primary btn-xs" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
-                            </div>
+                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass=" btn btn-primary btn-sm" style="margin-top:4px;" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                            
                         </div>
 
                         <div class="col-md-4">
-                            <div class="form-group">
+                          
                                 <label class="control-label d-block" for="ddlUserName">&nbsp; </label>
                                 <asp:RadioButtonList ID="tbnRadio" runat="server" OnSelectedIndexChanged="tbnRadio_SelectedIndexChanged" AutoPostBack="true" RepeatColumns="2">
                                     <asp:ListItem Value="01">Accounts Code</asp:ListItem>
@@ -95,7 +90,7 @@
 
                                 </asp:RadioButtonList>
                                 
-                            </div>
+                           
                         </div>
                         <div class="col-md-1">
                             <div class="colMdbtn pading5px">
@@ -106,29 +101,32 @@
 
 
                     </div>
-
+                    </div>
+                </div>
+             <div class="card mt-2" style="min-height:480px;">
+                <div class="card-body">
                     <asp:Panel ID="Panel2" runat="server" Visible="False">
 
                         <div class="row">
 
                             <div class="col-md-3">
-                                <div class="form-group">
+                                
                                     <label class="control-label d-block" for="ddlUserName">
                                         <asp:LinkButton ID="ImgbtnFindProject" class="p-0" runat="server" OnClick="ImgbtnFindProject_Click"> CA Code</asp:LinkButton></label>
 
                                     <%--<label class="control-label" for="ddlUserName">Project Code</label>--%>
-                                    <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="custom-select chzn-select">
+                                    <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="custom-select chzn-select form-control form-control-sm">
                                     </asp:DropDownList>
 
-                                </div>
+                                
                             </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
+                            <div class="col-md-2 mt-2">
+                                
                                     <label class="control-label d-block" for="ddlUserName">&nbsp; </label>
                                     <asp:LinkButton ID="lbtnSelectSupl1" runat="server" CssClass="btn btn-primary btn-xs" OnClick="lbtnSelectSupl1_Click">Select</asp:LinkButton>
                                     <asp:LinkButton ID="lbtnSelectAll" runat="server" CssClass=" btn btn-primary btn-xs" OnClick="lbtnSelectAll_Click">Select All</asp:LinkButton>
 
-                                </div>
+                                
                             </div>
 
 
@@ -136,13 +134,8 @@
                         </div>
 
 
-
-
-
-
-
-
-                        <asp:GridView ID="gvCALinkInfo" runat="server" CssClass=" table-condensed table-hover table-bordered grvContentarea"
+                        <div class="row mt-2" style="margin-left:10px;">
+                              <asp:GridView ID="gvCALinkInfo" runat="server" CssClass=" table-condensed table-hover table-bordered grvContentarea"
                             AutoGenerateColumns="False" ShowFooter="True" Width="16px"
                             OnRowDeleting="gvCALinkInfo_RowDeleting">
                             <PagerSettings Visible="False" />
@@ -164,7 +157,7 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
 
-                                <asp:CommandField ShowDeleteButton="True" DeleteText="" ControlStyle-CssClass="fa fa-times text-red btn-xs" />
+                                <asp:CommandField ShowDeleteButton="True" DeleteText="" ControlStyle-CssClass="fa fa-trash text-red btn-xs" />
 
                                 <asp:TemplateField HeaderText="cacode Code" Visible="false">
                                     <ItemTemplate>
@@ -187,10 +180,10 @@
                                 <asp:TemplateField HeaderText="Remarks">
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lbtnSuplUpdate" runat="server" OnClick="lbtnSuplUpdate_Click"
-                                            CssClass="btn  btn-danger primarygrdBtn">Final Update</asp:LinkButton>
+                                            CssClass="btn btn-sm  btn-danger primarygrdBtn">Final Update</asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemTemplate>
-                                        <asp:TextBox ID="txtgvSuplRemarks" runat="server" BorderColor="#99CCFF"
+                                        <asp:TextBox ID="txtgvSuplRemarks" runat="server" 
                                             BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                             Style="text-align: left; background-color: Transparent"
                                             Text='<%# DataBinder.Eval(Container.DataItem, "remarks").ToString() %>'
@@ -205,6 +198,13 @@
                             <FooterStyle CssClass="grvFooter" />
                             <RowStyle CssClass="grvRows" />
                         </asp:GridView>
+                        </div>
+
+
+
+
+
+                      
 
 
                     </asp:Panel>

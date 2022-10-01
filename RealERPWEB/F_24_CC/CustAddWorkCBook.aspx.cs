@@ -266,5 +266,37 @@ namespace RealERPWEB.F_24_CC
             }
             fullGridPager.PageGroupChanged(grvacc.BottomPagerRow);
         }
+
+        protected void grvacc_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                e.Row.Cells[1].ToolTip = "Edit Information";
+
+                int index = e.Row.RowIndex;
+                int rowindex = (this.grvacc.PageSize * this.grvacc.PageIndex) + index;
+                DataTable dt = ((DataTable)Session["storedata"]);
+
+                string Code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "gcod")).ToString();
+
+                if (Code == "")
+                    return;
+
+                if (ASTUtility.Right(Code, 7) == "0000000" && ASTUtility.Right(Code, 5) != "000000")
+                {
+                    e.Row.Attributes["style"] = "background-color:#8DF4A9; font-weight:bold;";
+                }
+                else if (ASTUtility.Right(Code, 5) == "000000" && ASTUtility.Right(Code, 7) != "0000000")
+                {
+                    e.Row.Attributes["style"] = "background-color:#9EF5DC; font-weight:bold;";
+
+                }
+                else if (ASTUtility.Right(Code, 3) == "000" && ASTUtility.Right(Code, 5) != "00000")
+                {
+                    e.Row.Attributes["style"] = "background-color:#C0C0C0; font-weight:bold;";
+                }              
+
+            }
+        }
     }
 }

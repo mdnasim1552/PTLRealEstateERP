@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNew.Master" ValidateRequest="false" AutoEventWireup="true" CodeBehind="AccSubCodeBook.aspx.cs" Inherits="RealERPWEB.F_17_Acc.AccSubCodeBook" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNew.Master" ValidateRequest="false" AutoEventWireup="true" CodeBehind="AccSubCodeBook.aspx.cs" Inherits="RealERPWEB.F_17_Acc.AccSubCodeBook" UnobtrusiveValidationMode="None" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 

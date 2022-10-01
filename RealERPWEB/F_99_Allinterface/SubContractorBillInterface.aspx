@@ -508,7 +508,7 @@
                 comcod = <%=this.GetCompCode()%>;
                 switch (comcod) {
 
-                    case 3101:   //ASIT
+                    //case 3101:   //ASIT
                     case 1205:   //p2p
                     case 3351:   //p2p
                     case 3352:   //p2p
@@ -2463,7 +2463,6 @@
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
                                                     <asp:HyperLink ID="lnkbtnPrintIN" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span></asp:HyperLink>
-
 
                                                     <asp:HyperLink ID="lnkBillCS" runat="server" ToolTip="CS" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                     </asp:HyperLink>

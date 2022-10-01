@@ -701,7 +701,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             }
                             this.DelaisAttinfo.Visible = true;
                             this.SummaryAttinfo.Visible = false;
-
                             this.gvMonthlyAtt.DataSource = dt;
                             this.gvMonthlyAtt.DataBind();
                         }
@@ -1095,15 +1094,63 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     break;
 
                 //BTI   
-                case "3101":
+               //case "3101":
                 case "3365":
                     this.PrintMonAttendanceBTI();
+                    break;
+                case "3101":
+                case "3367":
+                    this.PrintMonAttendanceEpic();
                     break;
 
                 default:
                     this.PrintMonAttendance01();
                     break;
             }
+
+        }
+        //create by (robi)
+        public void PrintMonAttendanceEpic()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string comcod = this.GetComCode();
+            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
+            string compLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd MMMM yy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd MMMM yy");
+            string rptMonth = "From " + frmdate + " To " + todate;
+            string status = this.statusatt.InnerText.ToString();
+            DataTable dt1 = (DataTable)Session["tblallData"];
+
+            var list = dt1.DataTableToList<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.RptMntAttenReport>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptMonAttendanceEPIC", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("compLogo", compLogo));
+            Rpt1.SetParameters(new ReportParameter("txtMonth", rptMonth));
+            Rpt1.SetParameters(new ReportParameter("status", status));
+            DateTime datefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim());
+            DateTime dateto = Convert.ToDateTime(this.txttodate.Text.Trim());
+            //for (int i = 1; i <= 31; i++)
+            //{
+            //    if (datefrm > dateto)
+            //        break;
+
+            //    Rpt1.SetParameters(new ReportParameter("txtDate" + i.ToString(), datefrm.ToString("dd") + "\n" + datefrm.ToString("dddd").Substring(0, 1)));
+            //    datefrm = datefrm.AddDays(1);
+
+            //}
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Monthly Attendance Statistic-Epic Corporate Office"));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
+                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
 

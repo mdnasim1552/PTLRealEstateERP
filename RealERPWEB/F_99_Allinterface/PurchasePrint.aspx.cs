@@ -469,7 +469,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
             // rdlc start for manama
-            if (comcod == "3353" || comcod == "3101")
+            if (comcod == "3353" )
             {
 
                 string txtcrno = dt1.Rows[0]["reqno1"].ToString(); ;
@@ -1229,7 +1229,7 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
                 case "3356":
-                case "3101":
+                //case "3101":
                     PrintReq = "PrintReqiNTECH";
                     break;
 
@@ -4019,7 +4019,17 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
                     // Epic ratepbyid	ratepname	ratepdate
-                    case "3101":
+                    //case "3101":
+                    case "3357":
+                        sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
+                        sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
+                        sign3 = _ReportDataSet.Tables[3].Rows[0]["ratepname"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["ratepdate"].ToString();
+                        sign4 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
+                        sign5 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
+                        sign6 = "Approved By";
+                        break;
+                        
+                    //case "3101":
                     case "3367":
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
@@ -4347,6 +4357,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderJBS.rdlc";
                         break;
 
+                    //case "3101": 
                     case "3357": //Cube
                         Reportpath = "~/Report/RptPurchaseOrderCube.rdlc";
                         break;
@@ -4375,7 +4386,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderEntrust.rdlc";
                         break;
 
-                    case "3101": //Pintech                        
+                    //case "3101": //Pintech                        
                     case "3367": //Epic                        
                         Reportpath = "~/Report/RptPurchaseOrderEpic.rdlc";
                         break;
@@ -4662,7 +4673,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3316":
                 case "3368":
                 case "3354":
-                case "3101":
+                //case "3101":
                     isDynamic = true;
                     break;
                 default:
@@ -5018,7 +5029,7 @@ namespace RealERPWEB.F_99_Allinterface
                 {
 
                     case "3354": //Edison Real Estate
-                    case "3101":
+                    //case "3101":
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
                         sign3 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
@@ -5066,7 +5077,7 @@ namespace RealERPWEB.F_99_Allinterface
                 {
 
                     case "3354": // Edison Real estate
-                    case "3101":
+                    //case "3101":
                         terms1 = termscondition.FindAll(p => p.termsid == "001").Count == 0 ? "" : (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString().Length > 0 ? "1." + (termscondition.FindAll(p => p.termsid == "001")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString()) : "");
                         terms2 = termscondition.FindAll(p => p.termsid == "002").Count == 0 ? "" : (termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString().Length > 0 ? "2." + (termscondition.FindAll(p => p.termsid == "002")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString()) : "");
                         terms3 = termscondition.FindAll(p => p.termsid == "003").Count == 0 ? "" : (termscondition.FindAll(p => p.termsid == "003")[0].termsdesc.ToString().Length > 0 ? "3." + (termscondition.FindAll(p => p.termsid == "003")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "003")[0].termsdesc.ToString()) : "");
@@ -5096,7 +5107,7 @@ namespace RealERPWEB.F_99_Allinterface
                 switch (comcod)
                 {
                     case "3354": //Edison Real Estate
-                    case "3101":
+                    //case "3101":
                         Reportpath = "~/Report/RptMktPurchaseOrder.rdlc";
                         break;
 
@@ -5164,7 +5175,6 @@ namespace RealERPWEB.F_99_Allinterface
                 Rpt1.SetParameters(new ReportParameter("pordnar", pordnar));
 
 
-                Rpt1.SubreportProcessing += new SubreportProcessingEventHandler(LoadSubReport);
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                             ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
@@ -5280,7 +5290,7 @@ namespace RealERPWEB.F_99_Allinterface
                     PrintReq = "PrintBill05";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3333":
                     PrintReq = "PrintBill06";
                     break;
@@ -5962,7 +5972,7 @@ namespace RealERPWEB.F_99_Allinterface
                     PrintReq = "PrintBill01";
                     break;
 
-                //case "3101":
+                case "3101":
                 case "3330":// Bridge
                     PrintReq = "PrintBill02";
                     break;
@@ -6127,7 +6137,8 @@ namespace RealERPWEB.F_99_Allinterface
             string txtuserinfo = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
-
+            string PrintOpt2 = Request.QueryString.AllKeys.Contains("PrintOpt") ? this.Request.QueryString["PrintOpt"].ToString() : "";
+            string PrintOpt = PrintOpt2.Length > 0 ? PrintOpt2 : ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
 
             // For  Image withdrawn 
 
@@ -6375,17 +6386,6 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-
-
-
-
-
-
-
-
-
-
-
             // var TAmt = lst.Select(p => p.billamt).Sum();
             double netamt = toamt + Convert.ToDouble("0" + dtd.Rows[0]["reward"]) - Convert.ToDouble("0" + dtd.Rows[0]["sdamt"]) - Convert.ToDouble("0" + dtd.Rows[0]["dedamt"]) - Convert.ToDouble("0" + dtd.Rows[0]["penamt"]) - Convert.ToDouble("0" + dtd.Rows[0]["advamt"]);
             //double TAmt = Convert.ToDouble("0" + ((Label)this.gvSubBill.FooterRow.FindControl("lgvFBillAmt")).Text) - Convert.ToDouble("0" + this.txtSDAmount.Text.Trim()) - Convert.ToDouble("0" + this.txtDedAmount.Text.Trim()) - Convert.ToDouble("0" + this.txtPenaltyAmount.Text.Trim()) - Convert.ToDouble("0" + this.txtAdvanced.Text.Trim());
@@ -6419,9 +6419,11 @@ namespace RealERPWEB.F_99_Allinterface
 
             //  Rpt1.SetParameters(new ReportParameter("InWrd", "In Words : " + ASTUtility.Trans(Math.Round(TAmt), 2)));
             Session["Report1"] = rptbill;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
 
+            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+            //            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" + PrintOpt + "', target='_self');</script>";
 
 
 

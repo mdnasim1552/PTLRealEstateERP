@@ -69,6 +69,7 @@
             $('#ViewEmpModal').modal('toggle');
         }
 
+
     </script>
 
 
@@ -110,7 +111,7 @@
 
 
                             <asp:GridView ID="gvNewRec" runat="server" AutoGenerateColumns="False" BorderStyle="None" Width="100%"
-                                 howFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea">
+                                howFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea">
                                 <RowStyle />
                                 <Columns>
 
@@ -146,11 +147,11 @@
                                                 </asp:DropDownList>
                                             </div>
 
-                       <div class="form-group">
-                               
-                                <asp:TextBox ID="txtjoindat" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                <cc1:CalendarExtender ID="txtjoindat_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtjoindat"></cc1:CalendarExtender>
-                            </div>
+                                            <div class="form-group">
+
+                                                <asp:TextBox ID="txtjoindat" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                <cc1:CalendarExtender ID="txtjoindat_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtjoindat"></cc1:CalendarExtender>
+                                            </div>
 
 
                                             <div class="form-group">
@@ -179,19 +180,19 @@
                 <div class="col-8">
                     <div class="card">
                         <div class="card-header d-flex">
-                      
+
                             <div class="mr-auto p-2">
-                                      <span class="card-title text-muted mr-auto"><strong>All list </strong></span>
+                                <span class="card-title text-muted mr-auto"><strong>All list </strong></span>
                             </div>
                             <div class="ml-auto p-2">
-                            <asp:HyperLink ID="lnkLetIntrfc" runat="server" NavigateUrl="~/F_81_Hrm/F_92_Mgt/LetterInterface.aspx" CssClass="btn btn-info btn-sm" Target="_blank">Letter Interface</asp:HyperLink>
+                                <asp:HyperLink ID="lnkLetIntrfc" runat="server" NavigateUrl="~/F_81_Hrm/F_92_Mgt/LetterInterface.aspx" CssClass="btn btn-info btn-sm" Target="_blank">Letter Interface</asp:HyperLink>
 
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="table table-sm table-responsive">
                                 <asp:Label runat="server" ID="lbladvnoo" Visible="false"></asp:Label>
-                                <asp:GridView CssClass=" table-striped table-hover table-bordered" ID="gvAllRec" runat="server" AutoGenerateColumns="false" OnRowDataBound="gvAllRec_RowDataBound" >
+                                <asp:GridView CssClass=" table-striped table-hover table-bordered" ID="gvAllRec" runat="server" AutoGenerateColumns="false" OnRowDataBound="gvAllRec_RowDataBound">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Name" Visible="false">
                                             <ItemTemplate>
@@ -262,32 +263,32 @@
                                                                 CssClass="dropdown-item" runat="server">Appoinment Letter</asp:HyperLink>
                                                         </li>
 
-                                                   
 
-                                                        
+
+
                                                         <li>
-                                                                      
-                                                            
-                                                            
+
+
+
                                                             <asp:HyperLink ID="lnkConfirmation" Target="_blank"
-                                                                           NavigateUrl='<%# "~/LetterDefault?Type=10025 &Page=NewRec &Entry=confirmation Letter &advno="+Eval("advno") %>'
-                                                                           CssClass="dropdown-item" runat="server">Confirmation Letter</asp:HyperLink>
-
-                                                    
-                                                            </li>
+                                                                NavigateUrl='<%# "~/LetterDefault?Type=10025 &Page=NewRec &Entry=confirmation Letter &advno="+Eval("advno") %>'
+                                                                CssClass="dropdown-item" runat="server">Confirmation Letter</asp:HyperLink>
 
 
-                                                                       <li>
+                                                        </li>
+
+
+                                                        <li>
                                                             <asp:HyperLink ID="HyperLink1" Target="_blank"
-                                                                           NavigateUrl='<%# "~/LetterDefault?Type=10025 &Page=NewRec &Entry=confirmation Letter &advno="+Eval("advno") %>'
-                                                                           CssClass="dropdown-item" runat="server">Reject Offer Letter</asp:HyperLink>
-                                                            </li>
+                                                                NavigateUrl='<%# "~/LetterDefault?Type=10025 &Page=NewRec &Entry=confirmation Letter &advno="+Eval("advno") %>'
+                                                                CssClass="dropdown-item" runat="server">Reject Offer Letter</asp:HyperLink>
+                                                        </li>
 
-                                                                                <li>
+                                                        <li>
                                                             <asp:HyperLink ID="HyperLink2" Target="_blank"
-                                                                           NavigateUrl='<%# "~/F_81_Hrm/F_92_Mgt/InterfaceHR" %>'
-                                                                           CssClass="dropdown-item" runat="server">All Letter</asp:HyperLink>
-                                                            </li>
+                                                                NavigateUrl='<%# "~/F_81_Hrm/F_92_Mgt/InterfaceHR" %>'
+                                                                CssClass="dropdown-item" runat="server">All Letter</asp:HyperLink>
+                                                        </li>
 
 
 
@@ -311,12 +312,12 @@
 
 
 
-                                                                    <asp:HyperLink ID="lblJoinnig" runat="server" Target="_blank" Width="80px"
-                                                                           NavigateUrl='<%# "~/F_81_Hrm/F_82_App/EmpEntry02?Type=10025 &Page=NewRec &advno="+Eval("advno") %>'
-                                                                        CssClass='<%#(Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")).Trim()=="") ? "badge badge-primary active ": "badge badge-info  disabled " %>'>    
+                                                <asp:HyperLink ID="lblJoinnig" runat="server" Target="_blank" Width="80px"
+                                                    NavigateUrl='<%# "~/F_81_Hrm/F_82_App/EmpEntry02?Type=10025 &Page=NewRec &advno="+Eval("advno") %>'
+                                                    CssClass='<%#(Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")).Trim()=="") ? "badge badge-primary active ": "badge badge-info  disabled " %>'>    
                               <span><%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")).Trim()=="")?"Apply Joinning":"Joined "%></span>
 
-                                                                    </asp:HyperLink>
+                                                </asp:HyperLink>
 
                                                 <asp:LinkButton ID="lnkView" runat="server" CssClass="text-primary pr-2 pl-2" OnClick="lnkView_Click"><i class="fa fa-eye"></i></asp:LinkButton>
 

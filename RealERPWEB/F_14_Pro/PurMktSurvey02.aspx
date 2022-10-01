@@ -91,7 +91,7 @@
                                             <asp:TextBox ID="txtPreMSRSearch" runat="server" CssClass="inputtextbox"></asp:TextBox>
 
 
-                                            <asp:LinkButton ID="ImgbtnFindPreMR" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="ImgbtnFindPreMR_Click"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
+                                            <asp:LinkButton ID="lnkbtnFindPreMR" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="ImgbtnFindPreMR_Click"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
 
                                             <asp:DropDownList ID="ddlPrevMSRList" runat="server" Width="322px" CssClass="ddlPage "></asp:DropDownList>
 

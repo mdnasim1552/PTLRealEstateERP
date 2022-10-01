@@ -461,6 +461,14 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
+                                      <asp:TemplateField HeaderText="Lost On Date" Visible="false">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblLostDate" runat="server" Width="100px" Font-Size="12px"
+                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lostdate")).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : 
+                                                    Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lostdate")).ToString("dd-MMM-yyyy")%>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
                                 </Columns>
                                 <FooterStyle CssClass="grvFooter" />
                                 <EditRowStyle />

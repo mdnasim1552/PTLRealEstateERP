@@ -189,7 +189,6 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintEntrust";
                     break;
 
-                case "3101":
                 case "3355":
                     vouprint = "VocherPrintGreenwood";
                     break;
@@ -761,6 +760,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintCredence";
                     break;
 
+                case "3101": // islam brothers 
                 case "1102": // islam brothers 
                     vouprint = "VocherPrintISBL";
                     break;
@@ -794,7 +794,6 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintEpic";
                     break;
 
-                case "3101":
                 case "3355":
                     vouprint = "VocherPrintGreenwood";
                     break;
@@ -820,7 +819,7 @@ namespace RealERPWEB.F_17_Acc
             {
                 case "1103":// Tanvir
                 case "3353": // manama
-                case "3101":// ptl
+                //case "3101":// ptl
                     ntype = "ShowNarration";
                     break;
 
@@ -2274,7 +2273,7 @@ namespace RealERPWEB.F_17_Acc
                     chequeprint = "PrinChequeTarraNova01";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "1103":
                     chequeprint = "PrintCheque01";
                     break;
@@ -2329,7 +2328,7 @@ namespace RealERPWEB.F_17_Acc
                     PrinChequeGreenWood();
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3368":
                     this.PrintChqFinlay();
                     break;
@@ -3395,7 +3394,7 @@ namespace RealERPWEB.F_17_Acc
                 ReportDocument rptinfo = new ReportDocument();
                 if (type == "PrintCheque01")
 
-                    if (banktype == "SBL" || comcod == "3101")
+                    if (banktype == "SBL")
                     {
                         rptinfo = new RealERPRPT.R_17_Acc.PrintCheck();
                     }

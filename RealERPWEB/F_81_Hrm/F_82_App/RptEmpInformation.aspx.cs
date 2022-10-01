@@ -1225,7 +1225,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string type = this.Request.QueryString["Type"].ToString().Trim();
             string Company = ((this.ddlCompanyAgg.SelectedValue.ToString() == "000000000000") ? "" : this.ddlCompanyAgg.SelectedValue.ToString().Substring(0, 2)) + "%";
 
-            string txtSProject = this.txtsrchdeptagg.Text.Trim() + "%";
+            string txtSProject = "%";
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETDEPTNAME", Company, txtSProject, "", "", "", "", "", "", "");
 
             this.ddldepartmentagg.DataTextField = "deptdesc";
@@ -1251,7 +1251,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             //string Company = (this.ddlCompanyAgg.SelectedValue.ToString() == "000000000000")? "" : (this.ddlCompanyAgg.SelectedValue.ToString().Substring(0, 2)+ "%");
             // : this.ddlCompany.SelectedValue.ToString().Substring(0, 2);
-            string txtSProject = this.txtSrcPro.Text.Trim() + "%";// ;// (type == "Aggrement") ? (this.txtSrcPro.Text.Trim() + "%") : (this.txtSrcDepartment.Text.Trim() + "%");
+            string txtSProject = "%";// ;// (type == "Aggrement") ? (this.txtSrcPro.Text.Trim() + "%") : (this.txtSrcDepartment.Text.Trim() + "%");
                                                                   //string CallType = (this.Request.QueryString["Type"].ToString().Trim() == "EmpAllInfo") ? "GETPROJECTNAME" : "GETPROJECTNAMEFOT";
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTNAME", deptcode, txtSProject, "", "", "", "", "", "", "");
 

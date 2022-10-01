@@ -120,7 +120,7 @@
                                         <asp:LinkButton ID="lbtnPrevOrderList" runat="server" CssClass="lblTxt lblName" OnClick="lbtnPrevOrderList_Click"
                                             TabIndex="3">Previous List</asp:LinkButton>
 
-                                        <asp:DropDownList ID="ddlPrevOrderList" runat="server" Width="180px" CssClass="inputTxt inpPixedWidth" TabIndex="6" AutoPostBack="True">
+                                        <asp:DropDownList ID="ddlPrevOrderList" runat="server" Width="180px" CssClass="chzn-select inputTxt inpPixedWidth" TabIndex="6" AutoPostBack="True">
                                         </asp:DropDownList>
 
                                     </div>

@@ -169,11 +169,11 @@
 
 
 
-                        <div class="col-md-2 ">
-                            <div class="form-group mt-4 mb-0">
+                        <div class="col-md-2 mt-4">
+                          
 
-                                <asp:CheckBox ID="chkbdate" runat="server" AutoPostBack="True" Font-Bold="True" CssClass="" />
-                                <asp:Label ID="withBirth" runat="server">With Birth Date</asp:Label>
+                                <asp:CheckBox ID="chkbdate" runat="server" AutoPostBack="True" Font-Bold="True"/>
+                                <asp:Label ID="withBirth" runat="server" cssclass="d-none">With Birth Date</asp:Label>
                                 <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-info btn-md mb-2" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                             </div>
                         </div>
@@ -187,17 +187,17 @@
 
 
                     <div runat="server">
-                        <div class="row">
-                            <div class="col-md-3" id="desFrom" runat="server">
+                        <div class="row ml-4">
+                            <div class="col-md-2" id="desFrom" runat="server">
                                 <div class="form-group">
-                                    <asp:Label ID="lblfrmd" CssClass="mb-2 d-block" runat="server">Form</asp:Label>
+                                    <asp:Label ID="lblfrmd" CssClass="mb-2 d-block" runat="server">From</asp:Label>
 
                                     <asp:DropDownList ID="ddlfrmDesig" runat="server" OnSelectedIndexChanged="ddlfrmDesig_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control form-control-sm" TabIndex="6">
                                     </asp:DropDownList>
                                 </div>
                             </div>
 
-                            <div class="col-md-3" id="desTo" runat="server">
+                            <div class="col-md-2" id="desTo" runat="server">
                                 <div class="form-group">
                                     <asp:Label ID="lbltdeg" CssClass="mb-2 d-block" runat="server">To</asp:Label>
 
@@ -205,7 +205,7 @@
                                     </asp:DropDownList>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <asp:Label ID="lblfrmdate" CssClass="mb-2 d-block" runat="server">From</asp:Label>
 
@@ -214,7 +214,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <asp:Label ID="lbltodate" CssClass="mb-2 d-block" runat="server">To</asp:Label>
 

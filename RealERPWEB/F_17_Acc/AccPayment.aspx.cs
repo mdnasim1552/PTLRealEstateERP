@@ -1254,7 +1254,7 @@ namespace RealERPWEB.F_17_Acc
 
 
 
-                    string gcactcode= dr1["cactcode"].ToString();
+                    string gcactcode= chkgcactcode.Checked? this. ddlConAccHead.SelectedValue.ToString():  dr1["cactcode"].ToString();
                     string actcode = dr1["actcode"].ToString();
                     string rescode = dr1["subcode"].ToString();
                     string spclcode = dr1["spclcode"].ToString();

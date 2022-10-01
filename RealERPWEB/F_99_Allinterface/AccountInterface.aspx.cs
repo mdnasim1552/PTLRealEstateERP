@@ -77,7 +77,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             switch (comcod)
             {
-                case "3101": //own 
+                //case "3101": //own 
                 case "3333"://Alliance
                 case "3354": // Edison
                 case "3353"://Manama
@@ -1049,8 +1049,9 @@ namespace RealERPWEB.F_99_Allinterface
                         string comcod = hst["comcod"].ToString();
                         if (comcod == "3339")
                         {
-                            gvPurchase.Columns[7].Visible = true;
+                            gvPurchase.Columns[8].Visible = true;
                         }
+
 
                         if (dt.Rows.Count > 0)
                         {

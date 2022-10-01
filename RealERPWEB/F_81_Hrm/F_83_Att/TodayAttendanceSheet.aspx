@@ -46,6 +46,9 @@
             .rbtnAtten tbody tr td label {
                 margin: 0 0 0 5px;
             }
+	.form-group{
+margin-bottom:05px;
+}
     </style>
 
 
@@ -54,40 +57,40 @@
 
       <script type="text/javascript">
 
-        $(document).ready(function () {
-            $(".select2").select2();
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+          $(document).ready(function () {
+              $(".select2").select2();
+              Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
-        });
-        function pageLoaded() {
-            $('.chzn-select').chosen({ search_contains: true });
-            $(".chosen-select").chosen({
-                search_contains: true,
-                no_results_text: "Sorry, no match!",
-                allow_single_deselect: true
-            });
+          });
+          function pageLoaded() {
+              $('.chzn-select').chosen({ search_contains: true });
+              $(".chosen-select").chosen({
+                  search_contains: true,
+                  no_results_text: "Sorry, no match!",
+                  allow_single_deselect: true
+              });
 
 
           <%-- var gvMonthlyattSummary = $('#<%=this.gvMonthlyattSummary.ClientID %>');
             gvMonthlyattSummary.Scrollable();--%>
 
-         
-            $('.select2').each(function () {
-                var select = $(this);
-                select.select2({
-                    placeholder: 'Select an option',
-                    width: '100%',
-                    allowClear: !select.prop('required'),
-                    language: {
-                        noResults: function () {
-                            return "{{ __('No results found') }}";
-                        }
-                    }
-                });
-            });
-           
-        }
-      
+
+              $('.select2').each(function () {
+                  var select = $(this);
+                  select.select2({
+                      placeholder: 'Select an option',
+                      width: '100%',
+                      allowClear: !select.prop('required'),
+                      language: {
+                          noResults: function () {
+                              return "{{ __('No results found') }}";
+                          }
+                      }
+                  });
+              });
+
+          }
+
 
 
       </script>
@@ -111,10 +114,9 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-             <div class="card card-fluid mt-5" style="min-height: 550px;">
-                <div class="card-header mb-2">
-
-                    <div class="row mb-2">
+             <div class="card card-fluid mt-3" style="min-height: 550px;">
+                <div class="card-header mb-0">
+                    <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="ddlLvType">
@@ -144,12 +146,11 @@
 
                      
                    
-                        
                         <div class="col-md-2" id="Div1" runat="server">
                             <div class="form-group">
-                                <asp:Label ID="lblfrmdate" runat="server">Date</asp:Label>
-
-                                <asp:TextBox ID="txtfromdate" runat="server" CssClass=" form-control  form-control-sm mt-2"></asp:TextBox>
+                                <asp:Label ID="lblfrmdate" runat="server" style="display:block; margin-bottom:8px;">Date</asp:Label>
+ 
+                                <asp:TextBox ID="txtfromdate" runat="server" CssClass=" form-control  form-control-sm"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txtfromdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy"  TargetControlID="txtfromdate"></cc1:CalendarExtender>
                             </div>
                         </div>
@@ -159,9 +160,9 @@
                     </div>
 
 
-                
+                </div>
 
-
+<div class="card-body">
                  <div class="table-responsive">
                                 <asp:GridView ID="gvdailyatt" runat="server" PageSize="15"
                                     AutoGenerateColumns="False" ShowFooter="True" 
@@ -189,7 +190,7 @@
                                         <asp:TemplateField HeaderText="Name">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvempname" runat="server"    Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
-                                                    Width="150px"></asp:Label>
+                                                    Width="250px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" />
 
@@ -199,7 +200,7 @@
                                         <asp:TemplateField HeaderText="Designation">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvdsignation" runat="server"  CssClass="mr-4"  Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
-                                                    Width="120px"></asp:Label>
+                                                    Width="200px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" />
 
@@ -237,7 +238,7 @@
 
                                         <asp:TemplateField HeaderText="Punce Out">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgvactout" runat="server" CssClass="mr-4 text-center" Text='<%#  Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "offintime")).ToString("hh:mm tt") %>'
+                                                <asp:Label ID="lgvactout" runat="server" CssClass="mr-4 text-center" Text='<%#  Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "outtime")).ToString("hh:mm tt") %>'
                                                     Width="45px" Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" />
@@ -282,6 +283,7 @@
                                 </asp:GridView>
                             </div>
 
+ </div>
 
 
                  </div>
