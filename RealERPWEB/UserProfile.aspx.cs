@@ -36,7 +36,7 @@ namespace RealERPWEB
                 Get_Events();
                 getLink();
                 getServiceLen();
-
+                getclientdata();
                 GetAllHolidays();
                 gethrpolicy();
                ((Label)this.Master.FindControl("lblTitle")).Text = "User Profile";
@@ -146,6 +146,43 @@ namespace RealERPWEB
             }
             this.gvLvReqAll.DataSource = (ds1.Tables[0]);
             this.gvLvReqAll.DataBind();
+
+        }
+
+        private void getclientdata()
+        {
+            string comcod = this.GetCompCode();
+            if (comcod == "3368")
+            {
+
+            this.pnlClientMrrdayFinlay.Visible = true;
+            }
+            else
+            {
+                this.pnlClientMrrdayFinlay.Visible = false;
+            }
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "CLIENTBIRTHDAY", "", "", "", "", "", "", "");
+            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+            {
+                this.gvclientbthday.DataSource = null;
+                this.gvclientbthday.DataBind();
+                return;
+
+            }
+            this.gvclientbthday.DataSource = (ds1.Tables[0]);
+            this.gvclientbthday.DataBind();
+
+
+            if (ds1 == null || ds1.Tables[1].Rows.Count == 0)
+            {
+                this.gvmarriageday.DataSource = null;
+                this.gvmarriageday.DataBind();
+                return;
+            }
+            this.gvmarriageday.DataSource = (ds1.Tables[1]);
+            this.gvmarriageday.DataBind();
 
         }
         private void getLink()

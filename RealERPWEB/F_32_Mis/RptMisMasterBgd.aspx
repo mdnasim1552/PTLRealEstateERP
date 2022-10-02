@@ -2527,7 +2527,7 @@
 
                                 <div class="col-xs-1 col-md-1 col-lg-1">
 
-                                    <asp:HyperLink ID="hlbtnNext" runat="server" NavigateUrl="~/GenPage.aspx?Type=12" Target="_blank" CssClass="btn btn-primary primaryBtn">Next</asp:HyperLink>
+                                    <asp:HyperLink ID="hlbtnNext" runat="server" NavigateUrl="~/GenPage?Type=12" Target="_blank" CssClass="btn btn-primary primaryBtn">Next</asp:HyperLink>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -3225,9 +3225,9 @@
 
 
 
-                                                <a href="<%=this.ResolveUrl("~/F_32_Mis/RptManProjectSum.aspx")%>" class="btn btn-sm primaryBtn pull-right btn-success" target="_blank">Project Report</a>
+                                                <a href="<%=this.ResolveUrl("~/F_32_Mis/RptManProjectSum")%>" class="btn btn-sm primaryBtn pull-right btn-success" target="_blank">Project Report</a>
 
-                                                <asp:LinkButton ID="lnkBtnReport" Visible="false" runat="server" CssClass="btn btn-sm primaryBtn pull-right btn-success" PostBackUrl="F_32_Mis/RptManProjectSum.aspx">Report 2</asp:LinkButton>
+                                                <asp:LinkButton ID="lnkBtnReport" Visible="false" runat="server" CssClass="btn btn-sm primaryBtn pull-right btn-success" PostBackUrl="F_32_Mis/RptManProjectSum">Report 2</asp:LinkButton>
 
                                                 <%-- <script>
 
@@ -3538,7 +3538,7 @@
                                             <table style="width: 47%;">
                                                 <tr>
                                                     <td class="style58">
-                                                        <a class="smLbl_to" href='<%=this.ResolveUrl("~/F_32_Mis/RptProjectStatus.aspx?Type=PrjStatus")%>' target="_blank"
+                                                        <a class="smLbl_to" href='<%=this.ResolveUrl("~/F_32_Mis/RptProjectStatus?Type=PrjStatus")%>' target="_blank"
                                                             style="margin: 0 0 0 5px; color: blue; line-height: 18px;">Project</a>
                                                     </td>
                                                     <td>

@@ -321,6 +321,33 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.GridView gvLeaveStatus;
 
         /// <summary>
+        /// pnlClientMrrdayFinlay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlClientMrrdayFinlay;
+
+        /// <summary>
+        /// gvclientbthday control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvclientbthday;
+
+        /// <summary>
+        /// gvmarriageday control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvmarriageday;
+
+        /// <summary>
         /// pnlApplyLeavBTI control.
         /// </summary>
         /// <remarks>
