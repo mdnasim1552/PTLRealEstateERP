@@ -2753,7 +2753,7 @@
                                                                     More Reports 
                                                                 </button>
                                                                 <ul class="dropdown-menu" role="menu">
-                                                                    <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Sales">Sales All Graph</a></li>
+                                                                    <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Sales" target="_blank">Sales All Graph</a></li>
                                                                     <li>
                                                                         <asp:HyperLink runat="server" Target="_blank" ID="Hypersales" ClientIDMode="Static">Sales Details</asp:HyperLink>
 
@@ -2787,7 +2787,7 @@
                                                                     More Reports 
                                                                 </button>
                                                                 <ul class="dropdown-menu" role="menu">
-                                                                    <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Purchase">Procurement All Graph</a></li>
+                                                                    <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Purchase"  target="_blank">Procurement All Graph</a></li>
                                                                     <li>
 
                                                                         <asp:HyperLink runat="server" Target="_blank" ID="HyperProcurement" ClientIDMode="Static">Procurement Details</asp:HyperLink>
@@ -2822,7 +2822,7 @@
                                                                     More Reports 
                                                                 </button>
                                                                 <ul class="dropdown-menu" role="menu">
-                                                                    <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Accounts">Accounts All Graph</a></li>
+                                                                    <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Accounts"  target="_blank">Accounts All Graph</a></li>
                                                                     <li>
 
                                                                         <asp:HyperLink runat="server" Target="_blank" ID="HypAccounts" ClientIDMode="Static">Accounts Details</asp:HyperLink>
@@ -2860,7 +2860,7 @@
                                                                     More Reports 
                                                                 </button>
                                                                 <ul class="dropdown-menu" role="menu">
-                                                                    <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Construction">Construction All Graph</a></li>
+                                                                    <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Construction"  target="_blank">Construction All Graph</a></li>
                                                                     <li>
 
                                                                         <asp:HyperLink runat="server" Target="_blank" ID="hypConstruction" ClientIDMode="Static">Construction Details</asp:HyperLink>
@@ -2933,7 +2933,7 @@
                                                     <div class="col-md-5 col-sm-12 col-lg-5">
                                                         <div id="piechartEMPStatus" style="width: 100%; height: 250px;"></div>
                                                         <center>
-                                                        <asp:LinkButton ID="ToAtten" runat="server"><a Class="btn btn-primary btn-sm" href="F_81_Hrm/F_83_Att/TodayAttendanceSheet.aspx">Click Attendance Details</a></asp:LinkButton>
+                                                        <asp:LinkButton ID="ToAtten" runat="server"><a Class="btn btn-primary btn-sm" href="F_81_Hrm/F_83_Att/TodayAttendanceSheet.aspx"  target="_blank">Click Attendance Details</a></asp:LinkButton>
                                                          </center>
                                                     </div>
                                                     
@@ -3167,7 +3167,7 @@
                             <div class="col-md-6 col-lg-6">
                                 <section class="card mb-1 card-fluid p-2">
                                     <!-- .card-header -->
-                                    <header class="card-header border-0">
+                                    <header class="card-header border-0" style="display:none;">
                                         <div class="d-flex align-items-center">
                                             <span class="mr-auto">Today's Presence</span>
 
