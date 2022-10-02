@@ -349,6 +349,7 @@
     <Content Include="Content\ResponsiveForm.css" />
     <Content Include="Content\screen.css" />
     <Content Include="Content\select2.css" />
+    <Content Include="Content\select2.min.css" />
     <Content Include="Content\styles.imageuploader.css" />
     <Content Include="Content\theme.blue.css" />
     <Content Include="Content\Theme\chart-area-demo.js" />
@@ -3628,6 +3629,7 @@
     <Content Include="Scripts\ScrollableGridPlugin.js" />
     <Content Include="Scripts\ScrollableTablePlugin.js" />
     <Content Include="Scripts\select2.js" />
+    <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\toaster.js" />
     <Content Include="Scripts\uds_api_contents.js" />
     <Content Include="Scripts\waypoints.min.js" />
