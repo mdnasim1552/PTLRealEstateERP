@@ -19,11 +19,13 @@ namespace RealERPWEB.F_38_AI
 
         protected void btnMyTasks_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             string value = this.btnMyTasks.SelectedValue.ToString();
             switch (value)
             {
                 case "1":
                     this.MultiView1.ActiveViewIndex = 0;
+                   
                     break;
                 case "2":
                     this.MultiView1.ActiveViewIndex = 1;
@@ -37,5 +39,7 @@ namespace RealERPWEB.F_38_AI
 
             }
         }
+        
+
     }
 }

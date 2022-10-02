@@ -1069,6 +1069,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSummaryPEB.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusTropical.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptCashPay02Edison.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptCashPay02FinlayExcel.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptCashPay02GreenWood.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptEmpAitCertificate.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptEmpBonusEdison.rdlc" />
