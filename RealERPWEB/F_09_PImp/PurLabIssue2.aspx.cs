@@ -545,6 +545,8 @@ namespace RealERPWEB.F_09_PImp
             this.GetCataGory();
             //this.GetMaterials();
             this.Get_Issue_Info();
+            this.SupplierOverallAdvanced(this.ddlprjlist.SelectedValue.ToString(), this.ddlcontractorlist.SelectedValue.ToString());
+
 
 
         }
@@ -1813,6 +1815,23 @@ namespace RealERPWEB.F_09_PImp
                 }
 
             }
+        }
+
+        private void SupplierOverallAdvanced(string pactcode, string csircode)
+        {
+            string comcod = this.GetCompCode();
+            string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            string frmdate = "01" + date.Substring(2);
+            string spclcode = "%";
+            string _pactcode = "26" + ASTUtility.Right(pactcode, 10);
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_LG", "ACCOUNTSLEDGERSUB", _pactcode, frmdate, date, csircode, "", "", "", "", spclcode);
+
+            this.lbtnBalance.Text = "Balance : " + Convert.ToDouble(ds1.Tables[2].Rows[0]["balam"]).ToString("#,##0.00;(#,##0.00);");
+            lbtnBalance.NavigateUrl = this.ResolveUrl("~/F_17_Acc/AccLedger.aspx?Type=SubLedger&prjcode=" + _pactcode + "&sircode=" + csircode + "");
+            // lbtnBalance.NavigateUrl = "~/F_17_Acc/AccPurchase.aspx?Type=Entry&genno=" + billno + "&ssircode=" + ssircode + "&Date1=" + Date1;
+
+
         }
     }
 }
