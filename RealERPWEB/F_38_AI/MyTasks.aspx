@@ -76,10 +76,10 @@
                                 <div class="col-md-2">
                                     <p>+ &nbsp; ... &nbsp; To Next week</p>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 d-none">
                                     <p>+ &nbsp; ... &nbsp; To Later</p>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-2 d-none">
                                     <p>+ &nbsp; ... &nbsp; + Add Section</p>
                                 </div>
                             </div>
