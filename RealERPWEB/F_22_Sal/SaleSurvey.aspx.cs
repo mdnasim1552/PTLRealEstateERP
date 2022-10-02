@@ -243,11 +243,9 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("AreaOfSurvey", proaddress));
             Rpt1.SetParameters(new ReportParameter("TxtCompCompare", developer));
             Rpt1.SetParameters(new ReportParameter("CitySurvey", "Chattogram"));
-<<<<<<< HEAD
+
             Rpt1.SetParameters(new ReportParameter("RptTitle", "COMPETITIVE PRICE SURVEY"));
-=======
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Competitive Price Survey"));
->>>>>>> 261f795f22363fb60de9654aac9ee7defe51044e
+
             Rpt1.SetParameters(new ReportParameter("comments", comments));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             Rpt1.SetParameters(new ReportParameter("PrepName", usrname));
