@@ -1804,7 +1804,7 @@ namespace RealERPWEB.F_32_Mis
 
             DataRow dr = ds4.Tables[0].NewRow();
             dr["catdesc"] = "All Project Type";
-            dr["catcode"] = "0000000";
+            dr["catcode"] = "00000";
             ds4.Tables[0].Rows.InsertAt(dr, 0);
 
             //this.ddlProjectType.Items.Insert(0, "--Select--");
