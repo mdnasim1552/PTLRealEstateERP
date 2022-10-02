@@ -174,9 +174,6 @@
                                         <asp:ListBox ID="chkResourcelist" runat="server" CssClass="form-control" Style="min-width: 200px !important;" SelectionMode="Multiple"></asp:ListBox>
 
 
-
-
-
                                     </div>
 
 
