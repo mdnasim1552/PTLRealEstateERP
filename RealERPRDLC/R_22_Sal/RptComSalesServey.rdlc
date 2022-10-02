@@ -999,7 +999,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Left</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -1071,7 +1071,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Left</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -1426,10 +1426,10 @@
         <Height>1.17789in</Height>
         <Style />
       </Body>
-      <Width>11.18611in</Width>
+      <Width>11.19306in</Width>
       <Page>
         <PageHeader>
-          <Height>0.92557in</Height>
+          <Height>0.95682in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1555,7 +1555,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Pirpose of servey</Value>
+                      <Value>Purpose of servey</Value>
                       <Style>
                         <FontStyle>Italic</FontStyle>
                         <FontFamily>Cambria</FontFamily>
@@ -1605,8 +1605,8 @@
               <rd:DefaultName>Textbox8</rd:DefaultName>
               <Top>0.405in</Top>
               <Left>1.44305in</Left>
-              <Height>0.23195in</Height>
-              <Width>0.99583in</Width>
+              <Height>0.36849in</Height>
+              <Width>1.04181in</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border>
@@ -1633,18 +1633,19 @@
                       <Style>
                         <FontStyle>Italic</FontStyle>
                         <FontFamily>Cambria</FontFamily>
-                        <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
-                  <Style />
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox9</rd:DefaultName>
-              <Top>0.2175in</Top>
-              <Left>5.51583in</Left>
+              <Top>0.23in</Top>
+              <Left>5.95333in</Left>
               <Height>0.20542in</Height>
-              <Width>1.30569in</Width>
+              <Width>1.06626in</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border>
@@ -1671,23 +1672,24 @@
                       <Style>
                         <FontStyle>Italic</FontStyle>
                         <FontFamily>Cambria</FontFamily>
-                        <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
-                  <Style />
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox10</rd:DefaultName>
-              <Top>0.42904in</Top>
-              <Left>5.5193in</Left>
+              <Top>0.45196in</Top>
+              <Left>5.95333in</Left>
               <Height>0.20791in</Height>
-              <Width>1.30222in</Width>
+              <Width>1.0607in</Width>
               <ZIndex>6</ZIndex>
               <Style>
                 <Border>
                   <Color>White</Color>
-                  <Style>Solid</Style>
+                  <Style>None</Style>
                   <Width>0.5pt</Width>
                 </Border>
                 <VerticalAlign>Middle</VerticalAlign>
@@ -1713,15 +1715,15 @@
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Center</TextAlign>
+                    <TextAlign>Left</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox11</rd:DefaultName>
-              <Top>0.2375in</Top>
-              <Left>6.83541in</Left>
+              <Top>0.22709in</Top>
+              <Left>7.09945in</Left>
               <Height>0.20833in</Height>
-              <Width>3.14792in</Width>
+              <Width>2.88388in</Width>
               <ZIndex>7</ZIndex>
               <Style>
                 <Border>
@@ -1752,15 +1754,15 @@
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Center</TextAlign>
+                    <TextAlign>Left</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox12</rd:DefaultName>
               <Top>0.45416in</Top>
-              <Left>6.85277in</Left>
+              <Left>7.11681in</Left>
               <Height>0.18279in</Height>
-              <Width>3.12709in</Width>
+              <Width>2.87347in</Width>
               <ZIndex>8</ZIndex>
               <Style>
                 <Border>
@@ -1832,9 +1834,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox14</rd:DefaultName>
-              <Top>0.20848in</Top>
-              <Left>10.01111in</Left>
-              <Height>0.42959in</Height>
+              <Top>0.20417in</Top>
+              <Left>10.01806in</Left>
+              <Height>0.56932in</Height>
               <Width>1.175in</Width>
               <ZIndex>10</ZIndex>
               <Style>
@@ -1857,7 +1859,7 @@
               <Sizing>FitProportional</Sizing>
               <Left>0.01042in</Left>
               <Height>0.63807in</Height>
-              <Width>0.98527in</Width>
+              <Width>1.24569in</Width>
               <ZIndex>11</ZIndex>
               <Style>
                 <Border>
@@ -1997,10 +1999,10 @@
         </PageFooter>
         <PageHeight>8.27in</PageHeight>
         <PageWidth>11.69in</PageWidth>
-        <LeftMargin>0.25in</LeftMargin>
-        <RightMargin>0.1in</RightMargin>
-        <TopMargin>0.1in</TopMargin>
-        <BottomMargin>0.1in</BottomMargin>
+        <LeftMargin>0.2in</LeftMargin>
+        <RightMargin>0.2in</RightMargin>
+        <TopMargin>0.5in</TopMargin>
+        <BottomMargin>0.5in</BottomMargin>
         <Style />
       </Page>
     </ReportSection>
