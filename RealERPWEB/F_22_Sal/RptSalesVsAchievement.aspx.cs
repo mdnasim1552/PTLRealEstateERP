@@ -232,6 +232,7 @@ namespace RealERPWEB.F_22_Sal
             string aptno = dt1.Rows[0]["aptno"].ToString();
             string officeno = dt1.Rows[0]["officeno"].ToString();
 
+            string totalsal = (Convert.ToDouble(dt1.Rows[0]["aptno"]) + Convert.ToDouble(dt1.Rows[0]["shopno"])).ToString();
 
 
 
@@ -244,6 +245,7 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+            Rpt1.SetParameters(new ReportParameter("totalsal", totalsal + " Units"));
            
             Rpt1.SetParameters(new ReportParameter("projectName", projectName));
             Rpt1.SetParameters(new ReportParameter("shopno", shopno + " Units"));

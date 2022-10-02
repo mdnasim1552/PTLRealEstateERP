@@ -204,22 +204,17 @@ namespace RealERPWEB.F_22_Sal
             string comadd = hst["comadd1"].ToString();
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
+            string husrdesig = hst["usrdesig"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string CurDate1 = this.GetStdDate(this.txtCurMSRDate.Text.Trim());
             string comments = "";
             string printdate = System.DateTime.Now.ToString("dd/MM/yyyy");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-            string usrname = ((DataTable)Session["tblsalsurvery"]).Rows[0]["username"].ToString();
-            string usrdesig = ((DataTable)Session["tblsalsurvery"]).Rows[0]["usrdesig"].ToString();
-
-           // string usernameadesig = usrname + "/" + usrdesig;
-           // string mMSRNo = this.Request.QueryString["msrno"].ToString() == "" ? "" : this.Request.QueryString["msrno"].ToString();
-
+            string usrname = ((DataTable)Session["tblsalsurvery"]).Rows.Count==0? username:((DataTable)Session["tblsalsurvery"]).Rows[0]["username"].ToString();
+            string usrdesig = ((DataTable)Session["tblsalsurvery"]).Rows.Count == 0 ? husrdesig : ((DataTable)Session["tblsalsurvery"]).Rows[0]["usrdesig"].ToString();
             LocalReport Rpt1 = new LocalReport();
 
-
-            //string surveyNo = this.lblCurMSRNo1.Text + this.txtCurMSRNo2.Text;
-            //string surveyNo = mMSRNo;
+            
 
             DataTable dtdetails = (DataTable)Session["tblt02"];
 
@@ -261,7 +256,7 @@ namespace RealERPWEB.F_22_Sal
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
 
