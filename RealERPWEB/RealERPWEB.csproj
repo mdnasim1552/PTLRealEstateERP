@@ -2798,6 +2798,9 @@
     <Content Include="F_38_AI\AIGenCodeBook.aspx" />
     <Content Include="F_38_AI\CreateTask.aspx" />
     <Content Include="F_38_AI\CustomerList.aspx" />
+    <Content Include="F_38_AI\JobAnalytics.aspx" />
+    <Content Include="F_38_AI\MyTasks.aspx" />
+    <Content Include="F_38_AI\Projects.aspx" />
     <Content Include="F_39_MyPage\ClientCodeBook.aspx" />
     <Content Include="F_39_MyPage\ClientDetail.aspx" />
     <Content Include="F_39_MyPage\CustomerDetail.aspx" />
@@ -4610,6 +4613,27 @@
     </Compile>
     <Compile Include="F_38_AI\CustomerList.aspx.designer.cs">
       <DependentUpon>CustomerList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_38_AI\JobAnalytics.aspx.cs">
+      <DependentUpon>JobAnalytics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_38_AI\JobAnalytics.aspx.designer.cs">
+      <DependentUpon>JobAnalytics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_38_AI\MyTasks.aspx.cs">
+      <DependentUpon>MyTasks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_38_AI\MyTasks.aspx.designer.cs">
+      <DependentUpon>MyTasks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_38_AI\Projects.aspx.cs">
+      <DependentUpon>Projects.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_38_AI\Projects.aspx.designer.cs">
+      <DependentUpon>Projects.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_70_Services\QuotationEntry.aspx.cs">
       <DependentUpon>QuotationEntry.aspx</DependentUpon>
