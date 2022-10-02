@@ -235,7 +235,7 @@
                                             <div>
                                                 <asp:Label ID="lbldate" runat="server" CssClass="lblTxt lblName">Date</asp:Label>
 
-                                                <asp:DropDownList ID="ddlyearmon" runat="server">
+                                                <asp:DropDownList ID="ddlyearmon" runat="server" AutoPostBack="true">
                                                     <asp:ListItem></asp:ListItem>
                                                 </asp:DropDownList>
                                             </div>
