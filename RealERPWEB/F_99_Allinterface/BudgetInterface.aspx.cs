@@ -40,7 +40,8 @@ namespace RealERPWEB.F_99_Allinterface
 
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = this.GetCompCode();
 
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
@@ -50,7 +51,8 @@ namespace RealERPWEB.F_99_Allinterface
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Visible = false;
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = false;
                 RadioButtonList1.SelectedIndex = 1;
-                this.GetBudgetData();
+                this.GetProjectType();
+                this.ddlProjectType_SelectedIndexChanged(null, null);
                 RadioButtonList1_SelectedIndexChanged(null, null);
                 //this.GetProfession();
                 //RadioButtonList1.Items.RemoveAt(0);
@@ -58,7 +60,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //this.Createtable();
                 //this.GetNewClient();
                 //RadioButtonList1.Items[0].Attributes.CssStyle.Add("visibility", "hidden");
-
+                this.HyperLink6.NavigateUrl = "~/F_04_Bgd/RptBgdAll.aspx?comcod=" + comcod;
             }
 
         }
@@ -70,7 +72,56 @@ namespace RealERPWEB.F_99_Allinterface
 
 
         }
+        protected void GetProjectType()
+        {
+            string comcod = this.GetCompCode();
+            //  string txtprosearch = this.txtSrcProject.Text.Trim() + "%";
+            // string Level2 = (this.Request.QueryString["Type"].ToString().Trim() == "ProDetails") ? "LEVEL2" : "";
+            DataSet ds4 = KpiData.GetTransInfo(comcod, "SP_REPORT_MIS", "GETPROJECTTYPE", "", "", "", "", "", "", "", "", "");
+            if (ds4 == null)
+            {
+                this.ddlProjectType.Items.Clear();
+                return;
+            }
 
+            DataRow dr = ds4.Tables[0].NewRow();
+            dr["comcod"] = comcod;
+            dr["catdesc"] = "All Project Type";
+            dr["catcode"] = "00000";
+            dr["slno"] = "9";
+            ds4.Tables[0].Rows.InsertAt(dr, 0);
+            ds4.Tables[0].DefaultView.Sort = "slno ASC";
+
+            //this.ddlProjectType.Items.Insert(0, "--Select--");
+            this.ddlProjectType.DataTextField = "catdesc";
+            this.ddlProjectType.DataValueField = "catcode";
+            this.ddlProjectType.DataSource = ds4.Tables[0];
+            this.ddlProjectType.DataBind();
+
+        }
+        private DataTable HiddenSameData(DataTable dt1)
+        {
+
+            string ptype = dt1.Rows[0]["ptype"].ToString();
+
+            for (int j = 1; j < dt1.Rows.Count; j++)
+            {
+                if (dt1.Rows[j]["ptype"].ToString() == ptype)
+                {
+                    ptype = dt1.Rows[j]["ptype"].ToString();
+                    dt1.Rows[j]["pdesc"] = "";
+
+                }
+
+                else
+                {
+                    ptype = dt1.Rows[j]["ptype"].ToString();
+
+                }
+            }
+            return dt1;
+
+        }
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //this.gvPrjInfo_RowDataBound(null, null);
@@ -120,19 +171,22 @@ namespace RealERPWEB.F_99_Allinterface
                 case "7":
                     this.pnlBgd.Visible = true;
                     this.pnlPrjLink.Visible = false;
-                    this.RadioButtonList1.Items[7].Attributes["style"] = "background: #430000; display:block; ";
+                    this.RadioButtonList1.Items[7].Attributes["style"] = "background: #430000; display:none; ";
                     break;
                 case "8":
                     this.pnlBgd.Visible = true;
                     this.pnlPrjLink.Visible = false;
-                    this.RadioButtonList1.Items[8].Attributes["style"] = "background: #430000; display:block; ";
+                    this.RadioButtonList1.Items[8].Attributes["style"] = "background: #430000; display:none; ";
                     break;
             }
 
 
         }
 
-
+        protected void ddlProjectType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetBudgetData();
+        }
 
 
         private string GetCompCode()
@@ -164,18 +218,18 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-            this.RadioButtonList1.Items[0].Text = "<span class='fa  fa-signal fan' > </span>" + "<br>" + "<span class='lbldata counter'>" + "</span>" + "<span class='lbldata2'>" + "Project Link" + "</span>";
-            this.RadioButtonList1.Items[1].Text = "<span class='fa fa-pen-square fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + "</span>" + "<span class=lbldata2>" + "Project Information" + "</span>";
-            this.RadioButtonList1.Items[2].Text = "<span class='fa fa-pen-square fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + "</span>" + "<span class=lbldata2>" + "Pre Construction" + "</span>";
-            this.RadioButtonList1.Items[3].Text = "<span class='fa fa-check-square fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + "</span>" + "<span class=lbldata2>" + "Construction Budget" + "</span>";
+            this.RadioButtonList1.Items[0].Text = "<span class='fa  fa-signal fan' > </span>" + "<br>" + "<span class=''>" + "</span>" + "<span class='lbldata2'>" + "Project Link" + "</span>";
+            this.RadioButtonList1.Items[1].Text = "<span class='fa fa-pen-square fan'> </span>" + "<br>" + "<span class=''>" + "</span>" + "<span class=lbldata2>" + "Project Information" + "</span>";
+            this.RadioButtonList1.Items[2].Text = "<span class='fa fa-pen-square fan'> </span>" + "<br>" + "<span class=''>" + "</span>" + "<span class=lbldata2>" + "Pre Construction" + "</span>";
+            this.RadioButtonList1.Items[3].Text = "<span class='fa fa-check-square fan'> </span>" + "<br>" + "<span class=''>" + "</span>" + "<span class=lbldata2>" + "Construction Budget" + "</span>";
 
-            this.RadioButtonList1.Items[4].Text = "<span class='fa fa-calculator fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + "</span>" + "<span class=lbldata2>" + "General Budget" + "</span>";
-            this.RadioButtonList1.Items[5].Text = "<span class='fa fa-calculator fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + "</span>" + "<span class=lbldata2>" + "Planning" + "</span>";
+            this.RadioButtonList1.Items[4].Text = "<span class='fa fa-calculator fan'> </span>" + "<br>" + "<span class=''>" + "</span>" + "<span class=lbldata2>" + "General Budget" + "</span>";
+            this.RadioButtonList1.Items[5].Text = "<span class='fa fa-calculator fan'> </span>" + "<br>" + "<span class=''>" + "</span>" + "<span class=lbldata2>" + "Planning" + "</span>";
 
-            this.RadioButtonList1.Items[6].Text = "<span class='fa fa-calculator fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + "</span>" + "<span class='lbldata2'>" + "Construction Level" + "</span>";
+            this.RadioButtonList1.Items[6].Text = "<span class='fa fa-calculator fan'> </span>" + "<br>" + "<span class=''>" + "</span>" + "<span class='lbldata2'>" + "Construction Level" + "</span>";
 
-            this.RadioButtonList1.Items[7].Text = "<span class='fa fa-calculator fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + "</span>" + "<span class=lbldata2>" + "Work Execution" + "</span>";
-            this.RadioButtonList1.Items[8].Text = "<span class='fa fa-calculator fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + "</span>" + "<span class=lbldata2>" + "Constr. Progress" + "</span>";
+            //this.RadioButtonList1.Items[7].Text = "<span class='fa fa-calculator fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + "</span>" + "<span class=lbldata2>" + "Work Execution" + "</span>";
+            //this.RadioButtonList1.Items[8].Text = "<span class='fa fa-calculator fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + "</span>" + "<span class=lbldata2>" + "Constr. Progress" + "</span>";
 
 
 
@@ -184,9 +238,9 @@ namespace RealERPWEB.F_99_Allinterface
             string comcod = this.GetCompCode();
             string userid = hst["usrid"].ToString();
             DateTime date = Convert.ToDateTime(this.txtdate.Text);
+            string ptype = this.ddlProjectType.SelectedValue.ToString()=="00000"? "%": this.ddlProjectType.SelectedValue.ToString()+"%";
 
-
-            DataSet dskpi = KpiData.GetTransInfo(comcod, "SP_REPORT_BUDGET_INTERFACE", "RPTBUDGETINTERFACE", date.ToString("dd-MMM-yyyy"), "", "", "", "", "", "", "");
+            DataSet dskpi = KpiData.GetTransInfo(comcod, "SP_REPORT_BUDGET_INTERFACE", "RPTBUDGETINTERFACE", date.ToString("dd-MMM-yyyy"), "", ptype, "", "", "", "", "");
 
             DataSet ds1 = KpiData.GetTransInfo(comcod, "SP_ENTRY_LP_CODEBOOK", "PRINFCODELISTPLAN", "", "", "", "", "", "", "", "");
             if (dskpi == null || ds1 == null)
@@ -204,16 +258,14 @@ namespace RealERPWEB.F_99_Allinterface
             dt0 = ((DataTable)dskpi.Tables[0]).Copy();
 
             dv = dt0.DefaultView;
-            dv.Sort = "actcode asc";
             dt = dv.ToTable();
+            //dv = dt0.DefaultView;
+            //dv.Sort = "actcode asc";
+            //dt = dv.ToTable();
 
             ViewState["ALLBudugetData"] = dt;
             ViewState["tblprjlink"] = ds1.Tables[0]; ;
             this.Data_Bind();
-
-
-
-
         }
 
         private void Data_Bind()
@@ -223,7 +275,7 @@ namespace RealERPWEB.F_99_Allinterface
             DataTable dt1 = (DataTable)ViewState["tblprjlink"];
             this.gvCodeBook.DataSource = dt1;//HiddenSameData(dt);
             this.gvCodeBook.DataBind();
-            this.gvPrjInfo.DataSource = dt;//HiddenSameData(dt);
+            this.gvPrjInfo.DataSource = HiddenSameData(dt);
             this.gvPrjInfo.DataBind();
             if (dt.Rows.Count == 0)
                 return;
@@ -245,13 +297,13 @@ namespace RealERPWEB.F_99_Allinterface
 
                 this.gvPrjInfo.Columns[10].Visible = false;
                 this.gvPrjInfo.Columns[11].Visible = false;
-                this.gvPrjInfo.Columns[12].Visible = false;
-                this.gvPrjInfo.Columns[13].Visible = false;
-                this.gvPrjInfo.Columns[14].Visible = false;
-                this.gvPrjInfo.Columns[15].Visible = false;
-                this.gvPrjInfo.Columns[16].Visible = false;
-                this.gvPrjInfo.Columns[17].Visible = false;
-                this.gvPrjInfo.Columns[18].Visible = false;
+                //this.gvPrjInfo.Columns[12].Visible = false;
+                //this.gvPrjInfo.Columns[13].Visible = false;
+                //this.gvPrjInfo.Columns[14].Visible = false;
+                //this.gvPrjInfo.Columns[15].Visible = false;
+                //this.gvPrjInfo.Columns[16].Visible = false;
+                //this.gvPrjInfo.Columns[17].Visible = false;
+                //this.gvPrjInfo.Columns[18].Visible = false;
             }
             if (viewtype == "2")
             {
@@ -267,13 +319,13 @@ namespace RealERPWEB.F_99_Allinterface
                 this.gvPrjInfo.Columns[9].Visible = false;
                 this.gvPrjInfo.Columns[10].Visible = false;
                 this.gvPrjInfo.Columns[11].Visible = false;
-                this.gvPrjInfo.Columns[12].Visible = false;
-                this.gvPrjInfo.Columns[13].Visible = false;
-                this.gvPrjInfo.Columns[14].Visible = false;
-                this.gvPrjInfo.Columns[15].Visible = false;
-                this.gvPrjInfo.Columns[16].Visible = false;
-                this.gvPrjInfo.Columns[17].Visible = false;
-                this.gvPrjInfo.Columns[18].Visible = false;
+                //this.gvPrjInfo.Columns[12].Visible = false;
+                //this.gvPrjInfo.Columns[13].Visible = false;
+                //this.gvPrjInfo.Columns[14].Visible = false;
+                //this.gvPrjInfo.Columns[15].Visible = false;
+                //this.gvPrjInfo.Columns[16].Visible = false;
+                //this.gvPrjInfo.Columns[17].Visible = false;
+                //this.gvPrjInfo.Columns[18].Visible = false;
 
             }
             else if (viewtype == "3")
@@ -291,13 +343,13 @@ namespace RealERPWEB.F_99_Allinterface
 
                 this.gvPrjInfo.Columns[10].Visible = false;
                 this.gvPrjInfo.Columns[11].Visible = false;
-                this.gvPrjInfo.Columns[12].Visible = false;
-                this.gvPrjInfo.Columns[13].Visible = false;
-                this.gvPrjInfo.Columns[14].Visible = false;
-                this.gvPrjInfo.Columns[15].Visible = false;
-                this.gvPrjInfo.Columns[16].Visible = false;
-                this.gvPrjInfo.Columns[17].Visible = false;
-                this.gvPrjInfo.Columns[18].Visible = false;
+                //this.gvPrjInfo.Columns[12].Visible = false;
+                //this.gvPrjInfo.Columns[13].Visible = false;
+                //this.gvPrjInfo.Columns[14].Visible = false;
+                //this.gvPrjInfo.Columns[15].Visible = false;
+                //this.gvPrjInfo.Columns[16].Visible = false;
+                //this.gvPrjInfo.Columns[17].Visible = false;
+                //this.gvPrjInfo.Columns[18].Visible = false;
 
 
 
@@ -317,13 +369,13 @@ namespace RealERPWEB.F_99_Allinterface
 
                 this.gvPrjInfo.Columns[10].Visible = false;
                 this.gvPrjInfo.Columns[11].Visible = false;
-                this.gvPrjInfo.Columns[12].Visible = false;
-                this.gvPrjInfo.Columns[13].Visible = false;
-                this.gvPrjInfo.Columns[14].Visible = false;
-                this.gvPrjInfo.Columns[15].Visible = false;
-                this.gvPrjInfo.Columns[16].Visible = false;
-                this.gvPrjInfo.Columns[17].Visible = false;
-                this.gvPrjInfo.Columns[18].Visible = false;
+                //this.gvPrjInfo.Columns[12].Visible = false;
+                //this.gvPrjInfo.Columns[13].Visible = false;
+                //this.gvPrjInfo.Columns[14].Visible = false;
+                //this.gvPrjInfo.Columns[15].Visible = false;
+                //this.gvPrjInfo.Columns[16].Visible = false;
+                //this.gvPrjInfo.Columns[17].Visible = false;
+                //this.gvPrjInfo.Columns[18].Visible = false;
             }
             else if (viewtype == "5")
             {
@@ -341,13 +393,13 @@ namespace RealERPWEB.F_99_Allinterface
 
                 this.gvPrjInfo.Columns[10].Visible = false;
                 this.gvPrjInfo.Columns[11].Visible = false;
-                this.gvPrjInfo.Columns[12].Visible = true;
-                this.gvPrjInfo.Columns[13].Visible = false;
-                this.gvPrjInfo.Columns[14].Visible = false;
-                this.gvPrjInfo.Columns[15].Visible = false;
-                this.gvPrjInfo.Columns[16].Visible = false;
-                this.gvPrjInfo.Columns[17].Visible = false;
-                this.gvPrjInfo.Columns[18].Visible = false;
+                //this.gvPrjInfo.Columns[12].Visible = true;
+                //this.gvPrjInfo.Columns[13].Visible = false;
+                //this.gvPrjInfo.Columns[14].Visible = false;
+                //this.gvPrjInfo.Columns[15].Visible = false;
+                //this.gvPrjInfo.Columns[16].Visible = false;
+                //this.gvPrjInfo.Columns[17].Visible = false;
+                //this.gvPrjInfo.Columns[18].Visible = false;
             }
             else if (viewtype == "6")
             {
@@ -365,13 +417,13 @@ namespace RealERPWEB.F_99_Allinterface
 
                 this.gvPrjInfo.Columns[10].Visible = false;
                 this.gvPrjInfo.Columns[11].Visible = false;
-                this.gvPrjInfo.Columns[12].Visible = false;
-                this.gvPrjInfo.Columns[13].Visible = false;
-                this.gvPrjInfo.Columns[14].Visible = false;
-                this.gvPrjInfo.Columns[15].Visible = false;
-                this.gvPrjInfo.Columns[16].Visible = false;
-                this.gvPrjInfo.Columns[17].Visible = false;
-                this.gvPrjInfo.Columns[18].Visible = true;
+                //this.gvPrjInfo.Columns[12].Visible = false;
+                //this.gvPrjInfo.Columns[13].Visible = false;
+                //this.gvPrjInfo.Columns[14].Visible = false;
+                //this.gvPrjInfo.Columns[15].Visible = false;
+                //this.gvPrjInfo.Columns[16].Visible = false;
+                //this.gvPrjInfo.Columns[17].Visible = false;
+                //this.gvPrjInfo.Columns[18].Visible = true;
 
 
             }
@@ -392,13 +444,13 @@ namespace RealERPWEB.F_99_Allinterface
 
                 this.gvPrjInfo.Columns[10].Visible = false;
                 this.gvPrjInfo.Columns[11].Visible = false;
-                this.gvPrjInfo.Columns[12].Visible = true;
-                this.gvPrjInfo.Columns[13].Visible = true;
-                this.gvPrjInfo.Columns[14].Visible = true;
-                this.gvPrjInfo.Columns[15].Visible = false;
-                this.gvPrjInfo.Columns[16].Visible = false;
-                this.gvPrjInfo.Columns[17].Visible = false;
-                this.gvPrjInfo.Columns[18].Visible = false;
+                //this.gvPrjInfo.Columns[12].Visible = true;
+                //this.gvPrjInfo.Columns[13].Visible = true;
+                //this.gvPrjInfo.Columns[14].Visible = true;
+                //this.gvPrjInfo.Columns[15].Visible = false;
+                //this.gvPrjInfo.Columns[16].Visible = false;
+                //this.gvPrjInfo.Columns[17].Visible = false;
+                //this.gvPrjInfo.Columns[18].Visible = false;
 
 
 
@@ -418,13 +470,13 @@ namespace RealERPWEB.F_99_Allinterface
 
                 this.gvPrjInfo.Columns[10].Visible = true;
                 this.gvPrjInfo.Columns[11].Visible = true;
-                this.gvPrjInfo.Columns[12].Visible = true;
-                this.gvPrjInfo.Columns[13].Visible = true;
-                this.gvPrjInfo.Columns[14].Visible = true;
-                this.gvPrjInfo.Columns[15].Visible = true;
-                this.gvPrjInfo.Columns[16].Visible = true;
-                this.gvPrjInfo.Columns[17].Visible = true;
-                this.gvPrjInfo.Columns[18].Visible = false;
+                //this.gvPrjInfo.Columns[12].Visible = true;
+                //this.gvPrjInfo.Columns[13].Visible = true;
+                //this.gvPrjInfo.Columns[14].Visible = true;
+                //this.gvPrjInfo.Columns[15].Visible = true;
+                //this.gvPrjInfo.Columns[16].Visible = true;
+                //this.gvPrjInfo.Columns[17].Visible = true;
+                //this.gvPrjInfo.Columns[18].Visible = false;
             }
 
 
@@ -470,12 +522,12 @@ namespace RealERPWEB.F_99_Allinterface
                     case 6:
                         custLink.NavigateUrl = "~/F_04_Bgd/BgdLevelRate?Type=Level&prjcode=" + pactcode;
                         break;
-                    case 7:
-                        custLink.NavigateUrl = "~/F_09_PImp/PurIssueEntry?Type=Report&prjcode=" + pactcode;
-                        break;
-                    case 8:
-                        custLink.NavigateUrl = "~/F_32_Mis/RptConstruProgressSum?Type=Report&comcod=" + comcod;
-                        break;
+                    //case 7:
+                    //    custLink.NavigateUrl = "~/F_09_PImp/PurIssueEntry?Type=Report&prjcode=" + pactcode;
+                    //    break;
+                    //case 8:
+                    //    custLink.NavigateUrl = "~/F_32_Mis/RptConstruProgressSum?Type=Report&comcod=" + comcod;
+                    //    break;
 
                     default:
                         break;
@@ -643,5 +695,7 @@ namespace RealERPWEB.F_99_Allinterface
             //ddl2.SelectedValue = actcode;
 
         }
+
+       
     }
 }

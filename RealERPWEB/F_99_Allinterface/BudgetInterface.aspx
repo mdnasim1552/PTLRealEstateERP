@@ -45,7 +45,7 @@
         }
 
 
-        
+
 
 
         function pageLoaded() {
@@ -60,6 +60,7 @@
 
                 });
 
+                $('.chzn-select').chosen({ search_contains: true });
 
                 $('#<%=this.gvPrjInfo.ClientID%>').tblScrollable();
 
@@ -145,8 +146,8 @@
         function hideOptions() {
             $(".tbMenuWrp table tr td:nth-child(1)").hide();
             $(".tbMenuWrp table tr td:nth-child(3)").hide();
-            $(".tbMenuWrp table tr td:nth-child(8)").hide();
-            $(".tbMenuWrp table tr td:nth-child(9)").hide();
+            //$(".tbMenuWrp table tr td:nth-child(8)").hide();
+            //$(".tbMenuWrp table tr td:nth-child(9)").hide();
         }
 
 
@@ -357,13 +358,13 @@
                 background: #00CBF3;
             }
 
-            .tbMenuWrp table tr td:nth-child(8) {
+            /*.tbMenuWrp table tr td:nth-child(8) {
                 background: #4BCF9E;
             }
 
             .tbMenuWrp table tr td:nth-child(9) {
                 background: #4BCF9E;
-            }
+            }*/
 
         /*.tbMenuWrp table tr td:nth-child(7) {
                 width: 115px;
@@ -614,7 +615,20 @@
                                 <%--<asp:Label ID="lblbill" runat="server" CssClass=" form-control "></asp:Label>--%>
                             </div>
                         </div>
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <label class="control-label lblmargin-top9px">Project Type</label>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <asp:DropDownList ID="ddlProjectType" CssClass="inputTxt ddlPage chzn-select" Width="150px" TabIndex="13" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlProjectType_SelectedIndexChanged" >
+                                    <asp:ListItem Value="00000">Please Select</asp:ListItem>
 
+                                </asp:DropDownList>
+
+                            </div>
+                        </div>
                         <div class="col-md-1">
                             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                                 <button type="button" class="btn btn-danger">Operations</button>
@@ -635,7 +649,25 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-2">
+                            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                <button type="button" class="btn btn-danger">Reports</button>
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop4" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop4" style="">
+                                        <div class="dropdown-arrow"></div>
 
+                                        <asp:HyperLink ID="HyperLink6" Target="_blank" NavigateUrl="~" runat="server" CssClass="dropdown-item">Budget Status</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink7" Target="_blank" NavigateUrl="~/F_32_Mis/ProjectAnalysis?Type=Report&comcod=" runat="server" CssClass="dropdown-item">Multi Project</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink8" Target="_blank" NavigateUrl="~/F_32_Mis/RptMisMasterBgd.aspx?Type=InvPlan&comcod=" runat="server" CssClass="dropdown-item">  Investment Plan Summary</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink9" Target="_blank" NavigateUrl="~/F_32_Mis/RptConstruProgress" runat="server" CssClass="dropdown-item">Category Wise Construction Progress</asp:HyperLink>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div id="slSt" class=" col-md-12  pading5px">
@@ -652,8 +684,8 @@
                                                     <asp:ListItem Value="4"></asp:ListItem>
                                                     <asp:ListItem Value="5"></asp:ListItem>
                                                     <asp:ListItem Value="6"></asp:ListItem>
-                                                    <asp:ListItem Value="7"></asp:ListItem>
-                                                    <asp:ListItem Value="8"></asp:ListItem>
+                                                  <%--  <asp:ListItem Value="7" style="display:none;"></asp:ListItem>
+                                                    <asp:ListItem Value="8" style="display:none;"></asp:ListItem>--%>
 
                                                 </asp:RadioButtonList>
                                             </div>
@@ -688,10 +720,13 @@
 
                                         </HeaderTemplate>
 
-
+                                       <%-- Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc"))--%>
 
                                         <ItemTemplate>
-                                            <asp:HyperLink ID="hyplProjectS" runat="server" Target="_blank" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
+                                            <asp:HyperLink ID="hyplProjectS" runat="server" Target="_blank" Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "pdesc")) + "</B>"+
+                                                                         (DataBinder.Eval(Container.DataItem, "actdesc").ToString().Trim().Length>0 ? 
+                                                                         (Convert.ToString(DataBinder.Eval(Container.DataItem, "pdesc")).Trim().Length>0 ? "<br>" : "") + 
+                                                                           "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")).Trim(): "") %>'
                                                 Width="150px"></asp:HyperLink>
                                             <asp:Label ID="lgbActcode" Visible="false" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actcode")) %>'
                                                 Width="80px"></asp:Label>
@@ -699,6 +734,7 @@
                                         <ItemStyle HorizontalAlign="left" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
+                                   
                                     <asp:TemplateField HeaderText="Construction <br> Area">
                                         <ItemTemplate>
                                             <asp:Label ID="lgvConstruction" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "consarea")).ToString("#,##0.00;-#,##0.00; ") %>'
@@ -776,7 +812,7 @@
                                     </asp:TemplateField>
 
 
-                                     <asp:TemplateField HeaderText="Actual Cost">
+                                    <asp:TemplateField HeaderText="Actual Cost">
                                         <ItemTemplate>
                                             <asp:Label ID="lgvacamt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "acamt")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                 Width="80px"></asp:Label>
@@ -786,7 +822,7 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                     <asp:TemplateField HeaderText="Cost Per SFT(Actual)">
+                                    <asp:TemplateField HeaderText="Cost Per SFT(Actual)">
                                         <ItemTemplate>
                                             <asp:Label ID="lgvaccostperscf" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "accpersft")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                 Width="80px"></asp:Label>
@@ -798,7 +834,7 @@
 
 
 
-                                    <asp:TemplateField HeaderText="Plan Amount">
+                                  <%--  <asp:TemplateField HeaderText="Plan Amount">
                                         <ItemTemplate>
                                             <asp:Label ID="lgvpBgdamt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "plnamt")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                 Width="80px"></asp:Label>
@@ -825,7 +861,7 @@
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Target Work in %" Visible="false" >
+                                    <asp:TemplateField HeaderText="Target Work in %" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lgvpsdlesexBgdamt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "targwrkper")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                 Width="80px"></asp:Label>
@@ -834,7 +870,7 @@
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Actual Work in %"  Visible="false">
+                                    <asp:TemplateField HeaderText="Actual Work in %" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lgvpsdlesfgdamt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "actwrkper")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                 Width="80px"></asp:Label>
@@ -843,7 +879,7 @@
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Less Progress in %"  Visible="false">
+                                    <asp:TemplateField HeaderText="Less Progress in %" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lgvlessrogress" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lessprog")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                 Width="80px"></asp:Label>
@@ -851,18 +887,18 @@
                                         <FooterStyle Font-Bold="True" HorizontalAlign="right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         <ItemStyle HorizontalAlign="Right" />
-                                    </asp:TemplateField>
+                                    </asp:TemplateField>--%>
                                     <asp:TemplateField Visible="false">
                                         <ItemTemplate>
                                             <asp:HyperLink ID="HyperLink4" Target="_blank" runat="server" CssClass="btn btn-sm btn-success pad2px"> <span class="glyphicon glyphicon-eye-open"></span> View</asp:HyperLink>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="" >
+                                    <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
-                                            
-                                        <asp:HyperLink ID="lnkapp" Visible="false" Target="_blank" runat="server" ToolTip="Approved" CssClass="btn btn-default btn-xs"><span style="color:green" class=" fa fa-check"></span> </asp:HyperLink>
-                                        <asp:HyperLink ID="lnkBgdLock" Visible="false" Target="_blank" runat="server" ToolTip="Budget Lock" CssClass="btn btn-default btn-xs"><span style="color:green" class=" fa fa-lock"></span> </asp:HyperLink>
-                                            
+
+                                            <asp:HyperLink ID="lnkapp" Visible="false" Target="_blank" runat="server" ToolTip="Approved" CssClass="btn btn-default btn-xs"><span style="color:green" class=" fa fa-check"></span> </asp:HyperLink>
+                                            <asp:HyperLink ID="lnkBgdLock" Visible="false" Target="_blank" runat="server" ToolTip="Budget Lock" CssClass="btn btn-default btn-xs"><span style="color:green" class=" fa fa-lock"></span> </asp:HyperLink>
+
                                         </ItemTemplate>
 
                                         <ItemStyle Width="40px" />
