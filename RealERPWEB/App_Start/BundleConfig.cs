@@ -78,7 +78,9 @@ namespace RealERPWEB
           "~/tinymce/tinymce.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/multiselect").Include(
-             "~/Scripts/bootstrap-multiselect.js"));
+             "~/Scripts/bootstrap-multiselect.js",
+             "~/Scripts/select2.min.js"
+             ));
 
               bundles.Add(new ScriptBundle("~/bundles/User").Include(
                 "~/JS02/RealERPScript.js",
