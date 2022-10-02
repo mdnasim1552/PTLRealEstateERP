@@ -711,7 +711,7 @@
                                 <div class="card-header border-0 pb-0">
                                     <!-- .d-flex -->
                                     <div class="d-flex align-items-center">
-                                        <h3 class="mr-auto card-title">LEAVE HISTORY</h3>
+                                        <h3 class="mr-auto card-title m-0">LEAVE HISTORY</h3>
                                         <!-- .card-header-control -->
                                         <asp:LinkButton ID="hlnkbtnNext" runat="server" CssClass="btn btn-sm btn-info primaryBtn pull-right" OnClick="hlnkbtnNext_Click" Text="View all"></asp:LinkButton>
                                     </div>
@@ -802,7 +802,125 @@
                                 <!-- /.card-footer -->
                             </div>
                             <!-- /.card -->
+                            <asp:Panel runat="server" ID="pnlClientMrrdayFinlay" Visible="false">
+                              <div class="card card-fluid">
+                                <!-- .card-header -->
+                                <div class="card-header border-0 pb-0">
+                                    <!-- .d-flex -->
+                                    <div class="d-flex align-items-center">
+                                        <h3 class="mr-auto card-title m-0">Client Birthday</h3>
+                                        </div>
+                                    <!-- /.d-flex -->
+                                </div>
+                                <!-- /.card-header -->
+                                <!-- .table-responsive -->
+                                <div class="card-body">
+                                    <div class="table-responsive pb-3">
+                                        <!-- .table -->
+                                        <asp:GridView ID="gvclientbthday" runat="server" AutoGenerateColumns="False" ShowFooter="false" CssClass="table-striped table-hover table-bordered">
+                                            <RowStyle />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="Sl#">
+                                                    <ItemTemplate>
+                                                        <asp:Label  runat="server" Font-Bold="True" Height="16px" Style="text-align: center"
+                                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' ></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="middle" />
+                                                </asp:TemplateField>
+                                                  <asp:TemplateField HeaderText="Customer Name ">                                                                                                               
+                                                    <ItemTemplate>
+                                                        <asp:Label  runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custname")) %>' ></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
+                                                <asp:TemplateField HeaderText="Project Name ">
+                                                    <ItemTemplate>
+                                                        <asp:Label runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pdesc")) %>' ></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                                     <asp:TemplateField HeaderText="Birth Date ">                                                                                                               
+                                                    <ItemTemplate>
+                                                        <asp:Label  runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "birthday")) %>' Width="120px"></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+
+                         
+
+                            
+                                            </Columns>
+
+                                            <EditRowStyle />
+                                            <AlternatingRowStyle />
+
+                                        </asp:GridView>
+                                        <!-- /.table -->
+
+                                    </div>
+                                </div>
+                                <!-- /.card-footer -->
+                            </div>
+
+                                <div class="card card-fluid">
+                                <!-- .card-header -->
+                                <div class="card-header border-0 pb-0">
+                                    <!-- .d-flex -->
+                                    <div class="d-flex align-items-center">
+                                        <h3 class="mr-auto card-title m-0">Client Marriage Day</h3>
+                                        </div>
+                                    <!-- /.d-flex -->
+                                </div>
+                                <!-- /.card-header -->
+                                <!-- .table-responsive -->
+                                <div class="card-body">
+                                    <div class="table-responsive pb-3">
+                                        <!-- .table -->
+                                        <asp:GridView ID="gvmarriageday" runat="server" AutoGenerateColumns="False" ShowFooter="false" CssClass="table-striped table-hover table-bordered">
+                                            <RowStyle />
+                                            <Columns>
+                                         <asp:TemplateField HeaderText="Sl#">
+                                                    <ItemTemplate>
+                                                        <asp:Label  runat="server" Font-Bold="True" Height="16px" Style="text-align: center"
+                                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' ></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+                                                  <asp:TemplateField HeaderText="Customer Name ">                                                                                                               
+                                                    <ItemTemplate>
+                                                        <asp:Label  runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custname")) %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Project Name ">
+                                                    <ItemTemplate>
+                                                        <asp:Label runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pdesc")) %>' ></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                                     <asp:TemplateField HeaderText="Birth Date ">                                                                                                               
+                                                    <ItemTemplate>
+                                                        <asp:Label  runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "maday")) %>' Width="120px"></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+
+                         
+
+                            
+                                            </Columns>
+
+                                            <EditRowStyle />
+                                            <AlternatingRowStyle />
+
+                                        </asp:GridView>
+                                        <!-- /.table -->
+
+                                    </div>
+                                </div>
+                                <!-- /.card-footer -->
+                            </div>
+                                </asp:Panel>
 
                       <asp:Panel runat="server" ID="pnlApplyLeavBTI" Visible="false">
                           <div class="card">
