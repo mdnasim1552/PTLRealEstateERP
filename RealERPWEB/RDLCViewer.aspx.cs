@@ -291,7 +291,7 @@ namespace RealERPWEB
                                     cell.Controls.Add(new Literal { Text = (control as LinkButton).Text });
                                     break;
                                 case "CheckBox":
-                                    cell.Controls.Add(new Literal { Text = (control as CheckBox).Text }) ;
+                                    cell.Controls.Add(new Literal { Text = (control as CheckBox).Text });
                                     break;
                                 case "RadioButton":
                                     cell.Controls.Add(new Literal { Text = (control as RadioButton).Text });
@@ -302,7 +302,7 @@ namespace RealERPWEB
                                 case "DropDownList":
                                     cell.Controls.Add(new Literal { Text = (control as DropDownList).SelectedItem.Text.ToString() });
                                     break;
-                                 
+
 
                             }
                             cell.Controls.Remove(control);
