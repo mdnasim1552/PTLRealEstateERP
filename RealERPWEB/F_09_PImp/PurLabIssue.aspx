@@ -54,7 +54,7 @@
             $("input, select").bind("keydown", function (event) {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
-                 
+
 
             });
 
@@ -93,12 +93,7 @@
             });
 
         }
-
     </script>
-
-
-
-
 
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -301,7 +296,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblitemcode" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>'></asp:Label>
-                                            
+
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Fl" Visible="false">
@@ -700,11 +695,12 @@
                                         <asp:TextBox ID="txtreward" runat="server" CssClass="inputtextbox" Style="width: 60px; text-align: right;"></asp:TextBox>
 
 
-
                                         <asp:Label ID="lblnettotal" runat="server"
                                             Text="Net Total:" CssClass=" smLbl_to"></asp:Label>
-
                                         <asp:Label ID="lblvalnettotal" runat="server" CssClass="smLbl_to" Style="text-align: right; color: blue;"></asp:Label>
+
+                                        <asp:HyperLink ID="lbtnBalance" runat="server" Target="_blank" Style="margin-left: 10px; color: blue; font-weight: bold; font-size: 14px;"></asp:HyperLink>
+
                                     </div>
 
                                 </div>
