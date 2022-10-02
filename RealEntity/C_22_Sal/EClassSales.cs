@@ -184,6 +184,7 @@ namespace RealEntity.C_22_Sal
             public string procatagory { get; set; }
             public string buildtype { get; set; }
             public string companyname { get; set; }
+            public string comments { get; set; }
 
 
 
