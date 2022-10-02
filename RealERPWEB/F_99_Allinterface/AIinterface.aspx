@@ -808,7 +808,7 @@
                                         </asp:TemplateField>
                                          <asp:TemplateField HeaderText="Employee Name">
                                             <ItemTemplate>
-                                                <asp:HyperLink runat="server" ID="btnMytask" Target="_blank" NavigateUrl="~/F_38_AI/MyTasks"  >
+                                                <asp:HyperLink runat="server" ID="btnMytask" Target="_blank" NavigateUrl="~/F_38_AI/MyTasks?Empid="  >
                                                 <asp:Label ID="tblwrktype" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'></asp:Label></asp:HyperLink>
                                             </ItemTemplate>
