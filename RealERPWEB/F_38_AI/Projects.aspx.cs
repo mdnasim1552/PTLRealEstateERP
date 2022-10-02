@@ -19,6 +19,7 @@ namespace RealERPWEB.F_38_AI
             if (!IsPostBack)
             {
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Projects OverView";
+                ProjectDetails_SelectedIndexChanged1(null, null);
             }
 
         }
@@ -63,16 +64,27 @@ namespace RealERPWEB.F_38_AI
 
         private void GetPrjOverView()
         {
-            string comcod = this.GetComdCode();
-            string projectid = Request.QueryString["PID"].ToString();
-            string batchid = Request.QueryString["BatchID"].ToString();
-            
-            DataSet dt = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", projectid, batchid, "", "", "", "", "", "", "");
-            if (dt == null)
-                return;
-            Session["tblprjoverView"] = dt.Tables[0];
+            try
+            {
 
+                string comcod = this.GetComdCode();
+                string sircode = Request.QueryString["PID"].ToString();
+                //string batchid = Request.QueryString["BatchID"].ToString();               
 
+                DataSet ds1 = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "AIPROJECTDETAILS", sircode, "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+                DataTable dt = ds1.Tables[0];
+               
+                this.gv_projOverView.DataSource = dt;
+                this.gv_projOverView.DataBind();
+                
+
+            }
+            catch (Exception ex)
+            {
+
+            }
 
         }
     }

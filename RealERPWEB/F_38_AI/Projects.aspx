@@ -70,145 +70,180 @@
                 </div>
                 <div class="card-body">
 
-                   
-                        <asp:MultiView ID="MultiView1" runat="server">
-                            <asp:View runat="server" ID="OverView">
-                                <div class="text-center">
-                                    <h5>How well's Collaborate </h5>
-                                    <p>hello team</p>
-                                </div>
-                            </asp:View>
-                            <asp:View runat="server" ID="ListView">
-                                <h4>ListView</h4>
-                            </asp:View>
-                            <asp:View runat="server" ID="BoardView">
-                                <h4>BoardView</h4>
-                            </asp:View>
-                            <asp:View runat="server" ID="TimelineView">
-                                <h4>TimelineView</h4>
-                            </asp:View>
-                            <asp:View runat="server" ID="CalendarView">
-                                <h4>CalendarView</h4>
-                            </asp:View>
-                            <asp:View runat="server" ID="WorkflowView">
-                                <h4>WorkflowView</h4>
-                            </asp:View>
-                            <asp:View runat="server" ID="DashboardView">
-                                 <div class="row">
-                                  <div class="col-md-3">
-                                        <div class="shadow-lg p-3 mb-5 bg-body rounded">
-                                            <div class="text-center">
-                                                <h6>Completed Tasks</h6>
-                                            </div>
-                                            <h2 class="text-center">3</h2>
-                                            <div class="text-center">
-                                                <p><i class="fa fa-angle-double-down"></i> Filter</p>
-                                            </div>
-                                        </div>
-                                    </div> 
-                                  <div class="col-md-3">
-                                        <div class="shadow-lg p-3 mb-5 bg-body rounded">
-                                            <div class="text-center">
-                                                <h6>InCompleted Tasks</h6>
-                                            </div>
-                                            <h2 class="text-center">0</h2>
-                                            <div class="text-center">
-                                                <p><i class="fa fa-angle-double-down"></i> Filter</p>
-                                            </div>
-                                        </div>
-                                    </div> 
-                                  <div class="col-md-3">
-                                        <div class="shadow-lg p-3 mb-5 bg-body rounded">
-                                            <div class="text-center">
-                                                <h6>OverDue Tasks</h6>
-                                            </div>
-                                            <h2 class="text-center">0</h2>
-                                            <div class="text-center">
-                                                <p><i class="fa fa-angle-double-down"></i> Filter</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                  <div class="col-md-3">
-                                        <div class="shadow-lg p-3 mb-5 bg-body rounded">
-                                            <div class="text-center">
-                                                <h6>Total Tasks</h6>
-                                            </div>
-                                            <h2 class="text-center">3</h2>
-                                            <div class="text-center">
-                                                <p><i class="fa fa-angle-double-down"></i> No Filter</p>
-                                            </div>
-                                        </div>
-                                    </div> 
-                                     </div>
-                                <div class="row">
-                                      <div class="col-md-6">
-                                        <div class="card p-3 mb-5 bg-body rounded" style="height:200px" >                                           
-                                               <div class="card-body">
-                                                   <p>InComplete Tasks by section</p>
-                                                   <div class="text-center">
-                                                   <asp:Image runat="server" CssClass="text-center" ID="iamge1" style="height:100px;width:300px;" ImageUrl="https://cdn.pixabay.com/photo/2013/07/12/14/18/productivity-148197_960_720.png" />
 
-                                                   </div>
+                    <asp:MultiView ID="MultiView1" runat="server">
+                        <asp:View runat="server" ID="OverView">
 
-                                               </div>
-                                               <div class="card-footer mt-1">
-                                                    <p><i class="fa fa-angle-double-down"></i> 1 Filter</p>
-                                               </div>                                          
+                           
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        <div class="card-header bg-light text-center p-1">
+                                            <span class="font-weight-bold text-muted">Project Information</span>
                                         </div>
-                                    </div>
-                                     <div class="col-md-6">
-                                        <div class="card p-3 mb-5 bg-body rounded" style="height:200px" >                                           
-                                               <div class="card-body">
-                                                    <p>Total Tasks by Completion status</p>
-                                                   <div Class="text-center">
-                                                   <asp:Image runat="server"  ID="Image1" style="height:100px;width:100px;" ImageUrl="https://cdn.pixabay.com/photo/2016/09/03/14/35/algorithms-1641861_960_720.png" />
+                                        <div class="card-body">
+                                            <img src="~/../../../Images/noimageavl.png" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" alt="User Image">
+                                             
+                                            <asp:GridView ID="gv_projOverView" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                                ShowFooter="False" ShowHeader="false" AllowPaging="false" Visible="True" Width="100%">
 
-                                                   </div>
-
-                                               </div>
-                                               <div class="card-footer mt-1">
-                                                    <p><i class="fa fa-angle-double-down"></i> 1 Filter</p>
-                                               </div>                                          
+                                                <Columns>
+                                                    <asp:TemplateField HeaderText="Code">
+                                                        <ItemTemplate>
+                                                            <asp:Label runat="server" CssClass="font-weight-bold" ID="lblprjName" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                     <asp:TemplateField HeaderText="Code">
+                                                        <ItemTemplate>
+                                                            <asp:Label runat="server" ID="lblprjgdesce" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdatat")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                     <div class="col-md-6">
-                                        <div class="card p-3 mb-5 bg-body rounded" style="height:200px" >                                           
-                                               <div class="card-body">
-                                                   <p>Upcoming tasks by assigne</p>
-                                                   <div class="text-center">
-                                                   <asp:Image runat="server" CssClass="text-center" ID="Image2" style="height:100px;width:300px;" ImageUrl="https://img.freepik.com/free-photo/flat-lay-statistics-presentation-with-chart-arrows_23-2149023777.jpg?w=740&t=st=1664624137~exp=1664624737~hmac=fbd68a18f560f1656b386a53fab82cd928c55ceb77d143b162a160053d1fdfd7" />
-
-                                                   </div>
-                                               </div>
-                                               <div class="card-footer mt-1">
-                                                    <p><i class="fa fa-angle-double-down"></i> No Filter</p>
-                                               </div>                                          
-                                        </div>
+                                <div class="col-md-8">
+                                    <div class="card">
+                                        <div class="card-header bg-light p-1"><span class="font-weight-bold text-muted">Batch Information</span></div>
+                                        <div class="card-body"></div>
                                     </div>
-                                     <div class="col-md-6">
-                                        <div class="card p-3 mb-5 bg-body rounded" style="height:200px" >                                           
-                                               <div class="card-body">
-                                                    <p>Task completion over time</p>
-                                                   <div class="text-center">
-                                                   <asp:Image runat="server" CssClass="text-center" ID="Image3" style="height:100px;width:300px;" ImageUrl="https://cdn.pixabay.com/photo/2015/10/31/11/59/financial-equalization-1015282_960_720.jpg" />
-
-                                                   </div>
-                                               </div>
-                                               <div class="card-footer mt-1">
-                                                    <p><i class="fa fa-angle-double-down"></i> 2 Filter</p>
-                                               </div>                                          
+                                </div>
+                            </div>
+                        </asp:View>
+                        <asp:View runat="server" ID="ListView">
+                            <h4>ListView</h4>
+                        </asp:View>
+                        <asp:View runat="server" ID="BoardView">
+                            <h4>BoardView</h4>
+                        </asp:View>
+                        <asp:View runat="server" ID="TimelineView">
+                            <h4>TimelineView</h4>
+                        </asp:View>
+                        <asp:View runat="server" ID="CalendarView">
+                            <h4>CalendarView</h4>
+                        </asp:View>
+                        <asp:View runat="server" ID="WorkflowView">
+                            <h4>WorkflowView</h4>
+                        </asp:View>
+                        <asp:View runat="server" ID="DashboardView">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="shadow-lg p-3 mb-5 bg-body rounded">
+                                        <div class="text-center">
+                                            <h6>Completed Tasks</h6>
+                                        </div>
+                                        <h2 class="text-center">3</h2>
+                                        <div class="text-center">
+                                            <p><i class="fa fa-angle-double-down"></i>Filter</p>
                                         </div>
                                     </div>
                                 </div>
-                            </asp:View>
-                            <asp:View runat="server" ID="FileView">
-                                <h4>FileView</h4>
-                            </asp:View>
+                                <div class="col-md-3">
+                                    <div class="shadow-lg p-3 mb-5 bg-body rounded">
+                                        <div class="text-center">
+                                            <h6>InCompleted Tasks</h6>
+                                        </div>
+                                        <h2 class="text-center">0</h2>
+                                        <div class="text-center">
+                                            <p><i class="fa fa-angle-double-down"></i>Filter</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="shadow-lg p-3 mb-5 bg-body rounded">
+                                        <div class="text-center">
+                                            <h6>OverDue Tasks</h6>
+                                        </div>
+                                        <h2 class="text-center">0</h2>
+                                        <div class="text-center">
+                                            <p><i class="fa fa-angle-double-down"></i>Filter</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="shadow-lg p-3 mb-5 bg-body rounded">
+                                        <div class="text-center">
+                                            <h6>Total Tasks</h6>
+                                        </div>
+                                        <h2 class="text-center">3</h2>
+                                        <div class="text-center">
+                                            <p><i class="fa fa-angle-double-down"></i>No Filter</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card p-3 mb-5 bg-body rounded" style="height: 200px">
+                                        <div class="card-body">
+                                            <p>InComplete Tasks by section</p>
+                                            <div class="text-center">
+                                                <asp:Image runat="server" CssClass="text-center" ID="iamge1" Style="height: 100px; width: 300px;" ImageUrl="https://cdn.pixabay.com/photo/2013/07/12/14/18/productivity-148197_960_720.png" />
 
-                        </asp:MultiView>
-                   
+                                            </div>
+
+                                        </div>
+                                        <div class="card-footer mt-1">
+                                            <p><i class="fa fa-angle-double-down"></i>1 Filter</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card p-3 mb-5 bg-body rounded" style="height: 200px">
+                                        <div class="card-body">
+                                            <p>Total Tasks by Completion status</p>
+                                            <div class="text-center">
+                                                <asp:Image runat="server" ID="Image1" Style="height: 100px; width: 100px;" ImageUrl="https://cdn.pixabay.com/photo/2016/09/03/14/35/algorithms-1641861_960_720.png" />
+
+                                            </div>
+
+                                        </div>
+                                        <div class="card-footer mt-1">
+                                            <p><i class="fa fa-angle-double-down"></i>1 Filter</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card p-3 mb-5 bg-body rounded" style="height: 200px">
+                                        <div class="card-body">
+                                            <p>Upcoming tasks by assigne</p>
+                                            <div class="text-center">
+                                                <asp:Image runat="server" CssClass="text-center" ID="Image2" Style="height: 100px; width: 300px;" ImageUrl="https://img.freepik.com/free-photo/flat-lay-statistics-presentation-with-chart-arrows_23-2149023777.jpg?w=740&t=st=1664624137~exp=1664624737~hmac=fbd68a18f560f1656b386a53fab82cd928c55ceb77d143b162a160053d1fdfd7" />
+
+                                            </div>
+                                        </div>
+                                        <div class="card-footer mt-1">
+                                            <p><i class="fa fa-angle-double-down"></i>No Filter</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card p-3 mb-5 bg-body rounded" style="height: 200px">
+                                        <div class="card-body">
+                                            <p>Task completion over time</p>
+                                            <div class="text-center">
+                                                <asp:Image runat="server" CssClass="text-center" ID="Image3" Style="height: 100px; width: 300px;" ImageUrl="https://cdn.pixabay.com/photo/2015/10/31/11/59/financial-equalization-1015282_960_720.jpg" />
+
+                                            </div>
+                                        </div>
+                                        <div class="card-footer mt-1">
+                                            <p><i class="fa fa-angle-double-down"></i>2 Filter</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </asp:View>
+                        <asp:View runat="server" ID="FileView">
+                            <h4>FileView</h4>
+                        </asp:View>
+
+                    </asp:MultiView>
+
                 </div>
             </div>
 
