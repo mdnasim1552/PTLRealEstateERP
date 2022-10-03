@@ -4297,6 +4297,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderTropical.rdlc";
                         break;
 
+                    case "3101": //Lanco
                     case "3366": //Lanco
                         Reportpath = "~/Report/RptPurchaseOrderLanco.rdlc";
                         break;
@@ -4504,6 +4505,20 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1.SetParameters(new ReportParameter("cost4", cost4));
                     Rpt1.SetParameters(new ReportParameter("cost5", cost5));
                 }
+                if(comcod=="3101" || comcod == "3366")
+                {
+                    Rpt1.SetParameters(new ReportParameter("costa", costa));
+                    Rpt1.SetParameters(new ReportParameter("costb", costb));
+                    Rpt1.SetParameters(new ReportParameter("costc", costc));
+                    Rpt1.SetParameters(new ReportParameter("costd", costd));
+                    Rpt1.SetParameters(new ReportParameter("coste", coste));
+
+                    Rpt1.SetParameters(new ReportParameter("cost1", cost1));
+                    Rpt1.SetParameters(new ReportParameter("cost2", cost2));
+                    Rpt1.SetParameters(new ReportParameter("cost3", cost3));
+                    Rpt1.SetParameters(new ReportParameter("cost4", cost4));
+                    Rpt1.SetParameters(new ReportParameter("cost5", cost5));
+                }
 
 
                 Rpt1.SetParameters(new ReportParameter("compname", comnam));
@@ -4664,16 +4679,17 @@ namespace RealERPWEB.F_99_Allinterface
             string comcod = GetCompCode();
             switch (comcod)
             {
-                case "1205":
-                case "3351":
-                case "3352":
-                case "1108":
-                case "1109":
-                case "3315":
-                case "3316":
-                case "3368":
-                case "3354":
-                //case "3101":
+                case "1205": // p2p
+                case "3351": // p2p
+                case "3352": // p2p
+                case "1108": // assure
+                case "1109": // assure
+                case "3315": // assure
+                case "3316": // assure
+                case "3368": // finlay
+                case "3354": // eidson
+                case "3366": // lanco
+                case "3101": 
                     isDynamic = true;
                     break;
                 default:
