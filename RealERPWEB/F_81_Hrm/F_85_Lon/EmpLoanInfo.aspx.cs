@@ -72,7 +72,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 this.lnkSearcEMP.Enabled = false;
                 this.ddlEmpList.Enabled = false;
                 this.lbldate.Text = "Refund Date";
-                this.ddlLoantype.Enabled = false;
+                //this.ddlLoantype.Enabled = false;
                 this.txtstrdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtToamt.Enabled = false;
                 this.txtinsamt.Enabled = false;
@@ -80,11 +80,11 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 this.ddlMonth.Enabled = false;
                 this.txtPaidAmt.Enabled = false;
                 this.txtUptoDate.Enabled = false;
-                this.lbtnGenerate.Visible = false;                 
+                this.lbtnGenerate.Visible = false;
                 this.chkVisible.Visible = false;
                 this.rfuBox.Visible = true;
                 this.refunNotes.Visible = true;
-                
+
             }
         }
 
@@ -158,11 +158,22 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.ddlLoantype.DataValueField = "gcod";
             this.ddlLoantype.DataSource = ds1.Tables[0];
             this.ddlLoantype.DataBind();
+
+            ListItem li = new ListItem();
+            li.Text = "--- Select Loan----";
+            li.Value = "";
+            ddlLoantype.Items.Add(li);
+
+
             string genno = this.Request.QueryString["genno"] ?? "";
             if (genno.Length > 0)
             {
                 DataTable dt = (DataTable)ViewState["tblAprLoan"];
                 this.ddlLoantype.SelectedValue = dt.Rows[0]["loantype"].ToString().Trim();
+            }
+            else
+            {
+                this.ddlLoantype.SelectedValue = "";
             }
         }
         private void GetPreLnlist()
@@ -198,7 +209,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 this.lnkSearcEMP.Enabled = false;
                 this.lbtnPrevLoanList.Enabled = false;
                 this.ddlPrevLoanList.Enabled = false;
-                //   this.ddlEmpList.Visible = false;
+
                 // this.lblEmpName.Visible = true;
                 this.ddlLoantype.Enabled = false;
 
@@ -220,6 +231,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.lbtnOk.Text = "Ok";
             //this.lblEmpName.Text = "";
             this.txtPaidAmt.Text = "0";
+
 
             this.ddlEmpList.Enabled = true;
 
@@ -346,7 +358,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 ((LinkButton)this.gvloan.FooterRow.FindControl("lbtnTotal")).Visible = false;
                 ((LinkButton)this.gvloan.FooterRow.FindControl("lbtnFinalUpdate")).Visible = false;
                 ((LinkButton)this.gvloan.FooterRow.FindControl("lnkCalculation")).Visible = true;
-                
+
             }
             else
             {
@@ -358,7 +370,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.gvloan.Columns[2].Visible = (dt.Rows.Count > 0 && dt.Rows[0]["isformula"].ToString().Trim() != "") ? true : false;
             this.gvloan.Columns[4].Visible = (dt.Rows.Count > 0 && dt.Rows[0]["isformula"].ToString().Trim() != "") ? true : false;
             this.gvloan.Columns[6].Visible = (dt.Rows.Count > 0 && dt.Rows[0]["isformula"].ToString().Trim() != "") ? true : false;
-            
+
 
 
 
@@ -946,12 +958,12 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             {
                 bool result;
                 string comcod = this.GetComeCode();
-                this.lnkCalculation_Click(null,null);
+                this.lnkCalculation_Click(null, null);
                 DataTable dt = (DataTable)ViewState["tblln"];
                 string textamt = this.txtRefunAmt.Text == "" ? "0" : this.txtRefunAmt.Text;
                 double loanamt = Convert.ToDouble(textamt);
                 string lnno = this.ddlPrevLoanList.SelectedValue.ToString();
-                string curdate = this.txtCurDate.Text.ToString() ;
+                string curdate = this.txtCurDate.Text.ToString();
                 string refnotes = this.txtRefunds.Text.ToString().Trim();
                 string empid = this.ddlEmpList.SelectedValue.ToString();
 
@@ -964,28 +976,28 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     string isrefund = dt.Rows[i]["isrefund"].ToString();
-                   
-                         
-                        string lnamt = Convert.ToDouble(dt.Rows[i]["lnamt"]).ToString();
-                        string comppay = Convert.ToDouble(dt.Rows[i]["comppay"]).ToString();
-                        string id = dt.Rows[i]["id"].ToString();
 
-                        result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "LOANREFUND", "LNINFA", lnno, empid, isrefund, id, "",
-                            "", "", "", "", "", "", "", "", "");
-                        if (!result)
-                            return;
-                   
-                   
+
+                    string lnamt = Convert.ToDouble(dt.Rows[i]["lnamt"]).ToString();
+                    string comppay = Convert.ToDouble(dt.Rows[i]["comppay"]).ToString();
+                    string id = dt.Rows[i]["id"].ToString();
+
+                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "LOANREFUND", "LNINFA", lnno, empid, isrefund, id, "",
+                        "", "", "", "", "", "", "", "", "");
+                    if (!result)
+                        return;
+
+
                 }
-               
-    
+
+
                 string Msg = "Updated Successfully";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Msg + "');", true);
                 lbtnOk_Click(null, null);
             }
             catch (Exception ex)
             {
-               
+
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
             }
         }
@@ -1019,6 +1031,28 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.txtRefunAmt.Text = refundamt.ToString();
             this.Data_DataBind();
 
+        }
+
+        protected void lnkdeleteLoan_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetComeCode();
+            //IF O=LOAN NO PAID THEN ITS WILL BE DELETED
+            string lnno = this.ddlPrevLoanList.SelectedValue.ToString();
+            string monthid = lnno.Substring(3, 6).ToString();
+            //bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "LOANDELETE", "LNINFA", lnno, "", "", "", "",
+            //                 "", "", "", "", "", "", "", "", "");
+            //if (!result)
+            //{
+            //    string Msg = "Loan Deleted Successfully";
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Msg + "');", true);
+            //    return;
+            //}
+            //else
+            //{
+            //    string Msg = "Loan Deleted Successfully";
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Msg + "');", true);
+            //}
+                
         }
     }
 }

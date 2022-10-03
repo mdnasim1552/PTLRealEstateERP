@@ -1666,7 +1666,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PrintCashSalaryEdison();
                     break;
 
-                //case "3101":
+                case "3101":
                 case "3368":
                     this.PrintCashSalaryFinlay();
                     break;
@@ -1691,10 +1691,18 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string year = this.txtfMonth.Text.Substring(0, 4).ToString();
             string month = ASITUtility03.GetFullMonthName(this.txtfMonth.Text.Substring(4));
+            string printtype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.RptCashPay02>();
 
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptCashPay02Finlay", list, null, null);
+            if(printtype== "EXCEL")
+            {
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptCashPay02FinlayExcel", list, null, null);
+            }
+            else
+            {
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptCashPay02Finlay", list, null, null);
+            }
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comname));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));

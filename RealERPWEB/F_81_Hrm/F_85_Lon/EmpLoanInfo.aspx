@@ -181,12 +181,14 @@
                             <asp:TextBox ID="txtRefunds" runat="server"   CssClass="form-control"></asp:TextBox>
                         </div>
 
-                        <div class="col-md-1 col-lg-1 col-xs-12">
+                        <div class="col-md-2 col-lg-2 col-xs-12">
                             <asp:LinkButton ID="lbtnGenerate" runat="server" CssClass="btn btn-info" Style="margin-top: 20px;" OnClick="lbtnGenerate_Click">Generate</asp:LinkButton>
+                            <asp:LinkButton ID="lnkdeleteLoan" runat="server" CssClass="btn btn-danger" Style="margin-top: 20px;" ToolTip="if loan not paid, then its delete" OnClick="lnkdeleteLoan_Click">
+                                <i class="fa fa-trash"></i>
+                                Loan Delete</asp:LinkButton>
                         </div>
                     </div>
-                    <div class="row mb-0 pb-0 pt-2" runat="server" id="xpnlloan" visible="false">
-                    </div>
+                     
                     <div class="row mb-0 pb-0 pt-2">
                         <asp:CheckBox ID="chkVisible" runat="server" AutoPostBack="True" CssClass="btn btn-warning btn-sm"
                             OnCheckedChanged="chkVisible_CheckedChanged" Text="Gen. Installment"

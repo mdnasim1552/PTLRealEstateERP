@@ -429,6 +429,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1203000", "1203080", "F_12_Inv", "RptProjectStock?", "Type=acc", "Materials Stock Information", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203081", "F_12_Inv", "RptProjectStock?", "Type=inv", "Materials Stock Information(Inventory)", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203082", "F_12_Inv", "RptProjectStock?", "Type=invWithSpec", "Materials Stock Information(Inventory-Specification)", "Inventory", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1203000", "1203083", "F_12_Inv", "RptIndentIssueStatus", "", "Indent Issue Status", "Inventory", "False", "False", "False", "False" }); ;
+
             tblObj.Rows.Add(new Object[] { "1203000", "1203090", "F_12_Inv", "RptMatIssueStatus", "", "Materials Issue Status", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203100", "F_12_Inv", "MatTransStatus", "", "Material Transfer Status", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203110", "F_12_Inv", "RptMatStock", "", "Materials Stock Details(Inventory)", "Inventory", "False", "False", "False", "False" }); ;
@@ -5266,7 +5268,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000000", "	Management Level", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0401000001", "03. Ind. Material Consumtion", "F_12_Inv/RptInvResourceConsum", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000002", "12. Inventory Report All", "F_12_Inv/RptInventoryAll?Type=Report&comcod=&Date1=&Date2=", "", true, "" });
-
+            mnuTbl1.Rows.Add(new Object[] { "0401000003", "13. Ind. Issue Status", "F_12_Inv/RptIndentIssueStatus", "", true, "" });
             // mnuTbl1.Rows.Add(new Object[] { "0404000000", "	Other Related Report", "", "", false, "mb" });
 
             mnuTbl1.Rows.Add(new Object[] { "0411000000", "", "", "", true, "" });
