@@ -30,6 +30,7 @@ namespace RealERPEntity.C_70_Services
             public double chkpercnt { get; set; }
             public double aprpercnt { get; set; }
             public string type { get; set; }
+            public bool isprocess { get; set; }
         }
     }
 }

@@ -297,6 +297,11 @@ namespace RealERPWEB.F_07_Ten
 
 
                             DataRow[] dr3 = tblunit.Select("bcod='" + baseUnit + "'");
+                            if (dr3.Count() == 0)
+                            {
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Unit Not Found" + "');", true);
+                                return;
+                            }
                             convrate = Convert.ToDouble(dr3[0]["conrat"].ToString());
                             string convUnitDesc = dr3[0]["uconvdesc"].ToString();
                             string convUnitcode = dr3[0]["ccod"].ToString();
