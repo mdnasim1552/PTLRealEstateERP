@@ -153,6 +153,8 @@ namespace RealEntity.C_22_Sal
             public double netvalue { get; set; }
             public double downpamt { get; set; }
             public double ramt { get; set; }
+            public DateTime saldate { get; set; }
+            public DateTime schdate { get; set; } 
 
 
 
