@@ -304,6 +304,7 @@ namespace RealERPWEB.F_70_Services
                         aprrate = sirval,
                         apramt = 0,
                         percnt = 0,
+                        isprocess = true,
                         type = material == "049700101001" ? "Z" : "A"
                     });
                     ViewState["MaterialList"] = obj;
@@ -349,6 +350,7 @@ namespace RealERPWEB.F_70_Services
                     double aprquantity = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtgvAprQuantity")).Text.Trim()));
                     double aprrate = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtgvAprRate")).Text.Trim()));
                     double apramount = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtAprAmount")).Text.Trim()));
+                    bool isProcess = ((CheckBox)this.gvMaterials.Rows[rowindex].FindControl("chkProcess")).Checked;
 
 
                     switch (type)
@@ -377,6 +379,7 @@ namespace RealERPWEB.F_70_Services
                     obj[rowindex].aprrate = aprrate;
                     obj[rowindex].apramt = materialId == "049700101001" ? apramount : aprquantity * aprrate;
                     obj[rowindex].aprpercnt = aprpercnt;
+                    obj[rowindex].isprocess = type == "Approval" || type == "ApprovalEdit" ? isProcess : true;
                 }
             }
             catch (Exception ex)
@@ -436,6 +439,8 @@ namespace RealERPWEB.F_70_Services
                         gvMaterials.Columns[16].Visible = true;
                         gvMaterials.HeaderRow.Cells[17].Visible = true;
                         gvMaterials.Columns[17].Visible = true;
+                        gvMaterials.HeaderRow.Cells[18].Visible = true;
+                        gvMaterials.Columns[18].Visible = true;
                     }
                 }
 
@@ -648,8 +653,9 @@ namespace RealERPWEB.F_70_Services
                                         string percnt = item.percnt.ToString();
                                         string percntchk = item.chkpercnt.ToString();
                                         string percntapr = item.aprpercnt.ToString();
+                                        string isprocess = item.isprocess.ToString();
                                         resultQuotA = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPSERTQUOTINFA", quotid, worktype, resource, qqty, qamt,
-                                            chkqty, chkamt, aprqty, apramt, userId, percnt, percntchk, percntapr, "", "", "", "", "", "", "", "");
+                                            chkqty, chkamt, aprqty, apramt, userId, percnt, percntchk, percntapr, isprocess, "", "", "", "", "", "", "");
                                         resultQuotArray.Add(resultQuotA);
 
 
@@ -657,9 +663,10 @@ namespace RealERPWEB.F_70_Services
                                 }
                                 if (type == "Approval")
                                 {
-                                    string countMat = obj.Where(x => x.resourcecode.StartsWith("01")).ToList().Count == 0 ? "0" : "1";
-                                    string countSubCon = obj.Where(x => x.resourcecode.StartsWith("04") && x.resourcecode != "049700101001").ToList().Count == 0 ? "0" : "1";
-                                    string countOH = obj.Where(x => x.resourcecode.StartsWith("12")).ToList().Count == 0 ? "0" : "1";
+                                    var obj1 = obj.Where(x => x.isprocess == true).ToList();
+                                    string countMat = obj1.Where(x => x.resourcecode.StartsWith("01")).ToList().Count == 0 ? "0" : "1";
+                                    string countSubCon = obj1.Where(x => x.resourcecode.StartsWith("04") && x.resourcecode != "049700101001").ToList().Count == 0 ? "0" : "1";
+                                    string countOH = obj1.Where(x => x.resourcecode.StartsWith("12")).ToList().Count == 0 ? "0" : "1";
 
                                     string ttlCount = countMat + countSubCon + countOH;
 
@@ -696,7 +703,7 @@ namespace RealERPWEB.F_70_Services
                                     */
                                     string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_70_Services/";
                                     string currentptah = "";
-                                   
+
                                     if (type == "Entry")
                                     {
                                         ClearPage();
