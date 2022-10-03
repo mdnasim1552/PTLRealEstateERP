@@ -419,7 +419,7 @@ namespace RealERPWEB.F_99_Allinterface
             string quotid = ((Label)this.gvProcess.Rows[RowIndex].FindControl("lblqid")).Text.Trim();
             GetQuotDataFunctionality(quotid);
             List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
-            int isContain = obj.Where(x => x.resourcecode.StartsWith("01")).ToList().Count;
+            int isContain = obj.Where(x => x.resourcecode.StartsWith("01") && x.isprocess==true).ToList().Count;
             if (isContain == 0)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Material for Material Requisition" + "');", true);
@@ -504,7 +504,7 @@ namespace RealERPWEB.F_99_Allinterface
             string CRMPostedDat = Date;
             string checkbyid = userid;
             string quotid = Qid;
-            List<EQuotation> obj = ((List<EQuotation>)ViewState["MaterialList"]).Where(x => x.resourcecode.StartsWith("01")).ToList();
+            List<EQuotation> obj = ((List<EQuotation>)ViewState["MaterialList"]).Where(x => x.resourcecode.StartsWith("01") && x.isprocess==true).ToList();
 
             DataSet ds1 = new DataSet("ds1");
             this.CreateDataTable();
@@ -589,7 +589,7 @@ namespace RealERPWEB.F_99_Allinterface
             lblQuotation.Text = quotid;
             GetQuotDataFunctionality(quotid);
             List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
-            int isContain = obj.Where(x => x.resourcecode.StartsWith("04") && x.resourcecode != "049700101001").ToList().Count;
+            int isContain = obj.Where(x => x.resourcecode.StartsWith("04") && x.resourcecode != "049700101001" && x.isprocess == true).ToList().Count;
             if (isContain == 0)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Labour Work Found" + "');", true);
@@ -625,7 +625,7 @@ namespace RealERPWEB.F_99_Allinterface
         protected void lnkSubContractorSave_Click(object sender, EventArgs e)
         {
 
-            List<EQuotation> obj = ((List<EQuotation>)ViewState["MaterialList"]).Where(x => x.resourcecode.StartsWith("04") && x.resourcecode != "049700101001").ToList();
+            List<EQuotation> obj = ((List<EQuotation>)ViewState["MaterialList"]).Where(x => x.resourcecode.StartsWith("04") && x.resourcecode != "049700101001" && x.isprocess == true).ToList();
             if (obj.Count == 0)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Labour Work Found" + "');", true);
@@ -724,7 +724,7 @@ namespace RealERPWEB.F_99_Allinterface
             string quotid = ((Label)this.gvProcess.Rows[RowIndex].FindControl("lblqid")).Text.Trim();
             GetQuotDataFunctionality(quotid);
             List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
-            int isContain = obj.Where(x => x.resourcecode.StartsWith("12")).ToList().Count;
+            int isContain = obj.Where(x => x.resourcecode.StartsWith("12") && x.isprocess == true).ToList().Count;
             if (isContain == 0)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Over Head found" + "');", true);
@@ -762,7 +762,7 @@ namespace RealERPWEB.F_99_Allinterface
 
         private void updateGen(string Qid)
         {
-            List<EQuotation> obj = ((List<EQuotation>)ViewState["MaterialList"]).Where(x => x.resourcecode.StartsWith("12")).ToList();
+            List<EQuotation> obj = ((List<EQuotation>)ViewState["MaterialList"]).Where(x => x.resourcecode.StartsWith("12") && x.isprocess == true).ToList();
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
 
