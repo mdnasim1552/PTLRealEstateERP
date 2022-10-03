@@ -78,6 +78,15 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.GridView gvAssingJob;
 
         /// <summary>
+        /// gvTodayList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvTodayList;
+
+        /// <summary>
         /// CalendarView control.
         /// </summary>
         /// <remarks>
