@@ -138,7 +138,7 @@
                 <div class="card-body">
                 <div class="table-responsive">
                     <div class="row">
-                         <asp:GridView ID="gvsalesvscoll" runat="server" AutoGenerateColumns="False"
+                         <asp:GridView ID="gvsalesvscoll" runat="server" AutoGenerateColumns="False" 
                                 ShowFooter="True" AllowPaging="false" CssClass=" table-striped table-hover table-bordered grvContentarea">
                                 <RowStyle />
                                 <Columns>
@@ -203,9 +203,9 @@
                                                         ForeColor="#000" Style="text-align: right" ></asp:Label>
                                          </FooterTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvclient" runat="server"
+                                            <asp:Label ID="lblgvclient" runat="server" style="margin-left:5px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custname")) %>'
-                                                Width="150px"></asp:Label>
+                                                Width="180px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="left" />
                                         <HeaderStyle HorizontalAlign="center" />
@@ -260,13 +260,13 @@
 
                                     <asp:TemplateField HeaderText="Status of D/P">
                                            <FooterTemplate>
-                                                    <asp:Label ID="lblFstatus" runat="server" Font-Bold="True" Font-Size="12px"
+                                                    <asp:Label ID="lblFstatus" runat="server" Font-Bold="True" Font-Size="12px" 
                                                         ForeColor="#000" Style="text-align: right"></asp:Label>
                                          </FooterTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvstatus" runat="server"
+                                            <asp:Label ID="lblgvstatus" runat="server" style="margin-left:10px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "downstatus")) %>'
-                                                Width="120px"></asp:Label>
+                                                Width="90px"></asp:Label>
                                         </ItemTemplate>
                                            <ItemStyle HorizontalAlign="left" />
                                         <HeaderStyle HorizontalAlign="center" />
@@ -283,7 +283,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvtvalue" runat="server"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tsalval")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                Width="130px"></asp:Label>
+                                                Width="120px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="center" />
@@ -298,7 +298,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvNetvalue" runat="server"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netvalue")).ToString("#,##0;(#,##0); ") %>'
-                                                Width="80px"></asp:Label>
+                                                Width="90px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="right" />
                                         <HeaderStyle HorizontalAlign="center" />
@@ -316,7 +316,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvdownpay" runat="server"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "downpamt")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                Width="80px"></asp:Label>
+                                                Width="90px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="center" />
@@ -324,7 +324,6 @@
                                     </asp:TemplateField>                                 
 
                                     <asp:TemplateField HeaderText="Received Amount">
-
                                           <FooterTemplate>
                                                     <asp:Label ID="lblFgvreceived" runat="server" Font-Bold="True" Font-Size="12px"
                                                         ForeColor="#000" Style="text-align: right" Width="90px"></asp:Label>
@@ -337,6 +336,15 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="center" />
                                         <FooterStyle HorizontalAlign="Right" />
+                                    </asp:TemplateField>  
+                                    <asp:TemplateField HeaderText="Sales Date">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvsaldate" runat="server"
+                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "saldate")).ToString("dd-MMM-yyyy") %>'
+                                                Width="80px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="center" />
                                     </asp:TemplateField>                                                                                                                                  
                                 </Columns>
                                 <FooterStyle CssClass="grvFooter" />

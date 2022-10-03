@@ -508,7 +508,7 @@
                 comcod = <%=this.GetCompCode()%>;
                 switch (comcod) {
 
-                    //case 3101:   //ASIT
+                    case 3101:   //ASIT
                     case 1205:   //p2p
                     case 3351:   //p2p
                     case 3352:   //p2p
@@ -530,6 +530,7 @@
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
                         break;
 
+                    //case 3101:   //ASIT
                     case 3368: // Finlay
 
                         $(".tbMenuWrp table tr td:nth-child(3)").hide();

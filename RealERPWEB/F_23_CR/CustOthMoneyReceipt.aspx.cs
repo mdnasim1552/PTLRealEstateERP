@@ -59,6 +59,31 @@ namespace RealERPWEB.F_23_CR
 
                 this.txtSrcPro.Focus();
                 txtBalance.Text = Convert.ToDouble("0.00").ToString("#,##0.00;-#,##0.00; ");
+                string comcod = GetCompCode();
+                if (comcod == "1207") //This Part is Only For Acme Services Only
+                {
+
+                    string proj = "41" + ASTUtility.Right(ddlProjectName.SelectedValue.ToString(), 10);
+                    DataSet ds1 = CustData.GetTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "GETQUOTATIONPACTCODE", proj, "", "", "", "", "", "", "", "");
+                    if (ds1 == null)
+                        return;
+                    if (ds1.Tables[0].Rows.Count == 0)
+                    {
+                        lblBalance.Visible = false;
+                        txtBalance.Visible = false;
+                        txtBalance.Text = Convert.ToDouble("0.00").ToString("#,##0.00;-#,##0.00; ");
+                        lblCustomerFromService.Text = "000000000000";
+                    }
+                    else
+                    {
+                        lblBalance.Visible = true;
+                        txtBalance.Visible = true;
+                        txtBalance.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["balamt"]).ToString("#,##0.00;-#,##0.00; ");
+                        lblCustomerFromService.Text = ds1.Tables[0].Rows[0]["customerid"].ToString();
+
+                    }
+
+                }
             }
         }
         private void GetComBillnoVisible()
