@@ -878,6 +878,19 @@ namespace RealERPWEB
                     this.gvAllNotice.DataBind();
 
                     MonthWiseBDate();
+                    int j = 0;
+
+                    string innHTMLTopnot1 = "";
+                    if (ds2.Tables[1].Rows.Count == 0)
+                        return; 
+
+                    foreach (DataRow dr in ds2.Tables[1].Rows)
+                    {
+                    
+                        innHTMLTopnot1 += @"<p>" + dr["eventitle"] + " ( " + (dr["ndetails"].ToString().Length > 140 ? dr["ndetails"].ToString().Substring(0, 139) + "...." : dr["ndetails"].ToString()) + ")" + "</p>";
+                        j++;
+                    }
+                    this.EventCaro.InnerHtml = innHTMLTopnot1;
 
                     break;
                 default:

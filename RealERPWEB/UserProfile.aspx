@@ -808,7 +808,7 @@
                                 <div class="card-header border-0 pb-0">
                                     <!-- .d-flex -->
                                     <div class="d-flex align-items-center">
-                                        <h3 class="mr-auto card-title m-0">Client Birthday</h3>
+                                        <h3 class="mr-auto card-title m-0">Upcomming Client Birthday</h3>
                                         </div>
                                     <!-- /.d-flex -->
                                 </div>
@@ -867,7 +867,7 @@
                                 <div class="card-header border-0 pb-0">
                                     <!-- .d-flex -->
                                     <div class="d-flex align-items-center">
-                                        <h3 class="mr-auto card-title m-0">Client Marriage Day</h3>
+                                        <h3 class="mr-auto card-title m-0">Upcomming Client Marriage Day</h3>
                                         </div>
                                     <!-- /.d-flex -->
                                 </div>

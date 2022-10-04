@@ -37,6 +37,8 @@ namespace RealERPWEB.F_03_Fin
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 this.lblHeader.Text = "YEARLY CODE VIEW/EDIT";
+                ((Label)this.Master.FindControl("lblTitle")).Text = "SALES CODE BOOK INFORMATION VIEW/EDIT";
+
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 //this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
             }
