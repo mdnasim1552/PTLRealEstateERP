@@ -38,9 +38,9 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                 ////this.getAllData();
-                this.GetAIInterface();              
-
-                this.TaskSteps_SelectedIndexChanged(null, null);
+                this.GetAIInterface();
+                this.TasktState.SelectedIndex = 0;
+                this.TasktState_SelectedIndexChanged(null, null);
 
 
 
@@ -120,6 +120,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.GetBatchAssingList();
                     break;
                 case "2":
+                    this.pnlAllProject.Visible = false;
+
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = true;
                     this.pnlProduction.Visible = false;
@@ -129,6 +131,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelCollection.Visible = false;
                     break;
                 case "3":
+                    this.pnlAllProject.Visible = false;
+
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = true;
@@ -138,6 +142,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelCollection.Visible = false;
                     break;
                 case "4":
+                    this.pnlAllProject.Visible = false;
+
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
@@ -147,6 +153,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelCollection.Visible = false;
                     break;
                 case "5":
+                    this.pnlAllProject.Visible = false;
+
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
@@ -156,6 +164,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelCollection.Visible = false;
                     break;
                 case "6":
+                    this.pnlAllProject.Visible = false;
+
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
@@ -165,6 +175,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelCollection.Visible = false;
                     break;
                 case "7":
+                    this.pnlAllProject.Visible = false;
+
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
@@ -176,11 +188,6 @@ namespace RealERPWEB.F_99_Allinterface
 
             }
 
-        }
-
-        protected void TaskSteps_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.GetAIInterface();
         }
 
         private void GetBatchAssingList()
