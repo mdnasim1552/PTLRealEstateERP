@@ -533,7 +533,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 var grossslary = sttlmntinfo[0].amount.ToString();
                 string joining = shorempdata[0].joindat.ToString("dd-MMM-yyyy");
                 string sepdate = shorempdata[0].retdat.ToString("dd-MMM-yyyy");
-                var netamount = (sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "351").Sum(p => p.ttlamt) - sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "352").Sum(p => p.ttlamt)).ToString("#,##0.00;(#,##0.00); ");
+                var netamount = (sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "351").Sum(p => p.ttlamt) - sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "352").Sum(p => p.ttlamt)).ToString("#,##0;(#,##0); ");
                 string servicelength = shorempdata[0].servleng.ToString();
 
                 double netpay = Convert.ToDouble(netamount);
@@ -545,7 +545,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 rpt1.SetParameters(new ReportParameter("comnam", comnam));
                 rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                rpt1.SetParameters(new ReportParameter("rpttitle", "Employee Final Sattelment"));
+                rpt1.SetParameters(new ReportParameter("rpttitle", "Employee Final Settlement"));
                 rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
                 rpt1.SetParameters(new ReportParameter("netamount", netamount));
                 rpt1.SetParameters(new ReportParameter("footer", ASTUtility.Concat("", username, printdate)));

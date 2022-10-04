@@ -1008,7 +1008,9 @@ namespace RealERPWEB.F_99_Allinterface
             DataTable dt = ((DataTable)Session["tblover"]).Copy();
 
             string dptName = ddlDepartment.SelectedItem.Text.Trim().Substring(13);
-            string monthid = Convert.ToDateTime(ASTUtility.Right(this.ddlyearmon.Text.Trim(), 2) + "/01/" + this.ddlyearmon.Text.Trim().Substring(0, 4)).ToString("MMM-yyyy");// txtdate
+
+             string date = Convert.ToDateTime(ASTUtility.Right(this.ddlyearmon.Text.Trim(), 2) + "-" + this.ddlyearmon.Text.Trim().Substring(0, 4)).ToString("MMM-yyyy");
+          
 
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -1065,7 +1067,7 @@ namespace RealERPWEB.F_99_Allinterface
             Rpt1.SetParameters(new ReportParameter("companyname", comnam));
             Rpt1.SetParameters(new ReportParameter("RptTitle", "Mobile Allowance"));
             Rpt1.SetParameters(new ReportParameter("txtDpt", "Department : " + dptName));
-            Rpt1.SetParameters(new ReportParameter("txtDate", "The Month of " + monthid));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "The Month of " + date));
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer?PrintOpt=" +
