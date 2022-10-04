@@ -851,7 +851,7 @@
                                 <asp:LinkButton ID="lnkbtnFinalSWUpdate" runat="server" CssClass="btn btn-success"
                                     OnClick="lnkbtnFinalSWUpdate_Click" 
                                     Visible="False" TabIndex="39">Final Update</asp:LinkButton>                                
-                                <asp:LinkButton ID="lnkUserGenerate" runat="server"  CssClass="btn btn-warning"
+                                <asp:LinkButton ID="lnkUserGenerate" runat="server"  CssClass="btn btn-warning" Visible="false"
                                     OnClick="lnkUserGenerate_Click" 
                                     TabIndex="39">User Generate</asp:LinkButton>
                             </div>
