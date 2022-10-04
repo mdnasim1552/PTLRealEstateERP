@@ -626,7 +626,7 @@
                             <div class=" row form-horizontal">
                                 <div class="tbMenuWrp nav nav-tabs rptPurInt">
                                     <asp:RadioButtonList ID="TasktState" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" OnSelectedIndexChanged="TasktState_SelectedIndexChanged">
-                                        <asp:ListItem Value="0"><div class="circle-tile"><a><div class="circle-tile-heading bg-green counter">0</div></a><div class="circle-tile-content green"><div class="circle-tile-description txt-white">All Projects</div></div></div></asp:ListItem>
+                                        <asp:ListItem Value="0" Selected="True"><div class="circle-tile"><a><div class="circle-tile-heading bg-green counter">0</div></a><div class="circle-tile-content green"><div class="circle-tile-description txt-white">All Projects</div></div></div></asp:ListItem>
                                         <asp:ListItem Value="1"><div class="circle-tile"><a><div class="circle-tile-heading deep-sky-blue counter">0</div></a><div class="circle-tile-content deep-sky-blue"><div class="circle-tile-description txt-white">Batch Status</div></div></div></asp:ListItem>
                                         <asp:ListItem Value="2"><div class="circle-tile"><a><div class="circle-tile-heading purple counter">0</div></a><div class="circle-tile-content purple"><div class="circle-tile-description txt-white">Assign</div></div></div></asp:ListItem>
                                         <asp:ListItem Value="3"><div class="circle-tile"><a><div class="circle-tile-heading  bg-success counter">0</div></a><div class="circle-tile-content bg-success"><div class="circle-tile-description txt-white">Production</div></div></div></asp:ListItem>
@@ -637,7 +637,6 @@
                                         <%-- <asp:ListItem Value="7"><div class="circle-tile"><a><div class="circle-tile-heading  bg-danger text-white counter">0</div></a><div class="circle-tile-content bg-danger"><div class="circle-tile-description txt-white text-white">Loan Cancelled</div></div></div></asp:ListItem>--%>
                                     </asp:RadioButtonList>
 
-                                    <asp:RadioButtonList ID="TaskSteps" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" OnSelectedIndexChanged="TaskSteps_SelectedIndexChanged"></asp:RadioButtonList>
 
                                 </div>
                             </div>
@@ -726,17 +725,10 @@
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "totalhour")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Batch Name">
-                                            <ItemTemplate>
-                                                <asp:Label ID="tblcountry" runat="server" Width="80px">
-                                                    <asp:HyperLink ID="Linktbn1" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/JobAnalytics"  Style="padding: 0 10px">Text</asp:HyperLink>
-                                                </asp:Label>
-                                                    
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                                            
                                         <asp:TemplateField HeaderText="Action">
                                             <ItemTemplate>
-                                                <asp:HyperLink ID="lnkView" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/Projects?PID=160100000001&BatchID=2"  CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-eye"></i></asp:HyperLink>
+                                                <asp:HyperLink ID="lnkView" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/JobAnalytics"  CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-eye"></i></asp:HyperLink>
                                                 <asp:LinkButton ID="btnRemove" runat="server" CssClass="text-danger pr-2" ToolTip="delete"><i class="fa fa-trash"></i></asp:LinkButton>
                                                 <asp:LinkButton ID="btnEdit" runat="server" CssClass="text-primary" ToolTip="edit"><i class="fa fa-edit"></i></asp:LinkButton>
                                             </ItemTemplate>
@@ -865,7 +857,10 @@
                                                     </ItemTemplate>
                                                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                
                                                 </asp:TemplateField>
+
+                                           
                                                  <asp:TemplateField HeaderText="Action">
                                                     <ItemTemplate>
                                                         <asp:HyperLink ID="btnview" runat="server" Target="_blank"  ForeColor="Black" Font-Underline="false"  CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-eye"></i></asp:HyperLink>
@@ -968,8 +963,8 @@
                                      
                                         <asp:TemplateField HeaderText="Action">
                                             <ItemTemplate>
-                                               <%-- <asp:HyperLink ID="lnkView" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/Projects"  CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-eye"></i></asp:HyperLink>
-                                                <asp:LinkButton ID="btnRemove" runat="server" CssClass="text-danger pr-2" ToolTip="delete"><i class="fa fa-trash"></i></asp:LinkButton>
+                                              <asp:HyperLink ID="lnkView" runat="server" Target="_blank"  NavigateUrl="~/F_38_AI/MyTasks?Empid=930100101005"   CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-eye"></i></asp:HyperLink>
+                                                 <%-- <asp:LinkButton ID="btnRemove" runat="server" CssClass="text-danger pr-2" ToolTip="delete"><i class="fa fa-trash"></i></asp:LinkButton>
                                                 <asp:LinkButton ID="btnEdit" runat="server" CssClass="text-primary" ToolTip="edit"><i class="fa fa-edit"></i></asp:LinkButton>--%>
                                             </ItemTemplate>
                                             <ItemStyle Width="80px" />
