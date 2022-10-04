@@ -72,9 +72,9 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
             {
 
                 DataTable tbl1 = (DataTable)Session["storedata"];
-                this.gvAcrCBook.Columns[6].Visible = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "07") ? true : false;
-                this.gvAcrCBook.Columns[7].Visible = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "07") ? true : false;
-                this.gvAcrCBook.Columns[9].Visible = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "08") ? true : false;
+                //this.gvAcrCBook.Columns[6].Visible = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "07") ? true : false;
+                //this.gvAcrCBook.Columns[7].Visible = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "07") ? true : false;
+                //this.gvAcrCBook.Columns[9].Visible = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "08") ? true : false;
 
                 this.gvAcrCBook.DataSource = tbl1;
                 this.gvAcrCBook.DataBind();
@@ -192,13 +192,14 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
             string Desc = ((TextBox)gvAcrCBook.Rows[e.RowIndex].FindControl("txtgvDesc")).Text.Trim();
             string tgcod = gcode1.Substring(0, 2) + gcode2;
             string gdesc = ((TextBox)this.gvAcrCBook.Rows[e.RowIndex].FindControl("txtgvDesc")).Text.Trim();
-            string gtype = ((TextBox)this.gvAcrCBook.Rows[e.RowIndex].FindControl("txtgvttpe")).Text.Trim();
-            string Gtype = (gtype.ToString() == "") ? "T" : gtype;
-            string percent = Convert.ToDouble("0" + ((TextBox)this.gvAcrCBook.Rows[e.RowIndex].FindControl("txtgvtxtpercnt")).Text.Trim()).ToString();
-            string unit = ((TextBox)this.gvAcrCBook.Rows[e.RowIndex].FindControl("txtgvUnit")).Text.Trim().ToString();
-            string rate = Convert.ToDouble("0" + ((TextBox)this.gvAcrCBook.Rows[e.RowIndex].FindControl("txtgvRate")).Text.Trim()).ToString();
+            string gddesc = ((TextBox)this.gvAcrCBook.Rows[e.RowIndex].FindControl("txtgvddesc")).Text.Trim();
+            //string gtype = ((TextBox)this.gvAcrCBook.Rows[e.RowIndex].FindControl("txtgvttpe")).Text.Trim();
+            //string Gtype = (gtype.ToString() == "") ? "T" : gtype;
+            //string percent = Convert.ToDouble("0" + ((TextBox)this.gvAcrCBook.Rows[e.RowIndex].FindControl("txtgvtxtpercnt")).Text.Trim()).ToString();
+            //string unit = ((TextBox)this.gvAcrCBook.Rows[e.RowIndex].FindControl("txtgvUnit")).Text.Trim().ToString();
+            //string rate = Convert.ToDouble("0" + ((TextBox)this.gvAcrCBook.Rows[e.RowIndex].FindControl("txtgvRate")).Text.Trim()).ToString();
             bool result = da.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_CODEBOOK", "INSERTUPACRCBOOKINF", tgcod,
-                           gdesc, Gtype, percent, unit, rate, "", "", "", "", "", "", "", "", "");
+                           gdesc, gddesc, "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (result == true)
             {
@@ -220,20 +221,32 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
         {
             try
             {
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = hst["comcod"].ToString();
-                Session.Remove("storedata");
-                this.lnkok.Visible = false;
+                
+                if(this.lnkok.Text.ToString() == "NEW")
+                {
+                    this.gvAcrCBook.DataSource = null;
+                    this.gvAcrCBook.DataBind();
+                    this.lnkok.Text = "OK";
+                }
+                else
+                {
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    string comcod = hst["comcod"].ToString();
+                    Session.Remove("storedata");
+                    this.lnkok.Text = "NEW";
 
-                this.ddlOthersBook.Visible = false;
-                this.ddlOthersBookSegment.Visible = false;
-                this.LblBookName1.Visible = false;
-                this.lbalterofddl.Visible = true;
-                this.lbalterofddl.Text = "ACR Code Book: " + this.ddlOthersBook.SelectedItem.ToString().Trim()
-                    + " " + "(" + this.ddlOthersBookSegment.SelectedItem.ToString().Trim() + ")";
+                    this.ShowInformation();
+                    this.gvACRcBook_DataBind();
+                }
 
-                this.ShowInformation();
-                this.gvACRcBook_DataBind();
+                //this.ddlOthersBook.Visible = false;
+                //this.ddlOthersBookSegment.Visible = false;
+                //this.LblBookName1.Visible = false;
+                //this.lbalterofddl.Visible = true;
+                //this.lbalterofddl.Text = "ACR Code Book: " + this.ddlOthersBook.SelectedItem.ToString().Trim()
+                //    + " " + "(" + this.ddlOthersBookSegment.SelectedItem.ToString().Trim() + ")";
+
+ 
 
             }
             catch (Exception ex)
