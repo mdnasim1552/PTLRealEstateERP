@@ -173,12 +173,9 @@
                             <asp:DropDownList ID="ddlPrevReqList" runat="server" Font-Bold="True" CssClass="form-control" Style="margin-top: 20px">
                             </asp:DropDownList>
                             <asp:Label ID="lblmsg1" runat="server" CssClass="btn btn-danger primaryBtn" Visible="false"></asp:Label>
-
                         </div>
                     </div>
-
                 </div>
-
             </div>
 
             <asp:Panel ID="Panel1" runat="server" Visible="False">
@@ -614,10 +611,7 @@
                     </div>
                 </div>
             </asp:Panel>
-
-
         </ContentTemplate>
     </asp:UpdatePanel>
-
 </asp:Content>
 
