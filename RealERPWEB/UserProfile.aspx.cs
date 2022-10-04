@@ -881,6 +881,9 @@ namespace RealERPWEB
                     int j = 0;
 
                     string innHTMLTopnot1 = "";
+                    if (ds2.Tables[1].Rows.Count == 0)
+                        return; 
+
                     foreach (DataRow dr in ds2.Tables[1].Rows)
                     {
                     
