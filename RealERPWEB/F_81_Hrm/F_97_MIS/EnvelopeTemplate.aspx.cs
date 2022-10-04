@@ -227,11 +227,22 @@ namespace RealERPWEB.F_81_Hrm.F_97_MIS
             string branch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" || this.ddlBranch.SelectedValue.ToString() == "" ? Company : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
             string ProjectCode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? branch : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%");
             string section = this.ddlSection.SelectedValue.ToString() == "000000000000" ? ProjectCode : this.ddlSection.SelectedValue.ToString();
-
+            string emptype = "";
 
             section = empcode.Length > 0 ? "%%" : section;
 
-            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GET_ACCESSED_EMPLIST", section, "%%", userid, "", "", "", "", "", "");
+            string getmethod = (this.chkresign.Checked ? "True" : "False");
+            if (getmethod == "True")
+            {
+                emptype = "R";
+            }
+            else
+            {
+                emptype = "A";
+            }
+   
+
+            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GET_ACCESSED_EMPLIST", section, "%%", userid, emptype, "", "", "", "", "");
             if (ds5 == null)
                 return;
 
@@ -563,6 +574,12 @@ namespace RealERPWEB.F_81_Hrm.F_97_MIS
             Session["tblEmpstatus"] = dt;
             // this.ShowPer();
 
+        }
+
+        protected void chkresign_CheckedChanged(object sender, EventArgs e)
+        {
+            string empcode = "";
+            GetEmpName(empcode);
         }
     }
 }

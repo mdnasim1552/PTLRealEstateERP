@@ -1218,145 +1218,158 @@ namespace RealERPWEB.F_04_Bgd
 
         private void Data_Bind()
         {
-            string Type = this.RadioButtonList1.SelectedValue.ToString();
-            string Comcode = ASTUtility.Left((this.GetComeCode()), 1);
-            switch (Type)
+            try
             {
-                case "MasterBgdGrWise":
+                string Type = this.RadioButtonList1.SelectedValue.ToString();
+                string Comcode = ASTUtility.Left((this.GetComeCode()), 1);
+                switch (Type)
+                {
+                    case "MasterBgdGrWise":
 
-                    string rType = this.ddlReport.SelectedValue.ToString();
+                        string rType = this.ddlReport.SelectedValue.ToString();
 
-                    switch (rType)
-                    {
-                        case "MasterBgd":
-                            this.gvBgd.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                            this.gvBgd.Columns[6].HeaderText = (Comcode == "2") ? "Development Cost Per Khata" : "Construction Cost Per SFT";
-                            this.gvBgd.Columns[7].HeaderText = (Comcode == "2") ? "Saleable Cost Per Khata" : "Saleable Cost Per SFT";
-                            this.gvBgd.DataSource = (DataTable)Session["tblbgd"];
-                            this.gvBgd.DataBind();
-                            break;
-                        case "MasterBgdGrWise":
-                            this.gvbgdgrwise.DataSource = (DataTable)Session["tblbgd"];
-                            this.gvbgdgrwise.DataBind();
-                            break;
-                        case "MasterBgdGrWiseDet":
-                            this.gvbgdgrwisedet.DataSource = (DataTable)Session["tblbgd"];
-                            this.gvbgdgrwisedet.DataBind();
+                        switch (rType)
+                        {
+                            case "MasterBgd":
+                                this.gvBgd.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                                this.gvBgd.Columns[6].HeaderText = (Comcode == "2") ? "Development Cost Per Khata" : "Construction Cost Per SFT";
+                                this.gvBgd.Columns[7].HeaderText = (Comcode == "2") ? "Saleable Cost Per Khata" : "Saleable Cost Per SFT";
 
-                            break;
-                    }
+                                this.gvBgd.Columns[9].HeaderText = (Comcode == "2") ? "Development Cost Per Khata" : "Construction Cost Per SFT";
+                                this.gvBgd.Columns[10].HeaderText = (Comcode == "2") ? "Saleable Cost Per Khata" : "Saleable Cost Per SFT";
+                                this.gvBgd.DataSource = (DataTable)Session["tblbgd"];
+                                this.gvBgd.DataBind();
+                                break;
+                            case "MasterBgdGrWise":
+                                this.gvbgdgrwise.DataSource = (DataTable)Session["tblbgd"];
+                                this.gvbgdgrwise.DataBind();
+                                break;
+                            case "MasterBgdGrWiseDet":
+                                this.gvbgdgrwisedet.DataSource = (DataTable)Session["tblbgd"];
+                                this.gvbgdgrwisedet.DataBind();
 
-
-                    break;
-                case "MasterBgdAcWk":
-                    this.gvBgdsp.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                    this.gvBgdsp.Columns[4].HeaderText = (Comcode == "2") ? "Development Cost Per Khata" : "Construction Cost Per SFT";
-                    this.gvBgdsp.Columns[5].HeaderText = (Comcode == "2") ? "Saleable Cost Per Khata" : "Saleable Cost Per SFT";
-                    this.gvBgdsp.DataSource = (DataTable)Session["tblbgd"];
-                    this.gvBgdsp.DataBind();
-                    break;
+                                break;
+                        }
 
 
-                case "WrkVsResource":
-                    this.gvWrkVsRes.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                    this.gvWrkVsRes.DataSource = (DataTable)Session["tblbgd"];
-                    this.gvWrkVsRes.DataBind();
-                    this.FooterCalculation((DataTable)Session["tblbgd"]);
-                    break;
+                        break;
+                    case "MasterBgdAcWk":
+                        this.gvBgdsp.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                        this.gvBgdsp.Columns[4].HeaderText = (Comcode == "2") ? "Development Cost Per Khata" : "Construction Cost Per SFT";
+                        this.gvBgdsp.Columns[5].HeaderText = (Comcode == "2") ? "Saleable Cost Per Khata" : "Saleable Cost Per SFT";
+                        this.gvBgdsp.DataSource = (DataTable)Session["tblbgd"];
+                        this.gvBgdsp.DataBind();
+                        break;
 
 
-                case "BudgetedCost":
-                    this.gvBgdtc.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                    this.gvBgdtc.Columns[6].HeaderText = (Comcode == "2") ? "Development Cost Per Khata" : "Construction Cost Per SFT";
-                    this.gvBgdtc.DataSource = (DataTable)Session["tblbgd"];
-                    this.gvBgdtc.DataBind();
-                    break;
-                case "BudgetAlocation":
-                    this.gvBgdAlc.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                    this.gvBgdAlc.DataSource = (DataTable)Session["tblbgd"];
-                    this.gvBgdAlc.DataBind();
-                    break;
-                case "BgdAlocBal":
-                    this.gvBgdAlcBal.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                    this.gvBgdAlcBal.DataSource = (DataTable)Session["tblbgd"];
-                    this.gvBgdAlcBal.DataBind();
-                    this.FooterCalculation((DataTable)Session["tblbgd"]);
-                    break;
-                case "LandPurReg":
-
-                    this.gvLandPurreg.DataSource = (DataTable)Session["tblbgd"];
-                    this.gvLandPurreg.DataBind();
-
-                    break;
-
-                case "BudgetBal":
-                    this.gvBudgetBal.DataSource = (DataTable)Session["tblbgd"];
-                    this.gvBudgetBal.DataBind();
-                    this.FooterCalculation((DataTable)Session["tblbgd"]);
-                    break;
-
-                //case "MasterBgdGrWise":
-                //    this.gvbgdgrwise.DataSource = (DataTable)Session["tblbgd"];
-                //    this.gvbgdgrwise.DataBind();
-                //    //  this.FooterCalculation((DataTable)Session["tblbgd"]);
-                //    break;
+                    case "WrkVsResource":
+                        this.gvWrkVsRes.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                        this.gvWrkVsRes.DataSource = (DataTable)Session["tblbgd"];
+                        this.gvWrkVsRes.DataBind();
+                        this.FooterCalculation((DataTable)Session["tblbgd"]);
+                        break;
 
 
-                //case "MasterBgdGrWiseDet":
-                //    this.gvbgdgrwisedet.DataSource = (DataTable)Session["tblbgd"];
-                //    this.gvbgdgrwisedet.DataBind();
-                //    //  this.FooterCalculation((DataTable)Session["tblbgd"]);
-                //    break;
+                    case "BudgetedCost":
+                        this.gvBgdtc.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                        this.gvBgdtc.Columns[6].HeaderText = (Comcode == "2") ? "Development Cost Per Khata" : "Construction Cost Per SFT";
+                        this.gvBgdtc.DataSource = (DataTable)Session["tblbgd"];
+                        this.gvBgdtc.DataBind();
+                        break;
+                    case "BudgetAlocation":
+                        this.gvBgdAlc.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                        this.gvBgdAlc.DataSource = (DataTable)Session["tblbgd"];
+                        this.gvBgdAlc.DataBind();
+                        break;
+                    case "BgdAlocBal":
+                        this.gvBgdAlcBal.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                        this.gvBgdAlcBal.DataSource = (DataTable)Session["tblbgd"];
+                        this.gvBgdAlcBal.DataBind();
+                        this.FooterCalculation((DataTable)Session["tblbgd"]);
+                        break;
+                    case "LandPurReg":
+
+                        this.gvLandPurreg.DataSource = (DataTable)Session["tblbgd"];
+                        this.gvLandPurreg.DataBind();
+
+                        break;
+
+                    case "BudgetBal":
+                        this.gvBudgetBal.DataSource = (DataTable)Session["tblbgd"];
+                        this.gvBudgetBal.DataBind();
+                        this.FooterCalculation((DataTable)Session["tblbgd"]);
+                        break;
+
+                    //case "MasterBgdGrWise":
+                    //    this.gvbgdgrwise.DataSource = (DataTable)Session["tblbgd"];
+                    //    this.gvbgdgrwise.DataBind();
+                    //    //  this.FooterCalculation((DataTable)Session["tblbgd"]);
+                    //    break;
 
 
-                case "AddBudget":
-                    this.gvadwrk.DataSource = (DataTable)Session["tblbgd"];
-                    this.gvadwrk.DataBind();
-                    this.FooterCalculation((DataTable)Session["tblbgd"]);
-                    //  this.FooterCalculation((DataTable)Session["tblbgd"]);
-                    break;
-
-                case "BgdWkVsActual":
-                    this.gvbgdvac.DataSource = (DataTable)Session["tblbgd"];
-                    this.gvbgdvac.DataBind();
-                    Session["Report1"] = gvbgdvac;
-                    ((HyperLink)this.gvbgdvac.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-                    //  this.FooterCalculation((DataTable)Session["tblbgd"]);
-                    break;
-
-                case "BgdCostResBasis02":
-                    this.gvRptResBasis.DataSource = (DataTable)Session["tblbgd"];
-                    this.gvRptResBasis.DataBind();
-                    this.FooterCalculation((DataTable)Session["tblbgd"]);
-                    break;
-
-                case "MasterBgdFlrDet":
-                    this.gvBgdFloor.DataSource = (DataTable)Session["tblbgd"];
-                    this.gvBgdFloor.DataBind();
-                    this.FooterCalculation((DataTable)Session["tblbgd"]);
-                    break;
-
-                case "MatRequired":
-                    this.gvmatreq.DataSource = (DataTable)Session["tblbgd"];
-                    this.gvmatreq.DataBind();
-                    //  this.FooterCalculation((DataTable)Session["tblbgd"]);
-                    break;
-
-                case "MasterBgdResGrWiseDet":
-                    this.gvbgrgrpdisedet.DataSource = (DataTable)Session["tblbgd"];
-                    this.gvbgrgrpdisedet.DataBind();
+                    //case "MasterBgdGrWiseDet":
+                    //    this.gvbgdgrwisedet.DataSource = (DataTable)Session["tblbgd"];
+                    //    this.gvbgdgrwisedet.DataBind();
+                    //    //  this.FooterCalculation((DataTable)Session["tblbgd"]);
+                    //    break;
 
 
-                    Session["Report1"] = gvbgrgrpdisedet;
+                    case "AddBudget":
+                        this.gvadwrk.DataSource = (DataTable)Session["tblbgd"];
+                        this.gvadwrk.DataBind();
+                        this.FooterCalculation((DataTable)Session["tblbgd"]);
+                        //  this.FooterCalculation((DataTable)Session["tblbgd"]);
+                        break;
 
-                    if (((DataTable)Session["tblbgd"]).Rows.Count > 0)
-                    {
-                        ((HyperLink)this.gvbgrgrpdisedet.HeaderRow.FindControl("hlbtnCBdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-                    }
-                    
+                    case "BgdWkVsActual":
+                        this.gvbgdvac.DataSource = (DataTable)Session["tblbgd"];
+                        this.gvbgdvac.DataBind();
+                        Session["Report1"] = gvbgdvac;
+                        ((HyperLink)this.gvbgdvac.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                        //  this.FooterCalculation((DataTable)Session["tblbgd"]);
+                        break;
 
-                    //  this.FooterCalculation((DataTable)Session["tblbgd"]);
-                    break;
+                    case "BgdCostResBasis02":
+                        this.gvRptResBasis.DataSource = (DataTable)Session["tblbgd"];
+                        this.gvRptResBasis.DataBind();
+                        this.FooterCalculation((DataTable)Session["tblbgd"]);
+                        break;
+
+                    case "MasterBgdFlrDet":
+                        this.gvBgdFloor.DataSource = (DataTable)Session["tblbgd"];
+                        this.gvBgdFloor.DataBind();
+                        this.FooterCalculation((DataTable)Session["tblbgd"]);
+                        break;
+
+                    case "MatRequired":
+                        this.gvmatreq.DataSource = (DataTable)Session["tblbgd"];
+                        this.gvmatreq.DataBind();
+                        //  this.FooterCalculation((DataTable)Session["tblbgd"]);
+                        break;
+
+                    case "MasterBgdResGrWiseDet":
+                        this.gvbgrgrpdisedet.DataSource = (DataTable)Session["tblbgd"];
+                        this.gvbgrgrpdisedet.DataBind();
+
+
+                        Session["Report1"] = gvbgrgrpdisedet;
+
+                        if (((DataTable)Session["tblbgd"]).Rows.Count > 0)
+                        {
+                            ((HyperLink)this.gvbgrgrpdisedet.HeaderRow.FindControl("hlbtnCBdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                        }
+
+
+                        //  this.FooterCalculation((DataTable)Session["tblbgd"]);
+                        break;
+
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message+ "');", true);
 
 
             }
@@ -2533,8 +2546,87 @@ namespace RealERPWEB.F_04_Bgd
             this.Data_Bind();
 
         }
+
+        protected void gvBgd_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            GridViewRow gvRow = e.Row;
+            if (gvRow.RowType == DataControlRowType.Header)
+            {
+
+
+                GridViewRow gvrow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);              
+
+                TableCell cell01 = new TableCell();
+                cell01.Text = "Sl.No.";
+                cell01.HorizontalAlign = HorizontalAlign.Center;
+                cell01.RowSpan = 2;
+                gvrow.Cells.Add(cell01);
+
+
+
+                TableCell cell02 = new TableCell();
+                cell02.Text = "Description";
+                cell02.HorizontalAlign = HorizontalAlign.Center;
+                cell02.RowSpan = 2;
+                gvrow.Cells.Add(cell02);
+
+                TableCell cell03 = new TableCell();
+                cell03.Text = "Unit";
+                cell03.HorizontalAlign = HorizontalAlign.Center;
+                cell03.RowSpan = 2;
+                gvrow.Cells.Add(cell03);
+
+
+                TableCell cell04 = new TableCell();
+                cell04.Text = "Qty";
+                cell04.HorizontalAlign = HorizontalAlign.Center;
+                cell04.RowSpan = 2;
+                gvrow.Cells.Add(cell04);
+
+                TableCell cell05 = new TableCell();
+                cell05.Text = "Rate";
+                cell05.HorizontalAlign = HorizontalAlign.Center;
+                cell05.RowSpan = 2;
+                gvrow.Cells.Add(cell05);
+
+
+                
+
+                TableCell cell06 = new TableCell();
+                cell06.Text = "Budgeted";
+                cell06.HorizontalAlign = HorizontalAlign.Center;
+                cell06.Attributes["style"] = "font-weight:bold;";
+                cell06.ColumnSpan = 3;
+                gvrow.Cells.Add(cell06);
+
+
+
+                TableCell cell07 = new TableCell();
+                cell07.Text = "Actual Cost(with inflation)";
+                cell07.HorizontalAlign = HorizontalAlign.Center;
+                cell07.Attributes["style"] = "font-weight:bold;";
+                cell07.ColumnSpan = 3;
+                gvrow.Cells.Add(cell07);
+                gvBgd.Controls[0].Controls.AddAt(0, gvrow);
+
+
+
+            }
+
+        }
         protected void gvBgd_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.Cells[0].Visible = false;
+                e.Row.Cells[1].Visible = false;
+                e.Row.Cells[2].Visible = false;
+                e.Row.Cells[3].Visible = false;
+                e.Row.Cells[4].Visible = false;
+              
+            }
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
@@ -2542,6 +2634,9 @@ namespace RealERPWEB.F_04_Bgd
                 Label lblBgdamt = (Label)e.Row.FindControl("lgvBgdamt");
                 Label lblConsCost = (Label)e.Row.FindControl("lgvconcost");
                 Label lblSalCost = (Label)e.Row.FindControl("lgvsalcost");
+                Label lgvacamt = (Label)e.Row.FindControl("lgvacamt");
+                Label lgvconcostwinfla = (Label)e.Row.FindControl("lgvconcostwinfla");
+                Label lgvsalcostwinfla = (Label)e.Row.FindControl("lgvsalcostwinfla");
 
                 string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "rescode")).ToString();
 
@@ -2555,6 +2650,10 @@ namespace RealERPWEB.F_04_Bgd
                     lblBgdamt.Font.Bold = true;
                     lblConsCost.Font.Bold = true;
                     lblSalCost.Font.Bold = true;
+                    lblSalCost.Font.Bold = true;
+                    lblSalCost.Font.Bold = true;
+                    lgvacamt.Font.Bold = true;
+                    lgvsalcostwinfla.Font.Bold = true;
                     acresdesc.Style.Add("text-align", "right");
                 }
             }
@@ -3544,5 +3643,7 @@ namespace RealERPWEB.F_04_Bgd
             this.gvbgdgrwisedet.DataBind();
             this.SectionView();
         }
+
+       
     }
 }
