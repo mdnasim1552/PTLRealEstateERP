@@ -301,20 +301,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
         }
 
-        protected void lbtnPrint_Click(object sender, EventArgs e)
-        {
-            //int index = this.rbtnstatement.SelectedIndex;
-            //if (index == 0)
-            //{
-            //    this.printRptEnglish();
-            //}
-            //else
-            //{
-            //    this.printRptBangla();
-            //}
-
-
-        }
+       
 
         private void printRptEnglish()
         {
@@ -349,6 +336,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string joining = emplist[0].joindat.ToString("dd-MMM-yyyy");
             string sepdate = emplist[0].retdat.ToString("dd-MMM-yyyy");
             var netamount = (sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "351").Sum(p => p.ttlamt) - sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "352").Sum(p => p.ttlamt)).ToString("#,##0.00;(#,##0.00); ");
+            var grossslary = sttlmntinfo[0].ttlamt.ToString();
             string servicelength = emplist[0].servleng.ToString();
 
             double netpay = Convert.ToDouble(netamount);
@@ -373,6 +361,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             rpt1.SetParameters(new ReportParameter("Id", Id));
             rpt1.SetParameters(new ReportParameter("Section", Section));
             rpt1.SetParameters(new ReportParameter("jobseperation", jobseperation));
+            rpt1.SetParameters(new ReportParameter("grossslary", grossslary));
             rpt1.SetParameters(new ReportParameter("joining", joining));
             rpt1.SetParameters(new ReportParameter("sepdate", sepdate));
             rpt1.SetParameters(new ReportParameter("servicelength", servicelength));
@@ -416,6 +405,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string sepdate = emplist[0].retdat.ToString("dd-MMM-yyyy");
             var netamount = (sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "351").Sum(p => p.ttlamt) - sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "352").Sum(p => p.ttlamt)).ToString("#,##0.00;(#,##0.00); ");
             string servicelength = emplist[0].servleng.ToString();
+            var grossslary = sttlmntinfo[0].ttlamt.ToString();
 
             double netpay = Convert.ToDouble(netamount);
 
@@ -507,6 +497,83 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             //((Label)this.Master.FindControl("lblmsg")).Text = "Approve Successfully";
             //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
         }
+
+        private void lbtnPrint_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetComeCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string empid = this.ddlEmpName.SelectedValue.ToString();
+            string rpttype = this.rbtnstatement.SelectedIndex.ToString();
+
+
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
+            var emplist = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSepEmployee>)ViewState["empdata"];
+            var sttlmntinfo = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt"];
+
+            var list1 = sttlmntinfo.FindAll(p => p.hrgcod.Substring(0, 3) == "351");
+            var list2 = sttlmntinfo.FindAll(p => p.hrgcod.Substring(0, 3) == "352");
+            var shorempdata = emplist.FindAll(d => d.empid == empid);
+            if (rpttype == "0")
+            {
+                
+                string billDate = shorempdata[0].billdate.ToString("dd-MMM-yyyy");
+                string name = shorempdata[0].empname.ToString();
+                string Desgin = shorempdata[0].designation.ToString();
+                string Id = shorempdata[0].idno.ToString();
+                string Section = shorempdata[0].deptname.ToString();
+                string jobseperation = shorempdata[0].septypedesc.ToString();
+                var grossslary = sttlmntinfo[0].amount.ToString();
+                string joining = shorempdata[0].joindat.ToString("dd-MMM-yyyy");
+                string sepdate = shorempdata[0].retdat.ToString("dd-MMM-yyyy");
+                var netamount = (sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "351").Sum(p => p.ttlamt) - sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "352").Sum(p => p.ttlamt)).ToString("#,##0.00;(#,##0.00); ");
+                string servicelength = shorempdata[0].servleng.ToString();
+
+                double netpay = Convert.ToDouble(netamount);
+
+
+                LocalReport rpt1 = new LocalReport();
+                rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_92_Mgt.RptEmpSattelment", list1, list2, null);
+                rpt1.EnableExternalImages = true;
+
+                rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                rpt1.SetParameters(new ReportParameter("rpttitle", "Employee Final Sattelment"));
+                rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                rpt1.SetParameters(new ReportParameter("netamount", netamount));
+                rpt1.SetParameters(new ReportParameter("footer", ASTUtility.Concat("", username, printdate)));
+
+                // for Show EmplInfo
+                rpt1.SetParameters(new ReportParameter("billDate", billDate));
+                rpt1.SetParameters(new ReportParameter("name", name));
+                rpt1.SetParameters(new ReportParameter("Desgin", Desgin));
+                rpt1.SetParameters(new ReportParameter("Id", Id));
+                rpt1.SetParameters(new ReportParameter("Section", Section));
+                rpt1.SetParameters(new ReportParameter("jobseperation", jobseperation));
+                rpt1.SetParameters(new ReportParameter("joining", joining));
+                rpt1.SetParameters(new ReportParameter("sepdate", sepdate));
+                rpt1.SetParameters(new ReportParameter("servicelength", servicelength));
+                rpt1.SetParameters(new ReportParameter("inwords", ASTUtility.Trans(netpay, 2)));
+
+
+                Session["Report1"] = rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" + ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            }
+            else
+            {
+
+            }
+
+           
+
+
+        }
+
 
         protected void gvsettlemntcredit_RowDataBound(object sender, GridViewRowEventArgs e)
         {

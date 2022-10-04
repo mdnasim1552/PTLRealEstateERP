@@ -1007,9 +1007,6 @@ namespace RealERPWEB.F_99_Allinterface
         {
             DataTable dt = ((DataTable)Session["tblover"]).Copy();
 
-
-
-
             string dptName = ddlDepartment.SelectedItem.Text.Trim().Substring(13);
             string monthid = Convert.ToDateTime(ASTUtility.Right(this.ddlyearmon.Text.Trim(), 2) + "/01/" + this.ddlyearmon.Text.Trim().Substring(0, 4)).ToString("MMM-yyyy");// txtdate
 
