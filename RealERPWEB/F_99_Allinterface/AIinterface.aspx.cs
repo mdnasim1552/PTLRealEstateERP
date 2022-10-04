@@ -75,7 +75,7 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
 
             Session["tblprojectlist"] = ds.Tables[0];
-            Session["tblassinglist"] = ds.Tables[1];
+            Session["tblassinglist"] = ds.Tables[2];
             this.data_Bind();
         }
 
