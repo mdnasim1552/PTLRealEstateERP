@@ -73,7 +73,7 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
             //   string type = this.Request.QueryString["Type"].ToString().Trim();
             string Company = ((this.ddlCompanyApr.SelectedValue.ToString() == "000000000000") ? "" : this.ddlCompanyApr.SelectedValue.ToString().Substring(0, 2)) + "%";
 
-            string txtSProject = this.txtsrchdeptapr.Text.Trim() + "%";
+            string txtSProject = "%";
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETDEPTNAME", Company, txtSProject, "", "", "", "", "", "", "");
 
             this.ddldepartmentapr.DataTextField = "deptdesc";
@@ -87,7 +87,7 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
         {
             string comcod = this.GetComeCode();
             string deptcode = this.ddldepartmentapr.SelectedValue.ToString().Substring(0, 4) + "%";
-            string txtSProject = this.txtSrcPro.Text.Trim() + "%";
+            string txtSProject = "%";
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTNAME", deptcode, txtSProject, "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "actdesc";
             this.ddlProjectName.DataValueField = "actcode";
@@ -99,8 +99,8 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
         private void GetEmployeeName()
         {
             string comcod = this.GetComeCode();
-            string txtSProject = "%" + this.txtEmpSrc.Text + "%";
-            string ProjectCode = (this.txtEmpSrc.Text.Trim().Length > 0) ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
+            string txtSProject = "%";
+            string ProjectCode = this.ddlProjectName.SelectedValue.ToString() + "%";
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ACR_EMPLOYEE", "GETEMPNAME", ProjectCode, txtSProject, "", "", "", "", "", "");
             this.ddlEmpName.DataTextField = "empname1";
             this.ddlEmpName.DataValueField = "empid";
@@ -227,7 +227,6 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
                     this.lblEmpname.Text = this.ddlEmpName.SelectedItem.Text.Trim().Substring(13);
                     this.lblEmpname.Visible = true;
                     this.lblprelist.Visible = false;
-                    this.txtPreViousList.Visible = false;
                     this.ibtnPreList.Visible = false;
                     this.ddlPreList.Visible = false;
                     this.ShowPerformance();
@@ -237,7 +236,6 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
                 this.ddlEmpName.Visible = true;
                 this.ddlEmpName.Enabled = true;
                 this.lblprelist.Visible = false;
-                this.txtPreViousList.Visible = false;
                 this.ibtnPreList.Visible = false;
                 this.ddlPreList.Visible = false;
                 this.lbtnshow.Visible = false;
@@ -254,10 +252,11 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
                 this.lblEmpname.Visible = false;
                 this.ddlEmpName.Enabled = true;
                 this.lblprelist.Visible = true;
-                this.txtPreViousList.Visible = true;
                 this.ibtnPreList.Visible = true;
                 this.ddlPreList.Visible = true;
                 this.txtCurDate.Enabled = true;
+                this.lblCurNo1.Text = "";
+                this.lblCurNo2.Text = "";
                 this.ddlEmpName.DataSource = null;
                 this.ddlEmpName.DataBind();
                 this.GetProjectName();

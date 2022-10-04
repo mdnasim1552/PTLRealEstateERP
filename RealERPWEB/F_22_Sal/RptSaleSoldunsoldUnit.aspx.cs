@@ -400,6 +400,9 @@ namespace RealERPWEB.F_22_Sal
                     ((Label)this.gvSpayment.FooterRow.FindControl("lgvFutility")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(utility)", "")) ?
                                    0 : dt.Compute("sum(utility)", ""))).ToString("#,##0;(#,##0); ");
 
+                    ((Label)this.gvSpayment.FooterRow.FindControl("lgvFothers")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(cooperative)", "")) ?
+                                  0 : dt.Compute("sum(cooperative)", ""))).ToString("#,##0;(#,##0); ");
+
 
                     Session["Report1"] = gvSpayment;
                     ((HyperLink)this.gvSpayment.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";

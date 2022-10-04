@@ -4230,25 +4230,25 @@
                     </TablixMember>
                     <TablixMember>
                       <Visibility>
-                        <Hidden>=iif(Fields!grp.Value="B",True, iif(Parameters!cost1.Value="",True,False))</Hidden>
+                        <Hidden>=iif(Fields!grp.Value="B",True, iif(Parameters!cost2.Value="",True,False))</Hidden>
                       </Visibility>
                       <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
                     <TablixMember>
                       <Visibility>
-                        <Hidden>=iif(Fields!grp.Value="B",True, iif(Parameters!cost1.Value="",True,False))</Hidden>
+                        <Hidden>=iif(Fields!grp.Value="B",True, iif(Parameters!cost3.Value="",True,False))</Hidden>
                       </Visibility>
                       <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
                     <TablixMember>
                       <Visibility>
-                        <Hidden>=iif(Fields!grp.Value="B",True, iif(Parameters!cost1.Value="",True,False))</Hidden>
+                        <Hidden>=iif(Fields!grp.Value="B",True, iif(Parameters!cost4.Value="",True,False))</Hidden>
                       </Visibility>
                       <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
                     <TablixMember>
                       <Visibility>
-                        <Hidden>=iif(Fields!grp.Value="B",True, iif(Parameters!cost1.Value="",True,False))</Hidden>
+                        <Hidden>=iif(Fields!grp.Value="B",True, iif(Parameters!cost5.Value="",True,False))</Hidden>
                       </Visibility>
                       <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
@@ -4299,7 +4299,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.04458in</Top>
             <Left>0.00815in</Left>
-            <Height>5.32291in</Height>
+            <Height>5.32289in</Height>
             <Width>8.10749in</Width>
             <Style>
               <Border>

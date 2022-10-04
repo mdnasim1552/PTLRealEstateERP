@@ -407,6 +407,9 @@
                 var gv1 = $('#<%=this.gvBudgetBal.ClientID %>');
                 gv1.Scrollable();
 
+              <%--  var gvBgd = $('#<%=this.gvBgd.ClientID %>');
+                gvBgd.Scrollable();--%>
+
                 var gvadwrk = $('#<%=this.gvadwrk.ClientID %>');
                 $(function () {
                     $('[id*=DropCheck1]').multiselect({
@@ -637,7 +640,7 @@
                             </asp:Panel>
                             <asp:GridView ID="gvBgd" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                 Width="640px" AllowPaging="True" OnPageIndexChanging="gvBgd_PageIndexChanging"
-                                OnRowDataBound="gvBgd_RowDataBound">
+                                OnRowDataBound="gvBgd_RowDataBound" OnRowCreated="gvBgd_RowCreated">
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl.No.">
@@ -685,7 +688,7 @@
                                         <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Budgeted">
+                                    <asp:TemplateField HeaderText="Amount">
                                         <ItemTemplate>
                                             <asp:Label ID="lgvBgdamt" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdam")).ToString("#,##0;(#,##0); ") %>'
                                                 Width="75px"></asp:Label>
@@ -712,7 +715,47 @@
                                         <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
+
+
+                                     <asp:TemplateField HeaderText="Amount">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lgvacamt" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "actam")).ToString("#,##0;(#,##0); ") %>'
+                                                Width="75px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Construction Cost">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lgvconcostwinfla" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "adevcost")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="75px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Saleable Cost">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lgvsalcostwinfla" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "asalcost")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="75px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+
+
+
+
                                 </Columns>
+
+
+
+
+
+
+
 
                                 <FooterStyle CssClass="grvFooter" />
                                 <EditRowStyle />
