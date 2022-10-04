@@ -226,9 +226,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
         private void Save_Value()
         {
-            var sttlmntinfo1 = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt1"];
+            var sttlmntinfo1 = ((List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt1"]).OrderBy(x => x.seq).ToList();
+            var sttlmntinfo2 = ((List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt2"]).OrderBy(x => x.seq).ToList();
+            //var sttlmntinfo1 = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt1"];
 
-            var sttlmntinfo2 = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt2"];
+            //var sttlmntinfo2 = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt2"];
             var sttlmntinfo = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt"];
             for (int i = 0; i < this.gvsettlemntcredit.Rows.Count; i++)
             {
@@ -236,21 +238,21 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 double gross = Convert.ToDouble("0" + ((TextBox)gvsettlemntcredit.Rows[i].FindControl("txtgross")).Text.Trim());
                 double ttlamt = Convert.ToDouble("0" + ((TextBox)gvsettlemntcredit.Rows[i].FindControl("TtlAmout")).Text.Trim());
                 double numofday =Convert.ToDouble("0"+ ((TextBox)gvsettlemntcredit.Rows[i].FindControl("lblnmday")).Text.Trim());
-                var index = sttlmntinfo1.FindIndex(p => p.hrgcod == hrgcod);
+                //var index = sttlmntinfo1.FindIndex(p => p.hrgcod == hrgcod);
 
-                sttlmntinfo1[index].amount = gross;
-                sttlmntinfo1[index].numofday = numofday;
-                sttlmntinfo1[index].ttlamt = ttlamt;
+                sttlmntinfo1[i].amount = gross;
+                sttlmntinfo1[i].numofday = numofday;
+                sttlmntinfo1[i].ttlamt = ttlamt;
 
                 switch (hrgcod)
                 {
                     case "35101"://salary 36,513/30*23	
-                        sttlmntinfo1[index].ttlamt = (gross / 30) * numofday;
+                        sttlmntinfo1[i].ttlamt = (gross / 30) * numofday;
           
                         break;
 
                     case "35108"://earn leave 36,513 * 12 / 365 * 0
-                        sttlmntinfo1[index].ttlamt = gross * 12 / 365 * numofday;
+                        sttlmntinfo1[i].ttlamt = gross * 12 / 365 * numofday;
                  
                         break;
   
@@ -267,29 +269,29 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 double gross = Convert.ToDouble("0" + ((TextBox)gvsttlededuct.Rows[i].FindControl("txtgross")).Text.Trim());
                 double ttlamt = Convert.ToDouble("0" + ((TextBox)gvsttlededuct.Rows[i].FindControl("TtlAmout")).Text.Trim());
                 double numofday = Convert.ToDouble("0" + ((TextBox)gvsttlededuct.Rows[i].FindControl("lblnmday")).Text.Trim());
-                var index2 = sttlmntinfo2.FindIndex(p => p.hrgcod == hrgcod);
-                sttlmntinfo2[index2].amount = gross;
-                sttlmntinfo2[index2].numofday = numofday;
-                sttlmntinfo2[index2].ttlamt = ttlamt;
+                //var index2 = sttlmntinfo2.FindIndex(p => p.hrgcod == hrgcod);
+                sttlmntinfo2[i].amount = gross;
+                sttlmntinfo2[i].numofday = numofday;
+                sttlmntinfo2[i].ttlamt = ttlamt;
 
 
                 switch (hrgcod)
                 {
                     case "35206"://absent
-                        sttlmntinfo2[index2].ttlamt = (gross / 30) * numofday;
+                        sttlmntinfo2[i].ttlamt = (gross / 30) * numofday;
       
                         break;
 
                     case "35224"://cl 	
-                        sttlmntinfo2[index2].ttlamt = gross*12/365* numofday;
+                        sttlmntinfo2[i].ttlamt = gross*12/365* numofday;
                         break;
                     case "35226"://sl leave 
-                        sttlmntinfo2[index2].ttlamt = gross * 12 / 365 * numofday;
+                        sttlmntinfo2[i].ttlamt = gross * 12 / 365 * numofday;
 
 
                         break;
                     case "35228"://el leave
-                        sttlmntinfo2[index2].ttlamt = gross * 12 / 365 * numofday;
+                        sttlmntinfo2[i].ttlamt = gross * 12 / 365 * numofday;
                         break;
 
                 }
@@ -531,7 +533,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 var grossslary = sttlmntinfo[0].amount.ToString();
                 string joining = shorempdata[0].joindat.ToString("dd-MMM-yyyy");
                 string sepdate = shorempdata[0].retdat.ToString("dd-MMM-yyyy");
-                var netamount = (sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "351").Sum(p => p.ttlamt) - sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "352").Sum(p => p.ttlamt)).ToString("#,##0.00;(#,##0.00); ");
+                var netamount = (sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "351").Sum(p => p.ttlamt) - sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "352").Sum(p => p.ttlamt)).ToString("#,##0;(#,##0); ");
                 string servicelength = shorempdata[0].servleng.ToString();
 
                 double netpay = Convert.ToDouble(netamount);
@@ -543,7 +545,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 rpt1.SetParameters(new ReportParameter("comnam", comnam));
                 rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                rpt1.SetParameters(new ReportParameter("rpttitle", "Employee Final Sattelment"));
+                rpt1.SetParameters(new ReportParameter("rpttitle", "Employee Final Settlement"));
                 rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
                 rpt1.SetParameters(new ReportParameter("netamount", netamount));
                 rpt1.SetParameters(new ReportParameter("footer", ASTUtility.Concat("", username, printdate)));
