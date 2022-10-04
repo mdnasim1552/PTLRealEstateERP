@@ -819,7 +819,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1703000", "1703200", "F_17_Acc", "AccFinalReports?", "RepType=SPC", "Project Report-Specifition", "Accounts", "False", "False", "False", "False" }); ;
 
 
-            tblObj.Rows.Add(new Object[] { "1703000", "1703210", "F_32_Mis", "RptPrjCostPerSFT?", "Type=RemainingCost", "Additional Budget for Influation", "Accounts", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1703000", "1703210", "F_32_Mis", "RptPrjCostPerSFT?", "Type=RemainingCost", "Additional Budget for Inflation", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703220", "F_17_Acc", "RptAccPaySlip", "", "Pay Slip", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703230", "F_17_Acc", "RptAccBudget?", "Type=WbgdVsAc", "Working Budget Vs. Achievement", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703231", "F_17_Acc", "RptAccBudget?", "Type=WbgdVsAcDetials", "Working Budget Vs. Achievement Details", "Accounts", "False", "False", "False", "False" }); ;
