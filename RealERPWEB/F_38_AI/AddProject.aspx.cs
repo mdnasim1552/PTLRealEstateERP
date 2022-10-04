@@ -91,7 +91,7 @@ namespace RealERPWEB.F_38_AI
         {
 
             string comcod = this.GetComdCode();
-            string sircode = this.tblproj.Text ?? "";
+            string sircode = this.lblproj.Text ?? "";
             if (sircode != "")
             {
                 this.none.Attributes.Add("class", "d-block col-md-4");
@@ -190,7 +190,7 @@ namespace RealERPWEB.F_38_AI
                         dv4 = dt5.DefaultView;
                         //dv3.RowFilter = ("infcod like '51%' and infcod not like'%00'");
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-                        ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = true;
+                       ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = true;
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
@@ -205,27 +205,25 @@ namespace RealERPWEB.F_38_AI
 
                         DataTable dtc = (DataTable)Session["tblCunt"];
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-                        ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = true;
+                       ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = true;
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
                         ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
-                        ddlgval.DataTextField = "cursymbol";
-                        ddlgval.DataValueField = "cursymbol";
+                        ddlgval.DataTextField = "curdesc";
+                        ddlgval.DataValueField = "code";
                         ddlgval.DataSource = dtc;
                         ddlgval.DataBind();
                         ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
-
                         break;
                     case "03008"://date time 
                     case "03009"://date time 
 
-                        string gdatat = ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
-
+                        string gdatat = ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.ToString();
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = false;
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Visible = false;
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text = gdatat;
                         break;
                     case "03018":
@@ -244,11 +242,20 @@ namespace RealERPWEB.F_38_AI
                         ddlgval.DataBind();
                         ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
                         break;
+                    case "03015":
+                    case "03017":
+                    case "03019":
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Visible = true;
 
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                        break;
                     default:
 
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
-
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Visible = false;
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = false;
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = true;
@@ -310,9 +317,9 @@ namespace RealERPWEB.F_38_AI
         {
             try
             {
-
+                string prjcode = this.lblproj.Text.Trim().ToString();
                 string comcod = this.GetComdCode();
-                string sircode = this.GetLastid();
+                string sircode = prjcode.Length > 0 ? prjcode  : this.GetLastid();
 
                 for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
                 {
@@ -324,6 +331,10 @@ namespace RealERPWEB.F_38_AI
                     if (Gcode == "03008" || Gcode == "03009")
                     {
                         Gvalue = (((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? "01-Jan-1900" : ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
+                    }
+                    if (Gcode == "03015" || Gcode == "03017" || Gcode == "03019")
+                    {
+                        Gvalue = (((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Text.Trim() == "") ? "0.00" : ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Text.Trim();
                     }
 
                     Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : Gvalue;
@@ -337,10 +348,11 @@ namespace RealERPWEB.F_38_AI
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail..!!');", true);
                         return;
                     }
+                   
                 }
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Project Saved Successfully');", true);
-
+                this.GetProjectList();
             }
             catch (Exception exp)
             {
@@ -495,6 +507,8 @@ namespace RealERPWEB.F_38_AI
                 msg = "Delete Failed";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
             }
+            this.GetProjectList();
+
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
@@ -504,7 +518,7 @@ namespace RealERPWEB.F_38_AI
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
             int index = row.RowIndex;
             string id = ((Label)this.GridcusDetails.Rows[index].FindControl("lblpactcode")).Text.ToString();
-            this.tblproj.Text = id;
+            this.lblproj.Text = id;
             this.LoadGrid();
 
         }
