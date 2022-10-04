@@ -204,13 +204,13 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.RadioButtonList TaskSteps;
 
         /// <summary>
-        /// pnlStatus control.
+        /// pnlAllProject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlStatus;
+        protected global::System.Web.UI.WebControls.Panel pnlAllProject;
 
         /// <summary>
         /// gvInterface control.
@@ -220,6 +220,24 @@ namespace RealERPWEB.F_99_Allinterface
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvInterface;
+
+        /// <summary>
+        /// pnlStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlStatus;
+
+        /// <summary>
+        /// gv_BatchList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_BatchList;
 
         /// <summary>
         /// pnlAssign control.
