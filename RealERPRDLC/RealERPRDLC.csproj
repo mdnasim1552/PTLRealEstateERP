@@ -49,7 +49,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -108,6 +108,7 @@
     <None Include="Properties\DataSources\RealEntity.C_02_Fea.EClasFeasibility+ProdCostAnalysis.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_02_Fea.EClasFeasibility+ProfitAndLoss.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_02_Fea.EClasFeasibility+ProjectFeasibility.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_04_Bgd.EClassBudget+BudgetInmStaSum.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_04_Bgd.EClassBudget+BudMasterResGroupWiseDate.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_07_Ten.RptCivilConBOQ.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_08_PPlan.BO_Class_Con+RptTenderProposal.datasource" />
@@ -205,6 +206,7 @@
     <EmbeddedResource Include="Reports\RptPurchaseOrderFinlayInd.rdlc" />
     <EmbeddedResource Include="R_02_Fea\rptCostAnlys.rdlc" />
     <EmbeddedResource Include="R_02_Fea\rptEstmtProfitLoss.rdlc" />
+    <EmbeddedResource Include="R_04_Bgd\RptProjectBgdFinlay.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillFinaly.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillIntech.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptLabIssueRup.rdlc" />

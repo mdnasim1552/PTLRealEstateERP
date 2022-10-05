@@ -159,7 +159,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -2756,6 +2756,7 @@
     <Content Include="F_34_Mgt\CodeLinkWs.aspx" />
     <Content Include="F_34_Mgt\CodeTransSupSub.aspx" />
     <Content Include="F_34_Mgt\CompImg.aspx" />
+    <Content Include="F_34_Mgt\CompUtilitySetUp.aspx" />
     <Content Include="F_34_Mgt\ContentSetupEntry.aspx" />
     <Content Include="F_34_Mgt\CreateTagSetup.aspx" />
     <Content Include="F_34_Mgt\DashBoardAll.aspx" />
@@ -4515,6 +4516,13 @@
     </Compile>
     <Compile Include="F_33_Doc\UploadDocumentation.aspx.designer.cs">
       <DependentUpon>UploadDocumentation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_34_Mgt\CompUtilitySetUp.aspx.cs">
+      <DependentUpon>CompUtilitySetUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_34_Mgt\CompUtilitySetUp.aspx.designer.cs">
+      <DependentUpon>CompUtilitySetUp.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_34_Mgt\ContentSetupEntry.aspx.cs">
       <DependentUpon>ContentSetupEntry.aspx</DependentUpon>
