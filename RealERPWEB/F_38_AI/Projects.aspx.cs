@@ -94,6 +94,7 @@ namespace RealERPWEB.F_38_AI
 
             }
         }
+        
 
         private void GetPrjOverView()
         {
@@ -125,8 +126,8 @@ namespace RealERPWEB.F_38_AI
         {
 
             string comcod = this.GetComdCode();
-            string prjid = Request.QueryString["PID"].ToString();
-            string batchid = Request.QueryString["BatchID"].ToString();
+            string prjid = Request.QueryString["PID"].ToString()==""?"": Request.QueryString["PID"].ToString();
+            string batchid = Request.QueryString["BatchID"].ToString()=="" ? "": Request.QueryString["BatchID"].ToString();
             DataSet ds1 = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETPRJWISEBATCH", prjid, batchid, "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -329,6 +330,34 @@ namespace RealERPWEB.F_38_AI
         protected void removefield_Click(object sender, EventArgs e)
         {
             this.task.Attributes.Add("class", "d-none");
+        }
+
+        protected void removeRow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string comcod = this.GetComdCode();
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+                int index = (this.gv_BatchInfo.PageSize * this.gv_BatchInfo.PageIndex) + rowIndex;
+                string jobid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvjobid")).Text.Trim();
+               
+
+                bool result = MktData.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "DELETEBATCH", jobid, "", "", "", "", "");
+                if (!result)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Delete Fail..!!');", true);
+                    return;
+                }
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Delete Successfully');", true);
+                this.GetBatchInfo();
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
         }
     }
 }

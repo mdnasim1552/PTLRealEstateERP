@@ -25,9 +25,10 @@
             border-style: solid !important;
             border-color: #c6c9d5 !important;
         }
-        #cardstyle{
-             background-color:#E8E3E3;
-             padding:0 !important;
+
+        #cardstyle {
+            background-color: #E8E3E3;
+            padding: 0 !important;
         }
     </style>
     <script>
@@ -54,8 +55,8 @@
             showAddBatch();
             viewToProj();
             CustomerCreate();
-           
-            
+
+
 
         }
         function ModalLoanClose() {
@@ -72,7 +73,7 @@
         function OpenAddBatch() {
             $('#CreateModalBatch').modal('toggle');
         }
-       
+
         function showAddBatch() {
             $('#CreateModalBatch').modal('show');
         }
@@ -80,13 +81,13 @@
             $('#CreateModalBatch').modal('show');
 
         }
-        function viewToProj(){
+        function viewToProj() {
             $('#ProjectModalView').modal('toggle');
         }
         function CustomerCreate() {
             $('#CustomerModalAdd').modal('toggle');
         }
-       
+
 
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -108,28 +109,9 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-1">
-                             <asp:Label ID="lblPage" runat="server">Page Size</asp:Label>
-                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" CssClass="form-control form-control-sm">
-                                            <asp:ListItem>10</asp:ListItem>
-                                            <asp:ListItem>15</asp:ListItem>
-                                            <asp:ListItem>20</asp:ListItem>
-                                            <asp:ListItem>30</asp:ListItem>
-                                            <asp:ListItem>50</asp:ListItem>
-                                            <asp:ListItem>100</asp:ListItem>
-                                            <asp:ListItem>150</asp:ListItem>
-                                            <asp:ListItem>200</asp:ListItem>
-                                            <asp:ListItem>300</asp:ListItem>
-                                        </asp:DropDownList>
-                        </div>
-                        <div class="col-md-11 mt-3">
-                            <asp:LinkButton ID="tblAddCustomerModal" runat="server" OnClick="tblAddCustomerModal_Click" CssClass="btn btn-primary ml-auto btn-sm mt20 mr-1 float-right"><i class="fa fa-plus"></i>Add Project</asp:LinkButton>
-
-                        </div>
-                    </div>
+            <div class="card mt-2">
+                <div class="card-header p-1">
+                
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -189,10 +171,11 @@
                                                     BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdatat")) %>'>
                                                 </asp:TextBox>
+
                                                 <asp:TextBox ID="txtgvdVal" runat="server" AutoCompleteType="Disabled"
                                                     CssClass="form-control" BackColor="Transparent"
                                                     BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdatat")) %>'>
+                                                    Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "gdatad")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "gdatad")).ToString("dd-MMM-yyyy") %>'>
                                                 </asp:TextBox>
 
                                                 <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server"
@@ -203,8 +186,8 @@
                                                     CssClass="chzn-select form-control" TabIndex="2">
                                                 </asp:DropDownList>
 
-                                                <asp:Label ID="lgvgdatat" runat="server" Visible="false"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdatat")) %>' Width="250px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                <asp:TextBox ID="lgvgdatan" runat="server" Visible="false" CssClass="form-control"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdatan")) %>'></asp:TextBox>
 
                                             </ItemTemplate>
                                             <HeaderStyle Width="250" />
@@ -218,9 +201,32 @@
                             </div>
                         </div>
                         <div class="divGrid" id="gridcol" runat="server">
-                            <h6>Project List</h6>
-                            <div class="table-responsive">
-                                <asp:Label runat="server" ID="tblproj" Visible="false"></asp:Label>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <asp:Label ID="lblPage" runat="server">Page Size</asp:Label>
+                                    <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" CssClass="form-control form-control-sm">
+                                        <asp:ListItem>10</asp:ListItem>
+                                        <asp:ListItem>15</asp:ListItem>
+                                        <asp:ListItem>20</asp:ListItem>
+                                        <asp:ListItem>30</asp:ListItem>
+                                        <asp:ListItem>50</asp:ListItem>
+                                        <asp:ListItem>100</asp:ListItem>
+                                        <asp:ListItem>150</asp:ListItem>
+                                        <asp:ListItem>200</asp:ListItem>
+                                        <asp:ListItem>300</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-md-7 text-center mt-2">
+                                    <h6>Project List</h6>
+                                </div>
+                                <div class="col-md-3 mt-2">
+                                    <asp:LinkButton ID="tblAddCustomerModal" runat="server" OnClick="tblAddCustomerModal_Click" CssClass="btn btn-primary ml-auto btn-sm mt20 mr-1 float-right"><i class="fa fa-plus"></i>Add Project</asp:LinkButton>
+
+                                </div>
+                            </div>
+
+                            <div class="table-responsive mt-1">
+                                <asp:Label runat="server" ID="lblproj" Visible="false"></asp:Label>
                                 <asp:GridView ID="GridcusDetails" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                     ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnPageIndexChanging="GridcusDetails_PageIndexChanging">
 
@@ -288,7 +294,7 @@
                                         <asp:TemplateField HeaderText="Action">
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="lnkView" runat="server" CssClass="text-primary pr-2 pl-2" OnClick="lnkView_Click" ToolTip="view"><i class="fa fa-eye"></i></asp:LinkButton>
-                                                <asp:LinkButton ID="btnRemove" runat="server"  OnClientClick="return confirm('Are You Sure?')" CssClass="text-danger pr-2" OnClick="btnRemove_Click" ToolTip="delete"><i class="fa fa-trash"></i></asp:LinkButton>
+                                                <asp:LinkButton ID="btnRemove" runat="server" OnClientClick="return confirm('Are You Sure?')" CssClass="text-danger pr-2" OnClick="btnRemove_Click" ToolTip="delete"><i class="fa fa-trash"></i></asp:LinkButton>
                                                 <asp:LinkButton ID="btnEdit" runat="server" OnClick="btnEdit_Click" CssClass="text-primary" ToolTip="edit"><i class="fa fa-edit"></i></asp:LinkButton>
                                             </ItemTemplate>
                                             <ItemStyle Width="80px" />
@@ -333,23 +339,23 @@
                                                 <%--<asp:Label ID="" runat="server"  Text='<%#Eval("prjid").ToString()%>'></asp:Label>--%>
                                             </div>
                                         </div>
-                                       
+
                                         <div class="col-lg-4 col-md-4 col-sm-6">
                                             <div class="form-group">
-                                                 <asp:Label ID="Label10" runat="server">DataSet Type</asp:Label>
+                                                <asp:Label ID="Label10" runat="server">DataSet Type</asp:Label>
                                                 <asp:TextBox ID="txtdataset" runat="server" CssClass="form-control" Enabled="false" ReadOnly="true"></asp:TextBox>
                                             </div>
-                                            </div>
-                                         <div class="col-lg-4 col-md-4 col-sm-6">
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-6">
                                             <div class="form-group">
-                                                 <asp:Label ID="Label11" runat="server">Work Type</asp:Label>
+                                                <asp:Label ID="Label11" runat="server">Work Type</asp:Label>
                                                 <asp:TextBox ID="txtworktype" runat="server" CssClass="form-control" Enabled="false" ReadOnly="true"></asp:TextBox>
                                             </div>
-                                            </div>
-                                       
+                                        </div>
+
                                     </div>
                                     <div class="row">
-                                         <div class="col-lg-4 col-md-4 col-sm-6">
+                                        <div class="col-lg-4 col-md-4 col-sm-6">
                                             <div class="form-group">
                                                 <asp:Label ID="Label1" runat="server">Batch Name</asp:Label>
                                                 <asp:TextBox ID="txtBatch" runat="server" CssClass="form-control"></asp:TextBox>
@@ -361,38 +367,38 @@
                                                 <asp:TextBox ID="txtbatchQuantity" runat="server" CssClass="form-control"></asp:TextBox>
                                             </div>
                                         </div>
-                                          <div class="col-lg-3 col-md-6 col-sm-6">
-                                            <div class="form-group row">                                               
-                                                    <asp:Label ID="Label6" runat="server">Total Hour</asp:Label>
-                                                    <asp:TextBox ID="tbltotalOur" runat="server" CssClass="form-control"></asp:TextBox>                                               
-                                               
-                                            </div>
-                                        </div>
-                                         <div class="col-lg-2 col-md-3 col-sm-6">
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="form-group row">
+                                                <asp:Label ID="Label6" runat="server">Total Hour</asp:Label>
+                                                <asp:TextBox ID="tbltotalOur" runat="server" CssClass="form-control"></asp:TextBox>
 
-                                            <div class="form-group">                                            
-                                                    <asp:Label ID="Label12" runat="server">Time Type</asp:Label>
-                                                    
-                                                    <asp:DropDownList ID="ddlphdm" runat="server" CssClass="form-control">
-                                                        <asp:ListItem Value="0">Hour</asp:ListItem>
-                                                        <asp:ListItem Value="1">Minute</asp:ListItem>
-                                                        <asp:ListItem Value="2">Day</asp:ListItem>
-                                                        <asp:ListItem Value="3">Mounth</asp:ListItem>
-                                                    </asp:DropDownList>
-                                            
                                             </div>
                                         </div>
-                                     
+                                        <div class="col-lg-2 col-md-3 col-sm-6">
+
+                                            <div class="form-group">
+                                                <asp:Label ID="Label12" runat="server">Time Type</asp:Label>
+
+                                                <asp:DropDownList ID="ddlphdm" runat="server" CssClass="form-control">
+                                                    <asp:ListItem Value="0">Hour</asp:ListItem>
+                                                    <asp:ListItem Value="1">Minute</asp:ListItem>
+                                                    <asp:ListItem Value="2">Day</asp:ListItem>
+                                                    <asp:ListItem Value="3">Mounth</asp:ListItem>
+                                                </asp:DropDownList>
+
+                                            </div>
+                                        </div>
+
                                     </div>
                                     <div class="row">
-                                         <div class="col-lg-3 col-md-3 col-sm-6">
+                                        <div class="col-lg-3 col-md-3 col-sm-6">
                                             <div class="form-group">
                                                 <asp:Label ID="Label2" runat="server">Start Date</asp:Label>
                                                 <asp:TextBox ID="txtstartdate" runat="server" CssClass="form-control"></asp:TextBox>
                                                 <cc1:CalendarExtender runat="server" Format="dd-MMM-yyyy" TargetControlID="txtstartdate"></cc1:CalendarExtender>
                                             </div>
                                         </div>
-                                         <div class="col-lg-3 col-md-3 col-sm-6">
+                                        <div class="col-lg-3 col-md-3 col-sm-6">
                                             <div class="form-group">
                                                 <asp:Label ID="Label4" runat="server">Delivery Date</asp:Label>
                                                 <asp:TextBox ID="textdelevery" runat="server" CssClass="form-control"></asp:TextBox>
@@ -412,13 +418,13 @@
                                                         <asp:TextBox ID="txtPerhour" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                 <div class="col-lg-3 col-md-3 col-sm-6">
+                                                <div class="col-lg-3 col-md-3 col-sm-6">
                                                     <div class="form-group">
                                                         <asp:Label ID="Label8" runat="server">Employee Capacity</asp:Label>
                                                         <asp:TextBox ID="textEmpcap" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                 <div class="col-lg-3 col-md-3 col-sm-6">
+                                                <div class="col-lg-3 col-md-3 col-sm-6">
                                                     <div class="form-group">
                                                         <asp:Label ID="Label9" runat="server">Estimated  ManPower</asp:Label>
                                                         <asp:TextBox ID="TextmanPower" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
@@ -433,8 +439,8 @@
 
                                     <div class="row">
                                         <div class="col-md-12 text-center mt-1">
-                                        <asp:LinkButton runat="server" ID="tblSaveBatch" OnClick="tblSaveBatch_Click" OnClientClick="showAddBatch()" CssClass="btn btn-primary btn-sm">Save</asp:LinkButton>
-                                            </div>
+                                            <asp:LinkButton runat="server" ID="tblSaveBatch" OnClick="tblSaveBatch_Click" OnClientClick="showAddBatch()" CssClass="btn btn-primary btn-sm">Save</asp:LinkButton>
+                                        </div>
                                     </div>
 
                                     <hr />
@@ -519,37 +525,33 @@
                                     <h6 class="modal-title">paroject Details</h6>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
-                                <div class="modal-body">                              
-                                     
-                                     <p><strong>Project Name :</strong> <span id="txtprjname" runat="server"></span></p>
+                                <div class="modal-body">
+
+                                    <p><strong>Project Name :</strong> <span id="txtprjname" runat="server"></span></p>
                                     <p><strong>Project Type :</strong> <span id="prjtype" runat="server"></span></p>
                                     <p><strong>DataSet :</strong> <span id="dataset" runat="server"></span></p>
                                     <p><strong>Work Type :</strong> <span id="viewworktype" runat="server"></span></p>
                                     <p><strong>Create Date :</strong> <span id="createdate" runat="server"></span></p>
-                                    <p><strong>quantity :</strong> <span id="txtquantity" runat="server"></span></p>                                 
-                                                                          
-                                   
+                                    <p><strong>quantity :</strong> <span id="txtquantity" runat="server"></span></p>
+
+
                                 </div>
                                 <div class="modal-footer">
-
                                 </div>
                             </div>
                         </div>
                     </div>
                     <%-- Add Customer Modal --%>
-                     <div id="CustomerModalAdd" class="modal " role="dialog" data-keyboard="false" data-backdrop="static">
+                    <div id="CustomerModalAdd" class="modal " role="dialog" data-keyboard="false" data-backdrop="static">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header bg-light">
                                     <h6 class="modal-title">Customer Create</h6>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
-                                <div class="modal-body">                              
-                                                                  
-                                   
+                                <div class="modal-body">
                                 </div>
                                 <div class="modal-footer">
-
                                 </div>
                             </div>
                         </div>

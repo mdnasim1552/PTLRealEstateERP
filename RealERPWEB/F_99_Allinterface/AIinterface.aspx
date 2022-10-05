@@ -243,7 +243,7 @@
 
         .tbMenuWrp table tr td {
             /*height: 50px;*/
-            width: 150px;
+            width: 130px;
             padding: 0 0;
             float: left;
             list-style: none;
@@ -619,30 +619,31 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <div class="row col-md-12">
                         <%-- <div class="panel with-nav-tabs panel-primary">
                         </div>--%>
                         <fieldset class="tabMenu">
-                            <div class="form-horizontal">
+                            <div class=" row form-horizontal">
                                 <div class="tbMenuWrp nav nav-tabs rptPurInt">
-
                                     <asp:RadioButtonList ID="TasktState" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" OnSelectedIndexChanged="TasktState_SelectedIndexChanged">
-                                        <asp:ListItem Value="0"><div class="circle-tile"><a><div class="circle-tile-heading deep-sky-blue counter">0</div></a><div class="circle-tile-content deep-sky-blue"><div class="circle-tile-description txt-white">Status</div></div></div></asp:ListItem>
-                                        <asp:ListItem Value="1"><div class="circle-tile"><a><div class="circle-tile-heading purple counter">0</div></a><div class="circle-tile-content purple"><div class="circle-tile-description txt-white">Assign</div></div></div></asp:ListItem>
-                                        <asp:ListItem Value="2"><div class="circle-tile"><a><div class="circle-tile-heading  bg-success counter">0</div></a><div class="circle-tile-content bg-success"><div class="circle-tile-description txt-white">Production</div></div></div></asp:ListItem>
-                                        <asp:ListItem Value="3"><div class="circle-tile"><a><div class="circle-tile-heading  deep-pink counter">0</div></a><div class="circle-tile-content  deep-pink"><div class="circle-tile-description txt-white">QC & QA</div></div></div></asp:ListItem>
-                                        <asp:ListItem Value="4"><div class="circle-tile"><a><div class="circle-tile-heading  orange counter">0</div></a><div class="circle-tile-content  orange"><div class="circle-tile-description txt-white">Accept/Reject</div></div></div></asp:ListItem>
-                                        <asp:ListItem Value="5"><div class="circle-tile"><a><div class="circle-tile-heading bg-dark bg-gradient counter">0</div></a><div class="circle-tile-content bg-dark bg-gradient"><div class="circle-tile-description txt-white">Invoice</small></div></div></div></asp:ListItem>
-                                        <asp:ListItem Value="6"><div class="circle-tile"><a><div class="circle-tile-heading  bg-info text-white counter">0</div></a><div class="circle-tile-content bg-info"><div class="circle-tile-description txt-white text-white">Collection</div></div></div></asp:ListItem>
+                                        <asp:ListItem Value="0" Selected="True"><div class="circle-tile"><a><div class="circle-tile-heading bg-green counter">0</div></a><div class="circle-tile-content green"><div class="circle-tile-description txt-white">All Projects</div></div></div></asp:ListItem>
+                                        <asp:ListItem Value="1"><div class="circle-tile"><a><div class="circle-tile-heading deep-sky-blue counter">0</div></a><div class="circle-tile-content deep-sky-blue"><div class="circle-tile-description txt-white">Batch Status</div></div></div></asp:ListItem>
+                                        <asp:ListItem Value="2"><div class="circle-tile"><a><div class="circle-tile-heading purple counter">0</div></a><div class="circle-tile-content purple"><div class="circle-tile-description txt-white">Assign</div></div></div></asp:ListItem>
+                                        <asp:ListItem Value="3"><div class="circle-tile"><a><div class="circle-tile-heading  bg-success counter">0</div></a><div class="circle-tile-content bg-success"><div class="circle-tile-description txt-white">Production</div></div></div></asp:ListItem>
+                                        <asp:ListItem Value="4"><div class="circle-tile"><a><div class="circle-tile-heading  deep-pink counter">0</div></a><div class="circle-tile-content  deep-pink"><div class="circle-tile-description txt-white">QC & QA</div></div></div></asp:ListItem>
+                                        <asp:ListItem Value="5"><div class="circle-tile"><a><div class="circle-tile-heading  orange counter">0</div></a><div class="circle-tile-content  orange"><div class="circle-tile-description txt-white">Accept/Reject</div></div></div></asp:ListItem>
+                                        <asp:ListItem Value="6"><div class="circle-tile"><a><div class="circle-tile-heading bg-dark bg-gradient counter">0</div></a><div class="circle-tile-content bg-dark bg-gradient"><div class="circle-tile-description txt-white">Invoice</small></div></div></div></asp:ListItem>
+                                        <asp:ListItem Value="7"><div class="circle-tile"><a><div class="circle-tile-heading  bg-info text-white counter">0</div></a><div class="circle-tile-content bg-info"><div class="circle-tile-description txt-white text-white">Collection</div></div></div></asp:ListItem>
                                         <%-- <asp:ListItem Value="7"><div class="circle-tile"><a><div class="circle-tile-heading  bg-danger text-white counter">0</div></a><div class="circle-tile-content bg-danger"><div class="circle-tile-description txt-white text-white">Loan Cancelled</div></div></div></asp:ListItem>--%>
                                     </asp:RadioButtonList>
 
-                                    <asp:RadioButtonList ID="TaskSteps" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" OnSelectedIndexChanged="TaskSteps_SelectedIndexChanged"></asp:RadioButtonList>
 
                                 </div>
                             </div>
                         </fieldset>
+                        </div>
                         <hr />
-                        <asp:Panel ID="pnlStatus" runat="server" Visible="false">
+                        <asp:Panel ID="pnlAllProject" runat="server" Visible="false">
                             <div class="table-responsive">
                                 <asp:GridView ID="gvInterface" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                     ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnPageIndexChanging="gvInterface_PageIndexChanging">
@@ -724,17 +725,10 @@
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "totalhour")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Batch Name">
-                                            <ItemTemplate>
-                                                <asp:Label ID="tblcountry" runat="server" Width="80px">
-                                                    <asp:HyperLink ID="Linktbn1" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/JobAnalytics"  Style="padding: 0 10px">Text</asp:HyperLink>
-                                                </asp:Label>
-                                                    
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                                            
                                         <asp:TemplateField HeaderText="Action">
                                             <ItemTemplate>
-                                                <asp:HyperLink ID="lnkView" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/Projects?PID=160100000026&BatchID=53"  CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-eye"></i></asp:HyperLink>
+                                                <asp:HyperLink ID="lnkView" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/JobAnalytics"  CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-eye"></i></asp:HyperLink>
                                                 <asp:LinkButton ID="btnRemove" runat="server" CssClass="text-danger pr-2" ToolTip="delete"><i class="fa fa-trash"></i></asp:LinkButton>
                                                 <asp:LinkButton ID="btnEdit" runat="server" CssClass="text-primary" ToolTip="edit"><i class="fa fa-edit"></i></asp:LinkButton>
                                             </ItemTemplate>
@@ -749,6 +743,140 @@
                                     <HeaderStyle CssClass="grvHeader" />
                                 </asp:GridView>
                             </div>
+                        </asp:Panel>
+                        <asp:Panel ID="pnlStatus" runat="server" Visible="false">
+                               <div class="row">
+                                  
+                                        <asp:GridView ID="gv_BatchList" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                            ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" Width="100%" OnRowDataBound="gv_BatchList_RowDataBound">
+                                            <Columns>
+
+                                                <asp:TemplateField HeaderText="SL # ">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
+                                                            Style="text-align: right; font-size: 12px;"
+                                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"
+                                                            ForeColor="Black"></asp:Label>
+
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:TemplateField>
+                                                 <asp:TemplateField HeaderText="BatchID" Visible="false">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblid" runat="server" Height="16px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "id")) %>'
+                                                          ></asp:Label>
+                                                        
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Projectcode" Visible="false">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblprjid" runat="server" Height="16px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prjid")) %>'
+                                                          ></asp:Label>
+                                                        
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="ProjectName">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblinfdesc" runat="server" Height="16px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projname")) %>'
+                                                            Width="200px"></asp:Label>
+                                                        
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Batch Name">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblbatchid" runat="server" Height="16px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "batchid")) %>'
+                                                            Width="80px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:TemplateField>
+                                                 <asp:TemplateField HeaderText="Data <br> Type">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lbldatasettype" runat="server" Height="16px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "datasettype")) %>'
+                                                            Width="80px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:TemplateField>
+                                                 <asp:TemplateField HeaderText="Work <br> Type">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblworktype" runat="server" Height="16px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "worktype")) %>'
+                                                            Width="80px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:TemplateField>
+                                                 <asp:TemplateField HeaderText="Data <br> Set">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lbldatasetqty" runat="server" Height="16px"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "datasetqty")).ToString("#,##0;(#,##0); ") %>'
+                                                            Width="80px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:TemplateField>
+                                                 <asp:TemplateField HeaderText="Total <br> Hour">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lbltotalhour" runat="server" Height="16px"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "totalhour")).ToString("#,##0;(#,##0); ") %>'
+                                                            Width="80px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Start <br> Date">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblstartdate" runat="server" Height="16px"
+                                                            Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "startdate")).ToString("dd-MMM-yyyy") %>'
+                                                            Width="80px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Delivery <br> Date">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lbldeliverydate" runat="server" Height="16px"
+                                                            Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "deliverydate")).ToString("dd-MMM-yyyy") %>' Width="80px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Man <br>Power">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblestimatemanpower" runat="server" Height="16px"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "estimatemanpower")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                
+                                                </asp:TemplateField>
+
+                                           
+                                                 <asp:TemplateField HeaderText="Action">
+                                                    <ItemTemplate>
+                                                        <asp:HyperLink ID="btnview" runat="server" Target="_blank"  ForeColor="Black" Font-Underline="false"  CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-eye"></i></asp:HyperLink>
+                                                      <asp:HyperLink ID="btndelete" runat="server" CssClass="text-danger pr-2" ToolTip="delete"><i class="fa fa-trash"></i></asp:HyperLink>
+                                                     <asp:HyperLink ID="btnupdate" runat="server" CssClass="text-primary" ToolTip="edit"><i class="fa fa-edit"></i></asp:HyperLink>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:TemplateField>
+
+                                            </Columns>
+                                            <PagerStyle CssClass="gvPagination" />
+
+                                            <HeaderStyle CssClass="grvHeader" />
+                                        </asp:GridView>
+                                    </div>
                         </asp:Panel>
                         <asp:Panel ID="pnlAssign" runat="server" Visible="false">
                             <div class="table-responsive">
@@ -835,8 +963,8 @@
                                      
                                         <asp:TemplateField HeaderText="Action">
                                             <ItemTemplate>
-                                               <%-- <asp:HyperLink ID="lnkView" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/Projects"  CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-eye"></i></asp:HyperLink>
-                                                <asp:LinkButton ID="btnRemove" runat="server" CssClass="text-danger pr-2" ToolTip="delete"><i class="fa fa-trash"></i></asp:LinkButton>
+                                              <asp:HyperLink ID="lnkView" runat="server" Target="_blank"  NavigateUrl="~/F_38_AI/MyTasks?Empid=930100101005"   CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-eye"></i></asp:HyperLink>
+                                                 <%-- <asp:LinkButton ID="btnRemove" runat="server" CssClass="text-danger pr-2" ToolTip="delete"><i class="fa fa-trash"></i></asp:LinkButton>
                                                 <asp:LinkButton ID="btnEdit" runat="server" CssClass="text-primary" ToolTip="edit"><i class="fa fa-edit"></i></asp:LinkButton>--%>
                                             </ItemTemplate>
                                             <ItemStyle Width="80px" />
