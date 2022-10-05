@@ -105,7 +105,7 @@
                 var temp = comcod.toString();
                 var com = temp.slice(0, 1);
                 var opndate = $('#<%=this.lblopndate.ClientID%>').text();
-
+                
                 if(com=="1")
                 {
                     $("#dDues").hide();

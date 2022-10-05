@@ -1849,6 +1849,7 @@ namespace RealERPWEB.F_04_Bgd
 
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_04_Bgd.EClassBudget.BudgetInmStaSum>();
+
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_04_Bgd.RptProjectBgd", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
