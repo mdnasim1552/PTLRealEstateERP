@@ -258,6 +258,15 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.Panel pnlProduction;
 
         /// <summary>
+        /// gv_Production control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_Production;
+
+        /// <summary>
         /// pnelQC control.
         /// </summary>
         /// <remarks>
@@ -267,6 +276,15 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.Panel pnelQC;
 
         /// <summary>
+        /// gv_QCQA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_QCQA;
+
+        /// <summary>
         /// pnelAReject control.
         /// </summary>
         /// <remarks>
@@ -274,6 +292,15 @@ namespace RealERPWEB.F_99_Allinterface
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnelAReject;
+
+        /// <summary>
+        /// gv_AcceptReject control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_AcceptReject;
 
         /// <summary>
         /// penlInvoice control.

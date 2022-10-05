@@ -808,7 +808,7 @@
                                 <div class="card-header border-0 pb-0">
                                     <!-- .d-flex -->
                                     <div class="d-flex align-items-center">
-                                        <h3 class="mr-auto card-title m-0">Upcomming Client Birthday</h3>
+                                        <h3 class="mr-auto card-title m-0">Upcoming Client Birthday</h3>
                                         </div>
                                     <!-- /.d-flex -->
                                 </div>
@@ -836,6 +836,13 @@
                                                 <asp:TemplateField HeaderText="Project Name ">
                                                     <ItemTemplate>
                                                         <asp:Label runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pdesc")) %>' ></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                                
+                                                <asp:TemplateField HeaderText="Unit">
+                                                    <ItemTemplate>
+                                                        <asp:Label runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "unit")) %>' ></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
@@ -867,7 +874,7 @@
                                 <div class="card-header border-0 pb-0">
                                     <!-- .d-flex -->
                                     <div class="d-flex align-items-center">
-                                        <h3 class="mr-auto card-title m-0">Upcomming Client Marriage Day</h3>
+                                        <h3 class="mr-auto card-title m-0">Upcoming Client Marriage Day</h3>
                                         </div>
                                     <!-- /.d-flex -->
                                 </div>

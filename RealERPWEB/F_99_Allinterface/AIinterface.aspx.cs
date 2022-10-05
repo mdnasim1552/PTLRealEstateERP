@@ -56,9 +56,6 @@ namespace RealERPWEB.F_99_Allinterface
             string empid = hst["empid"].ToString() ?? "";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLNEMPLIST", txtEmpname, type, "", "", "", "", "", "", "");
 
-
-
-
         }
         private string GetCompCode()
         {
@@ -121,7 +118,6 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
                 case "2":
                     this.pnlAllProject.Visible = false;
-
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = true;
                     this.pnlProduction.Visible = false;
@@ -132,7 +128,6 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
                 case "3":
                     this.pnlAllProject.Visible = false;
-
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = true;
@@ -140,10 +135,10 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelAReject.Visible = false;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
+                    this.GetProductionInfo();
                     break;
                 case "4":
                     this.pnlAllProject.Visible = false;
-
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
@@ -151,10 +146,10 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelAReject.Visible = false;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
+                    this.GetProductionInfo();
                     break;
                 case "5":
                     this.pnlAllProject.Visible = false;
-
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
@@ -162,10 +157,10 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelAReject.Visible = true;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
+                    this.GetAcceptReject();
                     break;
                 case "6":
                     this.pnlAllProject.Visible = false;
-
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
@@ -176,7 +171,6 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
                 case "7":
                     this.pnlAllProject.Visible = false;
-
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
@@ -202,6 +196,42 @@ namespace RealERPWEB.F_99_Allinterface
             Session["tblbatchassignlist"] = this.HiddenSameData(dt.Tables[0]);
             this.gv_BatchList.DataSource = dt.Tables[0];
             this.gv_BatchList.DataBind();
+
+        }
+
+
+        private void GetProductionInfo()
+        {
+            string comcod = this.GetCompCode();               
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", "", "", "", "", "", "", "");
+            if (ds == null)
+                return;
+            Session["tblproductioninfo"] = ds.Tables[0];         
+            DataTable dt1 = new DataTable();
+            DataView view = new DataView();
+            DataView view1 = new DataView();
+            view.Table = ds.Tables[0];
+            view1.Table = ds.Tables[0];
+            view1.RowFilter = " velocitytype<>'Annot'";
+            dt1 = view1.ToTable();
+            this.gv_QCQA.DataSource = dt1;
+            this.gv_QCQA.DataBind();
+            view.RowFilter = " velocitytype='Annot'"; 
+            dt1 = view.ToTable();
+            this.gv_Production.DataSource = dt1;
+            this.gv_Production.DataBind();
+        }
+
+
+        private void GetAcceptReject()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPPENDING_ACCEPTRJT_INTERFACE", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            Session["tblacceptreject"] = ds1.Tables[0];
+            this.gv_AcceptReject.DataSource = ds1;
+            this.gv_AcceptReject.DataBind();
 
         }
 
@@ -306,6 +336,51 @@ namespace RealERPWEB.F_99_Allinterface
                 string id = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "id")).ToString().Trim();
                 hlink1.NavigateUrl = "~/F_38_AI/Projects.aspx?PID="+ prjid + "&BatchID=" + id;
 
+            }
+        }
+
+        protected void gvAssingJob_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("hylnkView");
+                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString().Trim();
+
+                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?Empid=" + empid;
+            }
+        }
+
+        protected void gvInterface_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("lnkprjView");
+                string projid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "infcod")).ToString().Trim();
+                hlink.NavigateUrl = "~/F_38_AI/JobAnalytics.aspx?PID=" + projid;
+            }
+        }
+
+        protected void gv_Production_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("hybtnprodlink");
+                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "assignuser")).ToString().Trim();
+                string batchid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "batchid")).ToString().Trim();
+                string jobid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "jobid")).ToString().Trim();
+                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?EmpID=" + empid+"&JobID="+ jobid+"&BatchID="+ batchid;
+            }
+        }
+
+        protected void gv_QCQA_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("hybtnqclink");
+                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "assignuser")).ToString().Trim();
+                string batchid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "batchid")).ToString().Trim();
+                string jobid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "jobid")).ToString().Trim();
+                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?EmpID=" + empid + "&JobID=" + jobid + "&BatchID=" + batchid;
             }
         }
     }
