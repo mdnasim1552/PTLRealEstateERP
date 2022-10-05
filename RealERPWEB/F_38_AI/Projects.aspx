@@ -29,7 +29,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-3">
-                            <h5><i class=" text-primary fa fa-list"></i>&nbsp; Projcet ( &nbsp;<asp:Label runat="server" ID="lblbatchid"></asp:Label>
+                            <h5><i class=" text-primary fa fa-list"></i>&nbsp; Project ( &nbsp;<asp:Label runat="server" ID="lblbatchid"></asp:Label>
                                 &nbsp;)</h5>
 
                             <asp:HiddenField ID="hiddnbatchID" runat="server" />
@@ -189,12 +189,10 @@
 
                                     <div class=" card bg-light">
                                         <div class=" d-none  col-md-12" id="task" runat="server">
-                                            <div class="card">
-                                                <div class="card-header bg-light p-1">
-                                                    <asp:LinkButton runat="server" type="button" ID="removefield" OnClick="removefield_Click" class="btn btn-danger btn-sm float-right">&times;Cancel</asp:LinkButton>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
+                                            
+                                                    <asp:LinkButton runat="server" type="button" ID="removefield" OnClick="removefield_Click" class="close btn btn-danger btn-sm" data-dismiss="modal">&times;</asp:LinkButton>
+                                              
+                                            <div class="form-group row mt-2">
                                                 <asp:Label ID="Label11" runat="server">Task Name</asp:Label>
                                                 <asp:TextBox ID="txttasktitle" runat="server" CssClass="form-control"></asp:TextBox>
                                             </div>
