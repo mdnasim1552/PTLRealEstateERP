@@ -75,7 +75,6 @@ namespace RealERPWEB.F_12_Inv
                 else if (this.Request.QueryString["Type"].ToString() == "ReqChecked")
                 {
                     title = "MATERIALS TRANSFER Checked";
-
                     this.lblddlProjectFrom.Visible = true;
                     this.lblddlProjectTo.Visible = true;
                     this.ddlprjlistfrom.Visible = false;
@@ -692,7 +691,7 @@ namespace RealERPWEB.F_12_Inv
                     ptype = "Approved";
                     break;
 
-                //case "3101":
+                case "3101":
                 case "3367":
                     ptype = "Checked";
                     break;
@@ -1130,6 +1129,8 @@ namespace RealERPWEB.F_12_Inv
             ViewState["tblreqchk"] = ds1.Tables[0];
             ViewState["tblreqprjchk"] = ds1.Tables[1];
             this.Data_Bind_Checked();
+            this.txtNarchk.Visible = true;
+            this.txtNarchk.Text= ds1.Tables[1].Rows[0]["mtrnar"].ToString(); 
 
             //ddlprjlistfrom
             //ddlprjlistto
@@ -1419,7 +1420,7 @@ namespace RealERPWEB.F_12_Inv
             string mtreqno = this.Request.QueryString["genno"].ToString();
             string fromprj = dt2.Rows[0]["TFPACTCODE"].ToString();
             string toprj = dt2.Rows[0]["TTPACTCODE"].ToString();
-
+            string txtNarchk = this.txtNarchk.Text.Trim();
 
             bool result;
 
@@ -1442,7 +1443,7 @@ namespace RealERPWEB.F_12_Inv
             }
 
 
-            result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_05", "MTREQCHECKED", mtreqno, fromprj, toprj, APRVBYID, APRVDAT, APRVSESON, APRVTRMID, "", "", "", "", "", "", "", "", "", "");
+            result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_05", "MTREQCHECKED", mtreqno, fromprj, toprj, APRVBYID, APRVDAT, APRVSESON, APRVTRMID, txtNarchk, "", "", "", "", "", "", "", "", "");
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();

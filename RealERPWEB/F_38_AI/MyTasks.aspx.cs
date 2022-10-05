@@ -184,7 +184,7 @@ namespace RealERPWEB.F_38_AI
             string empid = ((Label)this.gvTodayList.Rows[index].FindControl("lblempid")).Text.Trim();
             string jobid = ((Label)this.gvTodayList.Rows[index].FindControl("lbljobid")).Text.Trim();
             string taskDesc = ((Label)this.gvTodayList.Rows[index].FindControl("Lbltasktitle")).Text.Trim();
- 
+            this.holdstatus.Text = "99215";
             this.notetaskid.Text = timeid;
             this.Mdl_lblempid.Text = empid;
             this.Mdl_jobid.Text = jobid;
@@ -207,8 +207,18 @@ namespace RealERPWEB.F_38_AI
 
             string remarks = this.noteDescription.Text;
             string doneqty = this.txtDoneQty.Text;
-            string skipqty = this.txtSkippqty.Text;
-            string trackertype = "99215";
+            string skipqty = this.txtSkippqty.Text == "" ? "0.00" : this.txtSkippqty.Text;
+            string trackertype = "";
+            string jbdonestts = this.donestatus.Text.ToString().Trim();
+            string jbholdstts = this.holdstatus.Text.ToString().Trim();
+            if (jbdonestts != "")
+            {
+                trackertype= this.donestatus.Text.ToString().Trim();
+            }
+            else
+            {
+                trackertype = this.holdstatus.Text.ToString().Trim();
+            }
             string comcod = this.GetCompCode(); 
 
 
@@ -228,6 +238,7 @@ namespace RealERPWEB.F_38_AI
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModal_AlrtMsg();", true);
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
                 GetTodayDoingJob();
+                data_Bind();
 
             }
 
@@ -275,6 +286,23 @@ namespace RealERPWEB.F_38_AI
  
 
         }
-       
+
+        protected void lnkJObDone_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int index = (this.gvTodayList.PageSize * this.gvTodayList.PageIndex) + rowIndex;
+            string timeid = ((Label)this.gvTodayList.Rows[index].FindControl("lbltimetaskid")).Text.Trim();
+            string empid = ((Label)this.gvTodayList.Rows[index].FindControl("lblempid")).Text.Trim();
+            string jobid = ((Label)this.gvTodayList.Rows[index].FindControl("lbljobid")).Text.Trim();
+            string taskDesc = ((Label)this.gvTodayList.Rows[index].FindControl("Lbltasktitle")).Text.Trim();
+
+            this.donestatus.Text = "99220";
+
+            this.notetaskid.Text = timeid;
+            this.Mdl_lblempid.Text = empid;
+            this.Mdl_jobid.Text = jobid;
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HoldtaskNoteModal();", true);
+        }
     }
 }

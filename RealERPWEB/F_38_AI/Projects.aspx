@@ -29,7 +29,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-3">
-                            <h5><i class=" text-primary fa fa-list"></i>&nbsp; Projcet ( &nbsp;<asp:Label runat="server" ID="lblbatchid"></asp:Label>
+                            <h5><i class=" text-primary fa fa-list"></i>&nbsp; Project ( &nbsp;<asp:Label runat="server" ID="lblbatchid"></asp:Label>
                                 &nbsp;)</h5>
 
                             <asp:HiddenField ID="hiddnbatchID" runat="server" />
@@ -148,7 +148,7 @@
                                                         <ItemStyle HorizontalAlign="Center" />
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Processing Time">
+                                                    <asp:TemplateField HeaderText="Processing Time" Visible="false">
                                                         <ItemTemplate>
                                                             <asp:Label runat="server" ID="lblprjpwrkperhour" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pwrkperhour")) %>'></asp:Label>
                                                         </ItemTemplate>
@@ -189,13 +189,14 @@
 
                                     <div class=" card bg-light">
                                         <div class=" d-none  col-md-12" id="task" runat="server">
-                                            <div class="card">
-                                                <div class="card-header bg-light p-1">
-                                                    <asp:LinkButton runat="server" type="button" ID="removefield" OnClick="removefield_Click" class="btn btn-danger btn-sm float-right">&times;Cancel</asp:LinkButton>
-                                                </div>
-                                            </div>
+                               
                                             <div class="form-group row">
-                                                <asp:Label ID="Label11" runat="server">Task Name</asp:Label>
+                                                <div class="d-flex w-100" style="padding:10px 8px 4px 0px;">
+                                                             <asp:Label ID="Label11" runat="server" CssClass="float-left">Task Name</asp:Label>
+                                                    <asp:LinkButton runat="server" type="button" ID="LinkButton1" OnClick="removefield_Click" class="ml-auto text-danger"><i class="fa fa-times-circle" style="font-size: 20px;"></i></asp:LinkButton>
+
+                                                </div>
+                                       
                                                 <asp:TextBox ID="txttasktitle" runat="server" CssClass="form-control"></asp:TextBox>
                                             </div>
 
@@ -389,7 +390,8 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Status">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="tblStatus" runat="server" class="badge badge-pill badge-info" Text="Inprogress"></asp:Label>
+                                                       
+                                                        <asp:Label ID="tblStatus" runat="server" class='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "workstatus"))=="99220") ? "badge badge-pill badge-success":"badge badge-pill badge-info" %>'   Text= '<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "workstatus"))=="99220") ? "Done":"In progress" %>'></asp:Label>
                                                     </ItemTemplate>
                                                     <ItemStyle HorizontalAlign="Center" />
                                                 </asp:TemplateField>
@@ -451,7 +453,7 @@
                                         <div class="text-center">
                                             <h6>Completed Tasks</h6>
                                         </div>
-                                        <h2 class="text-center">3</h2>
+                                        <h2 class="text-center" id="dontask" runat="server">3</h2>
                                         <div class="text-center">
                                             <p><i class="fa fa-angle-double-down"></i>Filter</p>
                                         </div>
@@ -462,7 +464,7 @@
                                         <div class="text-center">
                                             <h6>InCompleted Tasks</h6>
                                         </div>
-                                        <h2 class="text-center">0</h2>
+                                        <h2 class="text-center" runat="server" id="pendtask">0</h2>
                                         <div class="text-center">
                                             <p><i class="fa fa-angle-double-down"></i>Filter</p>
                                         </div>
@@ -473,7 +475,7 @@
                                         <div class="text-center">
                                             <h6>OverDue Tasks</h6>
                                         </div>
-                                        <h2 class="text-center">0</h2>
+                                        <h2 class="text-center" runat="server" id="overduetasks">0</h2>
                                         <div class="text-center">
                                             <p><i class="fa fa-angle-double-down"></i>Filter</p>
                                         </div>
@@ -484,7 +486,7 @@
                                         <div class="text-center">
                                             <h6>Total Tasks</h6>
                                         </div>
-                                        <h2 class="text-center">3</h2>
+                                        <h2 class="text-center" runat="server" id="ttltask">3</h2>
                                         <div class="text-center">
                                             <p><i class="fa fa-angle-double-down"></i>No Filter</p>
                                         </div>

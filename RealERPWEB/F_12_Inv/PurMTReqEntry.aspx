@@ -515,6 +515,16 @@
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
 
+                            <div class="row" style="margin-top:10px;">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon glypingraddon">
+                                            <asp:Label ID="Label4" runat="server" CssClass="lblTxt" Text="Narration:"></asp:Label>
+                                        </span>
+                                        <asp:TextBox ID="txtNarchk" runat="server" class="form-control" TextMode="MultiLine" Height="40px" Visible="false"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
                         </asp:Panel>
 
 
