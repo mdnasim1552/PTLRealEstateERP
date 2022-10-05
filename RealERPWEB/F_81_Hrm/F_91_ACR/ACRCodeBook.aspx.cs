@@ -72,20 +72,21 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
             {
 
                 DataTable tbl1 = (DataTable)Session["storedata"];
+
+                this.gvAcrCBook.DataSource = tbl1;
+                this.gvAcrCBook.DataBind();
                 //this.gvAcrCBook.Columns[6].Visible = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "07") ? true : false;
                 //this.gvAcrCBook.Columns[7].Visible = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "07") ? true : false;
                 //this.gvAcrCBook.Columns[9].Visible = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "08") ? true : false;
 
-                this.gvAcrCBook.DataSource = tbl1;
-                this.gvAcrCBook.DataBind();
-                ((DropDownList)this.gvAcrCBook.FooterRow.FindControl("ddlPageNo")).Visible = false;
-                double TotalPage = Math.Ceiling(tbl1.Rows.Count * 1.00 / this.gvAcrCBook.PageSize);
-                ((DropDownList)this.gvAcrCBook.FooterRow.FindControl("ddlPageNo")).Items.Clear();
-                for (int i = 1; i <= TotalPage; i++)
-                    ((DropDownList)this.gvAcrCBook.FooterRow.FindControl("ddlPageNo")).Items.Add("Page: " + i.ToString() + " of " + TotalPage.ToString());
-                if (TotalPage > 1)
-                    ((DropDownList)this.gvAcrCBook.FooterRow.FindControl("ddlPageNo")).Visible = true;
-                ((DropDownList)this.gvAcrCBook.FooterRow.FindControl("ddlPageNo")).SelectedIndex = this.gvAcrCBook.PageIndex;
+                //((DropDownList)this.gvAcrCBook.FooterRow.FindControl("ddlPageNo")).Visible = false;
+                //double TotalPage = Math.Ceiling(tbl1.Rows.Count * 1.00 / this.gvAcrCBook.PageSize);
+                //((DropDownList)this.gvAcrCBook.FooterRow.FindControl("ddlPageNo")).Items.Clear();
+                //for (int i = 1; i <= TotalPage; i++)
+                //    ((DropDownList)this.gvAcrCBook.FooterRow.FindControl("ddlPageNo")).Items.Add("Page: " + i.ToString() + " of " + TotalPage.ToString());
+                //if (TotalPage > 1)
+                //    ((DropDownList)this.gvAcrCBook.FooterRow.FindControl("ddlPageNo")).Visible = true;
+                //((DropDownList)this.gvAcrCBook.FooterRow.FindControl("ddlPageNo")).SelectedIndex = this.gvAcrCBook.PageIndex;
 
 
 

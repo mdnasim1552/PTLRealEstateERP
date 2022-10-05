@@ -67,7 +67,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlgatepass.Visible = false;
                     this.pnlapproval.Visible = false;
                     this.pnlaudit.Visible = false;
-                    this.pnlaccount.Visible = false;                    
+                    this.pnlaccount.Visible = false;
                     this.RadioButtonList1.Items[0].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[0].Attributes["style"] = "background: #430000; display:block; ";
                     break;
@@ -95,7 +95,7 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.RadioButtonList1.Items[1].Attributes["style"] = "background: #430000; display:block; ";
                     this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
                     break;
-                    // gate pass
+                // gate pass
                 case "3":
                     this.pnlstatus.Visible = false;
                     this.pnlreqchk.Visible = false;
@@ -107,7 +107,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[2].Attributes["style"] = "background: #430000; display:block; ";
                     break;
-                    //gate pass Approval
+                //gate pass Approval
                 case "4":
                     this.pnlstatus.Visible = false;
                     this.pnlreqchk.Visible = false;
@@ -120,7 +120,7 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.RadioButtonList1.Items[3].Attributes["style"] = "background: #430000; display:block; ";
                     break;
 
-                    // audit
+                // audit
                 case "5":
                     this.pnlstatus.Visible = false;
                     this.pnlreqchk.Visible = false;
@@ -169,7 +169,7 @@ namespace RealERPWEB.F_99_Allinterface
             //string frmdate = this.txtdate.Text.Trim();
             string todate = this.txttodate.Text.Trim();
             //string catcode = this.ddlcatag.SelectedValue.ToString() + "%";
-            string mtrrf = "%" + this.txtmtrrf.Text.Trim().ToString()+ "%";
+            string mtrrf = "%" + this.txtmtrrf.Text.Trim().ToString() + "%";
 
             DataSet ds2 = feaData.GetTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", "TRANSFERINTERFACE", todate, mtrrf, "", "", "", "", "", "", "");
             if (ds2 == null)
@@ -187,8 +187,8 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3352":
                     gatePass = "Trans/Gatepass";
                     approval = "Received By";
-                    break; 
-                
+                    break;
+
                 //case "3101":
                 case "3367":
                     gatePass = "Gate Pass";
@@ -306,7 +306,7 @@ namespace RealERPWEB.F_99_Allinterface
                 }
 
                 //PurMTReqEntry?Type=Entry&prjcode=&genno=
-                hlnkchk.NavigateUrl = "~/F_12_Inv/PurMTReqGatePass?Type=Entry&genno=" + mtrfno+"&frmpactcode="+ frmprjcode;
+                hlnkchk.NavigateUrl = "~/F_12_Inv/PurMTReqGatePass?Type=Entry&genno=" + mtrfno + "&frmpactcode=" + frmprjcode;
                 hlnkreqedit.NavigateUrl = "~/F_12_Inv/PurMTReqEntry?Type=ReqEdit&prjcode=&genno=" + mtrfno;
 
             }
@@ -369,37 +369,21 @@ namespace RealERPWEB.F_99_Allinterface
 
             if (!result)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Fail');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Update Fail .. !!');", true);
                 return;
 
             }
-            string callType = "";
-            switch (comcod)
-            {
-                // todo for  mrtreq approval part 
-                //case "3101":
-                case "1205":
-                case "3351":
-                case "3352":
-                    callType = "DELETEMTRREQAPRV";
-                    break;
-
-                // todo for skip mrtreq approval part
-                default:
-                    callType = "UPDATEMATTRANS";
-                    break;
-            }
+            string callType = this.getGpaDelCallType();
 
             bool result1 = feaData.UpdateTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", callType, adno, "", "", "", "", "", "", "", "", "", "");
             if (!result1)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Remove failed!";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Removed Fail .. !!');", true);
                 return;
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Successfully Removed";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Successfully Removed');", true);
             this.RadioButtonList1_SelectedIndexChanged(null, null);
+
         }
         protected void lnkremoveap_Click(object sender, EventArgs e)
         {
@@ -417,7 +401,8 @@ namespace RealERPWEB.F_99_Allinterface
 
             if (!result)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Fail');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Failed .. !!');", true);
+
                 return;
 
             }
@@ -425,16 +410,37 @@ namespace RealERPWEB.F_99_Allinterface
             bool result1 = feaData.UpdateTransInfo(comcod, "SP_REPORT_TRANSFER_INTERFACE", "UPGATEPASSMAT", gatepasno, ctype, "", "", "", "", "", "", "", "", "");
             if (!result1)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Remove failed!";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Removed Failed .. !!');", true);
                 return;
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Successfully Removed";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Successfully Removed');", true);
             this.RadioButtonList1_SelectedIndexChanged(null, null);
         }
 
 
+        private string getGpaDelCallType()
+        {
+            string comcod = this.GetCompCode();
+            string callType = "";
+            switch (comcod)
+            {
+                // todo for  mrtreq approval part 
+
+                case "3101": // pintech
+                case "3367": // epic
+                case "1205": // p2p
+                case "3351": // p2p
+                case "3352": // p2p
+                    callType = "DELETEMTRREQAPRV";
+                    break;
+
+                // todo for skip mrtreq approval part
+                default:
+                    callType = "DELETEMTRTRANS";
+                    break;
+            }
+            return callType;
+        }
 
         private string getCompanyRef()
         {
@@ -577,21 +583,45 @@ namespace RealERPWEB.F_99_Allinterface
 
             if (!result)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Fail');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail .. !!');", true);
                 return;
 
             }
+            string callType = this.getReqCheckCallType();
 
-            bool result1 = feaData.UpdateTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", "UPDATEMATTRANS", mtreqno, "", "", "", "", "", "", "", "", "", "");
+            bool result1 = feaData.UpdateTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", callType, mtreqno, "", "", "", "", "", "", "", "", "");
             if (!result1)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Remove failed!";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Removed Fail .. !!');", true);
                 return;
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Successfully Removed";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Successfully Removed');", true);
             this.RadioButtonList1_SelectedIndexChanged(null, null);
+            
+        }
+
+        private string getReqCheckCallType()
+        {
+            string comcod = this.GetCompCode();
+            string callType = "";
+            switch (comcod)
+            {
+                // todo for  mrtreq approval part 
+
+                case "3101": // pintech
+                case "3367": // epic
+                case "1205": // p2p
+                case "3351": // p2p
+                case "3352": // p2p
+                    callType = "DELETEMTRREQCHECK";
+                    break;
+
+                // todo for skip mrtreq approval part
+                default:
+                    callType = "DELETEMTRTRANS";
+                    break;
+            }
+            return callType;
         }
 
         protected void lnkbtnEdit_Click(object sender, EventArgs e)
@@ -632,14 +662,35 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink lnkreqchk = (HyperLink)e.Row.FindControl("lnkreqchk");
                 string mtreqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mtreqno")).ToString();
                 lnkreqchk.NavigateUrl = "~/F_12_Inv/PurMTReqEntry?Type=ReqChecked&prjcode=" + "" + "&genno=" + mtreqno;
-
             }
 
         }
 
         protected void lnkremovechk_Click(object sender, EventArgs e)
         {
+            string comcod = this.GetCompCode();
+            int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string mtreqno = ((Label)this.gvreqchk.Rows[Rowindex].FindControl("lblmtreqnochk")).Text.Trim();
 
+            DataSet ds1 = feaData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "PrevMTRInfo", mtreqno, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+            bool result = log.XmlDataInsertReq(mtreqno, ds1);
+
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail');", true);
+                return;
+            }
+            bool result1 = feaData.UpdateTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", "DELETEMTRTRANS", mtreqno, "", "", "", "", "", "", "", "", "", "");
+            if (!result1)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Removed Fail .. !!');", true);
+                return;
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Successfully Removed');", true);
+            this.RadioButtonList1_SelectedIndexChanged(null, null);
         }
     }
 }
