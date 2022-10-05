@@ -505,7 +505,7 @@
                 case 3352:   // 360   
                     $(".tbMenuWrp table tr td:nth-child(2)").show();// Check  
                     break;
-                //case 3101:   // ptl 
+                case 3101:   // ptl 
                 case 3367:   // Epic Properties
                     $(".tbMenuWrp table tr td:nth-child(2)").show();// Check  
                     $(".tbMenuWrp table tr td:nth-child(6)").hide();// Audit  
