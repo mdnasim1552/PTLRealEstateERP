@@ -1721,7 +1721,6 @@ namespace RealERPWEB.F_04_Bgd
         {
 
 
-
             //Nayan
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = GetComeCode();
@@ -1741,11 +1740,13 @@ namespace RealERPWEB.F_04_Bgd
             var lst = dt1.DataTableToList<RealEntity.C_04_Bgd.EClassBudget.ProjBgdCon>();
 
             LocalReport Rpt1 = new LocalReport();
+            
             if (ASTUtility.Left(comcod, 1) == "1")
             {
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_04_Bgd.RptProjBgdCon", lst, null, null);
             }
-            else
+          
+            else 
             {
                 this.PrintProBudgetResBasis();
                 return;
@@ -1849,8 +1850,16 @@ namespace RealERPWEB.F_04_Bgd
 
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_04_Bgd.EClassBudget.BudgetInmStaSum>();
+            switch (comcod)
+            {
+                case "3368":
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_04_Bgd.RptProjectBgdFinlay", lst, null, null);
+                    break;
+                default:
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_04_Bgd.RptProjectBgd", lst, null, null);
+                    break;
+            }
 
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_04_Bgd.RptProjectBgd", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));

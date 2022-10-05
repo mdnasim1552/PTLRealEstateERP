@@ -2756,6 +2756,7 @@
     <Content Include="F_34_Mgt\CodeLinkWs.aspx" />
     <Content Include="F_34_Mgt\CodeTransSupSub.aspx" />
     <Content Include="F_34_Mgt\CompImg.aspx" />
+    <Content Include="F_34_Mgt\CompUtilitySetUp.aspx" />
     <Content Include="F_34_Mgt\ContentSetupEntry.aspx" />
     <Content Include="F_34_Mgt\CreateTagSetup.aspx" />
     <Content Include="F_34_Mgt\DashBoardAll.aspx" />
@@ -4515,6 +4516,13 @@
     </Compile>
     <Compile Include="F_33_Doc\UploadDocumentation.aspx.designer.cs">
       <DependentUpon>UploadDocumentation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_34_Mgt\CompUtilitySetUp.aspx.cs">
+      <DependentUpon>CompUtilitySetUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_34_Mgt\CompUtilitySetUp.aspx.designer.cs">
+      <DependentUpon>CompUtilitySetUp.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_34_Mgt\ContentSetupEntry.aspx.cs">
       <DependentUpon>ContentSetupEntry.aspx</DependentUpon>
