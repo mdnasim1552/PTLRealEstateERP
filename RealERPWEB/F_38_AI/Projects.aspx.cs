@@ -20,6 +20,7 @@ namespace RealERPWEB.F_38_AI
             {
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Batch OverView";
                 this.GetProjectwiseBatch();
+                this.BatchCount();
                 //this.GetBatchInfo();
                 this.MultiView1.ActiveViewIndex = 0;
                 ProjectDetails_SelectedIndexChanged1(null, null);
@@ -71,6 +72,7 @@ namespace RealERPWEB.F_38_AI
 
             }
         }
+
         private void GetBatchInfo()
         {
             try
@@ -94,8 +96,35 @@ namespace RealERPWEB.F_38_AI
 
             }
         }
-        
 
+        private void BatchCount()
+        {
+            try
+            {
+                string comcod = this.GetComdCode();
+                string batchid = Request.QueryString["BatchID"].ToString();
+
+                DataSet ds1 = MktData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI ", "GETBATCHDASHBOARD", batchid, "", "", "", "", "");
+                if (ds1 == null || ds1.Tables[0].Rows.Count==0)
+                    return;
+                string donetask = ds1.Tables[0].Rows[0]["dontask"].ToString();
+
+                string dontask = ds1.Tables[0].Rows[0]["dontask"].ToString()??"";
+                string pendtask = ds1.Tables[0].Rows[0]["pendtask"].ToString()??"";
+                string overduetasks = ds1.Tables[0].Rows[0]["overduetasks"].ToString()??"";
+                string ttltask = ds1.Tables[0].Rows[0]["ttltask"].ToString()??"";
+                this.dontask.InnerText = dontask;
+                this.pendtask.InnerText = pendtask;
+                this.overduetasks.InnerText = overduetasks;
+                this.ttltask.InnerText = ttltask;
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
         private void GetPrjOverView()
         {
             try

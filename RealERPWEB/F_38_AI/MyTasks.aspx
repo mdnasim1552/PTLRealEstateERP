@@ -164,12 +164,12 @@
                                             </asp:GridView>
                                         </div>
                                     </div>
-                                    <p>Ongoing Job</p>
+                        <%--            <p>Ongoing Job</p>
                                     <div class="card" style="height: 100px;">
                                     </div>
                                     <p>Hold Job</p>
                                     <div class="card" style="height: 100px;">
-                                    </div>
+                                    </div>--%>
                                     <p>Completed Job</p>
                                     <div class="card" style="height: 100px;">
                                     </div>
@@ -265,7 +265,12 @@
 
                                                      <asp:TemplateField HeaderText="Status">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lbljobstatus" runat="server" CssClass="badge badge-pill badge-info"
+                                                            <asp:Label ID="lbljobstatus" runat="server" Width="75px"
+                                                      CssClass='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99220") ? "badge badge-pill badge-success"://done
+                                                                    (Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99215") ? "badge badge-pill badge-warning"://hold
+                                                                    (Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99217") ? "badge badge-pill badge-primary"://start
+                                                                    (Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99204") ? "badge badge-pill badge-info":"badge badge-pill badge-info"//in progress
+                                                                    %>'
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus")) %>'></asp:Label>
                                                         </ItemTemplate>
                                                         <ItemStyle VerticalAlign="Middle" HorizontalAlign="Center" />
@@ -275,16 +280,16 @@
                                                     <asp:TemplateField HeaderText="Action">
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="lnkHoldJob" runat="server" CssClass="text-danger pr-1 pl-1" Font-Size="20px" ToolTip="Hold Create Note"
-                                                                Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99215" ? false:true %>' OnClick="HoldCreateNote_Click"><i class="fa fa-pause-circle"></i></asp:LinkButton>
+                                                                Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99215" ||  Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99220" ? false:true %>' OnClick="HoldCreateNote_Click"><i class="fa fa-pause-circle"></i></asp:LinkButton>
 
                                                             <asp:LinkButton ID="lnkStartJobByID" runat="server" CssClass="text-success pr-1 pl-1" Font-Size="20px" ToolTip="Start Job"
                                                                 Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99204" ||
-                                                                     Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99217"
+                                                                     Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99217" ||  Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99220"
                                                                      ? false:true %>'
                                                                 OnClick="lnkStartJobByID_Click"><i class="fa fa-toggle-off"></i></asp:LinkButton>
 
 
-                                                            <asp:LinkButton ID="lnkJObDone" runat="server" CssClass="text-green pr-1 pl-1" Font-Size="20px" ToolTip="Hold Job" OnClick="lnkStartJob_Click"><i class="fa fa-check-square"></i></asp:LinkButton>
+                                                            <asp:LinkButton ID="lnkJObDone" runat="server" CssClass="text-green pr-1 pl-1" Font-Size="20px" ToolTip="Hold Job" OnClick="lnkJObDone_Click" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99220" ? false:true %>'><i class="fa fa-check-square"></i></asp:LinkButton>
 
 
 
@@ -319,9 +324,11 @@
                                                                 Style="text-align: center;"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "id")) %>' Width="40px"
                                                                 ForeColor="Black"></asp:Label>
+
                                                             <asp:Label ID="lbltimetaskid" runat="server" Text="0" Visible="false"></asp:Label>
                                                             <asp:Label ID="lblempid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assignuser")) %>' Visible="false"></asp:Label>
                                                             <asp:Label ID="lbljobid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobid")) %>' Visible="false"></asp:Label>
+                                                            
                                                         </ItemTemplate>
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                     </asp:TemplateField>
@@ -376,17 +383,28 @@
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
-                                                   
+                                                                     <asp:TemplateField HeaderText="Status">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lbljobstatus" runat="server" Width="75px"
+                                                      CssClass='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99220") ? "badge badge-pill badge-success"://done
+                                                                    (Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99215") ? "badge badge-pill badge-warning"://hold
+                                                                    (Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99217") ? "badge badge-pill badge-primary"://start
+                                                                    (Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99204") ? "badge badge-pill badge-info":"badge badge-pill badge-info"//in progress
+                                                                    %>'
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <ItemStyle VerticalAlign="Middle" HorizontalAlign="Center" />
+                                                    </asp:TemplateField>
                                                    
 
 
-                                                     <asp:TemplateField HeaderText="Status">
+                                         <%--            <asp:TemplateField HeaderText="Status">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lbljobstatus" runat="server" CssClass="badge badge-pill badge-info"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus")) %>'></asp:Label>
                                                         </ItemTemplate>
                                                         <ItemStyle VerticalAlign="Middle" HorizontalAlign="Center" />
-                                                    </asp:TemplateField>
+                                                    </asp:TemplateField>--%>
 
 
                                                   
@@ -430,6 +448,10 @@
                             <asp:Label ID="Mdl_lblempid" runat="server" Visible="false"></asp:Label>
                             <asp:Label ID="Mdl_jobid" runat="server" Visible="false"></asp:Label>
                             <asp:Label ID="notetaskid" runat="server" Visible="false"></asp:Label>
+                             <asp:Label ID="donestatus" runat="server" Visible="false"></asp:Label>
+                              <asp:Label ID="holdstatus" runat="server" Visible="false"></asp:Label>
+                              <asp:Label ID="startstatus" runat="server" Visible="false"></asp:Label>
+
 
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">

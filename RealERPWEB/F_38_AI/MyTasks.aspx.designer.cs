@@ -150,6 +150,33 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.Label notetaskid;
 
         /// <summary>
+        /// donestatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label donestatus;
+
+        /// <summary>
+        /// holdstatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label holdstatus;
+
+        /// <summary>
+        /// startstatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label startstatus;
+
+        /// <summary>
         /// txtDoneQty control.
         /// </summary>
         /// <remarks>
