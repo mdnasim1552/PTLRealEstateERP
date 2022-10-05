@@ -18,7 +18,7 @@ namespace RealERPWEB.F_38_AI
         {
             if (!IsPostBack)
             {
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Projects OverView";
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Batch OverView";
                 this.GetProjectwiseBatch();
                 this.BatchCount();
                 //this.GetBatchInfo();

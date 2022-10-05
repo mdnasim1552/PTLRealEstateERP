@@ -29,7 +29,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-3">
-                            <h5><i class=" text-primary fa fa-list"></i>&nbsp; Projcet ( &nbsp;<asp:Label runat="server" ID="lblbatchid"></asp:Label>
+                            <h5><i class=" text-primary fa fa-list"></i>&nbsp; Project ( &nbsp;<asp:Label runat="server" ID="lblbatchid"></asp:Label>
                                 &nbsp;)</h5>
 
                             <asp:HiddenField ID="hiddnbatchID" runat="server" />
