@@ -474,6 +474,24 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.DropDownList ddltype;
 
         /// <summary>
+        /// Label15 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label15;
+
+        /// <summary>
+        /// txtorder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtorder;
+
+        /// <summary>
         /// Linkbtnfieldadd control.
         /// </summary>
         /// <remarks>

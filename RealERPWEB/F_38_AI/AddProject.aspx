@@ -128,7 +128,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <asp:LinkButton runat="server" type="button" ID="removefield" OnClick="removefield_Click" class="close" data-dismiss="modal">&times;</asp:LinkButton>
+                                        <asp:LinkButton runat="server" type="button" ID="removefield" OnClick="removefield_Click" class="ml-auto text-danger float-right"><i class="fa fa-times-circle" size="16px"></i></asp:LinkButton>
                                     </div>
                                 </div>
 
@@ -574,31 +574,33 @@
                                 </div>
                                 <div class="modal-body well">
                                     <div class="row ">
-
-
                                         <div class="p-0 col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group ">
                                                 <asp:Label ID="Label14" runat="server">Field Name</asp:Label>
-                                                <asp:TextBox ID="txtfieldname" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="txtfieldname" runat="server"  CssClass="form-control"></asp:TextBox>
+                                                <%--<asp:RequiredFieldValidator runat="server" ID="reqFieldvalidation" ControlToValidate="txtfieldname" ErrorMessage="Field Name is Required Field"></asp:RequiredFieldValidator>--%>
                                             </div>
                                         </div>
-
                                         <div class=" col-lg-2 col-md-3 col-sm-12">
                                             <div class="form-group ">
                                                 <asp:Label ID="Label13" runat="server">Type</asp:Label>
                                                 <asp:DropDownList ID="ddltype" runat="server" CssClass="form-control chzn-select">
-                                                    <asp:ListItem Value="1">Text</asp:ListItem>
-                                                    <asp:ListItem Value="2">Number</asp:ListItem>
-                                                    <asp:ListItem Value="3">Date</asp:ListItem>
+                                                    <asp:ListItem Selected="True" Value="T">Text</asp:ListItem>
+                                                    <asp:ListItem Value="N">Number</asp:ListItem>
+                                                    <asp:ListItem Value="D">Date</asp:ListItem>
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
+                                           <div class="p-0 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group ">
+                                                <asp:Label ID="Label15" runat="server">Order By</asp:Label>
+                                                <asp:TextBox ID="txtorder" runat="server" CssClass="form-control" TextMode="Number" Text="99" ></asp:TextBox>
+                                            </div>
+                                        </div>
                                     </div>
-
                                 </div>
                                 <div class="modal-footer text-center d-block">
-                                <asp:LinkButton runat="server" ID="Linkbtnfieldadd"  CssClass="btn btn-primary btn-sm">Save</asp:LinkButton>
-
+                                <asp:LinkButton runat="server" ID="Linkbtnfieldadd" OnClick="Linkbtnfieldadd_Click" CssClass="btn btn-primary btn-sm">Save</asp:LinkButton>
                             </div>
                             </div>
                             

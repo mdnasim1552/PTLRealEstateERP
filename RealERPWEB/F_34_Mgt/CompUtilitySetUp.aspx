@@ -47,7 +47,7 @@
                 </asp:UpdateProgress>
             </div>
 
-            <div class="card mt-4 pb-4">
+            <div class="card mt-4 pb-4" style="min-width:480px;">
                 <div class="card-body">
                     <div class="row">
                          <div class="col-md-2">
@@ -58,21 +58,17 @@
                         </div>
                         <div class="col-md-2">
 
-                            <label class="control-label">Start Date</label>
-                          <asp:TextBox ID="txtstrtdate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                            <label class="control-label">Start Data</label>
+                          <asp:TextBox ID="txtstrtdat" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
 
                         </div>
-                        <div class="col-md-1 mt-4">
-
-                            <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="btn btn-sm btn-primary" AutoPostBack="True">Ok</asp:LinkButton>
-
-                        </div>
+                       
                         </div>
                     <div class="row mt-4">
                          <div class="col-md-2">
 
                             <label class="control-label">CRM Back Date Data</label>
-                             <asp:CheckBox ID="chkCRMddata" runat="server"  OnCheckedChanged="chkCRMddata_CheckedChanged"></asp:CheckBox>
+                             <asp:CheckBox ID="chkCRMddata" runat="server"  ></asp:CheckBox>
 
                         </div>
                         <div class="col-md-1">
@@ -94,7 +90,11 @@
 
                         </div>
                        
-                       
+                        <div class="col-md-1">
+
+                            <asp:LinkButton ID="lnkUpdate" runat="server" CssClass="btn btn-sm btn-info" OnClick="lnkUpdate_Click" AutoPostBack="True">Update</asp:LinkButton>
+
+                        </div>
 
 
 
@@ -103,22 +103,7 @@
                 </div>
             </div>
 
-            <div class="card" style="min-height: 480px;">
-                <div class="card-body">
-                    <div class="">
-                        <div class="row">
-                            
-                        </div>
-
-                    </div>
-
-
-
-
-
-
-                </div>
-            </div>
+           
 
         </ContentTemplate>
     </asp:UpdatePanel>
