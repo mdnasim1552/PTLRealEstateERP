@@ -345,6 +345,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="From" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
+                                                  <asp:Label ID="lblfrmdat" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "frmdat")) %>' Width="100px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" Width="80px" />
                                         </asp:TemplateField>
@@ -352,6 +353,7 @@
 
                                         <asp:TemplateField HeaderText="To" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
+                                                  <asp:Label ID="lbltodat" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "todat")) %>' Width="100px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" Width="80px" />
                                         </asp:TemplateField>

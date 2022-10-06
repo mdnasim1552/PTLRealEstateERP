@@ -118,6 +118,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink lnkEdit = (HyperLink)e.Row.FindControl("lnkEdit");
+    
 
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).Trim().ToString();
                 string apstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "aprvstatus"));
