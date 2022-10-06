@@ -17,8 +17,12 @@ namespace RealERPWEB.F_34_Mgt
         ProcessAccess purData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblTitle")).Text = "Company Utility SetUp";
-            this.GetComUtility();
+            if (!IsPostBack)
+            {
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Company Utility SetUp";
+                this.GetComUtility();
+            }
+                
         }
         private void GetComUtility()
         {
@@ -34,9 +38,12 @@ namespace RealERPWEB.F_34_Mgt
             ViewState["tblCOMPUITILITYSETUP"] = ds2.Tables[0];
             DataTable dt = (DataTable)ViewState["tblCOMPUITILITYSETUP"];
            this.txtIdcard.Text = dt.Rows[0]["HR_IDCARDLEN"].ToString();
-           this.txtstrtdate.Text = dt.Rows[0]["HR_ATTSTART_DAT"].ToString();
-           //this.chkCRMddata_CheckedChanged() = dt.Rows[0]["CRM_BACKDATAIN"].ToString();
-            
+           this.txtstrtdat.Text = dt.Rows[0]["HR_ATTSTART_DAT"].ToString();
+           this.chkCRMddata.Checked =  Convert.ToBoolean(dt.Rows[0]["CRM_BACKDATAIN"].ToString());
+           this.chkBag.Checked =  Convert.ToBoolean(dt.Rows[0]["LANG_BANG"].ToString());
+           this.chkPay.Checked =  Convert.ToBoolean(dt.Rows[0]["ISVISIBILEPAYSLIP"].ToString());
+           this.chkLvapp.Checked =  Convert.ToBoolean(dt.Rows[0]["LVAPP_SUPERVISOR"].ToString());
+
 
 
         }
@@ -48,10 +55,39 @@ namespace RealERPWEB.F_34_Mgt
 
         }
 
-        protected void chkCRMddata_CheckedChanged(object sender, EventArgs e)
+     
+
+        protected void lnkUpdate_Click(object sender, EventArgs e)
         {
 
+            DataTable dt = (DataTable)Session["tblCOMPUITILITYSETUP"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string IdCardLen = this.txtIdcard.Text.ToString();
+            string Startdat = this.txtstrtdat.Text;
+            string chkCRMddata = this.chkCRMddata.Checked.ToString();
+            string chkBag = this.chkBag.Checked.ToString();
+            string chkLvapp = this.chkLvapp.Checked.ToString();
+            string chkPay = this.chkPay.Checked.ToString();
+
+            bool result = purData.UpdateTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "INSERTUPDATECOMPUITILITYSETUP", IdCardLen, Startdat, chkCRMddata, chkBag, chkLvapp, chkPay, "", "",
+                     "", "", "", "", "", "", "");
+            if (!result)
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail..!!');", true);
+
+            }
+
+            else
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Update Successful');", true);
+            }
+
         }
+
+
         //protected void lnkbtnOk_Click(object sender, EventArgs e)
         //{
 
