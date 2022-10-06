@@ -2654,7 +2654,23 @@ namespace RealERPWEB.F_04_Bgd
                 {
                     return;
                 }
-                if (ASTUtility.Right(code, 4) == "AAAA")
+
+                if (code == "22BBAAAAAAAA")
+                {
+
+                    acresdesc.Font.Bold = true;
+                    lblBgdamt.Font.Bold = true;
+                    lblConsCost.Font.Bold = true;
+                    lblSalCost.Font.Bold = true;
+                    lblSalCost.Font.Bold = true;
+                    lblSalCost.Font.Bold = true;
+                    lgvacamt.Font.Bold = true;
+                    lgvsalcostwinfla.Font.Bold = true;
+                    acresdesc.Style.Add("text-align", "right");
+                    e.Row.Attributes["style"] = "background-color:blue;color:white;";
+
+                }
+                else if (ASTUtility.Right(code, 4) == "AAAA")
                 {
                     acresdesc.Font.Bold = true;
                     lblBgdamt.Font.Bold = true;
