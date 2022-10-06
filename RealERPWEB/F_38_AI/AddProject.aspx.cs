@@ -536,5 +536,35 @@ namespace RealERPWEB.F_38_AI
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "AddField();", true);
         }
+
+        protected void Linkbtnfieldadd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string comcod = this.GetComdCode();
+                string textdesc = this.txtfieldname.Text.Trim().ToString();
+                string textvalue = this.ddltype.SelectedValue.Trim().ToString();
+                string orderype = this.txtorder.Text.Trim().ToString();
+
+                bool result = MktData.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "INSERTFIELDTYPE", textdesc, textvalue, orderype, "", "", "", "", "", "");
+
+                if (!result)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail..!!');", true);
+                    return;
+                }
+
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Add Field Saved Successfully');", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#AddModalField", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#AddModalField').hide();", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "AddField();", true);
+                this.LoadGrid();
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
     }
 }
