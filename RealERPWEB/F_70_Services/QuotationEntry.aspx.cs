@@ -22,6 +22,7 @@ namespace RealERPWEB.F_70_Services
                 Init();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Service Quotation";
                 string type = Request.QueryString["Type"] ?? "";
+
                 if (type != "")
                 {
                     if (type != "Entry")
@@ -145,7 +146,7 @@ namespace RealERPWEB.F_70_Services
             try
             {
                 string comcod = GetComCode();
-                string type = "%";
+                string type = ASTUtility.Left(ddlResourceGroup.SelectedValue,2)+ "%";
                 DataSet ds = _process.GetTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "GETRESOURCE", type, "", "", "", "", "", "", "", "", "", "");
                 if (ds == null)
                 {
@@ -243,6 +244,7 @@ namespace RealERPWEB.F_70_Services
                 getNewQuotationNo();
                 getCustomer();
                 getWorkType();
+                GetResourceGrp();
                 getResource();
                 List<EQuotation> obj = new List<EQuotation>();
                 ViewState["MaterialList"] = obj;
@@ -1423,6 +1425,32 @@ namespace RealERPWEB.F_70_Services
             }
 
 
+        }
+        public void GetResourceGrp()
+        {
+            string comcod = GetComCode();
+            string type = "%";
+            DataSet ds = _process.GetTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "GETRESOURCEGROUP", type, "", "", "", "", "", "", "", "", "", "");
+            if (ds == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{_process.ErrorObject["Msg"].ToString()}" + "');", true);
+                return;
+            }
+           
+            ddlResourceGroup.DataSource = ds.Tables[0];
+            ddlResourceGroup.DataTextField = "sirdesc";
+            ddlResourceGroup.DataValueField = "sircode";
+            ddlResourceGroup.DataBind();
+        }
+
+        protected void ddlResourceGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            getResource();
+        }
+
+        protected void lnkReload_Click(object sender, EventArgs e)
+        {
+            getResource();
         }
     }
 }
