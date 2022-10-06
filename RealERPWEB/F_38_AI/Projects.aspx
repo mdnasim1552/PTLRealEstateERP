@@ -232,12 +232,12 @@
                                             <div class="form-group row">
 
                                                 <div class="col-lg-4 col-md-4 col-sm-12 pl-0">
-                                                    <asp:Label ID="Label8" runat="server">Valocity Type</asp:Label>
+                                                    <asp:Label ID="Label8" runat="server">Assigned Type</asp:Label>
                                                     <asp:DropDownList ID="ddlvalocitytype" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
                                                     </asp:DropDownList>
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 col-sm-12">
-                                                    <asp:Label ID="Label9" runat="server"> Valocity Quantity</asp:Label>
+                                                    <asp:Label ID="Label9" runat="server"> Assigned Quantity</asp:Label>
                                                     <asp:TextBox ID="txtquantity" runat="server" CssClass="form-control"></asp:TextBox>
                                                 </div>
 

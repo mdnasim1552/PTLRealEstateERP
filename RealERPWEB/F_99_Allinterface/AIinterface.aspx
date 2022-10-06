@@ -243,7 +243,7 @@
 
         .tbMenuWrp table tr td {
             /*height: 50px;*/
-            width: 130px;
+            width: 100px;
             padding: 0 0;
             float: left;
             list-style: none;
@@ -632,8 +632,11 @@
                                             <asp:ListItem Value="3"><div class="circle-tile"><a><div class="circle-tile-heading  bg-success counter">0</div></a><div class="circle-tile-content bg-success"><div class="circle-tile-description txt-white">Production</div></div></div></asp:ListItem>
                                             <asp:ListItem Value="4"><div class="circle-tile"><a><div class="circle-tile-heading  deep-pink counter">0</div></a><div class="circle-tile-content  deep-pink"><div class="circle-tile-description txt-white">QC & QA</div></div></div></asp:ListItem>
                                             <asp:ListItem Value="5"><div class="circle-tile"><a><div class="circle-tile-heading  orange counter">0</div></a><div class="circle-tile-content  orange"><div class="circle-tile-description txt-white">Accept/Reject</div></div></div></asp:ListItem>
-                                            <asp:ListItem Value="6"><div class="circle-tile"><a><div class="circle-tile-heading bg-dark bg-gradient counter">0</div></a><div class="circle-tile-content bg-dark bg-gradient"><div class="circle-tile-description txt-white">Invoice</small></div></div></div></asp:ListItem>
-                                            <asp:ListItem Value="7"><div class="circle-tile"><a><div class="circle-tile-heading  bg-info text-white counter">0</div></a><div class="circle-tile-content bg-info"><div class="circle-tile-description txt-white text-white">Collection</div></div></div></asp:ListItem>
+                                            <asp:ListItem Value="6"><div class="circle-tile"><a><div class="circle-tile-heading  bg-success counter">0</div></a><div class="circle-tile-content  bg-info"><div class="circle-tile-description txt-white">QA</div></div></div></asp:ListItem>
+                                            <asp:ListItem Value="7"><div class="circle-tile"><a><div class="circle-tile-heading  bg-pink counter">0</div></a><div class="circle-tile-content  bg-pink"><div class="circle-tile-description txt-white">FeedBack</div></div></div></asp:ListItem>
+                                            <asp:ListItem Value="8"><div class="circle-tile"><a><div class="circle-tile-heading  orange counter">0</div></a><div class="circle-tile-content  orange"><div class="circle-tile-description txt-white">Delivery</div></div></div></asp:ListItem>
+                                            <asp:ListItem Value="9"><div class="circle-tile"><a><div class="circle-tile-heading bg-dark bg-gradient counter">0</div></a><div class="circle-tile-content bg-dark bg-gradient"><div class="circle-tile-description txt-white">Invoice</small></div></div></div></asp:ListItem>
+                                            <asp:ListItem Value="10"><div class="circle-tile"><a><div class="circle-tile-heading  bg-info text-white counter">0</div></a><div class="circle-tile-content bg-info"><div class="circle-tile-description txt-white text-white">Collection</div></div></div></asp:ListItem>
                                             <%-- <asp:ListItem Value="7"><div class="circle-tile"><a><div class="circle-tile-heading  bg-danger text-white counter">0</div></a><div class="circle-tile-content bg-danger"><div class="circle-tile-description txt-white text-white">Loan Cancelled</div></div></div></asp:ListItem>--%>
                                         </asp:RadioButtonList>
 
@@ -951,14 +954,14 @@
                                                     Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "startdate")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "startdate")).ToString("dd-MMM-yyyy")%>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Velocity QTY">
+                                        <asp:TemplateField HeaderText="Assigned QTY">
                                             <ItemTemplate>
                                                 <asp:Label ID="tbladdress" runat="server" Width="80px"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "velocityqty")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle Width="50px" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Velocity Per Hour">
+                                        <asp:TemplateField HeaderText="Assign Per Hour">
                                             <ItemTemplate>
                                                 <asp:Label ID="tblcountry" runat="server" Width="80px"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "empworkhour")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
@@ -1033,7 +1036,7 @@
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
-                                         <asp:TemplateField HeaderText="Velocity Type " Visible="false">
+                                         <asp:TemplateField HeaderText="Role Type " Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvvelocitytype" runat="server" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "velocitytype")) %>'
@@ -1087,7 +1090,7 @@
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
-                                         <asp:TemplateField HeaderText="Velocity<br> Qty">
+                                         <asp:TemplateField HeaderText="Assigned<br> Qty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvvelocityqty" runat="server" Height="16px"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "velocityqty")).ToString("#,##0;(#,##0); ") %>'
@@ -1203,7 +1206,7 @@
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
-                                         <asp:TemplateField HeaderText="Velocity Type " Visible="false">
+                                         <asp:TemplateField HeaderText="Role Type " Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvqcvelocitytype" runat="server" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "velocitytype")) %>'
@@ -1257,7 +1260,7 @@
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
-                                         <asp:TemplateField HeaderText="Velocity<br> Qty">
+                                         <asp:TemplateField HeaderText="Assign<br> Qty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvqcvelocityqty" runat="server" Height="16px"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "velocityqty")).ToString("#,##0;(#,##0); ") %>'
@@ -1321,6 +1324,15 @@
                                     </Columns>
                                 </asp:GridView>
                             </div>
+                        </asp:Panel>
+                        <asp:Panel ID="pnelQA" runat="server" Visible="false">
+                            <h2>QC</h2>
+                        </asp:Panel>
+                        <asp:Panel ID="pnelFeedBack" runat="server" Visible="false">
+                            <h2>Feedback</h2>
+                        </asp:Panel>
+                        <asp:Panel ID="Pneldelivery" runat="server" Visible="false">
+                            <h2>delevery</h2>
                         </asp:Panel>
                         <asp:Panel ID="pnelAReject" runat="server" Visible="false">
                            <div class="table-responsive">
@@ -1418,7 +1430,7 @@
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
-                                         <asp:TemplateField HeaderText="Velocity<br> Qty">
+                                         <asp:TemplateField HeaderText="Assign<br> Qty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvarvelocityqty" runat="server" Height="16px"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "velocityqty")).ToString("#,##0;(#,##0); ") %>'
