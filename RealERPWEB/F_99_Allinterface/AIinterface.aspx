@@ -912,10 +912,10 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="ProjectName">
+                                        <asp:TemplateField HeaderText="Task Title">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblprojectName" runat="server" Height="16px"
-                                                    Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "projectName"))%>'
+                                                    Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "tasktitle"))%>'
                                                     ForeColor="Black"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -927,6 +927,7 @@
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "batchname")) %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="DataSet Type">
                                             <ItemTemplate>
                                                 <asp:Label ID="tbldataset" runat="server"
