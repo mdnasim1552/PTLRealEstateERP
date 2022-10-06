@@ -98,7 +98,7 @@
 
             <div class="card" style="min-height: 480px;">
                 <div class="card-body">
-                    <div class="table-responsive">
+                    <div class="">
                         <div class="row">
                              <asp:GridView ID="gvIssuest" runat="server" AutoGenerateColumns="False"  CssClass=" table-striped table-hover table-bordered grvContentarea"
                         ShowFooter="True" Width="501px">
@@ -150,7 +150,7 @@
                                     <asp:Label ID="lblgvunit" runat="server"
                                         Style="font-size: 11px; text-align: center;"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "issueqty")) %>'
-                                        Width="50px"></asp:Label>
+                                        Width="80px"></asp:Label>
                                 </ItemTemplate>
                              <FooterStyle HorizontalAlign="Center" />
 
