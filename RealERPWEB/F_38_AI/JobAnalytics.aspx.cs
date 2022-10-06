@@ -28,7 +28,7 @@ namespace RealERPWEB.F_38_AI
             try
             {
                 string comcod = this.GetComdCode();
-                string pid = Request.QueryString["id"].ToString();
+                string pid = Request.QueryString["PID"].ToString();
 
                 DataSet ds1 = MktData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI ", "GETPROJECTDASHBOARD", pid, "", "", "", "", "");
                 if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
