@@ -20,6 +20,8 @@
             }
             //lert("I m In");
             var gvSpayment = $('#<%=this.gvSpayment.ClientID %>');
+            gvSpayment.Scrollable();
+
             //alert("I m In");
             //gvSpayment.gridviewScroll({
             //     width: 1160,
@@ -361,7 +363,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFtotal" runat="server" Font-Bold="True"
-                                                        ForeColor="Black" Style="text-align: right" Width="35px"></asp:Label>
+                                                        ForeColor="Black" Style="text-align: right" Width="70px"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />

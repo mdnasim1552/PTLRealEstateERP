@@ -201,7 +201,7 @@ namespace RealERPWEB.F_17_Acc
                 case "3356":
                     vouprint = "VocherPrintIntech";
                     break;
-                    
+
                 //case "3101":
                 case "3367":
                     vouprint = "VocherPrintEpic";
@@ -216,8 +216,6 @@ namespace RealERPWEB.F_17_Acc
 
         private string GetCompInstarPost()
         {
-
-
             string comcod = this.GetCompCode();
             string printinstar = "";
             switch (comcod)
@@ -345,7 +343,7 @@ namespace RealERPWEB.F_17_Acc
 
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucher", list, null, null);
                     Rpt1.EnableExternalImages = true;
-                }             
+                }
 
                 else if (Type == "VocherPrintAlliance")
                 {
@@ -388,7 +386,7 @@ namespace RealERPWEB.F_17_Acc
 
                 }
 
-                else if(Type== "VocherPrint4")
+                else if (Type == "VocherPrint4")
                 {
 
                     var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
@@ -677,7 +675,7 @@ namespace RealERPWEB.F_17_Acc
             switch (comcod)
             {
 
-
+                //case "3101":
                 case "3306":
                 case "3307":
                 case "3308":
@@ -760,7 +758,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintCredence";
                     break;
 
-                case "3101": // islam brothers 
+                //case "3101": // islam brothers 
                 case "1102": // islam brothers 
                     vouprint = "VocherPrintISBL";
                     break;
@@ -819,7 +817,7 @@ namespace RealERPWEB.F_17_Acc
             {
                 case "1103":// Tanvir
                 case "3353": // manama
-                //case "3101":// ptl
+                             //case "3101":// ptl
                     ntype = "ShowNarration";
                     break;
 
@@ -1199,6 +1197,7 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("txtaprvby1", authorizeby));
 
                 }
+
                 else if (Type == "VocherPrintEpic")
                 {
 
@@ -1552,12 +1551,12 @@ namespace RealERPWEB.F_17_Acc
                         }
                     }
 
-                } 
-               
+                }
+
                 else if (Type == "VocherPrintTropical")
                 {
                     if (ASTUtility.Left(vounum, 2) == "JV")
-                    {                      
+                    {
                         var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
                         Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherJVTropical", list, null, null);
                         Rpt1.EnableExternalImages = true;
@@ -1577,16 +1576,16 @@ namespace RealERPWEB.F_17_Acc
                     {
                         string vouno = vounum.Substring(0, 2);
                         string paytoorecived = (vouno == "BC" || vouno == "CC") ? "Recieved From" : "Pay To";
-                        string prjdesc = (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "1301" 
+                        string prjdesc = (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "1301"
                                     || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "16"
-                                    || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "18" 
-                                    || (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "0000" && ASTUtility.Left(dt.Rows[0]["actcode"].ToString(), 4) == "1901") 
-                                    || (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "0000" && ASTUtility.Left(dt.Rows[0]["actcode"].ToString(), 4) == "1902") 
-                                    || (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "0000" && ASTUtility.Left(dt.Rows[0]["actcode"].ToString(), 2) == "29") 
+                                    || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "18"
+                                    || (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "0000" && ASTUtility.Left(dt.Rows[0]["actcode"].ToString(), 4) == "1901")
+                                    || (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "0000" && ASTUtility.Left(dt.Rows[0]["actcode"].ToString(), 4) == "1902")
+                                    || (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "0000" && ASTUtility.Left(dt.Rows[0]["actcode"].ToString(), 2) == "29")
                                     || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "27"
-                                    || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "39" 
-                                    || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "2201" 
-                                    || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "2301" 
+                                    || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "39"
+                                    || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "2201"
+                                    || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "2301"
                                     || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "26") ?
                                      (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "1301" ? dt.Rows[0]["actdesc"].ToString().Replace("ADVANCE-", "")
                                     : ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "16" ? dt.Rows[0]["actdesc"].ToString().Replace("WIP-", "")
@@ -1599,8 +1598,8 @@ namespace RealERPWEB.F_17_Acc
                                     : ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "2201" ? dt.Rows[0]["actdesc"].ToString().Replace("LOAN-", "")
                                     : ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "2301" ? dt.Rows[0]["actdesc"].ToString().Replace("TVS-", "")
                                     : ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "26" ? dt.Rows[0]["actdesc"].ToString().Replace("AP-", "") : "")
-                                    : (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "0000" && ASTUtility.Left(dt.Rows[0]["actcode"].ToString(), 4) == "2303") ? dt1.Rows[0]["cactdesc"].ToString().Replace("CASH-", "")                                     
-                                    : ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "1401" ? dt.Rows[0]["pactdesc"].ToString()                                    
+                                    : (ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "0000" && ASTUtility.Left(dt.Rows[0]["actcode"].ToString(), 4) == "2303") ? dt1.Rows[0]["cactdesc"].ToString().Replace("CASH-", "")
+                                    : ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 4) == "1401" ? dt.Rows[0]["pactdesc"].ToString()
                                     : "Head Office";
 
                         if (vouno == "BC" || vouno == "CC")
@@ -1663,8 +1662,8 @@ namespace RealERPWEB.F_17_Acc
                         }
                     }
 
-                } 
-                
+                }
+
                 else if (Type == "VocherPrintGreenwood")
                 {
                     if (ASTUtility.Left(vounum, 2) == "JV")
@@ -1718,7 +1717,7 @@ namespace RealERPWEB.F_17_Acc
                         }
                         else
                         {
-                          if (vouno == "BD" || vouno == "CD" || vouno == "CT")
+                            if (vouno == "BD" || vouno == "CD" || vouno == "CT")
                             {
                                 var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
                                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherGreenwood02", list, null, null);

@@ -441,18 +441,12 @@ namespace RealERPWEB.F_17_Acc
 
                     }
 
-                   
-
-
 
                     ////string mrno = tbl2.Rows[0]["mrno"].ToString();
                     ////double  paidamt = Convert.ToDouble( tbl2.Rows[0]["paidamt"]);
                     //DataTable dt2 = (DataTable)Session["tblbalance"];
                     //double SAmount = 0;
                     //double PAmount = 0, BalAmt = 0;
-
-
-
 
                     break;
                 default:

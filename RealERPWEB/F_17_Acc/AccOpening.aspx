@@ -530,6 +530,7 @@
                                 <FooterStyle BackColor="#F5F5F5" />
                                 <EditRowStyle />
                                 <AlternatingRowStyle />
+                                <PagerSettings Mode="NumericFirstLast" />
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" />
                             </asp:GridView>

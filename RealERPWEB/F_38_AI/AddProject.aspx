@@ -55,6 +55,7 @@
             showAddBatch();
             viewToProj();
             CustomerCreate();
+            AddField();
 
 
 
@@ -87,7 +88,9 @@
         function CustomerCreate() {
             $('#CustomerModalAdd').modal('toggle');
         }
-
+        function AddField() {
+            $('#AddModalField').modal('toggle');
+        }
 
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -111,17 +114,20 @@
             </div>
             <div class="card mt-2">
                 <div class="card-header p-1">
-                
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4 divEntryform d-none" id="none" runat="server">
                             <div class="table-responsive">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <h6>Project Entry</h6>
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <asp:LinkButton runat="server" type="button" ID="btnaddfield" OnClick="btnaddfield_Click" CssClass="btn btn-primary btn-sm"><i class="fa fa-plus-circle "></i> Add Field</asp:LinkButton>
+
+                                            <h6>&nbsp; Project Entry</h6>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <asp:LinkButton runat="server" type="button" ID="removefield" OnClick="removefield_Click" class="close" data-dismiss="modal">&times;</asp:LinkButton>
                                     </div>
                                 </div>
@@ -157,7 +163,7 @@
 
                                         <asp:TemplateField HeaderText="">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="btnAdd" Visible="false" runat="server" OnClick="btnAdd_Click" OnClientClick="ModalLoanClose();" CssClass="text-primary pr-2 pl-2"><i class="fa fa-plus"></i></asp:LinkButton>
+                                                <asp:LinkButton ID="btnAdd" Visible="false" runat="server" OnClick="btnAdd_Click" OnClientClick="ModalLoanClose();" CssClass="text-primary pr-2 pl-2"><i class="fa fa-plus-circle"></i></asp:LinkButton>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -220,7 +226,7 @@
                                     <h6>Project List</h6>
                                 </div>
                                 <div class="col-md-3 mt-2">
-                                    <asp:LinkButton ID="tblAddCustomerModal" runat="server" OnClick="tblAddCustomerModal_Click" CssClass="btn btn-primary ml-auto btn-sm mt20 mr-1 float-right"><i class="fa fa-plus"></i>Add Project</asp:LinkButton>
+                                    <asp:LinkButton ID="tblAddCustomerModal" runat="server" OnClick="tblAddCustomerModal_Click" CssClass="btn btn-primary ml-auto btn-sm mt20 mr-1 float-right"><i class="fa fa-plus-circle"></i>&nbsp;Add Project</asp:LinkButton>
 
                                 </div>
                             </div>
@@ -556,7 +562,51 @@
                             </div>
                         </div>
                     </div>
+
+
+                    <%-- Add field --%>
+                    <div id="AddModalField" class="modal " role="dialog" data-keyboard="false" data-backdrop="static">
+                        <div class="modal-dialog  modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header bg-light p-1">
+                                    <h6 class="modal-title">Create Project Field</h6>
+                                    <span type="button" CssCss="text-danger border border-0" data-dismiss="modal"><i class="fa fa-times-circle"></i></span>
+                                </div>
+                                <div class="modal-body well">
+                                    <div class="row ">
+
+
+                                        <div class="p-0 col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group ">
+                                                <asp:Label ID="Label14" runat="server">Field Name</asp:Label>
+                                                <asp:TextBox ID="txtfieldname" runat="server" CssClass="form-control"></asp:TextBox>
+                                            </div>
+                                        </div>
+
+                                        <div class=" col-lg-2 col-md-3 col-sm-12">
+                                            <div class="form-group ">
+                                                <asp:Label ID="Label13" runat="server">Type</asp:Label>
+                                                <asp:DropDownList ID="ddltype" runat="server" CssClass="form-control chzn-select">
+                                                    <asp:ListItem Value="1">Text</asp:ListItem>
+                                                    <asp:ListItem Value="2">Number</asp:ListItem>
+                                                    <asp:ListItem Value="3">Date</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer text-center d-block">
+                                <asp:LinkButton runat="server" ID="Linkbtnfieldadd"  CssClass="btn btn-primary btn-sm">Save</asp:LinkButton>
+
+                            </div>
+                            </div>
+                            
+                        </div>
+                    </div>
                 </div>
+
+            </div>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
