@@ -159,6 +159,24 @@ namespace RealERPWEB.F_70_Services
         protected global::System.Web.UI.WebControls.DropDownList ddlWorkType;
 
         /// <summary>
+        /// Label11 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label11;
+
+        /// <summary>
+        /// ddlResourceGroup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlResourceGroup;
+
+        /// <summary>
         /// Label4 control.
         /// </summary>
         /// <remarks>
@@ -177,13 +195,22 @@ namespace RealERPWEB.F_70_Services
         protected global::System.Web.UI.WebControls.DropDownList ddlResource;
 
         /// <summary>
+        /// lnkReload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkReload;
+
+        /// <summary>
         /// btnAddResource control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAddResource;
+        protected global::System.Web.UI.WebControls.HyperLink btnAddResource;
 
         /// <summary>
         /// lblUnit control.

@@ -128,13 +128,26 @@
                             </div>
                             <div class="col-lg-2">
                                 <div class="form-group">
+                                    <asp:Label runat="server" ID="Label11" class="form-label">Resource Type</asp:Label>
+                                    <div class="d-flex">
+                                        <asp:DropDownList ID="ddlResourceGroup" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlResourceGroup_SelectedIndexChanged" AutoPostBack="true">
+                                        </asp:DropDownList>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
                                     <asp:Label runat="server" ID="Label4" class="form-label">Resource</asp:Label>
                                     <div class="d-flex">
                                         <asp:DropDownList ID="ddlResource" runat="server" CssClass="form-control chzn-select">
                                         </asp:DropDownList>
-                                        <asp:LinkButton ID="btnAddResource" runat="server" CssClass="btn" OnClick="btnAddResource_Click">
-                                                <span class="fa fa-plus-circle " aria-hidden="true"></span>
+                                        <asp:LinkButton ID="lnkReload" runat="server" CssClass="btn" OnClick="lnkReload_Click">
+                                            <span class="fa fa-redo" aria-hidden="true"></span>
                                         </asp:LinkButton>
+                                        <asp:HyperLink ID="btnAddResource" runat="server" CssClass="btn" Target="_blank" NavigateUrl="~/F_17_Acc/AccSubCodeBook?InputType=res">
+                                                <span class="fa fa-plus-circle " aria-hidden="true"></span>
+                                        </asp:HyperLink>
                                     </div>
                                     <asp:Label runat="server" ID="lblUnit" class="form-label" Visible="false"></asp:Label>
                                     <asp:Label runat="server" ID="lblsirval" class="form-label" Visible="false"></asp:Label>
