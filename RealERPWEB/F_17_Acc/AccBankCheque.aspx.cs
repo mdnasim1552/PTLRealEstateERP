@@ -195,15 +195,11 @@ namespace RealERPWEB.F_17_Acc
             foreach (DataRow dr in dt1.Rows)
             {
 
-
                 string bankcode = dr["bankcode"].ToString().Trim();
                 string chequeno = dr["chequeno"].ToString().Trim();
                 string flag = dr["flag"].ToString().Trim();
                 string vounum = dr["vounum"].ToString().Trim();
                 string bstatus = dr["bstatus"].ToString().Trim();
-
-
-
 
                 bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "INSERTUPDATE", bankcode, chequeno, flag, vounum, bstatus, "", "", "",
                      "", "", "", "", "", "", "");
