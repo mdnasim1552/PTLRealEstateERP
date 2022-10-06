@@ -531,5 +531,10 @@ namespace RealERPWEB.F_38_AI
 
 
         }
+
+        protected void btnaddfield_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "AddField();", true);
+        }
     }
 }
