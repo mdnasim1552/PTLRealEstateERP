@@ -103,6 +103,9 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelAReject.Visible = false;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = false;
+                    this.Pneldelivery.Visible = false;
                     this.GetAIInterface();
                     break;
                 case "1":
@@ -114,6 +117,9 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelAReject.Visible = false;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = false;
+                    this.Pneldelivery.Visible = false;
                     this.GetBatchAssingList();
                     break;
                 case "2":
@@ -125,6 +131,9 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelAReject.Visible = false;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = false;
+                    this.Pneldelivery.Visible = false;
                     break;
                 case "3":
                     this.pnlAllProject.Visible = false;
@@ -135,6 +144,9 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelAReject.Visible = false;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = false;
+                    this.Pneldelivery.Visible = false;
                     this.GetProductionInfo();
                     break;
                 case "4":
@@ -146,6 +158,9 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelAReject.Visible = false;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = false;
+                    this.Pneldelivery.Visible = false;
                     this.GetProductionInfo();
                     break;
                 case "5":
@@ -157,6 +172,9 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelAReject.Visible = true;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = false;
+                    this.Pneldelivery.Visible = false;
                     this.GetAcceptReject();
                     break;
                 case "6":
@@ -166,8 +184,11 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlProduction.Visible = false;
                     this.pnelQC.Visible = false;
                     this.pnelAReject.Visible = false;
-                    this.penlInvoice.Visible = true;
+                    this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
+                    this.pnelQA.Visible = true;
+                    this.pnelFeedBack.Visible = false;
+                    this.Pneldelivery.Visible = false;
                     break;
                 case "7":
                     this.pnlAllProject.Visible = false;
@@ -177,7 +198,49 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQC.Visible = false;
                     this.pnelAReject.Visible = false;
                     this.penlInvoice.Visible = false;
+                    this.pnelCollection.Visible = false;
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = true;
+                    this.Pneldelivery.Visible = false;
+                    break;
+                case "8":
+                    this.pnlAllProject.Visible = false;
+                    this.pnlStatus.Visible = false;
+                    this.pnlAssign.Visible = false;
+                    this.pnlProduction.Visible = false;
+                    this.pnelQC.Visible = false;
+                    this.pnelAReject.Visible = false;
+                    this.penlInvoice.Visible = false;
+                    this.pnelCollection.Visible = false;
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = false;
+                    this.Pneldelivery.Visible = true;
+                    break;
+                case "9":
+                    this.pnlAllProject.Visible = false;
+                    this.pnlStatus.Visible = false;
+                    this.pnlAssign.Visible = false;
+                    this.pnlProduction.Visible = false;
+                    this.pnelQC.Visible = false;
+                    this.pnelAReject.Visible = false;
+                    this.penlInvoice.Visible = true;
+                    this.pnelCollection.Visible = false;
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = false;
+                    this.Pneldelivery.Visible = false;
+                    break;
+                case "10":
+                    this.pnlAllProject.Visible = false;
+                    this.pnlStatus.Visible = false;
+                    this.pnlAssign.Visible = false;
+                    this.pnlProduction.Visible = false;
+                    this.pnelQC.Visible = false;
+                    this.pnelAReject.Visible = false;
+                    this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = true;
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = false;
+                    this.Pneldelivery.Visible = false;
                     break;
 
             }

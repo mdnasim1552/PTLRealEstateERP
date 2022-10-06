@@ -106,7 +106,7 @@
                                                     </asp:TemplateField>
 
 
-                                                    <asp:TemplateField HeaderText="Velocity Type">
+                                                    <asp:TemplateField HeaderText="Assign Type">
                                                         <ItemTemplate>
                                                             <asp:Label ID="tblvelocitytype" runat="server"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "velocitytype")) %>'></asp:Label>
@@ -127,14 +127,14 @@
                                                                 Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "startdate")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "startdate")).ToString("dd-MMM-yyyy")%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Velocity <br> QTY">
+                                                    <asp:TemplateField HeaderText="Assigned <br> QTY">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblvelocityqty" runat="server" Width="80px"
                                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "velocityqty")).ToString("#,##;(#,##); ") %>'></asp:Label>
                                                         </ItemTemplate>
                                                         <ItemStyle Width="50px" HorizontalAlign="right" VerticalAlign="Middle" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Velocity <br> Hour">
+                                                    <asp:TemplateField HeaderText=" Hour">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblworkhour" runat="server" Width="80px"
                                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "workhour")).ToString("#,##;(#,##); ") %>'></asp:Label>
@@ -214,7 +214,7 @@
                                                     </asp:TemplateField>
 
 
-                                                    <asp:TemplateField HeaderText="Velocity <br> Type">
+                                                    <asp:TemplateField HeaderText="Assign <br> Type">
                                                         <ItemTemplate>
                                                             <asp:Label ID="tblvelocitytype" runat="server"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "velocitytype")) %>'></asp:Label>
@@ -347,7 +347,7 @@
                                                     </asp:TemplateField>
 
 
-                                                    <asp:TemplateField HeaderText="Velocity <br> Type" Visible="false">
+                                                    <asp:TemplateField HeaderText="Assigned <br> Type" Visible="false">
                                                         <ItemTemplate>
                                                             <asp:Label ID="tblvelocitytype" runat="server"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "velocitytype")) %>'></asp:Label>
