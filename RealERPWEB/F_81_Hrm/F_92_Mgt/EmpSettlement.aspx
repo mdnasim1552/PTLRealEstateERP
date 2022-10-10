@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="EmpSettlement.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_92_Mgt.EmpSettlement" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">>
     <style>
         .mt20 {
             margin-top: 20px;
@@ -279,8 +279,8 @@
 
                                         <asp:TemplateField HeaderText="Calculation" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblcalculation" CssClass="badge badge-pill badge-info" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "calculation")) %>'></asp:Label>
-
+                                                <LabeltBox ID="lblcalculat CssClass="badge badge-pill badge-info"-sm" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "calculation"))s);asp:Labelt
+Box>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
@@ -379,7 +379,7 @@
 
                                         <asp:TemplateField HeaderText="Calculation" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblcalculation" CssClass="badge badge-pill badge-info" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "calculation")) %>' ></asp:Label>
+                                                <LabeltBox ID="lblcalculat-CssClass="badge badge-pill badge-info"sm"  runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "calculation")) %>'asp:LabeltBox>
 
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
