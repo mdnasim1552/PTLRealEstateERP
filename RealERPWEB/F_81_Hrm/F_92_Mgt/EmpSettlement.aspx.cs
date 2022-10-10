@@ -128,7 +128,22 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
         {
             string comcod = this.GetComeCode();
-            string empid = this.ddlEmpName.SelectedValue.ToString();
+            string empid = "";
+            if (Request.QueryString["actcode"].ToString() == "")
+            {
+                 empid = this.ddlEmpName.SelectedValue.ToString();
+     
+            }
+            else
+            {
+                this.lbtnOk.Visible = false;
+                this.ddlEmpName.Visible = false;
+                this.txtrefno.Visible = false;
+                this.txtCurDate.Visible = false;
+
+                empid = Request.QueryString["actcode"].ToString();
+            }
+
             string rpttype = this.rbtnstatement.SelectedIndex.ToString();
             var emplist = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSepEmployee>)ViewState["empdata"];
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ACR_EMPLOYEE", "GET_EMP_SETTLEMENT_INFO", empid, rpttype, "", "", "", "", "", "");
@@ -234,7 +249,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             var sttlmntinfo = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt"];
             for (int i = 0; i < this.gvsettlemntcredit.Rows.Count; i++)
             {
+                string hrgdesc = ((TextBox)gvsettlemntcredit.Rows[i].FindControl("lblcreditinfo")).Text.ToString();
+                string frmdat = ((TextBox)gvsettlemntcredit.Rows[i].FindControl("txtfrmdat")).Text.ToString();
+                string todat = ((TextBox)gvsettlemntcredit.Rows[i].FindControl("txttodat")).Text.ToString();
                 string hrgcod = ((Label)gvsettlemntcredit.Rows[i].FindControl("lblhrgcod")).Text.ToString();
+
                 double gross = Convert.ToDouble("0" + ((TextBox)gvsettlemntcredit.Rows[i].FindControl("txtgross")).Text.Trim());
                 double ttlamt = Convert.ToDouble("0" + ((TextBox)gvsettlemntcredit.Rows[i].FindControl("TtlAmout")).Text.Trim());
                 double numofday =Convert.ToDouble("0"+ ((TextBox)gvsettlemntcredit.Rows[i].FindControl("lblnmday")).Text.Trim());
@@ -243,6 +262,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 sttlmntinfo1[i].amount = gross;
                 sttlmntinfo1[i].numofday = numofday;
                 sttlmntinfo1[i].ttlamt = ttlamt;
+                sttlmntinfo1[i].hrgdesc = hrgdesc;
+                sttlmntinfo1[i].frmdat = frmdat;
+                sttlmntinfo1[i].todat = todat;
 
                 switch (hrgcod)
                 {
@@ -265,7 +287,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
             for (int i = 0; i < this.gvsttlededuct.Rows.Count; i++)
             {
+                string hrgdesc = ((TextBox)gvsttlededuct.Rows[i].FindControl("lblcreditinfo")).Text.ToString();
                 string hrgcod = ((Label)gvsttlededuct.Rows[i].FindControl("lblhrgcod")).Text.ToString();
+                string frmdat = ((Label)gvsttlededuct.Rows[i].FindControl("lblfrmdat")).Text.ToString();
+                string todat = ((Label)gvsttlededuct.Rows[i].FindControl("lbltodat")).Text.ToString();
                 double gross = Convert.ToDouble("0" + ((TextBox)gvsttlededuct.Rows[i].FindControl("txtgross")).Text.Trim());
                 double ttlamt = Convert.ToDouble("0" + ((TextBox)gvsttlededuct.Rows[i].FindControl("TtlAmout")).Text.Trim());
                 double numofday = Convert.ToDouble("0" + ((TextBox)gvsttlededuct.Rows[i].FindControl("lblnmday")).Text.Trim());
@@ -273,6 +298,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 sttlmntinfo2[i].amount = gross;
                 sttlmntinfo2[i].numofday = numofday;
                 sttlmntinfo2[i].ttlamt = ttlamt;
+                sttlmntinfo2[i].hrgdesc = hrgdesc;
+                sttlmntinfo2[i].frmdat = frmdat;
+                sttlmntinfo2[i].todat = todat;
+
 
 
                 switch (hrgcod)
@@ -609,6 +638,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string hrgcod = ((Label)this.gvsettlemntcredit.Rows[index].FindControl("lblhrgcod")).Text.ToString();
             string calculation = ((Label)this.gvsettlemntcredit.Rows[index].FindControl("lblcalculation")).Text.ToString().Trim() ?? "";
             int seq = Convert.ToInt32(((Label)this.gvsettlemntcredit.Rows[index].FindControl("lblseq")).Text.ToString().Trim() ?? "99");
+            string curdate = System.DateTime.Now.ToString("dd-MM-yyyy");
 
             string frmdat = "";
             string todat = "";
@@ -620,8 +650,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
             if (hrgcod== "35101" || hrgcod== "35108" || hrgcod == "35110")
             {
-                 frmdat = "01-Jan-1900";
-                 todat =  "01-Jan-1900";
+                frmdat = curdate;
+                todat = curdate;
             }
             else
             {
@@ -694,6 +724,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string calculation = ((Label)this.gvsttlededuct.Rows[index].FindControl("lblcalculation")).Text.ToString().Trim() ?? "";
             int seq = Convert.ToInt32(((Label)this.gvsttlededuct.Rows[index].FindControl("lblseq")).Text.ToString().Trim() ?? "99");
 
+            string curdate = System.DateTime.Now.ToString("dd-MM-yyyy");
             string frmdat = "";
             string todat = "";
             double numofday = 0.00;
@@ -704,18 +735,18 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
             if (hrgcod == "35101" || hrgcod == "35108" || hrgcod == "35110")
             {
-                frmdat = "01-Jan-1900";
-                todat = "01-Jan-1900";
+                frmdat = curdate;
+                todat = curdate;
             }
             else
             {
                 frmdat = "";
-                todat = "";
+            todat = "";
 
-            }
+        }
 
 
-            dr = dt.NewRow();
+        dr = dt.NewRow();
             dr["comcod"] = comcod;
             dr["hrgdesc"] = hrgdesc;
             dr["hrgcod"] = hrgcod;

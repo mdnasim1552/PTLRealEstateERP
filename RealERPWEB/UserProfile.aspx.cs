@@ -31,6 +31,7 @@ namespace RealERPWEB
 
             if (!IsPostBack)
             {
+              
 
                 Get_UpComingHoliday();
                 Get_Events();
@@ -127,7 +128,23 @@ namespace RealERPWEB
             {
                 this.pnlApplyLeavBTI.Visible = false;
             }
-       
+
+
+            checkVisibility();
+        }
+        private void checkVisibility()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo.SP_UTILITY_USER_DASHBOARD", "GETVISIBILITYSTATUS", "", "", "", "", "", "", "");
+
+            if(ds1==null || ds1.Tables[0].Rows.Count == 0)
+                return;
+            string paystatus = ds1.Tables[0].Rows[0]["isvispayslip"].ToString();
+            if (paystatus == "False")
+            {
+                this.modalPayslipBti.Attributes.Add("class", "d-none");
+            }
+     
 
 
         }

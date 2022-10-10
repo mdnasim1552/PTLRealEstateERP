@@ -808,7 +808,7 @@
                                 <div class="card-header border-0 pb-0">
                                     <!-- .d-flex -->
                                     <div class="d-flex align-items-center">
-                                        <h3 class="mr-auto card-title m-0">Upcoming Client Birthday</h3>
+                                      <h3 class="mr-auto card-title m-0" style="color:#52CC7A">UPCOMING CLIENT BIRTHDAY</h3>
                                         </div>
                                     <!-- /.d-flex -->
                                 </div>
@@ -817,7 +817,7 @@
                                 <div class="card-body">
                                     <div class="table-responsive pb-3">
                                         <!-- .table -->
-                                        <asp:GridView ID="gvclientbthday" runat="server" AutoGenerateColumns="False" ShowFooter="false" CssClass="table-striped table-hover table-bordered">
+                                           <asp:GridView ID="gvclientbthday" runat="server" AutoGenerateColumns="False" ShowFooter="false" CssClass="table-striped table-hover table-bordered">
                                             <RowStyle />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Sl#">
@@ -829,33 +829,28 @@
                                                 </asp:TemplateField>
                                                   <asp:TemplateField HeaderText="Customer Name ">                                                                                                               
                                                     <ItemTemplate>
-                                                        <asp:Label  runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custname")) %>' ></asp:Label>
+                                                        <asp:Label  runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custname")) %>' Width="200px"></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
                                                 <asp:TemplateField HeaderText="Project Name ">
                                                     <ItemTemplate>
-                                                        <asp:Label runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pdesc")) %>' ></asp:Label>
+                                                        <asp:Label runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pdesc")) %>' Width="150px"></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
                                                 
                                                 <asp:TemplateField HeaderText="Unit">
                                                     <ItemTemplate>
-                                                        <asp:Label runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "unit")) %>' ></asp:Label>
+                                                        <asp:Label runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "unit")) %>' Width="80px"></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
                                                      <asp:TemplateField HeaderText="Birth Date ">                                                                                                               
                                                     <ItemTemplate>
-                                                        <asp:Label  runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "birthday")) %>' Width="120px"></asp:Label>
+                                                        <asp:Label  runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "birthday")) %>' Width="100px"></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-
-
-                         
-
-                            
                                             </Columns>
 
                                             <EditRowStyle />
@@ -874,7 +869,7 @@
                                 <div class="card-header border-0 pb-0">
                                     <!-- .d-flex -->
                                     <div class="d-flex align-items-center">
-                                        <h3 class="mr-auto card-title m-0">Upcoming Client Marriage Day</h3>
+                                     <h3 class="mr-auto card-title m-0" style="color:#C73C3C">UPCOMING CLIENT MARRIAGE DAY</h3>
                                         </div>
                                     <!-- /.d-flex -->
                                 </div>
@@ -883,7 +878,7 @@
                                 <div class="card-body">
                                     <div class="table-responsive pb-3">
                                         <!-- .table -->
-                                        <asp:GridView ID="gvmarriageday" runat="server" AutoGenerateColumns="False" ShowFooter="false" CssClass="table-striped table-hover table-bordered">
+                                                           <asp:GridView ID="gvmarriageday" runat="server" AutoGenerateColumns="False" ShowFooter="false" CssClass="table-striped table-hover table-bordered">
                                             <RowStyle />
                                             <Columns>
                                          <asp:TemplateField HeaderText="Sl#">
@@ -895,19 +890,25 @@
                                                 </asp:TemplateField>
                                                   <asp:TemplateField HeaderText="Customer Name ">                                                                                                               
                                                     <ItemTemplate>
-                                                        <asp:Label  runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custname")) %>'></asp:Label>
+                                                        <asp:Label  runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custname")) %>' Width="200px"></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
                                                 <asp:TemplateField HeaderText="Project Name ">
                                                     <ItemTemplate>
-                                                        <asp:Label runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pdesc")) %>' ></asp:Label>
+                                                        <asp:Label runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pdesc")) %>' Width="150px"></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+												                    
+                                                <asp:TemplateField HeaderText="Unit">
+                                                    <ItemTemplate>
+                                                        <asp:Label runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "unit")) %>' Width="80px"></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
-                                                     <asp:TemplateField HeaderText="Birth Date ">                                                                                                               
+                                                     <asp:TemplateField HeaderText="Marriage date">                                                                                                               
                                                     <ItemTemplate>
-                                                        <asp:Label  runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "maday")) %>' Width="120px"></asp:Label>
+                                                        <asp:Label  runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "maday")) %>' Width="100px"></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
 
