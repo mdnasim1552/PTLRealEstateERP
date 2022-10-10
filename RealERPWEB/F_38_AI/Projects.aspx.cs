@@ -48,6 +48,7 @@ namespace RealERPWEB.F_38_AI
                     this.GetBatchInfo();
                     this.VirtualGrid_DataBind();
                     this.CreateTableAssign();
+                    this.GetPeddingAssign();
 
                     break;
                 case "2":
@@ -388,5 +389,26 @@ namespace RealERPWEB.F_38_AI
 
             }
         }
+
+       private void GetPeddingAssign()
+        {
+            try
+            {
+                string comcod = this.GetComdCode();
+                string batchid = Request.QueryString["BatchID"].ToString() == "" ? "" : Request.QueryString["BatchID"].ToString();
+                DataSet ds1 = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "PENDINGASSIGNTASK", batchid);
+                Session["penddingassign"] = ds1;
+                this.gv_PenddingAssign.DataSource = ds1;
+                this.gv_PenddingAssign.DataBind();
+
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
+
     }
 }

@@ -56,6 +56,7 @@
             viewToProj();
             CustomerCreate();
             AddField();
+            closecustomeradd();
 
 
 
@@ -86,10 +87,13 @@
             $('#ProjectModalView').modal('toggle');
         }
         function CustomerCreate() {
-            $('#CustomerModalAdd').modal('toggle');
+            $('#btnAdd').modal('toggle');
         }
         function AddField() {
             $('#AddModalField').modal('toggle');
+        }
+        function closecustomeradd() {
+            $('#btnAdd').modal('hide');
         }
 
     </script>
@@ -163,7 +167,7 @@
 
                                         <asp:TemplateField HeaderText="">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="btnAdd" Visible="false" runat="server" OnClick="btnAdd_Click" OnClientClick="ModalLoanClose();" CssClass="text-primary pr-2 pl-2"><i class="fa fa-plus-circle"></i></asp:LinkButton>
+                                                <asp:LinkButton ID="btnAdd" Visible="false" runat="server" OnClick="btnAdd_Click" CssClass="text-primary pr-2 pl-2"><i class="fa fa-plus-circle"></i></asp:LinkButton>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -548,67 +552,77 @@
                         </div>
                     </div>
                     <%-- Add Customer Modal --%>
-                    <div id="CustomerModalAdd" class="modal " role="dialog" data-keyboard="false" data-backdrop="static">
+                    <div id="btnAdd" class="modal " role="dialog" data-keyboard="false" data-backdrop="static">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
-                                <div class="modal-header bg-light">
+                                <div class="modal-header bg-light p-1">
                                     <h6 class="modal-title">Customer Create</h6>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
                                 <div class="modal-body">
-                                </div>
-                                <div class="modal-footer">
+                                    <div class="row well">
+                                        <div class="col-md-6 ">
+                                            <div class="form-group">
+                                                <asp:Label ID="lblel1" runat="server">Customer Name</asp:Label>
+                                                <asp:TextBox runat="server" ID="txtcustomername" CssClass="form-control form-control-sm"></asp:TextBox>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="modal-footer text-center d-block">
+                                        <asp:LinkButton runat="server" ID="btncustAdd" OnClick="btncustAdd_Click" OnClientClick="closecustomeradd()" CssClass="btn btn-primary btn-sm">Save</asp:LinkButton>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
 
-                    <%-- Add field --%>
-                    <div id="AddModalField" class="modal " role="dialog" data-keyboard="false" data-backdrop="static">
-                        <div class="modal-dialog  modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header bg-light p-1">
-                                    <h6 class="modal-title">Create Project Field</h6>
-                                    <span type="button" CssCss="text-danger border border-0" data-dismiss="modal"><i class="fa fa-times-circle"></i></span>
-                                </div>
-                                <div class="modal-body well">
-                                    <div class="row ">
-                                        <div class="p-0 col-lg-6 col-md-6 col-sm-12">
-                                            <div class="form-group ">
-                                                <asp:Label ID="Label14" runat="server">Field Name</asp:Label>
-                                                <asp:TextBox ID="txtfieldname" runat="server"  CssClass="form-control"></asp:TextBox>
-                                                <%--<asp:RequiredFieldValidator runat="server" ID="reqFieldvalidation" ControlToValidate="txtfieldname" ErrorMessage="Field Name is Required Field"></asp:RequiredFieldValidator>--%>
+                        <%-- Add field --%>
+                        <div id="AddModalField" class="modal " role="dialog" data-keyboard="false" data-backdrop="static">
+                            <div class="modal-dialog  modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-light p-1">
+                                        <h6 class="modal-title">Create Project Field</h6>
+                                        <span type="button" csscss="text-danger border border-0" data-dismiss="modal"><i class="fa fa-times-circle"></i></span>
+                                    </div>
+                                    <div class="modal-body well">
+                                        <div class="row ">
+                                            <div class="p-0 col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group ">
+                                                    <asp:Label ID="Label14" runat="server">Field Name</asp:Label>
+                                                    <asp:TextBox ID="txtfieldname" runat="server" CssClass="form-control"></asp:TextBox>
+                                                    <%--<asp:RequiredFieldValidator runat="server" ID="reqFieldvalidation" ControlToValidate="txtfieldname" ErrorMessage="Field Name is Required Field"></asp:RequiredFieldValidator>--%>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class=" col-lg-2 col-md-3 col-sm-12">
-                                            <div class="form-group ">
-                                                <asp:Label ID="Label13" runat="server">Type</asp:Label>
-                                                <asp:DropDownList ID="ddltype" runat="server" CssClass="form-control chzn-select">
-                                                    <asp:ListItem Selected="True" Value="T">Text</asp:ListItem>
-                                                    <asp:ListItem Value="N">Number</asp:ListItem>
-                                                    <asp:ListItem Value="D">Date</asp:ListItem>
-                                                </asp:DropDownList>
+                                            <div class=" col-lg-2 col-md-3 col-sm-12">
+                                                <div class="form-group ">
+                                                    <asp:Label ID="Label13" runat="server">Type</asp:Label>
+                                                    <asp:DropDownList ID="ddltype" runat="server" CssClass="form-control chzn-select">
+                                                        <asp:ListItem Selected="True" Value="T">Text</asp:ListItem>
+                                                        <asp:ListItem Value="N">Number</asp:ListItem>
+                                                        <asp:ListItem Value="D">Date</asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </div>
                                             </div>
-                                        </div>
-                                           <div class="p-0 col-lg-6 col-md-6 col-sm-12">
-                                            <div class="form-group ">
-                                                <asp:Label ID="Label15" runat="server">Order By</asp:Label>
-                                                <asp:TextBox ID="txtorder" runat="server" CssClass="form-control" TextMode="Number" Text="99" ></asp:TextBox>
+                                            <div class="p-0 col-lg-6 col-md-6 col-sm-12">
+                                                <div class="form-group ">
+                                                    <asp:Label ID="Label15" runat="server">Order By</asp:Label>
+                                                    <asp:TextBox ID="txtorder" runat="server" CssClass="form-control" TextMode="Number" Text="99"></asp:TextBox>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="modal-footer text-center d-block">
+                                        <asp:LinkButton runat="server" ID="Linkbtnfieldadd" OnClick="Linkbtnfieldadd_Click" CssClass="btn btn-primary btn-sm">Save</asp:LinkButton>
+                                    </div>
                                 </div>
-                                <div class="modal-footer text-center d-block">
-                                <asp:LinkButton runat="server" ID="Linkbtnfieldadd" OnClick="Linkbtnfieldadd_Click" CssClass="btn btn-primary btn-sm">Save</asp:LinkButton>
+
                             </div>
-                            </div>
-                            
                         </div>
                     </div>
-                </div>
 
-            </div>
+                </div>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>

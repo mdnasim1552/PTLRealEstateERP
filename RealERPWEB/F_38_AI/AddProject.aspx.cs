@@ -87,7 +87,7 @@ namespace RealERPWEB.F_38_AI
                 return;
             Session["tblprojectdetails"] = dt3.Tables[0];
         }
-        private void LoadGrid()
+        private void LoadGrid(string custid="")
         {
 
             string comcod = this.GetComdCode();
@@ -182,7 +182,8 @@ namespace RealERPWEB.F_38_AI
                         ddlgval.DataValueField = "infcod";
                         ddlgval.DataSource = dv3.ToTable();
                         ddlgval.DataBind();
-                        ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
+                        ddlgval.SelectedValue = (custid=="")? ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString()
+                            : custid;
                         break;
 
                     case "03025"://get team leader
@@ -190,7 +191,7 @@ namespace RealERPWEB.F_38_AI
                         dv4 = dt5.DefaultView;
                         //dv3.RowFilter = ("infcod like '51%' and infcod not like'%00'");
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-                       ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = true;
+                        ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = true;
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
@@ -205,7 +206,7 @@ namespace RealERPWEB.F_38_AI
 
                         DataTable dtc = (DataTable)Session["tblCunt"];
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-                       ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = true;
+                        ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = true;
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
@@ -319,7 +320,7 @@ namespace RealERPWEB.F_38_AI
             {
                 string prjcode = this.lblproj.Text.Trim().ToString();
                 string comcod = this.GetComdCode();
-                string sircode = prjcode.Length > 0 ? prjcode  : this.GetLastid();
+                string sircode = prjcode.Length > 0 ? prjcode : this.GetLastid();
 
                 for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
                 {
@@ -348,7 +349,7 @@ namespace RealERPWEB.F_38_AI
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail..!!');", true);
                         return;
                     }
-                   
+
                 }
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Project Saved Successfully');", true);
@@ -525,9 +526,30 @@ namespace RealERPWEB.F_38_AI
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
-            int index = row.RowIndex;
-            string id = ((Label)this.gvProjectInfo.Rows[index].FindControl("lblpactcode")).Text.ToString();
+            try
+            {
+                DataTable dt = (DataTable)ViewState["tblcustinf"];
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;            
+                string gcode = ((Label)this.gvProjectInfo.Rows[index].FindControl("lblgvItmCode")).Text.ToString();
+
+                //string Gcode = dt.Rows[0]["gcod"].ToString();
+                switch (gcode)
+                    {
+                        case "03007": //customer 
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CustomerCreate();", true);
+                            break;
+                    }
+
+              
+
+            }
+            catch(Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+
 
 
         }
@@ -559,6 +581,34 @@ namespace RealERPWEB.F_38_AI
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#AddModalField", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#AddModalField').hide();", true);
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "AddField();", true);
                 this.LoadGrid();
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
+
+        protected void btncustAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string comcod = this.GetComdCode();
+                string custname = this.txtcustomername.Text.Trim().ToString();
+
+                DataSet result = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "CUSTOMER_ADDED", custname);
+                if (result==null)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Create Fail..!!');", true);
+
+                    return;
+                }
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Customer Added Successfully');", true);
+                //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#btnAdd", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#btnAdd').hide();", true);
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CustomerCreate();", true);
+                string customerId = result.Tables[0].Rows[0]["custid"].ToString();
+                GetCustomerList();
+                this.LoadGrid(customerId);
             }
             catch (Exception exp)
             {
