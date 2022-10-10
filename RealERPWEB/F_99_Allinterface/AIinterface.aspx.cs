@@ -82,6 +82,8 @@ namespace RealERPWEB.F_99_Allinterface
             DataTable tblasing = (DataTable)Session["tblassinglist"];
 
             this.gvInterface.DataSource = tbl1;
+           
+
             this.gvInterface.DataBind();
 
             this.gvAssingJob.DataSource = tblasing;
@@ -444,6 +446,79 @@ namespace RealERPWEB.F_99_Allinterface
                 string batchid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "batchid")).ToString().Trim();
                 string jobid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "jobid")).ToString().Trim();
                 hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?EmpID=" + empid + "&JobID=" + jobid + "&BatchID=" + batchid;
+            }
+        }
+
+        protected void tblAddBatch_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string project = ((Label)this.gvInterface.Rows[index].FindControl("lblpactcode")).Text.ToString();
+            string projectName = ((Label)this.gvInterface.Rows[index].FindControl("lblprojectName")).Text.ToString();
+            string datasettype = ((Label)this.gvInterface.Rows[index].FindControl("lbldataset")).Text.ToString();
+            string worktype = ((Label)this.gvInterface.Rows[index].FindControl("lblwrktype")).Text.ToString();
+            this.hiddPrjid.Value = project;
+            this.txtproj.Text = projectName;
+            this.tblpactcode.Text = project;
+            this.txtdataset.Text = datasettype;
+            this.txtworktype.Text = worktype;
+            this.txtstartdate.Text = DateTime.Now.ToString("dd-MMM-yyyy");
+            this.textdelevery.Text = DateTime.Now.ToString("dd-MMM-yyyy");
+            this.GetBatchAssingList(project);
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
+        }
+        private void GetBatchAssingList(string project)
+        {
+            string comcod = this.GetCompCode();
+            string prjid = project + "%";
+            DataSet dt = HRData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "BATCHASSIGNLIST", prjid, "", "", "", "", "", "");
+            if (dt == null)
+                return;
+
+            Session["tblbatchassignlist"] = dt.Tables[0];
+            this.gv_gridBatch.DataSource = dt;
+            this.gv_gridBatch.DataBind();
+
+        }
+
+        protected void tblSaveBatch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = this.GetCompCode();
+                string userid = hst["usrid"].ToString();
+                string Terminal = hst["compname"].ToString();
+                string Sessionid = hst["session"].ToString();
+                string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+                string batchcreateid = "";
+                string batch = this.txtBatch.Text.ToString();
+                string projectname = this.hiddPrjid.Value;
+                string createdate = this.txtstartdate.Text.ToString();
+                string veliverydate = this.textdelevery.Text.ToString();
+                string dtquantity = this.txtbatchQuantity.Text.ToString();
+                string dataset = this.txtdataset.Text.ToString();
+                string worktype = this.txtworktype.Text.ToString();
+                string totalhour = this.tbltotalOur.Text.ToString();
+                string phdm = this.ddlphdm.SelectedValue.ToString();
+                string workperhour = this.txtPerhour.Text.ToString();
+                string textEmpcap = this.textEmpcap.Text.ToString();
+
+                bool result = HRData.UpdateTransInfo2(comcod, "dbo_ai.SP_ENTRY_AI", "BATCH_INSERTUPDATE", batchcreateid, batch, projectname, createdate, veliverydate, userid, Terminal, Sessionid, Date, dtquantity, dataset, totalhour, worktype, phdm, workperhour, textEmpcap, "", "", "", "", "");
+
+                if (!result)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail..!!');", true);
+                    return;
+                }
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Batch  Saved Successfully');", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#CreateModalBatch", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#CreateModalBatch').hide();", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message.ToString() + "');", true);
             }
         }
     }
