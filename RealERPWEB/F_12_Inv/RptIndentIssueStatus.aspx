@@ -140,19 +140,25 @@
                                 <ItemTemplate>
                                     <asp:Label ID="lbgvspcfdesc" runat="server" Style="text-align: left"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirunit")) %>'
-                                        Width="180px"></asp:Label>
+                                        Width="90px"></asp:Label>
                                       
                                 </ItemTemplate>
-
+                                <FooterTemplate>
+                                    <asp:Label ID="lbIssueqty" runat="server" Width="70px" Style="text-align: left" Font-Bold="true"> Total :</asp:Label>
+                                </FooterTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Issuqty">
+                            <asp:TemplateField HeaderText="Issue Qty">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvunit" runat="server"
-                                        Style="font-size: 11px; text-align: center;"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "issueqty")) %>'
+                                        Style="font-size: 11px; text-align: right;"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "issueqty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                         Width="80px"></asp:Label>
                                 </ItemTemplate>
-                             <FooterStyle HorizontalAlign="Center" />
+                                <FooterTemplate>
+                                    <asp:Label ID="lgvtotalissueqty" runat="server" Font-Bold="True" Font-Size="12px"
+                                        ForeColor="#000" Style="text-align: right"></asp:Label>
+                                </FooterTemplate>
+                             <FooterStyle HorizontalAlign="Right" />
 
                             </asp:TemplateField>
 
