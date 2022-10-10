@@ -63,6 +63,7 @@
     <Compile Include="C_09_PImp\EclassOrder.cs" />
     <Compile Include="C_09_PImp\SubConBill.cs" />
     <Compile Include="C_12_Inv\EClassIDCode.cs" />
+    <Compile Include="C_12_Inv\EClassIndentStatus.cs" />
     <Compile Include="C_12_Inv\EClassMaterial.cs" />
     <Compile Include="C_12_Inv\EclassPurchase.cs" />
     <Compile Include="C_12_Inv\EClassReqInfo.cs" />
