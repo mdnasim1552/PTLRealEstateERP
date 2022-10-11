@@ -2946,6 +2946,7 @@
     <Content Include="F_64_Mgt\TeamSeriCode.aspx" />
     <Content Include="F_64_Mgt\UserImage.aspx" />
     <Content Include="F_64_Mgt\UserLoginfrm.aspx" />
+    <Content Include="F_70_Services\ServicePrint.aspx" />
     <Content Include="F_70_Services\QuotationEntry.aspx" />
     <Content Include="F_81_Hrm\F_81_Rec\AppLetCodeBook.aspx" />
     <Content Include="F_81_Hrm\F_81_Rec\ApplicantInfo.aspx" />
@@ -4664,6 +4665,13 @@
     </Compile>
     <Compile Include="F_38_AI\Projects.aspx.designer.cs">
       <DependentUpon>Projects.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_70_Services\ServicePrint.aspx.cs">
+      <DependentUpon>ServicePrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_70_Services\ServicePrint.aspx.designer.cs">
+      <DependentUpon>ServicePrint.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_70_Services\QuotationEntry.aspx.cs">
       <DependentUpon>QuotationEntry.aspx</DependentUpon>

@@ -196,7 +196,7 @@
 
                                     <asp:TemplateField>
                                         <HeaderTemplate>
-                                            <asp:CheckBox ID="chkAllCheckid" runat="server" AutoPostBack="True" OnCheckedChanged="chkAllCheckid_CheckedChanged" Width="20px" />
+                                            <asp:CheckBox ID="chkAllCheckid" runat="server" AutoPostBack="True" OnCheckedChanged="chkAllCheckid_CheckedChanged" Width="30px" />
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:CheckBox ID="chkvmrno" runat="server" AutoPostBack="false" Enabled='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chkmv")) == "True" ? false : true %>'
@@ -227,6 +227,7 @@
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Left" />
                                     </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Unit">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvResUnit" runat="server"
@@ -234,11 +235,12 @@
                                                 Width="35px"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Init.Work">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQty001" runat="server" CssClass="style101"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty001")).ToString("#,##0.0000;(#,##0.0000); ") %>'
-                                                Width="80px"></asp:TextBox>
+                                                Width="55px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Mo/biliz.">

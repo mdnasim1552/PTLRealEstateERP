@@ -29,6 +29,10 @@ namespace RealERPWEB.F_70_Services
                     {
                         EditFunctionality();
                     }
+                    if (type == "Entry")
+                    {
+                        this.txtNarration.Text = this.bindDataText();
+                    }
                     if (type == "Approval" || type == "ApprovalEdit")
                     {
                         lnkSave.Text = "<span class='fa fa-check' style='color:white;' aria-hidden='true'></span> Approval";
@@ -115,6 +119,48 @@ namespace RealERPWEB.F_70_Services
 
         }
 
+        private string bindDataText()
+        {
+            string comcod = this.GetComCode();
+            string msg = "";
+            string date1 = DateTime.Today.ToString("dd.MM.yyyy");
+            switch (comcod)
+            {
+                case "3101":
+                case "1101":
+                case "1207":
+                    msg = "1. If you have any questions about this invoice, please contact. Acme Services Phone : 01704118050 or 02-8080570" +
+                        "\n2. Make all cheque payable to ACME Services." +
+                        "\n3. Please be advised that interest will be charged as per the agreement if payment is not made in due date. " +
+                        "\n4. For Bank Transfer payment must be made directly to the Acme Technologies Ltd." +
+                        "\n5. The account details are :" +
+                        "\n   Bank Name : Trust Bank Ltd." +
+                        "\n   A/C No: 0002-02100111983 " +
+                        "\n   Branch: Principal Branch " +
+                        "\n   IFS Code : ";
+
+                    break;
+
+                /*
+                msg=$"";
+                 1.	If you have any questions about this invoice, please contact. Acme Services Phone : 01704118050 or 02
+-8080570
+2.	Make all cheque payable to ACME Services.
+3.	Please be advised that interest will be charged as per the agreement if payment is not made in due date.
+4.	For Bank Transfer payment must be made directly to the Acme Technologies Ltd. 
+5.	The account details are : 
+Bank Name : Trust Bank Ltd.
+A/C No: 0002-02100111983
+Branch: Principal Branch IFS Code :
+
+                 */
+                default:
+                    msg = "";
+                    break;
+            }
+
+            return msg;
+        }
 
         private void getWorkType()
         {
@@ -589,7 +635,7 @@ namespace RealERPWEB.F_70_Services
                 string date = txtEntryDate.Text;
                 string quotid = lblQuotation.Text;
                 string customerid = ddlCustomer.SelectedValue.ToString();
-                string narration = txtNarration.Text;
+                string narration = txtNarration.Text.Trim();
                 string isCheck = (type == "Check" || type == "CheckEdit") ? "1" : "0";
                 string isAppr = "0";
                 string status = (type == "Check" || type == "CheckEdit") ? "2" : type == "Approval" ? "3" : "1";
