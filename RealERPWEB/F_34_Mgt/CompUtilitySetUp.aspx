@@ -47,7 +47,7 @@
                 </asp:UpdateProgress>
             </div>
 
-            <div class="card mt-4 pb-4" style="min-width:480px;">
+            <div class="card mt-4 pb-4" style="min-width:480px;" id="divBody" runat="server">
                 <div class="card-body">
                     <div class="row">
                          <div class="col-md-2">

@@ -486,8 +486,9 @@
 
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>' target="_blank">Apply Leave</a>
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind")%>' target="_blank">Leave Interface</a>
-                                    <%--<a class="dropdown-item" href='<%=this.ResolveUrl("~/F_34_Mgt/CompUtilitySetUp")%>' runat="server" id="CompSetup" target="_blank">Company Utility SetUp</a>--%>
-                                    <asp:HyperLink class="dropdown-item" ID="hypCompSetup" Visible="false" runat="server" NavigateUrl='<%=this.ResolveUrl("~/F_34_Mgt/CompUtilitySetUp")%>' Text="Company Utility SetUp" Target="_blank"></asp:HyperLink>
+                                    
+                                    
+                                    <asp:HyperLink class="dropdown-item" ID="hypUtility" Visible="false" runat="server" Text="Utility SetUp"></asp:HyperLink>
 
                  
                                     <asp:HyperLink class="dropdown-item" ID="HypLinkReqInterFace" Visible="false" target="_blank"  runat="server" Text="Request Interface"></asp:HyperLink>
