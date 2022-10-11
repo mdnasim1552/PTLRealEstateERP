@@ -962,11 +962,9 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Employee Name">
-                                            <ItemTemplate>
-                                                <asp:HyperLink runat="server" ID="btnMytask" Target="_blank" NavigateUrl="~/F_38_AI/MyTasks?Empid=">
+                                            <ItemTemplate>                                               
                                                     <asp:Label ID="lblgvempname" runat="server"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'></asp:Label>
-                                                </asp:HyperLink>
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'></asp:Label>                                                
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Create date">
