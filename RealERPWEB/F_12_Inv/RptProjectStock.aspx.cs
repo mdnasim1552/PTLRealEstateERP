@@ -577,12 +577,7 @@ namespace RealERPWEB.F_12_Inv
             {
 
 
-
-
                 HyperLink hlnkgcResDesc = (HyperLink)e.Row.FindControl("hlnkgcResDesc");
-
-
-
 
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "bldcod")).ToString();
                 string rsircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "rptcod")).ToString();
