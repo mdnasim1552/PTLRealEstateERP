@@ -212,24 +212,31 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                         ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = false;
                         ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = false;
+                        ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("calculation")).Visible = true;
                         break;
                     case "35108":
                         ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txtfrmdat")).Visible = true;
                         ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txttodat")).Visible = true;
                         ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = false;
                         ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = false;
+                        ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("calculation")).Visible = true;
+
                         break;
                     case "35110":
                         ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txtfrmdat")).Visible = true;
                         ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txttodat")).Visible = true;
                         ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = false;
                         ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = false;
+                        ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("calculation")).Visible = true;
+
                         break;
                     default:
                         ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txtfrmdat")).Visible = false;
                         ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txttodat")).Visible = false;
                         ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = true;
                         ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = true;
+                        ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("calculation")).Visible = false;
+
                         break;
 
                 }

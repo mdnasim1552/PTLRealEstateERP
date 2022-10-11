@@ -279,7 +279,7 @@
 
                                         <asp:TemplateField HeaderText="Calculation" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblcalculation" CssClass="badge badge-pill badge-info" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "calculation")) %>'></asp:Label>
+                                                <asp:TextBox ID="lblcalculation" CssClass="badge badge-pill badge-info" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "calculation")) %>'></asp:TextBox>
 
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
@@ -379,7 +379,7 @@
 
                                         <asp:TemplateField HeaderText="Calculation" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblcalculation" CssClass="badge badge-pill badge-info" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "calculation")) %>' ></asp:Label>
+                                                <asp:TextBox ID="lblcalculation" CssClass="badge badge-pill badge-info" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "calculation")) %>' ></asp:TextBox>
 
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
