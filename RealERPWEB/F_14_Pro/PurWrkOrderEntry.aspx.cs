@@ -113,6 +113,11 @@ namespace RealERPWEB.F_14_Pro
                              //case "3101":
                     this.btnSendmail.Visible = false;
                     break;
+                case "3368": // finlay                             
+                case "3367": // finlay                             
+                case "3354": // finlay                             
+                    this.btnSendmail.Visible = true;
+                    break;
                 default:
                     break;
             }
@@ -704,6 +709,8 @@ namespace RealERPWEB.F_14_Pro
             //this.lbtnPrevOrderList_Click(null, null);
             this.ShowProjectFiles();
             this.hideTermsConditions();
+            /// email button visible ture or false
+            SendMail();
         }
 
 
