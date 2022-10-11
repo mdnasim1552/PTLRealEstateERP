@@ -159,7 +159,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -2201,6 +2201,7 @@
     <Content Include="F_12_Inv\MatTransStatus.aspx" />
     <Content Include="F_12_Inv\PurReqEntry.aspx" />
     <Content Include="F_12_Inv\RptIndentIssueStatus.aspx" />
+    <Content Include="F_12_Inv\RptIndentIssueStatusSummary.aspx" />
     <Content Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx" />
     <Content Include="F_14_Pro\RptPurOrderTopSheet.aspx" />
     <Content Include="F_14_Pro\RptSupAdvanceDetails.aspx" />
@@ -4033,6 +4034,13 @@
     </Compile>
     <Compile Include="F_12_Inv\RptIndentIssueStatus.aspx.designer.cs">
       <DependentUpon>RptIndentIssueStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_12_Inv\RptIndentIssueStatusSummary.aspx.cs">
+      <DependentUpon>RptIndentIssueStatusSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_12_Inv\RptIndentIssueStatusSummary.aspx.designer.cs">
+      <DependentUpon>RptIndentIssueStatusSummary.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx.cs">
       <DependentUpon>LinkRptPurchaseStatusUr.aspx</DependentUpon>
