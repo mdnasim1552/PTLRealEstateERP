@@ -224,7 +224,8 @@ namespace RealERPWEB.F_22_Sal
             {
                 string comcod = this.GetCompCode();
                 string CurDate1 = Convert.ToDateTime(this.txtDate.Text.Trim()).ToString("dd-MMM-yyyy");
-                List<RealEntity.C_22_Sal.EClassSales_02.EClassMonthly> lst1 = objUserService.ShowMonthly(comcod, CurDate1);
+                string recondate = this.rbtList.SelectedValue == "1" ? "recondate" : "";
+                List<RealEntity.C_22_Sal.EClassSales_02.EClassMonthly> lst1 = objUserService.ShowMonthly(comcod, CurDate1, recondate);
                 if (lst1 == null)
                     return;
                 this.grvMonthlySales.DataSource = lst1;
