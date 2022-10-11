@@ -81,12 +81,12 @@ namespace RealEntity
         }
 
         
-        public List<RealEntity.C_22_Sal.EClassSales_02.EClassMonthly> ShowMonthly(string comcod, string Date1)
+        public List<RealEntity.C_22_Sal.EClassSales_02.EClassMonthly> ShowMonthly(string comcod, string Date1, string recndate = "")
         {
             List<RealEntity.C_22_Sal.EClassSales_02.EClassMonthly> lst = new List<RealEntity.C_22_Sal.EClassSales_02.EClassMonthly>();
 
             //string comcod = ObjCommon.GetCompCode();
-            SqlDataReader dr = _ProAccess.GetSqlReader(comcod, "SP_REPORT_DASH_BOARD_INFO", "SALESINFYEARMONTH", Date1, "", "", "", "", "", "", "", "");
+            SqlDataReader dr = _ProAccess.GetSqlReader(comcod, "SP_REPORT_DASH_BOARD_INFO", "SALESINFYEARMONTH", Date1, recndate, "", "", "", "", "", "", "");
 
             while (dr.Read())
             {

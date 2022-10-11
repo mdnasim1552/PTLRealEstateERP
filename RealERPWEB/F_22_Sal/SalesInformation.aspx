@@ -130,14 +130,16 @@
                         </div>
 
                         <div class="col-md-2">
-                            <asp:RadioButtonList ID="rbtList" runat="server" CssClass="form-check-inline" RepeatDirection="Horizontal">
+                            <div class="form-group">
+                            <asp:RadioButtonList ID="rbtList" runat="server" CssClass="form-check-inline" style="margin-top:30px;" RepeatDirection="Horizontal">
                                 <asp:ListItem Value="0">Actual</asp:ListItem>
                                 <asp:ListItem Selected="True" Value="1">Reconcile</asp:ListItem>
                             </asp:RadioButtonList>
+                                </div>
                         </div>
 
 
-                        <div class="col-md-8">
+                        <div class="col-md-6">
 
                             <ul class="nav nav-tabs card-header-tabs" style="margin-top: 20px;">
                                 <li class="nav-item">
