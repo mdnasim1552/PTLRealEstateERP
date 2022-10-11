@@ -424,7 +424,7 @@
                             <div class="col-md-5 mt-1">
                                 <div class="form-group">
                                     <asp:Label runat="server" ID="Label6" class="form-label mt-2">Remarks</asp:Label>
-                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtNarration" placeholder="Write Notes" TextMode="MultiLine" Rows="5"></asp:TextBox>
+                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtNarration" placeholder="Write Notes" TextMode="MultiLine" Rows="8"></asp:TextBox>
 
                                 </div>
 
