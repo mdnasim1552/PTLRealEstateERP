@@ -285,6 +285,15 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.HyperLink HypLinkApplyReqCommon;
 
         /// <summary>
+        /// hypUtility control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hypUtility;
+
+        /// <summary>
         /// HypLinkReqInterFace control.
         /// </summary>
         /// <remarks>
