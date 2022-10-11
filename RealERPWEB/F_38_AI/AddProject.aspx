@@ -576,7 +576,7 @@
                                 </div>
                             </div>
                         </div>
-
+                         </div>
 
                         <%-- Add field --%>
                         <div id="AddModalField" class="modal " role="dialog" data-keyboard="false" data-backdrop="static">
@@ -620,7 +620,7 @@
 
                             </div>
                         </div>
-                    </div>
+                   
 
                 </div>
             </div>

@@ -144,7 +144,7 @@
                                       
                                 </ItemTemplate>
                                 <FooterTemplate>
-                                    <asp:Label ID="lbIssueqty" runat="server" Width="70px" Style="text-align: left" Font-Bold="true"> Total :</asp:Label>
+                                    <asp:Label ID="lbIssueqty" runat="server" Width="70px" Style="text-align: right" Font-Bold="true"> Total :</asp:Label>
                                 </FooterTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Issue Qty">

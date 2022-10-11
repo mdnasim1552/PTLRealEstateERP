@@ -83,7 +83,7 @@
 
                         <div class="col-md-1">
 
-                            <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="btn btn-sm btn-primary"  Style="margin-top: 28px;" AutoPostBack="True">Ok</asp:LinkButton>
+                            <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lnkbtnOk_Click"  Style="margin-top: 28px;" AutoPostBack="True">Ok</asp:LinkButton>
 
                         </div>
 
@@ -94,11 +94,97 @@
                 </div>
             </div>
 
-            <div class="card" style="min-height: 480px;">
+               <div class="card" style="min-height: 480px;">
                 <div class="card-body">
                     <div class="">
                         <div class="row">
+                             <asp:GridView ID="gvIssuest" runat="server" AutoGenerateColumns="False"  CssClass=" table-striped table-hover table-bordered grvContentarea"
+                        ShowFooter="True" Width="501px">
+                        <Columns>
+                         
+                            <asp:TemplateField HeaderText="Sl">
+                                <ItemTemplate>
+                                    <asp:Label ID="serialnoid" runat="server" Style="text-align: right"
+                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle Font-Bold="True" Font-Size="10px" />
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Department Name">
+                                <ItemTemplate>
+                                    <asp:Label ID="lbgrcod" runat="server" Style="text-align: left"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptname")) %>'
+                                        Width="180px"></asp:Label>
+                                </ItemTemplate>
+
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText=" resourcecode" Visible="False">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvMatCode" runat="server"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Material Name">
+                                <ItemTemplate>
+                                    <asp:Label ID="lbgrcod" runat="server" Style="text-align: left"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) %>'
+                                        Width="180px"></asp:Label>
+                                </ItemTemplate>
+                                 <FooterTemplate>
+                                    <asp:Label ID="lbIssueqty" runat="server" Width="70px" Style="text-align: left" Font-Bold="true"> Total :</asp:Label>
+                                </FooterTemplate>
+                            </asp:TemplateField>
+
+                           
+                             <asp:TemplateField HeaderText="Opening Qty">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvunit" runat="server"
+                                        Style="font-size: 11px; text-align: right;"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "opqty")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                        Width="80px"></asp:Label>
+                                </ItemTemplate>
+                               
+                             <FooterStyle HorizontalAlign="Right" />
+
+                            </asp:TemplateField>
+                           
+                            <asp:TemplateField HeaderText="Receive Qty">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvunit" runat="server"
+                                        Style="font-size: 11px; text-align: right;"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rcvqty")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                        Width="80px"></asp:Label>
+                                </ItemTemplate>
+                                
+                             <FooterStyle HorizontalAlign="Right" />
+
+                            </asp:TemplateField>
+                             <asp:TemplateField HeaderText="Issue Qty">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvunit" runat="server"
+                                        Style="font-size: 11px; text-align: right;"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "issueqty")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                        Width="80px"></asp:Label>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    <asp:Label ID="lgvtotalissueqty" runat="server" Font-Bold="True" Font-Size="12px"
+                                        ForeColor="#000" Style="text-align: right"></asp:Label>
+                                </FooterTemplate>
+                             <FooterStyle HorizontalAlign="Right" />
+
+                            </asp:TemplateField>
+
                             
+                        </Columns>
+                        <FooterStyle CssClass="grvFooter" />
+                        <EditRowStyle />
+                        <AlternatingRowStyle />
+                        <PagerStyle CssClass="gvPagination" />
+                        <HeaderStyle CssClass="grvHeader" />
+
+
+                    </asp:GridView>
                         </div>
 
                     </div>

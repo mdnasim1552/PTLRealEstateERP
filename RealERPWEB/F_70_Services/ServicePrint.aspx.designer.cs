@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB.F_17_Acc
+namespace RealERPWEB.F_70_Services
 {
 
 
-    public partial class AccPrint
+    public partial class ServicePrint
     {
     }
 }
