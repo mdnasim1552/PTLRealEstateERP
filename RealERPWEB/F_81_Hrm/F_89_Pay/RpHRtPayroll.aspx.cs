@@ -4193,6 +4193,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
         private void PrintPaySlip()
         {
+            
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string Inwords = "";
             string comcod = hst["comcod"].ToString();
@@ -4350,7 +4351,15 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
             }
+            else if(comcod == "3366")
+            {
+                var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipLanco", list, null, null);
 
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            }
             else
             {
                 // All Pay Slip Except Tropical, Peb Steel
