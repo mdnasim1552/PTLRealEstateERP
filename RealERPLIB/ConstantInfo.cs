@@ -430,6 +430,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1203000", "1203081", "F_12_Inv", "RptProjectStock?", "Type=inv", "Materials Stock Information(Inventory)", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203082", "F_12_Inv", "RptProjectStock?", "Type=invWithSpec", "Materials Stock Information(Inventory-Specification)", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203083", "F_12_Inv", "RptIndentIssueStatus", "", "Indent Issue Status", "Inventory", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1203000", "1203084", "F_12_Inv", "RptIndentIssueStatusSummary", "", "Indent Issue Status Summary", "Inventory", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "1203000", "1203090", "F_12_Inv", "RptMatIssueStatus", "", "Materials Issue Status", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203100", "F_12_Inv", "MatTransStatus", "", "Material Transfer Status", "Inventory", "False", "False", "False", "False" }); ;
@@ -1298,8 +1299,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2303000", "2303130", "F_23_CR", "CustChDishoner", "", "List of Return Cheque -01", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2303000", "2303140", "F_22_Sal", "RptTransactionSt?", "Type=TransDateWise", "Daily Collection(Date Wise)", "Credit Realization", "False", "False", "False", "False" });
             //tblObj.Rows.Add(new Object[] { "2303000", "2303141", "RptTransactionSt?", "Type=TransPrjWise", "Daily Collection(Project Wise)", "Credit Realization", "False", "False", "False", "False" });;
-            tblObj.Rows.Add(new Object[] { "2303000", "2303142", "F_22_Sal", "RptTransactionSt?", "Type=TransSummary", "Day Wise Collection Summary", "Credit Realization", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2303000", "2303145", "F_22_Sal", "RptTransactionSt?", "Type=RepChq", "Replacement Cheque Report", "Credit Realization", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2303000", "2303142", "F_22_Sal","RptTransactionSt?", "Type=TransSummary", "Day Wise Collection Summary", "Credit Realization", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2303000", "2303145", "F_22_Sal","RptTransactionSt?", "Type=RepChq", "Replacement Cheque Report", "Credit Realization", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2303000", "2303155", "F_23_CR", "RptReceivedList02?", "Type=DuesCollCR", "Dues Collection Statment 02", "Credit Realization", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2303000", "2303156", "F_23_CR", "RptReceivedList02?", "Type=ProClientst", "Project Wise Clieint Status", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2303000", "2303163", "F_23_CR", "RptSalInterest?", "Type=DueCollAll", "Invoice Print", "Credit Realization", "False", "False", "False", "False" });
@@ -5268,7 +5269,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000000", "	Management Level", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0401000001", "03. Ind. Material Consumtion", "F_12_Inv/RptInvResourceConsum", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000002", "12. Inventory Report All", "F_12_Inv/RptInventoryAll?Type=Report&comcod=&Date1=&Date2=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000003", "13. Ind. Issue Status", "F_12_Inv/RptIndentIssueStatus", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000003", "13. Indent Issue Status", "F_12_Inv/RptIndentIssueStatus", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000004", "14. Indent Issue Status Summary", "F_12_Inv/RptIndentIssueStatusSummary", "", true, "" });
             // mnuTbl1.Rows.Add(new Object[] { "0404000000", "	Other Related Report", "", "", false, "mb" });
 
             mnuTbl1.Rows.Add(new Object[] { "0411000000", "", "", "", true, "" });
@@ -7705,7 +7707,9 @@ namespace RealERPLIB
 
             mnuTbl1.Rows.Add(new Object[] { "0401000000", "Management Level", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0401000001", "06. Day Wise Collection(Project Wise)", "F_22_Sal/RptTransactionSt?Type=TransPrjWise&prjcode=&Date1=&Date2=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000002", "20. Replacement Cheque Report", "F_22_Sal/RptTransactionSt?Type=RepChq&Prjcode=&Date1=&Date2=", "", true, "" });
+
+           // mnuTbl1.Rows.Add(new Object[] { "0301000004", "09. Utility & Other Charges", "F_22_Sal/RptTransactionSt?Type=RectypeWise&prjcode=&Date1=&Date2=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000002", "20. Replacement Cheque Report", "F_22_Sal/RptTransactionSt?Type=RepChq&prjcode=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000003", "21. Yearly Collection Forcasting", "F_23_CR/RptReceivedList02?Type=yCollectionfc&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000004", "22. Customer Dues Information", "F_23_CR/RptCustomerDues?Type=Report&comcod=&prjcode=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000005", "23. Revenue Status", "F_23_CR/RptReceivedList03?Type=AllProDuesCollect", "", true, "" });
@@ -7715,7 +7719,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000008", "26. Dues Report ALL", "F_23_CR/RptDuesReportAll", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000008", "27. Other's Collection History", "F_23_CR/RptOtherCollHistory", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000008", "28. Monthly Probable Collection Report", "F_23_CR/RptMonthlyProbCollection?Type=MonProColl", "", true, "" });
-
+             
 
 
             mnuTbl1.Rows.Add(new Object[] { "0401000009", "27. Project Wise Clieint Status", "F_23_CR/RptReceivedList02?Type=ProClientst&prjcode=", "", true, "" });

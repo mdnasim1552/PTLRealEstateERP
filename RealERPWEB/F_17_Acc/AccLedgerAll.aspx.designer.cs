@@ -321,6 +321,15 @@ namespace RealERPWEB.F_17_Acc
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
 
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
         /// rbtsplist control.
         /// </summary>
         /// <remarks>
@@ -328,15 +337,6 @@ namespace RealERPWEB.F_17_Acc
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList rbtsplist;
-
-        /// <summary>
-        /// chkwithoutopen control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkwithoutopen;
 
         /// <summary>
         /// Checkdaywise control.
@@ -348,22 +348,13 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.CheckBox Checkdaywise;
 
         /// <summary>
-        /// Label4 control.
+        /// chkwithoutopen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-
-        /// <summary>
-        /// TextBox3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.CheckBox chkwithoutopen;
 
         /// <summary>
         /// ibtnFindResSP control.
@@ -463,24 +454,6 @@ namespace RealERPWEB.F_17_Acc
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender4;
-
-        /// <summary>
-        /// lblresoucesp02 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblresoucesp02;
-
-        /// <summary>
-        /// txtressp02 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtressp02;
 
         /// <summary>
         /// lnkbtnRessp02 control.
