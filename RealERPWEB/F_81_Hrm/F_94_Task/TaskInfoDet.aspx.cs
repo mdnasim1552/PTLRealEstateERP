@@ -473,14 +473,14 @@ namespace RealERPWEB.F_81_Hrm.F_94_Task
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string usertype = hst["usrrmrk"].ToString();
 
-                if (usertype != "admin")
-                {
-                    LinkButton lnkedit = (LinkButton)e.Row.FindControl("btnedit");
-                    LinkButton lnkdelete = (LinkButton)e.Row.FindControl("lnkDelete");
-                    lnkedit.Visible = false;
-                    lnkdelete.Visible = false;
+                //if (usertype != "admin")
+                //{
+                //    LinkButton lnkedit = (LinkButton)e.Row.FindControl("btnedit");
+                //    LinkButton lnkdelete = (LinkButton)e.Row.FindControl("lnkDelete");
+                //    lnkedit.Visible = false;
+                //    lnkdelete.Visible = false;
 
-                }
+                //}
                 string fromdate = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ftime")).ToString();
                 string todate = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ttime")).ToString();
                 DateTime cdate = Convert.ToDateTime(fromdate);

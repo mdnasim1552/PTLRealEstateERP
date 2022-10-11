@@ -313,7 +313,7 @@
                                             <ItemTemplate>
                                                 <%--//<asp:LinkButton ID="lnkVieww" runat="server" OnClick="tblAddBatch_Click" CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-eye"></i></asp:LinkButton>--%>
 
-                                                <asp:LinkButton runat="server" ID="tblAddBatch" OnClick="tblAddBatch_Click" ToolTip="batchadd" CssClass="btn  btn-sm pr-2 pl-2"><i class="fas fa-plus"></i> </asp:LinkButton>
+                                                <asp:LinkButton runat="server" ID="tblAddBatch" OnClick="tblAddBatch_Click" ToolTip="batchadd" CssClass="btn  btn-sm pr-2 pl-2"><i class="fas fa-plus-circle"></i> </asp:LinkButton>
                                                 (<asp:Label ID="tblcount" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ttlbatch")) %>'></asp:Label>)
                                                
