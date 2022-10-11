@@ -188,37 +188,37 @@
 
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-lg-3">
                             <div class="form-row" runat="server" id="sysid">
-                                <label for="input04" class="col-md-3  mb-0">System ID:</label>
-                                <div class="col-md-9 ">
+                                <label for="input04" class="col-lg-4  mb-0">System ID:</label>
+                                <div class="col-lg-8 ">
                                     <asp:Label ID="lblsysid" runat="server" CssClass="control-label"> </asp:Label>
                                 </div>
                             </div>
 
                              <div class="form-row">
-                                <label for="input04" class="col-md-3  mb-0">Department</label>
-                                <div class="col-md-9 ">
+                                <label for="input04" class="col-lg-4  mb-0">Department</label>
+                                <div class="col-lg-8 ">
                                     <asp:Label ID="tbldept" runat="server" CssClass="control-label"> </asp:Label>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <label for="input04" class="col-md-3  mb-0">Att. Type</label>
-                                <div class="col-md-9 ">
+                                <label for="input04" class="col-lg-4  mb-0">Att. Type</label>
+                                <div class="col-lg-8 ">
                                     <asp:Label ID="lblattype" runat="server" CssClass="control-label"> </asp:Label>
                                 </div>
                             </div>
 
 
                             <div class="form-row">
-                                <label for="input04" class="col-md-3  mb-0">In Time</label>
-                                <div class="col-md-9 ">
+                                <label for="input04" class="col-lg-4 mb-0">In Time</label>
+                                <div class="col-lg-8 ">
                                     <asp:Label ID="lblIntime" runat="server" CssClass="control-label"> Card</asp:Label>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <label for="input04" class="col-md-3  mb-0">Out Time</label>
-                                <div class="col-md-9 ">
+                                <label for="input04" class="col-lg-4  mb-0">Out Time</label>
+                                <div class="col-lg-8 ">
                                     <asp:Label ID="lblout" runat="server" CssClass="control-label"> Card</asp:Label>
                                 </div>
                             </div>
