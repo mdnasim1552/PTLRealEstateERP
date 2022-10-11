@@ -85,7 +85,8 @@ namespace RealERPWEB.F_38_AI
                 if (ds1 == null)
                     return;
                 DataTable dt = ds1.Tables[0];
-
+                Session["batchproject"] = ds1;
+               
                 this.gv_BatchInfo.DataSource = dt;
                 this.gv_BatchInfo.DataBind();
 
@@ -162,6 +163,9 @@ namespace RealERPWEB.F_38_AI
             if (ds1 == null)
                 return;
             DataTable dt = ds1.Tables[0];
+        
+            string projectname = ds1.Tables[0].Rows[0]["projectname"].ToString();
+            this.lbltitleprjectname.Text = projectname == "" ? "Projects" : projectname;
             string batchname = ds1.Tables[0].Rows[0]["batchname"].ToString();
             this.lblbatchid.Text = batchname;
             this.hiddnbatchID.Value = ds1.Tables[0].Rows[0]["id"].ToString();
@@ -173,7 +177,8 @@ namespace RealERPWEB.F_38_AI
         protected void btntaskadd_Click(object sender, EventArgs e)
         {
            
-            this.task.Attributes.Add("class", " col-md-12");
+           
+            this.task.Visible = true;
 
         }
 
@@ -292,9 +297,9 @@ namespace RealERPWEB.F_38_AI
                     dr1["batchid"] = this.hiddnbatchID.Value.ToString();
                     dr1["empid"] = this.ddlassignmember.SelectedValue.ToString();
                     dr1["empname"] = this.ddlassignmember.SelectedItem.Text;
-                    dr1["valocitycode"] = this.ddlUserRoleType.SelectedItem.Text.Trim();
-                    dr1["annoid"] = this.ddlAnnotationid.SelectedValue.ToString();
-                    dr1["valocitydesc"] = this.ddlvalocitytype.SelectedItem.Text.Trim();
+                    dr1["valocitycode"] = this.ddlUserRoleType.SelectedItem.Value.Trim();
+                    dr1["annoid"] = this.ddlAnnotationid.SelectedItem.Value.ToString();
+                    dr1["valocitydesc"] = this.ddlvalocitytype.SelectedItem.Value.Trim();
                     dr1["valocityqty"] = this.txtquantity.Text.Trim();
                     dr1["workhour"] = this.txtworkhour.Text.Trim();
                     tblt01.Rows.Add(dr1);
@@ -359,7 +364,9 @@ namespace RealERPWEB.F_38_AI
 
         protected void removefield_Click(object sender, EventArgs e)
         {
-            this.task.Attributes.Add("class", "d-none");
+           // this.task.Attributes.Add("class", "d-none");
+            this.task.Visible = false;
+
         }
 
         protected void removeRow_Click(object sender, EventArgs e)
@@ -410,5 +417,81 @@ namespace RealERPWEB.F_38_AI
             }
         }
 
+        protected void btntaskEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;
+                string id = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvjobid")).Text.ToString();
+                this.lbltaskbatchid.Text = id;
+                string titlename = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvtasktitle")).Text.ToString();
+                string empname = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvempname")).Text.ToString();
+                string empid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblempid")).Text.ToString();
+                string roletype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvvelocitytype")).Text.ToString();
+                string anotationid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvannoid")).Text.ToString();
+                string assginqty = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvvelocityqty")).Text.ToString();
+                string workhour = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvwrkhour")).Text.ToString();
+
+                this.txttasktitle.Text = titlename;
+                this.txttasktitle.ReadOnly = true;
+                this.ddlassignmember.SelectedValue = empid;
+                this.ddlUserRoleType.SelectedItem.Value = roletype;
+                this.ddlAnnotationid.SelectedItem.Value = anotationid;              
+                this.txtquantity.Text = assginqty;
+                this.txtworkhour.Text = workhour;
+
+                this.task.Visible = true;
+                this.btnaddrow.Visible = false;
+                this.btntaskSave.Visible = false;
+                this.btntaskUpdate.Visible = true;
+                this.assigntask.Visible = false;
+
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+            }
+            
+
+
+        }
+
+        protected void btntaskUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string comcod = this.GetComdCode();
+               
+                string batchid = Request.QueryString["BatchID"].ToString() == "" ? "" : Request.QueryString["BatchID"].ToString();
+                string jobid = this.lbltaskbatchid.Text;
+                string empname = this.ddlassignmember.SelectedValue.Trim();
+                string valueqty = this.txtquantity.Text;
+                string type = this.ddlvalocitytype.SelectedValue;
+                string worktype = this.txtworkhour.Text;
+                string annodid = this.ddlUserRoleType.SelectedValue.ToString();
+            
+
+                bool result = MktData.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "EDITASSIGNTASK", empname, valueqty, type, worktype, annodid, batchid, jobid);
+                if (!result)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Update Fail..!!');", true);
+                    return;
+                }
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Update Successfully');", true);
+                this.assigntask.Visible = true;
+                this.task.Visible = false;
+                this.GetBatchInfo();
+
+
+            }
+            catch(Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
     }
 }
