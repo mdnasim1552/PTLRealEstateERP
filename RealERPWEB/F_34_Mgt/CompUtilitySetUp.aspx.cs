@@ -30,19 +30,42 @@ namespace RealERPWEB.F_34_Mgt
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = (hst["usrid"].ToString());
             string comcod = this.GetComeCode();
-
+           
             // DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO02", "GETPROJECT", Srchname, "", "", "", "", "", "", "", "");
             DataSet ds2 = purData.GetTransInfo("","SP_UTILITY_ACCESS_PRIVILEGES", "GETCOMPUITILITYSETUP", "", "", "","", "", "", "", "", "");
             if (ds2 == null)
                 return;
             ViewState["tblCOMPUITILITYSETUP"] = ds2.Tables[0];
             DataTable dt = (DataTable)ViewState["tblCOMPUITILITYSETUP"];
-           this.txtIdcard.Text = dt.Rows[0]["HR_IDCARDLEN"].ToString();
-           this.txtstrtdat.Text = dt.Rows[0]["HR_ATTSTART_DAT"].ToString();
-           this.chkCRMddata.Checked =  Convert.ToBoolean(dt.Rows[0]["CRM_BACKDATAIN"].ToString());
-           this.chkBag.Checked =  Convert.ToBoolean(dt.Rows[0]["LANG_BANG"].ToString());
-           this.chkPay.Checked =  Convert.ToBoolean(dt.Rows[0]["ISVISIBILEPAYSLIP"].ToString());
-           this.chkLvapp.Checked =  Convert.ToBoolean(dt.Rows[0]["LVAPP_SUPERVISOR"].ToString());
+            if (ASTUtility.Right(userid, 3) == "001")
+            {
+                divBody.Visible = true;
+
+                this.txtIdcard.Text = dt.Rows[0]["HR_IDCARDLEN"].ToString();
+                this.txtstrtdat.Text = dt.Rows[0]["HR_ATTSTART_DAT"].ToString();
+                this.chkCRMddata.Checked = Convert.ToBoolean(dt.Rows[0]["CRM_BACKDATAIN"].ToString());
+                this.chkBag.Checked = Convert.ToBoolean(dt.Rows[0]["LANG_BANG"].ToString());
+                this.chkPay.Checked = Convert.ToBoolean(dt.Rows[0]["ISVISIBILEPAYSLIP"].ToString());
+                this.chkLvapp.Checked = Convert.ToBoolean(dt.Rows[0]["LVAPP_SUPERVISOR"].ToString());
+            }
+          else if (ASTUtility.Right(userid, 3) == "011" && comcod=="3365")// this code only shiful
+            {
+                divBody.Visible = true;
+
+                this.txtIdcard.Text = dt.Rows[0]["HR_IDCARDLEN"].ToString();
+                this.txtstrtdat.Text = dt.Rows[0]["HR_ATTSTART_DAT"].ToString();
+                this.chkCRMddata.Visible = false;
+                this.chkBag.Visible = false;
+                this.chkLvapp.Visible = false;
+               
+                this.chkPay.Checked = Convert.ToBoolean(dt.Rows[0]["ISVISIBILEPAYSLIP"].ToString());
+                
+            }
+            else
+            {
+                divBody.Visible = false;
+            }
+               
 
 
 

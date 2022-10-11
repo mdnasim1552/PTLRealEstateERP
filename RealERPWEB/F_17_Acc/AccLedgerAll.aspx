@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="AccLedgerAll.aspx.cs" Inherits="RealERPWEB.F_17_Acc.AccLedgerAll" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="AccLedgerAll.aspx.cs" Inherits="RealERPWEB.F_17_Acc.AccLedgerAll" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -6,30 +6,63 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
+    <style type="text/css">
+        .modalcss {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            overflow: scroll;
+        }
+
+        .multiselect {
+            width: 233px !important;
+            text-wrap: initial !important;
+            height: 27px !important;
+        }
+
+        .multiselect-text {
+            width: 200px !important;
+        }
+
+        .multiselect-container {
+            height: 250px !important;
+            width: 250px !important;
+            overflow-y: scroll !important;
+        }
+
+        span.multiselect-selected-text {
+            width: 200px !important;
+        }
+
+        .rbtnledger tbody tr td {
+            margin: 0 5px;
+        }
+
+            .rbtnledger tbody tr td input[type=checkbox], .rbtnledger tbody tr td input[type=radio] {
+                box-sizing: border-box;
+                padding: 0;
+                margin: 0 0 0 12px;
+            }
+
+            .rbtnledger tbody tr td label {
+                margin: 0 0 0 5px;
+            }
+    </style>
 
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-
         });
         function pageLoaded() {
-
             $("input, select").bind("keydown", function (event) {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
             });
-
             $('.chzn-select').chosen({ search_contains: true });
-
-
         }
-
     </script>
-
-
-
-
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -49,161 +82,106 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
-
+            <div class="card-fluid">
+                <div class="card-header">
                     <div class="row">
-                        <div class="form-group" style="margin-bottom: 15px;">
-                            <div class="col-md-5 col-md-offset-1">
+                        <div class="col-md-5 col-md-offset-1">
+                            <asp:Label ID="Label6" runat="server" CssClass="smLbl_to" Text="Ledger Type : "></asp:Label>
 
-                                <asp:RadioButtonList ID="rbtnLedger" runat="server" CssClass="rbtnList1" AutoPostBack="true" OnSelectedIndexChanged="rbtnLedger_SelectedIndexChanged"
-                                    RepeatColumns="10"
-                                    RepeatDirection="Horizontal" Style="text-align: left" Width="500px">
-                                    <asp:ListItem Value="Ledger">Ledger</asp:ListItem>
-                                    <asp:ListItem Value="SubLedger">Subsidiary Ledger</asp:ListItem>
-                                    <asp:ListItem Value="DetailLedger">Special Ledger</asp:ListItem>
-                                    <asp:ListItem Value="DetailLedger02">Special Ledger(02)</asp:ListItem>
-
-                                </asp:RadioButtonList>
-
-                            </div>
-
-
-
-
-                            <div class="col-md-3 padding5px">
-                                <asp:Label ID="Label3" runat="server" CssClass="smLbl_to" Text="Page Size"></asp:Label>
-
-                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control inputTxt" Width="70px"
-                                    Visible="true" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
-                                    <asp:ListItem>10</asp:ListItem>
-                                    <asp:ListItem>15</asp:ListItem>
-                                    <asp:ListItem>20</asp:ListItem>
-                                    <asp:ListItem>30</asp:ListItem>
-                                    <asp:ListItem>50</asp:ListItem>
-                                    <asp:ListItem>100</asp:ListItem>
-                                    <asp:ListItem>150</asp:ListItem>
-                                    <asp:ListItem>200</asp:ListItem>
-                                    <asp:ListItem>300</asp:ListItem>
-                                    <asp:ListItem Selected="True">600</asp:ListItem>
-                                    <asp:ListItem>900</asp:ListItem>
-                                    <asp:ListItem>1200</asp:ListItem>
-                                    <asp:ListItem>1500</asp:ListItem>
-                                    <asp:ListItem>3000</asp:ListItem>
-                                    <asp:ListItem>5000</asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
-                            <div class="clearfix"></div>
+                            <asp:RadioButtonList ID="rbtnLedger" runat="server" CssClass="form-control rbtnledger" AutoPostBack="true" OnSelectedIndexChanged="rbtnLedger_SelectedIndexChanged"
+                                RepeatColumns="10" RepeatDirection="Horizontal" Style="text-align: left;">
+                                <asp:ListItem Value="Ledger">Ledger</asp:ListItem>
+                                <asp:ListItem Value="SubLedger">Subsidiary Ledger</asp:ListItem>
+                                <asp:ListItem Value="DetailLedger">Special Ledger</asp:ListItem>
+                                <asp:ListItem Value="DetailLedger02">Special Ledger(02)</asp:ListItem>
+                            </asp:RadioButtonList>
                         </div>
-
+                        <div class="col-md-1 padding5px">
+                            <asp:Label ID="Label3" runat="server" CssClass="smLbl_to" Text="Page Size"></asp:Label>
+                            <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control inputTxt"
+                                Visible="true" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                <asp:ListItem>10</asp:ListItem>
+                                <asp:ListItem>15</asp:ListItem>
+                                <asp:ListItem>20</asp:ListItem>
+                                <asp:ListItem>30</asp:ListItem>
+                                <asp:ListItem>50</asp:ListItem>
+                                <asp:ListItem>100</asp:ListItem>
+                                <asp:ListItem>150</asp:ListItem>
+                                <asp:ListItem>200</asp:ListItem>
+                                <asp:ListItem>300</asp:ListItem>
+                                <asp:ListItem Selected="True">600</asp:ListItem>
+                                <asp:ListItem>900</asp:ListItem>
+                                <asp:ListItem>1200</asp:ListItem>
+                                <asp:ListItem>1500</asp:ListItem>
+                                <asp:ListItem>3000</asp:ListItem>
+                                <asp:ListItem>5000</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
                     </div>
+                </div>
+            </div>
+            <div class="card-fluid">
+                <div class="card-header">
                     <asp:MultiView ID="MultiView1" runat="server">
                         <asp:View ID="viewLedger" runat="server">
                             <div class="row">
-                                <fieldset class="scheduler-border fieldset_A">
+                                <div class="col-md-2">
+                                    <asp:Label ID="lblDate" runat="server" CssClass="lblTxt lblName" Text="Form"></asp:Label>
+                                    <asp:TextBox ID="txtDateFrom" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <cc1:CalendarExtender ID="txtDateFrom_CalendarExtender" runat="server"
+                                        Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtDateFrom"></cc1:CalendarExtender>
+                                </div>
+                                <div class="col-md-2">
+                                    <asp:Label ID="lblDateto" runat="server" CssClass="lblTxt lblName" Text="To"></asp:Label>
+                                    <asp:TextBox ID="txtDateto" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <cc1:CalendarExtender ID="txtDateto_CalendarExtender" runat="server"
+                                        Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtDateto"></cc1:CalendarExtender>
 
-                                    <div class="form-group">
-                                        <div class="col-md-3 pading5px">
-                                            <asp:Label ID="lblDate" runat="server" CssClass="lblTxt lblName" Text="Date"></asp:Label>
-                                            <asp:TextBox ID="txtDateFrom" runat="server" CssClass="inputtextbox"></asp:TextBox>
-                                            <cc1:CalendarExtender ID="txtDateFrom_CalendarExtender" runat="server"
-                                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtDateFrom"></cc1:CalendarExtender>
-
-
-                                            <asp:Label ID="lblDateto" runat="server" CssClass="smLbl_to" Text="To"></asp:Label>
-                                            <asp:TextBox ID="txtDateto" runat="server" CssClass="inputtextbox"></asp:TextBox>
-                                            <cc1:CalendarExtender ID="txtDateto_CalendarExtender" runat="server"
-                                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtDateto"></cc1:CalendarExtender>
-
-
-                                        </div>
-                                        <div class="col-md-3  pading5px ">
-                                            <asp:RadioButtonList ID="rbtnList1" runat="server" BackColor="#155273" ForeColor="White" CssClass="btn btn-primary checkBox"
-                                                RepeatColumns="6" RepeatDirection="Horizontal">
-                                                <asp:ListItem>With Narration</asp:ListItem>
-                                                <asp:ListItem>Without Narration</asp:ListItem>
-                                            </asp:RadioButtonList>
-                                        </div>
-
-                                        <div class="col-md-3 pading5px asitCol3">
-
-
-                                            <asp:CheckBox ID="chksum" runat="server" CssClass="checkBox" Text="Sum" />
-                                            <asp:CheckBox ID="chkwitoutopn" runat="server" CssClass="checkBox" Text="Witout Opening" />
-
-
-
-
-
-                                        </div>
-                                        <div class="col-md-3 pading5px pull-right">
-                                            <div class="msgHandSt">
-                                                <asp:Label ID="lblmsg" CssClass="btn-danger btn disabled" runat="server" Visible="false"></asp:Label>
-                                            </div>
-
-
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-3 pading5px asitCol3">
-                                            <asp:Label ID="lblcontrolAccHead" runat="server" CssClass="lblTxt lblName" Text="Get Acc. Heads"></asp:Label>
-                                            <asp:TextBox ID="txtAccSearch" runat="server" AutoCompleteType="Disabled" CssClass="inputtextbox"></asp:TextBox>
-                                            <div class="colMdbtn">
-                                                <asp:LinkButton ID="IbtnSearchAcc" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="IbtnSearchAcc_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-
-                                        <div class="col-md-4 pading5px ">
-                                            <asp:DropDownList ID="ddlConAccHead" runat="server" CssClass="form-control inputTxt chzn-select" OnSelectedIndexChanged="ddlConAccHead_SelectedIndexChanged" AutoPostBack="true">
-                                            </asp:DropDownList>
-
-                                        </div>
-                                        <div class="col-md-3 pading5px asitCol3">
-                                            <div class="colMdbtn pading5px">
-                                                <asp:LinkButton ID="lnkShowLedger" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lnkShowLedger_Click">Show</asp:LinkButton>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="form-group">
-                                    </div>
-                                </fieldset>
+                                </div>
+                                <div class="col-md-2">
+                                    <asp:Label ID="Label7" runat="server" CssClass="lblTxt lblName" Text="Narration Type"></asp:Label>
+                                    <asp:RadioButtonList ID="rbtnList1" runat="server" BackColor="#155273" ForeColor="White" CssClass="form-control rbtnledger"
+                                        RepeatColumns="2" RepeatDirection="Horizontal" Style="text-align: left;">
+                                        <asp:ListItem>With </asp:ListItem>
+                                        <asp:ListItem>Without</asp:ListItem>
+                                    </asp:RadioButtonList>
+                                </div>
+                                <div class="col-md-1">
+                                    <asp:CheckBox ID="chksum" runat="server" CssClass="form-control checkBox" Text="Sum" Style="margin-top: 21px" />
+                                </div>
+                                <div class="col-md-2">
+                                    <asp:CheckBox ID="chkwitoutopn" runat="server" CssClass="form-control checkBox" Text="Witout Opening" Style="margin-top: 21px" />
+                                </div>
                             </div>
                             <div class="row">
-                                <asp:Panel ID="Panel1" runat="server" Visible="false">
-                                    <fieldset class="scheduler-border fieldset_A">
-                                        <div class="form-group">
-                                            <div class="col-md-3 pading5px asitCol3">
-                                                <asp:Label ID="lblcontrolAccResCode" runat="server" CssClass="lblTxt lblName" Text="Get Resource Heads"></asp:Label>
-                                                <asp:TextBox ID="txtSrchRes" runat="server" AutoCompleteType="Disabled" CssClass="inputtextbox"></asp:TextBox>
-                                                <div class="colMdbtn">
-                                                    <asp:LinkButton ID="ibtnFindRes" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ibtnFindRes_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4 pading5px ">
-                                                <asp:DropDownList ID="ddlConAccResHead" runat="server" CssClass="form-control inputTxt  chzn-select">
+                                <div class="col-md-2">
+                                    <asp:Label ID="Label8" runat="server" CssClass="lblTxt lblName" Text="Accounts Head"></asp:Label>
+                                    <asp:DropDownList ID="ddlConAccHead" runat="server" CssClass="form-control inputTxt chzn-select" OnSelectedIndexChanged="ddlConAccHead_SelectedIndexChanged" AutoPostBack="true">
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-md-1">
+                                    <asp:LinkButton ID="lnkShowLedger" runat="server" CssClass="btn btn-primary btn-sm" OnClick="lnkShowLedger_Click" Style="margin-top: 22px">Show</asp:LinkButton>
+                                </div>
+                                <div class="col-md-4">
+                                    <asp:Panel ID="Panel1" runat="server" Visible="false">
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <label for="ddlLvType" class="d-block">
+                                                    Resource Head :  
+                                    <asp:LinkButton ID="ibtnFindRes" runat="server" OnClick="ibtnFindRes_Click">  <i class="fa fa-search"> </i> </asp:LinkButton>
+                                                </label>
+                                                <asp:DropDownList ID="ddlConAccResHead" runat="server" CssClass="form-control inputTxt chzn-select">
                                                 </asp:DropDownList>
-                                                <cc1:ListSearchExtender ID="ddlConAccResHead_ListSearchExtender" runat="server"
-                                                    QueryPattern="Contains" TargetControlID="ddlConAccResHead">
+                                                <cc1:ListSearchExtender ID="ddlConAccResHead_ListSearchExtender" runat="server" QueryPattern="Contains" TargetControlID="ddlConAccResHead">
                                                 </cc1:ListSearchExtender>
-
                                             </div>
-
-
-
-                                            <div class="col-md-3 pading5px asitCol3">
+                                            <div class="col-md-3" style="margin-top: 26px">
                                                 <asp:CheckBox ID="chkqty" runat="server" CssClass="checkBox" Text="With qty" />
                                             </div>
-
                                         </div>
-                                    </fieldset>
 
-
-                                </asp:Panel>
+                                    </asp:Panel>
+                                </div>
 
                             </div>
                             <div class="table-responsive row">
@@ -377,92 +355,65 @@
                         </asp:View>
 
                         <asp:View ID="viewSpLedger" runat="server">
-
-                            <fieldset class="scheduler-border fieldset_A">
-
-                                <div class="form-horizontal">
-
-
-
-                                    <div class="form-group">
-                                        <div class="col-md-11 pading5px">
-                                            <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName" Text="From"></asp:Label>
-                                            <asp:TextBox ID="txtDateFromSp" runat="server" AutoCompleteType="Disabled" CssClass="inputtextbox"></asp:TextBox>
-                                            <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
-                                                Format="dd-MMM-yyyy" TargetControlID="txtDateFromSp" Enabled="true"></cc1:CalendarExtender>
-
-
-                                            <asp:Label ID="lbltoDate" runat="server" CssClass="smLbl_to" Text="To"></asp:Label>
-                                            <asp:TextBox ID="txtDatetoSp" runat="server" AutoCompleteType="Disabled" CssClass="inputtextbox" ToolTip="(dd-MMM-yyyy)"></asp:TextBox>
-                                            <cc1:CalendarExtender ID="CalendarExtender2" runat="server"
-                                                Format="dd-MMM-yyyy" TargetControlID="txtDatetoSp" Enabled="true"></cc1:CalendarExtender>
-
-                                            <div class="col-md-3  pading5px ">
-                                                <asp:RadioButtonList ID="rbtsplist" runat="server" BackColor="#155273" ForeColor="White" CssClass="btn btn-primary checkBox"
-                                                    RepeatColumns="6" RepeatDirection="Horizontal">
-                                                    <asp:ListItem Selected="True">With Narration</asp:ListItem>
-                                                    <asp:ListItem>Without Narration</asp:ListItem>
-                                                </asp:RadioButtonList>
-                                            </div>
-                                            <div class="col-md-3  pading5px ">
-                                                <asp:CheckBox ID="chkwithoutopen" runat="server" CssClass="checkBox" Text="Witout Opening" />
-
-                                                <asp:CheckBox ID="Checkdaywise" runat="server" Text="  Day Wise" />
-                                            </div>
-
-                                        </div>
-
-
-
-
-
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-3 pading5px asitCol3">
-                                            <asp:Label ID="Label2" runat="server" CssClass="lblTxt lblName" Text="Resource Heads"></asp:Label>
-                                            <asp:TextBox ID="TextBox3" runat="server" CssClass=" inputtextbox"></asp:TextBox>
-
-
-                                            <div class="colMdbtn">
-                                                <asp:LinkButton ID="ibtnFindResSP" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ibtnFindResSP_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-md-4 pading5px  asitCol4">
-                                            <asp:DropDownList ID="ddlRescode" runat="server" CssClass="form-control inputTxt chzn-select " Width="350px">
-                                            </asp:DropDownList>
-
-                                        </div>
-
-                                        <div class="col-md-1">
-
-                                            <div class="colMdbtn">
-                                                <asp:LinkButton ID="lnkShowSPLedger" runat="server" CssClass="btn btn-primary okBtn" OnClick="lnkShowSPLedger_Click">Ok</asp:LinkButton>
-
-                                            </div>
-
-
-
-                                        </div>
-
-                                        <%--  <div class="col-md-3">
-                                            <asp:Label ID="lblPage" runat="server" CssClass="smLbl_to" Text="Page Size"></asp:Label>
-                        
-                                            <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control inputTxt" Width="70px"
-                                                Visible="true" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
-                                                <asp:ListItem>10</asp:ListItem>
-                                                <asp:ListItem>15</asp:ListItem>
-                                                <asp:ListItem>20</asp:ListItem>
-                                                <asp:ListItem>30</asp:ListItem>
-                                                <asp:ListItem>50</asp:ListItem>
-                                              
-                                            </asp:DropDownList>
-                                        </div>--%>
-                                    </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <asp:Label ID="Label2" runat="server" CssClass="lblTxt lblName" Text="From"></asp:Label>
+                                    <asp:TextBox ID="txtDateFromSp" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
+                                    <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
+                                        Format="dd-MMM-yyyy" TargetControlID="txtDateFromSp" Enabled="true"></cc1:CalendarExtender>
                                 </div>
-                            </fieldset>
+                                <div class="col-md-2">
+                                    <asp:Label ID="lbltoDate" runat="server" CssClass="smLbl_to" Text="To"></asp:Label>
+                                    <asp:TextBox ID="txtDatetoSp" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
+                                    <cc1:CalendarExtender ID="CalendarExtender2" runat="server"
+                                        Format="dd-MMM-yyyy" TargetControlID="txtDatetoSp" Enabled="true"></cc1:CalendarExtender>
+                                </div>
+                                <div class="col-md-2">
+                                    <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName" Text="Narration Type"></asp:Label>
+                                    <asp:RadioButtonList ID="rbtsplist" runat="server" BackColor="#155273" ForeColor="White" CssClass="form-control rbtnledger"
+                                        RepeatColumns="2" RepeatDirection="Horizontal" Style="text-align: left;">
+                                        <asp:ListItem Selected="True">With </asp:ListItem>
+                                        <asp:ListItem>Without</asp:ListItem>
+                                    </asp:RadioButtonList>
+
+                                </div>
+                                <div class="col-md-1">
+                                    <asp:CheckBox ID="Checkdaywise" runat="server" CssClass="form-control checkBox" Text="Day Wise" Style="margin-top: 21px" />
+                                </div>
+                                <div class="col-md-2">
+                                    <asp:CheckBox ID="chkwithoutopen" runat="server" CssClass="form-control checkBox" Text="Witout Opening" Style="margin-top: 21px" />
+                                </div>
+                                <%--<div class="form-group">
+                                    <div class="col-md-3 pading5px asitCol3">
+                                        <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName" Text="Resource Heads"></asp:Label>
+                                        <asp:TextBox ID="TextBox3" runat="server" CssClass=" inputtextbox"></asp:TextBox>
+                                        <div class="colMdbtn">
+                                            <asp:LinkButton ID="" runat="server" CssClass="btn btn-primary srearchBtn" OnClick=""><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 pading5px  asitCol4">
+                                        <asp:DropDownList ID="" runat="server" CssClass="form-control inputTxt chzn-select " Width="350px">
+                                        </asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="colMdbtn">
+                                        </div>
+                                    </div>
+                                </div>--%>
+                            </div>
+                            <div class="row" style="margin-top: 5px;">
+                                <div class="col-md-2">
+                                    <label for="Label5" class="d-block">
+                                        Resource Head :  
+                                    <asp:LinkButton ID="ibtnFindResSP" runat="server" OnClick="ibtnFindResSP_Click">  <i class="fa fa-search"> </i> </asp:LinkButton>
+                                    </label>
+                                    <asp:DropDownList ID="ddlRescode" runat="server" CssClass="form-control inputTxt chzn-select">
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-md-1" style="margin-top: 28px">
+                                    <asp:LinkButton ID="lnkShowSPLedger" runat="server" CssClass="btn btn-primary btn-sm" OnClick="lnkShowSPLedger_Click">Ok</asp:LinkButton>
+                                </div>
+                            </div>
 
 
 
@@ -648,70 +599,33 @@
                         </asp:View>
 
                         <asp:View ID="SpecialLedger02" runat="server">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <asp:Label ID="lblfrmsp02" runat="server" CssClass="lblTxt lblName" Text="From"></asp:Label>
+                                    <asp:TextBox ID="txtdatefrmsp02" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
+                                    <cc1:CalendarExtender ID="CalendarExtender3" runat="server"
+                                        Format="dd-MMM-yyyy" TargetControlID="txtdatefrmsp02" Enabled="true"></cc1:CalendarExtender>
 
-                            <fieldset class="scheduler-border fieldset_A">
-
-                                <div class="form-horizontal">
-
-
-
-                                    <div class="form-group">
-                                        <div class="col-md-11 pading5px">
-                                            <asp:Label ID="lblfrmsp02" runat="server" CssClass="lblTxt lblName" Text="From"></asp:Label>
-                                            <asp:TextBox ID="txtdatefrmsp02" runat="server" AutoCompleteType="Disabled" CssClass="inputtextbox"></asp:TextBox>
-                                            <cc1:CalendarExtender ID="CalendarExtender3" runat="server"
-                                                Format="dd-MMM-yyyy" TargetControlID="txtdatefrmsp02" Enabled="true"></cc1:CalendarExtender>
-
-
-                                            <asp:Label ID="lbltosp02" runat="server" CssClass="smLbl_to" Text="To"></asp:Label>
-                                            <asp:TextBox ID="txtDatetosp02" runat="server" AutoCompleteType="Disabled" CssClass="inputtextbox" ToolTip="(dd-MMM-yyyy)"></asp:TextBox>
-                                            <cc1:CalendarExtender ID="CalendarExtender4" runat="server"
-                                                Format="dd-MMM-yyyy" TargetControlID="txtDatetoSp" Enabled="true"></cc1:CalendarExtender>
-
-
-
-                                        </div>
-
-
-
-
-
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-3 pading5px asitCol3">
-                                            <asp:Label ID="lblresoucesp02" runat="server" CssClass="lblTxt lblName" Text="Resource Heads"></asp:Label>
-                                            <asp:TextBox ID="txtressp02" runat="server" CssClass=" inputtextbox"></asp:TextBox>
-
-
-                                            <div class="colMdbtn">
-                                                <asp:LinkButton ID="lnkbtnRessp02" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="lnkbtnRessp02_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-md-4 pading5px  asitCol4">
-                                            <asp:DropDownList ID="ddlResoucesp02" runat="server" CssClass="form-control inputTxt chzn-select " Width="350px">
-                                            </asp:DropDownList>
-
-                                        </div>
-
-                                        <div class="col-md-1">
-
-                                            <div class="colMdbtn">
-                                                <asp:LinkButton ID="lnkShowsp02" runat="server" CssClass="btn btn-primary okBtn" OnClick="lnkShowsp02_Click">Ok</asp:LinkButton>
-
-                                            </div>
-
-
-
-                                        </div>
-
-                                    </div>
                                 </div>
-                            </fieldset>
+                                <div class="col-md-2">
+                                    <asp:Label ID="lbltosp02" runat="server" CssClass="smLbl_to" Text="To"></asp:Label>
+                                    <asp:TextBox ID="txtDatetosp02" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
+                                    <cc1:CalendarExtender ID="CalendarExtender4" runat="server"
+                                        Format="dd-MMM-yyyy" TargetControlID="txtDatetosp02" Enabled="true"></cc1:CalendarExtender>
+                                </div>
 
-
+                                <div class="col-md-2">
+                                    <label for="Label5" class="d-block">
+                                        Resource Head :  
+                                    <asp:LinkButton ID="lnkbtnRessp02" runat="server" OnClick="lnkbtnRessp02_Click">  <i class="fa fa-search"> </i> </asp:LinkButton>
+                                    </label>
+                                    <asp:DropDownList ID="ddlResoucesp02" runat="server" CssClass="form-control inputTxt chzn-select">
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-md-1" style="margin-top: 28px">
+                                    <asp:LinkButton ID="lnkShowsp02" runat="server" CssClass="btn btn-primary btn-sm" OnClick="lnkShowsp02_Click">Ok</asp:LinkButton>
+                                </div>
+                            </div>
 
                             <div class="table table-responsive">
                                 <asp:GridView ID="gvspleder02" runat="server" AutoGenerateColumns="False"
@@ -731,7 +645,7 @@
                                         <asp:TemplateField HeaderText="Vou.Date">
                                             <ItemTemplate>
                                                 <asp:Label ID="Labelsp02" runat="server" CssClass="GridLebelL"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "voudat1")) %>' Width="65px"></asp:Label>
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "voudat1")) %>' Width="75px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
@@ -881,6 +795,8 @@
 
                         </asp:View>
                     </asp:MultiView>
+
+
                 </div>
             </div>
 

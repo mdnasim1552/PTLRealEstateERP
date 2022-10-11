@@ -486,6 +486,12 @@
                                                     </ItemTemplate>
                                                     <ItemStyle HorizontalAlign="Center" />
                                                 </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Return <br> QTY">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvReturnqty" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "penddingqty")).ToString("#,##0;(#,##0); ") %>' Width="50px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Action">
                                                     <ItemTemplate>
                                                         <asp:LinkButton ID="removeRow" runat="server"
