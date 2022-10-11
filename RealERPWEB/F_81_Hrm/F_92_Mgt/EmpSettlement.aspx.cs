@@ -212,30 +212,68 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                         ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = false;
                         ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = false;
+                        ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lblcalculation")).Visible = true;
                         break;
                     case "35108":
                         ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txtfrmdat")).Visible = true;
                         ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txttodat")).Visible = true;
                         ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = false;
                         ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = false;
+                        ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lblcalculation")).Visible = true;
+
                         break;
                     case "35110":
                         ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txtfrmdat")).Visible = true;
                         ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txttodat")).Visible = true;
                         ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = false;
                         ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = false;
+                        ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lblcalculation")).Visible = true;
+
                         break;
+                    case "35106":
+                        ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txtfrmdat")).Visible = true;
+                        ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txttodat")).Visible = true;
+                        ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = false;
+                        ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = false;
+                        ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lblcalculation")).Visible = true;
+
+                        break;
+
                     default:
                         ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txtfrmdat")).Visible = false;
                         ((TextBox)this.gvsettlemntcredit.Rows[i].FindControl("txttodat")).Visible = false;
                         ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lblfrmdat")).Visible = true;
                         ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lbltodat")).Visible = true;
+                    //    ((Label)this.gvsettlemntcredit.Rows[i].FindControl("lblcalculation")).Visible = false;
+
                         break;
 
                 }
                 i++;
             }
 
+
+            int j = 0;
+            foreach (var item in deductioncount)
+            {
+                string gcod = item.hrgcod;
+                switch (gcod)
+                {
+
+      
+ 
+                    default:
+                        ((TextBox)this.gvsttlededuct.Rows[j].FindControl("txtfrmdat")).Visible = false;
+                        ((TextBox)this.gvsttlededuct.Rows[j].FindControl("txttodat")).Visible = false;
+                        ((Label)this.gvsttlededuct.Rows[j].FindControl("lblfrmdat")).Visible = true;
+                        ((Label)this.gvsttlededuct.Rows[j].FindControl("lbltodat")).Visible = true;
+                        //((Label)this.gvsttlededuct.Rows[j].FindControl("lblcalculation")).Visible = false;
+
+                        break;
+
+                }
+                j++;
+            }
 
         }
 
@@ -258,6 +296,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 double ttlamt = Convert.ToDouble("0" + ((TextBox)gvsettlemntcredit.Rows[i].FindControl("TtlAmout")).Text.Trim());
                 double numofday =Convert.ToDouble("0"+ ((TextBox)gvsettlemntcredit.Rows[i].FindControl("lblnmday")).Text.Trim());
                 //var index = sttlmntinfo1.FindIndex(p => p.hrgcod == hrgcod);
+                int ttlday = 30;
+                double years = 0.0;
+                double days = 0.00;
 
                 sttlmntinfo1[i].amount = gross;
                 sttlmntinfo1[i].numofday = numofday;
@@ -266,18 +307,46 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 sttlmntinfo1[i].frmdat = frmdat;
                 sttlmntinfo1[i].todat = todat;
 
+                if(hrgcod == "35101" || hrgcod == "35108" || hrgcod == "35110" || hrgcod== "35106")
+                {
+                     ttlday = System.DateTime.DaysInMonth(Convert.ToInt32(Convert.ToDateTime(frmdat).ToString("yyyy")), Convert.ToInt32(Convert.ToDateTime(frmdat).ToString("MM")));
+
+                    var prevDate = Convert.ToDateTime(frmdat);
+                    var today = Convert.ToDateTime(todat);
+                    var diffOfDates = today.Subtract(prevDate);
+                    days = Convert.ToDouble(diffOfDates.Days);
+                    years = Convert.ToDouble(diffOfDates.Days) / 365;
+                    numofday = days;
+                }
+
                 switch (hrgcod)
                 {
-                    case "35101"://salary 36,513/30*23	
-                        sttlmntinfo1[i].ttlamt = (gross / 30) * numofday;
-          
+                    case "35101"://salary 
+                        sttlmntinfo1[i].numofday = Convert.ToDouble("0" + days.ToString("0.##"));
+                        sttlmntinfo1[i].ttlamt = (gross / ttlday) * numofday;
+
                         break;
 
-                    case "35108"://earn leave 36,513 * 12 / 365 * 0
+                    case "35108"://earn leave 
+                        sttlmntinfo1[i].numofday = Convert.ToDouble("0" + days.ToString("0.##"));
                         sttlmntinfo1[i].ttlamt = gross * 12 / 365 * numofday;
-                 
+                     
                         break;
-  
+
+                    case "35110": //Gratuity
+                        sttlmntinfo1[i].numofday = Convert.ToDouble("0" + years.ToString("0.##"));
+                        break;
+
+        
+                    case "35114"://Fooding Allowance
+                        sttlmntinfo1[i].numofday = Convert.ToDouble("0" + days.ToString("0.##"));
+                        sttlmntinfo1[i].ttlamt = (gross / ttlday) * numofday;
+                        break;
+
+                    case "35106"://Notice Salary
+                       
+                        sttlmntinfo1[i].ttlamt = gross * 12 / 365 * numofday;
+                        break;
 
                 }
 
@@ -294,6 +363,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 double gross = Convert.ToDouble("0" + ((TextBox)gvsttlededuct.Rows[i].FindControl("txtgross")).Text.Trim());
                 double ttlamt = Convert.ToDouble("0" + ((TextBox)gvsttlededuct.Rows[i].FindControl("TtlAmout")).Text.Trim());
                 double numofday = Convert.ToDouble("0" + ((TextBox)gvsttlededuct.Rows[i].FindControl("lblnmday")).Text.Trim());
+                double years = 0.0;
+                double days = 0.00;
+                int ttlday = 30;
+
                 //var index2 = sttlmntinfo2.FindIndex(p => p.hrgcod == hrgcod);
                 sttlmntinfo2[i].amount = gross;
                 sttlmntinfo2[i].numofday = numofday;
@@ -302,12 +375,24 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 sttlmntinfo2[i].frmdat = frmdat;
                 sttlmntinfo2[i].todat = todat;
 
+                //if (hrgcod == "35201")
+                //{
+                //     ttlday = System.DateTime.DaysInMonth(Convert.ToInt32(Convert.ToDateTime(frmdat).ToString("yyyy")), Convert.ToInt32(Convert.ToDateTime(frmdat).ToString("MM")));
+
+                //    var prevDate = Convert.ToDateTime(frmdat);
+                //    var today = Convert.ToDateTime(todat);
+                //    var diffOfDates = today.Subtract(prevDate);
+                //    days = Convert.ToDouble(diffOfDates.Days);
+                //    years = Convert.ToDouble(diffOfDates.Days) / 365;
+                //    numofday = days;
+                //}
+
 
 
                 switch (hrgcod)
                 {
                     case "35206"://absent
-                        sttlmntinfo2[i].ttlamt = (gross / 30) * numofday;
+                        sttlmntinfo2[i].ttlamt = (gross / ttlday) * numofday;
       
                         break;
 
@@ -321,6 +406,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                         break;
                     case "35228"://el leave
                         sttlmntinfo2[i].ttlamt = gross * 12 / 365 * numofday;
+                        break;
+
+                    case "35201"://Notice Period Salary
+                        sttlmntinfo2[i].ttlamt = gross;
+                        break;
+
+
+                    case "35216"://Transport Facilities
+                        sttlmntinfo2[i].ttlamt = (gross / ttlday) * numofday;
                         break;
 
                 }
@@ -638,7 +732,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string hrgcod = ((Label)this.gvsettlemntcredit.Rows[index].FindControl("lblhrgcod")).Text.ToString();
             string calculation = ((Label)this.gvsettlemntcredit.Rows[index].FindControl("lblcalculation")).Text.ToString().Trim() ?? "";
             int seq = Convert.ToInt32(((Label)this.gvsettlemntcredit.Rows[index].FindControl("lblseq")).Text.ToString().Trim() ?? "99");
-            string curdate = System.DateTime.Now.ToString("dd-MM-yyyy");
+            string curdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
 
             string frmdat = "";
             string todat = "";
@@ -648,7 +742,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             double ttlamt = 0.00;
             double perday = 0.00;
 
-            if (hrgcod== "35101" || hrgcod== "35108" || hrgcod == "35110")
+            if (hrgcod== "35101" || hrgcod== "35108" || hrgcod == "35110" || hrgcod== "35106")
             {
                 frmdat = curdate;
                 todat = curdate;
@@ -724,7 +818,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string calculation = ((Label)this.gvsttlededuct.Rows[index].FindControl("lblcalculation")).Text.ToString().Trim() ?? "";
             int seq = Convert.ToInt32(((Label)this.gvsttlededuct.Rows[index].FindControl("lblseq")).Text.ToString().Trim() ?? "99");
 
-            string curdate = System.DateTime.Now.ToString("dd-MM-yyyy");
+            string curdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
             string frmdat = "";
             string todat = "";
             double numofday = 0.00;
@@ -733,17 +827,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             double ttlamt = 0.00;
             double perday = 0.00;
 
-            if (hrgcod == "35101" || hrgcod == "35108" || hrgcod == "35110")
-            {
-                frmdat = curdate;
-                todat = curdate;
-            }
-            else
-            {
+      
                 frmdat = "";
-            todat = "";
+                todat = "";
 
-        }
+     
 
 
         dr = dt.NewRow();

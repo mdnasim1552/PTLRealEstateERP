@@ -158,7 +158,7 @@ namespace RealERPWEB.F_17_Acc
             {
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = GetCompcode();
-                string filter = "%" + this.txtAccSearch.Text.Trim() + "%";
+                string filter = "%";
                 DataSet ds1 = new DataSet();
                 if (rbtnLedger.SelectedValue.ToString() == "SubLedger")
                 {
@@ -169,7 +169,6 @@ namespace RealERPWEB.F_17_Acc
                 else
                 {
                     ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETCONACCHEAD01", filter, "", "", "", "", "", "", "", "");
-
                 }
                 DataTable dt1 = ds1.Tables[0];
                 this.ddlConAccHead.DataSource = dt1;
@@ -182,8 +181,9 @@ namespace RealERPWEB.F_17_Acc
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                string msg = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+ msg + "');", true);
+                return;
             }
         }
 
@@ -193,7 +193,7 @@ namespace RealERPWEB.F_17_Acc
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string actcode = this.ddlConAccHead.SelectedValue.ToString();
             string comcod = GetCompcode();
-            string filter = "%" + this.txtSrchRes.Text.Trim() + "%";
+            string filter = "%";
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETCONACCRESHEAD", actcode, filter, "", "", "", "", "", "", "");
 
             //string filter = (this.Request.QueryString["sircode"].ToString()).Length == 0 ? "%" + this.txtSrchRes.Text.Trim() + "%" : this.Request.QueryString["sircode"].ToString() + "%";
@@ -206,20 +206,17 @@ namespace RealERPWEB.F_17_Acc
             this.ddlConAccResHead.DataTextField = "resdesc1";
             this.ddlConAccResHead.DataValueField = "rescode";
             this.ddlConAccResHead.DataBind();
-
-
         }
         protected void ibtnFindResSP_Click(object sender, EventArgs e)
         {
             this.GetResList();
         }
 
-
         protected void lnkbtnRessp02_Click(object sender, EventArgs e)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = GetCompcode();
-            string filter = "%" + this.txtSrchRes.Text.Trim() + "%";
+            string filter = "%";
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "RPTSPLGACCRESLIST", "%", filter, "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -237,7 +234,7 @@ namespace RealERPWEB.F_17_Acc
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = GetCompcode();
-            string filter = "%" + this.txtSrchRes.Text.Trim() + "%";
+            string filter = "%";
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "RPTSPLGACCRESLIST", "%", filter, "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -246,8 +243,6 @@ namespace RealERPWEB.F_17_Acc
             this.ddlRescode.DataValueField = "rescode";
             this.ddlRescode.DataSource = ds1.Tables[0];
             this.ddlRescode.DataBind();
-
-
         }
 
         protected void lnkShowLedger_Click(object sender, EventArgs e)
@@ -285,8 +280,6 @@ namespace RealERPWEB.F_17_Acc
             //string grp=
             for (int i = 0; i < dt.Rows.Count - 2; i++)
             {
-
-
 
                 if ((dt.Rows[i]["vounum"]).ToString().Trim() == "CURRENT DR/CR" || (dt.Rows[i]["vounum"]).ToString().Trim() == "TOTAL" || (dt.Rows[i]["vounum"]).ToString().Trim() == "BALANCE")
                     continue;
@@ -452,12 +445,7 @@ namespace RealERPWEB.F_17_Acc
                     string eventdesc = "Show Data Sub-Ledger ";
                     string eventdesc2 = "Head " + this.ddlConAccHead.SelectedItem.Text.ToString() + " Resource Head : " + " " + this.ddlConAccResHead.SelectedItem.Text + " " + "(From " + date1 + "To " + date2 + " )";
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-
-
-
                 }
-
-
             }
 
             else
@@ -474,9 +462,6 @@ namespace RealERPWEB.F_17_Acc
                     string eventdesc = "Show Data Accounts-Ledger ";
                     string eventdesc2 = "Account's Head " + " " + this.ddlConAccHead.SelectedItem.Text.ToString() + " " + "( From " + date1 + "To " + date2 + " )";
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-
-
-
                 }
 
                 ////string calltype = (Request.QueryString["RType"].ToString() == "GLedger") ? "ACCOUNTSLEDGERWC" : "ACCOUNTSLEDGER";
@@ -532,8 +517,6 @@ namespace RealERPWEB.F_17_Acc
                 string eventdesc2 = "Resource Head  " + this.ddlRescode.SelectedItem.Text.ToString() + " ( From " + frmdate + "To " + todate + " )";
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
-
-
             }
             //this.FooterCal();
         }
@@ -583,11 +566,7 @@ namespace RealERPWEB.F_17_Acc
                     vounum = dt1.Rows[j]["vounum"].ToString();
                     grp = dt1.Rows[j]["grp"].ToString();
                 }
-
             }
-
-
-
             return dt1;
 
         }
@@ -706,18 +685,8 @@ namespace RealERPWEB.F_17_Acc
                         dr1["clsam"] = bbalamt;
                     }
                     break;
-
-
-
-
-
-
             }
-
-
             return dt;
-
-
         }
 
 
@@ -1305,17 +1274,14 @@ namespace RealERPWEB.F_17_Acc
                         this.gvSpledger.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                         this.gvSpledger.DataSource = dt;
                         this.gvSpledger.DataBind();
-
                     }
                     else
                     {
                         this.gvSpledger.DataSource = null;
                         this.gvSpledger.DataBind();
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "No Data Found";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
                         return;
                     }
-
                     break;
 
 
@@ -1324,15 +1290,8 @@ namespace RealERPWEB.F_17_Acc
                     this.gvspleder02.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvspleder02.DataSource = dt;
                     this.gvspleder02.DataBind();
-
                     break;
-
-
             }
-
-
-
-
         }
 
 
@@ -1351,8 +1310,7 @@ namespace RealERPWEB.F_17_Acc
             {
                 this.dgv2.DataSource = null;
                 this.dgv2.DataBind();
-                ((Label)this.Master.FindControl("lblmsg")).Text = "No Data Found";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
                 return;
             }
         }
@@ -1373,8 +1331,7 @@ namespace RealERPWEB.F_17_Acc
             {
                 this.dgv2.DataSource = null;
                 this.dgv2.DataBind();
-                ((Label)this.Master.FindControl("lblmsg")).Text = "No Data Found";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
                 return;
             }
         }

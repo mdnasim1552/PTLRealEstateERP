@@ -223,6 +223,7 @@ namespace RealERPWEB
                 
                     this.HypLinkReqInterFace.Visible = true;
                     this.lnkFormLink.NavigateUrl = "https://www.facebook.com/groups/btiforum";
+                     
                     break; 
                 default:
                     this.lnkFormLink.Text = "Forum";
@@ -233,6 +234,7 @@ namespace RealERPWEB
                     this.lnkFormLink.NavigateUrl = "https://www.facebook.com/pintechltd"; 
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
                     this.HypLinkReqInterFace.Visible = false;
+                    
 
                     break;
             }
