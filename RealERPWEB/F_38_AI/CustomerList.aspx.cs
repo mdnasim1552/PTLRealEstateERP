@@ -87,8 +87,8 @@ namespace RealERPWEB.F_38_AI
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = true;
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Clear();
                         ddlgval = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval"));
-                        ddlgval.DataTextField = "curdesc";
-                        ddlgval.DataValueField = "curdesc";
+                        ddlgval.DataTextField = "country";
+                        ddlgval.DataValueField = "code";
                         ddlgval.DataSource = dtc;
                         ddlgval.DataBind();
                         ddlgval.SelectedValue = gvalue;

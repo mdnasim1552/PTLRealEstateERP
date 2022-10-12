@@ -2833,6 +2833,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -3780,7 +3781,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!gssal.Value+Fields!toadd.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!gssal.Value-Fields!fuel.Value+Fields!toadd.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -5665,9 +5666,9 @@
           </Style>
         </PageFooter>
         <PageHeight>9in</PageHeight>
-        <PageWidth>15.5in</PageWidth>
-        <LeftMargin>0.1in</LeftMargin>
-        <RightMargin>0.1in</RightMargin>
+        <PageWidth>15.6in</PageWidth>
+        <LeftMargin>0.15in</LeftMargin>
+        <RightMargin>0.15in</RightMargin>
         <TopMargin>0.15in</TopMargin>
         <BottomMargin>0.15in</BottomMargin>
         <Style />

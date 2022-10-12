@@ -2080,6 +2080,7 @@
                                   <Value>=Format(Fields!absded.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2145,7 +2146,8 @@
                                 <TextRun>
                                   <Value>=Format(Fields!itax.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
-                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2211,7 +2213,8 @@
                                 <TextRun>
                                   <Value>=Format(Fields!adv.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
-                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2275,7 +2278,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!stamp.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2342,9 +2345,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!fallded.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
-                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2378,7 +2382,8 @@
                                 <TextRun>
                                   <Value>=Format(Fields!mbill.Value-Fields!mcell.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
-                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2709,7 +2714,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Microsoft.VisualBasic.Strings.Format(Fields!tdeduc.Value, "#,##0;(#,##0); ")</Value>
+                                      <Value>=Format(Fields!tdeduc.Value, "#,##0;(#,##0); ")</Value>
                                       <Style>
                                         <FontFamily>Times New Roman</FontFamily>
                                         <FontWeight>Bold</FontWeight>
@@ -2940,6 +2945,7 @@
                                   <Value>=Format(Fields!othded.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3070,7 +3076,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!kpi.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3137,7 +3143,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!haircutal.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3537,7 +3543,6 @@
                         </Border>
                       </Style>
                     </Rectangle>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -5520,7 +5525,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Format(Fields!tdeduc.Value,"#,##0;(#,##0); ")</Value>
+                                      <Value>=Format(Fields!tdeduc.Value, "#,##0;(#,##0); ")</Value>
                                       <Style>
                                         <FontFamily>Times New Roman</FontFamily>
                                         <FontWeight>Bold</FontWeight>
@@ -5780,9 +5785,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!absded.Value, "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!absded.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -5846,9 +5852,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!itax.Value, "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!adv.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
-                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -5912,9 +5919,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!adv.Value, "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!adv.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
-                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -5978,7 +5986,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!stamp.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -6045,9 +6053,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!fallded.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
-                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -6079,9 +6088,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!mbill.Value - Fields!mcell.Value, "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!mbill.Value-Fields!mcell.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
-                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -6340,6 +6350,7 @@
                                   <Value>=Format(Fields!othded.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -6470,7 +6481,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!kpi.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -6537,7 +6548,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!haircutal.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -6988,7 +6999,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>c306be30-ad5e-4a6d-9c54-edba642fb729</rd:DataSourceID>
+      <rd:DataSourceID>342e7f12-8b26-42fa-abe2-0253bdfa7780</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -7004,6 +7015,10 @@
         </Field>
         <Field Name="absded">
           <DataField>absded</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="absded2">
+          <DataField>absded2</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="acat">
@@ -7034,12 +7049,16 @@
           <DataField>bsal</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="carloan">
+          <DataField>carloan</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="cashamt">
           <DataField>cashamt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="CHEQUEPAY">
-          <DataField>CHEQUEPAY</DataField>
+        <Field Name="chequepay">
+          <DataField>chequepay</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="comadd">
@@ -7070,6 +7089,10 @@
           <DataField>dedday</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="deptname">
+          <DataField>deptname</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="desig">
           <DataField>desig</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -7078,12 +7101,16 @@
           <DataField>desigid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="dresslon">
+          <DataField>dresslon</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="elallow">
           <DataField>elallow</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="EMPCONT">
-          <DataField>EMPCONT</DataField>
+        <Field Name="empcont">
+          <DataField>empcont</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="empid">
@@ -7098,12 +7125,20 @@
           <DataField>entaint</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="FALLDED">
-          <DataField>FALLDED</DataField>
+        <Field Name="fallded">
+          <DataField>fallded</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="foodal">
+          <DataField>foodal</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="fuel">
           <DataField>fuel</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="genloan">
+          <DataField>genloan</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="grossal1">
@@ -7120,6 +7155,10 @@
         </Field>
         <Field Name="gssal">
           <DataField>gssal</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="haircutal">
+          <DataField>haircutal</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="hallow">
@@ -7140,6 +7179,14 @@
         </Field>
         <Field Name="itax">
           <DataField>itax</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="joindate">
+          <DataField>joindate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="kpi">
+          <DataField>kpi</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="loanins">
@@ -7182,6 +7229,18 @@
           <DataField>monthid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="motolon">
+          <DataField>motolon</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="mscloan">
+          <DataField>mscloan</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="msetloan">
+          <DataField>msetloan</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="netpay">
           <DataField>netpay</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -7218,6 +7277,14 @@
           <DataField>othearn</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="perbon">
+          <DataField>perbon</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="perloan">
+          <DataField>perloan</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="pfund">
           <DataField>pfund</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -7252,7 +7319,7 @@
         </Field>
         <Field Name="stamp">
           <DataField>stamp</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="tdeduc">
           <DataField>tdeduc</DataField>
@@ -7286,6 +7353,14 @@
           <DataField>totaldeduction</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="tptallow">
+          <DataField>tptallow</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="transded">
+          <DataField>transded</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="wd">
           <DataField>wd</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -7298,7 +7373,7 @@
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_81_Hrm.C_89_Pay</rd:DataSetName>
         <rd:TableName>SalaryPaySlip</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryPaySlip, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryPaySlip, RealERPEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

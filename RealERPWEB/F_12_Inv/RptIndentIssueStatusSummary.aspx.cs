@@ -133,6 +133,9 @@ namespace RealERPWEB.F_12_Inv
             if (dt.Rows.Count > 0)
             {
                 ((Label)this.gvIssuest.FooterRow.FindControl("lgvtotalissueqty")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(issueqty)", "")) ? 0.00 : dt.Compute("sum(issueqty)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                ((Label)this.gvIssuest.FooterRow.FindControl("lgvtotalopnqty")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(openqty)", "")) ? 0.00 : dt.Compute("sum(openqty)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                ((Label)this.gvIssuest.FooterRow.FindControl("lgvtotalrcvqty")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(rcvqty)", "")) ? 0.00 : dt.Compute("sum(rcvqty)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                ((Label)this.gvIssuest.FooterRow.FindControl("lgvtotalblncqty")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(blncqty)", "")) ? 0.00 : dt.Compute("sum(blncqty)", ""))).ToString("#,##0.00;(#,##0.00); ");
 
             }
 
