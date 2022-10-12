@@ -815,7 +815,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1703000", "1703194", "F_17_Acc", "RptAccSpLedger?", "Type=ASPayment", " Supplier Overall Position", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703195", "F_17_Acc", "RptAccSpLedger?", "Type=AConPayment", " Sub-Contractor Overall Position", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703198", "F_17_Acc", "RptAccSpLedger?", "Type=ASupConPayment", "Overall Position(Supplier & Contractor)", "Accounts", "False", "False", "False", "False" }); ;
-
+            tblObj.Rows.Add(new Object[] { "1703000", "1703199", "F_17_Acc", "RptSupplierOvAllPSummary?", "Type=SupPayment", " Supplier Overall Position Summary", "Accounts", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "1703000", "1703200", "F_17_Acc", "AccFinalReports?", "RepType=SPC", "Project Report-Specifition", "Accounts", "False", "False", "False", "False" }); ;
 
@@ -6310,6 +6310,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0303000004", "04. Sub-Contractor Overall Position", "F_17_Acc/RptAccSpLedger?Type=AConPayment&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000005", "05. Sub-Contractor Payment Proposal", "F_17_Acc/RptAccSpLedger?Type=SubConPay&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000006", "06.Overall Position(Supplier & Contractor)", "F_17_Acc/RptAccSpLedger?Type=ASupConPayment&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000007", "06.Supplier Overall Position Summary", "F_17_Acc/RptSupplierOvAllPSummary?Type=SupPayment", "", true, "" });
+
 
             mnuTbl1.Rows.Add(new Object[] { "0303000007", "07. Purchase Not Yet Updated", "F_17_Acc/AccPurNotUpdated?Type=Report&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000008", "08. Pending Contractor Bill", "F_17_Acc/AccPendSubconBill", "", true, "" });
