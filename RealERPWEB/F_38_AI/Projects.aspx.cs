@@ -276,6 +276,8 @@ namespace RealERPWEB.F_38_AI
             tblt01.Columns.Add("annoid", Type.GetType("System.String"));
             tblt01.Columns.Add("valocityqty", Type.GetType("System.Double"));
             tblt01.Columns.Add("workhour", Type.GetType("System.Double"));
+            tblt01.Columns.Add("isoutsrc", Type.GetType("System.String"));
+            tblt01.Columns.Add("workrate", Type.GetType("System.Double"));
 
             ViewState["tblt01"] = tblt01;
         }
@@ -300,8 +302,10 @@ namespace RealERPWEB.F_38_AI
                     dr1["valocitycode"] = this.ddlUserRoleType.SelectedItem.Value.Trim();
                     dr1["annoid"] = this.ddlAnnotationid.SelectedItem.Value.ToString();
                     dr1["valocitydesc"] = this.ddlvalocitytype.SelectedItem.Value.Trim();
-                    dr1["valocityqty"] = this.txtquantity.Text.Trim();
+                    dr1["valocityqty"] = Convert.ToDouble("0"+ this.txtquantity.Text.Trim());
                     dr1["workhour"] = this.txtworkhour.Text.Trim();
+                    dr1["isoutsrc"] = this.checkinoutsourcing.Checked;
+                    dr1["workrate"] = this.textrate.Text.Trim();
                     tblt01.Rows.Add(dr1);
 
                 }
@@ -322,12 +326,9 @@ namespace RealERPWEB.F_38_AI
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = this.GetComdCode();
                 DataTable tbl1 = (DataTable)ViewState["tblt01"];
-
                 DataSet ds1 = new DataSet("ds1");
                 ds1.Tables.Add(tbl1);
                 ds1.Tables[0].TableName = "tbl1";
-
-
                 string userid = hst["usrid"].ToString();
                 string Terminal = hst["compname"].ToString();
                 string Sessionid = hst["session"].ToString();
@@ -462,8 +463,7 @@ namespace RealERPWEB.F_38_AI
         {
             try
             {
-                string comcod = this.GetComdCode();
-               
+                string comcod = this.GetComdCode();               
                 string batchid = Request.QueryString["BatchID"].ToString() == "" ? "" : Request.QueryString["BatchID"].ToString();
                 string jobid = this.lbltaskbatchid.Text;
                 string empname = this.ddlassignmember.SelectedValue.Trim();
@@ -493,5 +493,23 @@ namespace RealERPWEB.F_38_AI
 
             }
         }
+
+        protected void btnbatchtask_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string value = this.btnbatchtask.SelectedValue.ToString();
+            switch (value)
+            {
+                case "1":
+                    this.assigntask.Visible = true;
+                    this.penddingtask.Visible = false;
+                    break;
+                case "2":
+                    this.assigntask.Visible = false;
+                    this.penddingtask.Visible = true;
+                    break;
+            }
+        }
+
+       
     }
 }
