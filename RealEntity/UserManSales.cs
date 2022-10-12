@@ -40,12 +40,12 @@ namespace RealEntity
 
         }
 
-        public List<RealEntity.C_22_Sal.EClassSales_02.EClassWeekly> ShowWeekly(string comcod, string Date1)
+        public List<RealEntity.C_22_Sal.EClassSales_02.EClassWeekly> ShowWeekly(string comcod, string Date1, string recondate = "")
         {
             List<RealEntity.C_22_Sal.EClassSales_02.EClassWeekly> lst = new List<RealEntity.C_22_Sal.EClassSales_02.EClassWeekly>();
 
             //string comcod = ObjCommon.GetCompCode();
-            SqlDataReader dr = _ProAccess.GetSqlReader(comcod, "SP_REPORT_DASH_BOARD_INFO", "SALESINFOWEEK", Date1, "", "", "", "", "", "", "", "");
+            SqlDataReader dr = _ProAccess.GetSqlReader(comcod, "SP_REPORT_DASH_BOARD_INFO", "SALESINFOWEEK", Date1, recondate, "", "", "", "", "", "", "");
 
             while (dr.Read())
             {
@@ -87,7 +87,7 @@ namespace RealEntity
 
             //string comcod = ObjCommon.GetCompCode();
             SqlDataReader dr = _ProAccess.GetSqlReader(comcod, "SP_REPORT_DASH_BOARD_INFO", "SALESINFYEARMONTH", Date1, recndate, "", "", "", "", "", "", "");
-
+            
             while (dr.Read())
             {
                 RealEntity.C_22_Sal.EClassSales_02.EClassMonthly Monthly = new C_22_Sal.EClassSales_02.EClassMonthly(dr["yearmon"].ToString(), dr["yearmon1"].ToString(), Convert.ToDouble(dr["ttlsalamt"]), Convert.ToDouble(dr["collamt"]),
