@@ -231,6 +231,9 @@
     <EmbeddedResource Include="R_14_Pro\RptDayWisePurchaseEdison.rdlc" />
     <EmbeddedResource Include="R_14_Pro\rptDeliveryEfficiency.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptOtherCollHistory.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyEpic03.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyEpic02.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyEpic05.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyFinlay03.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyFinlay02.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyFinlay05.rdlc" />
