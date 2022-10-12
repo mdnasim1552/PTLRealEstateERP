@@ -519,6 +519,43 @@ namespace RealERPWEB.F_22_Sal
                               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
+        //private void RptRepChq()
+        //{
+        //    Hashtable hst = (Hashtable)Session["tblLogin"];
+        //    string comcod = hst["comcod"].ToString();
+        //    string comnam = hst["comnam"].ToString();
+        //    string compname = hst["compname"].ToString();
+        //    string username = hst["username"].ToString();
+        //    string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+        //    string fromdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+        //    string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+        //    ReportDocument rptstate = new RealERPRPT.R_22_Sal.RptReplacementChq();
+        //    TextObject rptCname = rptstate.ReportDefinition.ReportObjects["txtCompName"] as TextObject;//
+        //    rptCname.Text = comnam;
+        //    TextObject rptHeader = rptstate.ReportDefinition.ReportObjects["TxtHeader"] as TextObject;
+        //    rptHeader.Text = this.lblHeader.Text;
+
+        //    TextObject rptftdate = rptstate.ReportDefinition.ReportObjects["ftdate"] as TextObject;
+        //    rptftdate.Text = "Date: " + Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+        //    TextObject txtuserinfo = rptstate.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
+        //    txtuserinfo.Text = "Printed from Computer Name:" + compname + ", User:" + username + ", Dated:" + printdate;
+        //    rptstate.SetDataSource((DataTable)Session["DailyTrns"]);
+
+
+        //    if (ConstantInfo.LogStatus == true)
+        //    {
+        //        string eventtype = "Transaction Statement";
+        //        string eventdesc = "Print Report";
+        //        string eventdesc2 = "";
+        //        bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+        //    }
+        //    string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
+        //    rptstate.SetParameterValue("ComLogo", ComLogo);
+        //    Session["Report1"] = rptstate;
+        //    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
+        //                     ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        //}
         private void RptRepChq()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -526,37 +563,31 @@ namespace RealERPWEB.F_22_Sal
             string comnam = hst["comnam"].ToString();
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string comadd = hst["comadd1"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
             string fromdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
-            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            ReportDocument rptstate = new RealERPRPT.R_22_Sal.RptReplacementChq();
-            TextObject rptCname = rptstate.ReportDefinition.ReportObjects["txtCompName"] as TextObject;//
-            rptCname.Text = comnam;
-            TextObject rptHeader = rptstate.ReportDefinition.ReportObjects["TxtHeader"] as TextObject;
-            //rptHeader.Text = this.lblHeader.Text;
+              string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
 
-            TextObject rptftdate = rptstate.ReportDefinition.ReportObjects["ftdate"] as TextObject;
-            rptftdate.Text = "Date: " + Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            TextObject txtuserinfo = rptstate.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
-            txtuserinfo.Text = "Printed from Computer Name:" + compname + ", User:" + username + ", Dated:" + printdate;
-            rptstate.SetDataSource((DataTable)Session["DailyTrns"]);
+            DataTable dt = (DataTable)Session["DailyTrns"];
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.TransactionSt>();
 
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptTransactionSt", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("printdate","Date: "+ fromdate+" To "+ todate ));
+            // Rpt1.SetParameters(new ReportParameter("projectName", projectName));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Replacement Cheque Report"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            //Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
 
-            if (ConstantInfo.LogStatus == true)
-            {
-                string eventtype = "Transaction Statement";
-                string eventdesc = "Print Report";
-                string eventdesc2 = "";
-                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-            }
-            string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
-            rptstate.SetParameterValue("ComLogo", ComLogo);
-            Session["Report1"] = rptstate;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-                             ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
-
         private void RptTransSummary()
         {
 

@@ -155,6 +155,7 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesvsAchievementtypecount.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SoldUnsoftInfGroupWise.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SoldUnsoltInfavg.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+TransactionSt.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+AccCustPayLedgerCHL.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptMonWiseNewSales.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptSalPaySchedules.datasource" />
@@ -821,6 +822,7 @@
     <EmbeddedResource Include="R_22_Sal\RptSalSummeryDetails.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSoldUnsoftInfGroupWise.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSoldUnsoldUnitAvgPrice.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptTransactionSt.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptTransStatement02.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptTransStatement02Finlay.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptTransStatement03.rdlc" />

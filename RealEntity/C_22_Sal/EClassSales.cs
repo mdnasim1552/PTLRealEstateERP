@@ -197,7 +197,30 @@ namespace RealEntity.C_22_Sal
 
 
         }
+        public class TransactionSt
+        {
+            public string comcod { get; set; }
+            
+            public string pactdesc { get; set; }
+            public string pactcode { get; set; }
+            public string udesc { get; set; }
+            public string custname { get; set; }
+            public string orgmrno { get; set; }
+            public DateTime orgdate { get; set; }
+            public string orgchqno { get; set; }
+            public double orgamt { get; set; }
+            public string mrno { get; set; }
+            public DateTime chqdate { get; set; }
+            public string chqno { get; set; }
+            public double chqamt { get; set; }
+          
+            public TransactionSt()
+            {
 
+            }
+
+
+        }
 
     }
 }
