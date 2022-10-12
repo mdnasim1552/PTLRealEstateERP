@@ -1948,7 +1948,7 @@ IIf(Format(Fields!rsircode.Value)="AAAAAAAAEEEE","Default","Black")))))</FontWei
       <Width>11.04167in</Width>
       <Page>
         <PageHeader>
-          <Height>0.74945in</Height>
+          <Height>0.99112in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1973,8 +1973,9 @@ IIf(Format(Fields!rsircode.Value)="AAAAAAAAEEEE","Default","Black")))))</FontWei
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>comnam</rd:DefaultName>
+              <Left>1.46875in</Left>
               <Height>0.25in</Height>
-              <Width>11.04167in</Width>
+              <Width>8.18126in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -2006,9 +2007,10 @@ IIf(Format(Fields!rsircode.Value)="AAAAAAAAEEEE","Default","Black")))))</FontWei
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>comadd</rd:DefaultName>
-              <Top>0.23625in</Top>
-              <Height>0.225in</Height>
-              <Width>11.04167in</Width>
+              <Top>0.27375in</Top>
+              <Left>1.46875in</Left>
+              <Height>0.2in</Height>
+              <Width>8.18126in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -2042,8 +2044,9 @@ IIf(Format(Fields!rsircode.Value)="AAAAAAAAEEEE","Default","Black")))))</FontWei
               </Paragraphs>
               <rd:DefaultName>RptTitle</rd:DefaultName>
               <Top>0.47375in</Top>
-              <Height>0.26042in</Height>
-              <Width>7.80208in</Width>
+              <Left>1.46875in</Left>
+              <Height>0.24792in</Height>
+              <Width>8.18126in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -2074,9 +2077,9 @@ IIf(Format(Fields!rsircode.Value)="AAAAAAAAEEEE","Default","Black")))))</FontWei
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>CurDate1</rd:DefaultName>
-              <Top>0.4675in</Top>
+              <Top>0.755in</Top>
               <Left>7.87152in</Left>
-              <Height>0.26042in</Height>
+              <Height>0.22292in</Height>
               <Width>3.17015in</Width>
               <ZIndex>3</ZIndex>
               <Style>
