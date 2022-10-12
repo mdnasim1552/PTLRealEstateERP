@@ -42,7 +42,7 @@ namespace RealERPWEB.F_22_Sal
 
                 string date2 = this.Request.QueryString["Date2"] ?? "";
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.txtDate.Text = date2.Length > 0 ? date2 : Convert.ToDateTime("01" + date.Substring(2)).ToString("dd-MMM-yyyy");
+                this.txtDate.Text = date2.Length > 0 ? date2 : date;
 
 
                 // this.txtDate.Text = DateTime.Today.ToString("dd-MMM-yyyy");
@@ -101,7 +101,8 @@ namespace RealERPWEB.F_22_Sal
             {
                 string comcod = this.GetCompCode();
                 string CurDate1 = Convert.ToDateTime(this.txtDate.Text.Trim()).ToString("dd-MMM-yyyy");
-                List<RealEntity.C_22_Sal.EClassSales_02.EClassYear> lst = objUserService.ShowYearly(comcod, CurDate1);
+                string recondate = this.rbtList.SelectedValue == "1" ? "recondate" : "";
+                List<RealEntity.C_22_Sal.EClassSales_02.EClassYear> lst = objUserService.ShowYearly(comcod, CurDate1, recondate);
                 if (lst == null)
                     return;
                 this.grvYearlySales.DataSource = lst;
@@ -184,7 +185,9 @@ namespace RealERPWEB.F_22_Sal
             {
                 string comcod = this.GetCompCode();
                 string CurDate1 = Convert.ToDateTime(this.txtDate.Text.Trim()).ToString("dd-MMM-yyyy");
-                List<RealEntity.C_22_Sal.EClassSales_02.EClassWeekly> lst1 = objUserService.ShowWeekly(comcod, CurDate1);
+                string recondate = this.rbtList.SelectedValue == "1" ? "recondate" : "";
+
+                List<RealEntity.C_22_Sal.EClassSales_02.EClassWeekly> lst1 = objUserService.ShowWeekly(comcod, CurDate1, recondate);
                 if (lst1 == null)
                     return;
                 this.grvWeekSales.DataSource = lst1;
@@ -451,16 +454,51 @@ namespace RealERPWEB.F_22_Sal
 
             }
         }
+
+        private string companytype()
+        {
+            string comcod = this.GetCompCode();
+
+            string coltype = "";
+            switch (comcod)
+            {
+
+                //case "3101":// RHEL
+                case "3305":// RHEL
+                case "3311":// RHEL(chittagong)
+                case "3306":// Ratul
+                case "2305":// Land
+                case "3310":// rcu
+
+
+                    coltype = "TRANSACTIONSTATEMENT1";
+                    break;
+
+                default:
+                    coltype = "TRANSACTION_STATEMENT2";
+                    break;
+            }
+            return coltype;
+        }
         private void GetDayWiseColl()
         {
             try
             {
+
+
+
+
+
+
+                string actual = (this.rbtList.SelectedValue == "1") ? "Reconcliedate" : "EntryDate";
+
+
                 string comcod = this.GetCompCode();
                 string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
                 string frdate = Convert.ToDateTime("01" + date.Substring(2)).ToString("dd-MMM-yyyy");
                 string todate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
-
-                DataSet ds1 = _DataEntry.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "TRANSACTIONSTATEMENT1", frdate, todate, "%", "", "", "", "", "", "");
+                string CallType = this.companytype();
+                DataSet ds1 = _DataEntry.GetTransInfo(comcod, "SP_REPORT_SALSMGT", CallType, frdate, todate, "%", actual, "", "", "", "", "");
                 if (ds1 == null)
                 {
                     this.grvTrnDatWise.DataSource = null;

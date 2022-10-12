@@ -114,6 +114,15 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.View FilesView;
 
         /// <summary>
+        /// lbltaskmodal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbltaskmodal;
+
+        /// <summary>
         /// taskdec control.
         /// </summary>
         /// <remarks>
@@ -202,6 +211,33 @@ namespace RealERPWEB.F_38_AI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox noteDescription;
+
+        /// <summary>
+        /// holdreason control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl holdreason;
+
+        /// <summary>
+        /// lblreason control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblreason;
+
+        /// <summary>
+        /// ddlholdreason control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlholdreason;
 
         /// <summary>
         /// SaveNote control.
