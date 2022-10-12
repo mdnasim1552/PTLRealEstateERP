@@ -82,7 +82,7 @@ namespace RealERPWEB.F_99_Allinterface
             DataTable tblasing = (DataTable)Session["tblassinglist"];
 
             this.gvInterface.DataSource = tbl1;
-           
+
 
             this.gvInterface.DataBind();
 
@@ -267,11 +267,11 @@ namespace RealERPWEB.F_99_Allinterface
 
         private void GetProductionInfo()
         {
-            string comcod = this.GetCompCode();               
+            string comcod = this.GetCompCode();
             DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", "", "", "", "", "", "", "");
             if (ds == null)
                 return;
-            Session["tblproductioninfo"] = ds.Tables[0];         
+            Session["tblproductioninfo"] = ds.Tables[0];
             DataTable dt1 = new DataTable();
             DataView view = new DataView();
             DataView view1 = new DataView();
@@ -281,7 +281,7 @@ namespace RealERPWEB.F_99_Allinterface
             dt1 = view1.ToTable();
             this.gv_QCQA.DataSource = dt1;
             this.gv_QCQA.DataBind();
-            view.RowFilter = " velocitytype='Annot'"; 
+            view.RowFilter = " velocitytype='Annot'";
             dt1 = view.ToTable();
             this.gv_Production.DataSource = dt1;
             this.gv_Production.DataBind();
@@ -399,7 +399,7 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("btnview");
                 string prjid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "prjid")).ToString().Trim();
                 string id = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "id")).ToString().Trim();
-                hlink1.NavigateUrl = "~/F_38_AI/Projects.aspx?PID="+ prjid + "&BatchID=" + id;
+                hlink1.NavigateUrl = "~/F_38_AI/Projects.aspx?PID=" + prjid + "&BatchID=" + id;
 
             }
         }
@@ -419,7 +419,7 @@ namespace RealERPWEB.F_99_Allinterface
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                
+
                 HyperLink hlinkDashboar = (HyperLink)e.Row.FindControl("lnkprjDAshboard");
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkprjView");
                 string projid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "infcod")).ToString().Trim();
@@ -439,7 +439,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "assignuser")).ToString().Trim();
                 string batchid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "batchid")).ToString().Trim();
                 string jobid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "jobid")).ToString().Trim();
-                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?EmpID=" + empid+"&JobID="+ jobid+"&BatchID="+ batchid;
+                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?EmpID=" + empid + "&JobID=" + jobid + "&BatchID=" + batchid;
             }
         }
 
@@ -457,33 +457,46 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void tblAddBatch_Click(object sender, EventArgs e)
         {
-            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
-            int index = row.RowIndex;
-            string project = ((Label)this.gvInterface.Rows[index].FindControl("lblpactcode")).Text.ToString();
-            string projectName = ((Label)this.gvInterface.Rows[index].FindControl("lblprojectName")).Text.ToString();
-            string datasettype = ((Label)this.gvInterface.Rows[index].FindControl("lbldataset")).Text.ToString();
-            string worktype = ((Label)this.gvInterface.Rows[index].FindControl("lblwrktype")).Text.ToString();
-            this.hiddPrjid.Value = project;
-            this.txtproj.Text = projectName;
-            this.tblpactcode.Text = project;
-            this.txtdataset.Text = datasettype;
-            this.txtworktype.Text = worktype;
-            this.txtstartdate.Text = DateTime.Now.ToString("dd-MMM-yyyy");
-            this.textdelevery.Text = DateTime.Now.ToString("dd-MMM-yyyy");
-            this.GetBatchAssingList(project);
+            try
+            {
+                this.pnlSidebar.Visible = true;
+                this.pnlProjectadd.Visible = false;
+                this.pnlBatchadd.Visible = true;
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;
+                string project = ((Label)this.gvInterface.Rows[index].FindControl("lblpactcode")).Text.ToString();
+                string projectName = ((Label)this.gvInterface.Rows[index].FindControl("lblprojectName")).Text.ToString();
+                string datasettype = ((Label)this.gvInterface.Rows[index].FindControl("lbldataset")).Text.ToString();
+                string worktype = ((Label)this.gvInterface.Rows[index].FindControl("lblwrktype")).Text.ToString();
+                this.hiddPrjid.Value = project;
+                this.txtproj.Text = projectName;
+                this.tblpactcode.Text = project;
+                this.txtdataset.Text = datasettype;
+                this.txtworktype.Text = worktype;
+                this.txtstartdate.Text = DateTime.Now.ToString("dd-MMM-yyyy");
+                this.textdelevery.Text = DateTime.Now.ToString("dd-MMM-yyyy");
+                this.GetBatchAssingList(project);
+
+                
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
         }
         private void GetBatchAssingList(string project)
         {
             string comcod = this.GetCompCode();
             string prjid = project + "%";
-            DataSet dt = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "BATCHASSIGNLIST", prjid, "", "", "", "", "", "");
-            if (dt == null)
+            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "BATCHASSIGNLIST", prjid, "", "", "", "", "", "");
+            if (ds == null)
                 return;
 
-            Session["tblbatchassignlist"] = dt.Tables[0];
-            this.gv_gridBatch.DataSource = dt;
+            Session["tblbatchassignlist"] = ds.Tables[0];
+            this.gv_gridBatch.DataSource = ds;
             this.gv_gridBatch.DataBind();
 
         }
@@ -521,8 +534,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.GetBatchAssingList(projectname);
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Batch  Saved Successfully');", true);
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#CreateModalBatch", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#CreateModalBatch').hide();", true);
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
+                 
             }
             catch (Exception ex)
             {
@@ -538,9 +550,11 @@ namespace RealERPWEB.F_99_Allinterface
         protected void btnaddPrj_Click(object sender, EventArgs e)
         {
             this.pnlSidebar.Visible = true;
-             
+            this.pnlProjectadd.Visible = true;
+            this.pnlBatchadd.Visible = false;
+
             this.GetEmployeeName();
-            
+
             this.GetCountry();
             this.GetProjectDetails();
             this.GetCustomerList();
@@ -628,7 +642,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             string comcod = this.GetCompCode();
             string sircode = this.lblproj.Text ?? "";
-            
+
             DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "AIPROJECTDETAILS", sircode, "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -904,6 +918,16 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
             }
+        }
+
+        protected void btnbatchEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnbatchremoveRow_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

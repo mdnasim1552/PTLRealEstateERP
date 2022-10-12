@@ -296,6 +296,8 @@ namespace RealERPWEB.F_99_Allinterface
                 hlink.ToolTip = "Edit";
                 hlink.Visible = true;
                 hlinkproceed.Visible = true;
+
+
             }
         }
 
@@ -306,6 +308,8 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkedit");
                 HyperLink hlinkproceed = (HyperLink)e.Row.FindControl("lnkProceed");
+                HyperLink lnkbtnPrintQT = (HyperLink)e.Row.FindControl("lnkbtnPrintQT");
+
 
                 string quotid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "quotid")).ToString();
                 string status = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "status"));
@@ -314,6 +318,8 @@ namespace RealERPWEB.F_99_Allinterface
                 hlink.ToolTip = "Edit";
                 hlink.Visible = true;
                 hlinkproceed.Visible = true;
+                lnkbtnPrintQT.NavigateUrl = "~/F_70_Services/ServicePrint?Type=PrintQuote&QId=" + quotid;
+
             }
         }
 
