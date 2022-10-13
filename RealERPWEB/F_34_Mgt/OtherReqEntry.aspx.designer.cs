@@ -114,6 +114,24 @@ namespace RealERPWEB.F_34_Mgt
         protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
 
         /// <summary>
+        /// lbldep control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbldep;
+
+        /// <summary>
+        /// ddlDeptCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDeptCode;
+
+        /// <summary>
         /// Label5 control.
         /// </summary>
         /// <remarks>
@@ -159,15 +177,6 @@ namespace RealERPWEB.F_34_Mgt
         protected global::System.Web.UI.WebControls.Label lbladvanced;
 
         /// <summary>
-        /// txtSrchMrfNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrchMrfNo;
-
-        /// <summary>
         /// lbtnPrevReqList control.
         /// </summary>
         /// <remarks>
@@ -175,6 +184,15 @@ namespace RealERPWEB.F_34_Mgt
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnPrevReqList;
+
+        /// <summary>
+        /// txtSrchMrfNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSrchMrfNo;
 
         /// <summary>
         /// ddlPrevReqList control.
@@ -481,6 +499,15 @@ namespace RealERPWEB.F_34_Mgt
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList rblpaytype;
+
+        /// <summary>
+        /// bundle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl bundle;
 
         /// <summary>
         /// lblbundle control.
