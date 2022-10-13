@@ -85,7 +85,7 @@
             <div class="card-fluid">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-5 col-md-offset-1">
+                        <div class="col-sm-10 col-md-8 col-lg-6 col-md-offset-1">
                             <asp:Label ID="Label6" runat="server" CssClass="smLbl_to" Text="Ledger Type : "></asp:Label>
 
                             <asp:RadioButtonList ID="rbtnLedger" runat="server" CssClass="form-control rbtnledger" AutoPostBack="true" OnSelectedIndexChanged="rbtnLedger_SelectedIndexChanged"

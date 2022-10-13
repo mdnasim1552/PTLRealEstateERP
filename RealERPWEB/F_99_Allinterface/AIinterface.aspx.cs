@@ -71,11 +71,39 @@ namespace RealERPWEB.F_99_Allinterface
             if (ds == null)
                 return;
 
+            this.TasktState.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["prj"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>All Projects</div></div></div>";
+            this.TasktState.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["batch"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Batch Status</div></div></div>";
+
+            this.TasktState.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["assing"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Assign</div></div></div>";
+
+            this.TasktState.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["production"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Production</div></div></div>";
+
+            this.TasktState.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["qc"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>QC</div></div></div>"; //2nd App.
+
+            this.TasktState.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["accpt"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Accept/Reject</div></div></div>";
+
+            this.TasktState.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["qa"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>QA</div></div></div>";
+            this.TasktState.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue  counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["feeback"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>FeedBack</div></div></div>";
+            this.TasktState.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["delivery"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Delivery</div></div></div>";
+            this.TasktState.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["invoice"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Invoice</div></div></div>";
+            this.TasktState.Items[10].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["collct"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Collection</div></div></div>";
+ 
+
+
+
+
             Session["tblprojectlist"] = ds.Tables[0];
             Session["tblassinglist"] = ds.Tables[2];
+            
+           
             this.data_Bind();
         }
+        private void StatusCount()
+        {
+            DataTable tbl1 = (DataTable)Session["tblstatuscount"];
 
+
+        }
         private void data_Bind()
         {
             DataTable tbl1 = (DataTable)Session["tblprojectlist"];
@@ -90,6 +118,7 @@ namespace RealERPWEB.F_99_Allinterface
             this.gvAssingJob.DataBind();
 
         }
+       
         protected void TasktState_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -469,6 +498,9 @@ namespace RealERPWEB.F_99_Allinterface
                 string projectName = ((Label)this.gvInterface.Rows[index].FindControl("lblprojectName")).Text.ToString();
                 string datasettype = ((Label)this.gvInterface.Rows[index].FindControl("lbldataset")).Text.ToString();
                 string worktype = ((Label)this.gvInterface.Rows[index].FindControl("lblwrktype")).Text.ToString();
+                string currncy = ((Label)this.gvInterface.Rows[index].FindControl("lblcurrncy")).Text.ToString();
+
+                //currncy
                 this.hiddPrjid.Value = project;
                 this.txtproj.Text = projectName;
                 this.tblpactcode.Text = project;
@@ -476,9 +508,13 @@ namespace RealERPWEB.F_99_Allinterface
                 this.txtworktype.Text = worktype;
                 this.txtstartdate.Text = DateTime.Now.ToString("dd-MMM-yyyy");
                 this.textdelevery.Text = DateTime.Now.ToString("dd-MMM-yyyy");
+               // this.spnCurrncy.InnerText = currncy;
+                this.txtrate.Attributes.Add("Placeholder", "0.00 " + currncy);
+                this.txtAmount.Attributes.Add("Placeholder", "0.00 " + currncy);
+
                 this.GetBatchAssingList(project);
 
-                
+
                 //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
             }
             catch (Exception ex)
@@ -511,35 +547,52 @@ namespace RealERPWEB.F_99_Allinterface
                 string Terminal = hst["compname"].ToString();
                 string Sessionid = hst["session"].ToString();
                 string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-                string batchcreateid = "";
+                string batchcreateid = this.hiidenBatcid.Value;
+
                 string batch = this.txtBatch.Text.ToString();
                 string projectname = this.hiddPrjid.Value;
                 string createdate = this.txtstartdate.Text.ToString();
                 string veliverydate = this.textdelevery.Text.ToString();
-                string dtquantity = this.txtbatchQuantity.Text.ToString();
+                double dtquantity = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtbatchQuantity.Text.Trim()));
                 string dataset = this.txtdataset.Text.ToString();
                 string worktype = this.txtworktype.Text.ToString();
-                string totalhour = this.tbltotalOur.Text.ToString();
+                double totalhour = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.tbltotalOur.Text.Trim()));
                 string phdm = this.ddlphdm.SelectedValue.ToString();
-                string workperhour = this.txtPerhour.Text.ToString();
-                string textEmpcap = this.textEmpcap.Text.ToString();
+                double workperhour = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtPerhour.Text.Trim()));
+                double textEmpcap = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.textEmpcap.Text.Trim()));
+                double rate = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtrate.Text.Trim()));
 
-                bool result = AIData.UpdateTransInfo2(comcod, "dbo_ai.SP_ENTRY_AI", "BATCH_INSERTUPDATE", batchcreateid, batch, projectname, createdate, veliverydate, userid, Terminal, Sessionid, Date, dtquantity, dataset, totalhour, worktype, phdm, workperhour, textEmpcap, "", "", "", "", "");
+                bool result = AIData.UpdateTransInfo2(comcod, "dbo_ai.SP_ENTRY_AI", "BATCH_INSERTUPDATE", batchcreateid, batch, projectname, createdate, veliverydate, userid, Terminal, Sessionid, Date,
+                    dtquantity.ToString(), dataset, totalhour.ToString(), worktype, phdm, workperhour.ToString(), textEmpcap.ToString(), rate.ToString(), "", "", "", "");
 
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail..!!');", true);
                     return;
                 }
-                this.GetBatchAssingList(projectname);
+                
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Batch  Saved Successfully');", true);
-                 
+                this.GetBatchAssingList(projectname);
+                ResetForm();
             }
             catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message.ToString() + "');", true);
             }
+        }
+
+        private void ResetForm()
+        {
+            this.hiidenBatcid.Value = "0";
+            txtBatch.Text = "";
+            tbltotalOur.Text = "";
+            this.ddlphdm.SelectedValue = "0";
+            txtstartdate.Text = DateTime.Now.ToString("dd-MMM-yyyy"); ;
+            textdelevery.Text = DateTime.Now.ToString("dd-MMM-yyyy"); ;
+            txtbatchQuantity.Text = "0";
+            txtrate.Text = "0";
+            txtAmount.Text = "0";
         }
 
         protected void pnlsidebarClose_Click(object sender, EventArgs e)
@@ -922,11 +975,97 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void btnbatchEdit_Click(object sender, EventArgs e)
         {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string batchid = ((Label)this.gv_gridBatch.Rows[index].FindControl("lblBatchid")).Text.ToString();
+            string name = ((Label)this.gv_gridBatch.Rows[index].FindControl("lblbatchname")).Text.ToString();
+            string strdate = ((Label)this.gv_gridBatch.Rows[index].FindControl("lblstartdate")).Text.ToString();
+            string delvdate = ((Label)this.gv_gridBatch.Rows[index].FindControl("lbldeliverydate")).Text.ToString();
+            double dsqty = Convert.ToDouble(((Label)this.gv_gridBatch.Rows[index].FindControl("lbldatasetqty")).Text.ToString());
+            double rate = Convert.ToDouble(((Label)this.gv_gridBatch.Rows[index].FindControl("lbldatasetRate")).Text.ToString());
+            string lblhourtype = ((Label)this.gv_gridBatch.Rows[index].FindControl("lblhourtype")).Text.ToString();
+            string ttlhour = ((Label)this.gv_gridBatch.Rows[index].FindControl("lbldatastotalhour")).Text.ToString();
 
+            
+            this.hiidenBatcid.Value = batchid;
+            
+            txtBatch.Text = name;
+            tbltotalOur.Text = ttlhour;
+            this.ddlphdm.SelectedValue = lblhourtype;
+            txtstartdate.Text = strdate;
+            textdelevery.Text = delvdate;
+            txtbatchQuantity.Text = dsqty.ToString();
+            txtrate.Text = rate.ToString();
+            txtAmount.Text = Convert.ToDouble(dsqty* rate).ToString();
         }
 
         protected void btnbatchremoveRow_Click(object sender, EventArgs e)
         {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string userid = hst["usrid"].ToString();
+            string Terminal = hst["compname"].ToString();
+            string Sessionid = hst["session"].ToString();
+            string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string batchid = ((Label)this.gv_gridBatch.Rows[index].FindControl("lblBatchid")).Text.ToString();
+            string prjid = this.hiddPrjid.Value;
+            bool result = AIData.UpdateTransInfo2(comcod, "dbo_ai.SP_ENTRY_AI", "BATCH_DELETE", batchid, "", "", "", "", userid, Terminal, Sessionid, Date,
+                   "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Delete Fail..!!');", true);
+                return;
+            }
+
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Batch Deleted Successfully');", true);
+            this.GetBatchAssingList(prjid);
+
+        }
+
+        protected void calculateAmount_TextChanged(object sender, EventArgs e)
+        {
+            string theText = "";
+            TextBox textbox = sender as TextBox;
+            if (textbox != null)
+            {
+                theText = textbox.ID;
+            }
+
+            double qty = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtbatchQuantity.Text.Trim()));
+            double rate = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtrate.Text.Trim()));
+            double amount = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtAmount.Text.Trim()));
+
+            double trnamount = 0;
+            double trnrte = 0;
+
+            switch (theText)
+            {
+                case "txtrate":
+                    trnamount = (rate > 0 && qty > 0) ? qty * rate : amount;
+                    trnrte = rate;
+                    break;
+                case "txtAmount":
+                    trnrte = (amount > 0 && qty > 0) ? amount / qty : rate;
+                    trnamount = amount;
+                    break;
+                default:
+
+                    trnamount = (rate > 0 && qty > 0) ? qty * rate : amount;
+                    trnrte = rate;
+
+                    break;
+            }
+
+
+
+            this.txtrate.Text = trnrte.ToString("#,##0.000000;(#,##0.000000); ");
+            this.txtAmount.Text = trnamount.ToString("#,##0.000000;(#,##0.000000); ");
+
 
         }
     }
