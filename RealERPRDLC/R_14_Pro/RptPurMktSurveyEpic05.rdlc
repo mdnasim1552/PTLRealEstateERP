@@ -1918,7 +1918,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>comnam</rd:DefaultName>
-              <Top>0.02431in</Top>
               <Left>1.41667in</Left>
               <Height>0.25in</Height>
               <Width>8.31667in</Width>
@@ -1953,7 +1952,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>comadd</rd:DefaultName>
-              <Top>0.27306in</Top>
+              <Top>0.24806in</Top>
               <Left>1.41667in</Left>
               <Height>0.225in</Height>
               <Width>8.31667in</Width>
@@ -1978,7 +1977,7 @@
                       <Value>=Parameters!RptTitle.Value</Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
-                        <FontSize>11pt</FontSize>
+                        <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -1989,7 +1988,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>RptTitle</rd:DefaultName>
-              <Top>0.48556in</Top>
+              <Top>0.46056in</Top>
               <Left>1.41667in</Left>
               <Height>0.25in</Height>
               <Width>8.31667in</Width>
@@ -2014,6 +2013,7 @@
                       <Value>=Parameters!CurDate1.Value</Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
+                        <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -2024,7 +2024,7 @@
               </Paragraphs>
               <rd:DefaultName>CurDate1</rd:DefaultName>
               <Top>0.74181in</Top>
-              <Left>8.9in</Left>
+              <Left>8.9125in</Left>
               <Height>0.20833in</Height>
               <Width>2.15416in</Width>
               <ZIndex>3</ZIndex>
@@ -2083,9 +2083,8 @@
               <Source>External</Source>
               <Value>=Parameters!ComLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
-              <Top>0.03681in</Top>
               <Left>0.0125in</Left>
-              <Height>0.60833in</Height>
+              <Height>0.63333in</Height>
               <Width>1.25833in</Width>
               <ZIndex>5</ZIndex>
               <ToolTip>=Parameters!ComLogo.Value</ToolTip>
@@ -2142,7 +2141,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox7</rd:DefaultName>
-                  <Top>0.49583in</Top>
+                  <Top>0.39583in</Top>
                   <Left>0.26165in</Left>
                   <Height>0.24791in</Height>
                   <Width>1.29291in</Width>
@@ -2178,7 +2177,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox7</rd:DefaultName>
-                  <Top>0.49583in</Top>
+                  <Top>0.39583in</Top>
                   <Left>3.18125in</Left>
                   <Height>0.24791in</Height>
                   <Width>1.29291in</Width>
@@ -2217,7 +2216,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox7</rd:DefaultName>
-                  <Top>0.49583in</Top>
+                  <Top>0.39583in</Top>
                   <Left>6.40333in</Left>
                   <Height>0.24791in</Height>
                   <Width>1.30209in</Width>
@@ -2256,7 +2255,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox7</rd:DefaultName>
-                  <Top>0.49583in</Top>
+                  <Top>0.39583in</Top>
                   <Left>9.38041in</Left>
                   <Height>0.22292in</Height>
                   <Width>1.36458in</Width>
@@ -2294,7 +2293,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>printFooter</rd:DefaultName>
-                  <Top>0.78541in</Top>
+                  <Top>0.68541in</Top>
                   <Left>0.0125in</Left>
                   <Height>0.175in</Height>
                   <Width>8.42271in</Width>
@@ -2330,7 +2329,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox3</rd:DefaultName>
-                  <Top>0.79722in</Top>
+                  <Top>0.69722in</Top>
                   <Left>8.65777in</Left>
                   <Height>0.16319in</Height>
                   <Width>2.38077in</Width>
@@ -2347,7 +2346,7 @@
                 </Textbox>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
-              <Top>0.06945in</Top>
+              <Top>0.03195in</Top>
               <Left>0.07042in</Left>
               <Height>0.98124in</Height>
               <Width>11.09167in</Width>

@@ -907,8 +907,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!orgdate.Value
-=Format(Fields!orgdate.Value,"dd-MM-yyyy")</Value>
+                                  <Value>=IIF(cDate(Fields!orgdate.Value).ToString("dd-MMM-yyyy")="01-Jan-1900","",cDate(Fields!orgdate.Value).ToString("dd-MMM-yyyy"))</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1052,7 +1051,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!chqdate.Value,"dd-MM-yyyy")</Value>
+                                  <Value>=IIF(cDate(Fields!chqdate.Value).ToString("dd-MMM-yyyy")="01-Jan-1900","",cDate(Fields!chqdate.Value).ToString("dd-MMM-yyyy"))</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1166,7 +1165,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>Total</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1175,7 +1174,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Right</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -1203,7 +1202,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Total</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1212,7 +1211,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Left</TextAlign>
+                                <TextAlign>Right</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -1539,7 +1538,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.01389in</Top>
             <Height>1.22917in</Height>
-            <Width>7.69792in</Width>
+            <Width>7.69793in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1550,7 +1549,7 @@
         <Height>1.24306in</Height>
         <Style />
       </Body>
-      <Width>7.69792in</Width>
+      <Width>7.69793in</Width>
       <Page>
         <PageHeader>
           <Height>0.70833in</Height>
@@ -1683,7 +1682,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.24479in</Height>
+          <Height>0.2448in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
