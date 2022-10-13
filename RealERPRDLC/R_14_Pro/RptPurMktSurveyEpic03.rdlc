@@ -1514,7 +1514,7 @@ IIf(Format(Fields!rsircode.Value)="AAAAAAAAEEEE","Default","Black")))))</FontWei
             <DataSetName>DataSet1</DataSetName>
             <Top>0.1875in</Top>
             <Height>1.10417in</Height>
-            <Width>11.18124in</Width>
+            <Width>11.18125in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1525,7 +1525,7 @@ IIf(Format(Fields!rsircode.Value)="AAAAAAAAEEEE","Default","Black")))))</FontWei
         <Height>1.55209in</Height>
         <Style />
       </Body>
-      <Width>11.18124in</Width>
+      <Width>11.18125in</Width>
       <Page>
         <PageHeader>
           <Height>0.96333in</Height>
@@ -1587,7 +1587,7 @@ IIf(Format(Fields!rsircode.Value)="AAAAAAAAEEEE","Default","Black")))))</FontWei
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>comadd</rd:DefaultName>
-              <Top>0.24875in</Top>
+              <Top>0.26125in</Top>
               <Left>1.41667in</Left>
               <Height>0.225in</Height>
               <Width>8.31667in</Width>
@@ -1612,7 +1612,7 @@ IIf(Format(Fields!rsircode.Value)="AAAAAAAAEEEE","Default","Black")))))</FontWei
                       <Value>=Parameters!RptTitle.Value</Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
-                        <FontSize>11pt</FontSize>
+                        <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -1623,7 +1623,7 @@ IIf(Format(Fields!rsircode.Value)="AAAAAAAAEEEE","Default","Black")))))</FontWei
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>RptTitle</rd:DefaultName>
-              <Top>0.46125in</Top>
+              <Top>0.44875in</Top>
               <Left>1.41667in</Left>
               <Height>0.25in</Height>
               <Width>8.31667in</Width>
@@ -1648,6 +1648,7 @@ IIf(Format(Fields!rsircode.Value)="AAAAAAAAEEEE","Default","Black")))))</FontWei
                       <Value>=Parameters!CurDate1.Value</Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
+                        <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -1737,7 +1738,7 @@ IIf(Format(Fields!rsircode.Value)="AAAAAAAAEEEE","Default","Black")))))</FontWei
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>1.04513in</Height>
+          <Height>1.07846in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1776,7 +1777,7 @@ IIf(Format(Fields!rsircode.Value)="AAAAAAAAEEEE","Default","Black")))))</FontWei
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox7</rd:DefaultName>
-                  <Top>0.49583in</Top>
+                  <Top>0.39583in</Top>
                   <Left>0.26165in</Left>
                   <Height>0.24791in</Height>
                   <Width>1.29291in</Width>
@@ -1812,7 +1813,7 @@ IIf(Format(Fields!rsircode.Value)="AAAAAAAAEEEE","Default","Black")))))</FontWei
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox7</rd:DefaultName>
-                  <Top>0.49583in</Top>
+                  <Top>0.39583in</Top>
                   <Left>3.18125in</Left>
                   <Height>0.24791in</Height>
                   <Width>1.29291in</Width>
@@ -1851,7 +1852,7 @@ IIf(Format(Fields!rsircode.Value)="AAAAAAAAEEEE","Default","Black")))))</FontWei
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox7</rd:DefaultName>
-                  <Top>0.49583in</Top>
+                  <Top>0.39583in</Top>
                   <Left>6.40333in</Left>
                   <Height>0.24791in</Height>
                   <Width>1.30209in</Width>
@@ -1890,7 +1891,7 @@ IIf(Format(Fields!rsircode.Value)="AAAAAAAAEEEE","Default","Black")))))</FontWei
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox7</rd:DefaultName>
-                  <Top>0.49583in</Top>
+                  <Top>0.39583in</Top>
                   <Left>9.38041in</Left>
                   <Height>0.22292in</Height>
                   <Width>1.36458in</Width>
@@ -1928,7 +1929,7 @@ IIf(Format(Fields!rsircode.Value)="AAAAAAAAEEEE","Default","Black")))))</FontWei
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>printFooter</rd:DefaultName>
-                  <Top>0.78541in</Top>
+                  <Top>0.68541in</Top>
                   <Left>0.0125in</Left>
                   <Height>0.175in</Height>
                   <Width>8.42271in</Width>
@@ -1964,7 +1965,7 @@ IIf(Format(Fields!rsircode.Value)="AAAAAAAAEEEE","Default","Black")))))</FontWei
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox3</rd:DefaultName>
-                  <Top>0.79722in</Top>
+                  <Top>0.69722in</Top>
                   <Left>8.65777in</Left>
                   <Height>0.16319in</Height>
                   <Width>2.38077in</Width>
@@ -1981,8 +1982,8 @@ IIf(Format(Fields!rsircode.Value)="AAAAAAAAEEEE","Default","Black")))))</FontWei
                 </Textbox>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
-              <Top>0.04723in</Top>
-              <Left>0.01562in</Left>
+              <Top>0.0375in</Top>
+              <Left>0.04479in</Left>
               <Height>0.98124in</Height>
               <Width>11.09167in</Width>
               <Style>
