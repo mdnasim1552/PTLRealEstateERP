@@ -881,7 +881,13 @@
                                             <ItemStyle Width="100px" />
                                             <HeaderStyle HorizontalAlign="Center" Width="100px" VerticalAlign="Top" />
                                         </asp:TemplateField>
-
+                                        <asp:TemplateField HeaderText="Department">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvdetpname" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "detpname")) %>'
+                                                    Width="100px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
 
                                     </Columns>
                                     <FooterStyle CssClass="grvFooter" />
@@ -1110,7 +1116,13 @@
                                             <HeaderStyle HorizontalAlign="Left" />
                                             <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
                                         </asp:TemplateField>
-
+                                        <asp:TemplateField HeaderText="Department">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvdetpname" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "detpname")) %>'
+                                                    Width="100px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
 
                                     </Columns>
                                     <FooterStyle CssClass="grvFooter" />
@@ -1317,6 +1329,13 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Left" />
                                             <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Department">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvdetpname" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "detpname")) %>'
+                                                    Width="100px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                     </Columns>
@@ -1532,6 +1551,13 @@
                                             <HeaderStyle HorizontalAlign="Left" />
                                             <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
                                         </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Department">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvdetpname" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "detpname")) %>'
+                                                    Width="100px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
 
                                     </Columns>
                                     <FooterStyle CssClass="grvFooter" />
@@ -1746,6 +1772,13 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Left" />
                                             <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Department">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvdetpname" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "detpname")) %>'
+                                                    Width="100px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                     </Columns>
@@ -2001,7 +2034,13 @@
                                             <HeaderStyle HorizontalAlign="Left" />
                                             <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
                                         </asp:TemplateField>
-
+                                        <asp:TemplateField HeaderText="Department">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvdetpname" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "detpname")) %>'
+                                                    Width="100px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
                                     </Columns>
                                     <FooterStyle CssClass="grvFooter" />
                                     <EditRowStyle />
@@ -2200,6 +2239,13 @@
                                             <ItemStyle Width="100px" />
                                             <HeaderStyle HorizontalAlign="Center" Width="80px" VerticalAlign="Top" />
                                         </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Department">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvdetpname" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "detpname")) %>'
+                                                    Width="100px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
                                     </Columns>
                                     <FooterStyle CssClass="grvFooter" />
                                     <EditRowStyle />
@@ -2379,6 +2425,13 @@
                                                                 </FooterTemplate>--%>
                                         <FooterStyle HorizontalAlign="Right" Width="60px" />
                                     </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Department">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvdetpname" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "detpname")) %>'
+                                                    Width="100px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
                                     <%--     <asp:TemplateField HeaderText="Curent Status">
                                         <ItemTemplate>
                                             <asp:Label ID="lblcurrentStreq" runat="server" Font-Size="12px" Style="font-size: 12px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cstatus")) %>'
