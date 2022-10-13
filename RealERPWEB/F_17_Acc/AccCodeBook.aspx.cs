@@ -471,7 +471,7 @@ namespace RealERPWEB.F_17_Acc
         protected void grvacc_DataBind()
         {
             this.grvacc.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-            this.grvacc.DataSource = (DataTable)Session["storedata"]; ;
+            this.grvacc.DataSource = (DataTable)Session["storedata"]; 
             this.grvacc.DataBind();
             //int rowindex = grvacc.CurrentCell.RowIndex;
 
@@ -793,61 +793,72 @@ namespace RealERPWEB.F_17_Acc
 
         protected void lbtnAdd_Click(object sender, EventArgs e)
         {
-
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-            if (!Convert.ToBoolean(dr1[0]["entry"]))
+            try
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (!Convert.ToBoolean(dr1[0]["entry"]))
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+
+                //210100010008
+                //210100010008
+                GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int RowIndex = gvr.RowIndex;
+                int index = this.grvacc.PageSize * this.grvacc.PageIndex + RowIndex;
+                string actcode = ((DataTable)Session["storedata"]).Rows[index]["actcode"].ToString();
+                string pactcode = ((DataTable)Session["storedata"]).Rows[index]["pactcode"].ToString();
+                this.lblactcode.Text = actcode;
+                this.txtacountcode.Text = actcode.Substring(0, 2) + "-" + actcode.Substring(2, 2) + "-" + actcode.Substring(4, 4) + "-" + ASTUtility.Right(actcode, 4);
+
+                this.Chboxchild.Checked = (ASTUtility.Right(actcode, 8) == "00000000" && ASTUtility.Right(actcode, 10) != "0000000000") || (ASTUtility.Right(actcode, 4) == "0000");
+                this.chkbod.Visible = (ASTUtility.Right(actcode, 8) == "00000000" && ASTUtility.Right(actcode, 10) != "0000000000") || (ASTUtility.Right(actcode, 4) == "0000");
+
+                this.lblchild.Visible = (ASTUtility.Right(actcode, 8) == "00000000" && ASTUtility.Right(actcode, 10) != "0000000000") || (ASTUtility.Right(actcode, 4) == "0000");
+                // Project Link
+                // actcode.Trim().Substring(0, 2) == "21"
+                if ((actcode.Trim().Substring(0, 2) == "19" || actcode.Trim().Substring(0, 2) == "29") && actcode.Trim().Substring(8) != "0000")
+                {
+
+
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    string comcod = hst["comcod"].ToString();
+                    string SearchProject = "%";
+                    DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "GETCACTPROJECT", SearchProject, "", "", "", "", "", "", "", "");
+                    this.ddlProject.DataTextField = "pactdesc";
+                    this.ddlProject.DataValueField = "pactcode";
+                    this.ddlProject.DataSource = ds1.Tables[0];
+                    this.ddlProject.DataBind();
+                    this.ddlProject.SelectedValue = pactcode; //((Label)this.gvCodeBook.Rows[e.NewEditIndex].FindControl("lblgvProName")).Text.Trim();
+
+
+                    ds1.Dispose();
+
+                }
+                else
+                {
+                    this.ddlProject.Items.Clear();
+                    this.lblddlproject.Visible = false;
+                    this.ddlProject.Visible = false;
+
+
+
+                }
+
+
+
+                // this.GetDetailsInfo(rsircode);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+            }
+            catch(Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
             }
-
-
-            GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
-            int RowIndex = gvr.RowIndex;
-            int index = this.grvacc.PageSize * this.grvacc.PageIndex + RowIndex;
-            string actcode = ((DataTable)Session["storedata"]).Rows[index]["actcode"].ToString();
-            string pactcode = ((DataTable)Session["storedata"]).Rows[index]["actcode"].ToString();
-            this.lblactcode.Text = actcode;
-            this.txtacountcode.Text = actcode.Substring(0, 2) + "-" + actcode.Substring(2, 2) + "-" + actcode.Substring(4, 4) + "-" + ASTUtility.Right(actcode, 4);
-
-            this.Chboxchild.Checked = (ASTUtility.Right(actcode, 8) == "00000000" && ASTUtility.Right(actcode, 10) != "0000000000") || (ASTUtility.Right(actcode, 4) == "0000");
-            this.chkbod.Visible = (ASTUtility.Right(actcode, 8) == "00000000" && ASTUtility.Right(actcode, 10) != "0000000000") || (ASTUtility.Right(actcode, 4) == "0000");
-
-            this.lblchild.Visible = (ASTUtility.Right(actcode, 8) == "00000000" && ASTUtility.Right(actcode, 10) != "0000000000") || (ASTUtility.Right(actcode, 4) == "0000");
-            // Project Link
-
-            if ((actcode.Trim().Substring(0, 2) == "19" || actcode.Trim().Substring(0, 2) == "29" || actcode.Trim().Substring(0, 2) == "21") && actcode.Trim().Substring(8) != "0000")
-            {
-
-
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = hst["comcod"].ToString();
-                string SearchProject = "%";
-                DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "GETCACTPROJECT", SearchProject, "", "", "", "", "", "", "", "");
-                this.ddlProject.DataTextField = "pactdesc";
-                this.ddlProject.DataValueField = "pactcode";
-                this.ddlProject.DataSource = ds1.Tables[0];
-                this.ddlProject.DataBind();
-                this.ddlProject.SelectedValue = pactcode; //((Label)this.gvCodeBook.Rows[e.NewEditIndex].FindControl("lblgvProName")).Text.Trim();
-                ds1.Dispose();
-
-            }
-            else
-            {
-                this.ddlProject.Items.Clear();
-                this.lblddlproject.Visible = false;
-                this.ddlProject.Visible = false;
-
-
-
-            }
-
-
-
-            // this.GetDetailsInfo(rsircode);
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+           
         }
         protected void lbtnAddCode_Click(object sender, EventArgs e)
         {

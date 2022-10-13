@@ -119,6 +119,7 @@
     <None Include="Properties\DataSources\RealEntity.C_09_PIMP.EClassOrder+GetWorkOrder.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_09_PIMP.SubConBill+SubConAllBill.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EClassMaterial+IndentStatus.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_12_Inv.EClassMaterial+IndentStatusSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+InventoryAmountBasis.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+InventoryQtyBasisPeriodic.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+MktPurchaseOrderInfo.datasource" />
@@ -155,6 +156,7 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesvsAchievementtypecount.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SoldUnsoftInfGroupWise.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SoldUnsoltInfavg.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+TransactionSt.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+AccCustPayLedgerCHL.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptMonWiseNewSales.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptSalPaySchedules.datasource" />
@@ -216,6 +218,7 @@
     <EmbeddedResource Include="R_09_PIMP\RptConBillIntech.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptLabIssueRup.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrderP2PBN.rdlc" />
+    <EmbeddedResource Include="R_12_Inv\RptIndentIssueStatusSummary.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptIndentIssueStatus.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenQtyBasisPeriodic.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasisPeriodic.rdlc" />
@@ -824,6 +827,7 @@
     <EmbeddedResource Include="R_22_Sal\RptSalSummeryDetails.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSoldUnsoftInfGroupWise.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSoldUnsoldUnitAvgPrice.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptTransactionSt.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptTransStatement02.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptTransStatement02Finlay.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptTransStatement03.rdlc" />
