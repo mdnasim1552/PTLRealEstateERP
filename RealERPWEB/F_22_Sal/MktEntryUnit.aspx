@@ -433,6 +433,30 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
+                                         <asp:TemplateField HeaderText="Booking %">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvBookingper" runat="server" AutoCompleteType="Disabled"
+                                                    BackColor="Transparent" BorderStyle="None" Font-Size="11px"
+                                                    Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bookingper")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="70px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+
+                                        <asp:TemplateField HeaderText="EMI">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvemi" runat="server" AutoCompleteType="Disabled"
+                                                    BackColor="Transparent" BorderStyle="None" Font-Size="11px"
+                                                    Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "noofinstall")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="40px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+
                                         <asp:TemplateField HeaderText="Facing">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvUFacing" runat="server" BackColor="Transparent"
