@@ -311,7 +311,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
         private void ShowPersonalInformation()
         {
-
+            Session.Remove("perempinfo");
             string comcod = this.GetComeCode();
             string empid = this.ddlEmpName.SelectedValue.ToString();
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "EMPPERSONALINFO", empid, "", "", "", "", "", "", "", "");
@@ -344,7 +344,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.gvPersonalInfo2.DataSource = dt2;
             this.gvPersonalInfo2.DataBind();
 
-
+            Session["perempinfo"] = dt;
+            Session["perempinfo2"] = dt2;
 
             DropDownList ddlgval;
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -862,7 +863,17 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.grvJobRespo.DataBind();
 
         }
+        private string getLockMonthId()
+        {
+            string comcod = this.GetComeCode();
+            string monthid = "";
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "ISLOCKSALSHEET", "", "", "", "", "", "", "", "", "");
+            if(ds==null || ds.Tables[0].Rows.Count ==0)
+                return monthid;
 
+            monthid = ds.Tables[0].Rows[0]["monthid"].ToString();
+            return monthid;
+        }
 
         private void ShowNomineeInfo()
         {
@@ -902,6 +913,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string empid = this.ddlEmpName.SelectedValue.ToString();
             string empname = ((TextBox)this.gvPersonalInfo.Rows[1].FindControl("txtgvVal")).Text.Trim();
             //Log Entry
+            string doj = "";
+            string retdat = "";
+
+
+            doj= (((DataTable)Session["perempinfo"]).Select("gcod='01003'"))[0]["gdesc1"].ToString();
+
+     
+            retdat = (((DataTable)Session["perempinfo2"]).Select("gcod='01999'"))[0]["gdesc1"].ToString()?? "01-jan-1900";
+
 
             for (int i = 0; i < this.gvPersonalInfo.Rows.Count; i++)
             {
@@ -966,6 +986,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 {
                     string Gvalue = (Gcode == "01001") ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
 
+                    if (this.getLockMonthId() == System.DateTime.Now.ToString("yyyyMM") && Gvalue != doj)
+                    {
+                        Gvalue = doj;
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Sorry! You can't change Joining date field, while salary sheet locked." + "');", true);
+
+                    }
+
                     if (Gvalue.Length == 0)
                     {
                         // int x = 1;
@@ -976,6 +1003,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     {
                         ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgcResDesc1")).ForeColor = System.Drawing.ColorTranslator.FromHtml("#000");
                     }
+                  
 
                 }
 
@@ -1052,6 +1080,14 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 if (Gcode == "01999")
                 {
                     Gvalue = (((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? "01-jan-1900" : ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvdVal")).Text.Trim();
+
+                    if (this.getLockMonthId() == System.DateTime.Now.ToString("yyyyMM") && Gvalue != retdat)
+                    {
+                        Gvalue = retdat;
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Sorry! You can't change retirement date field ,while salary sheet locked." + "');", true);
+
+                    }
+
                 }
 
                else if (Gcode == "01050")
@@ -1195,10 +1231,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
         protected void gvPersonalInfo_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+ 
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 TextBox txtgvname = (TextBox)e.Row.FindControl("txtgvVal");
+                TextBox txtjoindat = (TextBox)e.Row.FindControl("txtgvdVal");
+
                 TextBox txtgvValBn = (TextBox)e.Row.FindControl("txtgvValBn");
 
 
@@ -1216,7 +1255,31 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     //txtgvValBn.Text = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "gdesc1")).ToString();
                 }
 
+
+
+
                 //txtgvValBn.Text = "";
+                if (code == "01003")
+                {
+                    
+                    string curr_monid = System.DateTime.Now.ToString("yyyyMM");
+                    string lockMonid = this.getLockMonthId();
+                    if (lockMonid == curr_monid)
+                    {
+                        //txtjoindat.Enabled = false;
+                        string resigndat = txtjoindat.Text.ToString().Trim() == "" ? System.DateTime.Now.ToString("dd-MMM-yyyy") : txtjoindat.Text.ToString().Trim();
+                        //Convert.ToDateTime(txtjoindat.Text ?? "01-Jan-1900").ToString("dd/MM/yyyy");
+                        resigndat = Convert.ToDateTime(resigndat).ToString("dd/MM/yyyy");
+                        AjaxControlToolkit.CalendarExtender CalendarExtendere21 =
+                    (e.Row.FindControl("txtgvdVal_CalendarExtender") as AjaxControlToolkit.CalendarExtender);
+                        CalendarExtendere21.StartDate = DateTime.ParseExact(resigndat, "dd/MM/yyyy", null);
+                        CalendarExtendere21.EndDate = DateTime.ParseExact(resigndat, "dd/MM/yyyy", null);
+                    }
+                }
+                else
+                {
+                    txtjoindat.Enabled = true;
+                }
 
             }
 
@@ -1869,6 +1932,35 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
         protected void gvPersonalInfo2_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+     
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                TextBox txtjoindat = (TextBox)e.Row.FindControl("txtgvdVal");
+                string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "gcod")).ToString();
+     
+                if (code == "01999")
+                {
+                    
+                    string curr_monid = System.DateTime.Now.ToString("yyyyMM");
+                    string lockMonid = this.getLockMonthId();
+                    if ( lockMonid == curr_monid)
+                    {
+                        //txtjoindat.Enabled = false;
+                        string resigndat = txtjoindat.Text.ToString().Trim()=="" ? "01-Jan-1900" : txtjoindat.Text.ToString().Trim();
+                        //Convert.ToDateTime(txtjoindat.Text ?? "01-Jan-1900").ToString("dd/MM/yyyy");
+                         resigndat = Convert.ToDateTime(resigndat).ToString("dd/MM/yyyy");
+                        AjaxControlToolkit.CalendarExtender CalendarExtendere21 =
+                    (e.Row.FindControl("txtgvdVal_CalendarExtender") as AjaxControlToolkit.CalendarExtender);
+                        CalendarExtendere21.StartDate = DateTime.ParseExact(resigndat, "dd/MM/yyyy", null);
+                        CalendarExtendere21.EndDate = DateTime.ParseExact(resigndat, "dd/MM/yyyy", null);
+                    }
+                    else
+                    {
+                        txtjoindat.Enabled = false;
+                    }
+                }
+
+            }
         }
         protected void lnkCreate_Click(object sender, EventArgs e)
         {
