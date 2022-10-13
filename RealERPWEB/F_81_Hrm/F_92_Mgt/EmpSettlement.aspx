@@ -169,7 +169,7 @@
                                         <tr>
                                             <td class="font-weight-bold">Present Salary</td>
                                             <td>
-                                                <asp:Label ID="Label2" runat="server">0000</asp:Label>
+                                                <asp:Label ID="lblgross" runat="server">0000</asp:Label>
                                             </td>
                                         </tr>
                                         <tr>
@@ -182,7 +182,7 @@
                                         <tr>
                                            <td class="font-weight-bold">Last Date of Office</td>
                                             <td>
-                                                <asp:Label ID="Label1" runat="server"></asp:Label>
+                                                <asp:Label ID="lbllastday" runat="server"></asp:Label>
                                             </td>
                                         </tr>
 
@@ -279,7 +279,7 @@
 
                                         <asp:TemplateField HeaderText="Calculation" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblcalculation" CssClass="badge badge-pill badge-info" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "calculation")) %>'></asp:Label>
+                                                <asp:TextBox ID="lblcalculation" CssClass="form-control form-control-sm" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "calculation")) %>'></asp:TextBox>
 
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
@@ -385,7 +385,7 @@
 
                                         <asp:TemplateField HeaderText="Calculation" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblcalculation" CssClass="badge badge-pill badge-info" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "calculation")) %>' ></asp:Label>
+                                                <asp:TextBox ID="lblcalculation" CssClass="form-control form-control-sm" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "calculation")) %>' ></asp:TextBox>
 
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
