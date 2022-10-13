@@ -81,10 +81,25 @@ namespace RealERPWEB.F_22_Sal
         {
             string comcod = this.GetComeCode();         
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT02", "GETGROUP", "", "", "", "", "", "", "", "", "");
+
+            DataTable dt = ds1.Tables[0];
+            DataRow dr1 = dt.NewRow();
+            dr1["grpcode"] = "000000000000";
+            dr1["grpdesc"] = "All Type";
+            dt.Rows.Add(dr1);
+      
+
             this.ddlgrp.DataTextField = "grpdesc";
             this.ddlgrp.DataValueField = "grpcode";
             this.ddlgrp.DataSource = ds1.Tables[0];
             this.ddlgrp.DataBind();
+            this.ddlgrp.SelectedValue = "000000000000";
+            //this.ddlgrp.DataTextField = "grpdesc";
+            //this.ddlgrp.DataValueField = "grpcode";
+            //this.ddlgrp.DataSource = ds1.Tables[0];
+            //this.ddlgrp.DataBind();
+
+
 
 
         }
@@ -97,7 +112,7 @@ namespace RealERPWEB.F_22_Sal
             string comcod = this.GetComeCode();
             string prjcode = this.ddlPrjName.SelectedValue.ToString();
             string date = this.txtfrmdate.Text.Trim();
-            string grpcode = this.ddlgrp.SelectedValue.ToString();
+            string grpcode = this.ddlgrp.SelectedValue.ToString() == "000000000000" ? "51%" : this.ddlgrp.SelectedValue.ToString() + "%";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT02", "GETSOLDUNSOLDUNITYPEWISE", prjcode, date, grpcode, "", "", "", "", "", "");
             if (ds1 == null)
             {

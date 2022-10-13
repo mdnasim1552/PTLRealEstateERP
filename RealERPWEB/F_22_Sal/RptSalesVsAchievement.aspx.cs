@@ -84,6 +84,7 @@ namespace RealERPWEB.F_22_Sal
             this.ddlgrp.DataValueField = "grpcode";
             this.ddlgrp.DataSource = ds1.Tables[0];
             this.ddlgrp.DataBind();
+            this.ddlgrp.SelectedValue = "000000000000";
 
 
             ////DataTable dt = ds1.Tables[0];
