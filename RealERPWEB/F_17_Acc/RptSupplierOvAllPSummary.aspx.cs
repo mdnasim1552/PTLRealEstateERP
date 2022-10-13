@@ -41,6 +41,7 @@ namespace RealERPWEB.F_17_Acc
                 this.txttodate.Text = dtoday.ToString("dd-MMM-yyyy");
                 this.txtfrmdate.Text = new System.DateTime(dtoday.Year, dtoday.Month, 1).ToString("dd-MMM-yyyy");
                 this.SupplierList();
+               
             }
 
         }
@@ -60,6 +61,8 @@ namespace RealERPWEB.F_17_Acc
 
         }
 
+       
+
         protected void ibtnFindSupply_OnClick(object sender, EventArgs e)
         {
             this.SupplierList();
@@ -78,9 +81,32 @@ namespace RealERPWEB.F_17_Acc
             ViewState["tblSup"] = ds1.Tables[0];
         }
 
-
+       
 
         protected void lnkbtnOk_Click(object sender, EventArgs e)
+        {
+            string stindex = this.rbtnAtStatus.SelectedIndex.ToString();
+            switch (stindex)
+            {
+                case "0":
+                    this.MultiView1.ActiveViewIndex = 0;
+                   this. PaymentSummary();
+
+                    break;
+
+                case "1":
+                    this.MultiView1.ActiveViewIndex = 1;
+                    this.PaymentDetails();
+                    break;
+
+            }
+
+
+           
+
+        }
+
+        private void PaymentSummary()
         {
 
             try
@@ -91,19 +117,18 @@ namespace RealERPWEB.F_17_Acc
                 string frmdate = txtfrmdate.Text.ToString();
                 string todate = txttodate.Text.ToString();
                 string stindex = this.rbtnAtStatus.SelectedIndex.ToString();
-                string supcode = this.ddlSuplist.SelectedValue.ToString();
-
-                string calltype = (stindex == "0" ? "SUPPLIERWISEWRKORDERDETAIL" : "SUPPLIERWISEWRKORDERBILLDETAIL");
-
-                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", calltype, frmdate, todate, supcode, "", "", "", "", "", "");
+                string Rescode = this.ddlSuplist.SelectedValue.ToString() == "000000000000" ? "99%" : this.ddlSuplist.SelectedValue.ToString() + "%";
+                string mRptGroup = "12";
+                string calltype = (stindex == "0" ? "RPTALLSUPPAYMENTSTATUS" : "GETSUPLLIERANDSUBCONTRACTORSATUS");  
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", calltype, frmdate, todate, Rescode, mRptGroup, "", "", "", "", "");
                 if (ds1 == null)
                 {
-                    this.gvsupstatus.DataSource = null;
-                    this.gvsupstatus.DataBind();
+                    this.gvspaysummary.DataSource = null;
+                    this.gvspaysummary.DataBind();
                     return;
                 }
-                Session["tblsupinfo"] = ds1.Tables[0];
-                this.DataBindGrid();
+                Session["tblspaysum"] = ds1.Tables[0];
+                this.Data_Bind();
             }
             catch (Exception ex)
             {
@@ -112,21 +137,58 @@ namespace RealERPWEB.F_17_Acc
 
         }
 
-        private void DataBindGrid()
+        private void PaymentDetails()
         {
-            // this.MultiView1.ActiveViewIndex = 0;
+
             try
             {
-                this.gvsupstatus.DataSource = (DataTable)Session["tblsupinfo"];
-                this.gvsupstatus.DataBind();
+                Session.Remove("tblsupinfo");
+                string comcod = this.GetComeCode();
+
+                string frmdate = txtfrmdate.Text.ToString();
+                string todate = txttodate.Text.ToString();
+                string stindex = this.rbtnAtStatus.SelectedIndex.ToString();
+                string Rescode = this.ddlSuplist.SelectedValue.ToString() == "000000000000" ? "99%" : this.ddlSuplist.SelectedValue.ToString() + "%";
+                string mRptGroup = "12";
+                string calltype = (stindex == "0" ? "RPTALLSUPPAYMENTSTATUS" : "GETSUPLLIERANDSUBCONTRACTORSATUS");
+                //  DataSet ds2 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "RPTALLSUPPAYMENT", frmdate, todate, Rescode, mRptGroup, supplier, Rescodegrp, search, "", "");
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", calltype, frmdate, todate, Rescode, mRptGroup, "", "", "", "", "");
+                if (ds1 == null)
+                {
+                    this.gvspaysummary.DataSource = null;
+                    this.gvspaysummary.DataBind();
+                    return;
+                }
+                Session["tblspaysum"] = ds1.Tables[0];
+                this.Data_Bind();
             }
             catch (Exception ex)
             {
 
             }
-            //Session["Report1"] = gvsupstatus;
-            //((HyperLink)this.gvsupstatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
+        }
+
+
+        private void Data_Bind()
+        {
+
+            string stindex = this.rbtnAtStatus.SelectedIndex.ToString();
+            switch (stindex)
+            {
+                case "0":
+                    this.gvspaysummary.DataSource = (DataTable)Session["tblspaysum"];
+                    this.gvspaysummary.DataBind();
+
+                    break;
+
+                case "1":
+                    this.gvspaymentdetails.DataSource = (DataTable)Session["tblspaysum"];
+                    this.gvspaymentdetails.DataBind();
+                    break;
+
+            }
+           
         }
 
 

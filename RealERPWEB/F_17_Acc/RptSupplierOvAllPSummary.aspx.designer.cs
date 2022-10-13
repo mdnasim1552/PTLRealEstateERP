@@ -123,12 +123,30 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.View veiwsummary;
 
         /// <summary>
-        /// gvsupstatus control.
+        /// gvspaysummary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvsupstatus;
+        protected global::System.Web.UI.WebControls.GridView gvspaysummary;
+
+        /// <summary>
+        /// ViewDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View ViewDetails;
+
+        /// <summary>
+        /// gvspaymentdetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvspaymentdetails;
     }
 }
