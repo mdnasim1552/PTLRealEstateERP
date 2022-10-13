@@ -12,6 +12,20 @@
     </style>
 
     <script>
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+
+        });
+        function pageLoaded() {
+
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+
+            $('.chzn-select').chosen({ search_contains: true });
+        }
         function HoldtaskNoteModal() {
             $('#myModal').modal('toggle');
         }
@@ -437,7 +451,7 @@
 
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h4 class="modal-title text-primary">Create Hold Note</h4>
+                            <h4 class="modal-title text-primary"><asp:Label runat="server" ID="lbltaskmodal"></asp:Label></h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
 
@@ -479,13 +493,29 @@
                                     </div>
                                 </div>
                             </div>
-
+                             <div class="row" id="holdreason" runat="server" visible="false">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label ID="lblreason" runat="server">Hold Reason</label>
+                                        <asp:DropDownList ID="ddlholdreason" runat="server"  CssClass="form-control chzn-select">
+                                        <asp:ListItem Value="89001"> Pray Break</asp:ListItem>
+                                        <asp:ListItem Value="89002">Lunch Break</asp:ListItem>
+                                        <asp:ListItem Value="89003">Snacks Break</asp:ListItem>
+                                        <asp:ListItem Value="89004">Meeting Break</asp:ListItem>
+                                        <asp:ListItem Value="89005">Tea Break</asp:ListItem>
+                                        <asp:ListItem Value="89006">Discussion Break</asp:ListItem>
+                                        <asp:ListItem Value="89007">Gossip Break</asp:ListItem>
+                                        
+                                    </asp:DropDownList>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" runat="server" id="SaveNote" data-dismiss="modal" aria-hidden="true" onserverclick="SaveNote_ServerClick" class="btn btn-primary">Save Note</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="button" runat="server" id="SaveNote" data-dismiss="modal" aria-hidden="true" onserverclick="SaveNote_ServerClick" class="btn btn-primary btn-sm">Save Note</button>
+                            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
                         </div>
 
                     </div>

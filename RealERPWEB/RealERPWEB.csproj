@@ -159,7 +159,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -2209,6 +2209,7 @@
     <Content Include="F_17_Acc\AccIndentUpdate.aspx" />
     <Content Include="F_17_Acc\AccInterComVoucherDel.aspx" />
     <Content Include="F_17_Acc\RptOPPaymentTopSheet.aspx" />
+    <Content Include="F_17_Acc\RptSupplierOvAllPSummary.aspx" />
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
     <Content Include="F_21_MKT\RptPerDeleteProspect.aspx" />
@@ -4091,6 +4092,13 @@
     </Compile>
     <Compile Include="F_17_Acc\RptOPPaymentTopSheet.aspx.designer.cs">
       <DependentUpon>RptOPPaymentTopSheet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_17_Acc\RptSupplierOvAllPSummary.aspx.cs">
+      <DependentUpon>RptSupplierOvAllPSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_17_Acc\RptSupplierOvAllPSummary.aspx.designer.cs">
+      <DependentUpon>RptSupplierOvAllPSummary.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\LandProspectTransfer.aspx.cs">
       <DependentUpon>LandProspectTransfer.aspx</DependentUpon>

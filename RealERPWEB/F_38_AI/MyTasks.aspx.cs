@@ -188,6 +188,8 @@ namespace RealERPWEB.F_38_AI
             this.notetaskid.Text = timeid;
             this.Mdl_lblempid.Text = empid;
             this.Mdl_jobid.Text = jobid;
+            this.lbltaskmodal.Text = "Create Hold Note";
+            this.holdreason.Visible = true;
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HoldtaskNoteModal();", true);
 
         }
@@ -204,7 +206,7 @@ namespace RealERPWEB.F_38_AI
             string timeTkerID = this.notetaskid.Text;
             string assignuser = this.Mdl_lblempid.Text;
             string jobid = this.Mdl_jobid.Text;
-
+            string holdreason = this.ddlholdreason.SelectedValue.Trim().ToString();
             string remarks = this.noteDescription.Text;
             string doneqty = this.txtDoneQty.Text;
             string skipqty = this.txtSkippqty.Text == "" ? "0.00" : this.txtSkippqty.Text;
@@ -222,7 +224,7 @@ namespace RealERPWEB.F_38_AI
             string comcod = this.GetCompCode(); 
 
 
-            bool resultb = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INSERTUPDATE_STARTTASK", jobid, assignuser, postdate, trackertype, doneqty, skipqty, remarks, timeTkerID);
+            bool resultb = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INSERTUPDATE_STARTTASK", jobid, assignuser, postdate, trackertype, doneqty, skipqty, remarks, holdreason, timeTkerID);
 
             if (!resultb)
             {
@@ -298,10 +300,11 @@ namespace RealERPWEB.F_38_AI
             string taskDesc = ((Label)this.gvTodayList.Rows[index].FindControl("Lbltasktitle")).Text.Trim();
 
             this.donestatus.Text = "99220";
-
+            this.lbltaskmodal.Text = "Task Complete Note";
             this.notetaskid.Text = timeid;
             this.Mdl_lblempid.Text = empid;
             this.Mdl_jobid.Text = jobid;
+           
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HoldtaskNoteModal();", true);
         }
     }
