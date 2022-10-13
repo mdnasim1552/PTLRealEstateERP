@@ -62,5 +62,26 @@ namespace RealEntity.C_12_Inv
 
             }
         }
+        [Serializable]
+        public class IndentStatusSummary
+        {
+            public string comcod { get; set; }
+            public string deptdesc { get; set; }
+            public string pactcode { get; set; }
+            public string deptno { get; set; }
+            public string rsircode { get; set; }
+            public double openqty { get; set; }
+            public double rcvqty { get; set; }
+            public double issueqty { get; set; }
+            public double blncqty { get; set; }
+            public string rsirdesc { get; set; }
+            public string pactdesc { get; set; }
+            public string deptname { get; set; }
+           
+            public IndentStatusSummary()
+            {
+
+            }
+        }
     }
 }
