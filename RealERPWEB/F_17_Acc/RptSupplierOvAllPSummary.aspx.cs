@@ -256,10 +256,10 @@ namespace RealERPWEB.F_17_Acc
                 Label lblgvDrAmount = (Label)e.Row.FindControl("lblgvDrAmount");
                 Label lblgvCrAmt = (Label)e.Row.FindControl("lblgvCrAmt");
                 Label lblgvClsing = (Label)e.Row.FindControl("lblgvClsing");
-                Label lblprjName = (Label)e.Row.FindControl("lblgvClsing");
+                Label lblprjName = (Label)e.Row.FindControl("lblprjName");
 
-
-                string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString();
+                string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString().Trim();
+                //string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString();
 
 
                 // string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "refno")).ToString();
@@ -275,28 +275,60 @@ namespace RealERPWEB.F_17_Acc
                 {
 
                     //lgvfgrp.Font.Bold = true;
-                    lblgvOpndetails.Font.Bold = true;
-                    lblgvDrAmount.Font.Bold = true;
-                    lblgvCrAmt.Font.Bold = true;
-                    lblgvClsing.Font.Bold = true;
-                    lblprjName.Font.Bold = true;
+                    //lblgvOpndetails.Font.Bold = true;
+                    //lblgvDrAmount.Font.Bold = true;
+                    //lblgvCrAmt.Font.Bold = true;
+                    //lblgvClsing.Font.Bold = true;
+                    //lblprjName.Font.Bold = true;
 
-                    lblgvOpndetails.Font.Size = 10;
-                    lblgvDrAmount.Font.Size = 10;
-                    lblgvCrAmt.Font.Size = 10;
-                    lblgvClsing.Font.Size = 10;
-                    lblprjName.Font.Size = 10;
+                    //lblgvOpndetails.Font.Size = 10;
+                    //lblgvDrAmount.Font.Size = 10;
+                    //lblgvCrAmt.Font.Size = 10;
+                    //lblgvClsing.Font.Size = 10;
+                    //lblprjName.Font.Size = 10;
 
+                    lblprjName.Attributes["style"] = "font-weight:bold; color:maroon;";
                     lblgvOpndetails.Attributes["style"] = "font-weight:bold; color:maroon;";
                     lblgvDrAmount.Attributes["style"] = "font-weight:bold; color:maroon;";
                     lblgvCrAmt.Attributes["style"] = "font-weight:bold; color:maroon;";
                     lblgvClsing.Attributes["style"] = "font-weight:bold; color:maroon;";
-                    lblprjName.Attributes["style"] = "font-weight:bold; color:maroon;";
+
 
                     //lgvNagad.Style.Add("text-align", "left");
                     lblprjName.Style.Add("text-align", "right");
 
                 }
+
+
+                if (grp == "D")
+                {
+
+                    //lgvfgrp.Font.Bold = true;
+                    //lblgvOpndetails.Font.Bold = true;
+                    //lblgvDrAmount.Font.Bold = true;
+                    //lblgvCrAmt.Font.Bold = true;
+                    //lblgvClsing.Font.Bold = true;
+                    //lblprjName.Font.Bold = true;
+
+                    //lblgvOpndetails.Font.Size = 10;
+                    //lblgvDrAmount.Font.Size = 10;
+                    //lblgvCrAmt.Font.Size = 10;
+                    //lblgvClsing.Font.Size = 10;
+                    //lblprjName.Font.Size = 10;
+
+                    lblprjName.Attributes["style"] = "font-weight:bold; color:green;";
+                    lblgvOpndetails.Attributes["style"] = "font-weight:bold; color:green;";
+                    lblgvDrAmount.Attributes["style"] = "font-weight:bold; color:green;";
+                    lblgvCrAmt.Attributes["style"] = "font-weight:bold; color:green;";
+                    lblgvClsing.Attributes["style"] = "font-weight:bold; color:green;";
+
+
+                    //lgvNagad.Style.Add("text-align", "left");
+                    lblprjName.Style.Add("text-align", "right");
+
+                }
+
+
 
             }
         }
