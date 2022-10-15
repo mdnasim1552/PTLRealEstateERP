@@ -617,6 +617,8 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptCashBankWithdraw": Rpt1a = SetRptCashBankWithdraw(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAccOpening": Rpt1a = SetRptAccOpening(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAccOpeningDetails": Rpt1a = SetRptAccOpeningDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptSupplierOvAllPSummary": Rpt1a = SetRptSupplierOvAllPSummary(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptSupplierOvAllPSummaryDetails": Rpt1a = SetRptSupplierOvAllPSummaryDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 #endregion
@@ -1442,6 +1444,16 @@ namespace RealERPRDLC
         private static LocalReport SetRptAccOpeningDetails(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.AccOpening>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptSupplierOvAllPSummary(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptSupplierOverAllPSummary>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptSupplierOvAllPSummaryDetails(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptSupplierOverAllPSummaryDetails>)RptDataSet));
             return Rpt1a;
         }
 

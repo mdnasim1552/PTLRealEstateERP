@@ -1880,7 +1880,7 @@
                                                      
                                                                            <asp:LinkButton runat="server" ID="btnDelete" CommandName="Delete" 
                                                                                ClientIDMode="Static"
-                                                        OnClick="btnbatchremoveRow_Click" ToolTip="Elimina abbinamento" 
+                                                        OnClick="btnbatchremoveRow_Click" ToolTip="Delete" 
                                                                                CssClass="text-danger pr-2 isdeleteRow" CausesValidation="false" 
                                                                                CommandArgument='<%# DataBinder.Eval(Container.DataItem, "id") %>' 
                                                                                OnClientClick="return sweetAlertConfirm(this);"><i class="fa fa-trash"></i></asp:LinkButton>
@@ -1941,7 +1941,7 @@
 
     <script>
         function sweetAlertConfirm(btnDelete) {
-
+            
             if (btnDelete.dataset.confirmed) {    
                 btnDelete.dataset.confirmed = false;
                 return true;

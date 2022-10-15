@@ -53,7 +53,8 @@ namespace RealERPWEB.F_12_Inv
             string comadd = hst["comadd1"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
-
+            string fromdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
             DataTable dt = (DataTable)Session["tblindissuestatus"];
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_12_Inv.EClassMaterial.IndentStatus>();
@@ -62,7 +63,7 @@ namespace RealERPWEB.F_12_Inv
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+            Rpt1.SetParameters(new ReportParameter("printdate", "Date: " + fromdate + " To " + todate));
             Rpt1.SetParameters(new ReportParameter("RptTitle", "Indent Issue Status"));
           
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));

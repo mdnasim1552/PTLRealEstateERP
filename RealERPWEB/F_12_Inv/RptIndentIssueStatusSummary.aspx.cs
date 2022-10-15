@@ -1,4 +1,5 @@
 ﻿using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -59,7 +60,7 @@ namespace RealERPWEB.F_12_Inv
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("printdate", fromdate+ " To "+todate));
+            Rpt1.SetParameters(new ReportParameter("printdate","Date: "+ fromdate+ " To "+todate));
             Rpt1.SetParameters(new ReportParameter("RptTitle", "Indent Issue Status Summary"));
 
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
