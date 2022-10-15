@@ -562,7 +562,7 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Height>0.75in</Height>
-            <Width>7.65972in</Width>
+            <Width>7.65971in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -710,7 +710,6 @@
                       <Value>=Parameters!printdate.Value</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
-                        <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
