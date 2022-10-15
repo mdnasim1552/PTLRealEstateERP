@@ -822,6 +822,11 @@ namespace RealERPWEB.F_17_Acc
                     CallType = "GETACMEACCBILLINFO";
                     break;
 
+                case "3101":// own
+                case "3348":// credence
+                    CallType = "GETCREDENCEACCBILLINFO";
+                    break;
+
 
 
                 default:
