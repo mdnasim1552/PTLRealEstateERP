@@ -103,9 +103,21 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.txtdate.Text = Convert.ToDateTime(this.txFdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     break;
                 default:
-                    this.txFdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    if (startdate == "26")
+                    {
+                        this.txFdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    }
+                    else
+                    {
+                        this.txFdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    }
                     this.txFdate.Text = startdate + this.txFdate.Text.Trim().Substring(2);
                     this.txtdate.Text = Convert.ToDateTime(this.txFdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+                    //this.txFdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    //this.txFdate.Text = startdate + this.txFdate.Text.Trim().Substring(2);
+                    //this.txtdate.Text = Convert.ToDateTime(this.txFdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
                     break;
             }
         }
