@@ -204,6 +204,33 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.GridView gv_PenddingAssign;
 
         /// <summary>
+        /// assigntask control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl assigntask;
+
+        /// <summary>
+        /// lbltaskbatchid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbltaskbatchid;
+
+        /// <summary>
+        /// gv_BatchInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_BatchInfo;
+
+        /// <summary>
         /// task control.
         /// </summary>
         /// <remarks>
@@ -339,13 +366,13 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.Label Label8;
 
         /// <summary>
-        /// ddlvalocitytype control.
+        /// ddlassigntype control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlvalocitytype;
+        protected global::System.Web.UI.WebControls.DropDownList ddlassigntype;
 
         /// <summary>
         /// Label9 control.
@@ -454,33 +481,6 @@ namespace RealERPWEB.F_38_AI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btntaskUpdate;
-
-        /// <summary>
-        /// assigntask control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl assigntask;
-
-        /// <summary>
-        /// lbltaskbatchid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltaskbatchid;
-
-        /// <summary>
-        /// gv_BatchInfo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv_BatchInfo;
 
         /// <summary>
         /// BoardView control.
