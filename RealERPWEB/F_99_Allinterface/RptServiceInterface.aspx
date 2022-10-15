@@ -944,7 +944,6 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
-                                                                    <asp:HyperLink ID="lnkbtnPrintQT" runat="server" Target="_blank" CssClass="btn btn-default btn-xs" ToolTip="Print Quotations"><span class="fa fa-print"></span></asp:HyperLink>
 
                                                                     <asp:HyperLink ID="lnkProceed" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class=" fa fa-check"></span>
                                                                     </asp:HyperLink>
@@ -1248,6 +1247,8 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
+                                                                    <asp:HyperLink ID="lnkbtnPrintQT" runat="server" Target="_blank" CssClass="btn btn-default btn-xs" ToolTip="Print Quotations" ForeColor="Green"><span class="fa fa-print"></span></asp:HyperLink>
+
                                                                     <asp:HyperLink ID="lnkProceed" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class=" fa fa-check"></span>
                                                                     </asp:HyperLink>
                                                                 </ItemTemplate>
