@@ -38,8 +38,7 @@ namespace RealERPWEB.F_08_PPlan
 
                 this.GetProjectName();
                 this.ShowView();
-
-                ((Label)this.Master.FindControl("lblmsg")).Visible = false;
+               
                 if (this.Request.QueryString["prjcode"].Length > 0)
                 {
 
@@ -93,7 +92,6 @@ namespace RealERPWEB.F_08_PPlan
                     this.txttodate.Visible = false;
                     this.lblfloor.Visible = false;
                     this.ddlFloorListRpt.Visible = false;
-
                     this.MultiView1.ActiveViewIndex = 1;
                     break;
 
@@ -106,7 +104,7 @@ namespace RealERPWEB.F_08_PPlan
 
 
             string comcod = this.GetCompCode();
-            string serch1 = this.txtProjectSearch.Text.Trim() + "%";
+            string serch1 = "%";
             DataSet ds1 = PurData.GetTransInfo(comcod, "SP_REPORT_PROJECTTARGET", "GETPROJETNAME", serch1, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -225,10 +223,7 @@ namespace RealERPWEB.F_08_PPlan
         }
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
-
-
             string type = this.Request.QueryString["Type"];
-
             switch (type)
             {
                 case "WorkBasis":
@@ -238,13 +233,8 @@ namespace RealERPWEB.F_08_PPlan
 
                 case "RealFlow":
                     this.ShowCashFlow();
-
                     break;
-
-
             }
-
-
 
         }
 
@@ -254,12 +244,10 @@ namespace RealERPWEB.F_08_PPlan
             Session.Remove("tblMon");
             this.PnlColoumn.Visible = true;
             string comcod = this.GetCompCode();
-            ((Label)this.Master.FindControl("lblmsg")).Text = "";
             int mon = ASTUtility.Datediff(Convert.ToDateTime(this.txttodate.Text.Trim()), Convert.ToDateTime(this.txtfrmdate.Text.Trim()));
             if (mon > 6)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Month Less Than Equal Six";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Month Less Than Equal Six');", true);
                 return;
             }
 
@@ -305,7 +293,6 @@ namespace RealERPWEB.F_08_PPlan
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
 
-
         }
         private void ShowCashFlow()
         {
@@ -313,7 +300,6 @@ namespace RealERPWEB.F_08_PPlan
             Session.Remove("tblMon");
             this.PnlColoumn.Visible = true;
             string comcod = this.GetCompCode();
-            ((Label)this.Master.FindControl("lblmsg")).Text = "";
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
             string floor = this.ddlFloorListRpt.SelectedValue.ToString();
             int index = this.ddlRptGroup.SelectedIndex;
@@ -385,19 +371,9 @@ namespace RealERPWEB.F_08_PPlan
                         if (dt1.Rows[j]["grp"].ToString() == grp)
                             dt1.Rows[j]["grpdesc"] = "";
                         grp = dt1.Rows[j]["grp"].ToString();
-
-
-
-
-
                     }
-
                     break;
-
-
             }
-
-
 
             return dt1;
 
@@ -1305,6 +1281,7 @@ namespace RealERPWEB.F_08_PPlan
         }
         protected void lnkgvResDescd_Click(object sender, EventArgs e)
         {
+            /*
 
             Session.Remove("tblresdetails");
             string comcod = this.GetCompCode();
@@ -1349,6 +1326,8 @@ namespace RealERPWEB.F_08_PPlan
 
 
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModal();", true);
+
+            */
         }
     }
 }
