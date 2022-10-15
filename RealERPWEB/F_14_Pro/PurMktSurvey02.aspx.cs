@@ -1624,6 +1624,7 @@ namespace RealERPWEB.F_14_Pro
                 Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
                 Rpt1.SetParameters(new ReportParameter("narration", "Comments : " + narration));
+                Rpt1.SetParameters(new ReportParameter("surveyNo", surveyNo));
                 Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
 
@@ -1645,6 +1646,7 @@ namespace RealERPWEB.F_14_Pro
                 Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
                 Rpt1.SetParameters(new ReportParameter("narration", "Comments : " + narration));
+                Rpt1.SetParameters(new ReportParameter("surveyNo", surveyNo));
                 Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
 

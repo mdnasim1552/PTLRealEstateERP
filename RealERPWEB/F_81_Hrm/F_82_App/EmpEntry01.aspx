@@ -259,6 +259,7 @@
                                                         CssClass="form control" BackColor="Transparent"
                                                         BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
+
                                                     <asp:TextBox ID="txtgvdVal" runat="server" AutoCompleteType="Disabled"
                                                         CssClass="form control" BackColor="Transparent"
                                                         BorderColor="#660033" BorderStyle="None" BorderWidth="1px"

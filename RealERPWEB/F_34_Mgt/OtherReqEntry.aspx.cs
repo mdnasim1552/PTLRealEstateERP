@@ -43,7 +43,7 @@ namespace RealERPWEB.F_34_Mgt
 
 
                 // this.GetGroup();
-
+                this.GetDeparment();
                 this.txtCurReqDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.GetBundle();
                 this.GetProjectName();
@@ -71,6 +71,11 @@ namespace RealERPWEB.F_34_Mgt
 
 
                 string comcod = this.GetCompCode();
+
+                if (comcod == "3336" || comcod == "3337")
+                {
+                    this.bundle.Visible = true;
+                }
                 // || (Request.QueryString["Type"].ToString() == "OreqEdit")
                 if ((Request.QueryString["Type"].ToString() == "OreqPrint"))
                 {
@@ -129,6 +134,23 @@ namespace RealERPWEB.F_34_Mgt
 
         }
 
+        protected void GetDeparment()
+        {
+            string comcod = this.GetCompCode();
+            //string txtSProject = "%" + this.txtSrcPro.Text.Trim() + "%";
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO", "FXTASSTGETDEPARTMENT", "%%", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            ds1.Tables[0].Rows.Add(comcod, "000000000000", "None");
+            //ds1.Tables[0].Rows.Add(comcod, "AAAAAAAAAAAA", "-------Select-----------");
+
+
+            this.ddlDeptCode.DataTextField = "fxtgdesc";
+            this.ddlDeptCode.DataValueField = "fxtgcod";
+            this.ddlDeptCode.DataSource = ds1.Tables[0];
+            this.ddlDeptCode.DataBind();
+            this.ddlDeptCode.SelectedValue = "000000000000";
+        }
 
 
         private void Bankcode()
@@ -815,7 +837,7 @@ namespace RealERPWEB.F_34_Mgt
                 this.lblCurReqNo1.Text = ds1.Tables[1].Rows[0]["reqno1"].ToString().Substring(0, 6);
                 this.txtCurReqNo2.Text = ds1.Tables[1].Rows[0]["reqno1"].ToString().Substring(6, 5);
                 this.txtCurReqDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["reqdat"]).ToString("dd.MM.yyyy");
-                // this.ddlProjectName.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
+                this.ddlDeptCode.SelectedValue = ds1.Tables[1].Rows[0]["deptcode"].ToString();
                 this.txtReqNarr.Text = ds1.Tables[1].Rows[0]["reqnar"].ToString();
                 string adjcod = ds1.Tables[1].Rows[0]["adjcod"].ToString();
                 string supcode = ds1.Tables[1].Rows[0]["supcode"].ToString();
@@ -1711,6 +1733,7 @@ namespace RealERPWEB.F_34_Mgt
             string supcode = ddlSupplier.SelectedValue.ToString();
             string termncon = this.termncon.Text.ToString();
             string payofmod = this.mofpay.Text.ToString();
+            string deptcode = this.ddlDeptCode.SelectedValue.ToString();
             supcode = (supcode.Trim() == "" ? "000000000000" : supcode);
             supcode = (type == "OreqApproved" || type == "FinalAppr" ? dtuser.Rows[0]["supcode"].ToString() : supcode);
 
@@ -1799,7 +1822,9 @@ namespace RealERPWEB.F_34_Mgt
                 {
                     result = purData.UpdateTransInfo01(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "INSERTOTHERREQ",
                              mREQNO, mPACTCODE, mRSIRCODE, mREQDAT, mMRFNO, mProAMT.ToString(), mAPPAMT.ToString(), nARRATION,
-                             PostedByid, PostSession, Posttrmid, ApprovByid, approvdat, Approvtrmid, ApprovSession, qty.ToString(), paytype, payto, ppdamt.ToString(), posteddat, supcode, spcfcod, adjcod, type, termncon, payofmod, bundleno, billno, bankcode, refnum, Approval, advanced , attnper);
+                             PostedByid, PostSession, Posttrmid, ApprovByid, approvdat, Approvtrmid, ApprovSession, qty.ToString(), paytype, payto, 
+                             ppdamt.ToString(), posteddat, supcode, spcfcod, adjcod, type, termncon, payofmod, bundleno, billno, bankcode, refnum, Approval, 
+                             advanced , attnper, deptcode);
                 }
                 if (!result)
                 {

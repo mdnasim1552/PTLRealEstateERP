@@ -351,7 +351,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string userRole = "3";
             usrpass = (usrpass.Length == 0) ? "" : ASTUtility.EncodePassword(usrpass);
             bool result = HRData.UpdateTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "INSORUPDATEUSR", usrid, usrsname,
-                      usrfname, usrdesig, usrpass, usrrmrk, active, empid, usermail, webmailpwd, userRole, "", "", "", "");
+                      usrfname, usrdesig, usrpass, usrrmrk, active, empid, usermail, webmailpwd, userRole, "UserProfile", "", "", "");
             if (!result)
             {
                 msg = HRData.ErrorObject["Msg"].ToString();
