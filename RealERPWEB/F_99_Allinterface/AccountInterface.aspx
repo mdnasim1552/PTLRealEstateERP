@@ -1169,8 +1169,8 @@
                                                         </asp:TemplateField>                                
                                                         <asp:TemplateField HeaderText="Order No">                                                            
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lgorderno" runat="server"
-                                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "orderno")) %>'
+                                                                <asp:Label ID="lgorderno1" runat="server"
+                                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "orderno1")) %>'
                                                                     Width="80px"></asp:Label>
                                                             </ItemTemplate>
                                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
@@ -1271,7 +1271,7 @@
                                                         <asp:TemplateField>
 
                                                             <HeaderTemplate>
-                                                                <table style="width: 80px;">
+                                                                <table style="width: 120px;">
                                                                     <tr>
                                                                         <td class="style58">
                                                                             <asp:Label ID="Label4" runat="server" Font-Bold="True"></asp:Label>
@@ -1280,7 +1280,7 @@
                                                                         <td>
                                                                             <asp:HyperLink ID="hylbtn" runat="server" BackColor="#000066"
                                                                                 BorderColor="White" BorderStyle="Solid" BorderWidth="1px" Font-Bold="True"
-                                                                                ForeColor="White" Style="text-align: center" Target="_blank" Width="100px">All Pending Bill</asp:HyperLink>
+                                                                                ForeColor="White" Style="text-align: center" Target="_blank" Width="120px">All Pending Bill</asp:HyperLink>
                                                                             <%--<asp:HyperLink ID="hylbtn" runat="server" CssClass="btn btn-primary primarygrdBtn" Style="text-align: center" BorderStyle="None" Width="50px">ALL</asp:HyperLink>--%>
                                                                         </td>
                                                                     </tr>
@@ -1292,9 +1292,20 @@
                                                                 <asp:HyperLink ID="lnkbtnEditRD" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                                 </asp:HyperLink>
                                                                 <asp:LinkButton ID="btnDelOrder" OnClick="btnDelPurchase_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
+                                                                <asp:HyperLink ID="lnkbtnPrintOrder" runat="server" CssClass="btn btn-default btn-xs" ToolTip="Print Order" Target="_blank" ForeColor="green"><span class="fa fa-print"></span></asp:HyperLink>
+
                                                             </ItemTemplate>
-                                                            <ItemStyle Width="80px" />
+                                                            <ItemStyle Width="120px" />
                                                             <HeaderStyle HorizontalAlign="left" Width="80px" VerticalAlign="Top" />
+                                                        </asp:TemplateField>
+
+                                                        <asp:TemplateField HeaderText="orderno" Visible="False">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblgvorderno" runat="server"
+                                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "orderno")) %>'
+                                                                    Width="49px"></asp:Label>
+                                                            </ItemTemplate>
+                                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                         </asp:TemplateField>
 
 

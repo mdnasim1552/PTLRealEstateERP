@@ -212,7 +212,7 @@ namespace RealERPWEB.F_38_AI
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
                         ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
                         ddlgval.DataTextField = "curdesc";
-                        ddlgval.DataValueField = "code";
+                        ddlgval.DataValueField = "curdesc";
                         ddlgval.DataSource = dtc;
                         ddlgval.DataBind();
                         ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();

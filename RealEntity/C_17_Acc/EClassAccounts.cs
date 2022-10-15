@@ -1242,6 +1242,50 @@ namespace RealEntity.C_17_Acc
 
             }
         }
+        [Serializable]
+        public class RptSupplierOverAllPSummaryDetails
+        {
+            public string rescode { get; set; }
+            public string resdesc { get; set; }
+            public double opnam { get; set; }
+            public double opam { get; set; }
+            public double dram { get; set; }
+            public double cram { get; set; }
+            public double balamt { get; set; }
+            public double isuamt { get; set; }
+            public string actdesc { get; set; }
+            public string grp { get; set; }
+            public double clsam { get; set; }
+
+
+
+            public RptSupplierOverAllPSummaryDetails()
+            {
+
+            }
+        }
+        [Serializable]
+        public class RptSupplierOverAllPSummary
+        {
+            public string rescode { get; set; }
+            public string resdesc { get; set; }
+            public double opnam { get; set; }
+          
+            public double dram { get; set; }
+            public double cram { get; set; }
+            public double balamt { get; set; }
+            public double isuamt { get; set; }
+           
+         
+
+
+
+            public RptSupplierOverAllPSummary()
+            {
+
+            }
+        }
+
 
 
 

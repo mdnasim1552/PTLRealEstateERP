@@ -387,7 +387,7 @@
                             <label class="control-label">Description:</label>
                         </div>
                         <div class="col-lg-3">
-                            <asp:TextBox ID="txttaskdesc" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                            <asp:TextBox ID="txttaskdesc" runat="server" CssClass="form-control form-control-sm" TextMode="MultiLine"></asp:TextBox>
                         </div>
                         <asp:Label runat="server" ID="lblrowid" Visible="false">0</asp:Label>
                         <asp:Label runat="server" ID="lblempid" Visible="false"></asp:Label>
