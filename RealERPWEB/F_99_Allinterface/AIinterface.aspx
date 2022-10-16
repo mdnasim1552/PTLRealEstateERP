@@ -1076,7 +1076,7 @@
                                         <asp:TemplateField HeaderText="Role Type " Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvvelocitytype" runat="server" Height="16px"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "velocitytype")) %>'
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletype")) %>'
                                                     Width="150px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1245,7 +1245,7 @@
                                         <asp:TemplateField HeaderText="Role Type " Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvqcvelocitytype" runat="server" Height="16px"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "velocitytype")) %>'
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletype")) %>'
                                                     Width="150px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
