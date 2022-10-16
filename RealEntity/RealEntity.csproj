@@ -88,6 +88,7 @@
     <Compile Include="C_21_MKT\ECRMClientInfo.cs" />
     <Compile Include="C_21_MKT\EPaper.cs" />
     <Compile Include="C_21_MKT\ESourceWiseLeadsclass.cs" />
+    <Compile Include="C_22_Sal\EClassGrandNoteSheet.cs" />
     <Compile Include="C_22_Sal\EClassSales.cs" />
     <Compile Include="C_22_Sal\EClassSales_02.cs" />
     <Compile Include="C_22_Sal\EnvelopModel.cs" />

@@ -17,6 +17,13 @@
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
             });
+
+            var gvb = $('#<%=this.gvbcasesch.ClientID %>');
+            var gvcoff = $('#<%=this.gvcoffsch.ClientID %>');
+            var gvrev = $('#<%=this.gvrevpsch.ClientID %>');
+            gvb.Scrollable();
+            gvcoff.Scrollable();
+            gvrev.Scrollable();
             $('.chzn-select').chosen({ search_contains: true });
 
         }
@@ -41,6 +48,11 @@
             font-weight: bold;
             color: white;
             padding-left: 5px !important;
+        }
+
+        .form-control-sm {
+            padding: 0.25rem 0rem !important;
+        
         }
     </style>
 
@@ -561,6 +573,23 @@
                                                 </div>
                                             </div>
 
+                                             <div class="row">
+                                                <div class="col-md-8">
+                                                    <div class="form-group lblmargin">
+                                                        <label id="lblinrate" runat="server">Interes Rate</label>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group lblmargin textalignright">
+
+                                                           <asp:TextBox ID="txtinterestrate" runat="server" CssClass="form-control form-control-sm textalignright" Text="9%"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
                                         </div>
                                     </div>
 
@@ -640,7 +669,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group lblmargin textalignright">
-                                                        <label id="lblcoffbookingam" runat="server" clss="form-control form-control-sm ">2500</label>
+                                                        <label id="lblvalcoffbookingam" runat="server" clss="form-control form-control-sm ">2500</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -654,21 +683,21 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group lblmargin textalignright">
-                                                        <label id="lblcoffemi" runat="server" clss="form-control form-control-sm ">2500</label>
+                                                        <label id="lblvalcoffemi" runat="server" clss="form-control form-control-sm ">2500</label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group lblmargin textalignright font-weight-bold">
-                                                        <label id="lblcofffvpersft" runat="server" clss="form-control form-control-sm ">2500</label>
+                                                        <label id="lblvalcofffvpersft" runat="server" clss="form-control form-control-sm ">2500</label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group lblmargin textalignright font-weight-bold">
-                                                        <label id="lblcoffpvpersft" runat="server" clss="form-control form-control-sm ">2500</label>
+                                                        <label id="lblvalcoffpvpersft" runat="server" clss="form-control form-control-sm ">2500</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -739,7 +768,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group lblmargin textalignright">
 
-                                                        <label id="lblrevparea" runat="server" clss="form-control form-control-sm ">2500</label>
+                                                        <label id="lblvalrevparea" runat="server" clss="form-control form-control-sm ">2500</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -797,7 +826,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group lblmargin textalignright">
-                                                        <label id="lblrevpbookingam" runat="server" clss="form-control form-control-sm ">2500</label>
+                                                        <label id="lblvalrevpbookingam" runat="server" clss="form-control form-control-sm ">2500</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -811,21 +840,21 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group lblmargin textalignright">
-                                                        <label id="lblrevpemi" runat="server" clss="form-control form-control-sm ">2500</label>
+                                                        <label id="lblvalrevpemi" runat="server" clss="form-control form-control-sm ">2500</label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group lblmargin textalignright font-weight-bold">
-                                                        <label id="lblrevpfvpersft" runat="server" clss="form-control form-control-sm ">2500</label>
+                                                        <label id="lblvalrevpfvpersft" runat="server" clss="form-control form-control-sm ">2500</label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group lblmargin textalignright font-weight-bold">
-                                                        <label id="lblrevppvpersft" runat="server" clss="form-control form-control-sm ">2500</label>
+                                                        <label id="lblvalrevppvpersft" runat="server" clss="form-control form-control-sm ">2500</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -890,15 +919,14 @@
 
                                                 </div>
                                                 <asp:GridView ID="gvbcasesch" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                AutoGenerateColumns="False" ShowFooter="True" Width="398px"
+                                AutoGenerateColumns="False" ShowFooter="True" 
                                 Style="margin-right: 0px">
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvslnodumpay" runat="server" Font-Bold="True" ForeColor="Black"
-                                                Height="16px" Style="text-align: right"
-                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                            <asp:Label ID="lblgvslnodumpay" runat="server" 
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
@@ -906,36 +934,38 @@
                                    
 
 
-                                    <asp:TemplateField HeaderText="Schedule Date">
+                                    <asp:TemplateField HeaderText="Month">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvScheduledate" runat="server" ForeColor="Black" BackColor="Transparent" BorderStyle="none"
-                                                Height="16px"
-                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "schdate")).ToString("dd-MMM-yyyy") %>'
-                                                Width="70px"></asp:TextBox>
+                                               
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ymon")) %>'
+                                                Width="60px"></asp:TextBox>
 
                                             <cc1:CalendarExtender ID="txtgvScheduledate_CalendarExtender1" runat="server"
-                                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvScheduledate"></cc1:CalendarExtender>
+                                                Enabled="True" Format="MMM-yy" TargetControlID="txtgvScheduledate"></cc1:CalendarExtender>
 
                                         </ItemTemplate>
 
-                                        <FooterTemplate>
-                                            <asp:LinkButton ID="lbtnTotaldumsch" CssClass="btn btn-primary  btn-xs" runat="server" Font-Bold="True" Font-Size="12px"
-                                                ForeColor="Black" Style="text-align: right" Text="Total" OnClick="lbtnTotaldumsch_Click"></asp:LinkButton>
+
+                                          <FooterTemplate>
+                                            <asp:Label ID="lgvFbcaseTotal" runat="server" Font-Bold="True" Font-Size="12px"
+                                                ForeColor="Black" Style="text-align: right" Text="Total"></asp:Label>
                                         </FooterTemplate>
+
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
 
                                     </asp:TemplateField>
 
 
-                                    <asp:TemplateField HeaderText="Payment">
+                                    <asp:TemplateField HeaderText="PV">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvdumschamt" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="none"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "schamt")).ToString("#,##0;(#,##0); ") %>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pv")).ToString("#,##0;(#,##0); ") %>'
                                                 Width="80px"></asp:TextBox>
                                         </ItemTemplate>
 
                                         <FooterTemplate>
-                                            <asp:Label ID="lgvFdumschamt" runat="server" Font-Bold="True" Font-Size="12px"
+                                            <asp:Label ID="lgvFpvschamt" runat="server" Font-Bold="True" Font-Size="12px"
                                                 ForeColor="Black" Style="text-align: right"></asp:Label>
                                         </FooterTemplate>
 
@@ -948,7 +978,7 @@
                                        <asp:TemplateField HeaderText="FV">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvfvschamt" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="none"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "schamt")).ToString("#,##0;(#,##0); ") %>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fv")).ToString("#,##0;(#,##0); ") %>'
                                                 Width="80px"></asp:TextBox>
                                         </ItemTemplate>
 
@@ -964,27 +994,15 @@
                                     </asp:TemplateField>
 
 
-                                    <asp:TemplateField HeaderText="">
-                                        <ItemTemplate>
-
-                                            <asp:LinkButton ID="lbtnAdddsch" OnClick="lbtnAdddsch_Click" ToolTip="Add Installment" runat="server" Visible="false"><span  class="glyphicon glyphicon-plus"></span> </asp:LinkButton>
-                                            <asp:LinkButton ID="lbtnDeldsch" OnClick="lbtnDeldsch_Click" ToolTip="Delete Installment" OnClientClick="javascript:return FunConfirm();" runat="server"><span style="color:red" class="glyphicon glyphicon-floppy-remove"></span> </asp:LinkButton>
-
-
-                                        </ItemTemplate>
-                                        <ItemStyle Width="60px" />
-                                        <HeaderStyle HorizontalAlign="Center" Width="60px" VerticalAlign="Top" />
-                                    </asp:TemplateField>
-
 
 
 
                                 </Columns>
-                                <FooterStyle CssClass="grvFooter" />
+                                <FooterStyle CssClass="" />
                                 <EditRowStyle />
                                 <AlternatingRowStyle />
-                                <PagerStyle CssClass="gvPagination" />
-                                <HeaderStyle CssClass="grvHeader" />
+                                <PagerStyle CssClass="" />
+                                <HeaderStyle CssClass="" />
                             </asp:GridView>
 
                                             </div>
@@ -1011,15 +1029,15 @@
 
                                                 </div>
                                                  <asp:GridView ID="gvcoffsch" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                AutoGenerateColumns="False" ShowFooter="True" Width="398px"
+                                AutoGenerateColumns="False" ShowFooter="True" 
                                 Style="margin-right: 0px">
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvslnodumpay" runat="server" Font-Bold="True" ForeColor="Black"
-                                                Height="16px" Style="text-align: right"
-                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                            <asp:Label ID="lblgvslnodumpay" runat="server" 
+                                                
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
@@ -1028,36 +1046,37 @@
 
 
                                    
-                                    <asp:TemplateField HeaderText="Schedule Date">
+                                    <asp:TemplateField HeaderText="Month">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvScheduledate" runat="server" ForeColor="Black" BackColor="Transparent" BorderStyle="none"
                                                 Height="16px"
-                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "schdate")).ToString("dd-MMM-yyyy") %>'
-                                                Width="70px"></asp:TextBox>
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ymon"))%>'
+                                                Width="60px"></asp:TextBox>
 
                                             <cc1:CalendarExtender ID="txtgvScheduledate_CalendarExtender1" runat="server"
-                                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvScheduledate"></cc1:CalendarExtender>
+                                                Enabled="True" Format="MMM-yy" TargetControlID="txtgvScheduledate"></cc1:CalendarExtender>
 
                                         </ItemTemplate>
 
-                                        <FooterTemplate>
-                                            <asp:LinkButton ID="lbtnTotaldumsch" CssClass="btn btn-primary  btn-xs" runat="server" Font-Bold="True" Font-Size="12px"
-                                                ForeColor="Black" Style="text-align: right" Text="Total" OnClick="lbtnTotaldumsch_Click"></asp:LinkButton>
+                                          <FooterTemplate>
+                                            <asp:Label ID="lgvFcoffTotal" runat="server" Font-Bold="True" Font-Size="12px"
+                                                ForeColor="Black" Style="text-align: right" Text="Total"></asp:Label>
                                         </FooterTemplate>
+
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
 
                                     </asp:TemplateField>
 
 
-                                    <asp:TemplateField HeaderText="Schedule Amount">
+                                    <asp:TemplateField HeaderText="PV">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvdumschamt" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="none"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "schamt")).ToString("#,##0;(#,##0); ") %>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pv")).ToString("#,##0;(#,##0); ") %>'
                                                 Width="80px"></asp:TextBox>
                                         </ItemTemplate>
 
                                         <FooterTemplate>
-                                            <asp:Label ID="lgvFdumschamt" runat="server" Font-Bold="True" Font-Size="12px"
+                                            <asp:Label ID="lgvFcoffpvschamt" runat="server" Font-Bold="True" Font-Size="12px"
                                                 ForeColor="Black" Style="text-align: right"></asp:Label>
                                         </FooterTemplate>
 
@@ -1071,7 +1090,7 @@
                                          <asp:TemplateField HeaderText="FV">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvcofffvschamt" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="none"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "schamt")).ToString("#,##0;(#,##0); ") %>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fv")).ToString("#,##0;(#,##0); ") %>'
                                                 Width="80px"></asp:TextBox>
                                         </ItemTemplate>
 
@@ -1087,27 +1106,16 @@
                                     </asp:TemplateField>
 
 
-                                    <asp:TemplateField HeaderText="">
-                                        <ItemTemplate>
-
-                                            <asp:LinkButton ID="lbtnAdddsch" OnClick="lbtnAdddsch_Click" ToolTip="Add Installment" runat="server" Visible="false"><span  class="glyphicon glyphicon-plus"></span> </asp:LinkButton>
-                                            <asp:LinkButton ID="lbtnDeldsch" OnClick="lbtnDeldsch_Click" ToolTip="Delete Installment" OnClientClick="javascript:return FunConfirm();" runat="server"><span style="color:red" class="glyphicon glyphicon-floppy-remove"></span> </asp:LinkButton>
-
-
-                                        </ItemTemplate>
-                                        <ItemStyle Width="60px" />
-                                        <HeaderStyle HorizontalAlign="Center" Width="60px" VerticalAlign="Top" />
-                                    </asp:TemplateField>
-
+                                  
 
 
 
                                 </Columns>
-                                <FooterStyle CssClass="grvFooter" />
+                                <FooterStyle CssClass="" />
                                 <EditRowStyle />
                                 <AlternatingRowStyle />
-                                <PagerStyle CssClass="gvPagination" />
-                                <HeaderStyle CssClass="grvHeader" />
+                                <PagerStyle CssClass="" />
+                                <HeaderStyle CssClass="" />
                             </asp:GridView>
 
                                             </div>
@@ -1134,15 +1142,14 @@
 
 
                                                  <asp:GridView ID="gvrevpsch" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                AutoGenerateColumns="False" ShowFooter="True" Width="398px"
+                                AutoGenerateColumns="False" ShowFooter="True" 
                                 Style="margin-right: 0px">
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvslnodumpay" runat="server" Font-Bold="True" ForeColor="Black"
-                                                Height="16px" Style="text-align: right"
-                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                            <asp:Label ID="lblgvslnodumpay" runat="server" 
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
@@ -1151,36 +1158,39 @@
 
 
                                    
-                                    <asp:TemplateField HeaderText="Schedule Date">
+                                    <asp:TemplateField HeaderText="Month">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvScheduledate" runat="server" ForeColor="Black" BackColor="Transparent" BorderStyle="none"
                                                 Height="16px"
-                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "schdate")).ToString("dd-MMM-yyyy") %>'
-                                                Width="70px"></asp:TextBox>
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ymon")) %>'
+                                                Width="60px"></asp:TextBox>
 
                                             <cc1:CalendarExtender ID="txtgvScheduledate_CalendarExtender1" runat="server"
-                                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvScheduledate"></cc1:CalendarExtender>
+                                                Enabled="True" Format="MMM-yy" TargetControlID="txtgvScheduledate"></cc1:CalendarExtender>
 
                                         </ItemTemplate>
 
-                                        <FooterTemplate>
-                                            <asp:LinkButton ID="lbtnTotaldumsch" CssClass="btn btn-primary  btn-xs" runat="server" Font-Bold="True" Font-Size="12px"
-                                                ForeColor="Black" Style="text-align: right" Text="Total" OnClick="lbtnTotaldumsch_Click"></asp:LinkButton>
+                                          <FooterTemplate>
+                                            <asp:Label ID="lgvFrevTotal" runat="server" Font-Bold="True" Font-Size="12px"
+                                                ForeColor="Black" Style="text-align: right" Text="Total"></asp:Label>
                                         </FooterTemplate>
+
+
+                                       
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
 
                                     </asp:TemplateField>
 
 
-                                    <asp:TemplateField HeaderText="Schedule Amount">
+                                    <asp:TemplateField HeaderText="PV">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvdumschamt" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="none"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "schamt")).ToString("#,##0;(#,##0); ") %>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pv")).ToString("#,##0;(#,##0); ") %>'
                                                 Width="80px"></asp:TextBox>
                                         </ItemTemplate>
 
                                         <FooterTemplate>
-                                            <asp:Label ID="lgvFdumschamt" runat="server" Font-Bold="True" Font-Size="12px"
+                                            <asp:Label ID="lgvFrevpvschamt" runat="server" Font-Bold="True" Font-Size="12px"
                                                 ForeColor="Black" Style="text-align: right"></asp:Label>
                                         </FooterTemplate>
 
@@ -1194,12 +1204,12 @@
                                          <asp:TemplateField HeaderText="FV">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvrevpfvschamt" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="none"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "schamt")).ToString("#,##0;(#,##0); ") %>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fv")).ToString("#,##0;(#,##0); ") %>'
                                                 Width="80px"></asp:TextBox>
                                         </ItemTemplate>
 
                                         <FooterTemplate>
-                                            <asp:Label ID="lgvFrevpfvscham" runat="server" Font-Bold="True" Font-Size="12px"
+                                            <asp:Label ID="lgvFrevfvscham" runat="server" Font-Bold="True" Font-Size="12px"
                                                 ForeColor="Black" Style="text-align: right"></asp:Label>
                                         </FooterTemplate>
 
@@ -1210,27 +1220,15 @@
                                     </asp:TemplateField>
 
 
-                                    <asp:TemplateField HeaderText="">
-                                        <ItemTemplate>
-
-                                            <asp:LinkButton ID="lbtnAdddsch" OnClick="lbtnAdddsch_Click" ToolTip="Add Installment" runat="server" Visible="false"><span  class="glyphicon glyphicon-plus"></span> </asp:LinkButton>
-                                            <asp:LinkButton ID="lbtnDeldsch" OnClick="lbtnDeldsch_Click" ToolTip="Delete Installment" OnClientClick="javascript:return FunConfirm();" runat="server"><span style="color:red" class="glyphicon glyphicon-floppy-remove"></span> </asp:LinkButton>
-
-
-                                        </ItemTemplate>
-                                        <ItemStyle Width="60px" />
-                                        <HeaderStyle HorizontalAlign="Center" Width="60px" VerticalAlign="Top" />
-                                    </asp:TemplateField>
-
 
 
 
                                 </Columns>
-                                <FooterStyle CssClass="grvFooter" />
+                                <FooterStyle CssClass="" />
                                 <EditRowStyle />
                                 <AlternatingRowStyle />
-                                <PagerStyle CssClass="gvPagination" />
-                                <HeaderStyle CssClass="grvHeader" />
+                                <PagerStyle CssClass="" />
+                                <HeaderStyle CssClass="" />
                             </asp:GridView>
 
                                             </div>
