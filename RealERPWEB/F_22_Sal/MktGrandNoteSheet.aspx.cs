@@ -16,6 +16,7 @@ using RealERPLIB;
 using RealERPRPT;
 using Microsoft.Reporting.WinForms;
 using RealERPRDLC;
+using RealERPEntity;
 namespace RealERPWEB.F_22_Sal
 {
     public partial class MktGrandNoteSheet : System.Web.UI.Page
@@ -182,8 +183,6 @@ namespace RealERPWEB.F_22_Sal
             this.gvSpayment.DataSource = dtOrder;
             this.gvSpayment.DataBind();
             this.lblCode.Text = usircode;
-
-            // this.lblAcAmt.Text = Convert.ToDouble(dtOrder.Rows[0]["tamt"]).ToString("#,##0;(#,##0); ");
             this.gvSpayment.Columns[5].Visible = true;
             this.gvSpayment.Columns[6].Visible = true;
             this.ShowData();
@@ -197,114 +196,174 @@ namespace RealERPWEB.F_22_Sal
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string usircode = this.lblCode.Text;
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
-            string usrid = hst["usrid"].ToString();
+          //  string usrid = hst["usrid"].ToString();
             string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "SHOWDUMMYSCHDULEUSERWISE", pactcode, usircode, usrid, date, "", "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "SHOWGRANDNOTESHEET", pactcode, usircode, "", "", "", "", "", "", "");
             if (ds1 == null)
             {
                 return;
             }
-            var lst1 = ds1.Tables[0].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule>();
-            var lst2 = ds1.Tables[6].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule>();
-            var lst = lst1.Count == 0 ? lst2 : lst1;
-            Session["tbldschamt"] = lst;
-            Session["tblacamt"] = ds1.Tables[1].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule>();
-            List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule> lsta = (List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule>)Session["tblacamt"];
-            Session["tblshusel"] = ds1.Tables[2];
-            Session["tblactive"] = ds1.Tables[3];
-            Session["tblact01"] = ds1.Tables[4];
-           // Session["tblintcol"] = ds1.Tables[5];
-            Session["tblintcol01"] = ds1.Tables[5];
+            var lstb = ds1.Tables[1].DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>();
+            var lstcoff = ds1.Tables[2].DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet> ();
+            var lstrev = ds1.Tables[3].DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet> ();
+         
+            Session["lstbaseschdule"] = lstb;
+            Session["lstcoffschedule"] = lstcoff;
+            Session["lstrevschedule"] = lstrev;
 
+            double uzize, bfv, bpv, uamt, pamt, utility, others, cofffv, coffpv, coffpamt, coffutility, coffothers, revfv, revpv, revpamt, revutility, revothers;
+
+            uzize=
+            bfv = lstb.Sum(l => l.fv);
+            bpv = lstb.Sum(l => l.pv);
+            uzize= Convert.ToDouble(ds1.Tables[0].Rows[0]["usize"]);
+            pamt = Convert.ToDouble(ds1.Tables[0].Rows[0]["pamt"]);
+            utility = Convert.ToDouble(ds1.Tables[0].Rows[0]["utility"]);
+            others = Convert.ToDouble(ds1.Tables[0].Rows[0]["others"]);
+
+
+
+            cofffv = lstcoff.Sum(l => l.fv);
+            coffpv = lstcoff.Sum(l => l.pv);
+            coffpamt = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffpamt"]);
+            coffutility = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffutility"]);
+            coffothers = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffothers"]);
+
+
+            revfv = lstrev.Sum(l => l.fv);
+            revpv = lstrev.Sum(l => l.pv);
+            revpamt = Convert.ToDouble(ds1.Tables[0].Rows[0]["revpamt"]);
+            revutility = Convert.ToDouble(ds1.Tables[0].Rows[0]["revutility"]);
+            revothers = Convert.ToDouble(ds1.Tables[0].Rows[0]["revothers"]);
+
+
+
+
+            this.lblvalarea.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["usize"]).ToString("#,##0;(#,##0);");
+            this.lblvalrate.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["urate"]).ToString("#,##0;(#,##0);");
+            this.lblvalunitprice.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["uamt"]).ToString("#,##0;(#,##0);");
+            this.lblvalparking.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["pamt"]).ToString("#,##0;(#,##0);");
+            this.lblvalutility.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["utility"]).ToString("#,##0;(#,##0);");
+            this.lblvalother.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["others"]).ToString("#,##0;(#,##0);");
+            this.lblvalTotal.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["tunitamt"]).ToString("#,##0;(#,##0);");
+            this.lblvalbookingpercnt.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["bookingper"]).ToString("#,##0;(#,##0);");
+            this.lblvalbookingmoney.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["bookingam"]).ToString("#,##0;(#,##0);");
+            this.lblvalnoofemi.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["noofemi"]).ToString("#,##0;(#,##0);");
+            this.lblvalemi.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["emi"]).ToString("#,##0;(#,##0);");
+            this.lblvalfvpsft.InnerText =((uzize>0)? ((bfv- pamt-utility-others)/ uzize):0.00).ToString("#,##0;(#,##0);");
+            //  this.lblvalpvpersft.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["bookingam"]).ToString("#,##0;(#,##0);");
+
+
+
+
+            this.lblvalcoffarea.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["usize"]).ToString("#,##0;(#,##0);");
+            this.txtcoffrate.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffurate"]).ToString("#,##0;(#,##0);");
+            this.lblcoffunitprice.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffuamt"]).ToString("#,##0;(#,##0);");
+            this.txtcofffparking.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffpamt"]).ToString("#,##0;(#,##0);");
+            this.txtcoffutility.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffutility"]).ToString("#,##0;(#,##0);");
+            this.txtcoffothers.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffothers"]).ToString("#,##0;(#,##0);");
+            this.lblcoffTotal.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["cofftunitamt"]).ToString("#,##0;(#,##0);");
+            this.txtcoffbookinmpercnt.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffbookingper"]).ToString("#,##0;(#,##0);");
+            this.lblvalcoffbookingam.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffbookingam"]).ToString("#,##0;(#,##0);");
+            this.txtcoffnooffemi.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffnoofemi"]).ToString("#,##0;(#,##0);");
+            this.lblvalcoffemi.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffemi"]).ToString("#,##0;(#,##0);");
+            //  this.lblvalpvpersft.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["bookingam"]).ToString("#,##0;(#,##0);");
+             this.lblvalcofffvpersft.InnerText = ((uzize > 0) ? ((cofffv - coffpamt - coffutility - coffothers) / uzize) : 0.00).ToString("#,##0;(#,##0);") ;
+
+
+            this.lblvalrevparea.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["usize"]).ToString("#,##0;(#,##0);");
+            this.txtrevprate.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["revurate"]).ToString("#,##0;(#,##0);");
+            this.lblrevpunitprice.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["revuamt"]).ToString("#,##0;(#,##0);");
+            this.txtrevpparking.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["revpamt"]).ToString("#,##0;(#,##0);");
+            this.txtrevputility.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["revutility"]).ToString("#,##0;(#,##0);");
+            this.txtrevpothers.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["revothers"]).ToString("#,##0;(#,##0);");
+            this.lblrevpTotal.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["revtunitamt"]).ToString("#,##0;(#,##0);");
+            this.txtrevpbbookinmpercnt.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["revbookingper"]).ToString("#,##0;(#,##0);");
+            this.lblvalrevpbookingam.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["revbookingam"]).ToString("#,##0;(#,##0);");
+            this.txtrevpnooffemi.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["revnoofemi"]).ToString("#,##0;(#,##0);");
+            this.lblvalrevpemi.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["revemi"]).ToString("#,##0;(#,##0);");
+            //  this.lblvalpvpersft.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["bookingam"]).ToString("#,##0;(#,##0);");
+              this.lblvalrevpfvpersft.InnerText = ((uzize > 0) ? ((revfv - revpamt - revutility - revothers) / uzize) : 0.00).ToString("#,##0;(#,##0);") ;
+
+
+            this.Data_Bind();
         }
 
 
 
 
-        private DataTable HiddenSameData(DataTable dt1)
-        {
-            if (dt1.Rows.Count == 0)
-                return dt1;
-            int i = 0;
-            string gcod = dt1.Rows[0]["gcod"].ToString();
-
-            foreach (DataRow dr1 in dt1.Rows)
-            {
-                if (i == 0)
-                {
-
-
-                    gcod = dr1["gcod"].ToString();
-                    i++;
-                    continue;
-                }
-
-                if (dr1["gcod"].ToString() == gcod)
-                {
-
-                    dr1["gdesc"] = "";
-                    dr1["cinsam"] = 0.00;
-
-                }
-
-
-                gcod = dr1["gcod"].ToString();
-            }
-
-
-
-            return dt1;
-
-        }
-
+      
 
 
         private void Data_Bind()
         {
-
-            List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule> lstd = (List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule>)Session["tbldschamt"];
-            List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule> lsta = (List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule>)Session["tblacamt"];
-
-            //this..DataSource = lstd;
-            //this.gvdumpay.DataBind();
-
-            //this.gvacpay.DataSource = lsta;
-            //this.gvacpay.DataBind();
-
-            this.FooterCalculation();
+            try
+            {
 
 
 
+                List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet> lstb = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>)Session["lstbaseschdule"];
+                List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet> lstcoff = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>)Session["lstcoffschedule"];
+                List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet> lstrev = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet>)Session["lstrevschedule"];
+                this.gvbcasesch.DataSource = lstb;
+                this.gvbcasesch.DataBind();
+
+                this.gvcoffsch.DataSource = lstcoff;
+                this.gvcoffsch.DataBind();
+                this.gvrevpsch.DataSource = lstrev;
+                this.gvrevpsch.DataBind();
+                this.FooterCalculation();
 
 
+            }
 
+            catch (Exception ex)
+            {
+
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
+
+            }
 
         }
 
-
-        private void FooterCal(DataTable dt)
+        private void FooterCalculation()
         {
+            try
+            {
 
 
-            //if (dt.Rows.Count > 0)
-            //{
-            //    Session["Report1"] = gvInterest;
-            //    ((HyperLink)this.gvInterest.FooterRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-            //}
 
-            //if (dt.Rows.Count == 0)
-            //    return;
+                List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet> lstb = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>)Session["lstbaseschdule"];
+                List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet> lstcoff = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>)Session["lstcoffschedule"];
+                List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet> lstrev = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet>)Session["lstrevschedule"];
+
+                ((Label)this.gvbcasesch.FooterRow.FindControl("lgvFpvschamt")).Text = lstb.Sum(l => l.pv).ToString("#,##0;(#,##0);");
+                ((Label)this.gvbcasesch.FooterRow.FindControl("lgvFfvscham")).Text = lstb.Sum(l => l.fv).ToString("#,##0;(#,##0);");
+
+                ((Label)this.gvcoffsch.FooterRow.FindControl("lgvFcoffpvschamt")).Text = lstb.Sum(l => l.pv).ToString("#,##0;(#,##0);");
+                ((Label)this.gvcoffsch.FooterRow.FindControl("lgvFcofffvscham")).Text = lstb.Sum(l => l.fv).ToString("#,##0;(#,##0);");
 
 
-            //((Label)this.gvInterest.FooterRow.FindControl("lgvFinsamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(cinsam)", "")) ?
-            //             0 : dt.Compute("sum(cinsam)", ""))).ToString("#,##0;-#,##0;");
-            //((Label)this.gvInterest.FooterRow.FindControl("lgvFpayamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(pamount)", "")) ?
-            //                      0 : dt.Compute("sum(pamount)", ""))).ToString("#,##0;-#,##0;");
-            //((Label)this.gvInterest.FooterRow.FindControl("lgvFdelordis")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(delodis)", "")) ?
-            //                          0 : dt.Compute("sum(delodis)", ""))).ToString("#,##0;-#,##0;");
+                ((Label)this.gvrevpsch.FooterRow.FindControl("lgvFrevpvschamt")).Text = lstb.Sum(l => l.pv).ToString("#,##0;(#,##0);");
+                ((Label)this.gvrevpsch.FooterRow.FindControl("lgvFrevfvscham")).Text = lstb.Sum(l => l.fv).ToString("#,##0;(#,##0);");
+
+
+            }
+
+            catch (Exception e)
+            {
+
+
+
+            }
+
 
 
         }
+
+
+
 
         protected void lbtnBack_Click(object sender, EventArgs e)
         {
@@ -317,27 +376,8 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
-        private void CustInf()
-        {
-            Session.Remove("tblcost");
-            Session.Remove("tblPay");
-            Session.Remove("tpripay");
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
-            string UsirCode = this.lblCode.Text;
-            string empid = hst["empid"].ToString();
-            string PactCode = this.ddlProjectName.SelectedValue.ToString();
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "SALPERSONALINFO", PactCode, UsirCode, "", "", "", "", "", "", "");
-            Session["UserLog"] = ds1.Tables[6];
-            Session["tpripay"] = ds1.Tables[4];
-            Session["tblcost"] = ds1.Tables[1];
-        }
-        private void Calculation()
-        {
-
-            DataTable dtcost = (DataTable)Session["tblcost"];
-            DataTable dtpay = (DataTable)Session["tblPay"];
-        }
+       
+        
 
         protected void lbtnsrchunit_Click(object sender, EventArgs e)
         {
@@ -442,46 +482,9 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-        private void FooterCalculation()
-        {
-            try
-            {
-                List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule> lstd = (List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule>)Session["tbldschamt"];
-                List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule> lsta = (List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule>)Session["tblacamt"];
+        
 
-                
-            }
-
-            catch (Exception e)
-            {
-
-
-
-            }
-
-
-
-        }
-
-        private void FooterCalculationsum()
-        {
-            try
-            {
-                List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule> lstd = (List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule>)Session["tbldschamt"];
-                List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule> lsta = (List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule>)Session["tblacamt"];
-
-            }
-
-            catch (Exception e)
-            {
-
-
-
-            }
-
-
-
-        }
+    
 
 
         protected void lbtnTotaldumsch_Click(object sender, EventArgs e)
