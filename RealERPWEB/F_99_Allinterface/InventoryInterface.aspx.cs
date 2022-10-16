@@ -33,6 +33,7 @@ namespace RealERPWEB.F_99_Allinterface
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
 
+                this.GetFromDate();
                 this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Inventory Interface";
 
@@ -50,6 +51,39 @@ namespace RealERPWEB.F_99_Allinterface
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
+        }
+
+        private void GetFromDate()
+        {
+
+            string comcod = this.GetCompCode();
+            string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+            switch (comcod)
+            {
+                case "3348": // chl  
+                case "3101": // pintech  
+                case "1205": // p2p  
+                case "3351": // p2p  
+                case "3352": // p2p  
+ 
+                    this.txtfrmdate.Text = Convert.ToDateTime(date.ToString()).AddMonths(-3).ToString("dd-MMM-yyyy");
+                    break;
+
+
+                default:
+
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    this.txtfrmdate.Text = Convert.ToDateTime(hst["opndate"].ToString()).AddDays(1).ToString("dd-MMM-yyyy");
+                    break;
+
+
+
+            }
+
+
+
+
         }
 
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
@@ -166,12 +200,12 @@ namespace RealERPWEB.F_99_Allinterface
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetCompCode();
             string userid = hst["usrid"].ToString();
-            //string frmdate = this.txtdate.Text.Trim();
+            string frmdate = this.txtfrmdate.Text.Trim();
             string todate = this.txttodate.Text.Trim();
             //string catcode = this.ddlcatag.SelectedValue.ToString() + "%";
             string mtrrf = "%" + this.txtmtrrf.Text.Trim().ToString() + "%";
 
-            DataSet ds2 = feaData.GetTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", "TRANSFERINTERFACE", todate, mtrrf, "", "", "", "", "", "", "");
+            DataSet ds2 = feaData.GetTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", "TRANSFERINTERFACE", frmdate, mtrrf, todate, "", "", "", "", "", "");
             if (ds2 == null)
             {
                 return;
