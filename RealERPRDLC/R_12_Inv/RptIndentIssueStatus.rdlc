@@ -370,7 +370,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Left</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -672,7 +672,7 @@
       <Width>7.65972in</Width>
       <Page>
         <PageHeader>
-          <Height>0.71528in</Height>
+          <Height>1.00695in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -810,21 +810,21 @@
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Right</TextAlign>
+                    <TextAlign>Center</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>date</rd:DefaultName>
-              <Top>0.40278in</Top>
-              <Left>6.29666in</Left>
-              <Height>0.2375in</Height>
-              <Width>1.30681in</Width>
+              <Top>0.6375in</Top>
+              <Left>1.35763in</Left>
+              <Height>0.18542in</Height>
+              <Width>4.73833in</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
-                <BackgroundColor>LightGrey</BackgroundColor>
+                <BackgroundColor>White</BackgroundColor>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>

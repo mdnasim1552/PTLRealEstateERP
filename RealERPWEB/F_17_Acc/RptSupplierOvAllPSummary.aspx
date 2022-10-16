@@ -133,7 +133,7 @@
                                 <asp:DropDownList ID="ddlSuplist" runat="server" CssClass="form-control form-control-sm  chzn-select" AutoPostBack="True" Width="320px"></asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 ml-4">
 
                             <asp:Label ID="Label1" runat="server" Font-Size="12px">Type</asp:Label>
                             <asp:RadioButtonList ID="rbtnAtStatus" runat="server" AutoPostBack="True" Style="border-radius: 5px; padding: 0 5px;"
