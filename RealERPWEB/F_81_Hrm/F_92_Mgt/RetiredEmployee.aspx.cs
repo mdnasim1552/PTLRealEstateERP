@@ -57,6 +57,17 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             return (hst["comcod"].ToString());
 
         }
+        private string getLockMonthId()
+        {
+            string comcod = this.GetCompCode();
+            string monthid = "";
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "ISLOCKSALSHEET", "", "", "", "", "", "", "", "", "");
+            if (ds == null || ds.Tables[0].Rows.Count == 0)
+                return monthid;
+
+            monthid = ds.Tables[0].Rows[0]["monthid"].ToString();
+            return monthid;
+        }
 
 
         private void GetCompName()
