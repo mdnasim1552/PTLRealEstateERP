@@ -318,6 +318,7 @@ namespace RealERPWEB.F_38_AI
                         dr1["isoutsrc"] = this.checkinoutsourcing.Checked;
                         dr1["workrate"] = this.textrate.Text.Trim();
                         tblt01.Rows.Add(dr1);
+
                     }
                     else
                     {
@@ -379,6 +380,8 @@ namespace RealERPWEB.F_38_AI
                     return;
                 }
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Create Saved Successfully');", true);
+                this.IsClear();
+                this.GetBatchInfo();
             }
             catch (Exception ex)
             {
@@ -464,7 +467,7 @@ namespace RealERPWEB.F_38_AI
                 this.txttasktitle.ReadOnly = true;
                 this.ddlassignmember.SelectedValue = empid;
                 this.ddlUserRoleType.SelectedItem.Value = roletype;
-                this.ddlAnnotationid.SelectedItem.Value = anotationid;              
+                this.ddlAnnotationid.SelectedValue = anotationid;              
                 this.txtquantity.Text = assginqty;
                 this.txtworkhour.Text = workhour;
                 this.textrate.Text = workperrate;
@@ -539,6 +542,49 @@ namespace RealERPWEB.F_38_AI
             }
         }
 
-       
+        private void IsClear()
+        {
+            try
+            {
+                this.txttasktitle.Text = "";
+                this.ddlassignmember.SelectedValue = "";
+                this.ddlUserRoleType.SelectedItem.Text = "";
+                this.ddlAnnotationid.SelectedItem.Text = "";
+                this.ddlassigntype.SelectedItem.Text = "";
+                this.txtquantity.Text = "";
+                this.txtworkhour.Text = "";
+                this.textrate.Text = "";
+
+            }
+            catch(Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
+
+        protected void btnvrdelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dt = (DataTable)ViewState["tblt01"];
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;
+                string id = ((Label)this.GridVirtual.Rows[index].FindControl("lbljobid")).Text.Trim();
+               
+                if (dt.Rows[index]["jobid"].ToString() == id)
+                {
+                    dt.Rows[index].Delete();
+                }
+
+                ViewState["tblt01"] = dt;
+                this.VirtualGrid_DataBind();
+
+            }
+            catch(Exception exp)
+            {
+
+            }
+        }
     }
 }
