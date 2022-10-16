@@ -296,6 +296,9 @@ namespace RealERPWEB.F_99_Allinterface
 
         private void GetProductionInfo()
         {
+            try
+            {
+
             string comcod = this.GetCompCode();
             DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", "", "", "", "", "", "", "");
             if (ds == null)
@@ -306,26 +309,40 @@ namespace RealERPWEB.F_99_Allinterface
             DataView view1 = new DataView();
             view.Table = ds.Tables[0];
             view1.Table = ds.Tables[0];
-            view1.RowFilter = " velocitytype<>'Annot'";
+            view1.RowFilter = " roletype<>'95001'";
             dt1 = view1.ToTable();
             this.gv_QCQA.DataSource = dt1;
             this.gv_QCQA.DataBind();
-            view.RowFilter = " velocitytype='Annot'";
+            view.RowFilter = " roletype='95001'";
             dt1 = view.ToTable();
             this.gv_Production.DataSource = dt1;
             this.gv_Production.DataBind();
+            }
+            catch(Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
         }
 
 
         private void GetAcceptReject()
         {
-            string comcod = this.GetCompCode();
-            DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPPENDING_ACCEPTRJT_INTERFACE", "", "", "", "", "", "", "");
-            if (ds1 == null)
-                return;
-            Session["tblacceptreject"] = ds1.Tables[0];
-            this.gv_AcceptReject.DataSource = ds1;
-            this.gv_AcceptReject.DataBind();
+            try
+            {
+                string comcod = this.GetCompCode();
+                DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPPENDING_ACCEPTRJT_INTERFACE", "", "", "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+                Session["tblacceptreject"] = ds1.Tables[0];
+                this.gv_AcceptReject.DataSource = ds1;
+                this.gv_AcceptReject.DataBind();
+            }
+            catch(Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
 
         }
 
@@ -517,8 +534,9 @@ namespace RealERPWEB.F_99_Allinterface
 
                 //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
             }
-            catch (Exception ex)
+            catch (Exception exp)
             {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
             }
 
@@ -576,9 +594,9 @@ namespace RealERPWEB.F_99_Allinterface
                 this.GetBatchAssingList(projectname);
                 ResetForm();
             }
-            catch (Exception ex)
+            catch (Exception exp)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message.ToString() + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
             }
         }
 

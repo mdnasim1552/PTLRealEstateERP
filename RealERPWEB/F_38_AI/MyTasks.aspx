@@ -364,7 +364,7 @@
                                                     <asp:TemplateField HeaderText="Assigned <br> Type" Visible="false">
                                                         <ItemTemplate>
                                                             <asp:Label ID="tblvelocitytype" runat="server"
-                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assgintype")) %>'></asp:Label>
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assigntype")) %>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
