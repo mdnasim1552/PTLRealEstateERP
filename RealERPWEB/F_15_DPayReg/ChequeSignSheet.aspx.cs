@@ -406,9 +406,9 @@ namespace RealERPWEB.F_15_DPayReg
 
                 else
                 {
-                    if (comcod == "3333" || comcod == "3101")
+                    if (comcod == "3333" )
                     {
-                        this.txtNarration.Text = ds1.Tables[2].Rows[0]["billnar"].ToString();
+                        this.txtNarration.Text = ds1.Tables[2].Rows.Count==0 ? "": ds1.Tables[2].Rows[0]["billnar"].ToString();
                     }
                     else
                     {
