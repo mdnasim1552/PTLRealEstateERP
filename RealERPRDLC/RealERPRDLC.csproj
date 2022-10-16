@@ -293,6 +293,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower+HrmEnvelopPrint.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.IndvPf+Empinfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_99_AllInterface.AllDues.datasource" />
+    <None Include="Properties\DataSources\RealERPEntity.C_70_Services.EClass_Quotation+EQuotationinfo.datasource" />
     <None Include="Properties\DataSources\RealERPEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower+HrmEnvelopPrint.datasource" />
   </ItemGroup>
   <ItemGroup>
@@ -990,6 +991,8 @@
     <EmbeddedResource Include="R_41_GAcc\RptProProgBillStatus.rdlc" />
     <EmbeddedResource Include="R_45_GrAcc\RptGrpMisRecPayment.rdlc" />
     <EmbeddedResource Include="R_47_Kpi\RptKeyResultArea.rdlc" />
+    <EmbeddedResource Include="R_70_Services\RptServicePrint - Copy.rdlc" />
+    <EmbeddedResource Include="R_70_Services\RptServicePrint.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\LetterDefault01.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\Rnd.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_81_Rec\RptAssYearly.rdlc" />
