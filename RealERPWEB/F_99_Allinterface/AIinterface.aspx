@@ -994,7 +994,7 @@
                                         <asp:TemplateField HeaderText="Assigned QTY">
                                             <ItemTemplate>
                                                 <asp:Label ID="tbladdress" runat="server" Width="80px"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "velocityqty")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "assignqty")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle Width="50px" />
                                         </asp:TemplateField>
@@ -1130,7 +1130,7 @@
                                         <asp:TemplateField HeaderText="Assigned<br> Qty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvvelocityqty" runat="server" Height="16px"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "velocityqty")).ToString("#,##0;(#,##0); ") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "assignqty")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="80px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1299,7 +1299,7 @@
                                         <asp:TemplateField HeaderText="Assign<br> Qty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvqcvelocityqty" runat="server" Height="16px"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "velocityqty")).ToString("#,##0;(#,##0); ") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "assignqty")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="80px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1468,7 +1468,7 @@
                                         <asp:TemplateField HeaderText="Assign<br> Qty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvarvelocityqty" runat="server" Height="16px"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "velocityqty")).ToString("#,##0;(#,##0); ") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "assignqty")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="80px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
