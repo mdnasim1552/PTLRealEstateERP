@@ -178,8 +178,8 @@ namespace RealERPWEB.F_38_AI
 
         protected void btntaskadd_Click(object sender, EventArgs e)
         {
-           
-           
+            this.assigntask.Visible = false;
+            this.taskoverview.Visible = false;
             this.task.Visible = true;
 
         }
@@ -240,11 +240,11 @@ namespace RealERPWEB.F_38_AI
             DataTable dt = dt2.Tables[0];
             ViewState["tblgetprojectinfo"] = dt;
             //order type
-            DataView dv1 = dt.DefaultView;
-            dv1.RowFilter = "gcod like'95%' and gcod not like'%00'";
+            DataView dv3 = dt.DefaultView;
+            dv3.RowFilter = "gcod like'95%' and gcod not like'%00'";
             this.ddlUserRoleType.DataTextField = "gdesc";
             this.ddlUserRoleType.DataValueField = "gcod";
-            this.ddlUserRoleType.DataSource = dv1.ToTable();
+            this.ddlUserRoleType.DataSource = dv3.ToTable();
             this.ddlUserRoleType.DataBind();
 
             //task type
@@ -318,6 +318,7 @@ namespace RealERPWEB.F_38_AI
                         dr1["isoutsrc"] = this.checkinoutsourcing.Checked;
                         dr1["workrate"] = this.textrate.Text.Trim();
                         tblt01.Rows.Add(dr1);
+
                     }
                     else
                     {
@@ -379,6 +380,11 @@ namespace RealERPWEB.F_38_AI
                     return;
                 }
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Create Saved Successfully');", true);
+                this.IsClear();
+                //this.task.Visible = false;
+                this.assigntask.Visible = true;
+                this.taskoverview.Visible = true;
+                this.GetBatchInfo();
             }
             catch (Exception ex)
             {
@@ -390,6 +396,8 @@ namespace RealERPWEB.F_38_AI
         {
            // this.task.Attributes.Add("class", "d-none");
             this.task.Visible = false;
+            this.assigntask.Visible = true;
+            this.taskoverview.Visible = true;
 
         }
 
@@ -453,7 +461,7 @@ namespace RealERPWEB.F_38_AI
                 string titlename = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvtasktitle")).Text.ToString();
                 string empname = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvempname")).Text.ToString();
                 string empid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblempid")).Text.ToString();
-                string roletype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvroletype")).Text.ToString();
+                string roletype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblrolettpcode")).Text.ToString();
                 string anotationid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvannoid")).Text.ToString();
                 string assigntype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvassigntype")).Text.ToString();
                 string assginqty = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvassignqty")).Text.ToString();
@@ -463,8 +471,8 @@ namespace RealERPWEB.F_38_AI
                 this.txttasktitle.Text = titlename;
                 this.txttasktitle.ReadOnly = true;
                 this.ddlassignmember.SelectedValue = empid;
-                this.ddlUserRoleType.SelectedItem.Value = roletype;
-                this.ddlAnnotationid.SelectedItem.Value = anotationid;              
+                this.ddlUserRoleType.SelectedValue = roletype;
+                this.ddlAnnotationid.SelectedValue = anotationid;              
                 this.txtquantity.Text = assginqty;
                 this.txtworkhour.Text = workhour;
                 this.textrate.Text = workperrate;
@@ -490,15 +498,16 @@ namespace RealERPWEB.F_38_AI
         {
             try
             {
+               
                 string comcod = this.GetComdCode();               
                 string batchid = Request.QueryString["BatchID"].ToString() == "" ? "" : Request.QueryString["BatchID"].ToString();
                 string jobid = this.lbltaskbatchid.Text;
                 string empname = this.ddlassignmember.SelectedValue.Trim();
                 string valueqty = this.txtquantity.Text;
-                string type = this.ddlassigntype.SelectedValue;
+                string type = this.ddlassigntype.SelectedItem.Value;
                 string worktype = this.txtworkhour.Text;
-                string annodid = this.ddlAnnotationid.SelectedValue.ToString();
-                string roletype = this.ddlUserRoleType.SelectedValue.ToString();
+                string annodid = this.ddlAnnotationid.SelectedValue.Trim().ToString();
+                string roletype = this.ddlUserRoleType.SelectedItem.Value;
                 string textrate = this.textrate.Text;
 
 
@@ -539,6 +548,49 @@ namespace RealERPWEB.F_38_AI
             }
         }
 
-       
+        private void IsClear()
+        {
+            try
+            {
+                this.txttasktitle.Text = "";
+                this.ddlassignmember.SelectedValue = "";
+                this.ddlUserRoleType.SelectedItem.Text = "";
+                this.ddlAnnotationid.SelectedItem.Text = "";
+                this.ddlassigntype.SelectedItem.Text = "";
+                this.txtquantity.Text = "";
+                this.txtworkhour.Text = "";
+                this.textrate.Text = "";
+
+            }
+            catch(Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
+
+        protected void btnvrdelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dt = (DataTable)ViewState["tblt01"];
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;
+                string id = ((Label)this.GridVirtual.Rows[index].FindControl("lbljobid")).Text.Trim();
+               
+                if (dt.Rows[index]["jobid"].ToString() == id)
+                {
+                    dt.Rows[index].Delete();
+                }
+
+                ViewState["tblt01"] = dt;
+                this.VirtualGrid_DataBind();
+
+            }
+            catch(Exception exp)
+            {
+
+            }
+        }
     }
 }

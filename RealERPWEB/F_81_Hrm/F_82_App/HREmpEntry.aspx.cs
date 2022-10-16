@@ -328,125 +328,132 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
         protected void lnkbtnSerOk_Click(object sender, EventArgs e)
         {
-            if (this.lnkbtnSerOk.Text == "Ok")
-            {
-                this.lnkbtnSerOk.Text = "New";
-                this.lblCompanyNameAgg.Text = this.ddlCompanyAgg.SelectedItem.Text;
-                this.lblvaldeptagg.Text = this.ddldepartmentagg.SelectedItem.Text;
-                this.lblProjectdesc.Text = this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "All Section" : this.ddlProjectName.SelectedItem.Text.Substring(13);
-                string empid = "";
-                if (this.ddlNPEmpName.Items.Count > 0)
+            try{
+                if (this.lnkbtnSerOk.Text == "Ok")
                 {
-                    empid = this.ddlNPEmpName.SelectedValue.ToString();
-                    this.lblPEmpName.Text = this.ddlNPEmpName.SelectedItem.Text.Substring(7);
-                    this.chknewEmp.Checked = false;
+                    this.lnkbtnSerOk.Text = "New";
+                    this.lblCompanyNameAgg.Text = this.ddlCompanyAgg.SelectedItem.Text;
+                    this.lblvaldeptagg.Text = this.ddldepartmentagg.SelectedItem.Text;
+                    this.lblProjectdesc.Text = this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "All Section" : this.ddlProjectName.SelectedItem.Text.Substring(13);
+                    string empid = "";
+                    if (this.ddlNPEmpName.Items.Count > 0)
+                    {
+                        empid = this.ddlNPEmpName.SelectedValue.ToString();
+                        this.lblPEmpName.Text = this.ddlNPEmpName.SelectedItem.Text.Substring(7);
+                        this.chknewEmp.Checked = false;
+                    }
+                    else
+                    {
+                        this.lblPEmpName.Text = this.ddlPEmpName.SelectedItem.Text.Substring(7);
+                        empid = this.ddlPEmpName.SelectedValue.ToString();
+                    }
+                    this.chknewEmp_CheckedChanged(null, null);
+                    this.lbtnDeletelink.Visible = false;
+                    this.ddlCompanyAgg.Visible = false;
+                    this.ddldepartmentagg.Visible = false;
+                    this.ddlProjectName.Visible = false;
+                    this.ddlPEmpName.Visible = false;
+                    this.lblCompanyNameAgg.Visible = true;
+                    this.lblvaldeptagg.Visible = true;
+                    this.lblProjectdesc.Visible = true;
+                    this.lblPEmpName.Visible = true;
+                    this.pnlGenInfo.Visible = true;
+                    this.lblhSalary.Visible = true;
+                    this.lblAllowance.Visible = true;
+                    this.lbltxtTotalSal.Visible = true;
+                    this.lbltotalsal.Visible = true;
+                    this.lblhSalaryAdd.Visible = true;
+                    this.lblhSalaryDed.Visible = true;
+                    this.lblhAllowAdd.Visible = true;
+                    this.lblhAllowDed.Visible = true;
+                    this.lnkbtnFinalSWUpdate.Visible = true;
+                    this.chknewEmp.Visible = false;
+                    this.chkEdit.Visible = true;
+                    this.txtgrossal.Visible = true;
+                    // this.rbtGross.Visible = true;
+                    //this.rbtGross.SelectedIndex =0;   
+                    this.rbtholiday.SelectedIndex = 0;
+                    this.rbtnOverTime.SelectedIndex = 0;
+                    this.rbtPaymentType.SelectedIndex = 0;
+                    this.rbtnOverTime_SelectedIndexChanged(null, null);
+                    this.GetGrossType();
+                    this.EmpSerRule();
+                    this.TSandAllow();
+                    this.OverTimeFORRate();
+                    this.GetEmpBasicData(empid);
+                    this.lblvaljoindate.Text = Convert.ToDateTime(((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["joindate"]).ToString("dd-MMM-yyyy");
+                    //this.txtPf.Text = Convert.ToDateTime(((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["pfdate"]).ToString("dd-MMM-yyyy");
                 }
                 else
                 {
-                    this.lblPEmpName.Text = this.ddlPEmpName.SelectedItem.Text.Substring(7);
-                    empid = this.ddlPEmpName.SelectedValue.ToString();
-                }
-                this.chknewEmp_CheckedChanged(null, null);
-                this.lbtnDeletelink.Visible = false;
-                this.ddlCompanyAgg.Visible = false;
-                this.ddldepartmentagg.Visible = false;
-                this.ddlProjectName.Visible = false;
-                this.ddlPEmpName.Visible = false;
-                this.lblCompanyNameAgg.Visible = true;
-                this.lblvaldeptagg.Visible = true;
-                this.lblProjectdesc.Visible = true;
-                this.lblPEmpName.Visible = true;
-                this.pnlGenInfo.Visible = true;
-                this.lblhSalary.Visible = true;
-                this.lblAllowance.Visible = true;
-                this.lbltxtTotalSal.Visible = true;
-                this.lbltotalsal.Visible = true;
-                this.lblhSalaryAdd.Visible = true;
-                this.lblhSalaryDed.Visible = true;
-                this.lblhAllowAdd.Visible = true;
-                this.lblhAllowDed.Visible = true;
-                this.lnkbtnFinalSWUpdate.Visible = true;
-                this.chknewEmp.Visible = false;
-                this.chkEdit.Visible = true;
-                this.txtgrossal.Visible = true;
-                // this.rbtGross.Visible = true;
-                //this.rbtGross.SelectedIndex =0;   
-                this.rbtholiday.SelectedIndex = 0;
-                this.rbtnOverTime.SelectedIndex = 0;
-                this.rbtPaymentType.SelectedIndex = 0;
-                this.rbtnOverTime_SelectedIndexChanged(null, null);
-                this.GetGrossType();
-                this.EmpSerRule();
-                this.TSandAllow();
-                this.OverTimeFORRate();
-                this.GetEmpBasicData(empid);
-                this.lblvaljoindate.Text = Convert.ToDateTime(((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["joindate"]).ToString("dd-MMM-yyyy");
-                //this.txtPf.Text = Convert.ToDateTime(((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["pfdate"]).ToString("dd-MMM-yyyy");
-            }
-            else
-            {
-                this.lnkbtnSerOk.Text = "Ok";
-                this.lbtnDeletelink.Visible = true;
-                this.ddlCompanyAgg.Visible = true;
-                this.ddldepartmentagg.Visible = true;
-                this.ddlProjectName.Visible = true;
-                this.ddlPEmpName.Visible = true;
-                this.lblCompanyNameAgg.Visible = false;
-                this.lblvaldeptagg.Visible = false;
-                this.lblProjectdesc.Visible = false;
-                this.lblPEmpName.Visible = false;
-                this.pnlGenInfo.Visible = false;
-                this.lblhSalary.Visible = false;
-                this.lblAllowance.Visible = false;
-                this.lbltxtTotalSal.Visible = false;
-                this.lbltotalsal.Visible = false;
-                this.lblhSalaryAdd.Visible = false;
-                this.lblhSalaryDed.Visible = false;
-                this.lblhAllowAdd.Visible = false;
-                this.lblhAllowDed.Visible = false;
-                this.lnkbtnFinalSWUpdate.Visible = false;
-                this.chknewEmp.Checked = false;
-                this.chknewEmp.Visible = true;
-                this.chkEdit.Checked = false;
-                this.chkEdit.Visible = false;
-                this.lblholidayallowance.Visible = false;
-                this.txtholidayallowance.Visible = false;
-                this.txtgrossal.Visible = false;
-                // this.rbtGross.Visible = false;
-                //this.rbtGross.Visible = true;
-                this.pnlPaymenttype.Visible = false;
-                this.ddlNPEmpName.Items.Clear();
-                this.gvSalAdd.DataSource = null;
-                this.gvSalAdd.DataBind();
-                this.gvSalSub.DataSource = null;
-                this.gvSalSub.DataBind();
-                this.gvAllowAdd.DataSource = null;
-                this.gvAllowAdd.DataBind();
-                this.gvAllowSub.DataSource = null;
-                this.gvAllowSub.DataBind();
-                this.lblCompanyNameAgg.Text = "";
-                this.lblProjectdesc.Text = "";
-                this.lblPEmpName.Text = "";
-                this.lblDesgination.Text = "";
-                this.lbloffintime.Text = "";
-                this.lbloffouttime.Text = "";
-                this.lbllanintime.Text = "";
-                this.lbllanouttime.Text = "";
-                this.lblEduQua.Text = "";
-                this.lblAtype.Text = "";
-                this.txtholidayallowance.Text = "";
-                this.txtfixedRate.Text = "";
-                this.txthourlyRate.Text = "";
-                this.txtceilingRate1.Text = "";
-                this.txtceilingRate2.Text = "";
-                this.txtceilingRate3.Text = "";
-                this.txtgrossal.Text = "";
+                    this.lnkbtnSerOk.Text = "Ok";
+                    this.lbtnDeletelink.Visible = true;
+                    this.ddlCompanyAgg.Visible = true;
+                    this.ddldepartmentagg.Visible = true;
+                    this.ddlProjectName.Visible = true;
+                    this.ddlPEmpName.Visible = true;
+                    this.lblCompanyNameAgg.Visible = false;
+                    this.lblvaldeptagg.Visible = false;
+                    this.lblProjectdesc.Visible = false;
+                    this.lblPEmpName.Visible = false;
+                    this.pnlGenInfo.Visible = false;
+                    this.lblhSalary.Visible = false;
+                    this.lblAllowance.Visible = false;
+                    this.lbltxtTotalSal.Visible = false;
+                    this.lbltotalsal.Visible = false;
+                    this.lblhSalaryAdd.Visible = false;
+                    this.lblhSalaryDed.Visible = false;
+                    this.lblhAllowAdd.Visible = false;
+                    this.lblhAllowDed.Visible = false;
+                    this.lnkbtnFinalSWUpdate.Visible = false;
+                    this.chknewEmp.Checked = false;
+                    this.chknewEmp.Visible = true;
+                    this.chkEdit.Checked = false;
+                    this.chkEdit.Visible = false;
+                    this.lblholidayallowance.Visible = false;
+                    this.txtholidayallowance.Visible = false;
+                    this.txtgrossal.Visible = false;
+                    // this.rbtGross.Visible = false;
+                    //this.rbtGross.Visible = true;
+                    this.pnlPaymenttype.Visible = false;
+                    this.ddlNPEmpName.Items.Clear();
+                    this.gvSalAdd.DataSource = null;
+                    this.gvSalAdd.DataBind();
+                    this.gvSalSub.DataSource = null;
+                    this.gvSalSub.DataBind();
+                    this.gvAllowAdd.DataSource = null;
+                    this.gvAllowAdd.DataBind();
+                    this.gvAllowSub.DataSource = null;
+                    this.gvAllowSub.DataBind();
+                    this.lblCompanyNameAgg.Text = "";
+                    this.lblProjectdesc.Text = "";
+                    this.lblPEmpName.Text = "";
+                    this.lblDesgination.Text = "";
+                    this.lbloffintime.Text = "";
+                    this.lbloffouttime.Text = "";
+                    this.lbllanintime.Text = "";
+                    this.lbllanouttime.Text = "";
+                    this.lblEduQua.Text = "";
+                    this.lblAtype.Text = "";
+                    this.txtholidayallowance.Text = "";
+                    this.txtfixedRate.Text = "";
+                    this.txthourlyRate.Text = "";
+                    this.txtceilingRate1.Text = "";
+                    this.txtceilingRate2.Text = "";
+                    this.txtceilingRate3.Text = "";
+                    this.txtgrossal.Text = "";
 
-                this.txtAcNo1.Text = "";
-                this.txtAcNo2.Text = "";
-                this.lblvaljoindate.Text = "";
-                this.lblforrate.Text = "";
+                    this.txtAcNo1.Text = "";
+                    this.txtAcNo2.Text = "";
+                    this.lblvaljoindate.Text = "";
+                    this.lblforrate.Text = "";
+                }
             }
+            catch(Exception ex){
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Something wrong');", true);
+
+            }
+
         }
         private void GetEmpBasicData(string empid)
         {
@@ -602,7 +609,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 // //this.rbtGross.Items[3].Enabled = false;
                 // break;
                 //case "3101": 
-                case "3338": //Acme
+                case "3338": //Acme tec
+                case "1206": //Acme serv
+                case "1207": //Acme con
+               // case "3369": //Acme ai
                     this.rbtGross.Visible = false;
                     this.rbtGross.SelectedIndex = 3;
                     break;
@@ -1003,7 +1013,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             break;
 
                         //case "3101":
-                        case "3338":// Acme
+                        case "3338": //Acme tec
+                        case "1206": //Acme serv
+                        case "1207": //Acme con
+                       // case "3369": //Acme ai
                             toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
                             ((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = toaddamt.ToString("#,##0;(#,##0); ");
 
@@ -1830,7 +1843,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     dtsaladd.Rows[i]["gval"] = Math.Round((percent * basic * 0.01), 0);
                     dtsaladd.Rows[i]["percnt"] = percent;
                 }
-                if (comcod == "3338")
+             
+
+                if ((comcod == "3338") || (comcod == "1206") || (comcod == "1207"))
                 {
                     dtsaladd.Rows[0]["gval"] = Convert.ToDouble("0" + ((TextBox)this.gvSalAdd.Rows[0].FindControl("txtgvSaladd")).Text.Trim());
                 }
