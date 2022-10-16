@@ -874,6 +874,17 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             monthid = ds.Tables[0].Rows[0]["monthid"].ToString();
             return monthid;
         }
+        private string getLockLastMonthId()
+        {
+            string comcod = this.GetComeCode();
+            string monthid = "";
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "ISLOCKSALSHEET", "", "", "", "", "", "", "", "", "");
+            if (ds == null || ds.Tables[1].Rows.Count == 0)
+                return monthid;
+
+            monthid = ds.Tables[1].Rows[0]["lastdate"].ToString();
+            return monthid;
+        }
 
         private void ShowNomineeInfo()
         {
@@ -989,7 +1000,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     if (this.getLockMonthId() == System.DateTime.Now.ToString("yyyyMM") && Gvalue != doj)
                     {
                         Gvalue = doj;
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Sorry! You can't change Joining date field, while salary sheet locked." + "');", true);
+                        //ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Sorry! You can't change Joining date field, while salary sheet locked." + "');", true);
 
                     }
 
@@ -1070,8 +1081,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             }
 
+            bool islocksal = false;
             for (int i = 0; i < this.gvPersonalInfo2.Rows.Count; i++)
             {
+                 islocksal = this.getLockMonthId() == System.DateTime.Now.ToString("yyyyMM") ? true : false;
                 string Gcode = ((Label)this.gvPersonalInfo2.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
                 string gtype = ((Label)this.gvPersonalInfo2.Rows[i].FindControl("lgvgval")).Text.Trim();
                 string gvalueBn = ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvValBn")).Text.Trim();
@@ -1084,7 +1097,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     if (this.getLockMonthId() == System.DateTime.Now.ToString("yyyyMM") && Gvalue != retdat)
                     {
                         Gvalue = retdat;
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Sorry! You can't change retirement date field ,while salary sheet locked." + "');", true);
+                        islocksal = true;
+                        //ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Sorry! You can't change retirement date field ,while salary sheet locked." + "');", true);
 
                     }
 
@@ -1106,7 +1120,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             }
             this.getLastCardNo();
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
+            string  LockMsg = islocksal == true ? "Updated Successfully,But you can't change retirement and join date field ,While salary sheet locked!" : "Updated Successfully";
+            //ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully "+ LockMsg + "');", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + LockMsg + "');", true);
+
         }
         protected void lUpdateDegree_Click(object sender, EventArgs e)
         {
@@ -1264,6 +1281,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     
                     string curr_monid = System.DateTime.Now.ToString("yyyyMM");
                     string lockMonid = this.getLockMonthId();
+                    string getLockLastMonthId = this.getLockLastMonthId()=="" ? System.DateTime.Now.ToString("dd-MMM-yyyy"): this.getLockLastMonthId();
                     if (lockMonid == curr_monid)
                     {
                         //txtjoindat.Enabled = false;
@@ -1275,11 +1293,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         CalendarExtendere21.StartDate = DateTime.ParseExact(resigndat, "dd/MM/yyyy", null);
                         CalendarExtendere21.EndDate = DateTime.ParseExact(resigndat, "dd/MM/yyyy", null);
                     }
+                    else
+                    {
+                        string startdat = Convert.ToDateTime(getLockLastMonthId).ToString("dd/MM/yyyy");
+                        AjaxControlToolkit.CalendarExtender CalendarExtendere21 =
+                   (e.Row.FindControl("txtgvdVal_CalendarExtender") as AjaxControlToolkit.CalendarExtender);
+                        CalendarExtendere21.StartDate = DateTime.ParseExact(startdat, "dd/MM/yyyy", null);
+                    }
                 }
-                else
-                {
-                    txtjoindat.Enabled = true;
-                }
+              
 
             }
 
@@ -1942,6 +1964,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 {
                     
                     string curr_monid = System.DateTime.Now.ToString("yyyyMM");
+                    string getLockLastMonthId = this.getLockLastMonthId();
                     string lockMonid = this.getLockMonthId();
                     if ( lockMonid == curr_monid)
                     {
@@ -1956,8 +1979,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     }
                     else
                     {
-                        txtjoindat.Enabled = false;
+                       string startdat = Convert.ToDateTime(getLockLastMonthId).ToString("dd/MM/yyyy");
+                        AjaxControlToolkit.CalendarExtender CalendarExtendere21 =
+                   (e.Row.FindControl("txtgvdVal_CalendarExtender") as AjaxControlToolkit.CalendarExtender);
+                        CalendarExtendere21.StartDate = DateTime.ParseExact(startdat, "dd/MM/yyyy", null);
+
                     }
+
                 }
 
             }

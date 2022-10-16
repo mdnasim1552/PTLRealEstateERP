@@ -57,7 +57,7 @@
                 <div class="card-header mt-3 mb-0 pb-0">
                     <div class="row mb-0 pb-0">
 
-                        <asp:Label ID="lbl" runat="server" CssClass="col-1 col-form-label">Employee List</asp:Label>
+                        <asp:Label ID="lbl" runat="server" CssClass="col-1 col-form-label">Employee List  </asp:Label>
 
                         <div class="col-4">
 

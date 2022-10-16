@@ -476,7 +476,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
-                                                <asp:TemplateField HeaderText="Paternity <br> Leave">
+                                                <asp:TemplateField HeaderText="Leave On Probation <br> ">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvLOnProba" runat="server" BackColor="Transparent" BorderStyle="None"
                                                         ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lonproidleave")).ToString("#,##0.00;(#,##0.00); ") %>'
@@ -506,7 +506,7 @@
                                             </asp:TemplateField>
 
                                         
-                                            <asp:TemplateField HeaderText="Leave On <br> PROBITION">
+                                            <asp:TemplateField HeaderText="Leave On <br> Separation">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvLOnSepa" runat="server" BackColor="Transparent" BorderStyle="None"
                                                         ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lonsepaleave")).ToString("#,##0.00;(#,##0.00); ") %>'
