@@ -3350,7 +3350,7 @@ namespace RealERPWEB.F_21_MKT
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '42%'");
             DataTable dtPr = dv.ToTable();
-            dtPr.Rows.Add("0000000", "Choose Lad Quality..", "");
+            dtPr.Rows.Add("0000000", "Choose Lead Quality..", "");
             this.ddlPri.DataTextField = "gdesc";
             this.ddlPri.DataValueField = "gcod";
             this.ddlPri.DataSource = dtPr;
@@ -4676,7 +4676,8 @@ namespace RealERPWEB.F_21_MKT
             Session["tblsummData"] = ds1.Tables[0];
             if (rtype == "databank")
             {
-                this.gvSummary.Columns[24].Visible = true;
+                //Prospect Retreive Button
+                this.gvSummary.Columns[25].Visible = true;
             }
             else if (rtype == "dws" && (comcod=="3315" || comcod=="3316"))
             {
@@ -4684,6 +4685,7 @@ namespace RealERPWEB.F_21_MKT
                 this.gvSummary.Columns[8].HeaderText = "Last Followup <br> Date";
                 this.gvSummary.Columns[26].Visible = true;                
                 this.gvSummary.Columns[17].Visible = true;
+                this.gvSummary.Columns[25].Visible = false;
             }          
             else
             {
@@ -4691,6 +4693,8 @@ namespace RealERPWEB.F_21_MKT
                 this.gvSummary.Columns[8].HeaderText = "Followup <br> Date";
                 this.gvSummary.Columns[24].Visible = false;
                 this.gvSummary.Columns[26].Visible = false;
+                this.gvSummary.Columns[25].Visible = false;
+
             }
 
             this.Data_Bind();

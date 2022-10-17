@@ -624,16 +624,6 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
 
                 });
 
-
-
-
-
-
-
-
-
-
-
                 //Duplicate Mobile
                 var sircode = $('#<%=this.lblnewprospect.ClientID%>').val();
                 var arrgcodl = $('#<%=this.gvPersonalInfo.ClientID %>').find('[id$="lblgvItmCodeper"]');
@@ -656,7 +646,15 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                             break;
 
                         case '0301004':
-                            txtaltmobile1 = arraygval[i];
+                            switch (comcod) {
+                                case "3315":
+                                case "3316":
+                                    break;
+
+                                default:
+                                    txtaltmobile1 = arraygval[i];
+                                    break;
+                            }
                             break;
 
                         case '0301005':
@@ -665,7 +663,6 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                     }
 
                 }
-
 
                 $(txtmobile).keyup(function () {
                     var mobile = $(this).val();
@@ -680,12 +677,12 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
 
                 });
 
-
-
-
+ 
 
 
                 $(txtaltmobile1).keyup(function () {
+
+                   
                     var mobile = $(this).val();
                     if (mobile.length != 11) {
                         return false;
@@ -697,12 +694,16 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
 
                         return false;
                     }
-                    funDupMobile(comcod, sircode, mobile);
+                    if (gcod != "0301025" && (comcod == "3315" || comcod == "3316")) {
+                        alert("test--");
+                        funDupMobile(comcod, sircode, mobile);
+                    }
 
                 });
 
-
+               
                 $(txtaltmobile2).keyup(function () {
+                     
                     var mobile = $(this).val();
                     if (mobile.length != 11) {
 
@@ -722,10 +723,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
 
 
 
-
-
-
-
+ 
 
 
 
@@ -1425,6 +1423,8 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                 var arrgcodl = $('#<%=this.gvPersonalInfo.ClientID %>').find('[id$="lblgvItmCodeper"]');
                 var arraygval = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:text[id$="txtgvVal"]');
 
+                console.log(sircode + "" + arrgcodl + "" + arraygval);
+
                 var number = "";
                 var gval;
                 //number = gval.Length > 0 ? gval + "," : "";
@@ -1433,9 +1433,10 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                 //number = number.Length > 0 ? number.Substring(0, number.Length - 1) : number;
 
                 for (var i = 0; i < arrgcodl.length; i++) {
-
+                    
 
                     var gcod = $(arrgcodl[i]).text();
+                   
                     var number;
                     switch (gcod) {
 
@@ -1446,8 +1447,17 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
 
 
                         case '0301004':
-                            gval = $(arraygval[i]).val();
-                            number = number + (gval.length > 0 ? gval + "," : "");
+                           
+                            switch (comcod) {
+                                case '3315':
+                                case '3316':                                 
+                                    break;
+
+                                default:
+                                    gval = $(arraygval[i]).val();
+                                    number = number + (gval.length > 0 ? gval + ",nahid" : "");
+                                    break;
+                            }                            
                             break;
 
                         case '0301005':

@@ -6139,19 +6139,21 @@ namespace RealERPWEB.F_01_LPA
             try
             {
                 DataTable dt = (DataTable)ViewState["tbModalData"];
-                if(comcod=="3348")
-                {
-                    DataView dvm = dt.DefaultView;
-                    dvm.RowFilter = ("gcod<>'810100102010'");
-                    this.gvInfo.DataSource = dvm.ToTable();
-                    this.gvInfo.DataBind();
-                }
-                else
-                {
-                    this.gvInfo.DataSource = dt;
-                    this.gvInfo.DataBind();
-                }
-              
+                //if(comcod=="3348")
+                //{
+                //    DataView dvm = dt.DefaultView;
+                //    dvm.RowFilter = ("gcod<>'810100102010'");
+                //    this.gvInfo.DataSource = dvm.ToTable();
+                //    this.gvInfo.DataBind();
+                //}
+                //else
+                //{
+                //    this.gvInfo.DataSource = dt;
+                //    this.gvInfo.DataBind();
+                //}
+
+                this.gvInfo.DataSource = dt;
+                this.gvInfo.DataBind();
 
 
                 this.GetFollow();
