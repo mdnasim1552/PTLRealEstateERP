@@ -401,7 +401,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             EnumerableRowCollection<DataRow> query = from tax in dt.AsEnumerable()
                                                      where tax.Field<string>("grp") != "B"
-                                                     //orderby tax.Field<string>("empid")
+                                                     orderby tax.Field<string>("monthid"), tax.Field<string>("idcardno")
                                                      select tax;
 
             DataView view = query.AsDataView();
