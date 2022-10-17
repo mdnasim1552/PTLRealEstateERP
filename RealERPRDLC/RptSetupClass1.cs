@@ -619,6 +619,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptAccOpeningDetails": Rpt1a = SetRptAccOpeningDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptSupplierOvAllPSummary": Rpt1a = SetRptSupplierOvAllPSummary(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptSupplierOvAllPSummaryDetails": Rpt1a = SetRptSupplierOvAllPSummaryDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_70_Services.RptServicePrint": Rpt1a = SetRptServicePrint(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 #endregion
@@ -1454,6 +1455,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptSupplierOvAllPSummaryDetails(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptSupplierOverAllPSummaryDetails>)RptDataSet));
+            return Rpt1a;
+        } 
+        private static LocalReport SetRptServicePrint(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealERPEntity.C_70_Services.EClass_Quotation.EQuotationinfo>)RptDataSet));
             return Rpt1a;
         }
 
