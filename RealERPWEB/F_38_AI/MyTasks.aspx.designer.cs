@@ -204,6 +204,24 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.TextBox txtSkippqty;
 
         /// <summary>
+        /// txtreturnqty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtreturnqty;
+
+        /// <summary>
+        /// textrejectqty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox textrejectqty;
+
+        /// <summary>
         /// noteDescription control.
         /// </summary>
         /// <remarks>

@@ -177,6 +177,7 @@ namespace RealERPWEB.F_38_AI
 
         protected void HoldCreateNote_Click(object sender, EventArgs e)
         {
+            
             Hashtable hst = (Hashtable)Session["tblLogin"];
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             int index = (this.gvTodayList.PageSize * this.gvTodayList.PageIndex) + rowIndex;
@@ -184,6 +185,7 @@ namespace RealERPWEB.F_38_AI
             string empid = ((Label)this.gvTodayList.Rows[index].FindControl("lblempid")).Text.Trim();
             string jobid = ((Label)this.gvTodayList.Rows[index].FindControl("lbljobid")).Text.Trim();
             string taskDesc = ((Label)this.gvTodayList.Rows[index].FindControl("Lbltasktitle")).Text.Trim();
+            
             this.holdstatus.Text = "99215";
             this.notetaskid.Text = timeid;
             this.Mdl_lblempid.Text = empid;
@@ -213,6 +215,8 @@ namespace RealERPWEB.F_38_AI
             string trackertype = "";
             string jbdonestts = this.donestatus.Text.ToString().Trim();
             string jbholdstts = this.holdstatus.Text.ToString().Trim();
+            string returnqty = this.txtreturnqty.Text.Trim();
+            string rejectqty = this.textrejectqty.Text.Trim();
             if (jbdonestts != "")
             {
                 trackertype= this.donestatus.Text.ToString().Trim();
@@ -224,7 +228,7 @@ namespace RealERPWEB.F_38_AI
             string comcod = this.GetCompCode(); 
 
 
-            bool resultb = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INSERTUPDATE_STARTTASK", jobid, assignuser, postdate, trackertype, doneqty, skipqty, remarks, holdreason, timeTkerID);
+            bool resultb = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INSERTUPDATE_STARTTASK", jobid, assignuser, postdate, trackertype, doneqty, skipqty, remarks, holdreason, timeTkerID, returnqty, rejectqty);
 
             if (!resultb)
             {
@@ -304,8 +308,22 @@ namespace RealERPWEB.F_38_AI
             this.notetaskid.Text = timeid;
             this.Mdl_lblempid.Text = empid;
             this.Mdl_jobid.Text = jobid;
-           
+            this.holdreason.Visible = false;
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HoldtaskNoteModal();", true);
+        }
+
+        protected void btnlnkannothold_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+
+            }
         }
     }
 }
