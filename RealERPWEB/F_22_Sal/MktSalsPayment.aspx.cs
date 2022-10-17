@@ -324,7 +324,8 @@ namespace RealERPWEB.F_22_Sal
             string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
             string ddldesc = hst["ddldesc"].ToString();
 
-            DataTable basicinfo = (DataTable)ViewState["tblData"];
+            //DataTable basicinfo = (DataTable)ViewState["tblData"];
+            DataTable basicinfo = (DataTable)Session["UsirBasicInformation"];
             string PactCode = this.ddlProjectName.SelectedValue.ToString();
             string UsirCode = this.lblCode.Text.ToString(); ;
             string prjName = (ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim().ToString() : this.ddlProjectName.SelectedItem.Text.Substring(13));
