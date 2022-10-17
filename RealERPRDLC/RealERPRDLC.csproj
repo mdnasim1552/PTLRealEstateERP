@@ -172,6 +172,7 @@
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassDuesAOverDuesIndPro.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassRevenue.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+PaymentStatus.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSales_03+ProjectWiseClientStatus.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_24_CC.RptClientModification.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_28_Mpro.EClassMktProcurement+RptMktMatIssue.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_28_Mpro.EClassMktProcurement+RptMktPurchaseMrr.datasource" />
@@ -992,8 +993,8 @@
     <EmbeddedResource Include="R_41_GAcc\RptProProgBillStatus.rdlc" />
     <EmbeddedResource Include="R_45_GrAcc\RptGrpMisRecPayment.rdlc" />
     <EmbeddedResource Include="R_47_Kpi\RptKeyResultArea.rdlc" />
-    <EmbeddedResource Include="R_70_Services\RptServicePrint - Copy.rdlc" />
-    <EmbeddedResource Include="R_70_Services\RptServicePrint.rdlc" />
+    <EmbeddedResource Include="R_70_Services\RptInvoicePrint.rdlc" />
+    <EmbeddedResource Include="R_70_Services\RptQuotationPrint.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\LetterDefault01.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\Rnd.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_81_Rec\RptAssYearly.rdlc" />
