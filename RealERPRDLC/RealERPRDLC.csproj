@@ -172,6 +172,7 @@
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassDuesAOverDuesIndPro.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassRevenue.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+PaymentStatus.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSales_03+ProjectWiseClientStatus.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_24_CC.RptClientModification.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_28_Mpro.EClassMktProcurement+RptMktMatIssue.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_28_Mpro.EClassMktProcurement+RptMktPurchaseMrr.datasource" />
@@ -211,6 +212,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+RptSalarySheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryGrandT.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryPaySlip.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalSummaryInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+bnkStatement.datasource" />
     <EmbeddedResource Include="Reports\RptPurchaseOrderFinlayInd.rdlc" />
@@ -1125,6 +1127,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalSummaryFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsLanco.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptTopSheetFactory.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptTotalSal.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptSalsumDept.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptModePayment.rdlc" />

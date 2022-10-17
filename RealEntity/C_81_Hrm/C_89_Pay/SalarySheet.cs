@@ -873,6 +873,16 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
 
             public DeptWiseSal() { }
         }
-
+        public class SalSummaryInfo
+        {
+            public string comcod { get; set; }
+            public string grp { get; set; }
+            public string descrip { get; set; }
+            public double cashamt { get; set; }
+            public double bankamt { get; set; }
+      
+            public SalSummaryInfo() { 
+            }
+        }
     }
 }

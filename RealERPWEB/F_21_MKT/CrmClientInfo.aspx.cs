@@ -3350,7 +3350,7 @@ namespace RealERPWEB.F_21_MKT
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '42%'");
             DataTable dtPr = dv.ToTable();
-            dtPr.Rows.Add("0000000", "Choose Lad Quality..", "");
+            dtPr.Rows.Add("0000000", "Choose Lead Quality..", "");
             this.ddlPri.DataTextField = "gdesc";
             this.ddlPri.DataValueField = "gcod";
             this.ddlPri.DataSource = dtPr;
