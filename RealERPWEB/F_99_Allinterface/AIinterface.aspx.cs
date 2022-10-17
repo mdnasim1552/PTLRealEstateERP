@@ -1086,5 +1086,12 @@ namespace RealERPWEB.F_99_Allinterface
 
 
         }
+
+        protected void gvAssingJob_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvAssingJob.PageIndex = e.NewPageIndex;
+            this.data_Bind();
+
+        }
     }
 }
