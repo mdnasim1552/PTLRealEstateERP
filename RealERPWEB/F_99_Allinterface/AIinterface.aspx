@@ -921,7 +921,7 @@
                         <asp:Panel ID="pnlAssign" runat="server" Visible="false">
                             <div class="table-responsive">
                                 <asp:GridView ID="gvAssingJob" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                    ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnRowDataBound="gvAssingJob_RowDataBound">
+                                    ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnRowDataBound="gvAssingJob_RowDataBound" OnPageIndexChanging="gvAssingJob_PageIndexChanging" >
 
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL # ">
@@ -1076,7 +1076,7 @@
                                         <asp:TemplateField HeaderText="Role Type " Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvvelocitytype" runat="server" Height="16px"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "velocitytype")) %>'
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletype")) %>'
                                                     Width="150px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1245,7 +1245,7 @@
                                         <asp:TemplateField HeaderText="Role Type " Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvqcvelocitytype" runat="server" Height="16px"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "velocitytype")) %>'
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletype")) %>'
                                                     Width="150px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1861,7 +1861,7 @@
                                             <asp:TemplateField HeaderText="Amount">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lbldatasetAmount" runat="server" Height="16px"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amount")) %>' Width="80px"></asp:Label>
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amount")) %>' Width="50px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />

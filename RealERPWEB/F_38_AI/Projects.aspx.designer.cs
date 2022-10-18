@@ -177,6 +177,15 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.GridView gv_BatchName;
 
         /// <summary>
+        /// taskoverview control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl taskoverview;
+
+        /// <summary>
         /// btnbatchtask control.
         /// </summary>
         /// <remarks>
@@ -481,6 +490,15 @@ namespace RealERPWEB.F_38_AI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btntaskUpdate;
+
+        /// <summary>
+        /// pnlSidebar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnlSidebar;
 
         /// <summary>
         /// BoardView control.

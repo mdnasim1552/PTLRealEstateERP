@@ -178,8 +178,9 @@ namespace RealERPWEB.F_38_AI
 
         protected void btntaskadd_Click(object sender, EventArgs e)
         {
-           
-           
+            this.assigntask.Visible = false;
+            this.taskoverview.Visible = false;
+            this.penddingtask.Visible = false;
             this.task.Visible = true;
 
         }
@@ -240,11 +241,11 @@ namespace RealERPWEB.F_38_AI
             DataTable dt = dt2.Tables[0];
             ViewState["tblgetprojectinfo"] = dt;
             //order type
-            DataView dv1 = dt.DefaultView;
-            dv1.RowFilter = "gcod like'95%' and gcod not like'%00'";
+            DataView dv3 = dt.DefaultView;
+            dv3.RowFilter = "gcod like'95%' and gcod not like'%00'";
             this.ddlUserRoleType.DataTextField = "gdesc";
             this.ddlUserRoleType.DataValueField = "gcod";
-            this.ddlUserRoleType.DataSource = dv1.ToTable();
+            this.ddlUserRoleType.DataSource = dv3.ToTable();
             this.ddlUserRoleType.DataBind();
 
             //task type
@@ -296,9 +297,9 @@ namespace RealERPWEB.F_38_AI
                 //DataTable tbl1 = (DataTable)ViewState["tblReq"];
                 string empid = this.ddlassignmember.SelectedValue.ToString();
                 string annoid = this.ddlAnnotationid.SelectedValue.ToString();
-                DataRow[] dr2 = tblt01.Select("empid ='"+ empid + "'");
-                if (dr2.Length == 0)
-                {
+                //DataRow[] dr2 = tblt01.Select("empid ='"+ empid + "'");
+                //if (dr2.Length == 0)
+                //{
 
                     DataRow[] dr3 = tblt01.Select("annoid='" + annoid + "'");
                     if (dr3.Length == 0)
@@ -326,13 +327,13 @@ namespace RealERPWEB.F_38_AI
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
                     }
-                }
-                else
-                {
-                    string msg = "Alredy Exists";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                //}
+                //else
+                //{
+                //    string msg = "Alredy Exists";
+                //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
-                }
+                //}
 
                 ViewState["tblt01"] = tblt01;
                 this.VirtualGrid_DataBind();
@@ -381,6 +382,9 @@ namespace RealERPWEB.F_38_AI
                 }
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Create Saved Successfully');", true);
                 this.IsClear();
+                //this.task.Visible = false;
+                this.assigntask.Visible = true;
+                this.taskoverview.Visible = true;
                 this.GetBatchInfo();
             }
             catch (Exception ex)
@@ -393,6 +397,8 @@ namespace RealERPWEB.F_38_AI
         {
            // this.task.Attributes.Add("class", "d-none");
             this.task.Visible = false;
+            this.assigntask.Visible = true;
+            this.taskoverview.Visible = true;
 
         }
 
@@ -456,7 +462,7 @@ namespace RealERPWEB.F_38_AI
                 string titlename = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvtasktitle")).Text.ToString();
                 string empname = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvempname")).Text.ToString();
                 string empid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblempid")).Text.ToString();
-                string roletype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvroletype")).Text.ToString();
+                string roletype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblrolettpcode")).Text.ToString();
                 string anotationid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvannoid")).Text.ToString();
                 string assigntype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvassigntype")).Text.ToString();
                 string assginqty = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvassignqty")).Text.ToString();
@@ -466,12 +472,13 @@ namespace RealERPWEB.F_38_AI
                 this.txttasktitle.Text = titlename;
                 this.txttasktitle.ReadOnly = true;
                 this.ddlassignmember.SelectedValue = empid;
-                this.ddlUserRoleType.SelectedItem.Value = roletype;
-                this.ddlAnnotationid.SelectedValue = anotationid;              
+                this.ddlUserRoleType.SelectedValue = roletype;
+                this.ddlAnnotationid.SelectedItem.Value = anotationid;              
                 this.txtquantity.Text = assginqty;
                 this.txtworkhour.Text = workhour;
                 this.textrate.Text = workperrate;
 
+                this.taskoverview.Visible = false;
                 this.task.Visible = true;
                 this.btnaddrow.Visible = false;
                 this.btntaskSave.Visible = false;
@@ -493,15 +500,16 @@ namespace RealERPWEB.F_38_AI
         {
             try
             {
+               
                 string comcod = this.GetComdCode();               
                 string batchid = Request.QueryString["BatchID"].ToString() == "" ? "" : Request.QueryString["BatchID"].ToString();
                 string jobid = this.lbltaskbatchid.Text;
                 string empname = this.ddlassignmember.SelectedValue.Trim();
                 string valueqty = this.txtquantity.Text;
-                string type = this.ddlassigntype.SelectedValue;
+                string type = this.ddlassigntype.SelectedItem.Value;
                 string worktype = this.txtworkhour.Text;
-                string annodid = this.ddlAnnotationid.SelectedValue.ToString();
-                string roletype = this.ddlUserRoleType.SelectedValue.ToString();
+                string annodid = this.ddlAnnotationid.SelectedValue.Trim().ToString();
+                string roletype = this.ddlUserRoleType.SelectedItem.Value;
                 string textrate = this.textrate.Text;
 
 
@@ -583,6 +591,50 @@ namespace RealERPWEB.F_38_AI
             }
             catch(Exception exp)
             {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
+
+        protected void btntaskQC_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;
+                string id = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvjobid")).Text.ToString();
+                this.lbltaskbatchid.Text = id;
+                string titlename = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvtasktitle")).Text.ToString();
+                string empname = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvempname")).Text.ToString();
+                string empid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblempid")).Text.ToString();
+                string roletype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblrolettpcode")).Text.ToString();
+                string anotationid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvannoid")).Text.ToString();
+                string assigntype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvassigntype")).Text.ToString();
+                string assginqty = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvassignqty")).Text.ToString();
+                string workhour = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvwrkhour")).Text.ToString();
+                string workperrate = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvworkrate")).Text.ToString();
+
+                this.txttasktitle.Text = titlename;
+                this.txttasktitle.ReadOnly = true;
+                this.ddlassignmember.SelectedValue = empid;
+                this.ddlUserRoleType.SelectedValue = roletype;
+                this.ddlAnnotationid.SelectedItem.Value = anotationid;
+                this.txtquantity.Text = assginqty;
+                this.txtworkhour.Text = workhour;
+                this.textrate.Text = workperrate;
+
+                this.assigntask.Visible = false;
+                this.taskoverview.Visible = false;                
+                this.task.Visible = true;
+                this.btnaddrow.Visible = true;
+                this.btntaskSave.Visible = true;
+                this.btntaskUpdate.Visible = false;
+                
+
+            }
+            catch(Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
             }
         }

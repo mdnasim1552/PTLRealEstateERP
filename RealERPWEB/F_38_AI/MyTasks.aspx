@@ -56,8 +56,8 @@
                             <asp:RadioButtonList ID="btnMyTasks" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" OnSelectedIndexChanged="btnMyTasks_SelectedIndexChanged">
 
                                 <asp:ListItem Value="2" Selected="True"><a class="nav-link" href="#">Board</a></asp:ListItem>
-                                <asp:ListItem Value="3"> <a class="nav-link" href="#">Calendar</a></asp:ListItem>
-                                <asp:ListItem Value="4"> <a class="nav-link" href="#">Files</a></asp:ListItem>
+                                
+                                <asp:ListItem Value="3"> <a class="nav-link" href="#">Files</a></asp:ListItem>
                             </asp:RadioButtonList>
                         </div>
                     </div>
@@ -226,16 +226,12 @@
 
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                     </asp:TemplateField>
-
-
-                                                    <asp:TemplateField HeaderText="Assign <br> Type">
+                                                    <asp:TemplateField HeaderText="Role <br> Type">
                                                         <ItemTemplate>
                                                             <asp:Label ID="tblvelocitytype" runat="server"
-                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assigntype")) %>'></asp:Label>
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletype")) %>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-
-
                                                     <asp:TemplateField HeaderText="Start <br> date">
                                                         <ItemTemplate>
                                                             <asp:Label ID="tblcreatedate" runat="server" Width="80px"
@@ -262,9 +258,7 @@
                                                             <asp:Label ID="gvtdremarks" runat="server"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remarks")) %>'></asp:Label>
                                                         </ItemTemplate>
-                                                    </asp:TemplateField>
-
-                                                   
+                                                    </asp:TemplateField>                                                   
                                                     <asp:TemplateField HeaderText="Pending Qty">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblpendingqty" runat="server" CssClass="badge badge-pill badge-danger"
@@ -294,7 +288,10 @@
                                                     <asp:TemplateField HeaderText="Action">
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="lnkHoldJob" runat="server" CssClass="text-danger pr-1 pl-1" Font-Size="20px" ToolTip="Hold Create Note"
-                                                                Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99215" ||  Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99220" ? false:true %>' OnClick="HoldCreateNote_Click"><i class="fa fa-pause-circle"></i></asp:LinkButton>
+                                                                Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))!="95001" && Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99215" ||  Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99220" ? false:true %>' OnClick="HoldCreateNote_Click"><i class="fa fa-pause-circle"></i></asp:LinkButton>
+
+                                                             <asp:LinkButton ID="btnlnkannothold"  runat="server" CssClass="text-danger pr-1 pl-1" Font-Size="20px" ToolTip="Annot Create Note" OnClick="btnlnkannothold_Click"
+                                                                Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletype"))=="95001" ? true:false %>' ><i class="fa fa-pause-circle"></i></asp:LinkButton>
 
                                                             <asp:LinkButton ID="lnkStartJobByID" runat="server" CssClass="text-success pr-1 pl-1" Font-Size="20px" ToolTip="Start Job"
                                                                 Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99204" ||
@@ -361,10 +358,10 @@
                                                     </asp:TemplateField>
 
 
-                                                    <asp:TemplateField HeaderText="Assigned <br> Type" Visible="false">
+                                                    <asp:TemplateField HeaderText="Role <br> Type" Visible="false">
                                                         <ItemTemplate>
                                                             <asp:Label ID="tblvelocitytype" runat="server"
-                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assgintype")) %>'></asp:Label>
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assigntype")) %>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
@@ -483,7 +480,22 @@
                                     </div>
                                 </div>
                             </div>
-
+                             <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="username">Return Qty</label>
+                                        <asp:TextBox ID="txtreturnqty" runat="server" TextMode="Number" class="form-control"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="username">Reject Qty</label>
+                                        <asp:TextBox ID="textrejectqty" runat="server" TextMode="Number" class="form-control"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12">

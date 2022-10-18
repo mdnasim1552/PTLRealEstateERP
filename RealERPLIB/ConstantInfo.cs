@@ -644,7 +644,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1603000", "1603015", "F_16_Bill", "RptBillStatus?", "Type=ProStatus", "Project Status", "Billing", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1602000", "1602018", "F_16_Bill", "CustOthMoneyReceipt?", "Type=Billing", "Collection -Other's", "Billing", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1603000", "1603019", "F_22_Sal", "RptMktMoneyReceipt?", "Type=Billing", "Money Receipt", "Billing", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "1602000", "1602024", "F_16_Bill", "CustOthMoneyReceipt?", "Type=Billing&pactcode=", "Collection -Other's", "Billing", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1602000", "1602024", "F_16_Bill", "CustOthMoneyReceipt?", "Type=Billing&pactcode=", "Collection-Other Bill ", "Billing", "False", "False", "False", "False" }); ;
 
 
             tblObj.Rows.Add(new Object[] { "1603000", "1603030", "F_16_Bill", "RptProBillStatus?", "Type=Billstatus", "Progress Bill Status", "Billing", "False", "False", "False", "False" });

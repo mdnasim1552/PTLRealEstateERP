@@ -21,7 +21,7 @@
             $('.chzn-select').chosen({ search_contains: true });
         }
 
-      
+
 
     </script>
 
@@ -210,7 +210,7 @@
 
                                     </div>
 
-                                    <div class="row">
+                                    <div class="row" runat="server" id="taskoverview" >
                                         <div class="col-md-8">
                                             <div class="tbMenuWrp nav nav-tabs rptPurInt">
                                                 <asp:RadioButtonList ID="btnbatchtask" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" OnSelectedIndexChanged="btnbatchtask_SelectedIndexChanged">
@@ -239,17 +239,25 @@
                                                         </ItemTemplate>
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Role <br> Type">
+                                                     <asp:TemplateField HeaderText="Tasktitle">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblgv" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletype")) %>' Width="200px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                            <asp:Label ID="lblgv" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "tasktitle")) %>' Width="200px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
 
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                     </asp:TemplateField>
-                                                     <asp:TemplateField HeaderText="Annotor <br> ID">
+                                                    <asp:TemplateField HeaderText="Role <br> Type">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblgv" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "annoid")) %>' Width="200px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                            <asp:Label ID="lblgv" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletype")) %>' Width="100px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Annotor <br> ID">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblgv" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "annoid")) %>' Width="100px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
 
@@ -321,7 +329,7 @@
                                                         </ItemTemplate>
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                     </asp:TemplateField>
-                                                    
+
                                                     <asp:TemplateField HeaderText="Job ID" Visible="false">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvjobid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobid")) %>' Width="150px" ForeColor="Black" Font-Size="12px"></asp:Label>
@@ -345,11 +353,12 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Role <br> Type">
                                                         <ItemTemplate>
+                                                            <asp:Label ID="lblrolettpcode" Visible="false" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletypcode")) %>' ForeColor="Black" Font-Size="12px"></asp:Label>
                                                             <asp:Label ID="lblgvroletype" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletype")) %>' ForeColor="Black" Font-Size="12px"></asp:Label>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" />
                                                     </asp:TemplateField>
-                                                              <asp:TemplateField HeaderText="Annotor <br> ID">
+                                                    <asp:TemplateField HeaderText="Annotor <br> ID">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvannoid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "annoid")) %>' ForeColor="Black" Font-Size="12px"></asp:Label>
                                                         </ItemTemplate>
@@ -412,17 +421,18 @@
                                                     <asp:TemplateField HeaderText="Action">
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btntaskEdit" runat="server" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "workstatus"))=="99220" ? false:true %>' CssClass="text-primary" OnClick="btntaskEdit_Click" ToolTip="edit"><i class="fa fa-edit"></i></asp:LinkButton>
+                                                            <asp:LinkButton ID="btntaskQC" runat="server" OnClick="btntaskQC_Click" Visible='<%# (Convert.ToDouble(DataBinder.Eval(Container.DataItem, "doneqty")) > 0) & (Convert.ToString(DataBinder.Eval(Container.DataItem, "roletype"))=="Annotator")  ? true:false %>' CssClass="text-primary"  ToolTip="assgin for QC"><i class="fa fa-user-plus"></i></asp:LinkButton>
 
-                                                            <%--   <asp:LinkButton ID="removeRow" runat="server" OnClientClick="return confirm('Are You Sure?')"
+                                                               <asp:LinkButton ID="removeRow" runat="server" OnClientClick="return confirm('Are You Sure?')"
                                                                 Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus"))=="00000" ? true:false %>'
-                                                                OnClick="removeRow_Click" CssClass="text-danger pr-2"><i class="fa fa-trash"></i></asp:LinkButton>--%>
-                                                            <asp:LinkButton runat="server" ID="removeRow" CommandName="Delete"
+                                                                OnClick="removeRow_Click" CssClass="text-danger pr-2"><i class="fa fa-trash"></i></asp:LinkButton>
+                                                           <%-- <asp:LinkButton runat="server" ID="removeRow" CommandName="Delete"
                                                                 ClientIDMode="Static"
-                                                                 ToolTip="Delete"
+                                                                ToolTip="Delete"
                                                                 Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus"))=="00000" ? true:false %>'
                                                                 CssClass="text-danger pr-2 isdeleteRow" CausesValidation="false"
                                                                 CommandArgument='<%# DataBinder.Eval(Container.DataItem, "jobid") %>'
-                                                                OnClientClick="return sweetAlertConfirm(this);"><i class="fa fa-trash"></i></asp:LinkButton>
+                                                                OnClientClick="return sweetAlertConfirm(this);"><i class="fa fa-trash"></i></asp:LinkButton>--%>
 
 
                                                         </ItemTemplate>
@@ -491,12 +501,12 @@
 
                                                 <div class="col-lg-3 col-md-3 col-sm-12">
                                                     <asp:Label ID="Label9" runat="server"> Assigned QYT</asp:Label>
-                                                    <asp:TextBox ID="txtquantity" onkeyup="Validate()" runat="server" TextMode="Number" CssClass="form-control"></asp:TextBox>
+                                                    <asp:TextBox ID="txtquantity"  min="0" runat="server" TextMode="Number" CssClass="form-control"></asp:TextBox>
                                                 </div>
 
                                                 <div class=" col-lg-3 col-md-3 col-sm-12">
                                                     <asp:Label ID="Label10" runat="server">Work Hour</asp:Label>
-                                                    <asp:TextBox ID="txtworkhour" runat="server" TextMode="Number" CssClass="form-control"></asp:TextBox>
+                                                    <asp:TextBox ID="txtworkhour" runat="server" min="0" TextMode="Number" CssClass="form-control"></asp:TextBox>
                                                 </div>
                                                 <div class=" col-lg-3 col-md-3 col-sm-12">
                                                     <asp:Label ID="Label2" runat="server">Per Rate</asp:Label>
@@ -559,7 +569,7 @@
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Assign  <br> Type">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="tbltype" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assigndesc")) %>' Width="130px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                                <asp:Label ID="tbltype" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assigndesc")) %>' Width="100px" ForeColor="Black" Font-Size="12px"></asp:Label>
 
                                                             </ItemTemplate>
                                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -590,9 +600,9 @@
                                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                         </asp:TemplateField>
-                                                         <asp:TemplateField HeaderText="Action">
+                                                        <asp:TemplateField HeaderText="Action">
                                                             <ItemTemplate>
-                                                               <asp:LinkButton runat="server" ID="btnvrdelete" OnClick="btnvrdelete_Click" OnClientClick="return confirm('Are You Sure?')" CssClass="text-danger" ><i class="fa fa-trash"></i></asp:LinkButton>
+                                                                <asp:LinkButton runat="server" ID="btnvrdelete" OnClick="btnvrdelete_Click" OnClientClick="return confirm('Are You Sure?')" CssClass="text-danger"><i class="fa fa-trash"></i></asp:LinkButton>
 
                                                             </ItemTemplate>
                                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -608,12 +618,16 @@
                                             </div>
                                             <asp:LinkButton runat="server" ID="btntaskSave" OnClick="btntaskSave_Click" CssClass="btn btn-primary btn-sm  float-right">Task Save</asp:LinkButton>
                                             <asp:LinkButton runat="server" ID="btntaskUpdate" Visible="false" OnClick="btntaskUpdate_Click" CssClass="btn btn-primary btn-sm   float-right"> Update</asp:LinkButton>
+                                           
 
                                         </div>
 
                                     </div>
 
 
+                                </div>
+
+                                <div id="pnlSidebar" class="card pnlSidebarCl" runat="server" visible="false">
                                 </div>
                         </asp:View>
 
@@ -751,35 +765,38 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 
-     <script>
-         function sweetAlertConfirm(removeRow) {
-             if (removeRow.dataset.confirmed) {
-                 removeRow.dataset.confirmed = false;
-                 return true;
-             } else {
-                 // Ask the user to confirm/cancel the action
-                 event.preventDefault();
-                 swal({
-                     title: 'Are you sure?',
-                     text: "You won't be able to revert this !!",
-                     type: 'warning',
-                     showCancelButton: true,
-                     confirmButtonColor: '#3085d6',
-                     cancelButtonColor: '#d33',
-                     confirmButtonText: 'Ok'
-                 })
-                     .then(function () {
-                         // Set data-confirmed attribute to indicate that the action was confirmed
-                         removeRow.dataset.confirmed = true;
-                         // Trigger button click programmatically
-                         removeRow.click();
-                     }).catch(function (reason) {
-                         // The action was canceled by the user
-                         return false
-                     });
-             }
-         }
-     </script>
+    <script>
+        //function sweetAlertConfirm(removeRow) {
+        //    if (removeRow.dataset.confirmed) {
+        //        removeRow.dataset.confirmed = false;
+        //        return true;
+        //    } else {
+        //        // Ask the user to confirm/cancel the action
+        //        event.preventDefault();
+        //        swal({
+        //            title: 'Are you sure?',
+        //            text: "You won't be able to revert this !!",
+        //            type: 'warning',
+        //            showCancelButton: true,
+        //            confirmButtonColor: '#3085d6',
+        //            cancelButtonColor: '#d33',
+        //            confirmButtonText: 'Ok'
+        //        })
+        //            .then(function () {
+        //                // Set data-confirmed attribute to indicate that the action was confirmed
+        //                removeRow.dataset.confirmed = true;
+        //                // Trigger button click programmatically
+        //                removeRow.click();
+        //            }).catch(function (reason) {
+        //                // The action was canceled by the user
+        //                return false
+        //            });
+        //    }
+        //}
+
+        
+
+    </script>
 
 
 </asp:Content>

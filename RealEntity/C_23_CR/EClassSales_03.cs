@@ -591,7 +591,9 @@ namespace RealEntity.C_23_CRR
              public double cdelay { get; set; }
              public double ntodues { get; set; }
              public double stdamt { get; set; }
-
+             public string salteam { get; set; } 
+             public string pactdesc { get; set; }  
+             
              public ProjectWiseClientStatus() { }
          }
 

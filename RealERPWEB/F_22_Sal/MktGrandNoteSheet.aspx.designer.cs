@@ -465,6 +465,24 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.DropDownList ddlduration;
 
         /// <summary>
+        /// lblinrate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblinrate;
+
+        /// <summary>
+        /// txtinterestrate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtinterestrate;
+
+        /// <summary>
         /// lblheadercoffer control.
         /// </summary>
         /// <remarks>
@@ -546,13 +564,13 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.TextBox txtcoffbookinmpercnt;
 
         /// <summary>
-        /// lblcoffbookingam control.
+        /// lblvalcoffbookingam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblcoffbookingam;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvalcoffbookingam;
 
         /// <summary>
         /// txtcoffnooffemi control.
@@ -564,31 +582,31 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.TextBox txtcoffnooffemi;
 
         /// <summary>
-        /// lblcoffemi control.
+        /// lblvalcoffemi control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblcoffemi;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvalcoffemi;
 
         /// <summary>
-        /// lblcofffvpersft control.
+        /// lblvalcofffvpersft control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblcofffvpersft;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvalcofffvpersft;
 
         /// <summary>
-        /// lblcoffpvpersft control.
+        /// lblvalcoffpvpersft control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblcoffpvpersft;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvalcoffpvpersft;
 
         /// <summary>
         /// txtcoffBookingdate control.
@@ -645,13 +663,13 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblrevoffer;
 
         /// <summary>
-        /// lblrevparea control.
+        /// lblvalrevparea control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblrevparea;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvalrevparea;
 
         /// <summary>
         /// txtrevprate control.
@@ -717,13 +735,13 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.TextBox txtrevpbbookinmpercnt;
 
         /// <summary>
-        /// lblrevpbookingam control.
+        /// lblvalrevpbookingam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblrevpbookingam;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvalrevpbookingam;
 
         /// <summary>
         /// txtrevpnooffemi control.
@@ -735,31 +753,31 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.TextBox txtrevpnooffemi;
 
         /// <summary>
-        /// lblrevpemi control.
+        /// lblvalrevpemi control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblrevpemi;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvalrevpemi;
 
         /// <summary>
-        /// lblrevpfvpersft control.
+        /// lblvalrevpfvpersft control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblrevpfvpersft;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvalrevpfvpersft;
 
         /// <summary>
-        /// lblrevppvpersft control.
+        /// lblvalrevppvpersft control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblrevppvpersft;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvalrevppvpersft;
 
         /// <summary>
         /// txtrevpBookingdate control.
@@ -805,6 +823,15 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlrevpduration;
+
+        /// <summary>
+        /// lbtnCalCulation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnCalCulation;
 
         /// <summary>
         /// Label4 control.
