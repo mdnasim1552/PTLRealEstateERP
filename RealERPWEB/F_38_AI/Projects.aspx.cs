@@ -88,7 +88,7 @@ namespace RealERPWEB.F_38_AI
                     return;
                 DataTable dt = ds1.Tables[0];
                 Session["batchproject"] = ds1;
-               
+
                 this.gv_BatchInfo.DataSource = dt;
                 this.gv_BatchInfo.DataBind();
 
@@ -109,14 +109,14 @@ namespace RealERPWEB.F_38_AI
                 string batchid = Request.QueryString["BatchID"].ToString();
 
                 DataSet ds1 = MktData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI ", "GETBATCHDASHBOARD", batchid, "", "", "", "", "");
-                if (ds1 == null || ds1.Tables[0].Rows.Count==0)
+                if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
                     return;
                 string donetask = ds1.Tables[0].Rows[0]["dontask"].ToString();
 
-                string dontask = ds1.Tables[0].Rows[0]["dontask"].ToString()??"";
-                string pendtask = ds1.Tables[0].Rows[0]["pendtask"].ToString()??"";
-                string overduetasks = ds1.Tables[0].Rows[0]["overduetasks"].ToString()??"";
-                string ttltask = ds1.Tables[0].Rows[0]["ttltask"].ToString()??"";
+                string dontask = ds1.Tables[0].Rows[0]["dontask"].ToString() ?? "";
+                string pendtask = ds1.Tables[0].Rows[0]["pendtask"].ToString() ?? "";
+                string overduetasks = ds1.Tables[0].Rows[0]["overduetasks"].ToString() ?? "";
+                string ttltask = ds1.Tables[0].Rows[0]["ttltask"].ToString() ?? "";
                 this.dontask.InnerText = dontask;
                 this.pendtask.InnerText = pendtask;
                 this.overduetasks.InnerText = overduetasks;
@@ -159,13 +159,13 @@ namespace RealERPWEB.F_38_AI
         {
 
             string comcod = this.GetComdCode();
-            string prjid = Request.QueryString["PID"].ToString()==""?"": Request.QueryString["PID"].ToString();
-            string batchid = Request.QueryString["BatchID"].ToString()=="" ? "": Request.QueryString["BatchID"].ToString();
+            string prjid = Request.QueryString["PID"].ToString() == "" ? "" : Request.QueryString["PID"].ToString();
+            string batchid = Request.QueryString["BatchID"].ToString() == "" ? "" : Request.QueryString["BatchID"].ToString();
             DataSet ds1 = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETPRJWISEBATCH", prjid, batchid, "", "", "", "", "");
             if (ds1 == null)
                 return;
             DataTable dt = ds1.Tables[0];
-        
+
             string projectname = ds1.Tables[0].Rows[0]["projectname"].ToString();
             this.lbltitleprjectname.Text = projectname == "" ? "Projects" : projectname;
             string batchname = ds1.Tables[0].Rows[0]["batchname"].ToString();
@@ -187,7 +187,7 @@ namespace RealERPWEB.F_38_AI
 
         protected void btncancel_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void GetEmployeeName()
@@ -213,7 +213,7 @@ namespace RealERPWEB.F_38_AI
         private void GetAnnotationList()
         {
             string comcod = this.GetComdCode();
-            string prjlist = Request.QueryString["PID"].ToString() == "" ? "16%" : Request.QueryString["PID"].ToString() ;
+            string prjlist = Request.QueryString["PID"].ToString() == "" ? "16%" : Request.QueryString["PID"].ToString();
             string usrrole = this.ddlUserRoleType.SelectedValue.ToString() == "95002" ? "03402" :
                             this.ddlUserRoleType.SelectedValue.ToString() == "95003" ? "03403" : "03401";
             DataSet ds = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETANNOTAIONID", prjlist, usrrole, "", "", "", "");
@@ -233,7 +233,7 @@ namespace RealERPWEB.F_38_AI
         }
         private void GetProjectInformation()
         {
-            string comcod = this.GetComdCode();            
+            string comcod = this.GetComdCode();
             DataSet dt2 = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETINFORMATIONCODE", "", "", "", "", "", "");
 
             if (dt2 == null)
@@ -301,32 +301,32 @@ namespace RealERPWEB.F_38_AI
                 //if (dr2.Length == 0)
                 //{
 
-                    DataRow[] dr3 = tblt01.Select("annoid='" + annoid + "'");
-                    if (dr3.Length == 0)
-                    {
-                        DataRow dr1 = tblt01.NewRow();
-                        DataTable tbl2 = (DataTable)ViewState["tblMat"];
-                        dr1["batchid"] = this.hiddnbatchID.Value.ToString();
-                        dr1["empid"] = this.ddlassignmember.SelectedValue.ToString();
-                        dr1["empname"] = this.ddlassignmember.SelectedItem.Text;                       
-                        dr1["roletype"] = this.ddlUserRoleType.SelectedItem.Value;
-                        dr1["roledesc"] = this.ddlUserRoleType.SelectedItem.Text;                        
-                        dr1["assigntype"] = this.ddlassigntype.SelectedItem.Value.Trim();
-                        dr1["assigndesc"] = this.ddlassigntype.SelectedItem.Text.Trim();
-                        dr1["annoid"] = this.ddlAnnotationid.SelectedItem.Value.Trim().ToString();
-                        dr1["assignqty"] = Convert.ToDouble("0" + this.txtquantity.Text.Trim());
-                        dr1["workhour"] = Convert.ToDouble("0" + this.txtworkhour.Text.Trim());
-                        dr1["isoutsrc"] = this.checkinoutsourcing.Checked;
-                        dr1["workrate"] = this.textrate.Text.Trim();
-                        tblt01.Rows.Add(dr1);
+                DataRow[] dr3 = tblt01.Select("annoid='" + annoid + "'");
+                if (dr3.Length == 0)
+                {
+                    DataRow dr1 = tblt01.NewRow();
+                    DataTable tbl2 = (DataTable)ViewState["tblMat"];
+                    dr1["batchid"] = this.hiddnbatchID.Value.ToString();
+                    dr1["empid"] = this.ddlassignmember.SelectedValue.ToString();
+                    dr1["empname"] = this.ddlassignmember.SelectedItem.Text;
+                    dr1["roletype"] = this.ddlUserRoleType.SelectedItem.Value;
+                    dr1["roledesc"] = this.ddlUserRoleType.SelectedItem.Text;
+                    dr1["assigntype"] = this.ddlassigntype.SelectedItem.Value.Trim();
+                    dr1["assigndesc"] = this.ddlassigntype.SelectedItem.Text.Trim();
+                    dr1["annoid"] = this.ddlAnnotationid.SelectedItem.Value.Trim().ToString();
+                    dr1["assignqty"] = Convert.ToDouble("0" + this.txtquantity.Text.Trim());
+                    dr1["workhour"] = Convert.ToDouble("0" + this.txtworkhour.Text.Trim());
+                    dr1["isoutsrc"] = this.checkinoutsourcing.Checked;
+                    dr1["workrate"] = this.textrate.Text.Trim();
+                    tblt01.Rows.Add(dr1);
 
-                    }
-                    else
-                    {
-                        string msg = "Alredy Exists Annotr ID";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                }
+                else
+                {
+                    string msg = "Alredy Exists Annotr ID";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
-                    }
+                }
                 //}
                 //else
                 //{
@@ -395,7 +395,7 @@ namespace RealERPWEB.F_38_AI
 
         protected void removefield_Click(object sender, EventArgs e)
         {
-           // this.task.Attributes.Add("class", "d-none");
+            // this.task.Attributes.Add("class", "d-none");
             this.task.Visible = false;
             this.assigntask.Visible = true;
             this.taskoverview.Visible = true;
@@ -411,7 +411,7 @@ namespace RealERPWEB.F_38_AI
                 int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
                 int index = (this.gv_BatchInfo.PageSize * this.gv_BatchInfo.PageIndex) + rowIndex;
                 string jobid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvjobid")).Text.Trim();
-               
+
 
                 bool result = MktData.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "DELETEBATCH", jobid, "", "", "", "", "");
                 if (!result)
@@ -431,7 +431,7 @@ namespace RealERPWEB.F_38_AI
             }
         }
 
-       private void GetPeddingAssign()
+        private void GetPeddingAssign()
         {
             try
             {
@@ -473,7 +473,7 @@ namespace RealERPWEB.F_38_AI
                 this.txttasktitle.ReadOnly = true;
                 this.ddlassignmember.SelectedValue = empid;
                 this.ddlUserRoleType.SelectedValue = roletype;
-                this.ddlAnnotationid.SelectedItem.Value = anotationid;              
+                this.ddlAnnotationid.SelectedItem.Value = anotationid;
                 this.txtquantity.Text = assginqty;
                 this.txtworkhour.Text = workhour;
                 this.textrate.Text = workperrate;
@@ -491,7 +491,7 @@ namespace RealERPWEB.F_38_AI
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
             }
-            
+
 
 
         }
@@ -500,8 +500,8 @@ namespace RealERPWEB.F_38_AI
         {
             try
             {
-               
-                string comcod = this.GetComdCode();               
+
+                string comcod = this.GetComdCode();
                 string batchid = Request.QueryString["BatchID"].ToString() == "" ? "" : Request.QueryString["BatchID"].ToString();
                 string jobid = this.lbltaskbatchid.Text;
                 string empname = this.ddlassignmember.SelectedValue.Trim();
@@ -513,7 +513,7 @@ namespace RealERPWEB.F_38_AI
                 string textrate = this.textrate.Text;
 
 
-                bool result = MktData.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "EDITASSIGNTASK", empname, valueqty, type, worktype, annodid, batchid, jobid,roletype, textrate);
+                bool result = MktData.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "EDITASSIGNTASK", empname, valueqty, type, worktype, annodid, batchid, jobid, roletype, textrate);
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Update Fail..!!');", true);
@@ -527,7 +527,7 @@ namespace RealERPWEB.F_38_AI
 
 
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
@@ -564,7 +564,7 @@ namespace RealERPWEB.F_38_AI
                 this.textrate.Text = "";
 
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
@@ -579,7 +579,7 @@ namespace RealERPWEB.F_38_AI
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
                 string id = ((Label)this.GridVirtual.Rows[index].FindControl("lbljobid")).Text.Trim();
-               
+
                 if (dt.Rows[index]["jobid"].ToString() == id)
                 {
                     dt.Rows[index].Delete();
@@ -589,7 +589,7 @@ namespace RealERPWEB.F_38_AI
                 this.VirtualGrid_DataBind();
 
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
@@ -624,15 +624,15 @@ namespace RealERPWEB.F_38_AI
                 this.textrate.Text = workperrate;
 
                 this.assigntask.Visible = false;
-                this.taskoverview.Visible = false;                
+                this.taskoverview.Visible = false;
                 this.task.Visible = true;
                 this.btnaddrow.Visible = true;
                 this.btntaskSave.Visible = true;
                 this.btntaskUpdate.Visible = false;
-                
+
 
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
