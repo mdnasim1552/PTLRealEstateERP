@@ -17,12 +17,14 @@ using RealERPRPT;
 using Microsoft.Reporting.WinForms;
 using RealERPRDLC;
 using RealERPEntity;
+using RealERPWEB.Service;
 namespace RealERPWEB.F_22_Sal
 {
     public partial class MktGrandNoteSheet : System.Web.UI.Page
     {
         ProcessAccess MktData = new ProcessAccess();
         Common objcom = new Common();
+        AutoCompleted AutoData = new AutoCompleted();
 
         public static double addamt = 0.00, dedamt = 0.00;
         protected void Page_Load(object sender, EventArgs e)
@@ -40,10 +42,11 @@ namespace RealERPWEB.F_22_Sal
                 this.txtBookingdate.Text = date;
                 this.txtfirstinsdate.Text = finsdate;
                 this.txtcoffBookingdate.Text = date;
-                this.txtcoffinsdate.Text = date;
+                this.txtcoffinsdate.Text = finsdate;
                 this.txtrevpBookingdate.Text = date;
-                this.txtrevpinsdate.Text = date;
+                this.txtrevpinsdate.Text = finsdate;
                 this.GetProjectName();
+                this.GetProspective();
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "SALES WITH PAYMENT  INFORMATION ";
@@ -88,6 +91,26 @@ namespace RealERPWEB.F_22_Sal
             this.ddlProjectName.DataSource = ds1.Tables[0];
             this.ddlProjectName.DataBind();
         }
+        private void GetProspective()
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string txtSProject = "%%";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "GETPROSPECTIVE", txtSProject, "", "", "", "", "", "", "", "");
+            this.ddlprospective.DataTextField = "prosdesc";
+            this.ddlprospective.DataValueField = "proscode";
+            this.ddlprospective.DataSource = ds1.Tables[0];
+            this.ddlprospective.DataBind();
+            ds1.Dispose();
+
+            //Session.Remove("tblprospective");
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            //string comcod = hst["comcod"].ToString();
+
+            //AutoData.GetRecAndPayto(comcod, "SP_ENTRY_SALESNOTESHEET", "GETPROSPECTIVE", "", "", "", "", "", "", "", "", "");
+
+        }
 
 
 
@@ -105,6 +128,9 @@ namespace RealERPWEB.F_22_Sal
                 this.lblProjectmDesc.Text = this.ddlProjectName.SelectedItem.Text.Substring(13);
                 this.ddlProjectName.Visible = false;
                 this.lblProjectmDesc.Visible = true;
+                this.lblprevious.Visible = false;
+                this.lnkbtnPrevious.Visible = false;
+                this.ddlPrevious.Visible = false;
                 this.LoadGrid();
             }
             else
@@ -113,6 +139,9 @@ namespace RealERPWEB.F_22_Sal
                 MultiView1.ActiveViewIndex = -1;
                 ((Label)this.Master.FindControl("lblmsg")).Text = "";
                 this.lbtnBack.Visible = false;
+                this.lblprevious.Visible = true;
+                this.lnkbtnPrevious.Visible = true;
+                this.ddlPrevious.Visible = true;
                 this.ClearScreen();
             }
         }
@@ -435,7 +464,7 @@ namespace RealERPWEB.F_22_Sal
 
 
                 int bnoofemi, coffnoofemi, revnoofemi, initial, mondiff;
-                double coffbookingam, coffemi, coffpowbpart, intratio, revbookingam, revemi, revpowbpart;
+                double cofftunitamt, coffbookingam, coffemi, coffpowbpart, intratio, coffresamt, revtunitamt, revbookingam, revemi, revpowbpart, revresamt;
                 string monthid, ymon, grp;
                 double pv, fv;
 
@@ -456,9 +485,9 @@ namespace RealERPWEB.F_22_Sal
                 // set @cintexpart = power((12 + @intratio) / 12, @mondiff)
                 coffpowbpart = (12 + intratio) / 12;
 
-                DateTime strtdate, enddate, renddate;
+                DateTime strtdate, enddate, benddate;
                 strtdate = System.DateTime.Today;
-                enddate = strtdate.AddMonths(coffnoofemi);
+                enddate = strtdate.AddMonths(coffnoofemi*coffdur);
                 initial = 0;
                 while (strtdate <= enddate)
                 {
@@ -479,9 +508,28 @@ namespace RealERPWEB.F_22_Sal
                             fv = coffbookingam * Math.Pow(coffpowbpart, mondiff)
                         };
                         lstcoff.Add(obj);
-                        initial++;
+                      
 
                     }
+
+                    else  if (initial == coffnoofemi)
+                    {
+                        
+                        cofftunitamt = Convert.ToDouble("0" + this.lblcoffTotal.InnerText);
+                        coffresamt = cofftunitamt-lstcoff.Sum(l => l.pv);
+
+                        RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet obj = new RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet
+                        {
+                            monthid = monthid,
+                            ymon = ymon,
+                            grp = grp,
+                            pv = coffresamt,
+                            fv = coffresamt * Math.Pow(coffpowbpart, mondiff)
+                        };
+                        lstcoff.Add(obj);
+
+                    }
+
 
                     else
                     {
@@ -496,8 +544,8 @@ namespace RealERPWEB.F_22_Sal
                         };
                         lstcoff.Add(obj);
                     }
-
-                    strtdate= strtdate.AddMonths(coffdur);
+                    initial++;
+                    strtdate = strtdate.AddMonths(coffdur);
                 }
 
 
@@ -514,8 +562,9 @@ namespace RealERPWEB.F_22_Sal
 
 
                 strtdate = System.DateTime.Today;
-                enddate = strtdate.AddMonths(revnoofemi);
-                renddate= strtdate.AddMonths(bnoofemi); 
+                enddate = strtdate.AddMonths(revnoofemi*revdur);
+                benddate= strtdate.AddMonths(bnoofemi);
+                benddate = enddate > benddate ? enddate : benddate;
                 initial = 0;
 
                 while (strtdate <= enddate)
@@ -523,12 +572,10 @@ namespace RealERPWEB.F_22_Sal
                     monthid = strtdate.ToString("yyyyMM");
                     ymon = strtdate.ToString("MMM-yy");
                     grp = "03";
-                    mondiff = ASTUtility.Datediff(renddate, strtdate);
+                    mondiff = ASTUtility.Datediff(benddate, strtdate);
 
                     if (initial == 0)
                     {
-                          initial = 0;
-
                         RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet obj = new RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet
                         {
                             monthid = monthid,
@@ -538,9 +585,32 @@ namespace RealERPWEB.F_22_Sal
                             fv = revbookingam * Math.Pow(revpowbpart, mondiff)
                         };
                         lstrev.Add(obj);
-                        initial++;
+                       
 
                     }
+
+
+                   else if (initial == revnoofemi)
+                    {
+
+                        revtunitamt = Convert.ToDouble("0" + this.lblrevpTotal.InnerText);
+                        revresamt = revtunitamt - lstrev.Sum(l => l.pv);
+
+                        RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet obj = new RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet
+                        {
+                            monthid = monthid,
+                            ymon = ymon,
+                            grp = grp,
+                            pv = revresamt,
+                            fv = revresamt * Math.Pow(revpowbpart, mondiff)
+                        };
+                        lstrev.Add(obj);
+
+
+                    }
+
+
+                    
 
                     else
                     {
@@ -557,6 +627,7 @@ namespace RealERPWEB.F_22_Sal
                     }
 
                     strtdate = strtdate.AddMonths(revdur);
+                    initial++;
                 }
 
 
@@ -678,97 +749,7 @@ namespace RealERPWEB.F_22_Sal
         }
 
       
-        protected void lbtnGenerate_Click(object sender, EventArgs e)
-        {
-
-
-
-            //DataTable dt = (DataTable)Session["tblPay"];
-            //int i, k = 0;
-            ////  List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule> lstd = new List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule>();
-            //List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule> lstd = (List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule>)Session["tbldschamt"];
-            //List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule> lsta = (List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule>)Session["tblacamt"];
-            ////Booking and downpayment
-
-            //double bandpamt = 0;
-            //string gcod, gdesc; DateTime schDate; DateTime AccBookDate;
-            //foreach (GridViewRow gvr1 in gvdumpay.Rows)
-            //{
-            //    gcod = ((Label)gvr1.FindControl("lblgvgcod")).Text.Trim();
-            //    schDate = Convert.ToDateTime(((TextBox)gvr1.FindControl("txtgvScheduledate")).Text.Trim());
-            //    double Amount = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)gvr1.FindControl("txtgvdumschamt")).Text.Trim()));
-            //    //  Amount = (Amount>0)?Amount:0;
-            //    bandpamt += Amount;
-
-            //    if (ASTUtility.Left(gcod, 5) == "81985")
-            //    {
-            //        var lsts = lstd.FindAll(l => l.gcod == gcod);
-            //        if (lsts.Count() > 0)
-            //        {
-
-
-            //            lsts[0].schdate = schDate;
-            //            lsts[0].schamt = Amount;
-            //        }
-            //    }
-            //    else
-            //    {
-
-            //        lstd[k].schdate = schDate;
-            //        lstd[k].schamt = Amount;
-            //        k++;
-
-            //    }
-
-
-
-            //}
-
-
-
-
-            //double Tamt = Convert.ToDouble("0" + this.txttoamt.Text);
-            //double ramt = Tamt - bandpamt;
-            //int tin = Convert.ToInt16("0" + this.txtnofins.Text);
-            //int dur = Convert.ToInt16(this.ddlMonth.SelectedValue.ToString());
-            //double insamt = ramt / tin;
-            //// string schDate1 = Convert.ToDateTime(this.txtfinsdate.Text).ToString("dd-MMM-yyyy");
-            //DateTime insdate1 = Convert.ToDateTime(this.txtfinsdate.Text);
-            //DateTime insdate2;
-            //for (int j = k; j < tin + k; j++)
-            //{
-            //    insdate2 = (j == k) ? insdate1 : Convert.ToDateTime(insdate1).AddMonths(dur);
-            //    double schamt = insamt;
-            //    lstd[j].schdate = insdate2;
-            //    lstd[j].schamt = schamt;
-            //    insdate1 = insdate2;
-            //}
-
-
-            //double acbookamt = Convert.ToDouble("0" + this.txtacbooking.Text);
-            //var lstbdate = lstd.FindAll(l => l.schamt > 0);
-            //AccBookDate = lstbdate[0].schdate;
-            //int atin = Convert.ToInt32("0" + this.txtacinstallment.Text);
-            //DateTime ainsdate = Convert.ToDateTime(this.txtfinsdate.Text);
-            ////lstd.Add(new RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule(insdate, schinsamt));
-            //lsta.Add(new RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule(AccBookDate, acbookamt));
-            //ramt = Tamt - acbookamt;
-            //double acinsamt = ramt / atin;
-
-            //for (i = 0; i < atin; i++)
-            //{
-
-            //    lsta.Add(new RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule(ainsdate, acinsamt));
-            //    ainsdate = ainsdate.AddMonths(dur);
-            //}
-
-
-            //Session["tbldschamt"] = lstd.FindAll(l => l.schamt > 0);
-            //Session["tblacamt"] = lsta;
-            //this.Data_Bind();
-            //this.chkVisible.Checked = false;
-            //this.chkVisible_CheckedChanged(null, null);
-        }
+     
 
 
 
@@ -871,78 +852,47 @@ namespace RealERPWEB.F_22_Sal
         {
             try
             {
-                //((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                //string pactcode = this.ddlProjectName.SelectedValue.ToString();
+               
+                string pactcode = this.ddlProjectName.SelectedValue.ToString();
+                string usircode = this.lblCode.Text.Trim();
 
-                //string usircode = this.lblCode.Text.Trim();
-              
-
-              
-                //Hashtable hst = (Hashtable)Session["tblLogin"];
-                //string comcod = this.GetCompCode();
-                //string usrid = hst["usrid"].ToString();
-                //string Postusrid = hst["usrid"].ToString();
-                //string trmnid = hst["compname"].ToString();
-                //string session = hst["session"].ToString();
-                //string PostedDate = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-                //string entryben = Convert.ToDouble("0" + this.txtentryben.Text.Trim()).ToString();
-                //string delaychrg = Convert.ToDouble("0" + this.txtdelaychrg.Text.Trim()).ToString();
-
-                //string discount = Convert.ToDouble("0" + this.txtdiscount.Text).ToString() ;
-                //string Parking = Convert.ToDouble("0" + this.txtParking.Text).ToString();
-
-
-                //DataSet ds1 = new DataSet("ds1");
-                ////Table Schdule
-                //DataTable dt1 = new DataTable();
-                //dt1.Columns.Add("gcod", typeof(string));
-                //dt1.Columns.Add("gdesc", typeof(string));
-                //dt1.Columns.Add("schamt", typeof(Double));
-                //dt1.Columns.Add("schdate", typeof(DateTime));
-
-                //// Table Actual
-                //DataTable dt2 = new DataTable();
-                //dt2.Columns.Add("schamt", typeof(Double));
-                //dt2.Columns.Add("schdate", typeof(DateTime));
-
-
-
-                //List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule> lstd = (List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule>)Session["tbldschamt"];
-                //List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule> lsta = (List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule>)Session["tblacamt"];
-
-                //dt1 = ASITUtility03.ListToDataTable(lstd);
-                //dt2 = ASITUtility03.ListToDataTable(lsta);
-
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = this.GetCompCode();
+                string usrid = hst["usrid"].ToString();
+                string Postusrid = hst["usrid"].ToString();
+                string trmnid = hst["compname"].ToString();
+                string session = hst["session"].ToString();
+                string PostedDate = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
                
 
 
-                //ds1.Merge(dt1);
-                //ds1.Merge(dt2);
-                ////ds1.Merge(dt3);
-                ////ds1.Merge(dt3);
-                ////ds1.Merge(dt4);
-                ////ds1.Merge(dt5);
-                //ds1.Tables[0].TableName = "tbl1";
-                //ds1.Tables[1].TableName = "tbl2";
 
-                ////string xml = ds1.GetXml();
-                ////return;
-                //bool resulta = MktData.UpdateXmlTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "UPDATEDUMMYPAYMENTUSERWISE", ds1, null, null, pactcode, usircode,usrid, discount, Parking, entryben, delaychrg, Postusrid, trmnid, session, PostedDate);
+                List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule> lstd = (List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule>)Session["tbldschamt"];
+                List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule> lsta = (List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule>)Session["tblacamt"];
 
-                //if (!resulta)
-                //{
-
-                //    ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + MktData.ErrorObject["Mesage"].ToString();
-                //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                //    return;
-
-                //}
+             
 
 
 
-                //((Label)this.Master.FindControl("lblmsg")).Text = "Updated SUccessfully";
-                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-                //this.ShowData();
+           
+              
+                //return;
+                bool resulta = MktData.UpdateTransInfo2(comcod, "SP_ENTRY_DUMMYSALSMGT", "UPDATEDUMMYPAYMENTUSERWISE",  pactcode, usircode, usrid, "", "", "", "", Postusrid, trmnid, session, PostedDate, "", "", "","", "", "", "","","","");
+
+                if (!resulta)
+                {
+
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + MktData.ErrorObject["Mesage"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+
+                }
+
+
+
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated SUccessfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                this.ShowData();
 
 
             }
@@ -974,6 +924,16 @@ namespace RealERPWEB.F_22_Sal
         }
 
         protected void lnkbtnFindProject_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lbtnProspective_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lnkbtnPrevious_Click(object sender, EventArgs e)
         {
 
         }

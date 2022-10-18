@@ -3643,6 +3643,7 @@
     <Content Include="Scripts\toaster.js" />
     <Content Include="Scripts\uds_api_contents.js" />
     <Content Include="Scripts\waypoints.min.js" />
+    <Content Include="Scripts\WebForms\Bootstrapautocomplete.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
     <Content Include="Scripts\WebForms\GridView.js" />
