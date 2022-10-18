@@ -1251,6 +1251,8 @@
 
                                                                     <asp:HyperLink ID="lnkProceed" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class=" fa fa-check"></span>
                                                                     </asp:HyperLink>
+                                                                    <asp:HyperLink ID="lnkbtnPrintIn" runat="server" Target="_blank" CssClass="btn btn-default btn-xs" ToolTip="Print Invoice" ForeColor="Maroon"><span class="fa fa-print"></span></asp:HyperLink>
+
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
 
