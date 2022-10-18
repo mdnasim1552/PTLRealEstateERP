@@ -103,7 +103,7 @@
                 </div>
                 <div class="card-body">
                     <asp:GridView ID="gvEmpResign" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
-                        AutoGenerateColumns="False" Width="450px">
+                        AutoGenerateColumns="False" Width="450px" OnRowDataBound="gvEmpResign_RowDataBound">
                         <PagerSettings Visible="False" />
                         <RowStyle />
                         <Columns>
