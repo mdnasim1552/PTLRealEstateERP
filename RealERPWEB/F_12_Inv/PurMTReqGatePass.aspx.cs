@@ -646,6 +646,11 @@ namespace RealERPWEB.F_12_Inv
             string mResCode = this.ddlSpecification.SelectedValue.ToString().Substring(14, 12);
             string mSpcfCod = this.ddlSpecification.SelectedValue.ToString().Substring(26, 12);
 
+            string rsircode1 = "", spcfcod1 = "";
+
+
+            DataTable dt5 = (DataTable)Session["tblStockbal"];
+            string frmprjcode = this.Request.QueryString.AllKeys.Contains("frmpactcode") ? this.Request.QueryString["frmpactcode"].ToString() : this.ddlprjlistfrom.SelectedValue.ToString().Trim();
 
             DataTable tbl2 = (DataTable)ViewState["tblsp"];
             DataView dv1 = tbl2.DefaultView;
@@ -683,6 +688,10 @@ namespace RealERPWEB.F_12_Inv
                     dr1["balqty"] = tbl2.Rows[i]["balqty"].ToString();
                     dr1["rate"] = tbl2.Rows[i]["mtrfrat"].ToString();
                     dr1["getpamt"] = tbl2.Rows[i]["mtrfamt"].ToString();
+                    rsircode1 = tbl2.Rows[i]["rsircode"].ToString();
+                    spcfcod1 = tbl2.Rows[i]["spcfcod"].ToString();
+                    dr1["stockbal"] = dt5.Select("pactcode = '" + frmprjcode + "' and rsircode = '" + rsircode1 + "' and spcfcod = '" + spcfcod1 + "'")[0]["balqty"].ToString();
+
                     tbl1.Rows.Add(dr1);
                 }
 
