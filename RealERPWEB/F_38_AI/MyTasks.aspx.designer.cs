@@ -186,6 +186,15 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.Label startstatus;
 
         /// <summary>
+        /// divDoneQty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDoneQty;
+
+        /// <summary>
         /// txtDoneQty control.
         /// </summary>
         /// <remarks>
@@ -193,6 +202,15 @@ namespace RealERPWEB.F_38_AI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDoneQty;
+
+        /// <summary>
+        /// divSkiQty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divSkiQty;
 
         /// <summary>
         /// txtSkippqty control.
@@ -204,6 +222,15 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.TextBox txtSkippqty;
 
         /// <summary>
+        /// divRetQty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divRetQty;
+
+        /// <summary>
         /// txtreturnqty control.
         /// </summary>
         /// <remarks>
@@ -211,6 +238,15 @@ namespace RealERPWEB.F_38_AI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtreturnqty;
+
+        /// <summary>
+        /// divRejQty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divRejQty;
 
         /// <summary>
         /// textrejectqty control.

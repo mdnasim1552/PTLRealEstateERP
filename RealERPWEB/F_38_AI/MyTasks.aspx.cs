@@ -131,53 +131,65 @@ namespace RealERPWEB.F_38_AI
 
         protected void lnkStartJob_Click(object sender, EventArgs e)
         {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            if (hst == null)
+            try
             {
-                Response.Redirect("~/PinLog.aspx");
-                return;
+
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                if (hst == null)
+                {
+                    Response.Redirect("~/PinLog.aspx");
+                    return;
+                }
+                string cdate = System.DateTime.Now.ToString("yyyy-MM-dd h:mm:ss tt");
+                string createuser = hst["usrid"].ToString();
+                string empid = hst["empid"].ToString();
+                string assignuser = this.Request.QueryString["empid"].ToString() == "" ? empid : this.Request.QueryString["empid"].ToString();
+
+                string trackertype = "99204";// task wip
+                string doneqty = "0";
+                string skipqty = "0";
+                string remarks = "";
+                string returnqty = "0";
+                string rejectqty = "0";
+
+                GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int RowIndex = gvr.RowIndex;
+                int index = this.gvAssingJob.PageSize * this.gvAssingJob.PageIndex + RowIndex;
+                string comcod = this.GetCompCode();
+                string jobid = ((Label)this.gvAssingJob.Rows[RowIndex].FindControl("lbljobid")).Text.Trim();
+                bool resultb = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INSERTUPDATE_STARTTASK", jobid, assignuser, cdate, trackertype, doneqty, skipqty, remarks,"", returnqty, rejectqty);
+                if (!resultb)
+                {
+                    string msg = "Task Start Fail";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail(" + msg + ");", true);
+                    return;
+                }
+                else
+                {
+                    string msg = "Task Start";
+
+                    string eventtype = "2";
+                    string eventdesc = msg;
+                    string eventdesc2 = jobid + ".- Description: " + msg;
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord("", ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+                    GetRecentAssigned();
+                    GetTodayDoingJob();
+                }
             }
-            string cdate = System.DateTime.Now.ToString("yyyy-MM-dd h:mm:ss tt");
-            string createuser = hst["usrid"].ToString();
-            string empid = hst["empid"].ToString();
-            string assignuser = this.Request.QueryString["empid"].ToString() == "" ? empid : this.Request.QueryString["empid"].ToString();
-
-            string trackertype = "99204";// task wip
-            string doneqty = "0";
-            string skipqty = "0";
-            string remarks = "";
-
-            GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
-            int RowIndex = gvr.RowIndex;
-            int index = this.gvAssingJob.PageSize * this.gvAssingJob.PageIndex + RowIndex;
-            string comcod = this.GetCompCode();
-            string jobid = ((Label)this.gvAssingJob.Rows[RowIndex].FindControl("lbljobid")).Text.Trim();
-            bool resultb = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INSERTUPDATE_STARTTASK", jobid, assignuser, cdate, trackertype, doneqty, skipqty, remarks);
-            if (!resultb)
+            catch (Exception exp)
             {
-                string msg = "Task Start Fail";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail(" + msg + ");", true);
-                return;
-            }
-            else
-            {
-                string msg = "Task Start";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
-                string eventtype = "2";
-                string eventdesc = msg;
-                string eventdesc2 = jobid + ".- Description: " + msg;
-                bool IsVoucherSaved = CALogRecord.AddLogRecord("", ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
-                GetRecentAssigned();
-                GetTodayDoingJob();
             }
         }
 
         protected void HoldCreateNote_Click(object sender, EventArgs e)
         {
-            
+
             Hashtable hst = (Hashtable)Session["tblLogin"];
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             int index = (this.gvTodayList.PageSize * this.gvTodayList.PageIndex) + rowIndex;
@@ -185,7 +197,17 @@ namespace RealERPWEB.F_38_AI
             string empid = ((Label)this.gvTodayList.Rows[index].FindControl("lblempid")).Text.Trim();
             string jobid = ((Label)this.gvTodayList.Rows[index].FindControl("lbljobid")).Text.Trim();
             string taskDesc = ((Label)this.gvTodayList.Rows[index].FindControl("Lbltasktitle")).Text.Trim();
-            
+            string roletype = ((Label)this.gvTodayList.Rows[index].FindControl("lblgvroletypecode")).Text.Trim();
+
+
+            if (roletype == "95001")
+            {
+                this.divRetQty.Visible = false;
+                this.divRejQty.Visible = false;
+                this.holdreason.Visible = true;
+            }
+           
+
             this.holdstatus.Text = "99215";
             this.notetaskid.Text = timeid;
             this.Mdl_lblempid.Text = empid;
@@ -198,53 +220,56 @@ namespace RealERPWEB.F_38_AI
 
         protected void SaveNote_ServerClick(object sender, EventArgs e)
         {
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //if (hst == null)
-            //{
-            //    Response.Redirect("~/PinLog.aspx");
-            //    return;
-            //}
-            string postdate = System.DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
-            string timeTkerID = this.notetaskid.Text;
-            string assignuser = this.Mdl_lblempid.Text;
-            string jobid = this.Mdl_jobid.Text;
-            string holdreason = this.ddlholdreason.SelectedValue.Trim().ToString();
-            string remarks = this.noteDescription.Text;
-            string doneqty = this.txtDoneQty.Text;
-            string skipqty = this.txtSkippqty.Text == "" ? "0.00" : this.txtSkippqty.Text;
-            string trackertype = "";
-            string jbdonestts = this.donestatus.Text.ToString().Trim();
-            string jbholdstts = this.holdstatus.Text.ToString().Trim();
-            string returnqty = this.txtreturnqty.Text.Trim();
-            string rejectqty = this.textrejectqty.Text.Trim();
-            if (jbdonestts != "")
+            
+            try
             {
-                trackertype= this.donestatus.Text.ToString().Trim();
+                string postdate = System.DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+                string timeTkerID = this.notetaskid.Text;
+                string assignuser = this.Mdl_lblempid.Text;
+                string jobid = this.Mdl_jobid.Text;
+                string holdreason = this.ddlholdreason.SelectedValue.Trim().ToString();
+                string remarks = this.noteDescription.Text;
+                string doneqty = this.txtDoneQty.Text;
+                string skipqty = this.txtSkippqty.Text == "" ? "0.00" : this.txtSkippqty.Text;
+                string trackertype = "";
+                string jbdonestts = this.donestatus.Text.ToString().Trim();
+                string jbholdstts = this.holdstatus.Text.ToString().Trim();
+                string returnqty = this.txtreturnqty.Text.Trim() == "" ? "0.00" : this.txtreturnqty.Text.Trim();
+                string rejectqty = this.textrejectqty.Text.Trim() == "" ? "0.00" : this.textrejectqty.Text.Trim();
+                if (jbdonestts != "")
+                {
+                    trackertype = this.donestatus.Text.ToString().Trim();
+                }
+                else
+                {
+                    trackertype = this.holdstatus.Text.ToString().Trim();
+                }
+                string comcod = this.GetCompCode();
+
+
+                bool resultb = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INSERTUPDATE_STARTTASK", jobid, assignuser, postdate, trackertype, doneqty, skipqty, remarks, holdreason, timeTkerID, returnqty, rejectqty);
+
+                if (!resultb)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModal_AlrtMsg();", true);
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail();", true);
+                    return;
+                }
+                else
+                {
+                    ClearNoteFrom();
+                    string msg = "Hold Task Note Created: " + remarks;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModal_AlrtMsg();", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+                    GetTodayDoingJob();
+                    data_Bind();
+
+                }
             }
-            else
+            catch (Exception exp)
             {
-                trackertype = this.holdstatus.Text.ToString().Trim();
-            }
-            string comcod = this.GetCompCode(); 
-
-
-            bool resultb = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INSERTUPDATE_STARTTASK", jobid, assignuser, postdate, trackertype, doneqty, skipqty, remarks, holdreason, timeTkerID, returnqty, rejectqty);
-
-            if (!resultb)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModal_AlrtMsg();", true);
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail();", true);
-                return;
-            }
-            else
-            {
-                ClearNoteFrom();
-                string msg = "Hold Task Note Created: " + remarks;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModal_AlrtMsg();", true);
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
-                GetTodayDoingJob();
-                data_Bind();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
             }
 
@@ -255,6 +280,8 @@ namespace RealERPWEB.F_38_AI
             this.noteDescription.Text = "";
             this.txtDoneQty.Text = "0";
             this.txtSkippqty.Text = "0";
+            this.txtreturnqty.Text = "";
+            this.textrejectqty.Text = "";
         }
 
         protected void lnkStartJobByID_Click(object sender, EventArgs e)
@@ -262,7 +289,7 @@ namespace RealERPWEB.F_38_AI
             Hashtable hst = (Hashtable)Session["tblLogin"];
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             int index = (this.gvTodayList.PageSize * this.gvTodayList.PageIndex) + rowIndex;
-          
+
             string empid = ((Label)this.gvTodayList.Rows[index].FindControl("lblempid")).Text.Trim();
             string jobid = ((Label)this.gvTodayList.Rows[index].FindControl("lbljobid")).Text.Trim();
             string taskDesc = ((Label)this.gvTodayList.Rows[index].FindControl("Lbltasktitle")).Text.Trim();
@@ -272,24 +299,24 @@ namespace RealERPWEB.F_38_AI
 
 
 
-            bool resultb = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INSERTUPDATE_STARTTASK", jobid, empid, postdate, trackertype, "0", "0", "Start", "");
+            bool resultb = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INSERTUPDATE_STARTTASK", jobid, empid, postdate, trackertype, "0", "0", "Start", "","0","0");
 
             if (!resultb)
             {
                 string msg = "Update Fail";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail("+msg+");", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail(" + msg + ");", true);
                 return;
             }
             else
             {
 
                 string msg = "Task Start ";
-                
+
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
                 GetTodayDoingJob();
 
             }
- 
+
 
         }
 
@@ -312,18 +339,6 @@ namespace RealERPWEB.F_38_AI
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HoldtaskNoteModal();", true);
         }
 
-        protected void btnlnkannothold_Click(object sender, EventArgs e)
-        {
-            try
-            {
 
-            }
-            catch (Exception exp)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
-
-
-            }
-        }
     }
 }

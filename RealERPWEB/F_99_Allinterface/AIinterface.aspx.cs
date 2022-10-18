@@ -87,15 +87,15 @@ namespace RealERPWEB.F_99_Allinterface
             this.TasktState.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["delivery"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Delivery</div></div></div>";
             this.TasktState.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["invoice"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Invoice</div></div></div>";
             this.TasktState.Items[10].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["collct"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Collection</div></div></div>";
- 
+
 
 
 
 
             Session["tblprojectlist"] = ds.Tables[0];
             Session["tblassinglist"] = ds.Tables[2];
-            
-           
+
+
             this.data_Bind();
         }
         private void StatusCount()
@@ -118,7 +118,7 @@ namespace RealERPWEB.F_99_Allinterface
             this.gvAssingJob.DataBind();
 
         }
-       
+
         protected void TasktState_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -299,26 +299,35 @@ namespace RealERPWEB.F_99_Allinterface
             try
             {
 
-            string comcod = this.GetCompCode();
-            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", "", "", "", "", "", "", "");
-            if (ds == null)
-                return;
-            Session["tblproductioninfo"] = ds.Tables[0];
-            DataTable dt1 = new DataTable();
-            DataView view = new DataView();
-            DataView view1 = new DataView();
-            view.Table = ds.Tables[0];
-            view1.Table = ds.Tables[0];
-            view1.RowFilter = " roletype<>'95001'";
-            dt1 = view1.ToTable();
-            this.gv_QCQA.DataSource = dt1;
-            this.gv_QCQA.DataBind();
-            view.RowFilter = " roletype='95001'";
-            dt1 = view.ToTable();
-            this.gv_Production.DataSource = dt1;
-            this.gv_Production.DataBind();
+                string comcod = this.GetCompCode();
+                DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", "", "", "", "", "", "", "");
+                if (ds == null)
+                    return;
+                Session["tblproductioninfo"] = ds.Tables[0];
+                DataTable dt1 = new DataTable();
+                DataView view = new DataView();
+                DataView view1 = new DataView();
+                DataView view2 = new DataView();
+                view.Table = ds.Tables[0];
+                view1.Table = ds.Tables[0];
+                view1.RowFilter = " roletype<>'95001' and roletype='95002' and trackertype<>'99220'";
+                dt1 = view1.ToTable();
+                this.gv_QCQA.DataSource = dt1;
+                this.gv_QCQA.DataBind();
+                view.RowFilter = " roletype='95001'";
+                dt1 = view.ToTable();
+                this.gv_Production.DataSource = dt1;
+                this.gv_Production.DataBind();
+
+                view2.Table = ds.Tables[0];
+                view2.RowFilter = "trackertype='99220' and roletype<>'95001' and roletype<>'95003'";
+                dt1 = view2.ToTable();
+                this.gv_AssignQA.DataSource = dt1;
+                this.gv_AssignQA.DataBind();
+
+
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
@@ -335,10 +344,15 @@ namespace RealERPWEB.F_99_Allinterface
                 if (ds1 == null)
                     return;
                 Session["tblacceptreject"] = ds1.Tables[0];
-                this.gv_AcceptReject.DataSource = ds1;
+                DataTable dt1 = new DataTable();
+                DataView view1 = new DataView();
+                view1.Table = ds1.Tables[0];
+                view1.RowFilter = "roletype<>'95001' and roletype<>'95003' and trackertype <>'99220' ";
+                dt1 = view1.ToTable();
+                this.gv_AcceptReject.DataSource = dt1;
                 this.gv_AcceptReject.DataBind();
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
@@ -525,7 +539,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.txtworktype.Text = worktype;
                 this.txtstartdate.Text = DateTime.Now.ToString("dd-MMM-yyyy");
                 this.textdelevery.Text = DateTime.Now.ToString("dd-MMM-yyyy");
-               // this.spnCurrncy.InnerText = currncy;
+                // this.spnCurrncy.InnerText = currncy;
                 this.txtrate.Attributes.Add("Placeholder", "0.00 " + currncy);
                 this.txtAmount.Attributes.Add("Placeholder", "0.00 " + currncy);
 
@@ -588,7 +602,7 @@ namespace RealERPWEB.F_99_Allinterface
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail..!!');", true);
                     return;
                 }
-                
+
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Batch  Saved Successfully');", true);
                 this.GetBatchAssingList(projectname);
@@ -1004,9 +1018,9 @@ namespace RealERPWEB.F_99_Allinterface
             string lblhourtype = ((Label)this.gv_gridBatch.Rows[index].FindControl("lblhourtype")).Text.ToString();
             string ttlhour = ((Label)this.gv_gridBatch.Rows[index].FindControl("lbldatastotalhour")).Text.ToString();
 
-            
+
             this.hiidenBatcid.Value = batchid;
-            
+
             txtBatch.Text = name;
             tbltotalOur.Text = ttlhour;
             this.ddlphdm.SelectedValue = lblhourtype;
@@ -1014,7 +1028,7 @@ namespace RealERPWEB.F_99_Allinterface
             textdelevery.Text = delvdate;
             txtbatchQuantity.Text = dsqty.ToString();
             txtrate.Text = rate.ToString();
-            txtAmount.Text = Convert.ToDouble(dsqty* rate).ToString();
+            txtAmount.Text = Convert.ToDouble(dsqty * rate).ToString();
         }
 
         protected void btnbatchremoveRow_Click(object sender, EventArgs e)
