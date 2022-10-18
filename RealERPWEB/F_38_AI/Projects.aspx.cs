@@ -633,6 +633,7 @@ namespace RealERPWEB.F_38_AI
 
             }
             catch (Exception exp)
+<<<<<<< HEAD
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
@@ -656,6 +657,8 @@ namespace RealERPWEB.F_38_AI
                 this.btntaskSave.Visible = true;
             }
             catch (Exception exp)
+=======
+>>>>>>> 041f72f09f47eef52483e18f26334c10c9e75238
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 

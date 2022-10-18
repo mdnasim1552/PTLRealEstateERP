@@ -57,17 +57,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             return (hst["comcod"].ToString());
 
         }
-        private string getLockMonthId()
-        {
-            string comcod = this.GetCompCode();
-            string monthid = "";
-            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "ISLOCKSALSHEET", "", "", "", "", "", "", "", "", "");
-            if (ds == null || ds.Tables[0].Rows.Count == 0)
-                return monthid;
-
-            monthid = ds.Tables[0].Rows[0]["monthid"].ToString();
-            return monthid;
-        }
 
 
         private void GetCompName()
@@ -274,20 +263,37 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.SaveValue();
             DataTable tbl1 = (DataTable)Session["tblsepemp"];
             int count = 0;
+            bool salisLocked = false;
             for (int i = 0; i < tbl1.Rows.Count; i++)
             {
 
                 string empId = tbl1.Rows[i]["empid"].ToString();
                 string sepDate = Convert.ToDateTime(tbl1.Rows[i]["sepdate"]).ToString("yyyyMMdd");
                 string sepCode = tbl1.Rows[i]["sepcode"].ToString();
-                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "INSERTORUPDATESEPARATION", empId, sepDate, sepCode, userid, postDat, trmid, sessionid, "", "", "", "", "", "", "", "");
-                count++;
 
-                if (!result)
+                if (this.getLockMonthId() == System.DateTime.Now.ToString("yyyyMM"))
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + HRData.ErrorObject["Msg"].ToString() + "');", true);
-                    return;
+                    salisLocked = true;
+
                 }
+                else
+                {
+                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "INSERTORUPDATESEPARATION", empId, sepDate, sepCode, userid, postDat, trmid, sessionid, "", "", "", "", "", "", "", "");
+                    count++;
+
+                    if (!result)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + HRData.ErrorObject["Msg"].ToString() + "');", true);
+                        return;
+                    }
+
+                }
+          
+            }
+            if (salisLocked == true)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Sorry ,Salary sheet is locked!');", true);
+                return;
             }
 
             string msg = "Resigned ("+count+ ") Employee Successfully";
@@ -419,6 +425,60 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             dt.AcceptChanges();
             this.Data_Bind();
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Employee Deleted Successfully" + "');", true);
+        }
+        private string getLockMonthId()
+        {
+            string comcod = this.GetCompCode();
+            string monthid = "";
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "ISLOCKSALSHEET", "", "", "", "", "", "", "", "", "");
+            if (ds == null || ds.Tables[0].Rows.Count == 0)
+                return monthid;
+
+            monthid = ds.Tables[0].Rows[0]["monthid"].ToString();
+            return monthid;
+        }
+        private string getLockLastMonthId()
+        {
+            string comcod = this.GetCompCode();
+            string monthid = "";
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "ISLOCKSALSHEET", "", "", "", "", "", "", "", "", "");
+            if (ds == null || ds.Tables[1].Rows.Count == 0)
+                return monthid;
+
+            monthid = ds.Tables[1].Rows[0]["lastdate"].ToString();
+            return monthid;
+        }
+
+        protected void gvEmpResign_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                TextBox txtjoindat = (TextBox)e.Row.FindControl("txtSepDate");
+
+                string curr_monid = System.DateTime.Now.ToString("yyyyMM");
+                string lockMonid = this.getLockMonthId();
+
+                string getLockLastMonthId = this.getLockLastMonthId() == "" ? System.DateTime.Now.ToString("dd-MMM-yyyy") : this.getLockLastMonthId();
+                if (lockMonid == curr_monid)
+                {
+                    //txtjoindat.Enabled = false;
+                    string resigndat = txtjoindat.Text.ToString().Trim() == "" ? System.DateTime.Now.ToString("dd-MMM-yyyy") : txtjoindat.Text.ToString().Trim();
+                    //Convert.ToDateTime(txtjoindat.Text ?? "01-Jan-1900").ToString("dd/MM/yyyy");
+                    resigndat = Convert.ToDateTime(resigndat).ToString("dd/MM/yyyy");
+                    AjaxControlToolkit.CalendarExtender CalendarExtendere21 =
+                (e.Row.FindControl("txtSepDate_CalendarExtender") as AjaxControlToolkit.CalendarExtender);
+                    CalendarExtendere21.StartDate = DateTime.ParseExact(resigndat, "dd/MM/yyyy", null);
+                    CalendarExtendere21.EndDate = DateTime.ParseExact(resigndat, "dd/MM/yyyy", null);
+                }
+                else
+                {
+                    string startdat = Convert.ToDateTime(getLockLastMonthId).ToString("dd/MM/yyyy");
+                    AjaxControlToolkit.CalendarExtender CalendarExtendere21 =
+               (e.Row.FindControl("txtSepDate_CalendarExtender") as AjaxControlToolkit.CalendarExtender);
+                    CalendarExtendere21.StartDate = DateTime.ParseExact(startdat, "dd/MM/yyyy", null);
+                }
+            }
         }
     }
 }
