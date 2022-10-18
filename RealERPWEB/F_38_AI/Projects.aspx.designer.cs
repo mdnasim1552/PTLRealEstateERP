@@ -204,6 +204,15 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl penddingtask;
 
         /// <summary>
+        /// lblpenddingid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblpenddingid;
+
+        /// <summary>
         /// gv_PenddingAssign control.
         /// </summary>
         /// <remarks>

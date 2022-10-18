@@ -191,20 +191,20 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             int hrcomln = (type == "Aggrement") ? Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompanyAgg.SelectedValue.ToString() + "'"))[0]["hrcomln"])
                     : Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
 
-            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";           
+            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
 
             string txtSProject = this.txtSrcDepartment.Text.Trim() + "%";
-           
+
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTNAMEFOT", Company, txtSProject, "", "", "", "", "", "", "");
 
-          
+
             this.ddlDepartment.DataTextField = "actdesc";
             this.ddlDepartment.DataValueField = "actcode";
             this.ddlDepartment.DataSource = ds4.Tables[0];
             this.ddlDepartment.DataBind();
 
         }
-       
+
         private void GetProjectName()
         {
             string comcod = this.GetCompCode();
@@ -215,7 +215,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             //string Company = ((type == "Aggrement") ? this.ddlCompanyAgg.SelectedValue.ToString().Substring(0, hrcomln) : this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln)) + "%";
 
 
-            string Company = ((type == "Aggrement") ? (this.ddldepartmentagg.SelectedValue.ToString()=="000000000000"?"": this.ddldepartmentagg.SelectedValue.ToString().Substring(0,9)):(this.ddlDepartment.SelectedValue.ToString()=="000000000000" ? "": this.ddlDepartment.SelectedValue.ToString().Substring(0,9))) + "%";
+            string Company = ((type == "Aggrement") ? (this.ddldepartmentagg.SelectedValue.ToString() == "000000000000" ? "" : this.ddldepartmentagg.SelectedValue.ToString().Substring(0, 9)) : (this.ddlDepartment.SelectedValue.ToString() == "000000000000" ? "" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9))) + "%";
 
             string txtSProject = (type == "Aggrement") ? (this.txtSrcPro.Text.Trim() + "%") : (this.txtSrcDepartment.Text.Trim() + "%");
             string CallType = (this.Request.QueryString["Type"].ToString().Trim() == "Aggrement") ? "GETPROJECTNAME" : "GETPROJECTNAMEFOT";
@@ -328,7 +328,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
         protected void lnkbtnSerOk_Click(object sender, EventArgs e)
         {
-            try{
+            try
+            {
                 if (this.lnkbtnSerOk.Text == "Ok")
                 {
                     this.lnkbtnSerOk.Text = "New";
@@ -449,7 +450,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.lblforrate.Text = "";
                 }
             }
-            catch(Exception ex){
+            catch (Exception ex)
+            {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Something wrong');", true);
 
             }
@@ -612,7 +614,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 case "3338": //Acme tec
                 case "1206": //Acme serv
                 case "1207": //Acme con
-               // case "3369": //Acme ai
+                             // case "3369": //Acme ai
                     this.rbtGross.Visible = false;
                     this.rbtGross.SelectedIndex = 3;
                     break;
@@ -671,11 +673,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                                 this.txtdevided.Text = Convert.ToDouble(dr1[0]["hrate"].ToString().Trim()) == 0 ? "0" : Math.Round(gssal / Convert.ToDouble(dr1[0]["hrate"].ToString().Trim()), 0).ToString();
                                 // dhourlyrate = Convert.ToDouble("0" + this.txtdevided.Text.Trim()) > 0 ? gssal / Convert.ToDouble("0" + this.txtdevided.Text.Trim()) : 0;
 
-                                this.lblforrate.Text = "Rate:<span class='color:blue !important'>" + Convert.ToDouble(dr1[0]["hrate"]).ToString("#,##0;(#,##0); ")+"</span>";
+                                this.lblforrate.Text = "Rate:<span class='color:blue !important'>" + Convert.ToDouble(dr1[0]["hrate"]).ToString("#,##0;(#,##0); ") + "</span>";
 
                                 break;
 
-                          
+
 
 
                             case "3347":// Peb Steel
@@ -690,9 +692,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                                 this.lblforrate.Text = "Rate:<span class='color:blue !important'>" + Convert.ToDouble(dr1[0]["hrate"]).ToString("#,##0;(#,##0); ") + "</span>";
                                 break;
 
-                             case "3368"://Finlay
-                             case "3101"://Model
-                                this.txtdevided.Text = Convert.ToDouble(dr1[0]["hrate"].ToString().Trim()) == 0 ? "0" : Math.Round(((Convert.ToDouble((ds6.Tables[2].Select("gcod='04001'"))[0]["gval"])* 1.5) / Convert.ToDouble(dr1[0]["hrate"].ToString().Trim())), 0).ToString();
+                            case "3368"://Finlay
+                            case "3101"://Model
+                                this.txtdevided.Text = Convert.ToDouble(dr1[0]["hrate"].ToString().Trim()) == 0 ? "0" : Math.Round(((Convert.ToDouble((ds6.Tables[2].Select("gcod='04001'"))[0]["gval"]) * 1.5) / Convert.ToDouble(dr1[0]["hrate"].ToString().Trim())), 0).ToString();
                                 this.lblforrate.Text = "Rate:<span class='color:blue !important'>" + Convert.ToDouble(dr1[0]["hrate"]).ToString("#,##0;(#,##0); ") + "</span>";
                                 break;
 
@@ -908,7 +910,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
 
-            
+
         }
 
         private void OverTimeFORRate()
@@ -917,48 +919,48 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string comcod = this.GetCompCode();
             DataTable dtsaladd = (DataTable)Session["tblsaladd"];
             double fhrate, bsal;
-            double devided=Convert.ToDouble("0"+this.txtdevided.Text.Trim());
+            double devided = Convert.ToDouble("0" + this.txtdevided.Text.Trim());
 
             if (this.rbtnOverTime.SelectedIndex == 2)
+            {
+                switch (comcod)
                 {
-                    switch (comcod)
-                    {
-                        case "3336":
+                    case "3336":
 
-                            double gssal = Convert.ToDouble("0" + this.txtgrossal.Text.Trim());
-                            fhrate = Math.Round((gssal / devided), 0);  
-                            this.lblforrate.Text = "Rate:<span class='color:blue !important'>" + fhrate.ToString("#,##0;(#,##0); ") + "</span>";
+                        double gssal = Convert.ToDouble("0" + this.txtgrossal.Text.Trim());
+                        fhrate = Math.Round((gssal / devided), 0);
+                        this.lblforrate.Text = "Rate:<span class='color:blue !important'>" + fhrate.ToString("#,##0;(#,##0); ") + "</span>";
 
-                            break;
+                        break;
 
 
 
 
-                        case "3347":// Peb Steel
-                             bsal = Convert.ToDouble((dtsaladd.Select("gcod='04001'"))[0]["gval"]);
-                            double dailallow = Convert.ToDouble((dtsaladd.Select("gcod='04012'"))[0]["gval"]);   
-                            fhrate = Math.Round((((bsal + dailallow) * 2) / devided), 0);
+                    case "3347":// Peb Steel
+                        bsal = Convert.ToDouble((dtsaladd.Select("gcod='04001'"))[0]["gval"]);
+                        double dailallow = Convert.ToDouble((dtsaladd.Select("gcod='04012'"))[0]["gval"]);
+                        fhrate = Math.Round((((bsal + dailallow) * 2) / devided), 0);
 
                         this.lblforrate.Text = "Rate:<span class='color:blue !important'>" + fhrate.ToString("#,##0;(#,##0); ") + "</span>";
-                            break;
+                        break;
 
-                        case "3368"://Finlay
-                        case "3101"://Model
-                         bsal = Convert.ToDouble((dtsaladd.Select("gcod='04001'"))[0]["gval"]);
-                        fhrate = Math.Round(((bsal *1.5) / devided), 0);
+                    case "3368"://Finlay
+                    case "3101"://Model
+                        bsal = Convert.ToDouble((dtsaladd.Select("gcod='04001'"))[0]["gval"]);
+                        fhrate = Math.Round(((bsal * 1.5) / devided), 0);
 
                         this.lblforrate.Text = "Rate:<span class='color:blue !important'>" + fhrate.ToString("#,##0;(#,##0); ") + "</span>";
-                            break;
+                        break;
 
 
-                        default:
-                            bsal = Convert.ToDouble((dtsaladd.Select("gcod='04001'"))[0]["gval"]);
-                            fhrate = Math.Round((bsal / devided), 0);
-                       
-                            this.lblforrate.Text = "Rate:<span class='color:blue !important'>" + fhrate.ToString("#,##0;(#,##0); ") + "</span>";
-                            break;
-                    }
+                    default:
+                        bsal = Convert.ToDouble((dtsaladd.Select("gcod='04001'"))[0]["gval"]);
+                        fhrate = Math.Round((bsal / devided), 0);
+
+                        this.lblforrate.Text = "Rate:<span class='color:blue !important'>" + fhrate.ToString("#,##0;(#,##0); ") + "</span>";
+                        break;
                 }
+            }
 
 
 
@@ -967,9 +969,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
         }
-        
-        
-        private void FooterCalculation(DataTable dt, string GvName) 
+
+
+        private void FooterCalculation(DataTable dt, string GvName)
         {
             if (dt.Rows.Count == 0)
                 return;
@@ -1016,7 +1018,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         case "3338": //Acme tec
                         case "1206": //Acme serv
                         case "1207": //Acme con
-                       // case "3369": //Acme ai
+                                     // case "3369": //Acme ai
                             toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
                             ((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = toaddamt.ToString("#,##0;(#,##0); ");
 
@@ -1046,19 +1048,19 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             dt1 = dv.ToTable();
                             topaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
                             this.txtgrossal.Text = topaddamt.ToString("#,##0;(#,##0); ");
-                         //   ((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = topaddamt.ToString("#,##0;(#,##0); ");
+                            //   ((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = topaddamt.ToString("#,##0;(#,##0); ");
 
 
                             break;
-                      
+
                         case "3368":// Finlay
-                         toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
+                            toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
                             ((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = toaddamt.ToString("#,##0;(#,##0); ");
                             dv = dt1.DefaultView;
                             dv.RowFilter = ("percnt>0");
                             dt1 = dv.ToTable();
                             topaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
-                             this.txtgrossal.Text = topaddamt.ToString("#,##0;(#,##0); ");
+                            this.txtgrossal.Text = topaddamt.ToString("#,##0;(#,##0); ");
                             //((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = toaddamt.ToString("#,##0;(#,##0); ");
                             break;
 
@@ -1089,11 +1091,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                     //switch (comcod)
                     //{
-                       
+
 
                     //    case "3365":// BTI
 
-                           
+
 
                     //        //toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
                     //        //((Label)this.gvSalSub.FooterRow.FindControl("lgvFSalSub")).Text = toaddamt.ToString("#,##0;(#,##0); ");
@@ -1115,7 +1117,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     //}
                     break;
 
-                        
+
             }
         }
         protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
@@ -1249,334 +1251,339 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
         protected void lnkbtnFinalSWUpdate_Click(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
-
-            DataTable dtuser = (DataTable)Session["UserLog"];
-            string tblPostedByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postedbyid"].ToString();
-            string tblPostedtrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postrmid"].ToString();
-            string tblPostedSession = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postseson"].ToString();
-            string tblPosteddat = (dtuser.Rows.Count == 0) ? "01-Jan-1900" : Convert.ToDateTime(dtuser.Rows[0]["posteddat"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
-            //string tblEditByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["editbyid"].ToString();
-            //string tblEditDat = (dtuser.Rows.Count == 0) ? "01-Jan-1900" : Convert.ToDateTime(dtuser.Rows[0]["editdat"]).ToString("dd-MMM-yyyy");
-            //string tblEdittrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["editrmid"].ToString();
-
-            string userid = hst["usrid"].ToString();
-            string Terminal = hst["compname"].ToString();
-            string Sessionid = hst["session"].ToString();
-            string PostedByid = (tblPostedByid == "") ? userid : tblPostedByid;
-            string Posttrmid = (tblPostedtrmid == "") ? Terminal : tblPostedtrmid;
-            string PostSession = (tblPostedSession == "") ? Sessionid : tblPostedSession;
-            string Posteddat = (tblPosteddat == "01-Jan-1900") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : tblPosteddat;
-            string EditByid = (dtuser.Rows.Count == 0) ? "" : userid;
-            string Editdat = (dtuser.Rows.Count == 0) ? "01-Jan-1900" : System.DateTime.Today.ToString("dd-MMM-yyyy");
-            string Editrmid = (dtuser.Rows.Count == 0) ? "" : Terminal;
-
-            //-------------------------////
-
-            string projectcode = this.ddlProjectName.SelectedValue.ToString();
-
-            if (projectcode == "000000000000")
+            try
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Please Select Section !!!!";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
+                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+
+                DataTable dtuser = (DataTable)Session["UserLog"];
+                string tblPostedByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postedbyid"].ToString();
+                string tblPostedtrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postrmid"].ToString();
+                string tblPostedSession = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postseson"].ToString();
+                string tblPosteddat = (dtuser.Rows.Count == 0) ? "01-Jan-1900" : Convert.ToDateTime(dtuser.Rows[0]["posteddat"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
+                //string tblEditByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["editbyid"].ToString();
+                //string tblEditDat = (dtuser.Rows.Count == 0) ? "01-Jan-1900" : Convert.ToDateTime(dtuser.Rows[0]["editdat"]).ToString("dd-MMM-yyyy");
+                //string tblEdittrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["editrmid"].ToString();
+
+                string userid = hst["usrid"].ToString();
+                string Terminal = hst["compname"].ToString();
+                string Sessionid = hst["session"].ToString();
+                string PostedByid = (tblPostedByid == "") ? userid : tblPostedByid;
+                string Posttrmid = (tblPostedtrmid == "") ? Terminal : tblPostedtrmid;
+                string PostSession = (tblPostedSession == "") ? Sessionid : tblPostedSession;
+                string Posteddat = (tblPosteddat == "01-Jan-1900") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : tblPosteddat;
+                string EditByid = (dtuser.Rows.Count == 0) ? "" : userid;
+                string Editdat = (dtuser.Rows.Count == 0) ? "01-Jan-1900" : System.DateTime.Today.ToString("dd-MMM-yyyy");
+                string Editrmid = (dtuser.Rows.Count == 0) ? "" : Terminal;
+
+                //-------------------------////
+
+                string projectcode = this.ddlProjectName.SelectedValue.ToString();
+
+                if (projectcode == "000000000000")
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Please Select Section !!!!";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+
+                }
+
+                string empid = (this.ddlNPEmpName.Items.Count > 0) ? this.ddlNPEmpName.SelectedValue.ToString() : this.ddlPEmpName.SelectedValue.ToString();
+                string desigid = this.ddlDesignation.SelectedValue.ToString();
+                string designame = this.ddlDesignation.SelectedItem.Text;
+                string offinid = this.ddlOffintime.SelectedValue.ToString();
+                string offintime = this.ddlOffintime.SelectedItem.Text;
+                string offoutid = this.ddlOffouttime.SelectedValue.ToString();
+                string offouttime = this.ddlOffouttime.SelectedItem.Text;
+                string laninid = this.ddlLanintime.SelectedValue.ToString();
+                string lanintime = this.ddlLanintime.SelectedItem.Text;
+                string lanoutid = this.ddlLanouttime.SelectedValue.ToString();
+                string lanouttime = this.ddlLanouttime.SelectedItem.Text;
+                string eduid = (this.ddlEduQua.Items.Count == 0) ? "" : this.ddlEduQua.SelectedValue.ToString();
+                string education = (this.ddlEduQua.Items.Count == 0) ? "" : this.ddlEduQua.SelectedItem.Text;
+                string agtypeid = this.ddlAggrement.SelectedValue.ToString();
+                string agtype = this.ddlAggrement.SelectedItem.Text;
+                string paytype = this.rbtPaymentType.SelectedIndex.ToString();
+                string paytypedesc = this.rbtPaymentType.SelectedValue.ToString();
+
+                string bankname1 = this.ddlBankName1.SelectedValue.ToString();
+                string bankname2 = this.ddlBankName2.SelectedValue.ToString();
+                string bankacno1 = this.txtAcNo1.Text;
+                string bankacno2 = this.txtAcNo2.Text;
+                string bank1 = (paytype == "0" || paytype == "2") ? "" : bankname1;
+                string acno1 = (paytype == "0" || paytype == "2") ? "" : bankacno1;
+                string bank2 = (paytype == "0" || paytype == "2") ? "" : bankname2;
+                string acno2 = (paytype == "0" || paytype == "2") ? "" : bankacno2;
+                string bankamt2 = (paytype == "0") ? "0" : Convert.ToDouble("0" + this.txtBankamt02.Text.Trim()).ToString();
+                string cashamt = Convert.ToDouble("0" + this.txtCashAmt.Text.Trim()).ToString();
+                string txtedupass = "Passing Year";
+                string edupass = this.txtEduPass.Text.Trim();
+                string holidaytype = (this.rbtholiday.SelectedIndex).ToString();
+                string overtimetype = (this.rbtnOverTime.SelectedIndex).ToString();
+                string pfdate = (this.txtPf.Text.Trim() == "") ? "01-jan-1900" : Convert.ToDateTime(txtPf.Text.Trim()).ToString("dd-MMM-yyyy");
+                string pfenddat = (txtpfend.Text.Trim() == "") ? "01-jan-1900" : Convert.ToDateTime(txtpfend.Text.Trim()).ToString("dd-MMM-yyyy");
+                string cash0Bank1 = this.chkcash0bank1.Checked ? "1" : "0";
+
+                bool result;
+                //(Convert.ToDateTime(ds6.Tables[5].Rows[0]["pfenddat"]).ToString("dd-MMM-yyyy") == "01-jan-1900") ? "" : Convert.ToDateTime(ds6.Tables[5].Rows[0]["pfenddat"]).ToString("dd-MMM-yyyy");
+                //string tblPosteddat = (dtuser.Rows.Count == 0) ? "01-Jan-1900" : Convert.ToDateTime(dtuser.Rows[0]["posteddat"]).ToString("dd-MMM-yyyy hh:mm:ss tt")
+                // string Posteddat = (tblPosteddat == "01-Jan-1900") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : tblPosteddat;
+                /////////-------------------Log----------------------///////
+
+                result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTUPDATEAGG", empid, PostedByid, PostSession, Posttrmid, Posteddat,
+                        EditByid, Editdat, Editrmid, "", "", "", "", "", "", "", "", "", "", "", "", "");
+                if (result == false)
+                    return;
+
+
+                //////---------------------------------------------////////////
+
+
+
+                result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "DELETEEMPIDANDREFNO", empid, "94%", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                if (result == false)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+
+                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, desigid, "T", designame, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                if (result == false)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, offinid, "D", "01-Jan-1900 " + offintime, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                if (result == false)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, offoutid, "D", "01-Jan-1900 " + offouttime, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                if (result == false)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, laninid, "D", "01-Jan-1900 " + lanintime, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                if (result == false)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, lanoutid, "D", "01-Jan-1900 " + lanouttime, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                if (result == false)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+                if (comcod != "4330")
+
+                    result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, eduid, "T", education, projectcode, txtedupass, edupass, "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                if (result == false)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, agtypeid, "T", agtype, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                if (result == false)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+
+                // Bank COde
+                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "19001", "T", bank1, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", acno1, bank2, acno2, bankamt2, "0", cashamt, "", "01-jan-1900", "01-jan-1900", "", "", "", paytypedesc, "", cash0Bank1, "");
+                if (result == false)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+
+                ////only Peb steel cheque payment
+
+                //result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "19001", "T", bank1, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", acno1, bank2, acno2, bankamt2, "0", cashamt, "", "01-jan-1900", "01-jan-1900", "", "", "", paytypedesc);
+                //if (result == false)
+                //{
+                //    ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
+                //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //    return;
+                //}
+
+
+
+
+                // PF Start Date
+                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "20001", "D", pfdate, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", acno2, "0", "0", cashamt, "", "01-jan-1900", "01-jan-1900");
+                if (result == false)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+
+                //PF END DATE
+                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "20002", "D", pfenddat, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", acno2, "0", "0", cashamt, "", "01-jan-1900", "01-jan-1900");
+                if (result == false)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+
+
+
+                DataTable dtsaladd = (DataTable)Session["tblsaladd"];
+                DataTable dtsalsub = (DataTable)Session["tblsalsub"];
+                DataTable dtallowadd = (DataTable)Session["tblallowadd"];
+                DataTable dtallowsub = (DataTable)Session["tblallowsub"];
+
+                
+
+                string holidayrate = (this.rbtholiday.SelectedIndex == 0) ? "0" : (this.rbtholiday.SelectedIndex == 2) ? Convert.ToDouble("0" + this.txtholidayallowance.Text.Trim()).ToString() : (Math.Round((Convert.ToDouble((dtsaladd.Select("gcod='04001'"))[0]["gval"]) / 31), 0)).ToString();
+
+                string fixedrate = Convert.ToDouble("0" + this.txtfixedRate.Text.Trim()).ToString();
+
+
+
+                double gssal = Convert.ToDouble((Convert.IsDBNull(dtsaladd.Compute("Sum(gval)", "")) ? 0.00 : dtsaladd.Compute("Sum(gval)", "")));
+                double dhourlyrate = 0.00;
+                double bsal = 0.00, dailallow = 0.00;
+                switch (comcod)
+                {
+                    case "3347":
+                        bsal = Convert.ToDouble((dtsaladd.Select("gcod='04001'"))[0]["gval"]);
+                        dailallow = Convert.ToDouble((dtsaladd.Select("gcod='04012'"))[0]["gval"]);
+                        dhourlyrate = Convert.ToDouble("0" + this.txtdevided.Text.Trim()) > 0 ? ((bsal + dailallow) * 2) / Convert.ToDouble("0" + this.txtdevided.Text.Trim()) : 0;
+                        break;
+
+
+                    case "3368"://Finlay
+                    case "3101"://Finlay
+                        bsal = Convert.ToDouble((dtsaladd.Select("gcod='04001'"))[0]["gval"]);
+                        dhourlyrate = Convert.ToDouble("0" + this.txtdevided.Text.Trim()) > 0 ? (bsal * 1.5) / Convert.ToDouble("0" + this.txtdevided.Text.Trim()) : 0;
+                        break;
+
+
+                    case "3336":
+                        dhourlyrate = Convert.ToDouble("0" + this.txtdevided.Text.Trim()) > 0 ? gssal / Convert.ToDouble("0" + this.txtdevided.Text.Trim()) : 0;
+                        break;
+
+
+                    default:
+                        dhourlyrate = Convert.ToDouble("0" + this.txtdevided.Text.Trim()) > 0 ? (Convert.ToDouble((dtsaladd.Select("gcod='04001'"))[0]["gval"])) / Convert.ToDouble("0" + this.txtdevided.Text.Trim()) : 0;
+                        break;
+
+
+
+                }
+
+                this.lblforrate.Text = "Rate:<span class='color:blue !important'>" + dhourlyrate.ToString("#,##0;(#,##0); ") + "</span>";
+
+
+                string hourlyrate = (this.rbtnOverTime.SelectedIndex == 2) ? (dhourlyrate).ToString("#,##0.00;(#,##0.00); ") : (this.rbtnOverTime.SelectedIndex == 1) ? Convert.ToDouble("0" + this.txthourlyRate.Text.Trim()).ToString() : "0";
+
+                //string hourlyrate = (this.rbtnOverTime.SelectedIndex == 2) ? Math.Round(dhourlyrate, 0).ToString() : (this.rbtnOverTime.SelectedIndex == 1) ? Convert.ToDouble("0" + this.txthourlyRate.Text.Trim()).ToString() : "0";
+                string ceilingrate1 = Convert.ToDouble("0" + this.txtceilingRate1.Text.Trim()).ToString();
+                string ceilingrate2 = Convert.ToDouble("0" + this.txtceilingRate2.Text.Trim()).ToString();
+                string ceilingrate3 = Convert.ToDouble("0" + this.txtceilingRate3.Text.Trim()).ToString();
+
+
+                int i;
+                string gcode, gtype, gval, percnt, unit, qty, rate; ;
+
+                for (i = 0; i < dtsaladd.Rows.Count; i++)
+                {
+                    gcode = dtsaladd.Rows[i]["gcod"].ToString();
+                    gtype = dtsaladd.Rows[i]["gtype"].ToString();
+                    gval = dtsaladd.Rows[i]["gval"].ToString();
+                    percnt = dtsaladd.Rows[i]["percnt"].ToString();
+                    result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, gcode, gtype, gval, projectcode, "", "", "", "", percnt, "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                }
+
+                for (i = 0; i < dtsalsub.Rows.Count; i++)
+                {
+                    gcode = dtsalsub.Rows[i]["gcod"].ToString();
+                    gtype = dtsalsub.Rows[i]["gtype"].ToString();
+                    gval = dtsalsub.Rows[i]["gval"].ToString();
+                    percnt = dtsalsub.Rows[i]["percnt"].ToString();
+                    result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, gcode, gtype, gval, projectcode, "", "", "", "", percnt, "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                }
+                for (i = 0; i < dtallowadd.Rows.Count; i++)
+                {
+                    gcode = dtallowadd.Rows[i]["gcod"].ToString();
+                    gtype = dtallowadd.Rows[i]["gtype"].ToString();
+                    gval = dtallowadd.Rows[i]["gval"].ToString();
+                    percnt = dtallowadd.Rows[i]["percnt"].ToString();
+                    unit = dtallowadd.Rows[i]["unit"].ToString();
+                    qty = dtallowadd.Rows[i]["qty"].ToString();
+                    rate = dtallowadd.Rows[i]["rate"].ToString();
+
+                    result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, gcode, gtype, gval, projectcode, "", "", "", "", percnt, unit, qty, rate, "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                }
+
+                // Overtime
+                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "07004", "N", "0", projectcode, overtimetype, "", "", "", "0", "", "0", fixedrate,
+               hourlyrate, ceilingrate1, ceilingrate2, ceilingrate3, "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+
+                //holiday rate
+                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "07005", "N", "0", projectcode, holidaytype, "", "", "", "0", "", "0", holidayrate
+                    , "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+
+
+
+                if (result == false)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+
+
+
+                for (i = 0; i < dtallowsub.Rows.Count; i++)
+                {
+                    gcode = dtallowsub.Rows[i]["gcod"].ToString();
+                    gtype = dtallowsub.Rows[i]["gtype"].ToString();
+                    gval = dtallowsub.Rows[i]["gval"].ToString();
+                    percnt = dtallowsub.Rows[i]["percnt"].ToString();
+                    unit = dtallowsub.Rows[i]["unit"].ToString();
+                    qty = dtallowsub.Rows[i]["qty"].ToString();
+                    rate = dtallowsub.Rows[i]["rate"].ToString();
+                    result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, gcode, gtype, gval, projectcode, "", "", "", "", percnt, unit, qty, rate, "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                }
+                 
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+
+                string eventtype = "Change Aggrement";
+            string eventdesc = empid;
+            string eventdesc2 = "Change somethings";
+
+            if (ConstantInfo.LogStatus == true)
+            {
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message.ToString() + "');", true);
 
             }
 
-            string empid = (this.ddlNPEmpName.Items.Count > 0) ? this.ddlNPEmpName.SelectedValue.ToString() : this.ddlPEmpName.SelectedValue.ToString();
-            string desigid = this.ddlDesignation.SelectedValue.ToString();
-            string designame = this.ddlDesignation.SelectedItem.Text;
-            string offinid = this.ddlOffintime.SelectedValue.ToString();
-            string offintime = this.ddlOffintime.SelectedItem.Text;
-            string offoutid = this.ddlOffouttime.SelectedValue.ToString();
-            string offouttime = this.ddlOffouttime.SelectedItem.Text;
-            string laninid = this.ddlLanintime.SelectedValue.ToString();
-            string lanintime = this.ddlLanintime.SelectedItem.Text;
-            string lanoutid = this.ddlLanouttime.SelectedValue.ToString();
-            string lanouttime = this.ddlLanouttime.SelectedItem.Text;
-            string eduid = (this.ddlEduQua.Items.Count == 0) ? "" : this.ddlEduQua.SelectedValue.ToString();
-            string education = (this.ddlEduQua.Items.Count == 0) ? "" : this.ddlEduQua.SelectedItem.Text;
-            string agtypeid = this.ddlAggrement.SelectedValue.ToString();
-            string agtype = this.ddlAggrement.SelectedItem.Text;
-            string paytype = this.rbtPaymentType.SelectedIndex.ToString();
-            string paytypedesc = this.rbtPaymentType.SelectedValue.ToString();
-
-            string bankname1 = this.ddlBankName1.SelectedValue.ToString();
-            string bankname2 = this.ddlBankName2.SelectedValue.ToString();
-            string bankacno1 = this.txtAcNo1.Text;
-            string bankacno2 = this.txtAcNo2.Text;
-            string bank1 = (paytype == "0" || paytype == "2") ? "" : bankname1;
-            string acno1 = (paytype == "0" || paytype == "2") ? "" : bankacno1;
-            string bank2 = (paytype == "0" || paytype == "2") ? "" : bankname2;
-            string acno2 = (paytype == "0" || paytype == "2") ? "" : bankacno2;
-            string bankamt2 = (paytype == "0") ? "0" : Convert.ToDouble("0" + this.txtBankamt02.Text.Trim()).ToString();
-            string cashamt = Convert.ToDouble("0" + this.txtCashAmt.Text.Trim()).ToString();
-            string txtedupass = "Passing Year";
-            string edupass = this.txtEduPass.Text.Trim();
-            string holidaytype = (this.rbtholiday.SelectedIndex).ToString();
-            string overtimetype = (this.rbtnOverTime.SelectedIndex).ToString();
-            string pfdate = (this.txtPf.Text.Trim() == "") ? "01-jan-1900" : Convert.ToDateTime(txtPf.Text.Trim()).ToString("dd-MMM-yyyy");
-            string pfenddat = (txtpfend.Text.Trim() == "") ? "01-jan-1900" : Convert.ToDateTime(txtpfend.Text.Trim()).ToString("dd-MMM-yyyy");
-            string cash0Bank1 = this.chkcash0bank1.Checked ? "1" : "0";
-
-            bool result;
-            //(Convert.ToDateTime(ds6.Tables[5].Rows[0]["pfenddat"]).ToString("dd-MMM-yyyy") == "01-jan-1900") ? "" : Convert.ToDateTime(ds6.Tables[5].Rows[0]["pfenddat"]).ToString("dd-MMM-yyyy");
-            //string tblPosteddat = (dtuser.Rows.Count == 0) ? "01-Jan-1900" : Convert.ToDateTime(dtuser.Rows[0]["posteddat"]).ToString("dd-MMM-yyyy hh:mm:ss tt")
-            // string Posteddat = (tblPosteddat == "01-Jan-1900") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : tblPosteddat;
-            /////////-------------------Log----------------------///////
-
-            result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTUPDATEAGG", empid, PostedByid, PostSession, Posttrmid, Posteddat,
-                    EditByid, Editdat, Editrmid, "", "", "", "", "", "", "", "", "", "", "", "", "");
-            if (result == false)
-                return;
-
-
-            //////---------------------------------------------////////////
-
-
-
-            result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "DELETEEMPIDANDREFNO", empid, "94%", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-            if (result == false)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
-
-            result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, desigid, "T", designame, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
-            if (result == false)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
-            result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, offinid, "D", "01-Jan-1900 " + offintime, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
-            if (result == false)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
-            result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, offoutid, "D", "01-Jan-1900 " + offouttime, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
-            if (result == false)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
-            result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, laninid, "D", "01-Jan-1900 " + lanintime, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
-            if (result == false)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
-            result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, lanoutid, "D", "01-Jan-1900 " + lanouttime, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
-            if (result == false)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
-            if (comcod != "4330")
-
-                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, eduid, "T", education, projectcode, txtedupass, edupass, "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
-            if (result == false)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
-            result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, agtypeid, "T", agtype, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
-            if (result == false)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
-
-            // Bank COde
-            result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "19001", "T", bank1, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", acno1, bank2, acno2, bankamt2, "0", cashamt, "", "01-jan-1900", "01-jan-1900", "", "", "", paytypedesc, "", cash0Bank1, "");
-            if (result == false)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
-
-            ////only Peb steel cheque payment
-
-            //result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "19001", "T", bank1, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", acno1, bank2, acno2, bankamt2, "0", cashamt, "", "01-jan-1900", "01-jan-1900", "", "", "", paytypedesc);
-            //if (result == false)
-            //{
-            //    ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-            //    return;
-            //}
-
-
-
-
-            // PF Start Date
-            result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "20001", "D", pfdate, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", acno2, "0", "0", cashamt, "", "01-jan-1900", "01-jan-1900");
-            if (result == false)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
-
-            //PF END DATE
-            result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "20002", "D", pfenddat, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", acno2, "0", "0", cashamt, "", "01-jan-1900", "01-jan-1900");
-            if (result == false)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
-
-
-
-            DataTable dtsaladd = (DataTable)Session["tblsaladd"];
-            DataTable dtsalsub = (DataTable)Session["tblsalsub"];
-            DataTable dtallowadd = (DataTable)Session["tblallowadd"];
-            DataTable dtallowsub = (DataTable)Session["tblallowsub"];
-            string holidayrate = (this.rbtholiday.SelectedIndex == 0) ? "0" : (this.rbtholiday.SelectedIndex == 2) ? Convert.ToDouble("0" + this.txtholidayallowance.Text.Trim()).ToString() : (Math.Round((Convert.ToDouble((dtsaladd.Select("gcod='04001'"))[0]["gval"]) / 31), 0)).ToString();
-
-            string fixedrate = Convert.ToDouble("0" + this.txtfixedRate.Text.Trim()).ToString();
-
-
-
-            double gssal = Convert.ToDouble((Convert.IsDBNull(dtsaladd.Compute("Sum(gval)", "")) ? 0.00 : dtsaladd.Compute("Sum(gval)", "")));
-            double dhourlyrate = 0.00;
-            double bsal = 0.00, dailallow = 0.00;
-            switch (comcod)
-            {
-                case "3347":
-                    bsal = Convert.ToDouble((dtsaladd.Select("gcod='04001'"))[0]["gval"]);
-                    dailallow = Convert.ToDouble((dtsaladd.Select("gcod='04012'"))[0]["gval"]);
-                    dhourlyrate = Convert.ToDouble("0" + this.txtdevided.Text.Trim()) > 0 ? ((bsal + dailallow) * 2) / Convert.ToDouble("0" + this.txtdevided.Text.Trim()) : 0;
-                    break;
-
-
-                case "3368"://Finlay
-                case "3101"://Finlay
-                    bsal = Convert.ToDouble((dtsaladd.Select("gcod='04001'"))[0]["gval"]);
-                    dhourlyrate = Convert.ToDouble("0" + this.txtdevided.Text.Trim()) > 0 ? (bsal*1.5) / Convert.ToDouble("0" + this.txtdevided.Text.Trim()) : 0;
-                    break;
-
-
-                case "3336":
-                    dhourlyrate = Convert.ToDouble("0" + this.txtdevided.Text.Trim()) > 0 ? gssal / Convert.ToDouble("0" + this.txtdevided.Text.Trim()) : 0;
-                    break;
-
-
-                default:
-                    dhourlyrate = Convert.ToDouble("0" + this.txtdevided.Text.Trim()) > 0 ? (Convert.ToDouble((dtsaladd.Select("gcod='04001'"))[0]["gval"])) / Convert.ToDouble("0" + this.txtdevided.Text.Trim()) : 0;
-                    break;
-
-
-
-            }
-
-            this.lblforrate.Text = "Rate:<span class='color:blue !important'>" + dhourlyrate.ToString("#,##0;(#,##0); ") + "</span>";
-       
-
-            string hourlyrate = (this.rbtnOverTime.SelectedIndex == 2) ? (dhourlyrate).ToString("#,##0.00;(#,##0.00); ") : (this.rbtnOverTime.SelectedIndex == 1) ? Convert.ToDouble("0" + this.txthourlyRate.Text.Trim()).ToString() : "0";
-
-            //string hourlyrate = (this.rbtnOverTime.SelectedIndex == 2) ? Math.Round(dhourlyrate, 0).ToString() : (this.rbtnOverTime.SelectedIndex == 1) ? Convert.ToDouble("0" + this.txthourlyRate.Text.Trim()).ToString() : "0";
-            string ceilingrate1 = Convert.ToDouble("0" + this.txtceilingRate1.Text.Trim()).ToString();
-            string ceilingrate2 = Convert.ToDouble("0" + this.txtceilingRate2.Text.Trim()).ToString();
-            string ceilingrate3 = Convert.ToDouble("0" + this.txtceilingRate3.Text.Trim()).ToString();
-
-
-            int i;
-            string gcode, gtype, gval, percnt, unit, qty, rate; ;
-
-            for (i = 0; i < dtsaladd.Rows.Count; i++)
-            {
-                gcode = dtsaladd.Rows[i]["gcod"].ToString();
-                gtype = dtsaladd.Rows[i]["gtype"].ToString();
-                gval = dtsaladd.Rows[i]["gval"].ToString();
-                percnt = dtsaladd.Rows[i]["percnt"].ToString();
-                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, gcode, gtype, gval, projectcode, "", "", "", "", percnt, "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
-            }
-
-            for (i = 0; i < dtsalsub.Rows.Count; i++)
-            {
-                gcode = dtsalsub.Rows[i]["gcod"].ToString();
-                gtype = dtsalsub.Rows[i]["gtype"].ToString();
-                gval = dtsalsub.Rows[i]["gval"].ToString();
-                percnt = dtsalsub.Rows[i]["percnt"].ToString();
-                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, gcode, gtype, gval, projectcode, "", "", "", "", percnt, "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
-            }
-            for (i = 0; i < dtallowadd.Rows.Count; i++)
-            {
-                gcode = dtallowadd.Rows[i]["gcod"].ToString();
-                gtype = dtallowadd.Rows[i]["gtype"].ToString();
-                gval = dtallowadd.Rows[i]["gval"].ToString();
-                percnt = dtallowadd.Rows[i]["percnt"].ToString();
-                unit = dtallowadd.Rows[i]["unit"].ToString();
-                qty = dtallowadd.Rows[i]["qty"].ToString();
-                rate = dtallowadd.Rows[i]["rate"].ToString();
-
-                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, gcode, gtype, gval, projectcode, "", "", "", "", percnt, unit, qty, rate, "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
-            }
-
-            // Overtime
-            result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "07004", "N", "0", projectcode, overtimetype, "", "", "", "0", "", "0", fixedrate,
-           hourlyrate, ceilingrate1, ceilingrate2, ceilingrate3, "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
-
-            //holiday rate
-            result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "07005", "N", "0", projectcode, holidaytype, "", "", "", "0", "", "0", holidayrate
-                , "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
-
-
-
-            if (result == false)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
-
-
-
-            for (i = 0; i < dtallowsub.Rows.Count; i++)
-            {
-                gcode = dtallowsub.Rows[i]["gcod"].ToString();
-                gtype = dtallowsub.Rows[i]["gtype"].ToString();
-                gval = dtallowsub.Rows[i]["gval"].ToString();
-                percnt = dtallowsub.Rows[i]["percnt"].ToString();
-                unit = dtallowsub.Rows[i]["unit"].ToString();
-                qty = dtallowsub.Rows[i]["qty"].ToString();
-                rate = dtallowsub.Rows[i]["rate"].ToString();
-                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, gcode, gtype, gval, projectcode, "", "", "", "", percnt, unit, qty, rate, "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
-            }
-
-            //Auto Create User for bti
-            string usrid = "";
-            string usrsname = "";
-            string usrfname = this.lblPEmpName.Text.Trim();
-            string usrdesig = this.lblProjectdesc.Text.Trim();
-            string usrpass = "123456";
-            string usrrmrk = "";
-            string active = "1";
-
-            string usermail = "";
-            string webmailpwd = "";
-            string userRole = "3";
-
-            //result = User.UpdateTransHREMPInfo3(comcod, "SP_UTILITY_LOGIN_MGT", "INSORUPDATEUSR", usrid, usrsname,
-            //         usrfname, usrdesig, usrpass, usrrmrk, active, empid, usermail, webmailpwd, userRole, "", "", "", "","");
-
-
-
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
 
         }
@@ -1843,7 +1850,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     dtsaladd.Rows[i]["gval"] = Math.Round((percent * basic * 0.01), 0);
                     dtsaladd.Rows[i]["percnt"] = percent;
                 }
-             
+
 
                 if ((comcod == "3338") || (comcod == "1206") || (comcod == "1207"))
                 {
@@ -2029,7 +2036,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.FooterCalculation(dtsalsub, "gvSalSub");
             this.TSandAllow();
             this.OverTimeFORRate();
-          
+
 
         }
 
@@ -2067,7 +2074,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.txtfixedRate.Visible = (this.rbtnOverTime.SelectedIndex == 0);
             this.lblhourlyRate.Visible = (this.rbtnOverTime.SelectedIndex == 1);
             this.txthourlyRate.Visible = (this.rbtnOverTime.SelectedIndex == 1);
-            this.PnlMultiply.Visible = (this.rbtnOverTime.SelectedIndex == 2);          
+            this.PnlMultiply.Visible = (this.rbtnOverTime.SelectedIndex == 2);
             this.txtdevided.Visible = (this.rbtnOverTime.SelectedIndex == 2);
 
             this.lblCeilingRate1.Visible = (this.rbtnOverTime.SelectedIndex == 3);
@@ -2111,7 +2118,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             // 
             if (this.rbtnOverTime.SelectedIndex == 2)
                 this.OverTimeFORRate();
-           
+
 
         }
 
@@ -2328,7 +2335,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.GetCompany();
         }
 
-       
+
         protected void rbtAgreementType_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -2418,7 +2425,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.chkcash0bank1.Text = this.chkcash0bank1.Checked ? "Bank" : "Cash";
         }
 
-      
+
         private string GetLastUSerID()
         {
             string comcod = this.GetCompCode();
@@ -2434,20 +2441,20 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string empid = "";
             if (this.ddlNPEmpName.Items.Count > 0)
             {
-                empid = this.ddlNPEmpName.SelectedValue.ToString();               
+                empid = this.ddlNPEmpName.SelectedValue.ToString();
             }
             else
-            {                
+            {
                 empid = this.ddlPEmpName.SelectedValue.ToString();
             }
- 
+
             if (empid == "")
                 return;
             string Message;
             string msg;
             string comcod = this.GetCompCode();
             string usrid = this.GetLastUSerID();
-           
+
             string usrfname = this.hiddnempname1.Value;
             string usrsname = this.hiddnCardId.Value;
             string usrdesig = this.ddlDesignation.SelectedItem.Text.ToString();
@@ -2460,7 +2467,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string userRole = "3";
             usrpass = (usrpass.Length == 0) ? "" : ASTUtility.EncodePassword(usrpass);
             bool result = HRData.UpdateTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "INSORUPDATEUSR", usrid, usrsname,
-                      usrfname, usrdesig, usrpass, usrrmrk, active, empid, usermail, webmailpwd, userRole, "", "", "", "");
+                      usrfname, usrdesig, usrpass, usrrmrk, active, empid, usermail, webmailpwd, userRole, "UserProfile", "", "", "");
             if (!result)
             {
                 msg = HRData.ErrorObject["Msg"].ToString();
