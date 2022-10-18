@@ -633,6 +633,32 @@ namespace RealERPWEB.F_38_AI
 
             }
             catch (Exception exp)
+<<<<<<< HEAD
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
+
+        protected void tbnAssignuser_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;
+                string id = ((Label)this.gv_PenddingAssign.Rows[index].FindControl("lblgvtaskid")).Text.ToString();
+
+                this.lblpenddingid.Text = id;
+                string titlename = ((Label)this.gv_PenddingAssign.Rows[index].FindControl("lblgvptasktitle")).Text.ToString();
+                this.txttasktitle.Text = titlename;
+                this.task.Visible = true;
+                this.assigntask.Visible = false;
+                this.btnaddrow.Visible = false;
+                this.btntaskSave.Visible = true;
+            }
+            catch (Exception exp)
+=======
+>>>>>>> 041f72f09f47eef52483e18f26334c10c9e75238
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
