@@ -1171,9 +1171,10 @@ namespace RealERPWEB.F_09_PImp
                 case "BillServiceEntry":
                     switch (comcod)
                     {
-                        //case "3101":
+                        case "3101":
                         case "1103":
-                        case "3368":
+                        case "3368": // finlay
+                        //case "3367": // epic
 
                             break;
 
@@ -1592,8 +1593,6 @@ namespace RealERPWEB.F_09_PImp
                 if (this.Request.QueryString["Type"] == "BillEntry")
                 {
 
-
-
                     //Finalization Approved
 
                     switch (comcod)
@@ -1615,13 +1614,9 @@ namespace RealERPWEB.F_09_PImp
                         case "3351":
                         case "3352":
                         case "3353"://Manama realds
+
                         case "3368"://Finlay
-
-
-
-
-
-
+                        case "3367"://epic
 
                             break;
 

@@ -238,29 +238,40 @@ namespace RealERPWEB.F_09_PImp
 
         private string ComAccPayment()
         {
-
             string comcod = this.GetCompCode();
             string allpayment = "";
             switch (comcod)
             {
-
                 case "1205":  //p2p 
                 case "3351"://p2p
                 case "3352"://p2p
-
                 case "3340"://Urban
                     allpayment = "AllAccountPayment";
                     break;
 
                 default:
                     break;
-
-
-
             }
-
             return allpayment;
         }
+        private string IsADVPayment()
+        {
+            string comcod = this.GetCompCode();
+            string advpayment = ""; 
+            switch (comcod)
+            {
+                case "1205":  //p2p 
+                case "3351"://p2p
+                case "3352"://p2p
+                    advpayment = "AdvPayment";
+                    break;
+
+                default:
+                    break;
+            }
+            return advpayment;
+        }
+
 
         private void ShowBillSummary()
         {
@@ -271,7 +282,8 @@ namespace RealERPWEB.F_09_PImp
             string SubconName = this.ddlSubName.SelectedValue.ToString();
             string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
             string allpayment = ComAccPayment();
-            DataSet ds1 = BgdData.GetTransInfo(comcod, "SP_REPORT_SUBCONTRACTOR", "RPTSUBCONTRACTORBILL", PactCode, SubconName, date, allpayment, "", "", "", "", "");
+            string advpayment = IsADVPayment();
+            DataSet ds1 = BgdData.GetTransInfo(comcod, "SP_REPORT_SUBCONTRACTOR", "RPTSUBCONTRACTORBILL", PactCode, SubconName, date, allpayment, advpayment, "", "", "", "");
             if (ds1 == null)
                 return;
             Session["tblconsddetails"] = ds1.Tables[0];
