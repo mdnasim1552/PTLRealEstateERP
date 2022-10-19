@@ -48,9 +48,7 @@ namespace RealERPWEB.F_22_Sal
                 this.GetProjectName();
                 this.GetProspective();
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "SALES WITH PAYMENT  INFORMATION ";
-                ((Label)this.Master.FindControl("lblmsg")).Visible = false;
+                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));  
                 this.gvSpayment.Columns[0].Visible = false;
 
                
@@ -131,17 +129,23 @@ namespace RealERPWEB.F_22_Sal
                 this.lblprevious.Visible = false;
                 this.lnkbtnPrevious.Visible = false;
                 this.ddlPrevious.Visible = false;
+                this.ddlprospective.Enabled = false;
                 this.LoadGrid();
+                if (this.ddlPrevious.Items.Count > 0)
+                    GetPreviousNoteSheetDetails();
+
+                
             }
             else
             {
                 this.lbtnOk.Text = "Ok";
                 MultiView1.ActiveViewIndex = -1;
-                ((Label)this.Master.FindControl("lblmsg")).Text = "";
+                this.ddlPrevious.Items.Clear();
                 this.lbtnBack.Visible = false;
                 this.lblprevious.Visible = true;
                 this.lnkbtnPrevious.Visible = true;
                 this.ddlPrevious.Visible = true;
+                this.ddlprospective.Enabled = false;
                 this.ClearScreen();
             }
         }
@@ -164,11 +168,17 @@ namespace RealERPWEB.F_22_Sal
             ViewState.Remove("tblData");
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            string PactCode = this.ddlProjectName.SelectedValue.ToString();
+            string notesheetno = "";
+            if (this.ddlPrevious.Items.Count > 0)
+                notesheetno = this.ddlPrevious.SelectedValue.ToString();
+
+           
+            string PactCode =this.ddlPrevious.Items.Count>0 ? ((DataTable)ViewState["tblprenotesheet"]).Select("noteshtid='"+notesheetno+"'")[0]["pactcode"].ToString() : this.ddlProjectName.SelectedValue.ToString();
+
+
             string srchunit = "%" + this.txtsrchunit.Text.Trim() + "%";
-            // string musircode = "51";
+           
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "DETAILSIRINFINFORMATION", PactCode, srchunit, "", "", "", "", "", "", "");
-            //DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "SIRINFINFORMATION", PactCode, srchunit, musircode, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             this.gvSpayment.DataSource = ds1.Tables[0];
@@ -186,9 +196,57 @@ namespace RealERPWEB.F_22_Sal
 
 
         }
+        private void GetPreviousNoteSheetDetails()
+        {
+
+
+            this.lbtnBack.Visible = true;
+            string notesheetno = this.ddlPrevious.SelectedValue.ToString();
+            string usircode = ((DataTable)ViewState["tblprenotesheet"]).Select("noteshtid='" + notesheetno + "'")[0]["usircode"].ToString();
+            Session.Remove("UsirBasicInformation");
+            DataTable dtOrder = (DataTable)ViewState["tblData"];
+            DataView dv1 = dtOrder.DefaultView;
+            dv1.RowFilter = "usircode like('" + usircode + "')";
+            dtOrder = dv1.ToTable();
+
+
+            this.MultiView1.ActiveViewIndex = 0;
+            Session["UsirBasicInformation"] = dtOrder;
+            this.gvSpayment.DataSource = dtOrder;
+            this.gvSpayment.DataBind();
+            this.lblCode.Text = usircode;
+            this.gvSpayment.Columns[5].Visible = true;
+            this.gvSpayment.Columns[6].Visible = true;
+          
+
+
+            string comcod = this.GetCompCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string pactcode = this.ddlProjectName.SelectedValue.ToString();
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "GETPRENOTESHEETDETINFO", pactcode, usircode, notesheetno, "", "", "", "", "", "");
+            if (ds1 == null)
+            {
+                return;
+            }
+            var lstb = ds1.Tables[1].DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>();
+            var lstcoff = ds1.Tables[2].DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>();
+            var lstrev = ds1.Tables[3].DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet>();
+
+            Session["lstbaseschdule"] = lstb;
+            Session["lstcoffschedule"] = lstcoff;
+            Session["lstrevschedule"] = lstrev;
+
+            this.ddlprospective.SelectedValue=ds1.Tables[0].Rows[0]["proscode"].ToString();
+            this.CalCulationSummation(ds1);
+            this.Data_Bind();
+
+        }
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
           
+
+
+
         }
 
 
@@ -214,9 +272,12 @@ namespace RealERPWEB.F_22_Sal
             this.lblCode.Text = usircode;
             this.gvSpayment.Columns[5].Visible = true;
             this.gvSpayment.Columns[6].Visible = true;
-            this.ShowData();
+             this.ShowData();
 
-            // this.Data_SumBind();
+
+
+
+           
         }
 
         private void ShowData()
@@ -235,27 +296,37 @@ namespace RealERPWEB.F_22_Sal
             var lstb = ds1.Tables[1].DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>();
             var lstcoff = ds1.Tables[2].DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet> ();
             var lstrev = ds1.Tables[3].DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet> ();
-         
             Session["lstbaseschdule"] = lstb;
             Session["lstcoffschedule"] = lstcoff;
             Session["lstrevschedule"] = lstrev;
+            this.CalCulationSummation(ds1);
+            this.Data_Bind();
+        }
 
-            double uzize, bfv, bpv, uamt, pamt, utility, others, bfvpsft, bpvpsft, bpowbpart, intratio, noofemi, 
+        private void CalCulationSummation(DataSet ds1)
+        {
+
+            List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet> lstb = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>)Session["lstbaseschdule"];
+            List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet> lstcoff = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>)Session["lstcoffschedule"];
+            List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet> lstrev = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet>)Session["lstrevschedule"];
+
+
+            double uzize, bfv, bpv, uamt, pamt, utility, others, bfvpsft, bpvpsft, bpowbpart, intratio, noofemi,
                 cofffv, coffpv, coffpamt, coffutility, coffothers, cofffvpsft, coffpvpsft, coffpowbpart, coffnoofemi, revfv, revpv,
                 revpamt, revutility, revothers, revfvpsft, revpvpsft, revpowbpart, revnoofemi;
 
-            uzize=
+            uzize =
             bfv = lstb.Sum(l => l.fv);
             bpv = lstb.Sum(l => l.pv);
-            uzize= Convert.ToDouble(ds1.Tables[0].Rows[0]["usize"]);
+            uzize = Convert.ToDouble(ds1.Tables[0].Rows[0]["usize"]);
             pamt = Convert.ToDouble(ds1.Tables[0].Rows[0]["pamt"]);
             utility = Convert.ToDouble(ds1.Tables[0].Rows[0]["utility"]);
             others = Convert.ToDouble(ds1.Tables[0].Rows[0]["others"]);
-            intratio= Convert.ToDouble(ds1.Tables[0].Rows[0]["intratio"]);
+            intratio = Convert.ToDouble(ds1.Tables[0].Rows[0]["intratio"]);
             noofemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["noofemi"]);
             bfvpsft = ((uzize > 0) ? ((bfv - pamt - utility - others) / uzize) : 0.00);
             bpowbpart = (12 + intratio) / 12;
-            bpvpsft =Math.Round(bfvpsft / (Math.Pow(bpowbpart, noofemi )),0);
+            bpvpsft = Math.Round(bfvpsft / (Math.Pow(bpowbpart, noofemi)), 0);
 
             cofffv = lstcoff.Sum(l => l.fv);
             coffpv = lstcoff.Sum(l => l.pv);
@@ -278,7 +349,7 @@ namespace RealERPWEB.F_22_Sal
             revnoofemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["revnoofemi"]);
             revfvpsft = ((uzize > 0) ? ((revfv - revpamt - revutility - revothers) / uzize) : 0.00);
             revpowbpart = (12 + intratio) / 12;
-            revpvpsft = Math.Round(revfvpsft / (Math.Pow(revpowbpart, revnoofemi)), 0);
+            revpvpsft = Math.Round(revfvpsft / (Math.Pow(revpowbpart, noofemi)), 0);
 
 
 
@@ -296,7 +367,7 @@ namespace RealERPWEB.F_22_Sal
             this.lblvalbookingmoney.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["bookingam"]).ToString("#,##0;(#,##0);");
             this.lblvalnoofemi.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["noofemi"]).ToString("#,##0;(#,##0);");
             this.lblvalemi.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["emi"]).ToString("#,##0;(#,##0);");
-            this.lblvalfvpsft.InnerText =bfvpsft.ToString("#,##0;(#,##0);");
+            this.lblvalfvpsft.InnerText = bfvpsft.ToString("#,##0;(#,##0);");
             this.lblvalpvpersft.InnerText = bpvpsft.ToString("#,##0;(#,##0);");
 
 
@@ -312,7 +383,7 @@ namespace RealERPWEB.F_22_Sal
             this.txtcoffbookinmpercnt.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffbookingper"]).ToString("#,##0;(#,##0);");
             this.lblvalcoffbookingam.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffbookingam"]).ToString("#,##0;(#,##0);");
             this.txtcoffnooffemi.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffnoofemi"]).ToString("#,##0;(#,##0);");
-            this.lblvalcoffemi.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffemi"]).ToString("#,##0;(#,##0);");          
+            this.lblvalcoffemi.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffemi"]).ToString("#,##0;(#,##0);");
             this.lblvalcofffvpersft.InnerText = cofffvpsft.ToString("#,##0;(#,##0);");
             this.lblvalcoffpvpersft.InnerText = coffpvpsft.ToString("#,##0;(#,##0);");
 
@@ -333,7 +404,6 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-            this.Data_Bind();
         }
 
         private void CalculationValue()
@@ -345,8 +415,9 @@ namespace RealERPWEB.F_22_Sal
 
               
 
-                double intratio, usize, coffurate, coffuamt, coffpamt, coffutility, coffothers, cofftunitamt, coffbookingper, coffbookingam, coffnoofemi, coffemi, cofffvpsft, coffpvpsft, coffpowbpart, cofffv, coffpv, revurate, revuamt, revpamt, revutility, revothers, revtunitamt, revbookingper, revbookingam, revfvpsft, revpvpsft, revpowbpart, revnoofemi, revemi, revfv, revpv;
+                double intratio, usize, bnoofemi, coffurate, coffuamt, coffpamt, coffutility, coffothers, cofftunitamt, coffbookingper, coffbookingam, coffnoofemi, coffemi, cofffvpsft, coffpvpsft, coffpowbpart, cofffv, coffpv, revurate, revuamt, revpamt, revutility, revothers, revtunitamt, revbookingper, revbookingam, revfvpsft, revpvpsft, revpowbpart, revnoofemi, revemi, revfv, revpv;
 
+                bnoofemi = Convert.ToDouble("0" + this.lblvalnoofemi.InnerText);
                 usize = Convert.ToDouble(this.lblvalarea.InnerText.ToString());
                 intratio = Convert.ToDouble("0" + txtinterestrate.Text.ToString().Replace("%", "")) * 0.01;
 
@@ -421,7 +492,7 @@ namespace RealERPWEB.F_22_Sal
                 revpv = lstrev.Sum(l => l.pv);
                 revfvpsft = ((usize > 0) ? ((revfv - revpamt - revutility - revothers) / usize) : 0.00);
                 revpowbpart = (12 + intratio) / 12;
-                revpvpsft = Math.Round(revfvpsft / (Math.Pow(revpowbpart, revnoofemi)), 0);
+                revpvpsft = Math.Round(revfvpsft / (Math.Pow(revpowbpart, bnoofemi)), 0);
 
                 this.lblvalrevpfvpersft.InnerText = revfvpsft.ToString("#,##0;(#,##0);");
                 this.lblvalrevppvpersft.InnerText = revpvpsft.ToString("#,##0;(#,##0);");
@@ -505,7 +576,7 @@ namespace RealERPWEB.F_22_Sal
                             ymon = ymon,
                             grp = grp,
                             pv = coffbookingam,
-                            fv = coffbookingam * Math.Pow(coffpowbpart, mondiff)
+                            fv = Math.Round(coffbookingam * Math.Pow(coffpowbpart, mondiff),0)
                         };
                         lstcoff.Add(obj);
                       
@@ -524,7 +595,7 @@ namespace RealERPWEB.F_22_Sal
                             ymon = ymon,
                             grp = grp,
                             pv = coffresamt,
-                            fv = coffresamt * Math.Pow(coffpowbpart, mondiff)
+                            fv = Math.Round(coffresamt * Math.Pow(coffpowbpart, mondiff),0)
                         };
                         lstcoff.Add(obj);
 
@@ -540,7 +611,7 @@ namespace RealERPWEB.F_22_Sal
                             ymon = ymon,
                             grp = grp,
                             pv = coffemi,
-                            fv = coffemi * Math.Pow(coffpowbpart, mondiff)
+                            fv = Math.Round(coffemi * Math.Pow(coffpowbpart, mondiff),0)
                         };
                         lstcoff.Add(obj);
                     }
@@ -582,7 +653,7 @@ namespace RealERPWEB.F_22_Sal
                             ymon = ymon,
                             grp = grp,
                             pv = revbookingam,
-                            fv = revbookingam * Math.Pow(revpowbpart, mondiff)
+                            fv = Math.Round(revbookingam * Math.Pow(revpowbpart, mondiff),0)
                         };
                         lstrev.Add(obj);
                        
@@ -602,7 +673,7 @@ namespace RealERPWEB.F_22_Sal
                             ymon = ymon,
                             grp = grp,
                             pv = revresamt,
-                            fv = revresamt * Math.Pow(revpowbpart, mondiff)
+                            fv = Math.Round(revresamt * Math.Pow(revpowbpart, mondiff),0)
                         };
                         lstrev.Add(obj);
 
@@ -621,7 +692,7 @@ namespace RealERPWEB.F_22_Sal
                             ymon = ymon,
                             grp = grp,
                             pv = revemi,
-                            fv = revemi * Math.Pow(revpowbpart, mondiff)
+                            fv = Math.Round(revemi * Math.Pow(revpowbpart, mondiff),0)
                         };
                         lstrev.Add(obj);
                     }
@@ -715,9 +786,9 @@ namespace RealERPWEB.F_22_Sal
 
             }
 
-            catch (Exception e)
+            catch (Exception ex)
             {
-
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
 
 
             }
@@ -748,113 +819,87 @@ namespace RealERPWEB.F_22_Sal
             this.LoadGrid();
         }
 
-      
-     
 
-
-
-
-
-
-        
-
-    
-
-
-        protected void lbtnTotaldumsch_Click(object sender, EventArgs e)
-        {
-            //List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule> lst = (List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule>)Session["tbldschamt"];
-
-            //for (int i = 0; i < this.gvdumpay.Rows.Count; i++)
-            //{
-            //    DateTime schdate = Convert.ToDateTime(((TextBox)this.gvdumpay.Rows[i].FindControl("txtgvScheduledate")).Text.Trim());
-            //    double schamt = Convert.ToDouble("0" + ((TextBox)this.gvdumpay.Rows[i].FindControl("txtgvdumschamt")).Text.Trim());
-
-            //    lst[i].schdate = schdate;
-            //    lst[i].schamt = schamt;
-            //}
-            //Session["tbldschamt"] = lst;
-            //double Amount = lst.Sum(l => l.schamt);
-            //List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule> lsta = (List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule>)Session["tblacamt"];
-            //((Label)this.gvdumpay.FooterRow.FindControl("lgvFdumschamt")).Text = Amount.ToString("#,##0;(#,##0); ");
-
-
-
-
-            //this.Data_Bind();
-
-        }
-        protected void lbtnTotalacsch_Click(object sender, EventArgs e)
+       
+        protected void lbtnAddacsch_Click(object sender, EventArgs e)
         {
             //List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule> lst = (List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule>)Session["tblacamt"];
+            //int lrow = lst.Count;
+            //DateTime insdate = lst[lrow - 1].schdate;
+            //double schinsamt = lst[lrow - 1].schamt;
+            //lst.Add(new RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule(insdate, schinsamt));
+            //this.Data_Bind();
+        }
 
-            //for (int i = 0; i < this.gvacpay.Rows.Count; i++)
-            //{
-            //    DateTime schdate = Convert.ToDateTime(((TextBox)this.gvacpay.Rows[i].FindControl("txtgvacScheduledate")).Text.Trim());
-            //    double schamt = Convert.ToDouble("0" + ((TextBox)this.gvacpay.Rows[i].FindControl("txtgvacschamt")).Text.Trim());
-
-            //    lst[i].schdate = schdate;
-            //    lst[i].schamt = schamt;
-            //}
+        protected void lbtnDelacsch_Click(object sender, EventArgs e)
+        {
+            //List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule> lst = (List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule>)Session["tblacamt"];
+            //int rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            //lst.RemoveAt(rowindex);
             //Session["tblacamt"] = lst;
             //this.Data_Bind();
 
 
         }
-        protected void lbtnAdddsch_Click(object sender, EventArgs e)
+
+        private void LastGrandNoteSheet()
         {
-            List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule> lst = (List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule>)Session["tbldschamt"];
-            int lrow = lst.Count;
-            string gcod = "";
-            string gdesc = "";
+            string comcod = this.GetCompCode();
+            string date = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            DataSet ds2 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "GETLASTNOTESHEETNO", "",
+                   date, "", "", "", "", "", "", "");
+            if (ds2 == null)
+                return;
+            if (ds2.Tables[0].Rows.Count > 0)
+            {
 
-            DateTime insdate = lst[lrow - 1].schdate;
-            double schinsamt = lst[lrow - 1].schamt;
-            lst.Add(new RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule(gcod, gdesc, insdate, schinsamt));
-            this.Data_Bind();
-        }
+               
+                this.ddlPrevious.DataTextField = "maxno1";
+                this.ddlPrevious.DataValueField = "maxno";
+                this.ddlPrevious.DataSource = ds2.Tables[0];
+                this.ddlPrevious.DataBind();
 
-        protected void lbtnDeldsch_Click(object sender, EventArgs e)
-        {
-            List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule> lst = (List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule>)Session["tbldschamt"];
-            int rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            lst.RemoveAt(rowindex);
-            Session["tbldschamt"] = lst;
-            this.Data_Bind();
 
-        }
+            }
 
-        protected void lbtnAddacsch_Click(object sender, EventArgs e)
-        {
-            List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule> lst = (List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule>)Session["tblacamt"];
-            int lrow = lst.Count;
-            DateTime insdate = lst[lrow - 1].schdate;
-            double schinsamt = lst[lrow - 1].schamt;
-            lst.Add(new RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule(insdate, schinsamt));
-            this.Data_Bind();
-        }
-
-        protected void lbtnDelacsch_Click(object sender, EventArgs e)
-        {
-            List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule> lst = (List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule>)Session["tblacamt"];
-            int rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            lst.RemoveAt(rowindex);
-            Session["tblacamt"] = lst;
-            this.Data_Bind();
 
 
         }
-
-
 
 
         protected void lbtnUpdate_Click(object sender, EventArgs e)
         {
             try
             {
-               
+
+                if (this.ddlPrevious.Items.Count == 0)
+                    this.LastGrandNoteSheet();
+
+                string noteshtid = this.ddlPrevious.SelectedValue.ToString();
+                string noteshtdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
                 string pactcode = this.ddlProjectName.SelectedValue.ToString();
                 string usircode = this.lblCode.Text.Trim();
+                string intrate = Convert.ToDouble("0" + this.txtinterestrate.Text.Replace("%", "")).ToString();
+
+                string coffurate = Convert.ToDouble("0" + this.txtcoffrate.Text).ToString() ;
+                string coffpamt = Convert.ToDouble("0" + this.txtcofffparking.Text).ToString();
+                string coffutility = Convert.ToDouble("0" + this.txtcoffutility.Text).ToString();
+                string coffothers = Convert.ToDouble("0" + this.txtcoffothers.Text).ToString();
+                string coffbookingper = Convert.ToDouble("0" + this.txtcoffbookinmpercnt.Text).ToString();
+                string coffbookingam = Convert.ToDouble("0" + this.lblvalcoffbookingam.InnerText).ToString();
+                string coffnooffemi = Convert.ToDouble("0" + this.txtcoffnooffemi.Text).ToString();
+                string coffemi = Convert.ToDouble("0" + this.lblvalcoffemi.InnerText).ToString();
+
+                string revurate = Convert.ToDouble("0" + this.txtrevprate.Text).ToString();              
+                string  revpamt = Convert.ToDouble("0" + this.txtrevpparking.Text).ToString();
+                string  revutility = Convert.ToDouble("0" + this.txtrevputility.Text).ToString();
+                string  revothers = Convert.ToDouble("0" + this.txtrevpothers.Text).ToString();
+
+                string revbookingper = Convert.ToDouble("0" + this.txtrevpbbookinmpercnt.Text).ToString();
+                string revbookingam = Convert.ToDouble("0" + this.lblvalrevpbookingam.InnerText).ToString();
+                string revnooffemi = Convert.ToDouble("0" + this.txtrevpnooffemi.Text).ToString();
+                string revemi = Convert.ToDouble("0" + this.lblvalrevpemi.InnerText).ToString();
+
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = this.GetCompCode();
@@ -862,38 +907,106 @@ namespace RealERPWEB.F_22_Sal
                 string Postusrid = hst["usrid"].ToString();
                 string trmnid = hst["compname"].ToString();
                 string session = hst["session"].ToString();
-                string PostedDate = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-               
-
-
-
-                List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule> lstd = (List<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule>)Session["tbldschamt"];
-                List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule> lsta = (List<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule>)Session["tblacamt"];
-
-             
-
-
-
-           
-              
-                //return;
-                bool resulta = MktData.UpdateTransInfo2(comcod, "SP_ENTRY_DUMMYSALSMGT", "UPDATEDUMMYPAYMENTUSERWISE",  pactcode, usircode, usrid, "", "", "", "", Postusrid, trmnid, session, PostedDate, "", "", "","", "", "", "","","","");
-
+                string PostedDate = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm");
+                string proscode = this.ddlprospective.SelectedValue.ToString();
+                bool resulta = false;
+                 resulta = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "DELETENOTESHEET", noteshtid, "", "", "", "", "", "", "", "","", "", "", "", "");
                 if (!resulta)
                 {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + MktData.ErrorObject["Msg"] + "');", true);
+                    return;
 
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + MktData.ErrorObject["Mesage"].ToString();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                }
+
+                //return;
+
+                 resulta = MktData.UpdateTransInfo01(comcod, "SP_ENTRY_SALESNOTESHEET", "INSERTORUPDATESALESNOTESHEET", noteshtid, pactcode, usircode, noteshtdate, intrate, coffurate, coffpamt, coffutility, coffothers, revurate, revpamt, revutility, revothers, Postusrid, trmnid, session, PostedDate, proscode, coffbookingper, coffbookingam, coffnooffemi,coffemi,revbookingper,revbookingam,revnooffemi, revemi);
+                if (!resulta)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + MktData.ErrorObject["Msg"] + "');", true);
                     return;
 
                 }
 
 
+              
+                List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet> lstbcase = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>)Session["lstbaseschdule"];
+                List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet> lstcoff = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>)Session["lstcoffschedule"];
+                List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet> lstrev = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet>)Session["lstrevschedule"];
 
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated SUccessfully";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-                this.ShowData();
+                foreach (RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet lstitem in lstbcase)
+                {
 
+                    string grp = lstitem.grp;
+                    string monthid = lstitem.monthid;
+                    string pv = Convert.ToDouble(lstitem.pv).ToString();
+                    string fv = Convert.ToDouble(lstitem.fv).ToString();
+
+
+
+                    resulta = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "INSERTORUPDATESALESNOTESHEETDETAILS", noteshtid, monthid, grp, pv, fv, "", "", "", "", "", "", "", "", "", "");
+                    if (!resulta)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + MktData.ErrorObject["Msg"] + "');", true);
+                        return;
+
+                    }
+
+
+
+                }
+
+
+                foreach (RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet lstitem in lstcoff)
+                {
+
+                    string grp = lstitem.grp;
+                    string monthid = lstitem.monthid;
+                    string pv =Convert.ToDouble(lstitem.pv).ToString();
+                    string fv = Convert.ToDouble(lstitem.fv).ToString();
+
+
+
+                    resulta = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "INSERTORUPDATESALESNOTESHEETDETAILS", noteshtid, monthid, grp, pv, fv, "", "","","", "", "", "","","","");
+                    if (!resulta)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + MktData.ErrorObject["Msg"] + "');", true);
+                        return;
+
+                    }
+
+
+
+                }
+
+
+
+                foreach (RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet lstitem in lstrev)
+                {
+
+                    string grp = lstitem.grp;
+                    string monthid = lstitem.monthid;
+                    string pv = Convert.ToDouble(lstitem.pv).ToString();
+                    string fv = Convert.ToDouble(lstitem.fv).ToString();
+
+
+
+                    resulta = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "INSERTORUPDATESALESNOTESHEETDETAILS", noteshtid, monthid, grp, pv, fv, "", "", "", "", "", "", "", "", "", "");
+                    if (!resulta)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + MktData.ErrorObject["Msg"] + "');", true);
+                        return;
+
+                    }
+
+
+
+                }
+
+
+
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);    
 
             }
 
@@ -936,6 +1049,33 @@ namespace RealERPWEB.F_22_Sal
         protected void lnkbtnPrevious_Click(object sender, EventArgs e)
         {
 
+            try
+            {
+
+
+                ViewState.Remove("tblprenotesheet");
+                string comcod = this.GetCompCode();
+                string date = System.DateTime.Now.ToString("dd-MMM-yyyy");
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "GETPREVIOUSNOTESHEETNO", "",
+                       date, "", "", "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+                this.ddlPrevious.DataTextField = "noteshiddet";
+                this.ddlPrevious.DataValueField = "noteshtid";
+                this.ddlPrevious.DataSource = ds1.Tables[0];
+                this.ddlPrevious.DataBind();
+                ViewState["tblprenotesheet"] = ds1.Tables[0];
+                ds1.Dispose();
+
+
+
+
+            }
+            catch (Exception ex)
+            { 
+            
+            
+            }
         }
 
       
