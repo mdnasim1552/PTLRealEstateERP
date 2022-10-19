@@ -149,7 +149,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvDescrption" runat="server" Height="16px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "grpdesc")) %>'
-                                                Width="80px" ForeColor="Black" Font-Bold="true" Font-Size="12px"></asp:Label>
+                                                Width="120px" ForeColor="Black" Font-Bold="true" Font-Size="12px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
@@ -237,11 +237,11 @@
                                     </asp:TemplateField>
 
                                 </Columns>
-                                <FooterStyle CssClass="grvFooter" />
+                                <FooterStyle CssClass="" />
                                 <EditRowStyle />
                                 <AlternatingRowStyle />
                                 <PagerStyle CssClass="gvPagination" />
-                                <HeaderStyle CssClass="grvHeader" />
+                                <HeaderStyle CssClass="gvHeader" />
                             </asp:GridView>
                         </div>
                     </div>

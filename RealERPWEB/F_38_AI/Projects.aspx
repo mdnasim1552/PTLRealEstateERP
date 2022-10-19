@@ -242,7 +242,8 @@
                                                     </asp:TemplateField>
                                                      <asp:TemplateField HeaderText="Tasktitle">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblgvtaskid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "id")) %>'></asp:Label>
+                                                            <asp:Label ID="lblgvAsignid" Visible="false" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "id")) %>'></asp:Label>
+                                                            <asp:Label ID="lblgvtaskid" Visible="false" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "taskid")) %>'></asp:Label>
 
                                                             <asp:Label ID="lblgvptasktitle" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "tasktitle")) %>' Width="200px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                                         </ItemTemplate>
@@ -252,7 +253,9 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Role <br> Type">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblgvproletype" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletype")) %>' Width="100px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                            <asp:Label ID="lblgvproletypedesc" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletypedesc")) %>' Width="100px" ForeColor="Black" Font-Size="12px"></asp:Label>
+
+                                                            <asp:Label ID="lblgvproletype" Visible="false" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletype")) %>'></asp:Label>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
 
@@ -266,7 +269,18 @@
 
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Role <br> QTY">
+                                                    <asp:TemplateField HeaderText="Assign <br> Type">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblgvpassigntype" Visible="false" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assigntype")) %>'></asp:Label>
+                                                            <asp:Label ID="lblgvpassigndesc" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assigndesc")) %>' Width="100px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                           
+
+                                                        </ItemTemplate>
+                                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Assign <br> QTY">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvpassignqty" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "assignqty")).ToString("#,##0;(#,##0); ")  %>' Width="50px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                                         </ItemTemplate>
@@ -457,6 +471,7 @@
                                         <div class="col-md-12" visible="false" id="task" runat="server">
 
                                             <div class="form-group row">
+                                                <asp:HiddenField ID="HiddinTaskid" runat="server" Value="0" />
                                                 <div class="d-flex w-100" style="padding: 10px 8px 4px 0px;">
                                                     <asp:Label ID="Label11" runat="server" CssClass="float-left">Task Name</asp:Label>
                                                     <asp:LinkButton runat="server" type="button" ID="LinkButton1" OnClick="removefield_Click" class="ml-auto text-danger"><i class="fa fa-times-circle" style="font-size: 20px;"></i></asp:LinkButton>
