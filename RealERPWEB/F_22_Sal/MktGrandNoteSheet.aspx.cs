@@ -130,11 +130,14 @@ namespace RealERPWEB.F_22_Sal
                 this.lnkbtnPrevious.Visible = false;
                 this.ddlPrevious.Visible = false;
                 this.ddlprospective.Enabled = false;
+             
                 this.LoadGrid();
+
                 if (this.ddlPrevious.Items.Count > 0)
                     GetPreviousNoteSheetDetails();
 
-                
+
+
             }
             else
             {
@@ -145,7 +148,7 @@ namespace RealERPWEB.F_22_Sal
                 this.lblprevious.Visible = true;
                 this.lnkbtnPrevious.Visible = true;
                 this.ddlPrevious.Visible = true;
-                this.ddlprospective.Enabled = false;
+                this.ddlprospective.Enabled = true;
                 this.ClearScreen();
             }
         }
@@ -222,7 +225,8 @@ namespace RealERPWEB.F_22_Sal
 
             string comcod = this.GetCompCode();
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            string pactcode = this.ddlProjectName.SelectedValue.ToString();
+            string pactcode =  ((DataTable)ViewState["tblprenotesheet"]).Select("noteshtid='" + notesheetno + "'")[0]["pactcode"].ToString() ;
+
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "GETPRENOTESHEETDETINFO", pactcode, usircode, notesheetno, "", "", "", "", "", "");
             if (ds1 == null)
             {
