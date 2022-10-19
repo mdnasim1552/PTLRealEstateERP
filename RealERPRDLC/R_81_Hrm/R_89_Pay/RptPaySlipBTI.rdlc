@@ -1130,7 +1130,7 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=Format(Fields!grossal1.Value, "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!gssal.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                   </Style>

@@ -5,28 +5,141 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+   <%-- <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/WebForms/Bootstrapautocomplete.js"></script>--%>
+
+    <style>
+         .AutoExtender {
+            font-family: Verdana, Helvetica, sans-serif;
+            margin: 0px 0 0 0px;
+            font-size: 11px;
+            font-weight: normal;
+            border: solid 1px #006699;
+            background-color: White;
+        }
+
+        .AutoExtenderList {
+            border-bottom: dotted 1px #006699;
+            cursor: pointer;
+            color: Maroon;
+        }
+
+        .AutoExtenderHighlight {
+            color: White;
+            background-color: #006699;
+            cursor: pointer;
+        }
+
+    </style>
 
     <script language="javascript" type="text/javascript">
+
+        var src = {
+
+            "jQuery": 1,
+
+            "Script": 2,
+
+            "HTML5": 3,
+
+            "CSS3": 4,
+
+            "Angular": 5,
+
+            "React": 6,
+
+            "VueJS": 7
+
+        };
+
+      
 
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
         });
-        function pageLoaded() {
-            $("input, select").bind("keydown", function (event) {
-                var k1 = new KeyPress();
-                k1.textBoxHandler(event);
-            });
+        function pageLoaded()
+        
+        {
 
-            var gvb = $('#<%=this.gvbcasesch.ClientID %>');
-            var gvcoff = $('#<%=this.gvcoffsch.ClientID %>');
-            var gvrev = $('#<%=this.gvrevpsch.ClientID %>');
-            gvb.Scrollable();
-            gvcoff.Scrollable();
-            gvrev.Scrollable();
-            $('.chzn-select').chosen({ search_contains: true });
+            try
+
+            {
+
+
+                console.log(src);
+
+                $("input, select").bind("keydown", function (event) {
+                    var k1 = new KeyPress();
+                    k1.textBoxHandler(event);
+                });
+
+                var gvb = $('#<%=this.gvbcasesch.ClientID %>');
+                var gvcoff = $('#<%=this.gvcoffsch.ClientID %>');
+                var gvrev = $('#<%=this.gvrevpsch.ClientID %>');
+                gvb.Scrollable();
+                gvcoff.Scrollable();
+                gvrev.Scrollable();
+                $('.chzn-select').chosen({ search_contains: true });
+
+         
+               
+
+                //$('#txtProspective').autocomplete({
+
+
+                //    source: src
+
+                //});
+
+                //$('#txtProspective').autocomplete({
+                //    treshold: 1
+
+                //});
+
+                //$('#txtProspective').autocomplete({
+
+                //    maximumItems: 3
+
+                //});
+
+
+
+                // $('#myAutocomplete').autocomplete({
+
+
+                //    source: src
+
+                //});
+
+                //$('#myAutocomplete').autocomplete({
+                //    treshold: 1
+
+                //});
+
+                //$('#myAutocomplete').autocomplete({
+
+                //    maximumItems: 3
+
+                //});
+
+
+                
+                
+            }
+
+            catch (e)
+            {
+                alert(e);
+
+
+            }
+
 
         }
+
+       
+
     </script>
     <style>
         .grvHeader th {
@@ -105,6 +218,40 @@
 
 
                         </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label id="Label1" runat="server">Prospective</label>
+                                <asp:LinkButton ID="lbtnProspective" runat="server" OnClick="lbtnProspective_Click"> <i class="fa fa-search" aria-hidden="true"></i>
+                                </asp:LinkButton>
+                                 <asp:DropDownList ID="ddlprospective" runat="server" CssClass="form-control chzn-select" TabIndex="12">
+                                </asp:DropDownList>
+                               
+
+                             <%--   <asp:TextBox ID="txtProspective" runat="server" CssClass="form-control" Width="130"></asp:TextBox>
+                                                                        <cc1:AutoCompleteExtender ID="txtProspective_AutoCompleteExtender"
+                                                                            runat="server" CompletionListCssClass="AutoExtender"
+                                                                            CompletionListHighlightedItemCssClass="AutoExtenderHighlight"
+                                                                            CompletionListItemCssClass="AutoExtenderList" CompletionSetCount="15"
+                                                                            DelimiterCharacters="" Enabled="True" FirstRowSelected="True"
+                                                                            MinimumPrefixLength="0" ServiceMethod="GetprospectiveDetails"
+                                                                            ServicePath="~/AutoCompleted.asmx" TargetControlID="txtProspective">
+                                                                        </cc1:AutoCompleteExtender>--%>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label id="lblprevious" runat="server">Previous</label>
+                                <asp:LinkButton ID="lnkbtnPrevious" runat="server" OnClick="lnkbtnPrevious_Click"> <i class="fa fa-search" aria-hidden="true"></i>
+                                </asp:LinkButton>
+                                <asp:DropDownList ID="ddlPrevious" runat="server" CssClass="form-control chzn-select" TabIndex="12">
+                                </asp:DropDownList>
+                            </div>
+
+                        </div>
+
                         <div class="col-md-1">
                             <div class="form-group">
 
@@ -311,7 +458,7 @@
             <asp:MultiView ID="MultiView1" runat="server">
 
                 <asp:View ID="ViewSchedule" runat="server">
-                    <div class="card card-fluid mb-1">
+                    <div class="card card-fluid mb-0">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-2">
@@ -747,6 +894,14 @@
                                                 </div>
                                             </div>
 
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <asp:LinkButton ID="lbtnCalCulation" runat="server" CssClass=" form-control form-control-sm  btn btn-primary" OnClick="lbtnCalCulation_Click">Calculation</asp:LinkButton>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -902,13 +1057,16 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
+
+
+                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <asp:LinkButton ID="lbtnCalCulation" runat="server" CssClass=" form-control form-control-sm  btn btn-primary" OnClick="lbtnCalCulation_Click">Calculation</asp:LinkButton>
+                                                        <asp:LinkButton ID="lbtnUpdate" runat="server" CssClass=" form-control form-control-sm  btn btn-success btn-sm" OnClick="lbtnUpdate_Click">Final Update</asp:LinkButton>
                                                     </div>
                                                 </div>
                                             </div>
+                                            
 
 
                                         </div>

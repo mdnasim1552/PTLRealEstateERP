@@ -3517,7 +3517,6 @@ namespace RealERPRDLC
         private static LocalReport SetRptOtherReqPrintSuvasto(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_34_Mgt.GenBillReq>)RptDataSet));
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_34_Mgt.GenBillSupdesc>)RptDataSet2));
             return Rpt1a;
         }
         private static LocalReport SetRptRecAndPaymentAlli(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)

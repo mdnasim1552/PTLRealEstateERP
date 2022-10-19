@@ -120,10 +120,10 @@
                                                     </asp:TemplateField>
 
 
-                                                    <asp:TemplateField HeaderText="Assign Type">
+                                                    <asp:TemplateField HeaderText="Role Type">
                                                         <ItemTemplate>
                                                             <asp:Label ID="tblvelocitytype" runat="server"
-                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assigntype")) %>'></asp:Label>
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletype")) %>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
@@ -228,7 +228,10 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Role <br> Type">
                                                         <ItemTemplate>
+
                                                             <asp:Label ID="tblvelocitytype" runat="server"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletypedesc")) %>'></asp:Label>
+                                                             <asp:Label ID="lblgvroletypecode" runat="server" Visible="false"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletype")) %>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -288,10 +291,9 @@
                                                     <asp:TemplateField HeaderText="Action">
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="lnkHoldJob" runat="server" CssClass="text-danger pr-1 pl-1" Font-Size="20px" ToolTip="Hold Create Note"
-                                                                Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))!="95001" && Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99215" ||  Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99220" ? false:true %>' OnClick="HoldCreateNote_Click"><i class="fa fa-pause-circle"></i></asp:LinkButton>
+                                                                Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99215" ||  Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99220" ? false:true %>' OnClick="HoldCreateNote_Click"><i class="fa fa-pause-circle"></i></asp:LinkButton>
 
-                                                             <asp:LinkButton ID="btnlnkannothold"  runat="server" CssClass="text-danger pr-1 pl-1" Font-Size="20px" ToolTip="Annot Create Note" OnClick="btnlnkannothold_Click"
-                                                                Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletype"))=="95001" ? true:false %>' ><i class="fa fa-pause-circle"></i></asp:LinkButton>
+                                                            
 
                                                             <asp:LinkButton ID="lnkStartJobByID" runat="server" CssClass="text-success pr-1 pl-1" Font-Size="20px" ToolTip="Start Job"
                                                                 Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99204" ||
@@ -464,7 +466,7 @@
                               <asp:Label ID="startstatus" runat="server" Visible="false"></asp:Label>
 
 
-                            <div class="row">
+                            <div class="row" id="divDoneQty" runat="server">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label for="username">Done Qty</label>
@@ -472,7 +474,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row" id="divSkiQty" runat="server">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label for="username">Skip Qty</label>
@@ -480,7 +482,7 @@
                                     </div>
                                 </div>
                             </div>
-                             <div class="row">
+                             <div class="row" id="divRetQty" runat="server">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label for="username">Return Qty</label>
@@ -488,7 +490,7 @@
                                     </div>
                                 </div>
                             </div>
-                             <div class="row">
+                             <div class="row" id="divRejQty" runat="server">
                                 <div class="col-lg-12 col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label for="username">Reject Qty</label>
