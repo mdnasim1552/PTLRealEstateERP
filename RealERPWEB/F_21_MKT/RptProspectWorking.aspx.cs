@@ -20,7 +20,11 @@ namespace RealERPWEB.F_21_MKT
 
             if (!IsPostBack)
             {
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Prospect Working Report";
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                if (dr1.Length == 0)
+                    Response.Redirect("../AcceessError.aspx");
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+
                 string txtDate = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtFrmDate.Text = "01-"+Convert.ToDateTime(txtDate).ToString("MMM-yyyy");
                 this.txtToDate.Text = Convert.ToDateTime(this.txtFrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
@@ -118,16 +122,46 @@ namespace RealERPWEB.F_21_MKT
 
         protected void lnkbtnOk_Click(object sender, EventArgs e)
         {
+            string queryType = this.Request.QueryString["Type"] ?? "";
+            switch (queryType)
+            {
+                case "RptDayWise":
+                    this.ShowRptProsDayWorking();
+                    break;
+
+                default:
+                    this.ShowRptProsWorking();
+                    break;
+            }
+        }
+        private void ShowRptProsDayWorking()
+        {
             string comcod = this.GetComeCode();
             string txtFrmDate = Convert.ToDateTime(this.txtFrmDate.Text).ToString("dd-MMM-yyyy");
             string txtToDate = Convert.ToDateTime(this.txtToDate.Text).ToString("dd-MMM-yyyy");
-           
             string empId = this.ddlEmpid.SelectedValue.ToString();
-
-
-            DataSet ds1 = accessData.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE", "PROSPECT_WORKING_REPORT", null, null, null, txtFrmDate, txtToDate, empId, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-            if (ds1==null)
+            DataSet ds1 = accessData.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE", "PROSPECT_WORKING_REPORT_DAY_WISE", null, null, null, txtFrmDate, txtToDate, empId, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('No Data Found');", true);
                 return;
+            }
+
+            ViewState["tblproswork"] = HiddenSameData(ds1.Tables[0]);
+            this.Data_Bind();
+        }
+        private void ShowRptProsWorking()
+        {
+            string comcod = this.GetComeCode();
+            string txtFrmDate = Convert.ToDateTime(this.txtFrmDate.Text).ToString("dd-MMM-yyyy");
+            string txtToDate = Convert.ToDateTime(this.txtToDate.Text).ToString("dd-MMM-yyyy");
+            string empId = this.ddlEmpid.SelectedValue.ToString();
+            DataSet ds1 = accessData.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE", "PROSPECT_WORKING_REPORT", null, null, null, txtFrmDate, txtToDate, empId, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('No Data Found');", true);
+                return;
+            }
 
             ViewState["tblproswork"] = HiddenSameData(ds1.Tables[0]);
             this.Data_Bind();
