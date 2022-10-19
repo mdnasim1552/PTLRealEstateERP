@@ -289,6 +289,10 @@
     <Content Include="assets\css\calendarCss.css" />
     <Content Include="assets\css\colors.css" />
     <Content Include="assets\css\comments.css" />
+    <Content Include="assets\css\countryValid\countrySync.css" />
+    <Content Include="assets\css\countryValid\intlTelInput.css" />
+    <Content Include="assets\css\countryValid\intlTelInput.min.css" />
+    <Content Include="assets\css\countryValid\isValidNumber.css" />
     <Content Include="assets\css\font-awesome-4-menus\css\font-awesome.min.css" />
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\css\foundation.min.css" />
@@ -312,6 +316,9 @@
     <Content Include="assets\images\search.png" />
     <Content Include="assets\js\calendarJs.js" />
     <Content Include="assets\js\contact-form-7\includes\js\script.js" />
+    <Content Include="assets\js\countryValid\intlTelInput.js" />
+    <Content Include="assets\js\countryValid\isValidNumber.js" />
+    <Content Include="assets\js\countryValid\utils.js" />
     <Content Include="assets\js\foundation.min.js" />
     <Content Include="assets\js\foundation\foundation.section.js" />
     <Content Include="assets\js\jquery.min.js" />

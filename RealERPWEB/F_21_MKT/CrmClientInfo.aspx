@@ -420,11 +420,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
 }
     </style>
 
-
-
-
-
-
+     
     <script type="text/javascript">
 
 
@@ -1941,8 +1937,12 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
         };
         //// for selected follow then selected lead status 
 
+        
+
     </script>
 
+
+    
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -2007,6 +2007,12 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                             </h4>
                                         </div>
                                         <div class="panel-body">
+
+                                            <input id="phone" type="tel">
+<span id="valid-msg" class="hide">✓ Valid</span>
+<span id="error-msg" class="hide"></span>
+
+
                                             <asp:GridView ID="gvPersonalInfo" runat="server" AutoGenerateColumns="False"
                                                 ShowFooter="True" OnRowDataBound="gvPersonalInfo_RowDataBound" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow">
                                                 <RowStyle />
