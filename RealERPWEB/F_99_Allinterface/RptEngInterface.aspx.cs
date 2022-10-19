@@ -539,7 +539,6 @@ namespace RealERPWEB.F_99_Allinterface
 
             switch (comcod)
             {
-                case "3101":
                 case "1103":
                     FirstApp = "Checked";
                     frecom = "1st Recom.";
