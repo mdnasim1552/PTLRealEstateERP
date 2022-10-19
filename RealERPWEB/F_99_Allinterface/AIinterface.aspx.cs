@@ -220,6 +220,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQA.Visible = true;
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
+                    this.GetProductionInfo();
                     break;
                 case "7":
                     this.pnlAllProject.Visible = false;
@@ -246,6 +247,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQA.Visible = false;
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = true;
+                    this.GetAIDelivery();
                     break;
                 case "9":
                     this.pnlAllProject.Visible = false;
@@ -308,23 +310,27 @@ namespace RealERPWEB.F_99_Allinterface
                 DataView view = new DataView();
                 DataView view1 = new DataView();
                 DataView view2 = new DataView();
+               
                 view.Table = ds.Tables[0];
                 view1.Table = ds.Tables[0];
                 view1.RowFilter = " roletype<>'95001' and roletype='95002' and trackertype<>'99220'";
                 dt1 = view1.ToTable();
                 this.gv_QCQA.DataSource = dt1;
                 this.gv_QCQA.DataBind();
+
+                
                 view.RowFilter = " roletype='95001'";
                 dt1 = view.ToTable();
                 this.gv_Production.DataSource = dt1;
                 this.gv_Production.DataBind();
 
                 view2.Table = ds.Tables[0];
-                view2.RowFilter = "trackertype='99220' and roletype<>'95001' and roletype<>'95003'";
+                view2.RowFilter = "trackertype='99220' and roletype='95002'";
                 dt1 = view2.ToTable();
                 this.gv_AssignQA.DataSource = dt1;
                 this.gv_AssignQA.DataBind();
 
+               
 
             }
             catch (Exception exp)
@@ -1107,5 +1113,33 @@ namespace RealERPWEB.F_99_Allinterface
             this.data_Bind();
 
         }
+        private void GetAIDelivery()
+        {
+            try
+            {
+
+                string comcod = this.GetCompCode();
+                DataSet ds3 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETAIDELIVERY", "", "", "", "", "");
+                if (ds3 == null)
+                    return;
+                Session["tblAIdelivery"] = ds3.Tables[0];
+                DataTable dt2 = new DataTable();
+                DataView view3 = new DataView();
+                view3.Table = ds3.Tables[0];
+                view3.RowFilter = "roletypcode='95003'";
+                dt2 = view3.ToTable();
+                this.gv_Delivery.DataSource = dt2;
+                this.gv_Delivery.DataBind();
+
+
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
+
     }
 }

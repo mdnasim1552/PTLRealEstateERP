@@ -1664,7 +1664,7 @@
 
                                                 <asp:TemplateField HeaderText="">
                                                     <HeaderTemplate>
-                                                        <asp:Label ID="lblCol2" runat="server" Text="TPT" />
+                                                        <asp:Label ID="lblCol2" runat="server" Text="Fuel" />
                                                         <asp:CheckBox ID="chkCol2" runat="server" Checked="true" Class="hidden" />
                                                     </HeaderTemplate>
                                                     <ItemTemplate>

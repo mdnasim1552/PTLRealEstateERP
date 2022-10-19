@@ -34,8 +34,7 @@ namespace RealERPWEB.F_22_Sal
                 string type = this.Request.QueryString["Type"].ToString();
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = type == "Details" ? "Availability Chart 1" : "Availability Chart 2";
-                this.Visibility();
-                this.CompVisibility();
+
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -49,14 +48,22 @@ namespace RealERPWEB.F_22_Sal
         private void Visibility()
         {
             string type = this.Request.QueryString["Type"].ToString();
+            string comcod = this.GetComCode();
             switch (type)
             {
                 case "Details":
                     this.gvAailChart.Columns[10].Visible = false;
                     this.gvAailChart.Columns[11].Visible = false;
                     this.gvAailChart.Columns[12].Visible = false;
+                    if (comcod == "3366" || comcod == "3101")
+                    {
+                        this.gvAailChart.Columns[9].Visible = false;
+                    }
+                    break;
+                default:
                     break;
             }
+
         }
 
         private void CompVisibility()
@@ -281,9 +288,10 @@ namespace RealERPWEB.F_22_Sal
             this.gvAailChart.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvAailChart.DataSource = dt;
             this.gvAailChart.DataBind();
-
-
+            this.Visibility();
+            this.CompVisibility();
         }
+
         private void FooterCalculation()
         {
 

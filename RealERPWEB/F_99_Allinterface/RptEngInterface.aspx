@@ -494,7 +494,7 @@
 
             try {
 
-                
+
 
                 //$('.counter').counterUp({
                 //    delay: 10,
@@ -520,7 +520,7 @@
                 alert(e);
             }
 
-            
+
 
 
         };
@@ -532,9 +532,8 @@
                 //Table Index start with 1
 
                 comcod = <%=this.GetCompCode()%>;
-                switch(comcod)
-                {
-               
+                switch (comcod) {
+
 
                     //case 3101:   //ASIT
                     case 1103:   //Tanvir
@@ -552,18 +551,18 @@
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
                         $(".tbMenuWrp table tr td:nth-child(6)").hide();
-                  
+
                         //    $("table[id*=RadioButtonList1] input:first").next().next().hide();
-                   
+
                         break;
 
-                
-                
+
+
                 }
 
 
 
-            } 
+            }
             catch (e) {
 
 
@@ -1989,7 +1988,7 @@
 
                                                 <asp:LinkButton ID="lnkbtnfinalAprv" runat="server" OnClientClick="return FunAppConfirm();"
                                                     OnClick="lnkbtnfinalAprv_Click" ToolTip="Approval Print"> <span class=" fa fa-check "></span> </asp:LinkButton>
-                                                
+
                                             </FooterTemplate>
                                             <FooterStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="Center" />
@@ -2009,7 +2008,7 @@
 
                                             </ItemTemplate>
                                             <ItemStyle Width="50px" />
-                                            <HeaderStyle HorizontalAlign="Center" Width="50px"/>
+                                            <HeaderStyle HorizontalAlign="Center" Width="50px" />
                                         </asp:TemplateField>
 
 
@@ -2232,9 +2231,9 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="hlnkprjlink"  CssClass="btn btn-xs btn-default" runat="server" ToolTip="Project Linking" OnClientClick="Confirm (Do You Want To Link this Project?) return;" OnClick="hlnkprjlink_Click" Font-Underline="false"><span class="fa fa-check"></span>
+                                                <asp:LinkButton ID="hlnkprjlink" CssClass="btn btn-xs btn-default" runat="server" ToolTip="Project Linking" OnClientClick="Confirm (Do You Want To Link this Project?) return;" OnClick="hlnkprjlink_Click" Font-Underline="false"><span class="fa fa-check"></span>
                                                 </asp:LinkButton>
-                                                <asp:HyperLink ID="hlnkpaymentSch"  CssClass="btn btn-xs btn-default" Target="_blank" ToolTip="Go Payment Schedule" runat="server" Font-Size="15px"><span  class="fa fa-check"></span> </asp:HyperLink>
+                                                <asp:HyperLink ID="hlnkpaymentSch" CssClass="btn btn-xs btn-default" Target="_blank" ToolTip="Go Payment Schedule" runat="server" Font-Size="15px"><span  class="fa fa-check"></span> </asp:HyperLink>
                                             </ItemTemplate>
                                             <ItemStyle Width="100px" />
                                             <HeaderStyle HorizontalAlign="Center" Width="80px" VerticalAlign="Top" />
@@ -2426,12 +2425,12 @@
                                         <FooterStyle HorizontalAlign="Right" Width="60px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Department">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblgvdetpname" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "detpname")) %>'
-                                                    Width="100px"></asp:Label>
-                                            </ItemTemplate>
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                        </asp:TemplateField>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvdetpname" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "detpname")) %>'
+                                                Width="100px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
                                     <%--     <asp:TemplateField HeaderText="Curent Status">
                                         <ItemTemplate>
                                             <asp:Label ID="lblcurrentStreq" runat="server" Font-Size="12px" Style="font-size: 12px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cstatus")) %>'
