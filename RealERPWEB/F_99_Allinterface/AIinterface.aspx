@@ -444,10 +444,11 @@
             OpenAddTask();
             OpenAddBatch();
             closecustomeradd();
+            CustomerCreate();
         }
-        function OpenAddCustomer() {
+        function CustomerCreate() {
 
-            $('#AddCustomerModal').modal('toggle');
+            $('#btnAdd').modal('toggle');
         }
         function OpenAddProject() {
 
