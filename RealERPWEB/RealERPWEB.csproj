@@ -149,13 +149,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
+    <Reference Include="microsoft.reportviewer.datavisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Real Estate Bin 211213\bin\microsoft.reportviewer.datavisualization.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Backup\Projects\Project Reference\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -349,6 +353,7 @@
     <Content Include="Content\ResponsiveForm.css" />
     <Content Include="Content\screen.css" />
     <Content Include="Content\select2.css" />
+    <Content Include="Content\select2.min.css" />
     <Content Include="Content\styles.imageuploader.css" />
     <Content Include="Content\theme.blue.css" />
     <Content Include="Content\Theme\chart-area-demo.js" />
@@ -2195,6 +2200,8 @@
     <Content Include="F_12_Inv\MatTransfer02.aspx" />
     <Content Include="F_12_Inv\MatTransStatus.aspx" />
     <Content Include="F_12_Inv\PurReqEntry.aspx" />
+    <Content Include="F_12_Inv\RptIndentIssueStatus.aspx" />
+    <Content Include="F_12_Inv\RptIndentIssueStatusSummary.aspx" />
     <Content Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx" />
     <Content Include="F_14_Pro\RptPurOrderTopSheet.aspx" />
     <Content Include="F_14_Pro\RptSupAdvanceDetails.aspx" />
@@ -2202,9 +2209,11 @@
     <Content Include="F_17_Acc\AccIndentUpdate.aspx" />
     <Content Include="F_17_Acc\AccInterComVoucherDel.aspx" />
     <Content Include="F_17_Acc\RptOPPaymentTopSheet.aspx" />
+    <Content Include="F_17_Acc\RptSupplierOvAllPSummary.aspx" />
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
     <Content Include="F_21_MKT\RptPerDeleteProspect.aspx" />
+    <Content Include="F_22_Sal\MktGrandNoteSheet.aspx" />
     <Content Include="F_22_Sal\SaleSurvey.aspx" />
     <Content Include="F_22_Sal\SaleSurPrjInformation.aspx" />
     <Content Include="F_22_Sal\SaleSurPCodeBook.aspx" />
@@ -2750,6 +2759,7 @@
     <Content Include="F_34_Mgt\CodeLinkWs.aspx" />
     <Content Include="F_34_Mgt\CodeTransSupSub.aspx" />
     <Content Include="F_34_Mgt\CompImg.aspx" />
+    <Content Include="F_34_Mgt\CompUtilitySetUp.aspx" />
     <Content Include="F_34_Mgt\ContentSetupEntry.aspx" />
     <Content Include="F_34_Mgt\CreateTagSetup.aspx" />
     <Content Include="F_34_Mgt\DashBoardAll.aspx" />
@@ -2798,6 +2808,9 @@
     <Content Include="F_38_AI\AIGenCodeBook.aspx" />
     <Content Include="F_38_AI\CreateTask.aspx" />
     <Content Include="F_38_AI\CustomerList.aspx" />
+    <Content Include="F_38_AI\JobAnalytics.aspx" />
+    <Content Include="F_38_AI\MyTasks.aspx" />
+    <Content Include="F_38_AI\Projects.aspx" />
     <Content Include="F_39_MyPage\ClientCodeBook.aspx" />
     <Content Include="F_39_MyPage\ClientDetail.aspx" />
     <Content Include="F_39_MyPage\CustomerDetail.aspx" />
@@ -2936,6 +2949,7 @@
     <Content Include="F_64_Mgt\UserImage.aspx" />
     <Content Include="F_64_Mgt\UserLoginfrm.aspx" />
     <Content Include="F_70_Services\QuotationEntry.aspx" />
+    <Content Include="F_70_Services\ServicePrint.aspx" />
     <Content Include="F_81_Hrm\F_81_Rec\AppLetCodeBook.aspx" />
     <Content Include="F_81_Hrm\F_81_Rec\ApplicantInfo.aspx" />
     <Content Include="F_81_Hrm\F_81_Rec\ConfirmLetter.aspx" />
@@ -3625,9 +3639,11 @@
     <Content Include="Scripts\ScrollableGridPlugin.js" />
     <Content Include="Scripts\ScrollableTablePlugin.js" />
     <Content Include="Scripts\select2.js" />
+    <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\toaster.js" />
     <Content Include="Scripts\uds_api_contents.js" />
     <Content Include="Scripts\waypoints.min.js" />
+    <Content Include="Scripts\WebForms\Bootstrapautocomplete.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
     <Content Include="Scripts\WebForms\GridView.js" />
@@ -4016,6 +4032,20 @@
     <Compile Include="F_12_Inv\PurReqEntry.aspx.designer.cs">
       <DependentUpon>PurReqEntry.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_12_Inv\RptIndentIssueStatus.aspx.cs">
+      <DependentUpon>RptIndentIssueStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_12_Inv\RptIndentIssueStatus.aspx.designer.cs">
+      <DependentUpon>RptIndentIssueStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_12_Inv\RptIndentIssueStatusSummary.aspx.cs">
+      <DependentUpon>RptIndentIssueStatusSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_12_Inv\RptIndentIssueStatusSummary.aspx.designer.cs">
+      <DependentUpon>RptIndentIssueStatusSummary.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx.cs">
       <DependentUpon>LinkRptPurchaseStatusUr.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4065,6 +4095,13 @@
     <Compile Include="F_17_Acc\RptOPPaymentTopSheet.aspx.designer.cs">
       <DependentUpon>RptOPPaymentTopSheet.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_17_Acc\RptSupplierOvAllPSummary.aspx.cs">
+      <DependentUpon>RptSupplierOvAllPSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_17_Acc\RptSupplierOvAllPSummary.aspx.designer.cs">
+      <DependentUpon>RptSupplierOvAllPSummary.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_21_MKT\LandProspectTransfer.aspx.cs">
       <DependentUpon>LandProspectTransfer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4085,6 +4122,13 @@
     </Compile>
     <Compile Include="F_21_MKT\RptPerDeleteProspect.aspx.designer.cs">
       <DependentUpon>RptPerDeleteProspect.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_22_Sal\MktGrandNoteSheet.aspx.cs">
+      <DependentUpon>MktGrandNoteSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\MktGrandNoteSheet.aspx.designer.cs">
+      <DependentUpon>MktGrandNoteSheet.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_22_Sal\SaleSurvey.aspx.cs">
       <DependentUpon>SaleSurvey.aspx</DependentUpon>
@@ -4499,6 +4543,13 @@
     <Compile Include="F_33_Doc\UploadDocumentation.aspx.designer.cs">
       <DependentUpon>UploadDocumentation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_34_Mgt\CompUtilitySetUp.aspx.cs">
+      <DependentUpon>CompUtilitySetUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_34_Mgt\CompUtilitySetUp.aspx.designer.cs">
+      <DependentUpon>CompUtilitySetUp.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_34_Mgt\ContentSetupEntry.aspx.cs">
       <DependentUpon>ContentSetupEntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4611,12 +4662,40 @@
     <Compile Include="F_38_AI\CustomerList.aspx.designer.cs">
       <DependentUpon>CustomerList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_38_AI\JobAnalytics.aspx.cs">
+      <DependentUpon>JobAnalytics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_38_AI\JobAnalytics.aspx.designer.cs">
+      <DependentUpon>JobAnalytics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_38_AI\MyTasks.aspx.cs">
+      <DependentUpon>MyTasks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_38_AI\MyTasks.aspx.designer.cs">
+      <DependentUpon>MyTasks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_38_AI\Projects.aspx.cs">
+      <DependentUpon>Projects.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_38_AI\Projects.aspx.designer.cs">
+      <DependentUpon>Projects.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_70_Services\QuotationEntry.aspx.cs">
       <DependentUpon>QuotationEntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_70_Services\QuotationEntry.aspx.designer.cs">
       <DependentUpon>QuotationEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_70_Services\ServicePrint.aspx.cs">
+      <DependentUpon>ServicePrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_70_Services\ServicePrint.aspx.designer.cs">
+      <DependentUpon>ServicePrint.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_81_Rec\NewRecruitment.aspx.cs">
       <DependentUpon>NewRecruitment.aspx</DependentUpon>

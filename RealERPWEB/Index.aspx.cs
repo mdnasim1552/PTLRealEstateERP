@@ -130,9 +130,9 @@ namespace RealERPWEB
                 {
                     DataSet ds1 = new DataSet();
                     string usercode = "0000000";
-                    //string tdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    string logdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     DateTime ctdate = DateTime.Now;
-                    ds1 = ulogin.GetTransInfo(comcod, "SP_REPORT_LOGSTAUTS", "GETALLLOGINF", usercode, fdate, tdate, "%" + usrid + "%", ctdate.ToString("yyyyMMddHHmm"), "", "", "", "");
+                    ds1 = ulogin.GetTransInfo(comcod, "SP_REPORT_LOGSTAUTS", "GETALLLOGINF", usercode, logdate, logdate, "%" + usrid + "%", ctdate.ToString("yyyyMMddHHmm"), "", "", "", "");
                     if (ds1 == null)
                         return;
                     string todaywrkcount = ds1.Tables[2].Rows[0]["tcount"].ToString();
@@ -140,7 +140,7 @@ namespace RealERPWEB
                     getOfflineUser();
 
                     string add = this.offlineUserCount.InnerHtml;
-                    component += "<div class='col-12 col-sm-2 col-lg-2'><div class='card-metric'><a href='F_34_Mgt/RptUserLogDetails.aspx'><div class='metric metric_cus badge text-purpule " + row["bgcolor"] + "'><div class='has-badge'><h5 id='todaywrkcount' class='text-gray textfont16' runat='server'>" + todaywrkcount + "</h5><h2 class='metric-label text-primary '>Today Activities</h2></div></div></a></div></div><div class='col-12 col-sm-2 col-lg-2'><div class='card-metric'><a href='#' data-toggle='modal' data-target='#exampleModalDrawerRight'><div class='metric metric_cus badge text-purpule " + row["bgcolor"] + "'><div class='has-badge'><h5 id='todaywrkcount' class='text-gray textfont16' runat='server'>" + add + "</h5><h2 class='metric-label text-primary '>User Offline</h2></div></div></a></div></div><div class='col-12 col-sm-2 col-lg-2 d-none'><div class='card-metric'><a href='F_33_Doc/GroupChat.aspx'><div class='metric metric_cus badge text-purpule " + row["bgcolor"] + "'><div class='has-badge'><h5 id='todaywrkcount' class='text-gray textfont16' runat='server'>&nbsp</h5><h2 class='metric-label text-primary '>Task</h2></div></div></a></div></div>";
+                    component += "<div class='col-12 col-sm-2 col-lg-2'><div class='card-metric'><a href='F_34_Mgt/RptUserLogDetails.aspx' target='_blank'><div class='metric metric_cus badge text-purpule " + row["bgcolor"] + "'><div class='has-badge'><h5 id='todaywrkcount' class='text-gray textfont16' runat='server'>" + todaywrkcount + "</h5><h2 class='metric-label text-primary'>Today Activities</h2></div></div></a></div></div><div class='col-12 col-sm-2 col-lg-2'><div class='card-metric'><a href='#' data-toggle='modal' data-target='#exampleModalDrawerRight'><div class='metric metric_cus badge text-purpule " + row["bgcolor"] + "'><div class='has-badge'><h5 id='todaywrkcount' class='text-gray textfont16' runat='server'>" + add + "</h5><h2 class='metric-label text-primary '>Today's Inactive User</h2></div></div></a></div></div><div class='col-12 col-sm-2 col-lg-2 d-none'><div class='card-metric'><a href='F_33_Doc/GroupChat.aspx'><div class='metric metric_cus badge text-purpule " + row["bgcolor"] + "'><div class='has-badge'><h5 id='todaywrkcount' class='text-gray textfont16' runat='server'>&nbsp</h5><h2 class='metric-label text-primary '>Task</h2></div></div></a></div></div>";
 
                 }
                 else

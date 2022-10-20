@@ -1,7 +1,7 @@
 ﻿(function ($) {
     $.fn.Scrollable = function (options) {
         var defaults = {
-            ScrollHeight: 380,
+            ScrollHeight: 600,
             Width: 0
             
         };

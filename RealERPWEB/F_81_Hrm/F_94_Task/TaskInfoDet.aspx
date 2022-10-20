@@ -192,7 +192,8 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="">
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="lnkDelete" runat="server" Font-Bold="True" Height="16px" ToolTip="Delete" Style="text-align: right" OnClientClick="javascript:return  FunConfirm()" OnClick="lnkDelete_Click"><span class=" fa   fa-recycle"></span></asp:LinkButton>
+
+                                                <asp:LinkButton ID="lnkDelete" runat="server" Font-Bold="True" CssClass="btn btn-default  btn-xs" Height="16px" ToolTip="Delete" Style="text-align: right" OnClientClick="javascript:return  FunConfirm()" OnClick="lnkDelete_Click"><span  style="color:red"  class="fa   fa-recycle "></span></asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Date">
@@ -386,7 +387,7 @@
                             <label class="control-label">Description:</label>
                         </div>
                         <div class="col-lg-3">
-                            <asp:TextBox ID="txttaskdesc" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                            <asp:TextBox ID="txttaskdesc" runat="server" CssClass="form-control form-control-sm" TextMode="MultiLine"></asp:TextBox>
                         </div>
                         <asp:Label runat="server" ID="lblrowid" Visible="false">0</asp:Label>
                         <asp:Label runat="server" ID="lblempid" Visible="false"></asp:Label>

@@ -84,6 +84,7 @@ namespace RealERPWEB.F_22_Sal
             this.ddlgrp.DataValueField = "grpcode";
             this.ddlgrp.DataSource = ds1.Tables[0];
             this.ddlgrp.DataBind();
+            this.ddlgrp.SelectedValue = "000000000000";
 
 
             ////DataTable dt = ds1.Tables[0];
@@ -110,7 +111,7 @@ namespace RealERPWEB.F_22_Sal
         {
             Session.Remove("tblgrpsoldunsold");
             string comcod = this.GetComeCode();
-            string prjcode = this.ddlPrjName.SelectedValue.ToString()=="000000000000"?"18%":this.ddlPrjName.SelectedValue.ToString()+"%";
+            string prjcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18%" : this.ddlPrjName.SelectedValue.ToString() + "%";
             string frmdate = this.txtfrmdate.Text.Trim();
             string todate = this.txttodate.Text.Trim();
 
@@ -123,10 +124,12 @@ namespace RealERPWEB.F_22_Sal
 
                 return;
             }
+            Session["tblsalesvscoll02"] = ((DataTable)ds1.Tables[0]).Copy();
 
             Session["tblsalesvscoll"] = this.HiddenSameData(ds1.Tables[0]);
+
             Session["tbltypecount"] = ds1.Tables[1];
-          
+
             this.Data_Bind();
         }
 
@@ -159,7 +162,7 @@ namespace RealERPWEB.F_22_Sal
 
             this.gvsalesvscoll.DataSource = (DataTable)Session["tblsalesvscoll"];
             this.gvsalesvscoll.DataBind();
-           // this.FooterCal();
+            // this.FooterCal();
 
             //Session["Report1"] = gvothcoll;
             //((HyperLink)this.gvothcoll.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
@@ -201,7 +204,7 @@ namespace RealERPWEB.F_22_Sal
             ((Label)this.gvsalesvscoll.FooterRow.FindControl("lblFgvutility")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(utility)", "")) ? 0.00 :
             dt.Compute("sum(utility)", ""))).ToString("#,##0;(#,##0); ");
 
-       
+
 
             //Session["Report1"] = gvsoldunsold;
             //((HyperLink)this.gvsoldunsold.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
@@ -218,37 +221,60 @@ namespace RealERPWEB.F_22_Sal
             string comadd = hst["comadd1"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
-            string date = Convert.ToDateTime(this.txtfrmdate.Text).ToString("MMMM-yyyy");
+            string frmdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMMM-yyyy");
             string type = this.ddlgrp.SelectedValue.ToString();
             string projectName = "";
-            DataTable dt = (DataTable)Session["tblsalesvscoll"];
+            DataTable dt = (DataTable)Session["tblsalesvscoll02"];
             DataTable dt1 = (DataTable)Session["tbltypecount"];
 
 
-            string shopno = dt1.Rows[0]["shopno"].ToString();
-            string aptno = dt1.Rows[0]["aptno"].ToString();
-            string officeno = dt1.Rows[0]["officeno"].ToString();
+            string shopno, aptno, officeno, totalsal;
+            string grp = ASTUtility.Left(this.ddlgrp.SelectedValue.ToString(), 7);
+            switch (grp)
+            {
+                case "5101001": //  shop
+                    shopno = dt1.Rows[0]["shopno"].ToString() + " Units";
+                    aptno = "";
+                    officeno = "";
+                    totalsal = "";
+                    break;
 
+                case "5101003": // appartment
+                    shopno = "";
+                    aptno = dt1.Rows[0]["aptno"].ToString() + " Units";
+                    officeno = "";
+                    totalsal = "";
+                    break;
 
+                default:
+                    shopno = dt1.Rows[0]["shopno"].ToString() + " Units";
+                    aptno = dt1.Rows[0]["aptno"].ToString() + " Units";
+                    officeno = dt1.Rows[0]["officeno"].ToString() + " Units";
+                    totalsal = (Convert.ToDouble(dt1.Rows[0]["aptno"]) + Convert.ToDouble(dt1.Rows[0]["shopno"])).ToString() + " Units";
+                    break;
+            }
 
 
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesvsAchievement>();
-          
-           
+
+
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSalesVsAchivement", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("printdate", printdate));
-            Rpt1.SetParameters(new ReportParameter("date", date));
+            Rpt1.SetParameters(new ReportParameter("totalsal", totalsal));
             Rpt1.SetParameters(new ReportParameter("projectName", projectName));
-            Rpt1.SetParameters(new ReportParameter("shopno", shopno + " Units"));
-            Rpt1.SetParameters(new ReportParameter("aptno", aptno +" Units"));
+            Rpt1.SetParameters(new ReportParameter("shopno", shopno));
+            Rpt1.SetParameters(new ReportParameter("aptno", aptno));
             //Rpt1.SetParameters(new ReportParameter("officeno", officeno));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Achivement for month of "+date+" "));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Achievement for month of " + frmdate + " to " + todate));
+            Rpt1.SetParameters(new ReportParameter("RptTitle1", "Monthly Sales Report"));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("grp", grp));
             //Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
 
             Session["Report1"] = Rpt1;
@@ -256,7 +282,7 @@ namespace RealERPWEB.F_22_Sal
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
-       
+
     }
 
 }

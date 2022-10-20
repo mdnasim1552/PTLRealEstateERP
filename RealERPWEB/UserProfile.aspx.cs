@@ -31,12 +31,13 @@ namespace RealERPWEB
 
             if (!IsPostBack)
             {
+              
 
                 Get_UpComingHoliday();
                 Get_Events();
                 getLink();
                 getServiceLen();
-
+                getclientdata();
                 GetAllHolidays();
                 gethrpolicy();
                ((Label)this.Master.FindControl("lblTitle")).Text = "User Profile";
@@ -127,7 +128,23 @@ namespace RealERPWEB
             {
                 this.pnlApplyLeavBTI.Visible = false;
             }
-       
+
+
+            checkVisibility();
+        }
+        private void checkVisibility()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo.SP_UTILITY_USER_DASHBOARD", "GETVISIBILITYSTATUS", "", "", "", "", "", "", "");
+
+            if(ds1==null || ds1.Tables[0].Rows.Count == 0)
+                return;
+            string paystatus = ds1.Tables[0].Rows[0]["isvispayslip"].ToString();
+            if (paystatus == "False")
+            {
+                this.modalPayslipBti.Attributes.Add("class", "d-none");
+            }
+     
 
 
         }
@@ -146,6 +163,43 @@ namespace RealERPWEB
             }
             this.gvLvReqAll.DataSource = (ds1.Tables[0]);
             this.gvLvReqAll.DataBind();
+
+        }
+
+        private void getclientdata()
+        {
+            string comcod = this.GetCompCode();
+            if (comcod == "3368")
+            {
+
+            this.pnlClientMrrdayFinlay.Visible = true;
+            }
+            else
+            {
+                this.pnlClientMrrdayFinlay.Visible = false;
+            }
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "CLIENTBIRTHDAY", "", "", "", "", "", "", "");
+            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+            {
+                this.gvclientbthday.DataSource = null;
+                this.gvclientbthday.DataBind();
+                return;
+
+            }
+            this.gvclientbthday.DataSource = (ds1.Tables[0]);
+            this.gvclientbthday.DataBind();
+
+
+            if (ds1 == null || ds1.Tables[1].Rows.Count == 0)
+            {
+                this.gvmarriageday.DataSource = null;
+                this.gvmarriageday.DataBind();
+                return;
+            }
+            this.gvmarriageday.DataSource = (ds1.Tables[1]);
+            this.gvmarriageday.DataBind();
 
         }
         private void getLink()
@@ -841,6 +895,19 @@ namespace RealERPWEB
                     this.gvAllNotice.DataBind();
 
                     MonthWiseBDate();
+                    int j = 0;
+
+                    string innHTMLTopnot1 = "";
+                    if (ds2.Tables[1].Rows.Count == 0)
+                        return; 
+
+                    foreach (DataRow dr in ds2.Tables[1].Rows)
+                    {
+                    
+                        innHTMLTopnot1 += @"<p>" + dr["eventitle"] + " ( " + (dr["ndetails"].ToString().Length > 140 ? dr["ndetails"].ToString().Substring(0, 139) + "...." : dr["ndetails"].ToString()) + ")" + "</p>";
+                        j++;
+                    }
+                    this.EventCaro.InnerHtml = innHTMLTopnot1;
 
                     break;
                 default:

@@ -136,7 +136,7 @@
                                
                             </div>
                             <div class="form-group row">
-                                <asp:Label ID="Label11" runat="server">Task Title</asp:Label>
+                                <asp:Label ID="Label11" runat="server">Task Name</asp:Label>
                                 <asp:TextBox ID="txttasktitle" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
                             </div>
 
@@ -151,7 +151,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 pl-0">
-                                    <asp:Label ID="Label23" runat="server">Assign Team Members</asp:Label>
+                                    <asp:Label ID="Label23" runat="server">Assigned Team Members</asp:Label>
                                     <asp:DropDownList ID="ddlassignmember" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
                                     </asp:DropDownList>
                                 </div>
@@ -172,12 +172,12 @@
                             <div class="form-group row">
 
                                  <div class="col-lg-6 col-md-6 col-sm-12 pl-0">
-                                    <asp:Label ID="Label8" runat="server">Valocity Type</asp:Label>
+                                    <asp:Label ID="Label8" runat="server">Velocity Type</asp:Label>
                                     <asp:DropDownList ID="ddlvalocitytype" runat="server" CssClass="form-control chzn-select" AutoPostBack="true">
                                     </asp:DropDownList>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-12">
-                                    <asp:Label ID="Label9" runat="server"> Valocity Quantity</asp:Label>
+                                    <asp:Label ID="Label9" runat="server"> Velocity Quantity</asp:Label>
                                     <asp:TextBox ID="txtquantity" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
 
@@ -226,13 +226,13 @@
                                                 <asp:Label ID="tblAnnotation" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "annoid")) %>' ForeColor="Black" Font-Size="12px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Valocity  <br> Type">
+                                        <asp:TemplateField HeaderText="Velocity  <br> Type">
                                             <ItemTemplate>
                                                 <asp:Label ID="tbltype" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "valocitydesc")) %>' Width="130px" ForeColor="Black" Font-Size="12px"></asp:Label>
 
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Valocity <br> QTY">
+                                        <asp:TemplateField HeaderText="Velocity <br> QTY">
                                             <ItemTemplate>
                                                 <asp:Label ID="tblValoquantity" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "valocityqty")) %>' Width="100px" ForeColor="Black" Font-Size="12px"></asp:Label>
 

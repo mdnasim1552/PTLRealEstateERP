@@ -266,7 +266,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField>
                                     <ItemTemplate>
-                                        <asp:HyperLink ToolTip="Edit And Approve" ID="lnkEdit" Target="_blank" CssClass="btn btn-xs btn-success" runat="server"></asp:HyperLink>
+                                        <asp:HyperLink ToolTip="Edit And Approve" ID="lnkEdit" Target="_blank" CssClass="btn btn-xs btn-success" runat="server"><i class="fa fa-edit"></i></asp:HyperLink>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Print">

@@ -96,6 +96,12 @@
             white-space: normal !important;
             word-break: break-word !important;
         }
+        label{
+            margin-bottom:0!important;
+        }
+        .mt20{
+            margin-top:20px!important;
+        }
     </style>
 
 
@@ -154,15 +160,17 @@
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-6">
 
-                            <asp:Label ID="lblemp" runat="server">Employee List                                  
-                            <asp:LinkButton ID="ibtnEmpListAllinfo" runat="server" OnClick="ibtnEmpListAllinfo_Click"><i class="fa fa-search"> </i></asp:LinkButton>
+                            <asp:Label ID="lblemp" CssClass="m-0" runat="server">Employee List    
+                                           <span id="SpResign" class="text-danger" runat="server" >
+                                    <asp:CheckBox runat="server" ID="chkresign" Text="Resign list" AutoPostBack="true" CssClass="mb-0" OnCheckedChanged="chkresign_CheckedChanged" /></span>
+                            <%--<asp:LinkButton ID="ibtnEmpListAllinfo" runat="server" OnClick="ibtnEmpListAllinfo_Click"><i class="fa fa-search"> </i></asp:LinkButton>--%>
                             </asp:Label>
                             <asp:DropDownList ID="ddlEmpNameAllInfo" runat="server" OnSelectedIndexChanged="ddlEmpNameAllInfo_SelectedIndexChanged" CssClass="form-control chzn-select" TabIndex="2" AutoPostBack="True">
                             </asp:DropDownList>
 
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-6">
-                            <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary okBtn pull-left mt-4" OnClick="lnkbtnShow_Click">Ok</asp:LinkButton>
+                            <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary mt20" OnClick="lnkbtnShow_Click">Ok</asp:LinkButton>
                         </div>
 
                     </div>

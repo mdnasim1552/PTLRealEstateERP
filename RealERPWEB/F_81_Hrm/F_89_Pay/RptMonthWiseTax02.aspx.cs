@@ -227,18 +227,26 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             if (dt1.Rows.Count == 0)
                 return dt1;
            string empid = dt1.Rows[0]["empid"].ToString();
+           string idcardno = dt1.Rows[0]["idcardno"].ToString();
+           string grp = dt1.Rows[0]["grp"].ToString();
            
             for (int j = 1; j < dt1.Rows.Count; j++)
             {
-                if (dt1.Rows[j]["empid"].ToString() == empid)
+                if ((dt1.Rows[j]["empid"].ToString() == empid) || (dt1.Rows[j]["grp"].ToString() == "B"))
                 {
                     empid = dt1.Rows[j]["empid"].ToString();
+                    //idcardno = dt1.Rows[j]["idcardno"].ToString();
+                    //grp = dt1.Rows[j]["grp"].ToString();
                     dt1.Rows[j]["empname"] = "";
+                    dt1.Rows[j]["idcardno"] = "";
+                    //dt1.Rows[j]["grp"] = "";
                 }
 
                 else
                 {
                     empid = dt1.Rows[j]["empid"].ToString();
+                    idcardno = dt1.Rows[j]["idcardno"].ToString();
+                    //grp = dt1.Rows[j]["grp"].ToString();
                 }
 
             }
@@ -393,7 +401,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             EnumerableRowCollection<DataRow> query = from tax in dt.AsEnumerable()
                                                      where tax.Field<string>("grp") != "B"
-                                                     orderby tax.Field<string>("empid")
+                                                     orderby tax.Field<string>("monthid"), tax.Field<string>("idcardno")
                                                      select tax;
 
             DataView view = query.AsDataView();

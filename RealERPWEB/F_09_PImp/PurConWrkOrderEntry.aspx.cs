@@ -729,8 +729,8 @@ namespace RealERPWEB.F_09_PImp
                         dr1["rsirunit"] = (((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'"))[0]["rsirunit"];
                         dr1["spec"] = "";
                         dr1["ordrrate"] = Convert.ToDouble((((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'"))[0]["isurat"]).ToString();
-                        //dr1["ordqty"] = 0.00;
-                        //dr1["ordamt"] = 0.00;
+                        dr1["ordqty"] = 0.00;
+                        dr1["ordamt"] = 0.00;
                         dr1["rmrks"] = "";
 
                         dt.Rows.Add(dr1);

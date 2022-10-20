@@ -355,7 +355,7 @@ namespace RealERPWEB.F_04_Bgd
                     dv.Sort = ("cattype,flrcod");
                     dt = dv.ToTable();
              */
-            int j = 5;
+            int j = 6;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 this.gvAnalysis.Columns[j].HeaderText = dt.Rows[i]["flrdes"].ToString();
@@ -439,7 +439,23 @@ namespace RealERPWEB.F_04_Bgd
 
 
             this.lblColGroup.Text = Convert.ToString(i);
+            this.getComColVisiable();
+        }
 
+        private void getComColVisiable()
+        {
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "3101":
+                case "3336":
+                case "3337":
+                    this.gvAnalysis.Columns[17].Visible = false;
+                    this.gvAnalysis.Columns[18].Visible = false;
+                    break;
+                default:
+                    break;
+            }
         }
 
         protected void Refresh_Analysis_Session()
@@ -454,7 +470,7 @@ namespace RealERPWEB.F_04_Bgd
                 {
                     string gvQty1 = "txtgvQty" + ASTUtility.Right("00" + j.ToString(), 3);
                     double gvQty2 = Convert.ToDouble("0" + ((TextBox)gv1.FindControl(gvQty1)).Text.Trim().Replace(",", ""));
-                    if (this.gvAnalysis.Columns[j + 4].Visible)
+                    if (this.gvAnalysis.Columns[j + 5].Visible)
                     {
                         if (tbl1.Rows[i]["rsircode"].ToString() == gvResCod)
                             tbl1.Rows[i]["qty" + ASTUtility.Right("00" + j.ToString(), 3)] = gvQty2;
@@ -872,14 +888,14 @@ namespace RealERPWEB.F_04_Bgd
             int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string Rescode = ((Label)this.gvAnalysis.Rows[rowIndex].FindControl("lblgvResCod")).Text.Trim();
 
-            bool result = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_IRSTDANA", "DELETERESOURCE", Itemcode,Rescode, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            bool result = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_IRSTDANA", "DELETERESOURCE", Itemcode, Rescode, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
 
             if (result)
             {
                 bool result2 = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_IRSTDANA", "DELETERESOURCE02", Itemcode, Rescode, "", "", "", "", "", "", "", "", "", "", "", "", "");
                 int rowindex2 = (this.gvAnalysis.PageSize) * (this.gvAnalysis.PageIndex) + rowIndex;
-                dt.Rows[rowindex2].Delete(); 
+                dt.Rows[rowindex2].Delete();
             }
 
             DataView dv = dt.DefaultView;
@@ -889,8 +905,8 @@ namespace RealERPWEB.F_04_Bgd
             ViewState["tblStdAna"] = dv.ToTable();
             this.ShowColoumGroup(1);
 
-            
-        }      
+
+        }
 
 
         protected void chkAllCheckid_CheckedChanged(object sender, EventArgs e)
@@ -1060,6 +1076,9 @@ namespace RealERPWEB.F_04_Bgd
 
 
             this.lblColGroup.Text = Convert.ToString(i);
+
+            this.getComColVisiable();
+
 
         }
     }

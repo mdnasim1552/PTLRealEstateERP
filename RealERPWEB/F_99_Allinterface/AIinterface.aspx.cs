@@ -14,7 +14,7 @@ namespace RealERPWEB.F_99_Allinterface
     {
         SendNotifyForUsers UserNotify = new SendNotifyForUsers();
 
-        ProcessAccess HRData = new ProcessAccess();
+        ProcessAccess AIData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -24,14 +24,13 @@ namespace RealERPWEB.F_99_Allinterface
                 //    Response.Redirect("../AcceessError.aspx");
                 //((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "AI Interface";
-                //this.txtcreateDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
-                //DateTime now = DateTime.Now;
-                //var startDate = new DateTime(now.Year, now.Month, 1);
-                //var endDate = startDate.AddMonths(1).AddDays(-1);
 
+                DateTime now = DateTime.Now;
+                var startDate = new DateTime(now.Year, now.Month, 1);
+                var endDate = startDate.AddMonths(1).AddDays(-1);
+                this.txtfrmdate.Text = Convert.ToDateTime(startDate).ToString("dd-MMM-yyyy");
+                this.txttodate.Text = Convert.ToDateTime(endDate).ToString("dd-MMM-yyyy");
 
-                //this.txtfrmdate.Text = Convert.ToDateTime(startDate).ToString("dd-MMM-yyyy");
-                //this.txttodate.Text = Convert.ToDateTime(endDate).ToString("dd-MMM-yyyy");
                 //this.GetEmplist();
 
                 //Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -39,9 +38,9 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                 ////this.getAllData();
-
-                //this.TaskSteps.SelectedIndex = 0;
-                //this.TaskSteps_SelectedIndexChanged(null, null);
+                this.GetAIInterface();
+                this.TasktState.SelectedIndex = 0;
+                this.TasktState_SelectedIndexChanged(null, null);
 
 
 
@@ -53,22 +52,9 @@ namespace RealERPWEB.F_99_Allinterface
             string comcod = this.GetCompCode();
             string txtEmpname = "%%";
             string type = "";
-            switch (comcod)
-            {
-                case "3365":
-                case "3101":
-                    type = "lnemp";
-                    break;
-                default:
-                    type = "";
-                    break;
-            }
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string empid = hst["empid"].ToString() ?? "";
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLNEMPLIST", txtEmpname, type, "", "", "", "", "", "", "");
-            
-
-
+            DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLNEMPLIST", txtEmpname, type, "", "", "", "", "", "", "");
 
         }
         private string GetCompCode()
@@ -78,16 +64,59 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
-       private void GetAIInterface()
+        private void GetAIInterface()
         {
             string comcod = this.GetCompCode();
-            DataSet dt = HRData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETINTERFACE", "", "", "", "", "", "");
-            if (dt == null)
+            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETINTERFACE", "", "", "", "", "", "");
+            if (ds == null)
                 return;
 
-            Session["tblprojectlist"] = dt.Tables[0];
-            this.gvInterface.DataSource = dt;
+            this.TasktState.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["prj"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>All Projects</div></div></div>";
+            this.TasktState.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["batch"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Batch Status</div></div></div>";
+
+            this.TasktState.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["assing"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Assign</div></div></div>";
+
+            this.TasktState.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["production"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Production</div></div></div>";
+
+            this.TasktState.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["qc"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>QC</div></div></div>"; //2nd App.
+
+            this.TasktState.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["accpt"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Accept/Reject</div></div></div>";
+
+            this.TasktState.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["qa"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>QA</div></div></div>";
+            this.TasktState.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue  counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["feeback"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>FeedBack</div></div></div>";
+            this.TasktState.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["delivery"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Delivery</div></div></div>";
+            this.TasktState.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["invoice"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Invoice</div></div></div>";
+            this.TasktState.Items[10].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["collct"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Collection</div></div></div>";
+
+
+
+
+
+            Session["tblprojectlist"] = ds.Tables[0];
+            Session["tblassinglist"] = ds.Tables[2];
+
+
+            this.data_Bind();
+        }
+        private void StatusCount()
+        {
+            DataTable tbl1 = (DataTable)Session["tblstatuscount"];
+
+
+        }
+        private void data_Bind()
+        {
+            DataTable tbl1 = (DataTable)Session["tblprojectlist"];
+            DataTable tblasing = (DataTable)Session["tblassinglist"];
+
+            this.gvInterface.DataSource = tbl1;
+
+
             this.gvInterface.DataBind();
+
+            this.gvAssingJob.DataSource = tblasing;
+            this.gvAssingJob.DataBind();
+
         }
 
         protected void TasktState_SelectedIndexChanged(object sender, EventArgs e)
@@ -97,6 +126,21 @@ namespace RealERPWEB.F_99_Allinterface
             switch (value)
             {
                 case "0":
+                    this.pnlAllProject.Visible = true;
+                    this.pnlStatus.Visible = false;
+                    this.pnlAssign.Visible = false;
+                    this.pnlProduction.Visible = false;
+                    this.pnelQC.Visible = false;
+                    this.pnelAReject.Visible = false;
+                    this.penlInvoice.Visible = false;
+                    this.pnelCollection.Visible = false;
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = false;
+                    this.Pneldelivery.Visible = false;
+                    this.GetAIInterface();
+                    break;
+                case "1":
+                    this.pnlAllProject.Visible = false;
                     this.pnlStatus.Visible = true;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
@@ -104,9 +148,13 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelAReject.Visible = false;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
-                    this.GetAIInterface();
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = false;
+                    this.Pneldelivery.Visible = false;
+                    this.GetBatchAssingList();
                     break;
-                case "1":
+                case "2":
+                    this.pnlAllProject.Visible = false;
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = true;
                     this.pnlProduction.Visible = false;
@@ -114,8 +162,12 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelAReject.Visible = false;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = false;
+                    this.Pneldelivery.Visible = false;
                     break;
-                case "2":
+                case "3":
+                    this.pnlAllProject.Visible = false;
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = true;
@@ -123,8 +175,13 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelAReject.Visible = false;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = false;
+                    this.Pneldelivery.Visible = false;
+                    this.GetProductionInfo();
                     break;
-                case "3":
+                case "4":
+                    this.pnlAllProject.Visible = false;
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
@@ -132,8 +189,13 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelAReject.Visible = false;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = false;
+                    this.Pneldelivery.Visible = false;
+                    this.GetProductionInfo();
                     break;
-                case "4":
+                case "5":
+                    this.pnlAllProject.Visible = false;
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
@@ -141,8 +203,54 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelAReject.Visible = true;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = false;
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = false;
+                    this.Pneldelivery.Visible = false;
+                    this.GetAcceptReject();
                     break;
-                case "5":
+                case "6":
+                    this.pnlAllProject.Visible = false;
+                    this.pnlStatus.Visible = false;
+                    this.pnlAssign.Visible = false;
+                    this.pnlProduction.Visible = false;
+                    this.pnelQC.Visible = false;
+                    this.pnelAReject.Visible = false;
+                    this.penlInvoice.Visible = false;
+                    this.pnelCollection.Visible = false;
+                    this.pnelQA.Visible = true;
+                    this.pnelFeedBack.Visible = false;
+                    this.Pneldelivery.Visible = false;
+                    this.GetProductionInfo();
+                    break;
+                case "7":
+                    this.pnlAllProject.Visible = false;
+                    this.pnlStatus.Visible = false;
+                    this.pnlAssign.Visible = false;
+                    this.pnlProduction.Visible = false;
+                    this.pnelQC.Visible = false;
+                    this.pnelAReject.Visible = false;
+                    this.penlInvoice.Visible = false;
+                    this.pnelCollection.Visible = false;
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = true;
+                    this.Pneldelivery.Visible = false;
+                    break;
+                case "8":
+                    this.pnlAllProject.Visible = false;
+                    this.pnlStatus.Visible = false;
+                    this.pnlAssign.Visible = false;
+                    this.pnlProduction.Visible = false;
+                    this.pnelQC.Visible = false;
+                    this.pnelAReject.Visible = false;
+                    this.penlInvoice.Visible = false;
+                    this.pnelCollection.Visible = false;
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = false;
+                    this.Pneldelivery.Visible = true;
+                    this.GetAIDelivery();
+                    break;
+                case "9":
+                    this.pnlAllProject.Visible = false;
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
@@ -150,8 +258,12 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelAReject.Visible = false;
                     this.penlInvoice.Visible = true;
                     this.pnelCollection.Visible = false;
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = false;
+                    this.Pneldelivery.Visible = false;
                     break;
-                case "6":
+                case "10":
+                    this.pnlAllProject.Visible = false;
                     this.pnlStatus.Visible = false;
                     this.pnlAssign.Visible = false;
                     this.pnlProduction.Visible = false;
@@ -159,18 +271,100 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelAReject.Visible = false;
                     this.penlInvoice.Visible = false;
                     this.pnelCollection.Visible = true;
+                    this.pnelQA.Visible = false;
+                    this.pnelFeedBack.Visible = false;
+                    this.Pneldelivery.Visible = false;
                     break;
-               
+
             }
 
         }
 
-        protected void TaskSteps_SelectedIndexChanged(object sender, EventArgs e)
+        private void GetBatchAssingList()
         {
+            string comcod = this.GetCompCode();
+
+            string prjid = "16%";
+            DataSet dt = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "BATCHASSIGNLIST", prjid, "", "", "", "", "", "");
+            if (dt == null)
+                return;
+
+            Session["tblbatchassignlist"] = this.HiddenSameData(dt.Tables[0]);
+            this.gv_BatchList.DataSource = dt.Tables[0];
+            this.gv_BatchList.DataBind();
 
         }
 
-       
+
+        private void GetProductionInfo()
+        {
+            try
+            {
+
+                string comcod = this.GetCompCode();
+                DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", "", "", "", "", "", "", "");
+                if (ds == null)
+                    return;
+                Session["tblproductioninfo"] = ds.Tables[0];
+                DataTable dt1 = new DataTable();
+                DataView view = new DataView();
+                DataView view1 = new DataView();
+                DataView view2 = new DataView();
+               
+                view.Table = ds.Tables[0];
+                view1.Table = ds.Tables[0];
+                view1.RowFilter = " roletype<>'95001' and roletype='95002' and trackertype<>'99220'";
+                dt1 = view1.ToTable();
+                this.gv_QCQA.DataSource = dt1;
+                this.gv_QCQA.DataBind();
+
+                
+                view.RowFilter = " roletype='95001'";
+                dt1 = view.ToTable();
+                this.gv_Production.DataSource = dt1;
+                this.gv_Production.DataBind();
+
+                view2.Table = ds.Tables[0];
+                view2.RowFilter = "trackertype='99220' and roletype='95002'";
+                dt1 = view2.ToTable();
+                this.gv_AssignQA.DataSource = dt1;
+                this.gv_AssignQA.DataBind();
+
+               
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
+
+
+        private void GetAcceptReject()
+        {
+            try
+            {
+                string comcod = this.GetCompCode();
+                DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPPENDING_ACCEPTRJT_INTERFACE", "", "", "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+                Session["tblacceptreject"] = ds1.Tables[0];
+                DataTable dt1 = new DataTable();
+                DataView view1 = new DataView();
+                view1.Table = ds1.Tables[0];
+                view1.RowFilter = "roletype<>'95001' and roletype<>'95003' and trackertype <>'99220' ";
+                dt1 = view1.ToTable();
+                this.gv_AcceptReject.DataSource = dt1;
+                this.gv_AcceptReject.DataBind();
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+
+        }
 
         protected void tblTaskCreateModal_Click(object sender, EventArgs e)
         {
@@ -179,7 +373,7 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void tbnSave_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         protected void btnClient_Click(object sender, EventArgs e)
@@ -214,12 +408,12 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void tbnAdd_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         protected void gvInterface_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -227,19 +421,725 @@ namespace RealERPWEB.F_99_Allinterface
             gvInterface.PageIndex = e.NewPageIndex;
             this.GetAIInterface();
         }
-        //protected void AjaxFileUpload1_UploadComplete(object sender, AjaxControlToolkit.AjaxFileUploadEventArgs e)
-        //{
-        //    try
-        //    {
-        //        string fileNameWithPath = Server.MapPath("../assets/images/AIimage") + e.FileName.ToString();
-        //        AjaxFileUpload1.SaveAs(fileNameWithPath);
-        //    }
-        //    catch(Exception )
-        //    {
-        //        throw;
-        //    }
+        private DataTable HiddenSameData(DataTable dt)
+        {
+            if (dt.Rows.Count == 0)
+                return dt;
+            int i = 0;
+            string projname = dt.Rows[0]["projname"].ToString();
+
+            foreach (DataRow dr1 in dt.Rows)
+            {
+                if (i == 0)
+                {
 
 
-        //}
+                    projname = dr1["projname"].ToString();
+                    i++;
+                    continue;
+                }
+
+                if (dr1["projname"].ToString() == projname)
+                {
+
+                    dr1["projname"] = "";
+
+
+                }
+
+
+                projname = dr1["projname"].ToString();
+            }
+
+
+
+            return dt;
+
+        }
+
+        protected void gv_BatchList_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("btnview");
+                string prjid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "prjid")).ToString().Trim();
+                string id = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "id")).ToString().Trim();
+                hlink1.NavigateUrl = "~/F_38_AI/Projects.aspx?PID=" + prjid + "&BatchID=" + id;
+
+            }
+        }
+
+        protected void gvAssingJob_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("hylnkView");
+                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString().Trim();
+
+                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?Empid=" + empid;
+            }
+        }
+
+        protected void gvInterface_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                HyperLink hlinkDashboar = (HyperLink)e.Row.FindControl("lnkprjDAshboard");
+                HyperLink hlink = (HyperLink)e.Row.FindControl("lnkprjView");
+                string projid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "infcod")).ToString().Trim();
+                hlink.NavigateUrl = "~/F_38_AI/JobAnalytics.aspx?PID=" + projid;
+                hlinkDashboar.NavigateUrl = "~/F_38_AI/JobAnalytics.aspx?PID=" + projid;
+
+
+
+            }
+        }
+
+        protected void gv_Production_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("hybtnprodlink");
+                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "assignuser")).ToString().Trim();
+                string batchid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "batchid")).ToString().Trim();
+                string jobid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "jobid")).ToString().Trim();
+                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?EmpID=" + empid + "&JobID=" + jobid + "&BatchID=" + batchid;
+            }
+        }
+
+        protected void gv_QCQA_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("hybtnqclink");
+                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "assignuser")).ToString().Trim();
+                string batchid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "batchid")).ToString().Trim();
+                string jobid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "jobid")).ToString().Trim();
+                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?EmpID=" + empid + "&JobID=" + jobid + "&BatchID=" + batchid;
+            }
+        }
+
+        protected void tblAddBatch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.pnlSidebar.Visible = true;
+                this.pnlProjectadd.Visible = false;
+                this.pnlBatchadd.Visible = true;
+
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;
+                string project = ((Label)this.gvInterface.Rows[index].FindControl("lblpactcode")).Text.ToString();
+                string projectName = ((Label)this.gvInterface.Rows[index].FindControl("lblprojectName")).Text.ToString();
+                string datasettype = ((Label)this.gvInterface.Rows[index].FindControl("lbldataset")).Text.ToString();
+                string worktype = ((Label)this.gvInterface.Rows[index].FindControl("lblwrktype")).Text.ToString();
+                string currncy = ((Label)this.gvInterface.Rows[index].FindControl("lblcurrncy")).Text.ToString();
+
+                //currncy
+                this.hiddPrjid.Value = project;
+                this.txtproj.Text = projectName;
+                this.tblpactcode.Text = project;
+                this.txtdataset.Text = datasettype;
+                this.txtworktype.Text = worktype;
+                this.txtstartdate.Text = DateTime.Now.ToString("dd-MMM-yyyy");
+                this.textdelevery.Text = DateTime.Now.ToString("dd-MMM-yyyy");
+                // this.spnCurrncy.InnerText = currncy;
+                this.txtrate.Attributes.Add("Placeholder", "0.00 " + currncy);
+                this.txtAmount.Attributes.Add("Placeholder", "0.00 " + currncy);
+
+                this.GetBatchAssingList(project);
+
+
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+
+        }
+        private void GetBatchAssingList(string project)
+        {
+            string comcod = this.GetCompCode();
+            string prjid = project + "%";
+            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "BATCHASSIGNLIST", prjid, "", "", "", "", "", "");
+            if (ds == null)
+                return;
+
+            Session["tblbatchassignlist"] = ds.Tables[0];
+            this.gv_gridBatch.DataSource = ds;
+            this.gv_gridBatch.DataBind();
+
+        }
+
+        protected void tblSaveBatch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = this.GetCompCode();
+                string userid = hst["usrid"].ToString();
+                string Terminal = hst["compname"].ToString();
+                string Sessionid = hst["session"].ToString();
+                string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+                string batchcreateid = this.hiidenBatcid.Value;
+
+                string batch = this.txtBatch.Text.ToString();
+                string projectname = this.hiddPrjid.Value;
+                string createdate = this.txtstartdate.Text.ToString();
+                string veliverydate = this.textdelevery.Text.ToString();
+                double dtquantity = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtbatchQuantity.Text.Trim()));
+                string dataset = this.txtdataset.Text.ToString();
+                string worktype = this.txtworktype.Text.ToString();
+                double totalhour = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.tbltotalOur.Text.Trim()));
+                string phdm = this.ddlphdm.SelectedValue.ToString();
+                double workperhour = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtPerhour.Text.Trim()));
+                double textEmpcap = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.textEmpcap.Text.Trim()));
+                double rate = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtrate.Text.Trim()));
+
+                bool result = AIData.UpdateTransInfo2(comcod, "dbo_ai.SP_ENTRY_AI", "BATCH_INSERTUPDATE", batchcreateid, batch, projectname, createdate, veliverydate, userid, Terminal, Sessionid, Date,
+                    dtquantity.ToString(), dataset, totalhour.ToString(), worktype, phdm, workperhour.ToString(), textEmpcap.ToString(), rate.ToString(), "", "", "", "");
+
+                if (!result)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail..!!');", true);
+                    return;
+                }
+
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Batch  Saved Successfully');", true);
+                this.GetBatchAssingList(projectname);
+                ResetForm();
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+            }
+        }
+
+        private void ResetForm()
+        {
+            this.hiidenBatcid.Value = "0";
+            txtBatch.Text = "";
+            tbltotalOur.Text = "";
+            this.ddlphdm.SelectedValue = "0";
+            txtstartdate.Text = DateTime.Now.ToString("dd-MMM-yyyy"); ;
+            textdelevery.Text = DateTime.Now.ToString("dd-MMM-yyyy"); ;
+            txtbatchQuantity.Text = "0";
+            txtrate.Text = "0";
+            txtAmount.Text = "0";
+        }
+
+        protected void pnlsidebarClose_Click(object sender, EventArgs e)
+        {
+            this.pnlSidebar.Visible = false;
+        }
+
+        protected void btnaddPrj_Click(object sender, EventArgs e)
+        {
+            this.pnlSidebar.Visible = true;
+            this.pnlProjectadd.Visible = true;
+            this.pnlBatchadd.Visible = false;
+
+            this.GetEmployeeName();
+
+            this.GetCountry();
+            this.GetProjectDetails();
+            this.GetCustomerList();
+            this.GetLastid();
+            this.LoadGrid();
+
+        }
+        private void GetEmployeeName()
+        {
+            Session.Remove("tblempname");
+            string comcod = this.GetCompCode();
+            string company = "94%";
+            string projectName = "%";
+
+            string txtSEmployee = "%%";
+            DataSet ds3 = AIData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "GETEMPNAME", company, projectName, txtSEmployee, "", "", "", "", "", "");
+            if (ds3 == null)
+                return;
+
+            Session["tblempname"] = ds3.Tables[0];
+
+        }
+        private void GetCountry()
+        {
+            string comcod = this.GetCompCode();
+            Session.Remove("tblCunt");
+            DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "GETCOUNTRY", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            Session["tblCunt"] = ds1.Tables[0];
+        }
+        private void GetCustomerList()
+        {
+            string comcod = this.GetCompCode();
+            DataSet dt = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "GETCUSTOMERLIST", "", "", "", "", "", "");
+            if (dt == null)
+                return;
+
+            Session["tblCustlist"] = dt.Tables[0];
+
+        }
+        private void GetProjectDetails()
+        {
+            string comcod = this.GetCompCode();
+            DataSet dt3 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETINFORMATIONCODE", "", "", "", "", "");
+            if (dt3 == null)
+                return;
+            Session["tblprojectdetails"] = dt3.Tables[0];
+        }
+        private string GetLastid()
+        {
+            string sircode = "";
+
+            string comcod = this.GetCompCode();
+
+            DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETLASTPRJCODEID", "", "", "", "", "", "");
+            if (ds1 == null)
+                return sircode;
+            sircode = ds1.Tables[0].Rows[0]["sircode"].ToString();
+
+            return sircode;
+
+        }
+
+        private void isFiledClear()
+        {
+            try
+            {
+
+
+                for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
+                {
+                    ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text = "";
+                    ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text = "";
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        private void LoadGrid(string custid = "")
+        {
+
+            string comcod = this.GetCompCode();
+            string sircode = this.lblproj.Text ?? "";
+
+            DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "AIPROJECTDETAILS", sircode, "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            DataTable dt = ds1.Tables[0];
+            DataTable dt2;
+
+            DataTable dt3 = (DataTable)Session["tblprojectdetails"];
+            DataView dv2;
+            DataTable dt4 = (DataTable)Session["tblCustlist"];
+            DataView dv3;
+            DataTable dt5 = (DataTable)Session["tblempname"];
+            DataView dv4;
+            ViewState["tblcustinf"] = dt;
+            this.gvProjectInfo.DataSource = dt;
+            this.gvProjectInfo.DataBind();
+            DropDownList ddlgval;
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+
+                string Gcode = dt.Rows[i]["gcod"].ToString();
+                switch (Gcode)
+                {
+                    case "03002": //project type
+                        //gvalue = dt.Rows[i]["value"].ToString();
+                        dv2 = dt3.DefaultView;
+                        dv2.RowFilter = ("gcod like '60%' and gcod like'%00'");
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                        ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = false;
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                        ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
+                        ddlgval.DataTextField = "gdesc";
+                        ddlgval.DataValueField = "gcod";
+                        ddlgval.DataSource = dv2.ToTable();
+                        ddlgval.DataBind();
+                        ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
+                        break;
+                    case "03003"://Dataset type
+                                 // gvalue = dt.Rows[i]["value"].ToString();
+                        dv2 = dt3.DefaultView;
+                        dv2.RowFilter = ("gcod like '60%' and gcod not like'%00'");
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                        ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = false;
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                        ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
+                        ddlgval.DataTextField = "gdesc";
+                        ddlgval.DataValueField = "gcod";
+                        ddlgval.DataSource = dv2.ToTable();
+                        ddlgval.DataBind();
+                        ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
+                        break;
+                    case "03004"://work type
+                                 // gvalue = dt.Rows[i]["value"].ToString();
+                        dv2 = dt3.DefaultView;
+                        dv2.RowFilter = ("gcod like '70%' and gcod not like'%00'");
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = false;
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                        ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
+                        ddlgval.DataTextField = "gdesc";
+                        ddlgval.DataValueField = "gcod";
+                        ddlgval.DataSource = dv2.ToTable();
+                        ddlgval.DataBind();
+                        ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
+                        break;
+                    case "03007"://customer
+                        //gvalue = dt.Rows[i]["value"].ToString();
+                        dv3 = dt4.DefaultView;
+                        dv3.RowFilter = ("infcod like '51%' and infcod not like'%00'");
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = true;
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                        ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
+                        ddlgval.DataTextField = "infdesc";
+                        ddlgval.DataValueField = "infcod";
+                        ddlgval.DataSource = dv3.ToTable();
+                        ddlgval.DataBind();
+                        ddlgval.SelectedValue = (custid == "") ? ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString()
+                            : custid;
+                        break;
+
+                    case "03025"://get team leader
+                                 // gvalue = dt.Rows[i]["value"].ToString();
+                        dv4 = dt5.DefaultView;
+                        //dv3.RowFilter = ("infcod like '51%' and infcod not like'%00'");
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = false;
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                        ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
+                        ddlgval.DataTextField = "empname";
+                        ddlgval.DataValueField = "empid";
+                        ddlgval.DataSource = dv4.ToTable();
+                        ddlgval.DataBind();
+                        ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
+                        break;
+                    case "03011": //country
+
+                        DataTable dtc = (DataTable)Session["tblCunt"];
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = false;
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                        ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
+                        ddlgval.DataTextField = "curdesc";
+                        ddlgval.DataValueField = "code";
+                        ddlgval.DataSource = dtc;
+                        ddlgval.DataBind();
+                        ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
+                        break;
+                    case "03008"://date time 
+                    case "03009"://date time 
+
+                        string gdatat = ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.ToString();
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Visible = false;
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text = gdatat;
+                        break;
+                    case "03018":
+
+                        dv2 = dt3.DefaultView;
+                        dv2.RowFilter = ("gcod like '80%' and gcod not like'%00'");
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                        ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = false;
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                        ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
+                        ddlgval.DataTextField = "gdesc";
+                        ddlgval.DataValueField = "gcod";
+                        ddlgval.DataSource = dv2.ToTable();
+                        ddlgval.DataBind();
+                        ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
+                        break;
+                    case "03015":
+                    case "03017":
+                    case "03019":
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Visible = true;
+
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                        break;
+                    default:
+
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Visible = false;
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = true;
+
+                        break;
+
+                }
+
+            }
+
+        }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dt = (DataTable)ViewState["tblcustinf"];
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;
+                string gcode = ((Label)this.gvProjectInfo.Rows[index].FindControl("lblgvItmCode")).Text.ToString();
+
+                //string Gcode = dt.Rows[0]["gcod"].ToString();
+                switch (gcode)
+                {
+                    case "03007": //customer 
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CustomerCreate();", true);
+                        break;
+                }
+
+
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+
+
+
+        }
+        protected void btncustAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string comcod = this.GetCompCode();
+                string custname = this.txtcustomername.Text.Trim().ToString();
+
+                DataSet result = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "CUSTOMER_ADDED", custname);
+                if (result == null)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Create Fail..!!');", true);
+
+                    return;
+                }
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Customer Added Successfully');", true);
+                //ScriptManager.RegisterStartupScript(Page, Page.GetType(), "#btnAdd", "$('body').removeClass('modal-open');$('.modal-backdrop').remove();$('#btnAdd').hide();", true);
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CustomerCreate();", true);
+                string customerId = result.Tables[0].Rows[0]["custid"].ToString();
+                GetCustomerList();
+                this.LoadGrid(customerId);
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
+
+        protected void btnProjectSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string prjcode = this.lblproj.Text.Trim().ToString();
+                string comcod = this.GetCompCode();
+                string sircode = prjcode.Length > 0 ? prjcode : this.GetLastid();
+
+                for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
+                {
+                    string Gcode = ((Label)this.gvProjectInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
+                    string gtype = ((Label)this.gvProjectInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
+
+
+                    string Gvalue = (((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
+                    if (Gcode == "03008" || Gcode == "03009")
+                    {
+                        Gvalue = (((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? "01-Jan-1900" : ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
+                    }
+                    if (Gcode == "03015" || Gcode == "03017" || Gcode == "03019")
+                    {
+                        Gvalue = (((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Text.Trim() == "") ? "0.00" : ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Text.Trim();
+                    }
+
+                    Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : Gvalue;
+                    Gvalue = (gtype == "N") ? Convert.ToDouble("0" + Gvalue).ToString() : Gvalue;
+
+
+
+                    bool result = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "PROJECT_INSERTUPDATE", sircode, Gcode, gtype, Gvalue, "", "", "", "");
+                    if (!result)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail..!!');", true);
+                        return;
+                    }
+
+                }
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Project Saved Successfully');", true);
+                this.TasktState.SelectedIndex = 0;
+                this.TasktState_SelectedIndexChanged(null, null);
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+            }
+        }
+
+        protected void btnbatchEdit_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string batchid = ((Label)this.gv_gridBatch.Rows[index].FindControl("lblBatchid")).Text.ToString();
+            string name = ((Label)this.gv_gridBatch.Rows[index].FindControl("lblbatchname")).Text.ToString();
+            string strdate = ((Label)this.gv_gridBatch.Rows[index].FindControl("lblstartdate")).Text.ToString();
+            string delvdate = ((Label)this.gv_gridBatch.Rows[index].FindControl("lbldeliverydate")).Text.ToString();
+            double dsqty = Convert.ToDouble(((Label)this.gv_gridBatch.Rows[index].FindControl("lbldatasetqty")).Text.ToString());
+            double rate = Convert.ToDouble(((Label)this.gv_gridBatch.Rows[index].FindControl("lbldatasetRate")).Text.ToString());
+            string lblhourtype = ((Label)this.gv_gridBatch.Rows[index].FindControl("lblhourtype")).Text.ToString();
+            string ttlhour = ((Label)this.gv_gridBatch.Rows[index].FindControl("lbldatastotalhour")).Text.ToString();
+
+
+            this.hiidenBatcid.Value = batchid;
+
+            txtBatch.Text = name;
+            tbltotalOur.Text = ttlhour;
+            this.ddlphdm.SelectedValue = lblhourtype;
+            txtstartdate.Text = strdate;
+            textdelevery.Text = delvdate;
+            txtbatchQuantity.Text = dsqty.ToString();
+            txtrate.Text = rate.ToString();
+            txtAmount.Text = Convert.ToDouble(dsqty * rate).ToString();
+        }
+
+        protected void btnbatchremoveRow_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string userid = hst["usrid"].ToString();
+            string Terminal = hst["compname"].ToString();
+            string Sessionid = hst["session"].ToString();
+            string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string batchid = ((Label)this.gv_gridBatch.Rows[index].FindControl("lblBatchid")).Text.ToString();
+            string prjid = this.hiddPrjid.Value;
+            bool result = AIData.UpdateTransInfo2(comcod, "dbo_ai.SP_ENTRY_AI", "BATCH_DELETE", batchid, "", "", "", "", userid, Terminal, Sessionid, Date,
+                   "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Delete Fail..!!');", true);
+                return;
+            }
+
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Batch Deleted Successfully');", true);
+            this.GetBatchAssingList(prjid);
+
+        }
+
+        protected void calculateAmount_TextChanged(object sender, EventArgs e)
+        {
+            string theText = "";
+            TextBox textbox = sender as TextBox;
+            if (textbox != null)
+            {
+                theText = textbox.ID;
+            }
+
+            double qty = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtbatchQuantity.Text.Trim()));
+            double rate = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtrate.Text.Trim()));
+            double amount = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtAmount.Text.Trim()));
+
+            double trnamount = 0;
+            double trnrte = 0;
+
+            switch (theText)
+            {
+                case "txtrate":
+                    trnamount = (rate > 0 && qty > 0) ? qty * rate : amount;
+                    trnrte = rate;
+                    break;
+                case "txtAmount":
+                    trnrte = (amount > 0 && qty > 0) ? amount / qty : rate;
+                    trnamount = amount;
+                    break;
+                default:
+
+                    trnamount = (rate > 0 && qty > 0) ? qty * rate : amount;
+                    trnrte = rate;
+
+                    break;
+            }
+
+
+
+            this.txtrate.Text = trnrte.ToString("#,##0.000000;(#,##0.000000); ");
+            this.txtAmount.Text = trnamount.ToString("#,##0.000000;(#,##0.000000); ");
+
+
+        }
+
+        protected void gvAssingJob_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvAssingJob.PageIndex = e.NewPageIndex;
+            this.data_Bind();
+
+        }
+        private void GetAIDelivery()
+        {
+            try
+            {
+
+                string comcod = this.GetCompCode();
+                DataSet ds3 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETAIDELIVERY", "", "", "", "", "");
+                if (ds3 == null)
+                    return;
+                Session["tblAIdelivery"] = ds3.Tables[0];
+                DataTable dt2 = new DataTable();
+                DataView view3 = new DataView();
+                view3.Table = ds3.Tables[0];
+                view3.RowFilter = "roletypcode='95003'";
+                dt2 = view3.ToTable();
+                this.gv_Delivery.DataSource = dt2;
+                this.gv_Delivery.DataBind();
+
+
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
+
     }
 }

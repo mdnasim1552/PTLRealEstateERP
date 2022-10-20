@@ -68,7 +68,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
             string comcod = this.GetComCode();
             DataSet datSetup = compUtility.GetCompUtility();
-            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "26" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
             if (datSetup == null)
                 return;
             switch (comcod)
@@ -79,10 +79,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.txtfromdate.Text= System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                     this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                     this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
                     break;
 
                 default:
-                    this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                     this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                     this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     break;

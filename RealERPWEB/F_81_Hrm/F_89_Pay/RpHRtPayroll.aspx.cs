@@ -163,8 +163,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         //    break;
                         default:
                             //string comcod = this.GetComCode();
+                            //this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                            //this.txtfromdate.Text = "26" + this.txtfromdate.Text.Trim().Substring(2);
+                            //this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
                             this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                            this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
+                            this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
                             this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                             break;
                     }
@@ -4193,6 +4197,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
         private void PrintPaySlip()
         {
+            
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string Inwords = "";
             string comcod = hst["comcod"].ToString();
@@ -4350,7 +4355,15 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
             }
+            else if(comcod == "3366")
+            {
+                var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipLanco", list, null, null);
 
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            }
             else
             {
                 // All Pay Slip Except Tropical, Peb Steel

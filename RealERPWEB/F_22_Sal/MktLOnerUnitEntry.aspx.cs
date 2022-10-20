@@ -223,11 +223,21 @@ namespace RealERPWEB.F_22_Sal
                 string utility = "0.00";
                 string cooprative = "0.00";
                 string chkper = "False";
+                string fcode = "";
+                string Udescbn = "";
+                string isLO = "0";
+                string bookingam = "0";
+                string noofinstall = "0";
                 if (dUsize > 0)
                 {
-                    bool result = MktData.UpdateTransInfo2(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATESALINF", PactCode, UsirCode, UNumber, dUsize.ToString(), qty, Udesc,
-                        bstat, Uramrks, Amt, Pqty, Pamt, Minbam, facing, view, utility, cooprative, chkper, "", "", "", "");
+                  
 
+
+                    bool result = MktData.UpdateTransInfo3(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATESALINF", PactCode, UsirCode, UNumber, dUsize.ToString(), qty, Udesc,
+                       bstat, Uramrks, Amt, Pqty, Pamt, Minbam, facing, view, utility, cooprative, chkper, fcode, Udescbn, isLO, bookingam, noofinstall, "");
+
+
+                
                     if (!result)
                     {
                         ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";

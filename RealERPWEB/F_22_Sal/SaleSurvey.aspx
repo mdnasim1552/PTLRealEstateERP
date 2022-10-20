@@ -3,8 +3,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 
-    <link href="../CSS/PageInformation.css" rel="stylesheet" type="text/css" />
-    <link href="../CSS/Style.css" rel="stylesheet" type="text/css" />
+   
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -23,7 +22,9 @@
         .srchbtmfromtop {
             margin-top: 5px !important;
         }
-        .grvContentarea {}
+
+        .grvContentarea {
+        }
     </style>
 
 
@@ -35,30 +36,39 @@
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
         function pageLoaded() {
+            try {
 
-            $("input, select").bind("keydown", function (event) {
-                var k1 = new KeyPress();
-                k1.textBoxHandler(event);
-            });
 
-            $('.select2').each(function () {
-                var select = $(this);
-                select.select2({
-                    placeholder: 'Select an option',
-                    width: '100%',
-                    allowClear: !select.prop('required'),
-                    language: {
-                        noResults: function () {
-                            return "{{ __('No results found') }}";
-                        }
-                    }
+
+                $("input, select").bind("keydown", function (event) {
+                    var k1 = new KeyPress();
+                    k1.textBoxHandler(event);
                 });
-            });
+
+                $('.select2').each(function () {
+                    var select = $(this);
+                    select.select2({
+                        placeholder: 'Select an option',
+                        width: '100%',
+                        allowClear: !select.prop('required'),
+                        language: {
+                            noResults: function () {
+                                return "{{ __('No results found') }}";
+                            }
+                        }
+                    });
+                });
 
 
-            $('.chzn-select').chosen({ search_contains: true });
-            var gridview = $('#<%=this.gvMSRInfo2.ClientID %>');
-            $.keynavigation(gridview);
+                $('.chzn-select').chosen({ search_contains: true });
+                var gridview = $('#<%=this.gvMSRInfo2.ClientID %>');
+                $.keynavigation(gridview);
+            }
+            catch (e)
+            {
+                alert(e.message);
+
+            }
         }
     </script>
 
@@ -158,9 +168,9 @@
 
 
 
-            <asp:GridView ID="gvMSRInfo2" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
+            <asp:GridView ID="gvMSRInfo2" runat="server" CssClass=" table-striped table-bordered grvContentarea"
                 AutoGenerateColumns="False" ShowFooter="True"
-                OnRowDataBound="gvMSRInfo2_RowDataBound" OnRowCreated="gvMSRInfo2_RowCreated" Width="1225px">
+                Width="1225px" Font-Size="12px">
                 <PagerSettings Visible="False" />
                 <Columns>
                     <asp:TemplateField HeaderText="Sl">
@@ -172,14 +182,13 @@
                     </asp:TemplateField>
 
 
-<%--                    btypecode, location, aptsize, landarea,  storied,  aptunit, askingprice, selprice, utlityprice, prkingpirce, hoverdate, procatagory, 
-	buildtype, pactdesc,  companycode, companyname --%>
+
 
 
                     <asp:TemplateField HeaderText=" Developer">
 
                         <FooterTemplate>
-                            <asp:LinkButton ID="lbtnTotal" runat="server" OnClick="lbtnTotal_Click" CssClass="btn btn-primary  primarygrdBtn">Total</asp:LinkButton>
+                            <asp:LinkButton ID="lbtnTotal" runat="server" OnClick="lbtnTotal_Click" CssClass="btn btn-warning  btn-sm ">Total</asp:LinkButton>
                         </FooterTemplate>
 
                         <ItemTemplate>
@@ -191,19 +200,37 @@
                         <HeaderStyle HorizontalAlign="Left" />
                     </asp:TemplateField>
 
-                    
-                    <asp:TemplateField HeaderText="Building Type">                       
+
+                      <asp:TemplateField HeaderText="Project">
+
+                        <ItemTemplate>
+                            <asp:Label ID="lblgvproject" runat="server"
+                                Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc"))   %>'
+                                Width="150px">
+                            </asp:Label>
+                        </ItemTemplate>
+                       
+
+                        <HeaderStyle HorizontalAlign="Left" />
+                    </asp:TemplateField>
+
+
+                    <asp:TemplateField HeaderText="Building Type">
 
                         <ItemTemplate>
                             <asp:Label ID="lblgvbuildtype" runat="server"
                                 Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "buildtype"))   %>'
-                                Width="120px">
+                                Width="150px">
                             </asp:Label>
                         </ItemTemplate>
+                        <FooterTemplate>
+                            <asp:LinkButton ID="lbtnMSRUpdate" runat="server" CssClass="btn btn-success btn-sm" OnClientClick="return Confirmation();" OnClick="lbtnMSRUpdate_Click">Final Update</asp:LinkButton>
+                        </FooterTemplate>
+
                         <HeaderStyle HorizontalAlign="Left" />
                     </asp:TemplateField>
 
-                     <asp:TemplateField HeaderText="Location">                       
+                    <asp:TemplateField HeaderText="Location">
 
                         <ItemTemplate>
                             <asp:Label ID="lblgvLocation" runat="server"
@@ -214,58 +241,58 @@
                         <HeaderStyle HorizontalAlign="Left" />
                     </asp:TemplateField>
 
-                     <asp:TemplateField HeaderText="Apt. Size(sft)">                       
+                    <asp:TemplateField HeaderText="Apt. Size(sft)">
 
                         <ItemTemplate>
                             <asp:Label ID="lblgvaptsize" runat="server"
                                 Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "aptsize"))   %>'
-                                Width="120px">
+                                Width="100px">
                             </asp:Label>
                         </ItemTemplate>
                         <HeaderStyle HorizontalAlign="Left" />
                     </asp:TemplateField>
 
 
-                     <asp:TemplateField HeaderText="Land Area(katha)">                       
+                    <asp:TemplateField HeaderText="Land Area(katha)">
 
                         <ItemTemplate>
-                            <asp:Label ID="lblgvaptsize" runat="server"
+                            <asp:Label ID="lblgvlandarea" runat="server"
                                 Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "landarea")).ToString("#,##0.00;(#,##0.00); ")   %>'
                                 Width="80px">
                             </asp:Label>
                         </ItemTemplate>
                         <HeaderStyle HorizontalAlign="Left" />
-                         <ItemStyle HorizontalAlign="Right" />
+                        <ItemStyle HorizontalAlign="Right" />
                     </asp:TemplateField>
 
 
-                    <asp:TemplateField HeaderText="  Storied">                       
+                    <asp:TemplateField HeaderText="  Storied">
 
                         <ItemTemplate>
                             <asp:Label ID="lblgvstoried" runat="server"
                                 Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "storied"))   %>'
-                                Width="120px">
+                                Width="100px">
                             </asp:Label>
                         </ItemTemplate>
                         <HeaderStyle HorizontalAlign="Left" />
                     </asp:TemplateField>
 
-                  
-                     <asp:TemplateField HeaderText="Total Apt. Units.(Nos)">                       
+
+                    <asp:TemplateField HeaderText="Total Apt. Units.(Nos)">
 
                         <ItemTemplate>
-                            <asp:Label ID="lblgvaptsize" runat="server"
+                            <asp:Label ID="lblgvaptunit" runat="server"
                                 Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aptunit")).ToString("#,##0.00;(#,##0.00); ")   %>'
                                 Width="70px">
                             </asp:Label>
                         </ItemTemplate>
                         <HeaderStyle HorizontalAlign="Left" />
-                         <ItemStyle HorizontalAlign="Right" />
+                        <ItemStyle HorizontalAlign="Right" />
                     </asp:TemplateField>
 
 
-                    
-                     <asp:TemplateField HeaderText="Asking Price(TK/sft)">                       
+
+                    <asp:TemplateField HeaderText="Asking Price(TK/sft)">
 
                         <ItemTemplate>
                             <asp:Label ID="lblgvaskingprice" runat="server"
@@ -274,10 +301,10 @@
                             </asp:Label>
                         </ItemTemplate>
                         <HeaderStyle HorizontalAlign="Left" />
-                         <ItemStyle HorizontalAlign="Right" />
+                        <ItemStyle HorizontalAlign="Right" />
                     </asp:TemplateField>
 
-                      <asp:TemplateField HeaderText="Selling Price(TK/sft)">                       
+                    <asp:TemplateField HeaderText="Selling Price(TK/sft)">
 
                         <ItemTemplate>
                             <asp:Label ID="lblgvselprice" runat="server"
@@ -286,10 +313,10 @@
                             </asp:Label>
                         </ItemTemplate>
                         <HeaderStyle HorizontalAlign="Left" />
-                         <ItemStyle HorizontalAlign="Right" />
+                        <ItemStyle HorizontalAlign="Right" />
                     </asp:TemplateField>
 
-                      <asp:TemplateField HeaderText="Utility Price(TK in Lac)">                       
+                    <asp:TemplateField HeaderText="Utility Price(TK in Lac)">
 
                         <ItemTemplate>
                             <asp:Label ID="lblgvutlityprice" runat="server"
@@ -298,10 +325,10 @@
                             </asp:Label>
                         </ItemTemplate>
                         <HeaderStyle HorizontalAlign="Left" />
-                         <ItemStyle HorizontalAlign="Right" />
+                        <ItemStyle HorizontalAlign="Right" />
                     </asp:TemplateField>
 
-                      <asp:TemplateField HeaderText="Parking Price(TK in Lac)">                       
+                    <asp:TemplateField HeaderText="Parking Price(TK in Lac)">
 
                         <ItemTemplate>
                             <asp:Label ID="lblgvprkingpirce" runat="server"
@@ -310,28 +337,28 @@
                             </asp:Label>
                         </ItemTemplate>
                         <HeaderStyle HorizontalAlign="Left" />
-                         <ItemStyle HorizontalAlign="Right" />
+                        <ItemStyle HorizontalAlign="Right" />
                     </asp:TemplateField>
 
 
-                   
-                    
-                    <asp:TemplateField HeaderText="Handover Date">                       
+
+
+                    <asp:TemplateField HeaderText="Handover Date">
 
                         <ItemTemplate>
-                            <asp:Label ID="lblgvstoried" runat="server"
+                            <asp:Label ID="lblgvhoverdate" runat="server"
                                 Text='<%#  Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "hoverdate")).ToString("dd-MMM-yyyy")   %>'
-                                Width="70px">
+                                Width="75px">
                             </asp:Label>
                         </ItemTemplate>
                         <HeaderStyle HorizontalAlign="Left" />
                     </asp:TemplateField>
 
 
-                     <asp:TemplateField HeaderText="Catagory">                       
+                    <asp:TemplateField HeaderText="Catagory">
 
                         <ItemTemplate>
-                            <asp:Label ID="lblgvstoried" runat="server"
+                            <asp:Label ID="lblgvcatagory" runat="server"
                                 Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "procatagory"))   %>'
                                 Width="100px">
                             </asp:Label>
@@ -340,24 +367,29 @@
                     </asp:TemplateField>
 
 
+                    <asp:TemplateField HeaderText="Comments">
 
-                   
+                        <ItemTemplate>
+                            <asp:TextBox ID="txtgvcomments" runat="server" BorderStyle="None" BackColor="Transparent"
+                                Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "comments"))   %>'
+                                Width="100px">
+                            </asp:TextBox>
+                        </ItemTemplate>
+                        <HeaderStyle HorizontalAlign="Left" />
+                    </asp:TemplateField>
+
+
+
+
+
+
                 </Columns>
-                <FooterStyle CssClass="grvFooter" />
+                <FooterStyle CssClass="grvFooterNew" />
                 <EditRowStyle />
                 <AlternatingRowStyle />
-                <PagerStyle CssClass="gvPagination" />
-                <HeaderStyle CssClass="grvHeader" />
+                <PagerStyle CssClass="" />
+                <HeaderStyle CssClass="grvHeaderNew" />
             </asp:GridView>
-
-
-
-            <div class="row">
-                <asp:Panel ID="Panel2" runat="server" Visible="False">
-                    <asp:Label ID="lblReqNarr" runat="server" Text="Narration:" CssClass="lblName lblTxt"></asp:Label>
-                    <asp:TextBox ID="txtMSRNarr" runat="server" Width="322px" CssClass="inputtextbox" TextMode="MultiLine" Rows="3"></asp:TextBox>
-                </asp:Panel>
-            </div>
 
 
 

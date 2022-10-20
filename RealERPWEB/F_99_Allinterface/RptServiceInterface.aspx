@@ -944,6 +944,7 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
+
                                                                     <asp:HyperLink ID="lnkProceed" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class=" fa fa-check"></span>
                                                                     </asp:HyperLink>
                                                                 </ItemTemplate>
@@ -1168,7 +1169,7 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle Font-Bold="True" />
                                                                 <ItemStyle HorizontalAlign="Center" />
-                                                            </asp:TemplateField>                                                           
+                                                            </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="ID">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblqid" runat="server" Visible="false"
@@ -1246,8 +1247,12 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
+                                                                    <asp:HyperLink ID="lnkbtnPrintQT" runat="server" Target="_blank" CssClass="btn btn-default btn-xs" ToolTip="Print Quotations" ForeColor="Green"><span class="fa fa-print"></span></asp:HyperLink>
+
                                                                     <asp:HyperLink ID="lnkProceed" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class=" fa fa-check"></span>
                                                                     </asp:HyperLink>
+                                                                    <asp:HyperLink ID="lnkbtnPrintIn" runat="server" Target="_blank" CssClass="btn btn-default btn-xs" ToolTip="Print Invoice" ForeColor="Maroon"><span class="fa fa-print"></span></asp:HyperLink>
+
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
 

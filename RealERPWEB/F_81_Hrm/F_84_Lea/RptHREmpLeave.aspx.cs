@@ -44,7 +44,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             DataSet datSetup = compUtility.GetCompUtility();
             if (datSetup == null)
                 return;
-            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "26" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
 
             //this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
             //this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
@@ -61,7 +61,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     break;
 
                 default:
-                    this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                     this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                     this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     break;

@@ -138,6 +138,8 @@ namespace RealEntity.C_22_Sal
             public string comcod { get; set; }
             public string flrdesc { get; set; }
             public string pactdesc { get; set; }
+            public int rowsl { get; set; }
+            public int rowid { get; set; }
             public string pactcode { get; set; }
             public string typecode { get; set; }
             public string typedesc { get; set; }
@@ -151,6 +153,8 @@ namespace RealEntity.C_22_Sal
             public double netvalue { get; set; }
             public double downpamt { get; set; }
             public double ramt { get; set; }
+            public DateTime saldate { get; set; }
+            public DateTime schdate { get; set; } 
 
 
 
@@ -182,6 +186,7 @@ namespace RealEntity.C_22_Sal
             public string procatagory { get; set; }
             public string buildtype { get; set; }
             public string companyname { get; set; }
+            public string comments { get; set; }
 
 
 
@@ -192,7 +197,30 @@ namespace RealEntity.C_22_Sal
 
 
         }
+        public class TransactionSt
+        {
+            public string comcod { get; set; }
+            
+            public string pactdesc { get; set; }
+            public string pactcode { get; set; }
+            public string udesc { get; set; }
+            public string custname { get; set; }
+            public string orgmrno { get; set; }
+            public DateTime orgdate { get; set; }
+            public string orgchqno { get; set; }
+            public double orgamt { get; set; }
+            public string mrno { get; set; }
+            public DateTime chqdate { get; set; }
+            public string chqno { get; set; }
+            public double chqamt { get; set; }
+          
+            public TransactionSt()
+            {
 
+            }
+
+
+        }
 
     }
 }

@@ -243,7 +243,7 @@
                             </fieldset>
                         </asp:Panel>
                         <asp:GridView ID="gvSubBill" runat="server" AllowPaging="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                            AutoGenerateColumns="False" OnPageIndexChanging="gvSubBill_PageIndexChanging"
+                            AutoGenerateColumns="False" OnPageIndexChanging="gvSubBill_PageIndexChanging" OnRowDataBound="gvSubBill_RowDataBound"
                             ShowFooter="True" Width="650px">
                             <PagerSettings Position="Top" />
                             <RowStyle />
@@ -380,9 +380,9 @@
 
                                 <asp:TemplateField HeaderText="Rate">
                                     <ItemTemplate>
-                                        <asp:Label ID="lgvSubRate" runat="server" Style="text-align: right"
+                                        <asp:TextBox ID="lgvSubRate" runat="server"  Style="text-align: right; border-style:none;" BackColor="Transparent"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "conrate")).ToString("#,##0.000;-#,##0.000; ") %>'
-                                            Width="70px"></asp:Label>
+                                            Width="70px"></asp:TextBox>
                                     </ItemTemplate>
 
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />

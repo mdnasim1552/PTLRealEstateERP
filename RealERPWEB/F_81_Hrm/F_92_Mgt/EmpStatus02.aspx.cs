@@ -94,7 +94,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     break;
 
                 default:
-                    this.txtFdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.txtFdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                     this.txtFdate.Text = startdate + this.txtFdate.Text.Trim().Substring(2);
                     this.txtTdate.Text = Convert.ToDateTime(this.txtFdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     break;

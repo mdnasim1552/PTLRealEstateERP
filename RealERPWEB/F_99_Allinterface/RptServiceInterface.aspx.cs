@@ -296,6 +296,8 @@ namespace RealERPWEB.F_99_Allinterface
                 hlink.ToolTip = "Edit";
                 hlink.Visible = true;
                 hlinkproceed.Visible = true;
+
+
             }
         }
 
@@ -307,6 +309,8 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkedit");
                 HyperLink hlinkproceed = (HyperLink)e.Row.FindControl("lnkProceed");
 
+
+
                 string quotid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "quotid")).ToString();
                 string status = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "status"));
                 hlink.NavigateUrl = "~/F_70_Services/QuotationEntry?Type=CheckEdit&QId=" + quotid;
@@ -314,6 +318,8 @@ namespace RealERPWEB.F_99_Allinterface
                 hlink.ToolTip = "Edit";
                 hlink.Visible = true;
                 hlinkproceed.Visible = true;
+
+
             }
         }
 
@@ -419,7 +425,7 @@ namespace RealERPWEB.F_99_Allinterface
             string quotid = ((Label)this.gvProcess.Rows[RowIndex].FindControl("lblqid")).Text.Trim();
             GetQuotDataFunctionality(quotid);
             List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
-            int isContain = obj.Where(x => x.resourcecode.StartsWith("01")).ToList().Count;
+            int isContain = obj.Where(x => x.resourcecode.StartsWith("01") && x.isprocess==true).ToList().Count;
             if (isContain == 0)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Material for Material Requisition" + "');", true);
@@ -504,7 +510,7 @@ namespace RealERPWEB.F_99_Allinterface
             string CRMPostedDat = Date;
             string checkbyid = userid;
             string quotid = Qid;
-            List<EQuotation> obj = ((List<EQuotation>)ViewState["MaterialList"]).Where(x => x.resourcecode.StartsWith("01")).ToList();
+            List<EQuotation> obj = ((List<EQuotation>)ViewState["MaterialList"]).Where(x => x.resourcecode.StartsWith("01") && x.isprocess==true).ToList();
 
             DataSet ds1 = new DataSet("ds1");
             this.CreateDataTable();
@@ -589,7 +595,7 @@ namespace RealERPWEB.F_99_Allinterface
             lblQuotation.Text = quotid;
             GetQuotDataFunctionality(quotid);
             List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
-            int isContain = obj.Where(x => x.resourcecode.StartsWith("04") && x.resourcecode != "049700101001").ToList().Count;
+            int isContain = obj.Where(x => x.resourcecode.StartsWith("04") && x.resourcecode != "049700101001" && x.isprocess == true).ToList().Count;
             if (isContain == 0)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Labour Work Found" + "');", true);
@@ -625,7 +631,7 @@ namespace RealERPWEB.F_99_Allinterface
         protected void lnkSubContractorSave_Click(object sender, EventArgs e)
         {
 
-            List<EQuotation> obj = ((List<EQuotation>)ViewState["MaterialList"]).Where(x => x.resourcecode.StartsWith("04") && x.resourcecode != "049700101001").ToList();
+            List<EQuotation> obj = ((List<EQuotation>)ViewState["MaterialList"]).Where(x => x.resourcecode.StartsWith("04") && x.resourcecode != "049700101001" && x.isprocess == true).ToList();
             if (obj.Count == 0)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Labour Work Found" + "');", true);
@@ -724,7 +730,7 @@ namespace RealERPWEB.F_99_Allinterface
             string quotid = ((Label)this.gvProcess.Rows[RowIndex].FindControl("lblqid")).Text.Trim();
             GetQuotDataFunctionality(quotid);
             List<EQuotation> obj = (List<EQuotation>)ViewState["MaterialList"];
-            int isContain = obj.Where(x => x.resourcecode.StartsWith("12")).ToList().Count;
+            int isContain = obj.Where(x => x.resourcecode.StartsWith("12") && x.isprocess == true).ToList().Count;
             if (isContain == 0)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Over Head found" + "');", true);
@@ -762,7 +768,7 @@ namespace RealERPWEB.F_99_Allinterface
 
         private void updateGen(string Qid)
         {
-            List<EQuotation> obj = ((List<EQuotation>)ViewState["MaterialList"]).Where(x => x.resourcecode.StartsWith("12")).ToList();
+            List<EQuotation> obj = ((List<EQuotation>)ViewState["MaterialList"]).Where(x => x.resourcecode.StartsWith("12") && x.isprocess == true).ToList();
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
 
@@ -877,11 +883,17 @@ namespace RealERPWEB.F_99_Allinterface
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                HyperLink lnkbtnPrintQT = (HyperLink)e.Row.FindControl("lnkbtnPrintQT");
+                HyperLink lnkbtnPrintIn = (HyperLink)e.Row.FindControl("lnkbtnPrintIn");
                 HyperLink hlinkproceed = (HyperLink)e.Row.FindControl("lnkProceed");
+
+                string quotid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "quotid")).ToString();
 
                 string pactcode = "18"+ ASTUtility.Right(Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mapactcode")).ToString(), 10);
                 hlinkproceed.NavigateUrl = "~/F_23_CR/CustOthMoneyReceipt?Type=Billing&pactcode=" + pactcode;               
                 hlinkproceed.Visible = true;
+                lnkbtnPrintQT.NavigateUrl = "~/F_70_Services/ServicePrint?Type=PrintQuote&QId=" + quotid;
+                lnkbtnPrintIn.NavigateUrl = "~/F_70_Services/ServicePrint?Type=PrintInvoice&QId=" + quotid; 
             }
         }
     }

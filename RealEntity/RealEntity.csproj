@@ -63,6 +63,7 @@
     <Compile Include="C_09_PImp\EclassOrder.cs" />
     <Compile Include="C_09_PImp\SubConBill.cs" />
     <Compile Include="C_12_Inv\EClassIDCode.cs" />
+    <Compile Include="C_12_Inv\EClassIndentStatus.cs" />
     <Compile Include="C_12_Inv\EClassMaterial.cs" />
     <Compile Include="C_12_Inv\EclassPurchase.cs" />
     <Compile Include="C_12_Inv\EClassReqInfo.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="C_21_MKT\ECRMClientInfo.cs" />
     <Compile Include="C_21_MKT\EPaper.cs" />
     <Compile Include="C_21_MKT\ESourceWiseLeadsclass.cs" />
+    <Compile Include="C_22_Sal\EClassGrandNoteSheet.cs" />
     <Compile Include="C_22_Sal\EClassSales.cs" />
     <Compile Include="C_22_Sal\EClassSales_02.cs" />
     <Compile Include="C_22_Sal\EnvelopModel.cs" />

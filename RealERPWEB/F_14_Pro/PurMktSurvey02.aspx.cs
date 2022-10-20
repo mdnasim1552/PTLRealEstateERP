@@ -218,9 +218,14 @@ namespace RealERPWEB.F_14_Pro
                     this.printP2P_cs();
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3368":
                     this.printFinlay_cs();
+                    break;
+
+                case "3101":
+                case "3367":
+                    this.printEpic_cs();
                     break;
                 default:
                     this.printAll_cs();
@@ -1562,6 +1567,109 @@ namespace RealERPWEB.F_14_Pro
 
                 //Rpt1.SetParameters(new ReportParameter("MaterialsList", MaterialsList));
                 // Rpt1.SetParameters(new ReportParameter("Specification", Specification));
+                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+
+            }
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
+        protected void printEpic_cs()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string CurDate1 = this.GetStdDate(this.txtCurMSRDate.Text.Trim());
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
+            string mMSRNo = "NEWMSR";
+            if (this.ddlPrevMSRList.Items.Count > 0)
+            {
+                mMSRNo = this.ddlPrevMSRList.SelectedValue.ToString();
+            }
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+
+            LocalReport Rpt1 = new LocalReport();
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "RPTMARKETSURVEY02", mMSRNo, "", "", "", "", "", "", "", "");
+            string narration = this.txtMSRNarr.Text.Trim();
+            string surveyNo = this.lblCurMSRNo1.Text + this.txtCurMSRNo2.Text;
+            /// SP_ENTRY_PURCHASE_01 '3101','RPTMARKETSURVEY02','MSR20180200003', '',''
+            var lst = ds1.Tables[0].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay02>();
+            var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay03>();
+
+            if (lst1.Count == 5)
+            {
+
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyEpic05", lst, lst1, null);
+                Rpt1.EnableExternalImages = true;
+
+                DataTable dt = (DataTable)Session["tblt01"];
+                int i = 1;
+                foreach (RealEntity.C_14_Pro.EClassPur.MkrServay03 lsts in lst1)
+                {
+                    Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
+                    i++;
+                }
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("CurDate1", "Date: " + CurDate1));
+                Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+                Rpt1.SetParameters(new ReportParameter("narration", "Comments : " + narration));
+                Rpt1.SetParameters(new ReportParameter("surveyNo", surveyNo));
+                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+
+            }
+            else if (lst1.Count == 4)
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyEpic02", lst, lst1, null);
+                Rpt1.EnableExternalImages = true;
+                DataTable dt = (DataTable)Session["tblt01"];
+                int i = 1;
+                foreach (RealEntity.C_14_Pro.EClassPur.MkrServay03 lsts in lst1)
+                {
+                    Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
+                    i++;
+                }
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("CurDate1", "Date: " + CurDate1));
+                Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+                Rpt1.SetParameters(new ReportParameter("narration", "Comments : " + narration));
+                Rpt1.SetParameters(new ReportParameter("surveyNo", surveyNo));
+                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+
+            }
+            else
+            {
+
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyEpic03", lst, lst1, null);
+                Rpt1.EnableExternalImages = true;
+                DataTable dt = (DataTable)Session["tblt01"];
+                int i = 1;
+                foreach (RealEntity.C_14_Pro.EClassPur.MkrServay03 lsts in lst1)
+                {
+                    Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
+                    i++;
+                }
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("CurDate1", "Date: " + CurDate1));
+                Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+                Rpt1.SetParameters(new ReportParameter("narration", "Comments : " + narration));
+                Rpt1.SetParameters(new ReportParameter("surveyNo", surveyNo));
                 Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
 

@@ -169,7 +169,7 @@
                                         <tr>
                                             <td class="font-weight-bold">Present Salary</td>
                                             <td>
-                                                <asp:Label ID="Label2" runat="server">0000</asp:Label>
+                                                <asp:Label ID="lblgross" runat="server">0000</asp:Label>
                                             </td>
                                         </tr>
                                         <tr>
@@ -182,7 +182,7 @@
                                         <tr>
                                            <td class="font-weight-bold">Last Date of Office</td>
                                             <td>
-                                                <asp:Label ID="Label1" runat="server"></asp:Label>
+                                                <asp:Label ID="lbllastday" runat="server"></asp:Label>
                                             </td>
                                         </tr>
 
@@ -279,7 +279,7 @@
 
                                         <asp:TemplateField HeaderText="Calculation" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblcalculation" CssClass="badge badge-pill badge-info" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "calculation")) %>'></asp:Label>
+                                                <asp:TextBox ID="lblcalculation" CssClass="form-control form-control-sm" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "calculation")) %>'></asp:TextBox>
 
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
@@ -296,6 +296,7 @@
                                             <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                         </asp:TemplateField>
+
 
 
                                         <%--<asp:ButtonField Text="Select" CommandName="Select" ButtonType="Button" />--%>
@@ -344,6 +345,10 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="From" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
+                                                  <asp:Label ID="lblfrmdat" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "frmdat")) %>' Width="100px"></asp:Label>
+                                                   <asp:TextBox ID="txtfrmdat" runat="server" CssClass="form-control form-control-sm" Visible="false" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "frmdat")) %>' Width="100px"></asp:TextBox>
+                                                <cc1:CalendarExtender ID="txtfrmdat_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtfrmdat"></cc1:CalendarExtender>
+
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" Width="80px" />
                                         </asp:TemplateField>
@@ -351,6 +356,10 @@
 
                                         <asp:TemplateField HeaderText="To" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
+                                                  <asp:Label ID="lbltodat" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "todat")) %>' Width="100px"></asp:Label>
+                                                 <asp:TextBox ID="txttodat" runat="server" CssClass="form-control form-control-sm" Visible="false" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "todat")) %>' Width="100px"></asp:TextBox>
+                                                <cc1:CalendarExtender ID="txttodat_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodat"></cc1:CalendarExtender>
+                                           
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" Width="80px" />
                                         </asp:TemplateField>
@@ -376,7 +385,7 @@
 
                                         <asp:TemplateField HeaderText="Calculation" HeaderStyle-CssClass="font-weight-bold text-muted">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblcalculation" CssClass="badge badge-pill badge-info" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "calculation")) %>' ></asp:Label>
+                                                <asp:TextBox ID="lblcalculation" CssClass="form-control form-control-sm" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "calculation")) %>' ></asp:TextBox>
 
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
@@ -419,5 +428,4 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
-
 
