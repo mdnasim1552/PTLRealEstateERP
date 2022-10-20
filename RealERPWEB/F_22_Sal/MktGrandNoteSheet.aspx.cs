@@ -199,6 +199,187 @@ namespace RealERPWEB.F_22_Sal
 
 
         }
+        protected void lbtnPrint_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string usircode = this.lblCode.Text;
+            string pactcode = this.ddlProjectName.SelectedValue.ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            //  string usrid = hst["usrid"].ToString();
+            string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "SHOWGRANDNOTESHEET", pactcode, usircode, "", "", "", "", "", "", "");
+            if (ds1 == null)
+            {
+                return;
+            }
+            var lstb = ds1.Tables[1].DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>();
+            var lstcoff = ds1.Tables[2].DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>();
+            var lstrev = ds1.Tables[3].DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet>();
+
+
+            double uzize, bfv, bpv, uamt, pamt, utility, others, bfvpsft, bpvpsft, bpowbpart, intratio, noofemi,
+                cofffv, coffpv, coffpamt, coffutility, coffothers, cofffvpsft, coffpvpsft, coffpowbpart, coffnoofemi, revfv, revpv,
+                revpamt, revutility, revothers, revfvpsft, revpvpsft, revpowbpart, revnoofemi;
+
+            uzize =
+            bfv = lstb.Sum(l => l.fv);
+            bpv = lstb.Sum(l => l.pv);
+            uzize = Convert.ToDouble(ds1.Tables[0].Rows[0]["usize"]);
+            pamt = Convert.ToDouble(ds1.Tables[0].Rows[0]["pamt"]);
+            utility = Convert.ToDouble(ds1.Tables[0].Rows[0]["utility"]);
+            others = Convert.ToDouble(ds1.Tables[0].Rows[0]["others"]);
+            intratio = Convert.ToDouble(ds1.Tables[0].Rows[0]["intratio"]);
+            noofemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["noofemi"]);
+            bfvpsft = ((uzize > 0) ? ((bfv - pamt - utility - others) / uzize) : 0.00);
+            bpowbpart = (12 + intratio) / 12;
+            bpvpsft = Math.Round(bfvpsft / (Math.Pow(bpowbpart, noofemi)), 0);
+            cofffv = lstcoff.Sum(l => l.fv);
+            coffpv = lstcoff.Sum(l => l.pv);
+            coffpamt = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffpamt"]);
+            coffutility = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffutility"]);
+            coffothers = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffothers"]);
+            coffnoofemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffnoofemi"]);
+            cofffvpsft = ((uzize > 0) ? ((cofffv - coffpamt - coffutility - coffothers) / uzize) : 0.00);
+            coffpowbpart = (12 + intratio) / 12;
+            coffpvpsft = Math.Round(cofffvpsft / (Math.Pow(coffpowbpart, coffnoofemi)), 0);
+
+
+
+
+            revfv = lstrev.Sum(l => l.fv);
+            revpv = lstrev.Sum(l => l.pv);
+            revpamt = Convert.ToDouble(ds1.Tables[0].Rows[0]["revpamt"]);
+            revutility = Convert.ToDouble(ds1.Tables[0].Rows[0]["revutility"]);
+            revothers = Convert.ToDouble(ds1.Tables[0].Rows[0]["revothers"]);
+            revnoofemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["revnoofemi"]);
+            revfvpsft = ((uzize > 0) ? ((revfv - revpamt - revutility - revothers) / uzize) : 0.00);
+            revpowbpart = (12 + intratio) / 12;
+            revpvpsft = Math.Round(revfvpsft / (Math.Pow(revpowbpart, noofemi)), 0);
+
+            string area = Convert.ToDouble(ds1.Tables[0].Rows[0]["usize"]).ToString("#,##0;(#,##0);");
+            string rate = Convert.ToDouble(ds1.Tables[0].Rows[0]["urate"]).ToString("#,##0;(#,##0);");
+            string unitprice = Convert.ToDouble(ds1.Tables[0].Rows[0]["uamt"]).ToString("#,##0;(#,##0);");
+            string parking = Convert.ToDouble(ds1.Tables[0].Rows[0]["pamt"]).ToString("#,##0;(#,##0);");
+            string valutility = Convert.ToDouble(ds1.Tables[0].Rows[0]["utility"]).ToString("#,##0;(#,##0);");
+            string other = Convert.ToDouble(ds1.Tables[0].Rows[0]["others"]).ToString("#,##0;(#,##0);");
+            string Total = Convert.ToDouble(ds1.Tables[0].Rows[0]["tunitamt"]).ToString("#,##0;(#,##0);");
+            string bookingpercnt = Convert.ToDouble(ds1.Tables[0].Rows[0]["bookingper"]).ToString("#,##0;(#,##0);");
+            string bookingmoney = Convert.ToDouble(ds1.Tables[0].Rows[0]["bookingam"]).ToString("#,##0;(#,##0);");
+            string valnoofemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["noofemi"]).ToString("#,##0;(#,##0);");
+            string emi = Convert.ToDouble(ds1.Tables[0].Rows[0]["emi"]).ToString("#,##0;(#,##0);");
+            string fvpsft = bfvpsft.ToString("#,##0;(#,##0);");
+            string pvpersft = bpvpsft.ToString("#,##0;(#,##0);");
+
+
+
+
+            string valcoffarea = Convert.ToDouble(ds1.Tables[0].Rows[0]["usize"]).ToString("#,##0;(#,##0);");
+            string coffrate = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffurate"]).ToString("#,##0;(#,##0);");
+            string coffunitprice = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffuamt"]).ToString("#,##0;(#,##0);");
+            string cofffparking = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffpamt"]).ToString("#,##0;(#,##0);");
+            string valcoffutility = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffutility"]).ToString("#,##0;(#,##0);");
+            string valcoffothers = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffothers"]).ToString("#,##0;(#,##0);");
+            string coffTotal = Convert.ToDouble(ds1.Tables[0].Rows[0]["cofftunitamt"]).ToString("#,##0;(#,##0);");
+            string coffbookinmpercnt = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffbookingper"]).ToString("#,##0;(#,##0);");
+            string coffbookingam = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffbookingam"]).ToString("#,##0;(#,##0);");
+            string coffnooffemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffnoofemi"]).ToString("#,##0;(#,##0);");
+            string coffemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffemi"]).ToString("#,##0;(#,##0);");
+            string cofffvpersft = cofffvpsft.ToString("#,##0;(#,##0);");
+            string coffpvpersft = coffpvpsft.ToString("#,##0;(#,##0);");
+
+
+            string revparea = Convert.ToDouble(ds1.Tables[0].Rows[0]["usize"]).ToString("#,##0;(#,##0);");
+            string revprate = Convert.ToDouble(ds1.Tables[0].Rows[0]["revurate"]).ToString("#,##0;(#,##0);");
+            string revpunitprice = Convert.ToDouble(ds1.Tables[0].Rows[0]["revuamt"]).ToString("#,##0;(#,##0);");
+            string revpparking = Convert.ToDouble(ds1.Tables[0].Rows[0]["revpamt"]).ToString("#,##0;(#,##0);");
+            string revputility = Convert.ToDouble(ds1.Tables[0].Rows[0]["revutility"]).ToString("#,##0;(#,##0);");
+            string revpothers = Convert.ToDouble(ds1.Tables[0].Rows[0]["revothers"]).ToString("#,##0;(#,##0);");
+            string revpTotal = Convert.ToDouble(ds1.Tables[0].Rows[0]["revtunitamt"]).ToString("#,##0;(#,##0);");
+            string revpbbookinmpercnt = Convert.ToDouble(ds1.Tables[0].Rows[0]["revbookingper"]).ToString("#,##0;(#,##0);");
+            string revpbookingam = Convert.ToDouble(ds1.Tables[0].Rows[0]["revbookingam"]).ToString("#,##0;(#,##0);");
+            string revpnooffemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["revnoofemi"]).ToString("#,##0;(#,##0);");
+            string revpemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["revemi"]).ToString("#,##0;(#,##0);");
+            string revpfvpersft = revfvpsft.ToString("#,##0;(#,##0);");
+            string revppvpersft = revpvpsft.ToString("#,##0;(#,##0);");
+
+            DataTable dt = (DataTable)ds1.Tables[1];
+            DataTable dt1 = (DataTable)ds1.Tables[2];
+            DataTable dt2 = (DataTable)ds1.Tables[3];
+
+            LocalReport Rpt1 = new LocalReport();
+            var lst1 = dt.DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>();
+            var lst2 = dt1.DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>();
+            var lst3 = dt2.DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet>();
+
+
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptGrandNotesSheet", lst1, lst2, lst3);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("area", area));
+            Rpt1.SetParameters(new ReportParameter("rate", rate));
+            Rpt1.SetParameters(new ReportParameter("unitprice", unitprice));
+            Rpt1.SetParameters(new ReportParameter("parking", parking));
+            Rpt1.SetParameters(new ReportParameter("valutility", valutility));
+            Rpt1.SetParameters(new ReportParameter("other", other));
+            Rpt1.SetParameters(new ReportParameter("Total", Total));
+            Rpt1.SetParameters(new ReportParameter("bookingpercnt", bookingpercnt));
+            Rpt1.SetParameters(new ReportParameter("bookingmoney", bookingmoney));
+            Rpt1.SetParameters(new ReportParameter("valnoofemi", valnoofemi));
+            Rpt1.SetParameters(new ReportParameter("emi", emi));
+            Rpt1.SetParameters(new ReportParameter("fvpsft", fvpsft));
+            Rpt1.SetParameters(new ReportParameter("pvpersft", pvpersft));
+            //customer
+            Rpt1.SetParameters(new ReportParameter("valcoffarea", valcoffarea));
+            Rpt1.SetParameters(new ReportParameter("coffrate", coffrate));
+            Rpt1.SetParameters(new ReportParameter("coffunitprice", coffunitprice));
+            Rpt1.SetParameters(new ReportParameter("cofffparking", cofffparking));
+            Rpt1.SetParameters(new ReportParameter("valcoffutility", valcoffutility));
+            Rpt1.SetParameters(new ReportParameter("valcoffothers", valcoffothers));
+            Rpt1.SetParameters(new ReportParameter("coffTotal", coffTotal));
+            Rpt1.SetParameters(new ReportParameter("coffbookinmpercnt", coffbookinmpercnt));
+            Rpt1.SetParameters(new ReportParameter("coffbookingam", coffbookingam));
+
+            Rpt1.SetParameters(new ReportParameter("coffnooffemi", coffnooffemi));
+            Rpt1.SetParameters(new ReportParameter("coffemi", coffemi));
+            Rpt1.SetParameters(new ReportParameter("cofffvpersft", cofffvpersft));
+            Rpt1.SetParameters(new ReportParameter("coffpvpersft", coffpvpersft));
+            //
+            Rpt1.SetParameters(new ReportParameter("revparea", revparea));
+            Rpt1.SetParameters(new ReportParameter("revprate", revprate));
+            Rpt1.SetParameters(new ReportParameter("revpunitprice", revpunitprice));
+            Rpt1.SetParameters(new ReportParameter("revpparking", revpparking));
+            Rpt1.SetParameters(new ReportParameter("revputility", revputility));
+            Rpt1.SetParameters(new ReportParameter("revpothers", revpothers));
+            Rpt1.SetParameters(new ReportParameter("revpTotal", revpTotal));
+            Rpt1.SetParameters(new ReportParameter("revpbbookinmpercnt", revpbbookinmpercnt));
+            Rpt1.SetParameters(new ReportParameter("revpbookingam", revpbookingam));
+            Rpt1.SetParameters(new ReportParameter("revpnooffemi", revpnooffemi));
+            Rpt1.SetParameters(new ReportParameter("revpemi", revpemi));
+            Rpt1.SetParameters(new ReportParameter("revpfvpersft", revpfvpersft));
+            Rpt1.SetParameters(new ReportParameter("revppvpersft", revppvpersft));
+
+
+
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Grand Note Sheet"));
+            // Rpt1.SetParameters(new ReportParameter("projectName", projectName));
+
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            //Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
         private void GetPreviousNoteSheetDetails()
         {
 
@@ -245,14 +426,7 @@ namespace RealERPWEB.F_22_Sal
             this.Data_Bind();
 
         }
-        protected void lbtnPrint_Click(object sender, EventArgs e)
-        {
-          
-
-
-
-        }
-
+       
 
 
         protected void lbtnusize_Click(object sender, EventArgs e)
@@ -1106,6 +1280,8 @@ namespace RealERPWEB.F_22_Sal
             //Session["tbldschamt"] = lst;
             //this.Data_Bind();
         }
+       
+
     }
 }
 
