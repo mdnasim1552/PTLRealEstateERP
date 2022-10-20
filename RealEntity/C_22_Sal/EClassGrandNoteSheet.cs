@@ -40,7 +40,7 @@ namespace RealEntity.C_22_Sal
             }
 
         }
-
+        [Serializable]
         public class EClassCoffGrandNoteSheet
         {
 
@@ -70,7 +70,7 @@ namespace RealEntity.C_22_Sal
             }
 
         }
-
+        [Serializable]
 
         public class EClassRevGrandNoteSheet
         {
@@ -102,6 +102,8 @@ namespace RealEntity.C_22_Sal
 
         }
 
-        #endregion 
+        #endregion
+        
+
     }
 }

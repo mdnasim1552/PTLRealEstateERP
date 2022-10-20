@@ -911,7 +911,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group lblmargin lblheadertitle">
-                                                        <label id="lblrevoffer" runat="server">C. RCU Offer</label>
+                                                        <label id="lblrevoffer" runat="server">C. Sales Team Offer</label>
                                                     </div>
 
                                                 </div>
@@ -1296,7 +1296,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group lblmargin lblheadertitle">
-                                                        <label id="Label6" runat="server">C. RCU Offer</label>
+                                                        <label id="Label6" runat="server">C. Sales Team Offer</label>
                                                     </div>
 
                                                 </div>

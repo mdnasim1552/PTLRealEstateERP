@@ -1484,6 +1484,7 @@ namespace RealEntity.C_22_Sal
             public string bbranch { get; set; }
             public string usrsign { get; set; }
             public double paidamt { get; set; }
+            public string insdesc { get; set; }
 
 
 
