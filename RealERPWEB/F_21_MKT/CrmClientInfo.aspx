@@ -636,7 +636,7 @@
 
 
                     gcod = $(arrgcodl[i]).text();
-                    countryPhone = $(codePhone[i]).option: selected();
+                    //countryPhone = $(codePhone[i]).option: selected();
                     countryPhone = codePhone.options[value.selectedIndex].value;
                     console.log(countryPhone);
 
