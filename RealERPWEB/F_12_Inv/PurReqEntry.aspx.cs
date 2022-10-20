@@ -470,6 +470,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3351":
                 case "3352":
                 case "3368":
+                case "3367":
                     if (Request.QueryString["InputType"].ToString() == "IndentEntry" || ASTUtility.Left(this.ddlProject.SelectedValue.ToString(), 2) == "11")
                     {
 
@@ -1265,6 +1266,11 @@ namespace RealERPWEB.F_12_Inv
             if (this.Request.QueryString["InputType"] == "IndentEntry")
             {
                 indentType = "Indent";
+                if (isIndentDepReq(deptcode))
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Department code Required..!!');", true);
+                    return;
+                }
             }
             string mREQNAR = this.txtReqNarr.Text.Trim();
 
@@ -1442,6 +1448,32 @@ namespace RealERPWEB.F_12_Inv
             //}
 
 
+        }
+
+
+        private bool isIndentDepReq(string _deptcode)
+        {
+            bool isReq = false;
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "3101":
+                case "3366": // lanco
+                case "3367": // epic
+                    if (_deptcode == "AAAAAAAAAAAA")
+                    {
+                        isReq = true;
+                    }
+                    else
+                    {
+                        isReq = false;
+                    }
+                    break;
+                default:
+                    isReq = false;
+                    break;
+            }
+            return isReq;
         }
 
         private void SendNotificaion(string deptcode, string depname, string compsms, string compmail, string ssl, string compName, string subj, string projname, string reqno, string createDat,
@@ -1901,7 +1933,7 @@ namespace RealERPWEB.F_12_Inv
                             }
 
                             Rsircode = tbl1.Rows[index]["rsircode"].ToString();
-                           
+
                         }
 
                     }
@@ -2287,7 +2319,7 @@ namespace RealERPWEB.F_12_Inv
             }
             this.lbtnResFooterTotal_Click(null, null);
         }
-       
+
 
 
         protected void ddlPageNo_SelectedIndexChanged(object sender, EventArgs e)
@@ -3016,8 +3048,8 @@ namespace RealERPWEB.F_12_Inv
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
-                string rsircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "rsircode")).ToString(); 
-                string pactcode =ASTUtility.Left(this.ddlProject.SelectedItem.Text.Trim(),12);
+                string rsircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "rsircode")).ToString();
+                string pactcode = ASTUtility.Left(this.ddlProject.SelectedItem.Text.Trim(), 12);
 
                 //hlnkacrcvqty.NavigateUrl = "~/F_14_Pro/RptPurchasetracking?Type=Purchasetrk&reqno=" + reqno + "&comcod=" + comcod1;
                 hlnkacrcvqty.NavigateUrl = "~/F_14_Pro/LinkRptPurchaseStatusUr?Type=Purchase&Rpt=BgdBal&pactcode=" + pactcode + "&rsircode=" + rsircode;
