@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-   
+
     <style>
         body {
             font-family: "Century Gothic";
@@ -416,7 +416,6 @@
 
         tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td {
         }
-         
     </style>
 
     <script type="text/javascript">
@@ -622,15 +621,24 @@
                 var sircode = $('#<%=this.lblnewprospect.ClientID%>').val();
                 var arrgcodl = $('#<%=this.gvPersonalInfo.ClientID %>').find('[id$="lblgvItmCodeper"]');
                 var arraygval = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:text[id$="txtgvVal"]');
-                // console.log(arraygval);
+                //var codePhone = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:option:selected[id$="ddlcountryPhone"]').text;
+                var codePhone = $('#<%=this.gvPersonalInfo.ClientID %>').find('[id$="ddlcountryPhone"]');
+               // var codePhone = $('#<%=this.gvPersonalInfo.ClientID %>').find('input[type=select][id*=ddlcountryPhone]').value;
+                //console.log(countryPhone[1]);
+                console.log(arraygval);
+                console.log(codePhone);
+                //elementId: selected
                 // var txtmobile=arraygval[1];  
-                var txtmobile, txtaltmobile1, txtaltmobile2;
+                var txtmobile, txtaltmobile1, txtaltmobile2, countryPhone;
 
 
                 for (var i = 0; i < arrgcodl.length; i++) {
 
 
                     gcod = $(arrgcodl[i]).text();
+                    countryPhone = $(codePhone[i]).option: selected();
+                    countryPhone = codePhone.options[value.selectedIndex].value;
+                    console.log(countryPhone);
 
 
                     switch (gcod) {
@@ -658,6 +666,9 @@
 
                 }
 
+                console.log(countryPhone);
+                console.log("Nahid");
+
                 $(txtmobile).keyup(function () {
                     var mobile = $(this).val();
 
@@ -675,8 +686,6 @@
 
 
                 $(txtaltmobile1).keyup(function () {
-
-
                     var mobile = $(this).val();
                     if (mobile.length != 11) {
                         return false;
@@ -689,7 +698,7 @@
                         return false;
                     }
                     if (gcod != "0301025" && (comcod == "3315" || comcod == "3316")) {
-                        alert("test--");
+                        //alert("test--");
                         funDupMobile(comcod, sircode, mobile);
                     }
 
@@ -1938,7 +1947,7 @@
 
 
     </script>
-    
+
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -2005,10 +2014,7 @@
                                         </div>
                                         <div class="panel-body">
 
-                                            <input id="txtPhone" type="tel">
-                                            <span id="lblValid" class="hide" style="color: green;">✓ Valid</span>
-                                            <span id="lblError" class="hide" style="color: red;">Invalid number</span>
-
+                                           
                                             <asp:GridView ID="gvPersonalInfo" runat="server" AutoGenerateColumns="False"
                                                 ShowFooter="True" OnRowDataBound="gvPersonalInfo_RowDataBound" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow">
                                                 <RowStyle />
@@ -2046,7 +2052,15 @@
                                                     <asp:TemplateField>
 
                                                         <ItemTemplate>
-
+                                                            <asp:DropDownList ID="ddlcountryPhone" runat="server" ClientIDMode="Static" style="float:left; padding-left:0; padding-right:0"  Visible="false"
+                                                                Width="100px" CssClass="form-control">
+                                                                <asp:ListItem Selected="True" Value="+88">+88</asp:ListItem>
+                                                                <asp:ListItem Value="+1">+1</asp:ListItem>
+                                                                <asp:ListItem Value="+1">+1</asp:ListItem>
+                                                                <asp:ListItem Value="+44">+44</asp:ListItem>
+                                                                <asp:ListItem Value="+52">+52</asp:ListItem>
+                                                                <asp:ListItem Value="+52">+52</asp:ListItem>
+                                                            </asp:DropDownList>
                                                             <asp:TextBox ID="txtgvVal" ClientIDMode="Static" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px" OnTextChanged="txtgvVal_TextChanged1" AutoPostBack="true"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
@@ -3828,6 +3842,9 @@
                                             </li>
                                             <li>
                                                 <asp:HyperLink ID="hlnkProsWorkingReport" runat="server" Target="_blank" NavigateUrl="~/F_21_Mkt/RptProspectWorking">Prospect Working Report</asp:HyperLink>
+                                            </li>
+                                            <li>
+                                                <asp:HyperLink ID="hlnkProsWorkingReportDayWise" runat="server" Target="_blank" NavigateUrl="~/F_21_Mkt/RptProspectWorking?Type=RptDayWise">Associate Working Report (Day Wise)</asp:HyperLink>
                                             </li>
                                             <li>
                                                 <asp:HyperLink ID="hyplnkPerDeleteProspect" runat="server" Target="_blank" NavigateUrl="~/F_21_Mkt/RptPerDeleteProspect"> Per. Delete Prospect</asp:HyperLink>

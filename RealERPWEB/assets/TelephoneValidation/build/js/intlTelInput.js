@@ -142,7 +142,7 @@
                 forEachProp(defaults, function(key, value) {
                     _this.options[key] = customOptions.hasOwnProperty(key) ? customOptions[key] : value;
                 });
-                this.hadInitialPlaceholder = Boolean(input.getAttribute("placeholder"));
+                //this.hadInitialPlaceholder = Boolean(input.getAttribute("placeholder"));
             }
             _createClass(Iti, [ {
                 key: "_init",

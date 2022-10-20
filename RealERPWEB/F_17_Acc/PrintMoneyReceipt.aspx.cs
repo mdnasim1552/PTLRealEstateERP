@@ -147,6 +147,7 @@ namespace RealERPWEB.F_17_Acc
 
 
                 }
+
                 else if (dtmr.Rows[i - 1]["gdesc"].ToString().Trim() != dtmr.Rows[i]["gdesc"].ToString().Trim())
                 {
                     if (Convert.ToDouble(dtmr.Rows[i]["schamt"].ToString()) == Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()))
@@ -195,6 +196,10 @@ namespace RealERPWEB.F_17_Acc
                     Installment = Installment2;
                     break;
             }
+
+
+         
+
 
             DataSet ds4 = accData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "REPORTMONEYRECEIPT", pactCode, usirCode, mrno, "", "", "", "", "", "");
             if (ds4 == null || ds4.Tables[0].Rows.Count == 0)

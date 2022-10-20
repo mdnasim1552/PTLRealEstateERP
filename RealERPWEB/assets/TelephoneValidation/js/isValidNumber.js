@@ -1,3 +1,4 @@
+console.log("Nahid");
 var input = document.querySelector("#phone"),
   errorMsg = document.querySelector("#error-msg"),
   validMsg = document.querySelector("#valid-msg");
@@ -7,7 +8,8 @@ var errorMap = ["Invalid number", "Invalid country code", "Too short", "Too long
 
 // initialise plugin
 var iti = window.intlTelInput(input, {
-  utilsScript: "build/js/utils.js?1638200991544"
+   // utilsScript: "build/js/utils.js?1638200991544"
+    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@17.0.3/build/js/utils.js",
 });
 
 var reset = function() {
