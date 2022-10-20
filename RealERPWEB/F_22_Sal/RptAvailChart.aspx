@@ -7,22 +7,22 @@
 
 
     <div class="RealProgressbar">
-                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
-                    <ProgressTemplate>
-                        <div id="loader">
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="lading"></div>
-                        </div>
-                    </ProgressTemplate>
-                </asp:UpdateProgress>
-            </div>
+        <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
+            <ProgressTemplate>
+                <div id="loader">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="lading"></div>
+                </div>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
+    </div>
     <div class="container moduleItemWrpper">
         <div class="contentPart">
             <div class="row">
@@ -40,7 +40,7 @@
 
                                 <asp:DropDownList ID="ddlProjectName" CssClass="form-control" Width="284px" runat="server" Font-Bold="True">
                                 </asp:DropDownList>
-                                
+
 
                             </div>
                             <div class="col-md-1 pading5px">
@@ -83,7 +83,7 @@
                         OnRowDataBound="gvAailChart_RowDataBound">
                         <RowStyle />
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl.No.">
+                            <asp:TemplateField HeaderText="SL">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvSlNo3" runat="server" Font-Bold="True" Height="16px"
                                         Style="text-align: right"
@@ -121,6 +121,7 @@
                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
+
                             <asp:TemplateField HeaderText="Floor Description">
                                 <ItemTemplate>
                                     <asp:Label ID="lgvFlrdesc" runat="server" AutoCompleteType="Disabled"
@@ -132,6 +133,7 @@
                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
+
                             <asp:TemplateField HeaderText="Unit Description">
                                 <ItemTemplate>
                                     <asp:Label ID="lgvUnitdesc" runat="server" AutoCompleteType="Disabled"
@@ -169,6 +171,7 @@
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
+
                             <asp:TemplateField HeaderText="Qty.">
                                 <ItemTemplate>
                                     <asp:Label ID="lgQty" runat="server" BackColor="Transparent"

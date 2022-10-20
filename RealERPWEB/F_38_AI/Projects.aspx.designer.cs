@@ -258,6 +258,15 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl task;
 
         /// <summary>
+        /// HiddinTaskid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddinTaskid;
+
+        /// <summary>
         /// Label11 control.
         /// </summary>
         /// <remarks>
