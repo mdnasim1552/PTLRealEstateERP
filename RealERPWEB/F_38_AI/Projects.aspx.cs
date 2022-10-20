@@ -658,7 +658,7 @@ namespace RealERPWEB.F_38_AI
                 string roletype = ((Label)this.gv_PenddingAssign.Rows[index].FindControl("lblgvproletype")).Text.ToString();
                 string annotorid = ((Label)this.gv_PenddingAssign.Rows[index].FindControl("lblgvpannoid")).Text.ToString();
                 string assigntype = ((Label)this.gv_PenddingAssign.Rows[index].FindControl("lblgvpassigntype")).Text.ToString();
-                string assignqty = ((Label)this.gv_PenddingAssign.Rows[index].FindControl("lblgvpassignqty")).Text.ToString();
+                string assignqty = ((Label)this.gv_PenddingAssign.Rows[index].FindControl("lblgvpdoneqty")).Text.ToString();
                 this.txttasktitle.Text = titlename;
                 this.ddlUserRoleType.SelectedValue = roletype;
                 this.ddlAnnotationid.SelectedItem.Value = annotorid;
