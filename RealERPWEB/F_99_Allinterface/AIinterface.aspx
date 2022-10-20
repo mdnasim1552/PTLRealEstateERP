@@ -646,7 +646,7 @@
                                             <asp:ListItem Value="1"><div class="circle-tile"><a><div class="circle-tile-heading deep-sky-blue counter">0</div></a><div class="circle-tile-content deep-sky-blue"><div class="circle-tile-description txt-white">Batch Status</div></div></div></asp:ListItem>
                                             <asp:ListItem Value="2"><div class="circle-tile"><a><div class="circle-tile-heading purple counter">0</div></a><div class="circle-tile-content purple"><div class="circle-tile-description txt-white">Assigned</div></div></div></asp:ListItem>
                                             <asp:ListItem Value="3"><div class="circle-tile"><a><div class="circle-tile-heading  bg-success counter">0</div></a><div class="circle-tile-content bg-success"><div class="circle-tile-description txt-white">Production</div></div></div></asp:ListItem>
-                                            <asp:ListItem Value="4"><div class="circle-tile"><a><div class="circle-tile-heading  deep-pink counter">0</div></a><div class="circle-tile-content  deep-pink"><div class="circle-tile-description txt-white">QC & QA</div></div></div></asp:ListItem>
+                                            <asp:ListItem Value="4"><div class="circle-tile"><a><div class="circle-tile-heading  deep-pink counter">0</div></a><div class="circle-tile-content  deep-pink"><div class="circle-tile-description txt-white">QC</div></div></div></asp:ListItem>
                                             <asp:ListItem Value="5"><div class="circle-tile"><a><div class="circle-tile-heading  orange counter">0</div></a><div class="circle-tile-content  orange"><div class="circle-tile-description txt-white">Accept/Reject</div></div></div></asp:ListItem>
                                             <asp:ListItem Value="6"><div class="circle-tile"><a><div class="circle-tile-heading  bg-success counter">0</div></a><div class="circle-tile-content  bg-info"><div class="circle-tile-description txt-white">QA</div></div></div></asp:ListItem>
                                             <asp:ListItem Value="7"><div class="circle-tile"><a><div class="circle-tile-heading  bg-pink counter">0</div></a><div class="circle-tile-content  bg-pink"><div class="circle-tile-description txt-white">FeedBack</div></div></div></asp:ListItem>
@@ -1062,6 +1062,9 @@
                                                 <asp:Label ID="lblgvjobid" runat="server" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobid"))%>'
                                                     Width="80px"></asp:Label>
+                                                <asp:Label ID="lblgvpprjid" runat="server" Height="16px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prjid"))%>'
+                                                    Width="80px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1122,9 +1125,12 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="EmpName">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvempname" runat="server" Height="16px"
+                                                <asp:HyperLink runat="server" ID="lnkbtnprodlink" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="text-primary pr-2 pl-2" >
+                                                    <asp:Label ID="lblgvempname" runat="server" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
                                                     Width="150px"></asp:Label>
+                                                </asp:HyperLink>
+                                                
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1169,7 +1175,9 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvdoneqty" runat="server" Height="16px"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "doneqty")).ToString("#,##0;(#,##0); ") %>'
-                                                    Width="60px"></asp:Label>
+                                                    Width="40px"></asp:Label>
+                                                <asp:LinkButton runat="server" ID="btnplink" Visible='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "doneqty")) > 0 ? true:false %>'  CssClass="text-primary pr-2 pl-2" ><i class="fa fa-plus-circle"></i></asp:LinkButton>
+
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1307,7 +1315,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvqctasktitle" runat="server" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "tasktitle")) %>'
-                                                    Width="80px"></asp:Label>
+                                                    Width="100px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1316,7 +1324,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvqcroletypedesc" runat="server" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletypedesc")) %>'
-                                                    Width="150px"></asp:Label>
+                                                    Width="50px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1325,7 +1333,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvqcannoid" runat="server" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "annoid")) %>'
-                                                    Width="80px"></asp:Label>
+                                                    Width="50px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1334,7 +1342,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvqcvelocityqty" runat="server" Height="16px"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "assignqty")).ToString("#,##0;(#,##0); ") %>'
-                                                    Width="80px"></asp:Label>
+                                                    Width="50px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1343,7 +1351,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvqcjobstatus" runat="server" Height="16px" CssClass="badge badge-pill badge-info"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus")) %>'
-                                                    Width="100px"></asp:Label>
+                                                    Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1352,7 +1360,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvqcdoneqty" runat="server" Height="16px"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "doneqty")).ToString("#,##0;(#,##0); ") %>'
-                                                    Width="60px"></asp:Label>
+                                                    Width="50px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1361,7 +1369,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvqcskipqty" runat="server" Height="16px"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "skipqty")).ToString("#,##0;(#,##0); ") %>'
-                                                    Width="60px"></asp:Label>
+                                                    Width="50px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1370,14 +1378,17 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvqctimeinminute" runat="server" Height="16px"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "timeinminute")).ToString("#,##0;(#,##0); ") %>'
-                                                    Width="60px"></asp:Label>
+                                                    Width="50px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Pediction <br> Time">
+                                        <asp:TemplateField HeaderText="Pending <br> QTY">
                                             <ItemTemplate>
+                                                <asp:Label ID="lblgvqcpendingqty" runat="server" Height="16px"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pendingqty")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="50px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1813,7 +1824,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvarroletypedesc" runat="server" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletypedesc")) %>'
-                                                    Width="150px"></asp:Label>
+                                                    Width="50px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1822,7 +1833,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvarannoid" runat="server" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "annoid")) %>'
-                                                    Width="80px"></asp:Label>
+                                                    Width="50px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1831,12 +1842,12 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvarvelocityqty" runat="server" Height="16px"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "assignqty")).ToString("#,##0;(#,##0); ") %>'
-                                                    Width="80px"></asp:Label>
+                                                    Width="50px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Job Status" Visible="false">
+                                        <asp:TemplateField HeaderText="Job Status" >
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvarjobstatus" runat="server" Height="16px" CssClass="badge badge-pill badge-info"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus")) %>'
@@ -1849,7 +1860,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvardoneqty" runat="server" Height="16px"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "doneqty")).ToString("#,##0;(#,##0); ") %>'
-                                                    Width="60px"></asp:Label>
+                                                    Width="50px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1858,7 +1869,16 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvarskipqty" runat="server" Height="16px"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "skipqty")).ToString("#,##0;(#,##0); ") %>'
-                                                    Width="60px"></asp:Label>
+                                                    Width="50px"></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        </asp:TemplateField>
+                                           <asp:TemplateField HeaderText="Pending<br>QTY">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvarpendingqty" runat="server" Height="16px"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pendingqty")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="50px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
