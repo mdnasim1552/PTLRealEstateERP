@@ -37,6 +37,13 @@
         <%: Scripts.Render("~/bundles/flatpickr") %>
         
     </asp:PlaceHolder>
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.5/css/intlTelInput.css" />
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.5/js/intlTelInput.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.5/js/utils.js"></script>
+
     <!-- SweetAlert2 -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
@@ -1033,7 +1040,7 @@
 
         $(document).ready(function () {
 
-            $('.chzn-select').chosen({ search_contains: true });
+           // $('.chzn-select').chosen({ search_contains: true });
 
         });
 
@@ -1282,6 +1289,55 @@
 
        
 
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            var telInput = $("#txtPhone");
+            var errorMsg = $("#lblError");
+            var validMsg = $("#lblValid");
+            var code = "+911234567890";
+            telInput.val(code);
+            telInput.intlTelInput({
+                autoHideDialCode: true,
+                autoPlaceholder: "ON",
+                dropdownContainer: document.body,
+                formatOnDisplay: true,
+                hiddenInput: "full_number",
+                initialCountry: "auto",
+                nationalMode: true,
+                placeholderNumberType: "MOBILE",
+                preferredCountries: ['US'],
+                separateDialCode: true
+            });
+            FormatNumber();
+            telInput.keyup(function () {
+                FormatNumber();
+            });
+            telInput.blur(function () {
+                if ($.trim(telInput.val())) {
+                    if (telInput.intlTelInput("isValidNumber")) {
+                        validMsg.removeClass("hide");
+                    } else {
+                        telInput.addClass("error");
+                        errorMsg.removeClass("hide");
+                        validMsg.addClass("hide");
+                    }
+                }
+            });
+            telInput.keydown(function () {
+                telInput.removeClass("error");
+                errorMsg.addClass("hide");
+                validMsg.addClass("hide");
+            });
+            function FormatNumber() {
+                var number = telInput.val();
+                var classf = $(".selected-flag > div").attr("class");
+                var flag = classf.slice(-2);
+                var formattedNumber = intlTelInputUtils.formatNumber(number, flag, intlTelInputUtils.numberFormat.INTERNATIONAL);
+                telInput.val(formattedNumber.slice(formattedNumber.indexOf(' ') + 1, formattedNumber.length));
+            }
+        });
     </script>
 
 </body>

@@ -5,6 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+   
     <style>
         body {
             font-family: "Century Gothic";
@@ -379,48 +380,45 @@
         .notifsectino .list-group-item-body {
             font-size: 10px !important;
         }
-        
-/*You can use [title] selector as well*/
-[data-title] {  
-  font-size: 30px; /*optional styling*/  
-  position: relative;
-  cursor: help;
-  width:200px;
-}
 
-[data-title]:hover::before {
-  content: attr(data-title);
-  position: absolute;
-  bottom: -26px;
-  display: inline-block;
-  padding: 3px 6px;
-  border-radius: 2px;
-  background: #000;
-  color: #fff;
-  font-size: 12px;
-  white-space: pre-wrap;
- 
-}
-[data-title]:hover::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 8px;
-  display: inline-block;
-  color: #fff;
-  border: 0px solid transparent;	
-  border-bottom: 0px solid #000;
+        /*You can use [title] selector as well*/
+        [data-title] {
+            font-size: 30px; /*optional styling*/
+            position: relative;
+            cursor: help;
+            width: 200px;
+        }
 
-}
+            [data-title]:hover::before {
+                content: attr(data-title);
+                position: absolute;
+                bottom: -26px;
+                display: inline-block;
+                padding: 3px 6px;
+                border-radius: 2px;
+                background: #000;
+                color: #fff;
+                font-size: 12px;
+                white-space: pre-wrap;
+            }
 
-
-tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
+            [data-title]:hover::after {
+                content: '';
+                position: absolute;
+                bottom: -10px;
+                left: 8px;
+                display: inline-block;
+                color: #fff;
+                border: 0px solid transparent;
+                border-bottom: 0px solid #000;
+            }
 
 
-}
+        tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td {
+        }
+         
     </style>
 
-     
     <script type="text/javascript">
 
 
@@ -673,12 +671,12 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
 
                 });
 
- 
+
 
 
                 $(txtaltmobile1).keyup(function () {
 
-                   
+
                     var mobile = $(this).val();
                     if (mobile.length != 11) {
                         return false;
@@ -697,9 +695,9 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
 
                 });
 
-               
+
                 $(txtaltmobile2).keyup(function () {
-                     
+
                     var mobile = $(this).val();
                     if (mobile.length != 11) {
 
@@ -719,7 +717,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
 
 
 
- 
+
 
 
 
@@ -1429,10 +1427,10 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                 //number = number.Length > 0 ? number.Substring(0, number.Length - 1) : number;
 
                 for (var i = 0; i < arrgcodl.length; i++) {
-                    
+
 
                     var gcod = $(arrgcodl[i]).text();
-                   
+
                     var number;
                     switch (gcod) {
 
@@ -1443,17 +1441,17 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
 
 
                         case '0301004':
-                           
+
                             switch (comcod) {
                                 case '3315':
-                                case '3316':                                 
+                                case '3316':
                                     break;
 
                                 default:
                                     gval = $(arraygval[i]).val();
                                     number = number + (gval.length > 0 ? gval + ",nahid" : "");
                                     break;
-                            }                            
+                            }
                             break;
 
                         case '0301005':
@@ -1935,14 +1933,13 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
 
             }
         };
-        //// for selected follow then selected lead status 
+        //// for selected follow then selected lead status
 
-        
+
 
     </script>
-
-
     
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -2008,10 +2005,9 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                         </div>
                                         <div class="panel-body">
 
-                                            <input id="phone" type="tel">
-<span id="valid-msg" class="hide">✓ Valid</span>
-<span id="error-msg" class="hide"></span>
-
+                                            <input id="txtPhone" type="tel">
+                                            <span id="lblValid" class="hide" style="color: green;">✓ Valid</span>
+                                            <span id="lblError" class="hide" style="color: red;">Invalid number</span>
 
                                             <asp:GridView ID="gvPersonalInfo" runat="server" AutoGenerateColumns="False"
                                                 ShowFooter="True" OnRowDataBound="gvPersonalInfo_RowDataBound" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow">
@@ -2983,7 +2979,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "LeadType")) %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                               
+
                                                 <%-- <asp:TemplateField HeaderText="Approve Date" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lappdat" runat="server" Width="60px" Font-Size="10px"
@@ -2997,7 +2993,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "LeadSrc")) %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
-                                                 <%--14--%>
+                                                <%--14--%>
                                                 <asp:TemplateField HeaderText="Active" Visible="false">
                                                     <ItemTemplate>
                                                         <asp:LinkButton ID="lnkAct" ClientIDMode="Static" Width="12" ToolTip="" runat="server" OnClick="lnkAct_Click"><span class="fa fa-edit"></span></asp:LinkButton>
@@ -3064,11 +3060,11 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
 
                                                 <asp:TemplateField HeaderText="Last discussion">
                                                     <ItemTemplate>
-                                                       <asp:Label ID="lbldesc" runat="server" Font-Size="12px" Width="100px" 
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ldiscuss")) %>'></asp:Label>   
+                                                        <asp:Label ID="lbldesc" runat="server" Font-Size="12px" Width="100px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ldiscuss")) %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                 <%--22--%>
+                                                <%--22--%>
 
 
                                                 <asp:TemplateField HeaderText="Notes">
@@ -3109,19 +3105,18 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                     <ItemStyle HorizontalAlign="center" />
                                                 </asp:TemplateField>
-                                                 <%--26--%>
-                                                 <asp:TemplateField HeaderText="Next Followup" Visible="false">
-                                                    <ItemTemplate> 
-                                                             <asp:Label ID="lbllfollowuplinkkpisum" Width="90px" runat="server" 
+                                                <%--26--%>
+                                                <asp:TemplateField HeaderText="Next Followup" Visible="false">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lbllfollowuplinkkpisum" Width="90px" runat="server"
                                                             Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lnfollowupdate")).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lnfollowupdate")).ToString("dd-MMM-yyyy")%>'>                                                               
                                                         </asp:Label>
-  
+
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
-                                                 <%--27--%>
-
+                                                <%--27--%>
                                             </Columns>
                                             <FooterStyle CssClass="grvFooter" />
                                             <EditRowStyle />
@@ -4164,7 +4159,7 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                 <div class="col-xs-7 col-sm-7 col-md-7">
 
                                     <p>
-                                         <strong>PID: </strong><span id="lblPID" runat="server"></span>
+                                        <strong>PID: </strong><span id="lblPID" runat="server"></span>
                                         <br>
                                         <strong><span id="lblprosname" runat="server"></span></strong>
                                         <br />
@@ -4185,9 +4180,9 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
                                         <strong>Prefered Area: </strong><span id="lblpreferloc" runat="server"></span>
                                         <br>
                                         <strong>Appartment Size: </strong><span id="lblaptsize" runat="server"></span>
-                                         <br>
+                                        <br>
                                         <strong>Profession: </strong><span id="lblProfession" runat="server"></span>
-                                         <br>
+                                        <br>
                                         <strong>Source: </strong><span id="lblSource" runat="server"></span>
 
                                         <asp:HiddenField ID="lblproscod" runat="server" />
@@ -4996,7 +4991,6 @@ tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td{
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-
 
 
 </asp:Content>
