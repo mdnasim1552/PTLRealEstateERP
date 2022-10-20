@@ -49,6 +49,10 @@
           <DataField>gdesc</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="insdesc">
+          <DataField>insdesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="mrdate">
           <DataField>mrdate</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
@@ -795,13 +799,13 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="rectype">
+                        <Textbox Name="insdesc">
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!txtperpose.Value</Value>
+                                  <Value>=Fields!insdesc.Value</Value>
                                   <Style>
                                     <FontFamily>Verdana</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -813,7 +817,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>rectype</rd:DefaultName>
+                          <rd:DefaultName>insdesc</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -2688,7 +2692,7 @@
             <Top>5.35276in</Top>
             <Left>4.93445in</Left>
             <Height>0.94864in</Height>
-            <Width>2.78228in</Width>
+            <Width>2.78227in</Width>
             <ZIndex>20</ZIndex>
             <Style>
               <Border>
