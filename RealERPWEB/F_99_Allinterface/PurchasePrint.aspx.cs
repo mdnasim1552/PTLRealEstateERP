@@ -6096,14 +6096,14 @@ namespace RealERPWEB.F_99_Allinterface
             }
             else
             {
-                this.Allprint();
+                this.AllprintFinalization();
             }
 
 
 
 
         }
-        private void Allprint()
+        private void AllprintFinalization()
         {
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
