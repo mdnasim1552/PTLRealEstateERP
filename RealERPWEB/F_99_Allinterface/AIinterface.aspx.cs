@@ -593,37 +593,38 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = this.GetCompCode();
-                string userid = hst["usrid"].ToString();
-                string Terminal = hst["compname"].ToString();
-                string Sessionid = hst["session"].ToString();
-                string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-                string batchcreateid = this.hiidenBatcid.Value;
-
-                string batch = this.txtBatch.Text.ToString();
-                string projectname = this.hiddPrjid.Value;
-                string createdate = this.txtstartdate.Text.ToString();
-                string veliverydate = this.textdelevery.Text.ToString();
+                string postrmid = hst["usrid"].ToString();
+                string postseson = hst["compname"].ToString();
+                string editbyid = hst["session"].ToString();
+                string posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+                string id = this.hiidenBatcid.Value;
+                string postedbyid = "";
+                string editdat = "";
+                string batchid = this.txtBatch.Text.ToString();
+                string prjid = this.hiddPrjid.Value;
+                string startdate = this.txtstartdate.Text.ToString();
+                string deliverydate = this.textdelevery.Text.ToString();
                 double dtquantity = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtbatchQuantity.Text.Trim()));
-                string dataset = this.txtdataset.Text.ToString();
+                string datasettype = this.txtdataset.Text.ToString();
                 string worktype = this.txtworktype.Text.ToString();
                 double totalhour = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.tbltotalOur.Text.Trim()));
                 string phdm = this.ddlphdm.SelectedValue.ToString();
                 double workperhour = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtPerhour.Text.Trim()));
                 double textEmpcap = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.textEmpcap.Text.Trim()));
                 double rate = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtrate.Text.Trim()));
-
-                bool result = AIData.UpdateTransInfo2(comcod, "dbo_ai.SP_ENTRY_AI", "BATCH_INSERTUPDATE", batchcreateid, batch, projectname, createdate, veliverydate, userid, Terminal, Sessionid, Date,
-                    dtquantity.ToString(), dataset, totalhour.ToString(), worktype, phdm, workperhour.ToString(), textEmpcap.ToString(), rate.ToString(), "", "", "", "");
+                //batchid, prjid, startdate, deliverydate, postrmid, postedbyid, postseson, posteddat, editbyid, editdat,datasetqty,datasettype,totalhour,worktype,phdm,pwrkperhour,empcapacity, rate
+                bool result = AIData.UpdateTransInfo2(comcod, "dbo_ai.SP_ENTRY_AI", "BATCH_INSERTUPDATE", id, batchid, prjid, startdate, deliverydate, postrmid, postedbyid, postseson, posteddat, editbyid,
+                    editdat,dtquantity.ToString(), datasettype, totalhour.ToString(), worktype, phdm, workperhour.ToString(), textEmpcap.ToString(), rate.ToString(),"","" );
 
                 if (!result)
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail..!!');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Save Fail..!!');", true);
                     return;
                 }
 
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Batch  Saved Successfully');", true);
-                this.GetBatchAssingList(projectname);
+                this.GetBatchAssingList(prjid);
                 this.GetAIInterface();
                 this.data_Bind();
                 ResetForm();
