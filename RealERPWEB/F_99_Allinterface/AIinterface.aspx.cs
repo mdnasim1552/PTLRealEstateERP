@@ -419,7 +419,9 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
-        protected void btnSave_Click(object sender, EventArgs e)
+        protected void 
+            
+            _Click(object sender, EventArgs e)
         {
 
         }
