@@ -24,6 +24,7 @@
         }
         .chzn-container{
             width: 100% !important;
+            height:28px!important;
         }
 
         .chzn-container-single .chzn-single {

@@ -161,6 +161,13 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         //    this.txttodate.Text= "25" + this.txtfromdate.Text.Trim().Substring(2);
 
                         //    break;
+
+                        case "3365":   //  bti 
+            
+                            this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                            this.txtfromdate.Text = "26" + this.txtfromdate.Text.Trim().Substring(2);
+                            this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                            break;
                         default:
                             //string comcod = this.GetComCode();
                             //this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
