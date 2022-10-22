@@ -423,7 +423,7 @@ namespace RealERPWEB
 
                     //offer letter
                 case "10003":
-                    if ( this.GetCompCode() == "3354" || this.GetCompCode() == "3101")
+                    if ( this.GetCompCode() == "3354")
                     {
                         lbody =
                        "<p style='text-align:right;style='margin-bottom:-11px''> " + date + "</p>" +
@@ -481,6 +481,89 @@ namespace RealERPWEB
        "<p>Before that you are requested to submit a copy of your resignation letter, which has been duly received by your present employer within 3 (Three) days from the date of receipt of this offer letter and a clearance letter at the time of joining.</p></p><p>&nbsp;The Letter of Appointment will be issued soon.</p><p>&nbsp; Please bring the following papers on the date of joining:</p><ol>" +
        "<li style='margin-top:5px'>Release letter / Letter of acceptance of resignation in the Company Letter Head from the previous employer.</li><li style='margin-top:5px'>Original & photocopies of all certificates (experience, academic, professional courses etc).</li><li style='margin-top:5px'>Photocopy of National ID card/ Passport (employee and nominee).</li><li style='margin-top:5px'>Passport size photograph (employee 7 copies and Nominee 3 copies)." +
        "</li><li style='margin-top:5px'>Pay Slip/ Proof of Salary and ETIN.</li></ol><p>&nbsp;</p><p>Yours Sincerely,</p><p class='pImage'><strong></p>  <p class='pUname'><span style='border-top:1px solid black'><strong>" + "Brig Gen Mohammad Ayub Ansary, psc (Retd)" + "</span></strong></p> <p>" + "Additional Managing Director" + "</p><p>" + "Head of HR,Admin,Security and Fire Safety Department" + "</p>";
+
+                    }else if(this.GetCompCode() == "3369" || this.GetCompCode() == "3101")
+                    {
+                        lbody =
+                              "<p></p>" +
+                       "<p></p>" +
+                       "<p></p>" +
+                       "<p></p>" +
+                       "<p></p>" +
+                         "<p></p>" +
+                       "<p style='margin-bottom:-11px''><strong>" + date + "</strong></p>" +
+                       "<p style='margin-bottom:-11px'> " + surname + " " + name + "</p>" +
+                       "<p style='margin-bottom:-11px'>" + preadd + "</p>" +
+                       "<p style='margin-bottom:-11px'>Mobile: " + mobile + "</p>" +
+                       "<p style='margin-bottom:-11px'>Email: " + email + "</p>" +
+
+                       "<p><strong> Offer letter for the position of ' " + desig + " ' </strong></p>" +
+                       "<p>Dear " + surname + " " + name + ",</p>" +
+                       //body
+                       "<p style='margin-bottom:-11px'> Further to our interviews and follow-up discussions, the management of Acme AI is pleased to offer you an appointment in the Company as <strong>" + desig + "</strong> on the following terms and conditions:" +
+
+                 "<ol>" +
+                    "<li style='margin-top:10px;'>Your employment with the Company will commence on 15 September 2022.</li>" +
+                    "<li style='margin-top:10px;'>Duty station is in Acme AI Ltd.’s Dhaka office but you may be asked to work remotely if the situation demands it. </li>" +
+                    "<li style='margin-top:10px;'>You will report directly to the Team Leader/Project Leader also with Floor Manager forthe time being subject to supervisory changes in the future</li>" +
+                    "<li style='margin-top:10px;'> You will be on probation for 6 months from the date of your appointment. On satisfactorycompletion of the period, you will be confirmed as a permanent employee</li>" +
+                    "<li style='margin-top:10px;'>Leaving the job without one month’s prior notice can cause a deduction for the salary of One month.</li>" +
+                    "<li style='margin-top:10px;'>After confirmation of your role at the end of probation, you may be confirmed as a full-timeproject employee subject to the availability of vacancy, your performance and your workethic </li>" +
+                    "<li style='margin-top:10px;'>Unsatisfactory progress during probation may result in the extension of the probationperiodor termination from the service, at the discretion of the Company. During the periodof probation, your service may be terminated with 14 days notice without assigning anyreasons for termination.</li>" +
+                    "</ol>" +
+
+                    "<p></p>" +
+                    "<p></p>" +
+                    "<p></p>" +
+                    "<p style='margin-bottom:100px'>Effective from the date of your joining, the following salary and allowances will be paid to you in arrears:</p>" +
+
+                       "<p></p>" +
+                       "<p></p>" +
+                       "<p></p>" +
+                       "<p></p>" +
+                       "<p></p>" +
+                       "<p></p>" +
+                       "<p></p>" +
+           
+
+                       //salary break down table
+
+                       "<table style='width:70%;margin-left:20px;border-style:solid; border: 1px solid black;margin-top:7px'>" +
+                       "<tr style='border-style:solid;border: 1px solid black;'>" +
+                         "<th style='width:50px;text-align:center;border-style:solid;border:1px solid black;'>SL</th>" +
+                         "<th style='width:200px;text-align:center;border-style:solid;border:1px solid black;'><strong>Position/Designation </strong></th>" +
+                         "<th style='border-style:solid;border: 1px solid black;width:100px;'>Total</th>" +
+                         "<th style='border-style:solid;border: 1px solid black;width:100px;'>Basic 30 % of Gross</th>" +
+                         "<th style='border-style:solid;border: 1px solid black;width:100px;'>H/Rt 30% of Gross</th>" +
+                         "<th style='border-style:solid;border: 1px solid black;width:100px;'>Med 20% of Gross</th>" +
+                         "<th style='border-style:solid;border: 1px solid black;width:100px;'>Tpt 20% of Gross</th>" +
+
+                       "</tr>" +
+                       "<tr style='border-style:solid;border: 1px solid black;'>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>1</td>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>" + desig + "</td>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>" + total + "</td>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>" + bsal + "</td>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>" + hrent + "</td>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>" + mallow + "</td>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>" + cven + "</td></tr>" +
+
+                       "</table>" +
+        
+                       "<p></p>" +
+        
+                       "<p>You will be entitled to festival bonuses as per the Acme Technology HR manual and Policies.</p>" +
+                       "<p></p>" +
+
+                       "<p>If you agree to accept this employment on the terms and conditions noted above, please sign the duplicate of this letter below and return it to us. We would welcome you to the company and sincerely hope that your career with the Company will be prosperous and rewarding.</p>" +
+
+
+                        "<p></p>" +
+                        "<p></p>" +
+                        "<p></p>" +
+                       "<p style='margin-bottom:-11px'>Best Regards,</p>" +
+                      "<div><p style='margin-bottom:-11px'><strong>Shafiqul Islam</strong></p></div>" +
+                       "<div><p style='margin-bottom:-11px'><strong>Managing director, Acme AI Ltd.</strong></p></div>";
 
                     }
                     break;

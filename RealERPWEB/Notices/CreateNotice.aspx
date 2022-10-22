@@ -119,7 +119,10 @@
                                         <div id="dropzone" class="fileinput-dropzone">
                                             <span>Drop files or click to upload.</span>
                                             <!-- The file input field used as target for the file upload widget -->
-                                            <input id="attachFile" runat="server" type="file" name="files[]" multiple>
+                                            <%--<input id="attachFile" runat="server" type="file" name="files[]" multiple>--%>
+                                          
+                                               <asp:FileUpload ID="attachFile" runat="server" AllowMultiple="true" accept=".pdf"/>
+
                                         </div>
                                     </div>
                                 </div>
@@ -136,5 +139,8 @@
                 </div>
             </div>
         </ContentTemplate>
+             <Triggers>
+            <asp:PostBackTrigger ControlID="lbtnSaveNotice" />
+        </Triggers>
     </asp:UpdatePanel>
 </asp:Content>
