@@ -9,7 +9,7 @@ namespace RealEntity.C_22_Sal
    public class EClassGrandNoteSheet
     {
 
-        #region Grandnotesheet
+      
         [Serializable]
         public class EClassBaseGrandNoteSheet
         {
@@ -102,7 +102,6 @@ namespace RealEntity.C_22_Sal
 
         }
 
-        #endregion
         
 
     }

@@ -7,14 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>6b09f331-3ef2-448d-8b85-257bb418fbea</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="RealEntityC_23_CR">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>ff4e4a61-31a1-4660-ae4e-52bbaf8c7dcb</rd:DataSourceID>
+      <rd:DataSourceID>2b11ec8e-2177-43c4-a047-d158d7f69465</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -47,8 +40,8 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_22_Sal</rd:DataSetName>
-        <rd:TableName>EClassBaseGrandNoteSheet</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_22_Sal.EClassGrandNoteSheet+EClassBaseGrandNoteSheet, RealERPEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>EClassCoffGrandNoteSheet</rd:TableName>
+        <rd:ObjectDataSourceType>RealEntity.C_22_Sal.EClassGrandNoteSheet+EClassCoffGrandNoteSheet, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -2167,8 +2160,8 @@
             </TablixRowHierarchy>
             <Top>0.03819in</Top>
             <Left>1.05208in</Left>
-            <Height>2.58555in</Height>
-            <Width>5.46472in</Width>
+            <Height>2.58551in</Height>
+            <Width>5.46471in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2569,7 +2562,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>2.79042in</Top>
             <Left>0.19792in</Left>
-            <Height>0.58333in</Height>
+            <Height>0.58332in</Height>
             <Width>2.47916in</Width>
             <ZIndex>1</ZIndex>
             <Style>
@@ -3371,8 +3364,8 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>2.76959in</Top>
             <Left>5.37097in</Left>
-            <Height>0.60417in</Height>
-            <Width>2.25in</Width>
+            <Height>0.60418in</Height>
+            <Width>2.25001in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -3384,7 +3377,7 @@
         <Height>3.57291in</Height>
         <Style />
       </Body>
-      <Width>7.75001in</Width>
+      <Width>7.62098in</Width>
       <Page>
         <PageHeader>
           <Height>0.80208in</Height>

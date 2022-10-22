@@ -6,5 +6,5 @@
     cause the file to be unrecognizable by the program.
 -->
 <GenericObjectDataSource DisplayName="EClassGrandNoteSheet+EClassCoffGrandNoteSheet" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>RealEntity.C_22_Sal.EClassGrandNoteSheet+EClassCoffGrandNoteSheet, RealERPEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+   <TypeInfo>RealEntity.C_22_Sal.EClassGrandNoteSheet+EClassCoffGrandNoteSheet, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>
