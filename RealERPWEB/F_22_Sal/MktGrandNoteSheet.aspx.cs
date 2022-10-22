@@ -422,6 +422,11 @@ namespace RealERPWEB.F_22_Sal
             Session["lstrevschedule"] = lstrev;
 
             this.ddlprospective.SelectedValue=ds1.Tables[0].Rows[0]["proscode"].ToString();
+            this.ddlcoffduration.SelectedValue=ds1.Tables[0].Rows[0]["coffdur"].ToString();
+            this.ddlrevpduration.SelectedValue=ds1.Tables[0].Rows[0]["revdur"].ToString();
+
+
+
             this.CalCulationSummation(ds1);
             this.Data_Bind();
 
@@ -512,7 +517,7 @@ namespace RealERPWEB.F_22_Sal
             coffutility = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffutility"]);
             coffothers = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffothers"]);
             coffnoofemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffnoofemi"]);
-            cofffvpsft = ((uzize > 0) ? ((cofffv - coffpamt - coffutility - coffothers) / uzize) : 0.00);
+            cofffvpsft = ((uzize > 0) ? (cofffv==0?0.00:(cofffv - coffpamt - coffutility - coffothers) / uzize) : 0.00);
             coffpowbpart = (12 + intratio) / 12;
             coffpvpsft = Math.Round(cofffvpsft / (Math.Pow(coffpowbpart, coffnoofemi)), 0);
 
@@ -525,7 +530,7 @@ namespace RealERPWEB.F_22_Sal
             revutility = Convert.ToDouble(ds1.Tables[0].Rows[0]["revutility"]);
             revothers = Convert.ToDouble(ds1.Tables[0].Rows[0]["revothers"]);
             revnoofemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["revnoofemi"]);
-            revfvpsft = ((uzize > 0) ? ((revfv - revpamt - revutility - revothers) / uzize) : 0.00);
+            revfvpsft = ((uzize > 0) ? (revfv == 0 ? 0.00 : (revfv - revpamt - revutility - revothers) / uzize) : 0.00);
             revpowbpart = (12 + intratio) / 12;
             revpvpsft = Math.Round(revfvpsft / (Math.Pow(revpowbpart, noofemi)), 0);
 
@@ -646,6 +651,7 @@ namespace RealERPWEB.F_22_Sal
                 this.lblrevpTotal.InnerText = revtunitamt.ToString("#,##0;(#,##0);");
                 this.txtrevpbbookinmpercnt.Text = revbookingper.ToString("#,##0;(#,##0);");
                 this.lblvalrevpbookingam.InnerText = revbookingam.ToString("#,##0;(#,##0);");
+                this.txtrevpnooffemi.Text = revnoofemi.ToString("#,##0;(#,##0);");
                 this.txtrevpnooffemi.Text = revnoofemi.ToString("#,##0;(#,##0);");
                 this.lblvalrevpemi.InnerText = revemi.ToString("#,##0;(#,##0);");
 
@@ -954,12 +960,18 @@ namespace RealERPWEB.F_22_Sal
                 ((Label)this.gvbcasesch.FooterRow.FindControl("lgvFpvschamt")).Text = lstb.Sum(l => l.pv).ToString("#,##0;(#,##0);");
                 ((Label)this.gvbcasesch.FooterRow.FindControl("lgvFfvscham")).Text = lstb.Sum(l => l.fv).ToString("#,##0;(#,##0);");
 
-                ((Label)this.gvcoffsch.FooterRow.FindControl("lgvFcoffpvschamt")).Text = lstcoff.Sum(l => l.pv).ToString("#,##0;(#,##0);");
-                ((Label)this.gvcoffsch.FooterRow.FindControl("lgvFcofffvscham")).Text = lstcoff.Sum(l => l.fv).ToString("#,##0;(#,##0);");
+                if (lstcoff.Count > 0)
+                {
+                    ((Label)this.gvcoffsch.FooterRow.FindControl("lgvFcoffpvschamt")).Text = lstcoff.Sum(l => l.pv).ToString("#,##0;(#,##0);");
+                    ((Label)this.gvcoffsch.FooterRow.FindControl("lgvFcofffvscham")).Text = lstcoff.Sum(l => l.fv).ToString("#,##0;(#,##0);");
+                }
 
+                if (lstrev.Count > 0)
+                {
 
-                ((Label)this.gvrevpsch.FooterRow.FindControl("lgvFrevpvschamt")).Text = lstrev.Sum(l => l.pv).ToString("#,##0;(#,##0);");
-                ((Label)this.gvrevpsch.FooterRow.FindControl("lgvFrevfvscham")).Text = lstrev.Sum(l => l.fv).ToString("#,##0;(#,##0);");
+                    ((Label)this.gvrevpsch.FooterRow.FindControl("lgvFrevpvschamt")).Text = lstrev.Sum(l => l.pv).ToString("#,##0;(#,##0);");
+                    ((Label)this.gvrevpsch.FooterRow.FindControl("lgvFrevfvscham")).Text = lstrev.Sum(l => l.fv).ToString("#,##0;(#,##0);");
+                }
 
 
             }
@@ -1059,6 +1071,7 @@ namespace RealERPWEB.F_22_Sal
                 string usircode = this.lblCode.Text.Trim();
                 string intrate = Convert.ToDouble("0" + this.txtinterestrate.Text.Replace("%", "")).ToString();
 
+
                 string coffurate = Convert.ToDouble("0" + this.txtcoffrate.Text).ToString() ;
                 string coffpamt = Convert.ToDouble("0" + this.txtcofffparking.Text).ToString();
                 string coffutility = Convert.ToDouble("0" + this.txtcoffutility.Text).ToString();
@@ -1067,6 +1080,7 @@ namespace RealERPWEB.F_22_Sal
                 string coffbookingam = Convert.ToDouble("0" + this.lblvalcoffbookingam.InnerText).ToString();
                 string coffnooffemi = Convert.ToDouble("0" + this.txtcoffnooffemi.Text).ToString();
                 string coffemi = Convert.ToDouble("0" + this.lblvalcoffemi.InnerText).ToString();
+                string coffduration = this.ddlcoffduration.SelectedValue.ToString();
 
                 string revurate = Convert.ToDouble("0" + this.txtrevprate.Text).ToString();              
                 string  revpamt = Convert.ToDouble("0" + this.txtrevpparking.Text).ToString();
@@ -1077,7 +1091,7 @@ namespace RealERPWEB.F_22_Sal
                 string revbookingam = Convert.ToDouble("0" + this.lblvalrevpbookingam.InnerText).ToString();
                 string revnooffemi = Convert.ToDouble("0" + this.txtrevpnooffemi.Text).ToString();
                 string revemi = Convert.ToDouble("0" + this.lblvalrevpemi.InnerText).ToString();
-
+                string revduration = this.ddlrevpduration.SelectedValue.ToString();
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = this.GetCompCode();
@@ -1098,7 +1112,7 @@ namespace RealERPWEB.F_22_Sal
 
                 //return;
 
-                 resulta = MktData.UpdateTransInfo01(comcod, "SP_ENTRY_SALESNOTESHEET", "INSERTORUPDATESALESNOTESHEET", noteshtid, pactcode, usircode, noteshtdate, intrate, coffurate, coffpamt, coffutility, coffothers, revurate, revpamt, revutility, revothers, Postusrid, trmnid, session, PostedDate, proscode, coffbookingper, coffbookingam, coffnooffemi,coffemi,revbookingper,revbookingam,revnooffemi, revemi);
+                 resulta = MktData.UpdateTransInfo01(comcod, "SP_ENTRY_SALESNOTESHEET", "INSERTORUPDATESALESNOTESHEET", noteshtid, pactcode, usircode, noteshtdate, intrate, coffurate, coffpamt, coffutility, coffothers, revurate, revpamt, revutility, revothers, Postusrid, trmnid, session, PostedDate, proscode, coffbookingper, coffbookingam, coffnooffemi,coffemi,revbookingper,revbookingam,revnooffemi, revemi, coffduration,revduration);
                 if (!resulta)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + MktData.ErrorObject["Msg"] + "');", true);

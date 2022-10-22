@@ -5,6 +5,6 @@
     Renaming the file extension or editing the content of this file may   
     cause the file to be unrecognizable by the program.
 -->
-<GenericObjectDataSource DisplayName="EClassGrandNoteSheet+EClassRPTRevGrandNoteSheet" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>RealEntity.C_22_Sal.EClassGrandNoteSheet+EClassRPTRevGrandNoteSheet, RealERPEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
+<GenericObjectDataSource DisplayName="EClassSales+SalesInterest" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+   <TypeInfo>RealEntity.C_22_Sal.EClassSales+SalesInterest, RealERPEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>
