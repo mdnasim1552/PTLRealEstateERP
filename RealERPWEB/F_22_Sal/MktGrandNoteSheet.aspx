@@ -190,9 +190,9 @@
                 </asp:UpdateProgress>
             </div>
 
-            <div class="card card-fluid mb-1">
+            <div class="card card-fluid mb-1 mt-4">
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row ">
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label id="lblprojectname" runat="server">Project Name</label>
@@ -435,9 +435,9 @@
                             </asp:GridView>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-3 ">
                             <div class="form-group">
-                                <asp:LinkButton ID="lbtnBack" runat="server" OnClick="lbtnBack_Click" Visible="false" CssClass="btn btn-danger btn-sm  pull-right">Back</asp:LinkButton>
+                                <asp:LinkButton ID="lbtnBack" runat="server" OnClick="lbtnBack_Click" Visible="false" CssClass="btn btn-danger btn-sm  pull-right " style="margin-left:159px;">Back</asp:LinkButton>
 
                                 <asp:Label ID="lblCode" runat="server" Visible="False" Width="63px"></asp:Label>
                             </div>
