@@ -52,7 +52,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -154,6 +154,12 @@
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+SpLedger.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassYearlySalesCRM.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptProspectTransfer.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassGrandNoteSheet+EClassBaseGrandNoteSheet.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassGrandNoteSheet+EClassCoffGrandNoteSheet.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassGrandNoteSheet+EClassRevGrandNoteSheet.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassGrandNoteSheet+EClassRPTBaseGrandNoteSheet.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassGrandNoteSheet+EClassRPTCoffGrandNoteSheet.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassGrandNoteSheet+EClassRPTRevGrandNoteSheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesSurveyEntry.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesvsAchievement.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesvsAchievementtypecount.datasource" />
@@ -803,6 +809,7 @@
     <EmbeddedResource Include="R_22_Sal\RptEnvelopMoneyReceipt.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopOffice.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopNew.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptGrandNotesSheet.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptFinlay2.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptFinlay.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptIntech.rdlc" />

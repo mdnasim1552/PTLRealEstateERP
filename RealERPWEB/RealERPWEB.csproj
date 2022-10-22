@@ -149,17 +149,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
-    <Reference Include="microsoft.reportviewer.datavisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\microsoft.reportviewer.datavisualization.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPRDLC\bin\Debug\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -289,6 +285,10 @@
     <Content Include="assets\css\calendarCss.css" />
     <Content Include="assets\css\colors.css" />
     <Content Include="assets\css\comments.css" />
+    <Content Include="assets\css\countryValid\countrySync.css" />
+    <Content Include="assets\css\countryValid\intlTelInput.css" />
+    <Content Include="assets\css\countryValid\intlTelInput.min.css" />
+    <Content Include="assets\css\countryValid\isValidNumber.css" />
     <Content Include="assets\css\font-awesome-4-menus\css\font-awesome.min.css" />
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\css\foundation.min.css" />
@@ -321,6 +321,20 @@
     <Content Include="assets\js\responsiveslides.js" />
     <Content Include="assets\js\scripts.js" />
     <Content Include="assets\js\wd-ajax-load\js\load-posts.js" />
+    <Content Include="assets\TelephoneValidation\build\css\intlTelInput.css" />
+    <Content Include="assets\TelephoneValidation\build\css\intlTelInput.min.css" />
+    <Content Include="assets\TelephoneValidation\build\img\flags%402x.png" />
+    <Content Include="assets\TelephoneValidation\build\img\flags.png" />
+    <Content Include="assets\TelephoneValidation\build\js\data.js" />
+    <Content Include="assets\TelephoneValidation\build\js\data.min.js" />
+    <Content Include="assets\TelephoneValidation\build\js\intlTelInput-jquery.js" />
+    <Content Include="assets\TelephoneValidation\build\js\intlTelInput-jquery.min.js" />
+    <Content Include="assets\TelephoneValidation\build\js\intlTelInput.js" />
+    <Content Include="assets\TelephoneValidation\build\js\intlTelInput.min.js" />
+    <Content Include="assets\TelephoneValidation\build\js\utils.js" />
+    <Content Include="assets\TelephoneValidation\css\isValidNumber.css" />
+    <Content Include="assets\TelephoneValidation\css\prism.css" />
+    <Content Include="assets\TelephoneValidation\js\isValidNumber.js" />
     <Content Include="assets\vendor\flatpickr\flatpickr.min.css" />
     <Content Include="assets\vendor\flatpickr\flatpickr.min.js" />
     <Content Include="assets\vendor\simplemde\simplemde.min.css" />

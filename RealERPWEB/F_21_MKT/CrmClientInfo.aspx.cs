@@ -460,6 +460,7 @@ namespace RealERPWEB.F_21_MKT
             this.gvPersonalInfo.DataBind();
             //txtgvdVal.Attributes.Add("style", "display:none");
             DropDownList ddlgval;
+            DropDownList ddlgval1;
             string gvalue = "";
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -486,12 +487,18 @@ namespace RealERPWEB.F_21_MKT
                     case "0301003":
                     case "0301004":
                     case "0301005":
+
+                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Attributes.Add("style", "width:180px; float:right");
+
+
                         //For changing Mobile No by Team Leader
                         switch (comcod)
                         {
+
                             case "3102": 
                             case "3367"://Epic
-                            //case "3101":
+                                        //case "3101":
+                                ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
                                 bool teamLeader = IsTeamLeader();
                                 if (lbllandname.Text.Length > 0)
                                 {
@@ -500,12 +507,19 @@ namespace RealERPWEB.F_21_MKT
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = false;
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = false;
+                                     
+
                                     }
                                     else
                                     {
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = true;
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;
+                                         
+
+
                                     }
                                 }
                                 else
@@ -515,12 +529,17 @@ namespace RealERPWEB.F_21_MKT
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = true;
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                  
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;
+
                                     }
                                     else
                                     {
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = false;
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = false;
+
                                     }
                                 }
                                 break;
@@ -532,12 +551,14 @@ namespace RealERPWEB.F_21_MKT
                                     ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = true;
                                     ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                                     ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
                                 }
                                 else
                                 {
                                     ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = false;
                                     ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                                     ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
                                 }
                                 break;
                         }
@@ -549,6 +570,8 @@ namespace RealERPWEB.F_21_MKT
                         ((Panel)this.gvPersonalInfo.Rows[i].FindControl("Panegrd")).Visible = false;
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Clear();
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = false;
+
                         break;
 
                 }

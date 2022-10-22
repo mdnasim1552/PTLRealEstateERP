@@ -74,7 +74,7 @@ namespace RealERPWEB.F_99_Allinterface
             this.TasktState.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["prj"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>All Projects</div></div></div>";
             this.TasktState.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["batch"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Batch Status</div></div></div>";
 
-            this.TasktState.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["assing"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Assign</div></div></div>";
+            this.TasktState.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["assing"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Assigned</div></div></div>";
 
             this.TasktState.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds.Tables[3].Rows[0]["production"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Production</div></div></div>";
 
@@ -206,7 +206,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQA.Visible = false;
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
-                    this.GetAcceptReject();
+                    this.GetProductionInfo();
+                    
                     break;
                 case "6":
                     this.pnlAllProject.Visible = false;
@@ -330,7 +331,14 @@ namespace RealERPWEB.F_99_Allinterface
                 this.gv_AssignQA.DataSource = dt1;
                 this.gv_AssignQA.DataBind();
 
-               
+                DataTable dt2 = new DataTable();
+                DataView view3 = new DataView();
+                view3.Table = ds.Tables[0];
+                view3.RowFilter = "roletype<>'95001' and roletype<>'95003' and trackertype <>'99220' and doneqty >'0' ";
+                dt1 = view3.ToTable();
+                this.gv_AcceptReject.DataSource = dt1;
+                this.gv_AcceptReject.DataBind();
+
 
             }
             catch (Exception exp)
@@ -350,13 +358,13 @@ namespace RealERPWEB.F_99_Allinterface
                 if (ds1 == null)
                     return;
                 Session["tblacceptreject"] = ds1.Tables[0];
-                DataTable dt1 = new DataTable();
-                DataView view1 = new DataView();
-                view1.Table = ds1.Tables[0];
-                view1.RowFilter = "roletype<>'95001' and roletype<>'95003' and trackertype <>'99220' ";
-                dt1 = view1.ToTable();
-                this.gv_AcceptReject.DataSource = dt1;
-                this.gv_AcceptReject.DataBind();
+                //DataTable dt1 = new DataTable();
+                //DataView view1 = new DataView();
+                //view1.Table = ds1.Tables[0];
+                //view1.RowFilter = "roletype<>'95001' and roletype<>'95003' and trackertype <>'99220' and doneqty >'0' ";
+                //dt1 = view1.ToTable();
+                //this.gv_AcceptReject.DataSource = dt1;
+                //this.gv_AcceptReject.DataBind();
             }
             catch (Exception exp)
             {
@@ -411,7 +419,9 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
-        protected void btnSave_Click(object sender, EventArgs e)
+        protected void 
+            
+            _Click(object sender, EventArgs e)
         {
 
         }
@@ -502,10 +512,14 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink hlink = (HyperLink)e.Row.FindControl("hybtnprodlink");
+                HyperLink assignlink = (HyperLink)e.Row.FindControl("lnkbtnprodlink");
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "assignuser")).ToString().Trim();
+                string prjid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "prjid")).ToString().Trim();
                 string batchid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "batchid")).ToString().Trim();
                 string jobid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "jobid")).ToString().Trim();
                 hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?EmpID=" + empid + "&JobID=" + jobid + "&BatchID=" + batchid;
+                assignlink.NavigateUrl = "~/F_38_AI/Projects.aspx?PID=" + prjid + "&BatchID=" + batchid;
+
             }
         }
 
@@ -550,7 +564,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.txtAmount.Attributes.Add("Placeholder", "0.00 " + currncy);
 
                 this.GetBatchAssingList(project);
-
+               
 
                 //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenAddBatch();", true);
             }
@@ -581,37 +595,40 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = this.GetCompCode();
-                string userid = hst["usrid"].ToString();
-                string Terminal = hst["compname"].ToString();
-                string Sessionid = hst["session"].ToString();
-                string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-                string batchcreateid = this.hiidenBatcid.Value;
-
-                string batch = this.txtBatch.Text.ToString();
-                string projectname = this.hiddPrjid.Value;
-                string createdate = this.txtstartdate.Text.ToString();
-                string veliverydate = this.textdelevery.Text.ToString();
+                string postrmid = hst["usrid"].ToString();
+                string postseson = hst["compname"].ToString();
+                string editbyid = hst["session"].ToString();
+                string posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+                string id = this.hiidenBatcid.Value;
+                string postedbyid = "";
+                string editdat = "";
+                string batchid = this.txtBatch.Text.ToString();
+                string prjid = this.hiddPrjid.Value;
+                string startdate = this.txtstartdate.Text.ToString();
+                string deliverydate = this.textdelevery.Text.ToString();
                 double dtquantity = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtbatchQuantity.Text.Trim()));
-                string dataset = this.txtdataset.Text.ToString();
+                string datasettype = this.txtdataset.Text.ToString();
                 string worktype = this.txtworktype.Text.ToString();
                 double totalhour = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.tbltotalOur.Text.Trim()));
                 string phdm = this.ddlphdm.SelectedValue.ToString();
                 double workperhour = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtPerhour.Text.Trim()));
                 double textEmpcap = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.textEmpcap.Text.Trim()));
                 double rate = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtrate.Text.Trim()));
-
-                bool result = AIData.UpdateTransInfo2(comcod, "dbo_ai.SP_ENTRY_AI", "BATCH_INSERTUPDATE", batchcreateid, batch, projectname, createdate, veliverydate, userid, Terminal, Sessionid, Date,
-                    dtquantity.ToString(), dataset, totalhour.ToString(), worktype, phdm, workperhour.ToString(), textEmpcap.ToString(), rate.ToString(), "", "", "", "");
+                //batchid, prjid, startdate, deliverydate, postrmid, postedbyid, postseson, posteddat, editbyid, editdat,datasetqty,datasettype,totalhour,worktype,phdm,pwrkperhour,empcapacity, rate
+                bool result = AIData.UpdateTransInfo2(comcod, "dbo_ai.SP_ENTRY_AI", "BATCH_INSERTUPDATE", id, batchid, prjid, startdate, deliverydate, postrmid, postedbyid, postseson, posteddat, editbyid,
+                    editdat,dtquantity.ToString(), datasettype, totalhour.ToString(), worktype, phdm, workperhour.ToString(), textEmpcap.ToString(), rate.ToString(),"","" );
 
                 if (!result)
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail..!!');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Save Fail..!!');", true);
                     return;
                 }
 
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Batch  Saved Successfully');", true);
-                this.GetBatchAssingList(projectname);
+                this.GetBatchAssingList(prjid);
+                this.GetAIInterface();
+                this.data_Bind();
                 ResetForm();
             }
             catch (Exception exp)

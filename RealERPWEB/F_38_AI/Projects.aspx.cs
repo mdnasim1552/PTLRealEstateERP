@@ -354,10 +354,10 @@ namespace RealERPWEB.F_38_AI
                 DataSet ds1 = new DataSet("ds1");
                 ds1.Tables.Add(tbl1);
                 ds1.Tables[0].TableName = "tbl1";
-                string userid = hst["usrid"].ToString();
-                string Terminal = hst["compname"].ToString();
+                string userid = hst["usrid"].ToString();               
+                string postseson = hst["compname"].ToString();
                 string Sessionid = hst["session"].ToString();
-                string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+                string posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
                 string batchid = Request.QueryString["BatchID"].ToString();
                 string projid = Request.QueryString["PID"].ToString();
                 string tasktitle = this.txttasktitle.Text.Trim().ToString();
@@ -370,14 +370,18 @@ namespace RealERPWEB.F_38_AI
                 string qty = "0"; //this.txtquantity.Text.ToString();
                 string worktype = ""; //this.ddlworktype.SelectedValue.ToString();
                 string perhourqty = "0";//this.txtworkquantity.Text.ToString();
-                
+                string postrmid = "";
                 string taskid = this.HiddinTaskid.Value;
+                string postedbyid = "";
+                string editdat = "01-Jan-1900";
                 
-
                 string assmember = ""; //this.ddlassignmember.SelectedValue.ToString();
                 string annotation = ""; //this.ddlAnnotationid.SelectedValue.ToString();
 
-                bool result = MktData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "TASK_INSERTUPDATE", ds1, null, null, batchid, tasktitle, taskdesc, tasktype, createtask, remarks, estimationtime, dataset, qty, worktype, perhourqty, userid, Terminal, Sessionid, Date, projid, taskid, "", "", "", "");
+                //comcod,batchid,tasktitle,taskdesc,tasktype,createtask,createuser,remarks,estimationtime,dataset,qty,worktype,perhourqty, postrmid, postedbyid, postseson,posteddat,prjid,editbyid,editdat
+
+                bool result = MktData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "TASK_INSERTUPDATE", ds1, null, null, batchid,tasktitle,taskdesc,tasktype,createtask, userid, remarks,estimationtime,
+                    dataset,qty,worktype,perhourqty, postrmid, postedbyid, postseson,posteddat, projid, postedbyid, editdat, taskid, "", "");
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Task Create Fail..!!');", true);
@@ -658,7 +662,7 @@ namespace RealERPWEB.F_38_AI
                 string roletype = ((Label)this.gv_PenddingAssign.Rows[index].FindControl("lblgvproletype")).Text.ToString();
                 string annotorid = ((Label)this.gv_PenddingAssign.Rows[index].FindControl("lblgvpannoid")).Text.ToString();
                 string assigntype = ((Label)this.gv_PenddingAssign.Rows[index].FindControl("lblgvpassigntype")).Text.ToString();
-                string assignqty = ((Label)this.gv_PenddingAssign.Rows[index].FindControl("lblgvpassignqty")).Text.ToString();
+                string assignqty = ((Label)this.gv_PenddingAssign.Rows[index].FindControl("lblgvpdoneqty")).Text.ToString();
                 this.txttasktitle.Text = titlename;
                 this.ddlUserRoleType.SelectedValue = roletype;
                 this.ddlAnnotationid.SelectedItem.Value = annotorid;
