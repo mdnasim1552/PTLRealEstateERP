@@ -2820,6 +2820,7 @@
     <Content Include="F_37_LOwner\LOMoneyReciptapp.aspx" />
     <Content Include="F_38_AI\AddProject.aspx" />
     <Content Include="F_38_AI\AIGenCodeBook.aspx" />
+    <Content Include="F_38_AI\AIInVoiceCreate.aspx" />
     <Content Include="F_38_AI\CreateTask.aspx" />
     <Content Include="F_38_AI\CustomerList.aspx" />
     <Content Include="F_38_AI\JobAnalytics.aspx" />
@@ -4661,6 +4662,13 @@
     </Compile>
     <Compile Include="F_38_AI\AIGenCodeBook.aspx.designer.cs">
       <DependentUpon>AIGenCodeBook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_38_AI\AIInVoiceCreate.aspx.cs">
+      <DependentUpon>AIInVoiceCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_38_AI\AIInVoiceCreate.aspx.designer.cs">
+      <DependentUpon>AIInVoiceCreate.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_38_AI\CreateTask.aspx.cs">
       <DependentUpon>CreateTask.aspx</DependentUpon>
