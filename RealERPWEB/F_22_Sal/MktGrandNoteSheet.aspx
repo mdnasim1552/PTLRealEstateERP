@@ -732,7 +732,7 @@
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin">
-                                                        <label id="lblinrate" runat="server">Interes Rate</label>
+                                                        <label id="lblinrate" runat="server">Interest Rate</label>
                                                     </div>
 
                                                 </div>

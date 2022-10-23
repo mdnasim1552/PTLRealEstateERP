@@ -2227,6 +2227,7 @@
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
     <Content Include="F_21_MKT\RptPerDeleteProspect.aspx" />
+    <Content Include="F_22_Sal\MktSampleNoteSheet.aspx" />
     <Content Include="F_22_Sal\MktGrandNoteSheet.aspx" />
     <Content Include="F_22_Sal\SaleSurvey.aspx" />
     <Content Include="F_22_Sal\SaleSurPrjInformation.aspx" />
@@ -4138,6 +4139,13 @@
     </Compile>
     <Compile Include="F_21_MKT\RptPerDeleteProspect.aspx.designer.cs">
       <DependentUpon>RptPerDeleteProspect.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_22_Sal\MktSampleNoteSheet.aspx.cs">
+      <DependentUpon>MktSampleNoteSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\MktSampleNoteSheet.aspx.designer.cs">
+      <DependentUpon>MktSampleNoteSheet.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_22_Sal\MktGrandNoteSheet.aspx.cs">
       <DependentUpon>MktGrandNoteSheet.aspx</DependentUpon>
