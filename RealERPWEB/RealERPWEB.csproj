@@ -3654,6 +3654,7 @@
     <Content Include="Scripts\ScrollableTablePlugin.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
+    <Content Include="Scripts\table2excel.js" />
     <Content Include="Scripts\toaster.js" />
     <Content Include="Scripts\uds_api_contents.js" />
     <Content Include="Scripts\waypoints.min.js" />
