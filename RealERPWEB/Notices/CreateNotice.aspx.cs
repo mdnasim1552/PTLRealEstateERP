@@ -133,7 +133,7 @@ namespace RealERPWEB.Notices
 
 
 
-            bool result = purData.UpdateTransInfo(comcod, "SP_REPORT_NOTICE", "INSERTUPDATENOTICE", noticeTitle, noticeDesc, noCrateDate, txtUser, txtdeapartment, noCreatdBy, txtStartDate, txtEndDate, "Notice", "", "", "", "", "", "");
+            bool result = purData.UpdateTransInfo(comcod, "SP_REPORT_NOTICE", "INSERTUPDATENOTICE", noticeTitle, noticeDesc, noCrateDate, txtUser, txtdeapartment, noCreatdBy, txtStartDate, txtEndDate, "Notice", imgPath, "", "", "", "", "");
             if (!result)
             {
                 msg = "Update Failed!";
