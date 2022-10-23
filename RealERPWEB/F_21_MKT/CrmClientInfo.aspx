@@ -5,7 +5,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
+        <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <style>
         body {
             font-family: "Century Gothic";
@@ -623,24 +627,19 @@
                 var arraygval = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:text[id$="txtgvVal"]');
                 //var codePhone = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:option:selected[id$="ddlcountryPhone"]').text;
                 var codePhone = $('#<%=this.gvPersonalInfo.ClientID %>').find('[id$="ddlcountryPhone"]');
-               // var codePhone = $('#<%=this.gvPersonalInfo.ClientID %>').find('input[type=select][id*=ddlcountryPhone]').value;
+              <%-- // var codePhone = $('#<%=this.gvPersonalInfo.ClientID %>').find('input[type=select][id*=ddlcountryPhone]').value;
                 //console.log(countryPhone[1]);
                 console.log(arraygval);
                 console.log(codePhone);
                 //elementId: selected
-                // var txtmobile=arraygval[1];  
+                // var txtmobile=arraygval[1];  --%>
                 var txtmobile, txtaltmobile1, txtaltmobile2, countryPhone;
 
+              for (var i = 0; i < arrgcodl.length; i++) {
 
-                for (var i = 0; i < arrgcodl.length; i++) {
-
-
-                    gcod = $(arrgcodl[i]).text();
-                    //countryPhone = $(codePhone[i]).option: selected();
-                    countryPhone = codePhone.options[value.selectedIndex].value;
-                    console.log(countryPhone);
-
-
+                   
+                gcod = $(arrgcodl[i]).text();
+                    
                     switch (gcod) {
 
                         case '0301003':
@@ -666,13 +665,12 @@
 
                 }
 
-                console.log(countryPhone);
-                console.log("Nahid");
+
+            //      console.log(countryPhone);
+            //console.log("Nahid");
 
                 $(txtmobile).keyup(function () {
-                    var mobile = $(this).val();
-
-                    if (!($.isNumeric(mobile))) {
+                    var mobile = $(this).val();                if (!($.isNumeric(mobile))) {
 
                         alert("Mobile Number must be numeric");
 
@@ -1986,6 +1984,7 @@
                     <div class="row mb-2 justify-content-between">
                         <div class="col-2">
                             <div class="form-group">
+                               
                                 <asp:LinkButton ID="lbtPending" runat="server" CssClass="d-none margin-top30px form-control" OnClick="lbtPending_Click"></asp:LinkButton>
                             </div>
                         </div>
@@ -2052,6 +2051,7 @@
                                                     <asp:TemplateField>
 
                                                         <ItemTemplate>
+                                                             <input id="phone" type="tel" name="phone" />
                                                             <asp:DropDownList ID="ddlcountryPhone" runat="server" ClientIDMode="Static" style="float:left; padding-left:0; padding-right:0"  Visible="false"
                                                                 Width="100px" CssClass="form-control">
                                                                 <asp:ListItem Selected="True" Value="+88">+88</asp:ListItem>
@@ -5005,7 +5005,58 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>  
+
+
+
+<script>
+    $('#btnaddland').on('hide.bs.modal', function () {
+
+        const phoneInputField = document.querySelector("#phone");
+        const phoneInput = window.intlTelInput(phoneInputField, {
+            utilsScript:
+                "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+        });
+
+        const info = document.querySelector(".alert-info");
+        const error = document.querySelector(".alert-error");
+
+        function process(event) {
+            event.preventDefault();
+
+            const phoneNumber = phoneInput.getNumber();
+
+            info.style.display = "none";
+            error.style.display = "none";
+
+            const data = new URLSearchParams();
+            data.append("phone", phoneNumber);
+
+            fetch("http://<your-url-here>.twil.io/lookup", {
+                method: "POST",
+                body: data,
+            })
+                .then((response) => response.json())
+                .then((json) => {
+                    if (json.success) {
+                        info.style.display = "";
+                        info.innerHTML = `Phone number in E.164 format: <strong>${phoneNumber}</strong>`;
+                    } else {
+                        console.log(json.error);
+                        error.style.display = "";
+                        error.innerHTML = `Invalid phone number.`;
+                    }
+                })
+                .catch((err) => {
+                    error.style.display = "";
+                    error.innerHTML = `Something went wrong: ${err}`;
+                });
+        }
+    }
+</script>
+
+
+
         </ContentTemplate>
     </asp:UpdatePanel>
 
