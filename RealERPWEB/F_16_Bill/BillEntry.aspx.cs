@@ -1194,6 +1194,10 @@ namespace RealERPWEB.F_16_Bill
             if (comcod == "1205" || comcod == "1101")
             {
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_16_Bill.RptBillInvoiceP2P", lst, null, null);
+            }   
+            else if (comcod == "1206" || comcod == "1207")
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_16_Bill.RptBillInvoiceAcme", lst, null, null);
             }
             else
             {

@@ -411,6 +411,24 @@ namespace RealERPWEB.F_12_Inv
         protected global::System.Web.UI.WebControls.GridView gvreqaprv;
 
         /// <summary>
+        /// lblAprNarr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAprNarr;
+
+        /// <summary>
+        /// txtAprNarr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAprNarr;
+
+        /// <summary>
         /// pnlreqchk control.
         /// </summary>
         /// <remarks>
