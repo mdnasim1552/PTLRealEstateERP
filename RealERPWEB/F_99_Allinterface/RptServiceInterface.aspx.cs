@@ -376,6 +376,13 @@ namespace RealERPWEB.F_99_Allinterface
                 {
                     lnkGenBill.Visible = false;
                 }
+
+
+                // todo for link project
+                HyperLink custdesc = (HyperLink)e.Row.FindControl("hlnkgvcustdesc");
+                string mapactcode = "16"+ ASTUtility.Right(Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mapactcode")).ToString(),10);
+                custdesc.NavigateUrl = "~/F_04_Bgd/PrjInformation?Type=Report&prjcode=" + mapactcode; 
+
             }
         }
 

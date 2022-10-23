@@ -1561,6 +1561,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
 
                 case "3338": // ACME
+                case "1206"://acme construction
+                case "1207"://acme service
                     lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_86_All.EClassAllowance.EClassMobileBill>();
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_86_All.rptMobileAllowAcme", lst, null, null);
                     break;
