@@ -251,6 +251,16 @@
                             </div>
 
                         </div>
+                        <div class="col-md-2">
+                             <label class="control-label" for="ddlUserName" id="Label7" runat="server">Type</label>
+
+                            <asp:RadioButtonList ID="rbtnnoteType" RepeatDirection="Horizontal" CssClass=""  runat="server">
+                                <asp:ListItem>Summary</asp:ListItem>
+                                <asp:ListItem Selected="True">Details</asp:ListItem>
+                            
+                               
+                            </asp:RadioButtonList>
+                        </div>
 
                         <div class="col-md-1">
                             <div class="form-group">
