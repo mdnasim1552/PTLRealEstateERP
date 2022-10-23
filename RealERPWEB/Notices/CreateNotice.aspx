@@ -71,7 +71,7 @@
                                         <asp:Label ID="lblStartDat" runat="server">Start Date</asp:Label>
                                     </div>
                                     <div class="col-md-2">
-                                        <asp:TextBox ID="txtStartDate" runat="server" CssClass="from-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtStartDate" runat="server" CssClass="form-control"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtStartDate_CalendarExtender" runat="server" Format="dd-MMM-yyyy h: mm tt" TargetControlID="txtStartDate"></cc1:CalendarExtender>
                                     </div>
                                 </div>
@@ -90,7 +90,7 @@
                                         <asp:Label ID="Label1" runat="server">End Date</asp:Label>
                                     </div>
                                     <div class="col-md-2">
-                                        <asp:TextBox ID="txtEndDate" runat="server" CssClass="from-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtEndDate" runat="server" CssClass="form-control"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtEndDate_CalendarExtender" runat="server" Format="dd-MMM-yyyy h: mm tt" TargetControlID="txtEndDate"></cc1:CalendarExtender>
                                     </div>
                                 </div>
