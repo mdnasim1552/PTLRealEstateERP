@@ -129,7 +129,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         case "4301"://Sanmer
                         case "3332":
                         case "3330":
-                        case "3338":
+                        case "3338"://acme tech
+                        case "1206"://acme construction
+                        case "1207"://acme service
+
+
                         case "3369":
                         case "3336"://Suvastu
                             //case "4305"://Rupayan
@@ -318,6 +322,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
                 //case"3101":
                 case "3338"://Acme
+                case "1206"://acme construction
+                case "1207"://acme service
                     this.rbtSalSheet.SelectedIndex = 12;
                     this.rbtnlistsaltypeAddItem();
                     break;
@@ -455,6 +461,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 //case "3101":
                 case "3338":// ACME
+                case "1206"://acme construction
+                case "1207"://acme service
                 case "3369":
                 case "3344":// Terranova
                     this.rbtlBonSheet.SelectedIndex = 8;
@@ -786,6 +794,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             switch (comcod)
             {
                 case "3338":
+                case "1206"://acme construction
+                case "1207"://acme service
                 case "3369":
                     mantype = (this.rbtnlistsaltype.SelectedIndex == 0) ? "86001%" : (this.rbtnlistsaltype.SelectedIndex == 1) ? "86002%" : "86%";
                     break;
@@ -3716,6 +3726,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
                     case "3338":
+                    case "1206"://acme construction
+                    case "1207"://acme service
                     case "3367":
                     case "3369":
                         this.PrintBonusSheetAcme();
@@ -4639,6 +4651,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
                 case "3338":
+                case "1206"://acme construction
+                case "1207"://acme service
                 case "3369":
                     //case "3101":
                     //case "3101":
@@ -4827,6 +4841,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 switch (comcod)
                 {
                     case "3338":
+                    case "1206"://acme construction
+                    case "1207"://acme service
                     case "3369":
                         mantype = (this.rbtnlistsaltype.SelectedIndex == 0) ? "86001%" : (this.rbtnlistsaltype.SelectedIndex == 1) ? "86002%" : "86%";
                         break;

@@ -400,7 +400,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     else
                     {
                         this.SendNotificaion(Orderno, Centrid, roletype, "", compsms, compmail, ssl, sendUsername, sendDptdesc, sendUsrdesig, compName);
-                        result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_MGT_INTERFACE", "UPDATETIME", Orderno, reqtype, intime, "", "", "", "", "");
+                        if (reqtype == "TC")
+                        {
+                            result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_MGT_INTERFACE", "UPDATETIME", Orderno, reqtype, intime, "", "", "", "", "");
+
+                        }
 
                         string Messagesd = "Request Approved";
 
