@@ -254,6 +254,7 @@
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyFinlay05.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurOrderTopSheet.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptSupAdvanceDetails.rdlc" />
+    <EmbeddedResource Include="R_16_Bill\RptBillInvoiceAcme.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherEpic.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeOneBankBti_Old.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeOneBankBti.rdlc" />

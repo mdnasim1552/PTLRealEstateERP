@@ -315,6 +315,7 @@ namespace RealERPRDLC
                 case "R_16_Bill.RptBillInvoice": Rpt1a = SetRptBillInvoice(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_16_Bill.RptUpconSabCon": Rpt1a = SetRptUpconSabCon(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_16_Bill.RptBillInvoiceP2P": Rpt1a = SetRptBillInvoiceP2P(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_16_Bill.RptBillInvoiceAcme": Rpt1a = SetRptBillInvoiceAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 #endregion
@@ -2129,6 +2130,11 @@ namespace RealERPRDLC
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_16_Bill.BO_BillEntry.BillEmtry>)RptDataSet));
             return Rpt1a;
+        }
+        private static LocalReport SetRptBillInvoiceAcme(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_16_Bill.BO_BillEntry.BillEmtry>)RptDataSet));
+            return Rpt1a; 
         }
 
         private static LocalReport SetRptWorkOrderP2P(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
