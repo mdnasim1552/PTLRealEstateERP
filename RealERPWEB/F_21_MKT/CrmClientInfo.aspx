@@ -5,11 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-        <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
     <style>
         body {
             font-family: "Century Gothic";
@@ -635,11 +631,11 @@
                 // var txtmobile=arraygval[1];  --%>
                 var txtmobile, txtaltmobile1, txtaltmobile2, countryPhone;
 
-              for (var i = 0; i < arrgcodl.length; i++) {
+                for (var i = 0; i < arrgcodl.length; i++) {
 
-                   
-                gcod = $(arrgcodl[i]).text();
-                    
+
+                    gcod = $(arrgcodl[i]).text();
+
                     switch (gcod) {
 
                         case '0301003':
@@ -666,11 +662,11 @@
                 }
 
 
-            //      console.log(countryPhone);
-            //console.log("Nahid");
+                //      console.log(countryPhone);
+                //console.log("Nahid");
 
                 $(txtmobile).keyup(function () {
-                    var mobile = $(this).val();                if (!($.isNumeric(mobile))) {
+                    var mobile = $(this).val(); if (!($.isNumeric(mobile))) {
 
                         alert("Mobile Number must be numeric");
 
@@ -1423,9 +1419,13 @@
                 var sircode = $('#<%=this.lblnewprospect.ClientID%>').val();
                 var arrgcodl = $('#<%=this.gvPersonalInfo.ClientID %>').find('[id$="lblgvItmCodeper"]');
                 var arraygval = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:text[id$="txtgvVal"]');
+                var arryccc = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:select[id$="ddlcountryPhone"]');
 
-                console.log(sircode + "" + arrgcodl + "" + arraygval);
-
+                console.log(sircode + "" + arrgcodl + "" + arraygval + "" + arryccc);
+               
+                var cc0 = "";
+                var cc1 = "";
+                var cc2 = "";
                 var number = "";
                 var gval;
                 //number = gval.Length > 0 ? gval + "," : "";
@@ -1443,7 +1443,10 @@
 
                         case '0301003':
                             gval = $(arraygval[i]).val();
+                            cc0 = $(arryccc[i]).val();
                             number = gval.length > 0 ? gval + "," : "";
+                            console.log(cc0);
+                            
                             break;
 
 
@@ -1456,7 +1459,7 @@
 
                                 default:
                                     gval = $(arraygval[i]).val();
-                                    number = number + (gval.length > 0 ? gval + ",nahid" : "");
+                                    number = number + (gval.length > 0 ? gval + "," : "");
                                     break;
                             }
                             break;
@@ -1468,6 +1471,7 @@
                     }
 
                 }
+                alert(cc0);
 
                 number = number.length > 0 ? number.substring(0, number.length - 1) : number;
                 var objchkmob = new RealERPScript();
@@ -1969,6 +1973,7 @@
 
             <div class="card card-fluid container-data">
 
+
                 <div class="popup-container">
                     <div class="popup">
                         <div class="icons">
@@ -1984,7 +1989,7 @@
                     <div class="row mb-2 justify-content-between">
                         <div class="col-2">
                             <div class="form-group">
-                               
+
                                 <asp:LinkButton ID="lbtPending" runat="server" CssClass="d-none margin-top30px form-control" OnClick="lbtPending_Click"></asp:LinkButton>
                             </div>
                         </div>
@@ -2013,7 +2018,7 @@
                                         </div>
                                         <div class="panel-body">
 
-                                           
+
                                             <asp:GridView ID="gvPersonalInfo" runat="server" AutoGenerateColumns="False"
                                                 ShowFooter="True" OnRowDataBound="gvPersonalInfo_RowDataBound" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow">
                                                 <RowStyle />
@@ -2051,8 +2056,7 @@
                                                     <asp:TemplateField>
 
                                                         <ItemTemplate>
-                                                             <input id="phone" type="tel" name="phone" />
-                                                            <asp:DropDownList ID="ddlcountryPhone" runat="server" ClientIDMode="Static" style="float:left; padding-left:0; padding-right:0"  Visible="false"
+                                                            <asp:DropDownList ID="ddlcountryPhone" runat="server" ClientIDMode="Static" Style="float: left; padding-left: 0; padding-right: 0" Visible="false"
                                                                 Width="100px" CssClass="form-control">
                                                                 <asp:ListItem Selected="True" Value="+88">+88</asp:ListItem>
                                                                 <asp:ListItem Value="+1">+1</asp:ListItem>
@@ -2635,7 +2639,8 @@
                             <div class="row mb-2 btnsavefix">
 
                                 <div class="w-100">
-                                    <asp:LinkButton ID="lnkUpdate" runat="server" OnClientClick="javascript:return funDupAllMobile();"
+                                    <%--//OnClientClick="javascript:return funDupAllMobile();"--%> <%--Req by Emdad by for new add country code 20221023--%>
+                                    <asp:LinkButton ID="lnkUpdate" runat="server" 
                                         CssClass="btn btn-primary" OnClick="lnkUpdate_Click">Save</asp:LinkButton>
                                 </div>
 
@@ -5005,55 +5010,9 @@
                         </div>
                     </div>
                 </div>
-            </div>  
+            </div>
 
 
-
-<script>
-    $('#btnaddland').on('hide.bs.modal', function () {
-
-        const phoneInputField = document.querySelector("#phone");
-        const phoneInput = window.intlTelInput(phoneInputField, {
-            utilsScript:
-                "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-        });
-
-        const info = document.querySelector(".alert-info");
-        const error = document.querySelector(".alert-error");
-
-        function process(event) {
-            event.preventDefault();
-
-            const phoneNumber = phoneInput.getNumber();
-
-            info.style.display = "none";
-            error.style.display = "none";
-
-            const data = new URLSearchParams();
-            data.append("phone", phoneNumber);
-
-            fetch("http://<your-url-here>.twil.io/lookup", {
-                method: "POST",
-                body: data,
-            })
-                .then((response) => response.json())
-                .then((json) => {
-                    if (json.success) {
-                        info.style.display = "";
-                        info.innerHTML = `Phone number in E.164 format: <strong>${phoneNumber}</strong>`;
-                    } else {
-                        console.log(json.error);
-                        error.style.display = "";
-                        error.innerHTML = `Invalid phone number.`;
-                    }
-                })
-                .catch((err) => {
-                    error.style.display = "";
-                    error.innerHTML = `Something went wrong: ${err}`;
-                });
-        }
-    }
-</script>
 
 
 
