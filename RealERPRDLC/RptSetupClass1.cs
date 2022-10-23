@@ -315,6 +315,7 @@ namespace RealERPRDLC
                 case "R_16_Bill.RptBillInvoice": Rpt1a = SetRptBillInvoice(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_16_Bill.RptUpconSabCon": Rpt1a = SetRptUpconSabCon(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_16_Bill.RptBillInvoiceP2P": Rpt1a = SetRptBillInvoiceP2P(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_16_Bill.RptBillInvoiceAcme": Rpt1a = SetRptBillInvoiceAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 #endregion
@@ -713,6 +714,8 @@ namespace RealERPRDLC
 
                 //GrandNotesSheet
                 case "R_22_Sal.RptGrandNotesSheet": Rpt1a = SetRptGrandNotesSheet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptGrandNotesSheetSummary": Rpt1a = SetRptGrandNotesSheetSummary(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptSalClntInterestFinlay": Rpt1a = SetRptSalClntInterestFinlay(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 #endregion
@@ -2129,6 +2132,11 @@ namespace RealERPRDLC
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_16_Bill.BO_BillEntry.BillEmtry>)RptDataSet));
             return Rpt1a;
+        }
+        private static LocalReport SetRptBillInvoiceAcme(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_16_Bill.BO_BillEntry.BillEmtry>)RptDataSet));
+            return Rpt1a; 
         }
 
         private static LocalReport SetRptWorkOrderP2P(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
@@ -4309,6 +4317,19 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>)RptDataSet));
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>)RptDataSet2));
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet3", (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet>)UserDataset));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptGrandNotesSheetSummary(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>)RptDataSet));
+            
+            return Rpt1a;
+        }private static LocalReport SetRptSalClntInterestFinlay(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales.SalesInterest>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_22_Sal.EClassSales.SalesInterest>)RptDataSet2));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet3", (List<RealEntity.C_22_Sal.EClassSales.SalesInterest>)UserDataset));
+            
             return Rpt1a;
         }
 

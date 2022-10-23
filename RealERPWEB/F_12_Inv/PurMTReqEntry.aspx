@@ -283,19 +283,15 @@
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
-
-                            <div class="form-group">
-                                <div class="col-md-6 pading5px">
-                                    <div class="input-group">
-                                        <span class="input-group-addon glypingraddon">
-                                            <asp:Label ID="lblReqNarr" runat="server" CssClass="lblTxt" Text="Narration:"></asp:Label>
-                                        </span>
-                                        <asp:TextBox ID="txtReqNarr" runat="server" class="form-control" TextMode="MultiLine" Height="40px"></asp:TextBox>
-                                    </div>
-
-
-                                    <asp:Label ID="lblreqno" runat="server" CssClass="smLbl" Visible="false"></asp:Label>
+                            <div class="col-md-6 pading5px">
+                                <div class="input-group">
+                                    <span class="input-group-addon glypingraddon">
+                                        <asp:Label ID="lblReqNarr" runat="server" CssClass="lblTxt" Text="Narration:"></asp:Label>
+                                    </span>
+                                    <asp:TextBox ID="txtReqNarr" runat="server" class="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
                                 </div>
+                                <asp:Label ID="lblreqno" runat="server" CssClass="smLbl" Visible="false"></asp:Label>
+                            </div>
                         </asp:Panel>
 
                         <asp:Panel ID="pnlreqaprv" runat="server" Visible="False">
@@ -406,6 +402,14 @@
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
 
+                            <div class="col-md-6" style="margin-top:10px">
+                                <div class="input-group">
+                                    <span class="input-group-addon glypingraddon">
+                                        <asp:Label ID="lblAprNarr" runat="server" CssClass="lblTxt" Text="Narration:"></asp:Label>
+                                    </span>
+                                    <asp:TextBox ID="txtAprNarr" runat="server" class="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
+                                </div>
+                            </div>
                         </asp:Panel>
 
                         <asp:Panel ID="pnlreqchk" runat="server" Visible="False">
@@ -515,13 +519,13 @@
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
 
-                            <div class="row" style="margin-top:10px;">
+                            <div class="row" style="margin-top: 10px;">
                                 <div class="col-md-6">
                                     <div class="input-group">
                                         <span class="input-group-addon glypingraddon">
                                             <asp:Label ID="Label4" runat="server" CssClass="lblTxt" Text="Narration:"></asp:Label>
                                         </span>
-                                        <asp:TextBox ID="txtNarchk" runat="server" class="form-control" TextMode="MultiLine" Height="40px" Visible="false"></asp:TextBox>
+                                        <asp:TextBox ID="txtNarchk" runat="server" class="form-control" TextMode="MultiLine" Rows="3" Visible="false"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>

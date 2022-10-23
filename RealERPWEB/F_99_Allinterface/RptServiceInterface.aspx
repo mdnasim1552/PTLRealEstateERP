@@ -1012,6 +1012,7 @@
                                                                         <asp:Label ID="lblIsGenBill" runat="server" Visible="false"
                                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isGenBill")) %>'
                                                                             Width="150px"></asp:Label>
+
                                                                         <asp:Label ID="lblqid1" runat="server"
                                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "quotid1")) %>'
                                                                             Width="100px"></asp:Label>
@@ -1036,9 +1037,13 @@
                                                                 <asp:TemplateField HeaderText="Customer Name">
 
                                                                     <ItemTemplate>
-                                                                        <asp:Label ID="lblcustdesc" runat="server"
+                                                                        <asp:HyperLink ID="hlnkgvcustdesc" runat="server" Font-Size="12px"
+                                                                            Font-Underline="false" Target="_blank"
                                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custdesc")) %>'
-                                                                            Width="200px"></asp:Label>
+                                                                            Width="200px"></asp:HyperLink>
+                                                                        <%--                                                                        <asp:Label ID="lblcustdesc" runat="server"
+                                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custdesc")) %>'
+                                                                            Width="200px"></asp:Label>--%>
                                                                     </ItemTemplate>
 
 
@@ -1137,6 +1142,7 @@
                                                                         </div>
                                                                     </ItemTemplate>
                                                                 </asp:TemplateField>
+
 
 
                                                             </Columns>
