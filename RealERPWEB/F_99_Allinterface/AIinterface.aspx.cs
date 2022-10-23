@@ -1177,7 +1177,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
-                string taskid = ((Label)this.gv_Production.Rows[index].FindControl("lblgvpjobid")).Text.ToString();
+                string taskid = ((Label)this.gv_Production.Rows[index].FindControl("lblProdtaskid")).Text.ToString();
                 string batchid = ((Label)this.gv_Production.Rows[index].FindControl("lblgvbatchid")).Text.ToString();
                 string prjid = ((Label)this.gv_Production.Rows[index].FindControl("lblgvpprjid")).Text.ToString();
                 string title = ((Label)this.gv_Production.Rows[index].FindControl("lblgvtasktitle")).Text.ToString();
@@ -1188,7 +1188,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.txttasktitle.ReadOnly = true;
 
                 this.txtquantity.Text = assignqty;
-                this.hiddnbatchID.Value = taskid;
+                this.HiddinTaskid.Value = taskid;
                 this.lblbatchid.Text = batchid;
                 this.lblproprjid.Text = prjid;
 
@@ -1299,7 +1299,7 @@ namespace RealERPWEB.F_99_Allinterface
                 {
                     DataRow dr1 = tblt01.NewRow();
                     DataTable tbl2 = (DataTable)ViewState["tblMat"];
-                    dr1["batchid"] = this.hiddnbatchID.Value.ToString();
+                    dr1["batchid"] = this.lblbatchid.Text.ToString();
                     dr1["empid"] = this.ddlassignmember.SelectedValue.ToString();
                     dr1["empname"] = this.ddlassignmember.SelectedItem.Text;
                     dr1["roletype"] = this.ddlUserRoleType.SelectedItem.Value;
@@ -1390,18 +1390,24 @@ namespace RealERPWEB.F_99_Allinterface
                 string qty = "0"; //this.txtquantity.Text.ToString();
                 string worktype = ""; //this.ddlworktype.SelectedValue.ToString();
                 string perhourqty = "0";//this.txtworkquantity.Text.ToString();
+                string anooid = this.ddlAnnotationid.SelectedValue.ToString();
+                string roletype = this.ddlUserRoleType.SelectedValue.ToString();
+                string assigntype = this.ddlassigntype.SelectedValue.ToString();
+                string assignqty = this.txtquantity.Text;
+                string workhour = this.txtworkhour.Text;
+                string workrate = this.textrate.Text;
                 string postrmid = "";
-                //string taskid = this.HiddinTaskid.Value;
-                string postedbyid = "";
+                string taskid = this.HiddinTaskid.Value;
+                string postedbyid = userid;
                 string editdat = "01-Jan-1900";
 
                 string assmember = ""; //this.ddlassignmember.SelectedValue.ToString();
                 string annotation = ""; //this.ddlAnnotationid.SelectedValue.ToString();
 
                 //comcod,batchid,tasktitle,taskdesc,tasktype,createtask,createuser,remarks,estimationtime,dataset,qty,worktype,perhourqty, postrmid, postedbyid, postseson,posteddat,prjid,editbyid,editdat
-
-                bool result = AIData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "TASK_ASSIGN", ds1, null, null, batchid, tasktitle, taskdesc, tasktype, createtask, userid, remarks, estimationtime,
-                    dataset, qty, worktype, perhourqty, postrmid, postedbyid, postseson, posteddat, projid, postedbyid, editdat,"", "", "");
+                //comcod, taskid, empid, batchid, annoid,roletype, assigntype,  assignqty, workhour, postedbyid, posteddat, postseson, workrate,isoutsrc
+                bool result = AIData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "TASK_ASSIGN", ds1, null, null, taskid, projid, batchid,
+                    anooid, roletype, assigntype, assignqty, workhour, postedbyid, createtask, postseson, workrate,"","", "", "");
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Task Create Fail..!!');", true);
@@ -1447,7 +1453,7 @@ namespace RealERPWEB.F_99_Allinterface
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
                 string batchid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcbatchid")).Text.ToString();
-                string taskid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcjobid")).Text.ToString();
+                string taskid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblQCtaskid")).Text.ToString();
                 string prjid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcprjid")).Text.ToString();
                 string title = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqctasktitle")).Text.ToString();
                 string assignqty = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcdoneqty")).Text.ToString();
@@ -1482,7 +1488,7 @@ namespace RealERPWEB.F_99_Allinterface
                 int index = row.RowIndex;
                
                 string batchid = ((Label)this.gv_AssignQA.Rows[index].FindControl("lblgvqabatchid")).Text.ToString();               
-                string taskid = ((Label)this.gv_AssignQA.Rows[index].FindControl("lblgvqajobid")).Text.ToString();
+                string taskid = ((Label)this.gv_AssignQA.Rows[index].FindControl("lblQAtaskid")).Text.ToString();
                 string prjid = ((Label)this.gv_AssignQA.Rows[index].FindControl("lblqaprjid")).Text.ToString();
                 string title = ((Label)this.gv_AssignQA.Rows[index].FindControl("lblgvqatasktitle")).Text.ToString();
                 string assignqty = ((Label)this.gv_AssignQA.Rows[index].FindControl("lblgvqadoneqty")).Text.ToString();
@@ -1491,7 +1497,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.txttasktitle.ReadOnly = true;
 
                 this.txtquantity.Text = assignqty;
-                this.hiddnbatchID.Value = taskid;
+                this.HiddinTaskid.Value = taskid;
                 this.lblbatchid.Text = batchid;
                 this.lblproprjid.Text = prjid;
 
@@ -1517,7 +1523,7 @@ namespace RealERPWEB.F_99_Allinterface
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
                 string batchid = ((Label)this.gv_AcceptReject.Rows[index].FindControl("lblgvarbatchid")).Text.ToString();
-                string taskid = ((Label)this.gv_AcceptReject.Rows[index].FindControl("lblgvarjobid")).Text.ToString();
+                string taskid = ((Label)this.gv_AcceptReject.Rows[index].FindControl("lblartaskid")).Text.ToString();
                 string prjid = ((Label)this.gv_AcceptReject.Rows[index].FindControl("lblgvarprjid")).Text.ToString();
                 string title = ((Label)this.gv_AcceptReject.Rows[index].FindControl("lblgvartasktitle")).Text.ToString();
                 string assignqty = ((Label)this.gv_AcceptReject.Rows[index].FindControl("lblgvardoneqty")).Text.ToString();
@@ -1526,7 +1532,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.txttasktitle.ReadOnly = true;
 
                 this.txtquantity.Text = assignqty;
-                this.hiddnbatchID.Value = taskid;
+                this.HiddinTaskid.Value = taskid;
                 this.lblbatchid.Text = batchid;
                 this.lblproprjid.Text = prjid;
 
@@ -1541,6 +1547,18 @@ namespace RealERPWEB.F_99_Allinterface
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
             }
+        }
+
+        protected void gv_Delivery_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("lnkInvoice");              
+                
+                hlink.NavigateUrl = "~/F_38_AI/AIInVoiceCreate.aspx";                
+
+            }
+
         }
     }
 }
