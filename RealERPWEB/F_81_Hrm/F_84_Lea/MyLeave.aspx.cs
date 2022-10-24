@@ -804,7 +804,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
 
-                string hyptext = (isSSL == true ? "https://" : "http://");
+                string hyptext =  "http://";
 
                 for (int j = 0; j < ds1.Tables[0].Rows.Count; j++)
                 {
