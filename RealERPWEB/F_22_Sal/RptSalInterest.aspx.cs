@@ -1157,7 +1157,7 @@ namespace RealERPWEB.F_22_Sal
                     double totalcharge1 = Convert.ToDouble(totalcharge);
 
                     double netdues = totalcharge1 - apramt;
-                    ;
+                    
 
 
                     DataView dv1 = dt1.Copy().DefaultView;
@@ -1279,7 +1279,7 @@ namespace RealERPWEB.F_22_Sal
 
                 }
 
-                else if (comcod=="3354")
+                else if (comcod =="3354" || comcod=="3101")
                 {
 
                     string frmdate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
@@ -1362,7 +1362,7 @@ namespace RealERPWEB.F_22_Sal
 
 
                 }
-                else if(comcod == "3101")
+                else if(comcod == "3386")
                 {
 
                     string frmdate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
@@ -1390,12 +1390,32 @@ namespace RealERPWEB.F_22_Sal
 
                     string compName = comnam;
                     string txtAddress = comadd;
-                    string cusName = this.ddlCustName.SelectedItem.Text;
+                    string cusName = this.ddlCustName.SelectedItem.Text.Substring(0,9);
+                    string projectName = this.ddlProjectName.SelectedItem.Text;
+                   
                     string insperyr = this.txtinpermonth.Text.Trim();
                     string cusAddress = ds2.Tables[0].Rows[0]["custadd"].ToString();
                     string cusProj = this.ddlProjectName.SelectedItem.Text;
                     string cusUnit = ds2.Tables[0].Rows[0]["udesc"].ToString();
+                    string utilityamt = Convert.ToDouble(ds2.Tables[1].Rows[0]["utilityamt"]).ToString("#,##0;(#,##0); ");
+                    string cooperative = Convert.ToDouble(ds2.Tables[1].Rows[0]["cooperative"]).ToString("#,##0;(#,##0); ");
+                    string outstanbal = Convert.ToDouble(ds2.Tables[1].Rows[0]["outstanbal"]).ToString("#,##0;(#,##0); ");
+                    string paraamt = Convert.ToDouble(ds2.Tables[1].Rows[0]["paramt"]).ToString("#,##0;(#,##0); ");
+                    string costamt = Convert.ToDouble(ds2.Tables[1].Rows[0]["costamt"]).ToString("#,##0;(#,##0); ");
+                    string ramt = Convert.ToDouble(ds2.Tables[1].Rows[0]["ramt"]).ToString("#,##0;(#,##0); ");
+                    string balance =Convert.ToDouble(ds2.Tables[1].Rows[0]["balance"]).ToString("#,##0;(#,##0); ");
+                    string chqinamt = Convert.ToDouble(ds2.Tables[1].Rows[0]["chqinamt"]).ToString("#,##0;(#,##0); ");
+                    string uamt = Convert.ToDouble(ds2.Tables[1].Rows[0]["uamt"]).ToString("#,##0;(#,##0); ");
+                    string parkno = ds2.Tables[0].Rows[0]["parkno"].ToString();
+                    string actdesc = ds2.Tables[0].Rows[0]["actdesc"].ToString();
+                    string mobno = ds2.Tables[0].Rows[0]["mobno"].ToString();
+                    string custname = ds2.Tables[0].Rows[0]["custname"].ToString();
+                    string usize = Convert.ToDouble(ds2.Tables[0].Rows[0]["usize"]).ToString("#,##0;(#,##0); ");
+
+
+
                     string cusSubject = "Subject: Your Payment history";
+                   
                     string data1 = "With reference of the above , kindly be informed that you are payble to us an " + Convert.ToDateTime(todate).ToString("dd.MM.yyyy") + " against your above unit total amount of Tk. " + todueamt.ToString("#,##0;(#,##0); ") + " which is as follows:";
                     string insdue = (insamt - paidamt - chqnotyetcl) > 0 ? (insamt - paidamt - chqnotyetcl).ToString("#,##0;(#,##0); ") : "";
                     string chqnotclear = (chqnotyetcl).ToString("#,##0;(#,##0); ");
@@ -1416,7 +1436,7 @@ namespace RealERPWEB.F_22_Sal
                     dv3.RowFilter = ("grp='C'");
                     DataTable dt03 = dv3.ToTable();
 
-
+                    string pamount = Convert.ToDouble((Convert.IsDBNull(dt01.Compute("sum(pamount)", "")) ? 0 : dt01.Compute("sum(pamount)", ""))).ToString("#,##0;(#,##0); ");
                     var list01 = dt01.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesInterest>();
                     var list02 = dt02.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesInterest>();
                     var list03 = dt03.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesInterest>();
@@ -1425,11 +1445,33 @@ namespace RealERPWEB.F_22_Sal
                     LocalReport rpt = new LocalReport();
                     rpt = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalClntInterestFinlay", list01, list02, list03);
                     rpt.EnableExternalImages = true;
+                    
                     rpt.SetParameters(new ReportParameter("compName", compName));
                     rpt.SetParameters(new ReportParameter("txtAddress", txtAddress));
                     rpt.SetParameters(new ReportParameter("cusName", cusName));
                     rpt.SetParameters(new ReportParameter("insperyr", insperyr));
                     rpt.SetParameters(new ReportParameter("RptTitle", "Payment Status with delay charge"));
+                    rpt.SetParameters(new ReportParameter("NutCal", "Monthly"));
+                    rpt.SetParameters(new ReportParameter("TotalRUtilityDel", ""));
+                    rpt.SetParameters(new ReportParameter("projectName", projectName));
+                    rpt.SetParameters(new ReportParameter("actdesc", actdesc));
+                    rpt.SetParameters(new ReportParameter("mobno", mobno));
+                    rpt.SetParameters(new ReportParameter("pamount", mobno));
+                    rpt.SetParameters(new ReportParameter("usize", usize));
+                    rpt.SetParameters(new ReportParameter("custname", custname));
+                    //
+                    rpt.SetParameters(new ReportParameter("utilityamt", utilityamt));
+                    rpt.SetParameters(new ReportParameter("pamount", pamount));
+                    rpt.SetParameters(new ReportParameter("balance", balance));
+                    rpt.SetParameters(new ReportParameter("cooperative", cooperative));
+                    rpt.SetParameters(new ReportParameter("outstanbal", outstanbal));
+                    rpt.SetParameters(new ReportParameter("costamt", costamt));
+                    rpt.SetParameters(new ReportParameter("paraamt", paraamt));
+                    rpt.SetParameters(new ReportParameter("ramt", ramt));
+                    rpt.SetParameters(new ReportParameter("chqinamt", chqinamt));
+                    rpt.SetParameters(new ReportParameter("uamt", uamt));
+                    rpt.SetParameters(new ReportParameter("parkno", parkno));
+                   //
                     rpt.SetParameters(new ReportParameter("cusAddress", cusAddress));
                     rpt.SetParameters(new ReportParameter("cusProj", cusProj));
                     rpt.SetParameters(new ReportParameter("cusUnit", cusUnit));
