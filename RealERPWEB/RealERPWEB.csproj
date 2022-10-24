@@ -2227,6 +2227,7 @@
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
     <Content Include="F_21_MKT\RptPerDeleteProspect.aspx" />
+    <Content Include="F_22_Sal\MktSampleNoteSheet.aspx" />
     <Content Include="F_22_Sal\MktGrandNoteSheet.aspx" />
     <Content Include="F_22_Sal\SaleSurvey.aspx" />
     <Content Include="F_22_Sal\SaleSurPrjInformation.aspx" />
@@ -2820,6 +2821,7 @@
     <Content Include="F_37_LOwner\LOMoneyReciptapp.aspx" />
     <Content Include="F_38_AI\AddProject.aspx" />
     <Content Include="F_38_AI\AIGenCodeBook.aspx" />
+    <Content Include="F_38_AI\AIInVoiceCreate.aspx" />
     <Content Include="F_38_AI\CreateTask.aspx" />
     <Content Include="F_38_AI\CustomerList.aspx" />
     <Content Include="F_38_AI\JobAnalytics.aspx" />
@@ -4138,6 +4140,13 @@
     <Compile Include="F_21_MKT\RptPerDeleteProspect.aspx.designer.cs">
       <DependentUpon>RptPerDeleteProspect.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_22_Sal\MktSampleNoteSheet.aspx.cs">
+      <DependentUpon>MktSampleNoteSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\MktSampleNoteSheet.aspx.designer.cs">
+      <DependentUpon>MktSampleNoteSheet.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_22_Sal\MktGrandNoteSheet.aspx.cs">
       <DependentUpon>MktGrandNoteSheet.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4662,6 +4671,13 @@
     </Compile>
     <Compile Include="F_38_AI\AIGenCodeBook.aspx.designer.cs">
       <DependentUpon>AIGenCodeBook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_38_AI\AIInVoiceCreate.aspx.cs">
+      <DependentUpon>AIInVoiceCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_38_AI\AIInVoiceCreate.aspx.designer.cs">
+      <DependentUpon>AIInVoiceCreate.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_38_AI\CreateTask.aspx.cs">
       <DependentUpon>CreateTask.aspx</DependentUpon>
