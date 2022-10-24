@@ -2773,7 +2773,10 @@ namespace RealERPWEB.F_14_Pro
             switch (comcod)
             {
 
-                // case "3101":
+               // case "3101":
+                case "3366"://Lanco
+                case "3367"://Epic
+ 
                 case "3340":
                     aprovedByid = "";
                     aprvdat = "";
