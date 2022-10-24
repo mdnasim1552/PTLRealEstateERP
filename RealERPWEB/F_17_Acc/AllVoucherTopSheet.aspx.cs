@@ -223,6 +223,9 @@ namespace RealERPWEB.F_17_Acc
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string userinfo = ASTUtility.Concat(compname, username, printdate);
             string vouType = this.ddlvoucher.SelectedItem.Text.ToString();
+          
+            Session_update();
+
             DataTable dt = (DataTable)Session["tblunposted"];
             DataTable dt2 = (DataTable)Session["tblusrvoucount"];
 
@@ -230,14 +233,14 @@ namespace RealERPWEB.F_17_Acc
             if (txtusr.Length > 0)
             {
                 DataView dv = dt.DefaultView;
-                dv.RowFilter = ("usrname like '%" + txtusr + "%'");
+                dv.RowFilter = ("usrname like '%" + txtusr + "%' && isprint=True");
                 dt = dv.ToTable();
 
                 DataView dv2 = dt2.DefaultView;
-                dv2.RowFilter = ("usrname like '%" + txtusr + "%'");
+                dv2.RowFilter = ("usrname like '%" + txtusr + "%' && isprint=True");
                 dt2 = dv2.ToTable();
             }
-
+              
             var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VoutopSheet>();
             var list1 = dt2.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VouTopSheetSum>();
             LocalReport Rpt1 = new LocalReport();
@@ -611,6 +614,58 @@ namespace RealERPWEB.F_17_Acc
                 }
             }
 
+        }
+
+
+        //rakib
+
+        protected void checkTopPrint_CheckedChanged(object sender, EventArgs e)
+        {
+
+            int i, index;
+            if (((CheckBox)this.gvAccVoucher.HeaderRow.FindControl("checkTopPrintAll")).Checked)
+            {
+
+                for (i = 0; i < this.gvAccVoucher.Rows.Count; i++)
+                {
+
+                    ((CheckBox)this.gvAccVoucher.Rows[i].FindControl("checkPrint")).Checked = true;
+                    index = (this.gvAccVoucher.PageSize) * (this.gvAccVoucher.PageIndex) + i;
+                }
+
+
+            }
+
+            else
+            {
+                for (i = 0; i < this.gvAccVoucher.Rows.Count; i++)
+                {
+
+                    ((CheckBox)this.gvAccVoucher.Rows[i].FindControl("checkPrint")).Checked = false;
+                    index = (this.gvAccVoucher.PageSize) * (this.gvAccVoucher.PageIndex) + i;
+                }
+
+            }
+
+
+
+        }
+
+        private void Session_update()
+        {
+
+            DataTable dt = (DataTable)Session["tblunposted"];
+            
+            int index;
+            for (int i = 0; i < this.gvAccVoucher.Rows.Count; i++)
+            {
+                string chkper = (((CheckBox)gvAccVoucher.Rows[i].FindControl("checkPrint")).Checked) ? "True" : "False";
+                
+                index = (this.gvAccVoucher.PageSize) * (this.gvAccVoucher.PageIndex) + i;
+                dt.Rows[index]["isprint"] = chkper;               
+
+            }
+            Session["tblunposted"] = dt;
         }
     }
 }
