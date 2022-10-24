@@ -3397,7 +3397,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printtype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
 
 
-            LocalReport Rpt1 = new LocalReport();
+             LocalReport Rpt1 = new LocalReport();
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalarySheet>();
 
             if (printtype == "EXCEL")
