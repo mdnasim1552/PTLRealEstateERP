@@ -428,6 +428,8 @@
                                         <asp:TemplateField HeaderText="">
                                             <HeaderTemplate>
                                                 <asp:TextBox ID="txtSearusrname" BackColor="Transparent" BorderStyle="None" runat="server" Width="80px" placeholder="User Name" onkeyup="Search_Gridview(this,13)"></asp:TextBox><br />
+
+
                                             </HeaderTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblogvusrname" runat="server" BackColor="Transparent"
@@ -461,7 +463,17 @@
 
 
 
+                                        <asp:TemplateField HeaderText="">
+                                            <HeaderTemplate>
+                                                <asp:CheckBox ID="checkTopPrintAll" runat="server" Checked="true" AutoPostBack="True" OnCheckedChanged="checkTopPrint_CheckedChanged" />
 
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <asp:CheckBox ID="checkPrint" runat="server" Checked="true" CssClass="input-control" Text="" />
+
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
                                     </Columns>
                                     <FooterStyle CssClass="grvFooter" />
                                     <EditRowStyle />
