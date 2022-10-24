@@ -618,9 +618,13 @@ namespace RealERPWEB.F_99_Allinterface
                 double workperhour = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtPerhour.Text.Trim()));
                 double textEmpcap = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.textEmpcap.Text.Trim()));
                 double rate = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtrate.Text.Trim()));
-                //batchid, prjid, startdate, deliverydate, postrmid, postedbyid, postseson, posteddat, editbyid, editdat,datasetqty,datasettype,totalhour,worktype,phdm,pwrkperhour,empcapacity, rate
-                bool result = AIData.UpdateTransInfo2(comcod, "dbo_ai.SP_ENTRY_AI", "BATCH_INSERTUPDATE", id, batchid, prjid, startdate, deliverydate, editbyid, postedbyid, postseson, posteddat, postrmid,
-                    editdat, dtquantity.ToString(), datasettype, totalhour.ToString(), worktype, phdm, workperhour.ToString(), textEmpcap.ToString(), rate.ToString(), "", "");
+                //comcod,batchid, prjid, startdate, deliverydate, postrmid, postedbyid, postseson, posteddat, editbyid,
+                //editdat,datasetqty,datasettype,totalhour,worktype,phdm,pwrkperhour,empcapacity, rate
+               
+                bool result = AIData.UpdateTransInfo2(comcod, "dbo_ai.SP_ENTRY_AI", "BATCH_INSERTUPDATE", id, batchid, prjid, startdate, 
+                    deliverydate, postrmid, postedbyid, postseson, posteddat, editbyid,
+                    editdat, dtquantity.ToString(), datasettype, totalhour.ToString(), worktype, phdm,
+                    workperhour.ToString(), textEmpcap.ToString(), rate.ToString(), "", "");
 
                 if (!result)
                 {
@@ -1394,7 +1398,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string roletype = this.ddlUserRoleType.SelectedValue.ToString();
                 string assigntype = this.ddlassigntype.SelectedValue.ToString();
                 string assignqty = this.txtquantity.Text;
-                string workhour = this.txtworkhour.Text;
+                string workhour = Convert.ToDouble("0"+this.txtworkhour.Text).ToString();
                 string workrate = this.textrate.Text;
                 string postrmid = "";
                 string taskid = this.HiddinTaskid.Value;
@@ -1406,8 +1410,8 @@ namespace RealERPWEB.F_99_Allinterface
 
                 //comcod,batchid,tasktitle,taskdesc,tasktype,createtask,createuser,remarks,estimationtime,dataset,qty,worktype,perhourqty, postrmid, postedbyid, postseson,posteddat,prjid,editbyid,editdat
                 //comcod, taskid, empid, batchid, annoid,roletype, assigntype,  assignqty, workhour, postedbyid, posteddat, postseson, workrate,isoutsrc
-                bool result = AIData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "TASK_ASSIGN", ds1, null, null, taskid, projid, batchid,
-                    anooid, roletype, assigntype, assignqty, workhour, postedbyid, createtask, postseson, workrate,"","", "", "");
+ 
+                bool result = AIData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "TASK_ASSIGN", ds1, null, null, taskid, postedbyid, createtask, postseson,"","", "", "");
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Task Create Fail..!!');", true);

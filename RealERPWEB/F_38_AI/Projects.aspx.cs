@@ -360,7 +360,7 @@ namespace RealERPWEB.F_38_AI
                 string posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
                 string batchid = Request.QueryString["BatchID"].ToString();
                 string projid = Request.QueryString["PID"].ToString();
-                string tasktitle = this.txttasktitle.Text.Trim().ToString();
+                string tasktitle = this.txttasktitle.Text.ToString();
                 string taskdesc = this.txtdesc.Text.ToString();
                 string tasktype = "";// this.ddlvalocitytype.SelectedValue.ToString();
                 string createtask = System.DateTime.Now.ToString("dd-MMM-yyyy");
@@ -374,20 +374,23 @@ namespace RealERPWEB.F_38_AI
                 string taskid = this.HiddinTaskid.Value;
                 string postedbyid = "";
                 string editdat = "01-Jan-1900";
-                
+                string editbyid = "";
                 string assmember = ""; //this.ddlassignmember.SelectedValue.ToString();
                 string annotation = ""; //this.ddlAnnotationid.SelectedValue.ToString();
+                //comcod, taskid, empid, batchid, annoid,roletype, assigntype,  assignqty,workhour, postedbyid=14, posteddat=16, postseson=15,isoutsrc, workrate
+                //comcod,batchid,tasktitle,taskdesc,tasktype,createtask,createuser,remarks,estimationtime,dataset,qty,worktype,
+                //    perhourqty, postrmid, postedbyid, postseson,posteddat,prjid,editbyid,editdat
 
-                //comcod,batchid,tasktitle,taskdesc,tasktype,createtask,createuser,remarks,estimationtime,dataset,qty,worktype,perhourqty, postrmid, postedbyid, postseson,posteddat,prjid,editbyid,editdat
-
-                bool result = MktData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "TASK_INSERTUPDATE", ds1, null, null, batchid,tasktitle,taskdesc,tasktype,createtask, userid, remarks,estimationtime,
-                    dataset,qty,worktype,perhourqty, postrmid, postedbyid, postseson,posteddat, projid, postedbyid, editdat, taskid, "", "");
-                if (!result)
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Task Create Fail..!!');", true);
-                    return;
-                }
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Task Create Saved Successfully');", true);
+                
+                bool result = MktData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "TASK_INSERTUPDATE", ds1, null, null, batchid,tasktitle,taskdesc,tasktype,
+                    createtask, userid, remarks,estimationtime,
+                    dataset,qty,worktype,perhourqty, postrmid, postedbyid, postseson,posteddat, projid, editbyid, editdat, taskid, "", "");
+                //if (!result)
+                //{
+                //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + result.er.Message.ToString() + "');", true);
+                //    return;
+                //}
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Task Create  Successfully');", true);
                 this.IsClear();
                 //this.task.Visible = false;
                 this.assigntask.Visible = true;
