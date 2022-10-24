@@ -75,7 +75,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             adapter.Fill(ds);
             Session["DayAtten"] = ds.Tables[0];
             conn.Close();
-            DataTable dt = (DataTable)Session["DayAtten"];
+            DataTable dt = (DataTable)Session["DayAtten"]; 
             string comcod = this.GetCompCode();
             string date = this.txtdate.Text;
 
@@ -246,7 +246,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     break;
                 case "3333":
                 case "3336":
-                case "3338":
+
+                case "3338": //Acme Technologies Ltd.
+                case "1206": //Acme Construction
+                case "1207": //Acme Service
+
                 case "3330": // Bridge
                 case "3355": // Greenwood
                 case "3347": // Peb Steel              
