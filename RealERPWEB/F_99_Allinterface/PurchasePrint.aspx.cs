@@ -6096,14 +6096,14 @@ namespace RealERPWEB.F_99_Allinterface
             }
             else
             {
-                this.Allprint();
+                this.AllprintFinalization();
             }
 
 
 
 
         }
-        private void Allprint()
+        private void AllprintFinalization()
         {
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -6131,9 +6131,6 @@ namespace RealERPWEB.F_99_Allinterface
             DataTable dt = (DataTable)ViewState["tblbill"];
 
             DataTable dtd = ds1.Tables[1];
-
-
-
             ViewState["utbl"] = dtd;
 
             double toamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(billamt)", "")) ? 0.00 : dt.Compute("Sum(billamt)", "")));
@@ -6144,6 +6141,18 @@ namespace RealERPWEB.F_99_Allinterface
             //}
 
             string pCompanyBill = this.CompanyBillCon();
+
+            // signatory part
+            // lpostedbyid	lposteddat	lpostuser	lpostdesig	bpostedbyid	bpostuser bpostdesig	bposteddat	baprvbyid	baprvuser	baprvdesig	baprvdat
+
+            DataTable _dtuser = ds1.Tables[2];
+            string sign1 = _dtuser.Rows[0]["lpostuser"].ToString() +"\n" + _dtuser.Rows[0]["lpostdesig"].ToString() + "\n" + Convert.ToDateTime(_dtuser.Rows[0]["lposteddat"]).ToString("dd-MMM-yyyy");
+            string sign2 = _dtuser.Rows[0]["bpostuser"].ToString() +"\n" + _dtuser.Rows[0]["bpostdesig"].ToString() + "\n" + Convert.ToDateTime(_dtuser.Rows[0]["bposteddat"]).ToString("dd-MMM-yyyy");
+            string sign3 = _dtuser.Rows[0]["baprvuser"].ToString() +"\n" + _dtuser.Rows[0]["baprvdesig"].ToString() + "\n" + Convert.ToDateTime(_dtuser.Rows[0]["baprvdat"]).ToString("dd-MMM-yyyy");
+            string sign4 = "";
+
+
+
             var lst = dt.DataTableToList<RealEntity.C_09_PIMP.EClassOrder.BillFinalization>();
             LocalReport rptbill = new LocalReport();
 
@@ -6180,7 +6189,6 @@ namespace RealERPWEB.F_99_Allinterface
                 //txtBilType.Text = this.ddlbilltype.SelectedItem.Text;
             }
 
-
             //else if (pCompanyBill == "PrintBill03")
             //{
             //    rptstk = new RealERPRPT.R_09_PImp.RptConBillInstar();
@@ -6200,29 +6208,16 @@ namespace RealERPWEB.F_99_Allinterface
             else if (pCompanyBill == "PrintBill05")
             {
 
-
-
-
-
-                //txtapproveNam
-                //txtpreNam
                 rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBillAcme", lst, null, null);
                 rptbill.EnableExternalImages = true;
-
-
-
-
-
-                DataTable dtuser = (DataTable)Session["UserLog"];
-
-
-
-                string tblPostedByid = (dtd.Rows.Count == 0) ? "" : dtd.Rows[0]["postednam"].ToString();
-                string tblPostedtrmid = (dtd.Rows.Count == 0) ? "" : dtd.Rows[0]["aprovnam"].ToString();
                 rptbill.SetParameters(new ReportParameter("IssueNo", "Issue No: " + dt.Rows[0]["lisuno2"].ToString()));
                 rptbill.SetParameters(new ReportParameter("txtpreNam", dtd.Rows[0]["postednam"].ToString()));
                 rptbill.SetParameters(new ReportParameter("txtapproveNam", dtd.Rows[0]["aprovnam"].ToString()));
                 rptbill.SetParameters(new ReportParameter("IssueRefNo", IssueRefNo));
+                rptbill.SetParameters(new ReportParameter("sign1", sign1));
+                rptbill.SetParameters(new ReportParameter("sign2", sign2));
+                rptbill.SetParameters(new ReportParameter("sign3", sign3));
+                rptbill.SetParameters(new ReportParameter("sign4", sign4));
             }
 
             else if (pCompanyBill == "PrintBill06")
@@ -6255,17 +6250,6 @@ namespace RealERPWEB.F_99_Allinterface
 
                 rptbill.SetParameters(new ReportParameter("txtreward", Convert.ToDouble("0" + dtd.Rows[0]["reward"]).ToString("#,##0.00;#,##0.00")));
 
-
-
-                //rptstk = new RealERPRPT.R_09_PImp.RptConBillSuvastu();
-
-                //TextObject rptissueno = rptstk.ReportDefinition.ReportObjects["rptissueno"] as TextObject;
-                //rptissueno.Text = "Issue No: " + dt.Rows[0]["lisuno2"].ToString();
-
-                //TextObject rptrefno = rptstk.ReportDefinition.ReportObjects["rptrefno"] as TextObject;
-                //rptrefno.Text = (dt.Rows[0]["lisurefno"].ToString().Length > 0) ? "Issue Ref No: " + dt.Rows[0]["lisurefno"].ToString() : "Issue Ref No:";
-                //TextObject txtreward = rptstk.ReportDefinition.ReportObjects["txtreward"] as TextObject;
-                //txtreward.Text = this.txtreward.Text.Trim();
 
 
             }

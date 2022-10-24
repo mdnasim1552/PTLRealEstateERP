@@ -1093,6 +1093,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2102000", "2102135", "F_21_MKT", "RptProspectWorking", "", "Prospect Working Report", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2102000", "2102137", "F_21_MKT", "ProspectTransfer", "", "CRM Prospect Transfer", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2102000", "2102138", "F_21_MKT", "RptPerDeleteProspect", "", "Permanent Delete Prospect", "CRM", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2102000", "2102139", "F_21_MKT", "RptProspectWorking?", "Type=RptDayWise", "Associate Working Report (Day Wise)", "CRM", "False", "False", "False", "False" });
 
 
             //kpi 
@@ -1170,6 +1171,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2202000", "2202036", "F_22_Sal", "EntryClientNameTransfer?Type=Mgt", "", "Client Info Transfer (Name Trans)", "Sales & Recovery", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "2202000", "2202040", "F_22_Sal", "MktGrandNoteSheet?", "Type=Entry", "Grand Note Sheet", "Sales & Recovery", "False", "False", "False", "False" });
+
+
+            tblObj.Rows.Add(new Object[] { "2202000", "2202050", "F_22_Sal", "MktSampleNoteSheet?", "Type=Entry", "Sample Note Sheet", "Sales & Recovery", "False", "False", "False", "False" });
 
 
             tblObj.Rows.Add(new Object[] { "2201000", "2201040", "F_22_Sal", "SalesCodeBook?Type=Sales", "", "Sales Code Book ", "Sales & Recovery", "False", "False", "False", "False" }); ;
@@ -7327,6 +7331,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000004", "01. Dummy Payment Schedule-02", "F_22_Sal/MktDummySalsPayment02?Type=Sales", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000005", "01. Dummy Payment Schedule(User Wise)", "F_22_Sal/MktDummySalsPayment03?Type=Sales", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000006", "01. Grand Note Sheet", "F_22_Sal/MktGrandNoteSheet?Type=Entry", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000006", "01. Sample Note Sheet", "F_22_Sal/MktSampleNoteSheet?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000007", "01. Booking Application", "F_22_Sal/MktBookigApp?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000008", "03. Sales With Payment Schedule", "F_22_Sal/MktSalsPayment?Type=Sales", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000009", "14. Monthly Budget (Sales & Collection)", "F_22_Sal/MonthlySalesBudget?Type=Monthly", "", true, "" });

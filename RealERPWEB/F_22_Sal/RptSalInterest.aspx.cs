@@ -879,8 +879,10 @@ namespace RealERPWEB.F_22_Sal
 
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
             string custid = this.ddlCustName.SelectedValue.ToString();
+
+            string todate = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
             string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTCUSTADDUNIT", pactcode, custid, "", "", "", "", "", "", "");
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTCUSTADDUNIT", pactcode, custid, todate, "", "", "", "", "", "");
             DataSet ds5 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", "INSTALLMANTWITHMRR", pactcode, custid, date1, "", "", "", "", "", "");
             if (this.Request.QueryString["Type"].ToString().Trim() == "interest")
             {
@@ -1104,7 +1106,7 @@ namespace RealERPWEB.F_22_Sal
                 else if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310")
                 {
                     string frmdate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
-                    string todate = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
+                   
                     string txtProject = "Project Name : " + this.ddlProjectName.SelectedItem.Text;
 
                     // DataTable dt3 = (DataTable)Session["tblchqdishonour"]; ;
@@ -1277,12 +1279,12 @@ namespace RealERPWEB.F_22_Sal
 
                 }
 
-                else if (comcod=="3354" || comcod == "3101")
+                else if (comcod=="3354")
                 {
 
                     string frmdate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
                     //string frmdate = "01-" + ASTUtility.Right(date, 8);
-                    string todate = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
+                    
 
                     double cdishonourcharge = 0.00;
                     double delaycharge = 0.00;
@@ -1360,11 +1362,11 @@ namespace RealERPWEB.F_22_Sal
 
 
                 }
-                else
+                else if(comcod == "3101")
                 {
 
                     string frmdate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
-                    string todate = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
+
 
                     double cdishonourcharge = 0.00;
                     double delaycharge = 0.00;
@@ -1389,6 +1391,95 @@ namespace RealERPWEB.F_22_Sal
                     string compName = comnam;
                     string txtAddress = comadd;
                     string cusName = this.ddlCustName.SelectedItem.Text;
+                    string insperyr = this.txtinpermonth.Text.Trim();
+                    string cusAddress = ds2.Tables[0].Rows[0]["custadd"].ToString();
+                    string cusProj = this.ddlProjectName.SelectedItem.Text;
+                    string cusUnit = ds2.Tables[0].Rows[0]["udesc"].ToString();
+                    string cusSubject = "Subject: Your Payment history";
+                    string data1 = "With reference of the above , kindly be informed that you are payble to us an " + Convert.ToDateTime(todate).ToString("dd.MM.yyyy") + " against your above unit total amount of Tk. " + todueamt.ToString("#,##0;(#,##0); ") + " which is as follows:";
+                    string insdue = (insamt - paidamt - chqnotyetcl) > 0 ? (insamt - paidamt - chqnotyetcl).ToString("#,##0;(#,##0); ") : "";
+                    string chqnotclear = (chqnotyetcl).ToString("#,##0;(#,##0); ");
+                    string delcharges = delaycharge.ToString("#,##0;(#,##0); ");
+                    string chqdishonor = cdishonourcharge.ToString("#,##0;(#,##0); ");
+                    string totaldue = todueamt.ToString("#,##0;(#,##0); ");
+                    string date2 = "As On " + Convert.ToDateTime(todate).ToString("dd.MM.yyyy");
+
+                    DataView dv1 = dt1.Copy().DefaultView;
+                    dv1.RowFilter = ("grp='A'");
+                    DataTable dt01 = dv1.ToTable();
+
+                    DataView dv2 = dt1.Copy().DefaultView;
+                    dv2.RowFilter = ("grp='B'");
+                    DataTable dt02 = dv2.ToTable();
+
+                    DataView dv3 = dt1.Copy().DefaultView;
+                    dv3.RowFilter = ("grp='C'");
+                    DataTable dt03 = dv3.ToTable();
+
+
+                    var list01 = dt01.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesInterest>();
+                    var list02 = dt02.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesInterest>();
+                    var list03 = dt03.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesInterest>();
+
+
+                    LocalReport rpt = new LocalReport();
+                    rpt = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalClntInterestFinlay", list01, list02, list03);
+                    rpt.EnableExternalImages = true;
+                    rpt.SetParameters(new ReportParameter("compName", compName));
+                    rpt.SetParameters(new ReportParameter("txtAddress", txtAddress));
+                    rpt.SetParameters(new ReportParameter("cusName", cusName));
+                    rpt.SetParameters(new ReportParameter("insperyr", insperyr));
+                    rpt.SetParameters(new ReportParameter("RptTitle", "Payment Status with delay charge"));
+                    rpt.SetParameters(new ReportParameter("cusAddress", cusAddress));
+                    rpt.SetParameters(new ReportParameter("cusProj", cusProj));
+                    rpt.SetParameters(new ReportParameter("cusUnit", cusUnit));
+                    rpt.SetParameters(new ReportParameter("cusSubject", cusSubject));
+                    rpt.SetParameters(new ReportParameter("data1", data1));
+                    rpt.SetParameters(new ReportParameter("insdue", insdue));
+                    rpt.SetParameters(new ReportParameter("chqnotclear", chqnotclear));
+                    rpt.SetParameters(new ReportParameter("delcharge", delcharges));
+                    rpt.SetParameters(new ReportParameter("chqdishonor", chqdishonor));
+                    rpt.SetParameters(new ReportParameter("totaldue", totaldue));
+                    rpt.SetParameters(new ReportParameter("date1", date2));
+
+
+                    rpt.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+                    rpt.SetParameters(new ReportParameter("compLogo", ComLogo));
+
+                    Session["Report1"] = rpt;
+                    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                                  ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+                }
+                else
+                {
+
+                    string frmdate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
+                   
+
+                    double cdishonourcharge = 0.00;
+                    double delaycharge = 0.00;
+                    if (dt1.Rows.Count > 0)
+                    {
+                        cdishonourcharge = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(discharge)", "")) ? 0 : dt1.Compute("sum(discharge)", "")));
+                        delaycharge = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(interest)", "")) ? 0 : dt1.Compute("sum(interest)", "")));
+                    }
+
+
+                    double insamt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.gvInterest.FooterRow.FindControl("lgvFinsamt")).Text));
+                    double paidamt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.gvInterest.FooterRow.FindControl("lgvFpayamt")).Text));
+                    double dueamt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.gvInterest.FooterRow.FindControl("lgvFdueamt")).Text));
+                    double delcharge = Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.gvInterest.FooterRow.FindControl("lgvFinamt")).Text));
+                    double chqnotyetcl = (this.gvChqnocl.Rows.Count == 0) ? 0 : Convert.ToDouble("0" + ((Label)this.gvChqnocl.FooterRow.FindControl("lgvFPayamtbuncr")).Text);
+                    paidamt = (paidamt > 0) ? paidamt : 0.00;
+                    dueamt = (dueamt > 0) ? dueamt : delcharge;
+                    cdishonourcharge = (cdishonourcharge > 0) ? cdishonourcharge : 0.00;
+
+                    double todueamt = cdishonourcharge + dueamt;
+
+                    string compName = comnam;
+                    string txtAddress = comadd;
+                    string cusName = this.ddlCustName.SelectedItem.Text;
+                   
                     string cusAddress = ds2.Tables[0].Rows[0]["custadd"].ToString();
                     string cusProj = this.ddlProjectName.SelectedItem.Text;
                     string cusUnit = ds2.Tables[0].Rows[0]["udesc"].ToString();

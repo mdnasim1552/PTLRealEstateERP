@@ -52,7 +52,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -154,6 +154,15 @@
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+SpLedger.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassYearlySalesCRM.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptProspectTransfer.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassGrandNoteSheet+EClassBaseGrandNoteSheet.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassGrandNoteSheet+EClassCoffGrandNoteSheet.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassGrandNoteSheet+EClassRevGrandNoteSheet.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassGrandNoteSheet02+EClassBaseGrandNoteSheet.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassGrandNoteSheet02+EClassCoffGrandNoteSheet.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassGrandNoteSheet02+EClassRevGrandNoteSheet.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesInterest.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesInventory.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesInventory1.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesSurveyEntry.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesvsAchievement.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesvsAchievementtypecount.datasource" />
@@ -161,6 +170,8 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SoldUnsoltInfavg.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+TransactionSt.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+AccCustPayLedgerCHL.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+EClasActual.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+EClasActual01.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptMonWiseNewSales.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptSalPaySchedules.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EnvelopModel.datasource" />
@@ -247,6 +258,7 @@
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyFinlay05.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurOrderTopSheet.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptSupAdvanceDetails.rdlc" />
+    <EmbeddedResource Include="R_16_Bill\RptBillInvoiceAcme.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherEpic.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeOneBankBti_Old.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeOneBankBti.rdlc" />
@@ -297,16 +309,6 @@
     <None Include="Properties\DataSources\RealEntity.C_99_AllInterface.AllDues.datasource" />
     <None Include="Properties\DataSources\RealERPEntity.C_70_Services.EClass_Quotation+EQuotationinfo.datasource" />
     <None Include="Properties\DataSources\RealERPEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower+HrmEnvelopPrint.datasource" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RealEntity\RealEntity.csproj">
-      <Project>{24c0577d-b0f3-4ab5-a18b-c7050bbb97cc}</Project>
-      <Name>RealEntity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RealERPLIB\RealERPLIB.csproj">
-      <Project>{47d3c66a-f401-439a-af42-61228bd93f60}</Project>
-      <Name>RealERPLIB</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="R_01_LPA\RptlandDataBank.rdlc" />
@@ -803,6 +805,8 @@
     <EmbeddedResource Include="R_22_Sal\RptEnvelopMoneyReceipt.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopOffice.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopNew.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptGrandNotesSheetSummary.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptGrandNotesSheet.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptFinlay2.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptFinlay.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptIntech.rdlc" />
@@ -819,6 +823,7 @@
     <EmbeddedResource Include="R_22_Sal\RptOSalesSummary.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptPeriodicSalesWithCollection.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptReceivedList.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptSalClntInterestFinlay.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalClntInterestEdison.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalClntInterest.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalClntInterestBr.rdlc" />
@@ -843,6 +848,7 @@
     <EmbeddedResource Include="R_22_Sal\RptUnitWiseCost.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptUnsoldUnit.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RTypeWiseTransaction02.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\test.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptCollectionStatusLO.rdlc" />
     <EmbeddedResource Include="R_23_CR\Reporttest.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptAllProDuesCollection.rdlc" />
@@ -1250,6 +1256,16 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RealEntity\RealEntity.csproj">
+      <Project>{24c0577d-b0f3-4ab5-a18b-c7050bbb97cc}</Project>
+      <Name>RealEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RealERPLIB\RealERPLIB.csproj">
+      <Project>{47d3c66a-f401-439a-af42-61228bd93f60}</Project>
+      <Name>RealERPLIB</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

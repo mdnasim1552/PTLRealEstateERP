@@ -460,7 +460,9 @@ namespace RealERPWEB.F_21_MKT
             this.gvPersonalInfo.DataBind();
             //txtgvdVal.Attributes.Add("style", "display:none");
             DropDownList ddlgval;
+            DropDownList ddlgval1;
             string gvalue = "";
+            string ccc = "";
             for (int i = 0; i < dt.Rows.Count; i++)
             {
 
@@ -486,12 +488,24 @@ namespace RealERPWEB.F_21_MKT
                     case "0301003":
                     case "0301004":
                     case "0301005":
+
+                        ccc = dt.Rows[i]["ccc"].ToString();
+
+                        ddlgval1 = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone"));
+                        ddlgval1.SelectedValue = ccc;
+
+
+                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Attributes.Add("style", "width:180px; float:right");
+
+
                         //For changing Mobile No by Team Leader
                         switch (comcod)
                         {
+
                             case "3102": 
                             case "3367"://Epic
-                            //case "3101":
+                                        //case "3101":
+                                ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
                                 bool teamLeader = IsTeamLeader();
                                 if (lbllandname.Text.Length > 0)
                                 {
@@ -500,12 +514,19 @@ namespace RealERPWEB.F_21_MKT
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = false;
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = false;
+                                     
+
                                     }
                                     else
                                     {
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = true;
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;
+                                         
+
+
                                     }
                                 }
                                 else
@@ -515,12 +536,17 @@ namespace RealERPWEB.F_21_MKT
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = true;
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                  
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;
+
                                     }
                                     else
                                     {
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = false;
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = false;
+
                                     }
                                 }
                                 break;
@@ -532,12 +558,14 @@ namespace RealERPWEB.F_21_MKT
                                     ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = true;
                                     ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                                     ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
                                 }
                                 else
                                 {
                                     ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = false;
                                     ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                                     ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
                                 }
                                 break;
                         }
@@ -549,6 +577,8 @@ namespace RealERPWEB.F_21_MKT
                         ((Panel)this.gvPersonalInfo.Rows[i].FindControl("Panegrd")).Visible = false;
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Clear();
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = false;
+
                         break;
 
                 }
@@ -2679,8 +2709,12 @@ namespace RealERPWEB.F_21_MKT
             dt1.Columns.Add("gval");
             dt1.Columns.Add("gvalue");
             dt1.Columns.Add("remarks");
+            dt1.Columns.Add("ccc");
             string Name = "";
             string Phone = "";
+            string CCC0 = ""; //Country Calling Code
+            string CCC1 = ""; //Country Calling Code
+            string CCC2 = ""; //Country Calling Code
             string altphone1 = "";
             string altphone2 = "";
             string email = "";
@@ -2712,6 +2746,7 @@ namespace RealERPWEB.F_21_MKT
                 if (Gcode == "0301003")
                 {
                     Phone = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                    CCC0 = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).SelectedValue.ToString();
 
                     if (Phone.Trim().Length == 0)
                     {
@@ -2732,7 +2767,7 @@ namespace RealERPWEB.F_21_MKT
 
                     else
                     {
-                        if (Phone.Trim().Length != 11)
+                        if (Phone.Trim().Length != 11 && CCC0 == "+88")
                         {
                             string Message = "Mobile Number Must be 11 digit";
                             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
@@ -2751,6 +2786,7 @@ namespace RealERPWEB.F_21_MKT
                 if (Gcode == "0301005")
                 {
                     altphone2 = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                    CCC1 = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).SelectedValue.ToString();
 
                     //if (Phone.Trim().Length > 11)
                     //{
@@ -2762,6 +2798,7 @@ namespace RealERPWEB.F_21_MKT
                 if (Gcode == "0301004")
                 {
                     altphone1 = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                    CCC2 = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).SelectedValue.ToString();
 
 
 
@@ -2809,8 +2846,11 @@ namespace RealERPWEB.F_21_MKT
                 //}
 
                 dr["gcod"] = Gcode;
+                dr["ccc"] = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).SelectedValue.ToString();
                 dr["gval"] = gval;
-                dr["gvalue"] = (((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
+                dr["gvalue"] = (((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? 
+                    ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : 
+                    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
                 dt1.Rows.Add(dr);
             }
 
@@ -2875,6 +2915,7 @@ namespace RealERPWEB.F_21_MKT
 
 
                 dr["gcod"] = Gcode;
+                dr["ccc"] = "";
                 dr["gval"] = gval;
                 dr["gvalue"] = (((DropDownList)this.gvSourceInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() :
                     ((DropDownList)this.gvSourceInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
@@ -2891,6 +2932,7 @@ namespace RealERPWEB.F_21_MKT
 
                 dr["gcod"] = Gcode;
                 dr["gval"] = gval;
+                dr["ccc"] = "";
 
                 //Mandatory
                 if (Gcode == "0303006") //Interest Project
@@ -2970,6 +3012,8 @@ namespace RealERPWEB.F_21_MKT
                 gval = ((Label)this.gvplot.Rows[i].FindControl("lgvgvalplot")).Text.Trim();
                 dr["gcod"] = Gcode;
                 dr["gval"] = gval;
+                dr["ccc"] = "";
+
                 if (Gcode == "0304001")
                 {
 
@@ -3042,6 +3086,8 @@ namespace RealERPWEB.F_21_MKT
                 gval = ((Label)this.gvbusinfo.Rows[i].FindControl("lgvgvalbuinf")).Text.Trim();
                 dr["gcod"] = Gcode;
                 dr["gval"] = gval;
+                dr["ccc"] = "";
+
                 if (Gcode == "0305001")
                 {
 
@@ -3098,6 +3144,7 @@ namespace RealERPWEB.F_21_MKT
                 gval = ((Label)this.gvMoreInfo.Rows[i].FindControl("lgvgvalminfo")).Text.Trim();
                 dr["gcod"] = Gcode;
                 dr["gval"] = gval;
+                dr["ccc"] = "";
                 if (Gcode == "0306001")
                 {
                     dr["gvalue"] = ((DropDownList)this.gvMoreInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
@@ -3135,9 +3182,9 @@ namespace RealERPWEB.F_21_MKT
 
 
             string number = "";
-            number = Phone.Length > 0 ? Phone + "," : "";
-            number = number + (altphone1.Length > 0 ? altphone1 + "," : "");
-            number = number + (altphone2.Length > 0 ? altphone2 + "," : "");
+            number = Phone.Length > 0 ? CCC0+Phone + "," : "";
+            number = number + (altphone1.Length > 0 ? CCC1+altphone1 + "," : "");
+            number = number + (altphone2.Length > 0 ? CCC2+altphone2 + "," : "");
             number = number.Length > 0 ? number.Substring(0, number.Length - 1) : number;
 
 
@@ -3169,10 +3216,7 @@ namespace RealERPWEB.F_21_MKT
                 }
             }
 
-
-
-
-
+             
             //this is automatic kpi first discussion entry . recomended by Rahian for all company 20210804 dev by NAHID
             string kpidiscu = "";
             switch (comcod)
@@ -3190,7 +3234,7 @@ namespace RealERPWEB.F_21_MKT
 
 
 
-            bool result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "UPDATE_CLNTINFO", ds, null, null, clientid, Name, usrid, Phone, email, empid, maddress, active.ToString(), kpidiscu, Posteddat);
+            bool result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "UPDATE_CLNTINFO", ds, null, null, clientid, Name, usrid, Phone, email, empid, maddress, active.ToString(), kpidiscu, Posteddat, CCC0);
             if (result == true)
             {
 

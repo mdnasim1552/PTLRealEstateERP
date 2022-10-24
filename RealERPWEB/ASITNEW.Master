@@ -36,7 +36,10 @@
         <%: Scripts.Render("~/bundles/highchart") %>
         <%: Scripts.Render("~/bundles/flatpickr") %>
         
+        
     </asp:PlaceHolder>
+
+     
     <!-- SweetAlert2 -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.min.css">
@@ -305,6 +308,9 @@
 <%--    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>--%>
      
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.5/css/intlTelInput.css" />
+    
+   
 
 </head>
 <body>
@@ -1027,13 +1033,16 @@
             <!-- /.app-main -->
         </div>
         <!-- /.app -->
+
     </form>
+
+
 
     <script>
 
         $(document).ready(function () {
 
-            $('.chzn-select').chosen({ search_contains: true });
+           // $('.chzn-select').chosen({ search_contains: true });
 
         });
 
@@ -1283,6 +1292,8 @@
        
 
     </script>
+
+    
 
 </body>
 </html>

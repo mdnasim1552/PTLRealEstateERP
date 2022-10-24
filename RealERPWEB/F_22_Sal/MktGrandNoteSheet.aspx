@@ -190,9 +190,9 @@
                 </asp:UpdateProgress>
             </div>
 
-            <div class="card card-fluid mb-1">
+            <div class="card card-fluid mb-1 mt-4">
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row ">
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label id="lblprojectname" runat="server">Project Name</label>
@@ -250,6 +250,16 @@
                                 </asp:DropDownList>
                             </div>
 
+                        </div>
+                        <div class="col-md-2">
+                             <label class="control-label" for="ddlUserName" id="Label7" runat="server">Type</label>
+
+                            <asp:RadioButtonList ID="rbtnnoteType" RepeatDirection="Horizontal" CssClass=""  runat="server">
+                                <asp:ListItem>Summary</asp:ListItem>
+                                <asp:ListItem Selected="True">Details</asp:ListItem>
+                            
+                               
+                            </asp:RadioButtonList>
                         </div>
 
                         <div class="col-md-1">
@@ -435,9 +445,9 @@
                             </asp:GridView>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-3 ">
                             <div class="form-group">
-                                <asp:LinkButton ID="lbtnBack" runat="server" OnClick="lbtnBack_Click" Visible="false" CssClass="btn btn-danger btn-sm  pull-right">Back</asp:LinkButton>
+                                <asp:LinkButton ID="lbtnBack" runat="server" OnClick="lbtnBack_Click" Visible="false" CssClass="btn btn-danger btn-sm  pull-right " style="margin-left:159px;">Back</asp:LinkButton>
 
                                 <asp:Label ID="lblCode" runat="server" Visible="False" Width="63px"></asp:Label>
                             </div>
@@ -722,7 +732,7 @@
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin">
-                                                        <label id="lblinrate" runat="server">Interes Rate</label>
+                                                        <label id="lblinrate" runat="server">Interest Rate</label>
                                                     </div>
 
                                                 </div>
@@ -897,7 +907,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <asp:LinkButton ID="lbtnCalCulation" runat="server" CssClass=" form-control form-control-sm  btn btn-primary" OnClick="lbtnCalCulation_Click">Calculation</asp:LinkButton>
+                                                        <asp:LinkButton ID="lbtnCalCulation" runat="server" CssClass=" form-control form-control-sm  btn  btn-warning" OnClick="lbtnCalCulation_Click">Calculation</asp:LinkButton>
                                                     </div>
                                                 </div>
                                             </div>
@@ -911,7 +921,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group lblmargin lblheadertitle">
-                                                        <label id="lblrevoffer" runat="server">C. RCU Offer</label>
+                                                        <label id="lblrevoffer" runat="server">C. Sales Team Offer</label>
                                                     </div>
 
                                                 </div>
@@ -1296,7 +1306,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group lblmargin lblheadertitle">
-                                                        <label id="Label6" runat="server">C. RCU Offer</label>
+                                                        <label id="Label6" runat="server">C. Sales Team Offer</label>
                                                     </div>
 
                                                 </div>

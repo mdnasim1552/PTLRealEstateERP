@@ -253,12 +253,45 @@ namespace RealERPWEB
                            "<p style='margin-left:10px;margin-bottom:-11px;'>2.Office file</p>";
 
                     }
+                    else
+                    {
+                        lbody =
+                                  "<p style='text-align:right;style='margin-bottom:-11px''> " + date + "</p>" +
+                                  "<p style='margin-bottom:-11px'><strong>Ref:ERE/HR/CL/2022/027</strong></p>" +
+                                  "<p style='margin-bottom:-11px'><strong>" + name + "</strong></p>" +
+                                   "<p style='margin-bottom:-11px'>Employee ID : " + idcard + "</p>" +
+                                   "<p style='margin-bottom:-11px'>" + desig + "</p>" +
+                                   "<p style='margin-bottom:-11px'>" + dept + "</p>" +
+                                   "<p style='margin-bottom:-11px'>" + sec + "</p>" +
+                                   "<p>Subject:<strong>Confirmation Letter.</strong> </p>" +
+                                   "<p>Dear " + name + "</p>" +
+                                   "<p><strong>Congratulations!</strong></p>" +
+                                   "<p>We would like to congratulate you on your successful completion of the probation period in our organization. We are glad to have received satisfactory reports from your superior regarding your performance during the said period. </p>" +
+                                   "<p>You have good product knowledge & inventory accuracy; are good at execution of tasks; able to maintain transparency in documentation; are punctual and disciplined at work; respond positively to other assigned tasks and we appreciate you for that. We are expecting an increase in work knowledge and an improvement in warehouse capacity management from you which will foster your performance in the future.</p>" +
+                                   "<p>The management wishes to confirm your employment with us as a " + desig + " of the " + dept + " department under the " + sec + " with an effective date from May 10, 2022. Your salary has been revised as well and your new salary is BDT 17,000 (Seventeen Thousand Only).     </p>" +
+                                   "<p>Now that you are going to be even an integral part of the organization, we would expect greater efforts from you to strive to do better at work for ultimately setting the organization on the growth path.  We have complete faith in you. </p>" +
+                                         "<p></p>" +
+                                   "<p>Wishing you all the very best</p>" +
+                                    "<p></p>" +
+                                   "Regards," +
+                                   "<p></p>" +
+                                 "<p></p>" +
+                                     "<p></p>" +
+
+                                  "<p style='margin-bottom:-5px;display:inline;'><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float-left'><strong>MR X</strong></span><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float:right'><strong>MR X</strong></p></span></p>" +
+                                    "<br>" +
+                                  "<p style='margin-bottom:-5px;display:inline'><span style=' display:inline-block;margin-bottom:-11px;float-left'><strong>Senior Manager – HR</strong></span><span style='display:inline-block;margin-bottom:-11px;float:right;'><strong>Chief Operating Officer</strong></p></span></p>" +
+                                  "<p></p>" +
+                                  "<p style='display:inline-block;border-bottom:1px solid;margin-bottom:-11px;'>CC:</p>" +
+                                  "<p style='margin-left:10px;margin-bottom:-11px;'>1.Personal file</p>" +
+                                  "<p style='margin-left:10px;margin-bottom:-11px;'>2.Office file</p>";
+                    }
 
                     break;
 
                     //appoinment letter
                 case "10002":
-                    if (this.GetCompCode() == "3354" || this.GetCompCode() == "3101")
+                    if (this.GetCompCode() == "3354")
                     {
 
                         lbody =
@@ -419,11 +452,105 @@ namespace RealERPWEB
                             "</div>";
 
                     }
+                   else if (this.GetCompCode() == "3369" || this.GetCompCode() == "3101")
+                   {
+                        lbody =
+                       "<p style='text-align:right;style='margin-bottom:-11px''><strong>ID:" + idcard + "</strong></p>" +
+                        "<p>" + date + "</p>" +
+                       "<p style='margin-bottom:-11px'><strong> " + surname + " " + name + "</strong></p>" +
+                       "<p style='margin-bottom:-11px'><strong>Present Address:</strong> " + preadd + "</p>" +
+                       "<p style='margin-bottom:-11px'><strong>Mobile: </strong>" + mobile + "</p>" +
+                       "<p style='margin-bottom:-11px'><strong>Email:</strong> " + email + "</p>" +
+                       "<p><strong>Appointment letter for the role of Production Executive.</strong></p>" +
+                       "<p>Dear " + surname + " " + name + ",</p>" +
+                       //body
+                       "<p>With reference to your CV, subsequent interviews, follow-up discussions the management of Acme AI Ltd. is pleased to appoint you as " + desig + " with effect from " + date + " under the following terms and conditions: </p>" +
+                        "<p></p>" +
+                        "<p>Terms and conditions:</p>" +
+                          "<ol>" +
+                              "<li style='margin-top:10px!important'>Duration of Contract: Your contract period will be effective from 28/09/2022 for the duration of the project.</li>" +
+                              "<li style='margin-top:10px!important'>Employment Status: Your appointment will be treated as a full-time project staff when you complete your probation period successfully.</li>" +
+                              "<li style='margin-top:10px!important'>Work Station: Your initial workstation will be at Acme AI Ltd. office at DOHS Mirpur. To further Acme AI Ltd. interest, you may be required to work remotely if the situation demand it.</li>" +
+                              "<li style='margin-top:10px!important'>Reporting Supervisor: You will report to your team/project lead for the time being subject to the supervisory changes in the future.</li>" +
+                              "<li style='margin-top:10px!important'>Salary and Allowances: The breakdown of your monthly salary will be as below: </li>" +
+                       //salary break down table
+                       "<table style='width:70%;'>" +
+                      
+                       "<tr><<td>Basic (30% of Gross)</td><td style='text-align:center'>:" + bsal + "</td></tr>" +
+                       "<tr><td>House Allowance (30% of Gross)</td><td style='text-align:center;'>:" + hrent + "</td></tr>" +
+                       "<tr><<td>Medical Allowance (20% of Gross)</td><td style='text-align:center;'>:" + mallow + "</td></tr>" +
+                       "<tr><td>Transport Allowance (20% of Gross)</td><td style='text-align:center'>:" + cven + "</td></tr>" +
+                       "<tr style='border-top:1px solid!important;'><td style='text-align:center;' ><strong>Total Gross Salary</strong></td><td style='text-align: center;'><strong>:" + total + "</strong></td></tr></table>" +
+
+                              "<li style='margin-top:10px!important'>Probation: You will be on probation for a period of 06 (six) months from the date of appointment. At the end of your probation, if your services are found to be satisfactory, your appointment may be confirmed in writing as a full-time project staff. Unsatisfactory progress during probation may result in an extension of the probation period by three months or termination from the service at the discretion of the company.</li>" +
+                              "<li style='margin-top:10px!important'>Working Days and Hours Your official working days are 05 days a week starting from Monday to Friday. Office hours start at 10 AM and ends at 7 PM. with 40 minutes lunch break from 2 PM to 2.40 PM and 20 minutes Coffee Break from 11.50 to 12 AM and from 5 PM to 5.10 PM. For the requirement of the office you may have to work on a shift basis (morning shift 8:00 am – 2:00 pm and day shift 2:30 pm – 8:30 pm without any lunch break) on a requirement basis</li>" +
+                              "<li style='margin-top:10px!important'>Caution: You are not permitted to engage in other concurrent employment during your contract period with Acme AI Ltd. Any breach of this provision and breach of the NDA provision will be grounds for instant dismissal.</li>" +
+                              "<li style='margin-top:10px!important'>Duties: Your duties will be as per the job description. </li>" +
+                              "<li style='margin-top:10px!important'> Leave Entitlement: For leave eligibility, refer to section 24.2 Salient Points of ACME Technologies HR Manual (2015) and its amendments from time to time. During the probationary period there is no paid leave except emergency sick leave and government holidays. After the probationary period the total allotted paid leaves per calendar year is 34 days (excluding industrial government holidays) for permanent staff. Specific breakdown of leaves is as followed:</li>" +
+                       "<table style='width:70%;margin-left:20px;border-style:solid; border: 1px solid black;margin-top:7px'>" +
+             
+                       "<tr style='border-style:solid;border: 1px solid black;'>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>Annual Leave</td>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>10 days</td>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>Will be entitled after completion of one-year services. Carried forward of annual leave is discouraged. Annual leaves can be carried forward to the forthcoming years for a maximum of 20 days. Annual Leave can also be en-cashed based on staff preferences. Employees have to book leaves prior to 2 weeks for approval.</td>" +
+                       "</tr>" +
+
+                        "<tr style='border-style:solid;border: 1px solid black;'>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>Casual Leave</td>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>10 days</td>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>Casual leaves can be taken in a calendar year. Any due casual leaves will be forfeit upon the beginning of the next fiscal year cycle. Employees have to book leaves prior to 2 weeks for approval.</td>" +
+                       "</tr>" +
+
+                      "<tr style='border-style:solid;border: 1px solid black;'>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>Sick Leave</td>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>14 days</td>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>Entitled sick leaves for employees can be taken at any time subject to providing evidence of sickness e.g., diagnosis and prescription.</td>" +
+                       "</tr>" +
+
+                       "</table>" +
+                               "<li style='margin-top:10px!important'>Unauthorized Leave: If you remain absent beyond the period of leave granted or extended, you shall be liable for dismissal, unless you return within three days of expiry of leave and give a satisfactory explanation of your failure to return. Notice of dismissal may be served as set out hereunder. Alternatively, at management’s discretion, you may be suspended without salary for up to 07 days as a measure of necessary action.</li>" +
+                              "<li style='margin-top:10px!important'>Medical Examination: Every person before her/his appointment to the company require to submit medical fitness certificate after completing general blood and urine test and general medical examination from a certified physician.</li>" +
+                              "<li style='margin-top:10px!important'>. Income Tax: Staff members who qualify for income tax payments the company will deduct at source as required by law.</li>" +
+                              "<li style='margin-top:10px!important'>Discharge: You may be discharged from service on 01 (one) months’ notice for reasons of physical or mental incapacity or continued ill health not amounting to misconduct.</li>" +
+                              "<li style='margin-top:10px!important'>Dismissal: You may be dismissed with immediate effect if: a) You are convicted of any offence or moral turpitude b) The company finds you guilty of misconduct.</li>" +
+                              "<li style='margin-top:10px!important'>Termination: During the probation period the Company may terminate your services on 14 days’ written notice, without any reason for termination being assigned. The company at any time may discharge or terminate the service of an employee by giving 01(one) months’ notice or one month’s basic pay in lieu thereof, without any reason for termination being assigned</li>" +
+                              "<li style='margin-top:10px!important'>Resignation: During probation and at any time of your service period, you will be allowed to leave the job from Acme AI Ltd. with 01 (one) month advance notice or pay in lieu of.</li>" +
+                              "<li style='margin-top:10px!important'>estival Bonus: As per ACME Technology HR Policy as amended from time to time</li>" +
+                              "<li style='margin-top:10px!important'>Annual Increment: After confirmation as regular project staff, you will get an annual increment in a standard service year depending upon your performance evaluation as per ACME Technologies HR policy. The standard service year is from July to June.</li>" +
+                              "<li style='margin-top:10px!important'>. Notice: Any notice of dismissal, discharge, or other termination may be given by serving a copy of the notice personally on the employee or by posting to the employee’s last known address and by mailing a copy to the email address.</li>" +
+                              "<li style='margin-top:10px!important'>Rules and Regulations: In addition to your Job responsibilities, upon agreeing to this contract, we understand that you are abiding by the rules, conduct, and policies stated in your appointment letter, offer letter, the non-disclosure agreement you signed, and conditions mentioned in the HR manual of ACME Technologies Ltd. and all of its future amendments for all other employment condition.</li>" +
+
+                          "</ol>" +
+                          "<p></p>" +
+                          "<p></p>" +
+                       "<p>If you agree to accept this employment on the terms and conditions noted above, please sign the duplicate of this letter in the section below and return it to us. We welcome you to Acme AI Ltd. and sincerely hope that your career with us will be prosperous and rewarding.</p>" +
+
+                            "<p></p>" +
+                          "<p></p>" +
+
+
+                        "<p>Sincerely,</p>" +
+                        "<p></p>" +
+                        "<p></p>" +
+                        "<p><strong>Shafiqul Islam</strong></p>" +
+                        "<p><strong>Managing director, Acme AI Ltd</strong></p>" +
+
+                        "<p></p>" +
+                        "<p></p>" +
+                        "<p>TO BE FILLED BY THE APPOINTEE </p>" +
+                        "<p>I <span style='width:200px;border-bottom:1px solid;display:inline-block'></span>confirm that I accept the employment with the terms and conditions specified above.</p>" +
+                        "<p></p>" +
+                        "<p></p>" +
+                        "<p style='margin-top:'>Signature & Date</p>";
+
+
+
+                    }
                     break;
 
                     //offer letter
                 case "10003":
-                    if ( this.GetCompCode() == "3354" || this.GetCompCode() == "3101")
+                    if ( this.GetCompCode() == "3354")
                     {
                         lbody =
                        "<p style='text-align:right;style='margin-bottom:-11px''> " + date + "</p>" +
@@ -481,6 +608,101 @@ namespace RealERPWEB
        "<p>Before that you are requested to submit a copy of your resignation letter, which has been duly received by your present employer within 3 (Three) days from the date of receipt of this offer letter and a clearance letter at the time of joining.</p></p><p>&nbsp;The Letter of Appointment will be issued soon.</p><p>&nbsp; Please bring the following papers on the date of joining:</p><ol>" +
        "<li style='margin-top:5px'>Release letter / Letter of acceptance of resignation in the Company Letter Head from the previous employer.</li><li style='margin-top:5px'>Original & photocopies of all certificates (experience, academic, professional courses etc).</li><li style='margin-top:5px'>Photocopy of National ID card/ Passport (employee and nominee).</li><li style='margin-top:5px'>Passport size photograph (employee 7 copies and Nominee 3 copies)." +
        "</li><li style='margin-top:5px'>Pay Slip/ Proof of Salary and ETIN.</li></ol><p>&nbsp;</p><p>Yours Sincerely,</p><p class='pImage'><strong></p>  <p class='pUname'><span style='border-top:1px solid black'><strong>" + "Brig Gen Mohammad Ayub Ansary, psc (Retd)" + "</span></strong></p> <p>" + "Additional Managing Director" + "</p><p>" + "Head of HR,Admin,Security and Fire Safety Department" + "</p>";
+
+                    }
+                    else if(this.GetCompCode() == "3369" || this.GetCompCode() == "3101")
+                    {
+                        lbody =
+                              "<p></p>" +
+                       "<p></p>" +
+                       "<p></p>" +
+                       "<p></p>" +
+                       "<p></p>" +
+                         "<p></p>" +
+                       "<p style='margin-bottom:-11px''><strong>" + date + "</strong></p>" +
+                       "<p style='margin-bottom:-11px'> " + surname + " " + name + "</p>" +
+                       "<p style='margin-bottom:-11px'>" + preadd + "</p>" +
+                       "<p style='margin-bottom:-11px'>Mobile: " + mobile + "</p>" +
+                       "<p style='margin-bottom:-11px'>Email: " + email + "</p>" +
+
+                       "<p><strong> Offer letter for the position of ' " + desig + " ' </strong></p>" +
+                       "<p>Dear " + surname + " " + name + ",</p>" +
+                       //body
+                       "<p style='margin-bottom:-11px'> Further to our interviews and follow-up discussions, the management of Acme AI is pleased to offer you an appointment in the Company as <strong>" + desig + "</strong> on the following terms and conditions:" +
+
+                 "<ol>" +
+                    "<li style='margin-top:10px;'>Your employment with the Company will commence on 15 September 2022.</li>" +
+                    "<li style='margin-top:10px;'>Duty station is in Acme AI Ltd.’s Dhaka office but you may be asked to work remotely if the situation demands it. </li>" +
+                    "<li style='margin-top:10px;'>You will report directly to the Team Leader/Project Leader also with Floor Manager forthe time being subject to supervisory changes in the future</li>" +
+                    "<li style='margin-top:10px;'> You will be on probation for 6 months from the date of your appointment. On satisfactorycompletion of the period, you will be confirmed as a permanent employee</li>" +
+                    "<li style='margin-top:10px;'>Leaving the job without one month’s prior notice can cause a deduction for the salary of One month.</li>" +
+                    "<li style='margin-top:10px;'>After confirmation of your role at the end of probation, you may be confirmed as a full-timeproject employee subject to the availability of vacancy, your performance and your workethic </li>" +
+                    "<li style='margin-top:10px;'>Unsatisfactory progress during probation may result in the extension of the probationperiodor termination from the service, at the discretion of the Company. During the periodof probation, your service may be terminated with 14 days notice without assigning anyreasons for termination.</li>" +
+                    "</ol>" +
+
+                    "<p></p>" +
+                    "<p></p>" +
+                    "<p></p>" +
+                    "<p style='margin-bottom:100px'>Effective from the date of your joining, the following salary and allowances will be paid to you in arrears:</p>" +
+
+                       "<p></p>" +
+                       "<p></p>" +
+                       "<p></p>" +
+                       "<p></p>" +
+                       "<p></p>" +
+                       "<p></p>" +
+                       "<p></p>" +
+           
+
+                       //salary break down table
+
+                       "<table style='width:70%;margin-left:20px;border-style:solid; border: 1px solid black;margin-top:7px'>" +
+                       "<tr style='border-style:solid;border: 1px solid black;'>" +
+                         "<th style='width:50px;text-align:center;border-style:solid;border:1px solid black;'>SL</th>" +
+                         "<th style='width:200px;text-align:center;border-style:solid;border:1px solid black;'><strong>Position/Designation </strong></th>" +
+                         "<th style='border-style:solid;border: 1px solid black;width:100px;'>Total</th>" +
+                         "<th style='border-style:solid;border: 1px solid black;width:100px;'>Basic 30 % of Gross</th>" +
+                         "<th style='border-style:solid;border: 1px solid black;width:100px;'>H/Rt 30% of Gross</th>" +
+                         "<th style='border-style:solid;border: 1px solid black;width:100px;'>Med 20% of Gross</th>" +
+                         "<th style='border-style:solid;border: 1px solid black;width:100px;'>Tpt 20% of Gross</th>" +
+
+                       "</tr>" +
+                       "<tr style='border-style:solid;border: 1px solid black;'>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>1</td>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>" + desig + "</td>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>" + total + "</td>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>" + bsal + "</td>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>" + hrent + "</td>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>" + mallow + "</td>" +
+                            "<td style='text-align:center;border-style:solid;border: 1px solid black'>" + cven + "</td></tr>" +
+
+                       "</table>" +
+        
+                       "<p></p>" +
+        
+                       "<p>You will be entitled to festival bonuses as per the Acme Technology HR manual and Policies.</p>" +
+                       "<p></p>" +
+
+                       "<p>If you agree to accept this employment on the terms and conditions noted above, please sign the duplicate of this letter below and return it to us. We would welcome you to the company and sincerely hope that your career with the Company will be prosperous and rewarding.</p>" +
+
+
+                        "<p></p>" +
+                        "<p></p>" +
+                        "<p></p>" +
+                       "<p style='margin-bottom:-11px'>Best Regards,</p>" +
+                      "<div><p style='margin-bottom:-11px'><strong>Shafiqul Islam</strong></p></div>" +
+                       "<div><p style='margin-bottom:-11px'><strong>Managing director, Acme AI Ltd.</strong></p></div>";
+
+                    }
+                    else
+                    {
+                        lbody = "<p style='margin-bottom:0'><br/><br/>Ref: HR/2021/</p>" + date + "<p style='margin-bottom:-11px'>To</p><p style='margin-bottom:-11px'><strong>" + name + "</strong></p>" +
+"<p style='margin-bottom:-11px'>Address: House: 271, Tejgaon I/A, </p>" +
+"<p style='margin-bottom:-11px'>Tejgaon, Dhaka-1208</p><p style='margin-bottom:0'><br>Mobile : 01xxxxxxxxxx</p><p><strong>Subject: Offer for Employment</strong></p><p><br>Dear <strong>" + name + "," + "</strong></p>" +
+"<p>With reference to discussions with you and your willingness to join our company, we are pleased to offer you appointment as <strong> " + desig + ", " + dept + ",</strong> in " + sec + ", which shall commence on or before <strong> " + date + " </strong>." +
+"<p>Before that you are requested to submit a copy of your resignation letter, which has been duly received by your present employer within 3 (Three) days from the date of receipt of this offer letter and a clearance letter at the time of joining.</p></p><p>&nbsp;The Letter of Appointment will be issued soon.</p><p>&nbsp; Please bring the following papers on the date of joining:</p><ol>" +
+"<li>Release letter / Letter of acceptance of resignation in the Company Letter Head from the previous employer.</li><li>Original & photocopies of all certificates (experience, academic, professional courses etc).</li><li>Photocopy of National ID card/ Passport (employee and nominee).</li><li>Passport size photograph (employee 7 copies and Nominee 3 copies)." +
+"</li><li>Pay Slip/ Proof of Salary and ETIN.</li></ol><p>&nbsp;</p><p>Yours Sincerely,</p><p class='pImage'><strong></p>  <p class='pUname'><span style='border-top:1px solid black'><strong>" + "Mr x" + "</span></strong></p> <p>" + "Additional Managing Director and Head of HR" + "</p><p>" + "Admin and Security Department" + "</p>";
 
                     }
                     break;

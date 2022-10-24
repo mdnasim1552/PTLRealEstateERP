@@ -16,6 +16,14 @@
             border-bottom: 0;
             border-left: .3em solid transparent;
         }*/
+                .chzn-container{
+            width: 100% !important;
+        }
+
+        .chzn-container-single .chzn-single {
+            height: 28px !important;
+            line-height: 28px !important;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -127,6 +135,9 @@
             white-space: normal !important;
             word-break: break-word !important;
         }
+                       .mt20 {
+            margin-top: 20px;
+        }
     </style>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -202,19 +213,19 @@
                     <div class="row mt-1">
                         <div class="col-lg-1 col-md-1 col-sm-6">
                             <asp:Label ID="lblfrmdate" runat="server">Date</asp:Label>
-                            <asp:TextBox ID="txtfromdate" runat="server" CssClass="form-control" AutoComplete="off"></asp:TextBox>
+                            <asp:TextBox ID="txtfromdate" runat="server" CssClass="form-control form-control-sm" AutoComplete="off"></asp:TextBox>
                             <cc1:CalendarExtender ID="txtfromdate_CalendarExtender" runat="server"
                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtfromdate"></cc1:CalendarExtender>
                         </div>
                         <div class="col-lg-1 col-md-1 col-sm-6">
                             <asp:Label ID="lbltodate" runat="server">To</asp:Label>
-                            <asp:TextBox ID="txttodate" runat="server" CssClass=" form-control" AutoComplete="off"></asp:TextBox>
+                            <asp:TextBox ID="txttodate" runat="server" CssClass=" form-control form-control-sm" AutoComplete="off" ></asp:TextBox>
                             <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
 
                         </div>
                         <div class="col-lg-1 col-md-1 col-sm-6">
                             <asp:Label ID="Label14" runat="server">Page Size</asp:Label>
-                            <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                            <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                 <asp:ListItem>10</asp:ListItem>
                                 <asp:ListItem>15</asp:ListItem>
                                 <asp:ListItem>20</asp:ListItem>
@@ -234,7 +245,7 @@
                         <div class="col-lg-2 col-md-2 col-sm-6" id="SeachDivForGrid" runat="server" visible="false">
                             <asp:Label ID="Label2" runat="server">Search </asp:Label>
                             <asp:TextBox ID="txtSearch" runat="server" AutoPostBack="True"
-                                OnTextChanged="txtSearch_TextChanged" CssClass="form-control" placeholder="Search here..."></asp:TextBox>
+                                OnTextChanged="txtSearch_TextChanged" CssClass="form-control form-control-sm" placeholder="Search here..."></asp:TextBox>
                         </div>
 
 
@@ -250,7 +261,7 @@
 
                         <div class="col-lg-2 col-md-2 col-sm-2" id="gndDiv" visible="false" runat="server">
                             <asp:Label ID="Label15" CssClass="d-block" runat="server">Print Grand Total</asp:Label>
-                            <asp:CheckBox ID="chkgrndt" runat="server" CssClass="form-control" />
+                            <asp:CheckBox ID="chkgrndt" runat="server" CssClass="form-control form-control-sm" />
                         </div>
 
                         <div class="col-lg-1 col-md-1 col-sm-2" id="lblBanglaDiv" runat="server" visible="false">
@@ -259,13 +270,13 @@
                         </div>
 
                         <div class="col-lg-1 col-md-1 col-sm-6">
-                            <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary okBtn pull-left mt-4" OnClick="lnkbtnShow_Click">Ok</asp:LinkButton>
+                            <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary okBtn pull-left mt20 btn-sm" OnClick="lnkbtnShow_Click">Ok</asp:LinkButton>
                         </div>
 
                         <panel id="pnlsalops" runat="server" visible="true" class="col-lg-2 col-md-2 col-sm-6 float-right">
                             <div class="btn-group mt-4">
-                                <button type="button" class="btn btn-success">MoreLink</button>
-                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                                <button type="button" class="btn btn-success btn-sm">MoreLink</button>
+                                <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
@@ -2033,7 +2044,7 @@
             </div>
 
 
-
+</script>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
