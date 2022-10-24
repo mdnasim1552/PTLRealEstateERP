@@ -238,6 +238,39 @@ namespace RealERPWEB.F_17_Acc
                 dt2 = dv2.ToTable();
             }
 
+
+
+
+            int i, index;
+
+
+            for (i = 0; i < dt.Rows.Count; i++)
+            {
+
+                ((CheckBox)this.gvAccVoucher.Rows[i].FindControl("checkPrint")).Checked = true;
+                index = (this.gvAccVoucher.PageSize) * (this.gvAccVoucher.PageIndex) + i;
+
+
+
+            }
+
+            for (i = 0; i < dt.Rows.Count; i++)
+            {
+
+                if (((CheckBox)this.gvAccVoucher.Rows[i].FindControl("checkPrint")).Checked == true)
+                {
+
+                    DataView dv = dt.DefaultView;
+                    dv.RowFilter = ("usrname like '%" + txtusr + "%'");
+                    dt = dv.ToTable();
+                }
+            }
+
+
+
+
+
+
             var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VoutopSheet>();
             var list1 = dt2.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VouTopSheetSum>();
             LocalReport Rpt1 = new LocalReport();
@@ -610,6 +643,47 @@ namespace RealERPWEB.F_17_Acc
                     hlnkChequePrint.Visible = false;
                 }
             }
+
+        }
+
+
+        //rakib
+
+        protected void checkTopPrint_CheckedChanged(object sender, EventArgs e)
+        {
+
+            int i, index;
+            if (((CheckBox)this.gvAccVoucher.HeaderRow.FindControl("checkTopPrintAll")).Checked)
+            {
+
+                for (i = 0; i < this.gvAccVoucher.Rows.Count; i++)
+                {
+
+                    ((CheckBox)this.gvAccVoucher.Rows[i].FindControl("checkPrint")).Checked = true;
+                    index = (this.gvAccVoucher.PageSize) * (this.gvAccVoucher.PageIndex) + i;
+
+
+
+                }
+
+
+            }
+
+            else
+            {
+                for (i = 0; i < this.gvAccVoucher.Rows.Count; i++)
+                {
+
+                    ((CheckBox)this.gvAccVoucher.Rows[i].FindControl("checkPrint")).Checked = false;
+                    index = (this.gvAccVoucher.PageSize) * (this.gvAccVoucher.PageIndex) + i;
+
+
+
+                }
+
+            }
+
+
 
         }
     }
