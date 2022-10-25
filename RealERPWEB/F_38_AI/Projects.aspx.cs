@@ -181,6 +181,8 @@ namespace RealERPWEB.F_38_AI
             this.assigntask.Visible = false;
             this.taskoverview.Visible = false;
             this.penddingtask.Visible = false;
+            this.returntask.Visible = false;
+            this.rejecttask.Visible = false;
             this.task.Visible = true;
 
         }
@@ -409,6 +411,8 @@ namespace RealERPWEB.F_38_AI
             this.task.Visible = false;
             this.assigntask.Visible = true;
             this.taskoverview.Visible = true;
+            this.returntask.Visible = false;
+            this.rejecttask.Visible = false;
 
         }
 
@@ -494,6 +498,8 @@ namespace RealERPWEB.F_38_AI
                 this.btntaskSave.Visible = false;
                 this.btntaskUpdate.Visible = true;
                 this.assigntask.Visible = false;
+                this.returntask.Visible = false;
+                this.rejecttask.Visible = false;
 
 
             }
@@ -552,11 +558,31 @@ namespace RealERPWEB.F_38_AI
                 case "1":
                     this.assigntask.Visible = true;
                     this.penddingtask.Visible = false;
+                    this.returntask.Visible = false;
+                    this.rejecttask.Visible = false;
                     break;
                 case "2":
                     this.assigntask.Visible = false;
                     this.penddingtask.Visible = true;
+                    this.returntask.Visible = false;
+                    this.rejecttask.Visible = false;
                     break;
+                case "3":
+                    this.assigntask.Visible = false;
+                    this.penddingtask.Visible = false;
+                    this.returntask.Visible = true;
+                    this.rejecttask.Visible = false;
+                    this.GetReturnReject();
+                    break;
+                case "4":
+                    this.assigntask.Visible = false;
+                    this.penddingtask.Visible = false;
+                    this.returntask.Visible = false;
+                    this.rejecttask.Visible = true;
+                    this.GetReturnReject();
+                    break;
+
+                    
             }
         }
 
@@ -682,6 +708,45 @@ namespace RealERPWEB.F_38_AI
             }
             catch (Exception exp)
 
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
+
+        private void GetReturnReject()
+        {
+            try
+            {
+                string comcod = this.GetComdCode();
+                string batchid = Request.QueryString["BatchID"].ToString() == "" ? "" : Request.QueryString["BatchID"].ToString();
+                string prjid = Request.QueryString["PID"].ToString() == "" ? "" : Request.QueryString["PID"].ToString();
+                DataSet ds = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "BATCHWISE_RETURN_REJECT", prjid, batchid, "", "", "", "");
+                if (ds == null)
+                    return;
+
+                Session["tblreturnreject"] = ds.Tables[0];
+                DataTable dt1 = new DataTable();
+                DataView view = new DataView();
+                DataView view1 = new DataView();
+
+                view.Table = ds.Tables[0];
+                view.RowFilter = "returnqty > '0' ";
+                dt1 = view.ToTable();
+                this.gv_ReturnTask.DataSource = dt1;
+                this.gv_ReturnTask.DataBind();
+
+
+                view1.Table = ds.Tables[0];
+                view1.RowFilter = "rejectqty > '0' ";
+                dt1 = view.ToTable();
+                this.gv_Rejecttask.DataSource = dt1;
+                this.gv_Rejecttask.DataBind();
+
+
+
+            }
+            catch(Exception exp)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
