@@ -432,7 +432,7 @@ namespace RealERPWEB.F_12_Inv
                 this.GetMatTrns();
             string mtreqno = this.lblCurTransNo1.Text.ToString().Trim().Substring(0, 3) + mtreqdat.Substring(7, 4) + this.lblCurTransNo1.Text.ToString().Trim().Substring(3, 2) + this.txtCurTransNo2.Text.ToString().Trim();
             string mtrref = this.txtrefno.Text.ToString();
-            string mtrnar = this.txtReqNarr.Text.ToString();
+            string mtrnar = this.txtReqNarr.Text.ToString().Trim();
             string fromprj = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
             string toprj = this.ddlprjlistto.SelectedValue.ToString().Trim();
 

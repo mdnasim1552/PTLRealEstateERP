@@ -1759,7 +1759,24 @@ namespace RealERPWEB.F_99_Allinterface
             }
 
 
-            bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "DELPURBILLINFO", billno, "", "", "",
+            string billauditlen = "";
+            switch (comcod)
+            {
+
+                case "3101"://Own
+                case "3366"://Lanco
+                case "3367"://Epic
+                case "3340"://Uddl
+                    billauditlen = "billauditlen";                
+                    break;
+                default:
+                    billauditlen = "";                  
+                    break;
+
+            }
+
+
+            bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "DELPURBILLINFO", billno, billauditlen, "", "",
                 "", "", "", "", "", "", "", "", "", "", "");
             if (!resulbill)
             {
