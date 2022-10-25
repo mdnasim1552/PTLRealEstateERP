@@ -700,7 +700,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row" style="display: none;">
+                                            <div class="row"s>
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin font-weight-bold">
                                                         <label id="lbltxtcofffvpersft" runat="server">FV per SFT</label>
@@ -714,7 +714,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row" style="display: none;">
+                                            <div class="row" >
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin font-weight-bold">
                                                         <label id="lbltxtcoffpvpersft" runat="server">PV per SFT</label>
@@ -730,7 +730,7 @@
                                             </div>
 
 
-                                            <div class="row">
+                                            <div class="row" >
 
 
                                                 <div class="col-md-8">
@@ -1010,7 +1010,7 @@
                                                         </asp:TemplateField>
 
 
-                                                        <asp:TemplateField HeaderText="FV" Visible="false">
+                                                        <asp:TemplateField HeaderText="FV" >
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblgvcofffvschamt" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="none"
                                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fv")).ToString("#,##0;(#,##0); ") %>'
@@ -1164,6 +1164,16 @@
 
                                         </div>
                                     </asp:Panel>
+
+                                    <div class="row">
+                                        
+                                       
+                                        <asp:HiddenField ID="lblhiddenbutility" runat="server" />
+                                        <asp:HiddenField ID="lblhiddenbpamt" runat="server" />
+                                        <asp:HiddenField ID="lblhiddenothers" runat="server" />
+                                        <asp:HiddenField ID="lblhiddenbnoemi" runat="server" />
+
+                                    </div>
 
 
 
