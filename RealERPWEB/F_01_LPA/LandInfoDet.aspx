@@ -266,9 +266,9 @@
         .dcomments {
             margin: 10px 0 0 0;
         }
-   
-        
-          .notifsectino .tile {
+
+
+        .notifsectino .tile {
             font-size: 12px !important;
         }
 
@@ -280,8 +280,7 @@
         .notifsectino .list-group-item-body {
             font-size: 10px !important;
         }
-        
-        </style>
+    </style>
 
     <script type="text/javascript">
 
@@ -318,7 +317,7 @@
 
         $(document).ready(function () {
 
-             
+
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
             document.getElementById('<%= Btn_tempBTN.ClientID %>').click();
 
@@ -997,14 +996,14 @@
                             }
                             else {
                                 var ar = new Array();
-                              //  alert(newfollowup);
+                                //  alert(newfollowup);
                                 var j = 0;
                                 for (i = 0; i < newfollowup.length; i = i + 7) {
                                     ar[j++] = newfollowup.substr(i, 7);
                                 }
 
                                 //console.log(ar);
-                              //  alert(ar.length);
+                                //  alert(ar.length);
 
                                 for (i = 0; i < ar.length; i++) {
 
@@ -1209,7 +1208,7 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-                    <asp:LinkButton ID="Btn_tempBTN" OnClick="Btn_tempBTN_Click" Class="btn btn-sm btn-primary d-none" runat="server">Ok</asp:LinkButton>
+            <asp:LinkButton ID="Btn_tempBTN" OnClick="Btn_tempBTN_Click" Class="btn btn-sm btn-primary d-none" runat="server">Ok</asp:LinkButton>
 
 
             <div class="card card-fluid ">
@@ -1217,7 +1216,6 @@
                     <div class="row">
                         <div class="form-group">
                             <div class="row">
-
                             </div>
                         </div>
                         <div class=" col-md-2 ml-1">
@@ -1311,7 +1309,7 @@
                                     <asp:ListItem>2000</asp:ListItem>
                                     <asp:ListItem>4000</asp:ListItem>
                                     <asp:ListItem>5000</asp:ListItem>
-                                    <asp:ListItem >10000</asp:ListItem>
+                                    <asp:ListItem>10000</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -2548,7 +2546,7 @@
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
 
-                                                 <asp:TemplateField HeaderText="Phone/Mobile">
+                                                <asp:TemplateField HeaderText="Phone/Mobile">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvcphone" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cphone"))%>'></asp:Label>
@@ -2557,7 +2555,14 @@
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
 
-
+                                                <asp:TemplateField HeaderText="Retreive" Visible="false">
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton ID="lnkbtnRetreive" runat="server" Font-Bold="True" Height="12px" ToolTip="Retreive Prospect" Style="text-align: right" OnClientClick="javascript:return  FunConfirm()" 
+                                                            OnClick="lnkbtnRetreive_Click"><span><i class="fa fa-undo" Style="text-align: center"></i></span></asp:LinkButton>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <ItemStyle HorizontalAlign="center" />
+                                                </asp:TemplateField>
 
 
                                                 <%--<asp:TemplateField HeaderText="">
