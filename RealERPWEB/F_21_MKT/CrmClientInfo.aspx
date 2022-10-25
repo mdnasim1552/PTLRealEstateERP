@@ -3136,6 +3136,15 @@
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
                                                 <%--27--%>
+                                                 <asp:TemplateField HeaderText="Project Visit<br>Status" Visible="false">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvprojvisit" runat="server"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projvisit")) %>'></asp:Label>
+
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+
                                             </Columns>
                                             <FooterStyle CssClass="grvFooter" />
                                             <EditRowStyle />
