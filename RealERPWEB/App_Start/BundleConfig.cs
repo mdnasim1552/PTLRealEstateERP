@@ -78,7 +78,9 @@ namespace RealERPWEB
           "~/tinymce/tinymce.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/multiselect").Include(
-             "~/Scripts/bootstrap-multiselect.js"));
+             "~/Scripts/bootstrap-multiselect.js",
+             "~/Scripts/select2.min.js"
+             ));
 
               bundles.Add(new ScriptBundle("~/bundles/User").Include(
                 "~/JS02/RealERPScript.js",
@@ -101,6 +103,10 @@ namespace RealERPWEB
                "~/Scripts/flatpickr-demo.js"
                ));
 
+            //bundles.Add(new ScriptBundle("~/bundles/telephoneValidation").Include(
+            //  "~/assets/TelephoneValidation/build/js/intlTelInput.js"
+            // // "~/assets/TelephoneValidation/js/isValidNumber.js"
+            //  ));
 
 
             //bundles.Add(new  StyleBundle("~/Content/css").Include(

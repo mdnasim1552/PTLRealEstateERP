@@ -325,11 +325,12 @@ namespace RealERPWEB.F_09_PImp
 
 
             string billno = this.ddlPrevBillList.SelectedValue.ToString();
+            string PrintOpt = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
             //if(billno==""){
             //    billno = this.lblCurNo1.Text.Trim().Substring(0, 3) + this.txtCurDate.Text.Trim().Substring(7, 4) + this.lblCurNo1.Text.Trim().Substring(3, 2) + this.lblCurNo2.Text.Trim();
             //}
             // string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
-            string currentptah = this.ResolveUrl("~/F_99_Allinterface/PurchasePrint.aspx?Type=ConBillFinalization&billno=" + billno);
+            string currentptah = this.ResolveUrl("~/F_99_Allinterface/PurchasePrint.aspx?Type=ConBillFinalization&billno=" + billno + "&PrintOpt=" + PrintOpt);
             // string totalpath =  currentptah;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + currentptah + "', target='_blank');</script>";
 
@@ -1083,12 +1084,29 @@ namespace RealERPWEB.F_09_PImp
             int TblRowIndex;
             for (int i = 0; i < this.gvSubBill.Rows.Count; i++)
             {
+                double conrate = ASTUtility.StrPosOrNagative(((TextBox)this.gvSubBill.Rows[i].FindControl("lgvSubRate")).Text.Trim());
+
                 double conqty = ASTUtility.StrPosOrNagative(((Label)this.gvSubBill.Rows[i].FindControl("lgvconqty")).Text.Trim());
                 double billamt = ASTUtility.StrPosOrNagative(((TextBox)this.gvSubBill.Rows[i].FindControl("txtgvamt")).Text.Trim());
                 TblRowIndex = (gvSubBill.PageIndex) * gvSubBill.PageSize + i;
 
-                dt.Rows[TblRowIndex]["billamt"] = billamt;
-                dt.Rows[TblRowIndex]["conrate"] = conqty == 0 ? 0.00 : billamt / conqty;
+                if (Request.QueryString["status"] != null)
+                {
+                    if (Request.QueryString["status"].ToString() == "S")
+                    {
+
+                        dt.Rows[TblRowIndex]["conrate"] = conrate;
+                        dt.Rows[TblRowIndex]["billamt"] = conrate * conqty;
+                    }
+                }
+                else
+                {
+
+                    dt.Rows[TblRowIndex]["billamt"] = billamt;
+                    dt.Rows[TblRowIndex]["conrate"] = conqty == 0 ? 0.00 : billamt / conqty;
+                }
+
+
             }
             Session["tblbill"] = dt;
 
@@ -1153,9 +1171,10 @@ namespace RealERPWEB.F_09_PImp
                 case "BillServiceEntry":
                     switch (comcod)
                     {
-                        //case "3101":
+                        case "3101":
                         case "1103":
-                        case "3368":
+                        case "3368": // finlay
+                        //case "3367": // epic
 
                             break;
 
@@ -1574,8 +1593,6 @@ namespace RealERPWEB.F_09_PImp
                 if (this.Request.QueryString["Type"] == "BillEntry")
                 {
 
-
-
                     //Finalization Approved
 
                     switch (comcod)
@@ -1597,13 +1614,9 @@ namespace RealERPWEB.F_09_PImp
                         case "3351":
                         case "3352":
                         case "3353"://Manama realds
+
                         case "3368"://Finlay
-
-
-
-
-
-
+                        case "3367"://epic
 
                             break;
 
@@ -2026,6 +2039,24 @@ namespace RealERPWEB.F_09_PImp
             }
 
         }
+
+        protected void gvSubBill_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                TextBox rate = (TextBox)e.Row.FindControl("lgvSubRate");
+                rate.Enabled = false;
+                if (Request.QueryString["status"] != null)
+                {
+                    if (Request.QueryString["status"].ToString() == "S")
+                    {
+                        rate.Enabled = true;
+                    }
+                }
+                
+            }
+        }
+
         protected void btnDelall_OnClick(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)Session["tblAttDocs"];

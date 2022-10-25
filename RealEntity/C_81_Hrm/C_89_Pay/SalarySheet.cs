@@ -623,6 +623,7 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public string desigid { get; set; }
             public double wd { get; set; }
             public double absday { get; set; }
+            public double absded2 { get; set; }
             public double wld { get; set; }
             public double acat { get; set; }
             public double bsal { get; set; }
@@ -676,7 +677,7 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double netpayable { get; set; }
             public double redamt { get; set; }
             public double mbillded { get; set; }
-            public string stamp { get; set; }
+            public double stamp { get; set; }
             public double netsalarypay { get; set; }
             public double grossal1 { get; set; }
             public double grossalsub { get; set; }
@@ -872,6 +873,16 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
 
             public DeptWiseSal() { }
         }
-
+        public class SalSummaryInfo
+        {
+            public string comcod { get; set; }
+            public string grp { get; set; }
+            public string descrip { get; set; }
+            public double cashamt { get; set; }
+            public double bankamt { get; set; }
+      
+            public SalSummaryInfo() { 
+            }
+        }
     }
 }

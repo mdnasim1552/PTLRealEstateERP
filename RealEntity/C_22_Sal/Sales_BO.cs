@@ -41,13 +41,26 @@ namespace RealEntity.C_22_Sal
         {
             public string comcod { get; set; }
             public string pactdesc { get; set; }
+            public string pactcode { get; set; }
             public string custname { get; set; }
             public string udesc { get; set; }
+            public double usize { get; set; }
+            public double bgdamt { get; set; }
+            public double suamt { get; set; }
+            public double bookdues { get; set; }
+            public double insdues { get; set; }
+            
+
+            public DateTime saldat { get; set; }
             public double salvalues { get; set; }
             public double cbookam { get; set; }
             public double cinsam { get; set; }
             public double tocollam { get; set; }
+            public double netbookam { get; set; }
+            public double netinsdues { get; set; }
+            
             public double balance { get; set; }
+
 
 
         }
@@ -1471,6 +1484,7 @@ namespace RealEntity.C_22_Sal
             public string bbranch { get; set; }
             public string usrsign { get; set; }
             public double paidamt { get; set; }
+            public string insdesc { get; set; }
 
 
 

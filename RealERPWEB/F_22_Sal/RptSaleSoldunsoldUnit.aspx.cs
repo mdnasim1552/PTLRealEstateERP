@@ -395,6 +395,18 @@ namespace RealERPWEB.F_22_Sal
                     ((Label)this.gvSpayment.FooterRow.FindControl("lgvFRcvAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(recvamt)", "")) ?
                                    0 : dt.Compute("sum(recvamt)", ""))).ToString("#,##0;(#,##0); ");
 
+                    ((Label)this.gvSpayment.FooterRow.FindControl("lgvFParking")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(parking)", "")) ?
+                                  0 : dt.Compute("sum(parking)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvSpayment.FooterRow.FindControl("lgvFutility")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(utility)", "")) ?
+                                   0 : dt.Compute("sum(utility)", ""))).ToString("#,##0;(#,##0); ");
+
+                    ((Label)this.gvSpayment.FooterRow.FindControl("lgvFothers")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(cooperative)", "")) ?
+                                  0 : dt.Compute("sum(cooperative)", ""))).ToString("#,##0;(#,##0); ");
+
+                    ((Label)this.gvSpayment.FooterRow.FindControl("lgvFtotal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(tacsalamt)", "")) ?
+                                0 : dt.Compute("sum(tacsalamt)", ""))).ToString("#,##0;(#,##0); ");
+                    
+
                     Session["Report1"] = gvSpayment;
                     ((HyperLink)this.gvSpayment.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 

@@ -1586,6 +1586,14 @@
                                             <HeaderStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
+                                        <asp:TemplateField HeaderText="Project">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgpactdesc" runat="server"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
+                                                    Width="120px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Left" />
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Unsold Unit No">
                                             <FooterTemplate>
@@ -1759,13 +1767,20 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
-
-
                                         <asp:TemplateField HeaderText="Registration Status">
-
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvregistration" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "register")) %>'
+                                                    Width="70px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="left" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Sales Person">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvsalteam" runat="server"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "salteam")) %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />

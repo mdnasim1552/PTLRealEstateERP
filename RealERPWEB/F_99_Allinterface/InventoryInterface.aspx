@@ -505,13 +505,13 @@
                 case 3352:   // 360   
                     $(".tbMenuWrp table tr td:nth-child(2)").show();// Check  
                     break;
-                //case 3101:   // ptl 
+                case 3101:   // ptl 
                 case 3367:   // Epic Properties
                     $(".tbMenuWrp table tr td:nth-child(2)").show();// Check  
                     $(".tbMenuWrp table tr td:nth-child(6)").hide();// Audit  
                     break;
                 default:
-                    $(".tbMenuWrp table tr td:nth-child(2)").hide();;// Check
+                    $(".tbMenuWrp table tr td:nth-child(2)").hide();// Check
                     break;
             }
             var gvstatus = $('#<%=this.gvstatus.ClientID %>');
@@ -575,14 +575,22 @@
                 <div class="card-body">
 
                     <div class="row">
-                        <div class="col-md-1">
-                            <div class="form-group">
-                                <label class="control-label lblmargin-top9px" for="FromDate">Date</label>
+                        <div class="col-md-2">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend ">
+                                    <button class="btn btn-secondary" type="button">From</button>
+                                </div>
+                                <asp:TextBox ID="txtfrmdate" runat="server" CssClass="form-control" AutoPostBack="true"></asp:TextBox>
+                                <cc1:CalendarExtender ID="CalendarExtender_txtfrmdate" runat="server" Enabled="True"
+                                    Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>
                             </div>
                         </div>
 
                         <div class="col-md-2">
-                            <div class="form-group">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend ">
+                                    <button class="btn btn-secondary" type="button">To</button>
+                                </div>
                                 <asp:TextBox ID="txttodate" runat="server" CssClass="form-control" AutoPostBack="true"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtender_txttodate" runat="server" Enabled="True"
                                     Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
@@ -590,7 +598,6 @@
                         </div>
                         <div class="col-md-1">
                             <asp:TextBox ID="txtmtrrf" runat="server" CssClass="form-control" placeholder="MTR Ref..."></asp:TextBox>
-
                         </div>
 
                         <div class="col-md-1">
@@ -613,7 +620,6 @@
                                         <asp:HyperLink ID="HyperLink5" Target="_blank" NavigateUrl="~/F_12_Inv/RptMaterialStock?Type=inv&prjcode=&sircode=" runat="server" CssClass="dropdown-item">Material stock Info(Project)</asp:HyperLink>
                                         <asp:HyperLink ID="HyperLink6" Target="_blank" NavigateUrl="~/F_12_Inv/MaterialsTransfer?Type=Entry&genno=" runat="server" CssClass="dropdown-item">Materials Transfer Approval </asp:HyperLink>
                                         <asp:HyperLink ID="HyperLink7" Target="_blank" NavigateUrl="~/F_12_Inv/PurMatIssue?Type=Entry" runat="server" CssClass="dropdown-item">Materials Issue </asp:HyperLink>
-
 
                                     </div>
                                 </div>
@@ -1054,6 +1060,19 @@
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+
+
+
+                                        <asp:TemplateField HeaderText="From Prj code" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgtfprjgpcode" runat="server"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "tfpactcode"))%>'
+                                                    Width="90px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <FooterStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="From Project">

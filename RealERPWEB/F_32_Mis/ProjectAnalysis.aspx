@@ -97,10 +97,10 @@
                                     </div>
 
                                     <div class="col-md-offset-2 pading5px" style="margin-right: 20px; float: left">
-                                        <asp:HyperLink ID="hlnkprjgrp" runat="server" Target="_blank" NavigateUrl="~/F_22_Sal/ProjectGroup.aspx" CssClass="btn btn-success btn-sm" Style="padding: 0 15px">Project Group</asp:HyperLink>
+                                        <asp:HyperLink ID="hlnkprjgrp" runat="server" Target="_blank" NavigateUrl="~/F_22_Sal/ProjectGroup" CssClass="btn btn-success btn-sm" Style="padding: 0 15px">Project Group</asp:HyperLink>
                                     </div>
                                     <div class="col-md-2 pading5px">
-                                        <asp:HyperLink ID="hlnkprjgrpcode" runat="server" Target="_blank" NavigateUrl="~/F_22_Sal/SalesCodeBook.aspx?Type=Sales" CssClass="btn btn-warning btn-sm" Style="padding: 0 15px">Project Group Code</asp:HyperLink>
+                                        <asp:HyperLink ID="hlnkprjgrpcode" runat="server" Target="_blank" NavigateUrl="~/F_22_Sal/SalesCodeBook?Type=Sales" CssClass="btn btn-warning btn-sm" Style="padding: 0 15px">Project Group Code</asp:HyperLink>
                                     </div>
                                 </div>
 

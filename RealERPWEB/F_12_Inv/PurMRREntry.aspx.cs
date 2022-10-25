@@ -80,23 +80,22 @@ namespace RealERPWEB.F_12_Inv
             string comcod = this.GetCompCode();
             switch (comcod)
             {
-
+                case "3101": // pintech
                 case "3340":
                 case "3335":
                 case "1301":
-                case "3301":
-                //case "3101":          
-
+                case "3301":   
                 case "1205": //p2p Engineering
                 case "3351": //WECON Properties
                 case "3352": //P2P 360
                 case "3354": //Edison Real Estate
                 case "3353": //Manama
 
-
+                case "3368": //finlay
                     this.chkdupMRR.Enabled = false;
                     this.chkdupMRR.Checked = true;
                     break;
+
                 default:
                     this.chkdupMRR.Visible = false;
                     this.chkdupMRR.Checked = false;
@@ -601,7 +600,7 @@ namespace RealERPWEB.F_12_Inv
             {
                 case "3354":
                     msg = "Actual Receive Date";
-                    break;
+                    break; 
                 default:
                     msg = "Challan Date";
                     break;
@@ -1290,30 +1289,29 @@ namespace RealERPWEB.F_12_Inv
 
 
 
-            //Chalan No
+            //Chalan No && MRR No check
             switch (comcod)
-
             {
                 case "3315":
                 case "3316":
                 case "3317":
                 case "3339": // THL
-
-                    // case "3101":
-
-
                     if (mMRRChlnNo.Length <= 0)
                     {
                         ((Label)this.Master.FindControl("lblmsg")).Text = "Required Chalan No";
                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                         return;
                     }
-
-
                     break;
 
-                // case "3101":
-                case "3330":
+
+                case "3101":
+                case "3368": // finlay
+                case "5101":
+                case "3330": // bridge
+                case "1205": //p2p Engineering
+                case "3351": //WECON Properties
+                case "3352": //P2P 360
 
                     if (mrrno.Length <= 0)
                     {
@@ -1321,9 +1319,7 @@ namespace RealERPWEB.F_12_Inv
                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                         return;
                     }
-
                     break;
-
 
                 case "3340":
                 case "3336":
@@ -1340,11 +1336,6 @@ namespace RealERPWEB.F_12_Inv
                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                         return;
                     }
-
-
-
-
-
                     break;
 
                      // case "3101":
@@ -1357,54 +1348,10 @@ namespace RealERPWEB.F_12_Inv
                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Please Challan Daten Required');", true);
                         return;
                     }
-
                     break;
 
                 default:
                     break;
-
-
-
-            }
-
-            //MRR No
-            switch (comcod)
-            {
-
-                case "5101":
-                case "3330":
-                    if (this.txtMRRRef.ToString().Trim().Length <= 0)
-                    {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Required MRR No";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                        return;
-                    }
-                    break;
-
-
-
-
-                case "1205": //p2p Engineering
-                case "3351": //WECON Properties
-                case "3352": //P2P 360
-                case "3101": //P2P 360
-
-                    if (this.txtMRRRef.ToString().Trim().Length <= 0)
-                    {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Required MRR No";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                        return;
-                    }
-
-
-                    break;
-
-
-
-                default:
-                    break;
-
-
 
             }
 
@@ -1442,14 +1389,7 @@ namespace RealERPWEB.F_12_Inv
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('MRR Date is equal or greater Order Date');", true);
                     return;
                 }
-
-
-
             }
-
-
-
-
 
 
             this.lbtnResFooterTotal_Click(null, null);
@@ -1461,15 +1401,12 @@ namespace RealERPWEB.F_12_Inv
 
             if (this.chkdupMRR.Checked)
             {
-
                 DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "CHECKEDDUPMRRNO", mMRRREF, "", "", "", "", "", "", "", "");
                 if (ds2.Tables[0].Rows.Count == 0)
                     ;
 
-
                 else
                 {
-
                     DataView dv1 = ds2.Tables[0].DefaultView;
                     dv1.RowFilter = ("mrrno <>'" + mMRRNO + "'");
                     DataTable dt = dv1.ToTable();

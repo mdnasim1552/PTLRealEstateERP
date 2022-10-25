@@ -85,7 +85,7 @@
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
-                                 <asp:Label runat="server" ID="isPrevCode" class="form-label" Visible="false"></asp:Label>
+                                <asp:Label runat="server" ID="isPrevCode" class="form-label" Visible="false"></asp:Label>
                                 <asp:Label runat="server" ID="lblQuotation" class="form-label" Visible="false"></asp:Label>
                                 <asp:Label runat="server" ID="Label5" class="form-label">Quotation No</asp:Label>
                                 <asp:TextBox ID="txtquotno" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
@@ -128,13 +128,26 @@
                             </div>
                             <div class="col-lg-2">
                                 <div class="form-group">
+                                    <asp:Label runat="server" ID="Label11" class="form-label">Resource Type</asp:Label>
+                                    <div class="d-flex">
+                                        <asp:DropDownList ID="ddlResourceGroup" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlResourceGroup_SelectedIndexChanged" AutoPostBack="true">
+                                        </asp:DropDownList>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
                                     <asp:Label runat="server" ID="Label4" class="form-label">Resource</asp:Label>
                                     <div class="d-flex">
                                         <asp:DropDownList ID="ddlResource" runat="server" CssClass="form-control chzn-select">
                                         </asp:DropDownList>
-                                        <asp:LinkButton ID="btnAddResource" runat="server" CssClass="btn" OnClick="btnAddResource_Click">
-                                                <span class="fa fa-plus-circle " aria-hidden="true"></span>
+                                        <asp:LinkButton ID="lnkReload" runat="server" CssClass="btn" OnClick="lnkReload_Click">
+                                            <span class="fa fa-redo" aria-hidden="true"></span>
                                         </asp:LinkButton>
+                                        <asp:HyperLink ID="btnAddResource" runat="server" CssClass="btn" Target="_blank" NavigateUrl="~/F_17_Acc/AccSubCodeBook?InputType=res">
+                                                <span class="fa fa-plus-circle " aria-hidden="true"></span>
+                                        </asp:HyperLink>
                                     </div>
                                     <asp:Label runat="server" ID="lblUnit" class="form-label" Visible="false"></asp:Label>
                                     <asp:Label runat="server" ID="lblsirval" class="form-label" Visible="false"></asp:Label>
@@ -385,7 +398,16 @@
                                         <ItemStyle HorizontalAlign="right" />
                                     </asp:TemplateField>
 
+                                    <asp:TemplateField HeaderText="Process" Visible="false">
+                                        <ItemTemplate>
 
+                                            <asp:CheckBox ID="chkProcess" runat="server" Checked='<%# Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "isprocess")) %>'></asp:CheckBox>
+
+                                        </ItemTemplate>
+                                        <FooterStyle ForeColor="Black" />
+                                        <FooterStyle HorizontalAlign="Right" />
+                                        <ItemStyle HorizontalAlign="right" />
+                                    </asp:TemplateField>
 
                                 </Columns>
 
@@ -402,7 +424,7 @@
                             <div class="col-md-5 mt-1">
                                 <div class="form-group">
                                     <asp:Label runat="server" ID="Label6" class="form-label mt-2">Remarks</asp:Label>
-                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtNarration" placeholder="Write Notes" TextMode="MultiLine" Rows="5"></asp:TextBox>
+                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtNarration" placeholder="Write Notes" TextMode="MultiLine" Rows="8"></asp:TextBox>
 
                                 </div>
 

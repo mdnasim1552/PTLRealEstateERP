@@ -1839,7 +1839,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!bunamt.Value,"#,##0;(#,##0);  ")</Value>
+                                  <Value>=Format(sum(Fields!bunamt.Value),"#,##0;(#,##0);  ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2022,7 +2022,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!schamt.Value), "#,##0;(#,##0); ") - Format(Sum(Fields!paidamt.Value), "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!schamt.Value-Fields!paidamt.Value), "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -2047,6 +2047,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>

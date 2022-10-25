@@ -193,938 +193,946 @@
 
         };
 
-        function ExecuteGraph(data, data1, data2, data3, data4, gtype, crm, leadname, emplead, hrm, deptwise, last7days) {
-            gtype = (gtype == "" ? "column" : gtype);
-            // ExcuteEmpStatus();
-            var saldata = JSON.parse(data);
-            var purdata = JSON.parse(data1);
-            var accdata = JSON.parse(data2);
-            var consdata = JSON.parse(data3);
-            var sucondata = JSON.parse(data4);
-            var cmrData = JSON.parse(crm);
+        function ExecuteGraph(data, data1, data2, data3, data4, gtype, crm, leadname, emplead, hrm, deptwise, last7days)
+        {
 
-            var leadlist = JSON.parse(leadname);
-            var emplead = JSON.parse(emplead);
+            try {
+                gtype = (gtype == "" ? "column" : gtype);
+                // ExcuteEmpStatus();
+                var saldata = JSON.parse(data);
+                var purdata = JSON.parse(data1);
+                var accdata = JSON.parse(data2);
+                var consdata = JSON.parse(data3);
+                var sucondata = JSON.parse(data4);
+                var cmrData = JSON.parse(crm);
 
-            var hrmData = JSON.parse(hrm);
+                var leadlist = JSON.parse(leadname);
+                var emplead = JSON.parse(emplead);
 
-            var deptwise = JSON.parse(deptwise);
-            var last7days = JSON.parse(last7days);
+                var hrmData = JSON.parse(hrm);
 
-            var chartsal = Highcharts.chart('salchart', {
-                chart: {
-                    type: gtype
-                },
-                title: {
-                    text: ''
-                },
-                subtitle: {
-                    text: ''
-                },
-                xAxis: {
-                    categories: [
-                        'Jan',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug',
-                        'Sep',
-                        'Oct',
-                        'Nov',
-                        'Dec'
-                    ],
-                    crosshair: true
-                },
-                yAxis: {
-                    min: 0,
+                var deptwise = JSON.parse(deptwise);
+                var last7days = JSON.parse(last7days);
+
+                var chartsal = Highcharts.chart('salchart', {
+                    chart: {
+                        type: gtype
+                    },
                     title: {
-                        text: 'Amount Core Tk '
-                    }
-                },
-
-
-                tooltip: {
-                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                        '<td style="padding:0"><b>{point.y:0f}</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true,
-                },
-                plotOptions: {
-                    column: {
-                        pointPadding: 0.1,
-                        borderWidth: 0
-                    }
-                },
-                series: [{
-                    name: 'Target',
-                    data: [saldata[0].targtsaleamtcore,
-                    saldata[1].targtsaleamtcore,
-                    saldata[2].targtsaleamtcore,
-                    saldata[3].targtsaleamtcore,
-                    saldata[4].targtsaleamtcore,
-                    saldata[5].targtsaleamtcore,
-                    saldata[6].targtsaleamtcore,
-                    saldata[7].targtsaleamtcore,
-                    saldata[8].targtsaleamtcore,
-                    saldata[9].targtsaleamtcore,
-                    saldata[10].targtsaleamtcore,
-                    saldata[11].targtsaleamtcore
-                    ],
-                    color: '#759ABE'
-
-                },
-                {
-                    name: 'Actual',
-                    //color:red,
-                    data: [saldata[0].ttlsalamtcore,
-                    saldata[1].ttlsalamtcore,
-                    saldata[2].ttlsalamtcore,
-                    saldata[3].ttlsalamtcore,
-                    saldata[4].ttlsalamtcore,
-                    saldata[5].ttlsalamtcore,
-                    saldata[6].ttlsalamtcore,
-                    saldata[7].ttlsalamtcore,
-                    saldata[8].ttlsalamtcore,
-                    saldata[9].ttlsalamtcore,
-                    saldata[10].ttlsalamtcore,
-                    saldata[11].ttlsalamtcore
-                    ],
-                    color: 'black'
-                }],
-                responsive: {
-                    rules: [{
-                        condition: {
-                            maxWidth: 500
-                        },
-                        chartOptions: {
-                            chart: {
-                                height: 300
-                            },
-                            subtitle: {
-                                text: null
-                            },
-                            navigator: {
-                                enabled: false
-                            }
+                        text: ''
+                    },
+                    subtitle: {
+                        text: ''
+                    },
+                    xAxis: {
+                        categories: [
+                            'Jan',
+                            'Feb',
+                            'Mar',
+                            'Apr',
+                            'May',
+                            'Jun',
+                            'Jul',
+                            'Aug',
+                            'Sep',
+                            'Oct',
+                            'Nov',
+                            'Dec'
+                        ],
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Amount Core Tk '
                         }
-                    }]
-                }
-            });
-
-
-
-
-            //End of Sales Chart
-            //Start of Sales Chart
-
-            var chartpur = Highcharts.chart('purchart', {
-
-
-                chart: {
-                    type: gtype
-                },
-                title: {
-                    text: ''
-                },
-                subtitle: {
-                    text: ''
-
-                },
-                xAxis: {
-                    categories: [
-                        'Jan',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug',
-                        'Sep',
-                        'Oct',
-                        'Nov',
-                        'Dec'
-                    ],
-                    crosshair: true
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: 'Amount Core TK'
-                    }
-                },
-
-
-                tooltip: {
-                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                        '<td style="padding:0"><b>{point.y:0f}</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true,
-
-                    //pointFormat: "{point.y:, .5f} Lac <br>"
-                    //pointFormat: '{point.percentage:.0f}%'
-
-
-
-                    //pointFormat: '{series.name}: <b>{point.percentage}%</b>',  pointFormat: '{series.name}: <b>{point.y}%</b>',
-
-
-                    //<b>{point.y:.1f} mm</b>
-
-
-                },
-                plotOptions: {
-                    column: {
-                        pointPadding: 0.1,
-                        borderWidth: 0
-
-
-                    }
-                },
-                series: [{
-                    name: 'Purchase',
-                    data: [purdata[0].ttlsalamtcore,
-                    purdata[1].ttlsalamtcore,
-                    purdata[2].ttlsalamtcore,
-                    purdata[3].ttlsalamtcore,
-                    purdata[4].ttlsalamtcore,
-                    purdata[5].ttlsalamtcore,
-                    purdata[6].ttlsalamtcore,
-                    purdata[7].ttlsalamtcore,
-                    purdata[8].ttlsalamtcore,
-                    purdata[9].ttlsalamtcore,
-                    purdata[10].ttlsalamtcore,
-                    purdata[11].ttlsalamtcore
-                    ],
-                    color: '#759ABE'
-
-                }, {
-
-                    name: 'Payment',
-                    //color:red,
-                    data: [purdata[0].tpayamtcore,
-                    purdata[1].tpayamtcore,
-                    purdata[2].tpayamtcore,
-                    purdata[3].tpayamtcore,
-                    purdata[4].tpayamtcore,
-                    purdata[5].tpayamtcore,
-                    purdata[6].tpayamtcore,
-                    purdata[7].tpayamtcore,
-                    purdata[8].tpayamtcore,
-                    purdata[9].tpayamtcore,
-                    purdata[10].tpayamtcore,
-                    purdata[11].tpayamtcore
-                    ],
-                    color: 'black'
-                }]
-            });
-            //End of Purchase
-            //Start of Accounts Chart
-            var chartacc = Highcharts.chart('accchart', {
-                chart: {
-                    type: gtype
-                },
-                title: {
-                    text: ''
-                },
-                subtitle: {
-                    text: ''
-
-                },
-                xAxis: {
-                    categories: [
-                        'Jan',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug',
-                        'Sep',
-                        'Oct',
-                        'Nov',
-                        'Dec'
-                    ],
-                    crosshair: true
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: 'Amount Core TK'
-                    }
-                },
-
-
-                tooltip: {
-                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                        '<td style="padding:0"><b>{point.y:.2f}</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true,
-
-                    //pointFormat: "{point.y:, .5f} Lac <br>"
-                    //pointFormat: '{point.percentage:.0f}%'
-
-
-
-                    //pointFormat: '{series.name}: <b>{point.percentage}%</b>',  pointFormat: '{series.name}: <b>{point.y}%</b>',
-
-
-                    //<b>{point.y:.1f} mm</b>
-
-
-                },
-                plotOptions: {
-                    column: {
-                        pointPadding: 0.1,
-                        borderWidth: 0
-
-
-                    }
-                },
-                series: [{
-                    name: 'Receipt',
-                    data: [accdata[0].cramcore,
-                    accdata[1].cramcore,
-                    accdata[2].cramcore,
-                    accdata[3].cramcore,
-                    accdata[4].cramcore,
-                    accdata[5].cramcore,
-                    accdata[6].cramcore,
-                    accdata[7].cramcore,
-                    accdata[8].cramcore,
-                    accdata[9].cramcore,
-                    accdata[10].cramcore,
-                    accdata[11].cramcore
-
-
-                    ],
-                    color: '#759ABE'
-
-                }, {
-
-                    name: 'Payment',
-                    //color:red,
-                    data: [accdata[0].dramcore,
-                    accdata[1].dramcore,
-                    accdata[2].dramcore,
-                    accdata[3].dramcore,
-                    accdata[4].dramcore,
-                    accdata[5].dramcore,
-                    accdata[6].dramcore,
-                    accdata[7].dramcore,
-                    accdata[8].dramcore,
-                    accdata[9].dramcore,
-                    accdata[10].dramcore,
-                    accdata[11].dramcore
-                    ],
-                    color: 'black'
-                }]
-            });
-
-
-            //Start of Construction Chart
-            var chartcons = Highcharts.chart('conschart', {
-
-
-                chart: {
-                    type: gtype
-                },
-                title: {
-                    text: ''
-                },
-                subtitle: {
-                    text: ''
-
-                },
-                xAxis: {
-                    categories: [
-                        'Jan',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug',
-                        'Sep',
-                        'Oct',
-                        'Nov',
-                        'Dec'
-                    ],
-                    crosshair: true
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: 'Amount Core TK'
-                    }
-                },
-
-
-                tooltip: {
-                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                        '<td style="padding:0"><b>{point.y:.2f}</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true,
-
-                    //pointFormat: "{point.y:, .5f} Lac <br>"
-                    //pointFormat: '{point.percentage:.0f}%'
-
-
-
-                    //pointFormat: '{series.name}: <b>{point.percentage}%</b>',  pointFormat: '{series.name}: <b>{point.y}%</b>',
-
-
-                    //<b>{point.y:.1f} mm</b>
-
-
-                },
-                plotOptions: {
-                    column: {
-                        pointPadding: 0.1,
-                        borderWidth: 0
-
-
-                    }
-                },
-                series: [{
-                    name: 'Target',
-                    data: [consdata[0].taramtcore,
-                    consdata[1].taramtcore,
-                    consdata[2].taramtcore,
-                    consdata[3].taramtcore,
-                    consdata[4].taramtcore,
-                    consdata[5].taramtcore,
-                    consdata[6].taramtcore,
-                    consdata[7].taramtcore,
-                    consdata[8].taramtcore,
-                    consdata[9].taramtcore,
-                    consdata[10].taramtcore,
-                    consdata[11].taramtcore
-                    ],
-                    color: '#759ABE'
-
-                }, {
-
-                    name: 'Actual',
-                    //color:red,
-                    data: [consdata[0].examtcore,
-                    consdata[1].examtcore,
-                    consdata[2].examtcore,
-                    consdata[3].examtcore,
-                    consdata[4].examtcore,
-                    consdata[5].examtcore,
-                    consdata[6].examtcore,
-                    consdata[7].examtcore,
-                    consdata[8].examtcore,
-                    consdata[9].examtcore,
-                    consdata[10].examtcore,
-                    consdata[11].examtcore
-                    ],
-                    color: 'Black'
-                }]
-            });
-            //Start of Construction Chart
-            var chartsubcon = Highcharts.chart('subconchart', {
-                chart: {
-                    type: gtype
-                },
-                title: {
-                    text: ''
-                },
-                subtitle: {
-                    text: ''
-
-                },
-                xAxis: {
-                    categories: [
-                        'Jan',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug',
-                        'Sep',
-                        'Oct',
-                        'Nov',
-                        'Dec'
-                    ],
-                    crosshair: true
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: 'Amount Core TK'
-                    }
-                },
-
-
-                tooltip: {
-                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                        '<td style="padding:0"><b>{point.y:0f}</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true,
-
-
-                },
-                plotOptions: {
-                    column: {
-                        pointPadding: 0.1,
-                        borderWidth: 0
-
-
-                    }
-                },
-                series: [{
-                    name: 'Bill',
-                    data: [sucondata[0].tcbamtcore,
-                    sucondata[1].tcbamtcore,
-                    sucondata[2].tcbamtcore,
-                    sucondata[3].tcbamtcore,
-                    sucondata[4].tcbamtcore,
-                    sucondata[5].tcbamtcore,
-                    sucondata[6].tcbamtcore,
-                    sucondata[7].tcbamtcore,
-                    sucondata[8].tcbamtcore,
-                    sucondata[9].tcbamtcore,
-                    sucondata[10].tcbamtcore,
-                    sucondata[11].tcbamtcore
-                    ],
-                    color: '#759ABE'
-
-                }, {
-
-                    name: 'Payment',
-                    //color:red,
-                    data: [sucondata[0].tcbpayamtcore,
-                    sucondata[1].tcbpayamtcore,
-                    sucondata[2].tcbpayamtcore,
-                    sucondata[3].tcbpayamtcore,
-                    sucondata[4].tcbpayamtcore,
-                    sucondata[5].tcbpayamtcore,
-                    sucondata[6].tcbpayamtcore,
-                    sucondata[7].tcbpayamtcore,
-                    sucondata[8].tcbpayamtcore,
-                    sucondata[9].tcbpayamtcore,
-                    sucondata[10].tcbpayamtcore,
-                    sucondata[11].tcbpayamtcore
-                    ],
-                    color: 'Black'
-                }]
-            });
-
-            //console.log(saldata[0].lead);
-            var chartcmrData = Highcharts.chart('crmChart', {
-
-
-                chart: {
-                    type: gtype
-                },
-                title: {
-                    text: 'Sales Funnel'
-                },
-                subtitle: {
-                    text: ''
-                },
-                accessibility: {
-                    announceNewData: {
-                        enabled: true
-                    }
-                },
-                xAxis: {
-                    type: 'category'
-                },
-                yAxis: {
-                    title: {
-                        text: 'Total Sales Funnel Stages'
-                    }
-
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    series: {
-                        borderWidth: 0,
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.y}'
+                    },
+
+
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y:0f}</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true,
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.1,
+                            borderWidth: 0
                         }
-                    }
-                },
+                    },
+                    series: [{
+                        name: 'Target',
+                        data: [saldata[0].targtsaleamtcore,
+                        saldata[1].targtsaleamtcore,
+                        saldata[2].targtsaleamtcore,
+                        saldata[3].targtsaleamtcore,
+                        saldata[4].targtsaleamtcore,
+                        saldata[5].targtsaleamtcore,
+                        saldata[6].targtsaleamtcore,
+                        saldata[7].targtsaleamtcore,
+                        saldata[8].targtsaleamtcore,
+                        saldata[9].targtsaleamtcore,
+                        saldata[10].targtsaleamtcore,
+                        saldata[11].targtsaleamtcore
+                        ],
+                        color: '#759ABE'
 
-                tooltip: {
-                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total ' + parseFloat(cmrData[0].query) + '<br/>'
-                },
-
-                series: [
+                    },
                     {
-                        name: "Sales Funnel",
-                        colorByPoint: true,
-                        data: [
-                            {
-                                name: leadlist[0].la,
-                                y: parseFloat(cmrData[0].query)
+                        name: 'Actual',
+                        //color:red,
+                        data: [saldata[0].ttlsalamtcore,
+                        saldata[1].ttlsalamtcore,
+                        saldata[2].ttlsalamtcore,
+                        saldata[3].ttlsalamtcore,
+                        saldata[4].ttlsalamtcore,
+                        saldata[5].ttlsalamtcore,
+                        saldata[6].ttlsalamtcore,
+                        saldata[7].ttlsalamtcore,
+                        saldata[8].ttlsalamtcore,
+                        saldata[9].ttlsalamtcore,
+                        saldata[10].ttlsalamtcore,
+                        saldata[11].ttlsalamtcore
+                        ],
+                        color: 'black'
+                    }],
+                    responsive: {
+                        rules: [{
+                            condition: {
+                                maxWidth: 500
                             },
-                            {
-                                name: leadlist[0].lb,
-                                y: parseFloat(cmrData[0].lead)
-                            },
-                            {
-                                name: leadlist[0].lc,
-                                y: parseFloat(cmrData[0].qualiflead)
-                            },
-                            {
-                                name: leadlist[0].ld,
-                                y: parseFloat(cmrData[0].nego)
-                            },
-                            {
-                                name: leadlist[0].le,
-                                y: parseFloat(cmrData[0].finalnego)
-                            },
-                            {
-                                name: leadlist[0].lf,
-                                y: parseFloat(cmrData[0].win)
+                            chartOptions: {
+                                chart: {
+                                    height: 300
+                                },
+                                subtitle: {
+                                    text: null
+                                },
+                                navigator: {
+                                    enabled: false
+                                }
                             }
-
-
-                        ]
+                        }]
                     }
-                ]
+                });
 
-            });
 
-            var chartHrmData = Highcharts.chart('piechartEMPStatus', {
-                chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: null,
-                    plotShadow: false,
-                    type: 'pie'//gtype
-                },
-                title: {
-                    text: 'Today Attendance'
-                },
-                tooltip: {
-                    pointFormat: '{series.name}: <b>{point.y}</b>'
-                },
 
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        dataLabels: {
-                            enabled: true,
-                            format: '<b>{point.name}</b>: {point.y}'
+
+                //End of Sales Chart
+                //Start of Sales Chart
+
+                var chartpur = Highcharts.chart('purchart', {
+
+
+                    chart: {
+                        type: gtype
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: ''
+
+                    },
+                    xAxis: {
+                        categories: [
+                            'Jan',
+                            'Feb',
+                            'Mar',
+                            'Apr',
+                            'May',
+                            'Jun',
+                            'Jul',
+                            'Aug',
+                            'Sep',
+                            'Oct',
+                            'Nov',
+                            'Dec'
+                        ],
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Amount Core TK'
                         }
-                    }
-                },
-                series: [{
-                    name: 'Today Attendance Status',
-                    colorByPoint: true,
-                    data: [{
+                    },
+
+
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y:0f}</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true,
+
+                        //pointFormat: "{point.y:, .5f} Lac <br>"
+                        //pointFormat: '{point.percentage:.0f}%'
+
+
+
+                        //pointFormat: '{series.name}: <b>{point.percentage}%</b>',  pointFormat: '{series.name}: <b>{point.y}%</b>',
+
+
+                        //<b>{point.y:.1f} mm</b>
+
+
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.1,
+                            borderWidth: 0
+
+
+                        }
+                    },
+                    series: [{
+                        name: 'Purchase',
+                        data: [purdata[0].ttlsalamtcore,
+                        purdata[1].ttlsalamtcore,
+                        purdata[2].ttlsalamtcore,
+                        purdata[3].ttlsalamtcore,
+                        purdata[4].ttlsalamtcore,
+                        purdata[5].ttlsalamtcore,
+                        purdata[6].ttlsalamtcore,
+                        purdata[7].ttlsalamtcore,
+                        purdata[8].ttlsalamtcore,
+                        purdata[9].ttlsalamtcore,
+                        purdata[10].ttlsalamtcore,
+                        purdata[11].ttlsalamtcore
+                        ],
+                        color: '#759ABE'
+
+                    }, {
+
+                        name: 'Payment',
+                        //color:red,
+                        data: [purdata[0].tpayamtcore,
+                        purdata[1].tpayamtcore,
+                        purdata[2].tpayamtcore,
+                        purdata[3].tpayamtcore,
+                        purdata[4].tpayamtcore,
+                        purdata[5].tpayamtcore,
+                        purdata[6].tpayamtcore,
+                        purdata[7].tpayamtcore,
+                        purdata[8].tpayamtcore,
+                        purdata[9].tpayamtcore,
+                        purdata[10].tpayamtcore,
+                        purdata[11].tpayamtcore
+                        ],
+                        color: 'black'
+                    }]
+                });
+                //End of Purchase
+                //Start of Accounts Chart
+                var chartacc = Highcharts.chart('accchart', {
+                    chart: {
+                        type: gtype
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: ''
+
+                    },
+                    xAxis: {
+                        categories: [
+                            'Jan',
+                            'Feb',
+                            'Mar',
+                            'Apr',
+                            'May',
+                            'Jun',
+                            'Jul',
+                            'Aug',
+                            'Sep',
+                            'Oct',
+                            'Nov',
+                            'Dec'
+                        ],
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Amount Core TK'
+                        }
+                    },
+
+
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y:.2f}</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true,
+
+                        //pointFormat: "{point.y:, .5f} Lac <br>"
+                        //pointFormat: '{point.percentage:.0f}%'
+
+
+
+                        //pointFormat: '{series.name}: <b>{point.percentage}%</b>',  pointFormat: '{series.name}: <b>{point.y}%</b>',
+
+
+                        //<b>{point.y:.1f} mm</b>
+
+
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.1,
+                            borderWidth: 0
+
+
+                        }
+                    },
+                    series: [{
+                        name: 'Receipt',
+                        data: [accdata[0].cramcore,
+                        accdata[1].cramcore,
+                        accdata[2].cramcore,
+                        accdata[3].cramcore,
+                        accdata[4].cramcore,
+                        accdata[5].cramcore,
+                        accdata[6].cramcore,
+                        accdata[7].cramcore,
+                        accdata[8].cramcore,
+                        accdata[9].cramcore,
+                        accdata[10].cramcore,
+                        accdata[11].cramcore
+
+
+                        ],
+                        color: '#759ABE'
+
+                    }, {
+
+                        name: 'Payment',
+                        //color:red,
+                        data: [accdata[0].dramcore,
+                        accdata[1].dramcore,
+                        accdata[2].dramcore,
+                        accdata[3].dramcore,
+                        accdata[4].dramcore,
+                        accdata[5].dramcore,
+                        accdata[6].dramcore,
+                        accdata[7].dramcore,
+                        accdata[8].dramcore,
+                        accdata[9].dramcore,
+                        accdata[10].dramcore,
+                        accdata[11].dramcore
+                        ],
+                        color: 'black'
+                    }]
+                });
+
+
+                //Start of Construction Chart
+                var chartcons = Highcharts.chart('conschart', {
+
+
+                    chart: {
+                        type: gtype
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: ''
+
+                    },
+                    xAxis: {
+                        categories: [
+                            'Jan',
+                            'Feb',
+                            'Mar',
+                            'Apr',
+                            'May',
+                            'Jun',
+                            'Jul',
+                            'Aug',
+                            'Sep',
+                            'Oct',
+                            'Nov',
+                            'Dec'
+                        ],
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Amount Core TK'
+                        }
+                    },
+
+
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y:.2f}</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true,
+
+                        //pointFormat: "{point.y:, .5f} Lac <br>"
+                        //pointFormat: '{point.percentage:.0f}%'
+
+
+
+                        //pointFormat: '{series.name}: <b>{point.percentage}%</b>',  pointFormat: '{series.name}: <b>{point.y}%</b>',
+
+
+                        //<b>{point.y:.1f} mm</b>
+
+
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.1,
+                            borderWidth: 0
+
+
+                        }
+                    },
+                    series: [{
+                        name: 'Target',
+                        data: [consdata[0].taramtcore,
+                        consdata[1].taramtcore,
+                        consdata[2].taramtcore,
+                        consdata[3].taramtcore,
+                        consdata[4].taramtcore,
+                        consdata[5].taramtcore,
+                        consdata[6].taramtcore,
+                        consdata[7].taramtcore,
+                        consdata[8].taramtcore,
+                        consdata[9].taramtcore,
+                        consdata[10].taramtcore,
+                        consdata[11].taramtcore
+                        ],
+                        color: '#759ABE'
+
+                    }, {
+
+                        name: 'Actual',
+                        //color:red,
+                        data: [consdata[0].examtcore,
+                        consdata[1].examtcore,
+                        consdata[2].examtcore,
+                        consdata[3].examtcore,
+                        consdata[4].examtcore,
+                        consdata[5].examtcore,
+                        consdata[6].examtcore,
+                        consdata[7].examtcore,
+                        consdata[8].examtcore,
+                        consdata[9].examtcore,
+                        consdata[10].examtcore,
+                        consdata[11].examtcore
+                        ],
+                        color: 'Black'
+                    }]
+                });
+                //Start of Construction Chart
+                var chartsubcon = Highcharts.chart('subconchart', {
+                    chart: {
+                        type: gtype
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: ''
+
+                    },
+                    xAxis: {
+                        categories: [
+                            'Jan',
+                            'Feb',
+                            'Mar',
+                            'Apr',
+                            'May',
+                            'Jun',
+                            'Jul',
+                            'Aug',
+                            'Sep',
+                            'Oct',
+                            'Nov',
+                            'Dec'
+                        ],
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Amount Core TK'
+                        }
+                    },
+
+
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y:0f}</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true,
+
+
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.1,
+                            borderWidth: 0
+
+
+                        }
+                    },
+                    series: [{
+                        name: 'Bill',
+                        data: [sucondata[0].tcbamtcore,
+                        sucondata[1].tcbamtcore,
+                        sucondata[2].tcbamtcore,
+                        sucondata[3].tcbamtcore,
+                        sucondata[4].tcbamtcore,
+                        sucondata[5].tcbamtcore,
+                        sucondata[6].tcbamtcore,
+                        sucondata[7].tcbamtcore,
+                        sucondata[8].tcbamtcore,
+                        sucondata[9].tcbamtcore,
+                        sucondata[10].tcbamtcore,
+                        sucondata[11].tcbamtcore
+                        ],
+                        color: '#759ABE'
+
+                    }, {
+
+                        name: 'Payment',
+                        //color:red,
+                        data: [sucondata[0].tcbpayamtcore,
+                        sucondata[1].tcbpayamtcore,
+                        sucondata[2].tcbpayamtcore,
+                        sucondata[3].tcbpayamtcore,
+                        sucondata[4].tcbpayamtcore,
+                        sucondata[5].tcbpayamtcore,
+                        sucondata[6].tcbpayamtcore,
+                        sucondata[7].tcbpayamtcore,
+                        sucondata[8].tcbpayamtcore,
+                        sucondata[9].tcbpayamtcore,
+                        sucondata[10].tcbpayamtcore,
+                        sucondata[11].tcbpayamtcore
+                        ],
+                        color: 'Black'
+                    }]
+                });
+
+                //console.log(saldata[0].lead);
+                var chartcmrData = Highcharts.chart('crmChart', {
+
+
+                    chart: {
+                        type: gtype
+                    },
+                    title: {
+                        text: 'Sales Funnel'
+                    },
+                    subtitle: {
+                        text: ''
+                    },
+                    accessibility: {
+                        announceNewData: {
+                            enabled: true
+                        }
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Total Sales Funnel Stages'
+                        }
+
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y}'
+                            }
+                        }
+                    },
+
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total ' + parseFloat(cmrData[0].query) + '<br/>'
+                    },
+
+                    series: [
+                        {
+                            name: "Sales Funnel",
+                            colorByPoint: true,
+                            data: [
+                                {
+                                    name: leadlist[0].la,
+                                    y: parseFloat(cmrData[0].query)
+                                },
+                                {
+                                    name: leadlist[0].lb,
+                                    y: parseFloat(cmrData[0].lead)
+                                },
+                                {
+                                    name: leadlist[0].lc,
+                                    y: parseFloat(cmrData[0].qualiflead)
+                                },
+                                {
+                                    name: leadlist[0].ld,
+                                    y: parseFloat(cmrData[0].nego)
+                                },
+                                {
+                                    name: leadlist[0].le,
+                                    y: parseFloat(cmrData[0].finalnego)
+                                },
+                                {
+                                    name: leadlist[0].lf,
+                                    y: parseFloat(cmrData[0].win)
+                                }
+
+
+                            ]
+                        }
+                    ]
+
+                });
+
+                var chartHrmData = Highcharts.chart('piechartEMPStatus', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'//gtype
+                    },
+                    title: {
+                        text: 'Today Attendance'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.y}</b>'
+                    },
+
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.y}'
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Today Attendance Status',
+                        colorByPoint: true,
+                        data: [{
+                            name: 'Present',
+                            y: hrmData[0].ttlprsnt,
+                            sliced: true,
+                            selected: true
+                        }, {
+                            name: 'Absent',
+                            y: hrmData[0].ttlabs,
+                        }, {
+                            name: 'Leave',
+                            y: hrmData[0].ttlleave,
+                        }, {
+                            name: 'Late',
+                            y: hrmData[0].ttllate,
+                        }, {
+                            name: 'Early Leave',
+                            y: hrmData[0].ttlearlv,
+                        }]
+                    }]
+
+                });
+
+
+
+                ///Khalil 
+
+                /// Start Lead Info Emplyee wise 
+
+                var sumleademp = 0;
+                var allleademp = [];
+                for (var i = 0; i < emplead.length; i++) {
+                    allleademp.push({ "name": emplead[i].usrname, "y": parseFloat(emplead[i].total) })
+                    sumleademp += parseFloat(emplead[i].total);
+
+                }
+                //console.log(allempdata);
+
+                var empwiselead = Highcharts.chart('leadempwise', {
+                    chart: {
+                        type: gtype
+                    },
+                    title: {
+                        text: 'Employee Wise Lead, Total:-  ' + sumleademp
+                    },
+                    subtitle: {
+                        text: ''
+                    },
+                    accessibility: {
+                        announceNewData: {
+                            enabled: true
+                        }
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Total Lead'
+                        }
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y}'
+                            }
+                        }
+                    },
+
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>'
+                    },
+
+                    series: [
+                        {
+                            name: "Total Lead",
+                            colorByPoint: true,
+                            data: allleademp
+                        }
+                    ]
+
+                });
+
+                //End Lead Info Emloyee wise
+
+
+                /// Department wise employee
+                var sumdeptemp = 0;
+                var alldeptemp = [];
+                for (var i = 0; i < deptwise.length; i++) {
+                    alldeptemp.push({ "name": deptwise[i].deptname, "y": parseFloat(deptwise[i].total) })
+                    sumdeptemp += parseFloat(deptwise[i].total);
+
+                }
+                //console.log(allempdata);
+
+                var deptemp = Highcharts.chart('deptWisEmp', {
+                    chart: {
+                        type: gtype
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: ''
+                    },
+                    accessibility: {
+                        announceNewData: {
+                            enabled: true
+                        }
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Total Employee ' + sumdeptemp
+                        }
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y}'
+                            }
+                        }
+                    },
+
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>'
+                    },
+
+                    series: [
+                        {
+                            name: "Total Employee",
+                            colorByPoint: true,
+                            data: alldeptemp
+                        }
+                    ]
+
+                });
+
+                //End Department wise employee
+
+
+                /// Last Seven days 
+                //sales
+                var dayseries = [];
+                var dayprsnt = [];
+                var dayabs = [];
+                var dayleav = [];
+                $.each(last7days, function (i, item) {
+                    dayseries.push(item.ymonddesc);
+                    dayprsnt.push(item.present);
+                    dayabs.push(item.absnt);
+                    dayleav.push(item.onleave);
+                    total = item.staff;
+                });
+                var levAtt7days = Highcharts.chart('lst7daysatt', {
+
+                    //   $('#MonthlySales').highcharts({
+                    chart: {
+                        // type: 'line'
+                        type: gtype
+                    },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: '',
+                        //style: {
+                        //    color: '#44994a',
+                        //    fontWeight: 'bold'
+                        //}
+                    },
+                    xAxis: {
+                        categories:
+                            dayseries,
+                        //  minTickInterval: 60 * 1000,
+                        //  tickMarkPlacement: 'on',
+
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Last 07 Days '
+                        }
+                    },
+
+
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true,
+
+
+
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.1,
+                            borderWidth: 0
+
+
+                        }
+                    },
+                    series: [{
+
                         name: 'Present',
-                        y: hrmData[0].ttlprsnt,
-                        sliced: true,
-                        selected: true
-                    }, {
+                        data: dayprsnt, //[daysalcol[2]['totalamt'], daysalcol[3]['totalamt'], daysalcol[4]['totalamt'], daysalcol[5]['totalamt'], daysalcol[6]['totalamt'], daysalcol[7]['totalamt'], daysalcol[8]['totalamt']],
+                        color: '#008000'
+
+                    },
+                    {
+
                         name: 'Absent',
-                        y: hrmData[0].ttlabs,
-                    }, {
+                        //color:red,
+                        data: dayabs, //[daysalcol[2]['colamt'], daysalcol[3]['colamt'], daysalcol[4]['colamt'], daysalcol[5]['colamt'], daysalcol[6]['colamt'], daysalcol[7]['colamt'], daysalcol[8]['colamt']],
+                        color: '#FF0000'
+                    }
+                        ,
+                    {
+
                         name: 'Leave',
-                        y: hrmData[0].ttlleave,
-                    }, {
-                        name: 'Late',
-                        y: hrmData[0].ttllate,
-                    }, {
-                        name: 'Early Leave',
-                        y: hrmData[0].ttlearlv,
-                    }]
-                }]
-
-            });
-
-
-
-            ///Khalil 
-
-            /// Start Lead Info Emplyee wise 
-
-            var sumleademp = 0;
-            var allleademp = [];
-            for (var i = 0; i < emplead.length; i++) {
-                allleademp.push({ "name": emplead[i].usrname, "y": parseFloat(emplead[i].total) })
-                sumleademp += parseFloat(emplead[i].total);
-
-            }
-            //console.log(allempdata);
-
-            var empwiselead = Highcharts.chart('leadempwise', {
-                chart: {
-                    type: gtype
-                },
-                title: {
-                    text: 'Employee Wise Lead, Total:-  ' + sumleademp
-                },
-                subtitle: {
-                    text: ''
-                },
-                accessibility: {
-                    announceNewData: {
-                        enabled: true
+                        //color:red,
+                        data: dayleav, //[daysalcol[2]['colamt'], daysalcol[3]['colamt'], daysalcol[4]['colamt'], daysalcol[5]['colamt'], daysalcol[6]['colamt'], daysalcol[7]['colamt'], daysalcol[8]['colamt']],
+                        color: '#A52A2A'
                     }
-                },
-                xAxis: {
-                    type: 'category'
-                },
-                yAxis: {
-                    title: {
-                        text: 'Total Lead'
-                    }
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    series: {
-                        borderWidth: 0,
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.y}'
-                        }
-                    }
-                },
 
-                tooltip: {
-                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                    pointFormat: '<span style="color:{point.color}">{point.name}</span>'
-                },
+                    ]
+                });
 
-                series: [
-                    {
-                        name: "Total Lead",
-                        colorByPoint: true,
-                        data: allleademp
-                    }
-                ]
+                ///End Last seven days 
 
-            });
-
-            //End Lead Info Emloyee wise
-
-
-            /// Department wise employee
-            var sumdeptemp = 0;
-            var alldeptemp = [];
-            for (var i = 0; i < deptwise.length; i++) {
-                alldeptemp.push({ "name": deptwise[i].deptname, "y": parseFloat(deptwise[i].total) })
-                sumdeptemp += parseFloat(deptwise[i].total);
-
-            }
-            //console.log(allempdata);
-
-            var deptemp = Highcharts.chart('deptWisEmp', {
-                chart: {
-                    type: gtype
-                },
-                title: {
-                    text: ''
-                },
-                subtitle: {
-                    text: ''
-                },
-                accessibility: {
-                    announceNewData: {
-                        enabled: true
-                    }
-                },
-                xAxis: {
-                    type: 'category'
-                },
-                yAxis: {
-                    title: {
-                        text: 'Total Employee ' + sumdeptemp
-                    }
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    series: {
-                        borderWidth: 0,
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.y}'
-                        }
-                    }
-                },
-
-                tooltip: {
-                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                    pointFormat: '<span style="color:{point.color}">{point.name}</span>'
-                },
-
-                series: [
-                    {
-                        name: "Total Employee",
-                        colorByPoint: true,
-                        data: alldeptemp
-                    }
-                ]
-
-            });
-
-            //End Department wise employee
-
-
-            /// Last Seven days 
-            //sales
-            var dayseries = [];
-            var dayprsnt = [];
-            var dayabs = [];
-            var dayleav = [];
-            $.each(last7days, function (i, item) {
-                dayseries.push(item.ymonddesc);
-                dayprsnt.push(item.present);
-                dayabs.push(item.absnt);
-                dayleav.push(item.onleave);
-                total = item.staff;
-            });
-            var levAtt7days = Highcharts.chart('lst7daysatt', {
-
-                //   $('#MonthlySales').highcharts({
-                chart: {
-                    // type: 'line'
-                    type: gtype
-                },
-                title: {
-                    text: ''
-                },
-                subtitle: {
-                    text: '',
-                    //style: {
-                    //    color: '#44994a',
-                    //    fontWeight: 'bold'
-                    //}
-                },
-                xAxis: {
-                    categories:
-                        dayseries,
-                    //  minTickInterval: 60 * 1000,
-                    //  tickMarkPlacement: 'on',
-
-                    crosshair: true
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: 'Last 07 Days '
-                    }
-                },
-
-
-                tooltip: {
-                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true,
-
-
-
-                },
-                plotOptions: {
-                    column: {
-                        pointPadding: 0.1,
-                        borderWidth: 0
-
-
-                    }
-                },
-                series: [{
-
-                    name: 'Present',
-                    data: dayprsnt, //[daysalcol[2]['totalamt'], daysalcol[3]['totalamt'], daysalcol[4]['totalamt'], daysalcol[5]['totalamt'], daysalcol[6]['totalamt'], daysalcol[7]['totalamt'], daysalcol[8]['totalamt']],
-                    color: '#008000'
-
-                },
-                {
-
-                    name: 'Absent',
-                    //color:red,
-                    data: dayabs, //[daysalcol[2]['colamt'], daysalcol[3]['colamt'], daysalcol[4]['colamt'], daysalcol[5]['colamt'], daysalcol[6]['colamt'], daysalcol[7]['colamt'], daysalcol[8]['colamt']],
-                    color: '#FF0000'
-                }
-                    ,
-                {
-
-                    name: 'Leave',
-                    //color:red,
-                    data: dayleav, //[daysalcol[2]['colamt'], daysalcol[3]['colamt'], daysalcol[4]['colamt'], daysalcol[5]['colamt'], daysalcol[6]['colamt'], daysalcol[7]['colamt'], daysalcol[8]['colamt']],
-                    color: '#A52A2A'
-                }
-
-                ]
-            });
-
-            ///End Last seven days 
-
-            ///End Khalil
+                ///End Khalil
 
 
 
 
-            let w = $(".graph-main").width();
-            let h = 325;
-            chartsal.setSize(w, h);
-            chartpur.setSize(w, h);
-            chartacc.setSize(w, h);
-            chartcons.setSize(w, h);
-            chartsubcon.setSize(w, h);
-
-            chartcmrData.setSize(500, 325);
-           // chartHrmData.setSize(600,325);
-
-            /* empwiselead.setSize(500, 325);*/
-     /*       deptemp.setSize(500, 325);*/
-            //levAtt7days.setSize(400, 325);
-
-
-            const elem = $(".graph-main")[0];
-
-            let resizeObserver = new ResizeObserver(function () {
+                let w = $(".graph-main").width();
+                let h = 325;
                 chartsal.setSize(w, h);
                 chartpur.setSize(w, h);
                 chartacc.setSize(w, h);
                 chartcons.setSize(w, h);
                 chartsubcon.setSize(w, h);
+
                 chartcmrData.setSize(500, 325);
-                //chartHrmData.setSize(600, 325);
+                // chartHrmData.setSize(600,325);
 
                 /* empwiselead.setSize(500, 325);*/
-            /*    deptemp.setSize(500, 325);*/
+                /*       deptemp.setSize(500, 325);*/
                 //levAtt7days.setSize(400, 325);
 
-                w = $(".graph-main").width();
-            });
-            resizeObserver.observe(elem);
+
+                const elem = $(".graph-main")[0];
+
+                let resizeObserver = new ResizeObserver(function () {
+                    chartsal.setSize(w, h);
+                    chartpur.setSize(w, h);
+                    chartacc.setSize(w, h);
+                    chartcons.setSize(w, h);
+                    chartsubcon.setSize(w, h);
+                    chartcmrData.setSize(500, 325);
+                    //chartHrmData.setSize(600, 325);
+
+                    /* empwiselead.setSize(500, 325);*/
+                    /*    deptemp.setSize(500, 325);*/
+                    //levAtt7days.setSize(400, 325);
+
+                    w = $(".graph-main").width();
+                });
+                resizeObserver.observe(elem);
+            }
+            catch (e)
+            {
+                alert(e.message);
+            }
 
         };
 
@@ -2753,7 +2761,7 @@
                                                                     More Reports 
                                                                 </button>
                                                                 <ul class="dropdown-menu" role="menu">
-                                                                    <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Sales">Sales All Graph</a></li>
+                                                                    <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Sales" target="_blank">Sales All Graph</a></li>
                                                                     <li>
                                                                         <asp:HyperLink runat="server" Target="_blank" ID="Hypersales" ClientIDMode="Static">Sales Details</asp:HyperLink>
 
@@ -2787,7 +2795,7 @@
                                                                     More Reports 
                                                                 </button>
                                                                 <ul class="dropdown-menu" role="menu">
-                                                                    <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Purchase">Procurement All Graph</a></li>
+                                                                    <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Purchase"  target="_blank">Procurement All Graph</a></li>
                                                                     <li>
 
                                                                         <asp:HyperLink runat="server" Target="_blank" ID="HyperProcurement" ClientIDMode="Static">Procurement Details</asp:HyperLink>
@@ -2822,7 +2830,7 @@
                                                                     More Reports 
                                                                 </button>
                                                                 <ul class="dropdown-menu" role="menu">
-                                                                    <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Accounts">Accounts All Graph</a></li>
+                                                                    <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Accounts"  target="_blank">Accounts All Graph</a></li>
                                                                     <li>
 
                                                                         <asp:HyperLink runat="server" Target="_blank" ID="HypAccounts" ClientIDMode="Static">Accounts Details</asp:HyperLink>
@@ -2860,7 +2868,7 @@
                                                                     More Reports 
                                                                 </button>
                                                                 <ul class="dropdown-menu" role="menu">
-                                                                    <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Construction">Construction All Graph</a></li>
+                                                                    <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Construction"  target="_blank">Construction All Graph</a></li>
                                                                     <li>
 
                                                                         <asp:HyperLink runat="server" Target="_blank" ID="hypConstruction" ClientIDMode="Static">Construction Details</asp:HyperLink>
@@ -2933,7 +2941,7 @@
                                                     <div class="col-md-5 col-sm-12 col-lg-5">
                                                         <div id="piechartEMPStatus" style="width: 100%; height: 250px;"></div>
                                                         <center>
-                                                        <asp:LinkButton ID="ToAtten" runat="server"><a Class="btn btn-primary btn-sm" href="F_81_Hrm/F_83_Att/TodayAttendanceSheet.aspx">Click Attendance Details</a></asp:LinkButton>
+                                                        <asp:LinkButton ID="ToAtten" runat="server"><a Class="btn btn-primary btn-sm" href="F_81_Hrm/F_83_Att/TodayAttendanceSheet.aspx"  target="_blank">Click Attendance Details</a></asp:LinkButton>
                                                          </center>
                                                     </div>
                                                     
@@ -3167,7 +3175,7 @@
                             <div class="col-md-6 col-lg-6">
                                 <section class="card mb-1 card-fluid p-2">
                                     <!-- .card-header -->
-                                    <header class="card-header border-0">
+                                    <header class="card-header border-0" style="display:none;">
                                         <div class="d-flex align-items-center">
                                             <span class="mr-auto">Today's Presence</span>
 

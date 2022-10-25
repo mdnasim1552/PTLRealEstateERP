@@ -113,6 +113,11 @@ namespace RealERPWEB.F_14_Pro
                              //case "3101":
                     this.btnSendmail.Visible = false;
                     break;
+                case "3368": // finlay                             
+                case "3367": // finlay                             
+                case "3354": // finlay                             
+                    this.btnSendmail.Visible = true;
+                    break;
                 default:
                     break;
             }
@@ -135,7 +140,7 @@ namespace RealERPWEB.F_14_Pro
                     //case "3101":
                     comsubject = " Requests you to arrange supply of following materials from your organization.";
                     break;
-                
+
                 case "3101":
                 case "3368":
                     comsubject = " As per our agreed terms and conditions, please arrange to deliver the following items :";
@@ -704,6 +709,8 @@ namespace RealERPWEB.F_14_Pro
             //this.lbtnPrevOrderList_Click(null, null);
             this.ShowProjectFiles();
             this.hideTermsConditions();
+            /// email button visible ture or false
+            SendMail();
         }
 
 
@@ -812,6 +819,12 @@ namespace RealERPWEB.F_14_Pro
             this.ddlSuplierList.DataValueField = "ssircode";
             this.ddlSuplierList.DataSource = ds1.Tables[1];
             this.ddlSuplierList.DataBind();
+
+            if (this.Request.QueryString.AllKeys.Contains("ssircode") && this.Request.QueryString["ssircode"].ToString() != "")
+            {
+                this.ddlSuplierList.SelectedValue = this.Request.QueryString["ssircode"].ToString();
+            }
+
             ViewState["tblResP"] = ds1.Tables[0];
             ViewState["tblProject"] = ds1.Tables[1];
             this.ddlSuplierList_SelectedIndexChanged(null, null);
@@ -1000,7 +1013,7 @@ namespace RealERPWEB.F_14_Pro
             {
                 this.gvOrderInfo.Columns[1].Visible = true;
             }
-            if(comcod == "3354" || comcod == "3101")
+            if (comcod == "3354" || comcod == "3101")
             {
                 this.gvOrderInfo.Columns[20].Visible = true;
             }
@@ -1108,13 +1121,13 @@ namespace RealERPWEB.F_14_Pro
 
             DataTable tbl1 = (DataTable)ViewState["tblOrder"];
 
-            string pactcode =ASTUtility.Left(tbl1.Rows[0]["pactcode"].ToString(),8);
+            string pactcode = ASTUtility.Left(tbl1.Rows[0]["pactcode"].ToString(), 8);
             int TblRowIndex2;
             for (int j = 0; j < this.gvOrderInfo.Rows.Count; j++)
             {
                 //Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.grvissue.Rows[i].FindControl("lblbalqty")).Text.Trim()));
                 //double dispercnt = Convert.ToDouble(ASTUtility.StrPosOrNagative(ASTUtility.ExprToValue("0" + ((TextBox)this.gvOrderInfo.Rows[j].FindControl("txtgvdispercnt")).Text.Trim().Replace("%", ""))));
-                
+
                 string rsircode = ((Label)this.gvOrderInfo.Rows[j].FindControl("lblgvResCod")).Text.Trim();
                 double dgvorderQty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvOrderInfo.Rows[j].FindControl("txtgvOrderQty")).Text.Trim()));
 
@@ -1122,7 +1135,7 @@ namespace RealERPWEB.F_14_Pro
                 double dispercnt = Convert.ToDouble(ASTUtility.StrPosOrNagative("0" + ((TextBox)this.gvOrderInfo.Rows[j].FindControl("txtgvdispercnt")).Text.Trim().Replace("%", "")));
                 double aprovrate = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvOrderInfo.Rows[j].FindControl("txtgvOrderRate")).Text.Trim()));
                 double dgvAppAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvOrderInfo.Rows[j].FindControl("txtgvOrderAmt")).Text.Trim()));
-                
+
                 string rmrks = ((TextBox)this.gvOrderInfo.Rows[j].FindControl("txtgvrmrks")).Text.Trim();
 
                 TblRowIndex2 = (this.gvOrderInfo.PageIndex) * this.gvOrderInfo.PageSize + j;
@@ -1137,7 +1150,7 @@ namespace RealERPWEB.F_14_Pro
                         return;
                     }
                 }
-                
+
 
                 if (rsircode.Substring(0, 7) == "0199999")
                 {
@@ -1222,7 +1235,7 @@ namespace RealERPWEB.F_14_Pro
 
             DataTable tbl1 = (DataTable)ViewState["tblOrder"];
 
-            string pactcode =ASTUtility.Left(tbl1.Rows[0]["pactcode"].ToString(),8);
+            string pactcode = ASTUtility.Left(tbl1.Rows[0]["pactcode"].ToString(), 8);
 
             DataSet ds1 = new DataSet("ds1");
             System.IO.StringReader xmlSR;
@@ -1241,7 +1254,7 @@ namespace RealERPWEB.F_14_Pro
                         case "3352":  //p2p360
                                       //case "3101": // ASIT
                             break;
-                            
+
                         //case "3101":
                         case "3368"://finlay
                             /*
@@ -1307,7 +1320,7 @@ namespace RealERPWEB.F_14_Pro
 
                                 approval = ds1.GetXml();
                                 */
-                            }                           
+                            }
 
                             break;
 
@@ -1792,7 +1805,7 @@ namespace RealERPWEB.F_14_Pro
             string appxml = tbl1.Rows[0]["approval"].ToString();
             string Approval = this.GetReqApproval(appxml);
 
-           
+
             bool forwarddesc = ((CheckBox)this.gvOrderInfo.FooterRow.FindControl("lblfchkbox")).Checked ? true : false;
             string type = this.Request.QueryString["InputType"];
             switch (type)
@@ -1988,10 +2001,10 @@ namespace RealERPWEB.F_14_Pro
                 }
             }
 
-            if (comcod == "3368"|| comcod=="3101")
+            if (comcod == "3368" || comcod == "3101")
             {
 
-                string pactcode = dsty.Rows[0]["pactcode"].ToString().Substring(0,4);
+                string pactcode = dsty.Rows[0]["pactcode"].ToString().Substring(0, 4);
                 if (pactcode != "1102")
                 {
                     try
@@ -2009,7 +2022,7 @@ namespace RealERPWEB.F_14_Pro
                         string project = dsty.Rows[0]["projdesc1"].ToString();
                         string supname = dsty.Rows[0]["ssirdesc1"].ToString();
                         string amount = dsty.Rows[0]["ordramt"].ToString() + " BDT";
-                      
+
                         string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath;
                         string currentptah = "/F_14_Pro/PurWrkOrderEntry?InputType=SecondApp&genno=" + mORDERNO + "&comcod=" + comcod + "&usrid=" + suserid;
                         string totalpath = uhostname + currentptah;
@@ -2048,7 +2061,7 @@ namespace RealERPWEB.F_14_Pro
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
                     }
                 }
-                
+
             }
 
             //if (ConstantInfo.LogStatus == true)
@@ -2115,7 +2128,7 @@ namespace RealERPWEB.F_14_Pro
         {
 
             this.Get_Pur_Order_Info();
-       
+
 
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -2141,7 +2154,7 @@ namespace RealERPWEB.F_14_Pro
                     this.txtLETDES.Text = "This is an reference to your discussion had with us today, we are pleased to place an order for supplying Rmc at our project under the following terms & conditions.";
                     break;
 
-     
+
                 case "3357":
                     this.txtSubject.Text = "Purchase Order For ";
                     this.txtLETDES.Text = "Thank you very much for cooperating with Cube Holdings Ltd. Against your offer and further discussion we are offering you for the supply of ... under the following terms & condition and rate.";
@@ -2150,7 +2163,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3330":
                     //case "3101":
                     this.txtSubject.Text = "Purchase Order For ";
-                    this.txtLETDES.Text = comnam + " "+ "Requests you to arrange supply of following materials from your organization.";
+                    this.txtLETDES.Text = comnam + " " + "Requests you to arrange supply of following materials from your organization.";
                     break;
                 default:
                     this.txtSubject.Text = "Purchase Order For ";
@@ -2530,7 +2543,7 @@ namespace RealERPWEB.F_14_Pro
                         "\n6. Delivery date: " + date1 +
                         "\n7. Cube Holdings Ltd. has the right to cancel the work order in any time." +
                         "\n8. TDS will be applicable as per TAX ordinance compliance by 3 percent" +
-                        "\n9. Please send all bill in duplicate."+
+                        "\n9. Please send all bill in duplicate." +
                         "\n10. Contact Person : ";
                     break;
 
@@ -2894,7 +2907,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3311":
                 case "2305":
                 case "2306":
-                //case "3101":
+                    //case "3101":
                     comserial = "Rup";
                     break;
 
@@ -3691,22 +3704,22 @@ namespace RealERPWEB.F_14_Pro
                 string Others = "";
                 if (dtterm.Rows.Count != 0)
                 {
-                     fax = _ReportDataSet.Tables[1].Rows[0]["fax"].ToString();
-                     comname = this.Compserial();
-                     trmplace = ((comcod == "3338" || comname == "Rup") ? "1. " + dtterm.Rows[0]["termssubj"].ToString() : "*" + dtterm.Rows[0]["termssubj"].ToString() + " : ");
-                     place = dtterm.Rows[0]["termsdesc"].ToString().Trim();
-                     trmpdate = ((comcod == "3338" || comname == "Rup") ? "2. " + dtterm.Rows[1]["termssubj"].ToString() : "*" + dtterm.Rows[1]["termssubj"].ToString() + " : ");
-                     pdate = dtterm.Rows[1]["termsdesc"].ToString().Trim();
-                     trmcarring = ((comcod == "3338" || comname == "Rup") ? "3. " + dtterm.Rows[2]["termssubj"].ToString() : "*" + dtterm.Rows[2]["termssubj"].ToString() + " : ");
-                     carring = dtterm.Rows[2]["termsdesc"].ToString().Trim();
-                     trmbill = (comcod == "3330") ? "" : (comcod == "3338" || comname == "Rup") ? "4. " + (dtterm.Rows[3]["termssubj"]).ToString() : "*" + dtterm.Rows[3]["termssubj"].ToString() + ": ";
-                     bill = (comcod == "3330") ? ("* " + dtterm.Rows[3]["termsdesc"].ToString().Trim()) : dtterm.Rows[3]["termsdesc"].ToString().Trim();
-                     trmpayment = ((comcod == "3338") ? dtterm.Rows[4]["termssubj"].ToString() : (comname == "Rup") ? "4. " + dtterm.Rows[4]["termssubj"].ToString() + " : " : "*" + dtterm.Rows[4]["termssubj"].ToString() + " : ");
-                     payment = dtterm.Rows[4]["termsdesc"].ToString().Trim();
-                     trmothers = ((comcod == "3338") ? dtterm.Rows[5]["termssubj"].ToString() : (comname == "Rup") ? "5. " + dtterm.Rows[5]["termssubj"].ToString() + " : " : "*" + dtterm.Rows[5]["termssubj"].ToString() + " : ");
-                     Others = dtterm.Rows[5]["termsdesc"].ToString().Trim();
+                    fax = _ReportDataSet.Tables[1].Rows[0]["fax"].ToString();
+                    comname = this.Compserial();
+                    trmplace = ((comcod == "3338" || comname == "Rup") ? "1. " + dtterm.Rows[0]["termssubj"].ToString() : "*" + dtterm.Rows[0]["termssubj"].ToString() + " : ");
+                    place = dtterm.Rows[0]["termsdesc"].ToString().Trim();
+                    trmpdate = ((comcod == "3338" || comname == "Rup") ? "2. " + dtterm.Rows[1]["termssubj"].ToString() : "*" + dtterm.Rows[1]["termssubj"].ToString() + " : ");
+                    pdate = dtterm.Rows[1]["termsdesc"].ToString().Trim();
+                    trmcarring = ((comcod == "3338" || comname == "Rup") ? "3. " + dtterm.Rows[2]["termssubj"].ToString() : "*" + dtterm.Rows[2]["termssubj"].ToString() + " : ");
+                    carring = dtterm.Rows[2]["termsdesc"].ToString().Trim();
+                    trmbill = (comcod == "3330") ? "" : (comcod == "3338" || comname == "Rup") ? "4. " + (dtterm.Rows[3]["termssubj"]).ToString() : "*" + dtterm.Rows[3]["termssubj"].ToString() + ": ";
+                    bill = (comcod == "3330") ? ("* " + dtterm.Rows[3]["termsdesc"].ToString().Trim()) : dtterm.Rows[3]["termsdesc"].ToString().Trim();
+                    trmpayment = ((comcod == "3338") ? dtterm.Rows[4]["termssubj"].ToString() : (comname == "Rup") ? "4. " + dtterm.Rows[4]["termssubj"].ToString() + " : " : "*" + dtterm.Rows[4]["termssubj"].ToString() + " : ");
+                    payment = dtterm.Rows[4]["termsdesc"].ToString().Trim();
+                    trmothers = ((comcod == "3338") ? dtterm.Rows[5]["termssubj"].ToString() : (comname == "Rup") ? "5. " + dtterm.Rows[5]["termssubj"].ToString() + " : " : "*" + dtterm.Rows[5]["termssubj"].ToString() + " : ");
+                    Others = dtterm.Rows[5]["termsdesc"].ToString().Trim();
                 }
-                 
+
 
                 // For Acme
 
@@ -4091,7 +4104,7 @@ namespace RealERPWEB.F_14_Pro
             }
             catch (Exception ex)
             {
-                string Messagesd = "Error:" + ex.Message;             
+                string Messagesd = "Error:" + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
                 //return;
             }
@@ -4099,7 +4112,7 @@ namespace RealERPWEB.F_14_Pro
 
             try
             {
-                 
+
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = this.GetCompCode();
                 string comnam = hst["comnam"].ToString();
@@ -4134,14 +4147,14 @@ namespace RealERPWEB.F_14_Pro
 
 
                 string fax = "";
-                
+
                 string trmplace = "";
                 string place = "";
                 string trmpdate = "";
                 string pdate = "";
                 string trmcarring = "";
                 string carring = "";
-              
+
                 string bill = "";
                 string trmpayment = "";
                 string payment = "";
@@ -4150,20 +4163,20 @@ namespace RealERPWEB.F_14_Pro
 
                 if (dtterm.Rows.Count != 0)
                 {
-                     fax = _ReportDataSet.Tables[1].Rows[0]["fax"].ToString();
-                     trmplace = "* " + dtterm.Rows[0]["termssubj"].ToString() + " : ";
-                     place = dtterm.Rows[0]["termsdesc"].ToString().Trim();
-                     trmpdate = "* " + dtterm.Rows[1]["termssubj"].ToString() + " : ";
-                     pdate = dtterm.Rows[1]["termsdesc"].ToString().Trim();
-                     trmcarring = "* " + dtterm.Rows[2]["termssubj"].ToString() + " : ";
-                     carring = dtterm.Rows[2]["termsdesc"].ToString().Trim();
+                    fax = _ReportDataSet.Tables[1].Rows[0]["fax"].ToString();
+                    trmplace = "* " + dtterm.Rows[0]["termssubj"].ToString() + " : ";
+                    place = dtterm.Rows[0]["termsdesc"].ToString().Trim();
+                    trmpdate = "* " + dtterm.Rows[1]["termssubj"].ToString() + " : ";
+                    pdate = dtterm.Rows[1]["termsdesc"].ToString().Trim();
+                    trmcarring = "* " + dtterm.Rows[2]["termssubj"].ToString() + " : ";
+                    carring = dtterm.Rows[2]["termsdesc"].ToString().Trim();
                     //string trmbill = "* " + dtterm.Rows[9]["termssubj"].ToString() + "";
-                     bill = "* " + dtterm.Rows[3]["termsdesc"].ToString().Trim();
-                     trmpayment = "* " + dtterm.Rows[4]["termssubj"].ToString() + " : ";
-                     payment = dtterm.Rows[4]["termsdesc"].ToString().Trim();
+                    bill = "* " + dtterm.Rows[3]["termsdesc"].ToString().Trim();
+                    trmpayment = "* " + dtterm.Rows[4]["termssubj"].ToString() + " : ";
+                    payment = dtterm.Rows[4]["termsdesc"].ToString().Trim();
 
-                     trmothers = "* " + dtterm.Rows[5]["termssubj"].ToString() + " : ";
-                     Others = dtterm.Rows[5]["termsdesc"].ToString().Trim();
+                    trmothers = "* " + dtterm.Rows[5]["termssubj"].ToString() + " : ";
+                    Others = dtterm.Rows[5]["termsdesc"].ToString().Trim();
 
                 }
 
@@ -4317,7 +4330,7 @@ namespace RealERPWEB.F_14_Pro
             }
             catch (Exception ex)
             {
-                 
+
                 string Messagesd = "Error:" + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
                 //return;
@@ -4330,13 +4343,13 @@ namespace RealERPWEB.F_14_Pro
         protected void lnkSendMail_Click(object sender, EventArgs e)
         {
             string OrderNo = this.Request.QueryString["genno"] ?? "";
-            Response.Redirect("~/F_99_Allinterface/PurchasePrint?Type=OrderPrint&orderno="+ OrderNo + "&Orderstatus=Download");
+            Response.Redirect("~/F_99_Allinterface/PurchasePrint?Type=OrderPrint&orderno=" + OrderNo + "&Orderstatus=Download");
         }
         protected void btnSendmail_Click(object sender, EventArgs e)
         {
             try
             {
-               
+
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string compsms = hst["compsms"].ToString();
                 string compmail = hst["compmail"].ToString();
@@ -4354,8 +4367,8 @@ namespace RealERPWEB.F_14_Pro
             }
             catch (Exception ex)
             {
-              
-                string Messagesd =  "Error occured while sending your message." + ex.Message;
+
+                string Messagesd = "Error occured while sending your message." + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
             }
             //switch (ssl)
@@ -4456,14 +4469,14 @@ namespace RealERPWEB.F_14_Pro
 
                 ///GET SMTP AND SMS API INFORMATION
                 #region
-                Hashtable hst = (Hashtable)Session["tblLogin"];              
+                Hashtable hst = (Hashtable)Session["tblLogin"];
                 string sendUsername = hst["userfname"].ToString();
                 string sendDptdesc = hst["dptdesc"].ToString();
-                string sendUsrdesig = hst["usrdesig"].ToString();                
+                string sendUsrdesig = hst["usrdesig"].ToString();
                 string usrid = hst["usrid"].ToString();
                 string deptcode = hst["deptcode"].ToString();
 
- 
+
                 DataSet dssmtpandmail = purData.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
                 if (dssmtpandmail == null)
                     return;
@@ -4482,7 +4495,7 @@ namespace RealERPWEB.F_14_Pro
                 DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPUREMAIL", mORDERNO, "", "", "", "", "", "", "", "");
                 if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
                 {
-                    string Messagesd = "Purchase order didn't save";                    
+                    string Messagesd = "Purchase order didn't save";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
                     return;
                 }
@@ -4553,10 +4566,10 @@ namespace RealERPWEB.F_14_Pro
 <p></br>It is a pleasure to do business with an esteemed company such as yours and we hope to continue working together in the future.</p>
 <p></br></p>
 <p>Best Regards,</p>
-<p>"+ sendUsername + "</p><p> "+ sendUsrdesig + " </p><p> " + compName + " </p></body></html>";
+<p>" + sendUsername + "</p><p> " + sendUsrdesig + " </p><p> " + compName + " </p></body></html>";
                 #endregion
 
-              
+
 
                 if (compmail == "True")
                 {
@@ -4775,7 +4788,7 @@ namespace RealERPWEB.F_14_Pro
             //{
             //    ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
             //}
-           
+
 
         }
         protected void gvOrderInfo_PageIndexChanging(object sender, GridViewPageEventArgs e)

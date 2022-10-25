@@ -59,108 +59,6 @@ namespace RealERPWEB.F_16_Bill
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
         }
 
-        protected void lnkPrint_Click(object sender, EventArgs e)
-        {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
-            string comnam = hst["comnam"].ToString();
-            string compname = hst["compname"].ToString();
-            string comsnam = hst["comsnam"].ToString();
-            string comadd = hst["comadd1"].ToString();
-            string session = hst["session"].ToString();
-            string username = hst["username"].ToString();
-            string Project = this.ddlProject.SelectedItem.Text.Trim().Substring(14);
-            string CurDate1 = Convert.ToDateTime(this.txtDate.Text.Trim()).ToString("dd-MMM-yyyy");
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string mBILLNo = this.ddlPrevList.SelectedValue.ToString();
-            string RANO = this.ddlRA.SelectedItem.Text.ToString();
-
-            double amount = Convert.ToDouble((Convert.IsDBNull(((DataTable)Session["tblbill"]).Compute("sum(billam)", "")) ? 0.00
-                  : ((DataTable)Session["tblbill"]).Compute("sum(billam)", "")));
-            double security = Convert.ToDouble("0" + this.txtSDAmount.Text.Trim());
-            double tax = Convert.ToDouble("0" + this.txtTaxAmount.Text.Trim());
-            double vat = Convert.ToDouble("0" + this.txtvatAmount.Text.Trim());
-            double Advanced = Convert.ToDouble("0" + this.txtAdvanced.Text.Trim());
-            double netamt = (amount - (security + tax + vat + Advanced));
-
-            //.ToString("#,##0.00;(#,##0.00); ")
-            string mbillno = this.lblCurNo1.Text.Trim().Substring(0, 3) + this.lblCurNo1.Text.Trim().Substring(3, 2) + this.lblCurNo2.Text.Trim();
-            //string mbillno = this.lblCurNo1.Text.Trim().Substring(0, 3) + this.txtDate.Text.Trim().Substring(7, 4) + this.lblCurNo1.Text.Trim().Substring(3, 2) + this.lblCurNo2.Text.Trim();
-            //string prjname = this.ddlProjectName.SelectedItem.Text.Trim().Substring(13);
-            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-
-            LocalReport Rpt1 = new LocalReport();
-            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-
-            // DataTable dt = (DataTable)Session["tblBill"];
-
-
-            DataTable dt = ((DataTable)Session["tblBill"]).Copy();
-
-            //AddedBy Nime 
-            DataTable dt2 = this.ExtractHiddenData(dt);
-
-            //Commented By Nime 
-            //DataView dv = dt.DefaultView;
-            //Added By Nime 
-            DataView dv = dt2.DefaultView;
-            dv.RowFilter = ("billqty<>0");
-
-            var lst = dv.ToTable().DataTableToList<RealEntity.C_16_Bill.BO_BillEntry.BillEmtry>();
-
-            if (comcod == "1205" || comcod == "1101")
-            {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_16_Bill.RptBillInvoiceP2P", lst, null, null);
-            }
-            else
-            {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_16_Bill.RptBillInvoice", lst, null, null);
-            }
-
-            //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_16_Bill.RptBillInvoice", lst, null, null);
-            Rpt1.EnableExternalImages = true;
-            //   Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("compname", comnam));
-            Rpt1.SetParameters(new ReportParameter("Project", "Project Name: " + Project));
-            Rpt1.SetParameters(new ReportParameter("CurDate1", "Date: " + CurDate1));
-            Rpt1.SetParameters(new ReportParameter("mBILLNo", "Invoice No: " + mbillno));
-            Rpt1.SetParameters(new ReportParameter("txtsecpercntge", "Security(" + this.txtpercentage.Text + ")"));
-
-
-            Rpt1.SetParameters(new ReportParameter("txttaxpercntge", "Tax(" + this.txttaxpercentage.Text + ")"));
-
-
-            Rpt1.SetParameters(new ReportParameter("txtvatpercntge", "Vat(" + this.txtvatpercentage.Text + ")"));
-            Rpt1.SetParameters(new ReportParameter("txttaxamt", this.txtTaxAmount.Text));
-            Rpt1.SetParameters(new ReportParameter("txtsecamt", this.txtSDAmount.Text));
-            Rpt1.SetParameters(new ReportParameter("txtvatamt", this.txtvatAmount.Text));
-            Rpt1.SetParameters(new ReportParameter("txtadvamt", this.txtAdvanced.Text));
-            Rpt1.SetParameters(new ReportParameter("txtnetamt", this.lblvalnettotal.Text));
-
-
-            //Rpt1.SetParameters(new ReportParameter("txttaxamt", tax.ToString()));
-            //Rpt1.SetParameters(new ReportParameter("txtsecamt",security.ToString("#,##0.00;(#,##0.00); ")));
-            //Rpt1.SetParameters(new ReportParameter("txtvatamt", vat.ToString()));
-            //Rpt1.SetParameters(new ReportParameter("txtadvamt", Advanced.ToString()));
-            //Rpt1.SetParameters(new ReportParameter("txtnetamt", netamt.ToString()));
-
-
-            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-
-            Rpt1.SetParameters(new ReportParameter("rptname", "Upcon Bill Invoice"));
-            Rpt1.SetParameters(new ReportParameter("RANO", "R/A No: " + RANO));
-            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("InWrd", "In Word : " + ASTUtility.Trans(Math.Round(netamt), 2)));
-
-
-
-
-            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
-            Session["Report1"] = Rpt1;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-        }
-
         private void GetTrade()
         {
             string comcod = this.GetCompCode();
@@ -297,6 +195,7 @@ namespace RealERPWEB.F_16_Bill
                          "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
+
             Session["tblBill"] = this.HiddenSameData(ds1.Tables[0]);
 
             if (mBILLNo == "NEWBILL")
@@ -392,28 +291,34 @@ namespace RealERPWEB.F_16_Bill
             int i = 0;
             string misircode = dt.Rows[0]["misircode"].ToString();
 
-
             for (int j = 1; j < dt.Rows.Count; j++)
             {
                 if (dt.Rows[j]["misircode"].ToString() == misircode)
                 {
                     dt.Rows[j]["misirdesc"] = dt.Rows[i]["misirdesc"];
                 }
-
                 else
                 {
                     i = j;
                     misircode = dt.Rows[j]["misircode"].ToString();
                 }
-
-
             }
 
-
+            string flrcod = dt.Rows[0]["flrcod"].ToString();
+            int n = 0;
+            for (int k = 1; k < dt.Rows.Count; k++)
+            {
+                if (dt.Rows[k]["flrcod"].ToString() == flrcod)
+                {
+                    dt.Rows[k]["flrdes"] = dt.Rows[n]["flrdes"];
+                }
+                else
+                {
+                    n = k;
+                    flrcod = dt.Rows[k]["flrcod"].ToString();
+                }
+            }
             return dt;
-
-
-
         }
 
 
@@ -436,11 +341,6 @@ namespace RealERPWEB.F_16_Bill
 
             }
 
-
-
-
-
-
             int i = 0;
             string misircode = dt.Rows[0]["misircode"].ToString();
 
@@ -448,8 +348,6 @@ namespace RealERPWEB.F_16_Bill
             {
                 if (i == 0)
                 {
-
-
                     misircode = dr1["misircode"].ToString();
                     i++;
                     continue;
@@ -462,28 +360,10 @@ namespace RealERPWEB.F_16_Bill
 
                 }
 
-
                 misircode = dr1["misircode"].ToString();
             }
-
-
-
-
-
-
-
             return dt;
         }
-
-
-
-
-
-
-
-
-
-
 
 
         protected void ChangeDDLToText()
@@ -498,9 +378,9 @@ namespace RealERPWEB.F_16_Bill
             this.gvRptResBasis.DataSource = dt;
             this.gvRptResBasis.DataBind();
 
-          if(dt.Rows.Count>0)
-            ((LinkButton)this.gvRptResBasis.FooterRow.FindControl("lnkfinalup")).Visible = (this.lblvalvounum.Text.Trim() == "00000000000000" || this.lblvalvounum.Text.Trim() == "");
-            
+            if (dt.Rows.Count > 0)
+                ((LinkButton)this.gvRptResBasis.FooterRow.FindControl("lnkfinalup")).Visible = (this.lblvalvounum.Text.Trim() == "00000000000000" || this.lblvalvounum.Text.Trim() == "");
+
 
 
             this.FooterCalCulation();
@@ -531,10 +411,6 @@ namespace RealERPWEB.F_16_Bill
             this.ddlProject.DataBind();
 
         }
-
-
-
-
 
         private void SaveValue()
         {
@@ -666,10 +542,6 @@ namespace RealERPWEB.F_16_Bill
 
             }
         }
-
-
-
-
 
         protected void lbtnPreList_Click(object sender, EventArgs e)
         {
@@ -1268,6 +1140,112 @@ namespace RealERPWEB.F_16_Bill
             //this.Data_Bind();
 
 
+        }
+
+        protected void lnkPrint_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string Project = this.ddlProject.SelectedItem.Text.Trim().Substring(14);
+            string CurDate1 = Convert.ToDateTime(this.txtDate.Text.Trim()).ToString("dd-MMM-yyyy");
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string mBILLNo = this.ddlPrevList.SelectedValue.ToString();
+            string RANO = this.ddlRA.SelectedItem.Text.ToString();
+
+            double amount = Convert.ToDouble((Convert.IsDBNull(((DataTable)Session["tblbill"]).Compute("sum(billam)", "")) ? 0.00
+                  : ((DataTable)Session["tblbill"]).Compute("sum(billam)", "")));
+            double security = Convert.ToDouble("0" + this.txtSDAmount.Text.Trim());
+            double tax = Convert.ToDouble("0" + this.txtTaxAmount.Text.Trim());
+            double vat = Convert.ToDouble("0" + this.txtvatAmount.Text.Trim());
+            double Advanced = Convert.ToDouble("0" + this.txtAdvanced.Text.Trim());
+            double netamt = (amount - (security + tax + vat + Advanced));
+
+            //.ToString("#,##0.00;(#,##0.00); ")
+            string mbillno = this.lblCurNo1.Text.Trim().Substring(0, 3) + this.lblCurNo1.Text.Trim().Substring(3, 2) + this.lblCurNo2.Text.Trim();
+            //string mbillno = this.lblCurNo1.Text.Trim().Substring(0, 3) + this.txtDate.Text.Trim().Substring(7, 4) + this.lblCurNo1.Text.Trim().Substring(3, 2) + this.lblCurNo2.Text.Trim();
+            //string prjname = this.ddlProjectName.SelectedItem.Text.Trim().Substring(13);
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+
+            LocalReport Rpt1 = new LocalReport();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
+            // DataTable dt = (DataTable)Session["tblBill"];
+
+
+            DataTable dt = ((DataTable)Session["tblBill"]).Copy();
+
+            //AddedBy Nime 
+            DataTable dt2 = this.ExtractHiddenData(dt);
+
+            //Commented By Nime 
+            //DataView dv = dt.DefaultView;
+            //Added By Nime 
+            DataView dv = dt2.DefaultView;
+            dv.RowFilter = ("billqty<>0");
+
+            var lst = dv.ToTable().DataTableToList<RealEntity.C_16_Bill.BO_BillEntry.BillEmtry>();
+
+            if (comcod == "1205" || comcod == "1101")
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_16_Bill.RptBillInvoiceP2P", lst, null, null);
+            }   
+            else if (comcod == "1206" || comcod == "1207")
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_16_Bill.RptBillInvoiceAcme", lst, null, null);
+            }
+            else
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_16_Bill.RptBillInvoice", lst, null, null);
+            }
+
+            //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_16_Bill.RptBillInvoice", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            //   Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("compname", comnam));
+            Rpt1.SetParameters(new ReportParameter("Project", "Project Name: " + Project));
+            Rpt1.SetParameters(new ReportParameter("CurDate1", "Date: " + CurDate1));
+            Rpt1.SetParameters(new ReportParameter("mBILLNo", "Invoice No: " + mbillno));
+            Rpt1.SetParameters(new ReportParameter("txtsecpercntge", "Security(" + this.txtpercentage.Text + ")"));
+
+
+            Rpt1.SetParameters(new ReportParameter("txttaxpercntge", "Tax(" + this.txttaxpercentage.Text + ")"));
+
+
+            Rpt1.SetParameters(new ReportParameter("txtvatpercntge", "Vat(" + this.txtvatpercentage.Text + ")"));
+            Rpt1.SetParameters(new ReportParameter("txttaxamt", this.txtTaxAmount.Text));
+            Rpt1.SetParameters(new ReportParameter("txtsecamt", this.txtSDAmount.Text));
+            Rpt1.SetParameters(new ReportParameter("txtvatamt", this.txtvatAmount.Text));
+            Rpt1.SetParameters(new ReportParameter("txtadvamt", this.txtAdvanced.Text));
+            Rpt1.SetParameters(new ReportParameter("txtnetamt", this.lblvalnettotal.Text));
+
+
+            //Rpt1.SetParameters(new ReportParameter("txttaxamt", tax.ToString()));
+            //Rpt1.SetParameters(new ReportParameter("txtsecamt",security.ToString("#,##0.00;(#,##0.00); ")));
+            //Rpt1.SetParameters(new ReportParameter("txtvatamt", vat.ToString()));
+            //Rpt1.SetParameters(new ReportParameter("txtadvamt", Advanced.ToString()));
+            //Rpt1.SetParameters(new ReportParameter("txtnetamt", netamt.ToString()));
+
+
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+
+            Rpt1.SetParameters(new ReportParameter("rptname", "Upcon Bill Invoice"));
+            Rpt1.SetParameters(new ReportParameter("RANO", "R/A No: " + RANO));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("InWrd", "In Word : " + ASTUtility.Trans(Math.Round(netamt), 2)));
+
+
+
+
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
     }
 }

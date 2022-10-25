@@ -153,9 +153,10 @@
                                         </asp:DropDownList>
                                     </div>
                                     <div class="col-md-3 pading5px asitCol3">
-                                        <div class="colMdbtn">
+                                      <%--  <div class="colMdbtn">--%>
+                                        <div>
                                             <asp:LinkButton ID="lnkOk" runat="server" CssClass="btn btn-primary okBtn" TabIndex="1" OnClick="lnkOk_Click" >Ok</asp:LinkButton>
-
+                                             <asp:CheckBox ID="chkgcactcode" runat="server" Text="Same Bank"  AutoPostBack="True"  CssClass="btn btn-primary checkBox" />
                                         </div>
 
                                     </div>

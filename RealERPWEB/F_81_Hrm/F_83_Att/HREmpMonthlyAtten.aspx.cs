@@ -177,6 +177,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             
             switch (comcod)
             {
+                case "3369":
                 case "3365":
                 case "3101":
                 //case "3348":

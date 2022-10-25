@@ -92,6 +92,22 @@ namespace RealERPWEB.F_23_CR
 
 
 
+        private string GetLoMonColl()
+        {
+            string Type = this.Request.QueryString["Type"];
+            string LoMonColl = "";
+            switch (Type)
+            {
+                case "LoMonProColl":
+                    LoMonColl = "lomoncoll";
+                    break;
+                default:
+                    break;        
+
+            }
+            return LoMonColl;
+        }
+
 
 
             protected void lnkbtnOk_Click(object sender, EventArgs e)
@@ -104,15 +120,37 @@ namespace RealERPWEB.F_23_CR
                 string length = stindex == "0" ? "length" : "";
                 string prjcode = this.ddlPrjName.SelectedValue.ToString()=="000000000000"?"18%": this.ddlPrjName.SelectedValue.ToString()+"%";
                 string salesperson = this.ddlSalesperson.SelectedValue.ToString()=="000000000000"?"%": this.ddlSalesperson.SelectedValue.ToString()+"%";
-                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "RPTMONTHLYPROBABLECOLLECTION", prjcode, frmdate, todate, salesperson, length, "", "", "", "");
+                string LomonColl = this.GetLoMonColl();
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "RPTMONTHLYPROBABLECOLLECTION", prjcode, frmdate, todate, salesperson, length, LomonColl, "", "", "");
                 if (ds1 == null)
                     return;
 
-                Session["tblpcollection"] = ds1.Tables[0];
-                this.Data_Bind();
+               
+            Session["tblpcollection"] = this.HiddenSameData(ds1.Tables[0]);
+            this.Data_Bind();
+            }
+        private DataTable HiddenSameData(DataTable dt1)
+        {
+            if (dt1.Rows.Count == 0)
+                return dt1;
+            string pactcode = dt1.Rows[0]["pactcode"].ToString();
+
+            for (int j = 1; j < dt1.Rows.Count; j++)
+            {
+                if (dt1.Rows[j]["pactcode"].ToString() == pactcode)
+                    dt1.Rows[j]["pactdesc"] = "";
+
+                pactcode = dt1.Rows[j]["pactcode"].ToString();
+
+
             }
 
-            private void Data_Bind()
+
+
+            return dt1;
+        }
+
+        private void Data_Bind()
             {
 
                 this.gvprobacoll.DataSource = (DataTable)Session["tblpcollection"];
@@ -155,6 +193,8 @@ namespace RealERPWEB.F_23_CR
                 dv.RowFilter = ("pactcode <> ' ' ");
                 dt = dv.ToTable();
 
+              string RptTittle = this.Request.QueryString["Type"]== "LoMonProColl" ? "Monthly Probable Collection Report(L/O)" : "Monthly Probable Collection Report";
+
                 LocalReport Rpt1 = new LocalReport();
                 var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.RptMonthlyProbCollection>();
                 Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptMonthlyProbCollection", list, null, null);
@@ -163,7 +203,7 @@ namespace RealERPWEB.F_23_CR
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
                 Rpt1.SetParameters(new ReportParameter("printdate", printdate));
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                Rpt1.SetParameters(new ReportParameter("RptTitle", "Monthly Probable Collection Report"));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", RptTittle));
                 Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
                 Rpt1.SetParameters(new ReportParameter("date", "( From " + fromdate + " To " + todate + ") "));

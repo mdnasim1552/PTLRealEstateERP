@@ -125,7 +125,7 @@
                     ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea">
                     <RowStyle />
                     <Columns>
-                        <asp:TemplateField HeaderText="Sl.No.">
+                        <asp:TemplateField HeaderText="SL">
                             <ItemTemplate>
                                 <asp:Label ID="serialno" runat="server" Style="text-align: right"
                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
@@ -192,7 +192,7 @@
                                     Width="60px"></asp:Label>
                             </ItemTemplate>
                             <FooterTemplate>
-                                <asp:Label ID="gvFBalance" runat="server" Font-Size="11PX" Font-Bold="true" Style="text-align: right" Width="80px"></asp:Label>
+                                <asp:Label ID="gvFBalance" runat="server" Font-Size="11PX" Font-Bold="true" Style="text-align: right" Width="80px" Visible="false"></asp:Label>
                             </FooterTemplate>
                             <HeaderStyle Font-Bold="True" Font-Size="16px" />
                             <ItemStyle HorizontalAlign="Right" />

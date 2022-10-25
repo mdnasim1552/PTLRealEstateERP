@@ -57,7 +57,7 @@
                 <div class="card-header mt-3 mb-0 pb-0">
                     <div class="row mb-0 pb-0">
 
-                        <asp:Label ID="lbl" runat="server" CssClass="col-1 col-form-label">Employee List</asp:Label>
+                        <asp:Label ID="lbl" runat="server" CssClass="col-1 col-form-label">Employee List  </asp:Label>
 
                         <div class="col-4">
 
@@ -259,6 +259,7 @@
                                                         CssClass="form control" BackColor="Transparent"
                                                         BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
+
                                                     <asp:TextBox ID="txtgvdVal" runat="server" AutoCompleteType="Disabled"
                                                         CssClass="form control" BackColor="Transparent"
                                                         BorderColor="#660033" BorderStyle="None" BorderWidth="1px"

@@ -53,7 +53,7 @@
 
                                     <div class="col-lg-2 col-md-2 col-sm-6">
                                         <asp:Label ID="lblProject" runat="server" CssClass="form-label" Text="Project Name"></asp:Label>
-                                        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="ibtnFindProject_Click"><i class="fas fa-search"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="ibtnFindProject" runat="server" OnClick="ibtnFindProject_Click"><i class="fas fa-search"></i></asp:LinkButton>
                                         <asp:TextBox ID="txtSrcPro" runat="server" CssClass="form-control" ></asp:TextBox>
                                          
                                     </div>
@@ -406,9 +406,7 @@
                                                 Width="700px" Visible="False"></asp:TextBox>
                                         </td>
                                         <td>
-                                            <asp:LinkButton ID="lbtnSend" runat="server" BackColor="#003366"
-                                                BorderColor="White" BorderStyle="Solid" BorderWidth="1px" Font-Bold="True"
-                                                Font-Size="12px" OnClick="lbtnSend_Click" Style="color: #FFFFFF; height: 17px;">Send</asp:LinkButton>
+                                            <asp:LinkButton ID="lbtnSend" runat="server" CssClass="btn btn-primary mt-2"  OnClick="lbtnSend_Click" >Send</asp:LinkButton>
                                         </td>
                                         <td>&nbsp;</td>
                                         <td>&nbsp;</td>

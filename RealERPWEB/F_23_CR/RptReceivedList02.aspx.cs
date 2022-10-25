@@ -612,6 +612,8 @@ namespace RealERPWEB.F_23_CR
             string comnam = hst["comnam"].ToString();
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string ununise = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(unusize)", "")) ? 0.00 : dt.Compute("Sum(unusize)", ""))).ToString("#,##0;(#,##0); ");
             string sunise = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(usize)", "")) ? 0.00 : dt.Compute("Sum(usize)", ""))).ToString("#,##0;(#,##0); ");
@@ -620,6 +622,7 @@ namespace RealERPWEB.F_23_CR
             var list = dt.DataTableToList<RealEntity.C_23_CRR.EClassSales_03.ProjectWiseClientStatus>();
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RptSetupClass1.GetLocalReport("R_23_CR.RptProClientSt", list, null, null);
+            Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "Project Wise Client Status"));
             Rpt1.SetParameters(new ReportParameter("txtProjectName", projectName));
@@ -629,6 +632,7 @@ namespace RealERPWEB.F_23_CR
             Rpt1.SetParameters(new ReportParameter("regArea", ""));
             Rpt1.SetParameters(new ReportParameter("unRegArea", ""));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
 
 
             Session["Report1"] = Rpt1;
@@ -1152,7 +1156,7 @@ namespace RealERPWEB.F_23_CR
 
                     ((Label)this.gvProClientst.FooterRow.FindControl("lgvFdelchargecst")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(cdelay)", "")) ?
                     0.00 : dt.Compute("Sum(cdelay)", ""))).ToString("#,##0;(#,##0); ");
-                    ((Label)this.gvProClientst.FooterRow.FindControl("lgvnettoduescst")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(ntodues)", "")) ?
+                    ((Label)this.gvProClientst.FooterRow.FindControl("lgvFnettoduescst")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(ntodues)", "")) ?
                    0.00 : dt.Compute("Sum(ntodues)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvProClientst.FooterRow.FindControl("lgvFregiscst")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(stdamt)", "")) ?
                       0.00 : dt.Compute("Sum(stdamt)", ""))).ToString("#,##0;(#,##0); ");
@@ -1463,7 +1467,8 @@ namespace RealERPWEB.F_23_CR
             string comcod = this.GetCompCode();
             string frmdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            string ProjectCode = ((this.DropCheck1.SelectedValue.ToString() == "000000000000") ? "1[38]" : this.DropCheck1.SelectedValue.ToString()) + "%";
+            //string ProjectCode = ((this.DropCheck1.SelectedValue.ToString() == "000000000000") ? "1[38]" : this.DropCheck1.SelectedValue.ToString()) + "%";
+            
             //string searchinfo = "";
             //string CurDues = (this.Request.QueryString["Type"].ToString() == "CurDues") ? "CurDues" : "";
             //if (this.ddlSrchCash.SelectedValue != "")
@@ -1483,6 +1488,15 @@ namespace RealERPWEB.F_23_CR
             //}
 
 
+            string ProjectCode = "";
+            string[] sec = this.DropCheck1.Text.Trim().Split(',');
+            if (sec[0].Substring(0, 4) == "0000")
+                ProjectCode = "18";
+            else
+                foreach (string s1 in sec)
+                    ProjectCode = ProjectCode + s1.Substring(0, 12);
+
+            ProjectCode = ProjectCode + "%";
 
             DataSet ds2 = CustData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "RPTPROCLIENTST", ProjectCode, frmdate, todate, "", "", "", "", "", "");
 
@@ -1492,7 +1506,7 @@ namespace RealERPWEB.F_23_CR
                 this.gvProClientst.DataBind();
                 return;
             }
-            Session["tblAccRec"] = ds2.Tables[0];
+            Session["tblAccRec"] = HiddenSameData(ds2.Tables[0]);
             this.Data_Bind();
 
         }

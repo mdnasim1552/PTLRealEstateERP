@@ -24,15 +24,6 @@ namespace RealERPWEB.F_24_CC
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
-        /// Panel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
-
-        /// <summary>
         /// LblBookName1 control.
         /// </summary>
         /// <remarks>
@@ -69,15 +60,6 @@ namespace RealERPWEB.F_24_CC
         protected global::System.Web.UI.WebControls.LinkButton lnkok;
 
         /// <summary>
-        /// ConfirmMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ConfirmMessage;
-
-        /// <summary>
         /// lblPage control.
         /// </summary>
         /// <remarks>
@@ -94,6 +76,15 @@ namespace RealERPWEB.F_24_CC
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlpagesize;
+
+        /// <summary>
+        /// ConfirmMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ConfirmMessage;
 
         /// <summary>
         /// grvacc control.

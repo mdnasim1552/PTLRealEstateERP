@@ -778,8 +778,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     if (this.gvcashpay.Rows.Count > 0)
                     {
                         this.FooterCalculation((DataTable)Session["tblSalSum"]);
-                        Session["Report1"] = gvcashpay;
-                        ((HyperLink)this.gvcashpay.HeaderRow.FindControl("hlbtntbCdataExcel22")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                        //Session["Report1"] = gvcashpay;
+                        //((HyperLink)this.gvcashpay.HeaderRow.FindControl("hlbtntbCdataExcel22")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     }
                     if ((comcod=="3365")|| comcod=="3101")
                     {
@@ -944,10 +944,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 case "CashSalary":
                     ((Label)this.gvcashpay.FooterRow.FindControl("lgvFTNetmtcash")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", ""))).ToString("#,##0;(#,##0); ");
-                    //Session["Report1"] = gvcashpay;
+                    Session["Report1"] = gvcashpay;
                     //((HyperLink)this.gvcashpay.HeaderRow.FindControl("hlbtntbCdataExcel22")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    ((HyperLink)this.gvcashpay.HeaderRow.FindControl("hlbtntbCdataExcel22")).NavigateUrl = "../../RDLCViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
 
-                    
+
+
 
 
 
@@ -1073,6 +1075,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "TopSheetPID":
                     this.PrintTopSheetSalaryPid();
                     break;
+                case "TopSheetFactory":
+                    this.PrintTopSheetFactory();
+                    break;
+
+
 
 
 
@@ -1241,6 +1248,42 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Rpt1.SetParameters(new ReportParameter("txtTotal", Convert.ToDouble(dt2.Rows[2]["netpayable"].ToString()).ToString("#,##0;(#,##0); ")));
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+        }
+        private void PrintTopSheetFactory()
+        {
+
+           
+           
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            
+            string date = this.GetStdDate("01." + ASTUtility.Right(this.txtfMonth.Text, 2) + "." + this.txtfMonth.Text.Substring(0, 4));
+           string printdate = Convert.ToDateTime(date).ToString("MMMM, yyyy");
+            string printfdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+
+            DataTable dt = (DataTable)Session["topsalaryfactory"];
+            var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalSummaryInfo>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptTopSheetFactory", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("printdate","Month of "+ printdate));
+            
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Employee Salary Summary Information"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printfdate)));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
@@ -1664,7 +1707,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PrintCashSalaryEdison();
                     break;
 
-                //case "3101":
+                case "3101":
                 case "3368":
                     this.PrintCashSalaryFinlay();
                     break;
@@ -1689,10 +1732,18 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string year = this.txtfMonth.Text.Substring(0, 4).ToString();
             string month = ASITUtility03.GetFullMonthName(this.txtfMonth.Text.Substring(4));
+            string printtype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.RptCashPay02>();
 
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptCashPay02Finlay", list, null, null);
+            if(printtype== "EXCEL")
+            {
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptCashPay02FinlayExcel", list, null, null);
+            }
+            else
+            {
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptCashPay02Finlay", list, null, null);
+            }
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comname));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
@@ -3239,5 +3290,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         {
             /* Verifies that the control is rendered */
         }
+
+         
     }
 }

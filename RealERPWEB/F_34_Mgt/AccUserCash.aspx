@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="AccUserCash.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.AccUserCash" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="AccUserCash.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.AccUserCash" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -49,67 +49,70 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+            <div class="card mt-4 pb-4">
+                <div class="card-body">
                     <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
+                        
 
-                            <div class="col-md-3 pading5px asitCol3">
-                                <asp:Label ID="lblUser1" runat="server" CssClass="lblTxt lblName">User Name</asp:Label>
-                                <asp:TextBox ID="txtUserSearch1" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
+                            <div class="col-md-3 d-none">
+                               
+                                <asp:TextBox ID="txtUserSearch1" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                 <asp:LinkButton ID="ImgbtnFindUser1" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="ImgbtnFindUser1_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                             </div>
-                            <div class="col-md-4 pading5px ">
-                                <asp:DropDownList ID="ddlUserList" runat="server" CssClass="chzn-select form-control inputTxt">
+                            <div class="col-md-3">
+                                 <asp:Label ID="lblUser1" runat="server" CssClass="form-label">User Name</asp:Label>
+                                <asp:DropDownList ID="ddlUserList" runat="server" CssClass="chzn-select form-control form-control-sm">
                                 </asp:DropDownList>
                             </div>
 
-                            <div class="col-md-1 pading5px asitCol3">
-                                <div class="colMdbtn pading5px">
-                                    <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
-                                </div>
-
+                            <div class="col-md-2 ml-2" style="margin-top:25px;">
+                               
+                                    <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                               
                             </div>
-                            <div class="col-md-3 pading5px asitCol3">
+                            <div class="col-md-3 pading5px asitCol3 d-none">
                                 <div class="colMdbtn pading5px">
                                     <asp:Label ID="lblmsg1" CssClass="btn-danger btn disabled primaryBtn" runat="server"></asp:Label>
                                 </div>
                             </div>
-                        </fieldset>
+                       </div>
+                    </div>
+                </div>
+              <div class="card" style="min-height:480px;">
+                <div class="card-body">
+                    
                         <asp:Panel ID="Panel2" runat="server" Visible="False">
-                            <fieldset class="scheduler-border fieldset_A">
-                                <div class="col-md-3 pading5px asitCol3">
-                                    <asp:Label ID="lblConTrolCode" runat="server" CssClass="lblTxt lblName">Control Code</asp:Label>
-                                    <asp:TextBox ID="txtProSearch" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                    <asp:LinkButton ID="ImgbtnFindProject" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="ImgbtnFindProject_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                          <div class="row">
+                              <div class="col-md-3 d-none">
+                                    
+                                    <asp:TextBox ID="txtProSearch" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
 
                                 </div>
-                                <div class="col-md-4 pading5px ">
-                                    <asp:DropDownList ID="ddlConTrolCode" runat="server" CssClass="form-control inputTxt">
+                                <div class="col-md-3">
+                                    <asp:Label ID="lblConTrolCode" runat="server" CssClass="form-label">Control Code</asp:Label>
+                                    <asp:LinkButton ID="ImgbtnFindProject" runat="server"  OnClick="ImgbtnFindProject_Click"><span class="fa fa-search"> </span></asp:LinkButton>
+
+                                    <asp:DropDownList ID="ddlConTrolCode" runat="server" CssClass="form-control form-control-sm chzn-select">
                                     </asp:DropDownList>
                                 </div>
 
 
 
-                                <div class="col-md-1 pading5px">
+                                <div class="col-md-1" style="margin-top:20px;">
 
-                                    <div class="colMdbtn pading5px">
-                                        <asp:LinkButton ID="lbtnSelectSupl1" runat="server" Style="margin: 0;" CssClass="btn btn-primary primaryBtn checkbox" OnClick="lbtnSelectSupl1_Click">Select</asp:LinkButton>
-                                    </div>
+                                        <asp:LinkButton ID="lbtnSelectSupl1" runat="server" Style="margin: 0;" CssClass="btn btn-sm btn-primary" OnClick="lbtnSelectSupl1_Click">Select</asp:LinkButton>
+                                   
+                                </div>
+                                <div class="col-md-1" style="margin-top:20px;">
+                                    
+                                        <asp:LinkButton ID="lbtnSelectAll" runat="server" Style="margin: 0;" CssClass="btn btn-sm btn-primary" OnClick="lbtnSelectAll_Click">Select All</asp:LinkButton>
 
                                 </div>
-                                <div class="col-md-1 pading5px">
-                                    <div class="colMdbtn pading5px">
-                                        <asp:LinkButton ID="lbtnSelectAll" runat="server" Style="margin: 0;" CssClass="btn btn-primary  primaryBtn checkbox" OnClick="lbtnSelectAll_Click">Select All</asp:LinkButton>
-
-                                    </div>
-
-                                </div>
-
-
-                            </fieldset>
-                            <asp:GridView ID="gvProLinkInfo" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
+                          </div>
+                                
+                            <div class="row mt-4" style="margin-left:10px;">
+                                <asp:GridView ID="gvProLinkInfo" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
                                 AutoGenerateColumns="False" ShowFooter="True" Width="16px"
                                 OnRowDeleting="gvProLinkInfo_RowDeleting">
                                 <PagerSettings Visible="False" />
@@ -122,7 +125,7 @@
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:CommandField ShowDeleteButton="True" />
+                                    <asp:CommandField ShowDeleteButton="True" ControlStyle-CssClass="fa fa-trash text-red btn-xs" DeleteText="" />
 
                                     <asp:TemplateField HeaderText="bactcode Code" Visible="false">
                                         <ItemTemplate>
@@ -169,8 +172,11 @@
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" />
                             </asp:GridView>
+                            </div>
+
+                            
                         </asp:Panel>
-                    </div>
+                    
                 </div>
             </div>
 

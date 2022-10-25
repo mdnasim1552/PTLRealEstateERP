@@ -4186,7 +4186,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Requisition Approved</Value>
+                          <Value>Rate Proposed</Value>
                           <Style>
                             <FontFamily>times New Roman</FontFamily>
                             <FontSize>9pt</FontSize>
@@ -4260,7 +4260,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Order Program</Value>
+                          <Value>Requisition Approved</Value>
                           <Style>
                             <FontFamily>times New Roman</FontFamily>
                             <FontSize>9pt</FontSize>

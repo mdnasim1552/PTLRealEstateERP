@@ -22,11 +22,16 @@ namespace RealERPWEB.F_70_Services
                 Init();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Service Quotation";
                 string type = Request.QueryString["Type"] ?? "";
+
                 if (type != "")
                 {
                     if (type != "Entry")
                     {
                         EditFunctionality();
+                    }
+                    if (type == "Entry")
+                    {
+                        this.txtNarration.Text = this.bindDataText();
                     }
                     if (type == "Approval" || type == "ApprovalEdit")
                     {
@@ -114,6 +119,48 @@ namespace RealERPWEB.F_70_Services
 
         }
 
+        private string bindDataText()
+        {
+            string comcod = this.GetComCode();
+            string msg = "";
+            string date1 = DateTime.Today.ToString("dd.MM.yyyy");
+            switch (comcod)
+            {
+                case "3101":
+                case "1101":
+                case "1207":
+                    msg = "1. If you have any questions about this invoice, please contact. Acme Services Phone : 01704118050 or 02-8080570" +
+                        "\n2. Make all cheque payable to ACME Services." +
+                        "\n3. Please be advised that interest will be charged as per the agreement if payment is not made in due date. " +
+                        "\n4. For Bank Transfer payment must be made directly to the Acme Technologies Ltd." +
+                        "\n5. The account details are :" +
+                        "\n   Bank Name : Trust Bank Ltd." +
+                        "\n   A/C No: 0002-02100111983 " +
+                        "\n   Branch: Principal Branch " +
+                        "\n   IFS Code : ";
+
+                    break;
+
+                /*
+                msg=$"";
+                 1.	If you have any questions about this invoice, please contact. Acme Services Phone : 01704118050 or 02
+-8080570
+2.	Make all cheque payable to ACME Services.
+3.	Please be advised that interest will be charged as per the agreement if payment is not made in due date.
+4.	For Bank Transfer payment must be made directly to the Acme Technologies Ltd. 
+5.	The account details are : 
+Bank Name : Trust Bank Ltd.
+A/C No: 0002-02100111983
+Branch: Principal Branch IFS Code :
+
+                 */
+                default:
+                    msg = "";
+                    break;
+            }
+
+            return msg;
+        }
 
         private void getWorkType()
         {
@@ -145,7 +192,7 @@ namespace RealERPWEB.F_70_Services
             try
             {
                 string comcod = GetComCode();
-                string type = "%";
+                string type = ASTUtility.Left(ddlResourceGroup.SelectedValue,2)+ "%";
                 DataSet ds = _process.GetTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "GETRESOURCE", type, "", "", "", "", "", "", "", "", "", "");
                 if (ds == null)
                 {
@@ -243,6 +290,7 @@ namespace RealERPWEB.F_70_Services
                 getNewQuotationNo();
                 getCustomer();
                 getWorkType();
+                GetResourceGrp();
                 getResource();
                 List<EQuotation> obj = new List<EQuotation>();
                 ViewState["MaterialList"] = obj;
@@ -304,6 +352,7 @@ namespace RealERPWEB.F_70_Services
                         aprrate = sirval,
                         apramt = 0,
                         percnt = 0,
+                        isprocess = true,
                         type = material == "049700101001" ? "Z" : "A"
                     });
                     ViewState["MaterialList"] = obj;
@@ -349,6 +398,7 @@ namespace RealERPWEB.F_70_Services
                     double aprquantity = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtgvAprQuantity")).Text.Trim()));
                     double aprrate = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtgvAprRate")).Text.Trim()));
                     double apramount = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvMaterials.Rows[rowindex].FindControl("txtAprAmount")).Text.Trim()));
+                    bool isProcess = ((CheckBox)this.gvMaterials.Rows[rowindex].FindControl("chkProcess")).Checked;
 
 
                     switch (type)
@@ -377,6 +427,7 @@ namespace RealERPWEB.F_70_Services
                     obj[rowindex].aprrate = aprrate;
                     obj[rowindex].apramt = materialId == "049700101001" ? apramount : aprquantity * aprrate;
                     obj[rowindex].aprpercnt = aprpercnt;
+                    obj[rowindex].isprocess = type == "Approval" || type == "ApprovalEdit" ? isProcess : true;
                 }
             }
             catch (Exception ex)
@@ -436,6 +487,8 @@ namespace RealERPWEB.F_70_Services
                         gvMaterials.Columns[16].Visible = true;
                         gvMaterials.HeaderRow.Cells[17].Visible = true;
                         gvMaterials.Columns[17].Visible = true;
+                        gvMaterials.HeaderRow.Cells[18].Visible = true;
+                        gvMaterials.Columns[18].Visible = true;
                     }
                 }
 
@@ -582,7 +635,7 @@ namespace RealERPWEB.F_70_Services
                 string date = txtEntryDate.Text;
                 string quotid = lblQuotation.Text;
                 string customerid = ddlCustomer.SelectedValue.ToString();
-                string narration = txtNarration.Text;
+                string narration = txtNarration.Text.Trim();
                 string isCheck = (type == "Check" || type == "CheckEdit") ? "1" : "0";
                 string isAppr = "0";
                 string status = (type == "Check" || type == "CheckEdit") ? "2" : type == "Approval" ? "3" : "1";
@@ -648,27 +701,31 @@ namespace RealERPWEB.F_70_Services
                                         string percnt = item.percnt.ToString();
                                         string percntchk = item.chkpercnt.ToString();
                                         string percntapr = item.aprpercnt.ToString();
+                                        string isprocess = item.isprocess.ToString();
                                         resultQuotA = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPSERTQUOTINFA", quotid, worktype, resource, qqty, qamt,
-                                            chkqty, chkamt, aprqty, apramt, userId, percnt, percntchk, percntapr, "", "", "", "", "", "", "", "");
+                                            chkqty, chkamt, aprqty, apramt, userId, percnt, percntchk, percntapr, isprocess, "", "", "", "", "", "", "");
                                         resultQuotArray.Add(resultQuotA);
-
 
 
                                     }
                                 }
                                 if (type == "Approval")
                                 {
+                                    var obj1 = obj.Where(x => x.isprocess == true).ToList();
+                                    string countMat = obj1.Where(x => x.resourcecode.StartsWith("01")).ToList().Count == 0 ? "0" : "1";
+                                    string countSubCon = obj1.Where(x => x.resourcecode.StartsWith("04") && x.resourcecode != "049700101001").ToList().Count == 0 ? "0" : "1";
+                                    string countOH = obj1.Where(x => x.resourcecode.StartsWith("12")).ToList().Count == 0 ? "0" : "1";
+
+                                    string ttlCount = countMat + countSubCon + countOH;
+
                                     if (isPrevCode.Text == "")
                                     {
                                         string resultCodebook = lblActcode.Text == "" ? "" : isMappedCodeDataUpdated();
-                                        if (resultCodebook == "41")
+                                        if (resultCodebook != "")
                                         {
 
-                                        }
-                                        else if (resultCodebook != "")
-                                        {
                                             string pactcode = "16" + ASTUtility.Right(resultCodebook, 10);
-                                            result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEAPPRQUOTINFB", quotid, status, userId, resultCodebook, "", "", "", "",
+                                            result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEAPPRQUOTINFB", quotid, status, userId, resultCodebook, ttlCount.ToString(), "", "", "",
                                                "", "", "", "", "", "", "", "", "", "", "", "", "");
                                             result = _process.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_04", "INSERTUPDATELINK", userId, pactcode, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
@@ -676,7 +733,7 @@ namespace RealERPWEB.F_70_Services
                                     }
                                     else
                                     {
-                                        result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEAPPRQUOTINFB", quotid, status, userId, isPrevCode.Text, "", "", "", "",
+                                        result = _process.UpdateTransInfo2(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEAPPRQUOTINFB", quotid, status, userId, isPrevCode.Text, ttlCount.ToString(), "", "", "",
                                               "", "", "", "", "", "", "", "", "", "", "", "", "");
                                     }
 
@@ -689,18 +746,32 @@ namespace RealERPWEB.F_70_Services
                                 else
                                 {
                                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"{quotid} - Updated Successful" + "');", true);
+                                    /*
+                                    lnkRdlcPrint.PostBackUrl= "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno + "&PrintOpt=" + PrintOpt;
+                                    */
+                                    string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_70_Services/";
+                                    string currentptah = "";
+
                                     if (type == "Entry")
                                     {
                                         ClearPage();
                                     }
                                     if (type == "Approval")
                                     {
-                                        Response.Redirect("/F_70_Services/QuotationEntry?Type=ApprovalEdit&QId=" + quotid);
+                                        currentptah = "QuotationEntry?Type=ApprovalEdit&QId=" + quotid;
+                                        string totalpath = hostname + currentptah;
+                                        ScriptManager.RegisterStartupScript(this, GetType(), "target", "FunPurchaseOrder('" + totalpath + "');", true);
+                                        //Response.Redirect("~/F_70_Services/QuotationEntry?Type=ApprovalEdit&QId=" + quotid, false);
                                     }
                                     if (type == "Check")
                                     {
-                                        Response.Redirect("/F_70_Services/QuotationEntry?Type=CheckEdit&QId=" + quotid);
+                                        //Response.Redirect("~/F_70_Services/QuotationEntry?Type=CheckEdit&QId=" + quotid, false);
+                                        currentptah = "QuotationEntry?Type=CheckEdit&QId=" + quotid;
+                                        string totalpath = hostname + currentptah;
+                                        ScriptManager.RegisterStartupScript(this, GetType(), "target", "FunPurchaseOrder('" + totalpath + "');", true);
+
                                     }
+
                                 }
                             }
                         }
@@ -1400,6 +1471,32 @@ namespace RealERPWEB.F_70_Services
             }
 
 
+        }
+        public void GetResourceGrp()
+        {
+            string comcod = GetComCode();
+            string type = "%";
+            DataSet ds = _process.GetTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "GETRESOURCEGROUP", type, "", "", "", "", "", "", "", "", "", "");
+            if (ds == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured-{_process.ErrorObject["Msg"].ToString()}" + "');", true);
+                return;
+            }
+           
+            ddlResourceGroup.DataSource = ds.Tables[0];
+            ddlResourceGroup.DataTextField = "sirdesc";
+            ddlResourceGroup.DataValueField = "sircode";
+            ddlResourceGroup.DataBind();
+        }
+
+        protected void ddlResourceGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            getResource();
+        }
+
+        protected void lnkReload_Click(object sender, EventArgs e)
+        {
+            getResource();
         }
     }
 }

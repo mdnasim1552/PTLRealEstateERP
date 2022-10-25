@@ -77,7 +77,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             switch (comcod)
             {
-                case "3101": //own 
+                //case "3101": //own 
                 case "3333"://Alliance
                 case "3354": // Edison
                 case "3353"://Manama
@@ -801,12 +801,14 @@ namespace RealERPWEB.F_99_Allinterface
 
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkbtnPrintBill");
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEditRD");
+                HyperLink hlink3 = (HyperLink)e.Row.FindControl("lnkbtnPrintOrder");
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string billno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "billno")).ToString();
                 string ssircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ssircode")).ToString();
                 string Date1 = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "billdat")).ToString("dd.MM.yyyy");
+                string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
 
 
                 hlink2.Font.Bold = true;
@@ -815,6 +817,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 hlink2.NavigateUrl = "~/F_17_Acc/AccPurchase?Type=Entry&genno=" + billno + "&ssircode=" + ssircode + "&Date1=" + Date1;
                 hlink1.NavigateUrl = "~/F_14_Pro/PurBillEntry?Type=BillPrint&genno=" + billno + "&Date1=" + Date1;
+                hlink3.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno;
 
 
             }
@@ -1049,8 +1052,9 @@ namespace RealERPWEB.F_99_Allinterface
                         string comcod = hst["comcod"].ToString();
                         if (comcod == "3339")
                         {
-                            gvPurchase.Columns[7].Visible = true;
+                            gvPurchase.Columns[8].Visible = true;
                         }
+
 
                         if (dt.Rows.Count > 0)
                         {

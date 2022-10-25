@@ -30,17 +30,23 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 {
                     this.GetCompany();
                     this.topPanle.Visible = true;
-                   
-                    if (comcod == "3365" || comcod=="3102")
+
+                    if (comcod == "3365")
                     {
                         this.GetEmpName();
                         this.WorkComments.Visible = false;
                         this.ReasonType.Visible = false;
                     }
+                    if (comcod == "3102")
+                    {
+                        this.GetEmpName();
+                        this.WorkComments.Visible = true;
+                        this.ReasonType.Visible = true;
+                    }
                 }
                 else
                 {
-                    
+
                     if (comcod == "3365" || comcod == "3102")
                     {
                         this.GetEmpName();
@@ -52,17 +58,17 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     {
                         this.ShowEmp.Visible = false;
                     }
-                    lblCurrentDate.Text= "Current Time: "+ System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-                }               
-                this.txtfromdate.Text= System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+                    lblCurrentDate.Text = "Current Time: " + System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+                }
+                this.txtfromdate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
                 this.GetEmpAttandance();
-            }    
+            }
         }
 
         private void GetEmpAttandance()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = GetCompCode();            
+            string comcod = GetCompCode();
             string userrole = hst["userrole"].ToString();
             string deptcod = this.ddlDpt.SelectedValue.ToString();
             string empid = (userrole == "3" ? hst["empid"].ToString() : this.ddlEmpNameAllInfo.SelectedValue.ToString());
@@ -74,7 +80,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             }
 
             if (comcod == "3365" || comcod == "3102")
-            { 
+            {
                 this.btnSaveAttn.Text = "Save";
             }
             else
@@ -110,8 +116,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
-            string txtCompany = "%%";
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETCOMPANYNAME1", txtCompany, userid, "", "", "", "", "", "", "");
+            string txtCompany = "94%";
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GET_ACCESSED_COMPANYLIST", txtCompany, userid, "", "", "", "", "", "", "");
+
+            //  DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETCOMPANYNAME1", txtCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
             this.ddlCompany.DataSource = ds1.Tables[0];
@@ -123,16 +131,27 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         }
         private void GetDptName()
         {
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
             if (this.ddlCompany.Items.Count == 0)
                 return;
 
-            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
-            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
+            //int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            //string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
 
+            //string txtSProject = "%%";
+
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
+            string branch = Company + "%";//(this.ddlBranch.SelectedValue.ToString() == "000000000000" || this.ddlBranch.SelectedValue.ToString() == "" ? Company : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
             string txtSProject = "%%";
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETPROJECTNAME", Company, txtSProject, "", "", "", "", "", "", "");
+            //  DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETPROJECTNAME", branch, txtSProject, "", "", "", "", "", "", "");
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETDPTLIST_NEW", branch, userid, "", "", "", "", "", "", "");
+
+
+
+            // DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETPROJECTNAME", Company, txtSProject, "", "", "", "", "", "", "");
             this.ddlDpt.DataTextField = "actdesc";
             this.ddlDpt.DataValueField = "actcode";
             this.ddlDpt.DataSource = ds1.Tables[0];
@@ -143,10 +162,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         private void SectionName()
         {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
-            string projectcode = this.ddlDpt.SelectedValue.ToString();
+            //  string projectcode = this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%%" : this.ddlProjectName.SelectedValue.ToString();
+            string projectcode = (this.ddlDpt.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlDpt.SelectedValue.ToString().Substring(0, 9)) + "%";
             string txtSSec = "%%";
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "SECTIONNAME", projectcode, txtSSec, "", "", "", "", "", "", "");
+            // DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "SECTIONNAME", projectcode, txtSSec, "", "", "", "", "", "", "");
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETSECTION_LIST", projectcode, userid, "", "", "", "", "", "", "");
+
             this.ddlSection.DataTextField = "sectionname";
             this.ddlSection.DataValueField = "section";
             this.ddlSection.DataSource = ds2.Tables[0];
@@ -161,7 +185,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string empid = hst["empid"].ToString();
 
             string comcod = this.GetCompCode();
-            string ProjectCode = (this.ddlSection.SelectedValue.Trim().Length > 0) ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
+            string ProjectCode = (this.ddlSection.SelectedValue.Trim().Length > 0) ? "94%" : this.ddlSection.SelectedValue.ToString() + "%";
             string txtSProject = "%%";
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPLOYEEINOUTLIST", ProjectCode, txtSProject, "", "", "", "", "", "", "");
             this.ddlEmpNameAllInfo.DataTextField = "empname";
@@ -171,7 +195,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             if (userrole == "3")
             {
                 this.ddlEmpNameAllInfo.SelectedValue = empid;
-                this.ddlEmpNameAllInfo.Enabled=false;
+                this.ddlEmpNameAllInfo.Enabled = false;
 
             }
             ViewState["tblemp"] = ds5.Tables[0];
@@ -194,7 +218,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = GetCompCode();
             switch (comcod)
             {
-              
+
                 case "3365":
                 case "3102":
                     this.InsertUpdateAttBti();
@@ -203,7 +227,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 default:
                     this.InsertUpdateOutofoffice();
                     break;
-            }         
+            }
         }
 
         private void InsertUpdateAttBti()
@@ -211,8 +235,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             Hashtable hst = (Hashtable)Session["tblLogin"];
 
             string comcod = this.GetCompCode();
-            string date = System.DateTime.Now.ToString() ;
-           
+            string date = System.DateTime.Now.ToString();
+
             string dayid = Convert.ToDateTime(date).ToString("yyyyMMdd");
 
             //result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "DELETEOFFTIME", dayid, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
@@ -220,33 +244,33 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             //string leave = dt.Rows[i]["leave"].ToString().Trim();
             //if ((absent != "A") && (leave != "L"))
             //{
-                string userrole = hst["userrole"].ToString();
-                string empid = this.ddlEmpNameAllInfo.SelectedValue.ToString();
-                 if(empid== "000000000000")
-                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Please Enter Idcard No." + "');", true);
-                    return;
-                 }              
-                string hrempid = (userrole == "3" ? hst["empid"].ToString() : this.ddlEmpNameAllInfo.SelectedValue.ToString());
-                string machid = "01";
-                string idcardno =this.ddlEmpNameAllInfo.SelectedItem.Text.ToString().Substring(0,5);
-                string intime = date;
-              
-                string outtime = Convert.ToDateTime(date).ToString("dd-MMM-yyyy") + " " + "17:00:00";
-                string offintime =  Convert.ToDateTime(date).ToString("dd-MMM-yyyy") + " " + "9:00:00";
-                string offoutime = Convert.ToDateTime(date).ToString("dd-MMM-yyyy") + " " + "17:00:00";
-                string lnintime = Convert.ToDateTime(date).ToString("dd-MMM-yyyy") + " " + "13:00:00";
-                string lnoutime = Convert.ToDateTime(date).ToString("dd-MMM-yyyy") + " " + "14:00:00";
-                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPEMPOFFTIMEAUTO", dayid, empid, machid, idcardno, intime, outtime, offintime, offoutime, lnintime, lnoutime, "", "", "", "", "");
-                if (result == true)
-                {
-                    string eventtype = "999";
-                    string eventdesc = this.txtNote.Text.Trim();
-                    string eventdesc2 = empid;
-                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Data Save Successfully" + "');", true);
-                }
-              //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Successfully');", true);
+            string userrole = hst["userrole"].ToString();
+            string empid = this.ddlEmpNameAllInfo.SelectedValue.ToString();
+            if (empid == "000000000000")
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Please Enter Idcard No." + "');", true);
+                return;
+            }
+            string hrempid = (userrole == "3" ? hst["empid"].ToString() : this.ddlEmpNameAllInfo.SelectedValue.ToString());
+            string machid = "01";
+            string idcardno = this.ddlEmpNameAllInfo.SelectedItem.Text.ToString().Substring(0, 5);
+            string intime = date;
+
+            string outtime = Convert.ToDateTime(date).ToString("dd-MMM-yyyy") + " " + "17:00:00";
+            string offintime = Convert.ToDateTime(date).ToString("dd-MMM-yyyy") + " " + "9:00:00";
+            string offoutime = Convert.ToDateTime(date).ToString("dd-MMM-yyyy") + " " + "17:00:00";
+            string lnintime = Convert.ToDateTime(date).ToString("dd-MMM-yyyy") + " " + "13:00:00";
+            string lnoutime = Convert.ToDateTime(date).ToString("dd-MMM-yyyy") + " " + "14:00:00";
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPEMPOFFTIMEAUTO", dayid, empid, machid, idcardno, intime, outtime, offintime, offoutime, lnintime, lnoutime, "", "", "", "", "");
+            if (result == true)
+            {
+                string eventtype = "999";
+                string eventdesc = this.txtNote.Text.Trim();
+                string eventdesc2 = empid;
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Data Save Successfully" + "');", true);
+            }
+            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Successfully');", true);
         }
         private void InsertUpdateOutofoffice()
         {

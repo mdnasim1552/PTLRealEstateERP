@@ -204,6 +204,15 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.HyperLink HyperCodeofConduct;
 
         /// <summary>
+        /// hyperform control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hyperform;
+
+        /// <summary>
         /// HypOrganogram control.
         /// </summary>
         /// <remarks>
@@ -310,6 +319,33 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvLeaveStatus;
+
+        /// <summary>
+        /// pnlClientMrrdayFinlay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlClientMrrdayFinlay;
+
+        /// <summary>
+        /// gvclientbthday control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvclientbthday;
+
+        /// <summary>
+        /// gvmarriageday control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvmarriageday;
 
         /// <summary>
         /// pnlApplyLeavBTI control.
@@ -571,6 +607,15 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl conductid;
+
+        /// <summary>
+        /// frmid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl frmid;
 
         /// <summary>
         /// payslip_modal_close control.

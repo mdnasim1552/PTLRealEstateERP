@@ -75,7 +75,6 @@ namespace RealERPWEB.F_12_Inv
                 else if (this.Request.QueryString["Type"].ToString() == "ReqChecked")
                 {
                     title = "MATERIALS TRANSFER Checked";
-
                     this.lblddlProjectFrom.Visible = true;
                     this.lblddlProjectTo.Visible = true;
                     this.ddlprjlistfrom.Visible = false;
@@ -434,16 +433,27 @@ namespace RealERPWEB.F_12_Inv
             string mtreqno = this.lblCurTransNo1.Text.ToString().Trim().Substring(0, 3) + mtreqdat.Substring(7, 4) + this.lblCurTransNo1.Text.ToString().Trim().Substring(3, 2) + this.txtCurTransNo2.Text.ToString().Trim();
             string mtrref = this.txtrefno.Text.ToString();
             string mtrnar = this.txtReqNarr.Text.ToString();
-
+            string fromprj = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
+            string toprj = this.ddlprjlistto.SelectedValue.ToString().Trim();
 
             dr1 = dt.Select("balqty<qty");
 
-            if (dr1.Length > 0)
+            if ((comcod=="3367") && ASTUtility.Left(fromprj, 2) == "11")
             {
-                msg1 = "Not Within the Balance";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg1 + "');", true);
-                return;
+
             }
+
+            else
+            {
+                if (dr1.Length > 0)
+                {
+                    msg1 = "Not Within the Balance";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg1 + "');", true);
+                    return;
+                }
+
+            }
+           
 
             if (mtrref.Length == 0)
             {
@@ -495,8 +505,7 @@ namespace RealERPWEB.F_12_Inv
                     break;
             }
 
-            string fromprj = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
-            string toprj = this.ddlprjlistto.SelectedValue.ToString().Trim();
+           
             string reqno = this.lblreqno.Text.Trim();
             string reqApproval = this.getCompReApproval();
 
@@ -591,15 +600,18 @@ namespace RealERPWEB.F_12_Inv
             string mtrref = this.txtrefno.Text.ToString();
             string mtrnar = this.txtReqNarr.Text.ToString();
 
+       
 
-            dr1 = dt.Select("balqty<qty");
-
-            if (dr1.Length > 0)
+            dr1 = dt.Select("balqty<qty");          
+           if (dr1.Length > 0)
             {
                 string Messaged = "Not Within the Balance";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 return;
             }
+
+
+            
 
             if (mtrref.Length == 0)
             {
@@ -679,7 +691,7 @@ namespace RealERPWEB.F_12_Inv
                     ptype = "Approved";
                     break;
 
-                //case "3101":
+                case "3101":
                 case "3367":
                     ptype = "Checked";
                     break;
@@ -1094,6 +1106,8 @@ namespace RealERPWEB.F_12_Inv
             ViewState["tblreqprj"] = ds1.Tables[1];
             this.Data_Bind_Aprv();
 
+
+            this.txtAprNarr.Text = ds1.Tables[1].Rows[0]["mtrnar"].ToString();
             //ddlprjlistfrom
             //ddlprjlistto
             //lblddlProjectTo
@@ -1117,6 +1131,8 @@ namespace RealERPWEB.F_12_Inv
             ViewState["tblreqchk"] = ds1.Tables[0];
             ViewState["tblreqprjchk"] = ds1.Tables[1];
             this.Data_Bind_Checked();
+            this.txtNarchk.Visible = true;
+            this.txtNarchk.Text= ds1.Tables[1].Rows[0]["mtrnar"].ToString(); 
 
             //ddlprjlistfrom
             //ddlprjlistto
@@ -1200,7 +1216,7 @@ namespace RealERPWEB.F_12_Inv
             string mtreqno = this.Request.QueryString["genno"].ToString();
             string fromprj = dt2.Rows[0]["TFPACTCODE"].ToString();
             string toprj = dt2.Rows[0]["TTPACTCODE"].ToString();
-
+            string aprNarr = this.txtAprNarr.Text.Trim().ToString();
 
             bool result;
 
@@ -1223,7 +1239,7 @@ namespace RealERPWEB.F_12_Inv
             }
 
 
-            result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_05", "MTREQAPPROVAL", mtreqno, fromprj, toprj, APRVBYID, APRVDAT, APRVSESON, APRVTRMID, "", "", "", "", "", "", "", "", "", "");
+            result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_05", "MTREQAPPROVAL", mtreqno, fromprj, toprj, APRVBYID, APRVDAT, APRVSESON, APRVTRMID, aprNarr, "", "", "", "", "", "", "", "", "");
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
@@ -1406,7 +1422,7 @@ namespace RealERPWEB.F_12_Inv
             string mtreqno = this.Request.QueryString["genno"].ToString();
             string fromprj = dt2.Rows[0]["TFPACTCODE"].ToString();
             string toprj = dt2.Rows[0]["TTPACTCODE"].ToString();
-
+            string txtNarchk = this.txtNarchk.Text.Trim();
 
             bool result;
 
@@ -1429,7 +1445,7 @@ namespace RealERPWEB.F_12_Inv
             }
 
 
-            result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_05", "MTREQCHECKED", mtreqno, fromprj, toprj, APRVBYID, APRVDAT, APRVSESON, APRVTRMID, "", "", "", "", "", "", "", "", "", "");
+            result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_05", "MTREQCHECKED", mtreqno, fromprj, toprj, APRVBYID, APRVDAT, APRVSESON, APRVTRMID, txtNarchk, "", "", "", "", "", "", "", "", "");
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();

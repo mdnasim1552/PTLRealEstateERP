@@ -39,8 +39,9 @@ namespace RealEntity.C_34_Mgt
               
             }
 
-
-
+        public class RequisationAdjust
+        {
+        }
     }
     [Serializable]
     public class EclassGroupChat
@@ -164,9 +165,10 @@ namespace RealEntity.C_34_Mgt
         public string billno { get; set; }
         public string approval { get; set; }
 
-        public EClassOtherReq()
-        {
-
-        }
+       
     }
+
+    
+
+
 }

@@ -36,20 +36,23 @@
                 </asp:UpdateProgress>
             </div>
             <div class="container-fluid mt-4">
-                <div class="row">
+   
+                <div class="row mt-2">
+                    <div class="card card-fluid" style="min-height: 550px; width:100%;">
+                        <div class="card-header">
+                                         <div class="row">
                     <div class="col-md-12">
-                        <div class="page-title d-inline">Notices</div>
+                        <div class="page-title d-inline ">Notices</div>
                         <div class="float-right d-inline">
                             <asp:LinkButton ID="lbtnCreateNotice" runat="server" CssClass="btn btn-primary bt-xs" OnClick="lbtnCreateNotice_Click">Add Notice</asp:LinkButton>
                         </div>
                     </div>
                 </div>
-                <div class="row mt-2">
-                    <div class="card card-fluid" style="min-height: 550px; width:100%;">
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <asp:GridView ID="grvNotice" runat="server" AllowPaging="True"
-                                    CssClass="table table-centered table-striped dt-responsive nowrap w-100 dataTable no-footer dtr-inline table-borderless"
+                                <asp:GridView ID="grvNotice" runat="server" AllowPaging="True" OnRowDataBound="grvNotice_RowDataBound"
+                                    CssClass="table table-centered table-striped dt-responsive nowrap w-100 dataTable no-footer dtr-inline table-borderless border-0"
                                     AutoGenerateColumns="False" Font-Size="12px" OnPageIndexChanging="grvNotice_PageIndexChanging"
                                     PageSize="50" ShowFooter="True">
                                     <PagerSettings NextPageText="Next" PreviousPageText="Previous" />
@@ -91,6 +94,13 @@
                                             </ItemTemplate>
                                             <HeaderStyle Font-Bold="True" Font-Size="13px" />
                                             <ItemStyle Font-Size="12px" />
+                                        </asp:TemplateField>
+                                        
+                                        <asp:TemplateField HeaderText="Attatchment">
+                                            <ItemTemplate>
+                                                 <asp:HyperLink runat="server" CssClass="text-info" NavigateUrl='<%#Eval("files")%>' Target="_blank"><i class="fa fa-paperclip"></i> </asp:HyperLink>
+                                            </ItemTemplate>
+                                      
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="User Name" HeaderStyle-HorizontalAlign="Center">

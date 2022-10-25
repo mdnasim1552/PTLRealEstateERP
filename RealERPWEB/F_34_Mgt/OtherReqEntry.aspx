@@ -118,7 +118,7 @@
             <div class="card card-fluid">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-1">
                             <div class="form-group">
                                 <asp:Label ID="lblCurDate" runat="server" Text="Req.Date"></asp:Label>
                                 <asp:TextBox ID="txtCurReqDate" runat="server" CssClass="form-control" AutoPostBack="true" AutoCompleteType="Disabled"></asp:TextBox>
@@ -148,7 +148,13 @@
                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary primaryBtn" Style="margin-top: 20px"
                                 OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                         </div>
-
+                        <div class="col-md-2">
+                            <asp:Label ID="lbldep" runat="server" CssClass="lblName lblTxt"  Text="Department"></asp:Label>
+                         
+                            <asp:DropDownList ID="ddlDeptCode" runat="server" CssClass="form-control chzn-select" >
+                            </asp:DropDownList>
+                           
+                        </div>
                         <div class="col-md-2">
                             <asp:Label ID="Label5" CssClass="lblTxt lblName" runat="server">Print Type:</asp:Label>
                             <asp:RadioButtonList runat="server" ID="RbtnPrint" CssClass="form-control chkBoxControl" RepeatDirection="Horizontal">
@@ -165,20 +171,19 @@
                             <asp:Label runat="server" ID="lbladvanced" Visible="false" Text="Adjusted" CssClass="btn btn-xs"></asp:Label>
                         </div>
 
-                        <div class="col-md-1">
-                            <asp:TextBox ID="txtSrchMrfNo" runat="server" Visible="false" CssClass="inputtextbox"></asp:TextBox>
-                            <asp:LinkButton ID="lbtnPrevReqList" runat="server" CssClass="btn btn-primary btn-sm" OnClick="lbtnPrevReqList_Click" Style="margin-top: 20px">Prev Req</asp:LinkButton>
-                        </div>
                         <div class="col-md-2">
-                            <asp:DropDownList ID="ddlPrevReqList" runat="server" Font-Bold="True" CssClass="form-control" Style="margin-top: 20px">
+                            <asp:LinkButton ID="lbtnPrevReqList" runat="server" CssClass="lblName lblTxt" OnClick="lbtnPrevReqList_Click" Text="Prev Req"></asp:LinkButton>
+                            <asp:TextBox ID="txtSrchMrfNo" runat="server" TabIndex="2" CssClass="inputtextbox" Visible="false"></asp:TextBox>
+                         
+                            <asp:DropDownList ID="ddlPrevReqList" runat="server" CssClass="form-control chzn-select" TabIndex="3">
                             </asp:DropDownList>
                             <asp:Label ID="lblmsg1" runat="server" CssClass="btn btn-danger primaryBtn" Visible="false"></asp:Label>
-
                         </div>
+
+
+                       
                     </div>
-
                 </div>
-
             </div>
 
             <asp:Panel ID="Panel1" runat="server" Visible="False">
@@ -250,7 +255,9 @@
                                     Width="542px" ShowFooter="True" OnRowDeleting="gvOtherReq_RowDeleting" OnRowCancelingEdit="gvOtherReq_RowCancelingEdit" OnRowEditing="gvOtherReq_RowEditing" OnRowUpdating="gvOtherReq_RowUpdating" Style="margin: 10px">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:CommandField ShowDeleteButton="True" />
+
+                                        <asp:CommandField ShowDeleteButton="True" DeleteText="<span class='fa fa-sm fa-trash' style=color:red;'></span>" ControlStyle-CssClass="text-danger" />
+
 
                                         <asp:CommandField ShowEditButton="True" />
 
@@ -549,7 +556,7 @@
                                     </asp:RadioButtonList>
                                 </div>
 
-                                <div class="col-md-2">
+                                <div class="col-md-2" runat="server" id="bundle" visible="false">
                                     <asp:Label runat="server" ID="lblbundle" CssClass="smLbl_to" Text="Bundle"></asp:Label>
                                     <asp:DropDownList ID="ddlBundle" runat="server" CssClass="form-control ddlPage" TabIndex="3"></asp:DropDownList>
                                 </div>
@@ -614,10 +621,7 @@
                     </div>
                 </div>
             </asp:Panel>
-
-
         </ContentTemplate>
     </asp:UpdatePanel>
-
 </asp:Content>
 

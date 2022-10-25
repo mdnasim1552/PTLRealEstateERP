@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptMyAttendenceSheet.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_82_App.RptMyAttendenceSheet" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" UnobtrusiveValidationMode="None" CodeBehind="RptMyAttendenceSheet.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_82_App.RptMyAttendenceSheet" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -188,37 +188,37 @@
 
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-lg-3">
                             <div class="form-row" runat="server" id="sysid">
-                                <label for="input04" class="col-md-3  mb-0">System ID:</label>
-                                <div class="col-md-9 ">
+                                <label for="input04" class="col-lg-4  mb-0">System ID:</label>
+                                <div class="col-lg-8 ">
                                     <asp:Label ID="lblsysid" runat="server" CssClass="control-label"> </asp:Label>
                                 </div>
                             </div>
 
                              <div class="form-row">
-                                <label for="input04" class="col-md-3  mb-0">Department</label>
-                                <div class="col-md-9 ">
+                                <label for="input04" class="col-lg-4  mb-0">Department</label>
+                                <div class="col-lg-8 ">
                                     <asp:Label ID="tbldept" runat="server" CssClass="control-label"> </asp:Label>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <label for="input04" class="col-md-3  mb-0">Att. Type</label>
-                                <div class="col-md-9 ">
+                                <label for="input04" class="col-lg-4  mb-0">Att. Type</label>
+                                <div class="col-lg-8 ">
                                     <asp:Label ID="lblattype" runat="server" CssClass="control-label"> </asp:Label>
                                 </div>
                             </div>
 
 
                             <div class="form-row">
-                                <label for="input04" class="col-md-3  mb-0">In Time</label>
-                                <div class="col-md-9 ">
+                                <label for="input04" class="col-lg-4 mb-0">In Time</label>
+                                <div class="col-lg-8 ">
                                     <asp:Label ID="lblIntime" runat="server" CssClass="control-label"> Card</asp:Label>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <label for="input04" class="col-md-3  mb-0">Out Time</label>
-                                <div class="col-md-9 ">
+                                <label for="input04" class="col-lg-4  mb-0">Out Time</label>
+                                <div class="col-lg-8 ">
                                     <asp:Label ID="lblout" runat="server" CssClass="control-label"> Card</asp:Label>
                                 </div>
                             </div>
@@ -397,6 +397,8 @@
 
             <div id="absmodal" class="modal animated zoomIn" role="dialog">
                 <div class="modal-dialog   modal-lg">
+                        <asp:UpdatePanel runat="server">
+                        <ContentTemplate>
                     <div class="modal-content  ">
                         <div class="modal-header">
                             <button type="button" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>
@@ -418,7 +420,7 @@
                            
                                             <abbr title="Required">*</abbr>
                                         </label>
-                                        <asp:DropDownList runat="server" ID="ddlReqType" class="form-control" required="">
+                                        <asp:DropDownList runat="server" ID="ddlReqType" class="form-control" OnSelectedIndexChanged="ddlReqType_SelectedIndexChanged" AutoPostBack="true">
                                         </asp:DropDownList>
 
                                     </div>
@@ -437,7 +439,11 @@
                                         </label>
                                         <asp:Label ID="lbldadteOuttime" Visible="false" runat="server" class="form-control"></asp:Label>
                                         <asp:Label ID="lbldadteIntime" Visible="false" runat="server" class="form-control"></asp:Label>
-                                        <asp:Label ID="lbldadteTime" runat="server" class="form-control"></asp:Label>
+                                        <%--<asp:Label ID="lbldadteTime" runat="server" class="form-control"></asp:Label>--%>
+                         
+                       
+                                        <asp:TextBox ID="lbldadteTime" class="form-control" runat="server" ></asp:TextBox>
+
 
                                     </div>
                                     <!-- /form grid -->
@@ -468,6 +474,9 @@
 
                         </div>
                     </div>
+
+                                         </ContentTemplate>
+                        </asp:UpdatePanel>
                 </div>
             </div>
 

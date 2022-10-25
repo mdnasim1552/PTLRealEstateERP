@@ -52,8 +52,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     ((Label)this.Master.FindControl("lblTitle")).Text = "APPLY LEAVE (MGT)";
                     this.empMgt.Visible = true;
                     GetEmpLoyee();
+                    getVisibilty();
                     // GetSupvisorCheck();
-                   // this.ddlEmpName_SelectedIndexChanged(null, null);
+                    // this.ddlEmpName_SelectedIndexChanged(null, null);
                 }
                 else if (qtype == "COMMON")
                 {
@@ -234,7 +235,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.chkBoxSkippWH.Checked = true;
                 chkBoxSkippWH_CheckedChanged(null, null);
                 // this part for BTI Resign Employee show
-                if ((comcod == "3365" || (comcod == "3101")) && qtype == "MGT")
+                if ((comcod == "3365" || comcod == "3101") && qtype == "MGT")
                 {
                     this.SpResign.Visible = true;
                 }
@@ -802,12 +803,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string deptname = (string)ds1.Tables[1].Rows[0]["deptname"];
 
 
+
+                string hyptext = (isSSL == true ? "https://" : "http://");
+
                 for (int j = 0; j < ds1.Tables[0].Rows.Count; j++)
                 {
                     string suserid = ds1.Tables[0].Rows[0]["suserid"].ToString();
                     string tomail = ds1.Tables[0].Rows[0]["mail"].ToString();
                     string roletype = (string)ds1.Tables[0].Rows[0]["roletype"];
-                    string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
+                    string uhostname = hyptext + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
                     string currentptah = "EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid=" + suserid + "&RoleType=" + roletype;
                     string totalpath = uhostname + currentptah;
 
@@ -927,7 +931,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         string SMSText = "New Leave Request from : " + frmdate + " To " + todate;// 
                         bool resultsms = sms.SendSmmsPwd(comcod, SMSText, supphone);
                     }
-                    if (compmail == "True")
+                        if (compmail == "True")
                     {
                         bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, empname, empdesig, deptname, compName, tomail, msgbody, isSSL);
                         if (Result_email == false)
@@ -1414,7 +1418,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             {
                 this.GetEmpLoyee();
             }
-            this.ddlEmpName_SelectedIndexChanged(null, null);
+          //  this.ddlEmpName_SelectedIndexChanged(null, null);
 
         }
 

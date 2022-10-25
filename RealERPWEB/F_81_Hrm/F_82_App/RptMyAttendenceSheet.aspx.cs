@@ -23,33 +23,42 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         Common compUtility = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            try {
+                if (!IsPostBack)
+                {
+
+
+                    //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
+                    //    Response.Redirect("../../AcceessError.aspx");
+                    string nextday = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.txtgvenjoydt1.Text = nextday;
+                    this.txtgvenjoydt2.Text = nextday;
+                    SelectDate();
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "  Employee Status";
+                    string qtype = this.Request.QueryString["Type"].ToString();
+                    GetLeaveType();
+                    if (qtype == "MGT")
+                    {
+                        this.mgtCard.Visible = true;
+                        this.empMgt.Visible = true;
+                        GetEmpLoyee();
+                        // GetSupvisorCheck();
+                        this.ddlEmpName_SelectedIndexChanged(null, null);
+                        //GetLeavType();
+                    }
+                    else
+                    {
+                        this.mgtCard.Visible = false;
+                        this.empMgt.Visible = false;
+                        this.getMyAttData();
+                    }
+
+                }
+            } catch (Exception ex)
             {
-                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                //    Response.Redirect("../../AcceessError.aspx");
-                string nextday = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.txtgvenjoydt1.Text = nextday;
-                this.txtgvenjoydt2.Text = nextday;
-                SelectDate();
-                ((Label)this.Master.FindControl("lblTitle")).Text = "  Employee Status";
-                string qtype = this.Request.QueryString["Type"].ToString();
-                GetLeaveType();
-                if (qtype == "MGT")
-                {
-                    this.mgtCard.Visible = true;
-                    this.empMgt.Visible = true;
-                    GetEmpLoyee();
-                    // GetSupvisorCheck();
-                    this.ddlEmpName_SelectedIndexChanged(null, null);
-                    //GetLeavType();
-                }
-                else
-                {
-                    this.mgtCard.Visible = false;
-                    this.empMgt.Visible = false;
-                    this.getMyAttData();
-                }
+
             }
+           
         }
         private void GetLeaveType()
         {
@@ -89,18 +98,25 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
         private void SelectDate()
         {
-            string comcod = this.GetComeCode();
-            this.txtgvenjoydt1.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-            DateTime date = Convert.ToDateTime(txtgvenjoydt1.Text);
-            DataSet datSetup = compUtility.GetCompUtility();
-            if (datSetup == null)
-                return;
-            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
-            string frmdate = Convert.ToInt32(date.ToString("dd")) > Convert.ToInt32(startdate) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-            frmdate = startdate + frmdate.Substring(2);
-            this.txtgvenjoydt1.Text = frmdate;
-            this.txtgvenjoydt2.Text = Convert.ToDateTime(this.txtgvenjoydt1.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-            //string tdate = date.ToString("dd-MMM-yyyy");
+            try
+            {
+                string comcod = this.GetComeCode();
+                this.txtgvenjoydt1.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                DateTime date = Convert.ToDateTime(txtgvenjoydt1.Text);
+                DataSet datSetup = compUtility.GetCompUtility();
+                if (datSetup == null)
+                    return;
+                string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+                string frmdate = Convert.ToInt32(date.ToString("dd")) > Convert.ToInt32(startdate) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                frmdate = startdate + frmdate.Substring(2);
+                this.txtgvenjoydt1.Text = frmdate;
+                this.txtgvenjoydt2.Text = Convert.ToDateTime(this.txtgvenjoydt1.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                //string tdate = date.ToString("dd-MMM-yyyy");
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
         private void GetEmpLoyee()
         {
@@ -145,75 +161,82 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
         private void getMyAttData()
         {
-            string comcod = this.GetComeCode();
-
-            string type = this.Request.QueryString["Type"].ToString();
-            string frmdate = "";
-            string todate = "";
-            string empid = "";
-         
-            if (type == "MGT")
+            try
             {
-                frmdate = this.txtgvenjoydt1.Text.ToString();
-                todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-                empid = this.ddlEmpName.SelectedValue.ToString(); ;    
-            }
-            else
-            {
-                frmdate = this.Request.QueryString["frmdate"].ToString();
-                todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-                empid = this.Request.QueryString["empid"].ToString();         
-            }
+                string comcod = this.GetComeCode();
 
-            string Actime = this.GetComLateAccTime();
+                string type = this.Request.QueryString["Type"].ToString();
+                string frmdate = "";
+                string todate = "";
+                string empid = "";
 
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "EMPATTNIDWISE", frmdate, todate, empid, Actime, "", "", "", "", "");
-
-            if (ds1 == null || ds1.Tables[0].Rows.Count==0)
-            {
-                return;
-            }
-
-            //this.lblDateOn.Text = " From " + this.Request.QueryString["frmdate"].ToString() + " To " + this.Request.QueryString["todate"].ToString();
-            // this.lblcompname.Text = ds1.Tables[2].Rows[0]["companyname"].ToString();
-            this.lblname.Text = ds1.Tables[0].Rows[0]["empnam"].ToString();
-            this.lblattype.Text = ds1.Tables[0].Rows[0]["attype"].ToString();
-            this.tbldept.Text = ds1.Tables[0].Rows[0]["empdept"].ToString();
-            this.lbljoindate.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["joindate"]).ToString("dd/MMM/yyyy");
-
-            this.lblconfirmdate.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["confirmdate"]).ToString("dd/MMM/yyyy");
-            this.sysid.Visible =(type == "MGT" ? true : false);
-            this.lblsysid.Text = ds1.Tables[0].Rows[0]["empid"].ToString();
-            this.lbldpt.Text = ds1.Tables[0].Rows[0]["empdept"].ToString();
-            this.lbldesg.Text = ds1.Tables[0].Rows[0]["empdsg"].ToString();
-            this.lblcard.Text = ds1.Tables[0].Rows[0]["idcardno"].ToString();
-            this.empdeptid.Value = ds1.Tables[0].Rows[0]["empdeptid"].ToString();
-
-            this.lblwork.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["twrkday"]).ToString("#, ##0;(#, ##0);");
-            this.lblLate.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["tlday"]).ToString("#, ##0;(#, ##0);");
-            this.lblLeave.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["tlvday"]).ToString("#, ##0;(#, ##0);");
-            this.lblAbsent.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["tabsday"]).ToString("#, ##0;(#, ##0);");
-            this.lblHoliday.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["thday"]).ToString("#, ##0;(#, ##0);");
-           if (comcod == "3366") 
-            {
-                if (ds1.Tables[3].Rows.Count != 0)
+                if (type == "MGT")
                 {
-                    this.lblIntime.Text = ds1.Tables[3].Rows[0]["intime"].ToString();
-                    this.lblout.Text = ds1.Tables[3].Rows[0]["outtime"].ToString();
+                    frmdate = this.txtgvenjoydt1.Text.ToString();
+                    todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                    empid = this.ddlEmpName.SelectedValue.ToString(); ;
                 }
+                else
+                {
+                    frmdate = this.Request.QueryString["frmdate"].ToString();
+                    todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                    empid = this.Request.QueryString["empid"].ToString();
+                }
+
+                string Actime = this.GetComLateAccTime();
+
+                DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "EMPATTNIDWISE", frmdate, todate, empid, Actime, "", "", "", "", "");
+
+                if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+                {
+                    return;
+                }
+
+                //this.lblDateOn.Text = " From " + this.Request.QueryString["frmdate"].ToString() + " To " + this.Request.QueryString["todate"].ToString();
+                // this.lblcompname.Text = ds1.Tables[2].Rows[0]["companyname"].ToString();
+                this.lblname.Text = ds1.Tables[0].Rows[0]["empnam"].ToString();
+                this.lblattype.Text = ds1.Tables[0].Rows[0]["attype"].ToString();
+                this.tbldept.Text = ds1.Tables[0].Rows[0]["empdept"].ToString();
+                this.lbljoindate.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["joindate"]).ToString("dd/MMM/yyyy");
+
+                this.lblconfirmdate.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["confirmdate"]).ToString("dd/MMM/yyyy");
+                this.sysid.Visible = (type == "MGT" ? true : false);
+                this.lblsysid.Text = ds1.Tables[0].Rows[0]["empid"].ToString();
+                this.lbldpt.Text = ds1.Tables[0].Rows[0]["empdept"].ToString();
+                this.lbldesg.Text = ds1.Tables[0].Rows[0]["empdsg"].ToString();
+                this.lblcard.Text = ds1.Tables[0].Rows[0]["idcardno"].ToString();
+                this.empdeptid.Value = ds1.Tables[0].Rows[0]["empdeptid"].ToString();
+
+                this.lblwork.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["twrkday"]).ToString("#, ##0;(#, ##0);");
+                this.lblLate.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["tlday"]).ToString("#, ##0;(#, ##0);");
+                this.lblLeave.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["tlvday"]).ToString("#, ##0;(#, ##0);");
+                this.lblAbsent.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["tabsday"]).ToString("#, ##0;(#, ##0);");
+                this.lblHoliday.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["thday"]).ToString("#, ##0;(#, ##0);");
+                if (comcod == "3366")
+                {
+                    if (ds1.Tables[3].Rows.Count != 0)
+                    {
+                        this.lblIntime.Text = ds1.Tables[3].Rows[0]["intime"].ToString();
+                        this.lblout.Text = ds1.Tables[3].Rows[0]["outtime"].ToString();
+                    }
+                }
+                else
+                {
+                    this.lblIntime.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["offintime1"]).ToString("hh:mm tt");
+                    this.lblout.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["stdtimeout"]).ToString("hh:mm tt");
+                }
+
+
+
+                Session["tblempdatewise"] = ds1.Tables[0];
+
+                this.RptMyAttenView.DataSource = ds1;
+                this.RptMyAttenView.DataBind();
             }
-            else
+            catch (Exception ex)
             {
-                this.lblIntime.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["offintime1"]).ToString("hh:mm tt");
-                this.lblout.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["stdtimeout"]).ToString("hh:mm tt");
+
             }
-
-
-
-            Session["tblempdatewise"] = ds1.Tables[0];
-
-            this.RptMyAttenView.DataSource = ds1;
-            this.RptMyAttenView.DataBind();
 
         }
 
@@ -409,6 +432,22 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         }
 
                         break;
+                    case "3368":
+                        if (ahleave == "A" || ahleave == "H" || ahleave == "Lv")
+                        {
+                            ((Label)e.Item.FindControl("lblactualout")).Visible = false;
+                            ((Label)e.Item.FindControl("lblactualin")).Visible = false;
+                            ((Label)e.Item.FindControl("lblstatus")).Attributes["style"] = "font-weight:bold;";
+
+                        }
+                        else if ((offimein < actualin) && lateapp == "False")
+                        {
+                            ((Label)e.Item.FindControl("lblactualout")).Attributes["style"] = "font-weight:bold; color:red;";
+                            ((Label)e.Item.FindControl("lblactualin")).Attributes["style"] = "font-weight:bold; color:red;";
+                            ((Label)e.Item.FindControl("lbldtimehour")).Attributes["style"] = "font-weight:bold; color:red;";
+                        }
+
+                        break;
                     default:
                         if (ahleave == "A" || ahleave == "H" || ahleave == "Lv")
                         {
@@ -472,6 +511,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             Label lblisremarks = (Label)Rptitem.FindControl("lblisremarks");
             Label lblRequid = (Label)Rptitem.FindControl("lblRequid");
             Label lblapremarks = (Label)Rptitem.FindControl("lblapremarks");
+   
 
             string attstatus = lblstatus.Text.Trim();
             ddlReqType.SelectedValue = (attstatus == "" && comcod == "3365" ? "TC" : attstatus == "A" ? "AB" : "LA");
@@ -547,7 +587,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string reqfor = reqtype == "AB" ? "Absent Approval" : reqtype == "LP" ? "Late Present Approval" : reqtype == "LA"? "Late Approval" : "Time of Correction";
             string reqdate = this.lbldadte.Text.Trim();
             string dayID =  Convert.ToDateTime(this.lbldadte.Text.Trim()).ToString("yyyyMMdd");
-            string reqtimeIN = this.lbldadteIntime.Text.Trim();
+            string reqtimeIN = this.lbldadteTime.Text.Trim();
             string reqtimeOUT = this.lbldadteOuttime.Text.Trim();
             string txtReson = txtAreaReson.Text.Trim();
             string reqid = this.ReqID.Value;
@@ -793,6 +833,20 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         protected void lnkbtnRefresh_Click(object sender, EventArgs e)
         {
             getMyAttData();
+        }
+
+        protected void ddlReqType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModalAbs();", true);
+
+            if (ddlReqType.SelectedValue.ToString() == "TC")
+            {
+                this.lbldadteTime.Enabled = true;
+            }
+            else
+            {
+                this.lbldadteTime.Enabled = false;
+            }
         }
     }
 }

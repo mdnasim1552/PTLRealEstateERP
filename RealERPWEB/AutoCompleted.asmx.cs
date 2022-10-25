@@ -66,6 +66,15 @@ namespace RealERPWEB
             Session["tblrecandPayto"] = ds4.Tables[0];
         }
 
+        [WebMethod]
+        public void GetProspective(string Comcode, string ProcedureName, string CallType, string Desc1, string Desc2, string Desc3, string Desc4, string Desc5, string Desc6, string Desc7, string Desc8, string Desc9)
+        {
+            DataSet ds4 = MISData.GetTransInfo(Comcode, ProcedureName, CallType, Desc1, Desc2, Desc3, Desc4, Desc5, Desc6, Desc7, Desc8, Desc9);
+            if (ds4 == null)
+                return;
+            Session["tblprospective"] = ds4.Tables[0];
+        }
+
 
 
 
@@ -139,6 +148,29 @@ namespace RealERPWEB
 
         }
 
+
+
+        [WebMethod(true)]
+        public string[] GetprospectiveDetails(string prefixText, int count)
+        {
+           
+            DataTable dt = ((DataTable)Session["tblprospective"]);
+            string txtname = prefixText.ToString().Trim() + "%";
+            DataView dv = dt.DefaultView;
+            dv.RowFilter = ("prosdesc like '" + txtname + "'");
+            dt = dv.ToTable();
+            int rowcount = dt.Rows.Count;
+            List<string> responses = new List<string>();
+            for (int i = 0; i < count; i++)
+            {
+                if (i > (rowcount - 1))
+                    break;
+                responses.Add(dt.Rows[i]["prdesc"].ToString());
+
+            }
+            return responses.ToArray();
+
+        }
 
 
 

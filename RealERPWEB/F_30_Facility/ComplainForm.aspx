@@ -125,8 +125,6 @@
                                 </div>
                             </div>
 
-
-
                         </div>
                         <div id="divComplainList">
                             <div class="row">

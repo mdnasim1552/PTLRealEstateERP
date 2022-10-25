@@ -530,6 +530,7 @@
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
                         break;
 
+                    //case 3101:   //ASIT
                     case 3368: // Finlay
 
                         $(".tbMenuWrp table tr td:nth-child(3)").hide();
@@ -2463,7 +2464,6 @@
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
                                                     <asp:HyperLink ID="lnkbtnPrintIN" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span></asp:HyperLink>
-
 
                                                     <asp:HyperLink ID="lnkBillCS" runat="server" ToolTip="CS" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                     </asp:HyperLink>

@@ -430,5 +430,17 @@ input:checked + .slider:before {
     .slider.round:before {
         border-radius: 50%;
     }
+
+
+.textalignright {
+
+text-align:right;
+}
+
+
+.textbold {
+    text-align: right;
+}
+
 /*Switch Rounded sliders */
 

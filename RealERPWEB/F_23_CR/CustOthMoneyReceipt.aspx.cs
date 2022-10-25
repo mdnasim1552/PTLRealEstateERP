@@ -24,14 +24,20 @@ namespace RealERPWEB.F_23_CR
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                    Response.Redirect("~/AcceessError.aspx");
+
+                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
+                //    Response.Redirect("../AcceessError.aspx");
+
                 this.txtReceiveDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtpaydate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.GetProjectName();
                 this.GetCustomer();
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = true;
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Collection -Other's";
                 this.PrintDupOrOrginal();
                 Session.Remove("tblfincoll");
@@ -42,8 +48,42 @@ namespace RealERPWEB.F_23_CR
                     this.chkPrevious.Visible = false;
 
                 }
+                string pactcode = Request.QueryString["pactcode"] == null ? "" : Request.QueryString["pactcode"].ToString();
+                if (pactcode != "")
+                {
+                    ddlProjectName.SelectedValue = pactcode;
+                    //ddlProjectName.Enabled = false;
+                    ddlProjectName_SelectedIndexChanged(null, null);
+                }
+
+
                 this.txtSrcPro.Focus();
                 txtBalance.Text = Convert.ToDouble("0.00").ToString("#,##0.00;-#,##0.00; ");
+                string comcod = GetCompCode();
+                if (comcod == "1207") //This Part is Only For Acme Services Only
+                {
+
+                    string proj = "41" + ASTUtility.Right(ddlProjectName.SelectedValue.ToString(), 10);
+                    DataSet ds1 = CustData.GetTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "GETQUOTATIONPACTCODE", proj, "", "", "", "", "", "", "", "");
+                    if (ds1 == null)
+                        return;
+                    if (ds1.Tables[0].Rows.Count == 0)
+                    {
+                        lblBalance.Visible = false;
+                        txtBalance.Visible = false;
+                        txtBalance.Text = Convert.ToDouble("0.00").ToString("#,##0.00;-#,##0.00; ");
+                        lblCustomerFromService.Text = "000000000000";
+                    }
+                    else
+                    {
+                        lblBalance.Visible = true;
+                        txtBalance.Visible = true;
+                        txtBalance.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["balamt"]).ToString("#,##0.00;-#,##0.00; ");
+                        lblCustomerFromService.Text = ds1.Tables[0].Rows[0]["customerid"].ToString();
+
+                    }
+
+                }
             }
         }
         private void GetComBillnoVisible()
@@ -772,7 +812,7 @@ namespace RealERPWEB.F_23_CR
             {
                 double ttlAmt = Convert.ToDouble(((Label)this.gvMoneyreceipt.FooterRow.FindControl("txtFTotal")).Text);
                 double BalAmt = Convert.ToDouble(txtBalance.Text);
-                if (BalAmt > ttlAmt)
+                if (BalAmt >= ttlAmt)
                 {
                     return true;
                 }
@@ -789,15 +829,19 @@ namespace RealERPWEB.F_23_CR
 
         protected void lbtnUpdate_Click(object sender, EventArgs e)
         {
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-            if (!Convert.ToBoolean(dr1[0]["entry"]))
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
             try
             {
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                    Response.Redirect("../AcceessError.aspx");
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+
+                if (!(Convert.ToBoolean(dr1[0]["entry"])))
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
 
                 if (isBalance())
                 {
@@ -1238,7 +1282,7 @@ namespace RealERPWEB.F_23_CR
 
             }
 
-            if (comcod == "1101")
+            if (comcod == "1207") //This Part is Only For Acme Services Only
             {
 
                 string proj = "41" + ASTUtility.Right(ddlProjectName.SelectedValue.ToString(), 10);

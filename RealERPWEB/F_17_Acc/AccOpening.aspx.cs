@@ -489,50 +489,60 @@ namespace RealERPWEB.F_17_Acc
             DataTable tblt03 = (DataTable)Session["AccTbl02"];
 
 
-            //DataTable dt = tblt03.Copy ();
-            //DataView dv = dt.DefaultView;
-            //dv.RowFilter = "Dr <> 0 or Cr<>0";
-            //dt = dv.ToTable();
+            DataTable dt = tblt03.Copy();
+            dt.Columns.Remove("resdesc");
+            dt.Columns.Remove("resunit");
+            dt.Columns.Remove("spcfdesc");
+            DataView dv = dt.DefaultView;
+            dv.RowFilter = "Dr <> 0 or Cr<>0 or qty<>0";
+            dt = dv.ToTable();
 
-            //DataSet ds1 = new DataSet("ds1");
-            //ds1.Tables.Add(dt);
-            //ds1.Tables[0].TableName = "tbl1";
+            DataSet ds1 = new DataSet("ds1");
+            ds1.Tables.Add(dt);
+            ds1.Tables[0].TableName = "tbl1";
+            string xml = ds1.GetXml();
+            bool result = accData.UpdateXmlTransInfo (comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "ACVOPNUPDATEAXML", ds1, null, null, vounum, actcode, cactcode, voudat, vtcode, UserId, EditDate, Terminal);
 
-
-
-            //bool result = accData.UpdateXmlTransInfo (comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "ACVOPNUPDATEAXML", ds1, null, null, vounum, actcode, cactcode, voudat, vtcode, UserId, EditDate, Terminal);
-
-
-
-            for (int i = 0; i < tblt03.Rows.Count; i++)
+            if (!result)
             {
-                string rescode = tblt03.Rows[i]["rescode"].ToString();
-                string spcfcod = tblt03.Rows[i]["spcfcod"].ToString();
-                string trnqty = tblt03.Rows[i]["qty"].ToString();
-                double Dramt = Convert.ToDouble(tblt03.Rows[i]["Dr"]);
-                double Cramt = Convert.ToDouble(tblt03.Rows[i]["Cr"]);
-                string trnamt = Convert.ToString(Dramt - Cramt);
-                string trnremark = Convert.ToDouble(Dramt).ToString();
-                string rmrks = tblt03.Rows[i]["rmrks"].ToString();
-
-
-                //if ((Dramt - Cramt) != 0)
-                //{
-                bool resulta = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "ACVOPNUPDATEA", vounum, actcode,
-                        rescode, cactcode, voudat, trnqty, trnremark, vtcode, trnamt, spcfcod, UserId, EditDate, Terminal, rmrks, "");
-                if (!resulta)
-                {
-                    // string error = accData.ErrorObject["Msg"].ToString().Trim();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Fail.');", true);
-                    return;
-                }
-                //}     
+                // string error = accData.ErrorObject["Msg"].ToString().Trim();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Update Failed..!!');", true);
+                return;
             }
 
+            //t1.Columns.Remove("flrdes");
+            //dt1.Columns.Remove("rsirdesc");
+            //dt1.Columns.Remove("rsirdesc1");
+            //dt1.Columns.Remove("rsirunit");
 
-            //((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully.";
-            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Successfully.');", true);
+
+            //for (int i = 0; i < tblt03.Rows.Count; i++)
+            //{
+            //    string rescode = tblt03.Rows[i]["rescode"].ToString();
+            //    string spcfcod = tblt03.Rows[i]["spcfcod"].ToString();
+            //    string trnqty = tblt03.Rows[i]["qty"].ToString();
+            //    double Dramt = Convert.ToDouble(tblt03.Rows[i]["Dr"]);
+            //    double Cramt = Convert.ToDouble(tblt03.Rows[i]["Cr"]);
+            //    string trnamt = Convert.ToString(Dramt - Cramt);
+            //    string trnremark = Convert.ToDouble(Dramt).ToString();
+            //    string rmrks = tblt03.Rows[i]["rmrks"].ToString();
+
+
+            //    //if ((Dramt - Cramt) != 0)
+            //    //{
+            //    bool resulta = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "ACVOPNUPDATEA", vounum, actcode,
+            //            rescode, cactcode, voudat, trnqty, trnremark, vtcode, trnamt, spcfcod, UserId, EditDate, Terminal, rmrks, "");
+            //    if (!resulta)
+            //    {
+            //        // string error = accData.ErrorObject["Msg"].ToString().Trim();
+            //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Fail.');", true);
+            //        return;
+            //    }
+            //    //}     
+            //}
+
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully.');", true);
             if (ConstantInfo.LogStatus == true)
             {
                 string eventtype = "Account Opening";

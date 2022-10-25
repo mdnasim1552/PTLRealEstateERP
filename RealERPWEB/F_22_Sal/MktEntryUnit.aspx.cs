@@ -132,9 +132,9 @@ namespace RealERPWEB.F_22_Sal
                     // this.gvUnit.Columns[11].Visible = false;
                     //this.gvUnit.Columns[12].Visible = false;
                     this.gvUnit.Columns[16].Visible = false;
-                    this.gvUnit.Columns[17].Visible = false;
-                    this.gvUnit.Columns[18].Visible = false;
                     this.gvUnit.Columns[19].Visible = false;
+                    this.gvUnit.Columns[20].Visible = false;
+                    this.gvUnit.Columns[21].Visible = false;
                     break;
 
 
@@ -249,6 +249,11 @@ namespace RealERPWEB.F_22_Sal
                 double cooperative = Convert.ToDouble('0' + ((TextBox)this.gvUnit.Rows[i].FindControl("txtgvPCooprative")).Text.Trim());
 
                 double MinBMoney = Convert.ToDouble('0' + ((TextBox)this.gvUnit.Rows[i].FindControl("txtgvBookingMoney")).Text.Trim());
+                double bookingper = Convert.ToDouble('0' + ((TextBox)this.gvUnit.Rows[i].FindControl("txtgvBookingper")).Text.Trim());
+                int noofinstall = Convert.ToInt32('0' + ((TextBox)this.gvUnit.Rows[i].FindControl("txtgvemi")).Text.Trim());
+
+
+                
                 string chkper = (((CheckBox)gvUnit.Rows[i].FindControl("chk")).Checked) ? "True" : "False";
 
 
@@ -275,6 +280,8 @@ namespace RealERPWEB.F_22_Sal
                 tblt02.Rows[rowindex]["pamt"] = pamt;
                 tblt02.Rows[rowindex]["tamt"] = tamt;
                 tblt02.Rows[rowindex]["minbam"] = MinBMoney;
+                tblt02.Rows[rowindex]["bookingper"] = bookingper;
+                tblt02.Rows[rowindex]["noofinstall"] = noofinstall;
                 tblt02.Rows[rowindex]["urmrks"] = Remarsk;
 
                 tblt02.Rows[rowindex]["facing"] = facing;
@@ -388,11 +395,15 @@ namespace RealERPWEB.F_22_Sal
                 string chkper = dt.Rows[i]["mgtbook"].ToString().Trim();
                 string fcode = dt.Rows[i]["fcode"].ToString().Trim();
                 string isLO = (Request.QueryString["Type"] == null) ? "0" : "1";
+                string bookingper = dt.Rows[i]["bookingper"].ToString();
+                string noofinstall = dt.Rows[i]["noofinstall"].ToString();
+
+
 
                 if (dUsize > 0)
                 {
-                    bool result = MktData.UpdateTransInfo2(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATESALINF", PactCode, UsirCode, UNumber, dUsize.ToString(), qty, Udesc,
-                        bstat, Uramrks, Amt, Pqty, Pamt, Minbam, facing, view, utility, cooprative, chkper, fcode, Udescbn, isLO, "");
+                    bool result = MktData.UpdateTransInfo3(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATESALINF", PactCode, UsirCode, UNumber, dUsize.ToString(), qty, Udesc,
+                        bstat, Uramrks, Amt, Pqty, Pamt, Minbam, facing, view, utility, cooprative, chkper, fcode, Udescbn, isLO, bookingper, noofinstall,"");
 
                     if (!result)
                     {
@@ -446,31 +457,45 @@ namespace RealERPWEB.F_22_Sal
 
         private void Data_bind()
         {
-            string comcod = this.GetCompCode();
-            DataTable tblt05 = (DataTable)ViewState["tblUnit"];
-            this.gvUnit.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-            this.gvUnit.DataSource = tblt05;
-            this.gvUnit.DataBind();
+            try
 
-            if (tblt05.Rows.Count == 0)
-                return;
-            ((Label)this.gvUnit.FooterRow.FindControl("lgvFAmt")).Text = Convert.ToDouble((Convert.IsDBNull(tblt05.Compute("Sum(uamt)", "")) ?
-              0.00 : tblt05.Compute("Sum(uamt)", ""))).ToString("#,##0;(#,##0); ");
-            ((Label)this.gvUnit.FooterRow.FindControl("lFUsize")).Text = Convert.ToDouble((Convert.IsDBNull(tblt05.Compute("Sum(usize)", "")) ?
-              0.00 : tblt05.Compute("Sum(usize)", ""))).ToString("#,##0.00;(#,##0.00); ");
-            ((Label)this.gvUnit.FooterRow.FindControl("lgvPAmt")).Text = Convert.ToDouble((Convert.IsDBNull(tblt05.Compute("Sum(pamt)", "")) ?
-              0.00 : tblt05.Compute("Sum(pamt)", ""))).ToString("#,##0;(#,##0); ");
-            ((Label)this.gvUnit.FooterRow.FindControl("lgvTAmt")).Text = Convert.ToDouble((Convert.IsDBNull(tblt05.Compute("Sum(tamt)", "")) ?
-              0.00 : tblt05.Compute("Sum(tamt)", ""))).ToString("#,##0;(#,##0); ");
-            ((Label)this.gvUnit.FooterRow.FindControl("lgvfAptqty")).Text = Convert.ToDouble((Convert.IsDBNull(tblt05.Compute("Sum(uqty)", "")) ?
-           0.00 : tblt05.Compute("Sum(uqty)", ""))).ToString("#,##0;(#,##0); ");
-            ((Label)this.gvUnit.FooterRow.FindControl("lgvfParkingqty")).Text = Convert.ToDouble((Convert.IsDBNull(tblt05.Compute("Sum(pqty)", "")) ?
-           0.00 : tblt05.Compute("Sum(pqty)", ""))).ToString("#,##0;(#,##0); ");
+            {
 
-            ((Label)this.gvUnit.FooterRow.FindControl("lgvPUtility")).Text = Convert.ToDouble((Convert.IsDBNull(tblt05.Compute("Sum(utility)", "")) ?
-          0.00 : tblt05.Compute("Sum(utility)", ""))).ToString("#,##0;(#,##0); ");
-            ((Label)this.gvUnit.FooterRow.FindControl("lgvPCooprative")).Text = Convert.ToDouble((Convert.IsDBNull(tblt05.Compute("Sum(cooperative)", "")) ?
-          0.00 : tblt05.Compute("Sum(cooperative)", ""))).ToString("#,##0;(#,##0); ");
+                string comcod = this.GetCompCode();
+                DataTable tblt05 = (DataTable)ViewState["tblUnit"];
+                this.gvUnit.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                this.gvUnit.DataSource = tblt05;
+                this.gvUnit.DataBind();
+
+                if (tblt05.Rows.Count == 0)
+                    return;
+                ((Label)this.gvUnit.FooterRow.FindControl("lgvFAmt")).Text = Convert.ToDouble((Convert.IsDBNull(tblt05.Compute("Sum(uamt)", "")) ?
+                  0.00 : tblt05.Compute("Sum(uamt)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvUnit.FooterRow.FindControl("lFUsize")).Text = Convert.ToDouble((Convert.IsDBNull(tblt05.Compute("Sum(usize)", "")) ?
+                  0.00 : tblt05.Compute("Sum(usize)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                ((Label)this.gvUnit.FooterRow.FindControl("lgvPAmt")).Text = Convert.ToDouble((Convert.IsDBNull(tblt05.Compute("Sum(pamt)", "")) ?
+                  0.00 : tblt05.Compute("Sum(pamt)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvUnit.FooterRow.FindControl("lgvTAmt")).Text = Convert.ToDouble((Convert.IsDBNull(tblt05.Compute("Sum(tamt)", "")) ?
+                  0.00 : tblt05.Compute("Sum(tamt)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvUnit.FooterRow.FindControl("lgvfAptqty")).Text = Convert.ToDouble((Convert.IsDBNull(tblt05.Compute("Sum(uqty)", "")) ?
+               0.00 : tblt05.Compute("Sum(uqty)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvUnit.FooterRow.FindControl("lgvfParkingqty")).Text = Convert.ToDouble((Convert.IsDBNull(tblt05.Compute("Sum(pqty)", "")) ?
+               0.00 : tblt05.Compute("Sum(pqty)", ""))).ToString("#,##0;(#,##0); ");
+
+                ((Label)this.gvUnit.FooterRow.FindControl("lgvPUtility")).Text = Convert.ToDouble((Convert.IsDBNull(tblt05.Compute("Sum(utility)", "")) ?
+              0.00 : tblt05.Compute("Sum(utility)", ""))).ToString("#,##0;(#,##0); ");
+                ((Label)this.gvUnit.FooterRow.FindControl("lgvPCooprative")).Text = Convert.ToDouble((Convert.IsDBNull(tblt05.Compute("Sum(cooperative)", "")) ?
+              0.00 : tblt05.Compute("Sum(cooperative)", ""))).ToString("#,##0;(#,##0); ");
+            }
+            catch (Exception ex)
+            {
+
+
+                ((Label)this.Master.FindControl("lblmsg")).Text = ex.ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+
+            }
 
 
         }
@@ -541,7 +566,7 @@ namespace RealERPWEB.F_22_Sal
                 //ds3 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "SIRINFINFANDUNITINFO", PactCode, "", "", "", "", "", "", "", "");
                 //if (ds3 == null)
                 //    return;
-                //this.gvUnit.Columns[1].Visible = false;
+                
             }
 
             else
@@ -553,7 +578,7 @@ namespace RealERPWEB.F_22_Sal
                 //ds3 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "SIRINFINFORMATION", PactCode, "", "", "", "", "", "", "", "");
                 //if (ds3 == null)
                 //    return;
-                //this.gvUnit.Columns[1].Visible = true;
+                
                 //ViewState["tblUnit"] = ds3.Tables[0];
                 //this.Data_bind();
 
@@ -702,6 +727,9 @@ namespace RealERPWEB.F_22_Sal
             this.ddlFloor_SelectedIndexChanged(null, null);
         }
 
+        protected void lbtnOk_Click1(object sender, EventArgs e)
+        {
 
+        }
     }
 }

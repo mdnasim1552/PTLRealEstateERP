@@ -114,7 +114,10 @@ namespace RealEntity.C_04_Bgd
            public string actdesc { get; set; }
            public string resdesc { get; set; }
            public string resunit { get; set; }
-           public BudgetInmStaSum() { }
+            public double actam { get; set; }
+            public double adevcost { get; set; }
+            public double asalcost { get; set; }
+            public BudgetInmStaSum() { }
        }
        //Nayan      
        [Serializable]
@@ -132,6 +135,9 @@ namespace RealEntity.C_04_Bgd
            public string actdesc { get; set; }
            public string resdesc { get; set; }
            public string resunit { get; set; }
+           public double actam { get; set; }
+           public double adevcost { get; set; }
+           public double asalcost { get; set; }
            public ProjBgdCon() { }
        }
        [Serializable]

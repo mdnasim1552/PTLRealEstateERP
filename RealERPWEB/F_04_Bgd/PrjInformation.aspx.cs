@@ -56,7 +56,7 @@ namespace RealERPWEB.F_04_Bgd
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
-     
+
 
         private void GetCatagory()
         {
@@ -139,7 +139,7 @@ namespace RealERPWEB.F_04_Bgd
         {
 
             string comcod = this.GetComCode();
-            string ProjectCode = this.ddlPrjName.SelectedValue.ToString();
+            string ProjectCode = this.Request.QueryString["prjcode"].ToString() == "" ? this.ddlPrjName.SelectedValue.ToString() : this.Request.QueryString["prjcode"].ToString();
             string fpactcode = (((DataTable)Session["tblpro"]).Select("actcode='" + ProjectCode + "'"))[0]["factcode"].ToString();
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_PRJ_INFO", "PROJECTINFO", ProjectCode, fpactcode, "", "", "", "", "", "", "");
 
@@ -196,7 +196,20 @@ namespace RealERPWEB.F_04_Bgd
                         ddlcataloc.DataValueField = "prgcod";
                         ddlcataloc.DataSource = dsloc.Tables[0];
                         ddlcataloc.DataBind();
-                        ddlcataloc.SelectedValue = val.Length==3 ? "17"+val : val;
+                        ddlcataloc.SelectedValue = val.Length == 3 ? "17" + val : val;
+                        break;
+                    case "02201": //Status                
+                        ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((DropDownList)this.gvPrjInfo.Rows[i].FindControl("ddlcataloc")).Visible = true;
+                        ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                        DropDownList ddlStatus = ((DropDownList)this.gvPrjInfo.Rows[i].FindControl("ddlcataloc"));
+
+                        DataSet dsStat = MktData.GetTransInfo(comcod, "SP_ENTRY_LP_PROFEASIBILITY", "GETSTATUS", "", "", "", "", "", "", "", "", "");
+                        ddlStatus.DataTextField = "prgdesc";
+                        ddlStatus.DataValueField = "prgcod";
+                        ddlStatus.DataSource = dsStat.Tables[0];
+                        ddlStatus.DataBind();
+                        ddlStatus.SelectedValue = val.Length == 3 ? "41" + val : val;
                         break;
 
                     case "02045": //Category                  
@@ -320,10 +333,10 @@ namespace RealERPWEB.F_04_Bgd
 
                     string Gvalue = "";
 
-                    if (Gcode == "02041" || Gcode == "02045" || Gcode == "02050")
+                    if (Gcode == "02041" || Gcode == "02045" || Gcode == "02050" || Gcode == "02201")
                     {
-                      //  Gvalue = ASTUtility.Right(ddlloc.SelectedValue.ToString(),3);
-                        Gvalue =ddlloc.SelectedValue.ToString();  //comment by tarik 
+                        //  Gvalue = ASTUtility.Right(ddlloc.SelectedValue.ToString(),3);
+                        Gvalue = ddlloc.SelectedValue.ToString();  //comment by tarik 
 
                     }
                     else
