@@ -229,62 +229,65 @@ namespace RealERPWEB.F_17_Acc
             DataTable dt = (DataTable)Session["tblunposted"];
             DataTable dt2 = (DataTable)Session["tblusrvoucount"];
 
-            //string txtusr = ((TextBox)this.gvAccVoucher.HeaderRow.FindControl("txtSearusrname")).Text.Trim().ToString();
-            //if (txtusr.Length > 0)
-            //{
-            //    DataView dv = dt.DefaultView;
-            //    dv.RowFilter = ("usrname like '%" + txtusr + "%' && isprint=True");              
-            //    dt = dv.ToTable();
+            string txtusr = ((TextBox)this.gvAccVoucher.HeaderRow.FindControl("txtSearusrname")).Text.Trim().ToString();
+            if (txtusr.Length > 0)
+            {
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = ("usrname like '%" + txtusr + "%' && isprint=True");
+                dt = dv.ToTable();
 
-            //    DataView dv2 = dt2.DefaultView;
-            //    dv2.RowFilter = ("usrname like '%" + txtusr + "%'");    
-            //    dt2 = dv2.ToTable();
-            //}
-            //else
+                DataView dv2 = dt2.DefaultView;
+                dv2.RowFilter = ("usrname like '%" + txtusr + "%'");
+                dt2 = dv2.ToTable();
+            }
+            else
+            {
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = ("isprint=True");
+                dt = dv.ToTable();
+
+            }
+
+
+            //string[] array1 = new string[dt.Rows.Count - 1];
+            //string[] array2 = new string[dt2.Rows.Count - 1];
+            //for (int i = 1; i < dt.Rows.Count; i++)
             //{
-            //    DataView dv = dt.DefaultView;               
-            //    dv.RowFilter = ("isprint=True");
-            //    dt = dv.ToTable();
+            //    //array1 =new string[] { dt.Rows[i]["usrid"].ToString() };
+            //    array1[i - 1] = dt.Rows[i]["usrid"].ToString();
+
+            //}
+
+
+            //for (int i = 1; i < dt2.Rows.Count; i++)
+            //{
+            //    array2[i - 1] = dt2.Rows[i]["usrid"].ToString();
+            //}
+
+
+            //string[] DifferArray = array1.Intersect(array2).ToArray();
+
+
+
+            //DataTable filteredTable = dt2.Clone();
+            //foreach (string str in DifferArray)
+            //{
+            //    DataRow[] filteredRows = dt2.Select("usrid=" + str);
+            //    foreach (DataRow dtr in filteredRows)
+            //    {
+            //        filteredTable.ImportRow(dtr);
 
             //    }
 
-
-            string[] array1 = new string[dt.Rows.Count-1];
-            string[] array2 = new string[dt2.Rows.Count - 1];
-            for (int i = 1; i < dt.Rows.Count; i++)
-            {
-                //array1 =new string[] { dt.Rows[i]["usrid"].ToString() };
-                array1[i - 1] = dt.Rows[i]["usrid"].ToString();
-
-            }
-
-
-            for (int i = 1; i < dt2.Rows.Count; i++)
-            {
-                array2[i - 1] = dt2.Rows[i]["usrid"].ToString();
-            }
-
-
-            string[] DifferArray =  array1.Intersect(array2).ToArray();
-
-
-
-            DataTable filteredTable = dt2.Clone();
-            foreach (string str in DifferArray)
-            {
-                DataRow[] filteredRows = dt2.Select("usrid=" + str); 
-                foreach (DataRow dtr in filteredRows)
-                {
-                    filteredTable.ImportRow(dtr);
-                }
-
-            }
+            //}
 
 
 
 
             var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VoutopSheet>();
-            var list1 = filteredTable.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VouTopSheetSum>();
+            var list1 = dt2.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VouTopSheetSum>();
+            //var list1 = filteredTable.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VouTopSheetSum>();
+
 
             LocalReport Rpt1 = new LocalReport();
             switch (comcod)
