@@ -71,22 +71,16 @@
                                 </div>
                             </div>
                             <div class="row mb-1">
-
-                                <asp:Label ID="Label7" CssClass="col-lg-1 col-form-label" runat="server">Invoice No
-                                    <span>
-                                        <asp:RequiredFieldValidator SetFocusOnError="True" ID="vldtxtInvoice" runat="server" ForeColor="Red" ControlToValidate="txtInvoiceno" ValidationGroup="NewInvoice"
-                                            ErrorMessage="Please Enter Invoice No" /></span>
-
+                                <asp:Label ID="Label7" CssClass="col-lg-1 col-form-label" runat="server">Invoice No                                    
                                 </asp:Label>
-                                <div class="col-lg-1 col-md-2 col-sm-6">
+                                <div class="col-lg-1">
                                     <asp:TextBox runat="server" ID="txtInvoiceno" placeholder="AI-INV" CssClass="form-control form-control-sm"></asp:TextBox>
                                 </div>
-                                <div class="col-lg-1 col-md-2 col-sm-6">
+                                <div class="col-lg-1 ">
                                     <asp:TextBox runat="server" ID="txtInvoiceno2" placeholder="000001" CssClass="form-control form-control-sm"></asp:TextBox>
                                 </div>
                             </div>
-                            <div class="row mb-1">
-
+                            <div class="row ">
                                 <asp:Label ID="Label12" CssClass="col-lg-1 col-form-label" runat="server">Due Date</asp:Label>
                                 <div class="col-lg-3">
                                     <asp:TextBox runat="server" ID="txtduedate" CssClass="form-control form-control-sm"></asp:TextBox>
@@ -120,9 +114,8 @@
                                 <div class="col-lg-3 col-md-3 col-sm-6">
                                     <asp:TextBox runat="server" ID="txtdoneqty" min="0" TextMode="Number" placeholder="00" CssClass="form-control form-control-sm "></asp:TextBox>
                                 </div>
-                                <asp:Label ID="Label8" CssClass="col-lg-1 col-form-label" runat="server">&nbsp;Rate
-                                    <asp:RequiredFieldValidator SetFocusOnError="True" ID="RequiredFieldValidator1" runat="server" ForeColor="Red" ControlToValidate="txtrate" ValidationGroup="NewInvoice"
-                                            ErrorMessage="Please Enter Rate No" /></span>
+                                <asp:Label ID="Label8" CssClass="col-lg-1 col-form-label" runat="server">&nbsp;&nbsp;Rate
+                                   
                                 </asp:Label>
                                 <div class="col-lg-2 col-md-3 col-sm-6">
                                     <asp:TextBox runat="server" ID="txtrate" min="0" TextMode="Number" placeholder="0.00" CssClass="form-control form-control-sm"></asp:TextBox>
