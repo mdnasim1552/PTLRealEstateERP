@@ -166,6 +166,7 @@ namespace RealERPWEB.F_21_MKT
                     this.gvSummary.Columns[20].Visible = true;
                     this.gvSummary.Columns[22].Visible = false;
                     this.gvSummary.Columns[26].Visible = true;
+                    this.gvSummary.Columns[27].Visible = true;
                     break;
 
                 case "3101"://PTL SHOW all Column
@@ -4406,7 +4407,7 @@ namespace RealERPWEB.F_21_MKT
 
             ProcessAccess _processAccess = new ProcessAccess();
 
-            DataSet ds2 = _processAccess.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_CODEBOOK_NEW", "CHECKEDDUPUCLIENT", mobile, "", "", "", "", "", "", "", "");
+            DataSet ds2 = _processAccess.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_CODEBOOK_NEW", "CHECKEDDUPUCLIENTPHONE", mobile, "", "", "", "", "", "", "", "");
             if (ds2.Tables[0].Rows.Count == 0 || ds2 == null)
             {
                 var result = new { Message = "Success", result = true };
@@ -6935,7 +6936,7 @@ namespace RealERPWEB.F_21_MKT
 
                     return;
                 }
-                DataSet ds2 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_CODEBOOK_NEW", "CHECKEDDUPUCLIENT", mobile, "", "", "", "", "", "", "", "");
+                DataSet ds2 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_CODEBOOK_NEW", "CHECKEDDUPUCLIENTPHONE", mobile, "", "", "", "", "", "", "", "");
                 if (ds2.Tables[0].Rows.Count == 0)
                     return;
 

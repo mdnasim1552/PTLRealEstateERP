@@ -245,9 +245,9 @@ namespace RealERPWEB.F_38_AI
                     trackertype = this.holdstatus.Text.ToString().Trim();
                 }
                 string comcod = this.GetCompCode();
+                //jobid, assignuser, worktime, trackertype, doneqty, skipqty, remarks,holdreason,returnqty,rejectqty
 
-
-                bool resultb = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INSERTUPDATE_STARTTASK", jobid, assignuser, postdate, trackertype, doneqty, skipqty, remarks, holdreason, timeTkerID, returnqty, rejectqty);
+                bool resultb = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INSERTUPDATE_STARTTASK", jobid, assignuser, postdate, trackertype, doneqty, skipqty, remarks, holdreason, returnqty, rejectqty);
 
                 if (!resultb)
                 {
