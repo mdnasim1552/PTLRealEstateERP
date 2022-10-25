@@ -700,7 +700,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row"s>
+                                            <div class="row" style="display:none;">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin font-weight-bold">
                                                         <label id="lbltxtcofffvpersft" runat="server">FV per SFT</label>
@@ -714,7 +714,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row" >
+                                             <%--style="display:none;"--%> 
+                                            <div class="row" style="display:none;" >
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin font-weight-bold">
                                                         <label id="lbltxtcoffpvpersft" runat="server">PV per SFT</label>
@@ -1010,7 +1011,7 @@
                                                         </asp:TemplateField>
 
 
-                                                        <asp:TemplateField HeaderText="FV" >
+                                                        <asp:TemplateField HeaderText="FV"  Visible="false">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblgvcofffvschamt" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="none"
                                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fv")).ToString("#,##0;(#,##0); ") %>'
