@@ -30,9 +30,7 @@ namespace RealERPWEB.F_22_Sal
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Monthly Sales Vs Achievement";
-
+                ((Label)this.Master.FindControl("lblTitle")).Text = this.Request.QueryString["Type"]== "MonsalVsAchieve" ? "Month Wise Sales (Reconcilation)": "Month Wise Sales (Reconcilation L/O)";
                 string Date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtfrmdate.Text = "01-" + ASTUtility.Right(Date, 8);
                 this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
@@ -107,6 +105,22 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
+        private string GetLOType()
+        {
+            string Type = this.Request.QueryString["Type"];
+            string lotype = "";
+            switch (Type)
+            {
+                case "MonsalVsAchieveLO":
+                    lotype = "lotype";
+                    break;
+                default:
+                    break;
+
+            }
+            return lotype;
+        }
+
         protected void lnkbtnOk_Click(object sender, EventArgs e)
         {
             Session.Remove("tblgrpsoldunsold");
@@ -114,9 +128,9 @@ namespace RealERPWEB.F_22_Sal
             string prjcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18%" : this.ddlPrjName.SelectedValue.ToString() + "%";
             string frmdate = this.txtfrmdate.Text.Trim();
             string todate = this.txttodate.Text.Trim();
-
+            string lotype = this.GetLOType();
             string grpcode = this.ddlgrp.SelectedValue.ToString() == "000000000000" ? "51%" : this.ddlgrp.SelectedValue.ToString() + "%";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "GETSALESVUCOLLECTION", prjcode, frmdate, todate, grpcode, "", "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "GETSALESVUCOLLECTION", prjcode, frmdate, todate, grpcode, lotype, "", "", "", "");
             if (ds1 == null)
             {
                 this.gvsalesvscoll.DataSource = null;
@@ -258,8 +272,7 @@ namespace RealERPWEB.F_22_Sal
 
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesvsAchievement>();
-
-
+            string RptTittle = this.Request.QueryString["Type"] == "MonsalVsAchieveLO" ? "Monthly Sales Report (L/O)" : "Monthly Sales Report";
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSalesVsAchivement", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
@@ -271,7 +284,7 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("aptno", aptno));
             //Rpt1.SetParameters(new ReportParameter("officeno", officeno));
             Rpt1.SetParameters(new ReportParameter("RptTitle", "Achievement for month of " + frmdate + " to " + todate));
-            Rpt1.SetParameters(new ReportParameter("RptTitle1", "Monthly Sales Report"));
+            Rpt1.SetParameters(new ReportParameter("RptTitle1", RptTittle));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("grp", grp));
