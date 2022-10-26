@@ -102,7 +102,7 @@
                                             <span class="font-weight-bold text-muted">Project Information</span>
                                         </div>
                                         <div class="card-body">
-                                            <img src="~/../../../Images/noimageavl.png" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" alt="User Image">
+                                           <%-- <img src="~/../../../Images/noimageavl.png" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" alt="User Image">--%>
 
                                             <asp:GridView ID="gv_projOverView" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                                                 ShowFooter="False" ShowHeader="false" AllowPaging="false" Visible="True" Width="100%">

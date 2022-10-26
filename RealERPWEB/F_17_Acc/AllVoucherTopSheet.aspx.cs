@@ -223,71 +223,111 @@ namespace RealERPWEB.F_17_Acc
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string userinfo = ASTUtility.Concat(compname, username, printdate);
             string vouType = this.ddlvoucher.SelectedItem.Text.ToString();
-          
+
             Session_update();
 
             DataTable dt = (DataTable)Session["tblunposted"];
             DataTable dt2 = (DataTable)Session["tblusrvoucount"];
 
-            string txtusr = ((TextBox)this.gvAccVoucher.HeaderRow.FindControl("txtSearusrname")).Text.Trim().ToString();
-            if (txtusr.Length > 0)
+            //string txtusr = ((TextBox)this.gvAccVoucher.HeaderRow.FindControl("txtSearusrname")).Text.Trim().ToString();
+            //if (txtusr.Length > 0)
+            //{
+            //    DataView dv = dt.DefaultView;
+            //    dv.RowFilter = ("usrname like '%" + txtusr + "%' && isprint=True");
+            //    dt = dv.ToTable();
+
+            //    DataView dv2 = dt2.DefaultView;
+            //    dv2.RowFilter = ("usrname like '%" + txtusr + "%'");
+            //    dt2 = dv2.ToTable();
+            //}
+            //else
+            //{
+            //    DataView dv = dt.DefaultView;
+            //    dv.RowFilter = ("isprint=True");
+            //    dt = dv.ToTable();
+
+            //}
+            if (dt.Rows.Count == 0)
+                return;
+
+            string[] array1 = new string[dt.Rows.Count];
+            string[] array2 = new string[dt2.Rows.Count];
+
+            for (int i = 0; i < dt.Rows.Count; ++i)
             {
-                DataView dv = dt.DefaultView;
-                dv.RowFilter = ("usrname like '%" + txtusr + "%' && isprint=True");
-                dt = dv.ToTable();
+                array1[i] = dt.Rows[i]["usrid"].ToString();
 
-                DataView dv2 = dt2.DefaultView;
-                dv2.RowFilter = ("usrname like '%" + txtusr + "%'");
-                dt2 = dv2.ToTable();
             }
-            else
+
+
+            for (int i = 0; i < dt2.Rows.Count; ++i)
             {
-                DataView dv = dt.DefaultView;
-                dv.RowFilter = ("isprint=True");
-                dt = dv.ToTable();
-
+                array2[i] = dt2.Rows[i]["usrid"].ToString();
             }
 
 
-            //string[] array1 = new string[dt.Rows.Count - 1];
-            //string[] array2 = new string[dt2.Rows.Count - 1];
-            //for (int i = 1; i < dt.Rows.Count; i++)
-            //{
-            //    //array1 =new string[] { dt.Rows[i]["usrid"].ToString() };
-            //    array1[i - 1] = dt.Rows[i]["usrid"].ToString();
-
-            //}
-
-
-            //for (int i = 1; i < dt2.Rows.Count; i++)
-            //{
-            //    array2[i - 1] = dt2.Rows[i]["usrid"].ToString();
-            //}
-
-
-            //string[] DifferArray = array1.Intersect(array2).ToArray();
+            string[] DifferArray = array1.Intersect(array2).ToArray();
 
 
 
-            //DataTable filteredTable = dt2.Clone();
-            //foreach (string str in DifferArray)
-            //{
-            //    DataRow[] filteredRows = dt2.Select("usrid=" + str);
-            //    foreach (DataRow dtr in filteredRows)
-            //    {
-            //        filteredTable.ImportRow(dtr);
+            DataTable filteredTable = dt2.Clone();
 
-            //    }
+            DataTable dtarr = new DataTable();
+            dtarr.Columns.Add("usrid");
 
-            //}
+         
+            foreach (string str in DifferArray)
+            {
+                DataRow dr = dtarr.NewRow();
+   
+                dr["usrid"] = str;
+                dtarr.Rows.Add(dr);
+            }
+
+
+   
+            var query = (from dtl1 in dt2.AsEnumerable()
+                         join dtl2 in dtarr.AsEnumerable() on dtl1.Field<string>("usrid") equals dtl2.Field<string>("usrid")
+                         select new
+                         {
+                             usrid = dtl1.Field<string>("usrid"),
+
+
+                             usrname = dtl1.Field<string>("usrname"),
+                        gdesc = dtl1.Field<double>("cashvou"),
+                        code = dtl1.Field<double>("bankvou"),
+                        contravou = dtl1.Field<double>("contravou"),
+                        jourvou = dtl1.Field<double>("jourvou"),
+                        pdcvou = dtl1.Field<double>("pdcvou"),
+                        tonum = dtl1.Field<double>("tonum"),
+
+                        
+                         }).ToList();
+         DataTable dtE = ASITUtility03.ListToDataTable(query);
+
+        //               public string usrid { set; get; }
+
+        //public string usrname { set; get; }
+        //public double pdcvou { get; set; }
+        //public double cashvou { get; set; }
+        //public double bankvou { get; set; }
+        //public double contravou { get; set; }
+        //public double jourvou { get; set; }
+        //public double tonum { get; set; }
+
+
+        var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VoutopSheet>();
+            //var list1 = dt2.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VouTopSheetSum>();
+            var list1 = dtE.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VouTopSheetSum>();
+
+
+            //Where(x => listOfBlockedVenues.All(y => y.VenueId != x.Id));
 
 
 
 
-            var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VoutopSheet>();
-            var list1 = dt2.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VouTopSheetSum>();
-            //var list1 = filteredTable.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VouTopSheetSum>();
 
+            //list1.Where(x => DifferArray.ToList().All(y=>y==x.usrid));
 
             LocalReport Rpt1 = new LocalReport();
             switch (comcod)
