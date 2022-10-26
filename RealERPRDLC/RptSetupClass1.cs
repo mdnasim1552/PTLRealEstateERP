@@ -4321,9 +4321,8 @@ namespace RealERPRDLC
             return Rpt1a;
         } private static LocalReport SetRptSampleNotesSheet(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>)RptDataSet));
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>)RptDataSet2));
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet3", (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet>)UserDataset));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>)RptDataSet));
+           
             return Rpt1a;
         }
         private static LocalReport SetRptGrandNotesSheetSummary(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)

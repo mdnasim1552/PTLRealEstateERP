@@ -229,9 +229,132 @@ namespace RealERPWEB.F_22_Sal
         }
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
+
+            string comcod = this.GetCompCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string notesheetno = this.ddlPrevious.SelectedValue.ToString();
+            string usircode = ((DataTable)ViewState["tblprenotesheet"]).Select("noteshtid='" + notesheetno + "'")[0]["usircode"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            //  string usrid = hst["usrid"].ToString();
+            string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            string pactcode = ((DataTable)ViewState["tblprenotesheet"]).Select("noteshtid='" + notesheetno + "'")[0]["pactcode"].ToString();
+
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "GETPRENOTESHEETDETINFO", pactcode, usircode, notesheetno, "", "", "", "", "", "");
+            if (ds1 == null)
+            {
+                return;
+            }
+            
            
 
-        }
+
+           
+
+
+            List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet> lst1 = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>)Session["lstcoffschedule"];
+
+            
+
+
+
+
+
+
+            string valcoffarea = Convert.ToDouble(ds1.Tables[0].Rows[0]["usize"]).ToString("#,##0;(#,##0);");
+            string coffrate = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffurate"]).ToString("#,##0;(#,##0);");
+            string coffunitprice = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffuamt"]).ToString("#,##0;(#,##0);");
+            string cofffparking = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffpamt"]).ToString("#,##0;(#,##0);");
+            string valcoffutility = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffutility"]).ToString("#,##0;(#,##0);");
+            string valcoffothers = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffothers"]).ToString("#,##0;(#,##0);");
+            string coffTotal = Convert.ToDouble(ds1.Tables[0].Rows[0]["cofftunitamt"]).ToString("#,##0;(#,##0);");
+            string coffbookinmpercnt = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffbookingper"]).ToString("#,##0;(#,##0);");
+            string coffbookingam = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffbookingam"]).ToString("#,##0;(#,##0);");
+            string coffnooffemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffnoofemi"]).ToString("#,##0;(#,##0);");
+            string coffemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffemi"]).ToString("#,##0;(#,##0);");
+            string cofffvpersft = Convert.ToDouble(this.lblvalcofffvpersft.InnerText).ToString("#,##0;(#,##0);");
+            string coffpvpersft = Convert.ToDouble(this.lblvalcofffvpersft.InnerText).ToString("#,##0;(#,##0);");
+            string cbookingdate = (Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("dd-MMM-yyyy") == "01-Jan-1900") ? "" : Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("MMM-yyyy");
+            string cbookingday = (Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("dd-MMM-yyyy") == "01-Jan-1900") ? "" : Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("dd");
+            string cbookingmm = (Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("dd-MMM-yyyy") == "01-Jan-1900") ? "" : Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("MM");
+            string cbookingyy = (Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("dd-MMM-yyyy") == "01-Jan-1900") ? "" : Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("yy");
+
+
+           
+            string clientname = this.ddlprospective.SelectedItem.Text;
+
+          
+
+           
+           
+          
+           
+
+
+                //string Projectunit = dt.Rows[0]["munit"].ToString();
+                DataTable dtsummuary = (DataTable)ViewState["tblData"];
+                DataRow[] dr = dtsummuary.Select("usircode='" + usircode + "'");
+                string Projectname = this.ddlProjectName.SelectedItem.Text.Substring(13);
+                string Projectdesc = dr[0]["udesc"].ToString();
+                string Projectunit = dr[0]["munit"].ToString();
+               string unitsize = Convert.ToDouble(dr[0]["usize"]).ToString("#,##0;(#,##0);");
+
+
+
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSampleNotesSheet", lst1, null, null);
+                Rpt1.EnableExternalImages = true;
+
+                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
+               
+                Rpt1.SetParameters(new ReportParameter("Projectunit", Projectunit));
+                Rpt1.SetParameters(new ReportParameter("cbookingday", cbookingday));
+                Rpt1.SetParameters(new ReportParameter("cbookingmm", cbookingmm));
+                Rpt1.SetParameters(new ReportParameter("cbookingyy", cbookingyy));
+                Rpt1.SetParameters(new ReportParameter("clientname", clientname));
+                Rpt1.SetParameters(new ReportParameter("unitsize", unitsize));
+               
+                //customer
+                Rpt1.SetParameters(new ReportParameter("valcoffarea", valcoffarea));
+                Rpt1.SetParameters(new ReportParameter("coffrate", coffrate));
+                Rpt1.SetParameters(new ReportParameter("coffunitprice", coffunitprice));
+                Rpt1.SetParameters(new ReportParameter("cofffparking", cofffparking));
+                Rpt1.SetParameters(new ReportParameter("valcoffutility", valcoffutility));
+                Rpt1.SetParameters(new ReportParameter("valcoffothers", valcoffothers));
+                Rpt1.SetParameters(new ReportParameter("cbookingdate", cbookingdate));
+                Rpt1.SetParameters(new ReportParameter("coffTotal", coffTotal));
+                Rpt1.SetParameters(new ReportParameter("coffbookinmpercnt", coffbookinmpercnt + "%"));
+                Rpt1.SetParameters(new ReportParameter("coffbookingam", coffbookingam));
+
+                Rpt1.SetParameters(new ReportParameter("coffnooffemi", coffnooffemi));
+                Rpt1.SetParameters(new ReportParameter("coffemi", coffemi));
+                Rpt1.SetParameters(new ReportParameter("cofffvpersft", cofffvpersft));
+                Rpt1.SetParameters(new ReportParameter("coffpvpersft", coffpvpersft));
+               
+
+
+
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Sample Note Sheet"));
+                // Rpt1.SetParameters(new ReportParameter("projectName", projectName));
+
+                Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                //Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
+
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            
+            
+
+            }
         private void GetPreviousNoteSheetDetails()
         {
 
