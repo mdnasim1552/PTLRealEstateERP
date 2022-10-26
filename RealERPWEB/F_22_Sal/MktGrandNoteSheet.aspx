@@ -17,6 +17,7 @@
             font-weight: normal;
             border: solid 1px #006699;
             background-color: White;
+           /*comments*/
         }
 
         .AutoExtenderList {
