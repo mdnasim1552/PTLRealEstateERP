@@ -2171,7 +2171,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102062", "F_81_Hrm/F_92_Mgt", "HREmpConfirmation", "", "Employee Confirmation Date", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102063", "F_81_Hrm/F_92_Mgt", "EmpPro", "", "Promotion", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102064", "F_81_Hrm/F_89_Pay", "PayrollLink", "", "Department Permission Access", "HR Management", "False", "False", "False", "False" }); ;
+
             
+            tblObj.Rows.Add(new Object[] { "8102000", "8102065", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=joiningRpt", "Joining Report Summary", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102065", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=joiningRpt", "Joining Report Summary", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102066", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=JoinigdWise", "New Joiners List", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102067", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=EmpList", "Employee List", "HR Management", "False", "False", "False", "False" }); ;
@@ -2181,6 +2183,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102070", "F_81_Hrm/F_92_Mgt", "EmpEvaluationFrm", "", "Employee Evaluation For Confirmation", "ACR", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102172", "F_81_Hrm/F_84_Lea", "YearlyHoliday", "", "Yearly Holidays", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102173", "F_81_Hrm/F_99_MgtAct", "RptgroupAttendance?", "Type=Dept", "Employee Daily Attendance(Department Wise)", "HR Management", "False", "False", "False", "False" }); ;
+            //tblObj.Rows.Add(new Object[] { "8102000", "8102223", "F_81_Hrm/F_92_Mgt", "EmployeeListEpic?", "Type=EmpList", "Epic Employee List", "HR Management", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102223", "F_81_Hrm/F_92_Mgt", "EmployeeListEpic?", "", "Epic Employee List", "HR Management", "False", "False", "False", "False" }); ;
+
 
 
             tblObj.Rows.Add(new Object[] { "8102000", "8102071", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=PenEmpCon", "Pending Employee Confirmation", "HR Management", "False", "False", "False", "False" }); ;
@@ -15672,7 +15677,7 @@ namespace RealERPLIB
             //mnuTbl1.Rows.Add(new Object[] { "0215000000", "", "", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0216000000", "", "", "", true, "" });
 
-
+            
             // D. P.F Account
             mnuTbl1.Rows.Add(new Object[] { "0204000000", "P.F Account", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0204000001", "01. Accounts Code", "F_81_Hrm/F_82_App/AccCodeBook?InputType=Accounts", "", true, "" });
@@ -15686,7 +15691,8 @@ namespace RealERPLIB
 
             // I. Managent System
             mnuTbl1.Rows.Add(new Object[] { "0206000000", "Managent System", "", "", false, "mb" });
-
+            
+            
             mnuTbl1.Rows.Add(new Object[] { "0206000001", "01. Employee Confirmation Date", "F_81_Hrm/F_92_Mgt/HREmpConfirmation", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000002", "03. Salary Hold", "F_81_Hrm/F_92_Mgt/EmpHold", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000003", "05. HR Leave Approval Setup", "F_81_Hrm/F_92_Mgt/HrLeaveApprovalForm", "", true, "" });                    
@@ -15713,6 +15719,9 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0206000023", "07. Supervisor Transfer", "F_81_Hrm/F_92_Mgt/HRSupervisorTransfer", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000024", "08. SIM Card Manage", "F_33_Doc/SimCardMange", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000025", "19. User Reset Password", "F_34_Mgt/ResetPassword", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000025", "06. Epic Employee List", "F_81_Hrm/F_92_Mgt/EmployeeListEpic", "", true, "" });
+
+
 
 
 
