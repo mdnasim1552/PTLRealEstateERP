@@ -493,7 +493,7 @@ namespace RealERPWEB.F_21_MKT
                         ccc = dt.Rows[i]["ccc"].ToString();
 
                         ddlgval1 = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone"));
-                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;
+                       
 
                         dv1 = dt1.Copy().DefaultView;
                         dv1.RowFilter = ("gcod = 'phonecode'");
@@ -511,7 +511,8 @@ namespace RealERPWEB.F_21_MKT
 
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Attributes.Add("style", "width:165px; float:right; margin-top:-34px");
 
-
+                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
+                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;
                         //For changing Mobile No by Team Leader
                         switch (comcod)
                         {
@@ -519,7 +520,7 @@ namespace RealERPWEB.F_21_MKT
                            // case "3102": 
                             case "3367"://Epic
                                         //case "3101":
-                                ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
+                                
                                 bool teamLeader = IsTeamLeader();
                                 if (lbllandname.Text.Length > 0)
                                 {
