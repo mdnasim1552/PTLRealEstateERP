@@ -351,7 +351,11 @@ namespace RealERPWEB.F_81_Hrm.F_91_ACR
             this.gvPerAppraisal.DataSource = (DataTable)ViewState["tblper"];
             this.gvPerAppraisal.DataBind();
             this.hideGridColumn();
-            ((LinkButton)this.gvPerAppraisal.FooterRow.FindControl("btndeleteApprisal")).Visible = (this.Request.QueryString["Type"].ToString().Trim() == "Edit");
+            if(dt.Rows.Count>0)
+            {
+                ((LinkButton)this.gvPerAppraisal.FooterRow.FindControl("btndeleteApprisal")).Visible = (this.Request.QueryString["Type"].ToString().Trim() == "Edit");
+
+            }
 
 
 

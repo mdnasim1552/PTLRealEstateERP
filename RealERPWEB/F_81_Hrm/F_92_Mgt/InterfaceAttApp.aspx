@@ -683,7 +683,8 @@
                                             <div class="row">
                                                 <div class="table-responsive col-lg-12" style="min-height: 350px;">
 
-                                                    <asp:GridView ID="gvAttReq" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                                    <asp:GridView ID="gvAttReq" runat="server" AutoGenerateColumns="False" 
+                                                        CssClass="table-striped table-hover table-bordered grvContentarea"
                                                         ShowFooter="True" OnRowDataBound="gvAttReq_RowDataBound">
                                                         <RowStyle />
                                                         <Columns>

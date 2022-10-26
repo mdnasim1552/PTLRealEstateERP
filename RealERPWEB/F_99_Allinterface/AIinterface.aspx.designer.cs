@@ -789,13 +789,13 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.HiddenField HiddinTaskid;
 
         /// <summary>
-        /// lblbatchid control.
+        /// lblabatchid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblbatchid;
+        protected global::System.Web.UI.WebControls.Label lblabatchid;
 
         /// <summary>
         /// lblproprjid control.
