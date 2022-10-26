@@ -421,6 +421,7 @@ namespace RealEntity.C_81_Hrm.C_83_Att
             public string grpdesc { get; set; }
             public double spl { get; set; }
             public double mtl { get; set; }
+            public double levded { get; set; }
             public RptMntAttenReport()
             {
 
