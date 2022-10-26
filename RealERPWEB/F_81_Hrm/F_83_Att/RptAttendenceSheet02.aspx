@@ -547,7 +547,7 @@
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
                                     <PagerStyle CssClass="gvPagination" />
-                                    <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" />
+                                    <HeaderStyle BackColor="#5F9467"  />
                                 </asp:GridView>
                             </div>
 
@@ -951,7 +951,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="31">
+                                        <asp:TemplateField HeaderText="31" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgv31summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col31s"))=="L"?"bg-yellow d-block":
                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "col31s"))=="LP"?"bg-danger d-block":""%>'
@@ -1042,7 +1042,7 @@
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
                                     <PagerStyle CssClass="gvPagination" />
-                                    <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" />
+                                    <HeaderStyle BackColor="#5F9467" />
                                 </asp:GridView>
 
                                 <fieldset class="scheduler-border fieldset_A" id="StatusReport" runat="server" visible="false">

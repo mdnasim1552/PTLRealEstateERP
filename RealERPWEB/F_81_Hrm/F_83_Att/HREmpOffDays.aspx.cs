@@ -223,6 +223,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             switch (comcod)
             {
                 case "3365":
+                case "3369":
+                case "1206":
+                case "1207":
+                case "3338":
                 case "3101":
                     date = "26-" + ASTUtility.Month3digit(Convert.ToInt32(yearmon.Substring(4, 2))) + "-" + yearmon.Substring(0, 4);
                     cudate = Convert.ToDateTime(date).AddMonths(-1).ToString("dd-MMM-yyyy");
@@ -318,6 +322,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             switch (comcod)
             {
                 case "3365":
+                case "3369":
+                case "1206":
+                case "1207":
+                case "3338":
                 case "3101":
                     date = "26-" + ASTUtility.Month3digit(Convert.ToInt32(yearmon.Substring(4, 2))) + "-" + yearmon.Substring(0, 4);
                     cudate = Convert.ToDateTime(date).AddMonths(-1).ToString("dd-MMM-yyyy");

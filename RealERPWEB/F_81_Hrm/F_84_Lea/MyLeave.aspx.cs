@@ -113,16 +113,16 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string nextYear = System.DateTime.Now.AddMonths(1).ToString("yyyy");
 
 
-            if (Convert.ToInt32(curDay) < 27)
+            if (Convert.ToInt32(curDay) < 26)
             {
                 this.txtgvenjoydt1_CalendarExtender.StartDate = DateTime.ParseExact(26 + "/" + prevMonth + "/" + prevYear, "dd/MM/yyyy", null);
-                this.txtgvenjoydt1_CalendarExtender.EndDate = DateTime.ParseExact(27 + "/" + curMonth + "/" + curYear, "dd/MM/yyyy", null);
+                //this.txtgvenjoydt1_CalendarExtender.EndDate = DateTime.ParseExact(27 + "/" + curMonth + "/" + curYear, "dd/MM/yyyy", null);
 
             }
             else
             {
                 this.txtgvenjoydt1_CalendarExtender.StartDate = DateTime.ParseExact(26 + "/" + curMonth + "/" + curYear, "dd/MM/yyyy", null);
-                this.txtgvenjoydt1_CalendarExtender.EndDate = DateTime.ParseExact(27 + "/" + nextMonth + "/" + nextYear, "dd/MM/yyyy", null);
+                //this.txtgvenjoydt1_CalendarExtender.EndDate = DateTime.ParseExact(27 + "/" + nextMonth + "/" + nextYear, "dd/MM/yyyy", null);
             }
 
         }
