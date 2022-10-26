@@ -388,7 +388,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                             //case "3101":
                     this.rbtSalSheet.SelectedIndex = 23;
                     break;
-
+                //case "3101":
                 case "3367"://Epic
                     this.rbtSalSheet.SelectedIndex = 25;
                     break;
@@ -1945,9 +1945,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
         private void PrintSalaryAll()
         {
+            
             DataTable dt = (DataTable)Session["tblpay"];
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
+            //string comcod = hst["comcod"].ToString();
+            string comcod = this.GetCompCode();
             string comname = hst["comnam"].ToString();
             string comadd = hst["comadd1"].ToString();
             string compname = hst["compname"].ToString();
@@ -2251,7 +2253,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 this.PrintSalaryFinlay();
 
             }
-            else if (this.rbtSalSheet.SelectedIndex == 25)
+            else if (this.rbtSalSheet.SelectedIndex == 25 )
             {
                 this.PrintSalaryEpic();
 

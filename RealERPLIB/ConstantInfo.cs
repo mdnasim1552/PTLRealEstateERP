@@ -1266,7 +1266,10 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2202272", "F_22_Sal", "RptCustomerBill?", "Type=CustBill", "Customer Bill Info", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202273", "F_22_Sal", "ProjectFileDetailsEntry", "", "Project File Details", "Sales", "False", "False", "False", "False" });
 
-            tblObj.Rows.Add(new Object[] { "2251000", "2251001", "F_99_Allinterface", "SalesInterface?Type=Report", "", "Sales", "Sales & Recovery-Interface", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2251000", "2251001", "F_99_Allinterface", "SalesInterface?Type=Report", "", "Sales", "Sales & Recovery-Interface", "False", "False", "False", "False" });
+
+            tblObj.Rows.Add(new Object[] { "2251000", "2251002", "F_99_Allinterface", "MktNoteSheetInterface?", "Type=Report", "Grand Note Sheet Interface", "Sales & Recovery-Interfac", "False", "False", "False", "False" });
+
 
             //tblObj.Rows.Add(new Object[] { "2203000", "2202270", "F_22_Sal", "RptSalSummeryDetails", "", "Sale Summary Details ", "Sales & Recovery", "False", "False", "False", "False" });
 
@@ -1275,7 +1278,7 @@ namespace RealERPLIB
 
             //23. Credit Realization
             #region Credit Realization
-           
+
             tblObj.Rows.Add(new Object[] { "2302000", "2302007", "F_23_CR", "MktMoneyReceipt?", "Type=CustCare", "Collection Sales", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2302000", "2302009", "F_23_CR", "CustOthMoneyReceipt?", "Type=CustCare", "Collection  Other's", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2302000", "2302010", "F_23_CR", "CustRentMoneyReceipt?", "Type=CustCare", "Rental MRR", "Credit Realization", "False", "False", "False", "False" });
