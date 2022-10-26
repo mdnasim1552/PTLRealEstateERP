@@ -1258,6 +1258,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2202270", "F_22_Sal", "RptClientDateFile", "", "Client Data File ", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202271", "F_22_Sal", "RptPeriodicSalesWithCollection", "", "Periodic Sales With Collection ", "Sales", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202275", "F_22_Sal", "RptSalesVsAchievement?", "Type=MonsalVsAchieve", "Month Wise Sales (Reconcilation)", "Sales", "False", "False", "False", "False" });
+     
+
 
 
 
@@ -1868,7 +1870,7 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "3703000", "3703020", "F_23_CR", "RptMonthlyProbCollection?", "Type=LoMonProColl", "Monthly Probable Collection(L/O)", "Landowner Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "3703000", "3703021", "F_23_CR", "RptCollectionStatusLO?", "Type=Report", "Collection Status (L/O)", "Landowner Management", "False", "False", "False", "False" });
-
+            tblObj.Rows.Add(new Object[] { "3703000", "3703022", "F_22_Sal", "RptSalesVsAchievement?", "Type=MonsalVsAchieveLO", "Month Wise Sales (Reconcilation L/O)", "Landowner Management", "False", "False", "False", "False" });
             #endregion
 
 
@@ -10399,7 +10401,7 @@ namespace RealERPLIB
 
 
             mnuTbl1.Rows.Add(new Object[] { "0402000000", "01. Collection Status (L/O)", "F_23_CR/RptCollectionStatusLO?Type=Report", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0403000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0403000000", "02. Month Wise Sales (Reconcilation L/O)", "F_22_Sal/RptSalesVsAchievement?Type=MonsalVsAchieveLO", "", true, "" });        
             mnuTbl1.Rows.Add(new Object[] { "0404000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0405000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0406000000", "", "", "", true, "" });
