@@ -951,7 +951,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="31" Visible="false">
+                                        <asp:TemplateField HeaderText="31">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgv31summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col31s"))=="L"?"bg-yellow d-block":
                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "col31s"))=="LP"?"bg-danger d-block":""%>'

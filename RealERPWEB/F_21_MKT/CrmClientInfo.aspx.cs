@@ -493,17 +493,30 @@ namespace RealERPWEB.F_21_MKT
                         ccc = dt.Rows[i]["ccc"].ToString();
 
                         ddlgval1 = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone"));
-                        ddlgval1.SelectedValue = ccc;
+                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;
+
+                        dv1 = dt1.Copy().DefaultView;
+                        dv1.RowFilter = ("gcod = 'phonecode'");
+                        DataTable dtCcc = dv1.ToTable();  
+                        
+                        ddlgval1.DataTextField = "gdesc";
+                        ddlgval1.DataValueField = "gdesc";
+                        ddlgval1.DataSource = dtCcc;
+                        ddlgval1.DataBind();
+                        ddlgval1.SelectedValue = (ccc==""?"+88": ccc);
 
 
-                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Attributes.Add("style", "width:180px; float:right");
+
+
+
+                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Attributes.Add("style", "width:165px; float:right; margin-top:-34px");
 
 
                         //For changing Mobile No by Team Leader
                         switch (comcod)
                         {
 
-                            case "3102": 
+                           // case "3102": 
                             case "3367"://Epic
                                         //case "3101":
                                 ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
@@ -3414,6 +3427,9 @@ namespace RealERPWEB.F_21_MKT
             this.ddlStatus.SelectedValue = "0000000";
 
             this.ddlCountry_SelectedIndexChanged(null, null);
+
+
+            
 
         }
 

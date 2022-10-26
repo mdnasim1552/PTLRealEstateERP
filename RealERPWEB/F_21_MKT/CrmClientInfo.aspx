@@ -2056,15 +2056,12 @@
                                                     <asp:TemplateField>
 
                                                         <ItemTemplate>
-                                                            <asp:DropDownList ID="ddlcountryPhone" runat="server" ClientIDMode="Static" Style="float: left; padding-left: 0; padding-right: 0" Visible="false"
-                                                                Width="100px" CssClass="form-control">
-                                                                <asp:ListItem Selected="True" Value="+88">+88</asp:ListItem>
-                                                                <asp:ListItem Value="+1">+1</asp:ListItem>
-                                                                <asp:ListItem Value="+1">+1</asp:ListItem>
-                                                                <asp:ListItem Value="+44">+44</asp:ListItem>
-                                                                <asp:ListItem Value="+52">+52</asp:ListItem>
-                                                                <asp:ListItem Value="+52">+52</asp:ListItem>
+                                                          
+                                                            <asp:DropDownList ID="ddlcountryPhone" runat="server" ClientIDMode="Static" CssClass="custom-select chzn-select" Style="float: left; padding-left: 0; padding-right: 0" Visible="false"
+                                                                Width="120px" >
+                                                                <asp:ListItem Selected="True" Value="+88">+88</asp:ListItem>                                                                
                                                             </asp:DropDownList>
+
                                                             <asp:TextBox ID="txtgvVal" ClientIDMode="Static" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px" OnTextChanged="txtgvVal_TextChanged1" AutoPostBack="true"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
