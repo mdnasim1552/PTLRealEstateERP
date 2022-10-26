@@ -563,7 +563,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.txtworktype.Text = worktype;
                 this.txtstartdate.Text = DateTime.Now.ToString("dd-MMM-yyyy");
                 this.textdelevery.Text = DateTime.Now.ToString("dd-MMM-yyyy");
-                // this.spnCurrncy.InnerText = currncy;
+                this.spnCurrncy.InnerText = currncy;
                 this.txtrate.Attributes.Add("Placeholder", "0.00 " + currncy);
                 this.txtAmount.Attributes.Add("Placeholder", "0.00 " + currncy);
 
@@ -654,8 +654,11 @@ namespace RealERPWEB.F_99_Allinterface
             txtstartdate.Text = DateTime.Now.ToString("dd-MMM-yyyy"); ;
             textdelevery.Text = DateTime.Now.ToString("dd-MMM-yyyy"); ;
             txtbatchQuantity.Text = "0";
-            txtrate.Text = "0";
-            txtAmount.Text = "0";
+            txtrate.Text = "0.00";
+            txtAmount.Text = "0.00";
+            txtPerhour.Text = "";
+            textEmpcap.Text = "";
+            TextmanPower.Text = "";
         }
 
         protected void pnlsidebarClose_Click(object sender, EventArgs e)
