@@ -5332,6 +5332,44 @@ namespace RealERPWEB.F_01_LPA
             }
 
         }
+
+        protected void lnkbtnRetreive_Click(object sender, EventArgs e)
+        {
+            int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+
+            if (!Convert.ToBoolean(dr1[0]["delete"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('You have no permission');", true);
+                return;
+            }
+
+
+            DataTable dt = (DataTable)ViewState["tblsummData"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+            string comcod = this.GetComeCode();
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int rowno = (this.gvSummary.PageSize) * (this.gvSummary.PageIndex) + RowIndex;
+            string proscod = dt.Rows[RowIndex]["sircode"].ToString();
+            bool result = HRData.UpdateXmlTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY_RND", "RETREIVE_PROSPECT", null, null, null, proscod, userid, Posteddat, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            if (!result)
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Prospect Retreive Fail');", true);
+                return;
+
+            }
+
+            dt.Rows[rowno].Delete();
+            DataView dv = dt.DefaultView;
+            Session.Remove("tblsummData");
+            ViewState["tblsummData"] = dv.ToTable();
+            this.Data_Bind();
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Prospect Retreived Successfully');", true);
+        }
         protected void gvSummary_RowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -6477,7 +6515,15 @@ namespace RealERPWEB.F_01_LPA
                 this.gvSummary.DataBind();
             }
 
-
+            if (rtype == "databank")
+            {
+                //Prospect Retreive Button
+                this.gvSummary.Columns[17].Visible = true;
+            }
+            else
+            {
+                this.gvSummary.Columns[17].Visible = false;
+            }
 
             this.gvkpi.DataSource = null;
             this.gvkpi.DataBind();

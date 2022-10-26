@@ -1578,7 +1578,7 @@
               <rd:DefaultName>Textbox3</rd:DefaultName>
               <Left>1.29042in</Left>
               <Height>0.19792in</Height>
-              <Width>5.73389in</Width>
+              <Width>5.06722in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1613,7 +1613,7 @@
               <Top>0.19687in</Top>
               <Left>1.30256in</Left>
               <Height>0.23611in</Height>
-              <Width>5.73389in</Width>
+              <Width>5.05681in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -1648,7 +1648,7 @@
               <Top>0.44827in</Top>
               <Left>1.28173in</Left>
               <Height>0.18402in</Height>
-              <Width>5.77556in</Width>
+              <Width>5.07764in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>

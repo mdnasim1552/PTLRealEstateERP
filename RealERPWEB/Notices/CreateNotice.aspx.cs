@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -98,7 +99,41 @@ namespace RealERPWEB.Notices
                    
                 }
             }
-            bool result = purData.UpdateTransInfo(comcod, "SP_REPORT_NOTICE", "INSERTUPDATENOTICE", noticeTitle, noticeDesc, noCrateDate, txtUser, txtdeapartment, noCreatdBy, txtStartDate, txtEndDate, "Notice", "", "", "", "", "", "");
+
+
+            string imgPath = "";
+        ;
+
+
+
+            //validates the posted file before saving  
+            if (attachFile.HasFile)
+            {
+
+                string filePath = attachFile.PostedFile.FileName;
+                string filename1 = Path.GetFileName(filePath); // getting the file name of uploaded file  
+                string ext = Path.GetExtension(filename1);
+
+                if (ext == ".pdf")
+                {
+
+                    string imgName = Guid.NewGuid() + ext;
+                    //sets the image path           
+                    imgPath = "~/Upload/HRM/Doc/" + imgName;
+                    //then save it to the Folder  
+                    attachFile.SaveAs(Server.MapPath(imgPath));
+                }
+                else
+                {
+                    string msgfail = "Please select pdf file only";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msgfail + "');", true);
+                    return;
+                }
+            }
+
+
+
+            bool result = purData.UpdateTransInfo(comcod, "SP_REPORT_NOTICE", "INSERTUPDATENOTICE", noticeTitle, noticeDesc, noCrateDate, txtUser, txtdeapartment, noCreatdBy, txtStartDate, txtEndDate, "Notice", imgPath, "", "", "", "", "");
             if (!result)
             {
                 msg = "Update Failed!";

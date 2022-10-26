@@ -75,6 +75,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         case "4301"://Sanmer
                         case "3332":
                         case "3338":
+                        case "1206"://acme construction
+                        case "1207"://acme service
                         case "3369":// ACME AI
 
                             //case "4305"://Rupayan
@@ -1450,6 +1452,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                 case "3338":// ACME
                 case "3369":// ACME AI
+                case "1206"://acme construction
+                case "1207"://acme service
 
                     for (int i = 0; i < this.grvAdjDay.Rows.Count; i++)
                     {

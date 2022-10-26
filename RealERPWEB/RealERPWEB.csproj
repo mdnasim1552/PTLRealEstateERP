@@ -149,17 +149,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
-    <Reference Include="microsoft.reportviewer.datavisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\microsoft.reportviewer.datavisualization.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -289,6 +285,10 @@
     <Content Include="assets\css\calendarCss.css" />
     <Content Include="assets\css\colors.css" />
     <Content Include="assets\css\comments.css" />
+    <Content Include="assets\css\countryValid\countrySync.css" />
+    <Content Include="assets\css\countryValid\intlTelInput.css" />
+    <Content Include="assets\css\countryValid\intlTelInput.min.css" />
+    <Content Include="assets\css\countryValid\isValidNumber.css" />
     <Content Include="assets\css\font-awesome-4-menus\css\font-awesome.min.css" />
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.svg" />
     <Content Include="assets\css\foundation.min.css" />
@@ -321,6 +321,20 @@
     <Content Include="assets\js\responsiveslides.js" />
     <Content Include="assets\js\scripts.js" />
     <Content Include="assets\js\wd-ajax-load\js\load-posts.js" />
+    <Content Include="assets\TelephoneValidation\build\css\intlTelInput.css" />
+    <Content Include="assets\TelephoneValidation\build\css\intlTelInput.min.css" />
+    <Content Include="assets\TelephoneValidation\build\img\flags%402x.png" />
+    <Content Include="assets\TelephoneValidation\build\img\flags.png" />
+    <Content Include="assets\TelephoneValidation\build\js\data.js" />
+    <Content Include="assets\TelephoneValidation\build\js\data.min.js" />
+    <Content Include="assets\TelephoneValidation\build\js\intlTelInput-jquery.js" />
+    <Content Include="assets\TelephoneValidation\build\js\intlTelInput-jquery.min.js" />
+    <Content Include="assets\TelephoneValidation\build\js\intlTelInput.js" />
+    <Content Include="assets\TelephoneValidation\build\js\intlTelInput.min.js" />
+    <Content Include="assets\TelephoneValidation\build\js\utils.js" />
+    <Content Include="assets\TelephoneValidation\css\isValidNumber.css" />
+    <Content Include="assets\TelephoneValidation\css\prism.css" />
+    <Content Include="assets\TelephoneValidation\js\isValidNumber.js" />
     <Content Include="assets\vendor\flatpickr\flatpickr.min.css" />
     <Content Include="assets\vendor\flatpickr\flatpickr.min.js" />
     <Content Include="assets\vendor\simplemde\simplemde.min.css" />
@@ -2213,6 +2227,7 @@
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
     <Content Include="F_21_MKT\RptPerDeleteProspect.aspx" />
+    <Content Include="F_22_Sal\MktSampleNoteSheet.aspx" />
     <Content Include="F_22_Sal\MktGrandNoteSheet.aspx" />
     <Content Include="F_22_Sal\SaleSurvey.aspx" />
     <Content Include="F_22_Sal\SaleSurPrjInformation.aspx" />
@@ -2806,6 +2821,7 @@
     <Content Include="F_37_LOwner\LOMoneyReciptapp.aspx" />
     <Content Include="F_38_AI\AddProject.aspx" />
     <Content Include="F_38_AI\AIGenCodeBook.aspx" />
+    <Content Include="F_38_AI\AIInVoiceCreate.aspx" />
     <Content Include="F_38_AI\CreateTask.aspx" />
     <Content Include="F_38_AI\CustomerList.aspx" />
     <Content Include="F_38_AI\JobAnalytics.aspx" />
@@ -3154,6 +3170,7 @@
     <Content Include="F_99_Allinterface\HRInterfaceTopSheet.aspx" />
     <Content Include="F_99_Allinterface\HRMAllInOne.aspx" />
     <Content Include="F_99_Allinterface\InterfaceApprovalForm.aspx" />
+    <Content Include="F_99_Allinterface\MktNoteSheetInterface.aspx" />
     <Content Include="F_99_Allinterface\InventoryInterface.aspx" />
     <Content Include="F_99_Allinterface\KPIDashboard.aspx" />
     <Content Include="F_99_Allinterface\LandInterface_Land.aspx" />
@@ -3640,6 +3657,7 @@
     <Content Include="Scripts\ScrollableTablePlugin.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
+    <Content Include="Scripts\table2excel.js" />
     <Content Include="Scripts\toaster.js" />
     <Content Include="Scripts\uds_api_contents.js" />
     <Content Include="Scripts\waypoints.min.js" />
@@ -4122,6 +4140,13 @@
     </Compile>
     <Compile Include="F_21_MKT\RptPerDeleteProspect.aspx.designer.cs">
       <DependentUpon>RptPerDeleteProspect.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_22_Sal\MktSampleNoteSheet.aspx.cs">
+      <DependentUpon>MktSampleNoteSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\MktSampleNoteSheet.aspx.designer.cs">
+      <DependentUpon>MktSampleNoteSheet.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_22_Sal\MktGrandNoteSheet.aspx.cs">
       <DependentUpon>MktGrandNoteSheet.aspx</DependentUpon>
@@ -4647,6 +4672,13 @@
     </Compile>
     <Compile Include="F_38_AI\AIGenCodeBook.aspx.designer.cs">
       <DependentUpon>AIGenCodeBook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_38_AI\AIInVoiceCreate.aspx.cs">
+      <DependentUpon>AIInVoiceCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_38_AI\AIInVoiceCreate.aspx.designer.cs">
+      <DependentUpon>AIInVoiceCreate.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_38_AI\CreateTask.aspx.cs">
       <DependentUpon>CreateTask.aspx</DependentUpon>
@@ -5298,6 +5330,13 @@
     </Compile>
     <Compile Include="F_99_Allinterface\InterfaceApprovalForm.aspx.designer.cs">
       <DependentUpon>InterfaceApprovalForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\MktNoteSheetInterface.aspx.cs">
+      <DependentUpon>MktNoteSheetInterface.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\MktNoteSheetInterface.aspx.designer.cs">
+      <DependentUpon>MktNoteSheetInterface.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\MKTProInterface.aspx.cs">
       <DependentUpon>MKTProInterface.aspx</DependentUpon>

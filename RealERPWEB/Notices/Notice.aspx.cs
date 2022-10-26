@@ -51,5 +51,37 @@ namespace RealERPWEB.Notices
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "RedirNoticeCreate();", true);
         }
+
+        protected void grvNotice_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                string ndetails = DataBinder.Eval(e.Row.DataItem, "ndetails").ToString();
+                Label lbldetails = e.Row.FindControl("lbltaskdesc") as Label;
+
+                if (e.Row.RowIndex > 1)
+                {
+
+                    if (ndetails.Length > 60)
+                    {
+                        lbldetails.Text = ndetails.Substring(1, 60);
+
+                    }
+                    else
+                    {
+                        lbldetails.Text = ndetails;
+
+                    }
+
+
+                }
+
+
+
+
+            }
+        }
     }
 }

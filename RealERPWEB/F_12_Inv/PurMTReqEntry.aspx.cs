@@ -432,7 +432,7 @@ namespace RealERPWEB.F_12_Inv
                 this.GetMatTrns();
             string mtreqno = this.lblCurTransNo1.Text.ToString().Trim().Substring(0, 3) + mtreqdat.Substring(7, 4) + this.lblCurTransNo1.Text.ToString().Trim().Substring(3, 2) + this.txtCurTransNo2.Text.ToString().Trim();
             string mtrref = this.txtrefno.Text.ToString();
-            string mtrnar = this.txtReqNarr.Text.ToString();
+            string mtrnar = this.txtReqNarr.Text.ToString().Trim();
             string fromprj = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
             string toprj = this.ddlprjlistto.SelectedValue.ToString().Trim();
 
@@ -1106,6 +1106,8 @@ namespace RealERPWEB.F_12_Inv
             ViewState["tblreqprj"] = ds1.Tables[1];
             this.Data_Bind_Aprv();
 
+
+            this.txtAprNarr.Text = ds1.Tables[1].Rows[0]["mtrnar"].ToString();
             //ddlprjlistfrom
             //ddlprjlistto
             //lblddlProjectTo
@@ -1214,7 +1216,7 @@ namespace RealERPWEB.F_12_Inv
             string mtreqno = this.Request.QueryString["genno"].ToString();
             string fromprj = dt2.Rows[0]["TFPACTCODE"].ToString();
             string toprj = dt2.Rows[0]["TTPACTCODE"].ToString();
-
+            string aprNarr = this.txtAprNarr.Text.Trim().ToString();
 
             bool result;
 
@@ -1237,7 +1239,7 @@ namespace RealERPWEB.F_12_Inv
             }
 
 
-            result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_05", "MTREQAPPROVAL", mtreqno, fromprj, toprj, APRVBYID, APRVDAT, APRVSESON, APRVTRMID, "", "", "", "", "", "", "", "", "", "");
+            result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_05", "MTREQAPPROVAL", mtreqno, fromprj, toprj, APRVBYID, APRVDAT, APRVSESON, APRVTRMID, aprNarr, "", "", "", "", "", "", "", "", "");
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();

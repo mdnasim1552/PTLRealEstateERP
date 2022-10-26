@@ -245,9 +245,9 @@ namespace RealERPWEB.F_38_AI
                     trackertype = this.holdstatus.Text.ToString().Trim();
                 }
                 string comcod = this.GetCompCode();
+                //jobid, assignuser, worktime, trackertype, doneqty, skipqty, remarks,holdreason,returnqty,rejectqty
 
-
-                bool resultb = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INSERTUPDATE_STARTTASK", jobid, assignuser, postdate, trackertype, doneqty, skipqty, remarks, holdreason, timeTkerID, returnqty, rejectqty);
+                bool resultb = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INSERTUPDATE_STARTTASK", jobid, assignuser, postdate, trackertype, doneqty, skipqty, remarks, holdreason, returnqty, rejectqty);
 
                 if (!resultb)
                 {
@@ -262,8 +262,9 @@ namespace RealERPWEB.F_38_AI
                     string msg = "Hold Task Note Created: " + remarks;
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModal_AlrtMsg();", true);
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
-                    GetTodayDoingJob();
-                    data_Bind();
+                    this.GetTodayDoingJob();
+                    this.GetTodayActivities();
+                    this.data_Bind();
 
                 }
             }
@@ -314,6 +315,8 @@ namespace RealERPWEB.F_38_AI
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
                 GetTodayDoingJob();
+                this.GetTodayActivities();
+                this.data_Bind();
 
             }
 

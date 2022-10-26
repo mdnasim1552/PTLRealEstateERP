@@ -2012,7 +2012,7 @@ namespace RealERPWEB.F_14_Pro
                 this.gvBillInfo.Columns[1].Visible = true;
             }
 
-            this.gvBillInfo.Columns[8].Visible = (this.Request.QueryString["Type"].ToString().Trim() == "BillEdit" && this.lblvalvounum.Text.Trim() == "00000000000000");
+            this.gvBillInfo.Columns[9].Visible = (this.Request.QueryString["Type"].ToString().Trim() == "BillEdit" && this.lblvalvounum.Text.Trim() == "00000000000000");
             ((LinkButton)this.gvBillInfo.FooterRow.FindControl("lbtnUpdateBill")).Visible = (this.lblvalvounum.Text.Trim() == "00000000000000" || this.lblvalvounum.Text.Trim() == "");
             ((LinkButton)this.gvBillInfo.FooterRow.FindControl("lbtnDeleteBill")).Visible = (this.Request.QueryString["Type"].ToString().Trim() == "BillEdit" && this.lblvalvounum.Text.Trim() == "00000000000000");
 
@@ -2225,6 +2225,7 @@ namespace RealERPWEB.F_14_Pro
                 dr1["mrrno1"] = dr3[0]["mrrno1"];
                 dr1["mrrref"] = dr3[0]["mrrref"];
                 dr1["chlnno"] = dr3[0]["chlnno"];
+                dr1["challandat"] = dr3[0]["challandat"];
                 dr1["mrrdat"] = dr3[0]["mrrdat"];
                 dr1["pactdesc"] = dr3[0]["pactdesc"];
                 dr1["rsirdesc1"] = dr3[0]["rsirdesc1"];
@@ -2264,6 +2265,7 @@ namespace RealERPWEB.F_14_Pro
                     dr1["mrrno1"] = "";
                     dr1["mrrref"] = "";
                     dr1["chlnno"] = "";
+                    dr1["challandat"] = "";
                     dr1["pactdesc"] = drc["pactdesc"].ToString();
                     dr1["rsirdesc1"] = drc["rsirdesc"].ToString();
                     dr1["spcfdesc"] = "";
@@ -2276,24 +2278,10 @@ namespace RealERPWEB.F_14_Pro
                     tbl1.Rows.Add(dr1);
 
                 }
-
-
             }
-
-
-
-
-
-
-
-
-
 
             ViewState["tblBill"] = this.HiddenSameData(tbl1);
             this.gvBillInfo_DataBind();
-
-
-
 
         }
 
@@ -2340,6 +2328,7 @@ namespace RealERPWEB.F_14_Pro
                     dr1["mrrno1"] = tbl2.Rows[i]["mrrno1"].ToString();
                     dr1["mrrref"] = tbl2.Rows[i]["mrrref"].ToString();
                     dr1["chlnno"] = tbl2.Rows[i]["chlnno"].ToString();
+                    dr1["challandat"] = tbl2.Rows[i]["challandat"].ToString();
                     dr1["mrrdat"] = tbl2.Rows[i]["mrrdat"].ToString();
 
                     dr1["rsircode"] = tbl2.Rows[i]["rsircode"].ToString();
@@ -2355,10 +2344,6 @@ namespace RealERPWEB.F_14_Pro
                     dr1["remrks"] = tbl2.Rows[i]["mrrnote"].ToString();
                     dr1["rowid"] = tbl2.Rows[i]["rowid"].ToString();
                     tbl1.Rows.Add(dr1);
-
-
-
-
                 }
             }
 
@@ -2383,6 +2368,7 @@ namespace RealERPWEB.F_14_Pro
                     dr1["mrrno1"] = "";
                     dr1["mrrref"] = "";
                     dr1["chlnno"] = "";
+                    dr1["challandat"] = "";
                     dr1["pactdesc"] = drc["pactdesc"].ToString();
                     dr1["rsirdesc1"] = drc["rsirdesc"].ToString();
                     dr1["spcfdesc"] = "";
@@ -2463,6 +2449,7 @@ namespace RealERPWEB.F_14_Pro
                     dr1["mrrno1"] = dr3[0]["mrrno1"];
                     dr1["mrrref"] = dr3[0]["mrrref"];
                     dr1["chlnno"] = dr3[0]["chlnno"];
+                    dr1["challandat"] = dr3[0]["challandat"];
                     dr1["mrrdat"] = dr3[0]["mrrdat"];
                     dr1["pactdesc"] = dr3[0]["pactdesc"];
                     dr1["rsirdesc1"] = dr3[0]["rsirdesc1"];
@@ -2497,6 +2484,7 @@ namespace RealERPWEB.F_14_Pro
                         dr1["mrrno1"] = "";
                         dr1["mrrref"] = "";
                         dr1["chlnno"] = "";
+                        dr1["challandat"] = "";
                         dr1["pactdesc"] = drc["pactdesc"].ToString();
                         dr1["rsirdesc1"] = drc["rsirdesc"].ToString();
                         dr1["spcfdesc"] = "";
@@ -2785,7 +2773,10 @@ namespace RealERPWEB.F_14_Pro
             switch (comcod)
             {
 
-                // case "3101":
+               // case "3101":
+                case "3366"://Lanco
+                case "3367"://Epic
+ 
                 case "3340":
                     aprovedByid = "";
                     aprvdat = "";
