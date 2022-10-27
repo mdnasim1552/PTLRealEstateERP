@@ -1739,7 +1739,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>0.84444in</Top>
+            <Top>0.75694in</Top>
             <Left>1.40625in</Left>
             <Height>2.55429in</Height>
             <Width>4.63226in</Width>
@@ -1764,7 +1764,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.23958in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -1883,7 +1883,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.20833in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -2012,8 +2012,8 @@
             </TablixRowHierarchy>
             <Top>0.20278in</Top>
             <Left>1.40625in</Left>
-            <Height>0.5in</Height>
-            <Width>4.60417in</Width>
+            <Height>0.44792in</Height>
+            <Width>4.60416in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -2022,7 +2022,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>3.39873in</Height>
+        <Height>3.42998in</Height>
         <Style />
       </Body>
       <Width>7.62098in</Width>
