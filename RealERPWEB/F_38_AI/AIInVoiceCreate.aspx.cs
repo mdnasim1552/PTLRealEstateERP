@@ -12,12 +12,14 @@ namespace RealERPWEB.F_38_AI
 {
     public partial class AIInVoiceCreate : System.Web.UI.Page
     {
+        static string prevPage = String.Empty;
         ProcessAccess AIData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 ((Label)this.Master.FindControl("lblTitle")).Text = "AI Invoice Create";
+               
                 string currentdate = DateTime.Now.ToString("dd-MMM-yyyy");
                 this.txtdate.Text = currentdate;
                 this.GetCustomerList();
@@ -33,6 +35,48 @@ namespace RealERPWEB.F_38_AI
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
+        }
+
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            // Create an event handler for the master page's contentCallEvent event
+            //((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
+
+          ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(btnInvoiceSave_Click);
+
+            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+        }
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(prevPage);
+        }
+
+        protected void btnInvoiceSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = this.GetComdCode();
+                string postrmid = hst["usrid"].ToString();
+                string postseson = hst["compname"].ToString();
+                string editbyid = hst["session"].ToString();
+                string posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+                string postedbyid = "";
+                string editdat = "01-Jan-1900";
+
+
+
+
+            }
+            catch(Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
         }
         private void GetCustomerList()
         {
@@ -161,7 +205,10 @@ namespace RealERPWEB.F_38_AI
 
             }
         }
+        protected void lnkInvoiceSave_Click(object sender, EventArgs e)
+        {
 
+        }
         protected void ddlbatchname_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GetDataSetList();

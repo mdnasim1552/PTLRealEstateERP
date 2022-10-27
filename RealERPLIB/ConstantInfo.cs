@@ -577,6 +577,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1403000", "1403262", "F_14_Pro", "RptDateWiseReqCheckHistory?", "Type=CRMCheckdate", "Date Wise Requisition History(CRM)", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1403000", "1403263", "F_14_Pro", "RptMrfDeleteLog", "", "Mrf Delete Log Report", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1403000", "1403264", "F_14_Pro", "RptSupAdvanceDetails", "", "Supplier Advance Details", "Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1403000", "1403265", "F_14_Pro", "RptDateWiseBill", "", "Supplier Date Wise Bill", "Procurement", "False", "False", "False", "False" });
 
 
 
@@ -5754,6 +5755,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0402000019", "04. L/C Receive Report", "F_23_SaM/RptSalSummery?Type=LcReceive&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000020", "42. Supplier Credit Status (Purchase)", "F_14_Pro/RptPurchaseAgeing", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000021", "42. Supplier Advanced Details", "F_14_Pro/RptSupAdvanceDetails", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0402000022", "43. Supplier Date Wise Bill", "F_14_Pro/RptDateWiseBill", "", true, "" });
            // mnuTbl1.Rows.Add(new Object[] { "0402000020", "42. Supplier Details Info (Order Advanced) ", "F_14_Pro/RptWorkOdrAdvSupplierWise", "", true, "" });
 
             
