@@ -223,59 +223,36 @@ namespace RealERPWEB.F_17_Acc
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string userinfo = ASTUtility.Concat(compname, username, printdate);
             string vouType = this.ddlvoucher.SelectedItem.Text.ToString();
-
             Session_update();
 
             DataTable dt = (DataTable)Session["tblunposted"];
             DataTable dt2 = (DataTable)Session["tblusrvoucount"];
 
-            //string txtusr = ((TextBox)this.gvAccVoucher.HeaderRow.FindControl("txtSearusrname")).Text.Trim().ToString();
-            //if (txtusr.Length > 0)
-            //{
-            //    DataView dv = dt.DefaultView;
-            //    dv.RowFilter = ("usrname like '%" + txtusr + "%' && isprint=True");
-            //    dt = dv.ToTable();
-
-            //    DataView dv2 = dt2.DefaultView;
-            //    dv2.RowFilter = ("usrname like '%" + txtusr + "%'");
-            //    dt2 = dv2.ToTable();
-            //}
-            //else
-            //{
-            //    DataView dv = dt.DefaultView;
-            //    dv.RowFilter = ("isprint=True");
-            //    dt = dv.ToTable();
-
-            //}
             if (dt.Rows.Count == 0)
                 return;
-
+            //store dt table all user
             string[] array1 = new string[dt.Rows.Count];
+            //store dt2 table all user
             string[] array2 = new string[dt2.Rows.Count];
-
+           
             for (int i = 0; i < dt.Rows.Count; ++i)
             {
                 array1[i] = dt.Rows[i]["usrid"].ToString();
 
             }
 
-
             for (int i = 0; i < dt2.Rows.Count; ++i)
             {
                 array2[i] = dt2.Rows[i]["usrid"].ToString();
             }
 
-
+            //store matching userid from arary1 and array2
             string[] DifferArray = array1.Intersect(array2).ToArray();
-
-
-
-            DataTable filteredTable = dt2.Clone();
 
             DataTable dtarr = new DataTable();
             dtarr.Columns.Add("usrid");
 
-         
+            //convert to data table from DifferArray 
             foreach (string str in DifferArray)
             {
                 DataRow dr = dtarr.NewRow();
@@ -284,50 +261,33 @@ namespace RealERPWEB.F_17_Acc
                 dtarr.Rows.Add(dr);
             }
 
-
-   
+                //fetch matching user data  from dt2
             var query = (from dtl1 in dt2.AsEnumerable()
                          join dtl2 in dtarr.AsEnumerable() on dtl1.Field<string>("usrid") equals dtl2.Field<string>("usrid")
                          select new
                          {
+                             comcod = dtl1.Field<string>("comcod"),
+
                              usrid = dtl1.Field<string>("usrid"),
 
-
                              usrname = dtl1.Field<string>("usrname"),
-                        gdesc = dtl1.Field<double>("cashvou"),
-                        code = dtl1.Field<double>("bankvou"),
-                        contravou = dtl1.Field<double>("contravou"),
-                        jourvou = dtl1.Field<double>("jourvou"),
-                        pdcvou = dtl1.Field<double>("pdcvou"),
-                        tonum = dtl1.Field<double>("tonum"),
+                             cashvou = dtl1.Field<decimal>("cashvou"),
+                             bankvou = dtl1.Field<decimal>("bankvou"),
+                             contravou = dtl1.Field<decimal>("contravou"),
+                             jourvou = dtl1.Field<decimal>("jourvou"),
+                             pdcvou = dtl1.Field<decimal>("pdcvou"),
+                             tonum = dtl1.Field<decimal>("tonum"),
+                             isprint = dtl1.Field<string>("isprint")
 
-                        
+
+
                          }).ToList();
          DataTable dtE = ASITUtility03.ListToDataTable(query);
-
-        //               public string usrid { set; get; }
-
-        //public string usrname { set; get; }
-        //public double pdcvou { get; set; }
-        //public double cashvou { get; set; }
-        //public double bankvou { get; set; }
-        //public double contravou { get; set; }
-        //public double jourvou { get; set; }
-        //public double tonum { get; set; }
-
 
         var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VoutopSheet>();
             //var list1 = dt2.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VouTopSheetSum>();
             var list1 = dtE.DataTableToList<RealEntity.C_17_Acc.EClassAccVoucher.VouTopSheetSum>();
 
-
-            //Where(x => listOfBlockedVenues.All(y => y.VenueId != x.Id));
-
-
-
-
-
-            //list1.Where(x => DifferArray.ToList().All(y=>y==x.usrid));
 
             LocalReport Rpt1 = new LocalReport();
             switch (comcod)

@@ -138,7 +138,9 @@ namespace RealEntity.C_17_Acc
              public double contravou { get; set; }
              public double jourvou { get; set; }
              public double tonum { get; set; }
-             public VouTopSheetSum() { }
+
+
+            public VouTopSheetSum() { }
 
          }
 
