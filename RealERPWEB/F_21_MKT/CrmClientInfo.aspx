@@ -622,7 +622,7 @@
                 var arrgcodl = $('#<%=this.gvPersonalInfo.ClientID %>').find('[id$="lblgvItmCodeper"]');
                 var arraygval = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:text[id$="txtgvVal"]');
                 //var codePhone = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:option:selected[id$="ddlcountryPhone"]').text;
-                var codePhone = $('#<%=this.gvPersonalInfo.ClientID %>').find('[id$="ddlcountryPhone"]');
+               // var codePhone = $('#<%=this.gvPersonalInfo.ClientID %>').find('[id$="ddlcountryPhone"]');
               <%-- // var codePhone = $('#<%=this.gvPersonalInfo.ClientID %>').find('input[type=select][id*=ddlcountryPhone]').value;
                 //console.log(countryPhone[1]);
                 console.log(arraygval);
@@ -2056,15 +2056,12 @@
                                                     <asp:TemplateField>
 
                                                         <ItemTemplate>
-                                                            <asp:DropDownList ID="ddlcountryPhone" runat="server" ClientIDMode="Static" Style="float: left; padding-left: 0; padding-right: 0" Visible="false"
-                                                                Width="100px" CssClass="form-control">
-                                                                <asp:ListItem Selected="True" Value="+88">+88</asp:ListItem>
-                                                                <asp:ListItem Value="+1">+1</asp:ListItem>
-                                                                <asp:ListItem Value="+1">+1</asp:ListItem>
-                                                                <asp:ListItem Value="+44">+44</asp:ListItem>
-                                                                <asp:ListItem Value="+52">+52</asp:ListItem>
-                                                                <asp:ListItem Value="+52">+52</asp:ListItem>
+                                                          
+                                                            <asp:DropDownList ID="ddlcountryPhone" runat="server" CssClass="custom-select chzn-select" Style="float: left; padding-left: 0; padding-right: 0" Visible="false"
+                                                                Width="120px" >
+                                                                <asp:ListItem Selected="True" Value="+88">+88</asp:ListItem>                                                                
                                                             </asp:DropDownList>
+
                                                             <asp:TextBox ID="txtgvVal" ClientIDMode="Static" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px" OnTextChanged="txtgvVal_TextChanged1" AutoPostBack="true"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
@@ -3136,6 +3133,15 @@
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
                                                 <%--27--%>
+                                                 <asp:TemplateField HeaderText="Project Visit<br>Status" Visible="false">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvprojvisit" runat="server"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projvisit")) %>'></asp:Label>
+
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+
                                             </Columns>
                                             <FooterStyle CssClass="grvFooter" />
                                             <EditRowStyle />

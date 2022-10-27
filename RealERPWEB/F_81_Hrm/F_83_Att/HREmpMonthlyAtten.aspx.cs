@@ -177,10 +177,16 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             
             switch (comcod)
             {
-                case "3369":
                 case "3365":
+                case "3367":
+                case "3355":
+                case "3330":
+                case "3338":
+                case "1206":
+                case "1207":
+                case "3369":
                 case "3101":
-                //case "3348":
+                    //case "3348":
                     string date1 = "26-" + ASTUtility.Month3digit(Convert.ToInt32(MonthId.Substring(4, 2))) + "-" + MonthId.Substring(0, 4);
                     frmdate = Convert.ToDateTime(date1).AddMonths(-1).ToString("dd-MMM-yyyy");
                     todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");

@@ -330,7 +330,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.gv_Production.DataBind();
 
                 view2.Table = ds.Tables[0];
-                view2.RowFilter = "trackertype='99220' and roletype='95002'";
+                view2.RowFilter = "roletype='95003'";
                 dt1 = view2.ToTable();
                 this.gv_AssignQA.DataSource = dt1;
                 this.gv_AssignQA.DataBind();
@@ -563,7 +563,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.txtworktype.Text = worktype;
                 this.txtstartdate.Text = DateTime.Now.ToString("dd-MMM-yyyy");
                 this.textdelevery.Text = DateTime.Now.ToString("dd-MMM-yyyy");
-                // this.spnCurrncy.InnerText = currncy;
+                this.spnCurrncy.InnerText = currncy;
                 this.txtrate.Attributes.Add("Placeholder", "0.00 " + currncy);
                 this.txtAmount.Attributes.Add("Placeholder", "0.00 " + currncy);
 
@@ -618,13 +618,17 @@ namespace RealERPWEB.F_99_Allinterface
                 double workperhour = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtPerhour.Text.Trim()));
                 double textEmpcap = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.textEmpcap.Text.Trim()));
                 double rate = Convert.ToDouble(ASTUtility.ExprToValue("0" + this.txtrate.Text.Trim()));
-                //batchid, prjid, startdate, deliverydate, postrmid, postedbyid, postseson, posteddat, editbyid, editdat,datasetqty,datasettype,totalhour,worktype,phdm,pwrkperhour,empcapacity, rate
-                bool result = AIData.UpdateTransInfo2(comcod, "dbo_ai.SP_ENTRY_AI", "BATCH_INSERTUPDATE", id, batchid, prjid, startdate, deliverydate, editbyid, postedbyid, postseson, posteddat, postrmid,
-                    editdat, dtquantity.ToString(), datasettype, totalhour.ToString(), worktype, phdm, workperhour.ToString(), textEmpcap.ToString(), rate.ToString(), "", "");
+                //comcod,batchid, prjid, startdate, deliverydate, postrmid, postedbyid, postseson, posteddat, editbyid,
+                //editdat,datasetqty,datasettype,totalhour,worktype,phdm,pwrkperhour,empcapacity, rate
+               
+                bool result = AIData.UpdateTransInfo2(comcod, "dbo_ai.SP_ENTRY_AI", "BATCH_INSERTUPDATE", id, batchid, prjid, startdate, 
+                    deliverydate, postrmid, postedbyid, postseson, posteddat, editbyid,
+                    editdat, dtquantity.ToString(), datasettype, totalhour.ToString(), worktype, phdm,
+                    workperhour.ToString(), textEmpcap.ToString(), rate.ToString(), "", "");
 
                 if (!result)
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Save Fail..!!');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+ AIData.ErrorObject["Msg"].ToString()+ "');", true);
                     return;
                 }
 
@@ -650,8 +654,11 @@ namespace RealERPWEB.F_99_Allinterface
             txtstartdate.Text = DateTime.Now.ToString("dd-MMM-yyyy"); ;
             textdelevery.Text = DateTime.Now.ToString("dd-MMM-yyyy"); ;
             txtbatchQuantity.Text = "0";
-            txtrate.Text = "0";
-            txtAmount.Text = "0";
+            txtrate.Text = "0.00";
+            txtAmount.Text = "0.00";
+            txtPerhour.Text = "";
+            textEmpcap.Text = "";
+            TextmanPower.Text = "";
         }
 
         protected void pnlsidebarClose_Click(object sender, EventArgs e)
@@ -869,14 +876,14 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
                     case "03011": //country
 
-                        DataTable dtc = (DataTable)Session["tblCunt"];
-                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        DataTable dtc = (DataTable)Session["tblCunt"]; 
+                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = false;
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
                         ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
-                        ddlgval.DataTextField = "curdesc";
+                        ddlgval.DataTextField = "codedesc";
                         ddlgval.DataValueField = "code";
                         ddlgval.DataSource = dtc;
                         ddlgval.DataBind();
@@ -1154,7 +1161,7 @@ namespace RealERPWEB.F_99_Allinterface
                 DataTable dt2 = new DataTable();
                 DataView view3 = new DataView();
                 view3.Table = ds3.Tables[0];
-                view3.RowFilter = "roletypcode='95003'";
+                view3.RowFilter = "roletypcode='95003' and doneqty > 0";
                 dt2 = view3.ToTable();
                 this.gv_Delivery.DataSource = dt2;
                 this.gv_Delivery.DataBind();
@@ -1177,7 +1184,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
-                string taskid = ((Label)this.gv_Production.Rows[index].FindControl("lblgvpjobid")).Text.ToString();
+                string taskid = ((Label)this.gv_Production.Rows[index].FindControl("lblProdtaskid")).Text.ToString();
                 string batchid = ((Label)this.gv_Production.Rows[index].FindControl("lblgvbatchid")).Text.ToString();
                 string prjid = ((Label)this.gv_Production.Rows[index].FindControl("lblgvpprjid")).Text.ToString();
                 string title = ((Label)this.gv_Production.Rows[index].FindControl("lblgvtasktitle")).Text.ToString();
@@ -1188,8 +1195,8 @@ namespace RealERPWEB.F_99_Allinterface
                 this.txttasktitle.ReadOnly = true;
 
                 this.txtquantity.Text = assignqty;
-                this.hiddnbatchID.Value = taskid;
-                this.lblbatchid.Text = batchid;
+                this.HiddinTaskid.Value = taskid;
+                this.lblabatchid.Text = batchid;
                 this.lblproprjid.Text = prjid;
 
 
@@ -1299,7 +1306,7 @@ namespace RealERPWEB.F_99_Allinterface
                 {
                     DataRow dr1 = tblt01.NewRow();
                     DataTable tbl2 = (DataTable)ViewState["tblMat"];
-                    dr1["batchid"] = this.hiddnbatchID.Value.ToString();
+                    dr1["batchid"] = this.lblabatchid.Text.ToString();
                     dr1["empid"] = this.ddlassignmember.SelectedValue.ToString();
                     dr1["empname"] = this.ddlassignmember.SelectedItem.Text;
                     dr1["roletype"] = this.ddlUserRoleType.SelectedItem.Value;
@@ -1378,7 +1385,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string postseson = hst["compname"].ToString();
                 string Sessionid = hst["session"].ToString();
                 string posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-                string batchid = this.lblbatchid.Text;
+                string batchid = this.lblabatchid.Text;
                 string projid = this.lblproprjid.Text;
                 string tasktitle = this.txttasktitle.Text.Trim().ToString();
                 string taskdesc = this.txtdesc.Text.ToString();
@@ -1390,18 +1397,24 @@ namespace RealERPWEB.F_99_Allinterface
                 string qty = "0"; //this.txtquantity.Text.ToString();
                 string worktype = ""; //this.ddlworktype.SelectedValue.ToString();
                 string perhourqty = "0";//this.txtworkquantity.Text.ToString();
+                string anooid = this.ddlAnnotationid.SelectedValue.ToString();
+                string roletype = this.ddlUserRoleType.SelectedValue.ToString();
+                string assigntype = this.ddlassigntype.SelectedValue.ToString();
+                string assignqty = this.txtquantity.Text;
+                string workhour = Convert.ToDouble("0"+this.txtworkhour.Text).ToString();
+                string workrate = this.textrate.Text;
                 string postrmid = "";
-                //string taskid = this.HiddinTaskid.Value;
-                string postedbyid = "";
+                string taskid = this.HiddinTaskid.Value;
+                string postedbyid = userid;
                 string editdat = "01-Jan-1900";
 
                 string assmember = ""; //this.ddlassignmember.SelectedValue.ToString();
                 string annotation = ""; //this.ddlAnnotationid.SelectedValue.ToString();
 
                 //comcod,batchid,tasktitle,taskdesc,tasktype,createtask,createuser,remarks,estimationtime,dataset,qty,worktype,perhourqty, postrmid, postedbyid, postseson,posteddat,prjid,editbyid,editdat
-
-                bool result = AIData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "TASK_ASSIGN", ds1, null, null, batchid, tasktitle, taskdesc, tasktype, createtask, userid, remarks, estimationtime,
-                    dataset, qty, worktype, perhourqty, postrmid, postedbyid, postseson, posteddat, projid, postedbyid, editdat,"", "", "");
+                //comcod, taskid, empid, batchid, annoid,roletype, assigntype,  assignqty, workhour, postedbyid, posteddat, postseson, workrate,isoutsrc
+ 
+                bool result = AIData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "TASK_ASSIGN", ds1, null, null, taskid, postedbyid, createtask, postseson,"","", "", "");
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Task Create Fail..!!');", true);
@@ -1447,7 +1460,7 @@ namespace RealERPWEB.F_99_Allinterface
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
                 string batchid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcbatchid")).Text.ToString();
-                string taskid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcjobid")).Text.ToString();
+                string taskid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblQCtaskid")).Text.ToString();
                 string prjid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcprjid")).Text.ToString();
                 string title = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqctasktitle")).Text.ToString();
                 string assignqty = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcdoneqty")).Text.ToString();
@@ -1457,7 +1470,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.txtquantity.Text = assignqty;
                 this.HiddinTaskid.Value = taskid;
                 this.lblproprjid.Text = prjid;
-                this.lblbatchid.Text = batchid;
+                this.lblabatchid.Text = batchid;
 
 
                 this.pnlSidebar.Visible = true;
@@ -1482,7 +1495,7 @@ namespace RealERPWEB.F_99_Allinterface
                 int index = row.RowIndex;
                
                 string batchid = ((Label)this.gv_AssignQA.Rows[index].FindControl("lblgvqabatchid")).Text.ToString();               
-                string taskid = ((Label)this.gv_AssignQA.Rows[index].FindControl("lblgvqajobid")).Text.ToString();
+                string taskid = ((Label)this.gv_AssignQA.Rows[index].FindControl("lblQAtaskid")).Text.ToString();
                 string prjid = ((Label)this.gv_AssignQA.Rows[index].FindControl("lblqaprjid")).Text.ToString();
                 string title = ((Label)this.gv_AssignQA.Rows[index].FindControl("lblgvqatasktitle")).Text.ToString();
                 string assignqty = ((Label)this.gv_AssignQA.Rows[index].FindControl("lblgvqadoneqty")).Text.ToString();
@@ -1491,8 +1504,8 @@ namespace RealERPWEB.F_99_Allinterface
                 this.txttasktitle.ReadOnly = true;
 
                 this.txtquantity.Text = assignqty;
-                this.hiddnbatchID.Value = taskid;
-                this.lblbatchid.Text = batchid;
+                this.HiddinTaskid.Value = taskid;
+                this.lblabatchid.Text = batchid;
                 this.lblproprjid.Text = prjid;
 
 
@@ -1517,7 +1530,7 @@ namespace RealERPWEB.F_99_Allinterface
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
                 string batchid = ((Label)this.gv_AcceptReject.Rows[index].FindControl("lblgvarbatchid")).Text.ToString();
-                string taskid = ((Label)this.gv_AcceptReject.Rows[index].FindControl("lblgvarjobid")).Text.ToString();
+                string taskid = ((Label)this.gv_AcceptReject.Rows[index].FindControl("lblartaskid")).Text.ToString();
                 string prjid = ((Label)this.gv_AcceptReject.Rows[index].FindControl("lblgvarprjid")).Text.ToString();
                 string title = ((Label)this.gv_AcceptReject.Rows[index].FindControl("lblgvartasktitle")).Text.ToString();
                 string assignqty = ((Label)this.gv_AcceptReject.Rows[index].FindControl("lblgvardoneqty")).Text.ToString();
@@ -1526,8 +1539,8 @@ namespace RealERPWEB.F_99_Allinterface
                 this.txttasktitle.ReadOnly = true;
 
                 this.txtquantity.Text = assignqty;
-                this.hiddnbatchID.Value = taskid;
-                this.lblbatchid.Text = batchid;
+                this.HiddinTaskid.Value = taskid;
+                this.lblabatchid.Text = batchid;
                 this.lblproprjid.Text = prjid;
 
 
@@ -1541,6 +1554,36 @@ namespace RealERPWEB.F_99_Allinterface
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
             }
+        }
+
+        protected void gv_Delivery_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("lnkInvoice");              
+                
+                hlink.NavigateUrl = "~/F_38_AI/AIInVoiceCreate.aspx";                
+
+            }
+
+        }
+
+        protected void gv_AssignQA_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("hybtnqalink");
+                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "assignuser")).ToString().Trim();
+                string batchid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "batchid")).ToString().Trim();
+                string jobid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "jobid")).ToString().Trim();
+                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?EmpID=" + empid + "&JobID=" + jobid + "&BatchID=" + batchid;
+            }
+        }
+
+        protected void gv_BatchList_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gv_BatchList.PageIndex = e.NewPageIndex;
+            this.GetBatchAssingList();
         }
     }
 }

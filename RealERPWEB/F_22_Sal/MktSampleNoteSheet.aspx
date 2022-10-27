@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="MktGrandNoteSheet.aspx.cs" Inherits="RealERPWEB.F_22_Sal.MktGrandNoteSheet" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="MktSampleNoteSheet.aspx.cs" Inherits="RealERPWEB.F_22_Sal.MktSampleNoteSheet" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -17,7 +16,6 @@
             font-weight: normal;
             border: solid 1px #006699;
             background-color: White;
-       /*name*/
         }
 
         .AutoExtenderList {
@@ -72,11 +70,9 @@
                 });
 
 
-                var gvbcase = $('#<%=this.gvbcasesch.ClientID %>');
                 var gvcoff = $('#<%=this.gvcoffsch.ClientID %>');
 
 
-                gvbcase.Scrollable();
                 gvcoff.Scrollable();
 
                 $('.chzn-select').chosen({ search_contains: true });
@@ -247,17 +243,6 @@
                                 </asp:DropDownList>
                             </div>
 
-                        </div>
-
-                        <div class="col-md-2">
-                             <label class="control-label" for="ddlUserName" id="Label7" runat="server">Type</label>
-
-                            <asp:RadioButtonList ID="rbtnnoteType" RepeatDirection="Horizontal" CssClass=""  runat="server">
-                                <asp:ListItem>Summary</asp:ListItem>
-                                <asp:ListItem Selected="True">Details</asp:ListItem>
-                            
-                               
-                            </asp:RadioButtonList>
                         </div>
 
                         <div class="col-md-1">
@@ -470,297 +455,13 @@
                         <div class="card-body">
                             <div class="row">
 
-                                <div class="col-md-3">
-
+                                <div class="col-md-4">
                                     <div class="card card-fluid">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group lblmargin lblheadertitle">
-                                                        <label id="lblbasecase" runat="server">A. Base Case</label>
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group lblmargin">
-                                                        <label id="lblarea" runat="server">Area(in sft)</label>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group lblmargin textalignright">
-
-                                                        <label id="lblvalarea" runat="server" clss="form-control form-control-sm ">2500</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group lblmargin ">
-                                                        <label id="lblrate" runat="server">Rate(BDT/sft)</label>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group lblmargin textalignright">
-
-                                                        <label id="lblvalrate" runat="server" clss="form-control form-control-sm ">2500</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group lblmargin ">
-                                                        <label id="lblunitprice" runat="server">Unit Value(BDT)</label>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group lblmargin textalignright">
-
-                                                        <label id="lblvalunitprice" runat="server" clss="form-control form-control-sm ">2500</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group lblmargin ">
-                                                        <label id="lbltxtparking" runat="server">Parking</label>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group lblmargin textalignright">
-
-                                                        <label id="lblvalparking" runat="server" clss="form-control form-control-sm ">2500</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group lblmargin ">
-                                                        <label id="lblutility" runat="server">Utility</label>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group lblmargin textalignright">
-
-                                                        <label id="lblvalutility" runat="server" clss="form-control form-control-sm ">2500</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group lblmargin ">
-                                                        <label id="lblother" runat="server">Others</label>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group lblmargin textalignright">
-
-                                                        <label id="lblvalother" runat="server" clss="form-control form-control-sm ">2500</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group lblmargin font-weight-bold ">
-                                                        <label id="lblTotal" runat="server">Total</label>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group lblmargin textalignright font-weight-bold">
-
-                                                        <label id="lblvalTotal" runat="server" clss="form-control form-control-sm ">2500</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group lblmargin ">
-                                                        <label id="lblbookingpercnt" runat="server">Booking Money %</label>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group lblmargin textalignright">
-
-                                                        <label id="lblvalbookingpercnt" runat="server" clss="form-control form-control-sm ">2500</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group lblmargin ">
-                                                        <label id="lblbookingmoney" runat="server">Booking Money</label>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group lblmargin textalignright">
-
-                                                        <label id="lblvalbookingmoney" runat="server" clss="form-control form-control-sm ">2500</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                                <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group lblmargin">
-                                                        <label id="lblinsdate" runat="server">Booking Date</label>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group lblmargin">
-
-                                                        <asp:TextBox ID="txtBookingdate" runat="server" CssClass="form-control form-control-sm "></asp:TextBox>
-                                                        <cc1:CalendarExtender ID="txtBookingdate_CalendarExtender" runat="server"
-                                                            Format="dd-MMM-yyyy" TargetControlID="txtBookingdate"></cc1:CalendarExtender>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group lblmargin ">
-                                                        <label id="lblnoofemi" runat="server">No. of EMI</label>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group lblmargin textalignright">
-
-                                                        <label id="lblvalnoofemi" runat="server" clss="form-control form-control-sm ">2500</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group lblmargin ">
-                                                        <label id="lblemi" runat="server">EMI</label>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group lblmargin textalignright">
-
-                                                        <label id="lblvalemi" runat="server" clss="form-control form-control-sm ">2500</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group lblmargin font-weight-bold">
-                                                        <label id="lblfvpsft" runat="server">FV per SFT</label>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group lblmargin textalignright font-weight-bold">
-
-                                                        <label id="lblvalfvpsft" runat="server" clss="form-control form-control-sm ">2500</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group lblmargin font-weight-bold">
-                                                        <label id="lblpvpersft" runat="server">PV per SFT</label>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group lblmargin textalignright font-weight-bold">
-
-                                                        <label id="lblvalpvpersft" runat="server" clss="form-control form-control-sm ">2500</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group lblmargin">
-                                                        <label id="Label2" runat="server">Installment  Date</label>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group lblmargin textalignright ">
-
-                                                        <asp:TextBox ID="txtfirstinsdate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                                        <cc1:CalendarExtender ID="txtfirstinsdate_CalendarExtender" runat="server"
-                                                            Format="dd-MMM-yyyy" TargetControlID="txtfirstinsdate"></cc1:CalendarExtender>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group lblmargin">
-                                                        <label id="Label3" runat="server">Duration</label>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group lblmargin">
-
-                                                        <asp:DropDownList ID="ddlduration" runat="server"
-                                                            CssClass="form-control form-control-sm chzn-select">
-                                                            <asp:ListItem Value="1">1 Month</asp:ListItem>
-                                                            <asp:ListItem Value="2">2 Month</asp:ListItem>
-                                                            <asp:ListItem Value="3 ">3 Month</asp:ListItem>
-                                                            <asp:ListItem Value="4">4 Month</asp:ListItem>
-                                                            <asp:ListItem Value="5 ">5 Month</asp:ListItem>
-                                                            <asp:ListItem Value="6">6 Month</asp:ListItem>
-                                                            <asp:ListItem Value="7">7 Month</asp:ListItem>
-                                                            <asp:ListItem Value="8">8 Month</asp:ListItem>
-                                                            <asp:ListItem Value="9">9 Month</asp:ListItem>
-                                                            <asp:ListItem Value="10">10 Month</asp:ListItem>
-                                                            <asp:ListItem Value="11">11 Month</asp:ListItem>
-                                                        </asp:DropDownList>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group lblmargin">
-                                                        <label id="Label6" runat="server">Interest Rate</label>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group lblmargin textalignright">
-
-                                                        <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control form-control-sm textalignright" Text="9%"></asp:TextBox>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
-                                <div class="col-md-3">
-                                    <div class="card card-fluid">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group lblmargin lblheadertitle">
-                                                        <label id="lblheadercoffer" runat="server">B.Customer Offer</label>
+                                                        <label id="lblheadercoffer" runat="server">Customer Offer</label>
                                                     </div>
 
                                                 </div>
@@ -999,7 +700,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row" >
+                                            <div class="row" style="display:none;">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin font-weight-bold">
                                                         <label id="lbltxtcofffvpersft" runat="server">FV per SFT</label>
@@ -1014,7 +715,7 @@
                                                 </div>
                                             </div>
                                              <%--style="display:none;"--%> 
-                                            <div class="row"  >
+                                            <div class="row"  style="display:none;" >
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin font-weight-bold">
                                                         <label id="lbltxtcoffpvpersft" runat="server">PV per SFT</label>
@@ -1154,31 +855,55 @@
                                             <div class="row" style="margin-top: 10px;">
 
 
-                                                <div class="col-md-4 offset-8">
+                                                <div class="col-md-4 offset-4">
                                                     <div class="form-group">
                                                         <asp:LinkButton ID="lbtnCalCulation" runat="server" CssClass=" form-control form-control-sm  btn  btn-warning" OnClick="lbtnCalCulation_Click">Calculation</asp:LinkButton>
                                                     </div>
                                                 </div>
-                                               
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <asp:LinkButton ID="lbtnUpdate" runat="server" CssClass=" form-control form-control-sm  btn btn-success btn-sm" OnClick="lbtnUpdate_Click">Final Update</asp:LinkButton>
+                                                    </div>
+                                                </div>
 
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="col-md-3">
+                                <div class="col-md-4">
 
                                     <div class="card card-fluid">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group lblmargin lblheadertitle">
-                                                        <label id="Label4" runat="server">Schedule Information(Base Case)</label>
+                                                        <label id="Label5" runat="server">Schedule Information</label>
                                                     </div>
 
                                                 </div>
-                                                <asp:GridView ID="gvbcasesch" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <asp:CheckBox ID="chkSegment" runat="server" AutoPostBack="True"
+                                                            CssClass="chkBoxControl"
+                                                            OnCheckedChanged="chkSegment_CheckedChanged" Text="Slab" />
+
+                                                        <asp:CheckBox ID="chkAddIns" runat="server" AutoPostBack="True"
+                                                            CssClass="chkBoxControl"
+                                                            OnCheckedChanged="chkAddIns_CheckedChanged" Text="Add.Installment" />
+
+                                                    </div>
+
+
+
+
+
+
+
+
+                                                </div>
+                                                <asp:GridView ID="gvcoffsch" runat="server" CssClass=" table-striped  table-bordered grvContentarea"
                                                     AutoGenerateColumns="False" ShowFooter="True"
                                                     Style="margin-right: 0px">
                                                     <RowStyle />
@@ -1186,157 +911,38 @@
                                                         <asp:TemplateField HeaderText="Sl">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblgvslnodumpay" runat="server"
-                                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
+                                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="40px"></asp:Label>
                                                             </ItemTemplate>
                                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                         </asp:TemplateField>
 
 
-                                                        <asp:TemplateField HeaderText="Description">
+
+
+<%--                                                         <asp:TemplateField HeaderText="">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblbcaseschdesc" runat="server" ForeColor="Black" BackColor="Transparent" BorderStyle="none"
-                                                                    Height="16px"
-                                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc"))%>'
-                                                                    Width="120px"></asp:Label>
 
+                                                                <asp:LinkButton ID="lbtnAdddsch" OnClick="lbtnAdddsch_Click" ToolTip="Add Installment"  runat="server"><span class="fa fa-plus"></span> </asp:LinkButton>
 
 
                                                             </ItemTemplate>
-                                                            <FooterTemplate>
-
-
-                                                                <asp:LinkButton ID="lnkgvbaseFcoffTotal" runat="server" Font-Bold="True" Font-Size="12px"
-                                                                    ForeColor="Black" Style="text-align: right" Text="Total" OnClick="lnkgvbaseFcoffTotal_Click"></asp:LinkButton>
-                                                            </FooterTemplate>
-
-
-                                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-
-                                                        </asp:TemplateField>
+                                                            <ItemStyle Width="30px"  HorizontalAlign="Center"/>
+                                                            <HeaderStyle HorizontalAlign="Center" Width="30px" VerticalAlign="Top" />
+                                                        </asp:TemplateField>--%>
 
 
 
-                                                        <asp:TemplateField HeaderText="Schedule Date">
+                                                        <asp:TemplateField HeaderText="">
                                                             <ItemTemplate>
-                                                                <asp:TextBox ID="txtgvScheduledate" runat="server" ForeColor="Black" BackColor="Transparent" BorderStyle="none"
-                                                                    Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "schdate")).ToString("dd-MMM-yyyy")%>'
-                                                                    Width="80px"></asp:TextBox>
 
-                                                                <cc1:CalendarExtender ID="txtgvScheduledate_CalendarExtender1" runat="server"
-                                                                    Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvScheduledate"></cc1:CalendarExtender>
+                                                                <asp:LinkButton ID="lbtnDeldsch" OnClick="lbtnDeldsch_Click" ToolTip="Delete Installment" OnClientClick="javascript:return FunConfirm();" runat="server"><span style="color:red" class="fa fa-trash"></span> </asp:LinkButton>
+
 
                                                             </ItemTemplate>
-
-
-
-                                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-
+                                                            <ItemStyle Width="30px" HorizontalAlign="Center" />
+                                                            <HeaderStyle HorizontalAlign="Center" Width="30px" VerticalAlign="Top" />
                                                         </asp:TemplateField>
 
-
-
-
-
-                                                       
-
-
-                                                        <asp:TemplateField HeaderText="PV">
-                                                            <ItemTemplate>
-                                                                <asp:TextBox ID="txtgvdumschamt" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="none"
-                                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pv")).ToString("#,##0;(#,##0); ") %>'
-                                                                    Width="80px"></asp:TextBox>
-                                                            </ItemTemplate>
-
-                                                            <FooterTemplate>
-                                                                <asp:Label ID="lgvFpvschamt" runat="server" Font-Bold="True" Font-Size="12px"
-                                                                    ForeColor="Black" Style="text-align: right"></asp:Label>
-                                                            </FooterTemplate>
-
-                                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                            <ItemStyle HorizontalAlign="Right" />
-                                                            <FooterStyle HorizontalAlign="Right" />
-
-                                                        </asp:TemplateField>
-
-                                                        <asp:TemplateField HeaderText="FV">
-                                                            <ItemTemplate>
-                                                                <asp:TextBox ID="txtgvfvschamt" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="none"
-                                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fv")).ToString("#,##0;(#,##0); ") %>'
-                                                                    Width="80px"></asp:TextBox>
-                                                            </ItemTemplate>
-
-                                                            <FooterTemplate>
-                                                                <asp:Label ID="lgvFfvscham" runat="server" Font-Bold="True" Font-Size="12px"
-                                                                    ForeColor="Black" Style="text-align: right"></asp:Label>
-                                                            </FooterTemplate>
-
-                                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                            <ItemStyle HorizontalAlign="Right" />
-                                                            <FooterStyle HorizontalAlign="Right" />
-
-                                                        </asp:TemplateField>
-
-
-
-
-
-                                                    </Columns>
-                                                    <FooterStyle CssClass="" />
-                                                    <EditRowStyle />
-                                                    <AlternatingRowStyle />
-                                                    <PagerStyle CssClass="" />
-                                                    <HeaderStyle CssClass="" />
-                                                </asp:GridView>
-
-                                            </div>
-
-
-
-
-
-
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-3">
-
-                                    <div class="card card-fluid">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group lblmargin lblheadertitle">
-                                                        <label id="Label5" runat="server">Schedule Information(Customer Offer)</label>
-                                                    </div>
-
-                                                </div>
-
-                                              
-
-
-
-
-                                                 <asp:GridView ID="gvcoffsch" runat="server" CssClass=" table-striped  table-bordered grvContentarea"
-                                                    AutoGenerateColumns="False" ShowFooter="True"
-                                                    Style="margin-right: 0px">
-                                                    <RowStyle />
-                                                    <Columns>
-                                                        <asp:TemplateField HeaderText="Sl">
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lblgvslnodumpay" runat="server"
-                                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
-                                                            </ItemTemplate>
-                                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                        </asp:TemplateField>
-
-
-
-
-
-
-
-                                                        
 
 
 
@@ -1347,7 +953,7 @@
                                                                 <asp:Label ID="lblschdesc" runat="server" ForeColor="Black" BackColor="Transparent" BorderStyle="none"
                                                                     Height="16px"
                                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc"))%>'
-                                                                    Width="120px"></asp:Label>
+                                                                    Width="160px"></asp:Label>
 
 
 
@@ -1405,7 +1011,7 @@
                                                         </asp:TemplateField>
 
 
-                                                        <asp:TemplateField HeaderText="FV" >
+                                                        <asp:TemplateField HeaderText="FV" Visible="false" >
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblgvcofffvschamt" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="none"
                                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fv")).ToString("#,##0;(#,##0); ") %>'
@@ -1435,13 +1041,8 @@
                                                     <EditRowStyle />
                                                     <AlternatingRowStyle />
                                                     <PagerStyle CssClass="" />
-                                                    <HeaderStyle CssClass="" />
+                                                    <HeaderStyle CssClass="grvHeaderNew" />
                                                 </asp:GridView>
-
-
-
-                                                </div>
-                                               
 
 
 
@@ -1449,13 +1050,123 @@
                                         </div>
 
                                     </div>
-                                
-                            </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:Panel ID="pnlSlab" runat="server" Visible="False">
+                                        <div class="card card-fluid">
+                                            <div class="card-body">
+                                                <div class="row">
 
-                               
-                            
-                            
-                            <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group lblmargin">
+                                                            <label id="lblfrmslab" runat="server">From</label>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-7">
+                                                        <div class="form-group lblmargin">
+
+                                                            <asp:TextBox ID="txtfrmslab" runat="server" CssClass="form-control  form-control-sm"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row">
+
+                                                    <div class="col-md-5">
+                                                        <div class="form-group lblmargin">
+                                                            <label id="lbltoslab" runat="server">To</label>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-7">
+                                                        <div class="form-group lblmargin">
+
+                                                            <asp:TextBox ID="txttoslab" runat="server" CssClass="form-control  form-control-sm"></asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row">
+
+                                                    <div class="col-md-5">
+                                                        <div class="form-group lblmargin">
+                                                            <label id="Label2" runat="server">Installment</label>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-7">
+                                                        <div class="form-group lblmargin">
+
+                                                            <asp:TextBox ID="txtperslabamt" runat="server" CssClass="form-control  form-control-sm"> </asp:TextBox>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div clsss="row" style="margin: 10px 0px 0px 10px;">
+
+                                                    <div class="col-md-7 offset-5">
+                                                        <div class="form-group">
+                                                            <asp:LinkButton ID="lbtnSlab" runat="server" CssClass=" form-control form-control-sm  btn btn-warning" OnClick="lbtnSlab_Click">Put Data</asp:LinkButton>
+                                                        </div>
+
+
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+                                    </asp:Panel>
+
+                                    <asp:Panel ID="PanelAddIns" runat="server" Visible="False">
+                                        <div class="card card-fluid">
+                                            <div class="card-body">
+                                                <div class="row">
+
+                                                    <div class="col-md-5">
+                                                        <div class="form-group lblmargin">
+                                                            <label id="lblAddinstallment" runat="server">Installement</label>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-7">
+                                                        <div class="form-group lblmargin">
+
+                                                            <asp:DropDownList ID="ddlInstallment" runat="server" CssClass="form-control form-control-sm chzn-select" TabIndex="12">
+                                                            </asp:DropDownList>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div clsss="row" style="margin: 10px 0px 0px 10px;">
+
+                                                    <div class="col-md-7 offset-5">
+                                                        <div class="form-group">
+                                                            <asp:LinkButton ID="lbtnAddInstallment" runat="server" CssClass=" form-control form-control-sm  btn btn-warning" OnClick="lbtnAddInstallment_Click">Add</asp:LinkButton>
+                                                        </div>
+
+
+                                                    </div>
+
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+                                    </asp:Panel>
+
+                                    <div class="row">
                                         
                                        
                                         <asp:HiddenField ID="lblhiddenbutility" runat="server" />
@@ -1465,7 +1176,11 @@
 
                                     </div>
 
-                               
+
+
+                                
+
+                                </div>
                             </div>
                         </div>
 
