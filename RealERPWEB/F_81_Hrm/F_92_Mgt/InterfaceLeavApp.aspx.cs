@@ -48,7 +48,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 this.RadioButtonList1.SelectedIndex = 0;
                 this.pnlInt.Visible = true;
                 this.visibilityBracnh();
-                this.GetBranch();
+              //  this.GetBranch();
             
                 this.GetStep();
                 this.SaleRequRpt();
@@ -189,72 +189,81 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         }
         private void SaleRequRpt()
         {
-            ViewState.Remove("tbltotalleav");
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = this.GetCompCode();
-            string usrid = hst["usrid"].ToString();// (this.Request.QueryString["Type"] == "Ind") || (this.Request.QueryString["Type"] == "DeptHead") ? hst["usrid"].ToString() : "";
-            string fDate = Convert.ToDateTime(this.txFdate.Text).ToString("dd-MMM-yyyy");
-            string tDate = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
 
-            string type = "";//(this.Request.QueryString["Type"]) == "Ind" || (this.Request.QueryString["Type"] == "DeptHead") ? "" : "Management";
-            string DeptHead = "";//(this.Request.QueryString["Type"]) == "DeptHead" ? "DeptHead" : "";
-            string searchkey = "%"+this.txtSearch.Text.Trim()+"%";
+            try {
 
-            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
-            string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
-            string branch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" || this.ddlBranch.SelectedValue.ToString() == "" ? CompanyName : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
-            string projectcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? branch : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%");
-            string section = (this.ddlSection.SelectedValue.ToString() == "000000000000" ? projectcode : this.ddlSection.SelectedValue.ToString());
+                ViewState.Remove("tbltotalleav");
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = this.GetCompCode();
+                string usrid = hst["usrid"].ToString();// (this.Request.QueryString["Type"] == "Ind") || (this.Request.QueryString["Type"] == "DeptHead") ? hst["usrid"].ToString() : "";
+                string fDate = Convert.ToDateTime(this.txFdate.Text).ToString("dd-MMM-yyyy");
+                string tDate = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
 
-            string leavtype = this.ddleavetype.SelectedValue.ToString()==""? "%%":this.ddleavetype.SelectedValue.ToString();
+                string type = "";//(this.Request.QueryString["Type"]) == "Ind" || (this.Request.QueryString["Type"] == "DeptHead") ? "" : "Management";
+                string DeptHead = "";//(this.Request.QueryString["Type"]) == "DeptHead" ? "DeptHead" : "";
+                string searchkey = "%" + this.txtSearch.Text.Trim() + "%";
+
+                int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+                string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
+                string branch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" || this.ddlBranch.SelectedValue.ToString() == "" ? CompanyName : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
+                string projectcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? branch : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%");
+                string section = (this.ddlSection.SelectedValue.ToString() == "000000000000" ? projectcode : this.ddlSection.SelectedValue.ToString());
+
+                string leavtype = this.ddleavetype.SelectedValue.ToString() == "" ? "%%" : this.ddleavetype.SelectedValue.ToString();
 
 
-            DataSet ds1 = accData.GetTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_MGT_INTERFACE", "GETLEAVEREQUEST", fDate, tDate, usrid, type, DeptHead, searchkey,
-                CompanyName, branch, projectcode, section, leavtype);
-            if (ds1 == null)
-                return;
+                DataSet ds1 = accData.GetTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_MGT_INTERFACE", "GETLEAVEREQUEST", fDate, tDate, usrid, type, DeptHead, searchkey,
+                    CompanyName, branch, projectcode, section, leavtype);
+                if (ds1 == null)
+                    return;
 
-            this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-sky-blue counter'>" + ds1.Tables[1].Rows[0]["tcount"].ToString() + "</div></a><div class='circle-tile-content deep-sky-blue'><div class='circle-tile-description txt-white'>Leave Request</div></div></div>";
-            this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + ds1.Tables[1].Rows[0]["reqcount"].ToString() +"</div></a><div class='circle-tile-content purple'><div class='circle-tile-description txt-white'>Leave Process</div></div></div>";
-            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-pink counter'>" + ds1.Tables[1].Rows[0]["appcount"].ToString() +  "</div></a><div class='circle-tile-content deep-pink'><div class='circle-tile-description txt-white'>Leave Approval</div></div></div>";
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-green counter'>" + ds1.Tables[1].Rows[0]["fappcount"].ToString() + "</div></a><div class='circle-tile-content orange'><div class='circle-tile-description txt-white'>Final Approval</div></div></div>";
-            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + ds1.Tables[1].Rows[0]["tappcount"].ToString() + "</div></a><div class='circle-tile-content deep-green'><div class='circle-tile-description txt-white'>Leave Confirmed</div></div></div>";
+                this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-sky-blue counter'>" + ds1.Tables[1].Rows[0]["tcount"].ToString() + "</div></a><div class='circle-tile-content deep-sky-blue'><div class='circle-tile-description txt-white'>Leave Request</div></div></div>";
+                this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + ds1.Tables[1].Rows[0]["reqcount"].ToString() + "</div></a><div class='circle-tile-content purple'><div class='circle-tile-description txt-white'>Leave Process</div></div></div>";
+                this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-pink counter'>" + ds1.Tables[1].Rows[0]["appcount"].ToString() + "</div></a><div class='circle-tile-content deep-pink'><div class='circle-tile-description txt-white'>Leave Approval</div></div></div>";
+                this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-green counter'>" + ds1.Tables[1].Rows[0]["fappcount"].ToString() + "</div></a><div class='circle-tile-content orange'><div class='circle-tile-description txt-white'>Final Approval</div></div></div>";
+                this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + ds1.Tables[1].Rows[0]["tappcount"].ToString() + "</div></a><div class='circle-tile-content deep-green'><div class='circle-tile-description txt-white'>Leave Confirmed</div></div></div>";
 
-            // All Order
-            DataTable dt = new DataTable();
+                // All Order
+                DataTable dt = new DataTable();
 
-            DataView dv = new DataView();
-            dt = ((DataTable)ds1.Tables[0]).Copy();
-            ViewState["tbltotalleav"] = dt;
-            this.Data_Bind("gvLvReq", dt);
+                DataView dv = new DataView();
+                dt = ((DataTable)ds1.Tables[0]).Copy();
+                ViewState["tbltotalleav"] = dt;
+                this.Data_Bind("gvLvReq", dt);
 
-            //In-process
-            dt = ((DataTable)ds1.Tables[0]).Copy();
-            dv = dt.DefaultView;
-            //dv.RowFilter = ("sostatus = 'In-process' or  sostatus = 'Request' ");
-            dv.RowFilter = ("supstatus='' and lvstatus <> 'Approved' ");
-            this.Data_Bind("gvInprocess", dv.ToTable());
+                //In-process
+                dt = ((DataTable)ds1.Tables[0]).Copy();
+                dv = dt.DefaultView;
+                //dv.RowFilter = ("sostatus = 'In-process' or  sostatus = 'Request' ");
+                dv.RowFilter = ("supstatus='' and lvstatus <> 'Approved' ");
+                this.Data_Bind("gvInprocess", dv.ToTable());
 
-            //Approved
-            dt = ((DataTable)ds1.Tables[0]).Copy();
-            dv = dt.DefaultView;
-            dv.RowFilter = ("dptstatus = '' and  supstatus<>''  and lvstatus <> 'Approved'");
-            //dv.RowFilter = ("sostatus = 'Approved' or sostatus = 'In-process' ");
-            this.Data_Bind("gvApproved", dv.ToTable());
+                //Approved
+                dt = ((DataTable)ds1.Tables[0]).Copy();
+                dv = dt.DefaultView;
+                dv.RowFilter = ("dptstatus = '' and  supstatus<>''  and lvstatus <> 'Approved'");
+                //dv.RowFilter = ("sostatus = 'Approved' or sostatus = 'In-process' ");
+                this.Data_Bind("gvApproved", dv.ToTable());
 
-            //Final Approved
-            dt = ((DataTable)ds1.Tables[0]).Copy();
-            dv = dt.DefaultView;
-            dv.RowFilter = ("lvstatus = 'Final Approved'");
-            //dv.RowFilter = ("sostatus = 'Approved' or sostatus = 'In-process' ");
-            this.Data_Bind("gvfiApproved", dv.ToTable());
+                //Final Approved
+                dt = ((DataTable)ds1.Tables[0]).Copy();
+                dv = dt.DefaultView;
+                dv.RowFilter = ("lvstatus = 'Final Approved'");
+                //dv.RowFilter = ("sostatus = 'Approved' or sostatus = 'In-process' ");
+                this.Data_Bind("gvfiApproved", dv.ToTable());
 
-            //Confirm
-            dt = ((DataTable)ds1.Tables[0]).Copy();
-            dv = dt.DefaultView;
-            dv.RowFilter = ("lvstatus = 'Approved' ");
-            //dv.RowFilter = ("sostatus = 'Approved' or sostatus = 'In-process' ");
-            this.Data_Bind("gvConfirm", dv.ToTable());
+                //Confirm
+                dt = ((DataTable)ds1.Tables[0]).Copy();
+                dv = dt.DefaultView;
+                dv.RowFilter = ("lvstatus = 'Approved' ");
+                //dv.RowFilter = ("sostatus = 'Approved' or sostatus = 'In-process' ");
+                this.Data_Bind("gvConfirm", dv.ToTable());
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.ToString() + "');", true);
+            }
+            
         }
 
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
@@ -745,7 +754,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.ddlCompany.DataSource = ds1.Tables[0];
             this.ddlCompany.DataBind();
             Session["tblcompany"] = ds1.Tables[0];
-            //this.ddlCompany_SelectedIndexChanged(null, null);
+            this.ddlCompany_SelectedIndexChanged(null, null);
             ds1.Dispose();
         }
         private void GetBranch()
@@ -791,22 +800,31 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         }
         private void SectionName()
         {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string userid = hst["usrid"].ToString();
-            string comcod = this.GetCompCode();
-            //  string projectcode = this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%%" : this.ddlProjectName.SelectedValue.ToString();
-            string projectcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9)) + "%";
-            string txtSSec = "%%";
-            // DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "SECTIONNAME", projectcode, txtSSec, "", "", "", "", "", "", "");
+            try
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string userid = hst["usrid"].ToString();
+                string comcod = this.GetCompCode();
+                //  string projectcode = this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%%" : this.ddlProjectName.SelectedValue.ToString();
+                string projectcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9)) + "%";
+                string txtSSec = "%%";
+                // DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "SECTIONNAME", projectcode, txtSSec, "", "", "", "", "", "", "");
 
-            DataSet ds2 = accData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETSECTION_LIST", projectcode, userid, "", "", "", "", "", "", "");
+                DataSet ds2 = accData.GetTransInfo(comcod, "dbo_hrm.SP_BASIC_UTILITY_DATA", "GETSECTION_LIST", projectcode, userid, "", "", "", "", "", "", "");
 
-            this.ddlSection.DataTextField = "sectionname";
-            this.ddlSection.DataValueField = "section";
-            this.ddlSection.DataSource = ds2.Tables[0];
-            this.ddlSection.DataBind();
-            // this.GetEmpName();
-            //ddlSection_SelectedIndexChanged(null, null);
+                this.ddlSection.DataTextField = "sectionname";
+                this.ddlSection.DataValueField = "section";
+                this.ddlSection.DataSource = ds2.Tables[0];
+                this.ddlSection.DataBind();
+                // this.GetEmpName();
+                //ddlSection_SelectedIndexChanged(null, null);
+            }
+            catch (Exception ex)
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message.ToString() + "');", true);
+            }
+           
         }
         protected void ddlCompany_SelectedIndexChanged(object sender, EventArgs e)
         {

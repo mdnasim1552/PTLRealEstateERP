@@ -108,7 +108,8 @@ namespace RealEntity.C_17_Acc
          [Serializable]
        public class VoutopSheet
        {
-           public string usrname { set; get; }
+            public string usrid { set; get; }
+            public string usrname { set; get; }
            public string vounum2 { set; get; }
            public string vounum1 { set; get; }
            public DateTime voudat { set; get; }
@@ -128,14 +129,18 @@ namespace RealEntity.C_17_Acc
          [Serializable]
          public class VouTopSheetSum
          {
-             public string usrname { set; get; }
+            public string usrid { set; get; }
+
+            public string usrname { set; get; }
              public double pdcvou { get; set; }
              public double cashvou { get; set; }
              public double bankvou { get; set; }
              public double contravou { get; set; }
              public double jourvou { get; set; }
              public double tonum { get; set; }
-             public VouTopSheetSum() { }
+
+
+            public VouTopSheetSum() { }
 
          }
 
