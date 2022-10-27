@@ -473,14 +473,14 @@ namespace RealERPWEB
                               "<li style='margin-top:10px!important'>Work Station: Your initial workstation will be at Acme AI Ltd. office at DOHS Mirpur. To further Acme AI Ltd. interest, you may be required to work remotely if the situation demand it.</li>" +
                               "<li style='margin-top:10px!important'>Reporting Supervisor: You will report to your team/project lead for the time being subject to the supervisory changes in the future.</li>" +
                               "<li style='margin-top:10px!important'>Salary and Allowances: The breakdown of your monthly salary will be as below: </li>" +
-                       //salary break down table
-                       "<table style='width:70%;'>" +
-                      
-                       "<tr><<td>Basic (30% of Gross)</td><td style='text-align:center'>:" + bsal + "</td></tr>" +
-                       "<tr><td>House Allowance (30% of Gross)</td><td style='text-align:center;'>:" + hrent + "</td></tr>" +
-                       "<tr><<td>Medical Allowance (20% of Gross)</td><td style='text-align:center;'>:" + mallow + "</td></tr>" +
-                       "<tr><td>Transport Allowance (20% of Gross)</td><td style='text-align:center'>:" + cven + "</td></tr>" +
-                       "<tr style='border-top:1px solid!important;'><td style='text-align:center;' ><strong>Total Gross Salary</strong></td><td style='text-align: center;'><strong>:" + total + "</strong></td></tr></table>" +
+                     //salary break down table
+                     "<table style='width:70%;margin-left:20px;border:0'>" +
+
+                       "<tr style='border:0;'><td style='border:0;>Basic (30% of Gross)</td><td style='text-align:center;border:0;'>:" + bsal + "</td></tr>" +
+                       "<tr style='border:0;'><td style='border:0;>House Allowance (30% of Gross)</td><td style='text-align:center;border:0;'>:" + hrent + "</td></tr>" +
+                       "<tr style='border:0;'><td style='border:0;>Medical Allowance (20% of Gross)</td><td style='text-align:center;border:0;'>:" + mallow + "</td></tr>" +
+                       "<tr style='border:0;'><td style='border:0;>Transport Allowance (20% of Gross)</td><td style='text-align:center;border:0;'>:" + cven + "</td></tr>" +
+                       "<tr style='border-top:1px solid!important;'><td style='text-align:center;'><strong>Total Gross Salary</strong></td><td style='text-align: center;'><strong>:" + total + "</strong></td></tr></table>" +
 
                               "<li style='margin-top:10px!important'>Probation: You will be on probation for a period of 06 (six) months from the date of appointment. At the end of your probation, if your services are found to be satisfactory, your appointment may be confirmed in writing as a full-time project staff. Unsatisfactory progress during probation may result in an extension of the probation period by three months or termination from the service at the discretion of the company.</li>" +
                               "<li style='margin-top:10px!important'>Working Days and Hours Your official working days are 05 days a week starting from Monday to Friday. Office hours start at 10 AM and ends at 7 PM. with 40 minutes lunch break from 2 PM to 2.40 PM and 20 minutes Coffee Break from 11.50 to 12 AM and from 5 PM to 5.10 PM. For the requirement of the office you may have to work on a shift basis (morning shift 8:00 am – 2:00 pm and day shift 2:30 pm – 8:30 pm without any lunch break) on a requirement basis</li>" +
