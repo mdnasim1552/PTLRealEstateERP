@@ -253,7 +253,7 @@ namespace RealERPWEB.F_22_Sal
             }
             List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet> lstb = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>)Session["lstbaseschdule"];
             List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet> lstcoff = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>)Session["lstcoffschedule"];
-            List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet> lstrev = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet>)Session["lstrevschedule"];
+            
 
 
             double uzize, bfv, bpv, uamt, pamt, utility, others, bfvpsft, bpvpsft, bpowbpart, intratio, noofemi,
@@ -285,15 +285,7 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-            revfv = lstrev.Sum(l => l.fv);
-            revpv = lstrev.Sum(l => l.pv);
-            revpamt = Convert.ToDouble(ds1.Tables[0].Rows[0]["revpamt"]);
-            revutility = Convert.ToDouble(ds1.Tables[0].Rows[0]["revutility"]);
-            revothers = Convert.ToDouble(ds1.Tables[0].Rows[0]["revothers"]);
-            revnoofemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["revnoofemi"]);
-            revfvpsft = ((uzize > 0) ? ((revfv - revpamt - revutility - revothers) / uzize) : 0.00);
-            revpowbpart = (12 + intratio) / 12;
-            revpvpsft = Math.Round(revfvpsft / (Math.Pow(revpowbpart, noofemi)), 0);
+          
 
             string area = Convert.ToDouble(ds1.Tables[0].Rows[0]["usize"]).ToString("#,##0;(#,##0);");
             string rate = Convert.ToDouble(ds1.Tables[0].Rows[0]["urate"]).ToString("#,##0;(#,##0);");
@@ -327,28 +319,14 @@ namespace RealERPWEB.F_22_Sal
             string coffpvpersft = coffpvpsft.ToString("#,##0;(#,##0);");
 
 
-            string revparea = Convert.ToDouble(ds1.Tables[0].Rows[0]["usize"]).ToString("#,##0;(#,##0);");
-            string revprate = Convert.ToDouble(ds1.Tables[0].Rows[0]["revurate"]).ToString("#,##0;(#,##0);");
-            string revpunitprice = Convert.ToDouble(ds1.Tables[0].Rows[0]["revuamt"]).ToString("#,##0;(#,##0);");
-            string revpparking = Convert.ToDouble(ds1.Tables[0].Rows[0]["revpamt"]).ToString("#,##0;(#,##0);");
-            string revputility = Convert.ToDouble(ds1.Tables[0].Rows[0]["revutility"]).ToString("#,##0;(#,##0);");
-            string revpothers = Convert.ToDouble(ds1.Tables[0].Rows[0]["revothers"]).ToString("#,##0;(#,##0);");
-            string revpTotal = Convert.ToDouble(ds1.Tables[0].Rows[0]["revtunitamt"]).ToString("#,##0;(#,##0);");
-            string revpbbookinmpercnt = Convert.ToDouble(ds1.Tables[0].Rows[0]["revbookingper"]).ToString("#,##0;(#,##0);");
-            string revpbookingam = Convert.ToDouble(ds1.Tables[0].Rows[0]["revbookingam"]).ToString("#,##0;(#,##0);");
-            string revpnooffemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["revnoofemi"]).ToString("#,##0;(#,##0);");
-            string revpemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["revemi"]).ToString("#,##0;(#,##0);");
-            string revpfvpersft = revfvpsft.ToString("#,##0;(#,##0);");
-            string revppvpersft = revpvpsft.ToString("#,##0;(#,##0);");
+           
 
-            DataTable dt = (DataTable)ds1.Tables[1];
-            DataTable dt1 = (DataTable)ds1.Tables[2];
-            DataTable dt2 = (DataTable)ds1.Tables[3];
+            
 
             LocalReport Rpt1 = new LocalReport();
-            var lst1 = dt.DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>();
-            var lst2 = dt1.DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>();
-            var lst3 = dt2.DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet>();
+            var lst1 = lstb;
+            var lst2 = lstcoff;
+           
 
             if (this.rbtnnoteType.SelectedIndex == 0)
             {
@@ -406,20 +384,7 @@ namespace RealERPWEB.F_22_Sal
                 Rpt1.SetParameters(new ReportParameter("coffemi", coffemi));
                 Rpt1.SetParameters(new ReportParameter("cofffvpersft", cofffvpersft));
                 Rpt1.SetParameters(new ReportParameter("coffpvpersft", coffpvpersft));
-                //
-                Rpt1.SetParameters(new ReportParameter("revparea", revparea));
-                Rpt1.SetParameters(new ReportParameter("revprate", revprate));
-                Rpt1.SetParameters(new ReportParameter("revpunitprice", revpunitprice));
-                Rpt1.SetParameters(new ReportParameter("revpparking", revpparking));
-                Rpt1.SetParameters(new ReportParameter("revputility", revputility));
-                Rpt1.SetParameters(new ReportParameter("revpothers", revpothers));
-                Rpt1.SetParameters(new ReportParameter("revpTotal", revpTotal));
-                Rpt1.SetParameters(new ReportParameter("revpbbookinmpercnt", revpbbookinmpercnt));
-                Rpt1.SetParameters(new ReportParameter("revpbookingam", revpbookingam));
-                Rpt1.SetParameters(new ReportParameter("revpnooffemi", revpnooffemi));
-                Rpt1.SetParameters(new ReportParameter("revpemi", revpemi));
-                Rpt1.SetParameters(new ReportParameter("revpfvpersft", revpfvpersft));
-                Rpt1.SetParameters(new ReportParameter("revppvpersft", revppvpersft));
+              
 
 
 
@@ -439,8 +404,16 @@ namespace RealERPWEB.F_22_Sal
             }
             else
             {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptGrandNotesSheet", lst1, lst2, lst3);
+                DataTable dtsummuary = (DataTable)ViewState["tblData"];
+                DataRow[] dr = dtsummuary.Select("usircode='" + usircode + "'");
+                string Projectname = this.ddlProjectName.SelectedItem.Text.Substring(13);
+                string Projectdesc = dr[0]["udesc"].ToString();
+                string Projectunit = dr[0]["munit"].ToString();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptGrandNotesSheet", lst1, lst2, null);
                 Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
+                Rpt1.SetParameters(new ReportParameter("Projectdesc", Projectdesc));
+                Rpt1.SetParameters(new ReportParameter("Projectunit", Projectunit));
                 Rpt1.SetParameters(new ReportParameter("area", area));
                 Rpt1.SetParameters(new ReportParameter("rate", rate));
                 Rpt1.SetParameters(new ReportParameter("unitprice", unitprice));
@@ -469,21 +442,7 @@ namespace RealERPWEB.F_22_Sal
                 Rpt1.SetParameters(new ReportParameter("coffemi", coffemi));
                 Rpt1.SetParameters(new ReportParameter("cofffvpersft", cofffvpersft));
                 Rpt1.SetParameters(new ReportParameter("coffpvpersft", coffpvpersft));
-                //
-                Rpt1.SetParameters(new ReportParameter("revparea", revparea));
-                Rpt1.SetParameters(new ReportParameter("revprate", revprate));
-                Rpt1.SetParameters(new ReportParameter("revpunitprice", revpunitprice));
-                Rpt1.SetParameters(new ReportParameter("revpparking", revpparking));
-                Rpt1.SetParameters(new ReportParameter("revputility", revputility));
-                Rpt1.SetParameters(new ReportParameter("revpothers", revpothers));
-                Rpt1.SetParameters(new ReportParameter("revpTotal", revpTotal));
-                Rpt1.SetParameters(new ReportParameter("revpbbookinmpercnt", revpbbookinmpercnt));
-                Rpt1.SetParameters(new ReportParameter("revpbookingam", revpbookingam));
-                Rpt1.SetParameters(new ReportParameter("revpnooffemi", revpnooffemi));
-                Rpt1.SetParameters(new ReportParameter("revpemi", revpemi));
-                Rpt1.SetParameters(new ReportParameter("revpfvpersft", revpfvpersft));
-                Rpt1.SetParameters(new ReportParameter("revppvpersft", revppvpersft));
-
+             
 
 
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
