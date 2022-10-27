@@ -211,38 +211,16 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 return;
             }
-            string gatePass = "";
-            string approval = "";
-            switch (comcod)
-            {
-
-                //case "3101":
-                case "1205":
-                case "3351":
-                case "3352":
-                    gatePass = "2nd Approval";
-                    approval = "3rd Approval";
-                    break;
-
-                //case "3101":
-                case "3367":
-                    gatePass = "2nd Approval";
-                    approval = "3rd Approval";
-                    break;
-                // todo for skip mrtreq approval part
-                default:
-                    gatePass = "2nd Approval";
-                    approval = "Final Approval";
-                    break;
-            }
+            
+          
 
             this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["statuses"]) + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
-            this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["reqchecked"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'> Checked</div></div></div>";
-            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["reqapproval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>1st Approval</div></div></div>";
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["gatepass"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + gatePass + "</div></div></div>";
-            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["approval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>" + approval + "</div></div></div>";
+            this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["reqchecked"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>1st Recommendation</div></div></div>";
+            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["reqapproval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>2nd Recommendation</div></div></div>";
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["gatepass"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>1st Approval</div></div></div>";
+            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["approval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>2nd Approval</div></div></div>";
            
-            this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["audited"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Audit</div></div></div>";
+            this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["audited"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Final Approval</div></div></div>";
             this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["account"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Schedule Update</div></div></div>";
 
             Session["tbladdwrk"] = ds2.Tables[0];

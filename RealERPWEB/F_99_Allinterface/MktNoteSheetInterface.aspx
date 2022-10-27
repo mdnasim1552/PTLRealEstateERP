@@ -499,21 +499,7 @@
         });
         function pageLoaded() {
             var comcod = <%=this.GetCompCode()%>;
-            switch (comcod) {
-                case 1205:   // p2p Eng 
-                case 3351:   // weacon 
-                case 3352:   // 360   
-                    $(".tbMenuWrp table tr td:nth-child(2)").show();// Check  
-                    break;
-                case 3101:   // ptl 
-                case 3367:   // Epic Properties
-                    $(".tbMenuWrp table tr td:nth-child(2)").show();// Check  
-                    $(".tbMenuWrp table tr td:nth-child(6)").hide();// Audit  
-                    break;
-                default:
-                    $(".tbMenuWrp table tr td:nth-child(2)").hide();// Check
-                    break;
-            }
+            
             var gvstatus = $('#<%=this.gvstatus.ClientID %>');
             var gvreqchk = $('#<%=this.gvreqchk.ClientID %>');
             var gvreqaprv = $('#<%=this.gvreqaprv.ClientID %>');
