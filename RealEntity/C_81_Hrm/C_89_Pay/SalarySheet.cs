@@ -601,6 +601,7 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public string grpcod { get; set; }
             public string fgrp { get; set; }
             public string ftdesc { get; set; }
+            public string desig2 { get; set; }
 
            
             public RptSalarySheet ()
