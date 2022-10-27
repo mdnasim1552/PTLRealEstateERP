@@ -1599,6 +1599,9 @@ namespace RealERPWEB.F_09_PImp
                     {
 
                         case "3338": //ACME
+                        case "1206": //ACME
+                        case "1207": //ACME
+                        case "3369": //ACME
                         case "3340": //Urban
                         case "3101": //ASIT
                         case "1103": //Tanvir

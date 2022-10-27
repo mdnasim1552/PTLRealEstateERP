@@ -6208,6 +6208,7 @@ namespace RealERPWEB.F_99_Allinterface
             else if (pCompanyBill == "PrintBill05")
             {
 
+                sign4= "Syed Fatemy Ahmed Roomy" + "\n" + "Major General (Retd.)" + "\n"+ "Chairman & Managing Director" + "\n" + Convert.ToDateTime(_dtuser.Rows[0]["baprvdat"]).ToString("dd-MMM-yyyy");
                 rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBillAcme", lst, null, null);
                 rptbill.EnableExternalImages = true;
                 rptbill.SetParameters(new ReportParameter("IssueNo", "Issue No: " + dt.Rows[0]["lisuno2"].ToString()));
