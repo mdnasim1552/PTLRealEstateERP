@@ -58,21 +58,42 @@ namespace RealERPWEB.F_38_AI
         protected void btnInvoiceSave_Click(object sender, EventArgs e)
         {
             try
-            {
+            {               
+
                 Hashtable hst = (Hashtable)Session["tblLogin"];
+                DataTable tbl1 = (DataTable)ViewState["tblt01"];
+                DataSet ds1 = new DataSet("ds1");
+                ds1.Tables.Add(tbl1);
+                ds1.Tables[0].TableName = "tbl1";
                 string comcod = this.GetComdCode();
-                string postrmid = hst["usrid"].ToString();
-                string postseson = hst["compname"].ToString();
-                string editbyid = hst["session"].ToString();
-                string posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-                string postedbyid = "";
+                string PostedByid = hst["usrid"].ToString();
+                string Posttrmid = hst["compname"].ToString();
+                string PostSession = hst["session"].ToString();
+                string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
                 string editdat = "01-Jan-1900";
+                string editiid = PostedByid;
+                string sircode = this.ddlsuplier.SelectedValue;
+                string prjid = this.ddlprojname.SelectedValue;
+                string invno = this.txtInvoiceno.Text.ToString() + this.txtInvoiceno2.Text.ToString();
+                string subjects = this.txtsubjects.Text.ToString();
+                string remark = subjects;
+                string duedate = this.txtduedate.Text.ToString();
+                string currency = this.ddlcurency.SelectedValue;
+                string isstatus = "";
 
-
+                //comcod,sircode,prjid,invno,subjects,remark,duedate,currency,isstatus,postrmid,postedbyid,postseson, posteddat, editbyid, editdat
+                bool result = AIData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "INVOICECREATE", ds1, null, null, sircode, prjid, invno, subjects, remark,
+                    duedate, currency, isstatus, Posttrmid, PostedByid, PostSession, Posteddat, editiid, editdat);
+                if (!result)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + AIData.ErrorObject["Msg"].ToString() + "');", true);
+                    return;
+                }
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Invoice Create Successfully');", true);
 
 
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
