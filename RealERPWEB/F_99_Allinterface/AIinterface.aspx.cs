@@ -1449,9 +1449,9 @@ namespace RealERPWEB.F_99_Allinterface
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Task Create Saved Successfully');", true);
                 this.IsClear();
             }
-            catch (Exception ex)
+            catch (Exception exp)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message.ToString() + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
             }
         }
 
