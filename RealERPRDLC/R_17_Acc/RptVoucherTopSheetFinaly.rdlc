@@ -2189,6 +2189,9 @@
             <Height>0.75in</Height>
             <Width>7.8971in</Width>
             <ZIndex>1</ZIndex>
+            <Visibility>
+              <Hidden>=iif(Parameters!userStatusPrint.Value="1",True,False)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2232,6 +2235,9 @@
             <Height>0.35417in</Height>
             <Width>0.60764in</Width>
             <ZIndex>2</ZIndex>
+            <Visibility>
+              <Hidden>=iif(Parameters!userStatusPrint.Value="1",True,False)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2268,6 +2274,9 @@
             <Height>0.35417in</Height>
             <Width>0.6632in</Width>
             <ZIndex>3</ZIndex>
+            <Visibility>
+              <Hidden>=iif(Parameters!userStatusPrint.Value="1",True,False)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2316,6 +2325,9 @@
             <Height>0.35417in</Height>
             <Width>0.59723in</Width>
             <ZIndex>4</ZIndex>
+            <Visibility>
+              <Hidden>=iif(Parameters!userStatusPrint.Value="1",True,False)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2363,6 +2375,9 @@
             <Height>0.35417in</Height>
             <Width>0.57987in</Width>
             <ZIndex>5</ZIndex>
+            <Visibility>
+              <Hidden>=iif(Parameters!userStatusPrint.Value="1",True,False)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2410,6 +2425,9 @@
             <Height>0.35417in</Height>
             <Width>0.5868in</Width>
             <ZIndex>6</ZIndex>
+            <Visibility>
+              <Hidden>=iif(Parameters!userStatusPrint.Value="1",True,False)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2446,6 +2464,9 @@
             <Height>0.35417in</Height>
             <Width>0.6632in</Width>
             <ZIndex>7</ZIndex>
+            <Visibility>
+              <Hidden>=iif(Parameters!userStatusPrint.Value="1",True,False)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2483,6 +2504,9 @@
             <Height>0.35417in</Height>
             <Width>0.6632in</Width>
             <ZIndex>8</ZIndex>
+            <Visibility>
+              <Hidden>=iif(Parameters!userStatusPrint.Value="1",True,False)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2520,6 +2544,9 @@
             <Height>0.35417in</Height>
             <Width>0.6632in</Width>
             <ZIndex>9</ZIndex>
+            <Visibility>
+              <Hidden>=iif(Parameters!userStatusPrint.Value="1",True,False)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2568,6 +2595,9 @@
             <Height>0.35417in</Height>
             <Width>0.5868in</Width>
             <ZIndex>10</ZIndex>
+            <Visibility>
+              <Hidden>=iif(Parameters!userStatusPrint.Value="1",True,False)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2604,6 +2634,9 @@
             <Height>0.35417in</Height>
             <Width>0.6632in</Width>
             <ZIndex>11</ZIndex>
+            <Visibility>
+              <Hidden>=iif(Parameters!userStatusPrint.Value="1",True,False)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2652,6 +2685,9 @@
             <Height>0.35417in</Height>
             <Width>0.5868in</Width>
             <ZIndex>12</ZIndex>
+            <Visibility>
+              <Hidden>=iif(Parameters!userStatusPrint.Value="1",True,False)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2688,6 +2724,9 @@
             <Height>0.35417in</Height>
             <Width>0.74306in</Width>
             <ZIndex>13</ZIndex>
+            <Visibility>
+              <Hidden>=iif(Parameters!userStatusPrint.Value="1",True,False)</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3199,11 +3238,17 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="userStatusPrint">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>2</NumberOfColumns>
-      <NumberOfRows>6</NumberOfRows>
+      <NumberOfRows>7</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -3264,6 +3309,11 @@
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>5</RowIndex>
           <ParameterName>vouTotal</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>6</RowIndex>
+          <ParameterName>userStatusPrint</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

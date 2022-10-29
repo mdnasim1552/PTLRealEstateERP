@@ -1,21 +1,18 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using RealERPLIB;
+using RealERPRDLC;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using System.Configuration;
-using System.Collections;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
-using RealERPLIB;
-using Microsoft.Reporting.WinForms;
-using RealERPRDLC;
 
 namespace RealERPWEB.F_81_Hrm.F_89_Pay
 {
-    public partial class RptSalaryReconciliation : System.Web.UI.Page
+    public partial class RptSalaryReconciliationBonus : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
@@ -27,11 +24,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     Response.Redirect("../../AcceessError.aspx");
                 this.GetCompanyName();
                 this.GetMonth();
-                ((Label)this.Master.FindControl("lblTitle")).Text = "SALARY RECONCILIATION";
-
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Salary Reconciliation Bonus";
             }
-        }
 
+        }
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
@@ -51,15 +47,15 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         private void GetMonth()
         {
             string comcod = this.GetCompCode();
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_SALARY_RECON", "GETYEARMONTH", "", "", "", "", "", "", "", "", "");
-            if (ds1==null)
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_SALARY_RECON_BONUS", "GETYEARMONTH", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
                 return;
 
             this.ddlMonth.DataTextField = "yearmon";
             this.ddlMonth.DataValueField = "ymon";
             this.ddlMonth.DataSource = ds1.Tables[0];
             this.ddlMonth.DataBind();
-            this.ddlMonth.SelectedValue = System.DateTime.Today.ToString("yyyyMM").Trim();
+            this.ddlMonth.SelectedValue = System.DateTime.Today.AddMonths(-1).ToString("yyyyMM").Trim();
         }
         private void GetCompanyName()
         {
@@ -68,7 +64,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string comcod = hst["comcod"].ToString();
             string txtCompany = "%%";
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETCOMPANYNAME", txtCompany, userid, "", "", "", "", "", "", "");
-            if (ds2==null)
+            if (ds2 == null)
                 return;
 
             this.ddlCompany.DataTextField = "actdesc";
@@ -84,7 +80,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string Company = ((this.ddlCompany.SelectedValue.ToString() == "000000000000") ? "" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2)) + "%";
             string txtSProject = "%";
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETDEPTNAMENEW", Company, txtSProject, "", "", "", "", "", "", "");
-            if (ds3==null)
+            if (ds3 == null)
                 return;
 
             this.ddlBranch.DataTextField = "deptdesc";
@@ -92,7 +88,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             this.ddlBranch.DataSource = ds3.Tables[0];
             this.ddlBranch.DataBind();
         }
-       
+
         protected void ddlCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GetBranch();
@@ -104,11 +100,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string txtMonth = this.ddlMonth.SelectedItem.Text.Substring(0, 3);
             string Month = ASITUtility03.GetMonth(txtMonth);
             string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
-            string txtDate = year+Month;
-            string companyCode = this.ddlCompany.SelectedValue.ToString()=="000000000000" ? "%" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2)+"%";
-            string branchCode = this.ddlBranch.SelectedValue.ToString()=="000000000000" ? "%" : this.ddlBranch.SelectedValue.ToString().Substring(0, 9)+"%";
-            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_SALARY_RECON", "RPTSALRECONCILLATION", txtDate, branchCode, companyCode, "", "", "", "", "", "");
-            if (ds4==null)
+            string txtDate = year + Month;
+            string companyCode = this.ddlCompany.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
+            string branchCode = this.ddlBranch.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlBranch.SelectedValue.ToString().Substring(0, 9) + "%";
+            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_SALARY_RECON_BONUS", "RPTSALRECONCILLATION", txtDate, branchCode, companyCode, "", "", "", "", "", "");
+            if (ds4 == null)
                 return;
 
             ViewState["tblSalaryRecon"] = ds4.Tables[0];
@@ -124,7 +120,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         private void Data_Bind()
         {
             DataTable dt = (DataTable)ViewState["tblSalaryRecon"];
-            this.gvSalaryRecon.DataSource=dt;
+            this.gvSalaryRecon.DataSource = dt;
             this.gvSalaryRecon.DataBind();
             if (dt.Rows.Count > 0)
             {
@@ -161,7 +157,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 else if (empId == "GGGGAAAAAAAA")
                 {
                     empName.Font.Bold = true;
-                    
+
                     prevAmt.Font.Bold = true;
                     prevAmt.Attributes["style"] = " font-size:14px; color:red !important;";
                     empName.Attributes["style"] = " font-size:14px; color:red !important;";
@@ -182,8 +178,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string txtMonth = this.ddlMonth.SelectedItem.Text.Substring(0, 3);
             string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
-            string compLogo = new Uri(Server.MapPath(@"~\Image\LOGO"+comcod+".jpg")).AbsoluteUri;
-            string rptMonth = "Month of "+txtMonth+"'"+year;
+            string compLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string rptMonth = "Month of " + txtMonth + "'" + year;
             DataTable dt = (DataTable)ViewState["tblSalaryRecon"];
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalaryReconciliation>();
 
@@ -201,5 +197,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
+
+        
     }
 }

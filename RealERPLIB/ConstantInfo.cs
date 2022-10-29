@@ -577,6 +577,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1403000", "1403262", "F_14_Pro", "RptDateWiseReqCheckHistory?", "Type=CRMCheckdate", "Date Wise Requisition History(CRM)", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1403000", "1403263", "F_14_Pro", "RptMrfDeleteLog", "", "Mrf Delete Log Report", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1403000", "1403264", "F_14_Pro", "RptSupAdvanceDetails", "", "Supplier Advance Details", "Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1403000", "1403265", "F_14_Pro", "RptDateWiseBill", "", "Supplier Date Wise Bill", "Procurement", "False", "False", "False", "False" });
 
 
 
@@ -2361,14 +2362,16 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8103000", "8103092", "F_81_Hrm/F_83_Att", "RptEmpMonthPresent", "", "Employee Monthly Presence", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103093", "F_81_Hrm/F_89_Pay", "RptIncomeStatement", "", "Individual Employee Income Statement", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103094", "F_81_Hrm/F_89_Pay", "RptOvertimeSalary2", "", "Overtime Salary", "PayRoll", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "8103000", "8103095", "F_81_Hrm/F_89_Pay", "RptSalaryReconciliation", "", "Salary Reconciliation", "PayRoll", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "8103000", "8103095", "F_81_Hrm/F_89_Pay", "RptSalaryReconciliation", "", "Salary Reconciliation", "PayRoll", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8103000", "8103097", "F_81_Hrm/F_89_Pay", "RptSalaryReconciliationBonus", "", "Salary Reconciliation Bonus", "PayRoll", "False", "False", "False", "False" });
+
             tblObj.Rows.Add(new Object[] { "8103000", "8103096", "F_81_Hrm/F_89_Pay", "RptAllSalarySummary", "", "Salary Statement Summary", "PayRoll", "False", "False", "False", "False" }); 
             tblObj.Rows.Add(new Object[] { "8103000", "8103100", "F_81_Hrm/F_91_ACR", "RptPerAppraisal", "", "Employee Performance Appraisal", "ACR", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8103000", "8103110", "F_81_Hrm/F_81_Rec", "RptEmpAssessment", "", "Employee Assessment Report", "ACR", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8103000", "8103111", "F_81_Hrm/F_89_Pay", "RptSalSummary02?", "Type=TopSheetFactory", "Salary Top Sheet (Factory)", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103112", "F_81_Hrm/F_89_Pay", "RptSalSummary02?", "Type=TopSheetPID", "Salary Top Sheet(Project)", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103114", "F_81_Hrm/F_89_Pay", "RptMonthWiseTax02", "", "Month Wise Tax Report 02", "PayRoll", "False", "False", "False", "False" }); ;
-        
+          
 
 
 
@@ -5752,6 +5755,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0402000019", "04. L/C Receive Report", "F_23_SaM/RptSalSummery?Type=LcReceive&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000020", "42. Supplier Credit Status (Purchase)", "F_14_Pro/RptPurchaseAgeing", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000021", "42. Supplier Advanced Details", "F_14_Pro/RptSupAdvanceDetails", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0402000022", "43. Supplier Date Wise Bill", "F_14_Pro/RptDateWiseBill", "", true, "" });
            // mnuTbl1.Rows.Add(new Object[] { "0402000020", "42. Supplier Details Info (Order Advanced) ", "F_14_Pro/RptWorkOdrAdvSupplierWise", "", true, "" });
 
             
@@ -15999,6 +16003,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0408000034", "09. Overtime Salary", "F_81_Hrm/F_89_Pay/RptOvertimeSalary2", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0408000035", "10. Salary Reconciliation", "F_81_Hrm/F_89_Pay/RptSalaryReconciliation", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0408000036", "11. Salary Statement Summary", "F_81_Hrm/F_89_Pay/RptAllSalarySummary", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000037", "12. Salary Reconciliation Bonus", "F_81_Hrm/F_89_Pay/RptSalaryReconciliationBonus", "", true, "" });
+
 
 
 
