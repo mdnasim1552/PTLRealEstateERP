@@ -661,7 +661,7 @@
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_81_Hrm.C_83_Att</rd:DataSetName>
         <rd:TableName>RptMntAttenReport</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL+RptMntAttenReport, RealERPEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL+RptMntAttenReport, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

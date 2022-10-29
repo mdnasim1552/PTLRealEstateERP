@@ -335,6 +335,7 @@ namespace RealERPRDLC
 
                 case "R_81_Hrm.R_82_App.RptEmployeeAllInfo": Rpt1a = SetRptEmployeeAllInfo(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptOtherCollHistory": Rpt1a = SetRptOtherCollHistory(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_14_Pro.RptDateWiseBill": Rpt1a = SetRptDateWiseBill(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptPurOrderTopSheet": Rpt1a = SetRptPurOrderTopSheet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptSupAdvanceDetails": Rpt1a = SetRptSupAdvanceDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptMonthlyProbCollection": Rpt1a = SetRptMonthlyProbCollection(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -6502,6 +6503,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptOtherCollHistory(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.OtherCollHistory>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptDateWiseBill(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPayment.EclassRptDateWiseBill>)RptDataSet));
             return Rpt1a;
         }
         private static LocalReport SetRptEmployeeAllInfo(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)

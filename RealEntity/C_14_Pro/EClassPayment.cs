@@ -184,6 +184,34 @@ namespace RealEntity.C_14_Pro
           }
 
       }
+        [Serializable]
+        public class EclassRptDateWiseBill
+        {
+
+            public string comcod { get; set; }
+            public string pactcode { get; set; }
+            public string pactdesc { get; set; }
+            public string sirdesc { get; set; }
+            public string billno { get; set; }
+            public string billno1 { get; set; }
+            public string ssircode { get; set; }
+            public string billref { get; set; }
+            public string vounum { get; set; }
+            public DateTime billdat { get; set; }
+            public DateTime chequedat { get; set; }
+            public double billamt { get; set; }
+            public double sdamt { get; set; }
+            public double advamt { get; set; }
+            public double dedamt { get; set; }
+            public double netpayable { get; set; }
+            public double tdeduction { get; set; }
+
+            public EclassRptDateWiseBill()
+            {
+            }
+
+        }
+
 
     }
 }
