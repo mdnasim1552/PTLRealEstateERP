@@ -46,16 +46,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
-      <HintPath>..\..\..\Doc\Lib\bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Antlr3.Runtime">
-      <HintPath>..\..\..\Doc\Lib\bin\Antlr3.Runtime.dll</HintPath>
+      <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.bootstrap">
-      <HintPath>..\..\..\Doc\Lib\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
+      <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
     <Reference Include="BilSimser.GeoJson">
-      <HintPath>..\..\..\Doc\Lib\bin\BilSimser.GeoJson.dll</HintPath>
+      <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\BilSimser.GeoJson.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Design">
       <HintPath>..\..\..\Doc\Lib\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
@@ -96,29 +96,29 @@
       <HintPath>..\..\..\..\..\bin\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
     <Reference Include="DayPilot">
-      <HintPath>..\..\..\..\..\bin\DayPilot.dll</HintPath>
+      <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="DropCheck">
-      <HintPath>..\..\..\..\..\bin\DropCheck.dll</HintPath>
+      <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\DropCheck.dll</HintPath>
     </Reference>
     <Reference Include="EASendMail">
-      <HintPath>..\..\..\..\..\bin\EASendMail.dll</HintPath>
+      <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\EASendMail.dll</HintPath>
     </Reference>
     <Reference Include="FastMember">
-      <HintPath>..\..\..\..\..\bin\FastMember.dll</HintPath>
+      <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\FastMember.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71">
       <HintPath>..\..\..\..\..\bin\FlashControlV71.dll</HintPath>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
-      <HintPath>..\..\..\..\Backup\Projects\Project Reference\Real Estate Bin 211213\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+      <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
-      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+      <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
-      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+      <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -130,7 +130,7 @@
       <HintPath>..\..\..\Backup\PROJECT\Project Reference\Real Estate Bin 211213\bin\Microsoft.Build.Utilities.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.MSXML, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -155,7 +155,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -215,7 +215,7 @@
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
-      <HintPath>..\..\..\Doc\Lib\bin\RealERPRPT.dll</HintPath>
+      <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\RealERPRPT.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -3119,6 +3119,7 @@
     <Content Include="F_81_Hrm\F_92_Mgt\DropDown2.PNG" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpAttApproval.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpHold.aspx" />
+    <Content Include="F_81_Hrm\F_92_Mgt\EmployeeListEpic.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpPro.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpStatus02.aspx" />
@@ -5248,6 +5249,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EmpAttApproval.aspx.designer.cs">
       <DependentUpon>EmpAttApproval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\EmployeeListEpic.aspx.cs">
+      <DependentUpon>EmployeeListEpic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\EmployeeListEpic.aspx.designer.cs">
+      <DependentUpon>EmployeeListEpic.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx.cs">
       <DependentUpon>EmpSettlement.aspx</DependentUpon>
