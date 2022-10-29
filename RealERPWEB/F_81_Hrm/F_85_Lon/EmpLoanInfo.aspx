@@ -196,6 +196,7 @@
                         <asp:CheckBox ID="chkAddIns" runat="server" AutoPostBack="True"
                             Text="Add.Installment" CssClass=" btn btn-info btn-sm ml-1 col-1  chkBoxControl"
                             Visible="False" OnCheckedChanged="chkAddIns_CheckedChanged" />
+
                         <asp:LinkButton ID="lbtnAddInstallment" runat="server" OnClick="lbtnAddInstallment_Click"
                             Visible="False" CssClass="btn btn-info btn-sm ml-1 col-1">Add</asp:LinkButton>                     
                     </div>
