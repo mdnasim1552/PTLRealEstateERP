@@ -79,7 +79,7 @@ namespace RealERPWEB.F_38_AI
                 string remark = subjects;
                 string duedate = this.txtduedate.Text.ToString();
                 string currency = this.ddlcurency.SelectedValue;
-                string isstatus = "";
+                string isstatus = "true";
 
                 //comcod,sircode,prjid,invno,subjects,remark,duedate,currency,isstatus,postrmid,postedbyid,postseson, posteddat, editbyid, editdat
                 bool result = AIData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "INVOICECREATE", ds1, null, null, sircode, prjid, invno, subjects, remark,
@@ -261,7 +261,7 @@ namespace RealERPWEB.F_38_AI
         {
 
             DataTable tblt01 = new DataTable();
-            tblt01.Columns.Add("id", Type.GetType("System.String"));
+            tblt01.Columns.Add("id", Type.GetType("System.String"));            
             tblt01.Columns.Add("invoicedate", Type.GetType("System.DateTime"));
             tblt01.Columns.Add("invoiceno", Type.GetType("System.String"));
             tblt01.Columns.Add("invoiceno1", Type.GetType("System.String"));
@@ -270,6 +270,7 @@ namespace RealERPWEB.F_38_AI
             tblt01.Columns.Add("prjname", Type.GetType("System.String"));
             tblt01.Columns.Add("prjcode", Type.GetType("System.String"));
             tblt01.Columns.Add("batchname", Type.GetType("System.String"));
+            tblt01.Columns.Add("batchid", Type.GetType("System.String"));
             tblt01.Columns.Add("datasetcode", Type.GetType("System.String"));
             tblt01.Columns.Add("dataset", Type.GetType("System.String"));
             tblt01.Columns.Add("quantity", Type.GetType("System.Double"));
@@ -294,7 +295,8 @@ namespace RealERPWEB.F_38_AI
 
                 DataRow dr1 = tblt01.NewRow();
                 DataTable tbl2 = (DataTable)ViewState["tblMat"];
-                dr1["id"] = this.ddlsuplier.SelectedValue.ToString();
+                dr1["id"] = (tblt01.Rows.Count + 1).ToString();
+               
                 dr1["invoicedate"] = this.txtdate.Text.ToString();
                 dr1["invoiceno"] = this.txtInvoiceno.Text.ToString();
                 dr1["invoiceno1"] = this.txtInvoiceno2.Text;
@@ -303,6 +305,7 @@ namespace RealERPWEB.F_38_AI
                 dr1["prjcode"] = this.ddlprojname.SelectedValue.Trim();
                 dr1["prjname"] = this.ddlprojname.SelectedItem.Text.Trim();
                 dr1["batchname"] = this.ddlbatchname.SelectedItem.Text.Trim();
+                dr1["batchid"] = this.ddlbatchname.SelectedValue;
                 dr1["datasetcode"] = this.ddldataset.SelectedItem.Value.Trim().ToString();
                 dr1["dataset"] = this.ddldataset.SelectedItem.Text.Trim().ToString();
                 dr1["quantity"] = Convert.ToDouble("0" + this.txtdoneqty.Text.Trim());
@@ -323,6 +326,29 @@ namespace RealERPWEB.F_38_AI
             }
 
 
+        }
+
+        protected void btninvoicedelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dt = (DataTable)ViewState["tblt01"];
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;
+                string id = ((Label)this.gv_AIInvoice.Rows[index].FindControl("lblbatchid")).Text.Trim();
+                if (dt.Rows[index]["batchid"].ToString() == id)
+                {
+                    dt.Rows[index].Delete();
+                }
+
+                ViewState["tblt01"] = dt;
+                this.GetVirtual_Table();
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+            }
         }
     }
 }

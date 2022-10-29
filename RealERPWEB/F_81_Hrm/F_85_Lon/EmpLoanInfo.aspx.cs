@@ -241,7 +241,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             // this.ddlEmpList.Visible = true;
             this.txtCurDate.Enabled = true;
             // this.lblEmpName.Visible = false;
-            this.chkAddIns.Visible = false;
+            this.chkAddIns.Visible = true;
             this.lbtnAddInstallment.Visible = false;
             this.chkVisible.Visible = false;
             this.pnlloan.Visible = false;
