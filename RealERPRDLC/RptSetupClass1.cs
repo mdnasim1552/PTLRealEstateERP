@@ -893,6 +893,12 @@ namespace RealERPRDLC
 
                 #endregion
 
+                #region R_38_AI
+
+                case "R_38_AI.RptAIInvoicePrint": Rpt1a = SetRptAIInvoicePrint(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
+                #endregion
+
                 #region F_41_GAcc
                 case "R_41_GAcc.RptProProgBillStatus": Rpt1a = SetRptProProgBillStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 #endregion
@@ -1264,6 +1270,11 @@ namespace RealERPRDLC
         private static LocalReport SetGrossRecon(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.AllBankSummary>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptAIInvoicePrint(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_38_AI.AIallPrint.InvoicePrint>)RptDataSet));
             return Rpt1a;
         }
         private static LocalReport SetRptEmployeeTransfer(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
