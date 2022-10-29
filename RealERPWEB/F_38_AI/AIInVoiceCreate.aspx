@@ -148,14 +148,10 @@
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Member" Visible="false">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "id")) %>'></asp:Label>
-
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
+                                    
                                     <asp:TemplateField HeaderText="InvoiceDate" Visible="false">
                                         <ItemTemplate>
+                                            <asp:Label ID="lblbatchid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "batchid")) %>' Width="100px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                             <asp:Label ID="lblinvoicedate" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "invoicedate")).ToString("dd-MMM-yyyy") %>' Width="100px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -219,7 +215,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Total Amount">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblrate" runat="server" Text='<%#  Convert.ToString( Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rate")) * Convert.ToDouble(DataBinder.Eval(Container.DataItem, "quantity"))).ToString() +"-"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "  currency"))  %>' Width="100px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                            <asp:Label ID="lbltotalamount" runat="server" Text='<%#  Convert.ToString( Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rate")) * Convert.ToDouble(DataBinder.Eval(Container.DataItem, "quantity"))).ToString() +"-"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "  currency"))  %>' Width="100px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -227,6 +223,14 @@
                                     <asp:TemplateField HeaderText="Subjects" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblsubjects" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "subjects")) %>' Width="50px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="Action" >
+                                        <ItemTemplate>
+                                                    <asp:LinkButton runat="server" ID="btninvoicedelete" OnClick="btninvoicedelete_Click" OnClientClick="return confirm('Are You Sure?')" CssClass="text-danger"><i class="fa fa-trash"></i></asp:LinkButton>
+                                            
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
