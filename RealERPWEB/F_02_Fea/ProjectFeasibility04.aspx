@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="ProjectFeasibility04.aspx.cs" Inherits="RealERPWEB.F_02_Fea.ProjectFeasibility04" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="ProjectFeasibility04.aspx.cs" Inherits="RealERPWEB.F_02_Fea.ProjectFeasibility04" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -27,8 +27,8 @@
     <%-- <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>--%>
 
-    <div class="container moduleItemWrpper">
-        <div class="contentPart">
+    <div class="card mt-4">
+        <div class="card-body">
             <div class="RealProgressbar">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
                     <ProgressTemplate>
@@ -46,13 +46,11 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="row">
-                <fieldset class="scheduler-border fieldset_A">
-                    <div class="form-horizontal">
-                        <div class="form-group">
+            <div class="row mb-4">
+                
 
-                            <div class="col-md-3 pading5px asitCol3">
-                                <asp:Label ID="lblPrjName" runat="server" CssClass="lblTxt lblName" Style="font-size: 11px;" Text="Project Name"></asp:Label>
+                            <div class="col-md-3 pading5px asitCol3 d-none">
+                               
                                 <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
 
                                 <div class="colMdbtn">
@@ -60,32 +58,37 @@
                                 </div>
                             </div>
                             <div class="col-md-5 pading5px ">
-                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control inputTxt" TabIndex="3">
+                                 <asp:Label ID="lblPrjName" runat="server" CssClass="lblTxt lblName" Style="font-size: 11px;" Text="Project Name"></asp:Label>
+                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control form-control-sm" TabIndex="3">
                                 </asp:DropDownList>
                                 <asp:Label ID="lblProjectdesc" runat="server"
                                     Visible="False" CssClass="form-control inputTxt"></asp:Label>
 
                             </div>
 
-                            <div class="col-md-1 pading5px">
-                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lnkbtnSerOk_Click" TabIndex="4">Ok</asp:LinkButton>
+                            <div class="col-md-1 ml-3" style="margin-top:22px;">
+                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lnkbtnSerOk_Click" TabIndex="4">Ok</asp:LinkButton>
 
                             </div>
-                            <div class="col-md-3 pull-right pading5px">
+                            <div class="col-md-3 pull-right pading5px d-none">
                                 <asp:Label ID="lblMsg" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
                             </div>
 
-                        </div>
-                    </div>
-                    <asp:Panel ID="PanelSelName" runat="server" Visible="False">
+                       
+                    
+                
+            </div>
+            <div class="row mb-4">
+                  <div class="col-md-12">
+                <asp:Panel ID="PanelSelName" runat="server" Visible="False">
 
-                        <div class="form-group">
-                            <div class="col-sm-1 pading5px">
-                                <asp:CheckBox ID="chkAllRes" runat="server" AutoPostBack="True" OnCheckedChanged="chkAllSInf_CheckedChanged" CssClass="btn btn-primary primaryBtn margin5px chkBoxControl"
+                 
+                       <div class="col-sm-8">
+                                <asp:CheckBox ID="chkAllRes" runat="server" AutoPostBack="True" OnCheckedChanged="chkAllSInf_CheckedChanged" CssClass="btn btn-sm btn-primary"
                                     Text="Show All" />
-                            </div>
-                            <div class="col-sm-7 pading5px">
-                                <asp:RadioButtonList ID="rbtnList1" runat="server" BackColor="#0B88C5" ForeColor="White" AutoPostBack="True" CssClass="btn rbtnList1 margin5px  primaryBtn "
+                           
+                           
+                                <asp:RadioButtonList ID="rbtnList1" runat="server" BackColor="#0B88C5" ForeColor="White" AutoPostBack="True" CssClass="btn btn-sm"
                                     OnSelectedIndexChanged="rbtnList1_SelectedIndexChanged"
                                     RepeatColumns="7" RepeatDirection="Horizontal">
                                     <asp:ListItem>Project Information</asp:ListItem>
@@ -98,30 +101,36 @@
                                 </asp:RadioButtonList>
                             </div>
 
-                            <div class="col-md-4 pading5px">
+                            <div class="col-md-2 mt-4">
 
 
                                 <asp:CheckBox ID="chkCommercial" runat="server" CssClass="btn btn-primary primaryBtn  chkBoxControl"
                                     Text="NR Far" Style="margin-left: 50px;" Visible="false" />
 
-                                <asp:Label ID="Label3" runat="server" CssClass="  smLbl_to" Text="Creation Date:"></asp:Label>
-                                <asp:TextBox ID="txtDate" runat="server" CssClass=" inputtextbox"></asp:TextBox>
+                                <asp:Label ID="Label3" runat="server" CssClass="form-label" Text="Creation Date:"></asp:Label>
+                                <asp:TextBox ID="txtDate" runat="server" CssClass="form-control from-control-sm"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txtDate_CalendarExtender" runat="server"
                                     Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
 
-                                <a href="../F_04_Bgd/RptBgdPrjoject.aspx?Type=MasterBgdAcWk&prjcode=" class="margin5px">Budget</a>
-                                <a href="../F_04_Bgd/BgdPrjAna.aspx?InputType=BgdMain" class="margin5px">Price</a>
+                                <a href="../F_04_Bgd/RptBgdPrjoject.aspx?Type=MasterBgdAcWk&prjcode=" class="btn btn-sm btn-primary mt-2">Budget</a>
+                                <a href="../F_04_Bgd/BgdPrjAna.aspx?InputType=BgdMain" class="btn btn-sm btn-success mt-2">Price</a>
 
                             </div>
+                  
+                            
 
 
-                            <div class="clearfix"></div>
-                        </div>
+                        
 
                     </asp:Panel>
-                </fieldset>
+                       </div>
             </div>
-            <div class="row">
+            </div>
+        </div>
+
+            <div class="card">
+                <div class="card-body">
+                      <div class="row">
 
                 <asp:MultiView ID="MultiView1" runat="server">
                     <asp:View ID="ViewProjectInfo" runat="server">
@@ -153,11 +162,11 @@
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lbtnTotalproinfo"
                                             runat="server"
-                                            OnClick="llbtnTotalproinfo_Click" CssClass="btn  btn-primary  primarygrdBtn">Total</asp:LinkButton>
+                                            OnClick="llbtnTotalproinfo_Click" CssClass="btn btn-sm  btn-primary  primarygrdBtn">Total</asp:LinkButton>
 
                                         <asp:LinkButton ID="Calculation"
                                             runat="server"
-                                            OnClick="llbtnCalculation_Click" CssClass="btn  btn-primary  primarygrdBtn">Calculation</asp:LinkButton>
+                                            OnClick="llbtnCalculation_Click" CssClass="btn btn-sm  btn-primary  primarygrdBtn">Calculation</asp:LinkButton>
                                     </FooterTemplate>
 
                                     <ItemTemplate>
@@ -192,7 +201,7 @@
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lUpdatProInfo"
                                             runat="server"
-                                            OnClick="lUpdatProInfo_Click" CssClass="btn btn-danger primarygrdBtn">Update</asp:LinkButton>
+                                            OnClick="lUpdatProInfo_Click" CssClass="btn btn-sm btn-danger primarygrdBtn">Update</asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:TextBox
@@ -308,18 +317,18 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvItmCod" runat="server" Height="16px"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "infcod")) %>'
-                                            Width="70px"></asp:Label>
+                                            Width="90px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lbtnTotal" runat="server"
-                                            OnClick="lbtnTotal_Click" CssClass="btn  btn-primary primarygrdBtn">Total</asp:LinkButton>
+                                            OnClick="lbtnTotal_Click" CssClass="btn btn-sm  btn-primary primarygrdBtn">Total</asp:LinkButton>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Description of Item">
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lbtnFUpdateSales" runat="server" Font-Bold="True"
-                                            Font-Size="12px" OnClick="lbtnFUpdateSales_Click" CssClass="btn btn-danger primarygrdBtn">Final Update</asp:LinkButton>
+                                            Font-Size="12px" OnClick="lbtnFUpdateSales_Click" CssClass="btn btn-sm btn-danger primarygrdBtn">Final Update</asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lgvItemdesc" runat="server" AutoCompleteType="Disabled"
@@ -435,13 +444,13 @@
                                             Width="70px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnTotalCost" runat="server" OnClick="lbtnTotalCost_Click" CssClass="btn  btn-primary primarygrdBtn">Total</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnTotalCost" runat="server" OnClick="lbtnTotalCost_Click" CssClass="btn btn-sm  btn-primary primarygrdBtn">Total</asp:LinkButton>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Description of Item">
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnfUpdateCost" runat="server" OnClick="lbtnfUpdateCost_Click" CssClass="btn btn-danger primarygrdBtn">Final Update</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnfUpdateCost" runat="server" OnClick="lbtnfUpdateCost_Click" CssClass="btn btn-sm btn-danger primarygrdBtn">Final Update</asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lgvItemdesc0" runat="server" AutoCompleteType="Disabled"
@@ -538,13 +547,13 @@
                                             Width="70px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnTotalLOwner" runat="server" OnClick="lbtnTotalLOwner_Click" CssClass="btn  btn-primary primarygrdBtn">Total</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnTotalLOwner" runat="server" OnClick="lbtnTotalLOwner_Click" CssClass="btn btn-sm  btn-primary primarygrdBtn">Total</asp:LinkButton>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Description of Item">
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnfUpdateLOwner" runat="server" OnClick="lbtnfUpdateLOwner_Click" CssClass="btn btn-danger primarygrdBtn">Final Update</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnfUpdateLOwner" runat="server" OnClick="lbtnfUpdateLOwner_Click" CssClass="btn btn-sm btn-danger primarygrdBtn">Final Update</asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lgvItemdesc1" runat="server" AutoCompleteType="Disabled"
@@ -865,7 +874,7 @@
 
                             <div class="panel panel-primary">
                                 <div class="panel-heading" runat="server" id="imgpanel">
-                                    <span class="glyphicon glyphicon-picture"></span>Image Upload
+                                   <i class="fa fa-upload" aria-hidden="true"></i>Image Upload
                                     <div class="pull-right">
                                         <div class=" file-upload">
 
@@ -984,7 +993,7 @@
                                             Width="70px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnTotalCostbi" runat="server" OnClick="lbtnTotalCostbi_Click" CssClass="btn  btn-primary primarygrdBtn">Total</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnTotalCostbi" runat="server" OnClick="lbtnTotalCostbi_Click" CssClass="btn btn-sm  btn-primary primarygrdBtn">Total</asp:LinkButton>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
@@ -1000,7 +1009,7 @@
 
                                 <asp:TemplateField HeaderText="Description of Item">
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnfUpdateCostbi" runat="server" OnClick="lbtnfUpdateCostbi_Click" CssClass="btn btn-danger primarygrdBtn">Final Update</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnfUpdateCostbi" runat="server" OnClick="lbtnfUpdateCostbi_Click" CssClass="btn btn-sm btn-danger primarygrdBtn">Final Update</asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lgvItemdescbi" runat="server" AutoCompleteType="Disabled"
@@ -1094,10 +1103,12 @@
                 </asp:MultiView>
 
             </div>
+                </div>
+            </div>
+          
 
 
-        </div>
-    </div>
+       
     <script type="text/javascript">
         function uploadComplete(sender) {
             $get("<%=lblMesg.ClientID%>").style.color = "green";

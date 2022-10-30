@@ -33,15 +33,6 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// prname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label prname;
-
-        /// <summary>
         /// txtSrcPro control.
         /// </summary>
         /// <remarks>
@@ -58,6 +49,15 @@ namespace RealERPWEB.F_01_LPA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton ibtnFindProject;
+
+        /// <summary>
+        /// prname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label prname;
 
         /// <summary>
         /// ddlProjectName control.
