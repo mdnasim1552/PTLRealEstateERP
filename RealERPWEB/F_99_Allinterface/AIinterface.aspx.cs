@@ -1,4 +1,5 @@
-﻿using RealERPLIB;
+﻿using Microsoft.Reporting.WinForms;
+using RealERPLIB;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -50,7 +51,16 @@ namespace RealERPWEB.F_99_Allinterface
 
             }
         }
+        //protected void Page_PreInit(object sender, EventArgs e)
+        //{
+        //    // Create an event handler for the master page's contentCallEvent event
+        //    GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+        //    int index = row.RowIndex;
+        //    //((LinkButton)this.gv_Invoice.FindControl("btninvoivePrint")).Click += new EventHandler(InvoicePrint_Click);
 
+
+        //    //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+        //}
         private void GetEmplist()
         {
             string comcod = this.GetCompCode();
@@ -266,6 +276,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQA.Visible = false;
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
+                    this.GetInvoiceList();
                     break;
                 case "10":
                     this.pnlAllProject.Visible = false;
@@ -949,10 +960,10 @@ namespace RealERPWEB.F_99_Allinterface
                 DataTable dt = (DataTable)Session["tblprojectdetails"];
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    string gval = dt.Rows[i]["gval"].ToString(); 
+                    string gval = dt.Rows[i]["gval"].ToString();
                     if (gval == "T")
                     {
-                        
+
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text = "";
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text = "";
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Text = "0.00";
@@ -1620,7 +1631,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.pnlBatchadd.Visible = true;
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
-                string gridid= ((Label)this.gv_BatchList.Rows[index].FindControl("lblbatchid")).Text.ToString();
+                string gridid = ((Label)this.gv_BatchList.Rows[index].FindControl("lblbatchid")).Text.ToString();
                 string project = ((Label)this.gv_BatchList.Rows[index].FindControl("lblstatusprjid")).Text.ToString();
                 string projectName = ((Label)this.gv_BatchList.Rows[index].FindControl("lblbatchprojname")).Text.ToString();
                 string batchname = ((Label)this.gv_BatchList.Rows[index].FindControl("lblbatchbatchid")).Text.ToString();
@@ -1718,6 +1729,75 @@ namespace RealERPWEB.F_99_Allinterface
                 this.GetAIInterface();
                 this.data_Bind();
                 ResetForm();
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+            }
+        }
+
+        private void GetInvoiceList()
+        {
+            try
+            {
+                string comcod = this.GetCompCode();
+                DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INVOICELIST", "", "", "");
+                if (ds == null)
+                    return;
+                Session["tblinvoicelist"] = ds.Tables[0];
+                this.gv_Invoice.DataSource = ds;
+                this.gv_Invoice.DataBind();
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+            }
+        }
+
+
+        protected void btninvoiceprint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;
+                string id = ((Label)this.gv_Invoice.Rows[index].FindControl("lblgvIninvno")).Text.ToString();
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = GetCompCode();
+                string comnam = hst["comnam"].ToString();
+                string compname = hst["compname"].ToString();
+                string username = hst["username"].ToString();
+                string comadd = hst["comadd1"].ToString();
+                string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+                string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+                DataTable dt = (DataTable)Session["tblinvoicelist"];
+
+                DataView dv0 = dt.DefaultView;
+                dv0.RowFilter = "invno = '" + id + "'";
+                dt = dv0.ToTable();
+                
+                double amount = Convert.ToDouble(dt.Rows[0]["totalamount"]);
+                string inword = "In Word: " + ASTUtility.Trans(Math.Round(amount), 2);
+                string curency = dt.Rows[0]["currency"].ToString();
+                LocalReport Rpt1 = new LocalReport();
+                var lst = dt.DataTableToList<RealEntity.C_38_AI.AIallPrint.InvoicePrint>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_38_AI.RptAIInvoicePrint", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("inword", inword));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("curency", curency));
+
+                Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "INVOICE"));
+                Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Session["Report1"] = Rpt1;
+                string type = "PDF";
+                ScriptManager.RegisterStartupScript(this, GetType(), "target", "SetTarget('" + type + "');", true);
+
             }
             catch (Exception exp)
             {

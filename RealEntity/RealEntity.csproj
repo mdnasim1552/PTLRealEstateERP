@@ -114,6 +114,7 @@
     <Compile Include="C_34_Mgt\SalPurAccCombo.cs" />
     <Compile Include="C_34_Mgt\SalPurAccComboManager.cs" />
     <Compile Include="C_35_MgtAct\EClassMisOverall.cs" />
+    <Compile Include="C_38_AI\AIallPrint.cs" />
     <Compile Include="C_39_MyPage\EClassMIS.cs" />
     <Compile Include="C_39_MyPage\EClassMyPage.cs" />
     <Compile Include="C_39_MyPage\UserManagerMyPage.cs" />

@@ -4710,58 +4710,68 @@ namespace RealERPWEB.F_21_MKT
 
         public void ShowNotifications(string rtype)
         {
-
-            this.hdnlblattribute.Value = "";
-            this.lbltodatekpi.Visible = false;
-            this.txtkpitodate.Visible = false;
-            ProcessAccess JData = new ProcessAccess();
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string userrole = hst["userrole"].ToString();
-            string type = rtype;
-            string comcod = this.GetComeCode();
-
-            string Empid = "";
-            if (userrole != "1")
+            try
             {
-                Empid = hst["empid"].ToString();
+                this.hdnlblattribute.Value = "";
+                this.lbltodatekpi.Visible = false;
+                this.txtkpitodate.Visible = false;
+                ProcessAccess JData = new ProcessAccess();
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string userrole = hst["userrole"].ToString();
+                string type = rtype;
+                string comcod = this.GetComeCode();
+
+                string Empid = "";
+                if (userrole != "1")
+                {
+                    Empid = hst["empid"].ToString();
+                }
+
+                string tdate = this.txttodate.Text.ToString();
+                string fempid = (this.ddlEmpid.SelectedValue.ToString() == "000000000000" ? "93" : this.ddlEmpid.SelectedValue.ToString()) + "%";
+                DataSet ds1 = JData.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "GETNOTIFICATIONDETAILS", "8301%", Empid, type, tdate, fempid);
+                if (ds1 == null)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + JData.ErrorObject["Msg"].ToString() + "');", true);
+                    return;
+                }
+
+                Session["tblsummData"] = ds1.Tables[0];
+                if (rtype == "databank")
+                {
+                    //Prospect Retreive Button
+                    this.gvSummary.Columns[25].Visible = true;
+                    this.gvSummary.Columns[27].Visible = false;
+
+                }
+                else if (rtype == "dws" && (comcod == "3315" || comcod == "3316"))
+                {
+                    this.gvSummary.Columns[26].HeaderText = "Today's <br> Followup";
+                    this.gvSummary.Columns[8].HeaderText = "Last Followup <br> Date";
+                    this.gvSummary.Columns[26].Visible = true;
+                    this.gvSummary.Columns[17].Visible = true;
+                    this.gvSummary.Columns[25].Visible = false;
+                    this.gvSummary.Columns[27].Visible = false;
+                }
+                else
+                {
+                    this.gvSummary.Columns[26].HeaderText = "Next Followup Date";
+                    this.gvSummary.Columns[8].HeaderText = "Followup <br> Date";
+                    this.gvSummary.Columns[24].Visible = false;
+                    this.gvSummary.Columns[26].Visible = false;
+                    this.gvSummary.Columns[25].Visible = false;
+                    this.gvSummary.Columns[27].Visible = false;
+
+                }
+
+                this.Data_Bind();
+                this.gvkpi.DataSource = null;
+                this.gvkpi.DataBind();
             }
-
-            string tdate = this.txttodate.Text.ToString();
-            string fempid = (this.ddlEmpid.SelectedValue.ToString() == "000000000000" ? "93" : this.ddlEmpid.SelectedValue.ToString()) + "%";
-            DataSet ds1 = JData.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "GETNOTIFICATIONDETAILS", "8301%", Empid, type, tdate, fempid);
-            if (ds1 == null)
+            catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + JData.ErrorObject["Msg"].ToString() + "');", true);
-                return;
-            }
-
-            Session["tblsummData"] = ds1.Tables[0];
-            if (rtype == "databank")
-            {
-                //Prospect Retreive Button
-                this.gvSummary.Columns[25].Visible = true;
-            }
-            else if (rtype == "dws" && (comcod=="3315" || comcod=="3316"))
-            {
-                this.gvSummary.Columns[26].HeaderText = "Today's <br> Followup";
-                this.gvSummary.Columns[8].HeaderText = "Last Followup <br> Date";
-                this.gvSummary.Columns[26].Visible = true;                
-                this.gvSummary.Columns[17].Visible = true;
-                this.gvSummary.Columns[25].Visible = false;
-            }          
-            else
-            {
-                this.gvSummary.Columns[26].HeaderText = "Next Followup Date";
-                this.gvSummary.Columns[8].HeaderText = "Followup <br> Date";
-                this.gvSummary.Columns[24].Visible = false;
-                this.gvSummary.Columns[26].Visible = false;
-                this.gvSummary.Columns[25].Visible = false;
-
-            }
-
-            this.Data_Bind();
-            this.gvkpi.DataSource = null;
-            this.gvkpi.DataBind();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + ex.Message + "');", true);
+            }         
 
         }
 
