@@ -241,6 +241,15 @@
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
                         </div>
+                          <div class="row">
+                            <div class="col-md-5 mt-1">
+                                <div class="form-group">
+                                    <asp:Label runat="server" ID="Label10" class="form-label mt-2">Remarks</asp:Label>
+                                    <asp:TextBox runat="server" CssClass="form-control" ID="txtNarration" placeholder="Write Notes" TextMode="MultiLine" Rows="12"></asp:TextBox>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

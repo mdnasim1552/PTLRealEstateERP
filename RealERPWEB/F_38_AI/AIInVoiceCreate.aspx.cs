@@ -22,6 +22,7 @@ namespace RealERPWEB.F_38_AI
                
                 string currentdate = DateTime.Now.ToString("dd-MMM-yyyy");
                 this.txtdate.Text = currentdate;
+                this.txtNarration.Text = this.bindDataText();
                 this.GetCustomerList();
                 this.GetProjectList();
                 this.GetBatchList();
@@ -80,10 +81,11 @@ namespace RealERPWEB.F_38_AI
                 string duedate = this.txtduedate.Text.ToString();
                 string currency = this.ddlcurency.SelectedValue;
                 string isstatus = "true";
+                string notes = this.txtNarration.Text;
 
                 //comcod,sircode,prjid,invno,subjects,remark,duedate,currency,isstatus,postrmid,postedbyid,postseson, posteddat, editbyid, editdat
                 bool result = AIData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "INVOICECREATE", ds1, null, null, sircode, prjid, invno, subjects, remark,
-                    duedate, currency, isstatus, Posttrmid, PostedByid, PostSession, Posteddat, editiid, editdat);
+                    duedate, currency, isstatus, Posttrmid, PostedByid, PostSession, Posteddat, editiid, editdat, notes);
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + AIData.ErrorObject["Msg"].ToString() + "');", true);
@@ -99,6 +101,22 @@ namespace RealERPWEB.F_38_AI
 
             }
         }
+
+
+        private string bindDataText()
+        {
+           string  msg = "1. If you have any questions about this invoice, please contact. Acme AI Ltd Phone : +8801313094328" +
+                       "\n2. Make all cheque payable to ACME AI Ltd." +
+                       "\n3. Please be advised that interest will be charged as per the agreement if payment is not made in due date. " +
+                       "\n4. For Bank Transfer payment must be made directly to the Acme AI Ltd." +
+                       "\n5. The account details are :" +
+                       "\n   Bank Name : Trust Bank Ltd." +
+                       "\n   Account Name : ACME AI ATD" +
+                       "\n   A/C No: 0002-0210425233 " +                      
+                       "\n   Swift Code : TTBLVDDH002";
+            return msg;
+        }
+
         private void GetCustomerList()
         {
             try
