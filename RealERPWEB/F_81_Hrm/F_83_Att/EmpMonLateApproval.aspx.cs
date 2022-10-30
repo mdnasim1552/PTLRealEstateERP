@@ -990,7 +990,14 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                     Session["Report1"] = grvAdjDay;
                     if (dt.Rows.Count > 0)
+                    {
                         ((HyperLink)this.grvAdjDay.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    }
+                    else
+                    {
+                        string Msgs = "No Data Found ";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msgs + "');", true);
+                    }
                     break;
                 case "MPunchAppDay":
                     this.gvOPunch.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
@@ -1015,8 +1022,17 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.gvabsapp02.DataSource = dt;
                     this.gvabsapp02.DataBind();
                     Session["Report1"] = gvabsapp02; 
-                    
+                    if(dt.Rows.Count>0)
+                    {
                     ((HyperLink)this.gvabsapp02.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RDLCViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
+
+                    }
+                    else
+                    {
+                        string Msgs = "No Data Found ";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msgs + "');", true);
+
+                    }
                     break;
 
                 case "LPAproval":
