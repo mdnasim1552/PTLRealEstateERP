@@ -249,9 +249,13 @@
                     <div class="row">
 
                         <div class="col-md-10">
-                            <div class="table-responsive">
+                             <asp:CheckBox ID="checkSelectedPrint"  runat="server" Checked="false" OnCheckedChanged="checkSelectedPrint_CheckedChanged" 
+                                 AutoPostBack="true" CssClass="btn btn-sm btn-primary float-right" Text="Selected INV Print" />
 
-                                <asp:GridView ID="gvAccVoucher" runat="server" AutoGenerateColumns="False"
+                            <div class="table-responsive">
+                                 
+                               
+                                <asp:GridView ID="gvAccVoucher" runat="server" AutoGenerateColumns="False" PageSize="500"
                                     CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvAccVoucher_RowDataBound"
                                     ShowFooter="True" AllowSorting="True" OnSorting="gvAccVoucher_Sorting">
                                     <RowStyle />
@@ -427,7 +431,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="">
                                             <HeaderTemplate>
-                                                <asp:TextBox ID="txtSearusrname" BackColor="Transparent" BorderStyle="None" runat="server" Width="80px" placeholder="User Name" onkeyup="Search_Gridview(this,13)"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtSearusrname"  BackColor="Transparent" BorderStyle="None" runat="server" Width="80px" placeholder="User Name" onkeyup="Search_Gridview(this,13)"></asp:TextBox><br />
 
 
                                             </HeaderTemplate>
@@ -472,6 +476,10 @@
                                                 <asp:CheckBox ID="checkPrint" runat="server" Checked="true" CssClass="input-control" Text="" />
 
                                             </ItemTemplate>
+                                            <FooterTemplate>
+
+                                                
+                                            </FooterTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
                                     </Columns>
