@@ -80,6 +80,20 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             //ds1.Dispose();
 
         }
+        private DataTable HiddenSameData(DataTable dt1)
+        {
+            string secid = dt1.Rows[0]["secid"].ToString();
+            for (int j = 1; j < dt1.Rows.Count; j++)
+            {
+                if (dt1.Rows[j]["secid"].ToString() == secid)
+                    dt1.Rows[j]["section"] = "";
+                secid = dt1.Rows[j]["secid"].ToString();
+            }
+
+            return dt1;
+
+
+        }
 
         private void GetProjectName()
         {
@@ -223,7 +237,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPDAILYATTN", frmdate, deptCode, Company, section, Actime, "", "", "", "");
             if (ds1 == null)
                 return;
-            Session["tblallData"] = ds1.Tables[0];
+
+   
+             DataTable dt = this.HiddenSameData(ds1.Tables[0]);
+            Session["tblallData"] = dt;
             this.DataBind();
         }
 
