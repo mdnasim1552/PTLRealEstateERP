@@ -135,7 +135,7 @@
                   <Width>0.775in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.55625in</Width>
+                  <Width>4.16458in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.58125in</Width>
@@ -144,19 +144,22 @@
                   <Width>0.58958in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.625in</Width>
+                  <Width>0.6in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.81667in</Width>
+                  <Width>0.7in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.89167in</Width>
+                  <Width>0.78334in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.89998in</Width>
+                  <Width>0.81665in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.09168in</Width>
+                  <Width>0.84166in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.00001in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -510,6 +513,20 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
+                                  <Value>Last R/A</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
                                   <Value>Bill Qty</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
@@ -523,6 +540,57 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox29</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox5">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Up to Paid</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Bill Qty</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox5</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -908,6 +976,41 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="prebqty">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Format(Fields!prebqty.Value, "#,##0.00;(#,##0.00); ")</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>prebqty</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="billam">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -1277,6 +1380,44 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="Textbox13">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Format(sum(Fields!prebqty.Value), "#,##0.00;(#,##0.00); ")</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox13</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="Textbox34">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -1329,6 +1470,7 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -1349,7 +1491,7 @@
             <Top>0.0375in</Top>
             <Left>0.00694in</Left>
             <Height>0.87708in</Height>
-            <Width>11.11699in</Width>
+            <Width>11.14199in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1360,10 +1502,10 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1.55206in</Width>
+                  <Width>1.66352in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.09168in</Width>
+                  <Width>0.98647in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -1753,10 +1895,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <KeepTogether>true</KeepTogether>
-            <Top>0.94444in</Top>
-            <Left>8.48019in</Left>
+            <Top>0.91944in</Top>
+            <Left>8.49062in</Left>
             <Height>1.1625in</Height>
-            <Width>2.64374in</Width>
+            <Width>2.64998in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -1800,7 +1942,7 @@
         <Height>2.44444in</Height>
         <Style />
       </Body>
-      <Width>11.1406in</Width>
+      <Width>11.14893in</Width>
       <Page>
         <PageHeader>
           <Height>1.2175in</Height>
@@ -1866,7 +2008,7 @@
               <Top>0.5675in</Top>
               <Left>4.44444in</Left>
               <Height>0.29375in</Height>
-              <Width>1.92533in</Width>
+              <Width>1.96283in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
