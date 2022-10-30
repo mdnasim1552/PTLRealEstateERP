@@ -276,8 +276,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         private void CompanySalary()
         {
-            this.rbtSalSheet.Visible = false;
-            // this.rbtSalSheet.Visible = true; 
+            //this.rbtSalSheet.Visible = false;
+             this.rbtSalSheet.Visible = true; 
             string comcod = this.GetCompCode();
             switch (comcod)
             {
