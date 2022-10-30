@@ -33,8 +33,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 //this.SelectView();
                 //this.GetDesignation();
             }
-
-            this.lbtnOk_Click(null, null);
         }
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
