@@ -1170,8 +1170,8 @@
                                                         <asp:TemplateField HeaderText="Order No">                                                            
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lgorderno1" runat="server"
-                                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "orderno1")) %>'
-                                                                    Width="80px"></asp:Label>
+                                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "orderno")) %>'
+                                                                    Width="90px"></asp:Label>
                                                             </ItemTemplate>
                                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
