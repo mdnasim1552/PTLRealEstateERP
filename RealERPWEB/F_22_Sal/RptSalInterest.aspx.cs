@@ -1362,7 +1362,8 @@ namespace RealERPWEB.F_22_Sal
 
 
                 }
-                else if(comcod == "3386")
+
+                else if(comcod == "3368")
                 {
 
                     string frmdate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
