@@ -1763,7 +1763,7 @@ namespace RealERPWEB.F_99_Allinterface
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
                 string id = ((Label)this.gv_Invoice.Rows[index].FindControl("lblgvIninvno")).Text.ToString();
-                this.lblsircode.Text = id;
+
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = GetCompCode();
                 string comnam = hst["comnam"].ToString();
@@ -1773,34 +1773,31 @@ namespace RealERPWEB.F_99_Allinterface
                 string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
                 string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
                 DataTable dt = (DataTable)Session["tblinvoicelist"];
-                DataTable dt1 = new DataTable();
-               
 
-                string invno = dt.Rows[0]["invno"].ToString();
-                string qty = dt.Rows[0]["qty"].ToString();
-
-                string rate = dt.Rows[0]["totalrate"].ToString();
-                double amount = Convert.ToDouble(qty) * Convert.ToDouble(rate);
+                DataView dv0 = dt.DefaultView;
+                dv0.RowFilter = "invno = '" + id + "'";
+                dt = dv0.ToTable();
                 
+                double amount = Convert.ToDouble(dt.Rows[0]["totalamount"]);
                 string inword = "In Word: " + ASTUtility.Trans(Math.Round(amount), 2);
-                if (invno == id)
-                {
-                    LocalReport Rpt1 = new LocalReport();
-                    var lst = dt.DataTableToList<RealEntity.C_38_AI.AIallPrint.InvoicePrint>();
-                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_38_AI.RptAIInvoicePrint", lst, null, null);
-                    Rpt1.EnableExternalImages = true;
+                string curency = dt.Rows[0]["currency"].ToString();
+                LocalReport Rpt1 = new LocalReport();
+                var lst = dt.DataTableToList<RealEntity.C_38_AI.AIallPrint.InvoicePrint>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_38_AI.RptAIInvoicePrint", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("inword", inword));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("curency", curency));
 
-                    Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-                    Rpt1.SetParameters(new ReportParameter("inword", inword));
-                    Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                    Rpt1.SetParameters(new ReportParameter("printdate", printdate));
-                    Rpt1.SetParameters(new ReportParameter("RptTitle", "INVOICE"));
-                    Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
-                    Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                    Session["Report1"] = Rpt1;
-                    string type = "PDF";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "target", "SetTarget('" + type + "');", true);
-                }
+                Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "INVOICE"));
+                Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Session["Report1"] = Rpt1;
+                string type = "PDF";
+                ScriptManager.RegisterStartupScript(this, GetType(), "target", "SetTarget('" + type + "');", true);
+
             }
             catch (Exception exp)
             {
