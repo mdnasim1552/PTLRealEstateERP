@@ -766,10 +766,6 @@ namespace RealERPWEB.F_17_Acc
             Session["tblunposted"] = dt;
         }
 
-        protected void checkSelectedPrint_CheckedChanged(object sender, EventArgs e)
-        {
-
-            lnkPrint_Click(null, null);
-        }
+        
     }
 }
