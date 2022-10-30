@@ -3,9 +3,28 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <div class="card card-fluid">
-        <div class="card-body" style="min-height: 600px;">
-            <div class="row" style="padding-top: 15px">
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <div class="RealProgressbar">
+                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
+                    <ProgressTemplate>
+                        <div id="loader">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="lading"></div>
+                        </div>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+            </div>
+    <div class="card mt-4">
+        <div class="card-body" >
+            <div class="row mb-4">
                 <div class="col-md-1">
 
 
@@ -36,6 +55,11 @@
                 </div>
 
             </div>
+            </div>
+        </div>
+    <div class="card mt-4">
+        <div class="card-body" >
+            <div class="row mb-4">
 
             <asp:GridView ID="gvSummary" runat="server" AutoGenerateColumns="False"
                 ShowFooter="True" CssClass="table-condensed table-hover table-bordered grvContentarea">
@@ -195,5 +219,8 @@
             </asp:GridView>
         </div>
     </div>
+       </div>
+             </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>
 
