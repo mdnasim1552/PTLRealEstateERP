@@ -187,6 +187,15 @@ margin-bottom:05px;
                                             <HeaderStyle HorizontalAlign="Center" CssClass="col-" VerticalAlign="Middle" />
                                         </asp:TemplateField>
 
+                                          <asp:TemplateField HeaderText="Section">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblsection" runat="server" CssClass="col-" Font-Size="12px" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) %>'
+                                                      Width="150px"></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Left" />
+
+                                            <HeaderStyle HorizontalAlign="Center" CssClass="col-" VerticalAlign="Middle" />
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Name">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvempname" runat="server"    Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
