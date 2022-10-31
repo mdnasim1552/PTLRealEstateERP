@@ -57,7 +57,7 @@
                                     <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                 </div>
                             </div>
-                            <div class="col-md-5 pading5px ">
+                            <div class="col-md-3">
                                  <asp:Label ID="lblPrjName" runat="server" CssClass="lblTxt lblName" Style="font-size: 11px;" Text="Project Name"></asp:Label>
                                 <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control form-control-sm" TabIndex="3">
                                 </asp:DropDownList>
@@ -66,8 +66,8 @@
 
                             </div>
 
-                            <div class="col-md-1 ml-3" style="margin-top:22px;">
-                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lnkbtnSerOk_Click" TabIndex="4">Ok</asp:LinkButton>
+                            <div class="col-md-1 ml-3" style="margin-top:20px;">
+                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary" OnClick="lnkbtnSerOk_Click" TabIndex="4">Ok</asp:LinkButton>
 
                             </div>
                             <div class="col-md-3 pull-right pading5px d-none">
@@ -78,7 +78,7 @@
                     
                 
             </div>
-            <div class="row mb-4">
+            <div class="row mb-4" >
                   <div class="col-md-12">
                 <asp:Panel ID="PanelSelName" runat="server" Visible="False">
 
@@ -128,7 +128,7 @@
             </div>
         </div>
 
-            <div class="card">
+            <div class="card" style="min-height:480px">
                 <div class="card-body">
                       <div class="row">
 
@@ -138,7 +138,7 @@
                             ShowFooter="True" Width="720px" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvProjectInfo_RowDataBound">
                             <RowStyle Font-Size="11px" />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl #">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo0"
                                             runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
@@ -304,7 +304,7 @@
                             OnRowDeleting="gvFeaPrj_RowDeleting" ShowFooter="True" Width="651px" CssClass=" table-striped table-hover table-bordered grvContentarea">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl #">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
                                             Style="text-align: right"
@@ -428,7 +428,7 @@
                             OnRowDeleting="gvFeaPrjC_RowDeleting" ShowFooter="True" Width="792px" CssClass=" table-striped table-hover table-bordered grvContentarea">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl #">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
                                             Style="text-align: right"
@@ -531,7 +531,7 @@
                             OnRowDeleting="gvFeaLOwner_RowDeleting" ShowFooter="True" Width="334px" CssClass=" table-striped table-hover table-bordered grvContentarea">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl #">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo2" runat="server" Font-Bold="True" Height="16px"
                                             Style="text-align: right"
@@ -655,7 +655,7 @@
                             ShowFooter="True" Width="785px" OnRowDataBound="gvFeaPrjRep_RowDataBound" CssClass=" table-striped table-hover table-bordered grvContentarea">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl #">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo3" runat="server" Font-Bold="True" Height="16px"
                                             Style="text-align: right"
@@ -797,7 +797,7 @@
                             ShowFooter="True" Width="785px" OnRowDataBound="gvFeaPrjRepManama_RowDataBound" CssClass="table-striped table-hover table-bordered grvContentarea">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl #">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNoM" runat="server" Font-Bold="True" Height="16px"
                                             Style="text-align: right"
@@ -976,7 +976,7 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
 
-                                 <asp:TemplateField HeaderText="Sl.No.">
+                                 <asp:TemplateField HeaderText="Sl #">
                                     <ItemTemplate>
                                       <asp:LinkButton ID="btnDelbint" OnClick="btnDelbint_Click" CssClass="btn btn-default  btn-xs" ToolTip="Cancel" OnClientClick="javascript:return FunConfirm();" runat="server"><span  style="color:red"  class="fa   fa-trash "></span> </asp:LinkButton>
                                     </ItemTemplate>
