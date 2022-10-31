@@ -151,7 +151,11 @@ namespace RealERPWEB.F_17_Acc
                 //string mRptGroup = "12";
                 //string calltype = (stindex == "0" ? "RPTALLSUPPAYMENTSTATUS" : "GETSUPLLIERANDSUBCONTRACTORSATUS");
                 //  DataSet ds2 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "RPTALLSUPPAYMENT", frmdate, todate, Rescode, mRptGroup, supplier, Rescodegrp, search, "", "");
-                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETSUPLIERPAYMENTDETIAL", Rescode, frmdate, todate, "", "", "", "", "", "");
+                //  DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETSUPLIERPAYMENTDETIAL", Rescode, frmdate, todate, "", "", "", "", "", "");
+                  DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETSUPLIERPAYMENTACCOUTS", Rescode, frmdate, "", "", "", "", "", "", "");
+
+
+                
                 if (ds1 == null)
                 {
                     this.gvspaysummary.DataSource = null;
