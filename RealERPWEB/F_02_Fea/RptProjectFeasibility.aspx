@@ -28,6 +28,11 @@
      
 
     </script>
+    <style type="text/css" >
+        .table th, .table td{
+            padding: 2px;
+        }
+    </style>
 
 
 
@@ -54,13 +59,11 @@
                 <div class="card-body">
                     <div class="row mb-4">
 
-                        
-                            
                                 <div class="d-none">
                                     <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputTxt inpPixedWidth d-none" Width="80px"></asp:TextBox>
                                     <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary srearchBtn d-none" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <asp:Label ID="Label4" runat="server" CssClass="from-label" Text="Project Name:"></asp:Label>
 
                                     <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control form-control-sm"></asp:DropDownList>
@@ -79,25 +82,25 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" style="min-height:480px;">
                 <div class="card-body">
                     <div class="row"> 
                           <div class="table table-responsive">
-                <asp:GridView ID="gvFeaPrjRep" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                <asp:GridView ID="gvFeaPrjRep" runat="server" BackColor="White" AutoGenerateColumns="False" CssClass=" table-striped table-bordered grvContentarea"
                     ShowFooter="True" Width="785px" OnRowDataBound="gvFeaPrjRep_RowDataBound">
                     <Columns>
                         <asp:TemplateField HeaderText="Sl #">
                             <ItemTemplate>
-                                <asp:Label ID="lblgvSlNo3" runat="server" Font-Bold="True" Height="16px"
+                                <asp:Label ID="lblgvSlNo3" runat="server" Font-Bold="True" 
                                     Style="text-align: right"
-                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                         </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="code" Visible="false">
                             <ItemTemplate>
-                                <asp:Label ID="lblinfocde" runat="server" AutoCompleteType="Disabled"
+                                <asp:Label ID="lblinfocde" runat="server" AutoCompleteType="Disabled" Height="5px"
                                     BackColor="Transparent" BorderStyle="None"
                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "infcod")) %>'
                                     Width="50px"></asp:Label>
@@ -108,8 +111,8 @@
 
                         <asp:TemplateField HeaderText="Group Description">
                             <ItemTemplate>
-                                <asp:Label ID="lgvgroupdesc" runat="server" AutoCompleteType="Disabled" ForeColor="#337ab7"
-                                    BackColor="Transparent" BorderStyle="None" Font-Size="11px"
+                                <asp:Label ID="lgvgroupdesc"  runat="server" AutoCompleteType="Disabled"
+                                    BackColor="Transparent" BorderStyle="None" Font-Size="10px"
                                     Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "grpdesc")) + "</B>"+
                                                                          (DataBinder.Eval(Container.DataItem, "subgrpdesc").ToString().Trim().Length>0 ? 
                                                                          (Convert.ToString(DataBinder.Eval(Container.DataItem, "grpdesc")).Trim().Length>0 ?  "<br>" : "")+                                                             
@@ -125,7 +128,7 @@
 
                             </ItemTemplate>
                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top"/>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Description of Item" Visible="false">
                             <ItemTemplate>
@@ -140,7 +143,7 @@
                         <asp:TemplateField HeaderText="Unit">
                             <ItemTemplate>
                                 <asp:Label ID="lgUnitnumRep" runat="server" AutoCompleteType="Disabled"
-                                    BackColor="Transparent" BorderStyle="None"
+                                    BackColor="Transparent" BorderStyle="None" Font-Size="11px"
                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "unit")) %>'
                                     Width="50px"></asp:Label>
                             </ItemTemplate>
@@ -150,7 +153,7 @@
                         <asp:TemplateField HeaderText="Size">
                             <ItemTemplate>
                                 <asp:Label ID="lgSizerep" runat="server" BackColor="Transparent"
-                                    BorderStyle="None" Font-Size="11px" Height="18px" Style="text-align: right"
+                                    BorderStyle="None" Font-Size="11px"  Style="text-align: right"
                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rsize")).ToString("#,##0.00;(#,##0.00); ") %>'
                                     Width="50px"></asp:Label>
                             </ItemTemplate>
@@ -161,7 +164,7 @@
                         <asp:TemplateField HeaderText="Number">
                             <ItemTemplate>
                                 <asp:Label ID="lgnumrep" runat="server" BackColor="Transparent"
-                                    BorderStyle="None" Font-Size="11px" Height="18px" Style="text-align: right"
+                                    BorderStyle="None" Font-Size="11px"  Style="text-align: right"
                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "number")).ToString("#,##0.00;(#,##0.00); ") %>'
                                     Width="50px"></asp:Label>
                             </ItemTemplate>

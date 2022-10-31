@@ -24,23 +24,23 @@
             </div>
     <div class="card mt-4">
         <div class="card-body" >
-            <div class="row mb-4">
+            <div class="row mb-2">
                 <div class="col-md-1">
 
 
-                    <asp:DropDownList ID="ddlyearland" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" TabIndex="2" OnSelectedIndexChanged="ddlyearland_SelectedIndexChanged">
+                    <asp:DropDownList ID="ddlyearland" runat="server" CssClass="custom-select chzn-select form-control form-control-sm" AutoPostBack="true" TabIndex="2" OnSelectedIndexChanged="ddlyearland_SelectedIndexChanged">
                     </asp:DropDownList>
                 </div>
                 <div class="col-md-1">
                     <div class="form-group">
-                        <asp:DropDownList ID="ddlSmsMail" runat="server" OnSelectedIndexChanged="ddlSmsMail_SelectedIndexChanged" AutoPostBack="True" CssClass="form-control">
+                        <asp:DropDownList ID="ddlSmsMail" runat="server" OnSelectedIndexChanged="ddlSmsMail_SelectedIndexChanged" AutoPostBack="True" CssClass="form-control form-control-sm">
                             <asp:ListItem Value="01">SMS</asp:ListItem>
                             <asp:ListItem Value="02">Mail</asp:ListItem>
                         </asp:DropDownList>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <asp:DropDownList ID="ddlSMSMAILTEMP" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlSMSMAILTEMP_SelectedIndexChanged" CssClass="form-control">
+                    <asp:DropDownList ID="ddlSMSMAILTEMP" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlSMSMAILTEMP_SelectedIndexChanged" CssClass="form-control form-control-sm">
                     </asp:DropDownList>
 
                 </div>
@@ -50,14 +50,14 @@
                 </div>
 
                 <div class="col-md-1">
-                    <asp:LinkButton ID="lnkSend" runat="server" CssClass="btn btn-success btn-sm" OnClick="lnkSend_Click" Text="Send"></asp:LinkButton>
+                    <asp:LinkButton ID="lnkSend" runat="server" CssClass="btn btn-sm btn-success btn-sm" OnClick="lnkSend_Click" Text="Send"></asp:LinkButton>
 
                 </div>
 
             </div>
             </div>
         </div>
-    <div class="card mt-4">
+    <div class="card mt-4" style="min-height:480px">
         <div class="card-body" >
             <div class="row mb-4">
 
@@ -66,7 +66,7 @@
                 <RowStyle />
                 <Columns>
 
-                    <asp:TemplateField HeaderText="Sl">
+                    <asp:TemplateField HeaderText="Sl #">
                         <ItemTemplate>
                             <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True"
                                 Style="text-align: right"

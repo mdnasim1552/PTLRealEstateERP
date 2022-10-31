@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptEstProfitloss.aspx.cs" Inherits="RealERPWEB.F_02_Fea.RptEstProfitloss" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptEstProfitloss.aspx.cs" Inherits="RealERPWEB.F_02_Fea.RptEstProfitloss" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -25,8 +25,8 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+            <div class="card">
+                <div class="card-body">
                     <div class="RealProgressbar">
                         <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
                             <ProgressTemplate>
@@ -45,12 +45,10 @@
                         </asp:UpdateProgress>
                     </div>
                     <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
-                                <div class="form-group">
+                        
 
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="lblPrjName" runat="server" CssClass="lblTxt lblName" Style="font-size: 11px;" Text="Project Name"></asp:Label>
+                                    <div class="col-md-3 pading5px asitCol3 d-none">
+                                       
                                         <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
 
                                         <div class="colMdbtn">
@@ -58,28 +56,31 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3 pading5px ">
-                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control inputTxt" TabIndex="3">
+                                         <asp:Label ID="lblPrjName" runat="server" CssClass="lblTxt lblName" Style="font-size: 11px;" Text="Project Name"></asp:Label>
+                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control form-control-sm inputTxt" TabIndex="3">
                                         </asp:DropDownList>
 
 
                                     </div>
 
-                                    <div class="col-md-3 pading5px">
-                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lnkbtnSerOk_Click" TabIndex="4">Ok</asp:LinkButton>
-                                        <asp:Label ID="lblCurDate" runat="server" CssClass="lblTxt lblDate " Text="Date"></asp:Label>
+                                    <div class="col-md-2">
+                                       
+                                        <asp:Label ID="lblCurDate" runat="server" CssClass="form-label" Text="Date"></asp:Label>
 
-                                        <asp:TextBox ID="txtCurDate" runat="server" CssClass="inputtextbox" TabIndex="5"></asp:TextBox>
+                                        <asp:TextBox ID="txtCurDate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtCurDate_CalendarExtender" runat="server"
                                             Format="dd-MMM-yyyy" TargetControlID="txtCurDate"></cc1:CalendarExtender>
                                     </div>
-
-
-                                    <div class="col-md-2 pull-right pading5px">
+                         
+                        <div class="col-md-1" style="margin-top:22px;">
+                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-sm btn-primary okBtn" OnClick="lnkbtnSerOk_Click" TabIndex="4">Ok</asp:LinkButton>
+                        </div>
+                                    <div class="col-md-2 pull-right pading5px d-none">
                                         <asp:Label ID="lblMsg" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
                                     </div>
-
-                                </div>
-                            </div>
+                        </div>
+                     <div class="row">
+                              
                             <asp:Panel ID="PanelSelName" runat="server" Visible="false">
                                 <div class="from-group">
                                     <div class="form-group">
@@ -131,7 +132,7 @@
 
 
                             </asp:Panel>
-                        </fieldset>
+                       
                     </div>
                     <div class="row">
 
@@ -175,7 +176,7 @@
 
                                             <asp:LinkButton ID="Calculation"
                                                 runat="server"
-                                                OnClick="llbtnCalculation_Click" CssClass="btn  btn-primary  primarygrdBtn">Calculation</asp:LinkButton>
+                                                OnClick="llbtnCalculation_Click" CssClass="btn btn-sm  btn-primary  primarygrdBtn">Calculation</asp:LinkButton>
                                         </FooterTemplate>
 
                                         <ItemTemplate>
@@ -217,7 +218,7 @@
                                         <FooterTemplate>
                                             <asp:LinkButton ID="lUpdatProInfo"
                                                 runat="server"
-                                                OnClick="lUpdatProInfo_Click" CssClass="btn btn-danger primarygrdBtn">Update</asp:LinkButton>
+                                                OnClick="lUpdatProInfo_Click" CssClass="btn btn-sm btn-danger primarygrdBtn">Update</asp:LinkButton>
                                         </FooterTemplate>
 
                                         <HeaderStyle
