@@ -362,6 +362,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0903000", "0903210", "F_09_PImp", "RptSubContractorSd?", "Type=BillDetails", "Sub-Contractor Status (R/A Bill All)", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0903000", "0903211", "F_09_PImp", "RptSubContractorSd?", "Type=BillRAWise", "Sub-Contractor Bill - R/A Wise", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0903000", "0903220", "F_09_PImp", "RptSubConBillStatus", "", "Sub-Contractor Bill Summary", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903221", "F_09_PImp", "PurLabIssue2?", "Type=BillApproval", "Subcon Bill Approval", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0903000", "0903225", "F_09_PImp", "PurLabIssue2?", "Type=Current", "Sub-Contractor Bill-Work Wise", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0903000", "0903226", "F_09_PImp", "PurLabIssue2?", "Type=CheckaVerify", "Sub-Contractor Bill-Checked", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0903000", "0903227", "F_09_PImp", "PurLabIssue2?", "Type=FirstRecom", "Sub-Contractor Bill-First Recommendation", "Project Implementation", "False", "False", "False", "False" });
