@@ -1,5 +1,5 @@
 ﻿
-<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="ProjectFeasibility.aspx.cs" Inherits="RealERPWEB.F_02_Fea.ProjectFeasibility" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="ProjectFeasibility.aspx.cs" Inherits="RealERPWEB.F_02_Fea.ProjectFeasibility" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -24,8 +24,8 @@
     <%-- <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>--%>
 
-    <div class="container moduleItemWrpper">
-        <div class="contentPart">
+    <div class="card">
+        <div class="card-body">
             <div class="RealProgressbar">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
                     <ProgressTemplate>
@@ -43,12 +43,12 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="row">
-                <fieldset class="scheduler-border fieldset_A">
-                    <div class="form-horizontal">
-                        <div class="form-group">
 
-                            <div class="col-md-3 pading5px asitCol3">
+            <div class="row mb-4 ml-2">
+               
+                   
+
+                            <div class="col-md-3 pading5px asitCol3 d-none">
                                 <asp:Label ID="lblPrjName" runat="server" CssClass="lblTxt lblName" Style="font-size: 11px;" Text="Project Name"></asp:Label>
                                 <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
 
@@ -56,33 +56,34 @@
                                     <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                 </div>
                             </div>
-                            <div class="col-md-5 pading5px ">
-                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control inputTxt" TabIndex="3">
+                            <div class="col-md-3 pading5px ">
+                                 <asp:Label ID="Label1" runat="server" CssClass="form-label" Style="font-size: 11px;" Text="Project Name"></asp:Label>
+                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control form-control-sm" TabIndex="3">
                                 </asp:DropDownList>
                                 <asp:Label ID="lblProjectdesc" runat="server"
                                     Visible="False" CssClass="form-control inputTxt"></asp:Label>
 
                             </div>
 
-                            <div class="col-md-1 pading5px">
-                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lnkbtnSerOk_Click" TabIndex="4">Ok</asp:LinkButton>
+                            <div class="col-md-1 ml-2" style="margin-top:21px;">
+                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn  btn-primary" OnClick="lnkbtnSerOk_Click" TabIndex="4">Ok</asp:LinkButton>
 
                             </div>
-                            <div class="col-md-3 pull-right pading5px">
+                            <div class="col-md-3 pull-right pading5px d-none">
                                 <asp:Label ID="lblMsg" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
                             </div>
 
                         </div>
-                    </div>
-                    <asp:Panel ID="PanelSelName" runat="server" Visible="False">
+            
+            <div class="row mb-4">
+                <div class="col-md-12">
+                     <asp:Panel ID="PanelSelName" runat="server" Visible="False">
 
-                        <div class="form-group">
-                            <div class="col-sm-1 pading5px">
-                                <asp:CheckBox ID="chkAllRes" runat="server" AutoPostBack="True" OnCheckedChanged="chkAllSInf_CheckedChanged" CssClass="btn btn-primary primaryBtn margin5px chkBoxControl"
+                       
+                            <div class="col-sm-10">
+                                 <asp:CheckBox ID="chkAllRes" runat="server" AutoPostBack="True" OnCheckedChanged="chkAllSInf_CheckedChanged" CssClass="btn btn-primary"
                                     Text="Show All" />
-                            </div>
-                            <div class="col-sm-7 pading5px">
-                                <asp:RadioButtonList ID="rbtnList1" runat="server" BackColor="#0B88C5" ForeColor="White" AutoPostBack="True" CssClass="btn rbtnList1 margin5px  primaryBtn "
+                                <asp:RadioButtonList ID="rbtnList1" runat="server" BackColor="#0B88C5" ForeColor="White" AutoPostBack="True" CssClass="btn "
                                     OnSelectedIndexChanged="rbtnList1_SelectedIndexChanged"
                                     RepeatColumns="6" RepeatDirection="Horizontal">
                                     <asp:ListItem>Project Information</asp:ListItem>
@@ -92,31 +93,36 @@
                                     <asp:ListItem>Reports</asp:ListItem>
                                     <asp:ListItem>Image</asp:ListItem>
                                 </asp:RadioButtonList>
-                            </div>
-
-                            <div class="col-md-4 pading5px">
-
-
-                                <asp:CheckBox ID="chkCommercial" runat="server" CssClass="btn btn-primary primaryBtn  chkBoxControl"
+                                 <asp:CheckBox ID="chkCommercial" runat="server" CssClass="btn btn-primary"
                                     Text="NR Far" Style="margin-left: 50px;" Visible="false" />
 
-                                <asp:Label ID="Label3" runat="server" CssClass="  smLbl_to" Text="Creation Date:"></asp:Label>
-                                <asp:TextBox ID="txtDate" runat="server" CssClass=" inputtextbox"></asp:TextBox>
+                               
+                            </div>
+                         <div claass="col-md-2" style="margin-left:11px;">
+                              <asp:Label ID="Label3" runat="server" CssClass="form-label" Text="Creation Date:"></asp:Label>
+                                <asp:TextBox ID="txtDate" runat="server" CssClass="form-control form-control-sm" Width="110px"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txtDate_CalendarExtender" runat="server"
                                     Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
 
-                                <a href="../F_04_Bgd/RptBgdPrjoject.aspx?Type=MasterBgdAcWk&prjcode=" class="margin5px">Budget</a>
-                                <a href="../F_04_Bgd/BgdPrjAna.aspx?InputType=BgdMain" class="margin5px">Price</a>
+                                <a href="../F_04_Bgd/RptBgdPrjoject.aspx?Type=MasterBgdAcWk&prjcode=" class="btn btn-sm btn-primary mt-2">Budget</a>
+                                <a href="../F_04_Bgd/BgdPrjAna.aspx?InputType=BgdMain" class="btn btn-sm btn-success mt-2">Price</a>
+                         </div>
 
-                            </div>
+                           
 
 
-                            <div class="clearfix"></div>
-                        </div>
 
                     </asp:Panel>
-                </fieldset>
+                </div>
+                    
+                
+                   
+               
             </div>
+            </div>
+        </div>
+        <div class="card" style="min-height:480px;">
+        <div class="card-body">
             <div class="row">
 
                 <asp:MultiView ID="MultiView1" runat="server">
@@ -125,7 +131,7 @@
                             ShowFooter="True" Width="720px" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvProjectInfo_RowDataBound">
                             <RowStyle Font-Size="11px" />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl #">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo0"
                                             runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
@@ -241,7 +247,7 @@
                             OnRowDeleting="gvFeaPrj_RowDeleting" ShowFooter="True" Width="651px" CssClass=" table-striped table-hover table-bordered grvContentarea">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl #">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
                                             Style="text-align: right"
@@ -365,7 +371,7 @@
                             OnRowDeleting="gvFeaPrjC_RowDeleting" ShowFooter="True" Width="792px" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvFeaPrjC_RowDataBound">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl #">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
                                             Style="text-align: right"
@@ -468,7 +474,7 @@
                             OnRowDeleting="gvFeaLOwner_RowDeleting" ShowFooter="True" Width="334px" CssClass=" table-striped table-hover table-bordered grvContentarea">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl #">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo2" runat="server" Font-Bold="True" Height="16px"
                                             Style="text-align: right"
@@ -592,7 +598,7 @@
                             ShowFooter="True" Width="785px" OnRowDataBound="gvFeaPrjRep_RowDataBound" CssClass=" table-striped table-hover table-bordered grvContentarea">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="Sl #">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo3" runat="server" Font-Bold="True" Height="16px"
                                             Style="text-align: right"
