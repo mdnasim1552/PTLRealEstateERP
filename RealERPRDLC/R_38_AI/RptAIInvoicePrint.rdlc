@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>a4550a2f-0855-46b2-97f8-228ac236b54c</rd:DataSourceID>
+      <rd:DataSourceID>bec5b781-efd7-4b1a-b4ae-bd50dc55d24e</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -19,14 +19,6 @@
       <Fields>
         <Field Name="addres">
           <DataField>addres</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="batchid">
-          <DataField>batchid</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="batchname">
-          <DataField>batchname</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="city">
@@ -848,8 +840,8 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>2.16541in</Top>
             <Left>0.01389in</Left>
-            <Height>1.14362in</Height>
-            <Width>7.28125in</Width>
+            <Height>1.14361in</Height>
+            <Width>7.28126in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1047,7 +1039,7 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>, </Value>
+                                  <Value xml:space="preserve">  </Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -1634,7 +1626,7 @@
         <Height>4.92708in</Height>
         <Style />
       </Body>
-      <Width>7.29514in</Width>
+      <Width>7.29515in</Width>
       <Page>
         <PageHeader>
           <Height>0.66666in</Height>

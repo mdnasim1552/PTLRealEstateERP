@@ -1,10 +1,31 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptLandDevProposal.aspx.cs" Inherits="RealERPWEB.F_01_LPA.RptLandDevProposal" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptLandDevProposal.aspx.cs" Inherits="RealERPWEB.F_01_LPA.RptLandDevProposal" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+   <script type="text/javascript" language="javascript">
 
+
+       $(document).ready(function () {
+
+           Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+       });
+
+       function pageLoaded() {
+
+           $("input, select").bind("keydown", function (event) {
+               var k1 = new KeyPress();
+               k1.textBoxHandler(event);
+           });
+           $('.chzn-select').chosen({ search_contains: true });
+          
+       }
+
+     
+
+   </script>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -25,40 +46,40 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
-                    <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
-                                <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
+            <div class="card mt-4">
+                <div class="card-body">
+                    <div class="row mb-4">
+                        
+                                    <div class="col-md-3 pading5px asitCol3 d-none">
 
-                                        <asp:Label ID="prname" runat="server" CssClass="lblTxt lblName" Text="Project Name"></asp:Label>
+                                      
 
-                                        <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
+                                        <asp:TextBox ID="txtSrcPro" runat="server" CssClass="form-control form-control-sm" TabIndex="1"></asp:TextBox>
                                         <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                     </div>
-                                    <div class="col-md-4 pading5px">
-                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control inputTxt">
+                                    <div class="col-md-4">
+                                          <asp:Label ID="prname" runat="server" CssClass="form-label" Text="Project Name"></asp:Label>
+                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control form-control-sm">
                                         </asp:DropDownList>
                                     </div>
-                                    <div class="col-md-1">
-                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lnkbtnSerOk_Click">Ok</asp:LinkButton>
+                                    <div class="col-md-1 ml-3" style="margin-top:22px;">
+                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm" OnClick="lnkbtnSerOk_Click">Ok</asp:LinkButton>
                                     </div>
-                                </div>
-                            </div>
-                        </fieldset>
+                              
                     </div>
-
-                    <div class="row">
+                    </div>
+                </div>
+            <div class="card">
+                <div class="card-body">
+                     <div class="row">
                         <asp:MultiView ID="MultiView1" runat="server">
                             <asp:View ID="ViewProjectInfo" runat="server">
                                 <asp:GridView ID="gvProjectInfo" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                    ShowFooter="True" Width="772px">
+                                    ShowFooter="True" Width="600px">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl.No.">
+                                        <asp:TemplateField HeaderText="Sl #">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
                                                     Style="text-align: right"
@@ -96,7 +117,7 @@
                                                 <asp:Label ID="txtgvVal" runat="server" BackColor="Transparent"
                                                     BorderColor="#660033" BorderStyle="Solid" BorderWidth="0px" Height="20px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prgdesc1")) %>'
-                                                    Width="510px"></asp:Label>
+                                                    Width="200px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
@@ -119,7 +140,7 @@
                                 <div class=" clearfix"></div>
 
                                 <asp:GridView ID="gvFeaPrjFCS" runat="server" AutoGenerateColumns="False"
-                                    ShowFooter="True" Width="821px">
+                                    ShowFooter="True" Width="700px">
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl.No.">
@@ -1352,9 +1373,12 @@
                             </asp:View>
                         </asp:MultiView>
                     </div>
+                    </div>
 
                 </div>
-            </div>
+                   
+
+               
 
 
 
