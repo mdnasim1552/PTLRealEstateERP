@@ -1741,11 +1741,12 @@ namespace RealERPWEB.F_99_Allinterface
             try
             {
                 string comcod = this.GetCompCode();
-                DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INVOICELIST", "", "", "");
+                DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GET_INVOICE_SUMMAY_SHEET", "", "", "");
                 if (ds == null)
                     return;
+                
                 Session["tblinvoicelist"] = ds.Tables[0];
-                this.gv_Invoice.DataSource = ds;
+                this.gv_Invoice.DataSource = ds.Tables[0];
                 this.gv_Invoice.DataBind();
 
             }
@@ -1772,12 +1773,11 @@ namespace RealERPWEB.F_99_Allinterface
                 string comadd = hst["comadd1"].ToString();
                 string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
                 string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
-                DataTable dt = (DataTable)Session["tblinvoicelist"];
-
+                DataTable dt = (DataTable)Session["tblinvoicelist"];            
+               
                 DataView dv0 = dt.DefaultView;
                 dv0.RowFilter = "invno = '" + id + "'";
-                dt = dv0.ToTable();
-                
+                dt = dv0.ToTable();               
                 double amount = Convert.ToDouble(dt.Rows[0]["totalamount"]);
                 string inword = "In Word: " + ASTUtility.Trans(Math.Round(amount), 2);
                 string curency = dt.Rows[0]["currency"].ToString();

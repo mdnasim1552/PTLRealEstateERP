@@ -1532,7 +1532,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-                TableCell cell = e.Row.Cells[9];
+                TableCell cell = e.Row.Cells[10];
                 string cstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "cstatus")).ToString();
                 if (cstatus == "Bill Confirm")
                 {
@@ -2053,13 +2053,20 @@ namespace RealERPWEB.F_99_Allinterface
                 case "gvReqInfo":
                     this.gvReqInfo.DataSource = HiddenSameData(dt);
                     this.gvReqInfo.DataBind();
+
+                    if (comcod == "1205" || comcod == "3351" || comcod == "3352")
+                    {
+                        this.gvReqInfo.Columns[4].Visible = true;
+                    }
+                    else
+                    {
+                        this.gvReqInfo.Columns[4].Visible = false;
+                    }
                     break;
+
                 case "gvReqChk":
                     this.gvReqChk.DataSource = HiddenSameData(dt);
                     this.gvReqChk.DataBind();
-
-
-
                     break;
 
                 case "gvCRM":

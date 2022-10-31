@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="LpSCodeBook.aspx.cs" Inherits="RealERPWEB.F_01_LPA.LpSCodeBook" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="LpSCodeBook.aspx.cs" Inherits="RealERPWEB.F_01_LPA.LpSCodeBook" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -26,15 +26,11 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
-                    <div class="row">
-                        <asp:Panel ID="Panel1" runat="server">
-                            <fieldset class="scheduler-border fieldset_A">
-                                <div class="form-horizontal">
-
-                                    <div class="form-group">
-                                        <div class="col-md-3 pading5px asitCol3">
+            <div class="card mt-4">
+                <div class="card-body">
+                    <div class="row mb-4">
+                   
+                                        <div class="col-md-3 pading5px asitCol3 d-none">
 
                                             <asp:Label ID="lblItem" runat="server" CssClass="lblTxt lblName"></asp:Label>
 
@@ -42,9 +38,9 @@
                                             <asp:LinkButton ID="ibtnSrch" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnSrch_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                         </div>
-                                        <div class="col-md-3 pading5px">
-                                            <asp:Label ID="lblStep" runat="server" CssClass="smLbl_to" Text="Step :"></asp:Label>
-                                            <asp:DropDownList ID="ddlGroupList" runat="server" CssClass=" ddlPage">
+                                        <div class="col-md-3">
+                                            <asp:Label ID="lblStep" runat="server" CssClass="form-label" Text="Step :"></asp:Label>
+                                            <asp:DropDownList ID="ddlGroupList" runat="server" CssClass="form-control form-control-sm">
 
                                                 <asp:ListItem>Main Group</asp:ListItem>
                                                 <asp:ListItem>Sub Group</asp:ListItem>
@@ -52,18 +48,25 @@
                                                 <asp:ListItem>Sub-3 Group</asp:ListItem>
                                                 <asp:ListItem Selected="True">Details</asp:ListItem>
                                             </asp:DropDownList>
-                                            <asp:LinkButton ID="lbtnShowData" runat="server" CssClass="btn btn-primary primaryBtn"
-                                                OnClick="lbtnShowData_Click">Show Data</asp:LinkButton>
-                                        </div>
-
-
-
+                                           
                                     </div>
-                                </div>
-                            </fieldset>
-                        </asp:Panel>
-                    </div>
+                            <div class="col-md-2" style="margin-top:20px">
+                                 <asp:LinkButton ID="lbtnShowData" runat="server" CssClass="btn btn-sm btn-primary "
+                                                OnClick="lbtnShowData_Click">Show Data</asp:LinkButton>
 
+                            </div>
+                                
+                              
+                            
+                       
+                       
+                       
+                    </div>
+                    </div>
+                </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
                     <asp:GridView ID="gvCodeBook" runat="server"
                         AutoGenerateColumns="False" OnPageIndexChanging="gvCodeBook_PageIndexChanging"
                         OnRowCancelingEdit="gvCodeBook_RowCancelingEdit" CssClass=" table-striped table-hover table-bordered grvContentarea"
@@ -71,7 +74,7 @@
                         Width="16px" AllowPaging="True" PageSize="30">
                         <RowStyle />
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl.">
+                            <asp:TemplateField HeaderText="Sl #">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True"
                                         Style="text-align: right"
