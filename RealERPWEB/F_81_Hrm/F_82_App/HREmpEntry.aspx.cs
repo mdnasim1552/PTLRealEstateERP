@@ -1312,6 +1312,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 string bankname2 = this.ddlBankName2.SelectedValue.ToString();
                 string bankacno1 = this.txtAcNo1.Text;
                 string bankacno2 = this.txtAcNo2.Text;
+                string routing1 = this.txtroute.Text;
+                string routing2 = this.txtroute2.Text;
                 string bank1 = (paytype == "0" || paytype == "2") ? "" : bankname1;
                 string acno1 = (paytype == "0" || paytype == "2") ? "" : bankacno1;
                 string bank2 = (paytype == "0" || paytype == "2") ? "" : bankname2;
@@ -1403,7 +1405,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 }
 
                 // Bank COde
-                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "19001", "T", bank1, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", acno1, bank2, acno2, bankamt2, "0", cashamt, "", "01-jan-1900", "01-jan-1900", "", "", "", paytypedesc, "", cash0Bank1, "");
+                result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "19001", "T", bank1, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", acno1, bank2, acno2, bankamt2, "0", cashamt, "", "01-jan-1900", "01-jan-1900", "", "", "", paytypedesc, "", cash0Bank1, "",routing1,routing2);
                 if (result == false)
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
