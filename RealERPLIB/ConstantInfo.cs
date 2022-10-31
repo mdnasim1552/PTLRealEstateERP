@@ -2188,7 +2188,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102070", "F_81_Hrm/F_92_Mgt", "EmpEvaluationFrm", "", "Employee Evaluation For Confirmation", "ACR", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102172", "F_81_Hrm/F_84_Lea", "YearlyHoliday", "", "Yearly Holidays", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102173", "F_81_Hrm/F_99_MgtAct", "RptgroupAttendance?", "Type=Dept", "Employee Daily Attendance(Department Wise)", "HR Management", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "8102000", "8102174", "F_81_Hrm/F_92_Mgt", "EmployeeListEpic", "", "Epic Employee List", "HR Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8102000", "8102174", "F_81_Hrm/F_92_Mgt", "EmployeeListEpic", "", "Employee List Details", "HR Management", "False", "False", "False", "False" });
 
 
 
@@ -15912,7 +15912,7 @@ namespace RealERPLIB
             // B. Appointment
             mnuTbl1.Rows.Add(new Object[] { "0402000000", "Appointment", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0402000001", "01. Employee Information", "F_81_Hrm/F_82_App/RptEmpInformation?Type=EmpAllInfo&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0402000001", "02. Epic Employee List", "F_81_Hrm/F_92_Mgt/EmployeeListEpic", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0402000001", "02. Employee List Details", "F_81_Hrm/F_92_Mgt/EmployeeListEpic", "", true, "" });
             
 
 
