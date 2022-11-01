@@ -8,10 +8,7 @@
         <div class="card-body">
             <div class="row">
                 
-
-                 
-                       
-                            <div class="col-md-3 asitCol2  pading5px">
+                            <div class="col-md-3">
 
                                 <asp:Label ID="Label15" runat="server" CssClass="lblTxt lblName"
                                     Text="Date:"></asp:Label>
@@ -46,7 +43,7 @@
                                     Font-Underline="False">Ok</asp:LinkButton>
                             </div>
                         </div>
-                        <div class="form-group">
+                     
                             <div class="col-md-3 asitCol3 pading5px">
 
                                 <asp:Label ID="lblPage" runat="server" CssClass="lblTxt lblName"
@@ -78,7 +75,7 @@
                                 </asp:DropDownList>
 
                             </div>
-                        </div>
+                      
                  
                 </div>
             </div>
