@@ -4,82 +4,106 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <div class="card">
+    <script type="text/javascript" language="javascript">
+
+
+        $(document).ready(function () {
+
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+        });
+
+        function pageLoaded() {
+
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+
+            $('.chzn-select').chosen({ search_contains: true });
+        }
+
+
+
+    </script>
+    <div class="card mt-4">
         <div class="card-body">
-            <div class="row">
-                
-                            <div class="col-md-3">
+            <div class="row mb-4">
 
-                                <asp:Label ID="Label15" runat="server" CssClass="lblTxt lblName"
-                                    Text="Date:"></asp:Label>
-
-                                <asp:TextBox ID="txtDate" runat="server" CssClass="inputtextbox" BorderStyle="None"></asp:TextBox>
-                                <cc1:CalendarExtender ID="txtDate_CalendarExtender" runat="server" Format="dd-MMM-yyyy"
-                                    TargetControlID="txtDate"></cc1:CalendarExtender>
-
-                            </div>
-
-                       
-                       
-                            <div class="clol-md-3 asitCol3 pading5px">
-
-
-                                <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName"
-                                    Text="Project Name:"></asp:Label>
-
-                                <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputtextbox" BorderStyle="None"></asp:TextBox>
-                                <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
-
-
-                            
-                            <div class="col-md-4 asitCol4 pading5px">
-                                <asp:DropDownList ID="ddlProjectName" runat="server" Font-Bold="True" CssClass="ddlPage"
-                                    OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" Width="250px">
-                                </asp:DropDownList>
-
-                                <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click"
-                                    CssClass="btn btn-primary primaryBtn"
-                                    Font-Underline="False">Ok</asp:LinkButton>
-                            </div>
-                        </div>
-                     
-                            <div class="col-md-3 asitCol3 pading5px">
-
-                                <asp:Label ID="lblPage" runat="server" CssClass="lblTxt lblName"
-                                    Text="Size:" Visible="False"></asp:Label>
-
-                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="ddlPage" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged"
-                                    Visible="False" Width="71px">
-                                    <asp:ListItem Value="10">10</asp:ListItem>
-                                    <asp:ListItem Value="20">20</asp:ListItem>
-                                    <asp:ListItem Value="30">30</asp:ListItem>
-                                    <asp:ListItem Value="50">50</asp:ListItem>
-                                    <asp:ListItem Value="100">100</asp:ListItem>
-                                    <asp:ListItem Value="150">150</asp:ListItem>
-                                    <asp:ListItem Value="200">200</asp:ListItem>
-                                    <asp:ListItem Value="300">300</asp:ListItem>
-                                </asp:DropDownList>
-
-                                <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName"
-                                    Text="Group:"></asp:Label>
-
-                                <asp:DropDownList ID="ddlRptGroup" runat="server" AutoPostBack="True" Font-Bold="True"
-                                    CssClass="ddlPage" OnSelectedIndexChanged="ddlRptGroup_SelectedIndexChanged"
-                                    Width="71px">
-                                    <asp:ListItem>Main</asp:ListItem>
-                                    <asp:ListItem>Sub-1</asp:ListItem>
-                                    <asp:ListItem>Sub-2</asp:ListItem>
-                                    <asp:ListItem>Sub-3</asp:ListItem>
-                                    <asp:ListItem Selected="True">Details</asp:ListItem>
-                                </asp:DropDownList>
-
-                            </div>
-                      
-                 
+                <div class="col-md-1 d-none">
+                    <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputtextbox" BorderStyle="None"></asp:TextBox>
+                    <asp:LinkButton ID="LinkButton1" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                 </div>
+
+
+                <div class="col-md-3">
+                    <asp:Label ID="Label4" runat="server" CssClass="form-label"
+                        Text="Project Name:"></asp:Label>
+                    <asp:LinkButton ID="ibtnFindProject" runat="server" OnClick="ibtnFindProject_Click"><span class="fa fa-search"> </span></asp:LinkButton>
+                    <asp:DropDownList ID="ddlProjectName" runat="server" Font-Bold="True" CssClass="chzn-select form-control"
+                        OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged">
+                    </asp:DropDownList>
+
+                </div>
+                <div class="col-md-2 ml-2">
+
+                    <asp:Label ID="Label15" runat="server" CssClass="form-label"
+                        Text="Date:"></asp:Label>
+
+                    <asp:TextBox ID="txtDate" runat="server" CssClass="form-control"></asp:TextBox>
+                    <cc1:CalendarExtender ID="txtDate_CalendarExtender" runat="server" Format="dd-MMM-yyyy"
+                        TargetControlID="txtDate"></cc1:CalendarExtender>
+
+                </div>
+
+                <div class="col-md-1">
+                    <asp:Label ID="Label1" runat="server" CssClass="form-label"
+                        Text="Group:"></asp:Label>
+
+                    <asp:DropDownList ID="ddlRptGroup" runat="server" AutoPostBack="True" Font-Bold="True"
+                        CssClass="form-control" OnSelectedIndexChanged="ddlRptGroup_SelectedIndexChanged">
+                        <asp:ListItem>Main</asp:ListItem>
+                        <asp:ListItem>Sub-1</asp:ListItem>
+                        <asp:ListItem>Sub-2</asp:ListItem>
+                        <asp:ListItem>Sub-3</asp:ListItem>
+                        <asp:ListItem Selected="True">Details</asp:ListItem>
+                    </asp:DropDownList>
+
+                </div>
+                <div class="col-md-1" style="margin-top: 22px;">
+
+                    <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click"
+                        CssClass="btn btn-sm btn-primary primaryBtn"
+                        Font-Underline="False">Ok</asp:LinkButton>
+
+                </div>
+
+                <div class="col-md-1">
+
+                    <asp:Label ID="lblPage" runat="server" CssClass="form-label"
+                        Text="Size:" Visible="False"></asp:Label>
+
+                    <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged"
+                        Visible="False">
+                        <asp:ListItem Value="10">10</asp:ListItem>
+                        <asp:ListItem Value="20">20</asp:ListItem>
+                        <asp:ListItem Value="30">30</asp:ListItem>
+                        <asp:ListItem Value="50">50</asp:ListItem>
+                        <asp:ListItem Value="100">100</asp:ListItem>
+                        <asp:ListItem Value="150">150</asp:ListItem>
+                        <asp:ListItem Value="200">200</asp:ListItem>
+                        <asp:ListItem Value="300">300</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+
+
+
             </div>
         </div>
+    </div>
+    <div class="card" style="min-height: 480px;">
+        <div class="card-body">
+            <div class="row">
                 <div class="table table-responsive">
                     <asp:GridView ID="gvStock" runat="server" AutoGenerateColumns="False" ShowFooter="True"
                         AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
@@ -235,6 +259,8 @@
             </div>
         </div>
     </div>
+
+
 </asp:Content>
 
 
