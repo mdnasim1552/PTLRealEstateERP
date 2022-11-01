@@ -370,7 +370,7 @@ namespace RealERPWEB.F_21_MKT
                 }
 
                 GetData();
-
+                this.lbllandname.Text = "";
                 if (btnaddland.Text == "Add Lead")
                 {
                     string comcod = this.GetComeCode();
@@ -471,6 +471,58 @@ namespace RealERPWEB.F_21_MKT
 
                 switch (gcod)
                 {
+                    case "0301001": //Prospect Name
+                        switch (comcod)
+                        {
+                            case "3368"://Finlay
+                                bool teamLeader = IsTeamLeader();
+                                if (lbllandname.Text.Length > 0)
+                                {
+                                    if (teamLeader)
+                                    {
+                                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = false;
+                                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                                        ((Panel)this.gvPersonalInfo.Rows[i].FindControl("Panegrd")).Visible = false;
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = false;
+
+
+                                    }
+                                    else
+                                    {
+                                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = true;
+                                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                                        ((Panel)this.gvPersonalInfo.Rows[i].FindControl("Panegrd")).Visible = false;
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = false;
+
+                                    }
+                                }
+                                else
+                                {
+                                    ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = false;
+                                    ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                                    ((Panel)this.gvPersonalInfo.Rows[i].FindControl("Panegrd")).Visible = false;
+                                    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                                    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = false;
+                                }
+                                break;
+
+
+                            default:
+                                ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = false;
+                                ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                                ((Panel)this.gvPersonalInfo.Rows[i].FindControl("Panegrd")).Visible = false;
+                                ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                                ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = false;
+                                break;
+                        }
+                        break;
+
                     case "0301011": //Profession
                         gvalue = dt.Rows[i]["value"].ToString();
                         dv1 = dt1.DefaultView;
@@ -519,8 +571,9 @@ namespace RealERPWEB.F_21_MKT
 
                            // case "3102": 
                             case "3367"://Epic
+                            case "3368"://Finlay
                                         //case "3101":
-                                
+
                                 bool teamLeader = IsTeamLeader();
                                 if (lbllandname.Text.Length > 0)
                                 {
