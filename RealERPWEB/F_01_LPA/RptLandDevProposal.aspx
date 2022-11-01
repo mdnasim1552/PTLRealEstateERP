@@ -58,7 +58,7 @@
                                         <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                           <asp:Label ID="prname" runat="server" CssClass="form-label" Text="Project Name"></asp:Label>
                                         <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control form-control-sm">
                                         </asp:DropDownList>
@@ -70,7 +70,7 @@
                     </div>
                     </div>
                 </div>
-            <div class="card">
+            <div class="card" style="min-height:480px;">
                 <div class="card-body">
                      <div class="row">
                         <asp:MultiView ID="MultiView1" runat="server">
@@ -81,7 +81,7 @@
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl #">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
+                                                <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" 
                                                     Style="text-align: right"
                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
                                             </ItemTemplate>
@@ -89,7 +89,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Code" Visible="False">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvItmCode" runat="server" Height="16px"
+                                                <asp:Label ID="lblgvItmCode" runat="server" 
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prgcod")) %>'
                                                     Width="49px"></asp:Label>
                                             </ItemTemplate>
@@ -107,7 +107,7 @@
                                         <asp:TemplateField>
                                             <ItemTemplate>
                                                 <asp:Label ID="lgp" runat="server" Font-Bold="True" Font-Size="12px"
-                                                    Height="16px"
+                                                   
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gph")) %>'
                                                     Width="4px"></asp:Label>
                                             </ItemTemplate>
@@ -115,7 +115,7 @@
                                         <asp:TemplateField>
                                             <ItemTemplate>
                                                 <asp:Label ID="txtgvVal" runat="server" BackColor="Transparent"
-                                                    BorderColor="#660033" BorderStyle="Solid" BorderWidth="0px" Height="20px"
+                                                    BorderColor="#660033" BorderStyle="Solid" BorderWidth="0px" 
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prgdesc1")) %>'
                                                     Width="200px"></asp:Label>
                                             </ItemTemplate>
@@ -145,7 +145,7 @@
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl.No.">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvSlNo5" runat="server" Font-Bold="True" Height="16px"
+                                                <asp:Label ID="lblgvSlNo5" runat="server" Font-Bold="True"
                                                     Style="text-align: right"
                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                             </ItemTemplate>
@@ -157,7 +157,7 @@
                                                     ForeColor="#000" Text="Total"></asp:Label>
                                             </FooterTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvItmCodfcs" runat="server" Height="16px"
+                                                <asp:Label ID="lblgvItmCodfcs" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "infcod")) %>'
                                                     Width="80px"></asp:Label>
                                             </ItemTemplate>
@@ -318,7 +318,7 @@
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl.No.">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvSlNo6" runat="server" Font-Bold="True" Height="16px"
+                                                <asp:Label ID="lblgvSlNo6" runat="server" Font-Bold="True" 
                                                     Style="text-align: right"
                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="40px"></asp:Label>
                                             </ItemTemplate>
@@ -326,7 +326,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Code">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvItmCodsd" runat="server" Height="16px"
+                                                <asp:Label ID="lblgvItmCodsd" runat="server" 
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "infcod")) %>'
                                                     Width="80px"></asp:Label>
                                             </ItemTemplate>
@@ -359,7 +359,7 @@
                                         <asp:TemplateField HeaderText="Total">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSizesd" runat="server" BackColor="Transparent"
-                                                    BorderStyle="None" Font-Size="11px" Height="18px" Style="text-align: right"
+                                                    BorderStyle="None" Font-Size="11px"  Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lsizes")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
@@ -374,7 +374,7 @@
                                         <asp:TemplateField HeaderText="Land Owner">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvlownersd" runat="server" BackColor="Transparent"
-                                                    BorderStyle="None" Font-Size="11px" Height="18px" Style="text-align: right"
+                                                    BorderStyle="None" Font-Size="11px"  Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lowner")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
@@ -389,7 +389,7 @@
                                         <asp:TemplateField HeaderText="Company">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvcompanysd" runat="server" BackColor="Transparent"
-                                                    BorderStyle="None" Font-Size="11px" Height="18px" Style="text-align: right"
+                                                    BorderStyle="None" Font-Size="11px"  Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "company")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
@@ -461,7 +461,7 @@
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl.No.">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
+                                                <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" 
                                                     Style="text-align: right"
                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
                                             </ItemTemplate>
@@ -469,7 +469,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Code">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvItmCod" runat="server" Height="16px"
+                                                <asp:Label ID="lblgvItmCod" runat="server" 
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "infcod")) %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
@@ -505,7 +505,7 @@
                                         <asp:TemplateField HeaderText="Floor">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvnum" runat="server" BackColor="Transparent"
-                                                    BorderStyle="None" Font-Size="11px" Height="18px" Style="text-align: right"
+                                                    BorderStyle="None" Font-Size="11px" Style="text-align: right"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrno")) %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
@@ -516,7 +516,7 @@
                                         <asp:TemplateField HeaderText="Size">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvSize" runat="server" BackColor="Transparent"
-                                                    BorderStyle="None" Font-Size="11px" Height="18px" Style="text-align: right"
+                                                    BorderStyle="None" Font-Size="11px" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rsize")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
@@ -650,7 +650,7 @@
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl.No.">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvSlNo4" runat="server" Font-Bold="True" Height="16px"
+                                                <asp:Label ID="lblgvSlNo4" runat="server" Font-Bold="True"
                                                     Style="text-align: right"
                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
                                             </ItemTemplate>
@@ -662,7 +662,7 @@
                                                     ForeColor="#000" Text="Total"></asp:Label>
                                             </FooterTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvItmCodfc" runat="server" Height="16px"
+                                                <asp:Label ID="lblgvItmCodfc" runat="server" 
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "infcod")) %>'
                                                     Width="80px"></asp:Label>
                                             </ItemTemplate>

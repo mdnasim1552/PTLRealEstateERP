@@ -67,7 +67,7 @@
                                 Visible="False" CssClass="form-control form-control-sm"></asp:Label>
 
                         </div>
-                        <div class="col-md-1" style="margin-top:22px;">
+                        <div class="col-md-1 ml-2" style="margin-top:22px;">
                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-sm btn-primary okBtn" OnClick="lnkbtnSerOk_Click" >Ok</asp:LinkButton>
 
                         </div>
@@ -88,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" style="min-height:480px;">
                 <div class="card-body">
                     <div class="row">
                         <asp:GridView ID="gvProjectInfo" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
