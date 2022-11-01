@@ -782,6 +782,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.rbtPaymentType.SelectedIndex = 1;
                     this.ddlBankName1.SelectedValue = (ds6.Tables[3].Rows[0]["gdatat"]).ToString();
                     this.txtAcNo1.Text = (ds6.Tables[3].Rows[0]["acno"]).ToString();
+                    this.txtroute.Text = (ds6.Tables[3].Rows[0]["routing1"]).ToString();
+                    this.txtroute2.Text = (ds6.Tables[3].Rows[0]["routing2"]).ToString();
                     this.txtBankamt02.Text = Convert.ToDouble(ds6.Tables[3].Rows[0]["bankamt"]).ToString("#,##0;(#,##0);");
                     this.txtCashAmt.Text = Convert.ToDouble(ds6.Tables[3].Rows[0]["cashamt"]).ToString("#,##0;(#,##0);");
                     this.chkcash0bank1.Checked = ds6.Tables[3].Rows[0]["cash0bank1"].ToString() == "False" ? false : true;
