@@ -410,7 +410,7 @@ namespace RealERPWEB.F_17_Acc
 
                 }
                 this.PanelChk.Visible = false;
-                this.lblcurVounum.Text = "Current Voucher No.";
+                this.lblcurVounum.Text = "Current Vou No.";
                 this.txtcurrentvou.Text = "";
                 this.txtCurrntlast6.Text = "";
                 this.txtEntryDate.Enabled = true;

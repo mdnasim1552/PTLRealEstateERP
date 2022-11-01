@@ -28,8 +28,8 @@
     </script>
 
     <style type="text/css">
-        .table th, .table td, card-header{
-            padding:4px;
+        .table th, .table td, card-header {
+            padding: 4px;
         }
     </style>
 
@@ -57,22 +57,35 @@
                 <div class="card-body">
                     <div class="row ml-2">
 
-                        <div class="col-lg-2 col-md-2 col-sm-6" style="margin-top:5px;">
-                            
-                                <asp:Label ID="lblEmpList" runat="server">Filter by</asp:Label>
-                                <asp:DropDownList ID="ddlEmpName" runat="server" CssClass="form-control chzn-select">
-                                </asp:DropDownList>
-                           
+                        <div class="col-lg-2 col-md-2 col-sm-6">
+
+                        <%-- <asp:DropDownList ID="ddlEmpid" data-placeholder="Choose Employee.." runat="server" CssClass="custom-select chzn-select col-md-2 mr-1 mb-1" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">
+                                    </asp:DropDownList>--%>
+                            </div>
+
+                        <div class="col-lg-2 col-md-2 col-sm-6">
+                             
+                            <asp:DropDownList ID="ddlOther" runat="server" ClientIDMode="Static" CssClass="custom-select chzn-select">
+                                <asp:ListItem Value="1">Prospect Name</asp:ListItem>
+                                <asp:ListItem Value="2">PID</asp:ListItem>
+                                <asp:ListItem Value="3">Phone</asp:ListItem>
+                                <asp:ListItem Value="4">Email</asp:ListItem>
+                                <asp:ListItem Value="5">NID</asp:ListItem>
+                                <asp:ListItem Value="6">TIN</asp:ListItem>
+                                <asp:ListItem Value="7">Prefered Area</asp:ListItem>
+                                <asp:ListItem Value="8">Profission</asp:ListItem>
+                                <asp:ListItem Selected="True" Value="9">Choose Filter Key.........................</asp:ListItem>
+                            </asp:DropDownList>
+
                         </div>
-                        <div class="col-md-2" style="margin-top: 26px;">
-
-                            <asp:TextBox ID="txttodate" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
-
+                        <div class="col-md-2">
+                            <asp:TextBox ID="txtVal" runat="server" CssClass="form-control" TextMode="Search" autocomplete="off"></asp:TextBox>
+                             
                         </div>
 
                         <div class="col-md-1">
 
-                            <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="btn btn-success" Style="margin-top: 26px;" AutoPostBack="True">Show</asp:LinkButton>
+                            <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="btn btn-success" OnClick="lnkbtnOk_Click"   AutoPostBack="True">Show</asp:LinkButton>
 
                         </div>
 
@@ -88,71 +101,71 @@
 
                         <div class="col-md-4">
                             <div class="card">
-                            <div class="card-header bg-light"><span class="font-weight-bold text-muted">Employee Information</span></div>
-                            <div class="card-body" runat="server" id="engst">
-                             <img src="~/../../../Upload/UserImages/3365001.png" style="display: block;margin-left: auto; margin-right: auto;width: 30%;" alt="User Image">
-                                <table class="table table-striped table-hober tblEMPinfo mt-2">
-                    <%--                <thead>
+                                <div class="card-header bg-light"><span class="font-weight-bold text-muted">Employee Information</span></div>
+                                <div class="card-body" runat="server" id="engst">
+                                    <img src="~/../../../Upload/UserImages/3365001.png" style="display: block; margin-left: auto; margin-right: auto; width: 30%;" alt="User Image">
+                                    <table class="table table-striped table-hober tblEMPinfo mt-2">
+                                        <%--                <thead>
                                         <tr>
                                             <th></th>
                                             <th></th>
 
                                         </tr>
                                     </thead>--%>
-                                    <tbody class="">
-                                        <tr>
-                                            <td class="font-weight-bold">PID</td>
-                                            <td>
-                                                <asp:Label ID="lblname" runat="server" ></asp:Label>
-                                            </td>
+                                        <tbody class="">
+                                            <tr>
+                                                <td class="font-weight-bold">PID</td>
+                                                <td>
+                                                    <asp:Label ID="lblname" runat="server"></asp:Label>
+                                                </td>
 
-                                        </tr>
-                                        <tr>
-                                           <td class="font-weight-bold ">Contact Person</td>
-                                            <td>
-                                                <asp:Label ID="lbldesig" runat="server"></asp:Label>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="font-weight-bold">Primary Mobile</td>
-                                            <td>
-                                                <asp:Label ID="lbljoin" runat="server"></asp:Label>
-                                            </td>
-                                        </tr>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-weight-bold ">Contact Person</td>
+                                                <td>
+                                                    <asp:Label ID="lbldesig" runat="server"></asp:Label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-weight-bold">Primary Mobile</td>
+                                                <td>
+                                                    <asp:Label ID="lbljoin" runat="server"></asp:Label>
+                                                </td>
+                                            </tr>
 
 
-                                        <tr>
-                                           <td class="font-weight-bold">Home Address</td>
-                                            <td>
-                                                <asp:Label ID="lblsep" runat="server"></asp:Label>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="font-weight-bold">Profession</td>
-                                            <td>
-                                                <asp:Label ID="lblidcard" runat="server"></asp:Label>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td class="font-weight-bold">Home Address</td>
+                                                <td>
+                                                    <asp:Label ID="lblsep" runat="server"></asp:Label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-weight-bold">Profession</td>
+                                                <td>
+                                                    <asp:Label ID="lblidcard" runat="server"></asp:Label>
+                                                </td>
+                                            </tr>
 
-                                        <tr>
-                                           <td class="font-weight-bold">Status</td>
-                                            <td>
-                                                <asp:Label ID="lblsection" runat="server"></asp:Label>
-                                            </td>
-                                        </tr>
-                                       
-                                    </tbody>
-                                </table>
-                         
-                        
-        
+                                            <tr>
+                                                <td class="font-weight-bold">Status</td>
+                                                <td>
+                                                    <asp:Label ID="lblsection" runat="server"></asp:Label>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+
+
+                                </div>
                             </div>
-                        </div>
                         </div>
                         <div class="col-md-8">
                             <div class="card">
-                                 <div class="card-header bg-light"><span class="font-weight-bold text-muted">Follow Up Summary</span></div>
-                                  <div class="card-body">
+                                <div class="card-header bg-light"><span class="font-weight-bold text-muted">Follow Up Summary</span></div>
+                                <div class="card-body">
                                     <div class="row">
 
                                         <div class="col-md-3">
@@ -248,7 +261,7 @@
 
 
 
-                
+
 
 
 
