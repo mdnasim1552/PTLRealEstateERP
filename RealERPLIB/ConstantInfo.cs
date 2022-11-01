@@ -362,6 +362,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0903000", "0903210", "F_09_PImp", "RptSubContractorSd?", "Type=BillDetails", "Sub-Contractor Status (R/A Bill All)", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0903000", "0903211", "F_09_PImp", "RptSubContractorSd?", "Type=BillRAWise", "Sub-Contractor Bill - R/A Wise", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0903000", "0903220", "F_09_PImp", "RptSubConBillStatus", "", "Sub-Contractor Bill Summary", "Project Implementation", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0903000", "0903221", "F_09_PImp", "PurLabIssue2?", "Type=BillApproval", "Subcon Bill Approval", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0903000", "0903225", "F_09_PImp", "PurLabIssue2?", "Type=Current", "Sub-Contractor Bill-Work Wise", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0903000", "0903226", "F_09_PImp", "PurLabIssue2?", "Type=CheckaVerify", "Sub-Contractor Bill-Checked", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0903000", "0903227", "F_09_PImp", "PurLabIssue2?", "Type=FirstRecom", "Sub-Contractor Bill-First Recommendation", "Project Implementation", "False", "False", "False", "False" });
@@ -1889,6 +1890,8 @@ namespace RealERPLIB
             #region Artificial intelligence (AI) 
 
             tblObj.Rows.Add(new Object[] { "3802000", "3802001", "F_38_AI", "AIGenCodeBook?", "Type=", "Basic Information Field", "Artificial intelligence (AI)", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3802000", "3802002", "F_38_AI", "MyTasks.aspx?", "Type=IND&EmpID=", "My Tasks", "Artificial intelligence (AI)", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3802000", "3802003", "F_38_AI", "MyTasks.aspx?", "Type=MGT&EmpID=", "Employee Wise Task (MGT)", "Artificial intelligence (AI)", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3851000", "3851001", "F_99_Allinterface", "AIinterface", "", "AI -Interface", "Artificial intelligence (AI)", "False", "False", "False", "False" });
 
             #endregion
@@ -10538,7 +10541,9 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301000000", "Clinet Information", "", "", false, "b" });
             mnuTbl1.Rows.Add(new Object[] { "0301000001", "01. Add Clinet", "F_38_AI/AIGenCodeBook?Type=", "", true, "" });          
             mnuTbl1.Rows.Add(new Object[] { "0301000001", "01. Clinet List", "F_38_AI/AIGenCodeBook?Type=", "", true, "" });   
-            
+            mnuTbl1.Rows.Add(new Object[] { "0301000001", "01. Employee Wise Task (MGT)", "F_38_AI/MyTasks.aspx?Type=MGT&EmpID=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000002", "01. My Task", "F_38_AI/MyTasks.aspx?Type=IND&EmpID=", "", true, "" });
+
             mnuTbl1.Rows.Add(new Object[] { "0302000000", "Project Information", "", "", false, "b" });
             mnuTbl1.Rows.Add(new Object[] { "0302000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000000", "", "", "", true, "" });

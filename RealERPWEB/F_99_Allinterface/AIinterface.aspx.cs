@@ -503,7 +503,7 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink hlink = (HyperLink)e.Row.FindControl("hylnkView");
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString().Trim();
 
-                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?Empid=" + empid;
+                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?Type=MGT&Empid=" + empid;
             }
         }
 
@@ -533,7 +533,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string prjid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "prjid")).ToString().Trim();
                 string batchid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "batchid")).ToString().Trim();
                 string jobid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "jobid")).ToString().Trim();
-                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?EmpID=" + empid + "&JobID=" + jobid + "&BatchID=" + batchid;
+                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?Type=MGT&EmpID=" + empid + "&JobID=" + jobid + "&BatchID=" + batchid;
                 assignlink.NavigateUrl = "~/F_38_AI/Projects.aspx?PID=" + prjid + "&BatchID=" + batchid;
 
             }
@@ -547,7 +547,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "assignuser")).ToString().Trim();
                 string batchid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "batchid")).ToString().Trim();
                 string jobid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "jobid")).ToString().Trim();
-                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?EmpID=" + empid + "&JobID=" + jobid + "&BatchID=" + batchid;
+                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?Type=MGT&EmpID=" + empid + "&JobID=" + jobid + "&BatchID=" + batchid;
             }
         }
 
@@ -565,6 +565,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string projectName = ((Label)this.gvInterface.Rows[index].FindControl("lblprojectName")).Text.ToString();
                 string datasettype = ((Label)this.gvInterface.Rows[index].FindControl("lbldataset")).Text.ToString();
                 string worktype = ((Label)this.gvInterface.Rows[index].FindControl("lblwrktype")).Text.ToString();
+                string deliverydate = ((Label)this.gvInterface.Rows[index].FindControl("lbldeliverydate")).Text.ToString();
                 string currncy = ((Label)this.gvInterface.Rows[index].FindControl("lblcurrncy")).Text.ToString();
 
                 //currncy
@@ -573,8 +574,9 @@ namespace RealERPWEB.F_99_Allinterface
                 this.tblpactcode.Text = project;
                 this.txtdataset.Text = datasettype;
                 this.txtworktype.Text = worktype;
+                this.textdelevery.Text = deliverydate;
                 this.txtstartdate.Text = DateTime.Now.ToString("dd-MMM-yyyy");
-                this.textdelevery.Text = DateTime.Now.ToString("dd-MMM-yyyy");
+                //this.textdelevery.Text = DateTime.Now.ToString("dd-MMM-yyyy");
                 this.spnCurrncy.InnerText = currncy;
                 this.txtrate.Attributes.Add("Placeholder", "0.00 " + currncy);
                 this.txtAmount.Attributes.Add("Placeholder", "0.00 " + currncy);
@@ -1454,7 +1456,7 @@ namespace RealERPWEB.F_99_Allinterface
                 bool result = AIData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "TASK_ASSIGN", ds1, null, null, taskid, postedbyid, createtask, postseson, "", "", "", "");
                 if (!result)
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Task Create Fail..!!');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + AIData.ErrorObject["Msg"].ToString() + "');", true);
                     return;
                 }
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Task Create Saved Successfully');", true);

@@ -199,7 +199,7 @@
                     </div>
                     <asp:Panel ID="PnlRes" runat="server" Visible="False">
                         <div class="row">
-                            <asp:Panel ID="Panel3" runat="server">
+                            <asp:Panel ID="Pnlgrp" runat="server">
 
                                 <fieldset class="scheduler-border fieldset_B">
 
@@ -458,11 +458,11 @@
                                                 BorderStyle="None" Style="text-align: right"></asp:TextBox>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="right" />
+                                        <FooterStyle HorizontalAlign="Center"  VerticalAlign="Middle"/>
+
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Total Qty" Visible="False">
-
-
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvtoisuqty" runat="server" Font-Size="11px"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "toqty")).ToString("#,##0.0000;-#,##0.0000; ") %>'
@@ -474,6 +474,9 @@
 
 
                                     <asp:TemplateField HeaderText="Rate">
+                                        <FooterTemplate>
+                                            <asp:LinkButton ID="lnkApproved" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lnkApproved_Click" Visible="false">Approved</asp:LinkButton>
+                                        </FooterTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtlabrate" runat="server" Font-Size="11px"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "isurat")).ToString("#,##0.0000;(#,##0.0000); ") %>'
@@ -481,11 +484,10 @@
                                                 BorderStyle="None" BorderWidth="1px" Style="text-align: right"></asp:TextBox>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center" />
+                                        <FooterStyle HorizontalAlign="Center"  VerticalAlign="Middle"/>
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Amount" Visible="false">
-
-
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvamount" runat="server" BackColor="Transparent" BorderStyle="None"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amount")).ToString("#,##0.00;-#,##0.00; ") %>'
@@ -496,21 +498,12 @@
                                             <asp:Label ID="lblgvFamount" runat="server" Style="text-align: right"
                                                 Width="70px" Font-Size="12px" ForeColor="#000"></asp:Label>
                                         </FooterTemplate>
-
-
-
-
                                         <ItemStyle HorizontalAlign="right" />
                                         <FooterStyle HorizontalAlign="right" />
                                     </asp:TemplateField>
 
 
-
-
-
-
                                     <asp:TemplateField HeaderText="Above" Visible="false">
-
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvabove" runat="server" BackColor="Transparent" BorderStyle="None"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "above")).ToString("#,##0.00;-#,##0.00; ") %>'
@@ -519,7 +512,6 @@
                                         <ItemStyle HorizontalAlign="right" />
                                         <FooterStyle HorizontalAlign="right" />
                                     </asp:TemplateField>
-
 
 
                                     <asp:TemplateField HeaderText="Bill Amount">
@@ -535,9 +527,6 @@
                                         <ItemStyle HorizontalAlign="right" />
                                         <FooterStyle HorizontalAlign="right" />
                                     </asp:TemplateField>
-
-
-
 
 
                                 </Columns>

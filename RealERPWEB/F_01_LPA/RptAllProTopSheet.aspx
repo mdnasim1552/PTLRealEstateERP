@@ -71,7 +71,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card" style="min-height:280px">
                 <div class="card-body">
                     <div class="row">
                            <div class="table-responsive">

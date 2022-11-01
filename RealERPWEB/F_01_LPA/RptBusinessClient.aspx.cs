@@ -61,7 +61,12 @@ namespace RealERPWEB.F_01_LPA
             string yearcod = ASTUtility.Left(ddlyearland.SelectedValue.ToString(), 7) + "%";
             DataSet ds3 = GetData.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE_01", "LINFOSUM", null, null, null, yearcod, Empid, "%", "%", "%", "%", "%",
                "%", "%", "%", "%", "%");
-
+            if(ds3 == null || ds3.Tables[0].Rows.Count == 0)
+            {
+                return;
+               
+                
+            }
             this.gvSummary.DataSource = null;
             this.gvSummary.DataBind();
 
@@ -87,12 +92,15 @@ namespace RealERPWEB.F_01_LPA
             string comcod = this.GetComeCode();
 
             DataSet ds1 = this._processAccessMsgdb.GetTransInfo(comcod, "SP_ENTRY_SMS_MAIL_INFO", "GETSMSMAILTEMPLATE", "0131%", "0139%", "", "", "", "", "", "", "");
-
+             if(ds1 == null || ds1.Tables[0].Rows.Count==0)
+            {
+                return;
+            }
             DataTable dt1 = new DataTable();
             DataView view = new DataView();
             view.Table = ds1.Tables[0];
             string contype = this.ddlSmsMail.SelectedValue.ToString();
-
+             
             if (contype == "01")
             {
                 view.RowFilter = "active='True'";
