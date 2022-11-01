@@ -55,7 +55,7 @@
 
             <div class="card mt-4 pb-4">
                 <div class="card-body">
-                    <div class="row ml-4">
+                    <div class="row ml-2">
 
                         <div class="col-lg-2 col-md-2 col-sm-6" style="margin-top:5px;">
                             
@@ -64,7 +64,7 @@
                                 </asp:DropDownList>
                            
                         </div>
-                        <div class="col-md-2" style="margin-top: 28px;">
+                        <div class="col-md-2" style="margin-top: 26px;">
 
                             <asp:TextBox ID="txttodate" runat="server" CssClass="form-control" autocomplete="off"></asp:TextBox>
 
@@ -72,7 +72,7 @@
 
                         <div class="col-md-1">
 
-                            <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="btn btn-success" Style="margin-top: 28px;" AutoPostBack="True">Show</asp:LinkButton>
+                            <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="btn btn-success" Style="margin-top: 26px;" AutoPostBack="True">Show</asp:LinkButton>
 
                         </div>
 
