@@ -270,8 +270,6 @@ namespace RealERPWEB.F_17_Acc
             this.GetBillNo();
 
 
-
-
         }
 
         private void GetBillNo()

@@ -23,6 +23,12 @@
             });
           <%-- var gridview = $('#<%=this.dgv1.ClientID %>');
            $.keynavigation(gridview);--%>
+
+            $('.chzn-select').chosen({
+                search_contains: true,
+                enable_escape_special_char: false
+            });
+
         };
 
 
@@ -124,7 +130,7 @@
                                     </div>
 
                                     <div class="col-md-4 pading5px ">
-                                        <asp:DropDownList ID="ddlConAccHead" runat="server" CssClass="form-control inputTxt" OnSelectedIndexChanged="ddlConAccHead_SelectedIndexChanged">
+                                        <asp:DropDownList ID="ddlConAccHead" runat="server" CssClass="chzn-select form-control " OnSelectedIndexChanged="ddlConAccHead_SelectedIndexChanged">
                                         </asp:DropDownList>
 
                                     </div>
@@ -183,7 +189,7 @@
 
 
                                         <div class="col-md-4 pading5px">
-                                            <asp:DropDownList ID="ddlresuorcecode" runat="server" CssClass="form-control inputTxt" TabIndex="17" AutoPostBack="true" OnSelectedIndexChanged="ddlresuorcecode_SelectedIndexChanged">
+                                            <asp:DropDownList ID="ddlresuorcecode" runat="server" CssClass="chzn-select form-control inputTxt" TabIndex="17" AutoPostBack="true" OnSelectedIndexChanged="ddlresuorcecode_SelectedIndexChanged">
                                             </asp:DropDownList>
 
                                         </div>
@@ -225,7 +231,7 @@
                                  <%--           <asp:DropDownList ID="ddlBillList" runat="server" CssClass="form-control inputTxt">
                                             </asp:DropDownList>--%>
 
-                                               <cc1:DropCheck ID="DropCheck1" runat="server" BackColor="Black" MaxDropDownHeight="200"
+                                               <cc1:DropCheck ID="DropCheck1" runat="server" BackColor="Black" CssClass="chzn-select form-control"  MaxDropDownHeight="200"
                                                         TabIndex="8" TransitionalMode="True" Width="400px">
                                                     </cc1:DropCheck>
                                                
