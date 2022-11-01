@@ -1461,6 +1461,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3101":
                 case "3366": // lanco
                 case "3367": // epic
+                case "3368": // finaly
                     if (_deptcode == "AAAAAAAAAAAA")
                     {
                         isReq = true;
