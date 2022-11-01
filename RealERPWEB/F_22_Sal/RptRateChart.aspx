@@ -1,16 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptRateChart.aspx.cs" Inherits="RealERPWEB.F_22_Sal.RptRateChart" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptRateChart.aspx.cs" Inherits="RealERPWEB.F_22_Sal.RptRateChart" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <div class="container moduleItemWrpper">
-        <div class="contentPart">
+    <div class="card">
+        <div class="card-body">
             <div class="row">
-                <fieldset class="scheduler-border fieldset_A">
+                
 
-                    <div class="form-horizontal">
-                        <div class="form-group">
+                 
+                       
                             <div class="col-md-3 asitCol2  pading5px">
 
                                 <asp:Label ID="Label15" runat="server" CssClass="lblTxt lblName"
@@ -22,8 +22,8 @@
 
                             </div>
 
-                        </div>
-                        <div class="form-group">
+                       
+                       
                             <div class="clol-md-3 asitCol3 pading5px">
 
 
@@ -35,7 +35,7 @@
 
 
 
-                            </div>
+                            
                             <div class="col-md-4 asitCol4 pading5px">
                                 <asp:DropDownList ID="ddlProjectName" runat="server" Font-Bold="True" CssClass="ddlPage"
                                     OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" Width="250px">
@@ -79,8 +79,10 @@
 
                             </div>
                         </div>
-                    </div>
-                </fieldset>
+                 
+                </div>
+            </div>
+        </div>
                 <div class="table table-responsive">
                     <asp:GridView ID="gvStock" runat="server" AutoGenerateColumns="False" ShowFooter="True"
                         AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
