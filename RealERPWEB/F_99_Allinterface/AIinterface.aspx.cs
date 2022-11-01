@@ -503,7 +503,7 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink hlink = (HyperLink)e.Row.FindControl("hylnkView");
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString().Trim();
 
-                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?Empid=" + empid;
+                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?Type=MGT&Empid=" + empid;
             }
         }
 
@@ -533,7 +533,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string prjid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "prjid")).ToString().Trim();
                 string batchid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "batchid")).ToString().Trim();
                 string jobid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "jobid")).ToString().Trim();
-                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?EmpID=" + empid + "&JobID=" + jobid + "&BatchID=" + batchid;
+                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?Type=MGT&EmpID=" + empid + "&JobID=" + jobid + "&BatchID=" + batchid;
                 assignlink.NavigateUrl = "~/F_38_AI/Projects.aspx?PID=" + prjid + "&BatchID=" + batchid;
 
             }
@@ -547,7 +547,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "assignuser")).ToString().Trim();
                 string batchid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "batchid")).ToString().Trim();
                 string jobid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "jobid")).ToString().Trim();
-                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?EmpID=" + empid + "&JobID=" + jobid + "&BatchID=" + batchid;
+                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?Type=MGT&EmpID=" + empid + "&JobID=" + jobid + "&BatchID=" + batchid;
             }
         }
 
@@ -565,6 +565,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string projectName = ((Label)this.gvInterface.Rows[index].FindControl("lblprojectName")).Text.ToString();
                 string datasettype = ((Label)this.gvInterface.Rows[index].FindControl("lbldataset")).Text.ToString();
                 string worktype = ((Label)this.gvInterface.Rows[index].FindControl("lblwrktype")).Text.ToString();
+                string deliverydate = ((Label)this.gvInterface.Rows[index].FindControl("lbldeliverydate")).Text.ToString();
                 string currncy = ((Label)this.gvInterface.Rows[index].FindControl("lblcurrncy")).Text.ToString();
 
                 //currncy
@@ -573,8 +574,9 @@ namespace RealERPWEB.F_99_Allinterface
                 this.tblpactcode.Text = project;
                 this.txtdataset.Text = datasettype;
                 this.txtworktype.Text = worktype;
+                this.textdelevery.Text = deliverydate;
                 this.txtstartdate.Text = DateTime.Now.ToString("dd-MMM-yyyy");
-                this.textdelevery.Text = DateTime.Now.ToString("dd-MMM-yyyy");
+                //this.textdelevery.Text = DateTime.Now.ToString("dd-MMM-yyyy");
                 this.spnCurrncy.InnerText = currncy;
                 this.txtrate.Attributes.Add("Placeholder", "0.00 " + currncy);
                 this.txtAmount.Attributes.Add("Placeholder", "0.00 " + currncy);
@@ -1454,7 +1456,7 @@ namespace RealERPWEB.F_99_Allinterface
                 bool result = AIData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "TASK_ASSIGN", ds1, null, null, taskid, postedbyid, createtask, postseson, "", "", "", "");
                 if (!result)
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Task Create Fail..!!');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + AIData.ErrorObject["Msg"].ToString() + "');", true);
                     return;
                 }
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Task Create Saved Successfully');", true);
@@ -1741,11 +1743,12 @@ namespace RealERPWEB.F_99_Allinterface
             try
             {
                 string comcod = this.GetCompCode();
-                DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INVOICELIST", "", "", "");
+                DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GET_INVOICE_SUMMAY_SHEET", "", "", "");
                 if (ds == null)
                     return;
+                
                 Session["tblinvoicelist"] = ds.Tables[0];
-                this.gv_Invoice.DataSource = ds;
+                this.gv_Invoice.DataSource = ds.Tables[0];
                 this.gv_Invoice.DataBind();
 
             }
@@ -1763,7 +1766,7 @@ namespace RealERPWEB.F_99_Allinterface
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
                 string id = ((Label)this.gv_Invoice.Rows[index].FindControl("lblgvIninvno")).Text.ToString();
-                this.lblsircode.Text = id;
+
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = GetCompCode();
                 string comnam = hst["comnam"].ToString();
@@ -1772,35 +1775,31 @@ namespace RealERPWEB.F_99_Allinterface
                 string comadd = hst["comadd1"].ToString();
                 string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
                 string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
-                DataTable dt = (DataTable)Session["tblinvoicelist"];
-                DataTable dt1 = new DataTable();
+                DataTable dt = (DataTable)Session["tblinvoicelist"];            
                
-
-                string invno = dt.Rows[0]["invno"].ToString();
-                string qty = dt.Rows[0]["qty"].ToString();
-
-                string rate = dt.Rows[0]["totalrate"].ToString();
-                double amount = Convert.ToDouble(qty) * Convert.ToDouble(rate);
-                
+                DataView dv0 = dt.DefaultView;
+                dv0.RowFilter = "invno = '" + id + "'";
+                dt = dv0.ToTable();               
+                double amount = Convert.ToDouble(dt.Rows[0]["totalamount"]);
                 string inword = "In Word: " + ASTUtility.Trans(Math.Round(amount), 2);
-                if (invno == id)
-                {
-                    LocalReport Rpt1 = new LocalReport();
-                    var lst = dt.DataTableToList<RealEntity.C_38_AI.AIallPrint.InvoicePrint>();
-                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_38_AI.RptAIInvoicePrint", lst, null, null);
-                    Rpt1.EnableExternalImages = true;
+                string curency = dt.Rows[0]["currency"].ToString();
+                LocalReport Rpt1 = new LocalReport();
+                var lst = dt.DataTableToList<RealEntity.C_38_AI.AIallPrint.InvoicePrint>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_38_AI.RptAIInvoicePrint", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("inword", inword));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("curency", curency));
 
-                    Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-                    Rpt1.SetParameters(new ReportParameter("inword", inword));
-                    Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                    Rpt1.SetParameters(new ReportParameter("printdate", printdate));
-                    Rpt1.SetParameters(new ReportParameter("RptTitle", "INVOICE"));
-                    Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
-                    Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                    Session["Report1"] = Rpt1;
-                    string type = "PDF";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "target", "SetTarget('" + type + "');", true);
-                }
+                Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "INVOICE"));
+                Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Session["Report1"] = Rpt1;
+                string type = "PDF";
+                ScriptManager.RegisterStartupScript(this, GetType(), "target", "SetTarget('" + type + "');", true);
+
             }
             catch (Exception exp)
             {

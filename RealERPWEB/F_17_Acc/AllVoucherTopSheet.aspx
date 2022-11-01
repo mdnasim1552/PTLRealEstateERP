@@ -249,9 +249,7 @@
                     <div class="row">
 
                         <div class="col-md-10">
-                             <asp:CheckBox ID="checkSelectedPrint"  runat="server" Checked="false" OnCheckedChanged="checkSelectedPrint_CheckedChanged" 
-                                 AutoPostBack="true" CssClass="btn btn-sm btn-primary float-right" Text="Selected INV Print" />
-
+                             
                             <div class="table-responsive">
                                  
                                
@@ -469,11 +467,11 @@
 
                                         <asp:TemplateField HeaderText="">
                                             <HeaderTemplate>
-                                                <asp:CheckBox ID="checkTopPrintAll" runat="server" Checked="true" AutoPostBack="True" OnCheckedChanged="checkTopPrint_CheckedChanged" />
+                                                <asp:CheckBox ID="checkTopPrintAll" runat="server" Checked="false" AutoPostBack="True" OnCheckedChanged="checkTopPrint_CheckedChanged" />
 
                                             </HeaderTemplate>
                                             <ItemTemplate>
-                                                <asp:CheckBox ID="checkPrint" runat="server" Checked="true" CssClass="input-control" Text="" />
+                                                <asp:CheckBox ID="checkPrint" runat="server" Checked="false" CssClass="input-control" Text="" />
 
                                             </ItemTemplate>
                                             <FooterTemplate>
