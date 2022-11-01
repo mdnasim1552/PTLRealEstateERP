@@ -993,6 +993,7 @@
     <EmbeddedResource Include="R_32_Mis\RptTrailsBal3.rdlc" />
     <EmbeddedResource Include="R_32_Mis\RptTrialBalance2.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\rptActiveSimUser.rdlc" />
+    <EmbeddedResource Include="R_34_Mgt\RptOtherReqPrintFinlay.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqPrint.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqPrintSuvasto.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqStatusISBL.rdlc" />
