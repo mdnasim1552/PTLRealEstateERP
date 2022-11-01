@@ -25,7 +25,7 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
-            <div class="card">
+            <div class="card mt-4">
                 <div class="card-body">
                     <div class="RealProgressbar">
                         <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
@@ -79,38 +79,38 @@
                                         <asp:Label ID="lblMsg" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
                                     </div>
                         </div>
-                     <div class="row">
+                     <div class="row mt-2 mb-2">
                               
                             <asp:Panel ID="PanelSelName" runat="server" Visible="false">
-                                <div class="from-group">
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <asp:Label ID="lblUnitNameid" runat="server" CssClass="lblTxt lblName" Text="Unit Name :"></asp:Label>
-                                            <asp:Label ID="lblUnitName" runat="server" CssClass="smLbl"></asp:Label>
-                                            <asp:Label ID="lblunitsize" runat="server" CssClass="lblTxt lblName" Text="Size :"></asp:Label>
-                                            <asp:Label ID="lblunitsizeval" runat="server" CssClass="smLbl" Font-Size="13px"></asp:Label>
+                                
+                                    
+                                        <div class="col-md-12" style="font-weight:bold; font-size:12px;">
+                                            <asp:Label ID="lblUnitNameid" runat="server" CssClass="form-label" Text="Unit Name :"></asp:Label>
+                                            <asp:Label ID="lblUnitName" runat="server" CssClass="form-label"></asp:Label>
+                                            <asp:Label ID="lblunitsize" runat="server" CssClass="form-label" Text="Size :"></asp:Label>
+                                            <asp:Label ID="lblunitsizeval" runat="server" CssClass="form-label"></asp:Label>
 
-                                            <asp:Label ID="lblrate1" runat="server" CssClass="lblTxt lblName" Text="Rate :"></asp:Label>
-                                            <asp:Label ID="lblrate" runat="server" CssClass="smLbl" Font-Size="13px"></asp:Label>
-
-
-                                            <asp:Label ID="lblpurdate" runat="server" Text="Purchase Date :" CssClass="lblTxt lblName"></asp:Label>
-                                            <asp:Label ID="lblpurdate1" runat="server" CssClass="smLbl" Width="100px"></asp:Label>
+                                            <asp:Label ID="lblrate1" runat="server" CssClass="form-label" Text="Rate :"></asp:Label>
+                                            <asp:Label ID="lblrate" runat="server" CssClass="form-label" ></asp:Label>
 
 
-
-                                            <asp:Label ID="lblPurValuse" runat="server" Text="Purchase Value :" CssClass="lblTxt lblName"></asp:Label>
-                                            <asp:Label ID="lblPurValuse1" runat="server" CssClass="smLbl" Font-Size="13px"></asp:Label>
+                                            <asp:Label ID="lblpurdate" runat="server" Text="Purchase Date :" CssClass="form-label"></asp:Label>
+                                            <asp:Label ID="lblpurdate1" runat="server" CssClass="form-label" Width="100px"></asp:Label>
 
 
 
-                                            <asp:Label ID="Label20" runat="server" CssClass="lblTxt lblName" Text="Target Sales Value/Price:" Width="250px"></asp:Label>
+                                            <asp:Label ID="lblPurValuse" runat="server" Text="Purchase Value :" CssClass="form-label"></asp:Label>
+                                            <asp:Label ID="lblPurValuse1" runat="server" CssClass="form-label" Font-Size="13px"></asp:Label>
 
-                                            <asp:Label ID="lblcommitedval" runat="server" CssClass="smLbl" Font-Size="13px"></asp:Label>
 
-                                    <asp:Label ID="lblactualsal" runat="server" CssClass="lblTxt lblName" Text="Today Sales Value/Price:" Width="250px"></asp:Label>
 
-                                            <asp:Label ID="lblactualsal1" runat="server" CssClass="smLbl" Font-Size="13px"></asp:Label>
+                                            <asp:Label ID="Label20" runat="server" CssClass="form-label ml-2" Text="Target Sales Value/Price:" Width="130px"></asp:Label>
+
+                                            <asp:Label ID="lblcommitedval" runat="server" CssClass="form-label" Font-Size="13px"></asp:Label>
+
+                                    <asp:Label ID="lblactualsal" runat="server" CssClass="form-label ml-2" Text="Today Sales Value/Price:" Width="130px"></asp:Label>
+
+                                            <asp:Label ID="lblactualsal1" runat="server" CssClass="form-label" Font-Size="13px"></asp:Label>
 
 
                                         </div>
@@ -126,14 +126,15 @@
 
                                         <%--<div class="col-md-2 pading5px">
                                 </div>--%>
-                                    </div>
-
-                                </div>
-
+                                    
 
                             </asp:Panel>
                        
                     </div>
+                    </div>
+                </div>
+             <div class="card mt-4" style="min-height:480px;">
+                <div class="card-body">
                     <div class="row">
 
                         <div class="col-md-8">

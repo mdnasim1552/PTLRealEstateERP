@@ -40,8 +40,8 @@ namespace RealERPWEB.F_09_PImp
                     : (this.Request.QueryString["Type"].ToString() == "FirstRecom") ? "Sub-Contractor Bill-First Recommendation"
                     : (this.Request.QueryString["Type"].ToString() == "SecRecom") ? "Sub-Contractor Bill-Second Recommendation"
                     : (this.Request.QueryString["Type"].ToString() == "ThirdRecom") ? "Sub-Contractor Bill-Third Recommendation"
-                    : (this.Request.QueryString["Type"].ToString() == "Edit") ? " Sub-Contractor Bill-Work Wise Edit" 
-                    : (this.Request.QueryString["Type"].ToString() == "BillApproval") ? " Sub-Contractor Bill Approval" 
+                    : (this.Request.QueryString["Type"].ToString() == "Edit") ? " Sub-Contractor Bill-Work Wise Edit"
+                    : (this.Request.QueryString["Type"].ToString() == "BillApproval") ? " Sub-Contractor Bill Approval"
                     : "Labour Issue Information";
 
                 this.GetProjectList();
@@ -56,7 +56,7 @@ namespace RealERPWEB.F_09_PImp
                     this.ibtnPreBillList_Click(null, null);
                     if (this.Request.QueryString["Type"].ToString() == "BillApproval")
                     {
-                        this.lbtnOk_Click(null, null); 
+                        this.lbtnOk_Click(null, null);
                     }
                 }
 
@@ -152,7 +152,7 @@ namespace RealERPWEB.F_09_PImp
                     //this.ddlgroup.Visible = true;
                     //this.lblgrp.Visible = true;se
                     break;
-                
+
                 default:
 
                     this.grvissue.Columns[7].Visible = false;
@@ -359,7 +359,7 @@ namespace RealERPWEB.F_09_PImp
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptLabIssueSubCon", lst, null, null);
             Rpt1.SetParameters(new ReportParameter("compname", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("Rptname", "Sub Contractor Bill (R/A Wise)"));  
+            Rpt1.SetParameters(new ReportParameter("Rptname", "Sub Contractor Bill (R/A Wise)"));
             Rpt1.SetParameters(new ReportParameter("ProjectName", "Project Name: " + TextField));
             Rpt1.SetParameters(new ReportParameter("SubContNam", "Sub Contractor Name: " + this.ddlcontractorlist.SelectedItem.Text.Substring(13)));
             Rpt1.SetParameters(new ReportParameter("IssueNo", "Issue No: " + this.lblCurISSNo1.Text.Trim() + this.txtCurISSNo2.Text.Trim()));
@@ -548,8 +548,8 @@ namespace RealERPWEB.F_09_PImp
             if (this.Request.QueryString["Type"].ToString() == "BillApproval")
             {
                 this.Pnlgrp.Visible = false;
-                this.pnlsecurity.Visible = false;
-                this.PnlNarration.Visible = false;
+                //this.pnlsecurity.Visible = false;
+                //this.PnlNarration.Visible = false;
             }
 
         }
@@ -843,14 +843,14 @@ namespace RealERPWEB.F_09_PImp
                     ((LinkButton)this.grvissue.FooterRow.FindControl("lbtnDeleteBill")).Visible = (this.Request.QueryString["Type"].ToString().Trim() == "Edit" && this.lblBillno.Text.Trim() == "00000000000000");
                     ((LinkButton)this.grvissue.FooterRow.FindControl("lnkupdate")).Visible = (this.lblvalvounum.Text.Trim() == "00000000000000" || this.lblvalvounum.Text.Trim() == "");
 
-                   break;
+                    break;
             }
 
-            if(this.Request.QueryString["Type"] == "BillApproval")
+            if (this.Request.QueryString["Type"] == "BillApproval")
             {
                 ((LinkButton)this.grvissue.FooterRow.FindControl("lnkTotal")).Visible = false;
                 ((LinkButton)this.grvissue.FooterRow.FindControl("lnkupdate")).Visible = false;
-                ((LinkButton)this.grvissue.FooterRow.FindControl("lnkApproved")).Visible = true; 
+                ((LinkButton)this.grvissue.FooterRow.FindControl("lnkApproved")).Visible = true;
             }
             this.FooterCalculaton();
 
@@ -864,7 +864,7 @@ namespace RealERPWEB.F_09_PImp
                 return;
 
             ((Label)this.grvissue.FooterRow.FindControl("lblFissueamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(isuamt)", "")) ? 0.00 : dt.Compute("Sum(isuamt)", ""))).ToString("#,##0.0000;(#,##0.0000); ");
-            
+
 
         }
 
@@ -1333,8 +1333,6 @@ namespace RealERPWEB.F_09_PImp
 
 
                 default:
-
-
                     break;
 
             }
@@ -1500,10 +1498,14 @@ namespace RealERPWEB.F_09_PImp
                 //}
 
             }
+            
             this.txtCurISSDate.Enabled = false;
-
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            if (this.BillApprovalCompwise(mISUNO))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Data Updated Failed" + "');", true);
+                return;
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Data Updated successfully" + "');", true);
             if (ConstantInfo.LogStatus == true)
             {
                 string eventtype = "Labour Issue Information";
@@ -1516,6 +1518,31 @@ namespace RealERPWEB.F_09_PImp
 
         }
 
+        private bool BillApprovalCompwise(string _issuno) 
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string usrid = hst["usrid"].ToString();
+            string session = hst["session"].ToString();
+            string trmnid = hst["compname"].ToString();
+            string comcod = hst["comcod"].ToString();
+            string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+            bool isFailed = false; 
+            switch (comcod)
+            {
+                case "3101":
+                case "3368":
+                    break;
+                default:
+                    bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "ISSUEAPPROVEDAUTO", _issuno, usrid, Date, trmnid, session, "", "", "", "", "", "", "", "", "", "");
+                    if (!result)
+                    {
+                        isFailed = true;
+                    }
+                    break;
+            }
+            return isFailed;
+        }
+
 
 
         private void SaveValue()
@@ -1525,8 +1552,6 @@ namespace RealERPWEB.F_09_PImp
             int TblRowIndex;
             for (int i = 0; i < this.grvissue.Rows.Count; i++)
             {
-
-
 
                 double wrkqty = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtwrkqty")).Text.Trim()));
                 double balqty = Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.grvissue.Rows[i].FindControl("lblbalqty")).Text.Trim()));
@@ -1837,17 +1862,86 @@ namespace RealERPWEB.F_09_PImp
             string trmnid = hst["compname"].ToString();
             string session = hst["session"].ToString();
             string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-            string issuno = this.Request.QueryString["genno"].ToString()==""? "": this.Request.QueryString["genno"].ToString();
+            string issuno = this.Request.QueryString["genno"].ToString() == "" ? "" : this.Request.QueryString["genno"].ToString();
 
 
-            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "ISSUEAPPROVED", issuno, usrid, Date, trmnid, session, "", "", "", "", "", "", "", "", "", "");
+            this.SaveValue();
+            DataTable tbl2 = (DataTable)ViewState["tblmatissue"];
+            string Refno = this.txtRefno.Text.Trim();
+
+            string percentage = Convert.ToDouble("0" + this.txtpercentage.Text.Replace("%", "").Trim()).ToString();
+            string sdamt = Convert.ToDouble("0" + this.txtSDAmount.Text.Trim()).ToString();
+            string dedamt = Convert.ToDouble("0" + this.txtDedAmount.Text.Trim()).ToString();
+            string Penalty = Convert.ToDouble("0" + this.txtPenaltyAmount.Text.Trim()).ToString();
+            string advamt = Convert.ToDouble("0" + this.txtAdvanced.Text.Trim()).ToString();
+            string Reward = Convert.ToDouble("0" + this.txtreward.Text.Trim()).ToString();
+
+            string mISUDAT = this.txtCurISSDate.Text.Trim();
+            string mPACTCODE = this.ddlprjlist.SelectedValue.ToString().Trim();
+            string mCONCODE = this.ddlcontractorlist.SelectedValue.ToString().Trim();
+            string mISURNAR = this.txtISSNarr.Text.Trim();
+
+            string trade = this.ddltrade.SelectedValue.ToString();
+            string rano = this.ddlRA.SelectedValue.ToString();
+            string msg = "";
+
+            //bool result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_03", "ISSUEAPPROVED", issuno, mISUDAT, mPACTCODE, mCONCODE, mISURNAR, Refno, usrid, session, trmnid, trade, rano, percentage, sdamt, dedamt, Penalty, advamt, Reward, "", "", "");
+            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "ISSUEAPPROVED", issuno, usrid, Date, trmnid, session, percentage, sdamt, dedamt, Penalty, advamt, Reward, "", "", "", "");
+
             if (!result)
             {
-                string msg = "Approved Fail";
+                msg = purData.ErrorObject["Msg"].ToString();
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
+
+            foreach (DataRow dr in tbl2.Rows)
+            {
+                string Flrcod = dr["flrcod"].ToString();
+                string grp = dr["grp"].ToString();
+                string Rsircode = dr["rsircode"].ToString();
+                string prcent = Convert.ToDouble(dr["prcent"].ToString().Trim()).ToString();
+                double Isuqty = Convert.ToDouble(dr["isuqty"].ToString().Trim());
+                double Isuamt = Convert.ToDouble(dr["isuamt"].ToString().Trim());
+                string wrkqty = dr["wrkqty"].ToString().Trim();
+                double balqty = Convert.ToDouble(dr["balqty"].ToString().Trim());
+                string mbbook = dr["mbbook"].ToString().Trim();
+                string above = dr["above"].ToString();
+                string dedqty = dr["dedqty"].ToString();
+                string dedunit = dr["dedunit"].ToString();
+                string idedamt = dr["idedamt"].ToString();
+                double balamt = Convert.ToDouble(dr["balamt"].ToString().Trim());
+
+                if (balqty >= Isuqty)
+                {
+                    result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURLABISSUEINFO", "PURLISSUEA", issuno, Flrcod,
+                        Rsircode, prcent, Isuqty.ToString(), Isuamt.ToString(), wrkqty, grp, mbbook, above, dedqty, dedunit, idedamt, "");
+                    if (!result)
+                    {
+                        msg = purData.ErrorObject["Msg"].ToString();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                        return;
+                    }
+                }
+                else
+                {
+                    msg = "Not Within the Budget ";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                    return;
+                }
+
+            }
+
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Data Approved Successfully');", true);
+            if (ConstantInfo.LogStatus == true)
+            {
+                string eventtype = "Labour Issue Information";
+                string eventdesc = "Update Labour QTY & RATE";
+                string eventdesc2 = "Issue No: " + this.lblCurISSNo1.Text.Trim().Substring(0, 3) +
+                        ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
+
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
         }
     }
 }
