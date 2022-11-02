@@ -367,6 +367,9 @@
                                                     <asp:Label ID="lblAcNo1" runat="server" CssClass=" smLbl">A/C No 01</asp:Label>
                                                     <asp:TextBox ID="txtAcNo1" runat="server" TabIndex="25" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
 
+                                                                <asp:Label ID="lblroute" runat="server" CssClass=" smLbl">Routing 01</asp:Label>
+                                                    <asp:TextBox ID="txtroute" runat="server" TabIndex="25" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
+
                                                     <asp:Label ID="lbltBankName2" runat="server" CssClass="smLbl">Bank 02</asp:Label>
 
                                                     <asp:DropDownList ID="ddlBankName2" runat="server" Font-Bold="True"
@@ -378,6 +381,8 @@
                                                     <asp:Label ID="lblAcNo2" runat="server" CssClass="smLbl">A/C No 02</asp:Label>
                                                     <asp:TextBox ID="txtAcNo2" runat="server" TabIndex="27" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
 
+                                                                     <asp:Label ID="lblroute2" runat="server" CssClass=" smLbl">Routing 02</asp:Label>
+                                                    <asp:TextBox ID="txtroute2" runat="server" TabIndex="25" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
 
                                                     <asp:Label ID="lblbankamt" runat="server" CssClass="smLbl text-right ">Bank Amt.</asp:Label>
                                                     <asp:TextBox ID="txtBankamt02" runat="server" TabIndex="32" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
