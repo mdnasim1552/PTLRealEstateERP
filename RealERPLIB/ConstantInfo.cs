@@ -326,6 +326,7 @@ namespace RealERPLIB
 
             //tblObj.Rows.Add(new Object[] { "0802000", "0802010", "ProTargetTimeBasis?", "Type=FlrWise", "Construction Planning - Time Basis", "Project Planning", "False", "False", "False", "False" }); ;//Rihan
             //tblObj.Rows.Add(new Object[] { "0802000", "0802130", "ProTargetMonthly", "", "Project Completion Plan", "Project Planning", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0861000", "0861001", "F_99_Allinterface", "ProjectDashBoardAllNew?", "", "Project DashBoard", "Project Planning", "False", "False", "False", "False" }); ;
 
             #endregion
             //09. Project Implementaion
@@ -1006,6 +1007,7 @@ namespace RealERPLIB
             //Interface Dashboard
 
             //tblObj.Rows.Add(new Object[] { "1702000", "1701071", "AccPurchase?", "Type=Edit", "Purchase Update", "Accounts", "False", "False", "False", "False" });;
+            tblObj.Rows.Add(new Object[] { "1761000", "1761001", "", "AllGraph", "", "DashBoard", "Accounts", "False", "False", "False", "False" }); ;
 
 
 
@@ -1632,7 +1634,15 @@ namespace RealERPLIB
 
 
             tblObj.Rows.Add(new Object[] { "3251000", "3251001", "F_99_Allinterface", "BrandInterface", "", "Brand", "Brand Module", "False", "False", "False", "False" }); ;
+            
+            tblObj.Rows.Add(new Object[] { "3261000", "3261001", "", "CompanyOverAllReport?", "comcod=", "All In One- ANALYSIS", "MIS Module", "False", "False", "False", "False" }); ;
 
+            tblObj.Rows.Add(new Object[] { "3262000", "3262001", "F_34_Mgt", "RptAllDashboard?", "Type=Purchase", "Purchase Dashboard", "MIS Module", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3262000", "3262002", "F_34_Mgt", "RptAllDashboard?", "Type=Accounts", "Accounts Dashboard", "MIS Module", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3262000", "3262003", "F_34_Mgt", "RptAllDashboard?", "Type=Sales", "Sales Dashboard", "MIS Module", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3262000", "3262004", "F_34_Mgt", "RptAllDashboard?", "Type=Construction", "Construction Dashboard", "MIS Module", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3262000", "3262005", "F_32_Mis", "ProjectAnalysis?", "Type=Report", "Project Analysis", "MIS Module", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3262000", "3262050", "F_99_Allinterface", "ProjectDashBoard?", "comcod=", "Project Summary", "MIS Module", "False", "False", "False", "False" }); ;
 
 
 
@@ -2192,7 +2202,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102070", "F_81_Hrm/F_92_Mgt", "EmpEvaluationFrm", "", "Employee Evaluation For Confirmation", "ACR", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102172", "F_81_Hrm/F_84_Lea", "YearlyHoliday", "", "Yearly Holidays", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102173", "F_81_Hrm/F_99_MgtAct", "RptgroupAttendance?", "Type=Dept", "Employee Daily Attendance(Department Wise)", "HR Management", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "8102000", "8102174", "F_81_Hrm/F_92_Mgt", "EmployeeListEpic", "", "Epic Employee List", "HR Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8102000", "8102174", "F_81_Hrm/F_92_Mgt", "EmployeeListEpic", "", "Employee List Details", "HR Management", "False", "False", "False", "False" });
 
 
 
@@ -2584,6 +2594,7 @@ namespace RealERPLIB
         }
 
         #endregion  grpmgtinterface
+
         ///// End Menu Final
         public static DataTable WebObjTableGACC()
         {
@@ -15919,7 +15930,7 @@ namespace RealERPLIB
             // B. Appointment
             mnuTbl1.Rows.Add(new Object[] { "0402000000", "Appointment", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0402000001", "01. Employee Information", "F_81_Hrm/F_82_App/RptEmpInformation?Type=EmpAllInfo&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0402000001", "02. Epic Employee List", "F_81_Hrm/F_92_Mgt/EmployeeListEpic", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0402000001", "02. Employee List Details", "F_81_Hrm/F_92_Mgt/EmployeeListEpic", "", true, "" });
             
 
 

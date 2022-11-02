@@ -455,6 +455,7 @@ namespace RealERPWEB
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetCompCode();
             // string path = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath;
+            string path = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath;
 
             string usrid = hst["usrid"].ToString();
             string userrole = hst["userrole"].ToString();
@@ -531,11 +532,46 @@ namespace RealERPWEB
             {
                 lstFeturedMenu.Visible = false;
             }
+            DataTable dtanylsis = new DataTable();
+
+            DataView dvAll = dtint.Tables[1].Copy().DefaultView;
+            dvAll.RowFilter = ("interface='Z'");
+            dtanylsis = dvAll.ToTable();
+
+            foreach (DataRow dr in dtanylsis.Rows)
+            {
+                this.dbAllinOne.Visible = dr["frmid"].ToString()=="3261001"? true: false;      
+                this.dbAllinOne.HRef = path + "/" + dr["urlinf"].ToString()  + "=" +comcod;
+
+                this.prjdash.Visible = dr["frmid"].ToString() == "0861001" ? true : false;
+                this.prjdash.HRef = path + "/" + dr["urlinf"].ToString() + "=" + comcod;
+
+                this.allGraph.Visible = dr["frmid"].ToString() == "1761001" ? true : false;
+                this.allGraph.HRef = path + "/" + dr["urlinf"].ToString() + "=" + comcod;
+
+            }
 
 
-            dbAllinOne.HRef = "CompanyOverAllReport?comcod=" + comcod;
-            prjdash.HRef = "F_99_Allinterface/ProjectDashBoardAllNew?comcod=" + comcod;
-            PrjSummary.HRef = "F_99_Allinterface/ProjectDashBoard?comcod=" + comcod;
+            DataView dvAna = dtint.Tables[1].Copy().DefaultView;
+            dvAna.RowFilter = ("interface='Y'");
+            string Analysishtml = "";
+
+            foreach (DataRow dr in dvAna.ToTable().Rows)
+            {
+
+                Analysishtml += @"<li class='menu-item'><a href ='" + path + "/" + dr["floc"] + "/" + dr["urlinf"] + "' class='menu-link' target='_self'>" + dr["dscrption"] + "</a></li>";
+            }
+
+            this.dbGraph.InnerHtml = Analysishtml;
+            if (Analysishtml.Length == 0)
+            {
+                this.AnalysisArea.Visible = false;
+            }
+
+
+            // dbAllinOne.HRef = "CompanyOverAllReport?comcod=" + comcod;
+            // prjdash.HRef = "F_99_Allinterface/ProjectDashBoardAllNew?comcod=" + comcod;
+            //PrjSummary.HRef = "F_99_Allinterface/ProjectDashBoard?comcod=" + comcod;
 
 
 
