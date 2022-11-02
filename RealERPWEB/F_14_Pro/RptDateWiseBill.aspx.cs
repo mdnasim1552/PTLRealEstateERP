@@ -75,20 +75,18 @@ namespace RealERPWEB.F_14_Pro
             this.gvDWBill.DataBind();
             FooterCalculation();
 
-
-
-
         }
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
 
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
-
-
-
         }
+
+
         private void lbtnPrint_Click(object sender, EventArgs e)
         {
+            //SaveValue();
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = GetComeCode();
             string comnam = hst["comnam"].ToString();
@@ -101,6 +99,45 @@ namespace RealERPWEB.F_14_Pro
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
             DataTable dt = (DataTable)Session["tblDateWiseBill"];
             LocalReport Rpt1 = new LocalReport();
+
+
+            //int index;
+            //for (int i = 0; i < this.gvDWBill.Rows.Count; i++)
+            //{
+            //    string isPrint = (((CheckBox)gvDWBill.Rows[i].FindControl("isPrint")).Checked) ? "True" : "False";
+            //    index = (this.gvDWBill.PageSize) * (this.gvDWBill.PageIndex) + i;
+            //    dt.Rows[index]["isPrint"] = isPrint;
+            //}
+
+            //Session["tblDateWiseBill"] = dt;
+            //DataView dv = dt.DefaultView;
+            //dv.RowFilter = "isPrint = 'True'";
+            //DataTable dt1 = dv.ToTable();
+
+
+            int index;
+            for (int i = 0; i < this.gvDWBill.Rows.Count; i++)
+            {
+                string isPrint = (((CheckBox)gvDWBill.Rows[i].FindControl("isPrint")).Checked) ? "True" : "False";
+                if (isPrint == "True")
+                {
+                    ((CheckBox)gvDWBill.HeaderRow.FindControl("chkAllfrm")).Checked = true;
+                }
+                index = (this.gvDWBill.PageSize) * (this.gvDWBill.PageIndex) + i;
+                dt.Rows[index]["isprint"] = isPrint;
+            }
+
+            string isCheckPrint = ((CheckBox)gvDWBill.HeaderRow.FindControl("chkAllfrm")).Checked ? "1" : "";
+            if (isCheckPrint == "1")
+            {
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = "isprint = 'True'";
+                dt = dv.ToTable();
+            }
+
+
+
+
             var lst = dt.DataTableToList<RealEntity.C_14_Pro.EClassPayment.EclassRptDateWiseBill>();
 
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptDateWiseBill", lst, null, null);
@@ -118,6 +155,121 @@ namespace RealERPWEB.F_14_Pro
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
+
+
+        protected void chkAllfrm_CheckedChanged(object sender, EventArgs e)
+        {
+
+            int i, index;
+            if (((CheckBox)this.gvDWBill.HeaderRow.FindControl("chkAllfrm")).Checked)
+            {
+
+                for (i = 0; i < this.gvDWBill.Rows.Count; i++)
+                {
+
+                    ((CheckBox)this.gvDWBill.Rows[i].FindControl("isPrint")).Checked = true;
+
+                }
+
+
+            }
+
+            else
+            {
+                for (i = 0; i < this.gvDWBill.Rows.Count; i++)
+                {
+
+                    ((CheckBox)this.gvDWBill.Rows[i].FindControl("isPrint")).Checked = false;
+
+                }
+
+            }
+
+
+
+        }
+
+
+        private void SaveValue()
+        {
+            DataTable dt = (DataTable)Session["tblDateWiseBill"];
+            int TblRowIndex;
+            for (int i = 0; i < this.gvDWBill.Rows.Count; i++)
+            {
+
+                string isPrint = (((CheckBox)gvDWBill.Rows[i].FindControl("isPrint")).Checked) ? "True" : "False";
+
+                if (isPrint == "True") {
+                    //string sl = ((Label)this.gvDWBill.Rows[i].FindControl("serialnoid")).Text.Trim().ToString();
+                    string sirDesc = ((Label)this.gvDWBill.Rows[i].FindControl("lbgrcod")).Text.Trim().ToString();
+                    string billNo = ((Label)this.gvDWBill.Rows[i].FindControl("lbgrcod1")).Text.Trim().ToString();
+                    string billref = ((Label)this.gvDWBill.Rows[i].FindControl("lbgvspcfdesc")).Text.Trim().ToString();
+                    //string lbgvspcfdesc1 = ((Label)this.gvDWBill.Rows[i].FindControl("lbgvspcfdesc1")).Text.Trim().ToString();
+
+                    string billamt = ((Label)this.gvDWBill.Rows[i].FindControl("lblgvunit")).Text.Trim().ToString();
+                    string advamt = ((Label)this.gvDWBill.Rows[i].FindControl("lblgvunit1")).Text.Trim().ToString();
+
+                    string netpayable = ((Label)this.gvDWBill.Rows[i].FindControl("lblgvunit2")).Text.Trim().ToString();
+                    string pactdesc = ((Label)this.gvDWBill.Rows[i].FindControl("lblgvunit3")).Text.Trim().ToString();
+                    string billdat = ((Label)this.gvDWBill.Rows[i].FindControl("lblgvunit4")).Text.Trim().ToString();
+                    //string remrks = ((Label)this.gvDWBill.Rows[i].FindControl("lblgvunit5")).Text.Trim().ToString();
+
+                    TblRowIndex = (gvDWBill.PageIndex) * gvDWBill.PageSize + i;
+
+                    //dt.Rows[TblRowIndex]["sl"] = sl;
+                    dt.Rows[TblRowIndex]["sirDesc"] = sirDesc;
+                    dt.Rows[TblRowIndex]["billNo"] = billNo;
+                    dt.Rows[TblRowIndex]["billref"] = billref;
+                    //dt.Rows[TblRowIndex]["lbgvspcfdesc1"] = lbgvspcfdesc1;
+                    dt.Rows[TblRowIndex]["billamt"] = billamt;
+                    dt.Rows[TblRowIndex]["netpayable"] = netpayable;
+                    dt.Rows[TblRowIndex]["advamt"] = advamt==""?"0":"0";
+                    
+                    dt.Rows[TblRowIndex]["pactdesc"] = pactdesc;
+                    dt.Rows[TblRowIndex]["billdat"] = billdat;
+                    //dt.Rows[TblRowIndex]["remrks"] = remrks;
+                }
+            }
+            Session["tblDateWiseBill"] = dt;
+
+        }
+
+
+
+
+        //protected void chkAllfrm_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    DataTable dt = (DataTable)Session["tblEmpstatus"];
+        //    int i, index;
+        //    if (((CheckBox)this.gvDWBill.HeaderRow.FindControl("chkAllfrm")).Checked)
+        //    {
+        //        for (i = 0; i < this.gvDWBill.Rows.Count; i++)
+        //        {
+        //            ((CheckBox)this.gvDWBill.Rows[i].FindControl("isPrint")).Checked = true;
+
+        //            index = (this.gvDWBill.PageSize) * (this.gvDWBill.PageIndex) + i;
+        //            dt.Rows[index]["isPrint"] = "True";
+        //        }
+        //    }
+
+        //    else
+        //    {
+        //        for (i = 0; i < this.gvDWBill.Rows.Count; i++)
+        //        {
+        //            ((CheckBox)this.gvDWBill.Rows[i].FindControl("isPrint")).Checked = false;
+
+        //            index = (this.gvDWBill.PageSize) * (this.gvDWBill.PageIndex) + i;
+        //            dt.Rows[index]["isPrint"] = "False";
+        //        }
+        //    }
+
+        //    Session["tblEmpstatus"] = dt;
+        //    // this.ShowPer();
+
+        //}
+
+
+
         protected void gvDWBill_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.gvDWBill.PageIndex = e.NewPageIndex;
@@ -147,5 +299,6 @@ namespace RealERPWEB.F_14_Pro
             }
 
         }
+
     }
 }

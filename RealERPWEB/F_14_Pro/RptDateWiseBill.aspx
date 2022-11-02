@@ -88,7 +88,7 @@
                     <div class="">
                         <div class="row">
                              <asp:GridView ID="gvDWBill" runat="server" AutoGenerateColumns="False"  CssClass=" table-striped table-hover table-bordered grvContentarea"
-                        ShowFooter="True" Width="501px" AllowPaging="True"  PageSize="20" OnPageIndexChanging="gvDWBill_PageIndexChanging">
+                        ShowFooter="True" Width="501px" AllowPaging="True"  PageSize="30" OnPageIndexChanging="gvDWBill_PageIndexChanging">
                         <Columns>
                          
                             <asp:TemplateField HeaderText="Sl">
@@ -118,7 +118,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="ERP Bill No.">
                                 <ItemTemplate>
-                                    <asp:Label ID="lbgrcod" runat="server" Style="text-align: left" Font-Size="12px"
+                                    <asp:Label ID="lbgrcod1" runat="server" Style="text-align: left" Font-Size="12px"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "billno1")) %>'
                                         Width="80px"></asp:Label>
                                 </ItemTemplate>
@@ -136,7 +136,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Bill No/Ref As per Front Desk">
                                 <ItemTemplate>
-                                   <asp:Label ID="lbgvspcfdesc" runat="server" Style="text-align: left"
+                                   <asp:Label ID="lbgvspcfdesc1" runat="server" Style="text-align: left"
                                        
                                         Width="90px"></asp:Label>
                                 </ItemTemplate>
@@ -159,7 +159,7 @@
                             </asp:TemplateField>
                              <asp:TemplateField HeaderText="Security/Advance/<br>Tax(Taka)">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblgvunit" runat="server"
+                                    <asp:Label ID="lblgvunit1" runat="server"
                                         Style="font-size: 12px; text-align: right;"
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "advamt")).ToString("#,##0.00;(#,##0.00); ") %>'
                                         Width="90px"></asp:Label>
@@ -174,7 +174,7 @@
                             </asp:TemplateField>
                              <asp:TemplateField HeaderText="Net Payable(Taka)">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblgvunit" runat="server"
+                                    <asp:Label ID="lblgvunit2" runat="server"
                                         Style="font-size: 12px; text-align: right;"
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netpayable")).ToString("#,##0.00;(#,##0.00); ") %>'
                                         Width="80px"></asp:Label>
@@ -188,7 +188,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Project Name">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblgvunit" runat="server"
+                                    <asp:Label ID="lblgvunit3" runat="server"
                                         Style="font-size: 12px; text-align: left;"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
                                         Width="180px"></asp:Label>
@@ -199,7 +199,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Payment Date">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblgvunit" runat="server"
+                                    <asp:Label ID="lblgvunit4" runat="server"
                                         Style="font-size: 12px; text-align: left;"
                                         Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "billdat")).ToString("dd-MMM-yyyy") %>'
                                         Width="80px"></asp:Label>
@@ -210,7 +210,7 @@
                             </asp:TemplateField>
                              <asp:TemplateField HeaderText="Remarks">
                                 <ItemTemplate>
-                                     <asp:Label ID="lblgvunit" runat="server"
+                                     <asp:Label ID="lblgvunit5" runat="server"
                                         Style="font-size: 12px; text-align: left;"
                                        
                                         Width="80px"></asp:Label>
@@ -219,6 +219,21 @@
 
                             </asp:TemplateField>
 
+
+
+                            <asp:TemplateField HeaderText="Action">
+                                    <HeaderTemplate>
+                                        <asp:CheckBox ID="chkAllfrm" runat="server" AutoPostBack="True"
+                                                        OnCheckedChanged="chkAllfrm_CheckedChanged" Text="ALL " />
+                                    </HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:CheckBox ID="isPrint" runat="server" Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isPrint"))=="True" %>' />
+                                        
+                                </ItemTemplate>
+                                <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Bold="true" Font-size="16px" />
+                                <ItemStyle HorizontalAlign="center" />
+                            </asp:TemplateField>
                             
                         </Columns>
                         <FooterStyle CssClass="grvFooter" />
