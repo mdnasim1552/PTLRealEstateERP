@@ -560,6 +560,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.pnlSidebar.Visible = true;
                 this.pnlProjectadd.Visible = false;
                 this.pnlBatchadd.Visible = true;
+                this.pnlAssginUser.Visible = false;
 
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
@@ -1257,7 +1258,7 @@ namespace RealERPWEB.F_99_Allinterface
         private void GetAnnotationList()
         {
             string comcod = this.GetCompCode();
-            string prjlist = "160100000001%";
+            string prjlist = this.lblproprjid.Text.Trim()+"%";
             string usrrole = this.ddlUserRoleType.SelectedValue.ToString() == "95002" ? "03403" :
                             this.ddlUserRoleType.SelectedValue.ToString() == "95003" ? "03402" : "03401";
             DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETANNOTAIONID", prjlist, usrrole, "", "", "", "");
@@ -1785,6 +1786,8 @@ namespace RealERPWEB.F_99_Allinterface
                 dv0.RowFilter = "invno = '" + id + "'";
                 dt = dv0.ToTable();               
                 double amount = Convert.ToDouble(dt.Rows[0]["totalamount"]);
+
+
                 string inword = "In Word: " + ASTUtility.Trans(Math.Round(amount), 2);
                 string curency = dt.Rows[0]["currency"].ToString();
                 LocalReport Rpt1 = new LocalReport();

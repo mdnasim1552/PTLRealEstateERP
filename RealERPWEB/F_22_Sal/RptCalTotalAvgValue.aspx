@@ -20,6 +20,11 @@
         }
 
     </script>
+    <style type="text/css">
+        .table th, .table td{
+            padding: 4px;
+        }
+    </style>
     <div class="card mt-4">
         <div class="card-body">
             <div class="RealProgressbar">
@@ -209,7 +214,7 @@
                             <ItemTemplate>
                                 <asp:Label ID="lgvpersft" runat="server"
                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "urate")).ToString("#,##0;(#,##0); ") %>'
-                                    Width="35px"></asp:Label>
+                                    Width="55px"></asp:Label>
                             </ItemTemplate>
                             <HeaderStyle HorizontalAlign="Center" Width="70px" />
                             <ItemStyle HorizontalAlign="Right" />

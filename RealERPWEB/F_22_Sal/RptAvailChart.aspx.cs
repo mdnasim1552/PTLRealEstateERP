@@ -191,7 +191,7 @@ namespace RealERPWEB.F_22_Sal
 
             DataSet ds2 = feaData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, "", "", "", "", "", "", "", "");
 
-            if (ds2 == null || ds2.Tables[0].Rows.Count == 0)
+            if (ds2 == null || ds2.Tables[0].Rows.Count == 0 || ds2.Tables[1].Rows.Count == 0)
             {
                 this.gvAailChart.DataSource = null;
                 this.gvAailChart.DataBind();
