@@ -1115,6 +1115,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2103000", "2103122", "F_21_MKT", "RptCenterWiseClient", "", "Center Wise Client List", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2103000", "2103123", "F_21_MKT", "RptProspectClient", "", "Prospect Notification", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2103000", "2103124", "F_21_MKT", "ProspectTransferLog", "", "Prospect Transfer Log", "CRM", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2103000", "2103125", "F_21_MKT", "AdvancedSearchFilter", "", "Advanced Search Filter", "CRM", "False", "False", "False", "False" }); ;
 
             //tblObj.Rows.Add(new Object[] { "3903000", "3903001", "EmpKpiEntry03?", "Type=Client", "Daily Job Execution", "My Marketing Interface(Marketing)", "False", "False", "False"});
             tblObj.Rows.Add(new Object[] { "2103000", "2102125", "F_39_MyPage", "RptEmpMonthWiseEva03?", "Type=IndEmp", "Month Wise Evaluation", "My Marketing Interface(Marketing)", "False", "False", "False" });
@@ -7148,6 +7149,7 @@ namespace RealERPLIB
 
             mnuTbl1.Rows.Add(new Object[] { "0202000016", "02. Prospect Notification", "F_21_MKT/RptProspectClient", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000017", "03. Prospect Transfer Log", "F_21_MKT/ProspectTransferLog", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000017", "03. Advanced Search Filter", "F_21_MKT/AdvancedSearchFilter", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0212000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0213000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0214000000", "", "", "", true, "" });
