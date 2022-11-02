@@ -88,7 +88,7 @@
                     <div class="">
                         <div class="row">
                              <asp:GridView ID="gvDWBill" runat="server" AutoGenerateColumns="False"  CssClass=" table-striped table-hover table-bordered grvContentarea"
-                        ShowFooter="True" Width="501px" AllowPaging="True"  PageSize="20" OnPageIndexChanging="gvDWBill_PageIndexChanging">
+                        ShowFooter="True" Width="501px" AllowPaging="True"  PageSize="30" OnPageIndexChanging="gvDWBill_PageIndexChanging">
                         <Columns>
                          
                             <asp:TemplateField HeaderText="Sl">
