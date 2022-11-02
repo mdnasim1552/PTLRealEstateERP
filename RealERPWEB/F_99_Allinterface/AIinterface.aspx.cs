@@ -1228,6 +1228,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string prjid = ((Label)this.gv_Production.Rows[index].FindControl("lblgvpprjid")).Text.ToString();
                 string title = ((Label)this.gv_Production.Rows[index].FindControl("lblgvtasktitle")).Text.ToString();
                 string assignqty = ((Label)this.gv_Production.Rows[index].FindControl("lblgvdoneqty")).Text.ToString();
+                string assigntype = ((Label)this.gv_Production.Rows[index].FindControl("lblgvassigntype")).Text.ToString();
 
                 this.txttasktitle.Text = title;
                 this.txttasktitle.Enabled = true;
@@ -1237,6 +1238,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.HiddinTaskid.Value = taskid;
                 this.lblabatchid.Text = batchid;
                 this.lblproprjid.Text = prjid;
+                this.ddlassigntype.SelectedValue = assigntype;
 
 
                 this.pnlSidebar.Visible = true;
@@ -1600,8 +1602,8 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkInvoice");
-
-                hlink.NavigateUrl = "~/F_38_AI/AIInVoiceCreate.aspx";
+                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString().Trim();
+                hlink.NavigateUrl = "~/F_38_AI/AIInVoiceCreate.aspx?Type=MGT&EmpID=" + empid;
 
             }
 
@@ -1615,7 +1617,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "assignuser")).ToString().Trim();
                 string batchid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "batchid")).ToString().Trim();
                 string jobid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "jobid")).ToString().Trim();
-                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?EmpID=" + empid + "&JobID=" + jobid + "&BatchID=" + batchid;
+                hlink.NavigateUrl = "~/F_38_AI/MyTasks.aspx?Type=MGT&EmpID=" + empid + "&JobID=" + jobid + "&BatchID=" + batchid;
             }
         }
 

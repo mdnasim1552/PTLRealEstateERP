@@ -499,7 +499,9 @@
 
 
                                     <asp:TemplateField HeaderText="Total Qty" Visible="False">
-
+                                         <FooterTemplate>
+                                            <asp:LinkButton ID="lnkApproved" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lnkApproved_Click" Visible="false">Approved</asp:LinkButton>
+                                        </FooterTemplate>
 
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvtoisuqty" runat="server" Font-Size="11px"
@@ -512,6 +514,7 @@
 
 
                                     <asp:TemplateField HeaderText="Rate">
+
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtlabrate" runat="server" Font-Size="11px"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "isurat")).ToString("#,##0.000;(#,##0.000); ") %>'

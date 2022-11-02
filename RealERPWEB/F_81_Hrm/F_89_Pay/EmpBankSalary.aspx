@@ -236,8 +236,16 @@
                                 <FooterStyle HorizontalAlign="Right" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
+                            
+                                   <asp:TemplateField HeaderText="Routing">
+                                        <ItemTemplate>
+                                         <asp:Label ID="lblrouting" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "routing"))  %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
 
-                            <%--                                 <asp:TemplateField HeaderText="Transfer">
+                           
+
+                     <%--        <asp:TemplateField HeaderText="Transfer">
                                         <ItemTemplate>
                                             <asp:CheckBox ID="chksaltrns" runat="server"
                                                 Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "saltrn"))=="True" %>'
