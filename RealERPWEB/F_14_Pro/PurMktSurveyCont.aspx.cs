@@ -555,6 +555,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3352":
                 case "1205":
                 case "3101":
+                case "3370": // cpdl
                     this.printP2P_cs_approval();
                     break;
                 default:
@@ -1221,7 +1222,7 @@ namespace RealERPWEB.F_14_Pro
                     }
                 }
             }
-            Session["tblt02"] = (comcod == "3101" || comcod == "1205" || comcod == "3351" || comcod == "3352") ? tbl1 : this.HiddenSameData(tbl1);   //tblMSR
+            Session["tblt02"] = (comcod == "3101" || comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "3370") ? tbl1 : this.HiddenSameData(tbl1);   //tblMSR
             this.gvMSRInfo_DataBind();
         }
 

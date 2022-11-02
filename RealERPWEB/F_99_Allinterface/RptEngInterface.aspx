@@ -545,8 +545,6 @@
                         break;
 
 
-
-
                     default:
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
