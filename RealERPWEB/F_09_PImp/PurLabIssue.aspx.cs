@@ -1664,6 +1664,7 @@ namespace RealERPWEB.F_09_PImp
                 case "3101":
                 case "3368":
                     break;
+
                 default:
                     bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "ISSUEAPPROVEDAUTO", _issuno, usrid, Date, trmnid, session, "", "", "", "", "", "", "", "", "", "");
                     if (!result)

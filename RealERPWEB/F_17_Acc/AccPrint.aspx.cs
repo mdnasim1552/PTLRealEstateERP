@@ -1184,6 +1184,8 @@ namespace RealERPWEB.F_17_Acc
                         Rpt1.EnableExternalImages = true;
 
                     }
+                    Rpt1.SetParameters(new ReportParameter("signprep", postuser));
+                    Rpt1.SetParameters(new ReportParameter("signapp", aprvuser));
                     Rpt1.SetParameters(new ReportParameter("Vounum", "Voucher No.: " + vounum));
                     Rpt1.SetParameters(new ReportParameter("voudat", "Voucher Date: " + voudat));
                     Rpt1.SetParameters(new ReportParameter("refnum", "Cheque/Ref. No.: " + refnum));

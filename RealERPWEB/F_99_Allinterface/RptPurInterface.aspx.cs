@@ -1905,8 +1905,6 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntry");
                 LinkButton btnDelBill = (LinkButton)e.Row.FindControl("btnDelBill");
 
-
-
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
@@ -1917,6 +1915,8 @@ namespace RealERPWEB.F_99_Allinterface
                 string prjname = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactdesc")).ToString();
                 string suppliername = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ssirdesc")).ToString();
 
+
+
                 hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=MRReceipt&mrno=" + mrrno + "&sircode=" + sircode + "&supname=" + suppliername + "&prjname=" + prjname;
 
                 //hlink1.NavigateUrl = "~/F_20_Service/Ser_Print?Type=ProReceived&comcod=" + comcod + "&centrid=" + centrid + "&recvno=" + recvno + "&imesimeno=" + imesimeno;
@@ -1925,7 +1925,8 @@ namespace RealERPWEB.F_99_Allinterface
                 else
                     hlink2.NavigateUrl = "~/F_12_Inv/MaterialsTransfer?Type=Entry&genno=" + mrrno;
 
-                //if(comcod=="1205" || comcod == "3351" || comcod == "3352" || comcod == "8306")
+
+                //if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "8306")
                 //{
                 //    btnDelBill.Visible = false;
                 //}
@@ -2207,7 +2208,12 @@ namespace RealERPWEB.F_99_Allinterface
 
                     this.gvPurBill.DataSource = HiddenSameData(dt);
                     this.gvPurBill.DataBind();
+                    if (comcod == "3367")
+                    {
+                        this.gvPurBill.Columns[9].Visible = true;
+                    }
                     break;
+
                 case "grvComp":
 
                     this.grvComp.DataSource = HiddenSameData(dt);
