@@ -582,6 +582,8 @@ namespace RealERPWEB.F_99_Allinterface
             string reqforward = "";
             string OrderfApproved = "";
             string Order2ndAprv = "Ord. 2nd App";
+            string billAudit = "Final Bill App.";
+
 
             switch (comcod)
             {
@@ -590,7 +592,7 @@ namespace RealERPWEB.F_99_Allinterface
                     reqcheck = "Req. App.";
                     reqforward = "Forward";
                     reqapproval = "Rate App.";
-
+                    billAudit = "Bill Audit";
                     break;
 
 
@@ -625,9 +627,10 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
                 case "3367": //Epic
-                case "3101": //Epic
+                //case "3101": //Epic
                     chkSecondApp = "Mgt App.";
                     reqcheckapp = "Checked App.";
+                   
                     break;
 
                 //  case "3101":  
@@ -639,6 +642,8 @@ namespace RealERPWEB.F_99_Allinterface
                     OrderfApproved = "Ord. 1st App";
                     Order2ndAprv = "Ord. Final App";
                     break;
+
+              
 
 
                 default:
@@ -689,7 +694,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             if (this.RadioButtonList1.Items[17].Enabled == true)
             {
-                this.RadioButtonList1.Items[17].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["billaudit"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red''><div class='circle-tile-description text-faded'>Bill Audit</div></div></div>";
+                this.RadioButtonList1.Items[17].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["billaudit"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red''><div class='circle-tile-description text-faded'>"+ billAudit + "</div></div></div>";
 
             }
             ds1.Dispose();
@@ -1527,7 +1532,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-                TableCell cell = e.Row.Cells[9];
+                TableCell cell = e.Row.Cells[10];
                 string cstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "cstatus")).ToString();
                 if (cstatus == "Bill Confirm")
                 {
@@ -2048,13 +2053,20 @@ namespace RealERPWEB.F_99_Allinterface
                 case "gvReqInfo":
                     this.gvReqInfo.DataSource = HiddenSameData(dt);
                     this.gvReqInfo.DataBind();
+
+                    if (comcod == "1205" || comcod == "3351" || comcod == "3352")
+                    {
+                        this.gvReqInfo.Columns[4].Visible = true;
+                    }
+                    else
+                    {
+                        this.gvReqInfo.Columns[4].Visible = false;
+                    }
                     break;
+
                 case "gvReqChk":
                     this.gvReqChk.DataSource = HiddenSameData(dt);
                     this.gvReqChk.DataBind();
-
-
-
                     break;
 
                 case "gvCRM":

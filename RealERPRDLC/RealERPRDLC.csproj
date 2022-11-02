@@ -46,13 +46,9 @@
     <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -130,6 +126,7 @@
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.ErptStock.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.PurEqisition+PurMatReq.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.RptDayWisePurchase.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPayment+EclassRptDateWiseBill.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+ChequeSheet01.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+ComparativeStatementCreate.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+DeliveryEffciency.datasource" />
@@ -191,6 +188,7 @@
     <None Include="Properties\DataSources\RealEntity.C_28_Mpro.EClassMktProcurement+RptMktPurchaseTrack.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_33_Doc.ActiveSimUser.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_34_Mgt.Userinfo.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_38_AI.AIallPrint+InvoicePrint.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptGrpRecPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptGrpRecPaymentBank.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.BO_ClassManPower+EmployeeAllInfo.datasource" />
@@ -249,6 +247,7 @@
     <EmbeddedResource Include="R_14_Pro\RptBillInfoLanco.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptDayWisePurchaseEdison.rdlc" />
     <EmbeddedResource Include="R_14_Pro\rptDeliveryEfficiency.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptDateWiseBill.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptOtherCollHistory.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyEpic03.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyEpic02.rdlc" />
@@ -805,6 +804,7 @@
     <EmbeddedResource Include="R_22_Sal\RptEnvelopMoneyReceipt.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopOffice.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopNew.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptSampleNotesSheet.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptGrandNotesSheetSummary.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptGrandNotesSheet.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptFinlay2.rdlc" />
@@ -989,6 +989,7 @@
     <EmbeddedResource Include="R_32_Mis\RptTrailsBal3.rdlc" />
     <EmbeddedResource Include="R_32_Mis\RptTrialBalance2.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\rptActiveSimUser.rdlc" />
+    <EmbeddedResource Include="R_34_Mgt\RptOtherReqPrintFinlay.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqPrint.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqPrintSuvasto.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqStatusISBL.rdlc" />
@@ -996,6 +997,7 @@
     <EmbeddedResource Include="R_34_Mgt\RptReqAdjustment.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\UserLogDetails.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\UserLoginInfo.rdlc" />
+    <EmbeddedResource Include="R_38_AI\RptAIInvoicePrint.rdlc" />
     <EmbeddedResource Include="R_41_GAcc\RptProProgBillStatus.rdlc" />
     <EmbeddedResource Include="R_45_GrAcc\RptGrpMisRecPayment.rdlc" />
     <EmbeddedResource Include="R_47_Kpi\RptKeyResultArea.rdlc" />
@@ -1127,6 +1129,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryAssureTourism.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsAcmeAI.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryEpic - Copy.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryHOBTIPdf.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryHOBTIExcel.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryEpic.rdlc" />

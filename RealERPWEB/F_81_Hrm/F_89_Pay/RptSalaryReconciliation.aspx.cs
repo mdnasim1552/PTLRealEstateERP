@@ -59,7 +59,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             this.ddlMonth.DataValueField = "ymon";
             this.ddlMonth.DataSource = ds1.Tables[0];
             this.ddlMonth.DataBind();
-            this.ddlMonth.SelectedValue = System.DateTime.Today.AddMonths(-1).ToString("yyyyMM").Trim();
+            this.ddlMonth.SelectedValue = System.DateTime.Today.ToString("yyyyMM").Trim();
         }
         private void GetCompanyName()
         {

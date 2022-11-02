@@ -222,7 +222,8 @@ namespace RealERPWEB.F_17_Acc
 
             string comcod = this.GetCompCode();
             string filter1 = "%" + this.txtserchReCode.Text.Trim() + "%";
-            DataSet ds3 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETBILLNO", "", filter1, "", "", "", "", "", "", "");
+            DataSet ds3 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETSUPLILIST", "", filter1, "", "", "", "", "", "", "");
+           // DataSet ds3 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETBILLNO", "", filter1, "", "", "", "", "", "", "");
             if (ds3 == null)
             {
                 this.ddlresuorcecode.Items.Clear();
@@ -230,12 +231,12 @@ namespace RealERPWEB.F_17_Acc
 
             }
 
-            this.ddlresuorcecode.DataSource = ds3.Tables[1];
+            this.ddlresuorcecode.DataSource = ds3.Tables[0];
             this.ddlresuorcecode.DataTextField = "resdesc1";
             this.ddlresuorcecode.DataValueField = "rescode";
             this.ddlresuorcecode.DataBind();
             this.txtserchReCode.Text = "";
-            ViewState["tblbill"] = ds3.Tables[0];
+            //ViewState["tblbill"] = ds3.Tables[0];
             this.GetBillNo();
 
 
@@ -247,20 +248,33 @@ namespace RealERPWEB.F_17_Acc
         {
             try
             {
+                string comcod = this.GetCompCode();
+
                 string ssircode = this.ddlresuorcecode.SelectedValue.ToString();
                 string mrfno = "%" + this.txtserchBill.Text.Trim() + "%";
-                DataTable dt = ((DataTable)ViewState["tblbill"]).Copy();
-                DataView dv = dt.DefaultView;
-                dv.RowFilter = ("rescode='" + ssircode + "' and textfield like '" + mrfno + "'");
-                //this.ddlBillList.DataSource = dv.ToTable();
-                //this.ddlBillList.DataTextField = "textfield";
-                //this.ddlBillList.DataValueField = "billno";
-                //this.ddlBillList.DataBind();
+                //DataTable dt = ((DataTable)ViewState["tblbill"]).Copy();
+                //DataView dv = dt.DefaultView;
+                //dv.RowFilter = ("rescode='" + ssircode + "' and textfield like '" + mrfno + "'");
+                ////this.ddlBillList.DataSource = dv.ToTable();
+                ////this.ddlBillList.DataTextField = "textfield";
+                ////this.ddlBillList.DataValueField = "billno";
+                ////this.ddlBillList.DataBind(); 
+               
+                DataSet ds3 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETBILLSUPLILIST", ssircode, mrfno, "", "", "", "", "", "", "");
+                if (ds3 == null)
+                {
+                    this.DropCheck1.Items.Clear();
+                    return;
 
-                this.DropCheck1.DataSource = dv.ToTable();
+                }
+                 
+
+                this.DropCheck1.DataSource = ds3.Tables[0];
                 this.DropCheck1.DataTextField = "textfield";
                 this.DropCheck1.DataValueField = "billno";
                 this.DropCheck1.DataBind();
+
+                ViewState["tblbill"] = ds3.Tables[0];
             }
             catch (Exception ex)
             {
@@ -396,7 +410,7 @@ namespace RealERPWEB.F_17_Acc
 
                 }
                 this.PanelChk.Visible = false;
-                this.lblcurVounum.Text = "Current Voucher No.";
+                this.lblcurVounum.Text = "Current Vou No.";
                 this.txtcurrentvou.Text = "";
                 this.txtCurrntlast6.Text = "";
                 this.txtEntryDate.Enabled = true;

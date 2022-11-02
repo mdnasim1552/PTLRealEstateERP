@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptEstProfitloss.aspx.cs" Inherits="RealERPWEB.F_02_Fea.RptEstProfitloss" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptEstProfitloss.aspx.cs" Inherits="RealERPWEB.F_02_Fea.RptEstProfitloss" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -25,8 +25,8 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+            <div class="card mt-4">
+                <div class="card-body">
                     <div class="RealProgressbar">
                         <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
                             <ProgressTemplate>
@@ -45,12 +45,10 @@
                         </asp:UpdateProgress>
                     </div>
                     <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
-                                <div class="form-group">
+                        
 
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="lblPrjName" runat="server" CssClass="lblTxt lblName" Style="font-size: 11px;" Text="Project Name"></asp:Label>
+                                    <div class="col-md-3 pading5px asitCol3 d-none">
+                                       
                                         <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
 
                                         <div class="colMdbtn">
@@ -58,58 +56,61 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3 pading5px ">
-                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control inputTxt" TabIndex="3">
+                                         <asp:Label ID="lblPrjName" runat="server" CssClass="lblTxt lblName" Style="font-size: 11px;" Text="Project Name"></asp:Label>
+                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control form-control-sm inputTxt" TabIndex="3">
                                         </asp:DropDownList>
 
 
                                     </div>
 
-                                    <div class="col-md-3 pading5px">
-                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lnkbtnSerOk_Click" TabIndex="4">Ok</asp:LinkButton>
-                                        <asp:Label ID="lblCurDate" runat="server" CssClass="lblTxt lblDate " Text="Date"></asp:Label>
+                                    <div class="col-md-2">
+                                       
+                                        <asp:Label ID="lblCurDate" runat="server" CssClass="form-label" Text="Date"></asp:Label>
 
-                                        <asp:TextBox ID="txtCurDate" runat="server" CssClass="inputtextbox" TabIndex="5"></asp:TextBox>
+                                        <asp:TextBox ID="txtCurDate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtCurDate_CalendarExtender" runat="server"
                                             Format="dd-MMM-yyyy" TargetControlID="txtCurDate"></cc1:CalendarExtender>
                                     </div>
-
-
-                                    <div class="col-md-2 pull-right pading5px">
+                         
+                        <div class="col-md-1" style="margin-top:22px;">
+                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-sm btn-primary okBtn" OnClick="lnkbtnSerOk_Click" TabIndex="4">Ok</asp:LinkButton>
+                        </div>
+                                    <div class="col-md-2 pull-right pading5px d-none">
                                         <asp:Label ID="lblMsg" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
                                     </div>
-
-                                </div>
-                            </div>
+                        </div>
+                     <div class="row mt-2 mb-2">
+                              
                             <asp:Panel ID="PanelSelName" runat="server" Visible="false">
-                                <div class="from-group">
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <asp:Label ID="lblUnitNameid" runat="server" CssClass="lblTxt lblName" Text="Unit Name :"></asp:Label>
-                                            <asp:Label ID="lblUnitName" runat="server" CssClass="smLbl"></asp:Label>
-                                            <asp:Label ID="lblunitsize" runat="server" CssClass="lblTxt lblName" Text="Size :"></asp:Label>
-                                            <asp:Label ID="lblunitsizeval" runat="server" CssClass="smLbl" Font-Size="13px"></asp:Label>
+                                
+                                    
+                                        <div class="col-md-12" style="font-weight:bold; font-size:12px;">
+                                            <asp:Label ID="lblUnitNameid" runat="server" CssClass="form-label" Text="Unit Name :"></asp:Label>
+                                            <asp:Label ID="lblUnitName" runat="server" CssClass="form-label"></asp:Label>
+                                            <asp:Label ID="lblunitsize" runat="server" CssClass="form-label" Text="Size :"></asp:Label>
+                                            <asp:Label ID="lblunitsizeval" runat="server" CssClass="form-label"></asp:Label>
 
-                                            <asp:Label ID="lblrate1" runat="server" CssClass="lblTxt lblName" Text="Rate :"></asp:Label>
-                                            <asp:Label ID="lblrate" runat="server" CssClass="smLbl" Font-Size="13px"></asp:Label>
-
-
-                                            <asp:Label ID="lblpurdate" runat="server" Text="Purchase Date :" CssClass="lblTxt lblName"></asp:Label>
-                                            <asp:Label ID="lblpurdate1" runat="server" CssClass="smLbl" Width="100px"></asp:Label>
+                                            <asp:Label ID="lblrate1" runat="server" CssClass="form-label" Text="Rate :"></asp:Label>
+                                            <asp:Label ID="lblrate" runat="server" CssClass="form-label" ></asp:Label>
 
 
-
-                                            <asp:Label ID="lblPurValuse" runat="server" Text="Purchase Value :" CssClass="lblTxt lblName"></asp:Label>
-                                            <asp:Label ID="lblPurValuse1" runat="server" CssClass="smLbl" Font-Size="13px"></asp:Label>
+                                            <asp:Label ID="lblpurdate" runat="server" Text="Purchase Date :" CssClass="form-label"></asp:Label>
+                                            <asp:Label ID="lblpurdate1" runat="server" CssClass="form-label" Width="100px"></asp:Label>
 
 
 
-                                            <asp:Label ID="Label20" runat="server" CssClass="lblTxt lblName" Text="Target Sales Value/Price:" Width="250px"></asp:Label>
+                                            <asp:Label ID="lblPurValuse" runat="server" Text="Purchase Value :" CssClass="form-label"></asp:Label>
+                                            <asp:Label ID="lblPurValuse1" runat="server" CssClass="form-label" Font-Size="13px"></asp:Label>
 
-                                            <asp:Label ID="lblcommitedval" runat="server" CssClass="smLbl" Font-Size="13px"></asp:Label>
 
-                                    <asp:Label ID="lblactualsal" runat="server" CssClass="lblTxt lblName" Text="Today Sales Value/Price:" Width="250px"></asp:Label>
 
-                                            <asp:Label ID="lblactualsal1" runat="server" CssClass="smLbl" Font-Size="13px"></asp:Label>
+                                            <asp:Label ID="Label20" runat="server" CssClass="form-label ml-2" Text="Target Sales Value/Price:" Width="130px"></asp:Label>
+
+                                            <asp:Label ID="lblcommitedval" runat="server" CssClass="form-label" Font-Size="13px"></asp:Label>
+
+                                    <asp:Label ID="lblactualsal" runat="server" CssClass="form-label ml-2" Text="Today Sales Value/Price:" Width="130px"></asp:Label>
+
+                                            <asp:Label ID="lblactualsal1" runat="server" CssClass="form-label" Font-Size="13px"></asp:Label>
 
 
                                         </div>
@@ -125,14 +126,15 @@
 
                                         <%--<div class="col-md-2 pading5px">
                                 </div>--%>
-                                    </div>
-
-                                </div>
-
+                                    
 
                             </asp:Panel>
-                        </fieldset>
+                       
                     </div>
+                    </div>
+                </div>
+             <div class="card mt-4" style="min-height:480px;">
+                <div class="card-body">
                     <div class="row">
 
                         <div class="col-md-8">
@@ -175,7 +177,7 @@
 
                                             <asp:LinkButton ID="Calculation"
                                                 runat="server"
-                                                OnClick="llbtnCalculation_Click" CssClass="btn  btn-primary  primarygrdBtn">Calculation</asp:LinkButton>
+                                                OnClick="llbtnCalculation_Click" CssClass="btn btn-sm  btn-primary  primarygrdBtn">Calculation</asp:LinkButton>
                                         </FooterTemplate>
 
                                         <ItemTemplate>
@@ -217,7 +219,7 @@
                                         <FooterTemplate>
                                             <asp:LinkButton ID="lUpdatProInfo"
                                                 runat="server"
-                                                OnClick="lUpdatProInfo_Click" CssClass="btn btn-danger primarygrdBtn">Update</asp:LinkButton>
+                                                OnClick="lUpdatProInfo_Click" CssClass="btn btn-sm btn-danger primarygrdBtn">Update</asp:LinkButton>
                                         </FooterTemplate>
 
                                         <HeaderStyle

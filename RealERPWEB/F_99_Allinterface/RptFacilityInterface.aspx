@@ -518,9 +518,9 @@
                 </asp:UpdateProgress>
             </div>
 
-            <div class="card card-fluid">
+            <div class="card card-fluid mt-4">
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row ">
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label class="control-label  lblmargin-top9px" for="FromDate">From</label>
@@ -575,7 +575,12 @@
                         </div>
 
                     </div>
+                    </div>
+                </div>
+            <div class="card card-fluid">
+                <div class="card-body">
 
+                    
                     <div class="row">
                         <asp:Panel ID="pnlInterf" runat="server">
                             <div id="slSt" class=" col-md-12 ServProdInfo">

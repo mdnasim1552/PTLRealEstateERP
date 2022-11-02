@@ -51,17 +51,29 @@
             </div>
             <div class="card mt-4">
                 <div class="card-header">
-                    <div class="col-md-8">
+                    <div class="row">
+                    <div class=" col-md-2">
                         <div class="tbMenuWrp nav nav-tabs rptPurInt">
                             <asp:RadioButtonList ID="btnMyTasks" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" OnSelectedIndexChanged="btnMyTasks_SelectedIndexChanged">
 
                                 <asp:ListItem Value="2" Selected="True"><a class="nav-link" href="#">Board</a></asp:ListItem>
                                 
                                 <asp:ListItem Value="3"> <a class="nav-link" href="#">Files</a></asp:ListItem>
+                                
                             </asp:RadioButtonList>
                         </div>
+                     
                     </div>
-                    <div class="col-md-4">
+                           <div class="col-md-10" runat="server" id="mgtenplist" visible="false" >
+                            <asp:Label ID="Label3" CssClass="col-lg-1 col-form-label" runat="server">Employee List</asp:Label>
+                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                    <asp:DropDownList ID="ddemplist" runat="server" CssClass="form-control form-control-sm chzn-select" OnSelectedIndexChanged="ddemplist_SelectedIndexChanged" AutoPostBack="true">
+                                    </asp:DropDownList>
+                                </div>
+                        </div>
+                        </div>
+                    <div class="col-md-4"  >
+                        
                     </div>
                 </div>
 
@@ -238,7 +250,7 @@
                                                     <asp:TemplateField HeaderText="Start <br> date">
                                                         <ItemTemplate>
                                                             <asp:Label ID="tblcreatedate" runat="server" Width="80px"
-                                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "worktime")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "worktime")).ToString("dd-MMM-yyyy")%>'></asp:Label>
+                                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "worktime")).ToString("dd-MMM-yyyy hh:mm tt")=="01-Jan-1900"?"": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "worktime")).ToString("dd-MMM-yyyy")%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Assigned <br> QTY">

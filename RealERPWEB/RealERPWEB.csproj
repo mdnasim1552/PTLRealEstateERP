@@ -54,6 +54,9 @@
     <Reference Include="AspNet.ScriptManager.bootstrap">
       <HintPath>..\..\..\Doc\Lib\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery">
+      <HintPath>..\..\..\Doc\Lib\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
+    </Reference>
     <Reference Include="BilSimser.GeoJson">
       <HintPath>..\..\..\Doc\Lib\bin\BilSimser.GeoJson.dll</HintPath>
     </Reference>
@@ -96,22 +99,22 @@
       <HintPath>..\..\..\..\..\bin\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
     <Reference Include="DayPilot">
-      <HintPath>..\..\..\..\..\bin\DayPilot.dll</HintPath>
+      <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="DropCheck">
-      <HintPath>..\..\..\..\..\bin\DropCheck.dll</HintPath>
+      <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\DropCheck.dll</HintPath>
     </Reference>
     <Reference Include="EASendMail">
-      <HintPath>..\..\..\..\..\bin\EASendMail.dll</HintPath>
+      <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\EASendMail.dll</HintPath>
     </Reference>
     <Reference Include="FastMember">
-      <HintPath>..\..\..\..\..\bin\FastMember.dll</HintPath>
+      <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\FastMember.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71">
       <HintPath>..\..\..\..\..\bin\FlashControlV71.dll</HintPath>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
-      <HintPath>..\..\..\..\Backup\Projects\Project Reference\Real Estate Bin 211213\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
@@ -155,7 +158,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -2217,6 +2220,7 @@
     <Content Include="F_12_Inv\RptIndentIssueStatus.aspx" />
     <Content Include="F_12_Inv\RptIndentIssueStatusSummary.aspx" />
     <Content Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx" />
+    <Content Include="F_14_Pro\RptDateWiseBill.aspx" />
     <Content Include="F_14_Pro\RptPurOrderTopSheet.aspx" />
     <Content Include="F_14_Pro\RptSupAdvanceDetails.aspx" />
     <Content Include="F_17_Acc\AccIssueUpdate.aspx" />
@@ -2224,6 +2228,7 @@
     <Content Include="F_17_Acc\AccInterComVoucherDel.aspx" />
     <Content Include="F_17_Acc\RptOPPaymentTopSheet.aspx" />
     <Content Include="F_17_Acc\RptSupplierOvAllPSummary.aspx" />
+    <Content Include="F_21_MKT\AdvancedSearchFilter.aspx" />
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
     <Content Include="F_21_MKT\RptPerDeleteProspect.aspx" />
@@ -3086,6 +3091,7 @@
     <Content Include="F_81_Hrm\F_89_Pay\RptMonthWiseTax02.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptOvertimeSalary2.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx" />
+    <Content Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliationBonus.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalarySummary.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalSummary02.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalSummaryDetails.aspx" />
@@ -3117,6 +3123,7 @@
     <Content Include="F_81_Hrm\F_92_Mgt\DropDown2.PNG" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpAttApproval.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpHold.aspx" />
+    <Content Include="F_81_Hrm\F_92_Mgt\EmployeeListEpic.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpPro.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpStatus02.aspx" />
@@ -3170,6 +3177,7 @@
     <Content Include="F_99_Allinterface\HRInterfaceTopSheet.aspx" />
     <Content Include="F_99_Allinterface\HRMAllInOne.aspx" />
     <Content Include="F_99_Allinterface\InterfaceApprovalForm.aspx" />
+    <Content Include="F_99_Allinterface\MktNoteSheetInterface.aspx" />
     <Content Include="F_99_Allinterface\InventoryInterface.aspx" />
     <Content Include="F_99_Allinterface\KPIDashboard.aspx" />
     <Content Include="F_99_Allinterface\LandInterface_Land.aspx" />
@@ -4070,6 +4078,13 @@
     <Compile Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx.designer.cs">
       <DependentUpon>LinkRptPurchaseStatusUr.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_14_Pro\RptDateWiseBill.aspx.cs">
+      <DependentUpon>RptDateWiseBill.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\RptDateWiseBill.aspx.designer.cs">
+      <DependentUpon>RptDateWiseBill.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_14_Pro\RptPurOrderTopSheet.aspx.cs">
       <DependentUpon>RptPurOrderTopSheet.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4118,6 +4133,13 @@
     </Compile>
     <Compile Include="F_17_Acc\RptSupplierOvAllPSummary.aspx.designer.cs">
       <DependentUpon>RptSupplierOvAllPSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\AdvancedSearchFilter.aspx.cs">
+      <DependentUpon>AdvancedSearchFilter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\AdvancedSearchFilter.aspx.designer.cs">
+      <DependentUpon>AdvancedSearchFilter.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\LandProspectTransfer.aspx.cs">
       <DependentUpon>LandProspectTransfer.aspx</DependentUpon>
@@ -5218,6 +5240,13 @@
     <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx.designer.cs">
       <DependentUpon>RptSalaryReconciliation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliationBonus.aspx.cs">
+      <DependentUpon>RptSalaryReconciliationBonus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliationBonus.aspx.designer.cs">
+      <DependentUpon>RptSalaryReconciliationBonus.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\DeparmentCodeLink.aspx.cs">
       <DependentUpon>DeparmentCodeLink.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5231,6 +5260,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EmpAttApproval.aspx.designer.cs">
       <DependentUpon>EmpAttApproval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\EmployeeListEpic.aspx.cs">
+      <DependentUpon>EmployeeListEpic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\EmployeeListEpic.aspx.designer.cs">
+      <DependentUpon>EmployeeListEpic.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx.cs">
       <DependentUpon>EmpSettlement.aspx</DependentUpon>
@@ -5329,6 +5365,13 @@
     </Compile>
     <Compile Include="F_99_Allinterface\InterfaceApprovalForm.aspx.designer.cs">
       <DependentUpon>InterfaceApprovalForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\MktNoteSheetInterface.aspx.cs">
+      <DependentUpon>MktNoteSheetInterface.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\MktNoteSheetInterface.aspx.designer.cs">
+      <DependentUpon>MktNoteSheetInterface.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\MKTProInterface.aspx.cs">
       <DependentUpon>MKTProInterface.aspx</DependentUpon>

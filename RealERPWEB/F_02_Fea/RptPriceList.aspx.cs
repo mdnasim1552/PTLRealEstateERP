@@ -188,7 +188,7 @@ namespace RealERPWEB.F_02_Fea
             string pactcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "000000000000" : this.ddlProjectName.SelectedValue.ToString();
 
             DataSet ds2 = feaData.GetTransInfo(comcod, "SP_REPORT_FEA_PROFEASIBILITY", "RPTPRICELIST", pactcode, "", "", "", "", "", "", "", "");
-            if (ds2 == null)
+            if (ds2 == null || ds2.Tables[0].Rows.Count == 0)
             {
 
                 this.gvFeaPriceList.DataSource = null;

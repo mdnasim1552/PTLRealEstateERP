@@ -20,8 +20,54 @@ namespace RealERPWEB.F_38_AI
             if (!IsPostBack)
             {
                 ((Label)this.Master.FindControl("lblTitle")).Text = "My Tasks";
+                string type = Request.QueryString["Type"];
+                if(type == "MGT")
+                {
+                    this.mgtenplist.Visible = true;
+                }
+                this.GetEmployeeName();
                 btnMyTasks_SelectedIndexChanged(null, null);
+
             }
+        }
+
+
+        private void GetEmployeeName()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            string Uempid = hst["empid"].ToString();
+            string comcod = this.GetCompCode();
+            string company = "94%";
+            string projectName = "%";
+            string qtype = Request.QueryString["Type"].ToString();
+
+            string emp = Request.QueryString["EmpID"].ToString()==""?"": Request.QueryString["EmpID"].ToString();
+            string txtSEmployee = "%%";
+            DataSet ds3 = AIData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "GETEMPNAME", company, projectName, txtSEmployee, "", "", "", "", "", "");
+            if (ds3 == null)
+                return;
+
+            Session["tblempname"] = ds3.Tables[0];
+            DataTable dt2 = ds3.Tables[0];
+
+            DataView dv2 = dt2.DefaultView;
+            this.ddemplist.DataTextField = "empname";
+            this.ddemplist.DataValueField = "empid";
+            this.ddemplist.DataSource = dv2.ToTable();
+            this.ddemplist.DataBind();
+            if(emp.Length > 0 && qtype=="MGT")
+            {
+                this.ddemplist.SelectedValue = emp;
+
+            }
+            else
+            {
+                this.ddemplist.SelectedValue = Uempid;
+
+
+            }
+
         }
 
         protected void btnMyTasks_SelectedIndexChanged(object sender, EventArgs e)
@@ -61,7 +107,7 @@ namespace RealERPWEB.F_38_AI
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
-            string empid = hst["empid"].ToString();
+            string empid = this.ddemplist.SelectedValue.ToString();
 
             string comcod = this.GetCompCode();
             empid = this.Request.QueryString["empid"].ToString() == "" ? empid : this.Request.QueryString["empid"].ToString();
@@ -78,7 +124,8 @@ namespace RealERPWEB.F_38_AI
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
-            string empid = hst["empid"].ToString();
+            
+            string empid = this.ddemplist.SelectedValue.ToString();
 
             string comcod = this.GetCompCode();
             empid = this.Request.QueryString["empid"].ToString() == "" ? empid : this.Request.QueryString["empid"].ToString();
@@ -95,7 +142,8 @@ namespace RealERPWEB.F_38_AI
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
-            string empid = hst["empid"].ToString();
+            string empid = this.ddemplist.SelectedValue.ToString();
+
 
             string comcod = this.GetCompCode();
             empid = this.Request.QueryString["empid"].ToString() == "" ? empid : this.Request.QueryString["empid"].ToString();
@@ -144,7 +192,8 @@ namespace RealERPWEB.F_38_AI
                 string cdate = System.DateTime.Now.ToString("yyyy-MM-dd h:mm:ss tt");
                 string createuser = hst["usrid"].ToString();
                 string empid = hst["empid"].ToString();
-                string assignuser = this.Request.QueryString["empid"].ToString() == "" ? empid : this.Request.QueryString["empid"].ToString();
+                
+                string assignuser = this.ddemplist.SelectedValue.ToString();
 
                 string trackertype = "99204";// task wip
                 string doneqty = "0";
@@ -245,9 +294,9 @@ namespace RealERPWEB.F_38_AI
                     trackertype = this.holdstatus.Text.ToString().Trim();
                 }
                 string comcod = this.GetCompCode();
+                //jobid, assignuser, worktime, trackertype, doneqty, skipqty, remarks,holdreason,returnqty,rejectqty
 
-
-                bool resultb = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INSERTUPDATE_STARTTASK", jobid, assignuser, postdate, trackertype, doneqty, skipqty, remarks, holdreason, timeTkerID, returnqty, rejectqty);
+                bool resultb = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INSERTUPDATE_STARTTASK", jobid, assignuser, postdate, trackertype, doneqty, skipqty, remarks, holdreason, returnqty, rejectqty);
 
                 if (!resultb)
                 {
@@ -342,6 +391,10 @@ namespace RealERPWEB.F_38_AI
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HoldtaskNoteModal();", true);
         }
 
+        protected void ddemplist_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnMyTasks_SelectedIndexChanged(null, null);
 
+        }
     }
 }

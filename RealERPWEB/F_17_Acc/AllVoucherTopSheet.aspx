@@ -249,9 +249,11 @@
                     <div class="row">
 
                         <div class="col-md-10">
+                             
                             <div class="table-responsive">
-
-                                <asp:GridView ID="gvAccVoucher" runat="server" AutoGenerateColumns="False"
+                                 
+                               
+                                <asp:GridView ID="gvAccVoucher" runat="server" AutoGenerateColumns="False" PageSize="500"
                                     CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvAccVoucher_RowDataBound"
                                     ShowFooter="True" AllowSorting="True" OnSorting="gvAccVoucher_Sorting">
                                     <RowStyle />
@@ -427,7 +429,9 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="">
                                             <HeaderTemplate>
-                                                <asp:TextBox ID="txtSearusrname" BackColor="Transparent" BorderStyle="None" runat="server" Width="80px" placeholder="User Name" onkeyup="Search_Gridview(this,13)"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtSearusrname"  BackColor="Transparent" BorderStyle="None" runat="server" Width="80px" placeholder="User Name" onkeyup="Search_Gridview(this,13)"></asp:TextBox><br />
+
+
                                             </HeaderTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblogvusrname" runat="server" BackColor="Transparent"
@@ -461,7 +465,21 @@
 
 
 
+                                        <asp:TemplateField HeaderText="">
+                                            <HeaderTemplate>
+                                                <asp:CheckBox ID="checkTopPrintAll" runat="server" Checked="false" AutoPostBack="True" OnCheckedChanged="checkTopPrint_CheckedChanged" />
 
+                                            </HeaderTemplate>
+                                            <ItemTemplate>
+                                                <asp:CheckBox ID="checkPrint" runat="server" Checked="false" CssClass="input-control" Text="" />
+
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+
+                                                
+                                            </FooterTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
                                     </Columns>
                                     <FooterStyle CssClass="grvFooter" />
                                     <EditRowStyle />

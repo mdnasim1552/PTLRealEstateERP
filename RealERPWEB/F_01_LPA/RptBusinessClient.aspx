@@ -3,25 +3,44 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <div class="card card-fluid">
-        <div class="card-body" style="min-height: 600px;">
-            <div class="row" style="padding-top: 15px">
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <div class="RealProgressbar">
+                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
+                    <ProgressTemplate>
+                        <div id="loader">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="lading"></div>
+                        </div>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+            </div>
+    <div class="card mt-4">
+        <div class="card-body" >
+            <div class="row mb-2">
                 <div class="col-md-1">
 
 
-                    <asp:DropDownList ID="ddlyearland" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" TabIndex="2" OnSelectedIndexChanged="ddlyearland_SelectedIndexChanged">
+                    <asp:DropDownList ID="ddlyearland" runat="server" CssClass="custom-select chzn-select form-control form-control-sm" AutoPostBack="true" TabIndex="2" OnSelectedIndexChanged="ddlyearland_SelectedIndexChanged">
                     </asp:DropDownList>
                 </div>
                 <div class="col-md-1">
                     <div class="form-group">
-                        <asp:DropDownList ID="ddlSmsMail" runat="server" OnSelectedIndexChanged="ddlSmsMail_SelectedIndexChanged" AutoPostBack="True" CssClass="form-control">
+                        <asp:DropDownList ID="ddlSmsMail" runat="server" OnSelectedIndexChanged="ddlSmsMail_SelectedIndexChanged" AutoPostBack="True" CssClass="form-control form-control-sm">
                             <asp:ListItem Value="01">SMS</asp:ListItem>
                             <asp:ListItem Value="02">Mail</asp:ListItem>
                         </asp:DropDownList>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <asp:DropDownList ID="ddlSMSMAILTEMP" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlSMSMAILTEMP_SelectedIndexChanged" CssClass="form-control">
+                    <asp:DropDownList ID="ddlSMSMAILTEMP" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlSMSMAILTEMP_SelectedIndexChanged" CssClass="form-control form-control-sm">
                     </asp:DropDownList>
 
                 </div>
@@ -31,18 +50,23 @@
                 </div>
 
                 <div class="col-md-1">
-                    <asp:LinkButton ID="lnkSend" runat="server" CssClass="btn btn-success btn-sm" OnClick="lnkSend_Click" Text="Send"></asp:LinkButton>
+                    <asp:LinkButton ID="lnkSend" runat="server" CssClass="btn btn-sm btn-success btn-sm" OnClick="lnkSend_Click" Text="Send"></asp:LinkButton>
 
                 </div>
 
             </div>
+            </div>
+        </div>
+    <div class="card mt-4" style="min-height:480px">
+        <div class="card-body" >
+            <div class="row mb-4">
 
             <asp:GridView ID="gvSummary" runat="server" AutoGenerateColumns="False"
                 ShowFooter="True" CssClass="table-condensed table-hover table-bordered grvContentarea">
                 <RowStyle />
                 <Columns>
 
-                    <asp:TemplateField HeaderText="Sl">
+                    <asp:TemplateField HeaderText="Sl #">
                         <ItemTemplate>
                             <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True"
                                 Style="text-align: right"
@@ -195,5 +219,8 @@
             </asp:GridView>
         </div>
     </div>
+       </div>
+             </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>
 

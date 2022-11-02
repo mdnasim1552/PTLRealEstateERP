@@ -749,7 +749,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Entitlement">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblgvlentitled0" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "permonth")).ToString("#,##0;(#,##0); ") %>'
+                                                        <asp:Label ID="lblgvlentitled0" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "permonth")).ToString("#,##0.0;(#,##0); ") %>'
                                                             Width="80px"></asp:Label>
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" />
@@ -758,7 +758,7 @@
 
                                                 <asp:TemplateField HeaderText="Enjoyed">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblgvlentitled01" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ltaken")).ToString("#,##0;(#,##0); ") %>'
+                                                        <asp:Label ID="lblgvlentitled01" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ltaken")).ToString("#,##0.0;(#,##0.0); ") %>'
                                                             Width="40px"></asp:Label>
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" />
@@ -766,7 +766,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Balance">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblgvlentitled1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pbal")).ToString("#,##0;(#,##0); ") %>'
+                                                        <asp:Label ID="lblgvlentitled1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pbal")).ToString("#,##0.0;(#,##0.0); ") %>'
                                                             Width="60px"></asp:Label>
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" />

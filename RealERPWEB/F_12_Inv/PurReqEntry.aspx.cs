@@ -471,6 +471,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3352":
                 case "3368":
                 case "3367":
+                case "3101":
                     if (Request.QueryString["InputType"].ToString() == "IndentEntry" || ASTUtility.Left(this.ddlProject.SelectedValue.ToString(), 2) == "11")
                     {
 
@@ -1460,6 +1461,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3101":
                 case "3366": // lanco
                 case "3367": // epic
+                case "3368": // finaly
                     if (_deptcode == "AAAAAAAAAAAA")
                     {
                         isReq = true;
@@ -1653,10 +1655,28 @@ namespace RealERPWEB.F_12_Inv
                         // case "3101":
                         // case "3338": //ACME
                         case "3348": //Credence
+                            break;
+
+                        case "3101": //EPic
                         case "3367": //EPic
-                                     //case "3101": //EPic
-                                     //case "3368": //Finlay
-                                     //  case "3101": //Model
+                            if (pactcode == "11020099" && approval == "")
+                            {
+                                this.CreateDataTable();
+                                DataTable dt = (DataTable)ViewState["tblapproval"];
+                                DataRow dr1 = dt.NewRow();
+                                dr1["fappid"] = usrid;
+                                dr1["fappdat"] = Date;
+                                dr1["fapptrmid"] = trmnid;
+                                dr1["fappseson"] = session;
+                                dr1["sappid"] = usrid;
+                                dr1["sappdat"] = Date;
+                                dr1["sapptrmid"] = trmnid;
+                                dr1["sappseson"] = session;
+                                dt.Rows.Add(dr1);
+                                ds1.Merge(dt);
+                                ds1.Tables[0].TableName = "tbl1";
+                                approval = ds1.GetXml();
+                            }
                             break;
 
                         default:

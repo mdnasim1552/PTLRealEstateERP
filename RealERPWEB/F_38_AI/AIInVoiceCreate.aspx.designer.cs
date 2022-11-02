@@ -60,15 +60,6 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.Label Label7;
 
         /// <summary>
-        /// vldtxtInvoice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator vldtxtInvoice;
-
-        /// <summary>
         /// txtInvoiceno control.
         /// </summary>
         /// <remarks>
@@ -78,22 +69,13 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.TextBox txtInvoiceno;
 
         /// <summary>
-        /// Label11 control.
+        /// txtInvoiceno2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label11;
-
-        /// <summary>
-        /// txtinvoicedate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtinvoicedate;
+        protected global::System.Web.UI.WebControls.TextBox txtInvoiceno2;
 
         /// <summary>
         /// Label12 control.
@@ -222,6 +204,15 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.TextBox txtrate;
 
         /// <summary>
+        /// ddlcurency control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlcurency;
+
+        /// <summary>
         /// Label6 control.
         /// </summary>
         /// <remarks>
@@ -231,13 +222,13 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.Label Label6;
 
         /// <summary>
-        /// TextBox1 control.
+        /// txtsubjects control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtsubjects;
 
         /// <summary>
         /// lnkbtnok control.
@@ -247,5 +238,32 @@ namespace RealERPWEB.F_38_AI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnok;
+
+        /// <summary>
+        /// gv_AIInvoice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_AIInvoice;
+
+        /// <summary>
+        /// Label10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label10;
+
+        /// <summary>
+        /// txtNarration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtNarration;
     }
 }

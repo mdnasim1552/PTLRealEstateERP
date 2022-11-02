@@ -33,6 +33,7 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public string acno { get; set; }
             public double amt { get; set; }            
             public string desig { get; set; }
+            public string routing { get; set; }
 
         }
 
