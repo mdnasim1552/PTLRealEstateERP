@@ -549,7 +549,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         ddlgval.DataValueField = "gcod";
                         ddlgval.DataSource = dv1.ToTable();
                         ddlgval.DataBind();
-                        ddlgval.SelectedValue = gdesc1 == "" ? "29001" : ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                        ddlgval.SelectedValue = gdesc1 == "" ? "28001" : ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvVal")).Text.Trim();
                         break;
 
 
