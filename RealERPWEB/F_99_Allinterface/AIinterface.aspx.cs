@@ -326,20 +326,22 @@ namespace RealERPWEB.F_99_Allinterface
                 DataView view = new DataView();
                 DataView view1 = new DataView();
                 DataView view2 = new DataView();
-
                 view.Table = ds.Tables[0];
-                view1.Table = ds.Tables[0];
-                view1.RowFilter = " roletype<>'95001' and roletype='95002'";
-                dt1 = view1.ToTable();
-                this.gv_QCQA.DataSource = dt1;
-                this.gv_QCQA.DataBind();
-
-
                 view.RowFilter = " roletype='95001'";
                 dt1 = view.ToTable();
                 this.gv_Production.DataSource = dt1;
                 this.gv_Production.DataBind();
 
+
+                
+                view1.Table = ds.Tables[0];
+                view1.RowFilter = "roletype='95002'";
+                dt1 = view1.ToTable();
+                this.gv_QCQA.DataSource = dt1;
+                this.gv_QCQA.DataBind();
+
+
+                
                 view2.Table = ds.Tables[0];
                 view2.RowFilter = "roletype='95003'";
                 dt1 = view2.ToTable();
@@ -349,7 +351,7 @@ namespace RealERPWEB.F_99_Allinterface
                 DataTable dt2 = new DataTable();
                 DataView view3 = new DataView();
                 view3.Table = ds.Tables[0];
-                view3.RowFilter = "roletype<>'95001' and roletype<>'95003' and trackertype <>'99220' and doneqty >'0' ";
+                view3.RowFilter = "roletype='95002' and doneqty >'0' ";
                 dt1 = view3.ToTable();
                 this.gv_AcceptReject.DataSource = dt1;
                 this.gv_AcceptReject.DataBind();

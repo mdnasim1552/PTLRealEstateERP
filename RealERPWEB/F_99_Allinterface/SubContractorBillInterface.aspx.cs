@@ -76,7 +76,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-                //case "3101":
+                case "3370": // cpdl
                 case "1205":
                 case "3351":
                 case "3352":
@@ -98,7 +98,7 @@ namespace RealERPWEB.F_99_Allinterface
         private void CheckHyperLink()
         {
             string comcod = this.GetCompCode();
-            if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "8306" || comcod == "3101")
+            if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "8306" || comcod == "3370" || comcod == "3101")
             {
                 hlnkworkorder.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Entry&genno=" + "SubConOrder";
             }
@@ -1725,7 +1725,7 @@ namespace RealERPWEB.F_99_Allinterface
                 {
 
 
-                    //case "3101":   //ASIT                      
+                    case "3370":   //cpdl                      
                     case "1205":   //p2p
                     case "3351":   //p2p
                     case "3352":   //p2p
