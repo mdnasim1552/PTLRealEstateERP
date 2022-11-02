@@ -516,9 +516,21 @@
                         //case 3355:   //greenwood
 
                         $(".tbMenuWrp table tr td:nth-child(3)").show();
+                        $(".tbMenuWrp table tr td:nth-child(8)").hide(); // 9 - for billApproval
                         $(".tbMenuWrp table tr td:nth-child(11)").hide();
                         $(".tbMenuWrp table tr td:nth-child(12)").hide();
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
+                        $('#<%=this.txtrefno.ClientID%>').prop('readonly', false);
+                        break;
+
+                    case 3370:   //cpdl
+
+                        $(".tbMenuWrp table tr td:nth-child(3)").show();
+                        $(".tbMenuWrp table tr td:nth-child(11)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(12)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(13)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(9)").hide(); // 9 - for billApproval
+
                         $('#<%=this.txtrefno.ClientID%>').prop('readonly', false);
                         break;
 
@@ -528,13 +540,12 @@
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(9)").hide(); // 9 - for billApproval
+
                         break;
 
                     case 3101:   //ASIT
                     case 3368: // Finlay
-
-                        $(".tbMenuWrp table tr td:nth-child(1)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(2)").hide();
                         //$(".tbMenuWrp table tr td:nth-child(3)").hide();
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
@@ -550,7 +561,7 @@
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
                         $(".tbMenuWrp table tr td:nth-child(6)").hide();
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(8)").hide(); // 8 - for billApproval
+                        $(".tbMenuWrp table tr td:nth-child(9)").hide(); // 9 - for billApproval
                         $(".tbMenuWrp table tr td:nth-child(11)").hide();
                         $(".tbMenuWrp table tr td:nth-child(12)").hide();
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
