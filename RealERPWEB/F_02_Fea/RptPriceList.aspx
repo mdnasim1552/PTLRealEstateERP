@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptPriceList.aspx.cs" Inherits="RealERPWEB.F_02_Fea.RptPriceList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptPriceList.aspx.cs" Inherits="RealERPWEB.F_02_Fea.RptPriceList" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -42,41 +42,52 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
-                    <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
-                                <div class="form-group">
+            <div class="card mt-4">
+                <div class="card-body">
+                    <div class="row mb-4">
+                      
+                          
+                                
 
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="lblPrjName" runat="server" CssClass="lblTxt lblName" Style="font-size: 11px;" Text="Project Name"></asp:Label>
+                                    <div class="col-md-3 d-none">
+                                       
                                         <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
 
 
                                         <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                     </div>
-                                    <div class="col-md-4 pading5px ">
-                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control inputTxt" TabIndex="3">
+                                    <div class="col-md-3 pading5px ">
+                                         <asp:Label ID="lblPrjName" runat="server" CssClass="lblTxt lblName" Style="font-size: 11px;" Text="Project Name"></asp:Label>
+                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control " TabIndex="3">
                                         </asp:DropDownList>
 
 
                                     </div>
 
-                                    <div class="col-md-1 pading5px">
+                                   
+
+                                    <div class="col-md-2 asitCol3 pading5px">
+
+                                        <asp:Label ID="Label13" runat="server" CssClass="form-label"
+                                            Text="Date:"></asp:Label>
+
+
+                                        <asp:TextBox ID="txtDate" runat="server" CssClass="form-control from-control-sm" TabIndex="5"></asp:TextBox>
+                                        <cc1:CalendarExtender ID="txtDate_CalendarExtender" runat="server"
+                                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
+                                    </div>
+                                <div class="col-md-1 pading5px" style="margin-top:22px;">
+
                                         <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lnkbtnSerOk_Click" TabIndex="4">Ok</asp:LinkButton>
 
                                     </div>
-
-
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="lblPage" runat="server" Text="Size:" CssClass="lblName lblTxt"></asp:Label>
+                        
+                                    <div class="col-md-1 pading5px asitCol3">
+                                        <asp:Label ID="lblPage" runat="server" Text="Size:" CssClass="form-label"></asp:Label>
 
                                         <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True"
-                                            OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" CssClass="ddlPage"
+                                            OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" CssClass="form-control from-control-sm"
                                             TabIndex="4">
                                             <asp:ListItem Value="10">10</asp:ListItem>
                                             <asp:ListItem Value="20">20</asp:ListItem>
@@ -89,18 +100,8 @@
                                         </asp:DropDownList>
 
                                     </div>
-                                    <div class="col-md-3 asitCol3 pading5px">
-
-                                        <asp:Label ID="Label13" runat="server" CssClass=" smLbl_to"
-                                            Text="Date:"></asp:Label>
-
-
-                                        <asp:TextBox ID="txtDate" runat="server" CssClass="inputDateBox" TabIndex="5"></asp:TextBox>
-                                        <cc1:CalendarExtender ID="txtDate_CalendarExtender" runat="server"
-                                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
-                                    </div>
-                                </div>
                             </div>
+                    
                     </div>
                     <asp:MultiView ID="MultiView1" runat="server">
                             <asp:View ID="ViewPrice1" runat="server">
