@@ -169,7 +169,7 @@ namespace RealERPWEB
         private void getclientdata()
         {
             string comcod = this.GetCompCode();
-            if (comcod == "3368")
+            if (comcod == "3368" || comcod=="3367")
             {
 
             this.pnlClientMrrdayFinlay.Visible = true;
