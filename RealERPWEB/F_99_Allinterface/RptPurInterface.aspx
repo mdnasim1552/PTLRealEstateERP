@@ -3832,8 +3832,6 @@
                                                         ShowFooter="True" OnRowDataBound="gvPurBill_RowDataBound">
                                                         <RowStyle />
                                                         <Columns>
-
-
                                                             <asp:TemplateField HeaderText="Sl">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvDSlNo" runat="server" Font-Bold="True" Style="text-align: right"
@@ -3906,8 +3904,6 @@
 
 
                                                             <asp:TemplateField HeaderText="MRR Ref">
-
-
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvmrrref" runat="server" Font-Bold="True" Style="text-align: left"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrrref"))%>' Width="80px"></asp:Label>
@@ -3917,14 +3913,19 @@
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
+                                                            <asp:TemplateField HeaderText="Chalan No" Visible="false">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvchlnno" runat="server" Font-Bold="True" Style="text-align: left"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chlnno"))%>' Width="80px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
 
                                                             <asp:TemplateField HeaderText="Order No">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvorderno1" runat="server" Font-Bold="True" Style="text-align: left"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "orderno1"))%>' Width="80px"></asp:Label>
-
                                                                 </ItemTemplate>
-
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
@@ -3932,7 +3933,6 @@
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvreqno1" runat="server" Font-Bold="True" Style="text-align: left"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno1"))%>' Width="80px"></asp:Label>
-
                                                                 </ItemTemplate>
 
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />

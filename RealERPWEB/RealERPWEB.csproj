@@ -2207,6 +2207,7 @@
     <Content Include="F_09_PImp\SubConPrjWiseBilldetails.aspx" />
     <Content Include="F_09_PImp\SubContracBillTracking.aspx" />
     <Content Include="F_12_Inv\AllIndentIsuList.aspx" />
+    <Content Include="F_12_Inv\IndentMaterialRequired.aspx" />
     <Content Include="F_12_Inv\LinkMatReceipt.aspx" />
     <Content Include="F_12_Inv\LinkMatSpeciStock.aspx" />
     <Content Include="F_12_Inv\LinkMktSurvey.aspx" />
@@ -4049,6 +4050,13 @@
     </Compile>
     <Compile Include="F_09_PImp\SubContracBillTracking.aspx.designer.cs">
       <DependentUpon>SubContracBillTracking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_12_Inv\IndentMaterialRequired.aspx.cs">
+      <DependentUpon>IndentMaterialRequired.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_12_Inv\IndentMaterialRequired.aspx.designer.cs">
+      <DependentUpon>IndentMaterialRequired.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_12_Inv\PurReqEntry.aspx.cs">
       <DependentUpon>PurReqEntry.aspx</DependentUpon>

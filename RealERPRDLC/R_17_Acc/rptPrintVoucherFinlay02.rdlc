@@ -1364,9 +1364,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox28</rd:DefaultName>
             <Top>2.42334in</Top>
-            <Left>3.80084in</Left>
+            <Left>3.77584in</Left>
             <Height>0.1875in</Height>
-            <Width>1.95708in</Width>
+            <Width>1.83208in</Width>
             <ZIndex>3</ZIndex>
             <Visibility>
               <Hidden>=Len(Parameters!txtcheckby.Value)=0</Hidden>
@@ -1410,7 +1410,7 @@
             <Top>2.42334in</Top>
             <Left>0.0625in</Left>
             <Height>0.1875in</Height>
-            <Width>1.53in</Width>
+            <Width>1.705in</Width>
             <ZIndex>4</ZIndex>
             <Visibility>
               <Hidden>=Len(Parameters!txtpreby.Value)=0</Hidden>
@@ -1449,78 +1449,10 @@
             </Paragraphs>
             <rd:DefaultName>printFooter</rd:DefaultName>
             <Top>2.7in</Top>
-            <Left>2.58902in</Left>
-            <Height>0.1875in</Height>
-            <Width>5.15973in</Width>
-            <ZIndex>5</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox8">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Prepared By</Value>
-                    <Style>
-                      <FontStyle>Normal</FontStyle>
-                      <FontFamily>cambria</FontFamily>
-                      <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
-                      <Color>#000000</Color>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox8</rd:DefaultName>
-            <Top>2.7in</Top>
             <Left>0.0625in</Left>
             <Height>0.1875in</Height>
-            <Width>0.81125in</Width>
-            <ZIndex>6</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox9">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!username.Value</Value>
-                    <Style>
-                      <FontFamily>Cambria</FontFamily>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox8</rd:DefaultName>
-            <Top>2.7in</Top>
-            <Left>0.86972in</Left>
-            <Height>0.1875in</Height>
-            <Width>1.69153in</Width>
-            <ZIndex>7</ZIndex>
+            <Width>7.68625in</Width>
+            <ZIndex>5</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1552,10 +1484,10 @@
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>2.42334in</Top>
-            <Left>6.05375in</Left>
+            <Left>5.74542in</Left>
             <Height>0.1875in</Height>
-            <Width>1.67584in</Width>
-            <ZIndex>8</ZIndex>
+            <Width>1.98417in</Width>
+            <ZIndex>6</ZIndex>
             <Visibility>
               <Hidden>=Len(Parameters!txtauthorizeby.Value)=0</Hidden>
             </Visibility>
@@ -1593,10 +1525,10 @@
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>2.42334in</Top>
-            <Left>1.78416in</Left>
+            <Left>1.90916in</Left>
             <Height>0.1875in</Height>
             <Width>1.67584in</Width>
-            <ZIndex>9</ZIndex>
+            <ZIndex>7</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1604,6 +1536,74 @@
               <TopBorder>
                 <Style>Dotted</Style>
               </TopBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="signapp">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!signapp.Value</Value>
+                    <Style>
+                      <FontFamily>Cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>signapp</rd:DefaultName>
+            <Top>2.16499in</Top>
+            <Left>5.75792in</Left>
+            <Height>0.23057in</Height>
+            <Width>1.97167in</Width>
+            <ZIndex>8</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="signprep">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!signprep.Value</Value>
+                    <Style>
+                      <FontFamily>Cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>signprep</rd:DefaultName>
+            <Top>2.16499in</Top>
+            <Left>0.0625in</Left>
+            <Height>0.23057in</Height>
+            <Width>1.705in</Width>
+            <ZIndex>9</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -2017,11 +2017,23 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="signapp">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="signprep">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>2</NumberOfColumns>
-      <NumberOfRows>9</NumberOfRows>
+      <NumberOfRows>10</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -2107,6 +2119,16 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>8</RowIndex>
           <ParameterName>txtaprvby1</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>8</RowIndex>
+          <ParameterName>signapp</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>9</RowIndex>
+          <ParameterName>signprep</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
