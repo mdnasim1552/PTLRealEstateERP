@@ -456,6 +456,15 @@ namespace RealERPWEB
         protected global::System.Web.UI.HtmlControls.HtmlAnchor prjdash;
 
         /// <summary>
+        /// AnalysisArea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AnalysisArea;
+
+        /// <summary>
         /// dbGraph control.
         /// </summary>
         /// <remarks>
@@ -465,13 +474,13 @@ namespace RealERPWEB
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dbGraph;
 
         /// <summary>
-        /// PrjSummary control.
+        /// allGraph control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor PrjSummary;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor allGraph;
 
         /// <summary>
         /// MenuDynamic control.
