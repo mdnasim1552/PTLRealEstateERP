@@ -408,7 +408,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         }
                         break;
                     case "3354":
-              
+
+            
+
                         if (ahleave == "A" && iscancel == "False")
                         {
                             ((Label)e.Item.FindControl("lblactualout")).Visible = false;
@@ -417,6 +419,16 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = applyReq == "" ? true : false;
                             ((HyperLink)e.Item.FindControl("hyplnkApplyLv")).Visible = applyReq == "" ? true : false;
 
+
+
+                        }
+                        else if ((offimein < actualin) && lateapp == "False" && iscancel == "False")
+                        {
+                            ((Label)e.Item.FindControl("lblactualout")).Attributes["style"] = "font-weight:bold; color:red;";
+                            ((Label)e.Item.FindControl("lblactualin")).Attributes["style"] = "font-weight:bold; color:red;";
+                            ((Label)e.Item.FindControl("lbldtimehour")).Attributes["style"] = "font-weight:bold; color:red;";
+                            ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = applyReq == "" ? true : false;
+                            ((HyperLink)e.Item.FindControl("hyplnkApplyLv")).Visible = applyReq == "" ? true : false;
 
 
                         }
