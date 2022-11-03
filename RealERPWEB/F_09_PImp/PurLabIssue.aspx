@@ -499,8 +499,6 @@
 
 
                                     <asp:TemplateField HeaderText="Total Qty" Visible="False">
-
-
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvtoisuqty" runat="server" Font-Size="11px"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "toqty")).ToString("#,##0.0000;-#,##0.0000; ") %>'
@@ -512,6 +510,7 @@
 
 
                                     <asp:TemplateField HeaderText="Rate">
+
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtlabrate" runat="server" Font-Size="11px"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "isurat")).ToString("#,##0.000;(#,##0.000); ") %>'

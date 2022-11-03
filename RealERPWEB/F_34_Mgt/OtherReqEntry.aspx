@@ -149,11 +149,11 @@
                                 OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                         </div>
                         <div class="col-md-2">
-                            <asp:Label ID="lbldep" runat="server" CssClass="lblName lblTxt"  Text="Department"></asp:Label>
-                         
-                            <asp:DropDownList ID="ddlDeptCode" runat="server" CssClass="form-control chzn-select" >
+                            <asp:Label ID="lbldep" runat="server" CssClass="lblName lblTxt" Text="Department"></asp:Label>
+
+                            <asp:DropDownList ID="ddlDeptCode" runat="server" CssClass="form-control chzn-select">
                             </asp:DropDownList>
-                           
+
                         </div>
                         <div class="col-md-2">
                             <asp:Label ID="Label5" CssClass="lblTxt lblName" runat="server">Print Type:</asp:Label>
@@ -174,14 +174,14 @@
                         <div class="col-md-2">
                             <asp:LinkButton ID="lbtnPrevReqList" runat="server" CssClass="lblName lblTxt" OnClick="lbtnPrevReqList_Click" Text="Prev Req"></asp:LinkButton>
                             <asp:TextBox ID="txtSrchMrfNo" runat="server" TabIndex="2" CssClass="inputtextbox" Visible="false"></asp:TextBox>
-                         
+
                             <asp:DropDownList ID="ddlPrevReqList" runat="server" CssClass="form-control chzn-select" TabIndex="3">
                             </asp:DropDownList>
                             <asp:Label ID="lblmsg1" runat="server" CssClass="btn btn-danger primaryBtn" Visible="false"></asp:Label>
                         </div>
 
 
-                       
+
                     </div>
                 </div>
             </div>
@@ -592,9 +592,15 @@
                                     <asp:Label ID="lblReqNarr" runat="server" CssClass="lblTxt lblName" Text="Narration:"></asp:Label>
                                     <asp:TextBox ID="txtReqNarr" runat="server" class="form-control" Rows="3" TextMode="MultiLine"></asp:TextBox>
                                 </div>
-                                <asp:LinkButton ID="lbtnUpdateResReq" runat="server" Font-Bold="True" CssClass="btn btn-danger primaryBtn"
-                                    Font-Size="12px" ForeColor="White" OnClick="lbtnUpdateResReq_Click" Style="margin-top: 20px">Final Update</asp:LinkButton>
-                                <div class="clearfix"></div>
+                                <div class="col-md-1">
+                                    <asp:LinkButton ID="lbtnUpdateResReq" runat="server" Font-Bold="True" CssClass="btn btn-danger primaryBtn"
+                                        Font-Size="12px" ForeColor="White" OnClick="lbtnUpdateResReq_Click" Style="margin-top: 20px">Final Update</asp:LinkButton>
+                                </div>
+                                <div class="col-md-1">
+                                    <asp:LinkButton ID="lbtnOreqChecked" runat="server" Font-Bold="True" CssClass="btn btn-danger primaryBtn"  Visible="false"
+                                        Font-Size="12px" ForeColor="White" OnClick="lbtnOreqChecked_Click" Style="margin-top: 20px">Checked</asp:LinkButton>
+                                </div>
+
                             </div>
 
                         </asp:Panel>
@@ -608,10 +614,12 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-8 ">
-                                    <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName" Text="Mode Of Payment:"></asp:Label>
-                                    <asp:TextBox ID="mofpay" runat="server" class="form-control" Rows="3" TextMode="MultiLine" Style="margin-bottom: 20px"></asp:TextBox>
-                                </div>
+                                <asp:Panel ID="pnlmodpay" runat="server">
+                                    <div class="col-md-8 ">
+                                        <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName" Text="Mode Of Payment:"></asp:Label>
+                                        <asp:TextBox ID="mofpay" runat="server" class="form-control" Rows="3" TextMode="MultiLine" Style="margin-bottom: 20px"></asp:TextBox>
+                                    </div>
+                                </asp:Panel>
                             </div>
 
                         </asp:Panel>

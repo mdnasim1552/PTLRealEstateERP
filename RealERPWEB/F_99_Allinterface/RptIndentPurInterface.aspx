@@ -729,7 +729,7 @@
                         break;
 
                     case 3368:  //Finlay
-                    case 3101:
+                    //case 3101:
                  
 
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
@@ -747,7 +747,7 @@
                         break;
 
                     case 3366:
-                   
+
 
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check                    
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
@@ -761,7 +761,21 @@
                         $(".tbMenuWrp table tr td:nth-child(18)").hide();
                         $(".tbMenuWrp table tr td:nth-child(20)").hide();
                         $(".tbMenuWrp table tr td:nth-child(21)").hide();
+                        break;
 
+                    case 3367:  //Epic  
+                   // case 3101:  //Epic
+
+                        $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check      
+                        //$(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
+                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(8)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(9)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(13)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(14)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(16)").hide();//Received Approval
+                        // $(".tbMenuWrp table tr td:nth-child(18)").hide(); 
+                        break;
 
                     default:
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check                    

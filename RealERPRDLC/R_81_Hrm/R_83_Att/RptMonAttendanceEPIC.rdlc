@@ -613,6 +613,10 @@
           <DataField>late</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="levded">
+          <DataField>levded</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="mtl">
           <DataField>mtl</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -661,7 +665,7 @@
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_81_Hrm.C_83_Att</rd:DataSetName>
         <rd:TableName>RptMntAttenReport</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL+RptMntAttenReport, RealERPEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL+RptMntAttenReport, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -1229,7 +1233,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -2045,24 +2048,26 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox41">
+                        <Textbox Name="levded">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!levded.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox41</rd:DefaultName>
+                          <rd:DefaultName>levded</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>

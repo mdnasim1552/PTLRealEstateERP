@@ -1390,10 +1390,6 @@ namespace RealERPWEB.F_09_PImp
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
 
-
-
-
-
             int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
 
@@ -1633,9 +1629,14 @@ namespace RealERPWEB.F_09_PImp
 
             }
             this.txtCurISSDate.Enabled = false;
-
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            if (this.BillApprovalCompwise(mISUNO))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Data Updated Failed" + "');", true);
+                return;
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Data Updated successfully" + "');", true);
+            //((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
+            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
             if (ConstantInfo.LogStatus == true)
             {
                 string eventtype = "Labour Issue Information";
@@ -1649,7 +1650,31 @@ namespace RealERPWEB.F_09_PImp
         }
 
 
+        private bool BillApprovalCompwise(string _issuno)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string usrid = hst["usrid"].ToString();
+            string session = hst["session"].ToString();
+            string trmnid = hst["compname"].ToString();
+            string comcod = hst["comcod"].ToString();
+            string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+            bool isFailed = false;
+            switch (comcod)
+            {
+                case "3101":
+                case "3368":
+                    break;
 
+                default:
+                    bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "ISSUEAPPROVEDAUTO", _issuno, usrid, Date, trmnid, session, "", "", "", "", "", "", "", "", "", "");
+                    if (!result)
+                    {
+                        isFailed = true;
+                    }
+                    break;
+            }
+            return isFailed;
+        }
         private void SaveValue()
         {
             ((Label)this.Master.FindControl("lblmsg")).Text = "";

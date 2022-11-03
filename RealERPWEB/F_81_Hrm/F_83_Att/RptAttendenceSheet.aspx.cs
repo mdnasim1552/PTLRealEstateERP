@@ -667,6 +667,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         this.DelaisAttinfo.Visible = false;
                         this.SummaryAttinfo.Visible = true;
 
+                        this.gvMonthlyattSummary.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                         this.gvMonthlyattSummary.DataSource = dt;
                         this.gvMonthlyattSummary.DataBind();
                         if (dt.Rows.Count == 0)
@@ -2091,6 +2092,16 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 this.GetEmpName();
             }
            
+        }
+
+        protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.Data_Bind();
+        }
+
+        protected void gvMonthlyattSummary_PageIndexChanging1(object sender, GridViewPageEventArgs e)
+        {
+            this.gvMonthlyattSummary.PageIndex = e.NewPageIndex;
         }
     }
 }

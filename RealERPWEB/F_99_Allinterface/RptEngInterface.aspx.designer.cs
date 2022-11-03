@@ -132,6 +132,24 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.GridView gvReqInfo;
 
         /// <summary>
+        /// PnlReqChecked control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PnlReqChecked;
+
+        /// <summary>
+        /// gvReqCheck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvReqCheck;
+
+        /// <summary>
         /// pnlPendapp control.
         /// </summary>
         /// <remarks>
@@ -148,7 +166,7 @@ namespace RealERPWEB.F_99_Allinterface
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvPenApproval;
-
+         
         /// <summary>
         /// pnlfrec control.
         /// </summary>

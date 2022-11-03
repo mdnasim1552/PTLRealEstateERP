@@ -516,8 +516,10 @@ public partial class RptProjectCollBrkDown : System.Web.UI.Page
             string rescode = Request.QueryString["rescode"].ToString().Trim();
             string spcfcode = "%";
 //20210822 dev by uzzal
-            pactcode = ASTUtility.Left(rescode, 2) == "97" ? "23" + ASTUtility.Right(pactcode, 10) :  (ASTUtility.Left(rescode, 2) == "98" || ASTUtility.Left(rescode, 2) == "99") ?
-            "26" + ASTUtility.Right(pactcode, 10) : pactcode;
+            pactcode = ASTUtility.Left(rescode, 2) == "97" ? "23" + ASTUtility.Right(pactcode, 10)
+                : ASTUtility.Left(rescode, 2) == "95" ? "13" + ASTUtility.Right(pactcode, 10)
+                : (ASTUtility.Left(rescode, 2) == "98" || ASTUtility.Left(rescode, 2) == "99") ? "26" + ASTUtility.Right(pactcode, 10) 
+                : pactcode;
 
 
             DataSet ds2 = MisData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_LG", "ACCOUNTSLEDGERSUB", pactcode, date1, date2, rescode, "", "", "", "", spcfcode);

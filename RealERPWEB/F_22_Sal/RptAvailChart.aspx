@@ -1,10 +1,30 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptAvailChart.aspx.cs" Inherits="RealERPWEB.F_22_Sal.RptAvailChart" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptAvailChart.aspx.cs" Inherits="RealERPWEB.F_22_Sal.RptAvailChart" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
+
+        });
+        function pageLoaded() {
+
+            //$(".pop").on("click", function () {
+            //    $('#imagepreview').attr('src', $(this).attr('src')); // here asign the image to the modal when the user click the enlarge link
+            //    $('#imagemodal').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
+            //});
+            $('.chzn-select').chosen({ search_contains: true });
+        }
+
+    </script>
+    <style type="text/css">
+        .table th, .table td{
+            padding: 4px;
+        }
+    </style>
 
     <div class="RealProgressbar">
         <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
@@ -23,38 +43,36 @@
             </ProgressTemplate>
         </asp:UpdateProgress>
     </div>
-    <div class="container moduleItemWrpper">
-        <div class="contentPart">
-            <div class="row">
-                <fieldset class="scheduler-border fieldset_A">
+    <div class="card mt-4">
+        <div class="card-body">
+            <div class="row mb-4">
+               
 
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <div class="col-md-5 pading5px asitCol5">
-
-                                <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName" Text="Project Name:"></asp:Label>
+                   
+                            <div class="col-md-5 pading5px asitCol5 d-none">
 
                                 <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputtextbox inputTxt"></asp:TextBox>
                                 <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
-
-                                <asp:DropDownList ID="ddlProjectName" CssClass="form-control" Width="284px" runat="server" Font-Bold="True">
+                            </div>
+                <div class="col-md-3">
+                       <asp:Label ID="Label4" runat="server" CssClass="form-lable" Text="Project Name:"></asp:Label>
+                     <asp:DropDownList ID="ddlProjectName" CssClass="chzn-select form-control" runat="server" Font-Bold="True">
                                 </asp:DropDownList>
 
-
-                            </div>
-                            <div class="col-md-1 pading5px">
+                </div>
+                            <div class="col-md-1" style="margin-top:22px;">
                                 <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary primaryBtn"
                                     OnClick="lnkbtnSerOk_Click">Ok</asp:LinkButton>
                             </div>
 
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-2 asitCol2 pading5px">
+                        
+                       
+                            <div class="col-md-1">
 
-                                <asp:Label ID="lblPage" runat="server" CssClass="lblTxt lblName" Text="Size:"></asp:Label>
+                                <asp:Label ID="lblPage" runat="server" CssClass="form-label" Text="Size:"></asp:Label>
 
-                                <asp:DropDownList ID="ddlpagesize" CssClass="ddlPage" runat="server" AutoPostBack="True"
+                                <asp:DropDownList ID="ddlpagesize" CssClass="form-control from-control-sm" runat="server" AutoPostBack="True"
                                     OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Width="70px">
                                     <asp:ListItem Value="10">10</asp:ListItem>
                                     <asp:ListItem Value="20">20</asp:ListItem>
@@ -70,14 +88,17 @@
 
                             </div>
 
-                            <div class="col-md-4 asitCol4 pading5px pull-left">
-                                <asp:Label ID="Label5" runat="server" CssClass="smLbl_to"
+                            <div class="col-md-4" style="margin-top:22px;">
+                                <asp:Label ID="Label5" runat="server" CssClass="form-label"
                                     Text="Sold:-Red Color, MgtBooking:- Blue Color "></asp:Label>
                             </div>
                         </div>
-                    </div>
-                </fieldset>
-                <div class="table table-responsive">
+            </div>
+        </div>
+    <div class="card" style="min-height:480px">
+        <div class="card-body">
+            <div class="row">
+                 <div class="table table-responsive">
                     <asp:GridView ID="gvAailChart" runat="server" AutoGenerateColumns="False"
                         ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
                         OnRowDataBound="gvAailChart_RowDataBound">
@@ -165,7 +186,7 @@
                             <asp:TemplateField HeaderText="Unit">
                                 <ItemTemplate>
                                     <asp:Label ID="lgUnitn" runat="server" AutoCompleteType="Disabled"
-                                        BackColor="Transparent" BorderStyle="None"
+                                        BackColor="Transparent" BorderStyle="None" Font-Size="11px"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "munit")) %>'
                                         Width="50px"></asp:Label>
                                 </ItemTemplate>
@@ -281,9 +302,11 @@
 
                     </asp:GridView>
                 </div>
-            </div>
+                </div>
         </div>
-    </div>
+    </div>    
+               
+            
 
 
 </asp:Content>

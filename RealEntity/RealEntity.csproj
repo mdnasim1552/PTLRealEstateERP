@@ -114,6 +114,7 @@
     <Compile Include="C_34_Mgt\SalPurAccCombo.cs" />
     <Compile Include="C_34_Mgt\SalPurAccComboManager.cs" />
     <Compile Include="C_35_MgtAct\EClassMisOverall.cs" />
+    <Compile Include="C_38_AI\AIallPrint.cs" />
     <Compile Include="C_39_MyPage\EClassMIS.cs" />
     <Compile Include="C_39_MyPage\EClassMyPage.cs" />
     <Compile Include="C_39_MyPage\UserManagerMyPage.cs" />
@@ -222,6 +223,7 @@
     <None Include="Properties\DataSources\RealEntity.C_24_CC.RptClientModification.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_32_Mis.EClassAcc_03+RptProjectAnalysis.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_34_Mgt.EClassEnventory+RequisationAdjust.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_38_AI.AIallPrint+InvoicePrint.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL+EmpMnthAttendence.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL+EmpMnthAttn.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+BonusSheet.datasource" />

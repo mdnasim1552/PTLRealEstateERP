@@ -339,24 +339,6 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblcoffTotal;
 
         /// <summary>
-        /// lbltxtcoffbookinmpercnt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbltxtcoffbookinmpercnt;
-
-        /// <summary>
-        /// txtcoffbookinmpercnt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtcoffbookinmpercnt;
-
-        /// <summary>
         /// lbltxtvalcoffbookingam control.
         /// </summary>
         /// <remarks>
@@ -366,13 +348,13 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbltxtvalcoffbookingam;
 
         /// <summary>
-        /// lblvalcoffbookingam control.
+        /// txtcoffbookingam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvalcoffbookingam;
+        protected global::System.Web.UI.WebControls.TextBox txtcoffbookingam;
 
         /// <summary>
         /// lblcoffBookingdat control.
@@ -859,5 +841,23 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField lblhiddenbnoemi;
+
+        /// <summary>
+        /// lblhiddenfvpersft control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField lblhiddenfvpersft;
+
+        /// <summary>
+        /// lblhiddenpvpersft control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField lblhiddenpvpersft;
     }
 }

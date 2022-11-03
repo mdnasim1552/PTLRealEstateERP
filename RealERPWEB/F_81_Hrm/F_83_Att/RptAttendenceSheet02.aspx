@@ -547,7 +547,7 @@
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
                                     <PagerStyle CssClass="gvPagination" />
-                                    <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" />
+                                    <HeaderStyle BackColor="#5F9467"  />
                                 </asp:GridView>
                             </div>
 
@@ -964,7 +964,7 @@
                                         </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="Pesent">
+                                        <asp:TemplateField HeaderText="Pesent" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblPresent" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "present")).ToString("#,##0; ")
                                              %>'
@@ -977,6 +977,15 @@
                                         <asp:TemplateField HeaderText="Late">
                                             <ItemTemplate>
                                                 <asp:Label ID="lbllate" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "late")).ToString("#,##0; ")
+                                             %>'
+                                                    Font-Size="11px"></asp:Label>
+                                            </ItemTemplate>
+                                             <ItemStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+
+                                               <asp:TemplateField HeaderText="Late<br> Deduction" HeaderStyle-HorizontalAlign="Center">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbllevded" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "levded")).ToString("#,##0; ")
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
@@ -1001,7 +1010,7 @@
                                              <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Holiday">
+                                        <asp:TemplateField HeaderText="Holiday" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblholiday" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "holyday")).ToString("#,##0; ")
                                              %>'
@@ -1010,7 +1019,7 @@
                                              <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Leave">
+                                        <asp:TemplateField HeaderText="Leave" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblleave" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tleav")).ToString("#,##0; ")
                                              %>'
@@ -1019,20 +1028,21 @@
                                              <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Total">
+                                        <asp:TemplateField HeaderText="Total <br> Deduction" HeaderStyle-HorizontalAlign="Center">
                                             <ItemTemplate>
-                                                <asp:Label ID="lbltotal" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tpayable")).ToString("#,##0; ")
+                                                <asp:Label ID="lbltotal" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tpayable")).ToString("#,##0.0; ")
                                              %>'
-                                                    Font-Size="11px"></asp:Label>
+                                                    Font-Size="11px" ></asp:Label>
                                             </ItemTemplate>
                                              <ItemStyle HorizontalAlign="Center" />
+                                            
                                         </asp:TemplateField>
                                     </Columns>
                                     <FooterStyle BackColor="#F5F5F5" />
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
                                     <PagerStyle CssClass="gvPagination" />
-                                    <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" />
+                                    <HeaderStyle BackColor="#5F9467" />
                                 </asp:GridView>
 
                                 <fieldset class="scheduler-border fieldset_A" id="StatusReport" runat="server" visible="false">

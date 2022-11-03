@@ -1057,6 +1057,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.gvEmpList.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvEmpList.DataSource = dt;
                     this.gvEmpList.DataBind();
+                    if (this.GetCompCode() == "3354")
+                    {
+                        this.gvEmpList.Columns[12].Visible = false;
+                    }
+                   
 
 
                     if (dt.Rows.Count > 0)

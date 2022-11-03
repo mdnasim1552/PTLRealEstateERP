@@ -2393,10 +2393,14 @@ namespace RealERPWEB.F_04_Bgd
 
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated fail";
+                ((Label)this.Master.FindControl("lblmsg")).Text = bgdData.ErrorObject["Msg"].ToString();
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                 return;
+                //((Label)this.Master.FindControl("lblmsg")).Text = "Updated fail";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //return;
             }
+
             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
         }

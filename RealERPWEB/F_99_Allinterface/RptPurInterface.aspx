@@ -645,7 +645,7 @@
                         $(".tbMenuWrp table tr td:nth-child(16)").hide();
                         $(".tbMenuWrp table tr td:nth-child(18)").hide();
                         break;
-                  
+
                     case 1103:   //Tanvir
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
@@ -721,7 +721,7 @@
 
 
                     case 3367:  //Epic  
-                    //case 3101:  //Epic
+                        //case 3101:  //Epic
 
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check      
                         //$(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
@@ -731,14 +731,14 @@
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
                         $(".tbMenuWrp table tr td:nth-child(16)").hide();//Received Approval
-                       // $(".tbMenuWrp table tr td:nth-child(18)").hide(); 
+                        // $(".tbMenuWrp table tr td:nth-child(18)").hide(); 
                         break;
 
 
                     case 3366:  //Lanco
-                   // case 3101:
+                        // case 3101:
 
-                      
+
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check                    
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
@@ -748,7 +748,7 @@
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
                         $(".tbMenuWrp table tr td:nth-child(16)").hide();//Received Approval
-                       // $(".tbMenuWrp table tr td:nth-child(18)").hide();
+                        // $(".tbMenuWrp table tr td:nth-child(18)").hide();
                         break;
 
                     default:
@@ -1012,7 +1012,6 @@
                                                         <RowStyle />
                                                         <Columns>
 
-
                                                             <asp:TemplateField HeaderText="Sl">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvDSlNo" runat="server" Font-Bold="True" Style="text-align: right"
@@ -1040,11 +1039,19 @@
                                                                     <asp:Label ID="lnkgvreqrat1" runat="server"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqdat1")) %>'
                                                                         Width="70px"></asp:Label>
-
-
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
+
+                                                            <asp:TemplateField HeaderText="Req Entry <br>   Date">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lnkgvreqentrydat" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "posteddat")) %>'
+                                                                        Width="120px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+
 
                                                             <asp:TemplateField HeaderText="Req. No">
                                                                 <ItemTemplate>
@@ -1059,10 +1066,8 @@
                                                             <asp:TemplateField HeaderText="">
 
                                                                 <HeaderTemplate>
-                                                                    <asp:TextBox ID="txtSearchrefnum" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" onkeyup="Search_Gridview(this,4,'gvReqInfo')"></asp:TextBox><br />
-
+                                                                    <asp:TextBox ID="txtSearchrefnum" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" onkeyup="Search_Gridview(this,5,'gvReqInfo')"></asp:TextBox><br />
                                                                 </HeaderTemplate>
-
                                                                 <ItemTemplate>
 
                                                                     <asp:HyperLink ID="hlnkgvgvmrfno" runat="server" BorderStyle="none"
@@ -3827,8 +3832,6 @@
                                                         ShowFooter="True" OnRowDataBound="gvPurBill_RowDataBound">
                                                         <RowStyle />
                                                         <Columns>
-
-
                                                             <asp:TemplateField HeaderText="Sl">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvDSlNo" runat="server" Font-Bold="True" Style="text-align: right"
@@ -3901,8 +3904,6 @@
 
 
                                                             <asp:TemplateField HeaderText="MRR Ref">
-
-
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvmrrref" runat="server" Font-Bold="True" Style="text-align: left"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrrref"))%>' Width="80px"></asp:Label>
@@ -3912,14 +3913,19 @@
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
+                                                            <asp:TemplateField HeaderText="Chalan No" Visible="false">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvchlnno" runat="server" Font-Bold="True" Style="text-align: left"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chlnno"))%>' Width="80px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
 
                                                             <asp:TemplateField HeaderText="Order No">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvorderno1" runat="server" Font-Bold="True" Style="text-align: left"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "orderno1"))%>' Width="80px"></asp:Label>
-
                                                                 </ItemTemplate>
-
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
@@ -3927,7 +3933,6 @@
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvreqno1" runat="server" Font-Bold="True" Style="text-align: left"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno1"))%>' Width="80px"></asp:Label>
-
                                                                 </ItemTemplate>
 
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />

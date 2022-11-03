@@ -108,13 +108,12 @@
                     <div class="row">
                         <fieldset class="scheduler-border fieldset_A">
                             <div class="form-horizontal">
-
+                               
                                 <div class="form-group">
-                                    <div class="col-md-3 asitCol3 pading5px">
-
+                                    <div class="col-md-3 asitCol3 pading5px">                                   
                                         <asp:RadioButtonList ID="rbtnList1" runat="server" BackColor="#BBBB99" CssClass="rbtnList1"
-                                            RepeatColumns="6"
-                                            RepeatDirection="Horizontal" Style="text-align: left" Width="700px"
+                                            RepeatColumns="7"
+                                            RepeatDirection="Horizontal" Style="text-align: left" Width="800px"
                                             Visible="False">
                                             <asp:ListItem>With Post Dated</asp:ListItem>
                                             <asp:ListItem>Current Dated</asp:ListItem>
@@ -122,6 +121,8 @@
                                             <asp:ListItem>Collection Statement</asp:ListItem>
                                             <asp:ListItem>Entry Date </asp:ListItem>
                                             <asp:ListItem>Cheque In Hand </asp:ListItem>
+                                            <asp:ListItem>Cash In Hand </asp:ListItem>
+
 
 
                                         </asp:RadioButtonList>
@@ -129,6 +130,7 @@
                                     </div>
 
                                 </div>
+                                    
                                 <div class="form-group">
 
                                     <div class="col-md-3 asitCol3 pading5px">

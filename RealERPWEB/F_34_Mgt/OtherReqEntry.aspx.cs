@@ -61,7 +61,8 @@ namespace RealERPWEB.F_34_Mgt
                 this.BundleVisiable();
 
 
-                if ((Request.QueryString["Type"].ToString() == "OreqPrint") || (Request.QueryString["Type"].ToString() == "OreqApproved") || (Request.QueryString["Type"].ToString() == "FirstRecom") || (Request.QueryString["Type"].ToString() == "SecRecom") || (Request.QueryString["Type"].ToString() == "ThirdRecom") || (Request.QueryString["Type"].ToString() == "FinalAppr"))
+                if ((Request.QueryString["Type"].ToString() == "OreqPrint") || (Request.QueryString["Type"].ToString() == "OreqApproved") || (Request.QueryString["Type"].ToString() == "FirstRecom") || (Request.QueryString["Type"].ToString() == "SecRecom") || (Request.QueryString["Type"].ToString() == "ThirdRecom")
+                        || (Request.QueryString["Type"].ToString() == "FinalAppr") || (Request.QueryString["Type"].ToString() == "OreqChecked"))
                 {
                     this.lbtnPrevReqList_Click(null, null);
                     this.lbtnOk_Click(null, null);
@@ -70,6 +71,7 @@ namespace RealERPWEB.F_34_Mgt
                         this.lbtnUpdateResReq.Visible = false;
                         this.RequisitionPrint();
                     }
+                    this.lbtnCheckedCompShow();
                 }
                 this.GetRecAndPayto();
                 this.RbtnPrint.SelectedIndex = 0;
@@ -77,7 +79,27 @@ namespace RealERPWEB.F_34_Mgt
             }
         }
 
+        private void lbtnCheckedCompShow()
+        {
+            if (Request.QueryString["Type"].ToString() == "OreqChecked")
+            {
+                string comcod = this.GetCompCode();
+                switch (comcod)
+                {
+                    case "3101":
+                    case "3368":
+                        this.lbtnOreqChecked.Visible = true;
+                        this.lbtnUpdateResReq.Visible = false;
+                        break;
 
+                    default:
+                        this.lbtnOreqChecked.Visible = false;
+                        this.lbtnUpdateResReq.Visible = true;
+                        break;
+                }
+            }
+
+        }
 
         private void BundleVisiable()
         {
@@ -91,6 +113,13 @@ namespace RealERPWEB.F_34_Mgt
                     this.idattnper.Visible = true;
                     break;
 
+                case "3101":
+                case "3368":
+                    this.pnltermmpay.Visible = true;
+                    this.pnlmodpay.Visible = false;
+                    this.idattnper.Visible = false;
+                    break;
+
                 default:
                     this.pnltermmpay.Visible = false;
                     this.idattnper.Visible = false;
@@ -99,7 +128,7 @@ namespace RealERPWEB.F_34_Mgt
             }
         }
 
-        private void GetComAdvanceorAdjust()  
+        private void GetComAdvanceorAdjust()
         {
             string comcod = this.GetCompCode();
             switch (comcod)
@@ -231,7 +260,7 @@ namespace RealERPWEB.F_34_Mgt
         }
         private void ViewComponent()
         {
-            if ((Request.QueryString["Type"].ToString() == "OreqApproved") || (Request.QueryString["Type"].ToString() == "FinalAppr") || (Request.QueryString["Type"].ToString() == "OreqAcc") || (Request.QueryString["Type"].ToString() == "OreqPrint"))
+            if ((Request.QueryString["Type"].ToString() == "OreqChecked") || (Request.QueryString["Type"].ToString() == "OreqApproved") || (Request.QueryString["Type"].ToString() == "FinalAppr") || (Request.QueryString["Type"].ToString() == "OreqAcc") || (Request.QueryString["Type"].ToString() == "OreqPrint"))
             {
                 this.lblMatGroup.Visible = false;
                 this.ddlMatGrp.Visible = false;
@@ -596,7 +625,7 @@ namespace RealERPWEB.F_34_Mgt
             //this.lblrescodeadj.Visible = false;
             //this.ddlSupplier.Visible = false;
 
-            if ((Request.QueryString["Type"].ToString() == "OreqApproved") || (Request.QueryString["Type"].ToString() == "FinalAppr") || (Request.QueryString["Type"].ToString() == "OreqPrint") || (Request.QueryString["Type"].ToString() == "OreqAcc"))
+            if ((Request.QueryString["Type"].ToString() == "OreqChecked") || (Request.QueryString["Type"].ToString() == "OreqApproved") || (Request.QueryString["Type"].ToString() == "FinalAppr") || (Request.QueryString["Type"].ToString() == "OreqPrint") || (Request.QueryString["Type"].ToString() == "OreqAcc"))
             {
 
                 //this.Panel1.Visible=(Request.QueryString["Type"].ToString() =="OreqAcc")?false:true;
@@ -695,6 +724,7 @@ namespace RealERPWEB.F_34_Mgt
             {
                 case "3336":
                 case "3337":
+                case "3368":
                     Tramncon = "TramnconSuvato";
                     break;
 
@@ -781,7 +811,7 @@ namespace RealERPWEB.F_34_Mgt
                 }
 
 
-                if (Request.QueryString["Type"].ToString() == "OreqApproved" || Request.QueryString["Type"].ToString() == "FinalAppr" || Request.QueryString["Type"].ToString() == "OreqPrint")
+                if (Request.QueryString["Type"].ToString() == "OreqChecked" || Request.QueryString["Type"].ToString() == "OreqApproved" || Request.QueryString["Type"].ToString() == "FinalAppr" || Request.QueryString["Type"].ToString() == "OreqPrint")
                 {
                     if (ds1.Tables[0].Rows.Count > 0)
                     {
@@ -810,11 +840,6 @@ namespace RealERPWEB.F_34_Mgt
                         this.txtReqNarr.Text = "";
                     else
                         this.txtReqNarr.Text = comcod == "1103" ? "" : ds4.Tables[0].Rows[0]["vernar"].ToString();
-
-
-
-
-
 
                     return;
                 }
@@ -1142,7 +1167,7 @@ namespace RealERPWEB.F_34_Mgt
             }
         }
 
-        private void OtherReqPrintGen() 
+        private void OtherReqPrintGen()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = GetCompCode();
@@ -1342,19 +1367,30 @@ namespace RealERPWEB.F_34_Mgt
             double tAmt = lst.Select(p => p.proamt).Sum();
 
             LocalReport Rpt1 = new LocalReport();
-            if (comcod == "3336" || comcod == "3337" || comcod == "3101")
+            switch (comcod)
             {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqPrintSuvasto", lst, lst1, null);
-                Rpt1.EnableExternalImages = true;
-                Rpt1.SetParameters(new ReportParameter("firmnam", "M/S: " + payto));
-                Rpt1.SetParameters(new ReportParameter("payto", attnper)); 
-            }
-            else
-            {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqPrint", lst, lst1, null);
-                Rpt1.EnableExternalImages = true;
-                Rpt1.SetParameters(new ReportParameter("firmnam", "M/S: " + firmnam));
-                Rpt1.SetParameters(new ReportParameter("payto", payto));
+                case "3336":
+                case "3337":
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqPrintSuvasto", lst, lst1, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("firmnam", "M/S: " + payto));
+                    Rpt1.SetParameters(new ReportParameter("payto", attnper));
+                    break;
+
+                case "3101":
+                case "3368":
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqPrintFinlay", lst, lst1, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("firmnam", "M/S: " + payto));
+                    Rpt1.SetParameters(new ReportParameter("payto", attnper));
+                    break;
+
+                default:
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqPrint", lst, lst1, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("firmnam", "M/S: " + firmnam));
+                    Rpt1.SetParameters(new ReportParameter("payto", payto));
+                    break;
             }
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("Attn", "Attn: " + Attn));
@@ -1435,8 +1471,6 @@ namespace RealERPWEB.F_34_Mgt
 
         private string GetReqApproval(string approval)
         {
-
-
             string type = this.Request.QueryString["Type"];
             string comcod = this.GetCompCode();
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -1453,7 +1487,6 @@ namespace RealERPWEB.F_34_Mgt
                 case "OreqApproved":
                     switch (comcod)
                     {
-
                         case "1103":
                         case "1102"://IBCEL
                             break;
@@ -1461,8 +1494,6 @@ namespace RealERPWEB.F_34_Mgt
                         default:
                             if (approval == "")
                             {
-
-
                                 this.CreateDataTable();
                                 DataTable dt = (DataTable)ViewState["tblapproval"];
                                 DataRow dr1 = dt.NewRow();
@@ -1484,14 +1515,8 @@ namespace RealERPWEB.F_34_Mgt
                                 ds1.Merge(dt);
                                 ds1.Tables[0].TableName = "tbl1";
                                 approval = ds1.GetXml();
-
                             }
-
-
-
-
                             break;
-
                     }
 
                     break;
@@ -1502,12 +1527,9 @@ namespace RealERPWEB.F_34_Mgt
 
                     if (approval == "")
                     {
-
-
                         this.CreateDataTable();
                         DataTable dt = (DataTable)ViewState["tblapproval"];
                         DataRow dr1 = dt.NewRow();
-
                         dr1["frecid"] = usrid;
                         dr1["frecdat"] = Date;
                         dr1["frectrmid"] = trmnid;
@@ -1524,12 +1546,10 @@ namespace RealERPWEB.F_34_Mgt
                         ds1.Merge(dt);
                         ds1.Tables[0].TableName = "tbl1";
                         approval = ds1.GetXml();
-
                     }
 
                     else
                     {
-
                         xmlSR = new System.IO.StringReader(approval);
                         ds1.ReadXml(xmlSR);
                         ds1.Tables[0].TableName = "tbl1";
@@ -1546,12 +1566,6 @@ namespace RealERPWEB.F_34_Mgt
                         ds1.Tables[0].Rows[0]["threctrmid"] = "";
                         ds1.Tables[0].Rows[0]["threcseson"] = "";
                         approval = ds1.GetXml();
-
-
-
-
-
-
                     }
 
                     break;
@@ -1591,8 +1605,6 @@ namespace RealERPWEB.F_34_Mgt
                             break;
 
 
-
-
                     }
 
 
@@ -1611,16 +1623,8 @@ namespace RealERPWEB.F_34_Mgt
                     ds1.Tables[0].Rows[0]["threcseson"] = session;
                     approval = ds1.GetXml();
                     break;
-
-
-
-
-
             }
-
-
             return approval;
-
         }
 
 
@@ -1727,17 +1731,16 @@ namespace RealERPWEB.F_34_Mgt
             string payofmod = this.mofpay.Text.ToString();
             string deptcode = this.ddlDeptCode.SelectedValue.ToString();
             supcode = (supcode.Trim() == "" ? "000000000000" : supcode);
-            supcode = (type == "OreqApproved" || type == "FinalAppr" ? dtuser.Rows[0]["supcode"].ToString() : supcode);
+            supcode = (type == "OreqChecked" || type == "OreqApproved" || type == "FinalAppr" ? dtuser.Rows[0]["supcode"].ToString() : supcode);
 
             DataTable tbl1 = (DataTable)Session["tblReq"];
             bool result = true;
             string adjcod = this.ddlactcode.SelectedValue.ToString();
             string bundleno = this.ddlBundle.SelectedValue.ToString().Trim();
-            // Mandatory Field 
 
+            // Mandatory Field 
             switch (comcod)
             {
-
                 case "3336":
                 case "3337":
                     if (payto.Trim().Length == 0)
@@ -1760,21 +1763,29 @@ namespace RealERPWEB.F_34_Mgt
                             ((Label)this.Master.FindControl("lblmsg")).Text = "Please Fillup Bill No/Purpose Field !!!";
                             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                             return;
-
                         }
-
                     }
-
-
                     break;
-
                 default:
                     break;
 
 
             }
+            // todo for other req checked 
+            string chckid = "", checkdat = "";
+            switch (comcod)
+            {
+                case "3368":
+                case "3101":
+                    chckid = "";
+                    checkdat = "01-Jan-1900";
+                    break;
 
-
+                default:
+                    chckid = PostedByid;
+                    checkdat = posteddat;
+                    break;
+            }
 
 
             //if (comcod == "3336")
@@ -1814,9 +1825,9 @@ namespace RealERPWEB.F_34_Mgt
                 {
                     result = purData.UpdateTransInfo01(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "INSERTOTHERREQ",
                              mREQNO, mPACTCODE, mRSIRCODE, mREQDAT, mMRFNO, mProAMT.ToString(), mAPPAMT.ToString(), nARRATION,
-                             PostedByid, PostSession, Posttrmid, ApprovByid, approvdat, Approvtrmid, ApprovSession, qty.ToString(), paytype, payto, 
-                             ppdamt.ToString(), posteddat, supcode, spcfcod, adjcod, type, termncon, payofmod, bundleno, billno, bankcode, refnum, Approval, 
-                             advanced , attnper, deptcode);
+                             PostedByid, PostSession, Posttrmid, ApprovByid, approvdat, Approvtrmid, ApprovSession, qty.ToString(), paytype, payto,
+                             ppdamt.ToString(), posteddat, supcode, spcfcod, adjcod, type, termncon, payofmod, bundleno, billno, bankcode, refnum, Approval,
+                             advanced, attnper, deptcode, chckid, checkdat);
                 }
                 if (!result)
                 {
@@ -1954,9 +1965,6 @@ namespace RealERPWEB.F_34_Mgt
                             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                             return;
                         }
-
-
-
                         break;
 
 
@@ -1974,9 +1982,6 @@ namespace RealERPWEB.F_34_Mgt
                             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                             return;
                         }
-
-
-
                         break;
 
 
@@ -1991,18 +1996,8 @@ namespace RealERPWEB.F_34_Mgt
 
 
 
-
-
-
-
-
-
-
             ((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-
-
-
 
             if (hst["compsms"].ToString() == "True")
             {
@@ -2309,10 +2304,6 @@ namespace RealERPWEB.F_34_Mgt
                 double Proamt = Convert.ToDouble('0' + ((TextBox)this.gvOtherReq.Rows[i].FindControl("txtgvProposedamt")).Text.Trim());
                 double appamt = Convert.ToDouble('0' + ((TextBox)this.gvOtherReq.Rows[i].FindControl("txtgvApamt")).Text.Trim());
                 string billno = ((TextBox)this.gvOtherReq.Rows[i].FindControl("txtgvBillno")).Text.Trim();
-                //OreqApproved  =OreqEntry
-                //    FinalAppr//lblgvBalAmt txtgvQtamt
-
-
 
                 string comcod = this.GetCompCode();
 
@@ -2320,19 +2311,6 @@ namespace RealERPWEB.F_34_Mgt
                 rate = rate > 0 ? rate : (qty > 0 ? (Proamt / qty) : 0.00);
                 Proamt = (type == "OreqEntry") ? (rate > 0 ? qty * rate : Proamt) : Proamt;
                 appamt = (type == "OreqEntry") ? 0.00 : (rate > 0 ? qty * rate : appamt);
-
-                //if (comcod == "3338" || comcod == "3101")
-                //{
-                //    double balamt = ASTUtility.StrPosOrNagative(((Label)this.gvOtherReq.Rows[i].FindControl("lblgvBalAmt")).Text.Trim());
-                //    if (Proamt > balamt)
-                //    {
-                //        ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                //        ((Label)this.Master.FindControl("lblmsg")).Text = "Proposed Amt Can't Excess Balance Amt ";
-                //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                //        return;
-                //    }
-
-                //}
 
                 tbl1.Rows[i]["proamt"] = Proamt;// qty* rate; proamt
                 tbl1.Rows[i]["appamt"] = appamt; //qty * rate;//appamt;
@@ -2365,22 +2343,15 @@ namespace RealERPWEB.F_34_Mgt
 
             if (actelev == "2")
             {
-
                 this.GroupBind();
                 this.lblMatGroup.Visible = true;
                 this.ddlMatGrp.Visible = true;
-
-
             }
             else
             {
-
                 this.ddlMatGrp.Items.Clear();
                 this.lblMatGroup.Visible = false;
                 this.ddlMatGrp.Visible = false;
-
-
-
             }
         }
 
@@ -2425,17 +2396,12 @@ namespace RealERPWEB.F_34_Mgt
         protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-
             this.GeResVisibility();
-
             string comcod = this.GetCompCode();
             if (comcod == "3338" || comcod == "3101" || comcod == "3348")
                 return;
 
             this.ProjectData();
-
-
-
 
 
             //string Type = Request.QueryString["Type"].ToString();
@@ -2732,8 +2698,6 @@ namespace RealERPWEB.F_34_Mgt
             // this.gvOtherReq_DataBind();
         }
 
-
-
         private DataTable HiddenSameData(DataTable dt1)
         {
             if (dt1.Rows.Count == 0)
@@ -2791,16 +2755,10 @@ namespace RealERPWEB.F_34_Mgt
 
         private void GetgrdResource()
         {
-
-
-
-
             try
             {
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = GetCompCode();
-
-
 
                 int rowindex = (int)ViewState["gindex"];
                 DropDownList ddlactcode = (DropDownList)this.gvOtherReq.Rows[rowindex].FindControl("ddlgrdacccode");
@@ -2811,9 +2769,7 @@ namespace RealERPWEB.F_34_Mgt
 
                 string oldRescode = (ddlgrdresouce.Items.Count == 0) ? "" : ddlgrdresouce.SelectedValue.ToString();
 
-
                 string SearchInfo = "";
-
 
                 DataTable dt = (DataTable)Session["tblproject"];
                 DataRow[] dr1 = dt.Select("actcode='" + actcode + "'");
@@ -2854,31 +2810,18 @@ namespace RealERPWEB.F_34_Mgt
                 ddlgrdresouce.DataBind();
                 ddlgrdresouce.Focus();
 
-
-
                 List<RealEntity.C_17_Acc.EClassAccVoucher.EClassResHead> lst1 = lst.FindAll((p => p.rescode == oldRescode));
                 if (lst1.Count > 0)
                 {
                     ddlgrdresouce.SelectedValue = oldRescode;
 
-
                 }
-
-
-
-
             }
-
-
             catch (Exception ex)
             {
-
                 ((Label)this.Master.FindControl("lblmsg")).Text = ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
-
-
-
         }
 
         private void GeResVisibilityAdj()
@@ -2889,22 +2832,15 @@ namespace RealERPWEB.F_34_Mgt
 
             if (actelev == "2")
             {
-
                 this.GroupBindadj();
                 this.lblrescodeadj.Visible = true;
                 this.ddlSupplier.Visible = true;
-
-
             }
             else
             {
-
                 this.ddlSupplier.Items.Clear();
                 this.lblrescodeadj.Visible = false;
                 this.ddlSupplier.Visible = false;
-
-
-
             }
         }
         protected void ddlactcode_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -2926,23 +2862,111 @@ namespace RealERPWEB.F_34_Mgt
                 return;
             this.txtRefNum.Text = this.ddlcheque.SelectedItem.Text;
         }
-
-
-
         protected void chkAdvanced_CheckedChanged(object sender, EventArgs e)
         {
             if (this.chkAdvanced.Checked == true)
             {
-
                 this.lbladvanced.Text = "Advanced";
             }
             else
             {
-
                 this.lbladvanced.Text = "Adjusted";
-
             }
 
+        }
+
+        protected void lbtnOreqChecked_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            this.Session_tblReq_Update();
+            string comcod = this.GetCompCode();
+            string mMRFNO = this.txtMRFNo.Text.Trim();
+            string mREQDAT = this.GetStdDate(this.txtCurReqDate.Text.Trim());
+            string mREQNO = this.Request.QueryString["genno"].ToString();
+            string type = this.Request.QueryString["Type"].ToString();
+
+            //log Report
+            DataTable dtuser = (DataTable)Session["tblUserReq"];
+            
+            string userid = hst["usrid"].ToString();
+            string Terminal = hst["compname"].ToString();
+            string Sessionid = hst["session"].ToString();
+            string PostedByid = "";
+            string Posttrmid = "";
+            string PostSession = "";
+            string posteddat = "";
+
+            string ApprovByid = "";
+            string approvdat = "";
+            string Approvtrmid = "";
+            string ApprovSession = "";
+
+
+            /////log end
+
+            string nARRATION = txtReqNarr.Text.Trim();
+
+            string paytype = this.rblpaytype.SelectedValue.ToString();
+            string payto = this.txtPayto.Text.Trim().ToString();
+            string supcode = ddlSupplier.SelectedValue.ToString();
+            string termncon = this.termncon.Text.ToString();
+            string payofmod = this.mofpay.Text.ToString();
+            string deptcode = this.ddlDeptCode.SelectedValue.ToString();
+            supcode = (supcode.Trim() == "" ? "000000000000" : supcode);
+            supcode = dtuser.Rows[0]["supcode"].ToString();
+
+            DataTable tbl1 = (DataTable)Session["tblReq"];
+            bool result = false;
+            string adjcod = this.ddlactcode.SelectedValue.ToString();
+            string bundleno = this.ddlBundle.SelectedValue.ToString().Trim();
+
+            // todo for other req checked 
+            string chckid = userid;
+            string checkdat = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+
+            string bankcode = this.ddlBankName.SelectedValue.ToString();
+            string refnum = this.txtRefNum.Text.Trim();
+            for (int i = 0; i < tbl1.Rows.Count; i++)
+            {
+                string mPACTCODE = tbl1.Rows[i]["pactcode"].ToString();
+                string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
+                string spcfcod = tbl1.Rows[i]["spcfcod"].ToString();
+                string billno = tbl1.Rows[i]["billno"].ToString();
+                double mProAMT = Convert.ToDouble(tbl1.Rows[i]["proamt"]);
+                double mAPPAMT = Convert.ToDouble(tbl1.Rows[i]["appamt"]);
+                double qty = Convert.ToDouble(tbl1.Rows[i]["qty"]);
+                double rate = Convert.ToDouble(tbl1.Rows[i]["rate"]);
+                double ppdamt = Convert.ToDouble(tbl1.Rows[i]["ppdamt"]);
+                string appxml = tbl1.Rows[i]["approval"].ToString();
+                string Approval = this.GetReqApproval(appxml);
+                string advanced = this.chkAdvanced.Checked ? "1" : "0";
+                string attnper = this.txtAttn.Text.ToString();
+
+                if (mProAMT > 0)
+                {
+                    result = purData.UpdateTransInfo01(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "OTHERREQCHECKED",
+                             mREQNO, mPACTCODE, mRSIRCODE, mREQDAT, mMRFNO, mProAMT.ToString(), mAPPAMT.ToString(), nARRATION,
+                             PostedByid, PostSession, Posttrmid, ApprovByid, approvdat, Approvtrmid, ApprovSession, qty.ToString(), paytype, payto,
+                             ppdamt.ToString(), posteddat, supcode, spcfcod, adjcod, type, termncon, payofmod, bundleno, billno, bankcode, refnum, Approval,
+                             advanced, attnper, deptcode, chckid, checkdat);
+                }
+                if (!result)
+                {
+                    string message = purData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
+                    return;
+                }
+
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Data Updated successfully" + "');", true);
+            if (ConstantInfo.LogStatus == true)
+            {
+                string eventtype = "Other Req Entry";
+                string eventdesc = "Update Req";
+                string eventdesc2 = mREQNO;
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
         }
     }
 }

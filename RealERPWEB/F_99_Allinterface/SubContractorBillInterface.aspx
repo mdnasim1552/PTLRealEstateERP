@@ -508,7 +508,7 @@
                 comcod = <%=this.GetCompCode()%>;
                 switch (comcod) {
 
-                    case 3101:   //ASIT
+                    //case 3101:   //ASIT
                     case 1205:   //p2p
                     case 3351:   //p2p
                     case 3352:   //p2p
@@ -516,36 +516,44 @@
                         //case 3355:   //greenwood
 
                         $(".tbMenuWrp table tr td:nth-child(3)").show();
-                        $(".tbMenuWrp table tr td:nth-child(10)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(8)").hide(); // 9 - for billApproval
                         $(".tbMenuWrp table tr td:nth-child(11)").hide();
                         $(".tbMenuWrp table tr td:nth-child(12)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(13)").hide();
                         $('#<%=this.txtrefno.ClientID%>').prop('readonly', false);
                         break;
-               
+
+                    case 3370:   //cpdl
+
+                        $(".tbMenuWrp table tr td:nth-child(3)").show();
+                        $(".tbMenuWrp table tr td:nth-child(11)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(12)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(13)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(9)").hide(); // 9 - for billApproval
+
+                        $('#<%=this.txtrefno.ClientID%>').prop('readonly', false);
+                        break;
+
 
                     case 1103:   //tanvir
 
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(9)").hide(); // 9 - for billApproval
+
                         break;
 
-                    //case 3101:   //ASIT
+                    case 3101:   //ASIT
                     case 3368: // Finlay
-
-                        $(".tbMenuWrp table tr td:nth-child(3)").hide();
+                        //$(".tbMenuWrp table tr td:nth-child(3)").hide();
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
                         $(".tbMenuWrp table tr td:nth-child(6)").hide();
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(11)").hide();
                         $(".tbMenuWrp table tr td:nth-child(12)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(13)").hide();
 
-
-
-              
-
-                       
                         break;
                     default:
                         $(".tbMenuWrp table tr td:nth-child(3)").hide();
@@ -553,9 +561,10 @@
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
                         $(".tbMenuWrp table tr td:nth-child(6)").hide();
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(10)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(9)").hide(); // 9 - for billApproval
                         $(".tbMenuWrp table tr td:nth-child(11)").hide();
                         $(".tbMenuWrp table tr td:nth-child(12)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(13)").hide();
 
                         $('#<%=this.txtrefno.ClientID%>').prop('readonly', true);
                         break;
@@ -863,8 +872,7 @@
                                                     <asp:ListItem Value="11"></asp:ListItem>
                                                     <asp:ListItem Value="12"></asp:ListItem>
                                                     <asp:ListItem Value="13"></asp:ListItem>
-
-
+                                                    <asp:ListItem Value="14"></asp:ListItem>
 
                                                 </asp:RadioButtonList>
                                             </div>
@@ -872,9 +880,7 @@
                                     </div>
                                 </fieldset>
 
-
                                 <asp:Panel ID="PnlImp" runat="server" Visible="false">
-
                                     <div class="table-responsive">
                                         <asp:GridView ID="grvImple" runat="server" AllowPaging="false" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                             AutoGenerateColumns="False"
@@ -1391,6 +1397,119 @@
 
                                 </asp:Panel>
 
+                                <asp:Panel ID="pnlbillapp" Visible="false" runat="server">
+
+                                    <asp:GridView ID="gvbillapp" runat="server" AutoGenerateColumns="False"
+                                        ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvbillapp_RowDataBound">
+                                        <RowStyle />
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="SL">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvbillapp" runat="server" Font-Bold="True"
+                                                        Style="text-align: right"
+                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Project Name">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvbillappactdesc" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
+                                                        Width="180px" Font-Bold="true"></asp:Label>
+                                                </ItemTemplate>
+
+                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Bill ID">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvbillapplisuno1" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lisuno1")) %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+
+                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+
+                                            <asp:TemplateField HeaderText="R/A No">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvbillapplisurefno" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lisurefno")) %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+
+                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Bill Date">
+
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvbillappisudat" runat="server"
+                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "isudat")).ToString("dd-MM-yyyy") %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Sub-Contractor">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbllisuno2" runat="server" Visible="False"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lisuno")) %>'></asp:Label>
+                                                    <asp:Label ID="lblissustatus2" runat="server" Visible="False"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "issustatus")) %>'></asp:Label>
+                                                    <asp:Label ID="lblgvbillappsirdesc" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc")) %>'
+                                                        Width="110px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Amount">
+
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvbillappisuamt" runat="server"
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "isuamt")).ToString("#,##0;(#,##0").ToString() %>'
+                                                        Width="70px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                                <ItemStyle HorizontalAlign="Right" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="">
+                                                <ItemTemplate>
+                                                    <%--<asp:HyperLink ID="lnkbtnPrintIN" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span></asp:HyperLink>--%>
+
+
+                                                    <asp:HyperLink ID="lnkbtnbillapp" runat="server" ToolTip="Bill Approval" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
+                                                    </asp:HyperLink>
+                                                  <%--  <asp:HyperLink ID="lnkbtnEditBilll" ToolTip="Edit" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span style="color:black" class="fas fa-edit"></span>
+                                                    </asp:HyperLink>
+                                                    <asp:LinkButton ID="btnDelReqCheck" OnClick="btnDelReqCheck_OnClick" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa  fa-recycle"></span> </asp:LinkButton>--%>
+
+                                                </ItemTemplate>
+                                                <ItemStyle Width="150px" />
+                                                <HeaderStyle HorizontalAlign="Center" Width="150px" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                        </Columns>
+                                        <FooterStyle CssClass="grvFooter" />
+                                        <EditRowStyle />
+                                        <AlternatingRowStyle />
+                                        <PagerStyle CssClass="gvPagination" />
+                                        <HeaderStyle CssClass="grvHeader" />
+                                        <RowStyle CssClass="grvRows" />
+                                    </asp:GridView>
+
+
+                                </asp:Panel>
+
                                 <asp:Panel ID="pnlfrec" Visible="false" runat="server">
 
                                     <div class="table-responsive col-lg-12" style="min-height: 350px;">
@@ -1552,10 +1671,10 @@
                                             <HeaderStyle CssClass="grvHeader" />
                                             <RowStyle CssClass="grvRows" />
                                         </asp:GridView>
-
                                     </div>
-
                                 </asp:Panel>
+
+
                                 <asp:Panel ID="pnlsrec" Visible="false" runat="server">
                                     <div class="row">
                                         <div class="table-responsive col-lg-12" style="min-height: 350px;">
@@ -1957,7 +2076,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lbllisuno" runat="server" Visible="False"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lisuno")) %>'></asp:Label>
-                                                     <asp:Label ID="lblissustatus" runat="server" Visible="False"
+                                                    <asp:Label ID="lblissustatus" runat="server" Visible="False"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "issustatus")) %>'></asp:Label>
                                                     <asp:Label ID="lgcResDescscf" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc")) %>'
@@ -2071,7 +2190,7 @@
                                                     <asp:Label ID="lgAPPcordernofiapp" runat="server" Visible="false"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "billno")) %>'
                                                         Width="70px"></asp:Label>
-                                                     <asp:Label ID="lblbillstatus" runat="server" Visible="false"
+                                                    <asp:Label ID="lblbillstatus" runat="server" Visible="false"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "billstatus")) %>'
                                                         Width="70px"></asp:Label>
                                                 </ItemTemplate>

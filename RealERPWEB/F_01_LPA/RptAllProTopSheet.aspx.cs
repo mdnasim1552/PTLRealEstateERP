@@ -236,10 +236,11 @@ namespace RealERPWEB.F_01_LPA
                 npper.Style.Add("color", "blue");
                 minfo.Style.Add("color", "blue");
                 //npper.NavigateUrl = "~/F_02_Fea/RptProjectFeasibility.aspx?pactcode=" + code + "&pactdesc=" + pactdesc;
-                npper.NavigateUrl = "~/F_02_Fea/RptProjectFeasibility.aspx?Type=Report&prjcode=";
-                minfo.NavigateUrl = "~/F_01_LPA/PriLandProposal.aspx?Type=Report&prjcode=";
+                npper.NavigateUrl = "~/F_02_Fea/RptProjectFeasibility.aspx?Type=Report&prjcode=" +code;
+                minfo.NavigateUrl = "~/F_01_LPA/PriLandProposal.aspx?Type=Report&prjcode=" + code;
+               
                 hlink2.NavigateUrl = "~/F_02_Fea/RptProjectFeasibility.aspx?Type=Report&prjcode=";
-                hlink3.NavigateUrl = "~/F_08_PPlan/PrjCompFlowchart.aspx";
+                hlink3.NavigateUrl = "~/F_08_PPlan/PrjCompFlowchart.aspx?Type=Report&prjcode=" + code;
 
 
 

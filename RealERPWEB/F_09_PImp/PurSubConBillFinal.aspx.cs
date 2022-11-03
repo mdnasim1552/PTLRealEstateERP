@@ -1613,6 +1613,7 @@ namespace RealERPWEB.F_09_PImp
                         case "3310":
 
                         case "3348": //Credence
+                        case "3370": //cpdl                    
                         case "1205": //P2P                    
                         case "3351":
                         case "3352":
@@ -1852,6 +1853,7 @@ namespace RealERPWEB.F_09_PImp
                 case "3315":// Assure Builders
                 case "3316":// Assure Development 
 
+                case "3370": // cpdl 
                 case "1205": // p2p 
                 case "3351":
                 case "3352":
