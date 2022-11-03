@@ -326,7 +326,6 @@ namespace RealERPLIB
 
             //tblObj.Rows.Add(new Object[] { "0802000", "0802010", "ProTargetTimeBasis?", "Type=FlrWise", "Construction Planning - Time Basis", "Project Planning", "False", "False", "False", "False" }); ;//Rihan
             //tblObj.Rows.Add(new Object[] { "0802000", "0802130", "ProTargetMonthly", "", "Project Completion Plan", "Project Planning", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "0861000", "0861001", "F_99_Allinterface", "ProjectDashBoardAllNew?", "", "Project DashBoard", "Project Planning", "False", "False", "False", "False" }); ;
 
             #endregion
             //09. Project Implementaion
@@ -1007,7 +1006,6 @@ namespace RealERPLIB
             //Interface Dashboard
 
             //tblObj.Rows.Add(new Object[] { "1702000", "1701071", "AccPurchase?", "Type=Edit", "Purchase Update", "Accounts", "False", "False", "False", "False" });;
-            tblObj.Rows.Add(new Object[] { "1761000", "1761001", "", "AllGraph", "", "DashBoard", "Accounts", "False", "False", "False", "False" }); ;
 
 
 
@@ -1636,6 +1634,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3251000", "3251001", "F_99_Allinterface", "BrandInterface", "", "Brand", "Brand Module", "False", "False", "False", "False" }); ;
             
             tblObj.Rows.Add(new Object[] { "3261000", "3261001", "", "CompanyOverAllReport?", "comcod=", "All In One- ANALYSIS", "MIS Module", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3261000", "3261002", "F_99_Allinterface", "ProjectDashBoardAllNew?", "comcod=", "Project DashBoard", "Project Planning", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3261000", "3261003", "", "AllGraph", "", "DashBoard", "Accounts", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "3262000", "3262001", "F_34_Mgt", "RptAllDashboard?", "Type=Purchase", "Purchase Dashboard", "MIS Module", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3262000", "3262002", "F_34_Mgt", "RptAllDashboard?", "Type=Accounts", "Accounts Dashboard", "MIS Module", "False", "False", "False", "False" }); ;
