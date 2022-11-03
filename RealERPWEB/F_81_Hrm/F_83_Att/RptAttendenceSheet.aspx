@@ -285,7 +285,24 @@
                             </asp:RadioButtonList>
 
                         </div>
-
+                                         <div class="col-lg-1 col-md-1 col-sm-6">
+                            <asp:Label ID="Label14" runat="server">Page Size</asp:Label>
+                            <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                <asp:ListItem>10</asp:ListItem>
+                                <asp:ListItem>15</asp:ListItem>
+                                <asp:ListItem>20</asp:ListItem>
+                                <asp:ListItem>30</asp:ListItem>
+                                <asp:ListItem>50</asp:ListItem>
+                                <asp:ListItem>100</asp:ListItem>
+                                <asp:ListItem>150</asp:ListItem>
+                                <asp:ListItem>200</asp:ListItem>
+                                <asp:ListItem>300</asp:ListItem>
+                                <asp:ListItem>600</asp:ListItem>
+                                <asp:ListItem>1000</asp:ListItem>
+                                <asp:ListItem>2000</asp:ListItem>
+                                <asp:ListItem>3000</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
 
                         <div class="col-1">
                             <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary btn-sm mt-4" OnClick="lnkbtnShow_Click">Show</asp:LinkButton>
@@ -785,8 +802,8 @@
                                     </div>
                                 </div>
                                 <br />
-                                <asp:GridView ID="gvMonthlyattSummary" runat="server" AutoGenerateColumns="False" ShowFooter="True"
-                                    CssClass="table-striped table-hover table-bordered grvContentarea">
+                                <asp:GridView ID="gvMonthlyattSummary" runat="server" AutoGenerateColumns="False" ShowFooter="True" AllowPaging="true"
+                                    CssClass="table-striped table-hover table-bordered grvContentarea" OnPageIndexChanging="gvMonthlyattSummary_PageIndexChanging1">
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Id #">
@@ -1211,6 +1228,15 @@
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+
+                                                      <asp:TemplateField HeaderText="Late<br> Deduction" HeaderStyle-HorizontalAlign="Center">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbllevded" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "levded")).ToString("#,##0; ")
+                                             %>'
+                                                    Font-Size="11px"></asp:Label>
+                                            </ItemTemplate>
+                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="LP">
