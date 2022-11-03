@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="PrjInformation.aspx.cs" Inherits="RealERPWEB.F_04_Bgd.PrjInformation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="PrjInformation.aspx.cs" Inherits="RealERPWEB.F_04_Bgd.PrjInformation" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -150,14 +150,13 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
-                    <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
+            <div class="card mt-4 ">
+                <div class="card-body">
+                    <div class="row mb-4">
+                      
 
-                                <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
+                                
+                                    <div class="col-md-3 pading5px asitCol3 d-none">
                                         <asp:Label ID="lblProjectName" runat="server" CssClass="lblTxt lblName">Project Name</asp:Label>
                                         <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputtextbox"></asp:TextBox>
 
@@ -179,7 +178,7 @@
 
                                     </div>
 
-                                    <div class="col-md-1">
+                                    <div class="col-md-1 ml-4">
 
                                         <div class="colMdbtn">
                                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
@@ -195,7 +194,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3 pading5px pull-right">
+                                    <div class="col-md-3 pading5px pull-right d-none">
 
                                         <div class="msgHandSt">
                                             <asp:Label ID="lmsg" CssClass="btn  btn-success primarygrdBtn" runat="server" Visible="false"></asp:Label>
@@ -204,12 +203,15 @@
 
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </fieldset>
+                                
+                          
 
                     </div>
+                    </div>
+                </div>
 
+             <div class="card" style="min-height:500px">
+                <div class="card-body">
                     <div class="row">
                         <div class="col-md-8">
                             <asp:GridView ID="gvPrjInfo" runat="server" AutoGenerateColumns="False"

@@ -78,7 +78,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string userid = hst["usrid"].ToString();
-            string txtCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
+            string txtCompany = "%%";
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "GETCOMPANYNAMEINTER", txtCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
@@ -92,7 +92,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetComeCode();
-            string txtSProject = "%" + this.txtEmpSrc.Text.Trim() + "%";
+            string txtSProject = "%%";
             string companyName = this.ddlCompany.SelectedValue.ToString();
             string empid = this.Request.QueryString["empid"] ?? "";
             string usrid = hst["usrid"].ToString();

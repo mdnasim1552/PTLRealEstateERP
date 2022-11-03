@@ -326,20 +326,22 @@ namespace RealERPWEB.F_99_Allinterface
                 DataView view = new DataView();
                 DataView view1 = new DataView();
                 DataView view2 = new DataView();
-
                 view.Table = ds.Tables[0];
-                view1.Table = ds.Tables[0];
-                view1.RowFilter = " roletype<>'95001' and roletype='95002'";
-                dt1 = view1.ToTable();
-                this.gv_QCQA.DataSource = dt1;
-                this.gv_QCQA.DataBind();
-
-
                 view.RowFilter = " roletype='95001'";
                 dt1 = view.ToTable();
                 this.gv_Production.DataSource = dt1;
                 this.gv_Production.DataBind();
 
+
+                
+                view1.Table = ds.Tables[0];
+                view1.RowFilter = "roletype='95002'";
+                dt1 = view1.ToTable();
+                this.gv_QCQA.DataSource = dt1;
+                this.gv_QCQA.DataBind();
+
+
+                
                 view2.Table = ds.Tables[0];
                 view2.RowFilter = "roletype='95003'";
                 dt1 = view2.ToTable();
@@ -349,7 +351,7 @@ namespace RealERPWEB.F_99_Allinterface
                 DataTable dt2 = new DataTable();
                 DataView view3 = new DataView();
                 view3.Table = ds.Tables[0];
-                view3.RowFilter = "roletype<>'95001' and roletype<>'95003' and trackertype <>'99220' and doneqty >'0' ";
+                view3.RowFilter = "roletype='95002' and doneqty >'0' ";
                 dt1 = view3.ToTable();
                 this.gv_AcceptReject.DataSource = dt1;
                 this.gv_AcceptReject.DataBind();
@@ -558,6 +560,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.pnlSidebar.Visible = true;
                 this.pnlProjectadd.Visible = false;
                 this.pnlBatchadd.Visible = true;
+                this.pnlAssginUser.Visible = false;
 
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
@@ -1255,7 +1258,7 @@ namespace RealERPWEB.F_99_Allinterface
         private void GetAnnotationList()
         {
             string comcod = this.GetCompCode();
-            string prjlist = "160100000001%";
+            string prjlist = this.lblproprjid.Text.Trim()+"%";
             string usrrole = this.ddlUserRoleType.SelectedValue.ToString() == "95002" ? "03403" :
                             this.ddlUserRoleType.SelectedValue.ToString() == "95003" ? "03402" : "03401";
             DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETANNOTAIONID", prjlist, usrrole, "", "", "", "");
@@ -1783,6 +1786,8 @@ namespace RealERPWEB.F_99_Allinterface
                 dv0.RowFilter = "invno = '" + id + "'";
                 dt = dv0.ToTable();               
                 double amount = Convert.ToDouble(dt.Rows[0]["totalamount"]);
+
+
                 string inword = "In Word: " + ASTUtility.Trans(Math.Round(amount), 2);
                 string curency = dt.Rows[0]["currency"].ToString();
                 LocalReport Rpt1 = new LocalReport();

@@ -830,7 +830,7 @@ namespace RealERPWEB.F_34_Mgt
 
                     string frmid1 = dr["frmid1"].ToString();
                     dr["frmdesc"] = (frmid1.Substring(2, 2) == "01") ? "One Time Input" : (frmid1.Substring(2, 2) == "02") ? "Entry"
-                        : (frmid1.Substring(2, 2) == "51") ? "Interface" : (frmid1.Substring(2, 2) == "91") ? "Dashboard" : "Reports";
+                        : (frmid1.Substring(2, 2) == "51") ? "Interface" : (frmid1.Substring(2, 2) == "91") || (frmid1.Substring(2, 2) == "61") || (frmid1.Substring(2, 2) == "62") ? "Dashboard" : "Reports";
 
                 }
                 DataTable dt1 = (DataTable)Session["tblusrper"];

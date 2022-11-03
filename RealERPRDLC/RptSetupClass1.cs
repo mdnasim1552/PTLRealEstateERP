@@ -355,6 +355,7 @@ namespace RealERPRDLC
                 case "R_12_Inv.RptIndentIssueStatusSummary": Rpt1a = SetRptIndentIssueStatusSummary(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptTransactionSt": Rpt1a = SetRptTransactionSt(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptTopSheetFactory": Rpt1a = SetRptTopSheetFactory(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                
 
                 #region General Accounts 17
                 case "R_17_Acc.TransectionPrint": Rpt1a = SetRptTrnPrint(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1022,6 +1023,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptSalaryDetailsJbs": Rpt1a = SetRptSalaryDetailsJbs(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSalaryBTI": Rpt1a = SetRptSalaryBTI(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSalaryDetailsLanco": Rpt1a = SetRptSalaryDetailsLanco(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.RptSalaryDetailsCPDL": Rpt1a = SetRptSalaryDetailsCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSalaryHOBTI": Rpt1a = SetRptSalaryHOBTI(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSalaryHOBTIExcel": Rpt1a = SetRptSalaryHOBTIExcel(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSalaryHOBTIPdf": Rpt1a = SetRptSalaryHOBTIPdf(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1072,6 +1074,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptPaySlipBTI": Rpt1a = SetRptPaySlipBTI(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptPaySlipFinlay": Rpt1a = SetRptPaySlipFinlay(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptPaySlipLanco": Rpt1a = SetRptPaySlipLanco(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.RptPaySlipCPDL": Rpt1a = SetRptPaySlipCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 //Bonus Sheet
@@ -1199,6 +1202,12 @@ namespace RealERPRDLC
             return Rpt1a;
         }
         private static LocalReport SetRptPaySlipLanco(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>)RptDataSet));
+
+            return Rpt1a;
+        }
+        private static LocalReport SetRptPaySlipCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>)RptDataSet));
 
@@ -5252,6 +5261,10 @@ namespace RealERPRDLC
         }
 
         private static LocalReport SetRptSalaryDetailsLanco(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalarySheet>)RptDataSet));
+            return Rpt1a;
+        }private static LocalReport SetRptSalaryDetailsCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalarySheet>)RptDataSet));
             return Rpt1a;
