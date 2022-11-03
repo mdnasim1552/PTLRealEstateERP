@@ -1234,8 +1234,13 @@ namespace RealERPWEB.F_22_Sal
             cofffvpsft = ((usize > 0) ? ((cofffv - coffpamt - coffutility - coffothers) / usize) : 0.00);
             coffpowbpart = (12 + intratio) / 12;
             coffpvpsft = Math.Round(cofffvpsft / (Math.Pow(coffpowbpart, noofemi)), 0);
-            //this.lblvalcofffvpersft.InnerText = cofffvpsft.ToString("#,##0;(#,##0);");
-            //this.lblvalcoffpvpersft.InnerText = coffpvpsft.ToString("#,##0;(#,##0);");
+          
+            this.lblvalcofffvpersft.InnerText = cofffvpsft.ToString("#,##0;(#,##0);");
+            this.lblvalcoffpvpersft.InnerText = coffpvpsft.ToString("#,##0;(#,##0);");
+
+            this.lblhiddenfvpersft.Value = bfvpsft.ToString("#,##0;(#,##0);");
+            this.lblhiddenpvpersft.Value = bpvpsft.ToString("#,##0;(#,##0);");
+
 
             if (cofffvpsft >= bfvpsft && coffpvpsft >= bpvpsft)
             {
@@ -1264,6 +1269,9 @@ namespace RealERPWEB.F_22_Sal
                 if (!resultfvapvpersft)
                 {
 
+                 
+
+                    string mfvpsftapvpsft = "<span style='color:red'>Minimum FV Per SFT:" + this.lblhiddenfvpersft.Value + "Minimum PV Per SFT:" + this.lblhiddenpvpersft.Value+"</span>";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('System not allow this proposal');", true);
                     return;
 

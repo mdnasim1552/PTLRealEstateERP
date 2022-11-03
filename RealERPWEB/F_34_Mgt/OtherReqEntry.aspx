@@ -592,9 +592,15 @@
                                     <asp:Label ID="lblReqNarr" runat="server" CssClass="lblTxt lblName" Text="Narration:"></asp:Label>
                                     <asp:TextBox ID="txtReqNarr" runat="server" class="form-control" Rows="3" TextMode="MultiLine"></asp:TextBox>
                                 </div>
-                                <asp:LinkButton ID="lbtnUpdateResReq" runat="server" Font-Bold="True" CssClass="btn btn-danger primaryBtn"
-                                    Font-Size="12px" ForeColor="White" OnClick="lbtnUpdateResReq_Click" Style="margin-top: 20px">Final Update</asp:LinkButton>
-                                <div class="clearfix"></div>
+                                <div class="col-md-1">
+                                    <asp:LinkButton ID="lbtnUpdateResReq" runat="server" Font-Bold="True" CssClass="btn btn-danger primaryBtn"
+                                        Font-Size="12px" ForeColor="White" OnClick="lbtnUpdateResReq_Click" Style="margin-top: 20px">Final Update</asp:LinkButton>
+                                </div>
+                                <div class="col-md-1">
+                                    <asp:LinkButton ID="lbtnOreqChecked" runat="server" Font-Bold="True" CssClass="btn btn-danger primaryBtn"  Visible="false"
+                                        Font-Size="12px" ForeColor="White" OnClick="lbtnOreqChecked_Click" Style="margin-top: 20px">Checked</asp:LinkButton>
+                                </div>
+
                             </div>
 
                         </asp:Panel>
