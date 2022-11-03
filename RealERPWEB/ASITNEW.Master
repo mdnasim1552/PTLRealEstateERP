@@ -890,7 +890,7 @@
                                 <!-- .menu-header -->
                                 <li class="menu-header">Analysis </li>
 
-
+                                
                                 <!-- .menu-item -->
                                 <li class="menu-item has-active">
                                     <a runat="server" id="dbAllinOne" href="#" target="_blank" visible="false" class="menu-link"><span class="menu-icon fa fa-th" title="All In One"></span><span class="menu-text">All In One</span></a>
