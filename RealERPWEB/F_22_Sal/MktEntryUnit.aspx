@@ -433,7 +433,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Booking %">
+                                         <asp:TemplateField HeaderText="D.Payment %">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvBookingper" runat="server" AutoCompleteType="Disabled"
                                                     BackColor="Transparent" BorderStyle="None" Font-Size="11px"

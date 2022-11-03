@@ -1230,6 +1230,15 @@
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
+                                                      <asp:TemplateField HeaderText="Late<br> Deduction" HeaderStyle-HorizontalAlign="Center">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbllevded" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "levded")).ToString("#,##0; ")
+                                             %>'
+                                                    Font-Size="11px"></asp:Label>
+                                            </ItemTemplate>
+                                             <ItemStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="LP">
                                             <ItemTemplate>
                                                 <asp:Label ID="lbllateabs" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "abslate")).ToString("#,##0; ")

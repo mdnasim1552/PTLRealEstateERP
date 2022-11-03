@@ -67,7 +67,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             {
                 case "3354":                
                    // ddlReqType.Items.Add(new ListItem("Late Approval Request", "LA"));
-                    // ddlReqType.Items.Add(new ListItem("Late Present Approval Request(if Finger 10:00 to 5:30)", "LP"));
+                     ddlReqType.Items.Add(new ListItem("Late Present Approval ", "LP"));
                     // ddlReqType.Items.Add(new ListItem("Time Correction Approval Request(Project Visit, Customer visit, etc)", "TC"));
                     ddlReqType.Items.Add(new ListItem("Absent Approval Request (IF Finger/Attandance missed but present)", "AB"));
                     break;
@@ -526,7 +526,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
    
 
             string attstatus = lblstatus.Text.Trim();
-            ddlReqType.SelectedValue = (attstatus == "" && comcod == "3365" ? "TC" : attstatus == "A" ? "AB" : "LA");
+            //ddlReqType.SelectedValue = (attstatus == "" && comcod == "3365" ? "TC" : attstatus == "A" ? "AB" : "LA");
+            ddlReqType.SelectedValue = (attstatus == "" && comcod == "3365" ? "TC" : attstatus == "" && comcod == "3354" ? "LP": attstatus == "A" ? "AB" : "LA");
+
             ddlReqType.Enabled = (attstatus == "A" ? false : true);
 
             if (attstatus == "A")

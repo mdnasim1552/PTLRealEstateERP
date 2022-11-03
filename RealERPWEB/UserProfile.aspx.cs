@@ -1380,7 +1380,8 @@ namespace RealERPWEB
             this.publishDate.InnerText= Convert.ToDateTime(((Label)this.gvAllNotice.Rows[index].FindControl("lblpubdate")).Text).ToString("dd-MMM-yyy hh:mm tt");
             this.noticeStartDate.InnerText = Convert.ToDateTime(((Label)this.gvAllNotice.Rows[index].FindControl("lblstartdate")).Text).ToString("dd-MMM-yyy hh:mm tt");
             this.noticeEndDate.InnerText = Convert.ToDateTime(((Label)this.gvAllNotice.Rows[index].FindControl("lblenddate")).Text).ToString("dd-MMM-yyy hh:mm tt");
-
+            this.modalNoticeTitle.InnerText = ((Label)this.gvAllNotice.Rows[index].FindControl("lblNoticeTitle")).Text.ToString();
+            this.NoticeAttach.NavigateUrl= ((Label)this.gvAllNotice.Rows[index].FindControl("lblattach")).Text.ToString();
 
 
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openNoticeModal();", true);
