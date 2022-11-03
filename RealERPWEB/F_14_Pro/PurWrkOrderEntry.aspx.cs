@@ -184,8 +184,7 @@ namespace RealERPWEB.F_14_Pro
             string totalpath = hostname + currentptah;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
 
-            // lbtnPrint.PostBackUrl = "~/F_99_Allinterface/PurchasePrint.aspx?Type=OrderPrint&orderno=" + orderno;
-
+            //lbtnPrint.PostBackUrl = "~/F_99_Allinterface/PurchasePrint.aspx?Type=OrderPrint&orderno=" + orderno;
         }
 
 
@@ -193,7 +192,6 @@ namespace RealERPWEB.F_14_Pro
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
-
         }
         private string CompanyPrintWorkOrder()
         {
