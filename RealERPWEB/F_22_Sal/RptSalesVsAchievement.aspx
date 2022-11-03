@@ -337,6 +337,40 @@
                                         <HeaderStyle HorizontalAlign="center" />
                                         <FooterStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>  
+
+
+                                     <asp:TemplateField HeaderText="Received For </br>L/O Share" Visible="false">
+                                          <FooterTemplate>
+                                                    <asp:Label ID="lblFgvreceivedlo" runat="server" Font-Bold="True" Font-Size="12px"
+                                                        ForeColor="#000" Style="text-align: right" Width="90px"></asp:Label>
+                                         </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvreceivelo" runat="server"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "loamt")).ToString("#,##0;(#,##0); ") %>'
+                                                Width="90px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="center" />
+                                        <FooterStyle HorizontalAlign="Right" />
+                                    </asp:TemplateField> 
+
+
+                                      <asp:TemplateField HeaderText="Total Received" Visible="false">
+                                          <FooterTemplate>
+                                                    <asp:Label ID="lblFgvtreceived" runat="server" Font-Bold="True" Font-Size="12px"
+                                                        ForeColor="#000" Style="text-align: right" Width="90px"></asp:Label>
+                                         </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvtreceive" runat="server"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tramt")).ToString("#,##0;(#,##0); ") %>'
+                                                Width="90px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="center" />
+                                        <FooterStyle HorizontalAlign="Right" />
+                                    </asp:TemplateField>
+
+
                                     <asp:TemplateField HeaderText="Sales Date">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvsaldate" runat="server"
