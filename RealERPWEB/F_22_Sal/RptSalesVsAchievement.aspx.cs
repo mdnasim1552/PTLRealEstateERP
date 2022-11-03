@@ -173,9 +173,19 @@ namespace RealERPWEB.F_22_Sal
 
         private void Data_Bind()
         {
-
+            string Type = this.Request.QueryString["Type"];
             this.gvsalesvscoll.DataSource = (DataTable)Session["tblsalesvscoll"];
             this.gvsalesvscoll.DataBind();
+
+            if(Type== "MonsalVsAchieveLO")
+            {
+                this.gvsalesvscoll.Columns[12].HeaderText = "Received Amount </br> Finlay Prom.";
+                this.gvsalesvscoll.Columns[13].Visible = true;
+                this.gvsalesvscoll.Columns[14].Visible = true;
+
+            }
+
+
             // this.FooterCal();
 
             //Session["Report1"] = gvothcoll;
