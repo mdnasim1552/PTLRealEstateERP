@@ -538,18 +538,29 @@ namespace RealERPWEB
             dvAll.RowFilter = ("interface='Z'");
             dtanylsis = dvAll.ToTable();
 
-            foreach (DataRow dr in dtanylsis.Rows)
-            {
-                this.dbAllinOne.Visible = dr["frmid"].ToString()=="3261001"? true: false;      
-                this.dbAllinOne.HRef = path + "/" + dr["urlinf"].ToString()  + "=" +comcod;
 
-                this.prjdash.Visible = dr["frmid"].ToString() == "0861001" ? true : false;
-                this.prjdash.HRef = path + "/" + dr["urlinf"].ToString() + "=" + comcod;
 
-                this.allGraph.Visible = dr["frmid"].ToString() == "1761001" ? true : false;
-                this.allGraph.HRef = path + "/" + dr["urlinf"].ToString() + "=" + comcod;
-
+            DataRow[] rslt = dtanylsis.Select("frmid  = '3261001'");
+            foreach (DataRow row in rslt)
+            { 
+                this.dbAllinOne.Visible = true;
+               // this.dbAllinOne.HRef = path + "/" + row["urlinf"].ToString() + comcod;
+                this.dbAllinOne.HRef = this.ResolveUrl("~/" + row["urlinf"] + comcod);
             }
+            DataRow[] rslt2 = dtanylsis.Select("frmid  = '3261002'");
+            foreach (DataRow row in rslt2)
+            {
+                this.prjdash.Visible = true;
+                this.prjdash.HRef = this.ResolveUrl("~/" + row["urlinf"] + comcod);
+            }
+            DataRow[] rslt3 = dtanylsis.Select("frmid  = '3261003'");
+            foreach (DataRow row in rslt3)
+            {
+                this.allGraph.Visible = true;
+                this.allGraph.HRef = this.ResolveUrl("~/" + row["urlinf"]); ;
+            }
+
+           
 
 
             DataView dvAna = dtint.Tables[1].Copy().DefaultView;
@@ -559,13 +570,18 @@ namespace RealERPWEB
             foreach (DataRow dr in dvAna.ToTable().Rows)
             {
 
-                Analysishtml += @"<li class='menu-item'><a href ='" + path + "/" + dr["floc"] + "/" + dr["urlinf"] + "' class='menu-link' target='_self'>" + dr["dscrption"] + "</a></li>";
+                Analysishtml += @"<li class='menu-item'><a href ='" + this.ResolveUrl("~/" + dr["floc"] + "/" + dr["urlinf"]) + "' class='menu-link' target='_self'>" + dr["dscrption"] + "</a></li>";
             }
 
             this.dbGraph.InnerHtml = Analysishtml;
             if (Analysishtml.Length == 0)
             {
                 this.AnalysisArea.Visible = false;
+            }
+            else
+            {
+                this.AnalysisArea.Visible = true;
+
             }
 
 
