@@ -1705,6 +1705,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3502000", "3502091", "F_34_Mgt", "OtherReqEntry?", "Type=FirstRecom", "First Recommendation(Other Requisition)", "Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "3502000", "3502092", "F_34_Mgt", "OtherReqEntry?", "Type=SecRecom", "Second Recommendation(Other Requisition)", "Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "3502000", "3502093", "F_34_Mgt", "OtherReqEntry?", "Type=ThirdRecom", "Third Recommendation(Other Requisition))", "Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3502000", "3502095", "F_34_Mgt", "OtherReqEntry?", "Type=OreqChecked", "Requisition Checked (Other Requisition))", "Management", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "3502000", "3502094", "F_34_Mgt", "SMCodeBook", "", "SMS/Mail Template Code", "Management", "False", "False", "False", "False" });
 

@@ -282,7 +282,9 @@
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS01.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS03.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVoucherCPDL02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherEpic.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVoucherCPDL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherFinlay02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherFinlay.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherISBL02.rdlc" />

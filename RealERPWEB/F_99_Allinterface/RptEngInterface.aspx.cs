@@ -42,7 +42,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
 
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0,indexofamp), (DataSet)Session["tblusrlog"]))
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
 
@@ -57,7 +57,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.RadioButtonList1.SelectedIndex = 0;
                 this.gridVisibility();
 
-                
+
                 this.lbtnOk_Click(null, null);
                 //this.txtIme_TextChanged(null, null);
 
@@ -76,7 +76,7 @@ namespace RealERPWEB.F_99_Allinterface
             DataSet ds1 = ulog.GetNameAdd();
 
             DataView dv = ds1.Tables[0].DefaultView;
-            dv.RowFilter = ("comcod = '"+ comcod + "'");           
+            dv.RowFilter = ("comcod = '" + comcod + "'");
             DataTable dt = dv.ToTable();
             Session["tbllog"] = dt;
             ds1.Dispose();
@@ -86,15 +86,15 @@ namespace RealERPWEB.F_99_Allinterface
         private void GetUserPermission()
         {
             string comcod = this.GetCompCode();
-          
+
             string usrid = this.Request.QueryString["usrid"];
             string HostAddress = Request.UserHostAddress.ToString();
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSERNAMEAPASS", usrid, "", "", "", "", "", "", "", "");
 
-          //  if()
+            //  if()
 
             //  ProcessAccess ulogin = (ASTUtility.Left(this.ddlCompany.SelectedValue.ToString(), 1) == "4") ? new ProcessAccess() : new ProcessAccess();
-           
+
             string username = ds1.Tables[0].Rows[0]["username"].ToString();
             string pass = ds1.Tables[0].Rows[0]["password"].ToString();
 
@@ -102,27 +102,27 @@ namespace RealERPWEB.F_99_Allinterface
 
             //        string pass = ASTUtility.EncodePassword(hst["password"].ToString());
             string modulid = "AA";
-            string modulename ="All Module";
+            string modulename = "All Module";
             DataSet ds5 = accData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER", username, pass, modulid, modulename, "", "", "", "", "");
             Session["tblusrlog"] = ds5;
-           
+
             DataTable dt1 = (DataTable)Session["tbllog"];
             DataTable dt2 = new DataTable();
 
             //if ((DataTable)Session["tbllog1"] == null)
-           // {
-                dt2.Columns.Add("comcod", Type.GetType("System.String"));
-                dt2.Columns.Add("comnam", Type.GetType("System.String"));
-                dt2.Columns.Add("comsnam", Type.GetType("System.String"));
-                dt2.Columns.Add("comadd1", Type.GetType("System.String"));
-                dt2.Columns.Add("comadd", Type.GetType("System.String"));
-                dt2.Columns.Add("usrsname", Type.GetType("System.String"));
-                dt2.Columns.Add("session", Type.GetType("System.String"));
-                dt2.Columns.Add("compsms", Type.GetType("System.String"));
-                dt2.Columns.Add("compmail", Type.GetType("System.String"));
+            // {
+            dt2.Columns.Add("comcod", Type.GetType("System.String"));
+            dt2.Columns.Add("comnam", Type.GetType("System.String"));
+            dt2.Columns.Add("comsnam", Type.GetType("System.String"));
+            dt2.Columns.Add("comadd1", Type.GetType("System.String"));
+            dt2.Columns.Add("comadd", Type.GetType("System.String"));
+            dt2.Columns.Add("usrsname", Type.GetType("System.String"));
+            dt2.Columns.Add("session", Type.GetType("System.String"));
+            dt2.Columns.Add("compsms", Type.GetType("System.String"));
+            dt2.Columns.Add("compmail", Type.GetType("System.String"));
 
-                Session["tbllog1"] = dt2;
-           // }
+            Session["tbllog1"] = dt2;
+            // }
 
             DataRow[] dr = dt1.Select("comcod='" + comcod + "'");
             // Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -186,7 +186,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-           
+
 
         }
 
@@ -200,7 +200,7 @@ namespace RealERPWEB.F_99_Allinterface
             dt.Rows[0]["comcod"] = comcod;
             Session["tbllog1"] = dt;
             ((Label)this.Master.FindControl("LblGrpCompany")).Text = ((DataTable)Session["tbllog1"]).Rows[0]["comnam"].ToString();
-                                                                                                              //((Label)this.Master.FindControl("lbladd")).Text = (dr[0]
+            //((Label)this.Master.FindControl("lbladd")).Text = (dr[0]
         }
 
         private void gridVisibility()
@@ -379,73 +379,83 @@ namespace RealERPWEB.F_99_Allinterface
 
                     this.pnlReqInfo.Visible = true;
                     this.pnlPendapp.Visible = false;
+                    this.PnlReqChecked.Visible = false;
                     this.pnlfrec.Visible = false;
                     this.pnlsrec.Visible = false;
                     this.pnlthrec.Visible = false;
                     this.pnlpayOrder.Visible = false;
                     this.pnlFinalApp.Visible = false;
                     this.PnlreqInfo1.Visible = false;
-
-
                     //this.RadioButtonList1.Items[0].Attributes["style"] = "background: #D0DECA; display:block;";
                     this.RadioButtonList1.Items[0].Attributes["class"] = "lblactive blink_me";
-
-
-
                     break;
 
                 case "1":
                     this.pnlReqInfo.Visible = true;
                     this.pnlPendapp.Visible = false;
+                    this.PnlReqChecked.Visible = false;
                     this.pnlfrec.Visible = false;
                     this.pnlsrec.Visible = false;
                     this.pnlthrec.Visible = false;
                     this.pnlpayOrder.Visible = false;
                     this.pnlFinalApp.Visible = false;
                     this.PnlreqInfo1.Visible = false;
-
                     this.RadioButtonList1.Items[1].Attributes["class"] = "lblactive blink_me";
                     break;
-                case "2":// First Approval/ Checked
+
+                case "2":// requisition Checked
+
+                    this.pnlReqInfo.Visible = false;
+                    this.PnlReqChecked.Visible = true;
+                    this.pnlPendapp.Visible = false;
+                    this.pnlfrec.Visible = false;
+                    this.pnlsrec.Visible = false;
+                    this.pnlthrec.Visible = false;
+                    this.pnlpayOrder.Visible = false;
+                    this.pnlFinalApp.Visible = false;
+                    this.PnlreqInfo1.Visible = false;
+                    // this.RadioButtonList1.Items[2].Attributes["style"] = "background: #D0DECA; display:block;";
+                    this.RadioButtonList1.Items[2].Attributes.Add("class", "lblactive");
+                    break;
+
+                case "3":// First Approval/ Checked
 
                     this.pnlReqInfo.Visible = false;
                     this.pnlPendapp.Visible = true;
+                    this.PnlReqChecked.Visible = false;
                     this.pnlfrec.Visible = false;
                     this.pnlsrec.Visible = false;
                     this.pnlthrec.Visible = false;
                     this.pnlpayOrder.Visible = false;
                     this.pnlFinalApp.Visible = false;
                     this.PnlreqInfo1.Visible = false;
-
-
                     // this.RadioButtonList1.Items[2].Attributes["style"] = "background: #D0DECA; display:block;";
-                    this.RadioButtonList1.Items[2].Attributes.Add("class", "lblactive");
-
+                    this.RadioButtonList1.Items[3].Attributes.Add("class", "lblactive");
                     break;
 
 
-                case "3":// First Recommendation
+                case "4":// First Recommendation
 
                     this.pnlReqInfo.Visible = false;
                     this.pnlPendapp.Visible = false;
+                    this.PnlReqChecked.Visible = false;
                     this.pnlfrec.Visible = true;
                     this.pnlsrec.Visible = false;
                     this.pnlthrec.Visible = false;
                     this.pnlpayOrder.Visible = false;
                     this.pnlFinalApp.Visible = false;
                     this.PnlreqInfo1.Visible = false;
-
-
                     // this.RadioButtonList1.Items[2].Attributes["style"] = "background: #D0DECA; display:block;";
-                    this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
 
                     break;
 
 
-                case "4":// Second Recommendation
+                case "5":// Second Recommendation
 
                     this.pnlReqInfo.Visible = false;
                     this.pnlPendapp.Visible = false;
+                    this.PnlReqChecked.Visible = false;
                     this.pnlfrec.Visible = false;
                     this.pnlsrec.Visible = true;
                     this.pnlthrec.Visible = false;
@@ -455,71 +465,74 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                     // this.RadioButtonList1.Items[2].Attributes["style"] = "background: #D0DECA; display:block;";
-                    this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
 
                     break;
 
 
-                case "5":// Third Recommendation
+                case "6":// Third Recommendation
 
                     this.pnlReqInfo.Visible = false;
                     this.pnlPendapp.Visible = false;
+                    this.PnlReqChecked.Visible = false;
                     this.pnlfrec.Visible = false;
                     this.pnlsrec.Visible = false;
                     this.pnlthrec.Visible = true;
                     this.pnlpayOrder.Visible = false;
                     this.pnlFinalApp.Visible = false;
                     this.PnlreqInfo1.Visible = false;
-                    this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[6].Attributes["class"] = "lblactive blink_me";
 
                     break;
 
 
 
 
-                case "6":  // Final Approval
+                case "7":  // Final Approval
 
                     this.pnlReqInfo.Visible = false;
                     this.pnlPendapp.Visible = false;
+                    this.PnlReqChecked.Visible = false;
                     this.pnlfrec.Visible = false;
                     this.pnlsrec.Visible = false;
                     this.pnlthrec.Visible = false;
                     this.pnlFinalApp.Visible = true;
                     this.pnlpayOrder.Visible = false;
                     this.PnlreqInfo1.Visible = false;
-                    this.RadioButtonList1.Items[6].Attributes["class"] = "lblactive blink_me";
-                    //this.RadioButtonList1.Items[3].Attributes["style"] = "background: #D0DECA; display:block;";
-
-                    break;
-
-
-                case "7":// Payment Due
-                    this.pnlFinalApp.Visible = false;
-
-                    this.pnlReqInfo.Visible = false;
-                    this.pnlPendapp.Visible = false;
-                    this.pnlfrec.Visible = false;
-                    this.pnlsrec.Visible = false;
-                    this.pnlthrec.Visible = false;
-                    this.pnlpayOrder.Visible = true;
-                    this.PnlreqInfo1.Visible = false;
                     this.RadioButtonList1.Items[7].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[3].Attributes["style"] = "background: #D0DECA; display:block;";
 
                     break;
 
-                case "8": // Today Approval
+
+                case "8":// Payment Due
+                    this.pnlFinalApp.Visible = false;
+                    this.pnlReqInfo.Visible = false;
+                    this.pnlPendapp.Visible = false;
+                    this.PnlReqChecked.Visible = false;
+                    this.pnlfrec.Visible = false;
+                    this.pnlsrec.Visible = false;
+                    this.pnlthrec.Visible = false;
+                    this.pnlpayOrder.Visible = true;
+                    this.PnlreqInfo1.Visible = false;
+                    this.RadioButtonList1.Items[8].Attributes["class"] = "lblactive blink_me";
+                    //this.RadioButtonList1.Items[3].Attributes["style"] = "background: #D0DECA; display:block;";
+
+                    break;
+
+                case "9": // Today Approval
                           //Requistion statusPnlreqInfo1
 
                     this.PnlreqInfo1.Visible = true;
                     this.pnlReqInfo.Visible = false;
+                    this.PnlReqChecked.Visible = false;
                     this.pnlPendapp.Visible = false;
                     this.pnlfrec.Visible = false;
                     this.pnlsrec.Visible = false;
                     this.pnlthrec.Visible = false;
                     this.pnlpayOrder.Visible = false;
                     this.pnlFinalApp.Visible = false;
-                    this.RadioButtonList1.Items[8].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[9].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[4].Attributes["style"] = "background: #D0DECA; display:block;";
                     break;
 
@@ -567,14 +580,15 @@ namespace RealERPWEB.F_99_Allinterface
 
             this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["reqstatus"])).ToString("#,##0;(#,##0);") + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
             this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["apprst"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Attachment</div></div></div>";
-            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["apprst"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>" + FirstApp + "</div></div></div>";
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading  orange  counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["frecom"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content  orange '><div class='circle-tile-description text-faded'>" + frecom + "</div></div></div>";
-            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading  dark-gray e  counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["secrecom"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>" + secrecom + "</div></div></div>";
-            this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["threcom"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Forward</div></div></div>";
+            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["reqcheck"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Req Checked</div></div></div>";
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["apprst"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>" + FirstApp + "</div></div></div>";
+            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange  counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["frecom"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content  orange '><div class='circle-tile-description text-faded'>" + frecom + "</div></div></div>";
+            this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray e  counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["secrecom"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>" + secrecom + "</div></div></div>";
+            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["threcom"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Forward</div></div></div>";
 
-            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red   counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["fapp"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Final Approval</div></div></div>";
-            this.RadioButtonList1.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading  purple  counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["payorder"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Payment Due</div></div></div>";
-            this.RadioButtonList1.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["todayppval"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>ToDays Approval</div></div></div>";
+            this.RadioButtonList1.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red   counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["fapp"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Final Approval</div></div></div>";
+            this.RadioButtonList1.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple  counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["payorder"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Payment Due</div></div></div>";
+            this.RadioButtonList1.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["todayppval"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>ToDays Approval</div></div></div>";
 
 
 
@@ -628,15 +642,21 @@ namespace RealERPWEB.F_99_Allinterface
             this.Data_Bind("gvReqInfo", dv.ToTable());
 
 
+            //req checked  checkbyid <>''
+            dv.RowFilter = ("checkbyid = ''");
+            dv = dt.DefaultView;
+            this.Data_Bind("gvReqCheck", dv.ToTable());
 
-            //dt = ((DataTable)ds1.Tables[1]).Copy();
-            dv.RowFilter = ("aprvbyid = '' and appamt <= 0");
+
+
+            //dt = ((DataTable)ds1.Tables[1]).Copy();  // and appamt <= 0
+            dv.RowFilter = ("checkbyid <>'' and aprvbyid='' ");
             dv = dt.DefaultView;
             this.Data_Bind("gvPenApproval", dv.ToTable());
 
 
             //First Recommendate
-            dv.RowFilter = ("faprvbyid = '' and frecid='' and appamt > 0 and aprvbyid <>''");
+            dv.RowFilter = ("checkbyid <> '' and appamt > 0 and aprvbyid <>'' and faprvbyid='' and frecid=''");
             //dv.RowFilter = ("empid ='" + usrid + "'");
             dv = dt.DefaultView;
             this.Data_Bind("gvfrec", dv.ToTable());
@@ -644,7 +664,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
             //Second Recommendate
-            dv.RowFilter = ("faprvbyid = '' and  frecid<>''    and  secrecid='' and appamt > 0 and aprvbyid <>''");
+            dv.RowFilter = ("checkbyid<>'' and appamt > 0 and aprvbyid <>'' and faprvbyid = '' and  frecid<>''  and  secrecid=''");
             //dv.RowFilter = ("empid ='" + usrid + "'");
             dv = dt.DefaultView;
             this.Data_Bind("gvsrec", dv.ToTable());
@@ -652,31 +672,24 @@ namespace RealERPWEB.F_99_Allinterface
 
 
             //Third Recommendate
-            dv.RowFilter = ("faprvbyid = ''  and  frecid<>''    and  secrecid<>'' and threcid='' and appamt > 0 and aprvbyid <>''");
+            dv.RowFilter = ("checkbyid <> '' and appamt > 0 and aprvbyid <> '' and faprvbyid = ''  and  frecid<>'' and  secrecid<>'' and threcid=''");
             //dv.RowFilter = ("empid ='" + usrid + "'");
             dv = dt.DefaultView;
             this.Data_Bind("gvthrec", dv.ToTable());
 
 
 
-
-            dv.RowFilter = ("faprvbyid = '' and frecid<>''    and  secrecid<>'' and threcid<>'' and appamt > 0 and aprvbyid <>''");
+            dv.RowFilter = ("checkbyid <>'' and faprvbyid = '' and frecid<>'' and  secrecid<>'' and threcid<>'' and appamt > 0 and aprvbyid <>''");
             dv = dt.DefaultView;
             this.Data_Bind("gvFinlApproval", dv.ToTable());
             Session["tblfApproal"] = dv.ToTable();
 
-            dv.RowFilter = ("balamt > 0 and faprvbyid<>''");
+            dv.RowFilter = ("checkbyid <>'' and balamt > 0 and faprvbyid<>''");
             dv = dt.DefaultView;
-
             Session["tblpaydue"] = dv.ToTable();
+
             this.Data_Bind("gvPayOrder", dv.ToTable());
             this.Data_Bind("gvReqInfo1", dt);
-
-
-
-
-
-
 
         }
 
@@ -703,23 +716,18 @@ namespace RealERPWEB.F_99_Allinterface
                     else
                     {
                         gvReqInfo.Columns[13].Visible = false;
-
                     }
-
-
                     break;
 
-
-
+                case "gvReqCheck":
+                    this.gvReqCheck.DataSource = dt;
+                    this.gvReqCheck.DataBind();
+                    break;
 
                 case "gvPenApproval":
                     this.gvPenApproval.DataSource = dt;
                     this.gvPenApproval.DataBind();
                     break;
-
-
-
-
 
                 case "gvfrec":
                     this.gvfrec.DataSource = dt;
@@ -751,8 +759,6 @@ namespace RealERPWEB.F_99_Allinterface
                     ((Label)this.gvPayOrder.FooterRow.FindControl("lblgvFApamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(appamt)", "")) ? 0.00 :
                    dt.Compute("sum(appamt)", ""))).ToString("#,##0;(#,##0); ");
 
-
-
                     break;
 
                 case "gvReqInfo1":
@@ -764,12 +770,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.gvReqInfo1.DataBind();
                     break;
 
-
             }
-
-
-
-
 
         }
 
@@ -814,7 +815,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //HyperLink hlnkgvgvmrfno = (HyperLink)e.Row.FindControl("hlnkgvgvmrfno");
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("HyInprPrint11");
 
-                
+
                 string comcod = this.GetCompCode();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
@@ -1098,7 +1099,7 @@ namespace RealERPWEB.F_99_Allinterface
         }
 
         private string GetComDelSkip3()
-            
+
         {
             string comcod = this.GetCompCode();
             string delskip3 = "";
@@ -1110,9 +1111,9 @@ namespace RealERPWEB.F_99_Allinterface
                 default:
                     delskip3 = "delskip3";
                     break;
-            
-            
-            
+
+
+
             }
 
 
@@ -1510,6 +1511,18 @@ namespace RealERPWEB.F_99_Allinterface
             Session["Report1"] = rpt;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer?PrintOpt=" +
                           ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
+        protected void gvReqCheck_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkbtnReqChecked");
+                string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
+
+                hlink1.NavigateUrl = "~/F_34_Mgt/OtherReqEntry?Type=OreqChecked&prjcode=" + pactcode + "&genno=" + reqno;
+            }
         }
     }
 }
