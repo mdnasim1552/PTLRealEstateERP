@@ -40,6 +40,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 ////this.getAllData();
                 this.GetAIInterface();
+                this.GetBatchAssingList();
                 this.TasktState.SelectedIndex = 0;
                 this.TasktState_SelectedIndexChanged(null, null);
                 this.GetEmployeeName();
@@ -1200,12 +1201,8 @@ namespace RealERPWEB.F_99_Allinterface
                 if (ds3 == null)
                     return;
                 Session["tblAIdelivery"] = ds3.Tables[0];
-                DataTable dt2 = new DataTable();
-                DataView view3 = new DataView();
-                view3.Table = ds3.Tables[0];
-                view3.RowFilter = "roletypcode='95003' and doneqty > 0";
-                dt2 = view3.ToTable();
-                this.gv_Delivery.DataSource = dt2;
+               
+                this.gv_Delivery.DataSource = ds3;
                 this.gv_Delivery.DataBind();
 
 
@@ -1605,7 +1602,7 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink hlink = (HyperLink)e.Row.FindControl("lnkInvoice");
-                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString().Trim();
+                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "clientid")).ToString().Trim();
                 hlink.NavigateUrl = "~/F_38_AI/AIInVoiceCreate.aspx?Type=MGT&EmpID=" + empid;
 
             }

@@ -4276,7 +4276,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string month = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMM-yyyy");
             string txtDate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM-yyyy");
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-
+            string todate1 = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM-yyyy");
             DataTable dt = (DataTable)Session["tblpay"];
             LocalReport Rpt1 = new LocalReport();
 
@@ -4379,7 +4379,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             else if (comcod == "3365")
             {
-                string todate1 = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM-yyyy");
+               
                 string txtsign1 = "Md. Saiful Islam\nSenior Executive";
                 var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
                 Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipBTI", list, null, null);
@@ -4426,19 +4426,26 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             {
               
                 var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
-                Rpt1.SetParameters(new ReportParameter("comlogo", comLogo));
                 Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipLanco", list, null, null);
+                Rpt1.SetParameters(new ReportParameter("comlogo", comLogo));
+               
 
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
                               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
             }
-            else if (comcod == "3101")
+            else if (comcod == "3101" || comcod== "3370")
             {
-                Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
                 var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
                 Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipCPDL", list, null, null);
 
+                Rpt1.EnableExternalImages = true;
+
+                Rpt1.SetParameters(new ReportParameter("ComLogo", comLogo));
+                
+                Rpt1.SetParameters(new ReportParameter("txtHeader2", "Pay Slip For The Month of - " + todate1 ));
+                
+             
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
                               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";

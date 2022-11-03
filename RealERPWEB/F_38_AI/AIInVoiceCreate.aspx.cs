@@ -122,7 +122,8 @@ namespace RealERPWEB.F_38_AI
             try
             {
                 string comcod = this.GetComdCode();
-                DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "GETCUSTOMERLIST", "", "", "", "", "", "");
+                string empid = Request.QueryString["EmpID"]==""?"51%": Request.QueryString["EmpID"];
+                DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "CLIENTSLIST", empid, "", "", "", "","","");
                 if (ds == null)
                     return;
                 DataTable dt = ds.Tables[0];
