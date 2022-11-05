@@ -190,7 +190,11 @@ namespace RealERPWEB
             }
             this.gvclientbthday.DataSource = (ds1.Tables[0]);
             this.gvclientbthday.DataBind();
-
+            if (comcod == "3367")
+            {
+                this.gvclientbthday.Columns[5].Visible = true;
+            }
+                
 
             if (ds1 == null || ds1.Tables[1].Rows.Count == 0)
             {
@@ -200,6 +204,10 @@ namespace RealERPWEB
             }
             this.gvmarriageday.DataSource = (ds1.Tables[1]);
             this.gvmarriageday.DataBind();
+            if (comcod == "3367")
+            {
+                this.gvclientbthday.Columns[5].Visible = true;
+            }
 
         }
         private void getLink()
