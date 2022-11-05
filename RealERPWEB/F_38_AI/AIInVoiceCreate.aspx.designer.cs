@@ -204,13 +204,13 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.TextBox txtrate;
 
         /// <summary>
-        /// ddlcurency control.
+        /// txtcurrency control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlcurency;
+        protected global::System.Web.UI.WebControls.TextBox txtcurrency;
 
         /// <summary>
         /// Label6 control.

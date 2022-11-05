@@ -21,14 +21,17 @@ namespace RealERPWEB.F_38_AI
                 ((Label)this.Master.FindControl("lblTitle")).Text = "AI Invoice Create";
                
                 string currentdate = DateTime.Now.ToString("dd-MMM-yyyy");
+                string duedate = DateTime.Now.AddDays(2).ToString("dd-MMM-yyyy");
+                this.txtduedate.Text = duedate;
                 this.txtdate.Text = currentdate;
                 this.txtNarration.Text = this.bindDataText();
+                this.GETINVOLASTID();
                 this.GetCustomerList();
                 this.GetProjectList();
                 this.GetBatchList();
                 this.GetDataSet();
                 this.GetDataSetList();
-                this.GetCurrency();
+                //this.GetCurrency();
                 this.CreateTableAssign();
             }
         }
@@ -79,7 +82,7 @@ namespace RealERPWEB.F_38_AI
                 string subjects = this.txtsubjects.Text.ToString();
                 string remark = subjects;
                 string duedate = this.txtduedate.Text.ToString();
-                string currency = this.ddlcurency.SelectedValue;
+                string currency = this.txtcurrency.Text;
                 string isstatus = "true";
                 string notes = this.txtNarration.Text;
 
@@ -148,6 +151,7 @@ namespace RealERPWEB.F_38_AI
 
 
         }
+       
 
         private void GetDataSet()
         {
@@ -204,15 +208,24 @@ namespace RealERPWEB.F_38_AI
         {
             try
             {
+               
                 string comcod = this.GetComdCode();
-                string projid = this.ddlprojname.SelectedValue.ToString();
-                DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "BATCH_LIST", projid, "", "", "", "", "");
+                string projid = this.ddlprojname.SelectedValue.ToString()==""?"16%": this.ddlprojname.SelectedValue.ToString();
+                
+                DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "BATCH_LIST", projid,"", "", "", "", "");
                 if (ds == null)
                     return;
                 this.ddlbatchname.DataTextField = "batrchname";
                 this.ddlbatchname.DataValueField = "batchid";
                 this.ddlbatchname.DataSource = ds.Tables[0];
                 this.ddlbatchname.DataBind();
+                
+               
+               // this.txtrate.Text = ds.Tables[0].Rows[1]["rate"].ToString();
+
+                this.txtcurrency.Text= ds.Tables[0].Rows[1]["currencydesc"].ToString();
+
+
             }
             catch (Exception exp)
             {
@@ -254,27 +267,27 @@ namespace RealERPWEB.F_38_AI
             this.GetDataSetList();
         }
 
-        private void GetCurrency()
-        {
-            try
-            {
-                string comcod = this.GetComdCode();
+        //private void GetCurrency()
+        //{
+        //    try
+        //    {
+        //        string comcod = this.GetComdCode();
 
-                DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "GETCOUNTRY", "", "", "", "", "", "");
-                if (ds == null)
-                    return;
-                this.ddlcurency.DataTextField = "codedesc";
-                this.ddlcurency.DataValueField = "code";
-                this.ddlcurency.DataSource = ds.Tables[0];
-                this.ddlcurency.DataBind();
+        //        DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "GETCOUNTRY", "", "", "", "", "", "");
+        //        if (ds == null)
+        //            return;
+        //        this.ddlcurency.DataTextField = "codedesc";
+        //        this.ddlcurency.DataValueField = "code";
+        //        this.ddlcurency.DataSource = ds.Tables[0];
+        //        this.ddlcurency.DataBind();
 
-            }
-            catch (Exception exp)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+        //    }
+        //    catch (Exception exp)
+        //    {
+        //        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
-            }
-        }
+        //    }
+        //}
         // invoicedate, invoiceno, invoiceno1, duedate,customer,prjname,batchname, dataset,quantity,rate,currency
         private void CreateTableAssign()
         {
@@ -306,10 +319,28 @@ namespace RealERPWEB.F_38_AI
             this.gv_AIInvoice.DataSource = tbl1;
             this.gv_AIInvoice.DataBind();
         }
+
+        private void GETINVOLASTID()
+        {
+            string comcod = this.GetComdCode();
+
+            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETLASTINVOICENO", "", "", "", "", "", "");
+            if (ds == null)
+                return;
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                this.txtInvoiceno.Text = ds.Tables[0].Rows[0]["maxinvo1"].ToString();
+                this.txtInvoiceno2.Text = ds.Tables[0].Rows[0]["maxinvo2"].ToString();
+            }
+                
+        }
+
         protected void lnkbtnok_Click(object sender, EventArgs e)
         {
             try
             {
+               
+
                 DataTable tblt01 = (DataTable)ViewState["tblt01"];
 
                 DataRow dr1 = tblt01.NewRow();
@@ -329,7 +360,7 @@ namespace RealERPWEB.F_38_AI
                 dr1["dataset"] = this.ddldataset.SelectedItem.Text.Trim().ToString();
                 dr1["quantity"] = Convert.ToDouble("0" + this.txtdoneqty.Text.Trim());
                 dr1["rate"] = Convert.ToDouble("0" + this.txtrate.Text.Trim());
-                dr1["currency"] = this.ddlcurency.SelectedItem.Text.Trim();
+                dr1["currency"] = this.txtcurrency.Text.Trim();
                 dr1["subjects"] = this.txtsubjects.Text.Trim();
                 tblt01.Rows.Add(dr1);
 
