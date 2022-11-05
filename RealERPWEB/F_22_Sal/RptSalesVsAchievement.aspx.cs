@@ -36,6 +36,9 @@ namespace RealERPWEB.F_22_Sal
                 this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 this.ProjectName();
                 this.GetGroup();
+                this.Visibility();
+
+               
             }
 
         }
@@ -121,6 +124,19 @@ namespace RealERPWEB.F_22_Sal
             return lotype;
         }
 
+        private void Visibility()
+        {
+            string Type = this.Request.QueryString["Type"];
+            if (Type == "MonsalVsAchieveLO")
+            {
+                this.gvsalesvscoll.Columns[12].HeaderText = "Received Amount </br> Finlay Prom.";
+                this.gvsalesvscoll.Columns[13].Visible = true;
+                this.gvsalesvscoll.Columns[14].Visible = true;
+
+            }
+
+        }
+
         protected void lnkbtnOk_Click(object sender, EventArgs e)
         {
             Session.Remove("tblgrpsoldunsold");
@@ -173,17 +189,11 @@ namespace RealERPWEB.F_22_Sal
 
         private void Data_Bind()
         {
-            string Type = this.Request.QueryString["Type"];
+           
             this.gvsalesvscoll.DataSource = (DataTable)Session["tblsalesvscoll"];
             this.gvsalesvscoll.DataBind();
 
-            if(Type== "MonsalVsAchieveLO")
-            {
-                this.gvsalesvscoll.Columns[12].HeaderText = "Received Amount </br> Finlay Prom.";
-                this.gvsalesvscoll.Columns[13].Visible = true;
-                this.gvsalesvscoll.Columns[14].Visible = true;
-
-            }
+           
 
 
             // this.FooterCal();

@@ -113,6 +113,7 @@ namespace RealERPWEB.F_09_PImp
                 case "3339"://Tropical
                 case "3101"://Tropical
                 case "3368"://finlay
+                case "3367"://epic
 
                     //this.grvissue.Columns[7].Visible = false;
                     //this.grvissue.Columns[8].Visible = false;
@@ -1530,7 +1531,8 @@ namespace RealERPWEB.F_09_PImp
             switch (comcod)
             {
                 case "3101":
-                case "3368":
+                case "3368": // finlay
+                case "3367": // epic
                     break;
                 default:
                     bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "ISSUEAPPROVEDAUTO", _issuno, usrid, Date, trmnid, session, "", "", "", "", "", "", "", "", "", "");
