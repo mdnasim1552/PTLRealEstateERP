@@ -1654,7 +1654,7 @@ namespace RealERPWEB.F_14_Pro
             {
 
                 case "3353"://Manama
-                case "3101"://Manama
+                //case "3101"://Manama
                     comallsupp = "All Supplier";
                     break;
 
