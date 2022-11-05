@@ -1871,6 +1871,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "1207": // acme 
                     case "3338": // acme 
                     case "3369": // acme 
+                    case "3370": // cpdl 
                         hlnkcrystal.Visible = false;
                         lnktbnrdlc.Visible = false;
                         break;
