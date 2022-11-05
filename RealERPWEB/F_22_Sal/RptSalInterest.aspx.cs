@@ -1103,7 +1103,7 @@ namespace RealERPWEB.F_22_Sal
                  */
                 }
 
-                else if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310")
+                else if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310" || comcod == "3101" )
                 {
                     string frmdate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
                    
@@ -1279,7 +1279,7 @@ namespace RealERPWEB.F_22_Sal
 
                 }
 
-                else if (comcod =="3354" || comcod == "3101")
+                else if (comcod =="3354" )
                 {
 
                     string frmdate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");

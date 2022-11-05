@@ -87,7 +87,7 @@ namespace RealERPWEB.F_38_AI
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = true;
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Clear();
                         ddlgval = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval"));
-                        ddlgval.DataTextField = "country";
+                        ddlgval.DataTextField = "curdesc";
                         ddlgval.DataValueField = "code";
                         ddlgval.DataSource = dtc;
                         ddlgval.DataBind();
@@ -170,6 +170,7 @@ namespace RealERPWEB.F_38_AI
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Customer Saved Successfully');", true);
                 this.isFiledClear();
+                this.GetCustomerList();
             }
             catch (Exception exp)
             {

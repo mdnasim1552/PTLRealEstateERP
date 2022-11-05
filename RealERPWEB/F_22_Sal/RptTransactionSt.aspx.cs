@@ -371,11 +371,20 @@ namespace RealERPWEB.F_22_Sal
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("rptTitle", "Cheque In Hand (Wating For Approval)"));
             }
+
+            else if (rbtnList1.SelectedIndex == 6)
+            {
+                Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptTransStatementCash", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("rptTitle", "Cash In Hand (Wating For Approval)"));
+            }
+
+
             else
             {
 
 
-                Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptTransStatement03", list, null, null);
+                Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptTransStatementCash", list, null, null);
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("rptTitle", "Cheque In Hand (Wating For Approval)"));
             }
@@ -413,6 +422,8 @@ namespace RealERPWEB.F_22_Sal
             {
                
                 case "3368":
+                case "3101":
+
                     this.RptPrjWiseFinlay();
 
 
@@ -995,7 +1006,7 @@ namespace RealERPWEB.F_22_Sal
             string pactcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
 
             string actual = (this.rbtnList1.SelectedIndex == 2) ? "Actualdate"
-                     : (this.rbtnList1.SelectedIndex == 3) ? "Reconcliedate" : (this.rbtnList1.SelectedIndex == 4) ? "EntryDate" : (this.rbtnList1.SelectedIndex == 5) ? "Depositeddate" : "";
+                     : (this.rbtnList1.SelectedIndex == 3) ? "Reconcliedate" : (this.rbtnList1.SelectedIndex == 4) ? "EntryDate" : (this.rbtnList1.SelectedIndex == 5) ? "Depositeddate" : (this.rbtnList1.SelectedIndex == 6) ? "DepositedCashdate" : "";
 
             string coltype = this.companytype();
 
@@ -1006,7 +1017,7 @@ namespace RealERPWEB.F_22_Sal
                 this.grvTrnDatWise.DataBind();
                 return;
             }
-            Session["DailyTrns"] = (this.rbtnList1.SelectedIndex == 0) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 2) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 3) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 4) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 5) ? HiddenSameData(ds1.Tables[0]) : CollectCurDate(HiddenSameData(ds1.Tables[0]));
+            Session["DailyTrns"] = (this.rbtnList1.SelectedIndex == 0) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 2) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 3) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 4) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 5) ? HiddenSameData(ds1.Tables[0]) : (this.rbtnList1.SelectedIndex == 6) ? HiddenSameData(ds1.Tables[0]): CollectCurDate(HiddenSameData(ds1.Tables[0]));
             DataTable dt = (DataTable)Session["DailyTrns"];
             this.Data_Bind();
 

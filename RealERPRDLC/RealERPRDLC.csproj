@@ -282,7 +282,9 @@
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS01.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS03.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVoucherCPDL02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherEpic.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVoucherCPDL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherFinlay02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherFinlay.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherISBL02.rdlc" />
@@ -843,6 +845,7 @@
     <EmbeddedResource Include="R_22_Sal\RptTransactionSt.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptTransStatement02.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptTransStatement02Finlay.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptTransStatementCash.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptTransStatement03.rdlc" />
     <EmbeddedResource Include="R_22_Sal\rptUnitFxInf.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptUnitWiseCost.rdlc" />
@@ -1126,6 +1129,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptMonthWiseTaxFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptMonthWiseTax.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipCPDL.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipCPDL - Copy.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipLanco.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryAssureTourism.rdlc" />
