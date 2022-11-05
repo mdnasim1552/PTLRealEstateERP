@@ -689,6 +689,7 @@ namespace RealERPRDLC
                 case "R_22_Sal.RptMoneyReceipt": Rpt1a = SetRptMoneyReceipt(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptDuesCollAll": Rpt1a = SetRptDuesCollAll(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptMoneyReceiptIntech": Rpt1a = SetRptMoneyReceiptIntech(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptMoneyReceiptCPDL": Rpt1a = SetRptMoneyReceiptCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptMoneyReceiptFinlay": Rpt1a = SetRptMoneyReceiptFinlay(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptMoneyReceiptFinlay2": Rpt1a = SetRptMoneyReceiptFinlay2(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
@@ -4412,6 +4413,10 @@ namespace RealERPRDLC
             return Rpt1a;
         }
         private static LocalReport SetRptMoneyReceiptIntech(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>)RptDataSet));
+            return Rpt1a;
+        } private static LocalReport SetRptMoneyReceiptCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>)RptDataSet));
             return Rpt1a;
