@@ -88,9 +88,13 @@ namespace RealERPWEB.F_17_Acc
                     // case "3101":
                     mrprint = "MRPrintIntech";
                     break;
+                case "3101":
+                case "3370":
+                    // case "3101":
+                    mrprint = "MRPrintCPDL";
+                    break;
 
-                
-                case "3101": //Finlay
+               //Finlay
                 case "3368":
                     mrprint = "MRPrintFinlay";
                     break;
@@ -414,6 +418,7 @@ namespace RealERPWEB.F_17_Acc
             double amt1 = Convert.ToDouble((Convert.IsDBNull(dtrpt.Compute("Sum(paidamt)", "")) ? 0.00 : dtrpt.Compute("Sum(paidamt)", "")));
             string amt1t = ASTUtility.Trans(amt1, 2);
             string Typedes = "";
+           
             if (paytype == "CHEQUE")
             {
                 Typedes = paytype + ", " + "No: " + chqno + ", Bank: " + bankname + ", Branch: " + branch;
@@ -680,6 +685,44 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("takainword", amt1t.Replace("Taka", "").Replace("Only", "Taka Only") + " " + "AS " + ((Installment == "") ? rectype : Installment)));
                 Rpt1.SetParameters(new ReportParameter("takainword1", amt1t.Replace("Taka", "").Replace("Only", "Taka Only") + " " + "AS " + ((Installment == "") ? rectype : Installment)));
                 Rpt1.SetParameters(new ReportParameter("paytype", Typedes));
+                Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
+                Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+                Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
+                Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.ComInfoWithoutNumber()));
+                Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.ComInfoWithoutNumber()));
+                Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+            }
+            else if (Type == "MRPrintCPDL")
+            {
+                var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptCPDL", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("CompName", comnam));
+                Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
+                Rpt1.SetParameters(new ReportParameter("CompAdd", comadd));
+                Rpt1.SetParameters(new ReportParameter("CustAdd", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
+                Rpt1.SetParameters(new ReportParameter("CustAdd1", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
+                Rpt1.SetParameters(new ReportParameter("custteam", "Received by: " + custteam));
+                Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
+                Rpt1.SetParameters(new ReportParameter("rmrks", "Remarks: " + rmrks));
+                Rpt1.SetParameters(new ReportParameter("rmrks1", "Remarks: " + rmrks));
+                Rpt1.SetParameters(new ReportParameter("aptno", udesc));
+                Rpt1.SetParameters(new ReportParameter("usize", usize));
+                Rpt1.SetParameters(new ReportParameter("munit", munit));
+                Rpt1.SetParameters(new ReportParameter("usize1", udesc + ", " + usize + " " + munit));
+                Rpt1.SetParameters(new ReportParameter("amount", "TK. " + Convert.ToDouble(paidamt).ToString("#,##0;(#,##0)")));
+                Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(paidamt).ToString("#,##0;(#,##0)")));
+                Rpt1.SetParameters(new ReportParameter("takainword", amt1t.Replace("Taka", "").Replace("Only", "Taka Only") ));
+                Rpt1.SetParameters(new ReportParameter("As", ((Installment == "") ? rectype : Installment)));
+                Rpt1.SetParameters(new ReportParameter("takainword1", amt1t.Replace("Taka", "").Replace("Only", "Taka Only") + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+                Rpt1.SetParameters(new ReportParameter("paytype", Typedes));
+                Rpt1.SetParameters(new ReportParameter("chqno", chqno));
+                Rpt1.SetParameters(new ReportParameter("bank", bankname));
+                Rpt1.SetParameters(new ReportParameter("branch", branch));
                 Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
                 Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
