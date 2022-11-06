@@ -5220,9 +5220,9 @@
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
               <Top>0.47792in</Top>
-              <Left>5.91667in</Left>
+              <Left>5.76667in</Left>
               <Height>0.25in</Height>
-              <Width>2.61458in</Width>
+              <Width>2.03125in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -5244,7 +5244,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Approved By MD</Value>
+                      <Value>Approved By President</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
                         <FontWeight>Bold</FontWeight>
@@ -5258,9 +5258,9 @@
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
               <Top>0.47792in</Top>
-              <Left>12.41875in</Left>
+              <Left>12.95in</Left>
               <Height>0.25in</Height>
-              <Width>2.61458in</Width>
+              <Width>2.08333in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -5367,7 +5367,7 @@
               <Top>0.47792in</Top>
               <Left>2.98138in</Left>
               <Height>0.25in</Height>
-              <Width>2.77083in</Width>
+              <Width>2.33333in</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border>
@@ -5403,9 +5403,9 @@
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
               <Top>0.47792in</Top>
-              <Left>8.76116in</Left>
+              <Left>8.17366in</Left>
               <Height>0.25in</Height>
-              <Width>2.77083in</Width>
+              <Width>1.97916in</Width>
               <ZIndex>6</ZIndex>
               <Style>
                 <Border>
@@ -5433,6 +5433,44 @@
                 </Border>
               </Style>
             </Line>
+            <Textbox Name="Textbox18">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Authorized By</Value>
+                      <Style>
+                        <FontFamily>cambria</FontFamily>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox4</rd:DefaultName>
+              <Top>0.46354in</Top>
+              <Left>10.62575in</Left>
+              <Height>0.25in</Height>
+              <Width>2.03125in</Width>
+              <ZIndex>8</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <TopBorder>
+                  <Style>Solid</Style>
+                </TopBorder>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
           </ReportItems>
           <Style>
             <Border>

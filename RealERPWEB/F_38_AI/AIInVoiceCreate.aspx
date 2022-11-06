@@ -59,7 +59,7 @@
             <div class="section">
                 <div class="card mt-4">
                     <div class="card-header p-1">
-                        <h4>New Invoice</h4>
+                        <h4>Create Invoice</h4>
                     </div>
                     <div class="card-body">
                         <div class="well">
@@ -74,10 +74,10 @@
                                 <asp:Label ID="Label7" CssClass="col-lg-1 col-form-label" runat="server">Invoice No                                    
                                 </asp:Label>
                                 <div class="col-lg-1">
-                                    <asp:TextBox runat="server" ID="txtInvoiceno" placeholder="AI-INV" CssClass="form-control form-control-sm"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtInvoiceno" readonly="true" CssClass="form-control form-control-sm"></asp:TextBox>
                                 </div>
                                 <div class="col-lg-1 ">
-                                    <asp:TextBox runat="server" ID="txtInvoiceno2" placeholder="000001" CssClass="form-control form-control-sm"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtInvoiceno2" readonly="true" CssClass="form-control form-control-sm"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="row ">
@@ -90,7 +90,7 @@
                             <div class="row mb-1">
                                 <asp:Label ID="Label3" CssClass="col-lg-1 col-form-label" runat="server">Clients</asp:Label>
                                 <div class="col-lg-3 col-md-3 col-sm-6">
-                                    <asp:DropDownList ID="ddlsuplier" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlsuplier_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddlsuplier" runat="server" readonly="true" enabled="False" CssClass="form-control form-control-sm chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlsuplier_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </div>
                                 <asp:Label ID="Label1" CssClass="col-lg-1 col-form-label" runat="server">Project Name</asp:Label>
@@ -121,8 +121,9 @@
                                     <asp:TextBox runat="server" ID="txtrate" min="0" TextMode="Number" placeholder="0.00" CssClass="form-control form-control-sm"></asp:TextBox>
                                 </div>
                                 <div class="col-lg-1 col-md-3 col-sm-6">
-                                    <asp:DropDownList ID="ddlcurency" runat="server" AutoPostBack="true" CssClass="form-control form-control-sm chzn-select">
-                                    </asp:DropDownList>
+                                    <%--<asp:TextBox ID="ddlcurency" readonly="true" runat="server"  CssClass="form-control form-control-sm"></asp:TextBox>--%>
+                                    <asp:TextBox ReadOnly="true" runat="server" ID="txtcurrency" CssClass="form-control form-control-sm" ></asp:TextBox>
+                                    
                                 </div>
                             </div>
                             <div class="row mb-1">
