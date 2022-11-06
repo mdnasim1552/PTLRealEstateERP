@@ -229,19 +229,16 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             this.gvEmpList.PageIndex = e.NewPageIndex;
             this.LoadGrid();
-
         }
 
         private void LoadGrid()
         {
             DataTable dt = (DataTable)Session["tblEmpstatus"];
-
             this.gvEmpList.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvEmpList.DataSource = dt;
             this.gvEmpList.DataBind();
             if (dt.Rows.Count > 0)
             {
-
                 //((Label)this.gvEmpList.FooterRow.FindControl("lgvFlblgvemplist2")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(salary)", "")) ? 0.00 : dt.Compute("Sum(salary)", ""))).ToString("#,##0;(#,##0); ");
 
                 Session["Report1"] = gvEmpList;
