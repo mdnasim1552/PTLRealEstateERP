@@ -775,6 +775,7 @@
     <EmbeddedResource Include="R_21_MKT\RptYearlySales.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptAccSumCustPayStatus.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptAccSummaryInflow.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptAcknowledgementSlipCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptAllProDuesColl02.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptBgdSales.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptBookingtDues.rdlc" />

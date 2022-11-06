@@ -585,7 +585,6 @@
                                 <asp:DropDownList ID="ddlLoanTypeSearch" runat="server" CssClass="form-control chzn-select">
                                     <asp:ListItem Value="0">Pilot</asp:ListItem>
                                     <asp:ListItem Value="1">sow</asp:ListItem>
-
                                 </asp:DropDownList>
                             </div>
                             <div class="col-lg-2">
@@ -2203,6 +2202,7 @@
                                 <asp:LinkButton ID="pnlsidebarClose" OnClick="pnlsidebarClose_Click" CssClass="btn btn-danger  btn-sm pr-2 pl-2" runat="server">&times;</asp:LinkButton>
                             </div>
                             <div class="modal-body">
+                                <asp:Label runat="server" Visible="false" ID="lblsowproject"></asp:Label>
                                 <asp:Label runat="server" ID="lblproj" Visible="false"></asp:Label>
                                 <asp:GridView ID="gvProjectInfo" runat="server" AutoGenerateColumns="False" CssClass="table-bordered gview"
                                     ShowFooter="False" ShowHeader="false" AllowPaging="false" Visible="True" Width="100%">
