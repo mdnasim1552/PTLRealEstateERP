@@ -108,7 +108,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
             Session["tblprojectlist"] = ds.Tables[0];
-            Session["tblassinglist"] = ds.Tables[2];
+            Session["tblassinglist"] = this.HiddenSameData(ds.Tables[2]);
 
 
             this.data_Bind();
@@ -125,10 +125,7 @@ namespace RealERPWEB.F_99_Allinterface
             DataTable tblasing = (DataTable)Session["tblassinglist"];
 
             this.gvInterface.DataSource = tbl1;
-
-
-            this.gvInterface.DataBind();
-
+            this.gvInterface.DataBind();           
             this.gvAssingJob.DataSource = tblasing;
             this.gvAssingJob.DataBind();
 
@@ -1809,6 +1806,30 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
             }
+        }
+
+        protected void lnkbtnsow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.pnlSidebar.Visible = true;
+                this.pnlProjectadd.Visible = true;
+                this.pnlBatchadd.Visible = false;
+                this.pnlAssginUser.Visible = false;
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;
+                string id = ((Label)this.gv_Delivery.Rows[index].FindControl("lblgvdeliprjid")).Text.ToString();
+                this.lblproj.Text = id;
+                this.GetEmployeeName();                
+                this.GetCustomerList();
+                this.GetProjectDetails();
+                this.LoadGrid();
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+            }
+
         }
     }
 }
