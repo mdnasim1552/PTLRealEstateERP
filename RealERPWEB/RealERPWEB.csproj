@@ -98,6 +98,9 @@
     <Reference Include="CrystalDecisions.Windows.Forms">
       <HintPath>..\..\..\..\..\bin\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
+    <Reference Include="csc">
+      <HintPath>..\..\Real Estate Bin 211213\bin\roslyn\csc.exe</HintPath>
+    </Reference>
     <Reference Include="DayPilot">
       <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\DayPilot.dll</HintPath>
     </Reference>
