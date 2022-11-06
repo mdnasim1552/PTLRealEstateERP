@@ -318,7 +318,9 @@ namespace RealEntity.C_14_Pro
         public class MkrServay03
         {
             //  a.comcod, a.ssircode,  a.discount, a.ccharge, a.payterm, ssirdesc=isnull(b.sirdesc, '')
+            //comcod,msrno,ssircode,discount ,ccharge,payterm,qutdate,worktime,notes ,goodwill,matavailable,delcon,ait
             public string comcod { get; set; }
+            public string msrno { get; set; }
             public string ssircode { get; set; }
             public double discount { get; set; }
             public string ccharge { get; set; }
@@ -327,11 +329,15 @@ namespace RealEntity.C_14_Pro
             public string worktime { get; set; }
             public string notes { get; set; }
             public string contact { get; set; }
-
             public string crperiod { get; set; }
-
-
             public string ssirdesc { get; set; }
+            public string ssirdesc1 { get; set; }
+            public string goodwill { get; set; }
+            public string matavailable { get; set; }
+            public string delcon { get; set; }
+            public string ait { get; set; }
+
+
             public MkrServay03() { }
 
         }
