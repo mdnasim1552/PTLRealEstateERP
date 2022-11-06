@@ -583,51 +583,61 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            
+
+
+                                               <div class="row">
+                                                <div class="col-md-8">
+                                                    <div class="form-group lblmargin ">
+                                                        <label id="lbltxtdownpayper" runat="server">Down Payment  %</label>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group lblmargin textalignright">
+                                                        <asp:TextBox ID="txtdownpayper" runat="server" CssClass="form-control form-control-sm textalignright"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin ">
-                                                        <label id="lblbookingpercnt" runat="server">Booking Money %</label>
+                                                        <label id="lbltxtdownpayam" runat="server">Down Payment</label>
                                                     </div>
 
                                                 </div>
+
                                                 <div class="col-md-4">
                                                     <div class="form-group lblmargin textalignright">
-
-                                                        <label id="lblvalbookingpercnt" runat="server" clss="form-control form-control-sm ">2500</label>
+                                                        <label id="lblvaldownpayam" runat="server" clss="form-control form-control-sm "></label>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="row">
+
                                                 <div class="col-md-8">
-                                                    <div class="form-group lblmargin ">
-                                                        <label id="lblbookingmoney" runat="server">Booking Money</label>
+                                                    <div class="form-group lblmargin">
+                                                        <label id="lbltxtdownpaydate" runat="server">Down Payment Date</label>
                                                     </div>
 
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group lblmargin textalignright">
 
-                                                        <label id="lblvalbookingmoney" runat="server" clss="form-control form-control-sm ">2500</label>
+                                                <div class="col-md-4">
+                                                    <div class="form-group lblmargin">
+
+                                                        <asp:TextBox ID="txtdownpaydate" runat="server" CssClass="form-control form-control-sm "></asp:TextBox>
+                                                        <cc1:CalendarExtender ID="CalendarExtender_txtdownpaydate" runat="server"
+                                                            Format="dd-MMM-yyyy" TargetControlID="txtdownpaydate"></cc1:CalendarExtender>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                                <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group lblmargin">
-                                                        <label id="lblinsdate" runat="server">Booking Date</label>
-                                                    </div>
 
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group lblmargin">
+                                           
 
-                                                        <asp:TextBox ID="txtBookingdate" runat="server" CssClass="form-control form-control-sm "></asp:TextBox>
-                                                        <cc1:CalendarExtender ID="txtBookingdate_CalendarExtender" runat="server"
-                                                            Format="dd-MMM-yyyy" TargetControlID="txtBookingdate"></cc1:CalendarExtender>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                              
 
                                             <div class="row">
                                                 <div class="col-md-8">
@@ -874,21 +884,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group lblmargin ">
-                                                        <label id="lbltxtcoffbookinmpercnt" runat="server">Booking Money %</label>
-                                                    </div>
+                                            
 
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                    <div class="form-group lblmargin textalignright">
-                                                        <asp:TextBox ID="txtcoffbookinmpercnt" runat="server" CssClass="form-control form-control-sm textalignright"></asp:TextBox>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
+                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin ">
                                                         <label id="lbltxtvalcoffbookingam" runat="server">Booking Money</label>
@@ -898,7 +896,7 @@
 
                                                 <div class="col-md-4">
                                                     <div class="form-group lblmargin textalignright">
-                                                        <label id="lblvalcoffbookingam" runat="server" clss="form-control form-control-sm ">2500</label>
+                                                        <asp:TextBox ID="txtcoffbookingam" runat="server" CssClass="form-control form-control-sm textalignright"></asp:TextBox>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1151,7 +1149,7 @@
                                             </div>
 
 
-                                            <div class="row" style="margin-top: 10px;">
+                                           <%-- <div class="row" style="margin-top: 10px;">
 
 
                                                 <div class="col-md-4 offset-8">
@@ -1161,7 +1159,7 @@
                                                 </div>
                                                
 
-                                            </div>
+                                            </div>--%>
 
                                         </div>
                                     </div>
