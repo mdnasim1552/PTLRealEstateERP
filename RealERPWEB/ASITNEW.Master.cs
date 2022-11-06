@@ -551,7 +551,7 @@ namespace RealERPWEB
             foreach (DataRow row in rslt2)
             {
                 this.prjdash.Visible = true;
-                this.prjdash.HRef = this.ResolveUrl("~/" + row["urlinf"] + comcod);
+                this.prjdash.HRef = this.ResolveUrl("~/" + row["floc"]+ row["urlinf"] + comcod);
             }
             DataRow[] rslt3 = dtanylsis.Select("frmid  = '3261003'");
             foreach (DataRow row in rslt3)
