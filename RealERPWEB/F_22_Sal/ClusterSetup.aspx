@@ -120,7 +120,7 @@
                                                 Width="160px"></asp:Label>
                                             <asp:Label ID="lblgvempname" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
-                                                Width="160px"></asp:Label>
+                                                Width="250px"></asp:Label>
                                         </ItemTemplate>
 
                                         <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
@@ -129,7 +129,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lbldesig" runat="server"
                                                 Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
-                                                Width="150px"></asp:Label>
+                                                Width="200px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterTemplate>
                                             <asp:LinkButton ID="lbntUpdateOtherDed" runat="server" CssClass="btn btn-success btn-sm " OnClick="lbntUpdateOtherDed_OnClick">Update</asp:LinkButton>
@@ -140,13 +140,13 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSection" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) %>'
-                                                Width="150px"></asp:Label>
+                                                Width="190px"></asp:Label>
                                         </ItemTemplate>
 
                                         <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Cluster Id">
+                                    <asp:TemplateField HeaderText="Cluster Id" Visible="false">
 
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvclusterid" runat="server"
@@ -156,17 +156,15 @@
                                         <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
                                     </asp:TemplateField>
 
+                                    <asp:TemplateField HeaderText="Cluster Name">
 
-
-
-
-
-
-
-
-
-
-
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvclustername" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "clustername")) %>'
+                                                Width="250px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
+                                    </asp:TemplateField>
 
                                     
 
@@ -228,7 +226,7 @@
                                                 Width="160px"></asp:Label>
                                             <asp:Label ID="lblgvempnamep" runat="server" Font-Bold="true" Font-Size="11px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
-                                                Width="160px"></asp:Label>
+                                                Width="250px"></asp:Label>
                                         </ItemTemplate>
 
                                         <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
@@ -237,7 +235,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lbldesigp" runat="server"
                                                 Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
-                                                Width="150px"></asp:Label>
+                                                Width="200px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterTemplate>
                                             <asp:LinkButton ID="lbntUpdateOtherDedp" runat="server" CssClass="btn btn-success btn-sm" OnClick="lbntUpdateOtherDedp_Click">Update</asp:LinkButton>
@@ -248,7 +246,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSectionp" runat="server" Font-Bold="true" Font-Size="11px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) %>'
-                                                Width="150px"></asp:Label>
+                                                Width="190px"></asp:Label>
                                         </ItemTemplate>
 
                                         <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
