@@ -807,6 +807,7 @@
     <EmbeddedResource Include="R_22_Sal\RptEnvelopOffice.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopNew.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptCPDL.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptSalesVsAchivementLO.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSampleNotesSheet.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptGrandNotesSheetSummary.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptGrandNotesSheet.rdlc" />
