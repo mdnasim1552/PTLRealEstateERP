@@ -541,102 +541,123 @@ namespace RealERPWEB.F_22_Sal
 
         protected void lbtnusize_Click(object sender, EventArgs e)
         {
-            this.gvSpayment.Columns[0].Visible = true;
 
-            this.lbtnBack.Visible = true;
-
-
-            string usircode = Convert.ToString(((LinkButton)sender).CommandArgument).Trim();
-            Session.Remove("UsirBasicInformation");
-
-            DataTable dtOrder = (DataTable)ViewState["tblData"];
-            DataView dv1 = dtOrder.DefaultView;
-            dv1.RowFilter = "usircode like('" + usircode + "')";
-            dtOrder = dv1.ToTable();
-            //if ((Convert.ToBoolean(dtOrder.Rows[0]["mgtbook"])) == true)
-            //{
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Unit Booked from Management');", true);
-            //    return;
-            //}
-            this.MultiView1.ActiveViewIndex = 0;
-            Session["UsirBasicInformation"] = dtOrder;
-            this.gvSpayment.DataSource = dtOrder;
-            this.gvSpayment.DataBind();
-            this.lblwork.Text = dtOrder.Rows[0]["design"].ToString();
-            this.lblCode.Text = usircode;
-
-            this.gvSpayment.Columns[17].Visible = false;
-
-
-            this.lblvoucher.Text = dtOrder.Rows[0]["vounum"].ToString();
-            this.lblAcAmt.Text = Convert.ToDouble(dtOrder.Rows[0]["tamt"]).ToString("#,##0;(#,##0); ");
-            this.gvSpayment.Columns[5].Visible = true;
-            this.gvSpayment.Columns[6].Visible = true;
-
-            if (this.Request.QueryString["Type"].ToString().Trim() == "Loan")
+            try
             {
-                this.MultiView1.ActiveViewIndex = 1;
-                this.ShowCustLoan();
-                return;
+                this.gvSpayment.Columns[0].Visible = true;
+
+                this.lbtnBack.Visible = true;
+
+
+                string usircode = Convert.ToString(((LinkButton)sender).CommandArgument).Trim();
+                Session.Remove("UsirBasicInformation");
+
+                DataTable dtOrder = (DataTable)ViewState["tblData"];
+                DataView dv1 = dtOrder.DefaultView;
+                dv1.RowFilter = "usircode like('" + usircode + "')";
+                dtOrder = dv1.ToTable();
+                //if ((Convert.ToBoolean(dtOrder.Rows[0]["mgtbook"])) == true)
+                //{
+                //    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Unit Booked from Management');", true);
+                //    return;
+                //}
+                this.MultiView1.ActiveViewIndex = 0;
+                Session["UsirBasicInformation"] = dtOrder;
+                this.gvSpayment.DataSource = dtOrder;
+                this.gvSpayment.DataBind();
+                this.lblwork.Text = dtOrder.Rows[0]["design"].ToString();
+                this.lblCode.Text = usircode;
+
+                this.gvSpayment.Columns[17].Visible = false;
+
+
+                this.lblvoucher.Text = dtOrder.Rows[0]["vounum"].ToString();
+                this.lblAcAmt.Text = Convert.ToDouble(dtOrder.Rows[0]["tamt"]).ToString("#,##0;(#,##0); ");
+                this.gvSpayment.Columns[5].Visible = true;
+                this.gvSpayment.Columns[6].Visible = true;
+
+                if (this.Request.QueryString["Type"].ToString().Trim() == "Loan")
+                {
+                    this.MultiView1.ActiveViewIndex = 1;
+                    this.ShowCustLoan();
+                    return;
+                }
+
+                else if (this.Request.QueryString["Type"].ToString().Trim() == "Registration")
+                {
+                    this.MultiView1.ActiveViewIndex = 2;
+                    this.ShowRegistration();
+                    return;
+                }
+
+
+                this.CustInf();
+                this.BtnEnabled();
             }
 
-            else if (this.Request.QueryString["Type"].ToString().Trim() == "Registration")
+            catch (Exception ex)
             {
-                this.MultiView1.ActiveViewIndex = 2;
-                this.ShowRegistration();
-                return;
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('" + ex.Message + "');", true);
+
             }
-
-
-            this.CustInf();
-            this.BtnEnabled();
         }
 
         private void BtnEnabled()
         {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
-            string Type = this.Request.QueryString["Type"].ToString().Trim();
-            switch (Type)
+            try
             {
-                case "Sales":
-                    //((LinkButton)this.gvPersonalInfo.FooterRow.FindControl("lUpdatPerInfo")).Enabled = true;
-                    ((LinkButton)this.gvCost.FooterRow.FindControl("lFinalUpdateCost")).Enabled = true;
-                    this.lbtnUpdateCAST.Enabled = true;
-                    this.chkVisible.Visible = true;
-                    this.chkAddIns.Visible = true;
-                    ((LinkButton)this.gvPayment.FooterRow.FindControl("lUpdatpayment")).Enabled = true;
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string Type = this.Request.QueryString["Type"].ToString().Trim();
+                switch (Type)
+                {
+                    case "Sales":
+                        //((LinkButton)this.gvPersonalInfo.FooterRow.FindControl("lUpdatPerInfo")).Enabled = true;
+                        ((LinkButton)this.gvCost.FooterRow.FindControl("lFinalUpdateCost")).Enabled = true;
+                        this.lbtnUpdateCAST.Enabled = true;
+                        this.chkVisible.Visible = true;
+                        this.chkAddIns.Visible = true;
+                        ((LinkButton)this.gvPayment.FooterRow.FindControl("lUpdatpayment")).Enabled = true;
 
-                    if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310" || comcod == "3315" || comcod == "3316" || comcod == "3348" || comcod == "3349" || comcod == "3354")
-                    {
+                        if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310" || comcod == "3315" || comcod == "3316" || comcod == "3348" || comcod == "3349" || comcod == "3354")
+                        {
 
-                    }
+                        }
 
-                    else
-                    {
-                        ((LinkButton)this.gvCost.FooterRow.FindControl("lbtnTotalCost")).Visible = (this.lblvoucher.Text.Trim() == "00000000000000");
-                        ((LinkButton)this.gvCost.FooterRow.FindControl("lFinalUpdateCost")).Visible = (this.lblvoucher.Text.Trim() == "00000000000000");
-                        // ((LinkButton)this.gvPayment.FooterRow.FindControl("lUpdatpayment")).Visible = (this.lblvoucher.Text.Trim() == "00000000000000");
-                        this.gvPayment.Columns[2].Visible = (this.lblvoucher.Text.Trim() == "00000000000000");
-                        this.chkVisible.Visible = (this.lblvoucher.Text.Trim() == "00000000000000");
-                        // this.chkSegment.Visible = (this.lblvoucher.Text.Trim() == "00000000000000");
-                        //this.chkAddIns.Visible = (this.lblvoucher.Text.Trim() == "00000000000000");
-                    }
-
-
+                        else
+                        {
+                            ((LinkButton)this.gvCost.FooterRow.FindControl("lbtnTotalCost")).Visible = (this.lblvoucher.Text.Trim() == "00000000000000");
+                            ((LinkButton)this.gvCost.FooterRow.FindControl("lFinalUpdateCost")).Visible = (this.lblvoucher.Text.Trim() == "00000000000000");
+                            // ((LinkButton)this.gvPayment.FooterRow.FindControl("lUpdatpayment")).Visible = (this.lblvoucher.Text.Trim() == "00000000000000");
+                            this.gvPayment.Columns[2].Visible = (this.lblvoucher.Text.Trim() == "00000000000000");
+                            this.chkVisible.Visible = (this.lblvoucher.Text.Trim() == "00000000000000");
+                            // this.chkSegment.Visible = (this.lblvoucher.Text.Trim() == "00000000000000");
+                            //this.chkAddIns.Visible = (this.lblvoucher.Text.Trim() == "00000000000000");
+                        }
 
 
-                    break;
 
-                case "Cust":
-                    ((LinkButton)this.gvPersonalInfo.FooterRow.FindControl("lUpdatPerInfo")).Enabled = false;
-                    ((LinkButton)this.gvCost.FooterRow.FindControl("lFinalUpdateCost")).Enabled = false;
-                    this.lbtnUpdateCAST.Enabled = false;
-                    this.chkVisible.Visible = false;
-                    this.chkAddIns.Visible = false;
-                    ((LinkButton)this.gvPayment.FooterRow.FindControl("lUpdatpayment")).Enabled = false;
 
-                    break;
+                        break;
+
+                    case "Cust":
+                        ((LinkButton)this.gvPersonalInfo.FooterRow.FindControl("lUpdatPerInfo")).Enabled = false;
+                        ((LinkButton)this.gvCost.FooterRow.FindControl("lFinalUpdateCost")).Enabled = false;
+                        this.lbtnUpdateCAST.Enabled = false;
+                        this.chkVisible.Visible = false;
+                        this.chkAddIns.Visible = false;
+                        ((LinkButton)this.gvPayment.FooterRow.FindControl("lUpdatpayment")).Enabled = false;
+
+                        break;
+                }
+            }
+
+            catch (Exception ex)
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('" + ex.Message + "');", true);
+
             }
         }
 
@@ -656,140 +677,159 @@ namespace RealERPWEB.F_22_Sal
 
         private void CustInf()
         {
-            Session.Remove("tblcost");
-            Session.Remove("tblPay");
-            Session.Remove("tpripay");
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
-            string UsirCode = this.lblCode.Text;
-            string empid = hst["empid"].ToString();
-            string PactCode = this.ddlProjectName.SelectedValue.ToString();
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "SALPERSONALINFO", PactCode, UsirCode, "", "", "", "", "", "", "");
-            Session["UserLog"] = ds1.Tables[6];
-            this.gvPersonalInfo.DataSource = ds1.Tables[0];
-            Session["tpripay"] = ds1.Tables[4];
-            this.gvPersonalInfo.DataBind();
-            this.gvCost.DataSource = ds1.Tables[1];
-            this.gvCost.DataBind();
-            Session["tblcost"] = ds1.Tables[1];
 
+            try
 
-
-            //Sales Team, CR Team
-            DataTable dtscr = ds1.Tables[2].Copy();
-            DataView dv;
-            dv = dtscr.DefaultView;
-            dv.RowFilter = ("secid like '9402%'");
-            this.ddlSalesTeam.DataTextField = "gdesc";
-            this.ddlSalesTeam.DataValueField = "gcod";
-            this.ddlSalesTeam.DataSource = dv.ToTable();
-            this.ddlSalesTeam.DataBind();
-
-
-            if ((dv.ToTable().Select("gcod='" + empid + "'")).Length > 0)
-                this.ddlSalesTeam.SelectedValue = empid;
-
-
-
-
-
-            dv = dtscr.DefaultView;
-            dv.RowFilter = ("secid like '9403%'");
-            this.ddlCollectionTeam.DataTextField = "gdesc";
-            this.ddlCollectionTeam.DataValueField = "gcod";
-            this.ddlCollectionTeam.DataSource = dv.ToTable(); ;
-            this.ddlCollectionTeam.DataBind();
-
-
-            // Sales Team/ Customer Care Team
-            DataTable dtst = ds1.Tables[8];
-
-            //this.ddlSalesTeam.SelectedValue = (ds1.Tables[7].Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(ds1.Tables[7].Rows[0]["agdate"]).ToString("dd-MMM-yyyy");
-            //this.txthandoverdate.Text = (ds1.Tables[7].Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(ds1.Tables[7].Rows[0]["hdate"]).ToString("dd-MMM-yyyy");
-
-            if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310" || comcod == "3353" || comcod == "3355")
             {
+                Session.Remove("tblcost");
+                Session.Remove("tblPay");
+                Session.Remove("tpripay");
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string UsirCode = this.lblCode.Text;
+                string empid = hst["empid"].ToString();
+                string PactCode = this.ddlProjectName.SelectedValue.ToString();
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "SALPERSONALINFO", PactCode, UsirCode, "", "", "", "", "", "", "");
+                Session["UserLog"] = ds1.Tables[6];
+                this.gvPersonalInfo.DataSource = ds1.Tables[0];
+                Session["tpripay"] = ds1.Tables[4];
+                this.gvPersonalInfo.DataBind();
+                this.gvCost.DataSource = ds1.Tables[1];
+                this.gvCost.DataBind();
+                Session["tblcost"] = ds1.Tables[1];
 
-            }
 
-            else
-            {
-                DataRow[] drst = dtst.Select("gcod='51005'");
-                if (drst.Length > 0)
+
+                //Sales Team, CR Team
+                DataTable dtscr = ds1.Tables[2].Copy();
+                DataView dv;
+                dv = dtscr.DefaultView;
+                dv.RowFilter = ("secid like '9402%'");
+                this.ddlSalesTeam.DataTextField = "gdesc";
+                this.ddlSalesTeam.DataValueField = "gcod";
+                this.ddlSalesTeam.DataSource = dv.ToTable();
+                this.ddlSalesTeam.DataBind();
+
+
+                if ((dv.ToTable().Select("gcod='" + empid + "'")).Length > 0)
+                    this.ddlSalesTeam.SelectedValue = empid;
+
+
+
+
+
+                dv = dtscr.DefaultView;
+                dv.RowFilter = ("secid like '9403%'");
+                this.ddlCollectionTeam.DataTextField = "gdesc";
+                this.ddlCollectionTeam.DataValueField = "gcod";
+                this.ddlCollectionTeam.DataSource = dv.ToTable(); ;
+                this.ddlCollectionTeam.DataBind();
+
+
+
+
+
+
+
+
+                //DataTable dtst = ds1.Tables[2];
+                //DataRow[] dr = dtst.Select("secid like '9402%' and gdesc1 <>''");
+                //if (dr.Length > 0)
+                //{
+                //    this.ddlSalesTeam.SelectedValue= dr[0]["gcod"].ToString().Trim();
+
+                //}
+
+
+                //DataRow[] drc = dtst.Select("secid like '9403%' and gdesc1 <>''");
+                //if (drc.Length > 0)
+                //{
+                //    this.ddlCollectionTeam.SelectedValue = drc[0]["gcod"].ToString().Trim();
+
+                //}
+
+
+                if (ds1.Tables[3].Rows.Count > 0)
                 {
-                    this.ddlSalesTeam.SelectedValue = drst[0]["scteam"].ToString();
+                    this.Panel3.Visible = false;
+                    Session["tblPay"] = ds1.Tables[3];
+                    this.gvPayment.DataSource = ds1.Tables[3];
+                    this.gvPayment.DataBind();
+
+                }
+                else
+                {
+                    this.Panel3.Visible = true;
+                    Session["tblPay"] = ds1.Tables[4];
+                    DataView dv1 = ds1.Tables[4].DefaultView;
+                    dv1.RowFilter = ("gcod like '81001%' or gcod like '81002%' or gcod like '81985%'");
+                    dv1.Sort = "gcod";
+                    this.gvPayment.DataSource = dv1.ToTable();
+                    this.gvPayment.DataBind();
+
+
+
                 }
 
-                DataRow[] drct = dtst.Select("gcod='51007'");
-                if (drct.Length > 0)
+
+                addamt = (ds1.Tables[5].Rows.Count > 0) ? Convert.ToDouble(ds1.Tables[5].Rows[0]["adamt"]) : 0.00;
+                dedamt = (ds1.Tables[5].Rows.Count > 0) ? Convert.ToDouble(ds1.Tables[5].Rows[0]["dedamt"]) : 0.00;
+                string cusdate = (ds1.Tables[7].Rows.Count > 0) ? Convert.ToDateTime(ds1.Tables[7].Rows[0]["bookdate"]).ToString("dd-MMM-yyyy") : "01-jan-1900";
+
+                if (comcod == "3336" || comcod == "3337")
                 {
-                    this.ddlCollectionTeam.SelectedValue = drct[0]["scteam"].ToString();
+                    if (cusdate == "01-Jan-1900")
+                    {
+                        cusdate = "25-Oct-2017";
+                    }
                 }
-            }
+
+                this.txtBookDate.Text = (ds1.Tables[7].Rows.Count == 0) ? "" : cusdate;
+                this.txtAggrementdate.Text = (ds1.Tables[7].Rows.Count == 0) ? "" : Convert.ToDateTime(ds1.Tables[7].Rows[0]["agdate"]).ToString("dd-MMM-yyyy");
+                this.txthandoverdate.Text = (ds1.Tables[7].Rows.Count == 0) ? "" : Convert.ToDateTime(ds1.Tables[7].Rows[0]["hdate"]).ToString("dd-MMM-yyyy");
+                this.Calculation();
+                this.lbtnTotalCost_Click(null, null);
 
 
 
 
+                // Sales Team/ Customer Care Team
+                DataTable dtst = ds1.Tables[8];
 
+                //this.ddlSalesTeam.SelectedValue = (ds1.Tables[7].Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(ds1.Tables[7].Rows[0]["agdate"]).ToString("dd-MMM-yyyy");
+                //this.txthandoverdate.Text = (ds1.Tables[7].Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(ds1.Tables[7].Rows[0]["hdate"]).ToString("dd-MMM-yyyy");
 
-            //DataTable dtst = ds1.Tables[2];
-            //DataRow[] dr = dtst.Select("secid like '9402%' and gdesc1 <>''");
-            //if (dr.Length > 0)
-            //{
-            //    this.ddlSalesTeam.SelectedValue= dr[0]["gcod"].ToString().Trim();
-
-            //}
-
-
-            //DataRow[] drc = dtst.Select("secid like '9403%' and gdesc1 <>''");
-            //if (drc.Length > 0)
-            //{
-            //    this.ddlCollectionTeam.SelectedValue = drc[0]["gcod"].ToString().Trim();
-
-            //}
-
-
-            if (ds1.Tables[3].Rows.Count > 0)
-            {
-                this.Panel3.Visible = false;
-                Session["tblPay"] = ds1.Tables[3];
-                this.gvPayment.DataSource = ds1.Tables[3];
-                this.gvPayment.DataBind();
-
-            }
-            else
-            {
-                this.Panel3.Visible = true;
-                Session["tblPay"] = ds1.Tables[4];
-                DataView dv1 = ds1.Tables[4].DefaultView;
-                dv1.RowFilter = ("gcod like '81001%' or gcod like '81002%' or gcod like '81985%'");
-                dv1.Sort = "gcod";
-                this.gvPayment.DataSource = dv1.ToTable();
-                this.gvPayment.DataBind();
-
-
-
-            }
-
-
-            addamt = (ds1.Tables[5].Rows.Count > 0) ? Convert.ToDouble(ds1.Tables[5].Rows[0]["adamt"]) : 0.00;
-            dedamt = (ds1.Tables[5].Rows.Count > 0) ? Convert.ToDouble(ds1.Tables[5].Rows[0]["dedamt"]) : 0.00;
-            string cusdate = (ds1.Tables[7].Rows.Count > 0) ? Convert.ToDateTime(ds1.Tables[7].Rows[0]["bookdate"]).ToString("dd-MMM-yyyy") : "01-jan-1900";
-
-            if (comcod == "3336" || comcod == "3337")
-            {
-                if (cusdate == "01-Jan-1900")
+                if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310" || comcod == "3353" || comcod == "3355")
                 {
-                    cusdate = "25-Oct-2017";
+
                 }
+
+                else
+                {
+                    DataRow[] drst = dtst.Select("gcod='51005'");
+                    if (drst.Length > 0)
+                    {
+                        this.ddlSalesTeam.SelectedValue = drst[0]["scteam"].ToString();
+                    }
+
+                    DataRow[] drct = dtst.Select("gcod='51007'");
+                    if (drct.Length > 0)
+                    {
+                        this.ddlCollectionTeam.SelectedValue = drct[0]["scteam"].ToString();
+                    }
+                }
+
+                //System.DateTime.Today.AddYears(-2).ToString("dd-MMM-yyyy")
             }
 
-            this.txtBookDate.Text = (ds1.Tables[7].Rows.Count == 0) ? "" : cusdate;
-            this.txtAggrementdate.Text = (ds1.Tables[7].Rows.Count == 0) ? "" : Convert.ToDateTime(ds1.Tables[7].Rows[0]["agdate"]).ToString("dd-MMM-yyyy");
-            this.txthandoverdate.Text = (ds1.Tables[7].Rows.Count == 0) ? "" : Convert.ToDateTime(ds1.Tables[7].Rows[0]["hdate"]).ToString("dd-MMM-yyyy");
-            this.Calculation();
-            this.lbtnTotalCost_Click(null, null);
-            //System.DateTime.Today.AddYears(-2).ToString("dd-MMM-yyyy")
+            catch (Exception ex)
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('"+ex.Message+"');", true);
+
+
+
+            }
         }
         private void Calculation()
         {
