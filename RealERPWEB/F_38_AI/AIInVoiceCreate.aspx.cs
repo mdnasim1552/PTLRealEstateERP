@@ -19,7 +19,7 @@ namespace RealERPWEB.F_38_AI
             if (!IsPostBack)
             {
                 ((Label)this.Master.FindControl("lblTitle")).Text = "AI Invoice Create";
-               
+
                 string currentdate = DateTime.Now.ToString("dd-MMM-yyyy");
                 string duedate = DateTime.Now.AddDays(2).ToString("dd-MMM-yyyy");
                 this.txtduedate.Text = duedate;
@@ -48,7 +48,7 @@ namespace RealERPWEB.F_38_AI
             //((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
             ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
 
-          ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
             ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(btnInvoiceSave_Click);
 
@@ -62,7 +62,7 @@ namespace RealERPWEB.F_38_AI
         protected void btnInvoiceSave_Click(object sender, EventArgs e)
         {
             try
-            {               
+            {
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 DataTable tbl1 = (DataTable)ViewState["tblt01"];
@@ -95,7 +95,7 @@ namespace RealERPWEB.F_38_AI
                     return;
                 }
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Invoice Create Successfully');", true);
-
+                this.virtualList.Visible = false;
 
             }
             catch (Exception exp)
@@ -108,15 +108,15 @@ namespace RealERPWEB.F_38_AI
 
         private string bindDataText()
         {
-           string  msg = "1. If you have any questions about this invoice, please contact. Acme AI Ltd Phone : +8801313094328" +
-                       "\n2. Make all cheque payable to ACME AI Ltd." +
-                       "\n3. Please be advised that interest will be charged as per the agreement if payment is not made in due date. " +
-                       "\n4. For Bank Transfer payment must be made directly to the Acme AI Ltd." +
-                       "\n5. The account details are :" +
-                       "\n   Bank Name : Trust Bank Ltd." +
-                       "\n   Account Name : ACME AI ATD" +
-                       "\n   A/C No: 0002-0210425233 " +                      
-                       "\n   Swift Code : TTBLVDDH002";
+            string msg = "1. If you have any questions about this invoice, please contact. Acme AI Ltd Phone : +8801313094328" +
+                        "\n2. Make all cheque payable to ACME AI Ltd." +
+                        "\n3. Please be advised that interest will be charged as per the agreement if payment is not made in due date. " +
+                        "\n4. For Bank Transfer payment must be made directly to the Acme AI Ltd." +
+                        "\n5. The account details are :" +
+                        "\n   Bank Name : Trust Bank Ltd." +
+                        "\n   Account Name : ACME AI ATD" +
+                        "\n   A/C No: 0002-0210425233 " +
+                        "\n   Swift Code : TTBLVDDH002";
             return msg;
         }
 
@@ -125,8 +125,8 @@ namespace RealERPWEB.F_38_AI
             try
             {
                 string comcod = this.GetComdCode();
-                string empid = Request.QueryString["EmpID"]==""?"51%": Request.QueryString["EmpID"];
-                DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "CLIENTSLIST", empid, "", "", "", "","","");
+                string empid = Request.QueryString["EmpID"] == "" ? "51%" : Request.QueryString["EmpID"];
+                DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "CLIENTSLIST", empid, "", "", "", "", "", "");
                 if (ds == null)
                     return;
                 DataTable dt = ds.Tables[0];
@@ -151,7 +151,7 @@ namespace RealERPWEB.F_38_AI
 
 
         }
-       
+
 
         private void GetDataSet()
         {
@@ -208,22 +208,22 @@ namespace RealERPWEB.F_38_AI
         {
             try
             {
-               
+
                 string comcod = this.GetComdCode();
-                string projid = this.ddlprojname.SelectedValue.ToString()==""?"16%": this.ddlprojname.SelectedValue.ToString();
-                
-                DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "BATCH_LIST", projid,"", "", "", "", "");
+                string projid = this.ddlprojname.SelectedValue.ToString() == "" ? "16%" : this.ddlprojname.SelectedValue.ToString();
+
+                DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "BATCH_LIST", projid, "", "", "", "", "");
                 if (ds == null)
                     return;
                 this.ddlbatchname.DataTextField = "batrchname";
                 this.ddlbatchname.DataValueField = "batchid";
                 this.ddlbatchname.DataSource = ds.Tables[0];
                 this.ddlbatchname.DataBind();
-                
-               
-               // this.txtrate.Text = ds.Tables[0].Rows[1]["rate"].ToString();
 
-                this.txtcurrency.Text= ds.Tables[0].Rows[1]["currencydesc"].ToString();
+
+                // this.txtrate.Text = ds.Tables[0].Rows[1]["rate"].ToString();
+
+                this.txtcurrency.Text = ds.Tables[0].Rows[1]["currencydesc"].ToString();
 
 
             }
@@ -293,7 +293,7 @@ namespace RealERPWEB.F_38_AI
         {
 
             DataTable tblt01 = new DataTable();
-            tblt01.Columns.Add("id", Type.GetType("System.String"));            
+            tblt01.Columns.Add("id", Type.GetType("System.String"));
             tblt01.Columns.Add("invoicedate", Type.GetType("System.DateTime"));
             tblt01.Columns.Add("invoiceno", Type.GetType("System.String"));
             tblt01.Columns.Add("invoiceno1", Type.GetType("System.String"));
@@ -332,21 +332,21 @@ namespace RealERPWEB.F_38_AI
                 this.txtInvoiceno.Text = ds.Tables[0].Rows[0]["maxinvo1"].ToString();
                 this.txtInvoiceno2.Text = ds.Tables[0].Rows[0]["maxinvo2"].ToString();
             }
-                
+
         }
 
         protected void lnkbtnok_Click(object sender, EventArgs e)
         {
             try
             {
-               
+                this.virtualList.Visible = true;
 
                 DataTable tblt01 = (DataTable)ViewState["tblt01"];
 
                 DataRow dr1 = tblt01.NewRow();
                 DataTable tbl2 = (DataTable)ViewState["tblMat"];
                 dr1["id"] = (tblt01.Rows.Count + 1).ToString();
-               
+
                 dr1["invoicedate"] = this.txtdate.Text.ToString();
                 dr1["invoiceno"] = this.txtInvoiceno.Text.ToString();
                 dr1["invoiceno1"] = this.txtInvoiceno2.Text;
@@ -399,6 +399,34 @@ namespace RealERPWEB.F_38_AI
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
             }
+        }
+
+        protected void lblquantity_TextChanged(object sender, EventArgs e)
+        {
+            this.SaveValue();
+            DataTable dt = (DataTable)Session["tblt01"];
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+
+            }
+
+        }
+        private void SaveValue()
+        {
+            DataTable dt = (DataTable)ViewState["tblt01"];
+            int TblRowIndex;
+            for (int i = 0; i < this.gv_AIInvoice.Rows.Count; i++)
+            {
+                string qty = Convert.ToDouble("0" + ((TextBox)this.gv_AIInvoice.Rows[i].FindControl("lblquantity")).Text.Trim()).ToString();
+                string rate = Convert.ToDouble("0" + ((TextBox)this.gv_AIInvoice.Rows[i].FindControl("lblrate")).Text.Trim()).ToString();              
+                TblRowIndex = (gv_AIInvoice.PageIndex) * gv_AIInvoice.PageSize + i;
+                dt.Rows[TblRowIndex]["lblquantity"] = qty;
+                dt.Rows[TblRowIndex]["lblrate"] = rate;             
+
+
+            }
+            Session["tblt01"] = dt;
+
         }
     }
 }
