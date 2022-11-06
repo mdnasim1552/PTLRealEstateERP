@@ -129,13 +129,13 @@ namespace RealERPWEB.F_70_Services
                 case "3101":
                 case "1101":
                 case "1207":
-                    msg = "1. If you have any questions about this invoice, please contact. Acme Services Phone : 01704118050 or 02-8080570" +
+                    msg = "1. If you have any questions about this invoice, please contact. Acme Services Phone : 01732998369 or 01704118060" +
                         "\n2. Make all cheque payable to ACME Services." +
                         "\n3. Please be advised that interest will be charged as per the agreement if payment is not made in due date. " +
                         "\n4. For Bank Transfer payment must be made directly to the Acme Technologies Ltd." +
                         "\n5. The account details are :" +
                         "\n   Bank Name : Trust Bank Ltd." +
-                        "\n   A/C No: 0002-02100111983 " +
+                        "\n   A/C No: 0002-0210412907 " +
                         "\n   Branch: Principal Branch " +
                         "\n   IFS Code : ";
 

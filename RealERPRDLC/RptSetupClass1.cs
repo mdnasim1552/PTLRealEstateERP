@@ -170,7 +170,11 @@ namespace RealERPRDLC
 
                 case "R_14_Pro.RptPurMktSurveyP_2_P": Rpt1a = SetRptPurMktSurveyP_2_P(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptPurMktSurveyP2P02": Rpt1a = SetRptPurMktSurveyP2P02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                case "R_14_Pro.RptPurMktSurveyP2P05": Rpt1a = SetRptPurMktSurveyP2P05(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_14_Pro.RptPurMktSurveyP2P05": Rpt1a = SetRptPurMktSurveyP2P05(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break; 
+                
+                case "R_14_Pro.RptPurMktSurveyCPDL03": Rpt1a = SetRptPurMktSurveyCPDL03(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_14_Pro.RptPurMktSurveyCPDL04": Rpt1a = SetRptPurMktSurveyCPDL04(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_14_Pro.RptPurMktSurveyCPDL05": Rpt1a = SetRptPurMktSurveyCPDL05(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break; 
 
                 case "R_14_Pro.RptPurMktSurveyEpic02": Rpt1a = SetRptPurMktSurveyEpic02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptPurMktSurveyEpic03": Rpt1a = SetRptPurMktSurveyEpic03(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -2122,6 +2126,24 @@ namespace RealERPRDLC
             return Rpt1a;
         }
         private static LocalReport SetRptPurMktSurveyP_2_P(LocalReport Rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.MkrServay02>)rptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_14_Pro.EClassPur.MkrServay03>)rptDataSet2));
+            return Rpt1a;
+        }        
+        private static LocalReport SetRptPurMktSurveyCPDL03(LocalReport Rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.MkrServay02>)rptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_14_Pro.EClassPur.MkrServay03>)rptDataSet2));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptPurMktSurveyCPDL05(LocalReport Rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.MkrServay02>)rptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_14_Pro.EClassPur.MkrServay03>)rptDataSet2));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptPurMktSurveyCPDL04(LocalReport Rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.MkrServay02>)rptDataSet));
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_14_Pro.EClassPur.MkrServay03>)rptDataSet2));
