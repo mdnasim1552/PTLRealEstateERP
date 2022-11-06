@@ -240,6 +240,15 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnok;
 
         /// <summary>
+        /// virtualList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl virtualList;
+
+        /// <summary>
         /// gv_AIInvoice control.
         /// </summary>
         /// <remarks>

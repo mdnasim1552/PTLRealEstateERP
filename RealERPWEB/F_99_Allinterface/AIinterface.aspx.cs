@@ -778,7 +778,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             }
         }
-        private void LoadGrid(string custid = "", string value = "",string empid="")
+        private void LoadGrid(string custid = "", string value = "", string empid = "",string doneqty="")
         {
 
             string comcod = this.GetCompCode();
@@ -861,7 +861,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "03007"://customer
                         if (value == "1")
                         {
-                            DataRow[] results = dt4.Select(" infcod= '" + empid+"'");
+                            DataRow[] results = dt4.Select(" infcod= '" + empid + "'");
                             string infdesc = results[0]["infdesc"].ToString();
                             string infcod = results[0]["infcod"].ToString();
 
@@ -984,6 +984,24 @@ namespace RealERPWEB.F_99_Allinterface
                         }
                         break;
                     case "03015":
+                        if (value == "1")
+                        {
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Visible = true;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Text = doneqty;
+                           ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                        }
+                        else
+                        {
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Visible = true;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                        }
+                        break;
                     case "03017":
                     case "03019":
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Visible = true;
@@ -1081,7 +1099,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CustomerCreate();", true);
                 string customerId = result.Tables[0].Rows[0]["custid"].ToString();
                 GetCustomerList();
-                this.LoadGrid(customerId, "");
+                this.LoadGrid(customerId, "","","");
             }
             catch (Exception exp)
             {
@@ -1876,11 +1894,12 @@ namespace RealERPWEB.F_99_Allinterface
                 //this.lblsowproject.Text ="1";
                 string value = "1";
                 string empid = ((Label)this.gv_Delivery.Rows[index].FindControl("lblgvdeliclientid")).Text.ToString();
+                string doneqty = ((Label)this.gv_Delivery.Rows[index].FindControl("lblgvdelidoneqty")).Text.ToString();
                 this.GetEmployeeName();
                 this.GetCustomerList();
                 this.GetCountry();
                 this.GetProjectDetails();
-                this.LoadGrid("", value,empid);
+                this.LoadGrid("", value, empid, doneqty);
             }
             catch (Exception exp)
             {
