@@ -1,22 +1,16 @@
-﻿using System;
+﻿using RealERPLIB;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using System.Configuration;
-using System.Collections;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
-using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Shared;
-using CrystalDecisions.ReportSource;
-using RealERPLIB;
-using RealERPRPT;
-namespace RealERPWEB.F_81_Hrm.F_82_App
+
+namespace RealERPWEB.F_22_Sal
 {
-    public partial class EntryAllEmp : System.Web.UI.Page
+    public partial class ClusterSetup : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
@@ -28,10 +22,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     Response.Redirect("../AcceessError.aspx");
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
 
-             
+
                 string ctype = this.Request.QueryString["Type"].ToString();
                 string title = "";
-                if (ctype == "EmpMarket")
+                if (ctype == "ClusterSetup")
                 {
 
                     this.ShowEmployee();
@@ -87,6 +81,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.ddlEmpName.DataSource = dv.ToTable();
             this.ddlEmpName.DataBind();
 
+            this.ddlEmpName1.DataTextField = "empname";
+            this.ddlEmpName1.DataValueField = "empid";
+            this.ddlEmpName1.DataSource = dv.ToTable();
+            this.ddlEmpName1.DataBind();
+
             Session["tblempinfo"] = dv.ToTable();
         }
 
@@ -94,7 +93,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
             string comcod = this.GetCompCode();
             //string empid = this.ddlEmpName.SelectedValue;
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETSALEMP", "", "", "", "", "", "", "", "", "");
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETCLUSTEREMP", "", "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             Session["tblsalemp"] = ds1.Tables[0];
@@ -104,8 +103,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         private void Data_Bind()
         {
             DataTable dt = (DataTable)Session["tblsalemp"];
-            this.gvEmpSal.DataSource = dt;
-            this.gvEmpSal.DataBind();
+            this.gvEmpCluster.DataSource = dt;
+            this.gvEmpCluster.DataBind();
         }
 
 
@@ -117,6 +116,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string empname = this.ddlEmpName.SelectedItem.ToString();
             DataRow[] dr = dt.Select("empid='" + empid + "'");
             DataTable dt1 = (DataTable)Session["tblempinfo"];
+            string clusterId = this.ddlEmpName1.SelectedValue.ToString();
+
             if (dr.Length == 0)
             {
 
@@ -127,8 +128,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 dr1["desig"] = (dt1.Select("empid='" + empid + "'"))[0]["desig"].ToString();
                 dr1["section"] = (dt1.Select("empid='" + empid + "'"))[0]["secdesc"];
                 dr1["idcardno"] = (dt1.Select("empid='" + empid + "'"))[0]["idcardno"];
+                dr1["clusterid"] = clusterId;
                 dt.Rows.Add(dr1);
-
             }
             else
             {
@@ -143,27 +144,52 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
         protected void lbntUpdateOtherDed_OnClick(object sender, EventArgs e)
         {
+            this.SaveValue();
             string comcod = this.GetCompCode();
-            DataTable dt1 = (DataTable)Session["tblsalemp"];
-            DataSet ds1 = new DataSet("ds1");
-            ds1.Merge(dt1);
-            ds1.Tables[0].TableName = "tbl1";
-            bool result = false;
-            string xml = ds1.GetXml();
-            result = HRData.UpdateXmlTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTUPDATESALEMP", ds1, null, null, "", "", "", "", "", "", "", "", "",
-           "", "", "", "", "", "", "", "", "", "", "");
-            if (!result)
+            DataTable dt = (DataTable)Session["tblsalemp"];
+
+
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
+                string empid = dt.Rows[i]["empid"].ToString();
+                string clusterid = dt.Rows[i]["clusterid"].ToString();
 
-                string Message = HRData.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+                bool result = true;
+                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTUPDATECLUSTEREMP", empid, clusterid, "", "", "", "", "", "", "");
 
-                return;
+                if (result == false)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + HRData.ErrorObject["Msg"].ToString() + "');", true);
+                    return;
+                }
+                else
+                {
+
+                }
             }
-            string Messages = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messages + "');", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
 
         }
+
+
+        private void SaveValue()
+        {
+            DataTable dt = (DataTable)Session["tblsalemp"];
+            int TblRowIndex;
+            for (int i = 0; i < this.gvEmpCluster.Rows.Count; i++)
+            {
+                string lblempid = ((Label)this.gvEmpCluster.Rows[i].FindControl("lblempid")).Text.Trim().ToString();
+                string lblclusterid = ((Label)this.gvEmpCluster.Rows[i].FindControl("lblgvclusterid")).Text.Trim().ToString();
+
+                TblRowIndex = (gvEmpCluster.PageIndex) * gvEmpCluster.PageSize + i;
+
+                dt.Rows[TblRowIndex]["empid"] = lblempid;
+                dt.Rows[TblRowIndex]["clusterid"] = lblclusterid;
+            }
+            Session["tblsalemp"] = dt;
+        }
+
+
 
         protected void btndelete_OnClick(object sender, EventArgs e)
         {
@@ -172,10 +198,12 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
             int index = row.RowIndex;
             string empid = dt1.Rows[index]["empid"].ToString();
+            string clusterid = dt1.Rows[index]["clusterid"].ToString();
+
             string comcod = this.GetCompCode();
             bool result;
 
-            result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "DELETESALEMP", empid, "", "", "", "", "", "", "", "");
+            result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "DELETECLUSTEREMP", empid, clusterid, "", "", "", "", "", "", "");
             if (!result)
             {
                 Message = "Deleted Fail ";
@@ -269,6 +297,5 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
 
         }
-    
     }
 }
