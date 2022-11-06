@@ -1116,7 +1116,8 @@ namespace RealERPWEB.F_12_Inv
                         {
 
                             case "3348": // Credence
-                            //case "3101": // Credence
+                            case "3101": // Credence
+                            case "3368": // Finlay
                                 break;
 
                             default:
@@ -1132,13 +1133,9 @@ namespace RealERPWEB.F_12_Inv
                                     dt.Rows.Add(dr1);
                                     ds1.Merge(dt);
                                     ds1.Tables[0].TableName = "tbl1";
-                                    approval = ds1.GetXml();
-
-                                   
+                                    approval = ds1.GetXml();                                  
 
                                 }
-
-
                                 else
                                 {
 
@@ -1150,11 +1147,7 @@ namespace RealERPWEB.F_12_Inv
                                     ds1.Tables[0].Rows[0]["finapptrmid"] = trmnid;
                                     ds1.Tables[0].Rows[0]["finappseson"] = session;
                                     approval = ds1.GetXml();
-
                                 }
-
-
-
                                 break;
 
                         }
@@ -1185,25 +1178,15 @@ namespace RealERPWEB.F_12_Inv
                             ds1.Tables[0].Rows[0]["finapptrmid"] = trmnid;
                             ds1.Tables[0].Rows[0]["finappseson"] = session;
                             approval = ds1.GetXml();
-
-                        }
-
-                       
+                        }                      
 
                         break;
-
-
-
-
-
                 }
             }
             catch (Exception ex)
-            { 
-            
+            {             
             
             }
-
 
             return approval;
 
