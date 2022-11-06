@@ -1829,6 +1829,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3366": // lanco
                 case "3357": // Cube
                 case "3368": // finlay
+                case "3370": // cpdl 
                     terms = txtOrderNarrP.Text.Trim().ToString();
                     istxtTerms = false;
                     break;
@@ -2511,6 +2512,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3357":
                 case "3366": //lanco
                 case "3368": // finlay
+                case "3370": // cpdl
                     this.divtermsp2p.Visible = true;
                     this.divterms.Visible = false;
                     this.txtOrderNarrP.Text = this.bindDataText();
@@ -2564,6 +2566,15 @@ namespace RealERPWEB.F_14_Pro
                     msg = "1. Please send all your bills in duplicate." +
                         "\n2. Payment shall be made after (30) days of receipt of all materials in good conditions" +
                         "\n3. Company may have the right to alter/change/reject the PO at any time.";
+                    break;
+
+                case "3370":
+                    msg = "1. Delivery should be made as per sample & specifications." +
+                        "\n2. Quantity should be ensured at the time of delivery" +
+                        "\n3. Unspecified / bad quality material would be rejected and taken back by the supplier's own cost" +
+                        "\n4. Bill to be submitted with receiving challan of respective project." +
+                        "\n5. Payment will be made by Account payee Cheque after full delivery." +
+                        "\n6. PO No. would be mentioned in all your Invoice & Correspondence.";
                     break;
 
                 default:

@@ -131,6 +131,7 @@ namespace RealERPWEB.F_09_PImp
                 case "3101": // ASIT
                 case "3368": // finaly
                 case "3367": // epic
+                case "3370": // cpdl
 
                     this.chkCharging.Visible = true;
                     this.grvissue.Columns[7].Visible = false;
@@ -1665,6 +1666,7 @@ namespace RealERPWEB.F_09_PImp
                 case "3101":
                 case "3368": // finlay
                 case "3367": // epic
+                case "3370": // cpdl
                     break;
 
                 default:

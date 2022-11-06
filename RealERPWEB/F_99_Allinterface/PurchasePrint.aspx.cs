@@ -4102,6 +4102,7 @@ namespace RealERPWEB.F_99_Allinterface
                     //case "3101": // Pintech
 
                     case "3366": // Lanco
+                    case "3370": // cpdl
                     case "1205": //P2P
                     case "3351": //P2P
                     case "3352": //P2P 
@@ -4358,6 +4359,10 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3367": //Epic                        
                         Reportpath = "~/Report/RptPurchaseOrderEpic.rdlc";
                         break;
+                    
+                    case "3370": //Epic                        
+                        Reportpath = "~/Report/RptPurchaseOrderCPDL.rdlc";
+                        break;
 
                     default:
                         Reportpath = "~/Report/RptPurchaseOrder.rdlc";
@@ -4503,6 +4508,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3101": // pintech
                     case "3366": // lanco
                     case "3367": // epic
+   
                         break;
 
                     default:
