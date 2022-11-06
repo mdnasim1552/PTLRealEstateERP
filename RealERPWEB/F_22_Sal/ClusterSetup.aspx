@@ -1,11 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="EntryAllEmp.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_82_App.EntryAllEmp" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="ClusterSetup.aspx.cs" Inherits="RealERPWEB.F_22_Sal.ClusterSetup" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-
-
+    
     <script language="javascript" type="text/javascript">
         $(document).ready(function () {
             //For navigating using left and right arrow of the keyboard
@@ -68,18 +66,25 @@
 
                     <panel runat="server" id="pnlmarketemp" visible="false">
                         <div class="row mt-1">
-                            <div class="col-lg-4 col-md-4 col-sm-6">
+                            <div class="col-lg-3 col-md-3 col-sm-3">
                                 <asp:Label ID="Label1" runat="server" CssClass="form-label">Select Code Book:</asp:Label>
                                 <asp:DropDownList ID="ddlEmpName" runat="server" CssClass="form-control select2" TabIndex="2"></asp:DropDownList>
+                            </div>
+                           
+                      
+                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                <asp:Label ID="Label2" runat="server" CssClass="form-label">Cluster Employee:</asp:Label>
+                                <asp:DropDownList ID="ddlEmpName1" runat="server" CssClass="form-control select2" TabIndex="2"></asp:DropDownList>
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2">
                                 <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="btn btn-primary btn-sm  mt-4" OnClick="lnkbtnOk_OnClick">Add</asp:LinkButton>
                             </div> 
-
                             
                         </div>
+
+
                         <div class="row mt-3">
-                            <asp:GridView ID="gvEmpSal" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea" AutoGenerateColumns="False" ShowFooter="True" Width="850px">
+                            <asp:GridView ID="gvEmpCluster" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea" AutoGenerateColumns="False" ShowFooter="True" Width="850px">
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl#">
@@ -140,6 +145,29 @@
 
                                         <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
                                     </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Cluster Id">
+
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvclusterid" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "clusterid")) %>'
+                                                Width="100px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
+                                    </asp:TemplateField>
+
+
+
+
+
+
+
+
+
+
+
+
+
                                     
 
                                 </Columns>
@@ -226,6 +254,9 @@
                                         <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
                                     </asp:TemplateField>
 
+                                    
+
+
 
                                 </Columns>
                                 <FooterStyle CssClass="grvFooter" />
@@ -240,5 +271,6 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-</asp:Content>
 
+
+</asp:Content>
