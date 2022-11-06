@@ -30,7 +30,7 @@ namespace RealERPWEB.F_22_Sal
 
                     this.ShowEmployee();
                     this.GetEmployeeName();
-                    title = "Entry All Employee Marketing ";
+                    title = "Cluster Setup ";
                     this.pnlplanemp.Visible = false;
                     this.pnlmarketemp.Visible = true;
                 }
@@ -117,6 +117,7 @@ namespace RealERPWEB.F_22_Sal
             DataRow[] dr = dt.Select("empid='" + empid + "'");
             DataTable dt1 = (DataTable)Session["tblempinfo"];
             string clusterId = this.ddlEmpName1.SelectedValue.ToString();
+            string clusterName = this.ddlEmpName1.SelectedItem.Text;
 
             if (dr.Length == 0)
             {
@@ -129,6 +130,7 @@ namespace RealERPWEB.F_22_Sal
                 dr1["section"] = (dt1.Select("empid='" + empid + "'"))[0]["secdesc"];
                 dr1["idcardno"] = (dt1.Select("empid='" + empid + "'"))[0]["idcardno"];
                 dr1["clusterid"] = clusterId;
+                dr1["clustername"] = clusterName;
                 dt.Rows.Add(dr1);
             }
             else
