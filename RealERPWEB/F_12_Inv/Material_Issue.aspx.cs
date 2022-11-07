@@ -15,7 +15,7 @@ using CrystalDecisions.ReportSource;
 using System.IO;
 using RealERPLIB;
 using RealERPRPT;
-using RealERPLIB;
+
 using System.Data.OleDb;
 //using MFGLIB;
 //using MFGRPT;
@@ -835,7 +835,7 @@ namespace RealERPWEB.F_12_Inv
             {
                 DataRow dr1 = tbl1.NewRow();
 
-                dr1["comcod"] = this.GetCompCode(); ;
+                dr1["comcod"] = this.GetCompCode();
                 dr1["rsircode"] = this.ddlResList.SelectedValue.ToString();
                 dr1["spcfcod"] = this.ddlResSpcf.SelectedValue.ToString();
                 dr1["deptcode"] = this.ddlDeptCode.SelectedValue.ToString();
