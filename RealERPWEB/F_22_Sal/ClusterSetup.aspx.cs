@@ -25,33 +25,11 @@ namespace RealERPWEB.F_22_Sal
 
                 string ctype = this.Request.QueryString["Type"].ToString();
                 string title = "";
-                if (ctype == "ClusterSetup")
-                {
-
-                    this.ShowEmployee();
-                    this.GetEmployeeName();
-                    title = "Cluster Setup ";
-                    this.pnlplanemp.Visible = false;
-                    this.pnlmarketemp.Visible = true;
-                }
-
-                else if (ctype == "EmpPlan")
-                {
-                    this.GetEmployeeNamePlan();
-                    this.ShowEmployeePlan();
-                    title = "Entry All Employee Planning ";
-                    this.pnlplanemp.Visible = true;
-                    this.pnlmarketemp.Visible = false;
-
-                }
-
-
+                this.ShowEmployee();
+                this.GetEmployeeName();
+                title = "Cluster Setup ";
                 // ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = title;
-
-
-
-
             }
         }
 
@@ -69,7 +47,6 @@ namespace RealERPWEB.F_22_Sal
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPLOYEENAME", "%", "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
-
 
             DataView dv = new DataView();
             dv = ds1.Tables[0].DefaultView;
@@ -225,70 +202,11 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
-        private void ShowEmployeePlan()
-        {
-            string comcod = this.GetCompCode();
-            //string empid = this.ddlEmpName.SelectedValue;
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETPLANEMP", "", "", "", "", "", "", "", "", "");
-            if (ds1 == null)
-                return;
-            Session["tblplanemp"] = ds1.Tables[0];
-            this.Data_Bind();
-        }
+      
+       
+       
 
-        private void GetEmployeeNamePlan()
-        {
-
-            string comcod = this.GetCompCode();
-            // string IdCard = "%" + this.txtSrcEmpCode.Text.Trim () + "%";
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPLOYEENAME", "%", "", "", "", "", "", "", "", "");
-            if (ds1 == null)
-                return;
-            this.ddlEmpName.DataTextField = "empname";
-            this.ddlEmpName.DataValueField = "empid";
-            this.ddlEmpName.DataSource = ds1.Tables[0];
-            this.ddlEmpName.DataBind();
-            Session["tblpempinfo"] = ds1.Tables[0];
-        }
-
-        private void Data_BindPlan()
-        {
-            DataTable dt = (DataTable)Session["tblplanemp"];
-            this.gvEmpPlan.DataSource = dt;
-            this.gvEmpPlan.DataBind();
-        }
-
-        protected void lnkbtnOkPlan_Click(object sender, EventArgs e)
-        {
-            DataTable dt = (DataTable)Session["tblplanemp"];
-            string empid = this.ddlEmpName.SelectedValue;
-            string empname = this.ddlEmpName.SelectedItem.ToString();
-
-            DataRow[] dr = dt.Select("empid='" + empid + "'");
-            DataTable dt1 = (DataTable)Session["tblpempinfo"];
-            if (dr.Length == 0)
-            {
-
-                DataRow dr1 = dt.NewRow();
-                dr1["comcod"] = this.GetCompCode();
-                dr1["empid"] = this.ddlEmpName.SelectedValue;
-                dr1["empname"] = this.ddlEmpName.SelectedItem;
-                dr1["desig"] = (dt1.Select("empid='" + empid + "'"))[0]["desig"].ToString();
-                dr1["section"] = (dt1.Select("empid='" + empid + "'"))[0]["secdesc"];
-                dr1["idcardno"] = (dt1.Select("empid='" + empid + "'"))[0]["idcardno"];
-                dt.Rows.Add(dr1);
-
-            }
-            else
-            {
-                string Message = "Already Added Employee : " + empname;
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
-
-            }
-
-            Session["tblplanemp"] = dt;
-            this.Data_BindPlan();
-        }
+     
 
         protected void btndeletep_Click(object sender, EventArgs e)
         {
