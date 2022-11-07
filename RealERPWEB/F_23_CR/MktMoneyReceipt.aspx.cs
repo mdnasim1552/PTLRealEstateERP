@@ -699,6 +699,12 @@ namespace RealERPWEB.F_23_CR
             string ProcName = this.chkConsolidate.Checked ? "SP_REPORT_SALSMGT01" : "SP_ENTRY_SALSMGT";
             string CallType = this.chkConsolidate.Checked ? "RPTCLIENTLEDGER" : "INSTALLMANTWITHMRR";
             DataSet ds2 = MktData.GetTransInfo(comcod, ProcName, CallType, PactCode, UsirCode, date, "", "", "", "", "", "");
+           
+            if(ds2.Tables[0].Rows.Count==0)
+            {
+                return;
+
+            }
 
             this.HiddenSameDate(ds2.Tables[0]);
             this.ShowTotalAmt();
