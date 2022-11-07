@@ -353,7 +353,7 @@ namespace RealERPWEB.F_12_Inv
                 {
                     DataRow dr1 = tbl1.NewRow();
 
-                    dr1["comcod"] = this.GetCompCode(); ;
+                    dr1["comcod"] = this.GetCompCode(); 
                     dr1["rsircode"] = this.ddlMaterials.SelectedValue.ToString();
                     dr1["spcfcod"] = this.ddlResSpcf.SelectedValue.ToString();
                     dr1["deptcode"] = this.ddlDeptCode.SelectedValue.ToString();
@@ -361,6 +361,7 @@ namespace RealERPWEB.F_12_Inv
                     dr1["spcfdesc"] = this.ddlResSpcf.SelectedItem.Text.Trim();
                     dr1["deptname"] = this.ddlDeptCode.SelectedItem.Text.Trim();
                     dr1["empid"] = "";
+                    dr1["remarks"] = "";
                     DataTable tbl2 = (DataTable)ViewState["tblMat"];
                     DataRow[] dr3 = tbl2.Select("rsircode = '" + mResCode + "' and spcfcod='" + spcfcod + "'");
                     dr1["rsirunit"] = dr3[0]["rsirunit"];
@@ -368,7 +369,7 @@ namespace RealERPWEB.F_12_Inv
                     dr1["stkrate"] = "0";
                     dr1["issueqty"] = dr3[0]["issueqty"];
                     dr1["issueamt"] = 0;
-                    dr1["remarks"] = "";
+                    
                     tbl1.Rows.Add(dr1);
                 }
 
@@ -447,21 +448,21 @@ namespace RealERPWEB.F_12_Inv
 
             this.gvIssue.DataSource = (DataTable)ViewState["tblIssue"];
             this.gvIssue.DataBind();
-            this.FooterCalCulation();
+            //this.FooterCalCulation();
 
 
         }
         private void FooterCalCulation()
         {
-            DataTable dt1 = (DataTable)ViewState["tblIssue"];
+            //DataTable dt1 = (DataTable)ViewState["tblIssue"];
 
-            if (dt1.Rows.Count == 0)
-                return;
-            if (this.GetCompCode() == "7305")
-            {
-                ((Label)this.gvIssue.FooterRow.FindControl("lblFgvissueqty")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(issueqty)", "")) ?
-            0.00 : dt1.Compute("sum(issueqty)", ""))).ToString("#,##0.00;(#,##0.00); ");
-            }
+            //if (dt1.Rows.Count == 0)
+            //    return;
+            //if (this.GetCompCode() == "7305")
+            //{
+            //    ((Label)this.gvIssue.FooterRow.FindControl("lblFgvissueqty")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(issueqty)", "")) ?
+            //0.00 : dt1.Compute("sum(issueqty)", ""))).ToString("#,##0.00;(#,##0.00); ");
+            //}
 
 
         }
