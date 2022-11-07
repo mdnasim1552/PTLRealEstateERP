@@ -123,7 +123,9 @@ namespace RealERPWEB.F_22_Sal
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string txtSProject = "%%";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "GETPROSPECTIVE", txtSProject, "", "", "", "", "", "", "", "");
+            string empid = hst["empid"].ToString();
+            string Type = "SalesTeam";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "GETPROSPECTIVE", txtSProject, empid, Type, "", "", "", "", "", "");
             this.ddlprospective.DataTextField = "prosdesc";
             this.ddlprospective.DataValueField = "proscode";
             this.ddlprospective.DataSource = ds1.Tables[0];
