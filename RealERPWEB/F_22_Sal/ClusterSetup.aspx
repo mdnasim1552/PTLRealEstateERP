@@ -44,36 +44,19 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div class="RealProgressbar">
-                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
-                    <ProgressTemplate>
-                        <div id="loader">
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="lading"></div>
-                        </div>
-                    </ProgressTemplate>
-                </asp:UpdateProgress>
-            </div>
-            <div class="card mt-5">
-                <div class="card-header">
+            <div class="card card-fluid mt-1">
+                <div class="card-body">
 
-                    <panel runat="server" id="pnlmarketemp" visible="false">
+                  
                         <div class="row mt-1">
                             <div class="col-lg-3 col-md-3 col-sm-3">
-                                <asp:Label ID="Label1" runat="server" CssClass="form-label">Select Code Book:</asp:Label>
+                                <asp:Label ID="Label1" runat="server" CssClass="form-label">Employee</asp:Label>
                                 <asp:DropDownList ID="ddlEmpName" runat="server" CssClass="form-control select2" TabIndex="2"></asp:DropDownList>
                             </div>
                            
                       
                             <div class="col-lg-3 col-md-3 col-sm-3">
-                                <asp:Label ID="Label2" runat="server" CssClass="form-label">Cluster Employee:</asp:Label>
+                                <asp:Label ID="Label2" runat="server" CssClass="form-label">Cluster:</asp:Label>
                                 <asp:DropDownList ID="ddlEmpName1" runat="server" CssClass="form-control select2" TabIndex="2"></asp:DropDownList>
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2">
@@ -84,7 +67,7 @@
 
 
                         <div class="row mt-3">
-                            <asp:GridView ID="gvEmpCluster" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea" AutoGenerateColumns="False" ShowFooter="True" Width="850px">
+                            <asp:GridView ID="gvEmpCluster" runat="server" CssClass="table-striped table-bordered grvContentarea" AutoGenerateColumns="False" ShowFooter="True" Width="850px">
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl#">
@@ -169,102 +152,15 @@
                                     
 
                                 </Columns>
-                                <FooterStyle CssClass="grvFooter" />
+                                <FooterStyle CssClass="grvFooterNew" />
                                 <EditRowStyle />
                                 <AlternatingRowStyle />
-                                <PagerStyle CssClass="gvPagination" />
-                                <HeaderStyle CssClass="grvHeader" />
+                                <PagerStyle CssClass="gvPaginationNew" />
+                                <HeaderStyle CssClass="grvHeaderNew" />
                             </asp:GridView>
                             </div>
-                    </panel>
-                    <panel runat="server" id="pnlplanemp" visible="false">
-                        <div class="row  mt-1">
-                            <div class="col-lg-3 col-md-3 col-sm-6">
-                                <asp:Label ID="lblEmpPlan" runat="server" CssClass="smLbl_to">Employee:</asp:Label>
-                                <asp:DropDownList ID="ddlEmpPlan" runat="server" CssClass="form-control select2" TabIndex="2" ></asp:DropDownList>
-                            </div>
-                            <div class="col-lg-1 col-md-1 col-sm-6">
-                                <asp:LinkButton ID="lnkbtnOkPlan" runat="server" CssClass="btn btn-primary btn-sm mt-4" OnClick="lnkbtnOkPlan_Click">Add</asp:LinkButton>
-                            </div> 
-                        </div>
-                        <div class="row mt-4">
-                            <asp:GridView ID="gvEmpPlan" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea" AutoGenerateColumns="False" ShowFooter="True" Width="850px">
-                                <RowStyle />
-                                <Columns>
-                                    <asp:TemplateField HeaderText="Sl#">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblgvSlNop" runat="server"
-                                                Style="text-align: right"
-                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
-                                        </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
-                                    </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="">
-                                        <ItemTemplate>
-
-                                            <asp:ImageButton runat="server" ID="btndeletep" ImageUrl="~/assets/images/delete.png" Height="20px" OnClick="btndeletep_Click" OnClientClick="return confirm('Are you want to delete?')"
-                                                CommandName="Command" />
-                                        </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Card #">
-
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblgvCardnop" runat="server"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
-                                                Width="70px"></asp:Label>
-                                        </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
-                                    </asp:TemplateField>
-                                    <%-- <asp:CommandField ShowDeleteButton="True" />--%>
-
-                                    <asp:TemplateField HeaderText="Employee Name">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblempidp" runat="server" Font-Bold="true" Font-Size="11px" Visible="False"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
-                                                Width="160px"></asp:Label>
-                                            <asp:Label ID="lblgvempnamep" runat="server" Font-Bold="true" Font-Size="11px"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
-                                                Width="250px"></asp:Label>
-                                        </ItemTemplate>
-
-                                        <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Designation">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lbldesigp" runat="server"
-                                                Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
-                                                Width="200px"></asp:Label>
-                                        </ItemTemplate>
-                                        <FooterTemplate>
-                                            <asp:LinkButton ID="lbntUpdateOtherDedp" runat="server" CssClass="btn btn-success btn-sm" OnClick="lbntUpdateOtherDedp_Click">Update</asp:LinkButton>
-                                        </FooterTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Section">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblgvSectionp" runat="server" Font-Bold="true" Font-Size="11px"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) %>'
-                                                Width="190px"></asp:Label>
-                                        </ItemTemplate>
-
-                                        <HeaderStyle HorizontalAlign="Center" Font-Bold="true" Font-Size="16px" />
-                                    </asp:TemplateField>
-
-                                    
-
-
-
-                                </Columns>
-                                <FooterStyle CssClass="grvFooter" />
-                                <EditRowStyle />
-                                <AlternatingRowStyle />
-                                <PagerStyle CssClass="gvPagination" />
-                                <HeaderStyle CssClass="grvHeader" />
-                            </asp:GridView>
-                        </div>
-                    </panel>
+              
+                   
                 </div>
             </div>
         </ContentTemplate>

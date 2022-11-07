@@ -33,6 +33,7 @@ namespace RealERPWEB.F_38_AI
                 this.GetDataSetList();
                 //this.GetCurrency();
                 this.CreateTableAssign();
+                this.lblquantity_TextChanged(null, null);
             }
         }
         private string GetComdCode()
@@ -404,7 +405,7 @@ namespace RealERPWEB.F_38_AI
         protected void lblquantity_TextChanged(object sender, EventArgs e)
         {
             this.SaveValue();
-            DataTable dt = (DataTable)Session["tblt01"];
+            DataTable dt = (DataTable)Session["tblt02"];
             for (int i = 0; i < dt.Rows.Count; i++)
             {
 
@@ -413,6 +414,10 @@ namespace RealERPWEB.F_38_AI
         }
         private void SaveValue()
         {
+            try
+            {
+
+           
             DataTable dt = (DataTable)ViewState["tblt01"];
             int TblRowIndex;
             for (int i = 0; i < this.gv_AIInvoice.Rows.Count; i++)
@@ -420,12 +425,17 @@ namespace RealERPWEB.F_38_AI
                 string qty = Convert.ToDouble("0" + ((TextBox)this.gv_AIInvoice.Rows[i].FindControl("lblquantity")).Text.Trim()).ToString();
                 string rate = Convert.ToDouble("0" + ((TextBox)this.gv_AIInvoice.Rows[i].FindControl("lblrate")).Text.Trim()).ToString();              
                 TblRowIndex = (gv_AIInvoice.PageIndex) * gv_AIInvoice.PageSize + i;
-                dt.Rows[TblRowIndex]["lblquantity"] = qty;
-                dt.Rows[TblRowIndex]["lblrate"] = rate;             
+                //dt.Rows[TblRowIndex]["lblquantity"] = qty;
+                //dt.Rows[TblRowIndex]["lblrate"] = rate;             
 
 
             }
-            Session["tblt01"] = dt;
+            Session["tblt02"] = dt;
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+            }
 
         }
     }
