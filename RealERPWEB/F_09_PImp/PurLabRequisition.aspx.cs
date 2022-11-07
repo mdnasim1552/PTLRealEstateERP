@@ -623,10 +623,12 @@ namespace RealERPWEB.F_09_PImp
             string comcod = this.GetCompCode();
             switch (comcod)
             {
-                case "1205":
-                case "3351":
-                case "3352":
-                case "8306":
+                case "1205": //p2p
+                case "3351": //p2p
+                case "3352": //p2p
+                case "8306": //p2p
+                case "3370": //cpdl
+
                     if (this.Request.QueryString["Type"] == "CSApproval")
                     {
                         recom = this.Request.QueryString["recomsup"].ToString();
@@ -1255,10 +1257,11 @@ namespace RealERPWEB.F_09_PImp
                 string comcod = this.GetCompCode();
                 switch (comcod)
                 {
-                    case "1205":
-                    case "3351":
-                    case "3352":
-                    case "8306":
+                    case "3370": // cpdl
+                    case "1205": // p2p
+                    case "3351": // p2p
+                    case "3352": // p2p
+                    case "8306": // p2p
                         txtlabrate.ReadOnly = true;
                         txtgvamount.ReadOnly = true;
                         break;

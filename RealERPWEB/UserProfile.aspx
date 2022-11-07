@@ -851,6 +851,12 @@
                                                         <asp:Label  runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "birthday")) %>' Width="100px"></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
+
+                                                          <asp:TemplateField HeaderText="Sales Team" Visible="false">
+                                                    <ItemTemplate>
+                                                        <asp:Label runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>' Width="100px"></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                             </Columns>
 
                                             <EditRowStyle />
@@ -913,7 +919,11 @@
                                                 </asp:TemplateField>
 
 
-                         
+                                                  <asp:TemplateField HeaderText="Sales Team" Visible="false">
+                                                    <ItemTemplate>
+                                                        <asp:Label runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>' Width="100px"></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
                             
                                             </Columns>
@@ -1308,6 +1318,8 @@
                                                         <asp:Label ID="lblNoticeDet" runat="server" Visible="false" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ndetails")) %>'></asp:Label>
                                                         <asp:Label ID="lblNoticeTitle" runat="server" Visible="false" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "eventitle")) %>'></asp:Label>
                                                         <asp:Label ID="lblstartdate" runat="server" Visible="false" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "nstartdate")) %>'></asp:Label>
+                                                        <asp:Label ID="lblattach" runat="server" Visible="false" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "files")) %>'></asp:Label>
+
 
                                                         <asp:Label ID="lblenddate" runat="server" Visible="false" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "nenddate")) %>'></asp:Label>
                                                     </ItemTemplate>
@@ -2087,6 +2099,8 @@
                             <div class="card-body bg-light">
                                 <p class="" runat="server" id="modalNoticeDet"></p>
                                 <hr />
+                                <p class="font-weight-bold">Attachment : <asp:HyperLink runat="server" ID="NoticeAttach"><i class="fa fa-paperclip"></i> View Attachment</asp:HyperLink> </p>
+
                                 <p class="font-weight-bold">Publish Date : <span runat="server" class="text-muted" id="publishDate"></span></p>
                                 <p class="font-weight-bold">Start Date : <span runat="server" class="text-muted" id="noticeStartDate"></span></p>
                                 <p class="font-weight-bold">End Date : <span runat="server" class="text-muted" id="noticeEndDate"></span></p>

@@ -80,7 +80,7 @@ namespace RealERPWEB.F_14_Pro
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            string txtSProject = "%" + this.txtSrcPro.Text + "%";
+            string txtSProject = "%%";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETPSNAME", txtSProject, "", "", "", "", "", "", "", "");
             this.ddlSName.DataTextField = "sirdesc";
             this.ddlSName.DataValueField = "sircode";
@@ -191,8 +191,9 @@ namespace RealERPWEB.F_14_Pro
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+               string Messagesdx = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesdx + "');", true);
+                 
                 return;
             }
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -208,8 +209,9 @@ namespace RealERPWEB.F_14_Pro
                 MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATESUPLINF", ssirCode, Gcode, gtype, Gvalue, "", "", "", "", "", "", "", "", "", "", "");
 
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            string Messagesd = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
+             
 
             if (ConstantInfo.LogStatus == true)
             {
@@ -223,6 +225,7 @@ namespace RealERPWEB.F_14_Pro
 
         protected void lnkMesSend_Click(object sender, EventArgs e)
         {
+            string Messagesd;
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
 
             if (!Convert.ToBoolean(dr1[0]["entry"]))
@@ -242,14 +245,17 @@ namespace RealERPWEB.F_14_Pro
                 string Gvalue = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                 if (Gcode == "71003" && Gvalue.Length > 11)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Mobile noumber length must be 11 digit";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                    Messagesd = "Mobile noumber length must be 11 digit";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                     
                     return;
                 }
                 else if (Gcode == "71003" && Gvalue.Length < 11)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Mobile noumber length must be 11 digit";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+                    Messagesd = "Mobile noumber length must be 11 digit";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                   
                     return;
                 }
                 else if (Gcode == "71003" && Gvalue != "")
@@ -303,9 +309,15 @@ namespace RealERPWEB.F_14_Pro
                 bool IsSMSaved = CALogRecord.AddSMRecord(comcod, ((Hashtable)Session["tblLogin"]), supcode, "", "", "", ntype, smsstatus, smtext, "",
                            "", "", cellphone, "");
 
-                ((Label)this.Master.FindControl("lblmsg")).Text = "SMS Send Successfully";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-                return;
+              
+                string Messagesd = "SMS Send Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
+                
+            }
+            else
+            {
+                string Messagesd = "Error occured while sending your message.";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
             }
 
         }

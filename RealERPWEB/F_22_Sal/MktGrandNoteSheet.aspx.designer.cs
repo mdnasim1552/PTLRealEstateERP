@@ -357,67 +357,67 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvalTotal;
 
         /// <summary>
-        /// lblbookingpercnt control.
+        /// lbltxtdownpayper control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblbookingpercnt;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbltxtdownpayper;
 
         /// <summary>
-        /// lblvalbookingpercnt control.
+        /// txtdownpayper control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvalbookingpercnt;
+        protected global::System.Web.UI.WebControls.TextBox txtdownpayper;
 
         /// <summary>
-        /// lblbookingmoney control.
+        /// lbltxtdownpayam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblbookingmoney;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbltxtdownpayam;
 
         /// <summary>
-        /// lblvalbookingmoney control.
+        /// lblvaldownpayam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvalbookingmoney;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvaldownpayam;
 
         /// <summary>
-        /// lblinsdate control.
+        /// lbltxtdownpaydate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblinsdate;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbltxtdownpaydate;
 
         /// <summary>
-        /// txtBookingdate control.
+        /// txtdownpaydate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBookingdate;
+        protected global::System.Web.UI.WebControls.TextBox txtdownpaydate;
 
         /// <summary>
-        /// txtBookingdate_CalendarExtender control.
+        /// CalendarExtender_txtdownpaydate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtBookingdate_CalendarExtender;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender_txtdownpaydate;
 
         /// <summary>
         /// lblnoofemi control.
@@ -690,24 +690,6 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblcoffTotal;
 
         /// <summary>
-        /// lbltxtcoffbookinmpercnt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbltxtcoffbookinmpercnt;
-
-        /// <summary>
-        /// txtcoffbookinmpercnt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtcoffbookinmpercnt;
-
-        /// <summary>
         /// lbltxtvalcoffbookingam control.
         /// </summary>
         /// <remarks>
@@ -717,13 +699,13 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbltxtvalcoffbookingam;
 
         /// <summary>
-        /// lblvalcoffbookingam control.
+        /// txtcoffbookingam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvalcoffbookingam;
+        protected global::System.Web.UI.WebControls.TextBox txtcoffbookingam;
 
         /// <summary>
         /// lblcoffBookingdat control.
@@ -1012,15 +994,6 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtinterestrate;
-
-        /// <summary>
-        /// lbtnCalCulation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnCalCulation;
 
         /// <summary>
         /// Label4 control.

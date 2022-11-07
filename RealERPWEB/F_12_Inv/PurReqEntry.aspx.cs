@@ -1657,7 +1657,7 @@ namespace RealERPWEB.F_12_Inv
                         case "3348": //Credence
                             break;
 
-                        case "3101": //EPic
+                    
                         case "3367": //EPic
                             if (pactcode == "11020099" && approval == "")
                             {

@@ -38,8 +38,8 @@ namespace RealERPWEB.F_17_Acc
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Supplier Overall Position Summary";
 
                 var dtoday = System.DateTime.Today;
-                this.txttodate.Text = dtoday.ToString("dd-MMM-yyyy");
-                this.txtfrmdate.Text = new System.DateTime(dtoday.Year, dtoday.Month, 1).ToString("dd-MMM-yyyy");
+                //this.txttodate.Text = dtoday.ToString("dd-MMM-yyyy");
+                this.txtfrmdate.Text = dtoday.ToString("dd-MMM-yyyy");
                 this.SupplierList();
 
             }
@@ -115,11 +115,13 @@ namespace RealERPWEB.F_17_Acc
                 string comcod = this.GetComeCode();
 
                 string frmdate = txtfrmdate.Text.ToString();
-                string todate = txttodate.Text.ToString();
+                //string todate = txttodate.Text.ToString();
                 string stindex = this.rbtnAtStatus.SelectedIndex.ToString();
                 string Rescode = this.ddlSuplist.SelectedValue.ToString() == "000000000000" ? "99%" : this.ddlSuplist.SelectedValue.ToString() + "%";
-                string mRptGroup = "12";
-                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "RPTALLSUPPAYMENTSTATUS", frmdate, todate, Rescode, mRptGroup, "", "", "", "", "");
+                //string mRptGroup = "12";
+                // DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "RPTALLSUPPAYMENTSTATUS", frmdate, todate, Rescode, mRptGroup, "", "", "", "", "");
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETSUPLIERPAYMENTACCOUTS", Rescode, frmdate, "", "", "", "", "", "", "");
+
                 if (ds1 == null)
                 {
                     this.gvspaysummary.DataSource = null;
@@ -145,17 +147,17 @@ namespace RealERPWEB.F_17_Acc
                 string comcod = this.GetComeCode();
 
                 string frmdate = txtfrmdate.Text.ToString();
-                string todate = txttodate.Text.ToString();
+                //string todate = txttodate.Text.ToString();
                 string stindex = this.rbtnAtStatus.SelectedIndex.ToString();
                 string Rescode = this.ddlSuplist.SelectedValue.ToString() == "000000000000" ? "99%" : this.ddlSuplist.SelectedValue.ToString() + "%";
                 //string mRptGroup = "12";
                 //string calltype = (stindex == "0" ? "RPTALLSUPPAYMENTSTATUS" : "GETSUPLLIERANDSUBCONTRACTORSATUS");
                 //  DataSet ds2 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "RPTALLSUPPAYMENT", frmdate, todate, Rescode, mRptGroup, supplier, Rescodegrp, search, "", "");
                 //  DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETSUPLIERPAYMENTDETIAL", Rescode, frmdate, todate, "", "", "", "", "", "");
-                  DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETSUPLIERPAYMENTACCOUTS", Rescode, frmdate, "", "", "", "", "", "", "");
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETSUPLIERPAYMENTACCOUTSDETAILS", frmdate, Rescode, "", "", "", "", "", "", "");
 
 
-                
+
                 if (ds1 == null)
                 {
                     this.gvspaysummary.DataSource = null;
@@ -245,7 +247,7 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "Supplier Overall Summary" ));
                 Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("printdate", "( From " + this.txtfrmdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
+                Rpt1.SetParameters(new ReportParameter("printdate", "( From " + this.txtfrmdate.Text.Trim() + " )"));
 
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
@@ -262,7 +264,7 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "Supplier Overall Details"));
                 Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("printdate", "( From " + this.txtfrmdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
+                Rpt1.SetParameters(new ReportParameter("printdate", "( From " + this.txtfrmdate.Text.Trim() + " )"));
 
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
@@ -275,88 +277,88 @@ namespace RealERPWEB.F_17_Acc
 
         protected void gvspaymentdetails_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
+            //if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
 
-                Label lblgvOpndetails = (Label)e.Row.FindControl("lblgvOpndetails");
-                Label lblgvDrAmount = (Label)e.Row.FindControl("lblgvDrAmount");
-                Label lblgvCrAmt = (Label)e.Row.FindControl("lblgvCrAmt");
-                Label lblgvClsing = (Label)e.Row.FindControl("lblgvClsing");
-                Label lblprjName = (Label)e.Row.FindControl("lblprjName");
+            //    Label lblgvOpndetails = (Label)e.Row.FindControl("lblgvOpndetails");
+            //    Label lblgvDrAmount = (Label)e.Row.FindControl("lblgvDrAmount");
+            //    Label lblgvCrAmt = (Label)e.Row.FindControl("lblgvCrAmt");
+            //    Label lblgvClsing = (Label)e.Row.FindControl("lblgvClsing");
+            //    Label lblprjName = (Label)e.Row.FindControl("lblprjName");
 
-                string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString().Trim();
-                //string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString();
-
-
-                // string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "refno")).ToString();
-
-                if (grp == "")
-                {
-                    return;
-                }
+            //    string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString().Trim();
+            //    //string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString();
 
 
+            //    // string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "refno")).ToString();
 
-                if (grp == "B")
-                {
-
-                    //lgvfgrp.Font.Bold = true;
-                    //lblgvOpndetails.Font.Bold = true;
-                    //lblgvDrAmount.Font.Bold = true;
-                    //lblgvCrAmt.Font.Bold = true;
-                    //lblgvClsing.Font.Bold = true;
-                    //lblprjName.Font.Bold = true;
-
-                    //lblgvOpndetails.Font.Size = 10;
-                    //lblgvDrAmount.Font.Size = 10;
-                    //lblgvCrAmt.Font.Size = 10;
-                    //lblgvClsing.Font.Size = 10;
-                    //lblprjName.Font.Size = 10;
-
-                    lblprjName.Attributes["style"] = "font-weight:bold; color:maroon;";
-                    lblgvOpndetails.Attributes["style"] = "font-weight:bold; color:maroon;";
-                    lblgvDrAmount.Attributes["style"] = "font-weight:bold; color:maroon;";
-                    lblgvCrAmt.Attributes["style"] = "font-weight:bold; color:maroon;";
-                    lblgvClsing.Attributes["style"] = "font-weight:bold; color:maroon;";
-
-
-                    //lgvNagad.Style.Add("text-align", "left");
-                    lblprjName.Style.Add("text-align", "right");
-
-                }
-
-
-                if (grp == "D")
-                {
-
-                    //lgvfgrp.Font.Bold = true;
-                    //lblgvOpndetails.Font.Bold = true;
-                    //lblgvDrAmount.Font.Bold = true;
-                    //lblgvCrAmt.Font.Bold = true;
-                    //lblgvClsing.Font.Bold = true;
-                    //lblprjName.Font.Bold = true;
-
-                    //lblgvOpndetails.Font.Size = 10;
-                    //lblgvDrAmount.Font.Size = 10;
-                    //lblgvCrAmt.Font.Size = 10;
-                    //lblgvClsing.Font.Size = 10;
-                    //lblprjName.Font.Size = 10;
-
-                    lblprjName.Attributes["style"] = "font-weight:bold; color:green;";
-                    lblgvOpndetails.Attributes["style"] = "font-weight:bold; color:green;";
-                    lblgvDrAmount.Attributes["style"] = "font-weight:bold; color:green;";
-                    lblgvCrAmt.Attributes["style"] = "font-weight:bold; color:green;";
-                    lblgvClsing.Attributes["style"] = "font-weight:bold; color:green;";
-
-
-                    //lgvNagad.Style.Add("text-align", "left");
-                    lblprjName.Style.Add("text-align", "right");
-
-                }
+            //    if (grp == "")
+            //    {
+            //        return;
+            //    }
 
 
 
-            }
+            //    if (grp == "B")
+            //    {
+
+            //        //lgvfgrp.Font.Bold = true;
+            //        //lblgvOpndetails.Font.Bold = true;
+            //        //lblgvDrAmount.Font.Bold = true;
+            //        //lblgvCrAmt.Font.Bold = true;
+            //        //lblgvClsing.Font.Bold = true;
+            //        //lblprjName.Font.Bold = true;
+
+            //        //lblgvOpndetails.Font.Size = 10;
+            //        //lblgvDrAmount.Font.Size = 10;
+            //        //lblgvCrAmt.Font.Size = 10;
+            //        //lblgvClsing.Font.Size = 10;
+            //        //lblprjName.Font.Size = 10;
+
+            //        lblprjName.Attributes["style"] = "font-weight:bold; color:maroon;";
+            //        lblgvOpndetails.Attributes["style"] = "font-weight:bold; color:maroon;";
+            //        lblgvDrAmount.Attributes["style"] = "font-weight:bold; color:maroon;";
+            //        lblgvCrAmt.Attributes["style"] = "font-weight:bold; color:maroon;";
+            //        lblgvClsing.Attributes["style"] = "font-weight:bold; color:maroon;";
+
+
+            //        //lgvNagad.Style.Add("text-align", "left");
+            //        lblprjName.Style.Add("text-align", "right");
+
+            //    }
+
+
+            //    if (grp == "D")
+            //    {
+
+            //        //lgvfgrp.Font.Bold = true;
+            //        //lblgvOpndetails.Font.Bold = true;
+            //        //lblgvDrAmount.Font.Bold = true;
+            //        //lblgvCrAmt.Font.Bold = true;
+            //        //lblgvClsing.Font.Bold = true;
+            //        //lblprjName.Font.Bold = true;
+
+            //        //lblgvOpndetails.Font.Size = 10;
+            //        //lblgvDrAmount.Font.Size = 10;
+            //        //lblgvCrAmt.Font.Size = 10;
+            //        //lblgvClsing.Font.Size = 10;
+            //        //lblprjName.Font.Size = 10;
+
+            //        lblprjName.Attributes["style"] = "font-weight:bold; color:green;";
+            //        lblgvOpndetails.Attributes["style"] = "font-weight:bold; color:green;";
+            //        lblgvDrAmount.Attributes["style"] = "font-weight:bold; color:green;";
+            //        lblgvCrAmt.Attributes["style"] = "font-weight:bold; color:green;";
+            //        lblgvClsing.Attributes["style"] = "font-weight:bold; color:green;";
+
+
+            //        //lgvNagad.Style.Add("text-align", "left");
+            //        lblprjName.Style.Add("text-align", "right");
+
+            //    }
+
+
+
+            //}
         }
 
     }

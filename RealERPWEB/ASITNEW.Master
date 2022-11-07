@@ -890,18 +890,19 @@
                                 <!-- .menu-header -->
                                 <li class="menu-header">Analysis </li>
 
+                                
                                 <!-- .menu-item -->
                                 <li class="menu-item has-active">
-                                    <a runat="server" id="dbAllinOne" href="#" target="_blank" class="menu-link"><span class="menu-icon fa fa-th" title="All In One"></span><span class="menu-text">All In One</span></a>
+                                    <a runat="server" id="dbAllinOne" href="#" target="_blank" visible="false" class="menu-link"><span class="menu-icon fa fa-th" title="All In One"></span><span class="menu-text">All In One</span></a>
                                 </li>
                                 <li class="menu-item has-active">
-                                    <a runat="server" id="prjdash" href="#" target="_blank" class="menu-link"><span class="menu-icon fa fa-th" title="Project DashBoard"></span><span class="menu-text">Project DashBoard</span></a>
+                                    <a runat="server" id="prjdash" href="#" target="_blank" visible="false"  class="menu-link"><span class="menu-icon fa fa-th" title="Project DashBoard"></span><span class="menu-text">Project DashBoard</span></a>
                                 </li>
-                                <li class="menu-item has-child">
+                                <li class="menu-item has-child" id="AnalysisArea" runat="server" visible="false">
                                     <a href="#" class="menu-link"><span class="menu-icon fas fa-table" title="Analysis Graph"></span><span class="menu-text">Analysis Graph</span></a>
                                     <!-- child menu -->
                                     <ul class="menu" runat="server" id="dbGraph">
-                                        <li class="menu-item">
+                                        <%--<li class="menu-item">
                                             <a href="<%= ResolveUrl("~/F_34_Mgt/RptAllDashboard?Type=Purchase") %>" target="_blank" class="menu-link">Purchase</a>
                                         </li>
                                         <li class="menu-item">
@@ -919,13 +920,13 @@
                                         </li>
                                         <li class="menu-item">
                                             <a runat="server" id="PrjSummary" class="menu-link">Project Summary</a>
-                                        </li>
+                                        </li>--%>
 
                                     </ul>
                                     <!-- /child menu -->
                                 </li>
                                 <li class="menu-item has-active">
-                                    <a href="AllGraph" target="_blank" class="menu-link"><span class="menu-icon fa fa-meteor" title="DashBoard"></span><span class="menu-text">Dashboard</span></a>
+                                    <a href="AllGraph" id="allGraph" runat="server" target="_blank" class="menu-link"><span class="menu-icon fa fa-meteor" title="DashBoard"></span><span class="menu-text">Dashboard</span></a>
                                 </li>
                                 <%--<li class="menu-item">
                                     <a href=<%= ResolveUrl("~/F_34_Mgt/RptAllDashboard?Type=Purchase") %> target="_blank" class="menu-link"><span class="menu-icon fa fa-meteor" title="Tickets"></span><span class="menu-text">Tickets</span></a>

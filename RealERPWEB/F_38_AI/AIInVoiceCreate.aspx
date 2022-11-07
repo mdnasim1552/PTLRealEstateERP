@@ -59,7 +59,7 @@
             <div class="section">
                 <div class="card mt-4">
                     <div class="card-header p-1">
-                        <h4>New Invoice</h4>
+                        <h4>Create Invoice</h4>
                     </div>
                     <div class="card-body">
                         <div class="well">
@@ -74,10 +74,10 @@
                                 <asp:Label ID="Label7" CssClass="col-lg-1 col-form-label" runat="server">Invoice No                                    
                                 </asp:Label>
                                 <div class="col-lg-1">
-                                    <asp:TextBox runat="server" ID="txtInvoiceno" placeholder="AI-INV" CssClass="form-control form-control-sm"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtInvoiceno" readonly="true" CssClass="form-control form-control-sm"></asp:TextBox>
                                 </div>
                                 <div class="col-lg-1 ">
-                                    <asp:TextBox runat="server" ID="txtInvoiceno2" placeholder="000001" CssClass="form-control form-control-sm"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtInvoiceno2" readonly="true" CssClass="form-control form-control-sm"></asp:TextBox>
                                 </div>
                             </div>
                             <div class="row ">
@@ -90,7 +90,7 @@
                             <div class="row mb-1">
                                 <asp:Label ID="Label3" CssClass="col-lg-1 col-form-label" runat="server">Clients</asp:Label>
                                 <div class="col-lg-3 col-md-3 col-sm-6">
-                                    <asp:DropDownList ID="ddlsuplier" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlsuplier_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddlsuplier" runat="server" readonly="true" enabled="False" CssClass="form-control form-control-sm chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlsuplier_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </div>
                                 <asp:Label ID="Label1" CssClass="col-lg-1 col-form-label" runat="server">Project Name</asp:Label>
@@ -121,8 +121,9 @@
                                     <asp:TextBox runat="server" ID="txtrate" min="0" TextMode="Number" placeholder="0.00" CssClass="form-control form-control-sm"></asp:TextBox>
                                 </div>
                                 <div class="col-lg-1 col-md-3 col-sm-6">
-                                    <asp:DropDownList ID="ddlcurency" runat="server" AutoPostBack="true" CssClass="form-control form-control-sm chzn-select">
-                                    </asp:DropDownList>
+                                    <%--<asp:TextBox ID="ddlcurency" readonly="true" runat="server"  CssClass="form-control form-control-sm"></asp:TextBox>--%>
+                                    <asp:TextBox ReadOnly="true" runat="server" ID="txtcurrency" CssClass="form-control form-control-sm" ></asp:TextBox>
+                                    
                                 </div>
                             </div>
                             <div class="row mb-1">
@@ -136,6 +137,12 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-md-12">
+                            <div class="card" id="virtualList" runat="server" visible="false" >
+                                <div class="card-header bg-light p-1">
+                                    <h4 class="text-center display-none"><span class="  text-muted">Invoice List</span></h4>
+                                </div>
+                                <div class="card-body">
                             <asp:GridView ID="gv_AIInvoice" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                 ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" >
                                 <Columns>
@@ -200,15 +207,21 @@
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Quantity">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblquantity" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "quantity")) %>' Width="50px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                        <ItemTemplate>                                            
+                                            <asp:TextBox ID="lblquantity" runat="server" BackColor="Transparent" OnTextChanged="lblquantity_TextChanged"
+                                                    BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "quantity")) %>' Width="80px" ForeColor="Black" Font-Size="12px"> </asp:TextBox>                                           
+                                           
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Rate">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblrate" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rate")) %>' Width="50px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                            <asp:TextBox ID="lblrate" runat="server" 
+                                                BackColor="Transparent"
+                                                    BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rate")) %>' Width="80px" ForeColor="Black" Font-Size="12px"></asp:TextBox>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -240,6 +253,9 @@
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
+                                    </div>
+                             </div>
+                                </div>
                         </div>
                           <div class="row">
                             <div class="col-md-5 mt-1">

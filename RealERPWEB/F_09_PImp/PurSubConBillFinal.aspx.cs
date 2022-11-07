@@ -1174,15 +1174,12 @@ namespace RealERPWEB.F_09_PImp
                         case "3101":
                         case "1103":
                         case "3368": // finlay
-                        //case "3367": // epic
 
                             break;
 
                         default:
                             if (approval == "")
                             {
-
-
                                 this.CreateDataTable();
                                 DataTable dt = (DataTable)ViewState["tblapproval"];
                                 DataRow dr1 = dt.NewRow();
@@ -1201,39 +1198,21 @@ namespace RealERPWEB.F_09_PImp
                                 dr1["threcseson"] = session;
                                 dt.Rows.Add(dr1);
 
-
                                 ds1.Merge(dt);
                                 ds1.Tables[0].TableName = "tbl1";
                                 approval = ds1.GetXml();
-
                             }
-
-
-
-
                             break;
-
                     }
-
                     break;
 
 
-
-
-
-
-
-
                 case "FirstRecom":
-
-
                     if (approval == "")
                     {
 
-
                         if (comcod == "3368")
                         {
-
                             this.CreateDataTable();
                             DataTable dt = (DataTable)ViewState["tblapproval"];
                             DataRow dr1 = dt.NewRow();
@@ -1255,7 +1234,6 @@ namespace RealERPWEB.F_09_PImp
                             ds1.Merge(dt);
                             ds1.Tables[0].TableName = "tbl1";
                             approval = ds1.GetXml();
-
 
                         }
 
@@ -1282,11 +1260,7 @@ namespace RealERPWEB.F_09_PImp
                             ds1.Merge(dt);
                             ds1.Tables[0].TableName = "tbl1";
                             approval = ds1.GetXml();
-
                         }
-
-
-
 
                     }
 
@@ -1308,25 +1282,10 @@ namespace RealERPWEB.F_09_PImp
                         ds1.Tables[0].Rows[0]["threcdat"] = "";
                         ds1.Tables[0].Rows[0]["threctrmid"] = "";
                         ds1.Tables[0].Rows[0]["threcseson"] = "";
-
-
-
-
                         approval = ds1.GetXml();
 
-
-
-
-
-
                     }
-
-
-
                     break;
-
-
-
 
                 case "SecRecom":
                     xmlSR = new System.IO.StringReader(approval);
@@ -1337,7 +1296,6 @@ namespace RealERPWEB.F_09_PImp
                     ds1.Tables[0].Rows[0]["secrectrmid"] = trmnid;
                     ds1.Tables[0].Rows[0]["secrecseson"] = session;
                     approval = ds1.GetXml();
-
                     break;
 
                 case "ThirdRecom":
@@ -1351,11 +1309,6 @@ namespace RealERPWEB.F_09_PImp
                     ds1.Tables[0].Rows[0]["threcseson"] = session;
                     approval = ds1.GetXml();
                     break;
-
-
-
-
-
 
             }
 
@@ -1613,6 +1566,7 @@ namespace RealERPWEB.F_09_PImp
                         case "3310":
 
                         case "3348": //Credence
+                        case "3370": //cpdl                    
                         case "1205": //P2P                    
                         case "3351":
                         case "3352":
@@ -1852,6 +1806,7 @@ namespace RealERPWEB.F_09_PImp
                 case "3315":// Assure Builders
                 case "3316":// Assure Development 
 
+                case "3370": // cpdl 
                 case "1205": // p2p 
                 case "3351":
                 case "3352":

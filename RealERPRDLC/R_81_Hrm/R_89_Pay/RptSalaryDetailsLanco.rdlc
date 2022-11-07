@@ -1622,28 +1622,28 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>0.49357in</Width>
+                                <Width>0.46232in</Width>
                               </TablixColumn>
                               <TablixColumn>
                                 <Width>0.45468in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.46891in</Width>
+                                <Width>0.45849in</Width>
                               </TablixColumn>
                               <TablixColumn>
                                 <Width>0.48975in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.40641in</Width>
+                                <Width>0.35433in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.43766in</Width>
+                                <Width>0.40641in</Width>
                               </TablixColumn>
                               <TablixColumn>
                                 <Width>0.51058in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.40641in</Width>
+                                <Width>0.53141in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -2378,6 +2378,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -3043,7 +3044,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>

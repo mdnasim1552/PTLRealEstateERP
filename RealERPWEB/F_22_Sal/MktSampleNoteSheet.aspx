@@ -160,6 +160,9 @@
         .form-control-sm {
             padding: 0.25rem 0rem !important;
         }
+
+        .grvContentarea {
+        }
     </style>
 
 
@@ -264,7 +267,7 @@
                     <div class="row">
 
                         <div class="col-md-6">
-                            <asp:GridView ID="gvSpayment" runat="server" AutoGenerateColumns="False" Width="831px" CssClass=" table-striped table-bordered grvContentarea">
+                            <asp:GridView ID="gvSpayment" runat="server" AutoGenerateColumns="False" Width="400px" CssClass=" table-striped table-bordered grvContentarea">
                                 <RowStyle />
                                 <Columns>
                                     <asp:CommandField ShowEditButton="True" HeaderStyle-Width="80px" CancelText="&lt;span class='glyphicon glyphicon-remove pull-left'&gt;&lt;/span&gt;" DeleteText="&lt;span class='glyphicon glyphicon-remove'&gt;&lt;/span&gt;" EditText="&lt;span class='glyphicon glyphicon-pencil'&gt;&lt;/span&gt;" UpdateText="&lt;span class='glyphicon glyphicon-ok'&gt;&lt;/span&gt;" />
@@ -293,7 +296,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lgcResDesc" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "udesc")) %>'
-                                                Width="120px"></asp:Label>
+                                                Width="150px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -302,7 +305,7 @@
 
                                     <asp:TemplateField HeaderText="Unit ">
                                         <ItemTemplate>
-                                            <asp:Label ID="lgvUnit" runat="server"
+                                            <asp:Label ID="lgvUnit" runat="server" Width="60px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "munit")) %>'></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -322,7 +325,7 @@
                                         <FooterStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Rate">
+                                    <asp:TemplateField HeaderText="Rate" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="txtgvRate" runat="server" BackColor="Transparent"
                                                 BorderStyle="None" Height="18px" Style="text-align: right"
@@ -334,7 +337,7 @@
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Amount">
+                                    <asp:TemplateField HeaderText="Amount" Visible="false">
 
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         <ItemStyle HorizontalAlign="Right" />
@@ -346,7 +349,7 @@
                                         <FooterStyle HorizontalAlign="right" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Parking">
+                                    <asp:TemplateField HeaderText="Parking" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvminbmoneyaa" runat="server" Style="text-align: right" BackColor="Transparent"
                                                 BorderStyle="None"
@@ -358,7 +361,7 @@
 
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Utility">
+                                    <asp:TemplateField HeaderText="Utility" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvminbmvoney" runat="server" Style="text-align: right" BackColor="Transparent"
                                                 BorderStyle="None"
@@ -370,7 +373,7 @@
 
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Others">
+                                    <asp:TemplateField HeaderText="Others" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvmincbmoney" runat="server" Style="text-align: right" BackColor="Transparent"
                                                 BorderStyle="None"
@@ -382,7 +385,7 @@
 
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Total Amount">
+                                    <asp:TemplateField HeaderText="Total Amount" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvminsbmoney" runat="server" Style="text-align: right" BackColor="Transparent"
                                                 BorderStyle="None"
@@ -569,26 +572,13 @@
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <div class="form-group lblmargin textalignright font-weight-bold">
-
-                                                        <label id="lblcoffTotal" runat="server" clss="form-control form-control-sm ">2500</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group lblmargin ">
-                                                        <label id="lbltxtcoffbookinmpercnt" runat="server">Booking Money %</label>
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-md-4">
                                                     <div class="form-group lblmargin textalignright">
-                                                        <asp:TextBox ID="txtcoffbookinmpercnt" runat="server" CssClass="form-control form-control-sm textalignright"></asp:TextBox>
+
+                                                        <label id="lblcoffTotal" runat="server" class="font-weight-bold">2500</label>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin ">
@@ -599,7 +589,7 @@
 
                                                 <div class="col-md-4">
                                                     <div class="form-group lblmargin textalignright">
-                                                        <label id="lblvalcoffbookingam" runat="server" clss="form-control form-control-sm ">2500</label>
+                                                        <asp:TextBox ID="txtcoffbookingam" runat="server" CssClass="form-control form-control-sm textalignright"></asp:TextBox>
                                                     </div>
                                                 </div>
                                             </div>
@@ -700,7 +690,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row" style="display:none;">
+                                            <div class="row" style="display: none;">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin font-weight-bold">
                                                         <label id="lbltxtcofffvpersft" runat="server">FV per SFT</label>
@@ -714,8 +704,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                             <%--style="display:none;"--%> 
-                                            <div class="row"  style="display:none;" >
+
+                                            <div class="row" style="display: none;">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin font-weight-bold">
                                                         <label id="lbltxtcoffpvpersft" runat="server">PV per SFT</label>
@@ -731,7 +721,7 @@
                                             </div>
 
 
-                                            <div class="row" >
+                                            <div class="row">
 
 
                                                 <div class="col-md-8">
@@ -919,7 +909,7 @@
 
 
 
-<%--                                                         <asp:TemplateField HeaderText="">
+                                                        <%--                                                         <asp:TemplateField HeaderText="">
                                                             <ItemTemplate>
 
                                                                 <asp:LinkButton ID="lbtnAdddsch" OnClick="lbtnAdddsch_Click" ToolTip="Add Installment"  runat="server"><span class="fa fa-plus"></span> </asp:LinkButton>
@@ -1011,7 +1001,7 @@
                                                         </asp:TemplateField>
 
 
-                                                        <asp:TemplateField HeaderText="FV" Visible="false" >
+                                                        <asp:TemplateField HeaderText="FV">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblgvcofffvschamt" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="none"
                                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fv")).ToString("#,##0;(#,##0); ") %>'
@@ -1167,18 +1157,20 @@
                                     </asp:Panel>
 
                                     <div class="row">
-                                        
-                                       
+
+
                                         <asp:HiddenField ID="lblhiddenbutility" runat="server" />
                                         <asp:HiddenField ID="lblhiddenbpamt" runat="server" />
                                         <asp:HiddenField ID="lblhiddenothers" runat="server" />
                                         <asp:HiddenField ID="lblhiddenbnoemi" runat="server" />
+                                        <asp:HiddenField ID="lblhiddenfvpersft" runat="server" />
+                                        <asp:HiddenField ID="lblhiddenpvpersft" runat="server" />
 
                                     </div>
 
 
 
-                                
+
 
                                 </div>
                             </div>

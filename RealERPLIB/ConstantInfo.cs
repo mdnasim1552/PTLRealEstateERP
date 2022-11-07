@@ -452,6 +452,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1203000", "1203182", "F_12_Inv", "AllIndentIsuList?", "Type=Entry", "Indent Issue List", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1203000", "1203183", "F_12_Inv", "Material_Issue?", "Type=Entry", "Indent Materials Issue", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1203000", "1203184", "F_12_Inv", "Material_Issue?", "Type=Approve", "Indent Materials Approve", "Inventory", "False", "False", "False", "False" });
+            ///nahid
+            tblObj.Rows.Add(new Object[] { "1203000", "1203185", "F_12_Inv", "IndentMaterialRequired?", "Type=Entry", "Indent Materials Required", "Inventory", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1203000", "1203186", "F_12_Inv", "IndentMaterialRequired?", "Type=Approve", "Indent Materials Required Approve", "Inventory", "False", "False", "False", "False" });
 
             //Added 
             tblObj.Rows.Add(new Object[] { "1203000", "1203190", "F_12_Inv", "MatConversion", "", "Material Conversion", "Inventory", "False", "False", "False", "False" });
@@ -1205,8 +1208,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2203140", "F_22_Sal", "RptCalTotalAvgValue", "", "Sold Information", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203141", "F_22_Sal", "RptSoldUnsoftInfGroupWise?", "Type=Report", "Sold & Unsold Information (Group Wise)", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203142", "F_22_Sal", "RptSoldUnsoldUnitAvgPrice?", "Type=AvgPrice", "Sold & Unsold Unit (Average Price)", "Sales & Recovery", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2203000", "2203144", "F_22_Sal", "ClusterSetup?", "Type=ClusterSetup", "Cluster Setup", "Sales & Recovery", "False", "False", "False", "False" });
 
-            
+
             tblObj.Rows.Add(new Object[] { "2203000", "2203150", "F_22_Sal", "RptRateChart?", "Type=Report", "Sales Inventory(Details)", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203160", "F_22_Sal", "RptSalesInventory?", "Type=Report", "Sales Inventory Report", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203170", "F_22_Sal", "RptAvailChart?", "Type=Details", "Availability Chart 1", "Sales & Recovery", "False", "False", "False", "False" }); ;
@@ -1632,7 +1636,17 @@ namespace RealERPLIB
 
 
             tblObj.Rows.Add(new Object[] { "3251000", "3251001", "F_99_Allinterface", "BrandInterface", "", "Brand", "Brand Module", "False", "False", "False", "False" }); ;
+            
+            tblObj.Rows.Add(new Object[] { "3261000", "3261001", "", "CompanyOverAllReport?", "comcod=", "All In One- ANALYSIS", "MIS Module", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3261000", "3261002", "F_99_Allinterface", "ProjectDashBoardAllNew?", "comcod=", "Project DashBoard", "Project Planning", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3261000", "3261003", "", "AllGraph", "", "DashBoard", "Accounts", "False", "False", "False", "False" }); ;
 
+            tblObj.Rows.Add(new Object[] { "3262000", "3262001", "F_34_Mgt", "RptAllDashboard?", "Type=Purchase", "Purchase Dashboard", "MIS Module", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3262000", "3262002", "F_34_Mgt", "RptAllDashboard?", "Type=Accounts", "Accounts Dashboard", "MIS Module", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3262000", "3262003", "F_34_Mgt", "RptAllDashboard?", "Type=Sales", "Sales Dashboard", "MIS Module", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3262000", "3262004", "F_34_Mgt", "RptAllDashboard?", "Type=Construction", "Construction Dashboard", "MIS Module", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3262000", "3262005", "F_32_Mis", "ProjectAnalysis?", "Type=Report", "Project Analysis", "MIS Module", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3262000", "3262050", "F_99_Allinterface", "ProjectDashBoard?", "comcod=", "Project Summary", "MIS Module", "False", "False", "False", "False" }); ;
 
 
 
@@ -1695,6 +1709,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3502000", "3502091", "F_34_Mgt", "OtherReqEntry?", "Type=FirstRecom", "First Recommendation(Other Requisition)", "Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "3502000", "3502092", "F_34_Mgt", "OtherReqEntry?", "Type=SecRecom", "Second Recommendation(Other Requisition)", "Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "3502000", "3502093", "F_34_Mgt", "OtherReqEntry?", "Type=ThirdRecom", "Third Recommendation(Other Requisition))", "Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3502000", "3502095", "F_34_Mgt", "OtherReqEntry?", "Type=OreqChecked", "Requisition Checked (Other Requisition))", "Management", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "3502000", "3502094", "F_34_Mgt", "SMCodeBook", "", "SMS/Mail Template Code", "Management", "False", "False", "False", "False" });
 
@@ -2399,7 +2414,7 @@ namespace RealERPLIB
             // tblObj.Rows.Add(new Object[] { "8103000", "8103032", "F_81_Hrm/F_82_App", "RptMyInterface?", "Type=Report", "My Interface", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103043", "F_81_Hrm/F_97_MIS", "RptMgtInterface", "", "Management Interface (HR)", "MIS", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8151000", "8151001", "F_99_Allinterface", "HRInterfaceTopSheet", "", "Salary  360 <sup>0</span>", "Accounts", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "8151000", "8151002", "F_81_Hrm/F_82_App", "RptMyInterface?", "Type=Report", "HR Interface", "HR Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8151000", "8151002", "F_81_Hrm/F_82_App", "RptMyInterface?", "Type=Report", "EMPLOYEE SERVICES INFORMATION", "HR Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8151000", "8151003", "F_99_Allinterface", "HRMAllInOne", "", "HR Dashboard", "HR Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8151000", "8151004", "F_81_Hrm/F_85_Lon", "InterfaceLoan", "", "Loan Interface", "HR Management", "False", "False", "False", "False" });
 
@@ -2584,6 +2599,7 @@ namespace RealERPLIB
         }
 
         #endregion  grpmgtinterface
+
         ///// End Menu Final
         public static DataTable WebObjTableGACC()
         {
@@ -5236,6 +5252,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000009", "05. Indent Issue List", "F_12_Inv/AllIndentIsuList?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000010", "05. Indent Materials Issue ", "F_12_Inv/Material_Issue?Type=Entry&genno=&prjcode=&sircode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000011", "05. Indent Materials Approve ", "F_12_Inv/Material_Issue?Type=Approve&genno=&prjcode=&sircode=", "", true, "" });
+          
+            mnuTbl1.Rows.Add(new Object[] { "0302000012", "05. Indent Materials Rrquired ", "F_12_Inv/IndentMaterialRequired?Type=Entry&genno=", "", true, "" });
 
             //mnuTbl1.Rows.Add(new Object[] { "0311000000", "", "", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0312000000", "", "", "", true, "" });
@@ -7459,6 +7477,10 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301000009", "11. Sold Information", "F_22_Sal/RptCalTotalAvgValue", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000010", "12. Sold & Unsold Information (Group Wise)", "F_22_Sal/RptSoldUnsoftInfGroupWise?Type=Report", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000010", "13. Sold & Unsold Unit (Average Price)", "F_22_Sal/RptSoldUnsoldUnitAvgPrice?Type=AvgPrice", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000010", "13. Cluster Setup", "F_22_Sal/ClusterSetup?Type=ClusterSetup", "", true, "" });
+
+
+
             mnuTbl1.Rows.Add(new Object[] { "0301000011", "12. Customer Note Sheet", "F_22_Sal/RptSalInterest?Type=CustNoteSheet", "", true, "" });
            // mnuTbl1.Rows.Add(new Object[] { "0301000009", "11. Sold Information", "F_22_Sal/RptCalTotalAvgValue", "", true, "" });
 
@@ -15705,7 +15727,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0205000002", "02. Employee Evaluation CodeBook", "F_81_Hrm/F_91_ACR/EmpEvaCode", "", true, "" });
 
             // I. Managent System
-            mnuTbl1.Rows.Add(new Object[] { "0206000000", "Managent System", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000000", "Management  System", "", "", false, "mb" });
             
             
             mnuTbl1.Rows.Add(new Object[] { "0206000001", "01. Employee Confirmation Date", "F_81_Hrm/F_92_Mgt/HREmpConfirmation", "", true, "" });

@@ -224,6 +224,8 @@ namespace RealERPWEB.F_17_Acc
                 case "2325":// Leisure
                 case "3325":// Leisure
                 case "1103":// Tanvir
+                case "1102":// Islam
+
                 case "3305":// RHEL
                 case "3311":// RHEL(ctg)
                 case "3306":// Ratul
@@ -241,6 +243,10 @@ namespace RealERPWEB.F_17_Acc
                 case "1207"://  ACME
                 case "3338"://  ACME
                 case "3369"://  ACME
+                case "3356"://  INtech
+              
+
+
 
                 case "3339"://  Tropical
                 case "3340"://  Urban
@@ -654,6 +660,7 @@ namespace RealERPWEB.F_17_Acc
                 case "1102"://  Islam Brothers 
                 case "3368"://  Finlay  Properties
                 case "3367"://  Epic  Properties
+                case "3370"://  cpdl
 
                     break;
 
@@ -758,13 +765,20 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintCredence";
                     break;
 
-                //case "3101": // islam brothers 
+                //case "3101": //
+                //
+                //brothers 
                 case "1102": // islam brothers 
                     vouprint = "VocherPrintISBL";
                     break;
 
                 case "3368": // Finaly
                     vouprint = "VocherPrintFinlay";
+                    break;
+                
+                case "3101": // Finaly
+                case "3370": // cpdl
+                    vouprint = "VocherPrintCPDL";
                     break;
 
                 //manama, p2p 
@@ -1184,6 +1198,37 @@ namespace RealERPWEB.F_17_Acc
                         Rpt1.EnableExternalImages = true;
 
                     }
+                    Rpt1.SetParameters(new ReportParameter("signprep", postuser));
+                    Rpt1.SetParameters(new ReportParameter("signapp", aprvuser));
+                    Rpt1.SetParameters(new ReportParameter("Vounum", "Voucher No.: " + vounum));
+                    Rpt1.SetParameters(new ReportParameter("voudat", "Voucher Date: " + voudat));
+                    Rpt1.SetParameters(new ReportParameter("refnum", "Cheque/Ref. No.: " + refnum));
+                    Rpt1.SetParameters(new ReportParameter("txtPartyName", (payto == "") ? "" : Partytype + " " + payto));
+                    Rpt1.SetParameters(new ReportParameter("voutype", (ASTUtility.Left(vounum, 2) == "CC") ? "Cash Received Voucher" : voutype));
+                    Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
+                    Rpt1.SetParameters(new ReportParameter("username", postuser));
+                    Rpt1.SetParameters(new ReportParameter("txtpreby", preby));
+                    Rpt1.SetParameters(new ReportParameter("txtcheckby", Checkby));
+                    Rpt1.SetParameters(new ReportParameter("txtauthorizeby", aprvby1));
+                    Rpt1.SetParameters(new ReportParameter("txtaprvby1", authorizeby));
+
+                } 
+                else if (Type == "VocherPrintCPDL")
+                {
+                    var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
+                    if (ASTUtility.Left(vounum, 2) == "JV")
+                    {
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVoucherCPDL02", list, null, null);
+                        Rpt1.EnableExternalImages = true;
+                    }
+                    else
+                    {
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVoucherCPDL", list, null, null);
+                        Rpt1.EnableExternalImages = true;
+
+                    }
+                    Rpt1.SetParameters(new ReportParameter("signprep", postuser));
+                    Rpt1.SetParameters(new ReportParameter("signapp", aprvuser));
                     Rpt1.SetParameters(new ReportParameter("Vounum", "Voucher No.: " + vounum));
                     Rpt1.SetParameters(new ReportParameter("voudat", "Voucher Date: " + voudat));
                     Rpt1.SetParameters(new ReportParameter("refnum", "Cheque/Ref. No.: " + refnum));

@@ -36,6 +36,9 @@ namespace RealERPWEB.F_22_Sal
                 this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 this.ProjectName();
                 this.GetGroup();
+                this.Visibility();
+
+               
             }
 
         }
@@ -121,6 +124,19 @@ namespace RealERPWEB.F_22_Sal
             return lotype;
         }
 
+        private void Visibility()
+        {
+            string Type = this.Request.QueryString["Type"];
+            if (Type == "MonsalVsAchieveLO")
+            {
+                this.gvsalesvscoll.Columns[12].HeaderText = "Received Amount </br> Finlay Prom.";
+                this.gvsalesvscoll.Columns[13].Visible = true;
+                this.gvsalesvscoll.Columns[14].Visible = true;
+
+            }
+
+        }
+
         protected void lnkbtnOk_Click(object sender, EventArgs e)
         {
             Session.Remove("tblgrpsoldunsold");
@@ -173,9 +189,13 @@ namespace RealERPWEB.F_22_Sal
 
         private void Data_Bind()
         {
-
+           
             this.gvsalesvscoll.DataSource = (DataTable)Session["tblsalesvscoll"];
             this.gvsalesvscoll.DataBind();
+
+           
+
+
             // this.FooterCal();
 
             //Session["Report1"] = gvothcoll;
@@ -265,30 +285,56 @@ namespace RealERPWEB.F_22_Sal
                     shopno = dt1.Rows[0]["shopno"].ToString() + " Units";
                     aptno = dt1.Rows[0]["aptno"].ToString() + " Units";
                     officeno = dt1.Rows[0]["officeno"].ToString() + " Units";
-                    totalsal = (Convert.ToDouble(dt1.Rows[0]["aptno"]) + Convert.ToDouble(dt1.Rows[0]["shopno"])).ToString() + " Units";
+                    totalsal ="Total Sales              :   " + (Convert.ToDouble(dt1.Rows[0]["aptno"]) + Convert.ToDouble(dt1.Rows[0]["shopno"])).ToString() + " Units";
                     break;
             }
 
 
             LocalReport Rpt1 = new LocalReport();
-            var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesvsAchievement>();
-            string RptTittle = this.Request.QueryString["Type"] == "MonsalVsAchieveLO" ? "Monthly Sales Report (L/O)" : "Monthly Sales Report";
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSalesVsAchivement", lst, null, null);
-            Rpt1.EnableExternalImages = true;
-            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("printdate", printdate));
-            Rpt1.SetParameters(new ReportParameter("totalsal", totalsal));
-            Rpt1.SetParameters(new ReportParameter("projectName", projectName));
-            Rpt1.SetParameters(new ReportParameter("shopno", shopno));
-            Rpt1.SetParameters(new ReportParameter("aptno", aptno));
-            //Rpt1.SetParameters(new ReportParameter("officeno", officeno));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Achievement for month of " + frmdate + " to " + todate));
-            Rpt1.SetParameters(new ReportParameter("RptTitle1", RptTittle));
-            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
-            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-            Rpt1.SetParameters(new ReportParameter("grp", grp));
-            //Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
+
+            if (this.Request.QueryString["Type"] == "MonsalVsAchieveLO")
+
+            {
+               
+                var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesvsAchievement>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSalesVsAchivementLO", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+                Rpt1.SetParameters(new ReportParameter("totalsal", totalsal));
+                Rpt1.SetParameters(new ReportParameter("projectName", projectName));
+                Rpt1.SetParameters(new ReportParameter("shopno", shopno));
+                Rpt1.SetParameters(new ReportParameter("aptno", aptno));
+                //Rpt1.SetParameters(new ReportParameter("officeno", officeno));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Achievement for month of " + frmdate + " to " + todate));
+                Rpt1.SetParameters(new ReportParameter("RptTitle1", "Monthly Sales Report (L/O)"));
+                Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("grp", grp));
+                //Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
+            }
+           else
+            {
+               
+                var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesvsAchievement>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSalesVsAchivement", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+                Rpt1.SetParameters(new ReportParameter("totalsal", totalsal));
+                Rpt1.SetParameters(new ReportParameter("projectName", projectName));
+                Rpt1.SetParameters(new ReportParameter("shopno", shopno));
+                Rpt1.SetParameters(new ReportParameter("aptno", aptno));
+                //Rpt1.SetParameters(new ReportParameter("officeno", officeno));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Achievement for month of " + frmdate + " to " + todate));
+                Rpt1.SetParameters(new ReportParameter("RptTitle1", "Monthly Sales Report"));
+                Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("grp", grp));
+            }
+
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +

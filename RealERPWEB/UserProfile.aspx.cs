@@ -190,7 +190,11 @@ namespace RealERPWEB
             }
             this.gvclientbthday.DataSource = (ds1.Tables[0]);
             this.gvclientbthday.DataBind();
-
+            if (comcod == "3367")
+            {
+                this.gvclientbthday.Columns[5].Visible = true;
+            }
+                
 
             if (ds1 == null || ds1.Tables[1].Rows.Count == 0)
             {
@@ -200,6 +204,10 @@ namespace RealERPWEB
             }
             this.gvmarriageday.DataSource = (ds1.Tables[1]);
             this.gvmarriageday.DataBind();
+            if (comcod == "3367")
+            {
+                this.gvclientbthday.Columns[5].Visible = true;
+            }
 
         }
         private void getLink()
@@ -1380,7 +1388,8 @@ namespace RealERPWEB
             this.publishDate.InnerText= Convert.ToDateTime(((Label)this.gvAllNotice.Rows[index].FindControl("lblpubdate")).Text).ToString("dd-MMM-yyy hh:mm tt");
             this.noticeStartDate.InnerText = Convert.ToDateTime(((Label)this.gvAllNotice.Rows[index].FindControl("lblstartdate")).Text).ToString("dd-MMM-yyy hh:mm tt");
             this.noticeEndDate.InnerText = Convert.ToDateTime(((Label)this.gvAllNotice.Rows[index].FindControl("lblenddate")).Text).ToString("dd-MMM-yyy hh:mm tt");
-
+            this.modalNoticeTitle.InnerText = ((Label)this.gvAllNotice.Rows[index].FindControl("lblNoticeTitle")).Text.ToString();
+            this.NoticeAttach.NavigateUrl= ((Label)this.gvAllNotice.Rows[index].FindControl("lblattach")).Text.ToString();
 
 
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openNoticeModal();", true);
