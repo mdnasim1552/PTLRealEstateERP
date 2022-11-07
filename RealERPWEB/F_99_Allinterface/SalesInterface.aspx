@@ -935,6 +935,15 @@
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                     </asp:TemplateField>
 
+                                                    <asp:TemplateField HeaderText="Voucher  No">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lgcVoucherNomr" runat="server"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "vounum")) %>'
+                                                                Width="70px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+
 
                                                     <asp:TemplateField HeaderText="MR Date">
                                                         <ItemTemplate>
