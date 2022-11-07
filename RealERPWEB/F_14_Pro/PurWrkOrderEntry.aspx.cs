@@ -1250,6 +1250,7 @@ namespace RealERPWEB.F_14_Pro
                         case "1205":  //P2P Construction
                         case "3351":  //wecon Properties
                         case "3352":  //p2p360
+                        case "3370":  //p2p360
                                       //case "3101": // ASIT
                             break;
 
