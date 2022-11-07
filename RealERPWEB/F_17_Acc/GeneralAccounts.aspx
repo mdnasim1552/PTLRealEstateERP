@@ -250,8 +250,8 @@
                                                         <asp:TextBox ID="txtserceacc" runat="server" CssClass="hidden inputtextbox"></asp:TextBox>
 
 
-                                                        <div class="colMdbtn hidden">
-                                                            <asp:LinkButton ID="lnkAcccode" runat="server" CssClass="hidden btn btn-primary srearchBtn" OnClick="lnkAcccode_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                                        <div class="colMdbtn ">
+                                                            <asp:LinkButton ID="lnkAcccode" runat="server" CssClass=" btn btn-primary srearchBtn" OnClick="lnkAcccode_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                                         </div>
 
@@ -277,8 +277,8 @@
 
                                                         <asp:Label ID="lblrescode" runat="server" CssClass="lblTxt lblName">Sub of Account</asp:Label>
                                                         <asp:TextBox ID="txtserchReCode" runat="server" CssClass=" inputtextbox hidden" ng-model="txtasrchrescode"></asp:TextBox>
-                                                        <div class="colMdbtn hidden">
-                                                            <asp:LinkButton ID="lnkRescode" runat="server" CssClass="btn btn-primary hidden srearchBtn " OnClick="lnkRescode_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                                        <div class="colMdbtn">
+                                                            <asp:LinkButton ID="lnkRescode" runat="server" CssClass="btn btn-primary srearchBtn " OnClick="lnkRescode_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                                         </div>
 
@@ -309,8 +309,8 @@
                                                         <asp:TextBox ID="txtSearchSpeci" runat="server" CssClass=" hidden" Visible="false"></asp:TextBox>
 
 
-                                                        <div class="colMdbtn hidden">
-                                                            <asp:LinkButton ID="lnkSpecification" runat="server" CssClass="hidden btn btn-primary srearchBtn" OnClick="lnkSpecification_Click" Visible="false"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                                        <div class="colMdbtn">
+                                                            <asp:LinkButton ID="lnkSpecification" runat="server" CssClass=" btn btn-primary srearchBtn" OnClick="lnkSpecification_Click" Visible="false"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                                         </div>
 
