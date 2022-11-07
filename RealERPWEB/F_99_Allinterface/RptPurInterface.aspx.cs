@@ -645,8 +645,10 @@ namespace RealERPWEB.F_99_Allinterface
                     ReceivedApp = "MRR Checked";
                     break;
 
-              
 
+                case "3370"://  Edison Real Estate 
+                    OrderfApproved = "Ord. App";                   
+                    break;
 
                 default:
                     reqcheck = "Checked";

@@ -1234,28 +1234,17 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 foreach (DataRow dr1 in t1.Rows)
                 {
                     arr = dr1["empattn"].ToString().Trim().Split(',');
-                    if (dr1["empattn"].ToString().Trim().Length == 0)
+
+                    if (dr1["empattn"].ToString().Trim().Length != 0)
                     {
+                        IDCARDNO1 = arr[0].Trim();
+                        adt = arr[2].Trim();
+                        ATIME = Convert.ToDateTime(adt + " " + arr[3]);
+                        MACHID = arr[1];
+                        bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ATTN_UPDATE", "ATTENDANCEUPDATE", "", IDCARDNO1, Convert.ToDateTime(adt).ToString(),
+                                Convert.ToDateTime(ATIME).ToString(), MACHID.Trim(), seldate, "", "", "", "", "", "", "", "", "");
 
-                        break;
-                    }
-                   
-                    IDCARDNO1 = arr[0].Trim();
-                    adt = arr[2].Trim();
-                    ATIME = Convert.ToDateTime(adt + " " + arr[3]);
-                    MACHID = arr[1];
-                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ATTN_UPDATE", "ATTENDANCEUPDATE", "", IDCARDNO1, Convert.ToDateTime(adt).ToString(),
-                            Convert.ToDateTime(ATIME).ToString(), MACHID.Trim(), seldate, "", "", "", "", "", "", "", "", "");
-                    
-                    if (!result)
-                    {
-                        Msg = "Updated Fail";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
-
-
-                    }
-
-
+                    } 
                 }
 
                 Msg = "Updated Successfully";
