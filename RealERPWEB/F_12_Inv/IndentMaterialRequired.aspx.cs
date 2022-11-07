@@ -319,7 +319,7 @@ namespace RealERPWEB.F_12_Inv
 
         protected void ddlMaterials_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.GetMatList();
+            //this.GetMatList();
         }
 
         protected void ddlResSpcf_SelectedIndexChanged(object sender, EventArgs e)
