@@ -208,7 +208,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Quantity">
                                         <ItemTemplate>                                            
-                                            <asp:TextBox ID="lblquantity" runat="server" BackColor="Transparent" OnTextChanged="lblquantity_TextChanged"
+                                            <asp:TextBox ID="lblquantity" runat="server" BackColor="Transparent" AutoPostBack="True" OnTextChanged="lblquantity_TextChanged"
                                                     BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "quantity")) %>' Width="80px" ForeColor="Black" Font-Size="12px"> </asp:TextBox>                                           
                                            
@@ -220,7 +220,7 @@
                                         <ItemTemplate>
                                             <asp:TextBox ID="lblrate" runat="server" 
                                                 BackColor="Transparent"
-                                                    BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                    BorderColor="#660033" BorderStyle="None" BorderWidth="1px" AutoPostBack="True"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rate")) %>' Width="80px" ForeColor="Black" Font-Size="12px"></asp:TextBox>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
