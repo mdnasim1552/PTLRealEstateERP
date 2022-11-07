@@ -76,7 +76,7 @@ namespace RealERPWEB.F_14_Pro
                         case "3355": // greenwood
                         case "3368": // finlay
                             this.GetOrderRange();
-                            this.btnSendmail.Visible = false;
+                            this.lnkSendEmail.Visible = false;
                             break;
 
                         default:
@@ -111,12 +111,12 @@ namespace RealERPWEB.F_14_Pro
             {
                 case "3335": //Edison
                              //case "3101":
-                    this.btnSendmail.Visible = false;
+                    this.lnkSendEmail.Visible = false;
                     break;
                 case "3368": // finlay                             
                 case "3367": // finlay                             
                 case "3354": // finlay                             
-                    this.btnSendmail.Visible = true;
+                    this.lnkSendEmail.Visible = true;
                     break;
                 default:
                     break;
@@ -1829,6 +1829,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3366": // lanco
                 case "3357": // Cube
                 case "3368": // finlay
+                case "3370": // cpdl 
                     terms = txtOrderNarrP.Text.Trim().ToString();
                     istxtTerms = false;
                     break;
@@ -2511,6 +2512,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3357":
                 case "3366": //lanco
                 case "3368": // finlay
+                case "3370": // cpdl
                     this.divtermsp2p.Visible = true;
                     this.divterms.Visible = false;
                     this.txtOrderNarrP.Text = this.bindDataText();
@@ -2564,6 +2566,15 @@ namespace RealERPWEB.F_14_Pro
                     msg = "1. Please send all your bills in duplicate." +
                         "\n2. Payment shall be made after (30) days of receipt of all materials in good conditions" +
                         "\n3. Company may have the right to alter/change/reject the PO at any time.";
+                    break;
+
+                case "3370":
+                    msg = "1. Delivery should be made as per sample & specifications." +
+                        "\n2. Quantity should be ensured at the time of delivery" +
+                        "\n3. Unspecified / bad quality material would be rejected and taken back by the supplier's own cost" +
+                        "\n4. Bill to be submitted with receiving challan of respective project." +
+                        "\n5. Payment will be made by Account payee Cheque after full delivery." +
+                        "\n6. PO No. would be mentioned in all your Invoice & Correspondence.";
                     break;
 
                 default:
@@ -4093,7 +4104,8 @@ namespace RealERPWEB.F_14_Pro
 
                 rptwork.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, apppath);
 
-
+                apppath = "../SupWorkOreder/" + mORDERNO + ".pdf";
+                this.ifrmanPdf.Src = apppath;
 
                 //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
                 //                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
@@ -4108,231 +4120,231 @@ namespace RealERPWEB.F_14_Pro
             }
 
 
-            try
-            {
-
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = this.GetCompCode();
-                string comnam = hst["comnam"].ToString();
-                string comadd = hst["comadd1"].ToString();
-                string compname = hst["compname"].ToString();
-                string username = hst["username"].ToString();
-                string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-                string wrkid = "POR" + this.txtCurOrderDate.Text.Substring(6, 4) + this.txtCurOrderDate.Text.Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
-
-                //string Calltype = this.PrintCallType();
-                DataSet _ReportDataSet = purData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", "SHOWORKORDER01", wrkid, "", "", "", "", "", "", "", "");
-
-                DataTable dt = _ReportDataSet.Tables[0];
-
-                DataTable dtA = dt.Copy();
-                DataView dv = dtA.DefaultView;
-                dv.RowFilter = "grp='A'";
-                dtA = dv.ToTable();
-
-
-                string Para1 = _ReportDataSet.Tables[1].Rows[0]["leterdes"].ToString();
-                string Orderdate = Convert.ToDateTime(_ReportDataSet.Tables[1].Rows[0]["orderdat"]).ToString("MMMM  dd, yyyy");
-                string SupName = _ReportDataSet.Tables[1].Rows[0]["ssirdesc"].ToString();
-                string Address = _ReportDataSet.Tables[1].Rows[0]["address"].ToString();
-                string Cperson = _ReportDataSet.Tables[1].Rows[0]["cperson"].ToString();
-                string Phone = _ReportDataSet.Tables[1].Rows[0]["phone"].ToString();
+            //try
+            //{
+
+            //    Hashtable hst = (Hashtable)Session["tblLogin"];
+            //    string comcod = this.GetCompCode();
+            //    string comnam = hst["comnam"].ToString();
+            //    string comadd = hst["comadd1"].ToString();
+            //    string compname = hst["compname"].ToString();
+            //    string username = hst["username"].ToString();
+            //    string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            //    string wrkid = "POR" + this.txtCurOrderDate.Text.Substring(6, 4) + this.txtCurOrderDate.Text.Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
+
+            //    //string Calltype = this.PrintCallType();
+            //    DataSet _ReportDataSet = purData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", "SHOWORKORDER01", wrkid, "", "", "", "", "", "", "", "");
+
+            //    DataTable dt = _ReportDataSet.Tables[0];
+
+            //    DataTable dtA = dt.Copy();
+            //    DataView dv = dtA.DefaultView;
+            //    dv.RowFilter = "grp='A'";
+            //    dtA = dv.ToTable();
+
+
+            //    string Para1 = _ReportDataSet.Tables[1].Rows[0]["leterdes"].ToString();
+            //    string Orderdate = Convert.ToDateTime(_ReportDataSet.Tables[1].Rows[0]["orderdat"]).ToString("MMMM  dd, yyyy");
+            //    string SupName = _ReportDataSet.Tables[1].Rows[0]["ssirdesc"].ToString();
+            //    string Address = _ReportDataSet.Tables[1].Rows[0]["address"].ToString();
+            //    string Cperson = _ReportDataSet.Tables[1].Rows[0]["cperson"].ToString();
+            //    string Phone = _ReportDataSet.Tables[1].Rows[0]["phone"].ToString();
 
-                DataTable dtterm = _ReportDataSet.Tables[2];
+            //    DataTable dtterm = _ReportDataSet.Tables[2];
 
-                string Type = this.CompanyPrintWorkOrder();
-                ReportDocument rptwork = new ReportDocument();
+            //    string Type = this.CompanyPrintWorkOrder();
+            //    ReportDocument rptwork = new ReportDocument();
 
 
-                string fax = "";
+            //    string fax = "";
 
-                string trmplace = "";
-                string place = "";
-                string trmpdate = "";
-                string pdate = "";
-                string trmcarring = "";
-                string carring = "";
+            //    string trmplace = "";
+            //    string place = "";
+            //    string trmpdate = "";
+            //    string pdate = "";
+            //    string trmcarring = "";
+            //    string carring = "";
 
-                string bill = "";
-                string trmpayment = "";
-                string payment = "";
-                string trmothers = "";
-                string Others = "";
+            //    string bill = "";
+            //    string trmpayment = "";
+            //    string payment = "";
+            //    string trmothers = "";
+            //    string Others = "";
 
-                if (dtterm.Rows.Count != 0)
-                {
-                    fax = _ReportDataSet.Tables[1].Rows[0]["fax"].ToString();
-                    trmplace = "* " + dtterm.Rows[0]["termssubj"].ToString() + " : ";
-                    place = dtterm.Rows[0]["termsdesc"].ToString().Trim();
-                    trmpdate = "* " + dtterm.Rows[1]["termssubj"].ToString() + " : ";
-                    pdate = dtterm.Rows[1]["termsdesc"].ToString().Trim();
-                    trmcarring = "* " + dtterm.Rows[2]["termssubj"].ToString() + " : ";
-                    carring = dtterm.Rows[2]["termsdesc"].ToString().Trim();
-                    //string trmbill = "* " + dtterm.Rows[9]["termssubj"].ToString() + "";
-                    bill = "* " + dtterm.Rows[3]["termsdesc"].ToString().Trim();
-                    trmpayment = "* " + dtterm.Rows[4]["termssubj"].ToString() + " : ";
-                    payment = dtterm.Rows[4]["termsdesc"].ToString().Trim();
+            //    if (dtterm.Rows.Count != 0)
+            //    {
+            //        fax = _ReportDataSet.Tables[1].Rows[0]["fax"].ToString();
+            //        trmplace = "* " + dtterm.Rows[0]["termssubj"].ToString() + " : ";
+            //        place = dtterm.Rows[0]["termsdesc"].ToString().Trim();
+            //        trmpdate = "* " + dtterm.Rows[1]["termssubj"].ToString() + " : ";
+            //        pdate = dtterm.Rows[1]["termsdesc"].ToString().Trim();
+            //        trmcarring = "* " + dtterm.Rows[2]["termssubj"].ToString() + " : ";
+            //        carring = dtterm.Rows[2]["termsdesc"].ToString().Trim();
+            //        //string trmbill = "* " + dtterm.Rows[9]["termssubj"].ToString() + "";
+            //        bill = "* " + dtterm.Rows[3]["termsdesc"].ToString().Trim();
+            //        trmpayment = "* " + dtterm.Rows[4]["termssubj"].ToString() + " : ";
+            //        payment = dtterm.Rows[4]["termsdesc"].ToString().Trim();
 
-                    trmothers = "* " + dtterm.Rows[5]["termssubj"].ToString() + " : ";
-                    Others = dtterm.Rows[5]["termsdesc"].ToString().Trim();
+            //        trmothers = "* " + dtterm.Rows[5]["termssubj"].ToString() + " : ";
+            //        Others = dtterm.Rows[5]["termsdesc"].ToString().Trim();
 
-                }
+            //    }
 
 
 
 
-                rptwork = new RealERPRPT.R_14_Pro.rptWorkOrder02();
+            //    rptwork = new RealERPRPT.R_14_Pro.rptWorkOrder02();
 
-                TextObject txtsubject = rptwork.ReportDefinition.ReportObjects["txtsubject"] as TextObject;
-                txtsubject.Text = this.txtSubject.Text;
-                TextObject txtCompany = rptwork.ReportDefinition.ReportObjects["txtCompany"] as TextObject;
-                txtCompany.Text = comnam;
-                TextObject txtAddress = rptwork.ReportDefinition.ReportObjects["txtAddress"] as TextObject;
-                txtAddress.Text = comadd;
+            //    TextObject txtsubject = rptwork.ReportDefinition.ReportObjects["txtsubject"] as TextObject;
+            //    txtsubject.Text = this.txtSubject.Text;
+            //    TextObject txtCompany = rptwork.ReportDefinition.ReportObjects["txtCompany"] as TextObject;
+            //    txtCompany.Text = comnam;
+            //    TextObject txtAddress = rptwork.ReportDefinition.ReportObjects["txtAddress"] as TextObject;
+            //    txtAddress.Text = comadd;
 
-                TextObject rptpurno = rptwork.ReportDefinition.ReportObjects["purno"] as TextObject;
-                rptpurno.Text = this.lblCurOrderNo1.Text.Trim() + this.txtCurOrderNo2.Text;
-                TextObject rptRefno = rptwork.ReportDefinition.ReportObjects["refno"] as TextObject;
-                rptRefno.Text = this.txtOrderRefNo.Text;
-                TextObject supname = rptwork.ReportDefinition.ReportObjects["supname"] as TextObject;
-                supname.Text = SupName;
-                TextObject Supadd = rptwork.ReportDefinition.ReportObjects["saddress"] as TextObject;
-                Supadd.Text = Address;
-                TextObject txtPhoneNumber = rptwork.ReportDefinition.ReportObjects["txtPhoneNumber"] as TextObject;
-                txtPhoneNumber.Text = Phone;
-                //TextObject Fax = rptwork.ReportDefinition.ReportObjects["txtfax"] as TextObject;
-                //Fax.Text = fax;
-                TextObject rptpurdate = rptwork.ReportDefinition.ReportObjects["txtOrderDate"] as TextObject;
-                rptpurdate.Text = Orderdate;
-                TextObject rptPara1 = rptwork.ReportDefinition.ReportObjects["TxtLETERDES"] as TextObject;
-                rptPara1.Text = Para1;
-                TextObject rptplace = rptwork.ReportDefinition.ReportObjects["place"] as TextObject;
-                rptplace.Text = (place.Length > 0) ? trmplace + place : "";
+            //    TextObject rptpurno = rptwork.ReportDefinition.ReportObjects["purno"] as TextObject;
+            //    rptpurno.Text = this.lblCurOrderNo1.Text.Trim() + this.txtCurOrderNo2.Text;
+            //    TextObject rptRefno = rptwork.ReportDefinition.ReportObjects["refno"] as TextObject;
+            //    rptRefno.Text = this.txtOrderRefNo.Text;
+            //    TextObject supname = rptwork.ReportDefinition.ReportObjects["supname"] as TextObject;
+            //    supname.Text = SupName;
+            //    TextObject Supadd = rptwork.ReportDefinition.ReportObjects["saddress"] as TextObject;
+            //    Supadd.Text = Address;
+            //    TextObject txtPhoneNumber = rptwork.ReportDefinition.ReportObjects["txtPhoneNumber"] as TextObject;
+            //    txtPhoneNumber.Text = Phone;
+            //    //TextObject Fax = rptwork.ReportDefinition.ReportObjects["txtfax"] as TextObject;
+            //    //Fax.Text = fax;
+            //    TextObject rptpurdate = rptwork.ReportDefinition.ReportObjects["txtOrderDate"] as TextObject;
+            //    rptpurdate.Text = Orderdate;
+            //    TextObject rptPara1 = rptwork.ReportDefinition.ReportObjects["TxtLETERDES"] as TextObject;
+            //    rptPara1.Text = Para1;
+            //    TextObject rptplace = rptwork.ReportDefinition.ReportObjects["place"] as TextObject;
+            //    rptplace.Text = (place.Length > 0) ? trmplace + place : "";
 
-                rptwork.ReportDefinition.Sections["GroupFooterSection5"].SectionFormat.EnableSuppress = (((DataTable)ViewState["tblpaysch"]).Rows.Count > 0) ? false : true;
+            //    rptwork.ReportDefinition.Sections["GroupFooterSection5"].SectionFormat.EnableSuppress = (((DataTable)ViewState["tblpaysch"]).Rows.Count > 0) ? false : true;
 
 
-                TextObject rpttxtsupplydetails = rptwork.ReportDefinition.ReportObjects["txtsupplydetails"] as TextObject;
-                rpttxtsupplydetails.Text = this.txtOrderNarr.Text.Trim(); ;
-                rptwork.ReportDefinition.Sections["GroupFooterSection9"].SectionFormat.EnableSuppress = (place.Length > 0) ? false : true;
+            //    TextObject rpttxtsupplydetails = rptwork.ReportDefinition.ReportObjects["txtsupplydetails"] as TextObject;
+            //    rpttxtsupplydetails.Text = this.txtOrderNarr.Text.Trim(); ;
+            //    rptwork.ReportDefinition.Sections["GroupFooterSection9"].SectionFormat.EnableSuppress = (place.Length > 0) ? false : true;
 
 
-                TextObject rptpdate = rptwork.ReportDefinition.ReportObjects["pdate"] as TextObject;
-                rptpdate.Text = (pdate.Length > 0) ? trmpdate + pdate : "";
-                rptwork.ReportDefinition.Sections["GroupFooterSection10"].SectionFormat.EnableSuppress = (pdate.Length > 0) ? false : true;
+            //    TextObject rptpdate = rptwork.ReportDefinition.ReportObjects["pdate"] as TextObject;
+            //    rptpdate.Text = (pdate.Length > 0) ? trmpdate + pdate : "";
+            //    rptwork.ReportDefinition.Sections["GroupFooterSection10"].SectionFormat.EnableSuppress = (pdate.Length > 0) ? false : true;
 
 
-                TextObject rptcarring = rptwork.ReportDefinition.ReportObjects["carring"] as TextObject;
-                rptcarring.Text = (carring.Length > 0) ? trmcarring + carring : "";
-                rptwork.ReportDefinition.Sections["GroupFooterSection11"].SectionFormat.EnableSuppress = (carring.Length > 0) ? false : true;
+            //    TextObject rptcarring = rptwork.ReportDefinition.ReportObjects["carring"] as TextObject;
+            //    rptcarring.Text = (carring.Length > 0) ? trmcarring + carring : "";
+            //    rptwork.ReportDefinition.Sections["GroupFooterSection11"].SectionFormat.EnableSuppress = (carring.Length > 0) ? false : true;
 
 
-                TextObject rptpbill = rptwork.ReportDefinition.ReportObjects["bill"] as TextObject;
-                rptpbill.Text = (bill.Length > 0) ? bill : "";
-                rptwork.ReportDefinition.Sections["GroupFooterSection12"].SectionFormat.EnableSuppress = (bill.Length > 0) ? false : true;
+            //    TextObject rptpbill = rptwork.ReportDefinition.ReportObjects["bill"] as TextObject;
+            //    rptpbill.Text = (bill.Length > 0) ? bill : "";
+            //    rptwork.ReportDefinition.Sections["GroupFooterSection12"].SectionFormat.EnableSuppress = (bill.Length > 0) ? false : true;
 
-                TextObject rptpayment1 = rptwork.ReportDefinition.ReportObjects["payment1"] as TextObject;
-                rptpayment1.Text = (payment.Length > 0) ? trmpayment + payment : "";
-                rptwork.ReportDefinition.Sections["GroupFooterSection13"].SectionFormat.EnableSuppress = (payment.Length > 0) ? false : true;
+            //    TextObject rptpayment1 = rptwork.ReportDefinition.ReportObjects["payment1"] as TextObject;
+            //    rptpayment1.Text = (payment.Length > 0) ? trmpayment + payment : "";
+            //    rptwork.ReportDefinition.Sections["GroupFooterSection13"].SectionFormat.EnableSuppress = (payment.Length > 0) ? false : true;
 
 
-                TextObject rptOthrs = rptwork.ReportDefinition.ReportObjects["others"] as TextObject;
-                rptOthrs.Text = (Others.Length > 0) ? trmothers + Others : "";
-                rptwork.ReportDefinition.Sections["GroupFooterSection14"].SectionFormat.EnableSuppress = (Others.Length > 0) ? false : true;
+            //    TextObject rptOthrs = rptwork.ReportDefinition.ReportObjects["others"] as TextObject;
+            //    rptOthrs.Text = (Others.Length > 0) ? trmothers + Others : "";
+            //    rptwork.ReportDefinition.Sections["GroupFooterSection14"].SectionFormat.EnableSuppress = (Others.Length > 0) ? false : true;
 
 
 
-                DataTable dtorder = (DataTable)ViewState["tblOrder"];
-                DataTable dt1;
-                DataTable dt2;
-                DataTable dt3;
+            //    DataTable dtorder = (DataTable)ViewState["tblOrder"];
+            //    DataTable dt1;
+            //    DataTable dt2;
+            //    DataTable dt3;
 
 
-                // Carring
-                DataView dv1 = dtorder.DefaultView;
-                dv1.RowFilter = ("rsircode  like '019999901%'");
-                dt1 = dv1.ToTable();
+            //    // Carring
+            //    DataView dv1 = dtorder.DefaultView;
+            //    dv1.RowFilter = ("rsircode  like '019999901%'");
+            //    dt1 = dv1.ToTable();
 
-                //Deduction
-                dv1 = dtorder.DefaultView;
-                dv1.RowFilter = ("rsircode like'019999902%'");
-                dt2 = dv1.ToTable();
+            //    //Deduction
+            //    dv1 = dtorder.DefaultView;
+            //    dv1.RowFilter = ("rsircode like'019999902%'");
+            //    dt2 = dv1.ToTable();
 
-                //Material
-                dv1 = dtorder.DefaultView;
-                dv1.RowFilter = ("rsircode not like '0199999%'");
-                dt3 = dv1.ToTable();
+            //    //Material
+            //    dv1 = dtorder.DefaultView;
+            //    dv1.RowFilter = ("rsircode not like '0199999%'");
+            //    dt3 = dv1.ToTable();
 
 
-                double amtcar = (dt1.Rows.Count == 0) ? 0.00 : Convert.ToDouble((Convert.IsDBNull(dt1.Compute("Sum(ordramt)", "")) ? 0.00 : dt1.Compute("Sum(ordramt)", "")));
-                double amtdis = (dt2.Rows.Count == 0) ? 0.00 : Convert.ToDouble((Convert.IsDBNull(dt2.Compute("Sum(ordramt)", "")) ? 0.00 : dt2.Compute("Sum(ordramt)", "")));
-                //
+            //    double amtcar = (dt1.Rows.Count == 0) ? 0.00 : Convert.ToDouble((Convert.IsDBNull(dt1.Compute("Sum(ordramt)", "")) ? 0.00 : dt1.Compute("Sum(ordramt)", "")));
+            //    double amtdis = (dt2.Rows.Count == 0) ? 0.00 : Convert.ToDouble((Convert.IsDBNull(dt2.Compute("Sum(ordramt)", "")) ? 0.00 : dt2.Compute("Sum(ordramt)", "")));
+            //    //
 
 
 
-                double amtmat = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(ordramt)", "")) ? 0.00 : dt3.Compute("Sum(ordramt)", "")));
+            //    double amtmat = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(ordramt)", "")) ? 0.00 : dt3.Compute("Sum(ordramt)", "")));
 
-                TextObject txtcarcost = rptwork.ReportDefinition.ReportObjects["txtcarcost"] as TextObject;
-                txtcarcost.Text = amtcar.ToString("#,##0.00;(#,##0.00);");
+            //    TextObject txtcarcost = rptwork.ReportDefinition.ReportObjects["txtcarcost"] as TextObject;
+            //    txtcarcost.Text = amtcar.ToString("#,##0.00;(#,##0.00);");
 
-                TextObject txtdiscount = rptwork.ReportDefinition.ReportObjects["txtdiscount"] as TextObject;
-                txtdiscount.Text = amtdis.ToString("#,##0.00;(#,##0.00);");
-                TextObject txtnettotal = rptwork.ReportDefinition.ReportObjects["txtnettotal"] as TextObject;
-                txtnettotal.Text = (amtmat + amtcar - amtdis).ToString("#,##0.00;(#,##0.00);");
+            //    TextObject txtdiscount = rptwork.ReportDefinition.ReportObjects["txtdiscount"] as TextObject;
+            //    txtdiscount.Text = amtdis.ToString("#,##0.00;(#,##0.00);");
+            //    TextObject txtnettotal = rptwork.ReportDefinition.ReportObjects["txtnettotal"] as TextObject;
+            //    txtnettotal.Text = (amtmat + amtcar - amtdis).ToString("#,##0.00;(#,##0.00);");
 
 
 
-                TextObject txtkword = rptwork.ReportDefinition.ReportObjects["txtkword"] as TextObject;
-                txtkword.Text = "In Word: " + ASTUtility.Trans(amtmat + amtcar - amtdis, 2);
-                TextObject txtuserinfo = rptwork.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
-                txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
+            //    TextObject txtkword = rptwork.ReportDefinition.ReportObjects["txtkword"] as TextObject;
+            //    txtkword.Text = "In Word: " + ASTUtility.Trans(amtmat + amtcar - amtdis, 2);
+            //    TextObject txtuserinfo = rptwork.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
+            //    txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
 
-                // Sub Report 
-                //ReportDocument  rptsub= new RealERPRPT.R_14_Pro.RptOrderPaymentSch();
-                //rptsub.SetDataSource((DataTable)ViewState["tblpaysch"]);
+            //    // Sub Report 
+            //    //ReportDocument  rptsub= new RealERPRPT.R_14_Pro.RptOrderPaymentSch();
+            //    //rptsub.SetDataSource((DataTable)ViewState["tblpaysch"]);
 
-                rptwork.SetDataSource(dtA);
-                rptwork.Subreports["RptOrderPaymentSch.rpt"].SetDataSource((DataTable)ViewState["tblpaysch"]);
+            //    rptwork.SetDataSource(dtA);
+            //    rptwork.Subreports["RptOrderPaymentSch.rpt"].SetDataSource((DataTable)ViewState["tblpaysch"]);
 
-                // report.OpenSubReport(nameOfTheSubReport).SetDataSo urce(secondDataSet);
+            //    // report.OpenSubReport(nameOfTheSubReport).SetDataSo urce(secondDataSet);
 
-                if (ConstantInfo.LogStatus == true)
-                {
-                    string eventtype = "Materials Purchase Order Info";
-                    string eventdesc = "Print Order";
-                    string eventdesc2 = " Request No:- " + this.lblCurOrderNo1.Text.Trim() + this.txtCurOrderNo2.Text; ;
-                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-                }
+            //    if (ConstantInfo.LogStatus == true)
+            //    {
+            //        string eventtype = "Materials Purchase Order Info";
+            //        string eventdesc = "Print Order";
+            //        string eventdesc2 = " Request No:- " + this.lblCurOrderNo1.Text.Trim() + this.txtCurOrderNo2.Text; ;
+            //        bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            //    }
 
-                string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
-                rptwork.SetParameterValue("ComLogo", ComLogo);
-                Session["Report1"] = rptwork;
+            //    string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
+            //    rptwork.SetParameterValue("ComLogo", ComLogo);
+            //    Session["Report1"] = rptwork;
 
 
-                string mORDERNO = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
+            //    string mORDERNO = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
 
-                string apppath = Server.MapPath("~") + "\\SupWorkOreder" + "\\" + mORDERNO + ".pdf"; ;
+            //    string apppath = Server.MapPath("~") + "\\SupWorkOreder" + "\\" + mORDERNO + ".pdf"; ;
 
 
 
-                //string OrderSend = @"E:\" + mORDERNO + ".pdf";
+            //    //string OrderSend = @"E:\" + mORDERNO + ".pdf";
 
 
 
-                //
+            //    //
 
 
-                rptwork.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, apppath);
+            //    rptwork.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, apppath);
 
 
-            }
-            catch (Exception ex)
-            {
+            //}
+            //catch (Exception ex)
+            //{
 
-                string Messagesd = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
-                //return;
-            }
+            //    string Messagesd = "Error:" + ex.Message;
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+            //    //return;
+            //}
 
 
 
@@ -4343,125 +4355,13 @@ namespace RealERPWEB.F_14_Pro
             string OrderNo = this.Request.QueryString["genno"] ?? "";
             Response.Redirect("~/F_99_Allinterface/PurchasePrint?Type=OrderPrint&orderno=" + OrderNo + "&Orderstatus=Download");
         }
-        protected void btnSendmail_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string compsms = hst["compsms"].ToString();
-                string compmail = hst["compmail"].ToString();
-                string ssl = hst["ssl"].ToString();
-                string comcod = hst["comcod"].ToString();
-                string sendUsername = hst["userfname"].ToString();
-
-                string sendDptdesc = hst["dptdesc"].ToString();
-                string sendUsrdesig = hst["usrdesig"].ToString();
-                string compName = hst["comnam"].ToString();
-
-                string usrid = hst["usrid"].ToString();
-                string deptcode = hst["deptcode"].ToString();
-                this.SendNotificaion(compsms, compmail, ssl, compName);
-            }
-            catch (Exception ex)
-            {
-
-                string Messagesd = "Error occured while sending your message." + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
-            }
-            //switch (ssl)
-            //{
-            //    case true:
-            //        this.SendSSLMail();
-
-            //        break;
-
-            //    case false:
-            //        this.SendNormalMail();
-            //        break;
-
-            //}
-
-
-
-
-
-            //this.lblmsg1.Visible = true;
-            //string comcod = this.GetCompCode();
-            //string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
-            //DataSet dssmtpandmail = this.purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
-
-
-            //string mORDERNO = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
-
-            //DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPUREMAIL", mORDERNO, "", "", "", "", "", "", "", "");
-
-            //string subject = "Work Order";
-            ////SMTP
-            //string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
-            //int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
-
-
-
-
-
-            //SmtpClient client = new SmtpClient(hostname, portnumber);
-            ////SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-            //client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            ////client.EnableSsl = true;
-            //client.EnableSsl = false;
-            //string frmemail = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString();
-            //string psssword = dssmtpandmail.Tables[1].Rows[0]["mailpass"].ToString();
-            //System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(frmemail, psssword);
-            //client.UseDefaultCredentials = false;
-            //client.Credentials = credentials;
-
-            /////////////////////////
-
-            //MailMessage msg = new MailMessage();
-            //msg.From = new MailAddress(frmemail);
-
-
-
-            //msg.To.Add(new MailAddress(ds1.Tables[0].Rows[0]["mailid"].ToString()));
-            //msg.Subject = subject;
-            //msg.IsBodyHtml = true;
-
-            //System.Net.Mail.Attachment attachment;
-
-            //string apppath = Server.MapPath("~") + "\\SupWorkOreder" + "\\" + mORDERNO + ".pdf"; ;
-
-            //attachment = new System.Net.Mail.Attachment(apppath);
-            //msg.Attachments.Add(attachment);
-
-
-
-            //msg.Body = string.Format("<html><head></head><body><pre style='max-width:700px;text-align:justify;'>" + "Dear Sir," + "<br/>" + "please find attached file" + "</pre></body></html>");
-            //try
-            //{
-            //    client.Send(msg);
-            //   ((Label)this.Master.FindControl("lblmsg")).Text = "Your message has been successfully sent.";
-
-
-            //    //string savelocation = Server.MapPath("~") + "\\SupWorkOreder";
-            //    //string[] filePaths = Directory.GetFiles(savelocation);
-            //    //foreach (string filePath in filePaths)
-            //    //    File.Delete(filePath);
-
-            //}
-            //catch (Exception ex)
-            //{
-            //   ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
-            //}
-
-        }
-
+        
 
         private void SendNotificaion(string compsms, string compmail, string ssl, string compName)
         {
             try
             {
-                this.AutoSavePDF();
+                //this.AutoSavePDF();
                 string comcod = this.GetCompCode();
 
 
@@ -4488,7 +4388,7 @@ namespace RealERPWEB.F_14_Pro
 
                 #region
                 // get data
-                string mORDERNO = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
+                string mORDERNO = this.lblPONO.Text.ToString();
 
                 DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPUREMAIL", mORDERNO, "", "", "", "", "", "", "", "");
                 if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
@@ -4500,6 +4400,14 @@ namespace RealERPWEB.F_14_Pro
                 string subj = "Purchase Order";
                 string tomail = ds1.Tables[0].Rows[0]["mailid"].ToString();
                 string apppath = Server.MapPath("~") + "\\SupWorkOreder" + "\\" + mORDERNO + ".pdf";
+
+                if(tomail=="")
+                {
+                    string Messagesd = "Update the suppliers email address to be used for email notifications";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
+                    return;
+                }
+
 
                 string msgbody = @"
 <html lang=""en"">
@@ -4577,6 +4485,11 @@ namespace RealERPWEB.F_14_Pro
                         string Messagesd = "Email has not been sent, Email or SMTP info Empty";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
                         return;
+                    }
+                    else
+                    {
+                        string Messagesd = "Email has been sent";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
                     }
                 }
             }
@@ -5036,7 +4949,42 @@ namespace RealERPWEB.F_14_Pro
 
 
 
+        protected void lnkSedningEmail_Click(object sender, EventArgs e)
+        {
+            try
+            {
 
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string compsms = hst["compsms"].ToString();
+                string compmail = hst["compmail"].ToString();
+                string ssl = hst["ssl"].ToString();
+                string comcod = hst["comcod"].ToString();
+                string sendUsername = hst["userfname"].ToString();
+
+                string sendDptdesc = hst["dptdesc"].ToString();
+                string sendUsrdesig = hst["usrdesig"].ToString();
+                string compName = hst["comnam"].ToString();
+
+                string usrid = hst["usrid"].ToString();
+                string deptcode = hst["deptcode"].ToString();
+                this.SendNotificaion(compsms, compmail, ssl, compName);
+            }
+            catch (Exception ex)
+            {
+
+                string Messagesd = "Error occured while sending your message." + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+            }
+        }
+
+        protected void lnkSendEmail_Click(object sender, EventArgs e)
+        {
+            AutoSavePDF();
+
+            string mORDERNO = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
+            this.lblPONO.Text = mORDERNO;
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModal();", true);
+        }
 
 
         protected void lbtndelterm_Click(object sender, EventArgs e)
@@ -5100,5 +5048,6 @@ namespace RealERPWEB.F_14_Pro
             this._errObj["Location"] = exp.StackTrace;
         }
 
+        
     }
 }

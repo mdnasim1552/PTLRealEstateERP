@@ -98,6 +98,9 @@
     <Reference Include="CrystalDecisions.Windows.Forms">
       <HintPath>..\..\..\..\..\bin\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
+    <Reference Include="csc">
+      <HintPath>..\..\Real Estate Bin 211213\bin\roslyn\csc.exe</HintPath>
+    </Reference>
     <Reference Include="DayPilot">
       <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\DayPilot.dll</HintPath>
     </Reference>
@@ -148,9 +151,6 @@
     <Reference Include="Microsoft.NET.StringTools, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Doc\Lib\bin\Microsoft.NET.StringTools.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Office.Interop.MSProject, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -12885,6 +12885,7 @@
     <EmbeddedResource Include="Report\RptMktPurchaseOrder.rdlc" />
     <Content Include="Report\RptPurchaseOrderEntrust.rdlc" />
     <Content Include="Report\RptPurchaseOrderEpic.rdlc" />
+    <Content Include="Report\RptPurchaseOrderCPDL.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderCube.rdlc" />
     <Content Include="Report\RptPurchaseOrderAssure.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />

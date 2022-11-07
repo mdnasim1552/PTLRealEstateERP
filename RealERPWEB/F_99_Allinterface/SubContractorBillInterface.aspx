@@ -523,12 +523,16 @@
                         $('#<%=this.txtrefno.ClientID%>').prop('readonly', false);
                         break;
 
+                    case 3101:
                     case 3370:   //cpdl
+                        $(".tbMenuWrp table tr td:nth-child(1)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(2)").hide();
                         $(".tbMenuWrp table tr td:nth-child(3)").show();
                         $(".tbMenuWrp table tr td:nth-child(11)").hide();
                         $(".tbMenuWrp table tr td:nth-child(12)").hide();
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(9)").hide(); // 9 - for billApprova
+                        //$(".tbMenuWrp table tr td:nth-child(9)").hide(); // 9 - for billApprova
+                        $('#<%=this.txtrefno.ClientID%>').prop('readonly', true);
                         break;
 
 
@@ -538,7 +542,6 @@
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
                         $(".tbMenuWrp table tr td:nth-child(9)").hide(); // 9 - for billApproval
-
                         break;
 
 
@@ -550,9 +553,10 @@
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
                         $(".tbMenuWrp table tr td:nth-child(12)").hide();
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
+                        $('#<%=this.txtrefno.ClientID%>').prop('readonly', true);
                         break;
 
-                    case 3101:
+
                     case 3367:
                         $(".tbMenuWrp table tr td:nth-child(3)").hide();
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
@@ -563,6 +567,7 @@
                         $(".tbMenuWrp table tr td:nth-child(12)").hide();
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
                         break;
+
                     default:
                         $(".tbMenuWrp table tr td:nth-child(3)").hide();
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
@@ -573,7 +578,6 @@
                         $(".tbMenuWrp table tr td:nth-child(11)").hide();
                         $(".tbMenuWrp table tr td:nth-child(12)").hide();
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
-                        $('#<%=this.txtrefno.ClientID%>').prop('readonly', true);
                         break;
                 }
             }
