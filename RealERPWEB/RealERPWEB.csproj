@@ -12634,6 +12634,7 @@
     <Folder Include="SqlServerTypes\x86\" />
     <Folder Include="SupWorkOreder\" />
     <Folder Include="Upload\Attndancefiles\" />
+    <Folder Include="Upload\attreport\" />
     <Folder Include="Upload\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>

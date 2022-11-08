@@ -96,6 +96,15 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
         protected global::System.Web.UI.WebControls.GridView gvAttPersent;
 
         /// <summary>
+        /// lnksendMail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnksendMail;
+
+        /// <summary>
         /// txtcomp1 control.
         /// </summary>
         /// <remarks>
@@ -148,5 +157,23 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtabsent;
+
+        /// <summary>
+        /// btnSendMail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnSendMail;
+
+        /// <summary>
+        /// AttReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AttReport;
     }
 }
