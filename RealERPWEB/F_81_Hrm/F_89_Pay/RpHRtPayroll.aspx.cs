@@ -5049,6 +5049,16 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     string dresslon = dt.Rows[i]["dresslon"].ToString();
                     string msetlon = dt.Rows[i]["msetloan"].ToString();
                     string msclon = dt.Rows[i]["mscloan"].ToString();
+                    string pwf = "0.0";
+                    string subfee = "0.0";
+                    if (comcod == "3370")
+                    {
+                         pwf = dt.Rows[i]["swf"].ToString();
+                         subfee = dt.Rows[i]["subfee"].ToString();
+                    }
+
+          
+
 
 
 
@@ -5056,7 +5066,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         mallow, arsal, pickup, fuel, entaint, mcell, incent, oth, pfund, itax, adv, othded, dallow, oallow, ohour, hallow, elallow, mbill, lwided, loanins, gssal, salpday, gspay, absded,
                         tallow, tdeduc, dedday.ToString(), sdedamt, netpay, section, desigid, mcadj, othallow, othearn, mcallow, teallow, thday, lwpday, arded, cashamt, bankamt, wjd, empcont, elftam, elfthour,
                         dalday, ddaya10, dday10amt, fallded, mbillded, bankamt2, wkday, govday, rmrks, tptallow, kpi, perbon, haircutal, foodal, nfoodal, otallow, redamt, chequepay, todecashsal, hardship, fine,
-                        cashded, tripal, absded2, absded3, rmrks2, ottotal, finedays, lateday, latededuc, adjustamt, transded, genloan, carloan, perloan, motolon, dresslon, msetlon, msclon, emptype);
+                        cashded, tripal, absded2, absded3, rmrks2, ottotal, finedays, lateday, latededuc, adjustamt, transded, genloan, carloan, perloan, motolon, dresslon, msetlon, msclon, emptype,pwf,subfee);
                     if (!result)
                     {
                         ((Label)this.Master.FindControl("lblmsg")).Text = HRData.ErrorObject["Msg"].ToString();

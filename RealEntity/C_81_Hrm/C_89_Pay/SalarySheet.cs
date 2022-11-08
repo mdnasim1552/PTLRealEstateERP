@@ -707,6 +707,8 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double transded { get; set; }
             public DateTime joindate { get; set; }
             public string deptname { get; set; }
+            public double swf { get; set; }
+            public double subfee { get; set; }
 
             public SalaryPaySlip()
             {
