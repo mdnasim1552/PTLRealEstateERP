@@ -26,6 +26,14 @@ namespace RealERPWEB.F_12_Inv
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Market Servey";
                 this.txtCurMSRDate.Text = DateTime.Today.ToString("dd-MMM-yyyy");
 
+                if (this.Request.QueryString.AllKeys.Contains("msrno") && (this.Request.QueryString["reqno"].Substring(0, 3) == "REQ"))
+                {
+                    this.ImgbtnFindPreMR_Click(null,null);
+                    this.ddlPrevMSRList.SelectedValue = this.Request.QueryString["msrno"].ToString();
+                    this.lbtnOk_Click(null, null);
+                    this.lbtnMSRUpdate.Visible = false;
+                }
+
             }
         }
         private string GetCompCode()
@@ -66,6 +74,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3351":
                 case "3352":
                 case "3364": //JBS
+                case "3370": //cpdl
                     msrType = "MSR02";
                     break;
 
@@ -86,6 +95,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3101":
                 case "3353"://Manama
                 case "3364": //JBS
+                case "3370": //cpdl
                     this.Multiview1.ActiveViewIndex = 1;
                     this.Get_Survey_Info();
                     break;
@@ -152,18 +162,64 @@ namespace RealERPWEB.F_12_Inv
                 case "3101":
                 case "3353"://Manama
                 case "3364": //JBS
+                case "3370": //cpdl
 
                     this.gvMSRInfo2.DataSource = (DataTable)Session["tblt02"];
                     this.gvMSRInfo2.DataBind();
 
-                    this.gvterm.DataSource = (DataTable)Session["tblterm"];
-                    this.gvterm.DataBind();
+                    Payterm_DataBind();
                     break;
                 default:
                     this.gvMSRInfo.DataSource = (DataTable)Session["tblMSR"];
                     this.gvMSRInfo.DataBind();
                     break;
             }
+        }
+        private void Payterm_DataBind()
+        {
+            this.gvterm.DataSource = (DataTable)Session["tblterm"];
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                //case "3101":
+                case "3368":
+                    this.gvterm.Columns[4].Visible = false;
+                    this.gvterm.Columns[5].Visible = false;
+                    this.gvterm.Columns[7].Visible = true;
+                    this.gvterm.Columns[9].Visible = true;
+                    this.gvterm.Columns[10].Visible = true;
+                    this.gvterm.Columns[11].Visible = true;
+                    break;
+
+                case "3370": //cpdl
+                    this.gvterm.Columns[4].Visible = true;
+                    this.gvterm.Columns[7].Visible = true;
+                    this.gvterm.Columns[9].Visible = true;
+                    this.gvterm.Columns[10].Visible = true;
+                    this.gvterm.Columns[11].Visible = true;
+
+                    this.gvterm.Columns[5].Visible = false;
+                    //this.gvterm.Columns[6].Visible = false;
+
+
+                    //testGV.HeaderRow.Cells[0].Text = "Date"
+                    this.gvterm.Columns[7].HeaderText = "Brand"; // goodwill as brand
+                    this.gvterm.Columns[8].HeaderText = "Credit Period";
+                    this.gvterm.Columns[11].HeaderText = "VAT & AIT";
+                    break;
+
+                default:
+                    this.gvterm.Columns[4].Visible = true;
+                    this.gvterm.Columns[5].Visible = true;
+                    this.gvterm.Columns[7].Visible = false;
+                    this.gvterm.Columns[9].Visible = false;
+                    this.gvterm.Columns[10].Visible = false;
+                    this.gvterm.Columns[11].Visible = false;
+                    break;
+            }
+
+            this.gvterm.DataBind();
+
         }
 
         private DataTable HiddenSameData(DataTable dt1)

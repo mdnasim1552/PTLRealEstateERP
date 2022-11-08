@@ -191,8 +191,10 @@ namespace RealERPWEB.F_14_Pro
             DataTable dt1 = this.HiddenSameDate(ds1.Tables[0]);
             Session["tblstatus"] = dt1;
             this.LoadGrid();
+           
 
         }
+      
 
         private void RequisitionVsOrder()
         {
@@ -238,7 +240,7 @@ namespace RealERPWEB.F_14_Pro
             Session["tblstatus"] = dt1;
             this.LoadGrid();
             this.FooterCalculation();
-
+           
         }
         private void LoadGrid()
         {
@@ -256,6 +258,10 @@ namespace RealERPWEB.F_14_Pro
                     this.gvDeWorkOrdSt.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvDeWorkOrdSt.DataSource = dt;
                     this.gvDeWorkOrdSt.DataBind();
+                    if (dt.Rows.Count == 0)
+                        return;
+                    Session["Report1"] = gvDeWorkOrdSt;
+                    ((HyperLink)this.gvDeWorkOrdSt.HeaderRow.FindControl("hlbtntbCdataExelSP")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
 
                 case "RequisitionVsOrder":

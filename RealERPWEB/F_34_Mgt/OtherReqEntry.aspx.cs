@@ -1202,40 +1202,28 @@ namespace RealERPWEB.F_34_Mgt
             string thrapnam = dtsign.Rows[0]["thrapnam"].ToString() + "\n" + dtsign.Rows[0]["thrapdesig"].ToString() + "\n" + dtsign.Rows[0]["thrapdat"].ToString();   // approval 1
 
             LocalReport Rpt1 = new LocalReport();
-            /*
+            
             switch (comcod)
             {
-                //case "3101":
-                case "3336":
-                case "3337":
-                    var lst = ds1.Tables[0].DataTableToList<RealEntity.C_34_Mgt.GenBillReq>();
-                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqPrintSuvasto", lst, null, null);
-                    Rpt1.EnableExternalImages = true;
-                    Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                    Rpt1.SetParameters(new ReportParameter("RptTitle", "Work Order"));
-                    break;
-
-
+               
                 case "1102":
                     var lst1 = ds1.Tables[0].DataTableToList<RealEntity.C_34_Mgt.EClassOtherReq>();
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqStatusISBL", lst1, null, null);
                     Rpt1.EnableExternalImages = true;
                     Rpt1.SetParameters(new ReportParameter("forward", frapnam));
                     Rpt1.SetParameters(new ReportParameter("thrapnam", thrapnam));
-                    Rpt1.SetParameters(new ReportParameter("comLogo", ComLogo));
-                    Rpt1.SetParameters(new ReportParameter("rpttitle", "Work Order"));
-                    Rpt1.SetParameters(new ReportParameter("paytype", paytype));
+                   
 
                     break;
                 default:
-
+                    var lst = ds1.Tables[0].DataTableToList<RealEntity.C_34_Mgt.EClassOtherReq>();
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqStatus", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
                     break; 
             }
 
-            */
-            var lst = ds1.Tables[0].DataTableToList<RealEntity.C_34_Mgt.EClassOtherReq>();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqStatus", lst, null, null);
-            Rpt1.EnableExternalImages = true;
+            
+
             Rpt1.SetParameters(new ReportParameter("rpttitle", "Work Order"));
             Rpt1.SetParameters(new ReportParameter("paytype", paytype));
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));

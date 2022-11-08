@@ -35,8 +35,14 @@ namespace RealERPWEB.F_22_Sal
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../AcceessError.aspx");
+        
+
+                 
+
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                    Response.Redirect("~/AcceessError.aspx");
+      
                 string TypeDesc = this.Request.QueryString["Type"].ToString().Trim();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Grand Note Sheet";
 
@@ -50,12 +56,17 @@ namespace RealERPWEB.F_22_Sal
 
                 this.GetProjectName();
                 this.GetProspective();
-                this.getInstallment();
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+                this.getInstallment();              
                 this.gvSpayment.Columns[0].Visible = false;
 
 
+                string qgeno = this.Request.QueryString["genno"] ?? "";
+                if (qgeno.Length > 0)
+                {
+                    this.lnkbtnPrevious_Click(null, null);
+                    this.lbtnOk_Click(null, null);
+
+                }
 
 
 
@@ -1382,8 +1393,10 @@ namespace RealERPWEB.F_22_Sal
                 ViewState.Remove("tblprenotesheet");
                 string comcod = this.GetCompCode();
                 string date = System.DateTime.Now.ToString("dd-MMM-yyyy");
-                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "GETPREVIOUSNOTESHEETNO", "",
-                       date, "", "", "", "", "", "", "");
+                string qgeno = this.Request.QueryString["genno"] ?? "";
+                string noteshtno = (qgeno.Length == 0 ? "" : qgeno) + "%";
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "GETPREVIOUSNOTESHEETNO",
+                       date, noteshtno, "", "", "", "", "", "");
                 if (ds1 == null)
                     return;
                 this.ddlPrevious.DataTextField = "noteshiddet";
