@@ -402,13 +402,13 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.GridView gvOrderInfo;
 
         /// <summary>
-        /// btnSendmail control.
+        /// lnkSendEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnSendmail;
+        protected global::System.Web.UI.WebControls.LinkButton lnkSendEmail;
 
         /// <summary>
         /// lnkSendMail control.
@@ -769,5 +769,41 @@ namespace RealERPWEB.F_14_Pro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView ListViewEmpAll;
+
+        /// <summary>
+        /// lblheader control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblheader;
+
+        /// <summary>
+        /// lblPONO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPONO;
+
+        /// <summary>
+        /// ifrmanPdf control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlIframe ifrmanPdf;
+
+        /// <summary>
+        /// lnkSedningEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkSedningEmail;
     }
 }

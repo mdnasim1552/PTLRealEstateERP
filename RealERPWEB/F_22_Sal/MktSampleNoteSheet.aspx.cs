@@ -123,7 +123,9 @@ namespace RealERPWEB.F_22_Sal
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string txtSProject = "%%";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "GETPROSPECTIVE", txtSProject, "", "", "", "", "", "", "", "");
+            string empid = hst["empid"].ToString();
+            string Type = "SalesTeam";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "GETPROSPECTIVE", txtSProject, empid, Type, "", "", "", "", "", "");
             this.ddlprospective.DataTextField = "prosdesc";
             this.ddlprospective.DataValueField = "proscode";
             this.ddlprospective.DataSource = ds1.Tables[0];
@@ -1268,11 +1270,11 @@ namespace RealERPWEB.F_22_Sal
 
                 if (!resultfvapvpersft)
                 {
+                    //"<span style='color:red'>Minimum FV Per SFT:" + this.lblhiddenfvpersft.Value + "Minimum PV Per SFT:" + this.lblhiddenpvpersft.Value + "</span>";
 
-                 
 
-                    string mfvpsftapvpsft = "<span style='color:red'>Minimum FV Per SFT:" + this.lblhiddenfvpersft.Value + "Minimum PV Per SFT:" + this.lblhiddenpvpersft.Value+"</span>";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('System not allow this proposal');", true);
+                    string mfvpsftapvpsft = "Minimum FV Per SFT:" + this.lblhiddenfvpersft.Value + " Minimum PV Per SFT:" + this.lblhiddenpvpersft.Value;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+ mfvpsftapvpsft + "');", true);
                     return;
 
                 }

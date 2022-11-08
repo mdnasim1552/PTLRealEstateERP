@@ -585,7 +585,6 @@
                                 <asp:DropDownList ID="ddlLoanTypeSearch" runat="server" CssClass="form-control chzn-select">
                                     <asp:ListItem Value="0">Pilot</asp:ListItem>
                                     <asp:ListItem Value="1">sow</asp:ListItem>
-
                                 </asp:DropDownList>
                             </div>
                             <div class="col-lg-2">
@@ -998,7 +997,7 @@
                                             <asp:TemplateField HeaderText="Project Name">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblprjname" runat="server"
-                                                        Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "prjname"))%>'
+                                                        Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "projname"))%>'
                                                         ForeColor="Black"></asp:Label>
                                                 </ItemTemplate>
 
@@ -1719,9 +1718,21 @@
                                                       <asp:Label ID="lblgvdeliclientid" runat="server" Height="16px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "clientid"))%>'
                                                         Width="80px"></asp:Label>
+                                                     <asp:Label ID="lblgvdeliprjid" runat="server" Height="16px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prjid"))%>'
+                                                        Width="80px"></asp:Label>
                                                      <asp:Label ID="tblgvdelicurrencydesc" runat="server" Height="16px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "correncydesc"))%>'
                                                         Width="80px"></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            </asp:TemplateField>
+                                               <asp:TemplateField HeaderText="Order Type" >
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvadeliordertype" runat="server" Height="16px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype")) %>'
+                                                        Width="180px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1823,8 +1834,8 @@
 
                                             <asp:TemplateField HeaderText="Action">
                                                 <ItemTemplate>
-                                                    <asp:HyperLink runat="server" ID="lnkInvoice" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="text-primary pr-2 pl-2"><i class="btn btn-primary btn-sm">Invoice</i></asp:HyperLink>
-
+                                                    <asp:HyperLink runat="server"  Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype"))=="Pilot"? false : true  %>'  ID="lnkInvoice" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="text-primary pr-2 pl-2"><i class="btn btn-primary btn-sm">Invoice</i></asp:HyperLink>
+                                                    <asp:LinkButton runat="server" ID="lnkbtnsow" OnClick="lnkbtnsow_Click" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype"))=="Pilot"? true : false  %>' CssClass="btn btn-primary btn-sm">Convert SOW</asp:LinkButton>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -2191,6 +2202,7 @@
                                 <asp:LinkButton ID="pnlsidebarClose" OnClick="pnlsidebarClose_Click" CssClass="btn btn-danger  btn-sm pr-2 pl-2" runat="server">&times;</asp:LinkButton>
                             </div>
                             <div class="modal-body">
+                                <asp:Label runat="server" Visible="false" ID="lblsowproject"></asp:Label>
                                 <asp:Label runat="server" ID="lblproj" Visible="false"></asp:Label>
                                 <asp:GridView ID="gvProjectInfo" runat="server" AutoGenerateColumns="False" CssClass="table-bordered gview"
                                     ShowFooter="False" ShowHeader="false" AllowPaging="false" Visible="True" Width="100%">

@@ -583,6 +583,7 @@ namespace RealERPWEB.F_99_Allinterface
             string OrderfApproved = "";
             string Order2ndAprv = "Ord. 2nd App";
             string billAudit = "Final Bill App.";
+            string ReceivedApp = "Received(App)";
 
 
             switch (comcod)
@@ -641,10 +642,13 @@ namespace RealERPWEB.F_99_Allinterface
                     reqapproval = "Req. App.";
                     OrderfApproved = "Ord. 1st App";
                     Order2ndAprv = "Ord. Final App";
+                    ReceivedApp = "MRR Checked";
                     break;
 
-              
 
+                case "3370"://  Edison Real Estate 
+                    OrderfApproved = "Ord. App";                   
+                    break;
 
                 default:
                     reqcheck = "Checked";
@@ -654,6 +658,7 @@ namespace RealERPWEB.F_99_Allinterface
                     Order2ndAprv = "Ord. 2nd App";
                     chkSecondApp = "2nd App.";
                     reqcheckapp = "1st App.";
+                    ReceivedApp = "Received(App)";
                     break;
 
 
@@ -684,7 +689,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             this.RadioButtonList1.Items[14].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["mrrqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Received</div></div></div>";
 
-            this.RadioButtonList1.Items[15].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["mrrapp"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Received(App)</div></div></div>";
+            this.RadioButtonList1.Items[15].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["mrrapp"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>"+ ReceivedApp + " </div></div></div>";
 
             this.RadioButtonList1.Items[16].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["billqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Bill Confirm.</div></div></div>";
             //this.RadioButtonList1.Items[14].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["compqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray''><div class='circle-tile-description text-faded'>Acc. Update</div></div></div>";
@@ -1871,6 +1876,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "1207": // acme 
                     case "3338": // acme 
                     case "3369": // acme 
+                    case "3370": // cpdl 
                         hlnkcrystal.Visible = false;
                         lnktbnrdlc.Visible = false;
                         break;

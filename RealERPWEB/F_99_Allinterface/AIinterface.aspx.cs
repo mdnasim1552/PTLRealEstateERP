@@ -108,7 +108,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
             Session["tblprojectlist"] = ds.Tables[0];
-            Session["tblassinglist"] = ds.Tables[2];
+            Session["tblassinglist"] = this.HiddenSameData(ds.Tables[2]);
 
 
             this.data_Bind();
@@ -125,10 +125,7 @@ namespace RealERPWEB.F_99_Allinterface
             DataTable tblasing = (DataTable)Session["tblassinglist"];
 
             this.gvInterface.DataSource = tbl1;
-
-
             this.gvInterface.DataBind();
-
             this.gvAssingJob.DataSource = tblasing;
             this.gvAssingJob.DataBind();
 
@@ -334,7 +331,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.gv_Production.DataBind();
 
 
-                
+
                 view1.Table = ds.Tables[0];
                 view1.RowFilter = "roletype='95002'";
                 dt1 = view1.ToTable();
@@ -342,7 +339,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.gv_QCQA.DataBind();
 
 
-                
+
                 view2.Table = ds.Tables[0];
                 view2.RowFilter = "roletype='95003'";
                 dt1 = view2.ToTable();
@@ -781,7 +778,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             }
         }
-        private void LoadGrid(string custid = "")
+        private void LoadGrid(string custid = "", string value = "", string empid = "",string doneqty="")
         {
 
             string comcod = this.GetCompCode();
@@ -810,7 +807,10 @@ namespace RealERPWEB.F_99_Allinterface
                 string Gcode = dt.Rows[i]["gcod"].ToString();
                 switch (Gcode)
                 {
+
+
                     case "03002": //project type
+
                         //gvalue = dt.Rows[i]["value"].ToString();
                         dv2 = dt3.DefaultView;
                         dv2.RowFilter = ("gcod like '60%' and gcod like'%00'");
@@ -859,21 +859,51 @@ namespace RealERPWEB.F_99_Allinterface
                         ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
                         break;
                     case "03007"://customer
-                        //gvalue = dt.Rows[i]["value"].ToString();
-                        dv3 = dt4.DefaultView;
-                        dv3.RowFilter = ("infcod like '51%' and infcod not like'%00'");
-                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-                        ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = true;
-                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
-                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
-                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
-                        ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
-                        ddlgval.DataTextField = "infdesc";
-                        ddlgval.DataValueField = "infcod";
-                        ddlgval.DataSource = dv3.ToTable();
-                        ddlgval.DataBind();
-                        ddlgval.SelectedValue = (custid == "") ? ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString()
-                            : custid;
+                        if (value == "1")
+                        {
+                            DataRow[] results = dt4.Select(" infcod= '" + empid + "'");
+                            string infdesc = results[0]["infdesc"].ToString();
+                            string infcod = results[0]["infcod"].ToString();
+
+                            //gvalue = dt.Rows[i]["value"].ToString();
+                            dv3 = dt4.DefaultView;
+                            dv3.RowFilter = ("infcod like '51%' and infcod not like'%00'");
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                            ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = true;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                            ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
+                            ddlgval.DataTextField = "infdesc";
+                            ddlgval.DataValueField = "infcod";
+                            ddlgval.DataSource = dv3.ToTable();
+                            ddlgval.DataBind();
+                            ddlgval.SelectedValue = infcod;
+                            ddlgval.Enabled = false;
+
+                        }
+                        else
+                        {
+
+
+
+                            //gvalue = dt.Rows[i]["value"].ToString();
+                            dv3 = dt4.DefaultView;
+                            dv3.RowFilter = ("infcod like '51%' and infcod not like'%00'");
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                            ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = true;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                            ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
+                            ddlgval.DataTextField = "infdesc";
+                            ddlgval.DataValueField = "infcod";
+                            ddlgval.DataSource = dv3.ToTable();
+                            ddlgval.DataBind();
+                            ddlgval.SelectedValue = (custid == "") ? ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString()
+                                : custid;
+
+                        }
                         break;
 
                     case "03025"://get team leader
@@ -917,23 +947,61 @@ namespace RealERPWEB.F_99_Allinterface
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Visible = false;
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text = gdatat;
                         break;
-                    case "03018":
+                    case "03018": //order type
+                        if (value == "1")
+                        {
+                            dv2 = dt3.DefaultView;
+                            dv2.RowFilter = (" gcod like '802%' and gcod like '%00'");
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                            ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = false;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                            ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
 
-                        dv2 = dt3.DefaultView;
-                        dv2.RowFilter = ("gcod like '80%' and gcod not like'%00'");
-                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
-                        ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = false;
-                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
-                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
-                        ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
-                        ddlgval.DataTextField = "gdesc";
-                        ddlgval.DataValueField = "gcod";
-                        ddlgval.DataSource = dv2.ToTable();
-                        ddlgval.DataBind();
-                        ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
+                            ddlgval.DataTextField = "gdesc";
+                            ddlgval.DataValueField = "gcod";
+                            ddlgval.DataSource = dv2.ToTable();
+                            ddlgval.DataBind();
+                            ddlgval.SelectedValue = "80200";
+                            ddlgval.Enabled = false;
+                        }
+                        else
+                        {
+                            dv2 = dt3.DefaultView;
+                            dv2.RowFilter = ("gcod like '80%' and gcod not like'%00'");
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                            ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = false;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                            ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
+                            ddlgval.DataTextField = "gdesc";
+                            ddlgval.DataValueField = "gcod";
+                            ddlgval.DataSource = dv2.ToTable();
+                            ddlgval.DataBind();
+                            ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
+                        }
                         break;
                     case "03015":
+                        if (value == "1")
+                        {
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Visible = true;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Text = doneqty;
+                           ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                        }
+                        else
+                        {
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Visible = true;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                        }
+                        break;
                     case "03017":
                     case "03019":
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Visible = true;
@@ -1031,7 +1099,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CustomerCreate();", true);
                 string customerId = result.Tables[0].Rows[0]["custid"].ToString();
                 GetCustomerList();
-                this.LoadGrid(customerId);
+                this.LoadGrid(customerId, "","","");
             }
             catch (Exception exp)
             {
@@ -1201,7 +1269,7 @@ namespace RealERPWEB.F_99_Allinterface
                 if (ds3 == null)
                     return;
                 Session["tblAIdelivery"] = ds3.Tables[0];
-               
+
                 this.gv_Delivery.DataSource = ds3;
                 this.gv_Delivery.DataBind();
 
@@ -1255,7 +1323,7 @@ namespace RealERPWEB.F_99_Allinterface
         private void GetAnnotationList()
         {
             string comcod = this.GetCompCode();
-            string prjlist = this.lblproprjid.Text.Trim()+"%";
+            string prjlist = this.lblproprjid.Text.Trim() + "%";
             string usrrole = this.ddlUserRoleType.SelectedValue.ToString() == "95002" ? "03403" :
                             this.ddlUserRoleType.SelectedValue.ToString() == "95003" ? "03402" : "03401";
             DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETANNOTAIONID", prjlist, usrrole, "", "", "", "");
@@ -1748,7 +1816,7 @@ namespace RealERPWEB.F_99_Allinterface
                 DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GET_INVOICE_SUMMAY_SHEET", "", "", "");
                 if (ds == null)
                     return;
-                
+
                 Session["tblinvoicelist"] = ds.Tables[0];
                 this.gv_Invoice.DataSource = ds.Tables[0];
                 this.gv_Invoice.DataBind();
@@ -1777,11 +1845,11 @@ namespace RealERPWEB.F_99_Allinterface
                 string comadd = hst["comadd1"].ToString();
                 string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
                 string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
-                DataTable dt = (DataTable)Session["tblinvoicelist"];            
-               
+                DataTable dt = (DataTable)Session["tblinvoicelist"];
+
                 DataView dv0 = dt.DefaultView;
                 dv0.RowFilter = "invno = '" + id + "'";
-                dt = dv0.ToTable();               
+                dt = dv0.ToTable();
                 double amount = Convert.ToDouble(dt.Rows[0]["totalamount"]);
 
 
@@ -1809,6 +1877,35 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
             }
+        }
+
+        protected void lnkbtnsow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.pnlSidebar.Visible = true;
+                this.pnlProjectadd.Visible = true;
+                this.pnlBatchadd.Visible = false;
+                this.pnlAssginUser.Visible = false;
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;
+                string id = ((Label)this.gv_Delivery.Rows[index].FindControl("lblgvdeliprjid")).Text.ToString();
+                this.lblproj.Text = id;
+                //this.lblsowproject.Text ="1";
+                string value = "1";
+                string empid = ((Label)this.gv_Delivery.Rows[index].FindControl("lblgvdeliclientid")).Text.ToString();
+                string doneqty = ((Label)this.gv_Delivery.Rows[index].FindControl("lblgvdelidoneqty")).Text.ToString();
+                this.GetEmployeeName();
+                this.GetCustomerList();
+                this.GetCountry();
+                this.GetProjectDetails();
+                this.LoadGrid("", value, empid, doneqty);
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+            }
+
         }
     }
 }

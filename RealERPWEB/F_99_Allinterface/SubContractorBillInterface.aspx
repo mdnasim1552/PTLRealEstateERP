@@ -481,10 +481,12 @@
     <script type="text/javascript">
         $(document).ready(function () {
             //For navigating using left and right arrow of the keyboard
+            pageLoaded();
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
         function pageLoaded() {
             try {
+                funComRadiButtonHidden();
                 $("input, select").bind("keydown", function (event) {
                     var k1 = new KeyPress();
                     k1.textBoxHandler(event);
@@ -496,7 +498,6 @@
                 $('#<%=this.gvfinalapp.ClientID%>').tblScrollable();
                 $('#<%=this.gvAllReq.ClientID%>').tblScrollable();
                 $('#<%=this.grvImple.ClientID%>').tblScrollable();
-                funComRadiButtonHidden();
             }
             catch (e) {
                 alert(e);
@@ -514,7 +515,6 @@
                     case 3352:   //p2p
                         //case 3101:   //p2p
                         //case 3355:   //greenwood
-
                         $(".tbMenuWrp table tr td:nth-child(3)").show();
                         $(".tbMenuWrp table tr td:nth-child(8)").hide(); // 9 - for billApproval
                         $(".tbMenuWrp table tr td:nth-child(11)").hide();
@@ -523,15 +523,16 @@
                         $('#<%=this.txtrefno.ClientID%>').prop('readonly', false);
                         break;
 
+                    case 3101:
                     case 3370:   //cpdl
-
+                        $(".tbMenuWrp table tr td:nth-child(1)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(2)").hide();
                         $(".tbMenuWrp table tr td:nth-child(3)").show();
                         $(".tbMenuWrp table tr td:nth-child(11)").hide();
                         $(".tbMenuWrp table tr td:nth-child(12)").hide();
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(9)").hide(); // 9 - for billApproval
-
-                        $('#<%=this.txtrefno.ClientID%>').prop('readonly', false);
+                        //$(".tbMenuWrp table tr td:nth-child(9)").hide(); // 9 - for billApprova
+                        $('#<%=this.txtrefno.ClientID%>').prop('readonly', true);
                         break;
 
 
@@ -541,10 +542,9 @@
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
                         $(".tbMenuWrp table tr td:nth-child(9)").hide(); // 9 - for billApproval
-
                         break;
 
-                    case 3101:   //ASIT
+
                     case 3368: // Finlay
                         //$(".tbMenuWrp table tr td:nth-child(3)").hide();
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
@@ -553,8 +553,21 @@
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
                         $(".tbMenuWrp table tr td:nth-child(12)").hide();
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
-
+                        $('#<%=this.txtrefno.ClientID%>').prop('readonly', true);
                         break;
+
+
+                    case 3367:
+                        $(".tbMenuWrp table tr td:nth-child(3)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(4)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(5)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(6)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(11)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(12)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(13)").hide();
+                        break;
+
                     default:
                         $(".tbMenuWrp table tr td:nth-child(3)").hide();
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
@@ -565,8 +578,6 @@
                         $(".tbMenuWrp table tr td:nth-child(11)").hide();
                         $(".tbMenuWrp table tr td:nth-child(12)").hide();
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
-
-                        $('#<%=this.txtrefno.ClientID%>').prop('readonly', true);
                         break;
                 }
             }

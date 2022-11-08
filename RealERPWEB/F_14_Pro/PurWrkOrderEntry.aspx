@@ -30,6 +30,14 @@
             }
         }
 
+        function openModal() {
+
+            $('#contact').modal('toggle');
+        }
+        function CloseModal() {
+
+            $('#contact').modal('hide');
+        }
     </script>
     <div class="container moduleItemWrpper">
         <div class="contentPart">
@@ -360,7 +368,7 @@
                                                     Width="50px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        
+
                                         <asp:TemplateField HeaderText="AppNo" Visible="False">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvPAPNo" runat="server"
@@ -714,12 +722,12 @@
 
                                         <asp:TemplateField HeaderText="Brand" Visible="false">
                                             <ItemTemplate>
-                                                 <asp:TextBox ID="txtgvrmrks" runat="server" BorderColor="#99CCFF"
+                                                <asp:TextBox ID="txtgvrmrks" runat="server" BorderColor="#99CCFF"
                                                     BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                                     Style="text-align: left; background-color: Transparent"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rmrks")) %>'                                                    
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rmrks")) %>'
                                                     Width="80px"></asp:TextBox>
-                                                
+
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
@@ -738,12 +746,13 @@
                                     <div class="form-group">
                                         <div class="col-md-2 pading5px ">
 
-                                            <asp:LinkButton ID="btnSendmail" CssClass="btn btn-success primaryBtn" runat="server" OnClick="btnSendmail_Click">Send Email</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkSendEmail" CssClass="btn btn-success primaryBtn" runat="server" OnClick="lnkSendEmail_Click"><span class="glyphicon glyphicon-eye-open"></span> View For Email </asp:LinkButton>
+                                             
                                         </div>
                                         <div class="col-md-2 pading5px hidden">
                                             <asp:LinkButton ID="lnkSendMail" CssClass="btn btn-success primaryBtn" runat="server" OnClick="lnkSendMail_Click">Send Email</asp:LinkButton>
 
-                                         </div>
+                                        </div>
 
                                         <div class="col-md-3 pading5px pull-right">
                                             <div class="input-group">
@@ -1421,10 +1430,40 @@
                             </table>--%>
                         </asp:View>
                     </asp:MultiView>
-                    </td>
-                </tr>
-            </table>
 
+                    <div class="modal fade right" id="contact" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                        aria-hidden="true" data-backdrop="false">
+                        <div class="modal-dialog  modal-lg  modal-side modal-bottom-right modal-notify modal-info" role="document">
+                            <!--Content-->
+                            <div class="modal-content">
+                                <!--Header-->
+                                <div class="modal-header">
+                                    <p class="heading">
+                                        <button aria-label="Close" class="close btn btn-danger" data-dismiss="modal" type="button" style="margin:0; background:#d95350;opacity:2; padding:5px 12px; color:#fff;">
+                                            <span aria-hidden="true" class="white-text">×</span>
+                                        </button>
+                                        <h4 id="lblheader" runat="server"><span class="glyphicon glyphicon-info-sign "></span> PURCHASE ORDER SEND EMAIL</h4>
+                                </div>
+
+                                <!--Body-->
+                                <div class="modal-body">
+
+                                    <div class="row">
+
+                                        <asp:Label ID="lblPONO" runat="server" Visible="false"></asp:Label>
+                                        <iframe runat="server" id="ifrmanPdf" width="100%" height="400"></iframe>
+
+                                    </div>
+                                </div>
+
+                                <!--Footer-->
+                                <div class="modal-footer">
+                                    <asp:LinkButton ID="lnkSedningEmail" Style="float: right; margin-right: 10px;" runat="server" class="btn btn-success" OnClientClick="CloseModal();" OnClick="lnkSedningEmail_Click">Send Email</asp:LinkButton>
+                                </div>
+                            </div>
+                            <!--/.Content-->
+                        </div>
+                    </div>
 
                 </ContentTemplate>
             </asp:UpdatePanel>

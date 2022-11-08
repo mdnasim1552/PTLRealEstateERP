@@ -37,14 +37,18 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
     <Reference Include="microsoft.reportviewer.datavisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\microsoft.reportviewer.datavisualization.dll</HintPath>
+      <HintPath>..\..\..\..\..\Newton json\microsoft.reportviewer.datavisualization.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -102,7 +106,6 @@
     <Folder Include="R_98_Purchase\" />
   </ItemGroup>
   <ItemGroup>
-    <Fakes Include="Fakes\Microsoft.ReportViewer.WebForms.fakes" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\RealEntity.C_02_Fea.EClasFeasibility+AgeingDays.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_02_Fea.EClasFeasibility+ProdCostAnalysis.datasource" />
@@ -225,6 +228,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+bnkStatement.datasource" />
     <EmbeddedResource Include="Reports\RptPurchaseOrderFinlayInd.rdlc" />
+    <EmbeddedResource Include="RptPurMktSurveyCPDL04.rdlc" />
     <EmbeddedResource Include="R_02_Fea\rptCostAnlys.rdlc" />
     <EmbeddedResource Include="R_02_Fea\rptEstmtProfitLoss.rdlc" />
     <EmbeddedResource Include="R_04_Bgd\RptProjectBgdFinlay.rdlc" />
@@ -249,12 +253,15 @@
     <EmbeddedResource Include="R_14_Pro\rptDeliveryEfficiency.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptDateWiseBill.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptOtherCollHistory.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyCPDL03.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyCPDL04.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyEpic03.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyEpic02.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyEpic05.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyFinlay03.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyFinlay02.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyFinlay05.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyCPDL05.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurOrderTopSheet.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptSupAdvanceDetails.rdlc" />
     <EmbeddedResource Include="R_16_Bill\RptBillInvoiceAcme.rdlc" />
@@ -775,6 +782,7 @@
     <EmbeddedResource Include="R_21_MKT\RptYearlySales.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptAccSumCustPayStatus.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptAccSummaryInflow.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptAcknowledgementSlipCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptAllProDuesColl02.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptBgdSales.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptBookingtDues.rdlc" />
@@ -806,6 +814,8 @@
     <EmbeddedResource Include="R_22_Sal\RptEnvelopMoneyReceipt.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopOffice.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopNew.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptCPDL.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptSalesVsAchivementLO.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSampleNotesSheet.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptGrandNotesSheetSummary.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptGrandNotesSheet.rdlc" />
@@ -1128,8 +1138,8 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptMonthWiseSalSheet.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptMonthWiseTaxFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptMonthWiseTax.rdlc" />
-    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipCPDL.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipCPDL - Copy.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipCPDL.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipLanco.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryAssureTourism.rdlc" />
