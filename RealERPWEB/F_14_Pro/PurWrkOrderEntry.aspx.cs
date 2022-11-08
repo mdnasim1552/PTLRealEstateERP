@@ -4523,6 +4523,7 @@ namespace RealERPWEB.F_14_Pro
                 msg.From = new MailAddress(frmemail);
                 string body = string.Empty;
                 msg.To.Add(new MailAddress(tomail));
+               
                 /// msg.CC.Add(new MailAddress("ibrahim.diu26@gmail.com"));
                 //msg.Bcc.Add(new MailAddress("nahid@pintechltd.com"));
                 msg.Subject = subj;
