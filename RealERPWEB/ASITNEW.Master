@@ -1015,7 +1015,7 @@
 
                                         <asp:LinkButton ID="lnkbtnNew" runat="server" Visible="false" CssClass="btnsave btncommon " Style="margin: 0 5px;" OnClick="lnkbtnNew_Click"><i class="fa fa-file-o" aria-hidden="true"></i>New</asp:LinkButton>
                                         <asp:LinkButton ID="lnkbtnAdd" runat="server" Visible="false" CssClass="btn btn-primary btn-sm" OnClick="lnkbtnAdd_Click1" Style="margin: 0 5px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</asp:LinkButton>
-                                        <asp:LinkButton ID="lnkbtnSave" Visible="false" ClientIDMode="Static" OnClientClick="return confirm('Do You want to Save?');" runat="server" CssClass="btn btn-sm btn-info" Style="margin: 0 5px;" OnClick="lnkbtnSave_Click"><i class="fas fa-save"></i>&nbsp;Save</asp:LinkButton>
+                                        <asp:LinkButton ID="lnkbtnSave" Visible="false" ClientIDMode="Static" OnClientClick="return confirm('Do You want to Save?');" runat="server" CssClass="btn btn-md btn-info" Style="margin: 0 5px;" OnClick="lnkbtnSave_Click"><i class="fas fa-save"></i>&nbsp;Save</asp:LinkButton>
                                         <asp:LinkButton ID="lnkbtnEdit" Visible="false" runat="server" CssClass="btnEdit btncommon" OnClick="lnkbtnEdit_Click" Style="margin: 0 5px;"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</asp:LinkButton>
 
                                         <asp:LinkButton ID="lnkbtnDelete" Visible="false" runat="server" OnClick="lnkbtnDelete_Click" CssClass="btnDelete btncommon " Style="margin: 0 5px;"><i class="fa fa-minus-square-o" aria-hidden="true"></i> Delete</asp:LinkButton>
