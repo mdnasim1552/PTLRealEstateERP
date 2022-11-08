@@ -4465,6 +4465,11 @@ namespace RealERPWEB.F_99_Allinterface
                         Rpt1.SetParameters(new ReportParameter("sign7", sign7));
                         break;
                     
+                    case "3370": // cpdl
+                        Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
+                        Rpt1.SetParameters(new ReportParameter("supemail", supemail));
+                        break;
+                    
                     case "1205": // p2p
                     case "3351": // p2p
                     case "3352": // p2p
