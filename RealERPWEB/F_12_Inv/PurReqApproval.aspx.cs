@@ -1560,7 +1560,7 @@ namespace RealERPWEB.F_12_Inv
                 }
                 else
                 {
-                    survey.NavigateUrl = "~/F_12_Inv/LinkMktSurvey.aspx?reqno=" + reqno;
+                    survey.NavigateUrl = "~/F_12_Inv/LinkMktSurvey.aspx?reqno=" + reqno + "&msrno="+ msrno;
                     // survey.NavigateUrl = "~/F_12_Inv/LinkShowMktSurvey.aspx?Type=TarVsAch&msrno=" + msrno;
 
                 }

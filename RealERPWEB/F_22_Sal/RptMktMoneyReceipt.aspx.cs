@@ -174,7 +174,7 @@ namespace RealERPWEB.F_22_Sal
                 //case "3101":
                     mrprint = "MRPrint360";
                     break;
-                case "3101":
+
                 case "3356":
                     mrprint = "MRPrintIntech";
                     break;
