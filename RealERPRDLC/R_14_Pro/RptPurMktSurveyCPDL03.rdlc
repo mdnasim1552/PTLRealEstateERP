@@ -3096,26 +3096,6 @@
                           <FontFamily>Cambria</FontFamily>
                         </Style>
                       </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Center</TextAlign>
-                    </Style>
-                  </Paragraph>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>Sr. Executive-SCM</Value>
-                        <Style>
-                          <FontFamily>Cambria</FontFamily>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Center</TextAlign>
-                    </Style>
-                  </Paragraph>
-                  <Paragraph>
-                    <TextRuns>
                       <TextRun>
                         <Value xml:space="preserve"> </Value>
                         <Style>
@@ -3155,19 +3135,6 @@
                     <TextRuns>
                       <TextRun>
                         <Value>Approved by</Value>
-                        <Style>
-                          <FontFamily>Cambria</FontFamily>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Center</TextAlign>
-                    </Style>
-                  </Paragraph>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>President</Value>
                         <Style>
                           <FontFamily>Cambria</FontFamily>
                         </Style>
@@ -3230,19 +3197,6 @@
                       <TextAlign>Center</TextAlign>
                     </Style>
                   </Paragraph>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>Manager/Sr Manager-SCM</Value>
-                        <Style>
-                          <FontFamily>Cambria</FontFamily>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Center</TextAlign>
-                    </Style>
-                  </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox7</rd:DefaultName>
                 <Top>0.5842in</Top>
@@ -3273,19 +3227,6 @@
                     <TextRuns>
                       <TextRun>
                         <Value>Checked by</Value>
-                        <Style>
-                          <FontFamily>Cambria</FontFamily>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Center</TextAlign>
-                    </Style>
-                  </Paragraph>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>DM-SCM</Value>
                         <Style>
                           <FontFamily>Cambria</FontFamily>
                         </Style>
