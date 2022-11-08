@@ -33,15 +33,6 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-
-        /// <summary>
         /// txtSrcProject control.
         /// </summary>
         /// <remarks>
@@ -60,6 +51,15 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.LinkButton imgbtnFindProject;
 
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
         /// ddlProjectName control.
         /// </summary>
         /// <remarks>
@@ -67,15 +67,6 @@ namespace RealERPWEB.F_14_Pro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlProjectName;
-
-        /// <summary>
-        /// lnkbtnOk control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnOk;
 
         /// <summary>
         /// lbldatefrm control.
@@ -132,6 +123,15 @@ namespace RealERPWEB.F_14_Pro
         protected global::AjaxControlToolkit.CalendarExtender txttodate_CalendarExtender;
 
         /// <summary>
+        /// lnkbtnOk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnOk;
+
+        /// <summary>
         /// lblPage control.
         /// </summary>
         /// <remarks>
@@ -150,15 +150,6 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.DropDownList ddlpagesize;
 
         /// <summary>
-        /// rbtnList1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rbtnList1;
-
-        /// <summary>
         /// rbtnpurtype control.
         /// </summary>
         /// <remarks>
@@ -166,6 +157,15 @@ namespace RealERPWEB.F_14_Pro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList rbtnpurtype;
+
+        /// <summary>
+        /// rbtnList1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbtnList1;
 
         /// <summary>
         /// ChkBalance control.
