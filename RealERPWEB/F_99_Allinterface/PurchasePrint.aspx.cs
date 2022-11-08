@@ -4608,6 +4608,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3366": // lanco
                 case "3367": // epic
                 case "3101":
+                case "3370": // cpdl
                     isDynamic = true;
                     break;
                 default:

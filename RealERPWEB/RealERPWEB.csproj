@@ -98,9 +98,6 @@
     <Reference Include="CrystalDecisions.Windows.Forms">
       <HintPath>..\..\..\..\..\bin\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
-    <Reference Include="csc">
-      <HintPath>..\..\Real Estate Bin 211213\bin\roslyn\csc.exe</HintPath>
-    </Reference>
     <Reference Include="DayPilot">
       <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\DayPilot.dll</HintPath>
     </Reference>
@@ -12885,10 +12882,10 @@
     <EmbeddedResource Include="Report\RptMktPurchaseOrder.rdlc" />
     <Content Include="Report\RptPurchaseOrderEntrust.rdlc" />
     <Content Include="Report\RptPurchaseOrderEpic.rdlc" />
-    <Content Include="Report\RptPurchaseOrderCPDL.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderCube.rdlc" />
     <Content Include="Report\RptPurchaseOrderAssure.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
+    <EmbeddedResource Include="Report\RptPurchaseOrderCPDL.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderFinlayInd.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderFinlay.rdlc" />
     <Content Include="Report\RptPurchaseOrderAcme.rdlc" />
