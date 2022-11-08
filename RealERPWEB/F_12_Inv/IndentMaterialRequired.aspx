@@ -151,9 +151,9 @@
 
                                             <asp:TemplateField HeaderText="MTRF No">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvmtrref" runat="server" Style="text-align: left"
+                                                    <%--<asp:Label ID="lblgvmtrref" runat="server" Style="text-align: left"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mtrref")) %>'
-                                                        Width="70px"></asp:Label>
+                                                        Width="70px"></asp:Label>--%>
                                                 </ItemTemplate>
                                                 <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                             </asp:TemplateField>
@@ -163,7 +163,7 @@
                                             <asp:TemplateField HeaderText="Resource Description">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lbgrcod" runat="server" Style="text-align: left"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "resdesc")) %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) %>'
                                                         Width="180px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle Font-Bold="True" Font-Size="16px" />
@@ -193,7 +193,7 @@
                                             <asp:TemplateField HeaderText=" Qty">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvmtrfqty" runat="server"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "mtrfqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "stkqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                         Width="70px"></asp:Label>
                                                 </ItemTemplate>
 
