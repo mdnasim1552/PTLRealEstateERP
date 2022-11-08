@@ -12878,10 +12878,10 @@
     <EmbeddedResource Include="Report\RptMktPurchaseOrder.rdlc" />
     <Content Include="Report\RptPurchaseOrderEntrust.rdlc" />
     <Content Include="Report\RptPurchaseOrderEpic.rdlc" />
-    <Content Include="Report\RptPurchaseOrderCPDL.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderCube.rdlc" />
     <Content Include="Report\RptPurchaseOrderAssure.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
+    <EmbeddedResource Include="Report\RptPurchaseOrderCPDL.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderFinlayInd.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderFinlay.rdlc" />
     <Content Include="Report\RptPurchaseOrderAcme.rdlc" />
