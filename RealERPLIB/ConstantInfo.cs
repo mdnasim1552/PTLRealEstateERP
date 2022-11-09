@@ -467,6 +467,7 @@ namespace RealERPLIB
 
 
             tblObj.Rows.Add(new Object[] { "1251000", "1251001", "F_99_Allinterface", "InventoryInterface", "", "Inventory", "Inventory-Interface", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1251000", "1251002", "F_99_Allinterface", "IndentRequiredInterface", "", "Indent Required", "Indent Required-Interface", "False", "False", "False", "False" });
 
 
 
