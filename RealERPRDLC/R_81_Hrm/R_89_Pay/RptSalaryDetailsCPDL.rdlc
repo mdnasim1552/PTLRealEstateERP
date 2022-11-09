@@ -157,6 +157,10 @@
           <DataField>desig</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="desig2">
+          <DataField>desig2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="desigid">
           <DataField>desigid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -557,6 +561,14 @@
           <DataField>stamp</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="subfee">
+          <DataField>subfee</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="swf">
+          <DataField>swf</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="tabday">
           <DataField>tabday</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -633,7 +645,7 @@
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_81_Hrm.C_89_Pay</rd:DataSetName>
         <rd:TableName>RptSalarySheet</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+RptSalarySheet, RealERPEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+RptSalarySheet, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -927,28 +939,28 @@
                                 <Width>0.51875in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.43542in</Width>
+                                <Width>0.49792in</Width>
                               </TablixColumn>
                               <TablixColumn>
                                 <Width>0.52917in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.46667in</Width>
+                                <Width>0.44584in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.61251in</Width>
+                                <Width>0.60209in</Width>
                               </TablixColumn>
                               <TablixColumn>
                                 <Width>0.57084in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.49792in</Width>
+                                <Width>0.4875in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.55001in</Width>
+                                <Width>0.50834in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.52917in</Width>
+                                <Width>0.55in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -2687,7 +2699,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!cashded.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!swf.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2757,7 +2769,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!absded2.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!subfee.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3548,7 +3560,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!cashded.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!swf.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -3620,7 +3632,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!absded2.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!subfee.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4511,7 +4523,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!cashded.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!swf.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4597,7 +4609,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!absded2.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!subfee.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>

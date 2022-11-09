@@ -33,6 +33,15 @@ namespace RealERPWEB.F_12_Inv
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
+        /// ddlPreList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPreList;
+
+        /// <summary>
         /// txtaplydate control.
         /// </summary>
         /// <remarks>

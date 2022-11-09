@@ -28,7 +28,9 @@ namespace RealERPWEB.F_21_MKT
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Advanced Search Filter";
-              
+                this.GETEMPLOYEEUNDERSUPERVISED();
+
+
             }
         }
         public string GetComeCode()
@@ -36,33 +38,101 @@ namespace RealERPWEB.F_21_MKT
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
         }
+        //protected void lnkbtnOk_Click(object sender, EventArgs e)
+        //{
+        //    Hashtable hst = (Hashtable)Session["tblLogin"];
+        //    string userrole = hst["userrole"].ToString();
+        //    string Empid = ((hst["empid"].ToString() == "") ? "%" : hst["empid"].ToString());
+        //    if (userrole == "1")
+        //    {
+        //        Empid = "%";
+        //    }
+        //    string comcod = this.GetComeCode();
+        //    string Country =  "%";
+        //    string Dist = "%";
+        //    string Zone =  "%";
+        //    string PStat = "%";
+        //    string Area = "%";
+        //    string Block =  "%";
+        //    string Pri = "%";
+        //    string Status = "%";
+        //    string Other = this.ddlOther.SelectedValue.ToString();
+        //    string TxtVal = "%" + this.txtVal.Text + "%";
+        //    string frmdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+        //    string todate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+        //    string srchempid = "%";
+
+        //    DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE", "CLNTINFOSUM", null, null, null, "8301%", Empid, Country, Dist, Zone, PStat, Block, Area,
+        //         Pri, Status, Other, TxtVal, todate, srchempid);
+        //}
         protected void lnkbtnOk_Click(object sender, EventArgs e)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string Empid = this.ddlEmpid.SelectedValue;
+            DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE", "GET_PROSPECT_DETAILS", null, null, null, Empid);
+                 ViewState["tblempsup"] = ds3.Tables[0];
+            DataTable dt1 = (DataTable)ViewState["tblempsup"];
+            if (ds3 == null || dt1.Rows.Count == 0)
+                return;
+            this.lblname.Text = dt1.Rows[0]["EMPNAME"].ToString();
+
+        }
+        private void GETEMPLOYEEUNDERSUPERVISED()
+        {
+            string comcod = GetComeCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string Empid =  hst["empid"].ToString();
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETEMPLOYEEUNDERSUPERVISED", Empid, "", "", "", "", "", "", "", "");
+            ViewState["tblempsup"] = ds1.Tables[0];
+           
+            DataSet ds2 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "CLNTREFINFODDL", "", "", "", "", "", "", "", "", "");
+            ViewState["tblsubddl"] = ds2.Tables[0];
+            DataTable dt1 = (DataTable)ViewState["tblsubddl"];
+            DataTable dtemp = (DataTable)ViewState["tblempsup"];
+            DataView dv;
+            dv = dt1.Copy().DefaultView;
+            string ddlempid = this.ddlEmpid.SelectedValue.ToString();
+            
             string userrole = hst["userrole"].ToString();
-            string Empid = ((hst["empid"].ToString() == "") ? "%" : hst["empid"].ToString());
+            string lempid = hst["empid"].ToString();
+            //string empid = (userrole == "1" ? "93" : lempid) + "%";
+            
+            DataTable dtE = new DataTable();
+            dv.RowFilter = ("gcod like '93%'");
             if (userrole == "1")
             {
-                Empid = "%";
+
+                dtE = dv.ToTable();
+                dtE.Rows.Add("000000000000", "Choose Employee..", "");
+
             }
-            string comcod = this.GetComeCode();
-            string Country =  "%";
-            string Dist = "%";
-            string Zone =  "%";
-            string PStat = "%";
-            string Area = "%";
-            string Block =  "%";
-            string Pri = "%";
-            string Status = "%";
-            string Other = this.ddlOther.SelectedValue.ToString();
-            string TxtVal = "%" + this.txtVal.Text + "%";
-            string frmdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
-            string todate = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
-            string srchempid = "%";
+            else
+            {
+                DataTable dts = dv.ToTable();
+                var query = (from dtl1 in dts.AsEnumerable()
+                             join dtl2 in dtemp.AsEnumerable() on dtl1.Field<string>("gcod") equals dtl2.Field<string>("empid")
+                             select new
+                             {
+                                 gcod = dtl1.Field<string>("gcod"),
+                                 gdesc = dtl1.Field<string>("gdesc"),
+                                 code = dtl1.Field<string>("code")
+                             }).ToList();
+                dtE = ASITUtility03.ListToDataTable(query);
+                if (dtE.Rows.Count >= 2)
+                    dtE.Rows.Add("000000000000", "Choose Employee..", "");
+                // if(dtE.Rows.Count>1)
+                //dtE.Rows.Add("000000000000", "Choose Employee..", "");
+            }
 
-            DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE", "CLNTINFOSUM", null, null, null, "8301%", Empid, Country, Dist, Zone, PStat, Block, Area,
-                 Pri, Status, Other, TxtVal, todate, srchempid);
+            this.ddlEmpid.DataTextField = "gdesc";
+            this.ddlEmpid.DataValueField = "gcod";
+            this.ddlEmpid.DataSource = dtE;
+            this.ddlEmpid.DataBind();
+
+
         }
     }
 }

@@ -4,7 +4,18 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <style>
 
+    </style>
+    <script>
+        function openReportModal() {
+            $('#reportModal').modal('toggle');
+        }
+        function sentMail() {
+            $('#reportModal').modal('hide');
+            alert('Email has been sent!');
+        }
+    </script>
 
 
     <%--  <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -252,6 +263,8 @@
                         <PagerStyle CssClass="gvPagination" />
                         <HeaderStyle CssClass="grvHeader" />
                     </asp:GridView>
+
+                    <asp:LinkButton runat="server" ID="lnksendMail" OnClick="lnksendMail_Click" CssClass="btn btn-success">Send Mail</asp:LinkButton>
                 </div>
             </div>
         </div>
@@ -276,7 +289,28 @@
             <div id="donutchart5" class="col-sm-4 col-md-4 col-lg-4" style="height: 250px"></div>
         </div>
     </div>
+    <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModal" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header order-bottom">
+                        <h6 class="modal-title font-weight-bold" id="">     <asp:LinkButton CssClass="btn btn-success btn-sm" runat="server" ID="btnSendMail" OnClick="btnSendMail_Click">Send Mail</asp:LinkButton></h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
 
+                   <div runat="server" id="AttReport">
+
+                   </div>
+                    </div>
+
+
+  
+        
+                </div>
+            </div>
+        </div>
 
 
 
