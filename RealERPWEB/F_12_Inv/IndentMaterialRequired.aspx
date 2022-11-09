@@ -58,6 +58,8 @@
                             <div class="card-header bg-light"><span class="font-weight-bold text-muted">Indent Material Required- Entry</span></div>
                             <div class="card-body" runat="server">
                                 <div class="row">
+
+                                    <asp:DropDownList ID="ddlPreList" runat="server"></asp:DropDownList>
                                     <div class="form-group pl-0 col-4">
                                         <label for="ddlLvType">
                                             Date  
@@ -181,7 +183,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="Label13" runat="server"
                                                         Style="font-size: 11px; text-align: center;"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirunit")) %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirunit")) %>'
                                                         Width="50px"></asp:Label>
                                                 </ItemTemplate>
 
@@ -190,13 +192,12 @@
                                             </asp:TemplateField>
 
 
-                                            <asp:TemplateField HeaderText=" Qty">
+                                            <asp:TemplateField HeaderText="Qty">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvmtrfqty" runat="server"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "stkqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
-                                                        Width="70px"></asp:Label>
-                                                </ItemTemplate>
+                                                    <asp:TextBox ID="txtgvissueqty" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "stkqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'></asp:TextBox>
 
+                                                </ItemTemplate>
+                                                
                                                 <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>

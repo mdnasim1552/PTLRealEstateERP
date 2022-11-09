@@ -57,10 +57,10 @@
                 <div class="card-body">
                     <div class="row ml-2">
 
-                        <div class="col-lg-2 col-md-2 col-sm-6">
+                        <div class="col-lg-3 col-md-3 col-sm-3">
 
-                        <%-- <asp:DropDownList ID="ddlEmpid" data-placeholder="Choose Employee.." runat="server" CssClass="custom-select chzn-select col-md-2 mr-1 mb-1" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">
-                                    </asp:DropDownList>--%>
+                         <asp:DropDownList ID="ddlEmpid" data-placeholder="Choose Employee.." runat="server" CssClass="chzn-select form-control form-control-sm" AutoPostBack="true">
+                                    </asp:DropDownList>
                             </div>
 
                         <div class="col-lg-2 col-md-2 col-sm-6">
@@ -116,7 +116,7 @@
                                             <tr>
                                                 <td class="font-weight-bold">PID</td>
                                                 <td>
-                                                    <asp:Label ID="lblname" runat="server"></asp:Label>
+                                                    <asp:Label ID="lblname" runat="server">N/A</asp:Label>
                                                 </td>
 
                                             </tr>

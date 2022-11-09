@@ -483,6 +483,7 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
                 string body = string.Empty;
                 msg.To.Add(new MailAddress(tomail));
 
+<<<<<<< HEAD
                 msg.CC.Add(new MailAddress("hra.epicpl@gmailcom"));
                 msg.CC.Add(new MailAddress("csd.epicpl@gmail.com"));
                 msg.CC.Add(new MailAddress("architect.epicpl@gmail.com"));
@@ -502,6 +503,10 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
 
 
                                      
+=======
+                 //msg.CC.Add(new MailAddress("rakib@pintechltd.com", "hra.epicpl@gmailcom", "csd.epicpl@gmail.com", "architect.epicpl@gmail.com", "legal.epic22@gmail.com", "purchase.epicpl@gmail.com",
+                 //    "brand.epicpl@gmail.com", "md@epicpl.com", "lokman@epicpl.com", "brand@epicpl.com", "sales@epicpl.com", "engineering@epicpl.com", "finance@epicpl.com", "saifur.epicpl@gmail.com", "didarepicpl@gmail.com", "hamid.epicpl@gmail.com", "salahuddin.epicpl@gmail.com"));
+>>>>>>> d72c807eb743e8ff37de2e51ab69b2425f285da4
                 //msg.Bcc.Add(new MailAddress("nahid@pintechltd.com"));
                 msg.Subject = subj;
                 body += msgbody;

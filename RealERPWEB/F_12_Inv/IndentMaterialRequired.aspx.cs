@@ -22,9 +22,8 @@ namespace RealERPWEB.F_12_Inv
 
                 this.GetProjectName();
                 this.GetDeparment();
-                this.CommonButton();
+                this.CommonButton(); 
 
-                // ddlResSpcf_SelectedIndexChanged(null, null);
                 if (this.Request.QueryString["genno"].ToString().Length > 0)
                 {
                     //this.PreList();
@@ -41,6 +40,8 @@ namespace RealERPWEB.F_12_Inv
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click); 
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lbtnUpdate_Click);
+
         }
         private void CommonButton()
         {
@@ -57,7 +58,7 @@ namespace RealERPWEB.F_12_Inv
             ////
             //((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = false;
             //((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
-            ////((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
+             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
 
             //((LinkButton)this.Master.FindControl("lnkbtnDelete")).Visible = false;
             ////((LinkButton)this.Master.FindControl("btnClose")).Visible = false;
@@ -176,9 +177,9 @@ namespace RealERPWEB.F_12_Inv
                 //this.ddlPreList.Visible = true;
                 //this.ddlPreList.Items.Clear();
                 this.ddlMaterials.Items.Clear();
-                //this.ddlResSpcf.Items.Clear();
-                //this.gvIssue.DataSource = null;
-                //this.gvIssue.DataBind();
+                this.ddlResSpcf.Items.Clear();
+                this.gvIssue.DataSource = null;
+                this.gvIssue.DataBind();
             }
             catch (Exception exp)
             {
@@ -231,7 +232,7 @@ namespace RealERPWEB.F_12_Inv
                 this.txtrefno.Text = ds1.Tables[1].Rows[0]["refno"].ToString();
                 this.lblCurNo1.Text = ds1.Tables[1].Rows[0]["issueno1"].ToString().Trim().Substring(0, 6);
                 this.txtCurNo2.Text = ds1.Tables[1].Rows[0]["issueno1"].ToString().Trim().Substring(6);
-                // this.Data_Bind();
+                this.Data_Bind();
             }
             catch (Exception exp)
             {
@@ -433,11 +434,11 @@ namespace RealERPWEB.F_12_Inv
 
 
                 double issueqty = Convert.ToDouble("0" + ((TextBox)this.gvIssue.Rows[i].FindControl("txtgvissueqty")).Text.Trim());
-                string Remarks = ((TextBox)this.gvIssue.Rows[i].FindControl("txtgvremarks")).Text.Trim();
+               
                 int rowindex = ((this.gvIssue.PageIndex) * (this.gvIssue.PageSize)) + i;
 
                 dt1.Rows[rowindex]["issueqty"] = issueqty;
-                dt1.Rows[rowindex]["remarks"] = Remarks;
+                dt1.Rows[rowindex]["remarks"] = "";
 
             }
             ViewState["tblIssue"] = dt1;
@@ -467,5 +468,112 @@ namespace RealERPWEB.F_12_Inv
 
         }
 
+        protected void GetLSDNo()
+        {
+
+            string comcod = GetCompCode();
+            string mIssueNo = "NEWISU";
+            if (this.ddlPreList.Items.Count > 0)
+                mIssueNo = this.ddlPreList.SelectedValue.ToString();
+
+            string date = Convert.ToDateTime(this.txtaplydate.Text.Trim()).ToString();
+
+
+            if (mIssueNo == "NEWISU")
+            {
+                DataSet ds2 = dbaccess.GetTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "GETIMATREQNO", date,
+                       "", "", "", "", "", "", "", "");
+                if (ds2 == null)
+                    return;
+                if (ds2.Tables[0].Rows.Count > 0)
+                {
+
+                    this.lblCurNo1.Text = ds2.Tables[0].Rows[0]["maxissueno1"].ToString().Substring(0, 6);
+                    this.txtCurNo2.Text = ds2.Tables[0].Rows[0]["maxissueno1"].ToString().Substring(6, 5);
+                    this.ddlPreList.DataTextField = "maxissueno1";
+                    this.ddlPreList.DataValueField = "maxissueno";
+                    this.ddlPreList.DataSource = ds2.Tables[0];
+                    this.ddlPreList.DataBind();
+                }
+            }
+
+        }
+
+        private void lbtnUpdate_Click(object sender, EventArgs e)
+        {
+            //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            //if (!Convert.ToBoolean(dr1[0]["entry"]))
+            //{
+            //    this.lblmsg1.Text = "You have no permission";
+            //    return;
+            //}
+            this.SaveValue();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string PostedByid = hst["usrid"].ToString();
+            string Posttrmid = hst["compname"].ToString();
+            string PostSession = hst["session"].ToString();
+            string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+            string comcod = this.GetCompCode();
+            DataTable dt = (DataTable)ViewState["tblIssue"];
+            string curdate = this.txtaplydate.Text.ToString().Trim();
+             
+            if (this.ddlPreList.Items.Count == 0)
+                this.GetLSDNo();
+            string Issueno = this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurNo1.Text.ToString().Trim().Substring(3, 2) + this.txtCurNo2.Text.ToString().Trim();
+            string Refno = this.txtrefno.Text.ToString();
+            if (Refno.Length == 0)
+            {
+                string msg = "Ref. No. Should Not Be Empty";
+                this.txtrefno.Focus();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
+                return;
+            }
+
+            DataSet ds2 = dbaccess.GetTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "CHECKEDDUPINDREFNO", Refno, "", "", "", "", "", "", "", "");
+            if (ds2.Tables[0].Rows.Count == 0) ;
+
+
+            else
+            {
+
+                DataView dv1 = ds2.Tables[0].DefaultView;
+                dv1.RowFilter = ("issueno <>'" + Issueno + "'");
+                DataTable dt1 = dv1.ToTable();
+                if (dt1.Rows.Count == 0)
+                    ;
+                else
+                {
+
+                    string msg = "Found Duplicate Ref. No.";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
+                    return;
+                }
+            }
+            string pactcode = this.ddlMaterials.SelectedValue.ToString();
+            string reqno = "";
+            bool result;
+            result = dbaccess.UpdateTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "INSORUPTXTTTOEMPINF", "indrequiredb", Issueno, curdate, Refno, PostedByid, Posttrmid, PostSession, Posteddat, pactcode, reqno, "", "", "", "");
+
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                string rsircode = dr["rsircode"].ToString().Trim();
+                string spcfcod = dr["spcfcod"].ToString().Trim();
+                string deptcode = dr["deptcode"].ToString().Trim();
+                string issueqty = dr["issueqty"].ToString().Trim();                 
+                string remarks = dr["remarks"].ToString().Trim();
+
+                result = dbaccess.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "INSORUPTXTTTOEMPINF", "indrequireda", Issueno, rsircode, spcfcod,
+                   deptcode, issueqty, remarks, "", "", "", "", "", "");
+            }
+
+            string msgsuccess = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msgsuccess + "');", true);
+
+           
+
+        }
     }
 }
