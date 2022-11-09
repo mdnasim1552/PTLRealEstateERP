@@ -67,13 +67,13 @@
                              
                             <asp:DropDownList ID="ddlOther" runat="server" ClientIDMode="Static" CssClass="custom-select chzn-select">
                                 <asp:ListItem Value="1">Prospect Name</asp:ListItem>
-                                <asp:ListItem Value="2">PID</asp:ListItem>
+                                <asp:ListItem Value="2" Selected="True">PID</asp:ListItem>
                                 <asp:ListItem Value="3">Phone</asp:ListItem>
                                 <asp:ListItem Value="4">Email</asp:ListItem>
                                 <asp:ListItem Value="5">NID</asp:ListItem>
                                 <asp:ListItem Value="6">TIN</asp:ListItem>
-                                <asp:ListItem Value="7">Prefered Area</asp:ListItem>
-                                <asp:ListItem Value="8">Profission</asp:ListItem>
+                              <%--  <asp:ListItem Value="7">Prefered Area</asp:ListItem>
+                                <asp:ListItem Value="8">Profission</asp:ListItem>--%>
                                 <asp:ListItem Selected="True" Value="9">Choose Filter Key.........................</asp:ListItem>
                             </asp:DropDownList>
 
