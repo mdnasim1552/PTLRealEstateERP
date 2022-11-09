@@ -20,7 +20,7 @@ namespace RealERPWEB.F_99_Allinterface
 {
     public partial class MktNoteSheetInterface : System.Web.UI.Page
     {
-        ProcessAccess feaData = new ProcessAccess();
+        ProcessAccess GNoteData = new ProcessAccess();
         DeleteLog log = new DeleteLog();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -116,7 +116,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //string catcode = this.ddlcatag.SelectedValue.ToString() + "%";
                 string mtrrf = "%" + this.txtmtrrf.Text.Trim().ToString() + "%";
 
-                DataSet ds2 = feaData.GetTransInfo(comcod, "SP_REPORT_GRANDNOTESHEET_INTERFACE", "GETNOTESHEETINTERFACE", frmdate, todate , mtrrf, "", "", "", "", "");
+                DataSet ds2 = GNoteData.GetTransInfo(comcod, "SP_REPORT_GRANDNOTESHEET_INTERFACE", "GETNOTESHEETINTERFACE", frmdate, todate , mtrrf, "", "", "", "", "");
                 if (ds2 == null)
                 {
                     return;
@@ -158,28 +158,28 @@ namespace RealERPWEB.F_99_Allinterface
                 dv.RowFilter = ("authorizeid = ''");
                 this.Data_Bind("gvauthorize", dv.ToTable());
 
-                ////Recommendation
-                //dv = dt1.DefaultView;
-                //dv.RowFilter = ("authorizeid <>'' and recommendid=''");
-                //this.Data_Bind("gvrecommend", dv.ToTable());
+                //Recommendation
+                dv = dt1.DefaultView;
+                dv.RowFilter = ("authorizeid <>'' and recommendid=''");
+                this.Data_Bind("gvrecommended", dv.ToTable());
 
 
                 ////First Approval
-                //dv = dt1.DefaultView;
-                //dv.RowFilter = ("recommendid <>'' and firstaprvid=''");
-                //this.Data_Bind("gvfirstapp", dv.ToTable());
+                dv = dt1.DefaultView;
+                dv.RowFilter = ("recommendid <>'' and firstaprvid=''");
+                this.Data_Bind("gvfirstapp", dv.ToTable());
 
 
                 ////Final Approval
-                //dv = dt1.DefaultView;
-                //dv.RowFilter = ("firstaprvid <>'' and finalaprvid=''");
-                //this.Data_Bind("gvapproval", dv.ToTable());
+                dv = dt1.DefaultView;
+                dv.RowFilter = ("firstaprvid <>'' and finalaprvid=''");
+                this.Data_Bind("gvfinalapp", dv.ToTable());
 
 
                 ////Schedule Update 
-                //dv = dt1.DefaultView;
-                //dv.RowFilter = ("firstaprvid <>'' and finalaprvid=''");
-                //this.Data_Bind("gvscheduleup", dv.ToTable());
+                dv = dt1.DefaultView;
+                dv.RowFilter = ("finalaprvid <>''");
+                this.Data_Bind("gvschupdate", dv.ToTable());
             }
 
             catch (Exception ex)
@@ -204,55 +204,55 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 case "0":
                     this.pnlstatus.Visible = true;
-                    this.pnlreqchk.Visible = false;
-                    this.pnlReqAprv.Visible = false;
-                    this.pnlgatepass.Visible = false;
+                    this.pnlauthorized.Visible = false;
+                    this.pnlrecommended.Visible = false;
+                    this.pnlfirstApp.Visible = false;
                     this.pnlapproval.Visible = false;
-                    this.pnlaccount.Visible = false;
+                    this.pnlschupdate.Visible = false;
                     this.RadioButtonList1.Items[0].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[0].Attributes["style"] = "background: #430000; display:block; ";
                     break;
                 // mat req checked
                 case "1":
                     this.pnlstatus.Visible = false;
-                    this.pnlreqchk.Visible = true;
-                    this.pnlReqAprv.Visible = false;
-                    this.pnlgatepass.Visible = false;
+                    this.pnlauthorized.Visible = true;
+                    this.pnlrecommended.Visible = false;
+                    this.pnlfirstApp.Visible = false;
                     this.pnlapproval.Visible = false;
-                    this.pnlaccount.Visible = false;
+                    this.pnlschupdate.Visible = false;
                     //this.RadioButtonList1.Items[1].Attributes["style"] = "background: #430000; display:block; ";
                     this.RadioButtonList1.Items[1].Attributes["class"] = "lblactive blink_me";
                     break;
                 // mat req approval
                 case "2":
                     this.pnlstatus.Visible = false;
-                    this.pnlreqchk.Visible = false;
-                    this.pnlReqAprv.Visible = true;
-                    this.pnlgatepass.Visible = false;
+                    this.pnlauthorized.Visible = false;
+                    this.pnlrecommended.Visible = true;
+                    this.pnlfirstApp.Visible = false;
                     this.pnlapproval.Visible = false;
-                    this.pnlaccount.Visible = false;
+                    this.pnlschupdate.Visible = false;
                     //this.RadioButtonList1.Items[1].Attributes["style"] = "background: #430000; display:block; ";
                     this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
                     break;
                 // gate pass
                 case "3":
                     this.pnlstatus.Visible = false;
-                    this.pnlreqchk.Visible = false;
-                    this.pnlReqAprv.Visible = false;
-                    this.pnlgatepass.Visible = true;
+                    this.pnlauthorized.Visible = false;
+                    this.pnlrecommended.Visible = false;
+                    this.pnlfirstApp.Visible = true;
                     this.pnlapproval.Visible = false;
-                    this.pnlaccount.Visible = false;
+                    this.pnlschupdate.Visible = false;
                     this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[2].Attributes["style"] = "background: #430000; display:block; ";
                     break;
                 //gate pass Approval
                 case "4":
                     this.pnlstatus.Visible = false;
-                    this.pnlreqchk.Visible = false;
-                    this.pnlReqAprv.Visible = false;
-                    this.pnlgatepass.Visible = false;
+                    this.pnlauthorized.Visible = false;
+                    this.pnlrecommended.Visible = false;
+                    this.pnlfirstApp.Visible = false;
                     this.pnlapproval.Visible = true;
-                    this.pnlaccount.Visible = false;
+                    this.pnlschupdate.Visible = false;
                     this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[3].Attributes["style"] = "background: #430000; display:block; ";
                     break;
@@ -260,11 +260,11 @@ namespace RealERPWEB.F_99_Allinterface
                 // audit
                 case "5":
                     this.pnlstatus.Visible = false;
-                    this.pnlreqchk.Visible = false;
-                    this.pnlReqAprv.Visible = false;
-                    this.pnlgatepass.Visible = false;
+                    this.pnlauthorized.Visible = false;
+                    this.pnlrecommended.Visible = false;
+                    this.pnlfirstApp.Visible = false;
                     this.pnlapproval.Visible = false;
-                    this.pnlaccount.Visible = true;
+                    this.pnlschupdate.Visible = true;
                     this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[3].Attributes["style"] = "background: #430000; display:block; ";
                     break;
@@ -291,27 +291,27 @@ namespace RealERPWEB.F_99_Allinterface
                   
                     break;
 
-                case "gvreqaprv":
-                    this.gvreqaprv.DataSource = dt;
-                    this.gvreqaprv.DataBind();
+                case "gvrecommended":
+                    this.gvrecommended.DataSource = dt;
+                    this.gvrecommended.DataBind();
                    
                     break;
 
-                case "gvgatepass":
-                    this.gvgatepass.DataSource = dt;
-                    this.gvgatepass.DataBind();
+                case "gvfirstapp":
+                    this.gvfirstapp.DataSource = dt;
+                    this.gvfirstapp.DataBind();
                    
                     break;
 
-                case "gvapproval":
-                    this.gvapproval.DataSource = dt;
-                    this.gvapproval.DataBind();
+                case "gvfinalapp":
+                    this.gvfinalapp.DataSource = dt;
+                    this.gvfinalapp.DataBind();
                    
                     break;
                 
-                case "gvaccount":
-                    this.gvaccount.DataSource = dt;
-                    this.gvaccount.DataBind();
+                case "gvschupdate":
+                    this.gvschupdate.DataSource = dt;
+                    this.gvschupdate.DataBind();
                    
                     break;
 
@@ -392,142 +392,6 @@ namespace RealERPWEB.F_99_Allinterface
 
             }
         }
-        protected void lnkremovegp_Click(object sender, EventArgs e)
-        {
-            string comcod = this.GetCompCode();
-            int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-
-
-            string adno = ((Label)this.gvgatepass.Rows[Rowindex].FindControl("lbltrnnog")).Text.Trim();
-            DataSet ds1 = feaData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "PrevMTRInfo", adno, "", "", "", "", "", "", "", "");
-            if (ds1 == null)
-                return;
-
-            bool result = log.XmlDataInsertReq(adno, ds1);
-
-            if (!result)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Update Fail .. !!');", true);
-                return;
-
-            }
-            string callType = this.getGpaDelCallType();
-
-            bool result1 = feaData.UpdateTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", callType, adno, "", "", "", "", "", "", "", "", "", "");
-            if (!result1)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Removed Fail .. !!');", true);
-                return;
-            }
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Successfully Removed');", true);
-            this.RadioButtonList1_SelectedIndexChanged(null, null);
-
-        }
-        protected void lnkremoveap_Click(object sender, EventArgs e)
-        {
-
-            string comcod = this.GetCompCode();
-            int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            string gatepasno = ((Label)this.gvapproval.Rows[Rowindex].FindControl("lblgetpasno")).Text.Trim();
-
-
-            DataSet ds1 = feaData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GETPURGERPASSINFO", gatepasno, "", "", "", "", "", "", "", "");
-            if (ds1 == null)
-                return;
-
-            bool result = log.XmlDataInsertReq(gatepasno, ds1);
-
-            if (!result)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Failed .. !!');", true);
-
-                return;
-
-            }
-            string ctype = this.getCompanyRef();
-            bool result1 = feaData.UpdateTransInfo(comcod, "SP_REPORT_TRANSFER_INTERFACE", "UPGATEPASSMAT", gatepasno, ctype, "", "", "", "", "", "", "", "", "");
-            if (!result1)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Removed Failed .. !!');", true);
-                return;
-            }
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Successfully Removed');", true);
-            this.RadioButtonList1_SelectedIndexChanged(null, null);
-        }
-
-
-        private string getGpaDelCallType()
-        {
-            string comcod = this.GetCompCode();
-            string callType = "";
-            switch (comcod)
-            {
-                // todo for  mrtreq approval part 
-
-                case "3101": // pintech
-                case "3367": // epic
-                case "1205": // p2p
-                case "3351": // p2p
-                case "3352": // p2p
-                    callType = "DELETEMTRREQAPRV";
-                    break;
-
-                // todo for skip mrtreq approval part
-                default:
-                    callType = "DELETEMTRTRANS";
-                    break;
-            }
-            return callType;
-        }
-
-        private string getCompanyRef()
-        {
-            string comcod = this.GetCompCode();
-            string ctype = "";
-            switch (comcod)
-            {
-                //case "3101":
-                case "3338":
-                    ctype = "SingleGPA";
-                    break;
-
-                default:
-                    ctype = "";
-                    break;
-            }
-            return ctype;
-
-        }
-
-       
-        protected void lnkremoveac_Click(object sender, EventArgs e)
-        {
-            string comcod = this.GetCompCode();
-            int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            string trnno = ((Label)this.gvaccount.Rows[Rowindex].FindControl("lbltrannoac")).Text.Trim();
-
-            DataSet ds1 = feaData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "PrevTransferInfo", trnno, "", "", "", "", "", "", "", "");
-            if (ds1 == null)
-                return;
-
-            bool result = log.XmlDataInsertReq(trnno, ds1);
-
-            if (!result)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Fail');", true);
-                return;
-
-            }
-            bool result1 = feaData.UpdateTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", "UPAUDITEDMAT", trnno, "", "", "", "", "", "", "", "", "", "");
-            if (!result1)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Remove failed!";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Successfully Removed";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-        }
 
 
         protected void gvstatus_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -561,107 +425,13 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
-        protected void gvreqaprv_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            //if (e.Row.RowType == DataControlRowType.DataRow)
-            //{
+      
+       
 
-            //    HyperLink hlnkreqap = (HyperLink)e.Row.FindControl("lnkreqaprv");
+  
 
-            //    string mtreqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mtreqno")).ToString();
-            //    //hlnkreqap.NavigateUrl = "~/F_12_Inv/MaterialsTransfer?Type=Entry&genno=" + getpasno;
-            //    hlnkreqap.NavigateUrl = "~/F_12_Inv/PurMTReqEntry?Type=ReqApproval&prjcode=" + "" + "&genno=" + mtreqno;
-
-            //}
-        }
-
-        protected void lnkremoverap_Click(object sender, EventArgs e)
-        {
-            string comcod = this.GetCompCode();
-            int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-
-
-            string mtreqno = ((Label)this.gvreqaprv.Rows[Rowindex].FindControl("lbltrnnorap")).Text.Trim();
-            DataSet ds1 = feaData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "PrevMTRInfo", mtreqno, "", "", "", "", "", "", "", "");
-            if (ds1 == null)
-                return;
-
-            bool result = log.XmlDataInsertReq(mtreqno, ds1);
-
-            if (!result)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail .. !!');", true);
-                return;
-
-            }
-            string callType = this.getReqCheckCallType();
-
-            bool result1 = feaData.UpdateTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", callType, mtreqno, "", "", "", "", "", "", "", "", "");
-            if (!result1)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Removed Fail .. !!');", true);
-                return;
-            }
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Successfully Removed');", true);
-            this.RadioButtonList1_SelectedIndexChanged(null, null);
-            
-        }
-
-        private string getReqCheckCallType()
-        {
-            string comcod = this.GetCompCode();
-            string callType = "";
-            switch (comcod)
-            {
-                // todo for  mrtreq approval part 
-
-                case "3101": // pintech
-                case "3367": // epic
-                case "1205": // p2p
-                case "3351": // p2p
-                case "3352": // p2p
-                    callType = "DELETEMTRREQCHECK";
-                    break;
-
-                // todo for skip mrtreq approval part
-                default:
-                    callType = "DELETEMTRTRANS";
-                    break;
-            }
-            return callType;
-        }
-
-        protected void lnkbtnEdit_Click(object sender, EventArgs e)
-        {
-            //string url = "PurMTReqGatePass?Type=Entry";
-            //string comcod = this.GetCompCode();
-            //((Label)this.Master.FindControl("lblprintstk")).Text = "";
-            //DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
-            //if (!Convert.ToBoolean(dr1[0]["delete"]))
-            //{
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
-            //    return;
-            //}
-
-            //int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            //string mtrno = ((Label)this.gvgatepass.Rows[RowIndex].FindControl("lbltrnnog")).Text.Trim();
-            //string mrefno = ((Label)this.gvgatepass.Rows[RowIndex].FindControl("lblmtrdgpmanual")).Text.Trim();
-            //string mtrdat = ((Label)this.gvgatepass.Rows[RowIndex].FindControl("lblmtrdgp")).Text.Trim();
-
-
-
-        }
-
-        protected void lbtnResFooterTotal_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void gvMtrReInfo_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-
-        }
-
+      
+      
         protected void gvreqchk_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -705,8 +475,71 @@ namespace RealERPWEB.F_99_Allinterface
             //}
         }
 
+        private void GetApproval(string noteshtid, string Approval)
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string usrid = hst["usrid"].ToString();
+            string trmid = hst["compname"].ToString();
+            string session = hst["session"].ToString();
+            string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+          
+
+            bool result = GNoteData.UpdateTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "NOTESHEETAPPROVAL", Approval, noteshtid, usrid, trmid, session, Date, "", "", "", "", "", "", "", "", "");
+
+
+
+
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + GNoteData.ErrorObject["Msg"] + "');", true);
+                return;
+            }
+
+
+            string msg = "";
+
+            switch (Approval)
+            {
+                case "Authorized":
+                    msg = "Authorized ";
+                    break;
+
+                case "Recommended":
+                    msg = "Recommended";
+                    break;
+
+                case "Approved":
+                    msg = "Approved ";
+                    break;
+
+                case "FinalApproved":
+                    msg = "Final Approved ";
+                    break;
+
+
+
+
+
+
+            }
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+ msg + "');", true);
+            this.GetNoteSheetInterface();
+            this.RadioButtonList1_SelectedIndexChanged(null, null);
+
+
+        }
+
         protected void lnkauthorize_Click(object sender, EventArgs e)
         {
+            string Approval = "Authorized";           
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string noteshtid = ((Label)this.gvauthorize.Rows[RowIndex].FindControl("lblgvnoteshtidaut")).Text.Trim();
+            this.GetApproval(noteshtid, Approval);
+
 
         }
 
@@ -737,6 +570,128 @@ namespace RealERPWEB.F_99_Allinterface
 
                 hlnkreqchk.NavigateUrl = "~/F_22_Sal/MktGrandNoteSheet?Type=Entry&genno=" + noteshtid;
             }
+        }
+
+        protected void gvrecommended_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+               
+
+                
+                HyperLink hlnkViewrecm = (HyperLink)e.Row.FindControl("hlnkViewrecm");
+                string noteshtid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "noteshtid")).ToString();
+                hlnkViewrecm.NavigateUrl = "~/F_22_Sal/MktGrandNoteSheet?Type=Entry&genno=" + noteshtid;
+            }
+
+        }
+
+        protected void lnkremoverecm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lnkrecommended_Click(object sender, EventArgs e)
+        {
+
+
+            string url = "MktGrandNoteSheet?Type=recom";  
+            DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
+            if (dr1.Length==0)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('You have no permission');", true);               
+                return;
+            }
+
+            string Approval = "Recommended";
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string noteshtid = ((Label)this.gvrecommended.Rows[RowIndex].FindControl("lblgvnoteshtidrecm")).Text.Trim();
+            this.GetApproval(noteshtid, Approval);
+
+
+
+
+        }
+
+        protected void gvfirstapp_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlnkView = (HyperLink)e.Row.FindControl("hlnkViewrfirstapp");
+                string noteshtid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "noteshtid")).ToString();
+                hlnkView.NavigateUrl = "~/F_22_Sal/MktGrandNoteSheet?Type=Entry&genno=" + noteshtid;
+            }
+
+        }
+
+        protected void lnkfirstapp_Click(object sender, EventArgs e)
+        {
+            string url = "MktGrandNoteSheet?Type=firstapp";
+            DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
+            if (dr1.Length == 0)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('You have no permission');", true);
+                return;
+            }
+
+            string Approval = "Approved";
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string noteshtid = ((Label)this.gvfirstapp.Rows[RowIndex].FindControl("lblgvnoteshtidfirstapp")).Text.Trim();
+            this.GetApproval(noteshtid, Approval);
+        }
+
+        protected void lnkremovefirstapp_Click(object sender, EventArgs e)
+        {
+           
+
+        }
+
+        protected void gvfinalapp_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlnkView = (HyperLink)e.Row.FindControl("hlnkViewrfinalapp");
+                string noteshtid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "noteshtid")).ToString();
+                hlnkView.NavigateUrl = "~/F_22_Sal/MktGrandNoteSheet?Type=Entry&genno=" + noteshtid;
+            }
+        }
+
+        protected void lnkremovefinalapp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lnkfinalapp_Click(object sender, EventArgs e)
+        {
+
+            string url = "MktGrandNoteSheet?Type=finalapp";
+            DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
+            if (dr1.Length == 0)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('You have no permission');", true);
+                return;
+            }
+
+            string Approval = "FinalApproved";
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string noteshtid = ((Label)this.gvfinalapp.Rows[RowIndex].FindControl("lblgvnoteshtidfinalapp")).Text.Trim();
+            this.GetApproval(noteshtid, Approval);
+        }
+
+        protected void lnkschup_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvschupdate_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlnkView = (HyperLink)e.Row.FindControl("hlnkViewrschup");
+                string noteshtid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "noteshtid")).ToString();
+                hlnkView.NavigateUrl = "~/F_22_Sal/MktGrandNoteSheet?Type=Entry&genno=" + noteshtid;
+            }
+
         }
     }
 }

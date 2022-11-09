@@ -1177,6 +1177,11 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2202000", "2202036", "F_22_Sal", "EntryClientNameTransfer?Type=Mgt", "", "Client Info Transfer (Name Trans)", "Sales & Recovery", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "2202000", "2202040", "F_22_Sal", "MktGrandNoteSheet?", "Type=Entry", "Grand Note Sheet", "Sales & Recovery", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2202000", "2202041", "F_22_Sal", "MktGrandNoteSheet?", "Type=recom", "Recommended(Grand Note Sheet)", "Sales & Recovery", "False", "False", "False", "False" });
+
+            tblObj.Rows.Add(new Object[] { "2202000", "2202042", "F_22_Sal", "MktGrandNoteSheet?", "Type=firstapp", "1st Approval(Grand Note Sheet)", "Sales & Recovery", "False", "False", "False", "False" });
+
+            tblObj.Rows.Add(new Object[] { "2202000", "2202043", "F_22_Sal", "MktGrandNoteSheet?", "Type=finalapp", "Final Approval(Grand Note Sheet)", "Sales & Recovery", "False", "False", "False", "False" });
 
 
             tblObj.Rows.Add(new Object[] { "2202000", "2202050", "F_22_Sal", "MktSampleNoteSheet?", "Type=Entry", "Sample Note Sheet", "Sales & Recovery", "False", "False", "False", "False" });
