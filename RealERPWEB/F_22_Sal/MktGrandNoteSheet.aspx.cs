@@ -308,10 +308,12 @@ namespace RealERPWEB.F_22_Sal
             string valutility = Convert.ToDouble(ds1.Tables[0].Rows[0]["utility"]).ToString("#,##0;(#,##0);");
             string other = Convert.ToDouble(ds1.Tables[0].Rows[0]["others"]).ToString("#,##0;(#,##0);");
             string Total = Convert.ToDouble(ds1.Tables[0].Rows[0]["tunitamt"]).ToString("#,##0;(#,##0);");
-            string bookingpercnt = Convert.ToDouble(ds1.Tables[0].Rows[0]["bookingper"]).ToString("#,##0;(#,##0);");
-            string bookingmoney = Convert.ToDouble(ds1.Tables[0].Rows[0]["bookingam"]).ToString("#,##0;(#,##0);");
+            string downpercnt = Convert.ToDouble(ds1.Tables[0].Rows[0]["bookingper"]).ToString("#,##0;(#,##0);");
+            string valdownpayamy = Convert.ToDouble(ds1.Tables[0].Rows[0]["bookingam"]).ToString("#,##0;(#,##0);");
             string valnoofemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["noofemi"]).ToString("#,##0;(#,##0);");
             string emi = Convert.ToDouble(ds1.Tables[0].Rows[0]["emi"]).ToString("#,##0;(#,##0);");
+           
+            string downpaydate = Convert.ToDateTime(lstb[0].schdate).ToString("dd-MMM-yyyy");
             string fvpsft = bfvpsft.ToString("#,##0;(#,##0);");
             string pvpersft = bpvpsft.ToString("#,##0;(#,##0);");
 
@@ -331,11 +333,16 @@ namespace RealERPWEB.F_22_Sal
             string coffemi = Convert.ToDouble("0"+this.lblvalcoffemi.InnerText).ToString("#,##0;(#,##0);");
             string cofffvpersft =Convert.ToDouble(this.lblvalcofffvpersft.InnerText).ToString("#,##0;(#,##0);");
             string coffpvpersft = Convert.ToDouble(this.lblvalcoffpvpersft.InnerText).ToString("#,##0;(#,##0);");
+          
+            string coffbookingdate = (Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("dd-MMM-yyyy") == "01-Jan-1900") ? "" : Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("dd-MMM-yyyy");
+            string coffdpaymentper = (Convert.ToDouble(ds1.Tables[0].Rows[0]["coffdpaymntper"]) == 0) ? "" : Convert.ToDouble(ds1.Tables[0].Rows[0]["coffdpaymntper"]).ToString("#,##0;(#,##0);");
+            string coffdpaymentam = (Convert.ToDouble(ds1.Tables[0].Rows[0]["coffdpaymntam"]) == 0) ? "" : Convert.ToDouble(ds1.Tables[0].Rows[0]["coffdpaymntam"]).ToString("#,##0;(#,##0);");
+            string coffdpaymentdate = (Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffdpaymntdat"]).ToString("dd-MMM-yyyy") == "01-Jan-1900") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffdpaymntdat"]).ToString("dd-MMM-yyyy");
 
 
-           
 
-            
+
+
 
             LocalReport Rpt1 = new LocalReport();
             var lst1 = lstb;
@@ -377,8 +384,9 @@ namespace RealERPWEB.F_22_Sal
                 Rpt1.SetParameters(new ReportParameter("valutility", valutility));
                 Rpt1.SetParameters(new ReportParameter("other", other));
                 Rpt1.SetParameters(new ReportParameter("Total", Total));
-                Rpt1.SetParameters(new ReportParameter("bookingpercnt", bookingpercnt));
-                Rpt1.SetParameters(new ReportParameter("bookingmoney", bookingmoney));
+                Rpt1.SetParameters(new ReportParameter("downpercnt", downpercnt));
+                Rpt1.SetParameters(new ReportParameter("downpaydate", downpaydate));
+                Rpt1.SetParameters(new ReportParameter("valdownpayamy", valdownpayamy));
                 Rpt1.SetParameters(new ReportParameter("valnoofemi", valnoofemi));
                 Rpt1.SetParameters(new ReportParameter("emi", emi));
                 Rpt1.SetParameters(new ReportParameter("fvpsft", fvpsft));
@@ -391,8 +399,12 @@ namespace RealERPWEB.F_22_Sal
                 Rpt1.SetParameters(new ReportParameter("valcoffutility", valcoffutility));
                 Rpt1.SetParameters(new ReportParameter("valcoffothers", valcoffothers));
                 Rpt1.SetParameters(new ReportParameter("coffTotal", coffTotal));
-                Rpt1.SetParameters(new ReportParameter("coffbookinmpercnt", coffbookinmpercnt));
+                
                 Rpt1.SetParameters(new ReportParameter("coffbookingam", coffbookingam));
+                Rpt1.SetParameters(new ReportParameter("coffdpaymentper", coffdpaymentper));
+                Rpt1.SetParameters(new ReportParameter("coffbookingdate", coffbookingdate));
+                Rpt1.SetParameters(new ReportParameter("coffdpaymentam", coffdpaymentam));
+                Rpt1.SetParameters(new ReportParameter("coffdpaymentdate", coffdpaymentdate));
 
                 Rpt1.SetParameters(new ReportParameter("coffnooffemi", coffnooffemi));
                 Rpt1.SetParameters(new ReportParameter("coffemi", coffemi));
@@ -435,8 +447,12 @@ namespace RealERPWEB.F_22_Sal
                 Rpt1.SetParameters(new ReportParameter("valutility", valutility));
                 Rpt1.SetParameters(new ReportParameter("other", other));
                 Rpt1.SetParameters(new ReportParameter("Total", Total));
-                Rpt1.SetParameters(new ReportParameter("bookingpercnt", bookingpercnt));
-                Rpt1.SetParameters(new ReportParameter("bookingmoney", bookingmoney));
+                Rpt1.SetParameters(new ReportParameter("downpercnt", downpercnt));
+                Rpt1.SetParameters(new ReportParameter("downpaydate", downpaydate));
+                Rpt1.SetParameters(new ReportParameter("valdownpayamy", valdownpayamy));
+               
+                Rpt1.SetParameters(new ReportParameter("downpaydate", downpaydate));
+                Rpt1.SetParameters(new ReportParameter("bookingmoney", valdownpayamy));
                 Rpt1.SetParameters(new ReportParameter("valnoofemi", valnoofemi));
                 Rpt1.SetParameters(new ReportParameter("emi", emi));
                 Rpt1.SetParameters(new ReportParameter("fvpsft", fvpsft));
@@ -449,8 +465,11 @@ namespace RealERPWEB.F_22_Sal
                 Rpt1.SetParameters(new ReportParameter("valcoffutility", valcoffutility));
                 Rpt1.SetParameters(new ReportParameter("valcoffothers", valcoffothers));
                 Rpt1.SetParameters(new ReportParameter("coffTotal", coffTotal));
-                Rpt1.SetParameters(new ReportParameter("coffbookinmpercnt", coffbookinmpercnt));
                 Rpt1.SetParameters(new ReportParameter("coffbookingam", coffbookingam));
+                Rpt1.SetParameters(new ReportParameter("coffdpaymentper", coffdpaymentper));
+                Rpt1.SetParameters(new ReportParameter("coffbookingdate", coffbookingdate));
+                Rpt1.SetParameters(new ReportParameter("coffdpaymentam", coffdpaymentam));
+                Rpt1.SetParameters(new ReportParameter("coffdpaymentdate", coffdpaymentdate));
 
                 Rpt1.SetParameters(new ReportParameter("coffnooffemi", coffnooffemi));
                 Rpt1.SetParameters(new ReportParameter("coffemi", coffemi));
