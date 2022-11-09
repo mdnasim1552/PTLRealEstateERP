@@ -5,12 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <style>
-        .aspNetDisabled {
-            width: 100%;
-            height: 2.25rem;
-        }
-    </style>
+   
     <script language="javascript" type="text/javascript">
         $(document).ready(function () {
 
@@ -31,6 +26,16 @@
             });
         };
     </script>
+     <style>
+        .aspNetDisabled {
+            width: 100%;
+            height: 2.25rem;
+        }
+        .chzn-select {
+            width: 100%;
+            height: 2.25rem;
+        }
+    </style>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
@@ -52,14 +57,18 @@
                 </asp:UpdateProgress>
             </div>
             <div>
-                <div class="row mt-5" runat="server">
-                    <div class="col-12 col-lg-3 col-xl-3">
+                <div class="row mt-3" runat="server">
+                    <div class="col-12 col-lg-4 col-xl-4">
                         <div class="card">
                             <div class="card-header bg-light"><span class="font-weight-bold text-muted">Indent Material Required- Entry</span></div>
                             <div class="card-body" runat="server">
+                                <div class="form-group">
+                                    <label for="ddlLvType">
+                                        Previous Material Required <asp:LinkButton ID="lnkPrvList" OnClick="lnkPrvList_Click" runat="server"><i class="fa fa-search"> </i></asp:LinkButton>
+                                    </label>
+                                    <asp:DropDownList ID="ddlPreList" OnSelectedIndexChanged="ddlStoreList_SelectedIndexChanged" AutoPostBack="true" class="chzn-select form-control" runat="server"></asp:DropDownList>
+                                </div>
                                 <div class="row">
-
-                                    <asp:DropDownList ID="ddlPreList" runat="server"></asp:DropDownList>
                                     <div class="form-group pl-0 col-4">
                                         <label for="ddlLvType">
                                             Date  
@@ -81,6 +90,8 @@
                                     <div class="form-group col-4 pr-0">
                                         <label for="ddlLvType">
                                             Ref No. #  
+                                             <asp:RequiredFieldValidator ID="refno" runat="server" ControlToValidate="txtrefno" ErrorMessage="*" SetFocusOnError="true"   
+ForeColor="Red"></asp:RequiredFieldValidator>  
                                         </label>
                                         <asp:TextBox ID="txtrefno" runat="server" CssClass="form-control"></asp:TextBox>
 
@@ -107,6 +118,7 @@
                                 <div class="form-group" id="divMatrial" runat="server" visible="false">
                                     <label for="ddlLvType">
                                         Materials
+                                       
                                     </label>
                                     <asp:DropDownList ID="ddlMaterials" runat="server" OnSelectedIndexChanged="ddlMaterials_SelectedIndexChanged" AutoPostBack="true" class="chzn-select form-control"></asp:DropDownList>
                                 </div>
@@ -125,7 +137,7 @@
 
                         </div>
                     </div>
-                    <div class="col-12 col-lg-9 col-xl-9">
+                    <div class="col-12 col-lg-8 col-xl-8">
                         <div class="card">
                             <div class="card-header bg-light"><span class="font-weight-bold text-muted">Added Material's</span></div>
                             <div class="card-body" runat="server">
@@ -142,7 +154,7 @@
                                                 </ItemTemplate>
                                                 <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                             </asp:TemplateField>
-                                            <asp:CommandField ShowDeleteButton="True" />
+                                            <asp:CommandField ShowDeleteButton="True" ItemStyle-ForeColor="Red" DeleteText='<i class="fa fa-trash"> </i>' />
                                             <asp:TemplateField HeaderText=" resourcecode" Visible="False">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvMatCode" runat="server"
@@ -151,15 +163,7 @@
                                             </asp:TemplateField>
 
 
-                                            <asp:TemplateField HeaderText="MTRF No">
-                                                <ItemTemplate>
-                                                    <%--<asp:Label ID="lblgvmtrref" runat="server" Style="text-align: left"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mtrref")) %>'
-                                                        Width="70px"></asp:Label>--%>
-                                                </ItemTemplate>
-                                                <HeaderStyle Font-Bold="True" Font-Size="16px" />
-                                            </asp:TemplateField>
-
+                                        
 
 
                                             <asp:TemplateField HeaderText="Resource Description">
@@ -194,7 +198,7 @@
 
                                             <asp:TemplateField HeaderText="Qty">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtgvissueqty" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "stkqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'></asp:TextBox>
+                                                    <asp:TextBox ID="txtgvissueqty" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "issueqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'></asp:TextBox>
 
                                                 </ItemTemplate>
                                                 

@@ -9,6 +9,7 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
+            $('#inputtextbox').attr('autocomplete', 'off');
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
         });
@@ -185,7 +186,7 @@
                                 <div class="input-group-prepend ">
                                     <asp:Label ID="Label2" runat="server" CssClass="btn btn-secondary btn-sm">Search</asp:Label>
                                 </div>
-                                <asp:TextBox ID="inputtextbox" Style="height: 29px" runat="server" CssClass="form-control" placeholder="Search here..." onkeyup="Search_Gridview(this)"></asp:TextBox>
+                                <asp:TextBox ID="inputtextbox" Style="height: 29px" runat="server" autocomplete="off" Text="" CssClass="form-control" placeholder="Search here..." onkeyup="Search_Gridview(this)"></asp:TextBox>
 
                             </div>
                             <div class="input-group" hidden="hidden">
@@ -359,7 +360,7 @@
                                         <table style="width: 100%; display: none;">
                                             <tr>
                                                 <td>
-                                                    <asp:TextBox ID="txtSrCentrid" runat="server" CssClass="  inputtextbox" Width="30px"></asp:TextBox>
+                                                    <asp:TextBox ID="txtSrCentrid" runat="server" CssClass="inputtextbox" Width="30px"></asp:TextBox>
                                                 </td>
                                                 <td>
 

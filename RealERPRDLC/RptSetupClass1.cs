@@ -282,6 +282,7 @@ namespace RealERPRDLC
                 case "R_12_Inv.RptInterComTransStatus": Rpt1a = SetRptInterComTransStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMaterialsStock": Rpt1a = SetRptMaterialsStock(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptReqEntry02": Rpt1a = SetRptReqEntry02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_12_Inv.RptReqEntryEpic": Rpt1a = SetRptReqEntryEpic(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptReqEntry03": Rpt1a = SetRptReqEntry03(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptReqEntryInns": Rpt1a = SetRptReqEntryInns(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptReqEntryTropical": Rpt1a = SetRptReqEntryTropical(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -2674,6 +2675,11 @@ namespace RealERPRDLC
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.RptMaterialPurchaseRequisition>)RptDataSet));
             return Rpt1a;
+        }
+        private static LocalReport SetRptReqEntryEpic(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.RptMaterialPurchaseRequisition>)RptDataSet));
+            return Rpt1a; 
         }
 
 
