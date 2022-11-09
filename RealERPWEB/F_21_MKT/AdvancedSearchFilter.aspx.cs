@@ -69,14 +69,39 @@ namespace RealERPWEB.F_21_MKT
         protected void lnkbtnOk_Click(object sender, EventArgs e)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userrole = hst["userrole"].ToString();
+            string Empid = ((hst["empid"].ToString() == "") ? "%" : hst["empid"].ToString());
+            if (userrole == "1")
+            {
+                Empid = "%";
+            }
             string comcod = this.GetComeCode();
-            string Empid = this.ddlEmpid.SelectedValue;
-            DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE", "GET_PROSPECT_DETAILS", null, null, null, Empid);
-                 ViewState["tblempsup"] = ds3.Tables[0];
-            DataTable dt1 = (DataTable)ViewState["tblempsup"];
-            if (ds3 == null || dt1.Rows.Count == 0)
+            string Country = "%";
+            string Dist = "%";
+            string Zone = "%";
+            string PStat = "%";
+            string Area = "%";
+            string Block = "%";
+            string Pri = "%";
+            string Status = "%";
+            string Other = this.ddlOther.SelectedValue.ToString();
+            string TxtVal = "%" + this.txtVal.Text + "%";
+            string frmdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            string todate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+            string srchempid = ((this.ddlEmpid.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlEmpid.SelectedValue.ToString());
+
+            DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE", "GET_PROSPECT_DETAILS", null, null, null, "8301%", Empid, Country, Dist, Zone, PStat, Block, Area,
+                 Pri, Status, Other, TxtVal, todate, srchempid);
+
+
+
+            if (ds3 == null || ds3.Tables[0].Rows.Count == 0)
                 return;
-            this.lblname.Text = dt1.Rows[0]["EMPNAME"].ToString();
+            //ViewState["tblempsup"] = ds3.Tables[0];
+            //DataTable dt1 = (DataTable)ViewState["tblempsup"];
+
+            //this.lblname.Text = dt1.Rows[0]["EMPNAME"].ToString();
 
         }
         private void GETEMPLOYEEUNDERSUPERVISED()
@@ -93,7 +118,7 @@ namespace RealERPWEB.F_21_MKT
             DataTable dtemp = (DataTable)ViewState["tblempsup"];
             DataView dv;
             dv = dt1.Copy().DefaultView;
-            string ddlempid = this.ddlEmpid.SelectedValue.ToString();
+           string ddlempid = this.ddlEmpid.SelectedValue.ToString();
             
             string userrole = hst["userrole"].ToString();
             string lempid = hst["empid"].ToString();
@@ -126,7 +151,7 @@ namespace RealERPWEB.F_21_MKT
                 // if(dtE.Rows.Count>1)
                 //dtE.Rows.Add("000000000000", "Choose Employee..", "");
             }
-
+        
             this.ddlEmpid.DataTextField = "gdesc";
             this.ddlEmpid.DataValueField = "gcod";
             this.ddlEmpid.DataSource = dtE;
