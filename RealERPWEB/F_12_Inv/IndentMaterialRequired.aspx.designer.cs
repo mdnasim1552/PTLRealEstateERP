@@ -33,6 +33,15 @@ namespace RealERPWEB.F_12_Inv
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
+        /// lnkPrvList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkPrvList;
+
+        /// <summary>
         /// ddlPreList control.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,15 @@ namespace RealERPWEB.F_12_Inv
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label txtCurNo2;
+
+        /// <summary>
+        /// refno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator refno;
 
         /// <summary>
         /// txtrefno control.
