@@ -134,8 +134,7 @@
 
                 //var rbtn = $("input[name='ctl00$ContentPlaceHolder1$rbtnlst']:checked").val();;
 
-               
-
+                
 
                 var saldata = JSON.parse(data);
                 var empleadst = JSON.parse(data1);

@@ -382,7 +382,7 @@
 
                      <%--           <div class="table-responsive">--%>
                                     <asp:GridView ID="gvpayroll" runat="server" ClientIDMode="Static" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                        AutoGenerateColumns="False" ShowFooter="True">
+                                        AutoGenerateColumns="False" ShowFooter="True" >
 
                                         <RowStyle />
                                         <Columns>
@@ -430,7 +430,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
 
-                                                    <asp:CheckBox ID="chkSalaryLock" runat="server"  CssClass="btn btn-primary btn-sm checkBox" Text="Lock"  />
+                                                    <%--<asp:CheckBox ID="chkSalaryLock" runat="server"  CssClass="btn btn-primary btn-sm checkBox" Text="Lock"  OnCheckedChanged="chkSalaryLock_CheckedChanged1" AutoPostBack="true" />--%>
                                                   
                                                 </FooterTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" Width="100px" />
@@ -1015,7 +1015,13 @@
                                         <PagerStyle CssClass="gvPagination" />
                                         <HeaderStyle CssClass="grvHeader" />
                                     </asp:GridView>
-                                </div>
+                               
+                                
+                            
+                                <asp:CheckBox ID="chkSalaryLock" runat="server"  CssClass="btn btn-primary btn-sm checkBox" Text="Lock" OnCheckedChanged="chkSalaryLock_CheckedChanged" AutoPostBack="true"  Visible="false"  />
+
+                            
+                            </div>
                           <%--  </div>--%>
 
 

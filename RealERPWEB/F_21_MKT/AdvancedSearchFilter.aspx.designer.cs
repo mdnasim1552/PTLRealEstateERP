@@ -87,49 +87,49 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.Label lblname;
 
         /// <summary>
-        /// lbldesig control.
+        /// lblconper control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbldesig;
+        protected global::System.Web.UI.WebControls.Label lblconper;
 
         /// <summary>
-        /// lbljoin control.
+        /// lblmbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbljoin;
+        protected global::System.Web.UI.WebControls.Label lblmbl;
 
         /// <summary>
-        /// lblsep control.
+        /// lblhomead control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblsep;
+        protected global::System.Web.UI.WebControls.Label lblhomead;
 
         /// <summary>
-        /// lblidcard control.
+        /// lblprof control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblidcard;
+        protected global::System.Web.UI.WebControls.Label lblprof;
 
         /// <summary>
-        /// lblsection control.
+        /// lblstatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblsection;
+        protected global::System.Web.UI.WebControls.Label lblstatus;
 
         /// <summary>
         /// Label11 control.

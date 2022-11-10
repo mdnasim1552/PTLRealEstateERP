@@ -510,6 +510,15 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         protected global::System.Web.UI.WebControls.GridView gvpayroll;
 
         /// <summary>
+        /// chkSalaryLock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkSalaryLock;
+
+        /// <summary>
         /// FestivalBonus control.
         /// </summary>
         /// <remarks>
