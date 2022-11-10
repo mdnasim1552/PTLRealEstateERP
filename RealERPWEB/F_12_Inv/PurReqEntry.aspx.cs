@@ -2700,11 +2700,9 @@ namespace RealERPWEB.F_12_Inv
 
 
             string Type = Request.QueryString["InputType"].ToString();
-<<<<<<< HEAD
-            if (Type == "Entry" || Type == "FxtAstEntry" || Type == "IndentEntry")
-=======
+
             if (Type == "Entry" || Type == "IndentEntry" ||  Type == "FxtAstEntry")
->>>>>>> 0e348cfde8f17f79b1bcee8c62b8c8c3598e3819
+
             {
                 this.ddlPrevReqList.Items.Clear();
             }
