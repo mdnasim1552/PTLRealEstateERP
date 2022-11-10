@@ -745,13 +745,15 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
             Session["tblprojectdetails"] = dt3.Tables[0];
         }
-        private string GetLastid()
+        private string GetLastid(string code = "")
         {
             string sircode = "";
-
+            
             string comcod = this.GetCompCode();
-
-            DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETLASTPRJCODEID", "", "", "", "", "", "");
+            string calltype = (code == "" ? "GETLASTPRJCODEID" : "GETLASTPRJCODESOWID");
+            DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", calltype, "", "", "", "", "", "");          
+              
+            
             if (ds1 == null)
                 return sircode;
             sircode = ds1.Tables[0].Rows[0]["sircode"].ToString();
@@ -778,7 +780,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             }
         }
-        private void LoadGrid(string custid = "", string value = "", string empid = "",string doneqty="")
+        private void LoadGrid(string custid = "", string value = "", string empid = "", string doneqty = "")
         {
 
             string comcod = this.GetCompCode();
@@ -988,7 +990,7 @@ namespace RealERPWEB.F_99_Allinterface
                         {
                             ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Visible = true;
                             ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Text = doneqty;
-                           ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                             ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                             ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
                             ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = false;
@@ -1099,7 +1101,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CustomerCreate();", true);
                 string customerId = result.Tables[0].Rows[0]["custid"].ToString();
                 GetCustomerList();
-                this.LoadGrid(customerId, "","","");
+                this.LoadGrid(customerId, "", "", "");
             }
             catch (Exception exp)
             {
@@ -1114,15 +1116,40 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 string prjcode = this.lblproj.Text.Trim().ToString();
                 string comcod = this.GetCompCode();
-                string sircode = prjcode.Length > 0 ? prjcode : this.GetLastid();
+                //DataTable dt = (DataTable)ViewState["tblcustinf"];
+                //for (int i = 0; i < dt.Rows.Count; i++)
+                //{
+                //    string Gcode = dt.Rows[i]["gcod"].ToString();
+
+                //}
+                //    string ordertype = "";
+               
 
                 for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
                 {
+                   
                     string Gcode = ((Label)this.gvProjectInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
                     string gtype = ((Label)this.gvProjectInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
 
 
                     string Gvalue = (((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
+                    string sircode = "";
+                    if (Gcode == "03018")
+                    {
+                       
+                        string sow = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
+                        if (sow == "80201")
+                        {
+                            sircode = prjcode.Length > 0 ? prjcode : this.GetLastid(sow);
+
+                        }
+                        else
+                        {
+                            sircode = prjcode.Length > 0 ? prjcode : this.GetLastid("");
+                        }
+                        
+
+                    }
                     if (Gcode == "03008" || Gcode == "03009")
                     {
                         Gvalue = (((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? "01-Jan-1900" : ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
