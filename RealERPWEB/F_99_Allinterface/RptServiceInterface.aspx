@@ -1202,7 +1202,18 @@
                                                                 <HeaderStyle HorizontalAlign="Left" />
 
                                                             </asp:TemplateField>
+                                                                   <asp:TemplateField HeaderText="Ref. Quantino" Visible="false">
 
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblquotid1" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "quotid1")) %>'
+                                                                        Width="200px"></asp:Label>
+                                                                </ItemTemplate>
+
+
+                                                                <HeaderStyle HorizontalAlign="Left" />
+
+                                                            </asp:TemplateField>
 
 
                                                             <asp:TemplateField HeaderText="Customer Name">
