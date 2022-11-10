@@ -690,7 +690,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row" style="display: none;">
+                                            <div class="row" >
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin font-weight-bold">
                                                         <label id="lbltxtcofffvpersft" runat="server">FV per SFT</label>
@@ -705,7 +705,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row" style="display: none;">
+                                            <div class="row">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin font-weight-bold">
                                                         <label id="lbltxtcoffpvpersft" runat="server">PV per SFT</label>
@@ -1163,8 +1163,9 @@
                                         <asp:HiddenField ID="lblhiddenbpamt" runat="server" />
                                         <asp:HiddenField ID="lblhiddenothers" runat="server" />
                                         <asp:HiddenField ID="lblhiddenbnoemi" runat="server" />
-                                        <asp:HiddenField ID="lblhiddenfvpersft" runat="server" />
+                                        <asp:HiddenField ID="lblhiddenfvpersft" runat="server" />                                        
                                         <asp:HiddenField ID="lblhiddenpvpersft" runat="server" />
+                                        <asp:HiddenField ID="lblminunitrate" runat="server" />
 
                                     </div>
 
