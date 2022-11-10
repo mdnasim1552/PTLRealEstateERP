@@ -1187,7 +1187,7 @@ namespace RealERPWEB.F_17_Acc
                 else if (Type == "VocherPrintFinlay")
                 {
                     var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
-                    if (ASTUtility.Left(vounum, 2) == "CD")
+                    if (ASTUtility.Left(vounum, 2) == "CD" || ASTUtility.Left(vounum, 2) == "BD")
                     {
                         Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVoucherFinlay02", list, null, null);
                         Rpt1.EnableExternalImages = true;

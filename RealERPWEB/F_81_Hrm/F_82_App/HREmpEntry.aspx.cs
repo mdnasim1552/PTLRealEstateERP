@@ -618,6 +618,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.rbtGross.Visible = false;
                     this.rbtGross.SelectedIndex = 3;
                     break;
+                case "3370": //CPDL
+                    this.rbtGross.SelectedIndex = 7;
+                    break;
                 default:
                     //  this.rbtGross.Visible = true;
                     this.rbtGross.SelectedIndex = 2;
@@ -1066,6 +1069,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             //((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = toaddamt.ToString("#,##0;(#,##0); ");
                             break;
 
+                        case "3370": //Acme serv
+                            toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
+                            ((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = toaddamt.ToString("#,##0;(#,##0); ");
+
+                            break;
                         default:
 
                             toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
@@ -1966,8 +1974,87 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             }
 
 
+            // basic salary cpdl
+            else if (this.rbtGross.SelectedIndex == 7)
+            {
+                basic = Convert.ToDouble("0" + ((TextBox)this.gvSalAdd.Rows[0].FindControl("txtgvSaladd")).Text.Trim());
+                double grsal = Convert.ToDouble("0" + this.txtgrossal.Text.Trim());
+                double totaladd = 0.0;
 
 
+
+                for (int i = 0; i < this.gvSalAdd.Rows.Count; i++)
+                {
+                    string gcod = ((Label)this.gvSalAdd.Rows[i].FindControl("lblgvItmCodesaladd")).Text.ToString();
+                    if (gcod == "04002" || gcod == "04004" )
+                    {
+                        percent = Convert.ToDouble("0" + ((TextBox)this.gvSalAdd.Rows[i].FindControl("txtgvgperadd")).Text.Trim());
+                        dtsaladd.Rows[i]["gval"] = Math.Round((percent * basic * 0.01), 0);
+                        dtsaladd.Rows[i]["percnt"] = percent;
+                    }
+                    else
+                    {
+                        dtsaladd.Rows[i]["gval"] = Convert.ToDouble("0" + ((TextBox)this.gvSalAdd.Rows[i].FindControl("txtgvSaladd")).Text.Trim());
+                        dtsaladd.Rows[i]["percnt"] = 0.0;
+
+                    }
+                }
+
+                for (int i = 0; i < this.gvSalAdd.Rows.Count; i++)
+                {
+                    string gcod = ((Label)this.gvSalAdd.Rows[i].FindControl("lblgvItmCodesaladd")).Text.ToString();
+                    if (gcod != "04012")
+                    {
+                        totaladd = totaladd + Convert.ToDouble(dtsaladd.Rows[i]["gval"]);
+                    }
+
+                }
+
+
+                for (int i = 1; i < this.gvSalAdd.Rows.Count; i++)
+                {
+                    string gcod = ((Label)this.gvSalAdd.Rows[i].FindControl("lblgvItmCodesaladd")).Text.ToString();
+                    if (gcod == "04012")
+                    {
+                        dtsaladd.Rows[i]["gval"] = grsal - totaladd;
+
+                    }
+                    else if (gcod == "04020" || gcod == "04099")
+                    {
+                        dtsaladd.Rows[i]["gval"] = Convert.ToDouble("0" + ((TextBox)this.gvSalAdd.Rows[i].FindControl("txtgvSaladd")).Text.Trim());
+
+                    }
+
+                }
+
+
+
+
+
+
+                if (comcod == "3370")
+                {
+                    dtsaladd.Rows[0]["gval"] = Convert.ToDouble("0" + ((TextBox)this.gvSalAdd.Rows[0].FindControl("txtgvSaladd")).Text.Trim());
+                }
+
+                for (int i = 0; i < this.gvSalSub.Rows.Count; i++)
+                {
+                    string gcod = ((Label)this.gvSalSub.Rows[i].FindControl("lblgvItmCodesalsub")).Text.ToString();
+                    if(gcod== "04101")
+                    {
+                        percent = Convert.ToDouble("0" + ((TextBox)this.gvSalSub.Rows[i].FindControl("txtgvgpersub")).Text.Trim());
+                        dtsalsub.Rows[i]["gval"] = Math.Round((percent * 0.01 * basic), 0);
+                        dtsalsub.Rows[i]["percnt"] = percent;
+                    }
+                    else
+                    {
+                        dtsalsub.Rows[i]["gval"] = Convert.ToDouble("0" + ((TextBox)this.gvSalSub.Rows[i].FindControl("txtgvSalSub")).Text.Trim());
+                    }
+            
+                }
+            }
+
+           // txtgvSalSub
             // Basic Salary
             else
             {

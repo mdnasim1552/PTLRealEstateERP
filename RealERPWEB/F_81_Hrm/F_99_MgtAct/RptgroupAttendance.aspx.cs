@@ -354,6 +354,8 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
              
                 string subj = "Daily Attendance Report";
                 string tomail = "chairman@epicpl.com";
+                //string tomail = "nahid@pintechltd.com";
+
 
                 string tdate = Convert.ToDateTime(System.DateTime.Today).ToString("ddMMyyy");
                 string apppath = Server.MapPath("~") + "\\Upload" + "\\attreport\\" + tdate + ".pdf"; ;
@@ -427,6 +429,7 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
 <p>Dear Sir/ Madam,</p>
 <p>Hope you are having a good day. Please check the attached file for your kind consideration.</p>
 
+<p style='text-danger'>Note :This is Software generated mail. </p>
 
 <p></br></p>
 <p>Best Regards,</p>
@@ -483,9 +486,26 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
                 string body = string.Empty;
                 msg.To.Add(new MailAddress(tomail));
 
-                 //msg.CC.Add(new MailAddress("rakib@pintechltd.com", "hra.epicpl@gmailcom", "csd.epicpl@gmail.com", "architect.epicpl@gmail.com", "legal.epic22@gmail.com", "purchase.epicpl@gmail.com",
-                 //    "brand.epicpl@gmail.com", "md@epicpl.com", "lokman@epicpl.com", "brand@epicpl.com", "sales@epicpl.com", "engineering@epicpl.com", "finance@epicpl.com", "saifur.epicpl@gmail.com", "didarepicpl@gmail.com", "hamid.epicpl@gmail.com", "salahuddin.epicpl@gmail.com"));
-                //msg.Bcc.Add(new MailAddress("nahid@pintechltd.com"));
+
+
+
+                msg.CC.Add(new MailAddress("hra.epicpl@gmailcom"));
+                msg.CC.Add(new MailAddress("csd.epicpl@gmail.com"));
+                msg.CC.Add(new MailAddress("architect.epicpl@gmail.com"));
+                msg.CC.Add(new MailAddress("purchase.epicpl@gmail.com"));
+                msg.CC.Add(new MailAddress("brand.epicpl@gmail.com"));
+                msg.CC.Add(new MailAddress("md@epicpl.com"));
+                msg.CC.Add(new MailAddress("lokman@epicpl.com"));
+                msg.CC.Add(new MailAddress("brand@epicpl.com"));
+                msg.CC.Add(new MailAddress("sales@epicpl.com"));
+                msg.CC.Add(new MailAddress("engineering@epicpl.com"));
+                msg.CC.Add(new MailAddress("finance@epicpl.com"));
+                msg.CC.Add(new MailAddress("saifur.epicpl@gmail.com"));
+                msg.CC.Add(new MailAddress("didarepicpl@gmail.com"));
+                msg.CC.Add(new MailAddress("hamid.epicpl@gmail.com"));
+                msg.CC.Add(new MailAddress("salahuddin.epicpl@gmail.com"));
+
+
                 msg.Subject = subj;
                 body += msgbody;
                 // body += "<br />Thanks & Regards<br/>" + sendUsername + "<br>" + sendUsrdesig + "<br>" + sendDptdesc + "<br>" + compName;
