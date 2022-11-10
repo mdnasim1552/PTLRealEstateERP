@@ -1189,7 +1189,7 @@ namespace RealERPWEB.F_22_Sal
 
             int noofemi;
             DateTime coffbookingdate, benddate, finalinsdate;
-            double uzize, bfv, bpv, pamt, utility, others,bpowbpart, bfvpsft, bpvpsft, intratio, usize, coffpamt, coffutility, coffothers, cofffvpsft, coffpvpsft, coffpowbpart, cofffv, coffpv;
+            double uzize, bfv, bpv, pamt, utility, others,bpowbpart, bfvpsft, bpvpsft, intratio, usize, coffpamt, coffutility, coffothers, cofffvpsft, coffpvpsft, coffpowbpart, cofffv, coffpv, upsftwiopuaoth;
 
 
             usize = Convert.ToDouble(this.lblvalcoffarea.InnerText.ToString());
@@ -1220,7 +1220,7 @@ namespace RealERPWEB.F_22_Sal
 
             // Customer Offer  Case
             cofffv = lstcoff.Sum(l => l.fv);
-            coffpv = lstcoff.Sum(l => l.pv);
+         //   coffpv = lstcoff.Sum(l => l.pv);
             cofffvpsft = ((usize > 0) ? ((cofffv - coffpamt - coffutility - coffothers) / usize) : 0.00);
             coffpowbpart = (12 + intratio) / 12;
             coffpvpsft = Math.Round(cofffvpsft / (Math.Pow(coffpowbpart, noofemi)), 0);
@@ -1235,11 +1235,24 @@ namespace RealERPWEB.F_22_Sal
             if (cofffvpsft >= bfvpsft && coffpvpsft >= bpvpsft)
             {
 
+
+
+
+                //cofffvpsft = bfvpsft;
+
+
+
+                
                 result = true;
             }
-            
-            
-            
+
+            //cofffv = bfvpsft * usize + (coffpamt + coffutility + coffothers);
+            //coffpv = cofffv / (Math.Pow(coffpowbpart, noofemi));
+            //upsftwiopuaoth = ((usize > 0) ? ((coffpv - (coffpamt + coffutility + coffothers)) / usize) : 0.00);
+
+
+
+
             return result;
         
         
