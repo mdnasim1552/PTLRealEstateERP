@@ -654,11 +654,14 @@
 
                                     <div class=" card bg-light">
                                         <div class="col-md-12" visible="false" id="task" runat="server">
-
+                                            
                                             <div class="form-group row">
                                                 <asp:HiddenField ID="HiddinTaskid" runat="server" Value="0" />
                                                 <div class="d-flex w-100" style="padding: 10px 8px 4px 0px;">
-                                                    <asp:Label ID="Label11" runat="server" CssClass="float-left">Task Name</asp:Label>
+                                                    <asp:Label ID="Label11" runat="server" CssClass="float-left">Task Name &nbsp;</asp:Label>
+                                                    <span class="text-danger">&nbsp;PendingAnnotator( <asp:Label runat="server" ID="lblcountannotid"></asp:Label>)</span>
+                                                     <span class="text-danger">&nbsp; &nbsp;PendingQC( <asp:Label runat="server" ID="lblcountQC"></asp:Label>)</span>
+                                                     <span class="text-danger">&nbsp; &nbsp; PendingQA( <asp:Label runat="server" ID="lblcountQA"></asp:Label>)</span>
                                                     <asp:LinkButton runat="server" type="button" ID="LinkButton1" OnClick="removefield_Click" class="ml-auto text-danger"><i class="fa fa-times-circle" style="font-size: 20px;"></i></asp:LinkButton>
 
                                                 </div>
@@ -704,7 +707,7 @@
 
                                                 <div class="col-lg-3 col-md-3 col-sm-12">
                                                     <asp:Label ID="Label9" runat="server"> Assigned QYT</asp:Label>
-                                                    <asp:TextBox ID="txtquantity"  min="0" runat="server" TextMode="Number" CssClass="form-control"></asp:TextBox>
+                                                    <asp:TextBox ID="txtquantity"  min="0" runat="server" TextMode="Number"  CssClass="form-control"></asp:TextBox>
                                                 </div>
 
                                                 <div class=" col-lg-3 col-md-3 col-sm-12">
