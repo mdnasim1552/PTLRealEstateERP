@@ -71,18 +71,18 @@
                             <asp:LinkButton ID="ibtnFindName" CssClass="btn btn-sm btn-primary" runat="server" OnClick="ibtnFindName_Click" TabIndex="9"><span class="fa fa-search"> </span></asp:LinkButton>
 
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
 
                             <asp:Label ID="lblId" CssClass="form-label" runat="server" Visible="False" Text="User Name :"></asp:Label>
                             <asp:Label ID="txtuserid" CssClass="form-label" runat="server" Visible="False" Text="User Name :"></asp:Label>
 
                         </div>
 
-                        <div class="col-md-3 pading5px asitCol3 pull-right">
+                        <div class="col-md-3 float-right">
                             <div class="msgHandSt">
                                 <asp:Label ID="lblMsg" CssClass="btn-danger primaryBtn btn disabled" runat="server" Visible="false"></asp:Label>
                             </div>
-
+                            <asp:HyperLink ID="hypLnkUserPermission" runat="server" CssClass="btn-info btn btn-sm" NavigateUrl="~/F_34_Mgt/UserLoginfrm.aspx">Go To User Permission</asp:HyperLink>
 
                         </div>
 

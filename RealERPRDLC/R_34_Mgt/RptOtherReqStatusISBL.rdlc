@@ -1259,12 +1259,12 @@
             </Textbox>
             <Image Name="Image1">
               <Source>External</Source>
-              <Value>=Parameters!comLogo.Value</Value>
+              <Value>=Parameters!ComLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
               <Height>0.5625in</Height>
               <Width>0.97444in</Width>
               <ZIndex>5</ZIndex>
-              <ToolTip>=Parameters!comLogo.Value</ToolTip>
+              <ToolTip>=Parameters!ComLogo.Value</ToolTip>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1806,16 +1806,14 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="comLogo">
+    <ReportParameter Name="forward">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="forward">
+    <ReportParameter Name="ComLogo">
       <DataType>String</DataType>
-      <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
@@ -1890,14 +1888,14 @@
           <ParameterName>thrapnam</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
-          <RowIndex>6</RowIndex>
-          <ParameterName>comLogo</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>7</RowIndex>
           <ParameterName>forward</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>7</RowIndex>
+          <ParameterName>ComLogo</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

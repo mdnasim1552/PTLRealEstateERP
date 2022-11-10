@@ -141,58 +141,58 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.GridView gvstatus;
 
         /// <summary>
-        /// pnlreqchk control.
+        /// pnlauthorized control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlreqchk;
+        protected global::System.Web.UI.WebControls.Panel pnlauthorized;
 
         /// <summary>
-        /// gvreqchk control.
+        /// gvauthorize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvreqchk;
+        protected global::System.Web.UI.WebControls.GridView gvauthorize;
 
         /// <summary>
-        /// pnlReqAprv control.
+        /// pnlrecommended control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlReqAprv;
+        protected global::System.Web.UI.WebControls.Panel pnlrecommended;
 
         /// <summary>
-        /// gvreqaprv control.
+        /// gvrecommended control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvreqaprv;
+        protected global::System.Web.UI.WebControls.GridView gvrecommended;
 
         /// <summary>
-        /// pnlgatepass control.
+        /// pnlfirstApp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlgatepass;
+        protected global::System.Web.UI.WebControls.Panel pnlfirstApp;
 
         /// <summary>
-        /// gvgatepass control.
+        /// gvfirstapp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvgatepass;
+        protected global::System.Web.UI.WebControls.GridView gvfirstapp;
 
         /// <summary>
         /// pnlapproval control.
@@ -204,30 +204,30 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.Panel pnlapproval;
 
         /// <summary>
-        /// gvapproval control.
+        /// gvfinalapp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvapproval;
+        protected global::System.Web.UI.WebControls.GridView gvfinalapp;
 
         /// <summary>
-        /// pnlaccount control.
+        /// pnlschupdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlaccount;
+        protected global::System.Web.UI.WebControls.Panel pnlschupdate;
 
         /// <summary>
-        /// gvaccount control.
+        /// gvschupdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvaccount;
+        protected global::System.Web.UI.WebControls.GridView gvschupdate;
     }
 }

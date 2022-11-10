@@ -650,13 +650,13 @@ namespace RealERPWEB.F_99_Allinterface
 
 
             //dt = ((DataTable)ds1.Tables[1]).Copy();  // and appamt <= 0
-            dv.RowFilter = ("checkbyid <>'' and aprvbyid='' ");
+            dv.RowFilter = ("checkbyid <>'' and aprvbyid=''");
             dv = dt.DefaultView;
             this.Data_Bind("gvPenApproval", dv.ToTable());
 
 
             //First Recommendate
-            dv.RowFilter = ("checkbyid <> '' and appamt > 0 and aprvbyid <>'' and faprvbyid='' and frecid=''");
+            dv.RowFilter = ("checkbyid <>'' and aprvbyid <>'' and  frecid=''  and appamt > 0.00");
             //dv.RowFilter = ("empid ='" + usrid + "'");
             dv = dt.DefaultView;
             this.Data_Bind("gvfrec", dv.ToTable());
@@ -664,7 +664,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
             //Second Recommendate
-            dv.RowFilter = ("checkbyid<>'' and appamt > 0 and aprvbyid <>'' and faprvbyid = '' and  frecid<>''  and  secrecid=''");
+            dv.RowFilter = ("checkbyid <>'' and aprvbyid <>'' and  frecid<>'' and  secrecid='' and faprvbyid='' and appamt > 0.00 ");
             //dv.RowFilter = ("empid ='" + usrid + "'");
             dv = dt.DefaultView;
             this.Data_Bind("gvsrec", dv.ToTable());
@@ -672,22 +672,22 @@ namespace RealERPWEB.F_99_Allinterface
 
 
             //Third Recommendate
-            dv.RowFilter = ("checkbyid <> '' and appamt > 0 and aprvbyid <> '' and faprvbyid = ''  and  frecid<>'' and  secrecid<>'' and threcid=''");
+            dv.RowFilter = ("checkbyid <>'' and aprvbyid <>'' and  frecid<>'' and  secrecid<>'' and threcid='' and faprvbyid='' and appamt > 0.00 ");
             //dv.RowFilter = ("empid ='" + usrid + "'");
             dv = dt.DefaultView;
             this.Data_Bind("gvthrec", dv.ToTable());
 
 
-
-            dv.RowFilter = ("checkbyid <>'' and faprvbyid = '' and frecid<>'' and  secrecid<>'' and threcid<>'' and appamt > 0 and aprvbyid <>''");
+            /// final approval 
+            dv.RowFilter = ("checkbyid <>'' and aprvbyid <>'' and  frecid<>'' and  secrecid<>'' and threcid<>'' and faprvbyid='' and appamt > 0.00");
             dv = dt.DefaultView;
             this.Data_Bind("gvFinlApproval", dv.ToTable());
             Session["tblfApproal"] = dv.ToTable();
 
+            //pen approval / payment due
             dv.RowFilter = ("checkbyid <>'' and balamt > 0 and faprvbyid<>''");
             dv = dt.DefaultView;
             Session["tblpaydue"] = dv.ToTable();
-
             this.Data_Bind("gvPayOrder", dv.ToTable());
             this.Data_Bind("gvReqInfo1", dt);
 

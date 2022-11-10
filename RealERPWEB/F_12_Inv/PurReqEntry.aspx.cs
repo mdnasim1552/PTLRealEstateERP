@@ -2110,9 +2110,7 @@ namespace RealERPWEB.F_12_Inv
                 string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_12_Inv/";
                 string currentptah = "PurReqEntry?InputType=ReqSecondApproved&prjcode=" + prjcode + "&genno=" + txtMRFNo.Text + "&comcod=" + comcod;
                 string apprlink = uhostname + currentptah;
-
                 string msgbodyText = "Dear Sir,<br>Requisition Request are  Waitting for your approval." + "<br> Requisition Type : " + projname + ", <br>" + "Requisition No : " + reqno + "<br>Created by : " + createBy + "<br>Created Date : " + createDat + "<br>";
-
 
                 string msgbody = @"
 <html lang=""en"">
@@ -2702,7 +2700,11 @@ namespace RealERPWEB.F_12_Inv
 
 
             string Type = Request.QueryString["InputType"].ToString();
+<<<<<<< HEAD
             if (Type == "Entry" || Type == "FxtAstEntry" || Type == "IndentEntry")
+=======
+            if (Type == "Entry" || Type == "IndentEntry" ||  Type == "FxtAstEntry")
+>>>>>>> 0e348cfde8f17f79b1bcee8c62b8c8c3598e3819
             {
                 this.ddlPrevReqList.Items.Clear();
             }
