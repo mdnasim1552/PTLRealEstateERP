@@ -232,7 +232,9 @@ namespace RealERPWEB.F_12_Inv
                 this.txtrefno.Text = ds1.Tables[1].Rows[0]["refno"].ToString();
                 this.lblCurNo1.Text = ds1.Tables[1].Rows[0]["issueno1"].ToString().Trim().Substring(0, 6);
                 this.txtCurNo2.Text = ds1.Tables[1].Rows[0]["issueno1"].ToString().Trim().Substring(6);
+
                 this.Data_Bind();
+
             }
             catch (Exception exp)
             {
@@ -345,8 +347,8 @@ namespace RealERPWEB.F_12_Inv
                 //this.Panel2.Visible = true;
                 this.SaveValue();
                 DataTable tbl1 = (DataTable)ViewState["tblIssue"];
-                string mResCode = this.ddlMaterials.SelectedValue.ToString();
-                
+                string mResCode = this.ddlMaterials.SelectedValue.ToString();              
+
                 string Dmpcode = this.ddlDeptCode.SelectedValue.ToString();
                 string spcfcod = this.ddlResSpcf.SelectedValue.ToString();
                 DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode + "' and spcfcod='" + spcfcod + "'");
