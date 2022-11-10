@@ -346,14 +346,13 @@ namespace RealERPWEB.F_12_Inv
                 this.SaveValue();
                 DataTable tbl1 = (DataTable)ViewState["tblIssue"];
                 string mResCode = this.ddlMaterials.SelectedValue.ToString();
-                // string Specification = this.ddlResSpcf.SelectedValue.ToString();
+                
                 string Dmpcode = this.ddlDeptCode.SelectedValue.ToString();
                 string spcfcod = this.ddlResSpcf.SelectedValue.ToString();
                 DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode + "' and spcfcod='" + spcfcod + "'");
                 if (dr2.Length == 0)
                 {
                     DataRow dr1 = tbl1.NewRow();
-
                     dr1["comcod"] = this.GetCompCode(); 
                     dr1["rsircode"] = this.ddlMaterials.SelectedValue.ToString();
                     dr1["spcfcod"] = this.ddlResSpcf.SelectedValue.ToString();
@@ -369,11 +368,10 @@ namespace RealERPWEB.F_12_Inv
                     dr1["stkqty"] = "0";
                     dr1["stkrate"] = "0";
                     dr1["issueqty"] = dr3[0]["issueqty"];
-                    dr1["issueamt"] = 0;
-                    
+                    dr1["issueamt"] = 0;                    
                     tbl1.Rows.Add(dr1);
                 }
-
+                
                 ViewState["tblIssue"] = tbl1;
                 this.Data_Bind();
             }
@@ -388,39 +386,41 @@ namespace RealERPWEB.F_12_Inv
 
         protected void lbtnSelectAll_Click(object sender, EventArgs e)
         {
-            ////this.Panel2.Visible = true;
-            //this.SaveValue();
-            //DataTable tbl1 = (DataTable)ViewState["tblIssue"];
-            //string mResCode = this.ddlResList.SelectedValue.ToString();
-            //// string Specification = this.ddlResSpcf.SelectedValue.ToString();
-            //string Empcode = this.ddlDeptCode.SelectedValue.ToString();
-            //string spcfcod = this.ddlResSpcf.SelectedValue.ToString();
-            //DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode + "' and spcfcod='" + spcfcod + "'");
-            //if (dr2.Length == 0)
-            //{
-            //    DataRow dr1 = tbl1.NewRow();
+            this.SaveValue();
+            DataTable tbl1 = (DataTable)ViewState["tblIssue"];
+            string mResCode = this.ddlMaterials.SelectedValue.ToString();            
+            string Empcode = "";
+            DataTable tbl2 = (DataTable)ViewState["tblMat"];
 
-            //    dr1["comcod"] = this.GetCompCode(); ;
-            //    dr1["rsircode"] = this.ddlResList.SelectedValue.ToString();
-            //    dr1["spcfcod"] = this.ddlResSpcf.SelectedValue.ToString();
-            //    dr1["deptcode"] = this.ddlDeptCode.SelectedValue.ToString();
-            //    dr1["rsirdesc"] = this.ddlResList.SelectedItem.Text.Trim();
-            //    dr1["spcfdesc"] = this.ddlResSpcf.SelectedItem.Text.Trim();
-            //    dr1["deptname"] = this.ddlDeptCode.SelectedItem.Text.Trim();
-            //    dr1["empid"] = this.ddlEmpList.SelectedValue.ToString();
-            //    DataTable tbl2 = (DataTable)ViewState["tblMat"];
-            //    DataRow[] dr3 = tbl2.Select("rsircode = '" + mResCode + "' and spcfcod='" + spcfcod + "'");
-            //    dr1["rsirunit"] = dr3[0]["rsirunit"];
-            //    dr1["stkqty"] = dr3[0]["stkqty"];
-            //    dr1["stkrate"] = dr3[0]["stkrate"];
-            //    dr1["issueqty"] = dr3[0]["issueqty"];
-            //    dr1["issueamt"] = 0;
-            //    dr1["remarks"] = "";
-            //    tbl1.Rows.Add(dr1);
-            //}
+            for (int i = 0; i < tbl2.Rows.Count; i++)
+            {
+                DataRow[] dr3 = tbl1.Select("rsircode = '" + tbl2.Rows[i]["rsircode"].ToString() + "'");
+                if (dr3.Length == 0)
+                {
+                    DataRow dr1 = tbl1.NewRow();
+                    dr1["comcod"] = this.GetCompCode(); ;
+                    dr1["rsircode"] = tbl2.Rows[i]["rsircode"];
+                    dr1["spcfcod"] = this.ddlResSpcf.SelectedValue.ToString();
+                    dr1["deptcode"] = this.ddlDeptCode.SelectedValue.ToString();
+                    dr1["rsirdesc"] = tbl2.Rows[i]["rsirdesc"];
+                    dr1["spcfdesc"] = this.ddlResSpcf.SelectedItem.Text.Trim();
+                    dr1["deptname"] = this.ddlDeptCode.SelectedItem.Text.Trim();
+                    dr1["empid"] = ""; 
+                    dr1["rsirunit"] = tbl2.Rows[i]["rsirunit"];
+                    dr1["stkqty"] = 0;
+                    dr1["stkrate"] = 0;
+                    dr1["issueqty"] = tbl2.Rows[i]["issueqty"];
+                    dr1["issueamt"] = 0;
+                    dr1["remarks"] = "";
 
-            //ViewState["tblIssue"] = tbl1;
-            //this.Data_Bind();
+                    tbl1.Rows.Add(dr1);
+                }
+
+
+            }
+
+            ViewState["tblIssue"] = tbl1;
+            this.Data_Bind();
 
         }
 
@@ -431,15 +431,10 @@ namespace RealERPWEB.F_12_Inv
 
             for (int i = 0; i < this.gvIssue.Rows.Count; i++)
             {
-
-
-                double issueqty = Convert.ToDouble("0" + ((TextBox)this.gvIssue.Rows[i].FindControl("txtgvissueqty")).Text.Trim());
-               
+                double issueqty = Convert.ToDouble("0" + ((TextBox)this.gvIssue.Rows[i].FindControl("txtgvissueqty")).Text.Trim());               
                 int rowindex = ((this.gvIssue.PageIndex) * (this.gvIssue.PageSize)) + i;
-
                 dt1.Rows[rowindex]["issueqty"] = issueqty;
                 dt1.Rows[rowindex]["remarks"] = "";
-
             }
             ViewState["tblIssue"] = dt1;
         }
@@ -565,14 +560,42 @@ namespace RealERPWEB.F_12_Inv
                 string issueqty = dr["issueqty"].ToString().Trim();                 
                 string remarks = dr["remarks"].ToString().Trim();
 
-                result = dbaccess.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "INSORUPTXTTTOEMPINF", "indrequireda", Issueno, rsircode, spcfcod,
+                result = dbaccess.UpdateTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "INSORUPTXTTTOEMPINF", "indrequireda", Issueno, rsircode, spcfcod,
                    deptcode, issueqty, remarks, "", "", "", "", "", "");
             }
 
             string msgsuccess = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msgsuccess + "');", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msgsuccess + "');", true);
 
-           
+        }
+
+        protected void lnkPrvList_Click(object sender, EventArgs e)
+        {
+            this.PreList();
+
+        }
+
+        private void PreList()
+        {
+
+
+            string comcod = this.GetCompCode();
+            string curdate = this.txtaplydate.Text.ToString().Trim();
+            DataSet ds1 = dbaccess.GetTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "GETPREISSUELIST", curdate, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+            this.ddlPreList.DataTextField = "issueno1";
+            this.ddlPreList.DataValueField = "issueno";
+            this.ddlPreList.DataSource = ds1.Tables[0];
+            this.ddlPreList.DataBind();
+            if (this.Request.QueryString["genno"].Length > 0)
+            {
+                string genno = this.Request.QueryString["genno"].ToString();
+                this.ddlPreList.SelectedValue = genno;
+                this.lbtnOk_Click(null, null);
+            }
+
 
         }
     }

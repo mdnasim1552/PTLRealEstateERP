@@ -3206,6 +3206,7 @@
     <Content Include="F_99_Allinterface\FeasibilityInterface.aspx" />
     <Content Include="F_99_Allinterface\HRInterfaceTopSheet.aspx" />
     <Content Include="F_99_Allinterface\HRMAllInOne.aspx" />
+    <Content Include="F_99_Allinterface\IndentRequiredInterface.aspx" />
     <Content Include="F_99_Allinterface\InterfaceApprovalForm.aspx" />
     <Content Include="F_99_Allinterface\MktNoteSheetInterface.aspx" />
     <Content Include="F_99_Allinterface\InventoryInterface.aspx" />
@@ -5402,6 +5403,13 @@
     </Compile>
     <Compile Include="F_99_Allinterface\HRMAllInOne.aspx.designer.cs">
       <DependentUpon>HRMAllInOne.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\IndentRequiredInterface.aspx.cs">
+      <DependentUpon>IndentRequiredInterface.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\IndentRequiredInterface.aspx.designer.cs">
+      <DependentUpon>IndentRequiredInterface.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\InterfaceApprovalForm.aspx.cs">
       <DependentUpon>InterfaceApprovalForm.aspx</DependentUpon>

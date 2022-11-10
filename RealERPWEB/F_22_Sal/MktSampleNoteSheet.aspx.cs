@@ -251,22 +251,10 @@ namespace RealERPWEB.F_22_Sal
             {
                 return;
             }
-            
-           
-
-
-           
-
-
             List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet> lst1 = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>)Session["lstcoffschedule"];
-
-            
-
-
-
-
-
-
+            string salesteam = ds1.Tables[0].Rows[0]["pestedempname"].ToString();
+            string clustername = ds1.Tables[0].Rows[0]["clustername"].ToString();
+            string recommendname = ds1.Tables[0].Rows[0]["recommendname"].ToString();
             string valcoffarea = Convert.ToDouble(ds1.Tables[0].Rows[0]["usize"]).ToString("#,##0;(#,##0);");
             string coffrate = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffurate"]).ToString("#,##0;(#,##0);");
             string coffunitprice = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffuamt"]).ToString("#,##0;(#,##0);");
@@ -280,13 +268,10 @@ namespace RealERPWEB.F_22_Sal
             string coffemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffemi"]).ToString("#,##0;(#,##0);");
             string cofffvpersft = Convert.ToDouble(this.lblvalcofffvpersft.InnerText).ToString("#,##0;(#,##0);");
             string coffpvpersft = Convert.ToDouble(this.lblvalcofffvpersft.InnerText).ToString("#,##0;(#,##0);");
-            string cbookingdate = (Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("dd-MMM-yyyy") == "01-Jan-1900") ? "" : Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("MMM-yyyy");
-            string cbookingday = (Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("dd-MMM-yyyy") == "01-Jan-1900") ? "" : Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("dd");
-            string cbookingmm = (Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("dd-MMM-yyyy") == "01-Jan-1900") ? "" : Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("MM");
-            string cbookingyy = (Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("dd-MMM-yyyy") == "01-Jan-1900") ? "" : Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("yy");
-
-
-           
+            string cbookingdate =  Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("MMM-yyyy");
+            string cbookingday =  Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("dd");
+            string cbookingmm =  Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("MM");
+            string cbookingyy =  Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("yy");           
             string clientname = this.ddlprospective.SelectedItem.Text;
 
           
@@ -344,9 +329,12 @@ namespace RealERPWEB.F_22_Sal
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
                 Rpt1.SetParameters(new ReportParameter("printdate", printdate));
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "Sample Note Sheet"));
-                // Rpt1.SetParameters(new ReportParameter("projectName", projectName));
+                Rpt1.SetParameters(new ReportParameter("txtsalesteam", salesteam));
+                Rpt1.SetParameters(new ReportParameter("txtClusterName", clustername));
+                Rpt1.SetParameters(new ReportParameter("txtrecommendname", recommendname));
 
-                Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
                 //Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
 
@@ -392,7 +380,7 @@ namespace RealERPWEB.F_22_Sal
             }
             var lstb = ds1.Tables[1].DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>();
             var lstcoff = ds1.Tables[2].DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>();
-            var lstrev = ds1.Tables[3].DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet>();
+          
 
             Session["lstbaseschdule"] = lstb;
             Session["lstcoffschedule"] = lstcoff;
@@ -455,7 +443,7 @@ namespace RealERPWEB.F_22_Sal
             }
             var lstb = ds1.Tables[1].DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>();
             var lstcoff = ds1.Tables[2].DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet> ();
-            var lstrev = ds1.Tables[3].DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassRevGrandNoteSheet> ();
+          
             Session["lstbaseschdule"] = lstb;
             Session["lstcoffschedule"] = lstcoff;
            
@@ -1433,10 +1421,16 @@ namespace RealERPWEB.F_22_Sal
 
 
                 ViewState.Remove("tblprenotesheet");
+                Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = this.GetCompCode();
+                string usrid = hst["usrid"].ToString();               
                 string date = System.DateTime.Now.ToString("dd-MMM-yyyy");
-                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "GETPREVIOUSNOTESHEETNO", "",
-                       date, "", "", "", "", "", "", "");
+                string qgeno = this.Request.QueryString["genno"] ?? "";
+                string noteshtno = (qgeno.Length == 0 ? "" : qgeno) + "%";
+              
+
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "GETPREVIOUSSAMNOTESHEETNO",
+                       date, noteshtno, usrid, "", "", "", "", "");
                 if (ds1 == null)
                     return;
                 this.ddlPrevious.DataTextField = "noteshiddet";
