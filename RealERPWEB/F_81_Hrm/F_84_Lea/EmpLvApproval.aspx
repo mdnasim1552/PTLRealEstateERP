@@ -179,7 +179,7 @@
                                     </div>
                                 </asp:Panel>
                                 <div class="row">
-                                    <div class="col-md-6 pl-0">
+                                    <div class="col-md-6 pl-0" runat="server" id="btnFward">
                                         <div class="form-group">
                                             <label id="chkbod" runat="server" class="switch">
                                                 <asp:CheckBox ID="Chboxforward" runat="server" />

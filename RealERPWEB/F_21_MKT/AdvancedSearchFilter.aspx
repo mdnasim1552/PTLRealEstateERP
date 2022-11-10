@@ -59,20 +59,20 @@
 
                         <div class="col-lg-3 col-md-3 col-sm-3">
 
-                         <asp:DropDownList ID="ddlEmpid" data-placeholder="Choose Employee.." runat="server" CssClass="chzn-select form-control form-control-sm" AutoPostBack="true">
-                                    </asp:DropDownList>
-                            </div>
+                            <asp:DropDownList ID="ddlEmpid" data-placeholder="Choose Employee.." runat="server" CssClass="chzn-select form-control form-control-sm" AutoPostBack="true">
+                            </asp:DropDownList>
+                        </div>
 
                         <div class="col-lg-2 col-md-2 col-sm-6">
-                             
+
                             <asp:DropDownList ID="ddlOther" runat="server" ClientIDMode="Static" CssClass="custom-select chzn-select">
                                 <asp:ListItem Value="1">Prospect Name</asp:ListItem>
-                                <asp:ListItem Value="2" Selected="True">PID</asp:ListItem>
+                                <asp:ListItem Value="2" >PID</asp:ListItem>
                                 <asp:ListItem Value="3">Phone</asp:ListItem>
                                 <asp:ListItem Value="4">Email</asp:ListItem>
                                 <asp:ListItem Value="5">NID</asp:ListItem>
                                 <asp:ListItem Value="6">TIN</asp:ListItem>
-                              <%--  <asp:ListItem Value="7">Prefered Area</asp:ListItem>
+                                <%--  <asp:ListItem Value="7">Prefered Area</asp:ListItem>
                                 <asp:ListItem Value="8">Profission</asp:ListItem>--%>
                                 <asp:ListItem Selected="True" Value="9">Choose Filter Key.........................</asp:ListItem>
                             </asp:DropDownList>
@@ -80,12 +80,12 @@
                         </div>
                         <div class="col-md-2">
                             <asp:TextBox ID="txtVal" runat="server" CssClass="form-control" TextMode="Search" autocomplete="off"></asp:TextBox>
-                             
+
                         </div>
 
                         <div class="col-md-1">
 
-                            <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="btn btn-success" OnClick="lnkbtnOk_Click"   AutoPostBack="True">Show</asp:LinkButton>
+                            <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="btn btn-success" OnClick="lnkbtnOk_Click" AutoPostBack="True">Show</asp:LinkButton>
 
                         </div>
 
@@ -123,13 +123,13 @@
                                             <tr>
                                                 <td class="font-weight-bold ">Contact Person</td>
                                                 <td>
-                                                    <asp:Label ID="lbldesig" runat="server"></asp:Label>
+                                                    <asp:Label ID="lblconper" runat="server"></asp:Label>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="font-weight-bold">Primary Mobile</td>
                                                 <td>
-                                                    <asp:Label ID="lbljoin" runat="server"></asp:Label>
+                                                    <asp:Label ID="lblmbl" runat="server"></asp:Label>
                                                 </td>
                                             </tr>
 
@@ -137,20 +137,20 @@
                                             <tr>
                                                 <td class="font-weight-bold">Home Address</td>
                                                 <td>
-                                                    <asp:Label ID="lblsep" runat="server"></asp:Label>
+                                                    <asp:Label ID="lblhomead" runat="server"></asp:Label>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="font-weight-bold">Profession</td>
                                                 <td>
-                                                    <asp:Label ID="lblidcard" runat="server"></asp:Label>
+                                                    <asp:Label ID="lblprof" runat="server"></asp:Label>
                                                 </td>
                                             </tr>
 
                                             <tr>
                                                 <td class="font-weight-bold">Status</td>
                                                 <td>
-                                                    <asp:Label ID="lblsection" runat="server"></asp:Label>
+                                                    <asp:Label ID="lblstatus" runat="server"></asp:Label>
                                                 </td>
                                             </tr>
 
@@ -258,14 +258,7 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
-
-
+                     
                 </div>
             </div>
 
