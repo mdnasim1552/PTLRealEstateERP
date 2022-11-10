@@ -508,6 +508,7 @@
                                         <asp:ListItem>GLG</asp:ListItem>
                                         <asp:ListItem>Alliance</asp:ListItem>
                                         <asp:ListItem>Tropical</asp:ListItem>
+                                        <asp:ListItem>CPDL</asp:ListItem>
                                         <%--<asp:ListItem>PEB</asp:ListItem>--%>
 
                                         

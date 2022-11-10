@@ -42,12 +42,24 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             if (!IsPostBack)
             {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+
                 string qusrid = this.Request.QueryString["usrid"] ?? "";
-                if (qusrid.Length > 0)
+                if (qusrid.Length > 0  && GetCompCode() !="3367")
                 {
                     this.GetComNameAAdd();
                     this.GetUserPermission();
                     this.MasComNameAndAdd();
+                }
+                else
+                {
+                    if (hst == null)
+                    {
+                        string loginUrl = Request.Url.Scheme + "://" + Request.Url.Authority +
+                         Request.ApplicationPath.TrimEnd('/') + "/LogIn.aspx";
+
+                         Response.Redirect(loginUrl);
+                    }
                 }
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Leave Approval";
@@ -76,6 +88,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.pnlFinly.Visible = true;
                 }
 
+                if (GetCompCode()=="3370")
+                {
+                    this.btnFward.Visible = false;
+                }
 
             }
 
