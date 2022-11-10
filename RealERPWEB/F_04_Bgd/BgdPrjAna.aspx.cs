@@ -638,8 +638,9 @@ namespace RealERPWEB.F_04_Bgd
                 srchTxt = (this.Request.QueryString["prjcode"].ToString()).Length == 0 ? "%" + this.txtProjectSearch.Text.Trim() + "%" : this.Request.QueryString["prjcode"].ToString() + "%";
             }
 
-
-            DataSet ds1 = bgdData.GetTransInfo(comcod, "SP_ENTRY_PRJ_BUDGET", "PRJCODELIST", srchTxt, grp, "", "", "", "", "", "", "");
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            DataSet ds1 = bgdData.GetTransInfo(comcod, "SP_ENTRY_PRJ_BUDGET", "PRJCODELIST", srchTxt, grp, userid, "", "", "", "", "", "");
             Session["tblPrjCod"] = ds1.Tables[0];
             Session["tblFlrCod"] = ds1.Tables[1];
             this.ddlProject.DataTextField = "prjdesc1";
