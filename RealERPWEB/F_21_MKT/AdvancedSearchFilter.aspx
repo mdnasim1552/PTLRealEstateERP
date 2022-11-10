@@ -57,23 +57,23 @@
                 <div class="card-body">
                     <div class="row ml-2">
 
-                        <div class="col-lg-2 col-md-2 col-sm-6">
+                        <div class="col-lg-3 col-md-3 col-sm-3">
 
-                        <%-- <asp:DropDownList ID="ddlEmpid" data-placeholder="Choose Employee.." runat="server" CssClass="custom-select chzn-select col-md-2 mr-1 mb-1" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">
-                                    </asp:DropDownList>--%>
+                         <asp:DropDownList ID="ddlEmpid" data-placeholder="Choose Employee.." runat="server" CssClass="chzn-select form-control form-control-sm" AutoPostBack="true">
+                                    </asp:DropDownList>
                             </div>
 
                         <div class="col-lg-2 col-md-2 col-sm-6">
                              
                             <asp:DropDownList ID="ddlOther" runat="server" ClientIDMode="Static" CssClass="custom-select chzn-select">
                                 <asp:ListItem Value="1">Prospect Name</asp:ListItem>
-                                <asp:ListItem Value="2">PID</asp:ListItem>
+                                <asp:ListItem Value="2" Selected="True">PID</asp:ListItem>
                                 <asp:ListItem Value="3">Phone</asp:ListItem>
                                 <asp:ListItem Value="4">Email</asp:ListItem>
                                 <asp:ListItem Value="5">NID</asp:ListItem>
                                 <asp:ListItem Value="6">TIN</asp:ListItem>
-                                <asp:ListItem Value="7">Prefered Area</asp:ListItem>
-                                <asp:ListItem Value="8">Profission</asp:ListItem>
+                              <%--  <asp:ListItem Value="7">Prefered Area</asp:ListItem>
+                                <asp:ListItem Value="8">Profission</asp:ListItem>--%>
                                 <asp:ListItem Selected="True" Value="9">Choose Filter Key.........................</asp:ListItem>
                             </asp:DropDownList>
 
@@ -116,7 +116,7 @@
                                             <tr>
                                                 <td class="font-weight-bold">PID</td>
                                                 <td>
-                                                    <asp:Label ID="lblname" runat="server"></asp:Label>
+                                                    <asp:Label ID="lblname" runat="server">N/A</asp:Label>
                                                 </td>
 
                                             </tr>

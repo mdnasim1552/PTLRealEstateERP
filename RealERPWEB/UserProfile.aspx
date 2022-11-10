@@ -851,6 +851,12 @@
                                                         <asp:Label  runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "birthday")) %>' Width="100px"></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
+
+                                                          <asp:TemplateField HeaderText="Sales Team" Visible="false">
+                                                    <ItemTemplate>
+                                                        <asp:Label runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>' Width="100px"></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                             </Columns>
 
                                             <EditRowStyle />
@@ -913,7 +919,11 @@
                                                 </asp:TemplateField>
 
 
-                         
+                                                  <asp:TemplateField HeaderText="Sales Team" Visible="false">
+                                                    <ItemTemplate>
+                                                        <asp:Label runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>' Width="100px"></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
                             
                                             </Columns>

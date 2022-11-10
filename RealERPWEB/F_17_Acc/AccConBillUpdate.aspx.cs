@@ -59,6 +59,8 @@ namespace RealERPWEB.F_17_Acc
             {
 
                 case "3332":
+                case "3370":
+               // case "3101":
 
                     this.chkpost.Checked = true;
                     break;
@@ -363,7 +365,8 @@ namespace RealERPWEB.F_17_Acc
 
             string EditByid = "";
             string Editdat = "01-Jan-1900";
-            string pounaction = "";
+            //string pounaction = "";
+            string pounaction = ((this.chkpost.Checked) ? "U" : "");
             string aprovbyid = "";
             string aprvtrmid = "";
             string aprvseson = "";

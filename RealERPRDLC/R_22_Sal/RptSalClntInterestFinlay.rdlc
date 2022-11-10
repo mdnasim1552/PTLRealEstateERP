@@ -733,7 +733,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Recived Amount</Value>
+                                                <Value>Received Amount</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
                                                   <FontSize>9pt</FontSize>
@@ -2130,7 +2130,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Total Recieved </Value>
+                                  <Value>Total Receieved </Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>

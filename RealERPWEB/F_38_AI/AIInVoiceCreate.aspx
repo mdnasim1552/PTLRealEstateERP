@@ -137,6 +137,12 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-md-12">
+                            <div class="card" id="virtualList" runat="server" visible="false" >
+                                <div class="card-header bg-light p-1">
+                                    <h4 class="text-center display-none"><span class="  text-muted">Invoice List</span></h4>
+                                </div>
+                                <div class="card-body">
                             <asp:GridView ID="gv_AIInvoice" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                 ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" >
                                 <Columns>
@@ -201,15 +207,21 @@
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Quantity">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblquantity" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "quantity")) %>' Width="50px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                        <ItemTemplate>                                            
+                                            <asp:TextBox ID="lblquantity" runat="server" BackColor="Transparent" AutoPostBack="True" OnTextChanged="lblquantity_TextChanged"
+                                                    BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "quantity")) %>' Width="80px" ForeColor="Black" Font-Size="12px"> </asp:TextBox>                                           
+                                           
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Rate">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblrate" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rate")) %>' Width="50px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                            <asp:TextBox ID="lblrate" runat="server" 
+                                                BackColor="Transparent"
+                                                    BorderColor="#660033" BorderStyle="None" BorderWidth="1px" AutoPostBack="True"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rate")) %>' Width="80px" ForeColor="Black" Font-Size="12px"></asp:TextBox>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -241,6 +253,9 @@
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
+                                    </div>
+                             </div>
+                                </div>
                         </div>
                           <div class="row">
                             <div class="col-md-5 mt-1">

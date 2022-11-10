@@ -1,5 +1,5 @@
 ﻿
-<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptWorkSchedule.aspx.cs" Inherits="RealERPWEB.F_04_Bgd.RptWorkSchedule" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptWorkSchedule.aspx.cs" Inherits="RealERPWEB.F_04_Bgd.RptWorkSchedule" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -10,7 +10,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script language="javascript" type="text/javascript" src="../Scripts/jquery-1.4.1.min.js"></script>
     <script language="javascript" type="text/javascript" src="../Scripts/ScrollableGridPlugin.js"></script>
-
+   
     <script language="javascript" type="text/javascript">
 
         $(document).ready(function () {
@@ -22,6 +22,11 @@
             gv.Scrollable();
         }
     </script>
+     <style type="text/css">
+        .table th,.table td{
+            padding:2px;
+        }
+    </style>
 
 
 
@@ -44,8 +49,8 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+            <div class="card mt-4">
+                <div class="card-body">
                     <div class="row">
                         <fieldset class="scheduler-border fieldset_A">
                             <div class="form-horizontal">
@@ -61,7 +66,7 @@
                 <Columns>
                     <asp:TemplateField HeaderText="Sl">
                         <ItemTemplate>
-                            <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
+                            <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px" Font-Size="10px"
                                 Style="text-align: right"
                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                         </ItemTemplate>
@@ -69,7 +74,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Code" Visible="false">
                         <ItemTemplate>
-                            <asp:Label ID="lblgvCode" runat="server" Height="16px"
+                            <asp:Label ID="lblgvCode" runat="server" Height="16px" Font-Size="12px"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode")) %>'
                                 Width="90px"></asp:Label>
                         </ItemTemplate>
@@ -77,7 +82,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Item">
                         <ItemTemplate>
-                            <asp:Label ID="lblgvItem" runat="server" Height="16px"
+                            <asp:Label ID="lblgvItem" runat="server" Height="16px" Font-Size="12px"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode1")) %>'
                                 Width="90px"></asp:Label>
                         </ItemTemplate>
@@ -85,7 +90,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Item Description">
                         <ItemTemplate>
-                            <asp:HyperLink ID="HLgvDesc" runat="server" Height="16px" Target="_blank"
+                            <asp:HyperLink ID="HLgvDesc" runat="server" Height="16px" Target="_blank" Font-Size="12px"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc")) %>'
                                 Width="400px" Font-Underline="False" ForeColor="Black"></asp:HyperLink>
                         </ItemTemplate>
@@ -93,7 +98,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Unit">
                         <ItemTemplate>
-                            <asp:Label ID="lgvUnit" runat="server" Style="text-align: Left"
+                            <asp:Label ID="lgvUnit" runat="server" Style="text-align: Left" Font-Size="12px"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirunit")) %>'
                                 Width="50px"></asp:Label>
                         </ItemTemplate>
@@ -102,7 +107,7 @@
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="Std. Qty">
                         <ItemTemplate>
-                            <asp:Label ID="lgvStdQty" runat="server" Style="text-align: right"
+                            <asp:Label ID="lgvStdQty" runat="server" Style="text-align: right" Font-Size="12px"
                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "sirval")).ToString("#,##0.00;(#,##0.00); ") %>'
                                 Width="70px"></asp:Label>
                         </ItemTemplate>

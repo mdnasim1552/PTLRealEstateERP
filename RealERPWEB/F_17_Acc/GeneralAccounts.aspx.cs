@@ -1055,6 +1055,8 @@ namespace RealERPWEB.F_17_Acc
                 case "3366":
                 case "3367":
                 case "3368": //finlay
+                case "3370": //cpdl
+
 
                     narration = "";
                     break;
@@ -2071,7 +2073,20 @@ namespace RealERPWEB.F_17_Acc
                             }
                             break;
 
-                      
+                        case "3370":
+                       // case "3101":
+
+                            if (vounarration1.Length == 0)
+                            {
+                                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Please Fill Up Narration');", true);
+                                return;
+
+                            }
+
+                            break;
+
+
+
                         case "3356": // intech
                             for (int i = 0; i < dgv1.Rows.Count; i++)
                             {

@@ -1755,7 +1755,6 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.00069in</Top>
-            <Left>0in</Left>
             <Height>1.99229in</Height>
             <Width>4.20096in</Width>
             <Style>
@@ -3038,14 +3037,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox71">
+                        <Textbox Name="Textbox6">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Tanveer Ahmed Siddiqe</Value>
+                                  <Value>=Parameters!txtsalesteam.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3056,7 +3055,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox71</rd:DefaultName>
+                          <rd:DefaultName>Textbox6</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -3112,14 +3111,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox76">
+                        <Textbox Name="Textbox8">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Khalid Shaheen</Value>
+                                  <Value>=Parameters!txtClusterName.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3130,7 +3129,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox76</rd:DefaultName>
+                          <rd:DefaultName>Textbox8</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -3186,14 +3185,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox80">
+                        <Textbox Name="Textbox9">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>A Z M Tanvir Ahad</Value>
+                                  <Value>=Parameters!txtrecommendname.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3204,7 +3203,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox80</rd:DefaultName>
+                          <rd:DefaultName>Textbox9</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -3606,7 +3605,6 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <Top>2.01729in</Top>
-            <Left>0in</Left>
             <Height>0.17709in</Height>
             <Width>4.19793in</Width>
             <ZIndex>5</ZIndex>
@@ -3838,7 +3836,6 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <Top>2.19459in</Top>
-            <Left>0in</Left>
             <Height>0.17708in</Height>
             <Width>4.20097in</Width>
             <ZIndex>6</ZIndex>
@@ -4392,7 +4389,7 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>2.46333in</Top>
-            <Height>0.83333in</Height>
+            <Height>0.83334in</Height>
             <Width>3.32292in</Width>
             <ZIndex>7</ZIndex>
             <Style>
@@ -4631,7 +4628,6 @@
               </Paragraphs>
               <rd:DefaultName>Textbox82</rd:DefaultName>
               <Top>0.1875in</Top>
-              <Left>0in</Left>
               <Height>0.25in</Height>
               <Width>7.47513in</Width>
               <ZIndex>2</ZIndex>
@@ -5044,11 +5040,29 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="txtsalesteam">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="txtClusterName">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="txtrecommendname">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>16</NumberOfRows>
+      <NumberOfRows>17</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -5359,6 +5373,21 @@
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>15</RowIndex>
           <ParameterName>cbookingyy</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>15</RowIndex>
+          <ParameterName>txtsalesteam</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>3</ColumnIndex>
+          <RowIndex>15</RowIndex>
+          <ParameterName>txtClusterName</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>16</RowIndex>
+          <ParameterName>txtrecommendname</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

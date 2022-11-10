@@ -157,6 +157,10 @@
           <DataField>desig</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="desig2">
+          <DataField>desig2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="desigid">
           <DataField>desigid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -557,6 +561,14 @@
           <DataField>stamp</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="subfee">
+          <DataField>subfee</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="swf">
+          <DataField>swf</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="tabday">
           <DataField>tabday</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -633,7 +645,7 @@
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_81_Hrm.C_89_Pay</rd:DataSetName>
         <rd:TableName>RptSalarySheet</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+RptSalarySheet, RealERPEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+RptSalarySheet, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -927,28 +939,28 @@
                                 <Width>0.51875in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.43542in</Width>
+                                <Width>0.49792in</Width>
                               </TablixColumn>
                               <TablixColumn>
                                 <Width>0.52917in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.46667in</Width>
+                                <Width>0.44584in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.61251in</Width>
+                                <Width>0.60209in</Width>
                               </TablixColumn>
                               <TablixColumn>
                                 <Width>0.57084in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.49792in</Width>
+                                <Width>0.4875in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.55001in</Width>
+                                <Width>0.50834in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.52917in</Width>
+                                <Width>0.55in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -2334,7 +2346,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!mbill.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!mallow.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2404,7 +2416,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!arsal.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!perbon.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2474,10 +2486,11 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!oallow.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2502,17 +2515,18 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox38">
+                        <Textbox Name="arsal">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!arsal.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2521,7 +2535,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox38</rd:DefaultName>
+                          <rd:DefaultName>arsal</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -2544,10 +2558,11 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!oth.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2579,7 +2594,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!foodal.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2614,7 +2629,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!gssal.Value+Fields!toadd.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!gspay1.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2642,14 +2657,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox55">
+                        <Textbox Name="pfund">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!pfund.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2661,7 +2676,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox55</rd:DefaultName>
+                          <rd:DefaultName>pfund</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -2684,7 +2699,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!swf.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2712,18 +2727,17 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox63">
+                        <Textbox Name="absded">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!gssal.Value+Fields!toadd.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!absded.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2732,7 +2746,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox63</rd:DefaultName>
+                          <rd:DefaultName>absded</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -2755,7 +2769,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!subfee.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2853,14 +2867,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox84">
+                        <Textbox Name="fgrp">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!transded.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2872,7 +2886,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox84</rd:DefaultName>
+                          <rd:DefaultName>fgrp</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -2930,7 +2944,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!mbillded.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!mbill.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3187,7 +3201,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!mbill.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!mallow.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -3259,7 +3273,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!arsal.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!perbon.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -3330,7 +3344,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!oallow.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -3366,7 +3380,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!arsal.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -3402,7 +3416,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!oth.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -3438,7 +3452,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Sum(Fields!foodal.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -3474,7 +3488,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!gssal.Value-Fields!fuel.Value+Fields!toadd.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!gspay1.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -3510,7 +3524,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Sum(Fields!pfund.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -3546,7 +3560,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Sum(Fields!swf.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -3618,7 +3632,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Sum(Fields!subfee.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -3726,7 +3740,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Sum(Fields!transded.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -3798,7 +3812,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!mbillded.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!mbill.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4080,7 +4094,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!mbill.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!mallow.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4166,7 +4180,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!arsal.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!perbon.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4209,11 +4223,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!othearn.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>7pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -4252,7 +4265,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!oallow.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4295,7 +4308,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!arsal.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4338,7 +4351,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!oth.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4381,7 +4394,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Sum(Fields!foodal.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4424,7 +4437,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!gssal.Value+Fields!toadd.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!gspay1.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4467,7 +4480,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Sum(Fields!pfund.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4510,7 +4523,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Sum(Fields!swf.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4596,7 +4609,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Sum(Fields!subfee.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4725,7 +4738,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Sum(Fields!transded.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4811,7 +4824,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!mbillded.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!mbill.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>

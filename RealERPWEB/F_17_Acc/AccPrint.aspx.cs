@@ -224,6 +224,8 @@ namespace RealERPWEB.F_17_Acc
                 case "2325":// Leisure
                 case "3325":// Leisure
                 case "1103":// Tanvir
+                case "1102":// Islam
+
                 case "3305":// RHEL
                 case "3311":// RHEL(ctg)
                 case "3306":// Ratul
@@ -241,6 +243,10 @@ namespace RealERPWEB.F_17_Acc
                 case "1207"://  ACME
                 case "3338"://  ACME
                 case "3369"://  ACME
+                case "3356"://  INtech
+              
+
+
 
                 case "3339"://  Tropical
                 case "3340"://  Urban
@@ -759,7 +765,10 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintCredence";
                     break;
 
-                //case "3101": // islam brothers 
+                //case "3101": //
+                //
+                //brothers 
+               // case "3101":
                 case "1102": // islam brothers 
                     vouprint = "VocherPrintISBL";
                     break;

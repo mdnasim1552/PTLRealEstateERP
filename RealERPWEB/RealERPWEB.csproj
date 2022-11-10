@@ -46,22 +46,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
-      <HintPath>..\..\..\Doc\Lib\bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\..\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Antlr3.Runtime">
-      <HintPath>..\..\..\Doc\Lib\bin\Antlr3.Runtime.dll</HintPath>
+      <HintPath>..\..\..\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.bootstrap">
-      <HintPath>..\..\..\Doc\Lib\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
+      <HintPath>..\..\..\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.jQuery">
-      <HintPath>..\..\..\Doc\Lib\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
+      <HintPath>..\..\..\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
     </Reference>
     <Reference Include="BilSimser.GeoJson">
-      <HintPath>..\..\..\Doc\Lib\bin\BilSimser.GeoJson.dll</HintPath>
-    </Reference>
-    <Reference Include="CrystalDecisions.CrystalReports.Design">
-      <HintPath>..\..\..\Doc\Lib\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
+      <HintPath>..\..\..\bin\BilSimser.GeoJson.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine">
       <HintPath>..\..\..\..\..\bin\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
@@ -99,29 +96,36 @@
       <HintPath>..\..\..\..\..\bin\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
     <Reference Include="DayPilot">
-      <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\DayPilot.dll</HintPath>
+      <HintPath>..\..\..\bin\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="DropCheck">
-      <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\DropCheck.dll</HintPath>
+      <HintPath>..\..\..\bin\DropCheck.dll</HintPath>
     </Reference>
     <Reference Include="EASendMail">
-      <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\EASendMail.dll</HintPath>
+      <HintPath>..\..\..\bin\EASendMail.dll</HintPath>
     </Reference>
     <Reference Include="FastMember">
-      <HintPath>..\..\..\Files\Real Estate Bin 211213\Real Estate Bin 211213\bin\FastMember.dll</HintPath>
+      <HintPath>..\..\..\bin\FastMember.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71">
       <HintPath>..\..\..\..\..\bin\FlashControlV71.dll</HintPath>
     </Reference>
+    <Reference Include="Interop.Microsoft.Office.Interop.Access">
+      <HintPath>..\..\..\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
-      <HintPath>..\..\..\..\Backup\Projects\Project Reference\Real Estate Bin 211213\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+      <HintPath>..\..\..\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
-      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
-      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -133,7 +137,7 @@
       <HintPath>..\..\..\Backup\PROJECT\Project Reference\Real Estate Bin 211213\bin\Microsoft.Build.Utilities.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.MSXML, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -141,30 +145,24 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\..\..\Doc\Lib\bin\Microsoft.MSXML.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.NET.StringTools, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.NET.StringTools.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
-    <Reference Include="Microsoft.Office.Interop.MSProject, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+<<<<<<< HEAD
       <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+=======
+      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+>>>>>>> 0e348cfde8f17f79b1bcee8c62b8c8c3598e3819
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -215,23 +213,51 @@
       <HintPath>..\..\..\..\..\bin\Microsoft.VisualStudio.TextManager.Interop.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure">
-      <HintPath>..\..\..\..\..\bin\Microsoft.Web.Infrastructure.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure">
-      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.Web.Infrastructure.dll</HintPath>
+      <HintPath>..\..\..\bin\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
-      <HintPath>..\..\..\Doc\Lib\bin\RealERPRPT.dll</HintPath>
+      <HintPath>..\..\..\bin\RealERPRPT.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing.Common, Version=4.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.5.0.2\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.5.0.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.5.0.2\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Entity.Design" />
     <Reference Include="System.Web.Extensions" />
@@ -3184,6 +3210,7 @@
     <Content Include="F_99_Allinterface\FeasibilityInterface.aspx" />
     <Content Include="F_99_Allinterface\HRInterfaceTopSheet.aspx" />
     <Content Include="F_99_Allinterface\HRMAllInOne.aspx" />
+    <Content Include="F_99_Allinterface\IndentRequiredInterface.aspx" />
     <Content Include="F_99_Allinterface\InterfaceApprovalForm.aspx" />
     <Content Include="F_99_Allinterface\MktNoteSheetInterface.aspx" />
     <Content Include="F_99_Allinterface\InventoryInterface.aspx" />
@@ -5380,6 +5407,13 @@
     </Compile>
     <Compile Include="F_99_Allinterface\HRMAllInOne.aspx.designer.cs">
       <DependentUpon>HRMAllInOne.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\IndentRequiredInterface.aspx.cs">
+      <DependentUpon>IndentRequiredInterface.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\IndentRequiredInterface.aspx.designer.cs">
+      <DependentUpon>IndentRequiredInterface.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\InterfaceApprovalForm.aspx.cs">
       <DependentUpon>InterfaceApprovalForm.aspx</DependentUpon>
@@ -12612,6 +12646,7 @@
     <Folder Include="SqlServerTypes\x86\" />
     <Folder Include="SupWorkOreder\" />
     <Folder Include="Upload\Attndancefiles\" />
+    <Folder Include="Upload\attreport\" />
     <Folder Include="Upload\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
@@ -12862,6 +12897,7 @@
     <EmbeddedResource Include="Report\RptPurchaseOrderFinlayInd.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderFinlay.rdlc" />
     <Content Include="Report\RptPurchaseOrderAcme.rdlc" />
+    <Content Include="Report\RptPurchaseOrderCPDL.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderP2P_O.rdlc" />
   </ItemGroup>
   <ItemGroup>
