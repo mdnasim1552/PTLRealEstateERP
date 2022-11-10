@@ -518,7 +518,7 @@
                             </div>
                         </div>
                         <div class="col-md-1">
-                            <asp:TextBox ID="txtmtrrf" runat="server" CssClass="form-control" placeholder="MTR Ref..."></asp:TextBox>
+                            <asp:TextBox ID="txtmtrrf" runat="server" CssClass="form-control" placeholder="Ref..."></asp:TextBox>
                         </div>
 
                         <div class="col-md-1">
@@ -534,13 +534,9 @@
                                     <button id="btnGroupDrop4" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop4" style="">
                                         <div class="dropdown-arrow"></div>
-                                       <%-- <asp:HyperLink ID="HyperLink1" Target="_blank" NavigateUrl="~/F_12_Inv/PurMTReqEntry?Type=Entry&prjcode=&genno=" runat="server" CssClass="dropdown-item">Requisition</asp:HyperLink>
-                                        <asp:HyperLink ID="HyperLink3" Target="_blank" NavigateUrl="~/F_12_Inv/RptProjectStock?Type=inv&prjcode=" runat="server" CssClass="dropdown-item">Material stock Info(Inventory)</asp:HyperLink>
-                                        <asp:HyperLink ID="HyperLink4" Target="_blank" NavigateUrl="~/F_12_Inv/MatTransStatus" runat="server" CssClass="dropdown-item">Material Trans. Status</asp:HyperLink>
-                                        <asp:HyperLink ID="HyperLink2" Target="_blank" NavigateUrl="~/F_12_Inv/RptMatIssueStatus" runat="server" CssClass="dropdown-item">Material Issue. Status</asp:HyperLink>
-                                        <asp:HyperLink ID="HyperLink5" Target="_blank" NavigateUrl="~/F_12_Inv/RptMaterialStock?Type=inv&prjcode=&sircode=" runat="server" CssClass="dropdown-item">Material stock Info(Project)</asp:HyperLink>
-                                        <asp:HyperLink ID="HyperLink6" Target="_blank" NavigateUrl="~/F_12_Inv/MaterialsTransfer?Type=Entry&genno=" runat="server" CssClass="dropdown-item">Materials Transfer Approval </asp:HyperLink>
-                                        <asp:HyperLink ID="HyperLink7" Target="_blank" NavigateUrl="~/F_12_Inv/PurMatIssue?Type=Entry" runat="server" CssClass="dropdown-item">Materials Issue </asp:HyperLink>--%>
+                                        <asp:HyperLink ID="HyperLink1" Target="_blank" NavigateUrl="~/F_12_Inv/IndentMaterialRequired?Type=Entry&genno=" runat="server" CssClass="dropdown-item">Indent Material Required- Entry</asp:HyperLink>
+                                        
+                                         
 
                                     </div>
                                 </div>
