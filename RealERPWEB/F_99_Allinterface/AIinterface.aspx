@@ -2562,12 +2562,12 @@
 
                             <asp:Label runat="server" Visible="false" ID="lblabatchid"></asp:Label>
                             <asp:Label runat="server" Visible="false" ID="lblproprjid"></asp:Label>
-                            <div class="modal-header bg-light">
+                            <div class="modal-header bg-light p-1">
                                 <h6 class="modal-title">Assign User</h6>
                                 <asp:LinkButton ID="LinkButton2" OnClick="pnlsidebarClose_Click" CssClass="btn btn-danger  btn-sm pr-2 pl-2" runat="server">&times;</asp:LinkButton>
 
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body well">
                                 <div class="form-group row">
 
                                     <div class="d-flex w-100" style="padding: 10px 8px 4px 0px;">

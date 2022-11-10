@@ -178,6 +178,20 @@ namespace RealERPWEB.F_38_AI
 
         protected void btntaskadd_Click(object sender, EventArgs e)
         {
+            string comcod = this.GetComdCode();
+
+            string prjid = Request.QueryString["PID"].ToString() == "" ? "" : Request.QueryString["PID"].ToString();
+            string batchid = Request.QueryString["BatchID"].ToString() == "" ? "" : Request.QueryString["BatchID"].ToString();
+            DataSet ds1 = MktData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "ASSIGNQTYCOUNT", prjid, batchid, "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            DataTable dt = ds1.Tables[0];
+            double pedingannotor = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["pendingqty"].ToString());
+            double pedingqc = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qcpending"].ToString());
+            double pedingqar = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qapending"].ToString());
+            this.lblcountannotid.Text = pedingannotor.ToString("#,##0;(#,##0); ");
+            this.lblcountQC.Text = pedingqc.ToString("#,##0;(#,##0); ");
+            this.lblcountQA.Text = pedingqar.ToString("#,##0;(#,##0); ");
             this.assigntask.Visible = false;
             this.taskoverview.Visible = false;
             this.penddingtask.Visible = false;
@@ -294,51 +308,88 @@ namespace RealERPWEB.F_38_AI
 
             try
             {
-                DataTable tblt01 = (DataTable)ViewState["tblt01"];
-
-                //DataTable tbl1 = (DataTable)ViewState["tblReq"];
-                string empid = this.ddlassignmember.SelectedValue.ToString();
-                string annoid = this.ddlAnnotationid.SelectedValue.ToString();
-                //DataRow[] dr2 = tblt01.Select("empid ='"+ empid + "'");
-                //if (dr2.Length == 0)
-                //{
-
-                DataRow[] dr3 = tblt01.Select("annoid='" + annoid + "'");
-                if (dr3.Length == 0)
+                string roletype = this.ddlUserRoleType.SelectedValue;
+                double assignqty = Convert.ToDouble("0" + this.txtquantity.Text.ToString());
+                double pedingannotor = Convert.ToDouble("0" + this.lblcountannotid.Text.ToString());
+                double pedingqc = Convert.ToDouble("0" + this.lblcountQC.Text.ToString());
+                double pedingqar = Convert.ToDouble("0" + this.lblcountQA.Text.ToString());
+                if (roletype == "95001" && pedingannotor < assignqty)
                 {
-                    DataRow dr1 = tblt01.NewRow();
-                    DataTable tbl2 = (DataTable)ViewState["tblMat"];
-                    dr1["batchid"] = this.hiddnbatchID.Value.ToString();
-                    dr1["empid"] = this.ddlassignmember.SelectedValue.ToString();
-                    dr1["empname"] = this.ddlassignmember.SelectedItem.Text;
-                    dr1["roletype"] = this.ddlUserRoleType.SelectedItem.Value;
-                    dr1["roledesc"] = this.ddlUserRoleType.SelectedItem.Text;
-                    dr1["assigntype"] = this.ddlassigntype.SelectedItem.Value.Trim();
-                    dr1["assigndesc"] = this.ddlassigntype.SelectedItem.Text.Trim();
-                    dr1["annoid"] = this.ddlAnnotationid.SelectedItem.Value.Trim().ToString();
-                    dr1["assignqty"] = Convert.ToDouble("0" + this.txtquantity.Text.Trim());
-                    dr1["workhour"] = Convert.ToDouble("0" + this.txtworkhour.Text.Trim());
-                    dr1["isoutsrc"] = this.checkinoutsourcing.Checked;
-                    dr1["workrate"] = this.textrate.Text.Trim();
-                    tblt01.Rows.Add(dr1);
 
+
+                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then PendingAnnotator  "+ pedingannotor.ToString();
+                    this.txtquantity.Focus();
+
+                    this.txtquantity.ForeColor = System.Drawing.Color.Red;
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
+
+                }
+                else if (roletype == "95002" && pedingqc < assignqty)
+                {
+                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then PendingAnnotator  " + pedingqc.ToString() ;
+                    this.txtquantity.Focus();
+                    this.txtquantity.ForeColor=System.Drawing.Color.Red;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
+                }
+                else if (roletype == "95003" && pedingqar < assignqty)
+                {
+                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then PendingAnnotator  " + pedingqar.ToString() ;
+                    this.txtquantity.Focus();
+
+                    this.txtquantity.ForeColor = System.Drawing.Color.Red;
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
                 }
                 else
                 {
-                    string msg = "Alredy Exists Annotr ID";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
+                    DataTable tblt01 = (DataTable)ViewState["tblt01"];
+
+                    //DataTable tbl1 = (DataTable)ViewState["tblReq"];
+                    string empid = this.ddlassignmember.SelectedValue.ToString();
+                    string annoid = this.ddlAnnotationid.SelectedValue.ToString();
+                    //DataRow[] dr2 = tblt01.Select("empid ='"+ empid + "'");
+                    //if (dr2.Length == 0)
+                    //{
+
+                    DataRow[] dr3 = tblt01.Select("annoid='" + annoid + "'");
+                    if (dr3.Length == 0)
+                    {
+                        DataRow dr1 = tblt01.NewRow();
+                        DataTable tbl2 = (DataTable)ViewState["tblMat"];
+                        dr1["batchid"] = this.hiddnbatchID.Value.ToString();
+                        dr1["empid"] = this.ddlassignmember.SelectedValue.ToString();
+                        dr1["empname"] = this.ddlassignmember.SelectedItem.Text;
+                        dr1["roletype"] = this.ddlUserRoleType.SelectedItem.Value;
+                        dr1["roledesc"] = this.ddlUserRoleType.SelectedItem.Text;
+                        dr1["assigntype"] = this.ddlassigntype.SelectedItem.Value.Trim();
+                        dr1["assigndesc"] = this.ddlassigntype.SelectedItem.Text.Trim();
+                        dr1["annoid"] = this.ddlAnnotationid.SelectedItem.Value.Trim().ToString();
+                        dr1["assignqty"] = Convert.ToDouble("0" + this.txtquantity.Text.Trim());
+                        dr1["workhour"] = Convert.ToDouble("0" + this.txtworkhour.Text.Trim());
+                        dr1["isoutsrc"] = this.checkinoutsourcing.Checked;
+                        dr1["workrate"] = this.textrate.Text.Trim();
+                        tblt01.Rows.Add(dr1);
+
+                    }
+                    else
+                    {
+                        string msg = "Alredy Exists Annotr ID";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
+                    }
+                    //}
+                    //else
+                    //{
+                    //    string msg = "Alredy Exists";
+                    //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
+                    //}
+
+                    ViewState["tblt01"] = tblt01;
+                    this.VirtualGrid_DataBind();
                 }
-                //}
-                //else
-                //{
-                //    string msg = "Alredy Exists";
-                //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-
-                //}
-
-                ViewState["tblt01"] = tblt01;
-                this.VirtualGrid_DataBind();
             }
             catch (Exception ex)
             {
@@ -350,13 +401,13 @@ namespace RealERPWEB.F_38_AI
         {
             try
             {
-                Hashtable hst = (Hashtable)Session["tblLogin"];        
+                Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = this.GetComdCode();
                 DataTable tbl1 = (DataTable)ViewState["tblt01"];
                 DataSet ds1 = new DataSet("ds1");
                 ds1.Tables.Add(tbl1);
                 ds1.Tables[0].TableName = "tbl1";
-                string userid = hst["usrid"].ToString();               
+                string userid = hst["usrid"].ToString();
                 string postseson = hst["compname"].ToString();
                 string Sessionid = hst["session"].ToString();
                 string posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
@@ -379,14 +430,14 @@ namespace RealERPWEB.F_38_AI
                 string editbyid = "";
                 string assmember = ""; //this.ddlassignmember.SelectedValue.ToString();
                 string annotation = ""; //this.ddlAnnotationid.SelectedValue.ToString();
-                //comcod, taskid, empid, batchid, annoid,roletype, assigntype,  assignqty,workhour, postedbyid=14, posteddat=16, postseson=15,isoutsrc, workrate
-                //comcod,batchid,tasktitle,taskdesc,tasktype,createtask,createuser,remarks,estimationtime,dataset,qty,worktype,
-                //    perhourqty, postrmid, postedbyid, postseson,posteddat,prjid,editbyid,editdat
+                                        //comcod, taskid, empid, batchid, annoid,roletype, assigntype,  assignqty,workhour, postedbyid=14, posteddat=16, postseson=15,isoutsrc, workrate
+                                        //comcod,batchid,tasktitle,taskdesc,tasktype,createtask,createuser,remarks,estimationtime,dataset,qty,worktype,
+                                        //    perhourqty, postrmid, postedbyid, postseson,posteddat,prjid,editbyid,editdat
 
-                
-                bool result = MktData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "TASK_INSERTUPDATE", ds1, null, null, batchid,tasktitle,taskdesc,tasktype,
-                    createtask, userid, remarks,estimationtime,
-                    dataset,qty,worktype,perhourqty, postrmid, postedbyid, postseson,posteddat, projid, editbyid, editdat, taskid, "", "");
+
+                bool result = MktData.UpdateXmlTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "TASK_INSERTUPDATE", ds1, null, null, batchid, tasktitle, taskdesc, tasktype,
+                    createtask, userid, remarks, estimationtime,
+                    dataset, qty, worktype, perhourqty, postrmid, postedbyid, postseson, posteddat, projid, editbyid, editdat, taskid, "", "");
                 //if (!result)
                 //{
                 //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + result.er.Message.ToString() + "');", true);
@@ -397,6 +448,7 @@ namespace RealERPWEB.F_38_AI
                 //this.task.Visible = false;
                 this.assigntask.Visible = true;
                 this.taskoverview.Visible = true;
+                this.task.Visible = false;
                 this.GetBatchInfo();
             }
             catch (Exception ex)
@@ -582,7 +634,7 @@ namespace RealERPWEB.F_38_AI
                     this.GetReturnReject();
                     break;
 
-                    
+
             }
         }
 
@@ -686,7 +738,7 @@ namespace RealERPWEB.F_38_AI
                 string id = ((Label)this.gv_PenddingAssign.Rows[index].FindControl("lblgvtaskid")).Text.ToString();
                 this.HiddinTaskid.Value = id;
 
-              
+
                 string titlename = ((Label)this.gv_PenddingAssign.Rows[index].FindControl("lblgvptasktitle")).Text.ToString();
                 string roletype = ((Label)this.gv_PenddingAssign.Rows[index].FindControl("lblgvproletype")).Text.ToString();
                 string annotorid = ((Label)this.gv_PenddingAssign.Rows[index].FindControl("lblgvpannoid")).Text.ToString();
@@ -746,11 +798,13 @@ namespace RealERPWEB.F_38_AI
 
 
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
             }
         }
+
+        
     }
 }
