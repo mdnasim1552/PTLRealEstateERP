@@ -420,6 +420,15 @@ namespace RealERPWEB
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lstFeturedMenu;
 
         /// <summary>
+        /// archIve control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl archIve;
+
+        /// <summary>
         /// Ul1 control.
         /// </summary>
         /// <remarks>
@@ -427,6 +436,33 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Ul1;
+
+        /// <summary>
+        /// menuMaster control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor menuMaster;
+
+        /// <summary>
+        /// GeneralFlow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor GeneralFlow;
+
+        /// <summary>
+        /// dashHRM control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor dashHRM;
 
         /// <summary>
         /// ShorCut control.
