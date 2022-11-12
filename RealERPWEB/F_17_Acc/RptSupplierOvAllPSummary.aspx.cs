@@ -38,8 +38,9 @@ namespace RealERPWEB.F_17_Acc
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Supplier Overall Position Summary";
 
                 var dtoday = System.DateTime.Today;
-                this.txttodate.Text = System.DateTime.Today.AddDays(-30).ToString("dd-MMM-yyyy");
-                this.txtfrmdate.Text = dtoday.ToString("dd-MMM-yyyy");
+               
+                this.txtfrmdate.Text = System.DateTime.Today.AddDays(-30).ToString("dd-MMM-yyyy");
+                this.txttodate.Text = dtoday.ToString("dd-MMM-yyyy");               
                 this.SupplierList();
                 this.LoadAllSupplier();
 
