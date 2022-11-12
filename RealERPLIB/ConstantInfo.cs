@@ -1113,21 +1113,22 @@ namespace RealERPLIB
             //kpi 
             // 05. My Marketing Interface(Sales)
 
-            tblObj.Rows.Add(new Object[] { "2102000", "2102121", "F_39_MyPage", "ClientCodeBook", "", "Client Code", "My Marketing Interface(Sales)", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "2102000", "2102122", "F_39_MyPage", "LandOwnerCodeBook", "", "Landowner Code", "My Marketing Interface(Sales)", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "2102000", "2102123", "F_39_MyPage", "ClientDetail?", "Type=Client", "Client Details", "My Marketing Interface(Sales)", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "2102000", "2102124", "F_39_MyPage", "EmpKpiEntry04?", "Type=Sales", "Daily Job Execution", "My Marketing Interface(Sales)", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2102000", "2102121", "F_39_MyPage", "ClientCodeBook", "", "Client Code", "My Marketing Interface(Sales)", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "2102000", "2102122", "F_39_MyPage", "LandOwnerCodeBook", "", "Landowner Code", "My Marketing Interface(Sales)", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "2102000", "2102123", "F_39_MyPage", "ClientDetail?", "Type=Client", "Client Details", "My Marketing Interface(Sales)", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "2102000", "2102124", "F_39_MyPage", "EmpKpiEntry04?", "Type=Sales", "Daily Job Execution", "My Marketing Interface(Sales)", "False", "False", "False", "False" }); 
 
-            tblObj.Rows.Add(new Object[] { "2102000", "2102136", "F_21_MKT", "ClientTransfer", "", "Client Transfer Information", "CRM", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2102000", "2102136", "F_21_MKT", "ClientTransfer", "", "Client Transfer Information", "CRM", "False", "False", "False", "False" }); 
 
-            tblObj.Rows.Add(new Object[] { "2103000", "2103110", "F_21_MKT", "RptCrmNeedBase?", "Type=Report", "Client Need Base Report", "CRM", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "2103000", "2103111", "F_21_MKT", "RptCallCenterLead?", "Type=SourceWise", "Source Wise Leads", "CRM", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "2103000", "2103120", "F_21_MKT", "RptCallCenterLead?", "Type=SalespWise", "Sales Person Wise Leads", "CRM", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "2103000", "2103121", "F_21_MKT", "RptClientInitial?", "Type=MktLead", "Suspect Notification", "CRM", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "2103000", "2103122", "F_21_MKT", "RptCenterWiseClient", "", "Center Wise Client List", "CRM", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "2103000", "2103123", "F_21_MKT", "RptProspectClient", "", "Prospect Notification", "CRM", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "2103000", "2103124", "F_21_MKT", "ProspectTransferLog", "", "Prospect Transfer Log", "CRM", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "2103000", "2103125", "F_21_MKT", "AdvancedSearchFilter", "", "Advanced Search Filter", "CRM", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2103000", "2103110", "F_21_MKT", "RptCrmNeedBase?", "Type=Report", "Client Need Base Report", "CRM", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "2103000", "2103111", "F_21_MKT", "RptCallCenterLead?", "Type=SourceWise", "Source Wise Leads", "CRM", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "2103000", "2103120", "F_21_MKT", "RptCallCenterLead?", "Type=SalespWise", "Sales Person Wise Leads", "CRM", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "2103000", "2103121", "F_21_MKT", "RptClientInitial?", "Type=MktLead", "Suspect Notification", "CRM", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "2103000", "2103122", "F_21_MKT", "RptCenterWiseClient", "", "Center Wise Client List", "CRM", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "2103000", "2103123", "F_21_MKT", "RptProspectClient", "", "Prospect Notification", "CRM", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "2103000", "2103124", "F_21_MKT", "ProspectTransferLog", "", "Prospect Transfer Log", "CRM", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "2103000", "2103125", "F_21_MKT", "AdvancedSearchFilter", "", "Advanced Search Filter", "CRM", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2103000", "2103126", "F_21_MKT", "RptDailyWorkStatus?", "Type=EmpWise", "Daily Work Status (Employee Wise)", "CRM", "False", "False", "False", "False" });
 
             //tblObj.Rows.Add(new Object[] { "3903000", "3903001", "EmpKpiEntry03?", "Type=Client", "Daily Job Execution", "My Marketing Interface(Marketing)", "False", "False", "False"});
             tblObj.Rows.Add(new Object[] { "2103000", "2102125", "F_39_MyPage", "RptEmpMonthWiseEva03?", "Type=IndEmp", "Month Wise Evaluation", "My Marketing Interface(Marketing)", "False", "False", "False" });
@@ -1279,7 +1280,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2202270", "F_22_Sal", "RptClientDateFile", "", "Client Data File ", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202271", "F_22_Sal", "RptPeriodicSalesWithCollection", "", "Periodic Sales With Collection ", "Sales", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202275", "F_22_Sal", "RptSalesVsAchievement?", "Type=MonsalVsAchieve", "Month Wise Sales (Reconcilation)", "Sales", "False", "False", "False", "False" });
-     
+            tblObj.Rows.Add(new Object[] { "2203000", "2202276", "F_22_Sal", "RptSalesVsAchievement?", "Type=DownpayClearnce", "Down Payment Status (Prev.Sales)", "Sales", "False", "False", "False", "False" });
+
+
 
 
 
@@ -1659,9 +1662,13 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3262000", "3262002", "F_34_Mgt", "RptAllDashboard?", "Type=Accounts", "Accounts Dashboard", "MIS Module", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3262000", "3262003", "F_34_Mgt", "RptAllDashboard?", "Type=Sales", "Sales Dashboard", "MIS Module", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3262000", "3262004", "F_34_Mgt", "RptAllDashboard?", "Type=Construction", "Construction Dashboard", "MIS Module", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "3262000", "3262005", "F_32_Mis", "ProjectAnalysis?", "Type=Report&comcod=", "Project Analysis", "MIS Module", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3262000", "3262005", "F_32_Mis", "ProjectAnalysis?", "Type=Report", "Project Analysis", "MIS Module", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3262000", "3262050", "F_99_Allinterface", "ProjectDashBoard?", "comcod=", "Project Summary", "MIS Module", "False", "False", "False", "False" }); ;
-
+            
+            //Archive 
+            tblObj.Rows.Add(new Object[] { "3261000", "3261020", "", "MyDashboard?", "Type=5000", "Master Page- Archive", "MIS Module", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3261000", "3261021", "", "DeafultMenu?", "Type=8010", "General Flow- Archive", "MIS Module", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3261000", "3261023", "", "DashboardHRM", "", "HRM Flow- Archive", "MIS Module", "False", "False", "False", "False" }); ;
 
 
             #endregion
@@ -7320,7 +7327,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000003", "17. Client Capacity Analysis", "F_21_Mkt/RptProWiseClOffered?Type=Capacity", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000004", "17. Client Need Base Report", "F_21_MKT/RptCrmNeedBase?Type=Report", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000005", "18. Source Wise Leads", "F_21_MKT/RptCallCenterLead?Type=SourceWise", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000006", "18.Sales Person Wise Leads", "F_21_MKT/RptCallCenterLead?Type=SalespWise", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000006", "19. Sales Person Wise Leads", "F_21_MKT/RptCallCenterLead?Type=SalespWise", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000007", "20. Daily Work Status (Employee Wise)", "F_21_MKT/RptDailyWorkStatus?Type=EmpWise", "", true, "" });
 
 
 
@@ -7574,9 +7582,11 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000002", "15. Month Wise Sales", "F_17_Acc/RptAccCollVsClearance?Type=MonSales&comcod=", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0401000003", "15. Customer Bill Info", "F_22_Sal/RptCustomerBill?Type=CustBill", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000004", "16. Month Wise Sales (Reconcilation)", "F_22_Sal/RptSalesVsAchievement?Type=MonsalVsAchieve", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000004", "17. Periodic Sales With Collection ", "F_22_Sal/RptPeriodicSalesWithCollection", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000005", "17. Down Payment Status (Prev.Sales)", "F_22_Sal/RptSalesVsAchievement?Type=DownpayClearnce", "", true, "" });
 
-            mnuTbl1.Rows.Add(new Object[] { "0401000005", "18. Monthly Sales Target-Market", "F_22_Sal/RptSalSummery?Type=mSalesTarget", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000006", "18. Periodic Sales With Collection ", "F_22_Sal/RptPeriodicSalesWithCollection", "", true, "" });
+
+            mnuTbl1.Rows.Add(new Object[] { "0401000007", "19. Monthly Sales Target-Market", "F_22_Sal/RptSalSummery?Type=mSalesTarget", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0402000000", "Other Related Report", "", "", false, "mb" });
 

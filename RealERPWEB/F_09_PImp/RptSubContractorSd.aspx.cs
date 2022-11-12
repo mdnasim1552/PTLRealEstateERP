@@ -187,7 +187,7 @@ namespace RealERPWEB.F_09_PImp
 
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
-
+            
 
             string Type = this.Request.QueryString["Type"].ToString().Trim();
             switch (Type)

@@ -131,6 +131,7 @@ namespace RealERPWEB
 
 
             checkVisibility();
+            checkPendingAprval();
         }
         private void checkVisibility()
         {
@@ -148,6 +149,69 @@ namespace RealERPWEB
 
 
         }
+   
+        
+        private void checkPendingAprval()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string usrid = hst["usrid"].ToString();
+
+            string txFdate = "";
+            string txtdate = "";
+
+
+        
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                return;
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "26" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            switch (comcod)
+            {
+                case "3330":
+                case "3355":
+                case "3365":
+
+                    txFdate= System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    txFdate = startdate + txFdate.Trim().Substring(2);
+                    txtdate= Convert.ToDateTime(txFdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                    break;
+                default:
+                    if (startdate == "26")
+                    {
+                        txFdate = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    }
+                    else
+                    {
+                        txFdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    }
+                    txFdate = startdate + txFdate.Trim().Substring(2);
+                    txtdate = Convert.ToDateTime(txFdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+                    //this.txFdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    //this.txFdate.Text = startdate + this.txFdate.Text.Trim().Substring(2);
+                    //this.txtdate.Text = Convert.ToDateTime(this.txFdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+                    break;
+            }
+
+            string type = "";
+            string DeptHead = "";
+            string searchkey = "%%";
+            string CompanyName = "94";
+            string branch = "94%";
+            string projectcode = branch;
+            string section =  projectcode ;
+            string leavtype = "%%";
+
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_MGT_INTERFACE", "GETLEAVEREQUEST", txFdate, txtdate, usrid, type, DeptHead, searchkey,
+                CompanyName, branch, projectcode, section, leavtype);
+            if (ds1 == null)
+                return;
+            this.lappcount.InnerText = ds1.Tables[1].Rows[0]["fappcount"].ToString();
+        }
+
         private void GetAllTimeOff()
         {
             string comcod = this.GetCompCode();

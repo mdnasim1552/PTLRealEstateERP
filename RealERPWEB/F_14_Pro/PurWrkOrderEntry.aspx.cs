@@ -4404,8 +4404,8 @@ namespace RealERPWEB.F_14_Pro
 
                 if(tomail=="")
                 {
-                    string Messagesd = "Update the suppliers email address to be used for email notifications";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
+                    string Messagesd = "Email Send Fail !!!  Update the suppliers email address to be used for email notifications";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
                     return;
                 }
 
