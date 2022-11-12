@@ -476,8 +476,6 @@ namespace RealERPWEB.F_17_Acc
             if (ds4 == null || ds4.Tables[0].Rows.Count == 0)
                 return;
 
-
-
             if (insrectype.Length > 0)
             {
                 foreach (DataRow dr in ds4.Tables[0].Rows)
@@ -518,7 +516,11 @@ namespace RealERPWEB.F_17_Acc
             string parking = dtrpt.Rows[0]["parking"].ToString();
             string benefname = dtrpt.Rows[0]["benefname"].ToString().Length == 0 ? "" : ("Beneficiary:  " + dtrpt.Rows[0]["benefname"].ToString());
 
-
+            DataTable dtservice = ds4.Tables[1];
+            string custid = dtservice.Rows[0]["customerid"].ToString(); 
+            string workdesc = dtservice.Rows[0]["workdesc"].ToString();  
+            string quotid = dtservice.Rows[0]["quotid"].ToString();  
+            string paddress = dtservice.Rows[0]["paddress"].ToString();   
 
             double amt1 = Convert.ToDouble((Convert.IsDBNull(dtrpt.Compute("Sum(paidamt)", "")) ? 0.00 : dtrpt.Compute("Sum(paidamt)", "")));
             string amt1t = ASTUtility.Trans(amt1, 2);
@@ -952,12 +954,15 @@ namespace RealERPWEB.F_17_Acc
 
             else if (Type== "MRPrintAcme")
             {
-
+               
                 var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
                 if (comcod == "1207")
                 {
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptAcme02", list, null, null);
                     Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("custid", custid));
+                    Rpt1.SetParameters(new ReportParameter("workdesc", workdesc));
+                    Rpt1.SetParameters(new ReportParameter("paddress", paddress));
                 }
                 else
                 {
