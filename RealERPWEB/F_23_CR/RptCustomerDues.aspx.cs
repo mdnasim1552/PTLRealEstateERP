@@ -49,6 +49,10 @@ namespace RealERPWEB.F_23_CR
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Text = "SMS";
+            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Click += new EventHandler(lnkSendSMS_Click);
+            //((LinkButton)this.Master.FindControl("lnkbtnAdd")).Click += new EventHandler(lnkbtnUpdate_Click);
 
         }
 
@@ -65,7 +69,7 @@ namespace RealERPWEB.F_23_CR
         private void GetProjectName()
         {
             string comcod = this.GetCompCode();
-            string txtSProject = this.txtSrcProject.Text.Trim() + "%";
+            string txtSProject =  "%";
             DataSet ds1 = CustData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETPROJECTNAME", txtSProject, "", "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "pactdesc";
             this.ddlProjectName.DataValueField = "pactcode";
@@ -364,6 +368,12 @@ namespace RealERPWEB.F_23_CR
             {
                 this.chkCurrentdues.Checked = false;
             }
+        }
+
+        protected void lnkSendSMS_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)Session["tblCustDues"];
+
         }
     }
 }

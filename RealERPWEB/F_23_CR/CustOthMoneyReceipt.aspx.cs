@@ -83,6 +83,15 @@ namespace RealERPWEB.F_23_CR
 
                     }
 
+
+                    this.txtrefid.Text = this.Request.QueryString.AllKeys.Contains("quotid") ? this.Request.QueryString["quotid"].ToString() : "";
+                    this.txtPaidamt.Text = this.Request.QueryString.AllKeys.Contains("qamt") ? Convert.ToDouble(this.Request.QueryString["qamt"].ToString()).ToString("#,##0.00;-#,##0.00; ") : Convert.ToDouble("0.00").ToString("#,##0.00;-#,##0.00; ");
+                    this.txtrefid.ReadOnly = true;
+                    if (this.Request.QueryString.AllKeys.Contains("quotid"))
+                    {
+                        this.lbtnOk_Click(null, null);
+                    }
+
                 }
             }
         }
@@ -410,9 +419,28 @@ namespace RealERPWEB.F_23_CR
             string PactCode = this.ddlProjectName.SelectedValue.ToString();
             string mrno = this.lblReceiveNo.Text.Trim();
             string date = Convert.ToDateTime(this.txtReceiveDate.Text).ToString("dd-MMM-yyyy");
+            
+            // todo for single page money receipt print
+            string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_17_Acc/";
+            string currentptah = "PrintMoneyReceipt?Type=moneyReceipt&pactcode=" + PactCode + "&usircode=" + UsirCode + "&mrno=" + mrno + "&mrdate=" + date;
+            string totalpath = hostname + currentptah;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
+
+            //Response.Redirect("~/F_17_Acc/" + currentptah);
 
 
+            /*
+            string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_17_Acc/";
+            string currentptah = "PrintMoneyReceipt?Type=moneyReceipt&pactcode=" + PactCode + "&usircode=" + UsirCode + "&mrno=" + mrno + "&mrdate=" + date;
+            string totalpath = hostname + currentptah;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
 
+            //string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
+            //string currentptah = "PurchasePrint.aspx?Type=OrderPrint&orderno=" + orderno;
+            //string totalpath = hostname + currentptah;
+            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
+
+            /*
             string Installment = "";
 
             DataSet ds4 = CustData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "REPORTMONEYRECEIPT", PactCode, UsirCode, mrno, "", "", "", "", "", "");
@@ -558,10 +586,9 @@ namespace RealERPWEB.F_23_CR
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                             ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
-
             }
 
-
+            */
         }
 
         private void MoneyReceiptPrint()
@@ -570,8 +597,6 @@ namespace RealERPWEB.F_23_CR
             string mrrno = this.ddlPreMrr.SelectedValue.ToString().Trim();
             string mPrint = this.chkOrginal.Checked ? "1" : "0";
             bool result = CustData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSORUPDATEMPRINT", mrrno, mPrint, "", "", "", "", "", "", "", "", "", "", "", "", "");
-
-
 
         }
         protected void lbtRefreshMrr_Click(object sender, EventArgs e)
@@ -1127,7 +1152,7 @@ namespace RealERPWEB.F_23_CR
             tblt01.Columns.Add("spcode", Type.GetType("System.String"));
             tblt01.Columns.Add("pactcode", Type.GetType("System.String"));
             tblt01.Columns.Add("Dr", Type.GetType("System.Double"));
-            tblt01.Columns.Add("Cr", Type.GetType("System.Double"));           
+            tblt01.Columns.Add("Cr", Type.GetType("System.Double"));
             ViewState["tblReceivable"] = tblt01;
         }
 
@@ -1181,7 +1206,7 @@ namespace RealERPWEB.F_23_CR
                 dr["Cr"] = Convert.ToDouble("0");
                 dt.Rows.Add(dr);
                 DataRow dr1 = dt.NewRow();
-                dr1["pactcode"] ="31"+ ASTUtility.Right(ddlProjectName.SelectedValue.ToString(),10);
+                dr1["pactcode"] = "31" + ASTUtility.Right(ddlProjectName.SelectedValue.ToString(), 10);
                 dr1["rescode"] = lblCustomerFromService.Text;
                 dr1["spcode"] = "000000000000";
                 dr1["Cr"] = Convert.ToDouble(((Label)this.gvMoneyreceipt.FooterRow.FindControl("txtFTotal")).Text);
@@ -1231,7 +1256,7 @@ namespace RealERPWEB.F_23_CR
                     string eventdesc2 = vounum;
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }
-                
+
 
             }
             catch (Exception ex)

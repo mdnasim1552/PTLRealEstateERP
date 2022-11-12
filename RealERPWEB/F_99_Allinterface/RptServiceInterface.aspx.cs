@@ -894,10 +894,13 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink lnkbtnPrintIn = (HyperLink)e.Row.FindControl("lnkbtnPrintIn");
                 HyperLink hlinkproceed = (HyperLink)e.Row.FindControl("lnkProceed");
 
+
                 string quotid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "quotid")).ToString();
+                string quotid1 = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "quotid1")).ToString();
+                string qamt = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "qamt")).ToString();
 
                 string pactcode = "18"+ ASTUtility.Right(Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mapactcode")).ToString(), 10);
-                hlinkproceed.NavigateUrl = "~/F_23_CR/CustOthMoneyReceipt?Type=Billing&pactcode=" + pactcode;               
+                hlinkproceed.NavigateUrl = "~/F_23_CR/CustOthMoneyReceipt?Type=Billing&pactcode=" + pactcode + "&quotid="+ quotid + "&qamt="+ qamt;               
                 hlinkproceed.Visible = true;
                 lnkbtnPrintQT.NavigateUrl = "~/F_70_Services/ServicePrint?Type=PrintQuote&QId=" + quotid;
                 lnkbtnPrintIn.NavigateUrl = "~/F_70_Services/ServicePrint?Type=PrintInvoice&QId=" + quotid; 
