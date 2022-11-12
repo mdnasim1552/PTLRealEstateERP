@@ -850,20 +850,20 @@
 
 
 
-                                <li class="menu-item has-child">
+                                <li class="menu-item has-child" id="archIve" runat="server" visible="false">
                                     <a href="#" class="menu-link"><span class="menu-icon fas fa-table" title="Archive"></span><span class="menu-text">Archive</span></a>
                                     <!-- child menu -->
                                     <ul class="menu" runat="server" id="Ul1">
                                         <li class="menu-item">
-                                            <a href="MyDashboard?Type=5000" target="_blank" class="menu-link"><span class="menu-icon fa fa-th"></span><span class="menu-text">Master Page</span></a>
+                                            <a href="MyDashboard?Type=5000" id="menuMaster" runat="server" visible="false" target="_blank" class="menu-link"><span class="menu-icon fa fa-th"></span><span class="menu-text">Master Page</span></a>
 
                                         </li>
                                         <li class="menu-item">
-                                            <a href="DeafultMenu?Type=8010" target="_blank" class="menu-link"><span class="menu-icon fa fa-chart-area"></span><span class="menu-text">General Flow</span></a>
+                                            <a href="DeafultMenu?Type=8010" id="GeneralFlow" runat="server" visible="false" target="_blank" class="menu-link"><span class="menu-icon fa fa-chart-area"></span><span class="menu-text">General Flow</span></a>
 
                                         </li>
                                         <li class="menu-item">
-                                            <a href="DashboardHRM" target="_blank" class="menu-link"><span class="menu-icon fa fa-chart-bar"></span><span class="menu-text">HRM Flow</span></a>
+                                            <a href="DashboardHRM"  id="dashHRM" runat="server" visible="false"  target="_blank" class="menu-link"><span class="menu-icon fa fa-chart-bar"></span><span class="menu-text">HRM Flow</span></a>
 
                                         </li>
 
@@ -926,7 +926,7 @@
                                     <!-- /child menu -->
                                 </li>
                                 <li class="menu-item has-active">
-                                    <a href="AllGraph" id="allGraph" runat="server" target="_blank" class="menu-link"><span class="menu-icon fa fa-meteor" title="DashBoard"></span><span class="menu-text">Dashboard</span></a>
+                                    <a href="AllGraph" id="allGraph" visible="false" runat="server" target="_blank" class="menu-link"><span class="menu-icon fa fa-meteor" title="DashBoard"></span><span class="menu-text">Dashboard</span></a>
                                 </li>
                                 <%--<li class="menu-item">
                                     <a href=<%= ResolveUrl("~/F_34_Mgt/RptAllDashboard?Type=Purchase") %> target="_blank" class="menu-link"><span class="menu-icon fa fa-meteor" title="Tickets"></span><span class="menu-text">Tickets</span></a>

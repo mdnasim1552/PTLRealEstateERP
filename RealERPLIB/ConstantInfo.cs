@@ -1651,9 +1651,13 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3262000", "3262002", "F_34_Mgt", "RptAllDashboard?", "Type=Accounts", "Accounts Dashboard", "MIS Module", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3262000", "3262003", "F_34_Mgt", "RptAllDashboard?", "Type=Sales", "Sales Dashboard", "MIS Module", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3262000", "3262004", "F_34_Mgt", "RptAllDashboard?", "Type=Construction", "Construction Dashboard", "MIS Module", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "3262000", "3262005", "F_32_Mis", "ProjectAnalysis?", "Type=Report&comcod=", "Project Analysis", "MIS Module", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3262000", "3262005", "F_32_Mis", "ProjectAnalysis?", "Type=Report", "Project Analysis", "MIS Module", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3262000", "3262050", "F_99_Allinterface", "ProjectDashBoard?", "comcod=", "Project Summary", "MIS Module", "False", "False", "False", "False" }); ;
-
+            
+            //Archive 
+            tblObj.Rows.Add(new Object[] { "3261000", "3261020", "", "MyDashboard?", "Type=5000", "Master Page- Archive", "MIS Module", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3261000", "3261021", "", "DeafultMenu?", "Type=8010", "General Flow- Archive", "MIS Module", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3261000", "3261023", "", "DashboardHRM", "", "HRM Flow- Archive", "MIS Module", "False", "False", "False", "False" }); ;
 
 
             #endregion
