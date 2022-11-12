@@ -1182,10 +1182,25 @@
                                                     <asp:Label ID="lblgvprojectName" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projectName")) %>'
                                                         Width="150px"></asp:Label>
+                                                    <asp:Label ID="lblgvprodu" runat="server" 
+                                                        class='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype"))=="Pilot") ? " badge badge-pill badge-danger":" badge badge-pill badge-success" %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype")) %>'
+                                                        ></asp:Label>
                                                 </ItemTemplate>
+
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Project Name">
+                                                <ItemTemplate>
+                                                    
+                                                    
+                                                </ItemTemplate>
+
+                                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            </asp:TemplateField>
+                                            
                                             <asp:TemplateField HeaderText="Batch <br> Name">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvbatchname" runat="server"
@@ -1238,7 +1253,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvjobstatus" runat="server" CssClass="badge badge-pill badge-info"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus")) %>'
-                                                        hieght="20px" Width="100px"></asp:Label>
+                                                        ></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1378,6 +1393,10 @@
                                                     <asp:Label ID="lblgvqcprojectName" runat="server" Height="16px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projectName")) %>'
                                                         Width="150px"></asp:Label>
+                                                     <asp:Label ID="lblgvqcorder" runat="server" 
+                                                        class='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype"))=="Pilot") ? " badge badge-pill badge-danger":" badge badge-pill badge-success" %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype")) %>'
+                                                        ></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1571,6 +1590,10 @@
                                                     <asp:Label ID="lblgvqaprojectName" runat="server" Height="16px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projectName")) %>'
                                                         Width="150px"></asp:Label>
+                                                     <asp:Label ID="lblgvqaorder" runat="server" 
+                                                        class='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype"))=="Pilot") ? " badge badge-pill badge-danger":" badge badge-pill badge-success" %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype")) %>'
+                                                        ></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1908,6 +1931,10 @@
                                                     <asp:Label ID="lblgvarprojectName" runat="server" Height="16px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projectName")) %>'
                                                         Width="150px"></asp:Label>
+                                                     <asp:Label ID="lblgvreject" runat="server" 
+                                                        class='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype"))=="Pilot") ? " badge badge-pill badge-danger":" badge badge-pill badge-success" %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype")) %>'
+                                                        ></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1917,6 +1944,7 @@
                                                     <asp:Label ID="lblgvarbatchname" runat="server" Height="16px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "batchname")) %>'
                                                         Width="80px"></asp:Label>
+                                                    
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -2563,6 +2591,9 @@
 
                             <asp:Label runat="server" Visible="false" ID="lblabatchid"></asp:Label>
                             <asp:Label runat="server" Visible="false" ID="lblproprjid"></asp:Label>
+                            <asp:Label runat="server" ID="lblDoneAnnot" Visible="false"></asp:Label>
+                            <asp:Label runat="server" ID="lblDoneQC" Visible="false"></asp:Label>
+                            <asp:Label runat="server" ID="lblDoneQA" Visible="false"></asp:Label>
                             <div class="modal-header bg-light p-1">
                                 <h6 class="modal-title">Assign User</h6>
                                 <asp:LinkButton ID="LinkButton2" OnClick="pnlsidebarClose_Click" CssClass="btn btn-danger  btn-sm pr-2 pl-2" runat="server">&times;</asp:LinkButton>
@@ -2580,6 +2611,7 @@
                                             <asp:Label runat="server" ID="lblcountQC"></asp:Label>)</span>
                                         <span class="text-danger">&nbsp; &nbsp; PendingQA(
                                             <asp:Label runat="server" ID="lblcountQA"></asp:Label>)</span>
+
                                     </div>
 
                                     <asp:TextBox ID="txttasktitle" runat="server" CssClass="form-control"></asp:TextBox>

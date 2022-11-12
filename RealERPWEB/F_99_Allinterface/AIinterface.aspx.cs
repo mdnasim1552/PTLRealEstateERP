@@ -1332,9 +1332,15 @@ namespace RealERPWEB.F_99_Allinterface
                 double pedingannotor = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["pendingqty"].ToString());
                 double pedingqc = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qcpending"].ToString());
                 double pedingqar = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qapending"].ToString());
+                double doneannotor = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["doneqty"].ToString());
+                double doneqc = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qcdoneqty"].ToString());
+                double doneqa = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qadoneqty"].ToString());
                 this.lblcountannotid.Text = pedingannotor.ToString("#,##0;(#,##0); ");
                 this.lblcountQC.Text = pedingqc.ToString("#,##0;(#,##0); ");
                 this.lblcountQA.Text = pedingqar.ToString("#,##0;(#,##0); ");
+                this.lblDoneAnnot.Text = doneannotor.ToString("#,##0;(#,##0); ");
+                this.lblDoneQC.Text = doneqc.ToString("#,##0;(#,##0); ");
+                this.lblDoneQA.Text = doneqa.ToString("#,##0;(#,##0); ");
 
 
 
@@ -1446,7 +1452,11 @@ namespace RealERPWEB.F_99_Allinterface
                 double pedingannotor = Convert.ToDouble("0" + this.lblcountannotid.Text.ToString());
                 double pedingqc = Convert.ToDouble("0" + this.lblcountQC.Text.ToString());
                 double pedingqar = Convert.ToDouble("0" + this.lblcountQA.Text.ToString());
-                if (roletype == "95001" && pedingannotor < assignqty)
+               
+                double doneannotor = Convert.ToDouble("0" + this.lblDoneAnnot.Text.ToString());
+                double doneqc = Convert.ToDouble("0" + this.lblDoneQC.Text.ToString());
+                double doneqa = Convert.ToDouble("0" + this.lblDoneQA.Text.ToString());
+                if (roletype == "95001" && pedingannotor < assignqty && pedingannotor != 0 )
                 {
 
 
@@ -1458,14 +1468,14 @@ namespace RealERPWEB.F_99_Allinterface
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
 
                 }
-                else if (roletype == "95002" && pedingqc < assignqty)
+                else if (roletype == "95002" && pedingqc < assignqty && pedingqc != 0 )
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then PendingAnnotator  " + pedingqc.ToString();
                     this.txtquantity.Focus();
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
                 }
-                else if (roletype == "95003" && pedingqar < assignqty)
+                else if (roletype == "95003" && pedingqar < assignqty && pedingqar != 0 )
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then PendingAnnotator  " + pedingqar.ToString();
                     this.txtquantity.Focus();
