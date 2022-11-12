@@ -11,10 +11,11 @@
         function openReportModal() {
             $('#reportModal').modal('toggle');
         }
-        function sentMail() {
-            $('#reportModal').modal('hide');
-            alert('Email has been sent!');
+
+        function reloadPage() {
+            location.reload();
         }
+
     </script>
 
 
@@ -289,14 +290,14 @@
             <div id="donutchart5" class="col-sm-4 col-md-4 col-lg-4" style="height: 250px"></div>
         </div>
     </div>
-    <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModal" aria-hidden="true">
+    <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModal" aria-hidden="true" data-backdrop="static" data-keyboard="false" >
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header order-bottom">
-                        <h6 class="modal-title font-weight-bold" id="">     <asp:LinkButton CssClass="btn btn-success btn-sm" runat="server" ID="btnSendMail" OnClick="btnSendMail_Click">Send Mail</asp:LinkButton></h6>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <h6 class="modal-title font-weight-bold" id="">     <asp:LinkButton CssClass="btn btn-success btn-sm" runat="server" ID="btnSendMail" OnClick="btnSendMail_Click" >Send Mail</asp:LinkButton></h6>
+                        <asp:Button runat="server" OnClientClick="reloadPage();" Text="x" />
+                           
+                   
                     </div>
                     <div class="modal-body">
 
