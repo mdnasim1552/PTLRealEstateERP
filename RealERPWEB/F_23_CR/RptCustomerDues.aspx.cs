@@ -372,8 +372,38 @@ namespace RealERPWEB.F_23_CR
 
         protected void lnkSendSMS_Click(object sender, EventArgs e)
         {
-            DataTable dt = (DataTable)Session["tblCustDues"];
+            try
+            {
+                DataTable dt = (DataTable)Session["tblCustDues"];
 
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string compsms = hst["compsms"].ToString();
+                string compmail = hst["compmail"].ToString();
+                string ssl = hst["ssl"].ToString();
+                string comcod = this.GetCompCode();
+
+                SendSmsProcess sms = new SendSmsProcess();
+
+                if (compsms == "True")
+                {
+                    for (int j = 0; j < dt.Rows.Count; j++)
+                    {
+                        if (dt.Rows[j]["custmob"].ToString().Length > 0)
+                        {
+                            string supphone = dt.Rows[j]["custmob"].ToString();
+                            string SMSText = dt.Rows[j]["smstxt"].ToString();
+                            bool resultsms = sms.SendSmmsPwd(comcod, SMSText, supphone);
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string Messagesd = "SMS has not been sent " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+            }
+            
         }
     }
 }
