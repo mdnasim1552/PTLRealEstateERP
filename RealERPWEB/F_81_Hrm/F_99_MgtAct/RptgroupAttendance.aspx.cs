@@ -292,7 +292,7 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
             }
 
 
-            string tdate =Convert.ToDateTime(System.DateTime.Today).ToString("ddMMyyy");
+            string tdate = Convert.ToDateTime(System.DateTime.Today).ToString("ddMMyyy");
             string apppath = Server.MapPath("~") + "\\Upload" + "\\attreport\\" + tdate + ".pdf"; ;
 
             string mimeType, encoding, extension;
@@ -307,6 +307,8 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
             string filepath = "~/../../../Upload/attreport/" + tdate + ".pdf";
             this.AttReport.InnerHtml = "<iframe src='" + filepath + "' width='100%' height='600px'></iframe>";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openReportModal();", true);
+ 
+
 
         }
 
@@ -353,8 +355,8 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
                 #region
              
                 string subj = "Daily Attendance Report";
-                string tomail = "chairman@epicpl.com";
-                //string tomail = "nahid@pintechltd.com";
+                //string tomail = "chairman@epicpl.com";
+                string tomail = "rakib@pintechltd.com";
 
 
                 string tdate = Convert.ToDateTime(System.DateTime.Today).ToString("ddMMyyy");
@@ -444,7 +446,8 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
                     if (Result_email == false)
                     {
                         string Messagesd = "Email has not been sent, Email or SMTP info Empty";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                        this.lblMsg.InnerText = "Mail sent successfully!";
+                        //ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
                         return;
                     }
                     else
@@ -487,23 +490,24 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
                 msg.To.Add(new MailAddress(tomail));
 
 
+                msg.CC.Add(new MailAddress("inforakib831@gmailcom"));
 
 
-                msg.CC.Add(new MailAddress("hra.epicpl@gmailcom"));
-                msg.CC.Add(new MailAddress("csd.epicpl@gmail.com"));
-                msg.CC.Add(new MailAddress("architect.epicpl@gmail.com"));
-                msg.CC.Add(new MailAddress("purchase.epicpl@gmail.com"));
-                msg.CC.Add(new MailAddress("brand.epicpl@gmail.com"));
-                msg.CC.Add(new MailAddress("md@epicpl.com"));
-                msg.CC.Add(new MailAddress("lokman@epicpl.com"));
-                msg.CC.Add(new MailAddress("brand@epicpl.com"));
-                msg.CC.Add(new MailAddress("sales@epicpl.com"));
-                msg.CC.Add(new MailAddress("engineering@epicpl.com"));
-                msg.CC.Add(new MailAddress("finance@epicpl.com"));
-                msg.CC.Add(new MailAddress("saifur.epicpl@gmail.com"));
-                msg.CC.Add(new MailAddress("didarepicpl@gmail.com"));
-                msg.CC.Add(new MailAddress("hamid.epicpl@gmail.com"));
-                msg.CC.Add(new MailAddress("salahuddin.epicpl@gmail.com"));
+                //msg.CC.Add(new MailAddress("hra.epicpl@gmailcom"));
+                //msg.CC.Add(new MailAddress("csd.epicpl@gmail.com"));
+                //msg.CC.Add(new MailAddress("architect.epicpl@gmail.com"));
+                //msg.CC.Add(new MailAddress("purchase.epicpl@gmail.com"));
+                //msg.CC.Add(new MailAddress("brand.epicpl@gmail.com"));
+                //msg.CC.Add(new MailAddress("md@epicpl.com"));
+                //msg.CC.Add(new MailAddress("lokman@epicpl.com"));
+                //msg.CC.Add(new MailAddress("brand@epicpl.com"));
+                //msg.CC.Add(new MailAddress("sales@epicpl.com"));
+                //msg.CC.Add(new MailAddress("engineering@epicpl.com"));
+                //msg.CC.Add(new MailAddress("finance@epicpl.com"));
+                //msg.CC.Add(new MailAddress("saifur.epicpl@gmail.com"));
+                //msg.CC.Add(new MailAddress("didarepicpl@gmail.com"));
+                //msg.CC.Add(new MailAddress("hamid.epicpl@gmail.com"));
+                //msg.CC.Add(new MailAddress("salahuddin.epicpl@gmail.com"));
 
 
                 msg.Subject = subj;
