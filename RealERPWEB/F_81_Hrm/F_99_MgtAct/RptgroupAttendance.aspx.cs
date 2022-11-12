@@ -446,8 +446,8 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
                     if (Result_email == false)
                     {
                         string Messagesd = "Email has not been sent, Email or SMTP info Empty";
-                        this.lblMsg.InnerText = "Mail sent successfully!";
-                        //ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                        //this.lblMsg.InnerText = "Mail sent successfully!";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
                         return;
                     }
                     else
