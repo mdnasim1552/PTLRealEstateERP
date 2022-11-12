@@ -50,7 +50,8 @@ namespace RealERPWEB.F_32_Mis
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            comcod = this.Request.QueryString["comcod"].Length > 0 ? this.Request.QueryString["comcod"].ToString() : comcod;
+            string qcomcod=this.Request.QueryString["comcod"] ?? "";
+            comcod = qcomcod.Length > 0 ? qcomcod.ToString() : comcod;
             return comcod;
         }
 
