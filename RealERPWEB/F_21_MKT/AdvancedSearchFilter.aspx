@@ -58,16 +58,16 @@
                     <div class="row ml-2">
 
                         <div class="col-lg-3 col-md-3 col-sm-3">
-
+                            <asp:Label ID="lblem" runat="server" CssClass="form-label">Associate Name</asp:Label>
                             <asp:DropDownList ID="ddlEmpid" data-placeholder="Choose Employee.." runat="server" CssClass="chzn-select form-control form-control-sm" AutoPostBack="true">
                             </asp:DropDownList>
                         </div>
 
                         <div class="col-lg-2 col-md-2 col-sm-6">
-
+                            <asp:Label ID="Label1" runat="server" CssClass="form-label">Search Type</asp:Label>
                             <asp:DropDownList ID="ddlOther" runat="server" ClientIDMode="Static" CssClass="custom-select chzn-select">
                                 <asp:ListItem Value="1">Prospect Name</asp:ListItem>
-                                <asp:ListItem Value="2" >PID</asp:ListItem>
+                                <asp:ListItem Value="2">PID</asp:ListItem>
                                 <asp:ListItem Value="3">Phone</asp:ListItem>
                                 <asp:ListItem Value="4">Email</asp:ListItem>
                                 <asp:ListItem Value="5">NID</asp:ListItem>
@@ -79,11 +79,12 @@
 
                         </div>
                         <div class="col-md-2">
+                            <asp:Label ID="Label2" runat="server" CssClass="form-label">Search </asp:Label>
                             <asp:TextBox ID="txtVal" runat="server" CssClass="form-control" TextMode="Search" autocomplete="off"></asp:TextBox>
 
                         </div>
 
-                        <div class="col-md-1">
+                        <div class="col-md-1" style="margin-top: 22px">
 
                             <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="btn btn-success" OnClick="lnkbtnOk_Click" AutoPostBack="True">Show</asp:LinkButton>
 
@@ -163,102 +164,77 @@
                             </div>
                         </div>
                         <div class="col-md-8">
-                            <div class="card">
+                            <div class="card mt-3 mb-3">
                                 <div class="card-header bg-light"><span class="font-weight-bold text-muted">Follow Up Summary</span></div>
                                 <div class="card-body">
-                                    <div class="row">
+                                    <asp:Repeater ID="rpclientinfo" runat="server">
+                                        <HeaderTemplate>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
 
-                                        <div class="col-md-3">
+                                            <div class="col-md-12  col-lg-12 ">
+                                                <div class="well">
 
-                                            <label id="Label11" style="font-size: 17px; font-weight: bold; color: black;" runat="server">Mr KM Adnan</label>
+                                                    <div class="col-sm-12 panel pt-3 b-3">
 
+                                                        <div class=" col-sm-12">
 
-                                        </div>
-                                        <div class="col-md-6">
-
-
-                                            <label id="Label12" style="font-size: 17px;" runat="server">Offer On 08-Jun-2022 10:30 AM</label>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-3">
-
-                                            <label id="Label15" style="font-size: 17px; font-weight: bold; color: black;" runat="server">Participants :</label>
-
-
-                                        </div>
-                                        <div class="col-md-3">
-
-
-                                            <label id="Label16" style="font-size: 17px;" runat="server" clss="form-control form-control-sm ">Nurul Absar Mamun</label>
-
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-3">
-
-                                            <label id="Label14" style="font-size: 17px; font-weight: bold; color: black;" runat="server">Summary :</label>
-
-
-                                        </div>
-                                        <div class="col-md-8">
-
-
-                                            <label id="Label34" style="font-size: 17px;" runat="server" clss="form-control form-control-sm ">Final price negotiation is going on for the flat in Finlay Chayaneer Project  B5 Unit</label>
-
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-3">
-
-                                            <label id="Label35" style="font-size: 17px; font-weight: bold; color: black;" runat="server">Next Action :</label>
-
-
-                                        </div>
-                                        <div class="col-md-4">
-
-
-                                            <label id="Label36" style="font-size: 17px;" runat="server" clss="form-control form-control-sm ">On 11-July-2022 11:00 AM</label>
-
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-3">
-
-                                            <label id="Label37" style="font-size: 17px; font-weight: bold; color: black;" runat="server">Comments :</label>
-
-
-                                        </div>
-                                        <div class="col-md-3">
-
-
-                                            <label id="Label38" style="font-size: 17px;" runat="server" clss="form-control form-control-sm ">None</label>
-
-                                        </div>
-                                    </div>
+                                                            <p>
+                                                                <strong><%# DataBinder.Eval(Container, "DataItem.prosdesc")%></strong> <%# DataBinder.Eval(Container, "DataItem.kpigrpdesc").ToString() %>  on <%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("dd-MMM-yyyy hh:mm tt") %><br>
 
 
 
-                                    <div class="row mb-5">
-                                        <div class="col-md-12">
 
-                                            <a href="#" class="btn btn-sm btn-primary mt-2">Re-schdule</a>
-                                            <a href="#" class="btn btn-sm btn-success mt-2">Delete</a>
-                                            <a href="#" class="btn btn-sm btn-success mt-2">FollowUp</a>
-                                            <a href="#" class="btn btn-sm btn-success mt-2">Addition</a>
+                                                                <strong>Participants:</strong> <%# DataBinder.Eval(Container, "DataItem.partcilist").ToString() %><br>
 
 
-                                        </div>
+                                                                <strong>Summary:</strong><span class="textwrap"><%# DataBinder.Eval(Container, "DataItem.discus").ToString() %></span><br>
 
-                                    </div>
+
+
+                                                                <strong>Next Action:</strong> <%# DataBinder.Eval(Container, "DataItem.nfollowup").ToString() %> on <%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.napnt")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"":Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.napnt")).ToString("dd-MMM-yyyy hh:mm tt")%><br>
+                                                                <strong>Comments:</strong> <%# DataBinder.Eval(Container, "DataItem.disgnote").ToString() %>
+
+
+
+
+
+                                                                <br>
+                                                            </p>
+
+
+
+                                                        </div>
+                                                        <div class="row mb-5">
+                                                            <div class="col-md-12">
+
+                                                                <a href="#" class="btn btn-sm btn-primary mt-2">Re-schdule</a>
+                                                                <a href="#" class="btn btn-sm btn-success mt-2">Delete</a>
+                                                                <a href="#" class="btn btn-sm btn-success mt-2">FollowUp</a>
+                                                                <a href="#" class="btn btn-sm btn-success mt-2">Addition</a>
+
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+
+                                        </ItemTemplate>
+
+                                    </asp:Repeater>
                                 </div>
+
 
                             </div>
                         </div>
                     </div>
-                     
+
                 </div>
             </div>
 
