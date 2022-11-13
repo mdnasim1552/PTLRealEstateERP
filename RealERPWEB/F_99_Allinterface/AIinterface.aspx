@@ -578,7 +578,7 @@
                             </div>
                             <div class="col-lg-1">
                                 <asp:Label ID="Label2" runat="server">To</asp:Label>
-                                <asp:TextBox ID="txttodate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                <asp:TextBox ID="txttodate" runat="server" CssClass="form-control form-control-sm" AutoPostBack="true" OnTextChanged="txttodate_TextChanged" ></asp:TextBox>
                                 <cc1:CalendarExtender runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                             </div>
                             <div class="col-lg-2">

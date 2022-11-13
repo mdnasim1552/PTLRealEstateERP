@@ -114,6 +114,15 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.Panel pnlstatus;
 
         /// <summary>
+        /// gv_IndRequired control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_IndRequired;
+
+        /// <summary>
         /// pnlreqchk control.
         /// </summary>
         /// <remarks>
@@ -157,5 +166,14 @@ namespace RealERPWEB.F_99_Allinterface
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlaudit;
+
+        /// <summary>
+        /// pnlcomplete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlcomplete;
     }
 }
