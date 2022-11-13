@@ -112,6 +112,20 @@
                                         <asp:Label ID="lblPage" runat="server" CssClass="smLbl_to" Font-Bold="True"
                                             Text="Size:"></asp:Label>
 
+
+                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="ddlPage"
+                                            OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" TabIndex="5">
+                                            <asp:ListItem Value="10">10</asp:ListItem>
+                                            <asp:ListItem Value="15">15</asp:ListItem>
+                                            <asp:ListItem Value="20">20</asp:ListItem>
+                                            <asp:ListItem Value="30">30</asp:ListItem>
+                                            <asp:ListItem Value="50">50</asp:ListItem>
+                                            <asp:ListItem Value="100">100</asp:ListItem>
+                                            <asp:ListItem Value="150">150</asp:ListItem>
+                                            <asp:ListItem Value="200">200</asp:ListItem>
+                                            <asp:ListItem Value="300">300</asp:ListItem>
+                                        </asp:DropDownList>
+
                                        
 
                                         <asp:CheckBox ID="chkvoudate" runat="server" TabIndex="10" Text="Voucher Date" CssClass="btn btn-primary checkBox" />

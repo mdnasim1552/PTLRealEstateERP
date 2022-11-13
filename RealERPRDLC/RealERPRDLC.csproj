@@ -1008,6 +1008,7 @@
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqPrintFinlay.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqPrint.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqPrintSuvasto.rdlc" />
+    <EmbeddedResource Include="R_34_Mgt\RptOtherReqStatusFinlay.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqStatusISBL.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqStatus.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptReqAdjustment.rdlc" />
