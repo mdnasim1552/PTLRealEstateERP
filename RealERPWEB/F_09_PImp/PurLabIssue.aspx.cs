@@ -149,7 +149,7 @@ namespace RealERPWEB.F_09_PImp
                     this.grvissue.Columns[26].Visible = true;
                     this.grvissue.Columns[27].Visible = true;
                     this.grvissue.Columns[28].Visible = true;
-                    this.divgrp.Attributes["style"] = "width: 750px;float: left;";
+                    //this.divgrp.Attributes["style"] = "width: 750px;float: left;";
                     this.ddlgroup.Visible = true;
                     this.lblgrp.Visible = true;
                     break;
@@ -580,10 +580,10 @@ namespace RealERPWEB.F_09_PImp
             if (this.lbtnOk.Text == "New")
             {
                 this.lbtnOk.Text = "Ok";
-                this.ddlprjlist.Visible = true;
-                this.ddlcontractorlist.Visible = true;
-                this.lblddlProject.Visible = false;
-                this.lblSubContractor.Visible = false;
+                this.ddlprjlist.Enabled = true;
+                this.ddlcontractorlist.Enabled = true;
+                //this.lblddlProject.Visible = false;
+                //this.lblSubContractor.Visible = false;
                 this.lblCurISSNo1.Text = "LIS00-";
                 this.txtCurISSNo2.Text = "";
                 this.txtISSNarr.Text = "";
@@ -595,7 +595,7 @@ namespace RealERPWEB.F_09_PImp
                 this.ibtnPreBillList.Visible = true;
                 this.txtCurISSDate.Enabled = (this.Request.QueryString["Type"].ToString() == "Opening") ? false : true;
                 this.ddlPrevISSList.Items.Clear();
-                this.ddlcontractorlist.Enabled = true;
+              
                 this.ddlRA.Enabled = true;
                 this.ddlfloorno.Items.Clear();
                 DropCheck1.Items.Clear();
@@ -613,17 +613,16 @@ namespace RealERPWEB.F_09_PImp
             }
 
 
-            this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
-            this.lblSubContractor.Text = this.ddlcontractorlist.SelectedItem.Text.Trim();
-            this.ddlprjlist.Visible = false;
-            this.lblddlProject.Visible = true;
-            this.ddlcontractorlist.Visible = false;
-            this.lblSubContractor.Visible = true;
+            //this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
+            //this.lblSubContractor.Text = this.ddlcontractorlist.SelectedItem.Text.Trim();
+            this.ddlprjlist.Enabled = false;
+            //this.lblddlProject.Visible = true;
+            this.ddlcontractorlist.Enabled = false;
+            //this.lblSubContractor.Visible = true;
             this.lbtnPrevISSList.Visible = false;
             this.ddlPrevISSList.Visible = false;
             this.txtSrcPreBill.Visible = false;
             this.ibtnPreBillList.Visible = false;
-            this.ddlcontractorlist.Enabled = true;
             this.PnlRes.Visible = true;
             this.PnlNarration.Visible = true;
             this.lbtnOk.Text = "New";
@@ -746,7 +745,7 @@ namespace RealERPWEB.F_09_PImp
             this.txtCurISSNo2.Text = ds1.Tables[1].Rows[0]["lisuno1"].ToString().Substring(6, 5);
             this.txtCurISSDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["isudat"]).ToString("dd-MMM-yyyy");
             this.ddlprjlist.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
-            this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
+            //this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
             this.ddlcontractorlist.SelectedValue = ds1.Tables[1].Rows[0]["csircode"].ToString();
             this.txtISSNarr.Text = ds1.Tables[1].Rows[0]["rmrks"].ToString();
             this.lblBillno.Text = ds1.Tables[1].Rows[0]["billno"].ToString();
