@@ -33,13 +33,13 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// Label5 control.
+        /// Label10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.Label Label10;
 
         /// <summary>
         /// txtfromdate control.
@@ -51,22 +51,22 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.TextBox txtfromdate;
 
         /// <summary>
-        /// txtfromdate_CalendarExtender control.
+        /// CalendarExtender2_txtfromdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtfromdate_CalendarExtender;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2_txtfromdate;
 
         /// <summary>
-        /// Label6 control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
         /// txttodate control.
@@ -78,49 +78,13 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.TextBox txttodate;
 
         /// <summary>
-        /// chkAllSchedul control.
+        /// CalendarExtender1_txttodate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkAllSchedul;
-
-        /// <summary>
-        /// chkOrginal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkOrginal;
-
-        /// <summary>
-        /// lPactCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lPactCode;
-
-        /// <summary>
-        /// Label4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-
-        /// <summary>
-        /// txtSrcPro control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrcPro;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1_txttodate;
 
         /// <summary>
         /// ibtnFindProject control.
@@ -141,13 +105,22 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.DropDownList ddlMRNO;
 
         /// <summary>
-        /// lbShow0 control.
+        /// chkOrginal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbShow0;
+        protected global::System.Web.UI.WebControls.CheckBox chkOrginal;
+
+        /// <summary>
+        /// lPactCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lPactCode;
 
         /// <summary>
         /// lusircode control.
@@ -159,13 +132,22 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.Label lusircode;
 
         /// <summary>
-        /// lmsg control.
+        /// chkAllSchedul control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lmsg;
+        protected global::System.Web.UI.WebControls.CheckBox chkAllSchedul;
+
+        /// <summary>
+        /// lbShow0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbShow0;
 
         /// <summary>
         /// grvacc control.
@@ -177,15 +159,6 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.GridView grvacc;
 
         /// <summary>
-        /// ListSearchExtender1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ListSearchExtender ListSearchExtender1;
-
-        /// <summary>
         /// lblrecdate control.
         /// </summary>
         /// <remarks>
@@ -193,14 +166,5 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblrecdate;
-
-        /// <summary>
-        /// cetdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender cetdate;
     }
 }
