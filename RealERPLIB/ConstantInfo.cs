@@ -346,6 +346,14 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0902000", "0902077", "F_09_PImp", "RptMonthConAss?", "Type=MnthAss", "Contractor Monthly Assessment", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0902000", "0902090", "F_09_PImp", "PurConWrkOrderEntry?", "Type=Entry", "Contractor Work Order(Acme)", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0902000", "0902092", "F_09_PImp", "PurConWrkOrderEntry02?", "Type=Entry", "Contractor Work Order(Standard)", "Project Implementation", "False", "False", "False", "False" });
+
+            tblObj.Rows.Add(new Object[] { "0902000", "0902095", "F_09_PImp", "MktMBEntry?", "Type=Entry", "MB Entry", "Project Implementation", "False", "False", "False", "False" });
+
+            tblObj.Rows.Add(new Object[] { "0902000", "0902096", "F_09_PImp", "MktMBEntry?", "Type=Approved", "MB Entry(Approvaed)", "Project Implementation", "False", "False", "False", "False" });
+
+
+
+
             tblObj.Rows.Add(new Object[] { "0903000", "0903110", "F_09_PImp", "RptImpExeStatus?", "Type=ImpPlan", "Monthly Implementation Plan", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0903000", "0903111", "F_09_PImp", "RptImpExeStatus?", "Type=Execution", "Work Execution", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0903000", "0903112", "F_09_PImp", "RptImpExeStatus?", "Type=PlanVSEx", "Monthly Plan VS Execution", "Project Implementation", "False", "False", "False", "False" }); ;
@@ -1272,7 +1280,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2202270", "F_22_Sal", "RptClientDateFile", "", "Client Data File ", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202271", "F_22_Sal", "RptPeriodicSalesWithCollection", "", "Periodic Sales With Collection ", "Sales", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202275", "F_22_Sal", "RptSalesVsAchievement?", "Type=MonsalVsAchieve", "Month Wise Sales (Reconcilation)", "Sales", "False", "False", "False", "False" });
-     
+            tblObj.Rows.Add(new Object[] { "2203000", "2202276", "F_22_Sal", "RptSalesVsAchievement?", "Type=DownpayClearnce", "Down Payment Status (Prev.Sales)", "Sales", "False", "False", "False", "False" });
+
+
 
 
 
@@ -5036,10 +5046,13 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301030000", "05. Day Wise Execution", "F_09_PImp/RptImpExeStatus?Type=DayWiseExecution&comcod=&prjcode=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301040000", "10. Material Requirements", "F_04_Bgd/RptBgdPrjoject?Type=MatRequired&comcod=&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301050000", "11. Monthly Resource Requirement", "F_04_Bgd/RptMonthlyResRequir?Type=Report", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301060000", "11. Sub-Contractor Bill", "F_09_PImp/RptSubConBill?Type=SubBill&comcod=&prjcode=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301070000", "12. Periodic Sub-Contractor Bill", "F_09_PImp/RptSubConBill?Type=SubConBill&comcod=&prjcode=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301080000", "13. Sub-Contractor Bill Tracking", "F_09_PImp/ConBillTracking", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301000001", "01. Monthly Implementation Plan", "F_09_PImp/RptImpExeStatus?Type=ImpPlan&comcod=&prjcode=&Date1=&Date2=", "", true, "" });
+
+
+            mnuTbl1.Rows.Add(new Object[] { "0301060000", "11. MB Entry", "F_09_PImp/MktMBEntry?Type=Entry", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301070000", "11. Sub-Contractor Bill", "F_09_PImp/RptSubConBill?Type=SubBill&comcod=&prjcode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301080000", "12. Periodic Sub-Contractor Bill", "F_09_PImp/RptSubConBill?Type=SubConBill&comcod=&prjcode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301090000", "13. Sub-Contractor Bill Tracking", "F_09_PImp/ConBillTracking", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301100001", "01. Monthly Implementation Plan", "F_09_PImp/RptImpExeStatus?Type=ImpPlan&comcod=&prjcode=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000002", "04. Work Execution ", "F_09_PImp/RptImpExeStatus?Type=Execution&comcod=&prjcode=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000003", "05. Day Wise Execution", "F_09_PImp/RptImpExeStatus?Type=DayWiseExecution&comcod=&comcod=&prjcode=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000004", "10. Material Requirements", "F_04_Bgd/RptBgdPrjoject?Type=MatRequired&comcod=&prjcode=", "", true, "" });
@@ -7569,9 +7582,11 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000002", "15. Month Wise Sales", "F_17_Acc/RptAccCollVsClearance?Type=MonSales&comcod=", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0401000003", "15. Customer Bill Info", "F_22_Sal/RptCustomerBill?Type=CustBill", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000004", "16. Month Wise Sales (Reconcilation)", "F_22_Sal/RptSalesVsAchievement?Type=MonsalVsAchieve", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0401000004", "17. Periodic Sales With Collection ", "F_22_Sal/RptPeriodicSalesWithCollection", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000005", "17. Down Payment Status (Prev.Sales)", "F_22_Sal/RptSalesVsAchievement?Type=DownpayClearnce", "", true, "" });
 
-            mnuTbl1.Rows.Add(new Object[] { "0401000005", "18. Monthly Sales Target-Market", "F_22_Sal/RptSalSummery?Type=mSalesTarget", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000006", "18. Periodic Sales With Collection ", "F_22_Sal/RptPeriodicSalesWithCollection", "", true, "" });
+
+            mnuTbl1.Rows.Add(new Object[] { "0401000007", "19. Monthly Sales Target-Market", "F_22_Sal/RptSalSummery?Type=mSalesTarget", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0402000000", "Other Related Report", "", "", false, "mb" });
 

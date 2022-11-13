@@ -76,6 +76,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
+                case "3101": // ptl
                 case "3370": // cpdl
                 case "1205":
                 case "3351":
@@ -260,20 +261,33 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading light-gray counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billcs"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content light-gray'><div class='circle-tile-description text-faded'>Bill CS APP</div></div></div>";
 
             this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading blue counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["workorder"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content blue'><div class='circle-tile-description text-faded'>Work Order</div></div></div>";
-            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading yellow counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["redyforbill"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content yellow'><div class='circle-tile-description text-faded'>Order App.</div></div></div>";
 
-            this.RadioButtonList1.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["subbillcount"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Sub-Con.Bill</div></div></div>";
 
-            this.RadioButtonList1.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billApproval"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>"+ billchk + "</div></div></div>";
+            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["workorder"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>MB</div></div></div>";
 
-            this.RadioButtonList1.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading  orange counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billcount"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>" + billfinal + "</div></div></div>";
 
-            this.RadioButtonList1.Items[10].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray  counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["frecom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray  '><div class='circle-tile-description text-faded'>" + frecon + "</div></div></div>";
-            this.RadioButtonList1.Items[11].Text = "<div class='circle-tile'><a><div class='circle-tile-heading   dark-blue  counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["secrecom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue '><div class='circle-tile-description text-faded'>2nd Recom.</div></div></div>";
-            this.RadioButtonList1.Items[12].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red  counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["threcom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red '><div class='circle-tile-description text-faded'>Forward</div></div></div>";
 
-            this.RadioButtonList1.Items[13].Text = "<div class='circle-tile'><a><div class='circle-tile-heading  purple   counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billconfirm"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content  purple   '><div class='circle-tile-description text-faded'>" + billapprove + "</div></div></div>";
-            this.RadioButtonList1.Items[14].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["paycount"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content  orange '><div class='circle-tile-description text-faded'>Bill Update</div></div></div>";
+            this.RadioButtonList1.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["workorder"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>MB Approval</div></div></div>";
+
+
+
+            this.RadioButtonList1.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading yellow counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["redyforbill"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content yellow'><div class='circle-tile-description text-faded'>Order App.</div></div></div>";
+
+
+
+
+            this.RadioButtonList1.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["subbillcount"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Sub-Con.Bill</div></div></div>";
+
+            this.RadioButtonList1.Items[10].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billApproval"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>"+ billchk + "</div></div></div>";
+
+            this.RadioButtonList1.Items[11].Text = "<div class='circle-tile'><a><div class='circle-tile-heading  orange counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billcount"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>" + billfinal + "</div></div></div>";
+
+            this.RadioButtonList1.Items[12].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray  counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["frecom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray  '><div class='circle-tile-description text-faded'>" + frecon + "</div></div></div>";
+            this.RadioButtonList1.Items[13].Text = "<div class='circle-tile'><a><div class='circle-tile-heading   dark-blue  counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["secrecom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue '><div class='circle-tile-description text-faded'>2nd Recom.</div></div></div>";
+            this.RadioButtonList1.Items[14].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red  counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["threcom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red '><div class='circle-tile-description text-faded'>Forward</div></div></div>";
+
+            this.RadioButtonList1.Items[15].Text = "<div class='circle-tile'><a><div class='circle-tile-heading  purple   counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billconfirm"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content  purple   '><div class='circle-tile-description text-faded'>" + billapprove + "</div></div></div>";
+            this.RadioButtonList1.Items[16].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["paycount"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content  orange '><div class='circle-tile-description text-faded'>Bill Update</div></div></div>";
 
 
             //this.RadioButtonList1.Items[0].Text = "<span class='fa  fa-signal fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["impcout"]).ToString("#,##0;(#,##0); ") + "</span>" + "<span class='lbldata2'>" + "Monthly Imp.Plan" + "</span>";
@@ -322,6 +336,24 @@ namespace RealERPWEB.F_99_Allinterface
             dv = dt.DefaultView;
             dv.RowFilter = ("orderno =''");
             this.Data_Bind("gvWorkOrder", dv.ToTable());
+
+
+            /// Measurement Book
+            dt = ((DataTable)ds1.Tables[7]).Copy();
+            dv = dt.DefaultView;
+            dv.RowFilter = ("orderno =''");
+            this.Data_Bind("gvmbook", dv.ToTable());
+
+
+            /// Measurement Book Approval
+            dt = ((DataTable)ds1.Tables[7]).Copy();
+            dv = dt.DefaultView;
+            dv.RowFilter = ("orderno =''");
+            this.Data_Bind("gvmbookapp", dv.ToTable());
+
+
+
+
 
             /// Ready For Bill
             dt = ((DataTable)ds1.Tables[7]).Copy();
@@ -453,6 +485,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlthrec.Visible = false;
                     this.PanelReadyForBil.Visible = false;
                     this.pnlbillapp.Visible = false;
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
 
                     this.RadioButtonList1.Items[0].Attributes["class"] = "lblactive blink_me";
 
@@ -476,7 +510,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.PanelWorkOrder.Visible = false;
                     this.PanelReadyForBil.Visible = false;
                     this.pnlbillapp.Visible = false;
-
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
                     this.RadioButtonList1.Items[1].Attributes["class"] = "lblactive blink_me";
                     break;
 
@@ -496,7 +531,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.PanelWorkOrder.Visible = false;
                     this.PanelReadyForBil.Visible = false;
                     this.pnlbillapp.Visible = false;
-
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
                     this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
                     break;
 
@@ -517,7 +553,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.PanelWorkOrder.Visible = false;
                     this.PanelReadyForBil.Visible = false;
                     this.pnlbillapp.Visible = false;
-
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
                     this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
 
 
@@ -539,7 +576,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlthrec.Visible = false;
                     this.PanelReadyForBil.Visible = false;
                     this.pnlbillapp.Visible = false;
-
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
                     this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
 
                     break;
@@ -561,11 +599,58 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlthrec.Visible = false;
                     this.PanelReadyForBil.Visible = false;
                     this.pnlbillapp.Visible = false;
-
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
                     this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
-
                     break;
-                case "6": // Read For BIll
+
+                case "6": //MB Entry
+                    this.PanelWorkOrder.Visible = false;
+                    this.pnlAllReq.Visible = false;
+                    this.PanelBillReq.Visible = false;
+                    this.PanelBillCs.Visible = false;
+                    this.PnlImp.Visible = false;
+                    this.PnlExe.Visible = false;
+                    this.pnlgvupdate.Visible = false;
+                    this.pnlSubbill.Visible = false;
+                    this.Pnlbillfapp.Visible = false;
+                    this.Pnlbillf.Visible = false;
+
+                    this.pnlfrec.Visible = false;
+                    this.pnlsrec.Visible = false;
+                    this.pnlthrec.Visible = false;
+                    this.PanelReadyForBil.Visible = false;
+                    this.pnlbillapp.Visible = false;
+                    this.pnlMbook.Visible = true;
+                    this.pnlMbookApp.Visible = false;
+                    this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
+                    break;
+
+                case "7": // MB Book Approval
+                    this.PanelWorkOrder.Visible = false;
+                    this.pnlAllReq.Visible = false;
+                    this.PanelBillReq.Visible = false;
+                    this.PanelBillCs.Visible = false;
+                    this.PnlImp.Visible = false;
+                    this.PnlExe.Visible = false;
+                    this.pnlgvupdate.Visible = false;
+                    this.pnlSubbill.Visible = false;
+                    this.Pnlbillfapp.Visible = false;
+                    this.Pnlbillf.Visible = false;
+
+                    this.pnlfrec.Visible = false;
+                    this.pnlsrec.Visible = false;
+                    this.pnlthrec.Visible = false;
+                    this.PanelReadyForBil.Visible = false;
+                    this.pnlbillapp.Visible = false;
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = true;
+                    this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
+                    break;
+
+
+
+                case "8": // Read For BIll
                     this.PanelWorkOrder.Visible = false;
                     this.pnlAllReq.Visible = false;
                     this.PanelBillReq.Visible = false;
@@ -582,12 +667,14 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlthrec.Visible = false;
                     this.PanelReadyForBil.Visible = true;
                     this.pnlbillapp.Visible = false;
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
 
                     this.RadioButtonList1.Items[6].Attributes["class"] = "lblactive blink_me";
 
                     break;
 
-                case "7": // Subcontractor Bill
+                case "9": // Subcontractor Bill
                     this.PanelBillReq.Visible = false;
                     this.PanelBillCs.Visible = false;
                     this.pnlAllReq.Visible = false;
@@ -605,13 +692,15 @@ namespace RealERPWEB.F_99_Allinterface
                     this.PanelWorkOrder.Visible = false;
                     this.PanelReadyForBil.Visible = false;
                     this.pnlbillapp.Visible = false;
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
 
                     this.RadioButtonList1.Items[7].Attributes["class"] = "lblactive blink_me";
                     break;
 
 
 
-                case "8": // Bill Finalization
+                case "10": // Bill Finalization
                     this.PanelBillReq.Visible = false;
                     this.PanelBillCs.Visible = false;
                     this.PnlImp.Visible = false;
@@ -627,12 +716,14 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlthrec.Visible = false;
                     this.PanelWorkOrder.Visible = false;
                     this.pnlbillapp.Visible = true;
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
 
                     this.RadioButtonList1.Items[8].Attributes["class"] = "lblactive blink_me";
 
                     break; 
 
-                case "9": // Bill Finalization
+                case "11": // Bill Finalization
                     this.PanelBillReq.Visible = false;
                     this.PanelBillCs.Visible = false;
                     this.PnlImp.Visible = false;
@@ -648,30 +739,16 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlthrec.Visible = false;
                     this.PanelWorkOrder.Visible = false;
                     this.pnlbillapp.Visible = false;
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
 
                     this.RadioButtonList1.Items[9].Attributes["class"] = "lblactive blink_me";
 
                     break;
 
-                //case "4": // Checked
-                //    this.PnlImp.Visible = false;
-                //    this.PnlExe.Visible = false;
-                //    this.pnlgvupdate.Visible = false;
-                //    this.pnlSubbill.Visible = false;
-                //    this.Pnlbillfapp.Visible = false;
-                //    this.Pnlbillf.Visible = false;
-                //    this.pnlchaverify.Visible = true;
-                //    this.pnlfrec.Visible = false;
-                //    this.pnlsrec.Visible = false;
-                //    this.pnlthrec.Visible = false;
-                //    this.pnlApproved.Visible = false;
-                //    this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
+                
 
-
-                //    break;
-
-
-                case "10": // First Recommendation
+                case "12": // First Recommendation
                     this.PanelBillReq.Visible = false;
                     this.PanelBillCs.Visible = false;
                     this.pnlAllReq.Visible = false;
@@ -687,13 +764,15 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlthrec.Visible = false;
                     this.PanelWorkOrder.Visible = false;
                     this.pnlbillapp.Visible = false;
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
 
                     this.RadioButtonList1.Items[10].Attributes["class"] = "lblactive blink_me";
 
 
                     break;
 
-                case "11": // Second Recommendation
+                case "13": // Second Recommendation
                     this.PanelBillReq.Visible = false;
                     this.PanelBillCs.Visible = false;
                     this.PnlImp.Visible = false;
@@ -709,11 +788,13 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlthrec.Visible = false;
                     this.PanelWorkOrder.Visible = false;
                     this.pnlbillapp.Visible = false;
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
                     this.RadioButtonList1.Items[11].Attributes["class"] = "lblactive blink_me";
 
 
                     break;
-                case "12": // Third Recommendation
+                case "14": // Third Recommendation
                     this.PanelBillReq.Visible = false;
                     this.PanelBillCs.Visible = false;
                     this.PnlImp.Visible = false;
@@ -729,30 +810,16 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlthrec.Visible = true;
                     this.PanelWorkOrder.Visible = false;
                     this.pnlbillapp.Visible = false;
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
                     this.RadioButtonList1.Items[12].Attributes["class"] = "lblactive blink_me";
 
 
                     break;
 
 
-                //case "7": // Final Approval 
-                //    this.PnlImp.Visible = false;
-                //    this.PnlExe.Visible = false;
-                //    this.pnlgvupdate.Visible = false;
-                //    this.pnlSubbill.Visible = false;
-                //    this.Pnlbillfapp.Visible = false;
-                //    this.Pnlbillf.Visible = false;
-                //    this.pnlchaverify.Visible = false;
-                //    this.pnlfrec.Visible = false;
-                //    this.pnlsrec.Visible = false;
-                //    this.pnlthrec.Visible = false;
-                //    this.pnlApproved.Visible = true;
-                //    this.RadioButtonList1.Items[7].Attributes["class"] = "lblactive blink_me";
-
-                //    break;
-
-
-                case "13": // Bill Confirmed
+             
+                case "15": // Bill Confirmed
                     this.PanelBillReq.Visible = false;
                     this.PanelBillCs.Visible = false;
                     this.PnlImp.Visible = false;
@@ -769,6 +836,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlthrec.Visible = false;
                     this.PanelWorkOrder.Visible = false;
                     this.pnlbillapp.Visible = false;
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
 
                     this.RadioButtonList1.Items[13].Attributes["class"] = "lblactive blink_me";
 
@@ -779,7 +848,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-                case "14":// Bill Update
+                case "16":// Bill Update
                     this.PanelBillReq.Visible = false;
                     this.PanelBillCs.Visible = false;
                     this.PnlImp.Visible = false;
@@ -972,6 +1041,22 @@ namespace RealERPWEB.F_99_Allinterface
                     this.gvWorkOrder.DataSource = HiddenSameData(dt);
                     this.gvWorkOrder.DataBind();
                     break;
+
+                case "gvmbook":
+                    this.gvmbook.DataSource = HiddenSameData(dt);
+                    this.gvmbook.DataBind();
+                    break;
+
+
+                case "gvmbookapp":
+                    this.gvmbookapp.DataSource = HiddenSameData(dt);
+                    this.gvmbookapp.DataBind();
+                    break;
+
+
+
+                  
+
 
                 case "gvReadyForBill":
                     this.gvReadyForBill.DataSource = HiddenSameData(dt);
@@ -1746,6 +1831,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "1205":   //p2p
                     case "3351":   //p2p
                     case "3352":   //p2p
+                    case "3101":   //ptl
 
                         hlink1.NavigateUrl = "~/F_14_Pro/PurMktSurveyCont?Type=ConCS&lisuno=" + blreqno + "&pactcode=" + pactcode;
 
@@ -1930,6 +2016,26 @@ namespace RealERPWEB.F_99_Allinterface
                 hlnbillapp.NavigateUrl = "~/F_09_PImp/PurLabIssue2?Type=BillApproval&prjcode=" + pactcode + "&genno=" + lisuno + "&sircode=" + sircode;
                 //F_09_PImp/PurLabIssue2?Type=Current&prjcode=&genno=&sircode=
             }
+        }
+
+        protected void gvmbook_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        protected void btnDelmb_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvmbookapp_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        protected void btnDelmbapp_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

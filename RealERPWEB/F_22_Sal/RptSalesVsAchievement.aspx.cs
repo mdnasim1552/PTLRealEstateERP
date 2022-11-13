@@ -30,15 +30,18 @@ namespace RealERPWEB.F_22_Sal
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = this.Request.QueryString["Type"]== "MonsalVsAchieve" ? "Month Wise Sales (Reconcilation)": "Month Wise Sales (Reconcilation L/O)";
+                ((Label)this.Master.FindControl("lblTitle")).Text = this.Request.QueryString["Type"]== "MonsalVsAchieve" ? "Month Wise Sales (Reconcilation)":
+                    this.Request.QueryString["Type"] == "MonsalVsAchieveLO" ?  "Month Wise Sales (Reconcilation L/O)": "Down Payment Status (Prev.Sales)";
                 string Date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtfrmdate.Text = "01-" + ASTUtility.Right(Date, 8);
                 this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 this.ProjectName();
                 this.GetGroup();
-                this.Visibility();
-
+                this.SelectView();
                
+               
+
+
             }
 
         }
@@ -108,6 +111,27 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
+        private void SelectView()
+        {
+            string Type = this.Request.QueryString["Type"].ToString().Trim();
+            switch (Type)
+            {
+                case "MonsalVsAchieveLO":
+                case "MonsalVsAchieve":                  
+                    this.MultiView1.ActiveViewIndex = 0;
+                    this.Visibility();
+                    break;
+
+
+                case "DownpayClearnce":
+                    this.MultiView1.ActiveViewIndex = 1;
+                    break;
+
+            }
+
+
+        }
+
         private string GetLOType()
         {
             string Type = this.Request.QueryString["Type"];
@@ -137,9 +161,62 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
+
+
+
         protected void lnkbtnOk_Click(object sender, EventArgs e)
         {
-            Session.Remove("tblgrpsoldunsold");
+            string Type = this.Request.QueryString["Type"].ToString().Trim();
+           
+            switch (Type)
+            {
+                case "MonsalVsAchieveLO":
+                case "MonsalVsAchieve":
+                    this.GetSaleReconcilation();
+                    break;
+
+
+                case "DownpayClearnce":
+                    this.ShowDownPayment();
+                    break;
+
+            }
+
+
+        }
+
+        private void ShowDownPayment()
+        {
+            Session.Remove("tblsalesvscoll02");
+            string comcod = this.GetComeCode();
+            string prjcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18%" : this.ddlPrjName.SelectedValue.ToString() + "%";
+            string frmdate = this.txtfrmdate.Text.Trim();
+            string todate = this.txttodate.Text.Trim();
+            string lotype = "";   //this.GetLOType();
+            string grpcode = this.ddlgrp.SelectedValue.ToString() == "000000000000" ? "51%" : this.ddlgrp.SelectedValue.ToString() + "%";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "GETSALESDOWNPAYMENTCLEARANCE", prjcode, frmdate, todate, grpcode, lotype, "", "", "", "");
+            if (ds1 == null)
+            {
+                this.gvDownpayment.DataSource = null;
+                this.gvDownpayment.DataBind();
+
+                return;
+            }
+            Session["tblsalesvscoll02"] = ((DataTable)ds1.Tables[0]).Copy();
+
+            Session["tblsalesvscoll"] = this.HiddenSameData(ds1.Tables[0]);
+
+            Session["tbltypecount"] = ds1.Tables[1];
+
+            this.Data_Bind();
+
+        }
+
+
+        private void GetSaleReconcilation()
+        {
+
+            Session.Remove("tblsalesvscoll02");
             string comcod = this.GetComeCode();
             string prjcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18%" : this.ddlPrjName.SelectedValue.ToString() + "%";
             string frmdate = this.txtfrmdate.Text.Trim();
@@ -161,6 +238,9 @@ namespace RealERPWEB.F_22_Sal
             Session["tbltypecount"] = ds1.Tables[1];
 
             this.Data_Bind();
+
+
+
         }
 
         private DataTable HiddenSameData(DataTable dt1)
@@ -190,10 +270,31 @@ namespace RealERPWEB.F_22_Sal
         private void Data_Bind()
         {
            
-            this.gvsalesvscoll.DataSource = (DataTable)Session["tblsalesvscoll"];
-            this.gvsalesvscoll.DataBind();
+            //this.gvsalesvscoll.DataSource = (DataTable)Session["tblsalesvscoll"];
+            //this.gvsalesvscoll.DataBind();
 
-           
+            string Type = this.Request.QueryString["Type"].ToString().Trim();
+            DataTable dt = (DataTable)Session["tblsalesvscoll"];
+            switch (Type)
+            {
+                case "MonsalVsAchieveLO":
+                case "MonsalVsAchieve":
+                    this.gvsalesvscoll.DataSource = dt;
+                    this.gvsalesvscoll.DataBind();
+                   // this.FooterCalculation(dt);
+                    break;
+
+
+                case "DownpayClearnce":
+                    this.gvDownpayment.DataSource = dt;
+                    this.gvDownpayment.DataBind();
+                    //this.FooterCalculation(dt);
+                    break;
+
+            }
+
+
+
 
 
             // this.FooterCal();
@@ -247,6 +348,29 @@ namespace RealERPWEB.F_22_Sal
 
         private void lbtnPrint_Click(object sender, EventArgs e)
         {
+
+            string Type = this.Request.QueryString["Type"].ToString().Trim();
+
+            switch (Type)
+            {
+                case "MonsalVsAchieveLO":
+                case "MonsalVsAchieve":
+                    this.PrintSaleReconcilation();
+                    break;
+
+
+                case "DownpayClearnce":
+                    this.ShowDownPayment();
+                    break;
+
+            }
+
+
+        }
+
+
+        private void PrintSaleReconcilation()
+        {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = GetComeCode();
             string comnam = hst["comnam"].ToString();
@@ -285,7 +409,7 @@ namespace RealERPWEB.F_22_Sal
                     shopno = dt1.Rows[0]["shopno"].ToString() + " Units";
                     aptno = dt1.Rows[0]["aptno"].ToString() + " Units";
                     officeno = dt1.Rows[0]["officeno"].ToString() + " Units";
-                    totalsal ="Total Sales              :   " + (Convert.ToDouble(dt1.Rows[0]["aptno"]) + Convert.ToDouble(dt1.Rows[0]["shopno"])).ToString() + " Units";
+                    totalsal = "Total Sales              :   " + (Convert.ToDouble(dt1.Rows[0]["aptno"]) + Convert.ToDouble(dt1.Rows[0]["shopno"])).ToString() + " Units";
                     break;
             }
 
@@ -295,7 +419,7 @@ namespace RealERPWEB.F_22_Sal
             if (this.Request.QueryString["Type"] == "MonsalVsAchieveLO")
 
             {
-               
+
                 var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesvsAchievement>();
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSalesVsAchivementLO", lst, null, null);
                 Rpt1.EnableExternalImages = true;
@@ -314,9 +438,9 @@ namespace RealERPWEB.F_22_Sal
                 Rpt1.SetParameters(new ReportParameter("grp", grp));
                 //Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
             }
-           else
+            else
             {
-               
+
                 var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesvsAchievement>();
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSalesVsAchivement", lst, null, null);
                 Rpt1.EnableExternalImages = true;

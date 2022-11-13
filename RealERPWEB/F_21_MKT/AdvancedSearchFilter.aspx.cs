@@ -58,7 +58,7 @@ namespace RealERPWEB.F_21_MKT
                 string Pri = "%";
                 string Status = "%";
                 string Other = this.ddlOther.SelectedValue.ToString();
-                string TxtVal = "%" + this.txtVal.Text + "%";
+                string TxtVal = "%" + this.txtVal.Text;
                 string frmdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 string todate = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
@@ -70,24 +70,46 @@ namespace RealERPWEB.F_21_MKT
 
 
                 if (ds3 == null || ds3.Tables[0].Rows.Count == 0)
-                    return;
-                ViewState["tblempsup"] = ds3.Tables[0];
-                DataTable dt1 = (DataTable)ViewState["tblempsup"];
+                {
+                    string Messagesd = "No data found";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                    this.DataBind();
 
-                this.lblname.Text = dt1.Rows[0]["sircode"].ToString();
-                this.lblconper.Text = dt1.Rows[0]["sirdesc"].ToString();
-                this.lblmbl.Text = dt1.Rows[0]["phone"].ToString();
-                this.lblhomead.Text = dt1.Rows[0]["caddress"].ToString();
-                this.lblprof.Text = dt1.Rows[0]["cprof"].ToString();
-                this.lblstatus.Text = dt1.Rows[0]["virnotes"].ToString();
+                }
+                else
+                {
+                    ViewState["tblempsup"] = ds3.Tables[0];
+                    DataTable dt1 = (DataTable)ViewState["tblempsup"];
+
+                    this.lblname.Text = dt1.Rows[0]["sircode"].ToString();
+                    this.lblconper.Text = dt1.Rows[0]["sirdesc"].ToString();
+                    this.lblmbl.Text = dt1.Rows[0]["phone"].ToString();
+                    this.lblhomead.Text = dt1.Rows[0]["caddress"].ToString();
+                    this.lblprof.Text = dt1.Rows[0]["cprof"].ToString();
+                    this.lblstatus.Text = dt1.Rows[0]["virnotes"].ToString();
+
+
+                    string proscod = dt1.Rows[0]["sircode"].ToString();
+                    string cdate = todate;
+                    DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "SHOWPROSPECTIVEDISCUSSION", proscod, cdate, "", "", "", "");
+                    this.rpclientinfo.DataSource = ds1.Tables[0];
+                    this.rpclientinfo.DataBind();
+                    
+                }
+                 
+               
             }
             catch (Exception ex)
             {
 
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
            
 
         }
+
+
         private void GETEMPLOYEEUNDERSUPERVISED()
         {
             try
