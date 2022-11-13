@@ -28,7 +28,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Visible = false;
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = false;
-
+                this.GetIndentRequirdData();
                 RadioButtonList1_SelectedIndexChanged(null, null);
                 RadioButtonList1.SelectedIndex = 0;
             }
@@ -67,9 +67,11 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlreqchk.Visible = false;
                     this.pnlReqAprv.Visible = false;
                     this.pnlgatepass.Visible = false;
-                     
-                 
-                   
+                    this.pnlcomplete.Visible = false;
+                    this.GetIndentRequirdData();
+
+
+
                     this.RadioButtonList1.Items[0].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[0].Attributes["style"] = "background: #430000; display:block; ";
                     break;
@@ -79,6 +81,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlreqchk.Visible = true;
                     this.pnlReqAprv.Visible = false;
                     this.pnlgatepass.Visible = false;
+                    this.pnlcomplete.Visible = false;
 
                     //this.RadioButtonList1.Items[1].Attributes["style"] = "background: #430000; display:block; ";
                     this.RadioButtonList1.Items[1].Attributes["class"] = "lblactive blink_me";
@@ -89,6 +92,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlreqchk.Visible = false;
                     this.pnlReqAprv.Visible = true;
                     this.pnlgatepass.Visible = false;
+                    this.pnlcomplete.Visible = false;
                     //this.RadioButtonList1.Items[1].Attributes["style"] = "background: #430000; display:block; ";
                     this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
                     break;
@@ -98,9 +102,19 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlreqchk.Visible = false;
                     this.pnlReqAprv.Visible = false;
                     this.pnlgatepass.Visible = true;
+                    this.pnlcomplete.Visible = false;
                     this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[2].Attributes["style"] = "background: #430000; display:block; ";
-                    break; 
+                    break;
+                case "4":
+                    this.pnlstatus.Visible = false;
+                    this.pnlreqchk.Visible = false;
+                    this.pnlReqAprv.Visible = false;
+                    this.pnlgatepass.Visible = false;
+                    this.pnlcomplete.Visible = true;
+                    this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
+                    //this.RadioButtonList1.Items[2].Attributes["style"] = "background: #430000; display:block; ";
+                    break;
             }
 
 
@@ -125,13 +139,17 @@ namespace RealERPWEB.F_99_Allinterface
             
 
             this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["statuses"]) + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
-            this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["reqchecked"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Req Checked</div></div></div>";
-            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["reqapproval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Req Approval</div></div></div>";
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["issues"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Issue</div></div></div>";
-             
+            this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["hodchecked"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>HOD Checked</div></div></div>";
+            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["hrapproval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>HR/Admin Approval</div></div></div>";
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["pendingissues"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Pending Issue</div></div></div>";
+            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["complete"]) + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>Complete</div></div></div>";
+
             Session["tbladdwrk"] = ds2.Tables[0];
 
             DataTable dt = new DataTable();
+            DataView view = new DataView();
+            this.gv_IndRequired.DataSource = ds2.Tables[0];
+            this.gv_IndRequired.DataBind();
 
             //Status
 
@@ -145,9 +163,29 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
+
+        private void GetAllIndRequired()
+        {
+
+        }
+
         protected void lnkok_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void gv_IndRequired_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("hybtnidentlink");
+                
+                string issueno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "issueno")).ToString().Trim();
+               
+                hlink.NavigateUrl = "~/F_12_Inv/IndentMaterialRequired?ype=Entry&genno=" + issueno ;
+               
+
+            }
         }
     }
 }

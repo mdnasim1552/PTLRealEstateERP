@@ -22,12 +22,13 @@ namespace RealERPWEB.F_12_Inv
 
                 this.GetProjectName();
                 this.GetDeparment();
-                this.CommonButton(); 
+                this.CommonButton();
 
-                if (this.Request.QueryString["genno"].ToString().Length > 0)
+                if (this.Request.QueryString["genno"].Length > 0)
                 {
-                    //this.PreList();
+                    this.PreList();
                 }
+
             }
 
         }
@@ -58,7 +59,7 @@ namespace RealERPWEB.F_12_Inv
             ////
             //((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = false;
             //((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
-             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
 
             //((LinkButton)this.Master.FindControl("lnkbtnDelete")).Visible = false;
             ////((LinkButton)this.Master.FindControl("btnClose")).Visible = false;
@@ -131,12 +132,7 @@ namespace RealERPWEB.F_12_Inv
         {
             try
             {
-                if (this.ddlDeptCode.SelectedValue.ToString() == "AAAAAAAAAAAA")
-                {
-                    string Msg = "Please Select Department";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
-                    return;
-                }
+                 
                 if (this.lbtnOk.Text == "Ok")
                 {
                     this.lbtnOk.Text = "New";
@@ -149,15 +145,15 @@ namespace RealERPWEB.F_12_Inv
 
                     if (this.Request.QueryString["Type"] == "Entry")
                     {
-                        //if (this.ddlPreList.Items.Count == 0)
-                        //{
-                        //    if (this.ddlDeptCode.SelectedValue.ToString() == "AAAAAAAAAAAA")
-                        //    {
-                        //        this.lblmsg1.Visible = true;
-                        //        this.lblmsg1.Text = "Please Select Department";
-                        //        return;
-                        //    }
-                        //}
+                        if (this.ddlPreList.Items.Count == 0)
+                        {
+                            if (this.ddlDeptCode.SelectedValue.ToString() == "AAAAAAAAAAAA")
+                            {
+                                string Msg = "Please Select Department";
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+                                return;
+                            }
+                        }
 
                     }
                     return;
@@ -174,8 +170,8 @@ namespace RealERPWEB.F_12_Inv
                 this.txtaplydate.Enabled = true;
 
                 //this.ImgbtnFindPrevious.Visible = true;
-                //this.ddlPreList.Visible = true;
-                //this.ddlPreList.Items.Clear();
+                this.ddlPreList.Visible = true;
+                this.ddlPreList.Items.Clear();
                 this.ddlMaterials.Items.Clear();
                 this.ddlResSpcf.Items.Clear();
                 this.gvIssue.DataSource = null;
@@ -197,12 +193,12 @@ namespace RealERPWEB.F_12_Inv
                 string comcod = this.GetCompCode();
                 string CurDate1 = this.txtaplydate.Text.Trim();
                 string mISUNo = "NEWISU";
-                //if (this.ddlPreList.Items.Count > 0)
-                //{
-                //    this.txtCurDate.Enabled = false;
-                //    mISUNo = this.ddlPreList.SelectedValue.ToString();
+                if (this.ddlPreList.Items.Count > 0)
+                {
+                    this.txtaplydate.Enabled = false;
+                    mISUNo = this.ddlPreList.SelectedValue.ToString();
 
-                //}
+                }
                 string pactcode = this.ddlStoreList.SelectedValue.ToString();
 
                 DataSet ds1 = dbaccess.GetTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "GETMATREQUIEDINFO", mISUNo, CurDate1, "");
@@ -347,7 +343,7 @@ namespace RealERPWEB.F_12_Inv
                 //this.Panel2.Visible = true;
                 this.SaveValue();
                 DataTable tbl1 = (DataTable)ViewState["tblIssue"];
-                string mResCode = this.ddlMaterials.SelectedValue.ToString();              
+                string mResCode = this.ddlMaterials.SelectedValue.ToString();
 
                 string Dmpcode = this.ddlDeptCode.SelectedValue.ToString();
                 string spcfcod = this.ddlResSpcf.SelectedValue.ToString();
@@ -355,7 +351,7 @@ namespace RealERPWEB.F_12_Inv
                 if (dr2.Length == 0)
                 {
                     DataRow dr1 = tbl1.NewRow();
-                    dr1["comcod"] = this.GetCompCode(); 
+                    dr1["comcod"] = this.GetCompCode();
                     dr1["rsircode"] = this.ddlMaterials.SelectedValue.ToString();
                     dr1["spcfcod"] = this.ddlResSpcf.SelectedValue.ToString();
                     dr1["deptcode"] = this.ddlDeptCode.SelectedValue.ToString();
@@ -370,10 +366,10 @@ namespace RealERPWEB.F_12_Inv
                     dr1["stkqty"] = "0";
                     dr1["stkrate"] = "0";
                     dr1["issueqty"] = dr3[0]["issueqty"];
-                    dr1["issueamt"] = 0;                    
+                    dr1["issueamt"] = 0;
                     tbl1.Rows.Add(dr1);
                 }
-                
+
                 ViewState["tblIssue"] = tbl1;
                 this.Data_Bind();
             }
@@ -390,7 +386,7 @@ namespace RealERPWEB.F_12_Inv
         {
             this.SaveValue();
             DataTable tbl1 = (DataTable)ViewState["tblIssue"];
-            string mResCode = this.ddlMaterials.SelectedValue.ToString();            
+            string mResCode = this.ddlMaterials.SelectedValue.ToString();
             string Empcode = "";
             DataTable tbl2 = (DataTable)ViewState["tblMat"];
 
@@ -407,7 +403,7 @@ namespace RealERPWEB.F_12_Inv
                     dr1["rsirdesc"] = tbl2.Rows[i]["rsirdesc"];
                     dr1["spcfdesc"] = this.ddlResSpcf.SelectedItem.Text.Trim();
                     dr1["deptname"] = this.ddlDeptCode.SelectedItem.Text.Trim();
-                    dr1["empid"] = ""; 
+                    dr1["empid"] = "";
                     dr1["rsirunit"] = tbl2.Rows[i]["rsirunit"];
                     dr1["stkqty"] = 0;
                     dr1["stkrate"] = 0;
@@ -433,7 +429,7 @@ namespace RealERPWEB.F_12_Inv
 
             for (int i = 0; i < this.gvIssue.Rows.Count; i++)
             {
-                double issueqty = Convert.ToDouble("0" + ((TextBox)this.gvIssue.Rows[i].FindControl("txtgvissueqty")).Text.Trim());               
+                double issueqty = Convert.ToDouble("0" + ((TextBox)this.gvIssue.Rows[i].FindControl("txtgvissueqty")).Text.Trim());
                 int rowindex = ((this.gvIssue.PageIndex) * (this.gvIssue.PageSize)) + i;
                 dt1.Rows[rowindex]["issueqty"] = issueqty;
                 dt1.Rows[rowindex]["remarks"] = "";
@@ -513,7 +509,7 @@ namespace RealERPWEB.F_12_Inv
             string comcod = this.GetCompCode();
             DataTable dt = (DataTable)ViewState["tblIssue"];
             string curdate = this.txtaplydate.Text.ToString().Trim();
-             
+
             if (this.ddlPreList.Items.Count == 0)
                 this.GetLSDNo();
             string Issueno = this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurNo1.Text.ToString().Trim().Substring(3, 2) + this.txtCurNo2.Text.ToString().Trim();
@@ -559,7 +555,7 @@ namespace RealERPWEB.F_12_Inv
                 string rsircode = dr["rsircode"].ToString().Trim();
                 string spcfcod = dr["spcfcod"].ToString().Trim();
                 string deptcode = dr["deptcode"].ToString().Trim();
-                string issueqty = dr["issueqty"].ToString().Trim();                 
+                string issueqty = dr["issueqty"].ToString().Trim();
                 string remarks = dr["remarks"].ToString().Trim();
 
                 result = dbaccess.UpdateTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "INSORUPTXTTTOEMPINF", "indrequireda", Issueno, rsircode, spcfcod,
@@ -583,7 +579,8 @@ namespace RealERPWEB.F_12_Inv
 
             string comcod = this.GetCompCode();
             string curdate = this.txtaplydate.Text.ToString().Trim();
-            DataSet ds1 = dbaccess.GetTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "GETPREISSUELIST", curdate, "", "", "", "", "", "", "", "");
+            string issue = Request.QueryString["genno"] == "" ? " " : Request.QueryString["genno"];
+            DataSet ds1 = dbaccess.GetTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "GETPREINDENTISSUELIST", curdate, issue, "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
 
@@ -593,11 +590,42 @@ namespace RealERPWEB.F_12_Inv
             this.ddlPreList.DataBind();
             if (this.Request.QueryString["genno"].Length > 0)
             {
+                this.lblCurNo1.Text = ds1.Tables[0].Rows[0]["issueno1"].ToString().Substring(0, 6);
+                this.txtCurNo2.Text = ds1.Tables[0].Rows[0]["issueno1"].ToString().Substring(6, 5);
+
                 string genno = this.Request.QueryString["genno"].ToString();
                 this.ddlPreList.SelectedValue = genno;
+                this.ddlPreList.Enabled = false;
+                this.txtrefno.Text = ds1.Tables[0].Rows[0]["refno"].ToString();
                 this.lbtnOk_Click(null, null);
             }
 
+
+        }
+
+        protected void lblDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dt = (DataTable)ViewState["tblIssue"];
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;
+                string id = ((Label)this.gvIssue.Rows[index].FindControl("lblgvMatCode")).Text.Trim();
+
+                if (dt.Rows[index]["rsircode"].ToString() == id)
+                {
+                    dt.Rows[index].Delete();
+                }
+
+                ViewState["tblIssue"] = dt;
+                this.Data_Bind();
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
 
         }
     }

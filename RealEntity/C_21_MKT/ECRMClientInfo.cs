@@ -112,6 +112,23 @@ namespace RealEntity.C_21_Mkt
         }
 
 
+        [Serializable]
+        public class EClassDailyWorkStatus
+        {
+            public string grp { get; set; }
+            public string grpdesc { get; set; }
+            public string teamcode { get; set; }
+            public string teamdesc { get; set; }
+            public string sircode { get; set; }
+            public string sircode1 { get; set; }
+            public string sirdesc { get; set; }
+            public DateTime generated { get; set; }
+            public DateTime nfollowupcdate { get; set; }
+            public DateTime nfollowupdate { get; set; }
+            public string followup { get; set; }
+            public string followupdesc { get; set; }
+            public EClassDailyWorkStatus() { }
+        }
 
     }
 }
