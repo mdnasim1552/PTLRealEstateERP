@@ -777,6 +777,7 @@
     <EmbeddedResource Include="R_21_MKT\RptCallCenterLead.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptClietList.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptCRMClientInfo.rdlc" />
+    <EmbeddedResource Include="R_21_MKT\RptDailyWorkStatus.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptProspectTransfer.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptProspectWorking.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptSourceWiseLeads.rdlc" />
