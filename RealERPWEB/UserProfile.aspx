@@ -1079,6 +1079,16 @@
 
                       </asp:Panel>
 
+                         <div class="card" runat="server" visible="false">
+                             <div class="card-header">
+                                     <h3 class="card-title">Pending leave for approval</h3>
+
+                             </div>
+                             <div class="card-body">
+                                 <h2 class="text-center" runat="server" id="lappcount"></h2>
+                             </div>
+                         </div>
+
                         </div>
                     </div>
 

@@ -115,7 +115,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
-      <HintPath>..\..\..\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+      <HintPath>..\..\..\..\Backup\Projects\Project Reference\Real Estate Bin 211213\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
@@ -182,7 +182,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -2228,6 +2228,7 @@
     <Content Include="F_09_PImp\InvResourceRequirement.aspx" />
     <Content Include="F_09_PImp\LinkSubContractorSd.aspx" />
     <Content Include="F_09_PImp\LinkSubContractorSd02.aspx" />
+    <Content Include="F_09_PImp\MktMBEntry.aspx" />
     <Content Include="F_09_PImp\PurConWrkOrderEntry.aspx" />
     <Content Include="F_09_PImp\PurConWrkOrderEntry02.aspx" />
     <Content Include="F_09_PImp\PurFinProIssueEntry.aspx" />
@@ -2290,6 +2291,7 @@
     <Content Include="F_21_MKT\AdvancedSearchFilter.aspx" />
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
+    <Content Include="F_21_MKT\RptDailyWorkStatus.aspx" />
     <Content Include="F_21_MKT\RptPerDeleteProspect.aspx" />
     <Content Include="F_22_Sal\ClusterSetup.aspx" />
     <Content Include="F_22_Sal\MktSampleNoteSheet.aspx" />
@@ -4097,6 +4099,13 @@
     <Compile Include="F_07_Ten\UnitConversion.aspx.designer.cs">
       <DependentUpon>UnitConversion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_09_PImp\MktMBEntry.aspx.cs">
+      <DependentUpon>MktMBEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_09_PImp\MktMBEntry.aspx.designer.cs">
+      <DependentUpon>MktMBEntry.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_09_PImp\RptSubConTopsheetTypeWise.aspx.cs">
       <DependentUpon>RptSubConTopsheetTypeWise.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4222,6 +4231,13 @@
     </Compile>
     <Compile Include="F_21_MKT\MktGenCodeBookLand.aspx.designer.cs">
       <DependentUpon>MktGenCodeBookLand.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\RptDailyWorkStatus.aspx.cs">
+      <DependentUpon>RptDailyWorkStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\RptDailyWorkStatus.aspx.designer.cs">
+      <DependentUpon>RptDailyWorkStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\RptPerDeleteProspect.aspx.cs">
       <DependentUpon>RptPerDeleteProspect.aspx</DependentUpon>
