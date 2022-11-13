@@ -2935,7 +2935,7 @@
                                 </asp:Panel>
                                  <asp:Panel ID="pnlMbook" runat="server">
                                        <asp:GridView ID="gvmbook" runat="server" AutoGenerateColumns="False"
-                                        ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvmbook_RowDataBound">
+                                        ShowFooter="True" CssClass=" table-striped table-bordered grvContentarea" OnRowDataBound="gvmbook_RowDataBound">
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Sl.No.">

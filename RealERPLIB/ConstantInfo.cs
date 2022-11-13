@@ -347,9 +347,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0902000", "0902090", "F_09_PImp", "PurConWrkOrderEntry?", "Type=Entry", "Contractor Work Order(Acme)", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0902000", "0902092", "F_09_PImp", "PurConWrkOrderEntry02?", "Type=Entry", "Contractor Work Order(Standard)", "Project Implementation", "False", "False", "False", "False" });
 
-            tblObj.Rows.Add(new Object[] { "0902000", "0902095", "F_09_PImp", "MktMBEntry?", "Type=Entry", "MB Entry", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0902000", "0902095", "F_09_PImp", "BillingMBEntry?", "Type=Entry", "MB Entry", "Project Implementation", "False", "False", "False", "False" });
 
-            tblObj.Rows.Add(new Object[] { "0902000", "0902096", "F_09_PImp", "MktMBEntry?", "Type=Approved", "MB Entry(Approvaed)", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0902000", "0902096", "F_09_PImp", "BillingMBEntry?", "Type=Approved", "MB Entry(Approvaed)", "Project Implementation", "False", "False", "False", "False" });
 
 
 
@@ -5048,7 +5048,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301050000", "11. Monthly Resource Requirement", "F_04_Bgd/RptMonthlyResRequir?Type=Report", "", true, "" });
 
 
-            mnuTbl1.Rows.Add(new Object[] { "0301060000", "11. MB Entry", "F_09_PImp/MktMBEntry?Type=Entry", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301060000", "11. MB Entry", "F_09_PImp/BillingMBEntry?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301070000", "11. Sub-Contractor Bill", "F_09_PImp/RptSubConBill?Type=SubBill&comcod=&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301080000", "12. Periodic Sub-Contractor Bill", "F_09_PImp/RptSubConBill?Type=SubConBill&comcod=&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301090000", "13. Sub-Contractor Bill Tracking", "F_09_PImp/ConBillTracking", "", true, "" });
