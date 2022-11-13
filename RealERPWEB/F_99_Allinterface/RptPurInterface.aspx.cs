@@ -646,8 +646,8 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
 
-                case "3370"://  Edison Real Estate 
-                    OrderfApproved = "Ord. App";                   
+                case "3370"://  cpdl
+                    OrderfApproved = "Order App";                   
                     break;
 
                 default:
