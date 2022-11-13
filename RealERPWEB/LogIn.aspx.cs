@@ -769,17 +769,19 @@ namespace RealERPWEB
             string refno = "";
             switch (comcod)
             {
-                case "2305":
-                case "3305":
-                case "3306":
-                case "3310":
-                case "3311":
-                case "3315":
+                case "2305"://rupayan
+                case "3305": //rupayan
+                case "3306": //rupayan
+                case "3310"://rupayan
+                case "3311": //rupayan
+                case "3315": //assure
+                case "3316": //assure
                 case "3325":
-                case "3353":
+                case "3353": // manama
                 case "3101":
-                case "3364":
-                case "3366":
+                case "3364":  // jbs
+                case "3366": // lanco
+                case "3370": // cpdl
                     refno = "MPR No";
                     break;
                 default:
