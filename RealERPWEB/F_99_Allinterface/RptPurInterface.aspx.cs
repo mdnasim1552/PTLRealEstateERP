@@ -887,6 +887,11 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[1].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[1].Attributes.Add("class", "lblactive");
                     //this.RadioButtonList1.Items[1].Attributes["style"] = "background:#5A5C59; display:block";
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvCRM.HeaderRow.FindControl("txtSearchrefnumrchq")).Attributes.Add("placeholder", ReadCookie());
+                    }
                     break;
 
                 case "2":
@@ -982,6 +987,11 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[2].Attributes.Add("class", "lblactive");
                     //this.RadioButtonList1.Items[2].Attributes["style"] = "background:#5A5C59; display:block";
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvreqfapproved.HeaderRow.FindControl("txtSearchrefnumfapproved")).Attributes.Add("placeholder", ReadCookie());
+                    }
                     break;
 
 
@@ -1015,6 +1025,10 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[2].Attributes.Add("class", "lblactive");
                     //this.RadioButtonList1.Items[2].Attributes["style"] = "background:#5A5C59; display:block";
+                    if (dt.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvreqsecapproved.HeaderRow.FindControl("txtSearchrefnumsecapproved")).Attributes.Add("placeholder", ReadCookie());
+                    }
                     break;
 
                 case "5":
@@ -1088,7 +1102,10 @@ namespace RealERPWEB.F_99_Allinterface
                     // this.RadioButtonList1.Items[4].Attributes.Add("class", "lblactive");
                     //  this.RadioButtonList1.Items[4].Attributes["style"] = "background:#5A5C59; display:block";
 
-
+                    if (dt.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvFRec.HeaderRow.FindControl("txtSearchrefnumfrec")).Attributes.Add("placeholder", ReadCookie());
+                    }
                     break;
 
 
@@ -1121,6 +1138,10 @@ namespace RealERPWEB.F_99_Allinterface
                     this.PanelBillAudit.Visible = false;
                     this.RadioButtonList1.Items[7].Attributes["class"] = "lblactive blink_me";
 
+                    if (dt.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvSecRec.HeaderRow.FindControl("txtSearchrefnumsrec")).Attributes.Add("placeholder", ReadCookie());
+                    }
                     break;
 
 
@@ -1153,7 +1174,10 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[8].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[6].Attributes.Add("class", "lblactive");
                     //this.RadioButtonList1.Items[6].Attributes["style"] = "background:#5A5C59; display:block";
-
+                    if (dt.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvThRec.HeaderRow.FindControl("txtSearchrefnumthrec")).Attributes.Add("placeholder", ReadCookie());
+                    }
 
                     break;
 
@@ -1297,7 +1321,10 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[12].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[9].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[9].Attributes["style"] = "background:#5A5C59; display:block";
-
+                    if (dt.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvordfapp.HeaderRow.FindControl("txtSearchrefnumofap")).Attributes.Add("placeholder", ReadCookie());
+                    }
                     break;
 
                 case "13":
@@ -1329,7 +1356,10 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[13].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[9].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[9].Attributes["style"] = "background:#5A5C59; display:block";
-
+                    if (dt.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvordsapp.HeaderRow.FindControl("txtSearchrefnumosapp")).Attributes.Add("placeholder", ReadCookie());
+                    }
                     break;
 
 
@@ -1408,7 +1438,7 @@ namespace RealERPWEB.F_99_Allinterface
                     // this.RadioButtonList1.Items[10].Attributes["style"] = "background:#5A5C59; display:block";
                     //if (dt.Rows.Count > 0)
                     //{
-                    //    ((TextBox)this.grvMRec.HeaderRow.FindControl("txtSearchrefnummrec")).Attributes.Add("placeholder", ReadCookie());
+                    //    ((TextBox)this.gvmrrapp.HeaderRow.FindControl("txtSearchrefnummrec")).Attributes.Add("placeholder", ReadCookie());
                     //}
                     break;
 
