@@ -818,6 +818,7 @@
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptAcme02.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptAcme.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptCPDL.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptSalesVsAchivementDPC.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalesVsAchivementLO.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSampleNotesSheet.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptGrandNotesSheetSummary.rdlc" />
