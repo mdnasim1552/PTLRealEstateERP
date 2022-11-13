@@ -355,13 +355,14 @@ namespace RealERPWEB.F_22_Sal
             {
                 case "MonsalVsAchieveLO":
                 case "MonsalVsAchieve":
+                case "DownpayClearnce":
                     this.PrintSaleReconcilation();
                     break;
 
 
-                case "DownpayClearnce":
-                    this.ShowDownPayment();
-                    break;
+                //case "DownpayClearnce":
+                //    this.ShowDownPayment();
+                //    break;
 
             }
 
@@ -433,6 +434,27 @@ namespace RealERPWEB.F_22_Sal
                 //Rpt1.SetParameters(new ReportParameter("officeno", officeno));
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "Achievement for month of " + frmdate + " to " + todate));
                 Rpt1.SetParameters(new ReportParameter("RptTitle1", "Monthly Sales Report (External Sales)"));
+                Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("grp", grp));
+                //Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
+            }
+            else if (this.Request.QueryString["Type"] == "DownpayClearnce")
+            {
+
+                var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesvsAchievement>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSalesVsAchivementDPC", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+                Rpt1.SetParameters(new ReportParameter("totalsal", totalsal));
+                Rpt1.SetParameters(new ReportParameter("projectName", projectName));
+                Rpt1.SetParameters(new ReportParameter("shopno", shopno));
+                Rpt1.SetParameters(new ReportParameter("aptno", aptno));
+                //Rpt1.SetParameters(new ReportParameter("officeno", officeno));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Achievement for month of " + frmdate + " to " + todate));
+                Rpt1.SetParameters(new ReportParameter("RptTitle1", "Down Payment Status (Prev.Sales)"));
                 Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
                 Rpt1.SetParameters(new ReportParameter("grp", grp));
