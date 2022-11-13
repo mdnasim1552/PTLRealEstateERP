@@ -1072,6 +1072,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         case "3370": //Acme serv
                             toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
                             ((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = toaddamt.ToString("#,##0;(#,##0); ");
+                            this.txtgrossal.Text = toaddamt.ToString("#,##0;(#,##0); ");
 
                             break;
                         default:
