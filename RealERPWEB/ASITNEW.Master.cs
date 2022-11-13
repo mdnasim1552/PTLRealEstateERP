@@ -77,10 +77,7 @@ namespace RealERPWEB
                     this.WraperMain.Attributes.Add("class", "app has-fullwidth");
                     this.mySidenav.Attributes.Add("class", "app-aside ");
                     this.main.Attributes.Add("class", "app-main ml-0 ");
-                    this.GroupMenu.Visible = true;
-
-
-
+                    this.GroupMenu.Visible = true; 
                 }
                 getLinkPRofile();
 
