@@ -348,6 +348,14 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Vounum" >
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvvounum" runat="server" BackColor="Transparent"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "vounum")) %>'
+                                                    Width="80px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
                                     </Columns>
                                     <FooterStyle CssClass="grvFooter" />
                                     <EditRowStyle />

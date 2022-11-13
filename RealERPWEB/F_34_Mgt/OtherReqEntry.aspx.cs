@@ -1142,29 +1142,28 @@ namespace RealERPWEB.F_34_Mgt
 
         private void RequisitionPrint()
         {
-
-            Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = GetCompCode();
-            string comnam = hst["comnam"].ToString();
-            string compname = hst["compname"].ToString();
-            string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string CurDate1 = this.GetStdDate(this.txtCurReqDate.Text.Trim());
-            string mReqNo = this.lblCurReqNo1.Text.Trim().Substring(0, 3) + this.txtCurReqDate.Text.Trim().Substring(6, 4) + this.lblCurReqNo1.Text.Trim().Substring(3, 2) + this.txtCurReqNo2.Text.Trim();
-
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "GETPURREQINFO", mReqNo, CurDate1,
-                 "", "", "", "", "", "", "");
-
-            string type = this.Comptype();
-
-            if (type == "otherreqgen")
+            switch (comcod)
             {
-                this.OtherReqPrintGen();
+                case "3336":
+                case "3337":
+                case "1103":// Tanvir
+                    this.OtherReqTanvirSuva();
+                    break;
+
+                case "1102":// ISBL
+                    this.OtherReqPrintISBL();
+                    break; 
+                
+                case "3368":// Finlay
+                    this.OtherReqPrintFinlay();
+                    break;
+
+                default:
+                    this.OtherReqPrintGen();
+                    break;
             }
-            else
-            {
-                OtherReqTanvirSuva();
-            }
+
         }
 
         private void OtherReqPrintGen()
@@ -1202,28 +1201,9 @@ namespace RealERPWEB.F_34_Mgt
             string thrapnam = dtsign.Rows[0]["thrapnam"].ToString() + "\n" + dtsign.Rows[0]["thrapdesig"].ToString() + "\n" + dtsign.Rows[0]["thrapdat"].ToString();   // approval 1
 
             LocalReport Rpt1 = new LocalReport();
-            
-            switch (comcod)
-            {
-               
-                case "1102":
-                    var lst1 = ds1.Tables[0].DataTableToList<RealEntity.C_34_Mgt.EClassOtherReq>();
-                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqStatusISBL", lst1, null, null);
-                    Rpt1.EnableExternalImages = true;
-                    Rpt1.SetParameters(new ReportParameter("forward", frapnam));
-                    Rpt1.SetParameters(new ReportParameter("thrapnam", thrapnam));
-                   
-
-                    break;
-                default:
-                    var lst = ds1.Tables[0].DataTableToList<RealEntity.C_34_Mgt.EClassOtherReq>();
-                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqStatus", lst, null, null);
-                    Rpt1.EnableExternalImages = true;
-                    break; 
-            }
-
-            
-
+            var lst = ds1.Tables[0].DataTableToList<RealEntity.C_34_Mgt.EClassOtherReq>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqStatus", lst, null, null);
+            Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("rpttitle", "Work Order"));
             Rpt1.SetParameters(new ReportParameter("paytype", paytype));
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
@@ -1239,6 +1219,141 @@ namespace RealERPWEB.F_34_Mgt
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
 
             //  Rpt1.SetParameters(new ReportParameter("CurDate", "Order Date: " + CurDate));
+
+            Session["Report1"] = Rpt1;
+            if (this.Request.QueryString["Type"].ToString() == "OreqPrint")
+            {
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+            }
+            else
+            {
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            }
+
+        }
+        private void OtherReqPrintISBL()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetCompCode();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string mReqNo = this.ddlPrevReqList.SelectedValue.ToString();
+            string payto = "Pay To: " + this.txtPayto.Text.Trim().ToString();
+            string CurDate1 = this.GetStdDate(this.txtCurReqDate.Text.Trim());
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string paytype = "Pay Type: " + this.rblpaytype.SelectedItem.Text.ToString();
+            string date = "Date : " + this.txtCurReqDate.Text.ToString().Trim();
+            string refno = "Ref No : " + this.txtMRFNo.Text.ToString().Trim();
+            string reqno = "Requisition No : " + this.lblCurReqNo1.Text + this.txtCurReqNo2.Text.ToString().Trim();
+            string narration = "Narration:" + this.txtReqNarr.Text.Trim();
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "GETPURREQINFO", mReqNo, CurDate1,
+                 "", "", "", "", "", "", "");
+
+            DataTable dtsign = ds1.Tables[2];
+
+            string requsinput = dtsign.Rows[0]["reqnam"].ToString() + "\n" + dtsign.Rows[0]["reqdesig"].ToString() + "\n" + dtsign.Rows[0]["reqdat"].ToString();     // req posted 
+            string confirmby = dtsign.Rows[0]["reqanam"].ToString() + "\n" + dtsign.Rows[0]["reqadesig"].ToString() + "\n" + dtsign.Rows[0]["reqdat"].ToString();     // req approved
+            string approved = dtsign.Rows[0]["faprovnam"].ToString() + "\n" + dtsign.Rows[0]["faprovdesig"].ToString() + "\n" + dtsign.Rows[0]["fapprvdat"].ToString(); // final approved 
+            string frapnam = dtsign.Rows[0]["frapnam"].ToString() + "\n" + dtsign.Rows[0]["frapdesig"].ToString() + "\n" + dtsign.Rows[0]["frapdat"].ToString();      // forword
+            string secapnam = dtsign.Rows[0]["secapnam"].ToString() + "\n" + dtsign.Rows[0]["secapdesig"].ToString() + "\n" + dtsign.Rows[0]["secapdat"].ToString();   // approval 1
+            string thrapnam = dtsign.Rows[0]["thrapnam"].ToString() + "\n" + dtsign.Rows[0]["thrapdesig"].ToString() + "\n" + dtsign.Rows[0]["thrapdat"].ToString();   // approval 1
+
+            LocalReport Rpt1 = new LocalReport();
+            var lst1 = ds1.Tables[0].DataTableToList<RealEntity.C_34_Mgt.EClassOtherReq>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqStatusISBL", lst1, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("forward", frapnam));
+            Rpt1.SetParameters(new ReportParameter("thrapnam", thrapnam));
+            Rpt1.SetParameters(new ReportParameter("rpttitle", "Work Order"));
+            Rpt1.SetParameters(new ReportParameter("paytype", paytype));
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("payto", payto));
+            Rpt1.SetParameters(new ReportParameter("date", date));
+            Rpt1.SetParameters(new ReportParameter("refno", refno));
+            Rpt1.SetParameters(new ReportParameter("reqno", reqno));
+            Rpt1.SetParameters(new ReportParameter("narration", narration));
+            Rpt1.SetParameters(new ReportParameter("requsinput", requsinput));
+            Rpt1.SetParameters(new ReportParameter("confirmby", confirmby));
+            Rpt1.SetParameters(new ReportParameter("approved", approved));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+
+            //  Rpt1.SetParameters(new ReportParameter("CurDate", "Order Date: " + CurDate));
+
+            Session["Report1"] = Rpt1;
+            if (this.Request.QueryString["Type"].ToString() == "OreqPrint")
+            {
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+            }
+            else
+            {
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            }
+
+        } 
+        private void OtherReqPrintFinlay() 
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetCompCode();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+
+
+            string mReqNo = this.ddlPrevReqList.SelectedValue.ToString();
+            string payto = "Pay To: " + this.txtPayto.Text.Trim().ToString();
+            string CurDate1 = this.GetStdDate(this.txtCurReqDate.Text.Trim());
+            string paytype = "Pay Type: " + this.rblpaytype.SelectedItem.Text.ToString();
+            string date = "Date : " + this.txtCurReqDate.Text.ToString().Trim();
+            string refno = "Ref No : " + this.txtMRFNo.Text.ToString().Trim();
+            string reqno = "Requisition No : " + this.lblCurReqNo1.Text + this.txtCurReqNo2.Text.ToString().Trim();
+            string narration = "Narration:" + this.txtReqNarr.Text.Trim();
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "GETPURREQINFO", mReqNo, CurDate1,
+                 "", "", "", "", "", "", "");
+             
+            DataTable dtsign = ds1.Tables[2];
+            string requsinput = dtsign.Rows[0]["reqnam"].ToString() + "\n" + dtsign.Rows[0]["reqdesig"].ToString() + "\n" + dtsign.Rows[0]["reqdat"].ToString();     // req posted 
+            string checkedby = dtsign.Rows[0]["chkusrnam"].ToString() + "\n" + dtsign.Rows[0]["chkusrdesig"].ToString() + "\n" + dtsign.Rows[0]["checkdat"].ToString();     // req checked
+            string confirmby = dtsign.Rows[0]["reqanam"].ToString() + "\n" + dtsign.Rows[0]["reqadesig"].ToString() + "\n" + dtsign.Rows[0]["reqdat"].ToString();     // req approved
+            string approved = dtsign.Rows[0]["faprovnam"].ToString() + "\n" + dtsign.Rows[0]["faprovdesig"].ToString() + "\n" + dtsign.Rows[0]["fapprvdat"].ToString(); // final approved 
+            string frapnam = dtsign.Rows[0]["frapnam"].ToString() + "\n" + dtsign.Rows[0]["frapdesig"].ToString() + "\n" + dtsign.Rows[0]["frapdat"].ToString();      // forword
+            string secapnam = dtsign.Rows[0]["secapnam"].ToString() + "\n" + dtsign.Rows[0]["secapdesig"].ToString() + "\n" + dtsign.Rows[0]["secapdat"].ToString();   // approval 1
+            string thrapnam = dtsign.Rows[0]["thrapnam"].ToString() + "\n" + dtsign.Rows[0]["thrapdesig"].ToString() + "\n" + dtsign.Rows[0]["thrapdat"].ToString();   // approval 1
+
+            LocalReport Rpt1 = new LocalReport();
+            var lst1 = ds1.Tables[0].DataTableToList<RealEntity.C_34_Mgt.EClassOtherReq>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqStatusFinlay", lst1, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("rpttitle", "Work Order"));
+            Rpt1.SetParameters(new ReportParameter("paytype", paytype));
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("payto", payto));
+            Rpt1.SetParameters(new ReportParameter("date", date));
+            Rpt1.SetParameters(new ReportParameter("refno", refno));
+            Rpt1.SetParameters(new ReportParameter("reqno", reqno));
+            Rpt1.SetParameters(new ReportParameter("narration", narration));
+            Rpt1.SetParameters(new ReportParameter("requsinput", requsinput));
+            Rpt1.SetParameters(new ReportParameter("checkedby", checkedby)); 
+            Rpt1.SetParameters(new ReportParameter("confirmby", confirmby));
+            Rpt1.SetParameters(new ReportParameter("approved", approved));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
 
             Session["Report1"] = Rpt1;
             if (this.Request.QueryString["Type"].ToString() == "OreqPrint")
@@ -1424,15 +1539,10 @@ namespace RealERPWEB.F_34_Mgt
 
                 default:
                     CallType = "INSERTOTHERREQ";
-
                     break;
-
-
             }
-
             return CallType;
         }
-
 
 
 
@@ -2875,7 +2985,7 @@ namespace RealERPWEB.F_34_Mgt
 
             //log Report
             DataTable dtuser = (DataTable)Session["tblUserReq"];
-            
+
             string userid = hst["usrid"].ToString();
             string Terminal = hst["compname"].ToString();
             string Sessionid = hst["session"].ToString();
