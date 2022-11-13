@@ -3329,7 +3329,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.20833in</Height>
+                  <Height>0.23958in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -3389,16 +3389,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!reqnar.Value</Value>
-                                  <Style>
-                                    <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
-                                    <TextDecoration>None</TextDecoration>
-                                  </Style>
-                                </TextRun>
-                                <TextRun>
-                                  <Value xml:space="preserve"> </Value>
+                                  <Value>=Parameters!pordnar.Value+", "+Fields!reqnar.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3661,8 +3652,8 @@
             <KeepTogether>true</KeepTogether>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.20708in</Top>
-            <Height>5.19166in</Height>
-            <Width>7.98834in</Width>
+            <Height>5.22291in</Height>
+            <Width>7.98833in</Width>
             <Style>
               <Border>
                 <Style>None</Style>

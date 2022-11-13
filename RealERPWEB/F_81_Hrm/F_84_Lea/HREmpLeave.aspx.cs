@@ -34,10 +34,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 Create_table();
                 this.txtaplydate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.ShowInformation();
-               //this.lbtnOk_Click(null,null);
+                //this.lbtnOk_Click(null,null);
 
-               
 
+                if (GetComeCode() == "3370")
+                {
+                    this.lnkReset.Visible = false;
+                    this.lnkRule.Visible = false;
+                }
 
             }
 

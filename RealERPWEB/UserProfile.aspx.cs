@@ -37,9 +37,10 @@ namespace RealERPWEB
                 Get_Events();
                 getLink();
                 getServiceLen();
-                getclientdata();
+               
                 GetAllHolidays();
                 gethrpolicy();
+                GetWidget();
                ((Label)this.Master.FindControl("lblTitle")).Text = "User Profile";
 
 
@@ -133,6 +134,7 @@ namespace RealERPWEB
             checkVisibility();
             checkPendingAprval();
         }
+       
         private void checkVisibility()
         {
             string comcod = this.GetCompCode();
@@ -230,18 +232,29 @@ namespace RealERPWEB
 
         }
 
+        private void GetWidget()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string usrid = hst["usrid"].ToString();
+            string comcod = hst["comcod"].ToString();
+            string fdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            DataSet ds2 = HRData.GetTransInfo(comcod, "SP_UTILITY_USER_DASHBOARD", "GETUSERHOMEWIDGET", usrid, "0", fdate, "", "", "", "", "", "");
+            if (ds2 == null)
+                return;
+            DataTable dt = ds2.Tables[0];
+            int topuserAct = (from DataRow dr in dt.Rows
+                              where (int)dr["menuid"] == 1386
+                              select (int)dr["menuid"]).FirstOrDefault();
+
+            if (topuserAct > 0)
+            {
+                this.pnlClientMrrdayFinlay.Visible = true;
+                getclientdata();
+            }
+        }
         private void getclientdata()
         {
-            string comcod = this.GetCompCode();
-            if (comcod == "3368" || comcod=="3367")
-            {
-
-            this.pnlClientMrrdayFinlay.Visible = true;
-            }
-            else
-            {
-                this.pnlClientMrrdayFinlay.Visible = false;
-            }
+            string comcod = this.GetCompCode();             
             Hashtable hst = (Hashtable)Session["tblLogin"];
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "CLIENTBIRTHDAY", "", "", "", "", "", "", "");

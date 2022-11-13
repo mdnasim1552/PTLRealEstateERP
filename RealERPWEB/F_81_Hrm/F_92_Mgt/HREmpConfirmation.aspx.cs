@@ -163,7 +163,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 this.dgvEmpCon.Columns[8].Visible = true;
                 this.dgvEmpCon.Columns[9].Visible = true;
             }
-            this.dgvEmpCon.Columns[10].Visible = comcod=="3365"?true:false;
+            this.dgvEmpCon.Columns[10].Visible = (comcod=="3365" || comcod =="3370") ?true:false;
 
 
             this.dgvEmpCon.DataSource = (DataTable)Session["tblMrr"];

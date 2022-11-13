@@ -52,7 +52,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\_rnd\PTLRealEstateERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -777,6 +777,7 @@
     <EmbeddedResource Include="R_21_MKT\RptCallCenterLead.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptClietList.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptCRMClientInfo.rdlc" />
+    <EmbeddedResource Include="R_21_MKT\RptDailyWorkStatus.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptProspectTransfer.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptProspectWorking.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptSourceWiseLeads.rdlc" />
@@ -818,6 +819,7 @@
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptAcme02.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptAcme.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptCPDL.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptSalesVsAchivementDPC.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalesVsAchivementLO.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSampleNotesSheet.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptGrandNotesSheetSummary.rdlc" />
@@ -1008,6 +1010,7 @@
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqPrintFinlay.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqPrint.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqPrintSuvasto.rdlc" />
+    <EmbeddedResource Include="R_34_Mgt\RptOtherReqStatusFinlay.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqStatusISBL.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptOtherReqStatus.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\RptReqAdjustment.rdlc" />
