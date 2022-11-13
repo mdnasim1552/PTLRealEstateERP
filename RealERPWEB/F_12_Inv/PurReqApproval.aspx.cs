@@ -318,11 +318,12 @@ namespace RealERPWEB.F_12_Inv
             switch (comcod)
             {
 
-                case "1205":
-                case "3351":
-                case "3352":
-                case "3101":
-                case "3353":
+                case "1205": //p2p
+                case "3351": //p2p
+                case "3352": //p2p
+                case "3101": 
+                case "3353": //manama
+                case "3370": //cpdl
                     length = "length";
 
                     break;

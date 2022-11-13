@@ -356,6 +356,7 @@ namespace RealERPRDLC
                 case "R_22_Sal.RptSoldUnsoldUnitAvgPrice": Rpt1a = SetRptSoldUnsoldUnitAvgPrice(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptSalesVsAchivement": Rpt1a = SetRptSalesVsAchivement(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptSalesVsAchivementLO": Rpt1a = SetRptSalesVsAchivementLO(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptSalesVsAchivementDPC": Rpt1a = RptSalesVsAchivementDPC(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptComSalesServey": Rpt1a = SetRptComSalesServey(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptIndentIssueStatus": Rpt1a = SetRptIndentIssueStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptIndentIssueStatusSummary": Rpt1a = SetRptIndentIssueStatusSummary(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -901,6 +902,7 @@ namespace RealERPRDLC
                 case "R_34_Mgt.RptOtherReqPrintSuvasto": Rpt1a = SetRptOtherReqPrintSuvasto(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_34_Mgt.RptOtherReqStatus": Rpt1a = SetRptOtherReqStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_34_Mgt.RptOtherReqStatusISBL": Rpt1a = SetRptOtherReqStatusISBL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_34_Mgt.RptOtherReqStatusFinlay": Rpt1a = SetRptOtherReqStatusFinlay(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_34_Mgt.UserLogDetails": Rpt1a = SetRptUserLogDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_34_Mgt.rptActiveSimUser": Rpt1a = SetrptActiveSimUser(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_34_Mgt.RptOtherReqPrintFinlay": Rpt1a = SetRptOtherReqPrintFinlay(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -2435,6 +2437,11 @@ namespace RealERPRDLC
         {
             rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_34_Mgt.EClassOtherReq>)rptDataSet));
             return rpt1a;
+        }  
+        private static LocalReport SetRptOtherReqStatusFinlay(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
+        {
+            rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_34_Mgt.EClassOtherReq>)rptDataSet));
+            return rpt1a; 
         }
         private static LocalReport SetRptAllSupaConPaymentAlli(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -6688,6 +6695,13 @@ namespace RealERPRDLC
             return Rpt1a;
         }
         private static LocalReport SetRptSalesVsAchivementLO(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales.SalesvsAchievement>)RptDataSet));
+
+            return Rpt1a;
+        }
+
+        private static LocalReport RptSalesVsAchivementDPC(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales.SalesvsAchievement>)RptDataSet));
 

@@ -588,6 +588,10 @@
                                 <li>
                                     <asp:HyperLink ID="HyperLink3" runat="server" Target="_blank" Font-Size="11px" Font-Names="Cambria" ForeColor="Black" Font-Underline="false" NavigateUrl="~/F_22_Sal/SalesInformation?Type=Report&comcod=">Sales Dashboard</asp:HyperLink>
                                 </li>
+                                  <li>
+                                    <asp:HyperLink ID="HyperLink6" runat="server" Target="_blank" Font-Size="11px" Font-Names="Cambria" ForeColor="Black" Font-Underline="false" NavigateUrl="~/F_23_CR/RptMRTopSheet">Money Receipt</asp:HyperLink>
+
+                                </li>
                                 <li>
                                     <asp:HyperLink ID="HyperLink11" runat="server" Target="_blank" Font-Size="11px" Font-Names="Cambria" ForeColor="Black" Font-Underline="false" NavigateUrl="~/F_17_Acc/RptAccCollVsClearance?Type=MonSales&comcod=">Month Wise Sales</asp:HyperLink>
                                 </li>
@@ -608,10 +612,7 @@
                                     <asp:HyperLink ID="HyperLink5" runat="server" Target="_blank" Font-Size="11px" Font-Names="Cambria" ForeColor="Black" Font-Underline="false" NavigateUrl="~/F_22_Sal/RptAvailChart?Type=Details">Availability Chart</asp:HyperLink>
                                 </li>
 
-                                <li>
-                                    <asp:HyperLink ID="HyperLink6" runat="server" Target="_blank" Font-Size="11px" Font-Names="Cambria" ForeColor="Black" Font-Underline="false" NavigateUrl="~/F_22_Sal/RptMktMoneyReceipt?Type=CustCare">Money Receipt</asp:HyperLink>
-
-                                </li>
+                              
 
                                 <li>
                                     <asp:HyperLink ID="HyperLink9" runat="server" Target="_blank" Font-Size="11px" Font-Names="Cambria" ForeColor="Black" Font-Underline="false" NavigateUrl="~/F_23_CR/RptCustPayStatus?Type=ClLedger">Client Ledger</asp:HyperLink>

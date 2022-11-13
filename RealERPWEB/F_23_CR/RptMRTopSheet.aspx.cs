@@ -70,13 +70,13 @@ namespace RealERPWEB.F_23_CR
                 this.gvAccMR.DataBind();
                 return;
             }
-            Session["tblMRInfo"] = ds1.Tables[0];
+            ViewState["tblMRInfo"] = ds1.Tables[0];
             this.Data_Bind();
         }
 
         private void Data_Bind()
         {
-            DataTable dt = (DataTable)Session["tblMRInfo"];
+            DataTable dt = (DataTable)ViewState["tblMRInfo"];
             this.gvAccMR.DataSource = dt;
             this.gvAccMR.DataBind();
             this.FooterCalCulation();
@@ -84,7 +84,7 @@ namespace RealERPWEB.F_23_CR
 
         private void FooterCalCulation()
         {
-            DataTable dt = (DataTable)Session["tblMRInfo"];
+            DataTable dt = (DataTable)ViewState["tblMRInfo"];
             if (dt.Rows.Count == 0)
                 return;
 

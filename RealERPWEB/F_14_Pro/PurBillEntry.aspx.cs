@@ -184,6 +184,8 @@ namespace RealERPWEB.F_14_Pro
                 //case "3101":
                 case "3332":// Instar
                 case "3335":// Edison
+                case "1206":// Acme
+                case "1207":// Acme
                 case "3338":// Acme
                 case "3336":// Suvastu
                 case "3337"://Suvastu
@@ -1083,7 +1085,7 @@ namespace RealERPWEB.F_14_Pro
             string refno = this.txtBillRef.Text;
             string chlno = ds1.Tables[0].Rows[0]["chlnno"].ToString();
             string mrrno = ds1.Tables[0].Rows[0]["mrrno1"].ToString();
-            string projectName = "Project Name : " + ds1.Tables[0].Rows[0]["pactdesc"].ToString().Substring(4);
+            string projectName = "Project Name : " + ds1.Tables[0].Rows[0]["pactdesc"].ToString();
             string suppname = "Supplier Name: " + ds1.Tables[1].Rows[0]["ssirdesc"].ToString();
             string billno = ds1.Tables[1].Rows[0]["billno1"].ToString();
             string narration = "Narration : " + ds1.Tables[1].Rows[0]["billnar"].ToString();

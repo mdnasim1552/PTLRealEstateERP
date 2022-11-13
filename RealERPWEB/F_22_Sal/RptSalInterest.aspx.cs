@@ -1103,7 +1103,7 @@ namespace RealERPWEB.F_22_Sal
                  */
                 }
 
-                else if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310" || comcod == "3101" )
+                else if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310"  )
                 {
                     string frmdate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
                    
@@ -1363,7 +1363,7 @@ namespace RealERPWEB.F_22_Sal
 
                 }
 
-                else if(comcod == "3368")
+                else if(comcod == "3368" || comcod == "3101")
                 {
 
                     string frmdate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
@@ -1395,7 +1395,8 @@ namespace RealERPWEB.F_22_Sal
                     string projectName = this.ddlProjectName.SelectedItem.Text;
                    
                     string insperyr = this.txtinpermonth.Text.Trim();
-                    string cusAddress = ds2.Tables[0].Rows[0]["custadd"].ToString();
+                    string cusAddress = ds2.Tables[0].Rows[0]["custadd"].ToString(); 
+                    string cuspreAddress = ds2.Tables[0].Rows[0]["custprsntadd"].ToString();
                     string cusProj = this.ddlProjectName.SelectedItem.Text;
                     string cusUnit = ds2.Tables[0].Rows[0]["udesc"].ToString();
                     string utilityamt = Convert.ToDouble(ds2.Tables[1].Rows[0]["utilityamt"]).ToString("#,##0;(#,##0); ");
@@ -1473,7 +1474,7 @@ namespace RealERPWEB.F_22_Sal
                     rpt.SetParameters(new ReportParameter("uamt", uamt));
                     rpt.SetParameters(new ReportParameter("parkno", parkno));
                    //
-                    rpt.SetParameters(new ReportParameter("cusAddress", cusAddress));
+                    rpt.SetParameters(new ReportParameter("cusAddress", cuspreAddress));
                     rpt.SetParameters(new ReportParameter("cusProj", cusProj));
                     rpt.SetParameters(new ReportParameter("cusUnit", cusUnit));
                     rpt.SetParameters(new ReportParameter("cusSubject", cusSubject));
