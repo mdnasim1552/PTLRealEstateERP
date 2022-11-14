@@ -753,7 +753,8 @@ namespace RealERPWEB.F_99_Allinterface
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail');", true);
                 return;
             }
-            bool result1 = feaData.UpdateTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", "DELETEMTRTRANS", mtreqno, "", "", "", "", "", "", "", "", "", "");
+
+            bool result1 = feaData.UpdateTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", "DELETEMTRREQCHECK", mtreqno, "", "", "", "", "", "", "", "", "", "");
             if (!result1)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Removed Fail .. !!');", true);
@@ -775,7 +776,29 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void lnkremovemg_Click(object sender, EventArgs e)
         {
+            string comcod = this.GetCompCode();
+            int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string mtreqno = ((Label)this.gvreqchk.Rows[Rowindex].FindControl("lblmtreqnochk")).Text.Trim();
 
+            DataSet ds1 = feaData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "PrevMTRInfo", mtreqno, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+            bool result = log.XmlDataInsertReq(mtreqno, ds1);
+
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail');", true);
+                return;
+            }
+            bool result1 = feaData.UpdateTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", "DELETEMTRTRANS", mtreqno, "", "", "", "", "", "", "", "", "", "");
+            if (!result1)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Removed Fail .. !!');", true);
+                return;
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Successfully Removed');", true);
+            this.RadioButtonList1_SelectedIndexChanged(null, null);
         }
     }
 }
