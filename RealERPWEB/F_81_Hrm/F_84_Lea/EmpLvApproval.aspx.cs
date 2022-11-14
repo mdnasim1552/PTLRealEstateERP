@@ -60,6 +60,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                          Response.Redirect(loginUrl);
                     }
+                    int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+
+                    if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp),
+                   (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
+                        Response.Redirect("~/AcceessError.aspx");
                 }
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Leave Approval";

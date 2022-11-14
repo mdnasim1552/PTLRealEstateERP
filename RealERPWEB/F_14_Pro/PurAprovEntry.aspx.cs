@@ -797,13 +797,18 @@ namespace RealERPWEB.F_14_Pro
             dv1.RowFilter = "reqno in('" + Mreqno1 + "')";
             tbl2 = dv1.ToTable();
             string ssircode = this.ddlSupList.SelectedValue.ToString();
-            if (ssircode == "000000000000" || ssircode == "")
+            if (this.GetCompCode() != "3368")
             {
-                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Please Select Supplier";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
+                if (ssircode == "000000000000" || ssircode == "")
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Please Select Supplier";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+
             }
+            
 
 
             DataRow[] dr2 = tbl1.Select("reqno = '" + Mreqno1 + "'");
@@ -943,6 +948,8 @@ namespace RealERPWEB.F_14_Pro
             string comcod = hst["comcod"].ToString();
             this.lbtnResFooterTotal_Click(null, null);
             DataTable tbl1 = (DataTable)ViewState["tblAprov"];
+           
+
             DataRow[] dr = tbl1.Select("aprovqty>0");
             if (dr.Length == 0)
             {
@@ -954,14 +961,13 @@ namespace RealERPWEB.F_14_Pro
 
             // Supplier 
             string ssircode = "000000000000";
-            DataRow[] drs = tbl1.Select("ssircode='" + ssircode + "'");
+            DataRow[] drs = tbl1.Select("ssircode='" + ssircode  + "' or ssircode='"+ "'");
             if (drs.Length > 0)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Supplier Name Is Undefind";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                 return;
             }
-
 
 
 

@@ -111,7 +111,7 @@
            // var gvisu = $('#<%=this.grvissue.ClientID %>');
             //$.keynavigation(gvisu);
             // gvisu.Scrollable();
-            // $('.chzn-select').chosen({ search_contains: true });
+           // $('.chzn-select').chosen({ search_contains: true });
 
             $(function () {
                 $('[id*=DropCheck1]').multiselect({
