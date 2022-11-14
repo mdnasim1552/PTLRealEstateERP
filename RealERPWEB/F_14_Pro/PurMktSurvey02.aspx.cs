@@ -1508,12 +1508,12 @@ namespace RealERPWEB.F_14_Pro
 
 
             DataView dv1 = ds1.Tables[0].DefaultView;
-            dv1.RowFilter = ("rsircode like '01%' ");
+            dv1.RowFilter = ("rsircode like '01%' or rsircode like '03%' or rsircode like '21%' or or rsircode like '22%'");
             DataTable dt1 = dv1.ToTable();
 
             string csinfo = surveyNo + " , " + Convert.ToDateTime(this.GetStdDate(this.txtCurMSRDate.Text.Trim())).ToString("dd-MMM-yyyy");
 
-            var lst = dt1.DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay02>();
+            var lst = ds1.Tables[0].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay02>();
             var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay03>();
 
             // goodwill as brand

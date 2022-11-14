@@ -57,7 +57,7 @@
                                 <div class="form-group">
                                     <div class="col-md-3 pading5px asitCol3">
                                         <asp:Label ID="lblProjectname" runat="server" CssClass="lblTxt lblName">Bank Name</asp:Label>
-                                        <asp:TextBox ID="txtSrcBank" runat="server" CssClass=" inputTxt inputName inpPixedWidth"></asp:TextBox>
+                                        <asp:TextBox ID="txtSrcBank" runat="server" CssClass=" inputTxt inputName inpPixedWidth chzn-single"></asp:TextBox>
 
 
                                         <div class="colMdbtn">
