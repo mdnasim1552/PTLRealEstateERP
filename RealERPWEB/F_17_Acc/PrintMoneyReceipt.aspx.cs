@@ -813,7 +813,7 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptAcknowledgementSlipCPDL", list, null, null);
                     Rpt1.EnableExternalImages = true;
                     Rpt1.SetParameters(new ReportParameter("CompName", comnam));
-                    Rpt1.SetParameters(new ReportParameter("Title", "ACKNOWLEDGEMENT SLIP"));
+                    Rpt1.SetParameters(new ReportParameter("Title", "PAYMENT ACKNOWLEDGEMENT "));
                     Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
                     Rpt1.SetParameters(new ReportParameter("currentdate", currentdate));
                     Rpt1.SetParameters(new ReportParameter("CompAdd", comadd));
@@ -844,6 +844,7 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
                     Rpt1.SetParameters(new ReportParameter("footer1", "Original money Receipt will be provided after encashment the PO/DD/cross cheque in favor of CPDL."));
                     Rpt1.SetParameters(new ReportParameter("footer2", "Thanking you"));
+                    Rpt1.SetParameters(new ReportParameter("notes", "Note: This is a system generated document and does not require physical signature."));
 
 
                     Session["Report1"] = Rpt1;
