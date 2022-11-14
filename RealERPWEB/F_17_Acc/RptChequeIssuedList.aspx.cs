@@ -76,20 +76,46 @@ namespace RealERPWEB.F_17_Acc
             double totalamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(trnamt)", "")) ? 0.00 : dt.Compute("sum(trnamt)", "")));
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.ListIsssuChq>();
+            string Bankcode = (this.ddlBankName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlBankName.SelectedValue.ToString() + "%";
 
-            if (comcod == "3330" || comcod == "3101")
+
+            switch (comcod)
             {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptIssuedChequeBridge", lst, null, null);
+                case "3330":
+                case "3101":
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptIssuedChequeBridge", lst, null, null);
+                    break;
 
-
-
+                case "3370":
+                    if (Bankcode == "000000000000")
+                    {
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptIssuedChequeCPALL", lst, null, null);
+                    }
+                    else
+                    {
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptIssuedChequeCP", lst, null, null);
+                    }
+                    break;
+                default:
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptIssuedCheque", lst, null, null);
+                    break;
             }
-            else
-            {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptIssuedCheque", lst, null, null);
 
 
-            }
+
+            //if (comcod == "3330" || comcod == "3101")
+            //{
+            //    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptIssuedChequeBridge", lst, null, null);
+
+            //}
+            //else
+            //{
+            //    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptIssuedCheque", lst, null, null);
+
+
+            //}
+
+
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
@@ -99,11 +125,13 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("txtInWord", "Take In Word: " + ASTUtility.Trans(totalamt, 2)));
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "  Cheque Requisition Statement"));
             }
-
-            else
-
+            else if(comcod == "3370")
             {
-
+                Rpt1.SetParameters(new ReportParameter("txtInWord", "Take In Word: " + ASTUtility.Trans(totalamt, 2)));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "  Cheque Issuing Register"));
+            }
+            else
+            {
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "List Of Issued Cheque"));
             }
             Rpt1.SetParameters(new ReportParameter("Date", "( From " + Convert.ToDateTime(txtfrmdate.Text).ToString("dd-MM-yyyy") + " To " + Convert.ToDateTime(txttodate.Text.Trim()).ToString("dd-MM-yyyy") + ")"));
@@ -153,7 +181,7 @@ namespace RealERPWEB.F_17_Acc
             string callType = "";
             switch (comcod)
             {
-                case "3101":
+               
                 case "3330": //Bridge Holdling
 
                     callType = "GETCHEQUEISSUEDBR";
