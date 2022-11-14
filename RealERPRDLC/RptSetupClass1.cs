@@ -440,7 +440,9 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptPrintVoucher02": Rpt1a = SetRptPrintVoucher02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptIssuedCheque": Rpt1a = SetRptIssuedCheque(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptIssuedChequeBridge": Rpt1a = SetRptIssuedChequeBridge(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-
+                case "R_17_Acc.RptIssuedChequeCP": Rpt1a = SetRptIssuedChequeCP(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptIssuedChequeCPALL": Rpt1a = SetRptIssuedChequeCPALL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                    
                 case "R_17_Acc.RptIssueClearence": Rpt1a = SetRptIssueClearence(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptIssueVsClr": Rpt1a = SetRptIssueVsClr(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptPaymentChqClearance": Rpt1a = SetRptPaymentChqClearance(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -3899,6 +3901,21 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.ListIsssuChq>)RptDataSet));
             return Rpt1a;
         }
+
+
+        private static LocalReport SetRptIssuedChequeCP(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.ListIsssuChq>)RptDataSet));
+            return Rpt1a;
+        }
+
+        private static LocalReport SetRptIssuedChequeCPALL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.ListIsssuChq>)RptDataSet));
+            return Rpt1a;
+        }
+
+
 
         private static LocalReport SetRptIssuedCheque(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
