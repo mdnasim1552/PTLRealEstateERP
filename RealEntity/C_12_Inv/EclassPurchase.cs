@@ -38,6 +38,7 @@ namespace RealEntity.C_12_Inv
         public class PurchaseOrderInfo
         {
             public string orderno { get; set; }
+             public int grpsl { get; set; }
             public string grp { get; set; }
             public int rowid { get; set; }
             public string grpdesc { get; set; }

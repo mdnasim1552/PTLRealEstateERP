@@ -227,6 +227,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalSummaryInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+bnkStatement.datasource" />
+    <Content Include="Reports\RptPurchaseOrderCPDL.rdlc" />
     <EmbeddedResource Include="Reports\RptPurchaseOrderFinlayInd.rdlc" />
     <EmbeddedResource Include="RptPurMktSurveyCPDL04.rdlc" />
     <EmbeddedResource Include="R_02_Fea\rptCostAnlys.rdlc" />
