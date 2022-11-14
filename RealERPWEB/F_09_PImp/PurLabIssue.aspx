@@ -5,9 +5,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    
+    <script src="../../../Scripts/gridviewScrollHaVertworow.min.js"></script>
 
 
     <!-- Include the plugin's CSS and JS: -->
@@ -55,39 +54,70 @@
         .form-control {
             height: 34px;
         }
+    
+        .GridViewScrollHeader TH, .GridViewScrollHeader TD {
+            font-weight: normal;
+            white-space: nowrap;
+            border-right: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            background-color: #F4F4F4;
+            color: #999999;
+            text-align: left;
+            vertical-align: bottom;
+        }
+
+        .GridViewScrollItem TD {
+            white-space: nowrap;
+            border-right: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            background-color: #FFFFFF;
+            color: #444444;
+        }
+
+        .GridViewScrollItemFreeze TD {
+            white-space: nowrap;
+            border-right: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            background-color: #FAFAFA;
+            color: #444444;
+        }
+
+        .GridViewScrollFooterFreeze TD {
+            white-space: nowrap;
+            border-right: 1px solid #e6e6e6;
+            border-top: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            background-color: #F4F4F4;
+            color: #444444;
+        }
+
+        .grvHeader {
+            height: 58px !important;
+        }
+ 
     </style>
     <script language="javascript" type="text/javascript">
 
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-
         });
 
         function pageLoaded() {
             $("input, select").bind("keydown", function (event) {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
-
-
             });
 
-
-
-
-            var gvisu = $('#<%=this.grvissue.ClientID %>');
-            $.keynavigation(gvisu);
+           // var gvisu = $('#<%=this.grvissue.ClientID %>');
+            //$.keynavigation(gvisu);
             // gvisu.Scrollable();
-            $('.chzn-select').chosen({ search_contains: true });
+            // $('.chzn-select').chosen({ search_contains: true });
 
             $(function () {
                 $('[id*=DropCheck1]').multiselect({
                     includeSelectAllOption: true,
-
-
                     enableCaseInsensitiveFiltering: true,
                 });
-
             });
 
             //gvisu.gridviewScroll({
@@ -102,10 +132,22 @@
             //    harrowleftimg: "../Image/arrowhl.png",
             //    harrowrightimg: "../Image/arrowhr.png",
             //    freezesize: 5
-
-
             //});
 
+            var gridViewScroll = new GridViewScroll({
+                elementID: "grvissue",
+                width: 1265,
+                height: 300,
+                freezeColumn: true,
+                freezeFooter: true,
+                freezeColumnCssClass: "GridViewScrollItemFreeze",
+                freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                freezeHeaderRowCount: 1,
+                freezeColumnCount: 5,
+            });
+
+            gridViewScroll.enhance();
+            $('.chzn-select').chosen({ search_contains: true });
         }
     </script>
 
@@ -244,9 +286,16 @@
 
                         <div class="col-sm-12 col-md-3">
                             <div class="form-group">
-                                <asp:LinkButton ID="ibtnSearchMaterisl" runat="server" CssClass="form-label" OnClick="ibtnSearchMaterisl_Click">Labour</asp:LinkButton>
+                                <asp:Label ID="Label1" runat="server" CssClass="form-label">Labour
+
+                                <asp:LinkButton ID="ibtnSearchMaterisl" runat="server" CssClass="form-label" 
+                                    OnClick="ibtnSearchMaterisl_Click"><i class="fa fa-search"> </i></asp:LinkButton>
+                                     <asp:CheckBox ID="chkCharging" runat="server" AutoPostBack="True" style="margin-left:30px;"
+                                    OnCheckedChanged="chkCharging_CheckedChanged" Text="Charging" ForeColor="Green" Visible="false" />
+                                </asp:Label>
                                 <asp:TextBox ID="txtSearchLabour" runat="server" CssClass="inputTxt inputDateBox" Visible="false"></asp:TextBox>
-                                <div class="col-md-3">
+                                
+                                <div class="col-md-3 pl-0">
 
                                     <asp:ListBox ID="DropCheck1" runat="server" CssClass="form-control" Style="min-width: 100px !important;" SelectionMode="Multiple"></asp:ListBox>
 
@@ -258,19 +307,14 @@
                                 <asp:LinkButton ID="lbtnSelect" runat="server" CssClass="btn btn-primary" style="margin-top:20px;" OnClick="lbtnSelect_Click">Select</asp:LinkButton>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-1">
-                            <div class="form-group">
-                                <asp:CheckBox ID="chkCharging" runat="server" AutoPostBack="True"
-                                    OnCheckedChanged="chkCharging_CheckedChanged" Text="Charging" ForeColor="Green" Visible="false" />
-                            </div>
-                        </div>
+                        
                     </div>
 
-                    <div class="row">
-                        <asp:GridView ID="grvissue" runat="server" AllowPaging="True"
-                            CssClass=" table-striped table-hover table-bordered grvContentarea"
-                            AutoGenerateColumns="False" ShowFooter="True" Width="649px" PageSize="20" OnRowDataBound="grvissue_RowDataBound"
-                            OnRowDeleting="grvissue_RowDeleting" OnPageIndexChanging="grvissue_PageIndexChanging">
+                    <div class="row" style="min-height:200px; background-color:whitesmoke">
+                        <asp:GridView ID="grvissue" runat="server" ClientIDMode="Static" 
+                                        CssClass="table-striped table-hover table-bordered grvContentarea"
+                                        AutoGenerateColumns="False" ShowFooter="True" OnRowDataBound="grvissue_RowDataBound"
+                            OnRowDeleting="grvissue_RowDeleting" OnPageIndexChanging="grvissue_PageIndexChanging"> 
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl">
@@ -280,16 +324,16 @@
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:CommandField ShowDeleteButton="True" ControlStyle-ForeColor="Red" DeleteText='<span class="fa fa-sm fa-trash fa" aria-hidden="true" ></span>&nbsp;' />
+                                <asp:CommandField ControlStyle-Width="20px" ShowDeleteButton="True" ControlStyle-ForeColor="Red" DeleteText='<span class="fa fa-sm fa-trash fa" aria-hidden="true" ></span>&nbsp;' />
 
 
                                 <asp:TemplateField HeaderText="Item Code" Visible="False">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblitemcode" runat="server"
+                                        <asp:Label ID="lblitemcode" runat="server" Width="20px"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>'></asp:Label>
-
                                     </ItemTemplate>
                                 </asp:TemplateField>
+
                                 <asp:TemplateField HeaderText="Fl" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvflrCode" runat="server"
@@ -313,15 +357,15 @@
                                 <asp:TemplateField HeaderText="Description">
 
                                     <ItemTemplate>
-                                        <asp:Label ID="gvlblgrp" runat="server"
+                                        <asp:Label ID="gvlblgrp" runat="server" CssClass="d-none"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "grp")) %>'></asp:Label>
-                                        <asp:Label ID="lbllabdesc" runat="server"
+                                        <asp:Label ID="lbllabdesc" runat="server" style="word-wrap: break-word"
                                             Text='<%# "<B>" + Convert.ToString(DataBinder.Eval(Container.DataItem, "grpdesc")) + "</B>" +
                                                                          (DataBinder.Eval(Container.DataItem, "rsirdesc").ToString().Trim().Length>0 ? 
                                                                          (Convert.ToString(DataBinder.Eval(Container.DataItem, "grpdesc")).Trim().Length>0 ? "<br>" : "") + 
                                                                          
                                                                          Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")).Trim(): "")   %>'
-                                            Width="220px"></asp:Label>
+                                            Width="250px"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Left" />
                                     <ItemStyle HorizontalAlign="Left" />
@@ -329,8 +373,8 @@
 
                                 <asp:TemplateField HeaderText="Unit">
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lnkTotal" runat="server" Font-Bold="True" Font-Size="14px"
-                                            ForeColor="#000" OnClick="lnkTotal_Click" CssClass="btn btn-primary primarygrdBtn">Total</asp:LinkButton>
+                                        <asp:LinkButton ID="lnkTotal" runat="server" Font-Bold="True" Font-Size="14px" Width="40px"
+                                            ForeColor="#000" OnClick="lnkTotal_Click" CssClass="btn btn-primary btn-sm">Total</asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="Label14" runat="server"
@@ -477,7 +521,7 @@
                                 <asp:TemplateField HeaderText="Qty">
 
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lnkupdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lnkupdate_Click">Update</asp:LinkButton>
+                                        <asp:LinkButton ID="lnkupdate" runat="server" CssClass="btn btn-success btn-sm" OnClick="lnkupdate_Click">Update</asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtisuqty" runat="server" Font-Size="11px"
@@ -666,7 +710,8 @@
                             <asp:TextBox ID="txtpercentage" runat="server" CssClass="form-control form-control-sm  w100"></asp:TextBox>
                         </div>
                         <div class="col-md-1">
-                            <asp:LinkButton ID="lbtnDepost" runat="server" CssClass="form-label" OnClick="lbtnDepost_Click">Amt</asp:LinkButton>
+                            <asp:LinkButton ID="lbtnDepost" runat="server" CssClass="form-label" OnClick="lbtnDepost_Click">
+                                Calculation Amount <i class="fa fa-search" aria-hidden="true"></i></asp:LinkButton>
                             <asp:TextBox ID="txtSDAmount" runat="server" CssClass="form-control form-control-sm  w100"></asp:TextBox>
                         </div>
                         <div class="col-md-1">
