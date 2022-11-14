@@ -195,6 +195,24 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.GridView gvreqchk;
 
         /// <summary>
+        /// pnlmgcheck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlmgcheck;
+
+        /// <summary>
+        /// gvmgchecked control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvmgchecked;
+
+        /// <summary>
         /// pnlReqAprv control.
         /// </summary>
         /// <remarks>
