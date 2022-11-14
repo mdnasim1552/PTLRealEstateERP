@@ -154,7 +154,7 @@ ForeColor="Red"></asp:RequiredFieldValidator>
                                                 </ItemTemplate>
                                                 <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                             </asp:TemplateField>
-                                            <asp:CommandField ShowDeleteButton="True" ItemStyle-ForeColor="Red" DeleteText='<i class="fa fa-trash"> </i>' />
+<%--                                            <asp:CommandField ShowDeleteButton="True" ItemStyle-ForeColor="Red"  DeleteText='<i class="fa fa-trash"> </i>' />--%>
                                             <asp:TemplateField HeaderText=" resourcecode" Visible="False">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvMatCode" runat="server"
@@ -162,9 +162,11 @@ ForeColor="Red"></asp:RequiredFieldValidator>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
-
-                                        
-
+                                             <asp:TemplateField HeaderText="" >
+                                                <ItemTemplate>
+                                                   <asp:LinkButton runat="server" ID="lblDelete" CssClass="text-red" OnClick="lblDelete_Click"  ><i class="fa fa-trash"> </i></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>                                      
 
                                             <asp:TemplateField HeaderText="Resource Description">
                                                 <ItemTemplate>

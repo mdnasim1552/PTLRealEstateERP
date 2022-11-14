@@ -24,7 +24,7 @@ using RealEntity;
 
 namespace RealERPWEB.F_09_PImp
 {
-    public partial class MktMBEntry : System.Web.UI.Page
+    public partial class BillingMBEntry : System.Web.UI.Page
     {
         ProcessAccess purData = new ProcessAccess();
         UserManPurchase objUserMan = new UserManPurchase();
@@ -35,21 +35,32 @@ namespace RealERPWEB.F_09_PImp
             {
                 int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-                if (dr1.Length==0)
+                if (dr1.Length == 0)
                     Response.Redirect("../AcceessError.aspx");
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 this.txtCurOrderDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtCurOrderDate_CalendarExtender.EndDate = System.DateTime.Today;
-               
-                string ordero = this.Request.QueryString["genno"]??"";                
+
+
+                this.GetProjectList();
+                this.GetContractorList();
+                string ordero = this.Request.QueryString["genno"] ?? "";
                 if (ordero.Length > 0)
                 {
-                    if (ordero.Substring(0, 3) == "POR")
+                    if (ordero.Substring(0, 3) == "MBK")
                     {
 
                         this.lbtnPrevOrderList_Click(null, null);
                         this.lbtnOk_Click(null, null);
+
+                    }
+
+                    else
+                    {
+
+
+
 
                     }
 
@@ -58,27 +69,44 @@ namespace RealERPWEB.F_09_PImp
             }
         }
 
-      
-      
 
-       
-        private string CompanySubject()
+
+        private void GetProjectList()
         {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
-            string comsubject = "";
-            switch (comcod)
-            {
-                case "3330":
-                    //case "3101":
-                    comsubject = " requests you to arrange supply of following materials from your organization.";
-                    break;
-                default:
-                    comsubject = " requests you to  supply the following materials from your organization.";
-                    break;
-            }
-            return comsubject;
+
+            string comcod = this.GetCompCode();
+            string qprjcode = this.Request.QueryString["prjcode"] ?? "";
+            string srchproject = (qprjcode.Length > 0 ? qprjcode : "") + "%";
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUEPRJODRLIST", srchproject, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.ddlProject.DataTextField = "actdesc1";
+            this.ddlProject.DataValueField = "actcode";
+            this.ddlProject.DataSource = ds1.Tables[0];
+            this.ddlProject.DataBind();
+            ds1.Dispose();
+
+
         }
+
+        private void GetContractorList()
+        {
+            string comcod = this.GetCompCode();
+            string qsircode = this.Request.QueryString["sircode"] ?? "";
+            string conlist = (qsircode.Length > 0 ? qsircode : "") + "%";
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUECONTLIST", conlist, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.ddlContractor.DataTextField = "sircode1";
+            this.ddlContractor.DataValueField = "sircode";
+            this.ddlContractor.DataSource = ds1.Tables[0];
+            this.ddlContractor.DataBind();
+
+        }
+
+
+
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
@@ -108,7 +136,7 @@ namespace RealERPWEB.F_09_PImp
             return (hst["comcod"].ToString());
 
         }
-      
+
         protected string GetStdDate(string Date1)
         {
             Date1 = (Date1.Trim().Length == 0 ? DateTime.Today.ToString("dd.MM.yyyy") : Date1);
@@ -118,39 +146,19 @@ namespace RealERPWEB.F_09_PImp
         }
 
 
-        private string CompanyLength()
-        {
-            string comcod = this.GetCompCode();
-            string length = "";
-            switch (comcod)
-            {
-                case "3101":
-                case "3340":
-                    length = "length";
-                    break;
 
-
-                default:
-                    length = "";
-                    break;
-            }
-
-            return length;
-
-        }
         protected void lbtnPrevOrderList_Click(object sender, EventArgs e)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string usrid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
-            string length = this.CompanyLength();
             string CurDate1 = this.GetStdDate(this.txtCurOrderDate.Text.Trim());
             string qorderno = this.Request.QueryString["genno"] ?? "";
             string orderno = (qorderno.Length == 0 ? "" : this.Request.QueryString["genno"].ToString()) + "%";
 
 
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_02", "GET_PREV_ORDER_LIST", CurDate1,
-                          orderno, length, usrid, "", "", "", "", "");
+                          orderno, "", usrid, "", "", "", "", "");
             if (ds1 == null)
                 return;
 
@@ -167,12 +175,12 @@ namespace RealERPWEB.F_09_PImp
             if (this.lbtnOk.Text == "New")
             {
 
-                this.lblpreviousmb.Visible = true ;
+                this.lblpreviousmb.Visible = true;
                 this.lbtnPrevOrderList.Visible = true;
                 this.ddlPrevOrderList.Visible = true;
                 this.ddlPrevOrderList.Items.Clear();
                 this.lblCurOrderNo1.Text = "POR" + DateTime.Today.ToString("MM") + "-";
-                this.txtCurOrderDate.Enabled = true;               
+                this.txtCurOrderDate.Enabled = true;
                 this.txtOrderRefNo.Text = "";
                 this.txtOrderRefNo.ReadOnly = false;
                 this.lbtnOk.Text = "Ok";
@@ -182,33 +190,33 @@ namespace RealERPWEB.F_09_PImp
             this.lbtnPrevOrderList.Visible = false;
             this.ddlPrevOrderList.Visible = false;
             this.txtCurOrderNo2.ReadOnly = true;
-            this.lbtnOk.Text = "New";          
-            this.Get_Pur_Order_Info();
+            this.lbtnOk.Text = "New";
+            this.Get_MB_Info();
         }
 
-        protected void GetOrderNo()
+        protected void GetMBNo()
         {
 
             string comcod = this.GetCompCode();
             string mOrderdate = this.GetStdDate(this.txtCurOrderDate.Text.Trim());
-            string mOrderNo = "NEWORDER";
+            string mMBNo = "NEWMB";
             if (this.ddlPrevOrderList.Items.Count > 0)
-                mOrderNo = this.ddlPrevOrderList.SelectedValue.ToString();
+                mMBNo = this.ddlPrevOrderList.SelectedValue.ToString();
 
-            if (mOrderNo == "NEWORDER")
+            if (mMBNo == "NEWMB")
             {
 
 
 
-                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_02", "GET_LAST_ORDER_INFO", mOrderdate, "", "", "", "", "", "", "", "");
+                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETLASTMBNO", mOrderdate, "", "", "", "", "", "", "", "");
                 if (ds1 == null)
                     return;
                 if (ds1.Tables[0].Rows.Count > 0)
                 {
-                    this.lblCurOrderNo1.Text = ds1.Tables[0].Rows[0]["maxorderno1"].ToString().Substring(0, 6);
-                    this.txtCurOrderNo2.Text = ds1.Tables[0].Rows[0]["maxorderno1"].ToString().Substring(6, 5);
-                    this.ddlPrevOrderList.DataTextField = "maxorderno1";
-                    this.ddlPrevOrderList.DataValueField = "maxorderno";
+                    this.lblCurOrderNo1.Text = ds1.Tables[0].Rows[0]["maxno1"].ToString().Substring(0, 6);
+                    this.txtCurOrderNo2.Text = ds1.Tables[0].Rows[0]["maxno1"].ToString().Substring(6, 5);
+                    this.ddlPrevOrderList.DataTextField = "maxno1";
+                    this.ddlPrevOrderList.DataValueField = "maxno";
                     this.ddlPrevOrderList.DataSource = ds1.Tables[0];
                     this.ddlPrevOrderList.DataBind();
                 }
@@ -220,25 +228,25 @@ namespace RealERPWEB.F_09_PImp
 
 
 
-       
-       
 
 
 
 
-        protected void Get_Pur_Order_Info()
+
+
+        protected void Get_MB_Info()
         {
 
             string comcod = this.GetCompCode();
             string CurDate1 = this.GetStdDate(this.txtCurOrderDate.Text.Trim());
-            string mOrderNo = "NEWORDER";
-           
+            string mMBNo = "NEWMB";
+
             if (this.ddlPrevOrderList.Items.Count > 0)
             {
                 // this.ddlSuplierList.Items.Clear();
-                this.txtCurOrderDate.Enabled = false;              
+                this.txtCurOrderDate.Enabled = false;
 
-                mOrderNo = this.ddlPrevOrderList.SelectedValue.ToString();
+                mMBNo = this.ddlPrevOrderList.SelectedValue.ToString();
             }
 
             DataTable dt2 = (DataTable)ViewState["tblProject"];
@@ -251,61 +259,76 @@ namespace RealERPWEB.F_09_PImp
                 }
             }
 
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_02", "GET_PUR_ORDER_INFO", mOrderNo, CurDate1, pactcode, "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETMBINFO", mMBNo, CurDate1, pactcode, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
 
-            ViewState["dsOrder"] = ds1;
-            ViewState["tblOrder"] = this.HiddenSameData(ds1.Tables[0]);
-            ViewState["purtermcon"] = ds1.Tables[1];
-
-            
-           
-
-            //ViewState["tblpaysch"] = ds1.Tables[2];
-            //this.SchData_Bind();
-
-
-            if (mOrderNo == "NEWORDER")
+            ViewState["tblmb"] = ds1.Tables[0];
+            this.GetCorderListInfo();
+            if (mMBNo == "NEWMB")
             {
 
-                ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_02", "GET_LAST_ORDER_INFO", CurDate1, "", "", "", "", "", "", "", "");
+                ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETLASTMBNO", CurDate1, "", "", "", "", "", "", "", "");
                 if (ds1 == null)
                     return;
                 if (ds1.Tables[0].Rows.Count > 0)
                 {
-                    this.lblCurOrderNo1.Text = ds1.Tables[0].Rows[0]["maxorderno1"].ToString().Substring(0, 6);
-                    this.txtCurOrderNo2.Text = ds1.Tables[0].Rows[0]["maxorderno1"].ToString().Substring(6, 5);
+                    this.lblCurOrderNo1.Text = ds1.Tables[0].Rows[0]["maxno1"].ToString().Substring(0, 6);
+                    this.txtCurOrderNo2.Text = ds1.Tables[0].Rows[0]["maxno1"].ToString().Substring(6, 5);
                 }
+
+
                 return;
+
             }
 
             this.lblCurOrderNo1.Text = ds1.Tables[2].Rows[0]["orderno1"].ToString().Substring(0, 6);
             this.txtCurOrderNo2.Text = ds1.Tables[2].Rows[0]["orderno1"].ToString().Substring(6, 5);
             this.txtOrderRefNo.Text = ds1.Tables[2].Rows[0]["pordref"].ToString();
-           
+
 
             this.txtCurOrderDate.Text = Convert.ToDateTime(ds1.Tables[2].Rows[0]["orderdat"]).ToString("dd.MM.yyyy");
-            
+
 
             this.gvOrderInfo_DataBind();
+        }
+
+        private void GetCorderListInfo()
+        {
+
+
+            ViewState.Remove("tblcorder");
+            string comcod = this.GetCompCode();
+            string orderno = this.Request.QueryString["genno"] ?? "";
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETCONORDERINFO", orderno, "",
+                          "", "", "", "", "", "", "");
+            if (ds1 == null)
+            {
+
+                this.gvcorder.DataSource = null;
+                this.gvcorder.DataBind();
+            }
+            ViewState["tblcorder"] = ds1.Tables[0];
+            this.gvOrderInfo_DataBind();
+
+
+
+
+
+
+
+
+
         }
         protected void gvOrderInfo_DataBind()
         {
             try
             {
                 string comcod = this.GetCompCode();
-                DataTable tbl1 = this.HiddenSameData((DataTable)ViewState["tblOrder"]);
-                //this.gvOrderInfo.DataSource = tbl1;
-                //this.gvOrderInfo.DataBind();
+                DataTable tbl1 = (DataTable)ViewState["tblcorder"];
+                this.gvcorder.DataSource = tbl1;
+                this.gvcorder.DataBind();
 
-             
-                //if (tbl1.Rows.Count == 0)
-                //    return;
-
-                //double amt1 = 0.00;
-                //amt1 = Convert.ToDouble((Convert.IsDBNull(tbl1.Compute("Sum(ordramt)", "")) ? 0.00 : tbl1.Compute("Sum(ordramt)", "")));
-                //((Label)this.gvOrderInfo.FooterRow.FindControl("lblgvFooterTOrderAmt")).Text = (amt1).ToString("#,##0.00;(#,##0.00); ");
 
             }
             catch (Exception ex)
@@ -313,44 +336,12 @@ namespace RealERPWEB.F_09_PImp
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
                 return;
             }
-          
+
         }
 
-        private DataTable HiddenSameData(DataTable dt1)
-        {
-            if (dt1.Rows.Count == 0)
-                return dt1;
 
-            string pactcode = dt1.Rows[0]["pactcode"].ToString();
-            string ssircode = dt1.Rows[0]["ssircode"].ToString();
 
-            for (int j = 1; j < dt1.Rows.Count; j++)
-            {
-                if (dt1.Rows[j]["pactcode"].ToString() == pactcode && dt1.Rows[j]["ssircode"].ToString()==ssircode)
-                {
-                    dt1.Rows[j]["projdesc1"] = "";
-                    dt1.Rows[j]["ssirdesc1"] = "";
-
-                }
-
-                else if (dt1.Rows[j]["pactcode"].ToString() == pactcode )
-                {
-                    dt1.Rows[j]["projdesc1"] = "";
-                }
-                else if (dt1.Rows[j]["ssircode"].ToString()==ssircode)
-                {
-                    dt1.Rows[j]["ssirdesc1"] = "";
-                }
-
-                pactcode = dt1.Rows[j]["pactcode"].ToString();
-                ssircode = dt1.Rows[j]["ssircode"].ToString();
-
-            }
-
-            return dt1;
-        }
-
-        protected void Session_tblOrder_Update()
+        protected void SaveValue()
         {
             //DataTable tbl1 = (DataTable)ViewState["tblOrder"];
             //for (int j = 0; j < this.gvOrderInfo.Rows.Count; j++)
@@ -361,7 +352,7 @@ namespace RealERPWEB.F_09_PImp
             //    double dgvOrderRate = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((Label)this.gvOrderInfo.Rows[j].FindControl("lblgvOrderRate")).Text.Trim()));
             //    double dgvAppAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvOrderInfo.Rows[j].FindControl("txtgvOrderAmt")).Text.Trim()));
             //    string rsirDetDesc = ((TextBox)this.gvOrderInfo.Rows[j].FindControl("txtgvRsirdetDesc1")).Text.Trim();
-              
+
             //    if(acttypeCode.Substring(0, 7) == "0199999")
             //    {
             //        tbl1.Rows[j]["ordrqty"] = dgvorderQty;
@@ -375,8 +366,8 @@ namespace RealERPWEB.F_09_PImp
             //        tbl1.Rows[j]["rsirdetdesc"] = rsirDetDesc;
             //    }           
 
-           //}
-           // ViewState["tblOrder"] = tbl1;
+            //}
+            // ViewState["tblOrder"] = tbl1;
 
         }
         private void CreateDataTable()
@@ -396,11 +387,11 @@ namespace RealERPWEB.F_09_PImp
         }
 
 
-    
 
-       
 
-        protected void lbtnUpdatePurOrder_Click(object sender, EventArgs e)
+
+
+        protected void lnkupdate_Click(object sender, EventArgs e)
         {
             //((Label)this.Master.FindControl("lblmsg")).Visible = true;
             //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
@@ -417,9 +408,9 @@ namespace RealERPWEB.F_09_PImp
 
             //string mORDERDAT = this.GetStdDate(this.txtCurOrderDate.Text.Trim());
 
-           
 
-         
+
+
             //string mSSIRCODE = this.ddlSuplierList.Items.Count > 0 ? this.ddlSuplierList.SelectedValue.ToString() : this.lssircode.Text.Trim();           
             //string mPORDREF = this.txtOrderRefNo.Text.Trim();
             //string mLETERDES = this.txtLETDES.Text.Trim();
@@ -434,7 +425,7 @@ namespace RealERPWEB.F_09_PImp
 
             ////end log
             //bool result = false;
-     
+
             ////Balance Approval
             //DataTable tbl1 = (DataTable)ViewState["tblOrder"];
             //foreach (DataRow drf in tbl1.Rows)
@@ -455,8 +446,8 @@ namespace RealERPWEB.F_09_PImp
             //    this.GetOrderNo();
 
             //string mORDERNO = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
-           
-          
+
+
 
             //double netamt = Convert.ToDouble(((Label)this.gvOrderInfo.FooterRow.FindControl("lblgvFooterTOrderAmt")).Text.ToString());  //(Label)gvOrderInfo.FindControl("lblgvFooterTOrderAmt");
 
@@ -472,7 +463,7 @@ namespace RealERPWEB.F_09_PImp
 
 
 
-      
+
             //string appxml = tbl1.Rows[0]["approval"].ToString();
             //string Approval = this.GetReqApproval(appxml);
 
@@ -557,226 +548,285 @@ namespace RealERPWEB.F_09_PImp
             //}
 
 
-           
 
-            
+
+
 
 
 
 
         }
 
-     
-  
 
-      
-        private void TblProject()
-        {
-            if (ViewState["tblproject"] == null)
-            {
-                DataTable tblproject = new DataTable();
-                tblproject.Columns.Add("pactcode", Type.GetType("System.String"));
-                tblproject.Columns.Add("pactdesc", Type.GetType("System.String"));
-                ViewState["tblproject"] = tblproject;
-            }
-        }
-       
-       
+
+
+
+
+
+
 
         protected void lbtnTotal_Click(object sender, EventArgs e)
         {
-            this.Session_tblOrder_Update();
+            this.SaveValue();
             this.gvOrderInfo_DataBind();
 
         }
-      
+
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
-          
-        }
-      
-        protected void btnSendmail_Click(object sender, EventArgs e)
-        {
-            bool ssl = Convert.ToBoolean(((Hashtable)Session["tblLogin"])["ssl"].ToString());
-
-
-            switch (ssl)
-            {
-                case true:
-                    this.SendSSLMail();
-
-                    break;
-
-                case false:
-                    this.SendNormalMail();
-                    break;
-
-            }
-
-
 
         }
-        private void SendNormalMail()
+
+
+
+
+
+
+
+
+
+
+        protected void gvcorder_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-            string comcod = this.GetCompCode();
-            string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
-            DataSet dssmtpandmail = this.purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
-
-
-            string mORDERNO = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
-
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPUREMAIL", mORDERNO, "", "", "", "", "", "", "", "");
-
-            string subject = "Work Order";
-            //SMTP
-            string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
-            int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
-
-
-
-
-
-            System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient(hostname, portnumber);
-            //SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            //client.EnableSsl = true;
-            client.EnableSsl = false;
-            string frmemail = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString();
-            string psssword = dssmtpandmail.Tables[1].Rows[0]["mailpass"].ToString();
-            System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(frmemail, psssword);
-            client.UseDefaultCredentials = false;
-            client.Credentials = credentials;
-
-            ///////////////////////
-
-            System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
-            msg.From = new System.Net.Mail.MailAddress(frmemail);
-
-
-
-            msg.To.Add(new System.Net.Mail.MailAddress(ds1.Tables[0].Rows[0]["mailid"].ToString()));
-            msg.Subject = subject;
-            msg.IsBodyHtml = true;
-
-            System.Net.Mail.Attachment attachment;
-
-            string apppath = Server.MapPath("~") + "\\SupWorkOreder" + "\\" + mORDERNO + ".pdf"; ;
-
-            attachment = new System.Net.Mail.Attachment(apppath);
-            msg.Attachments.Add(attachment);
-
-
-
-            msg.Body = string.Format("<html><head></head><body><pre style='max-width:700px;text-align:justify;'>" + "Dear Sir," + "<br/>" + "please find attached file" + "</pre></body></html>");
-            try
-            {
-                client.Send(msg);
-
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Your message has been successfully sent.";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-
-
-                //string savelocation = Server.MapPath("~") + "\\SupWorkOreder";
-                //string[] filePaths = Directory.GetFiles(savelocation);
-                //foreach (string filePath in filePaths)
-                //    File.Delete(filePath);
-
-            }
-            catch (Exception ex)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-            }
+            this.SaveValue();
+            this.gvcorder.PageIndex = e.NewPageIndex;
         }
-        private void SendSSLMail()
+
+        protected void lbtnDetails_Click(object sender, EventArgs e)
         {
-
-
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-            string comcod = this.GetCompCode();
-            string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
-            DataSet dssmtpandmail = this.purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
-
-
-            string mORDERNO = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
-
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPUREMAIL", mORDERNO, "", "", "", "", "", "", "", "");
-
-            string subject = "Work Order";
-            //SMTP
-            string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
-            int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
-            string frmemail = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString();
-            string psssword = dssmtpandmail.Tables[1].Rows[0]["mailpass"].ToString();
-            string mailtousr = ds1.Tables[0].Rows[0]["mailid"].ToString();
-            string apppath = Server.MapPath("~") + "\\SupWorkOreder" + "\\" + mORDERNO + ".pdf";
-
-
-            EASendMail.SmtpMail oMail = new EASendMail.SmtpMail("TryIt");
-
-            //Connection Details 
-            SmtpServer oServer = new SmtpServer(hostname);
-            oServer.User = frmemail;
-            oServer.Password = psssword;
-            oServer.Port = portnumber;
-            oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
-
-            //oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
-
-
-            EASendMail.SmtpClient oSmtp = new EASendMail.SmtpClient();
-            oMail.From = frmemail;
-            oMail.To = mailtousr;
-            oMail.Cc = frmemail;
-            oMail.Subject = subject;
-
-
-            oMail.HtmlBody = "<html><head></head><body><pre style='max-width:700px;text-align:justify;'>" + "Dear Sir," + "<br/>" + "please find attached file" + "</pre></body></html>";
-            oMail.AddAttachment(apppath);
-
-
-            //System.Net.Mail.Attachment attachment;
-
-            //attachment = new System.Net.Mail.Attachment(apppath);
-            //oMail.AddAttachment(attachment);
-
-
-
 
 
             try
             {
+                GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int RowIndex = gvr.RowIndex;
 
-                oSmtp.SendMail(oServer, oMail);
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Your message has been successfully sent.";
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                int index = this.gvcorder.PageSize * this.gvcorder.PageIndex + RowIndex;
+                string rsircode = ((DataTable)ViewState["tblcorder"]).Rows[index]["rsircode"].ToString();
+                string rsirdesc = ((DataTable)ViewState["tblcorder"]).Rows[index]["rsirdesc"].ToString();
+                string rsirunit = ((DataTable)ViewState["tblcorder"]).Rows[index]["rsirunit"].ToString();
+                string flrcod = ((DataTable)ViewState["tblcorder"]).Rows[index]["flrcod"].ToString();
+                string flrdes = ((DataTable)ViewState["tblcorder"]).Rows[index]["flrdes"].ToString();
+                DataTable dt = (DataTable)ViewState["tblmb"];
+                DataRow[] dr1 = dt.Select("rsircode='" + rsircode + "' and flrcod='" + flrcod + "'");
+                int sl = 1;
+                if (dr1.Length == 0)
+                {
+                    //5 Row Added
+                    for (int i = 0; i < 5; i++)
+                    {
 
+                        DataRow dradd = dt.NewRow();
+                        dradd["rsircode"] = rsircode;
+                        dradd["rsirdesc"] = rsirdesc;
+                        dradd["rsirunit"] = rsirunit;
+                        dradd["flrcod"] = flrcod;
+                        dradd["flrdes"] = flrdes;
+                        dradd["sl"] = sl;
+                        dradd["nos"] = 0.00;
+                        dradd["lnght"] = 0.00;
+                        dradd["breadth"] = 0.00;
+                        dradd["height"] = 0.00;
+                        dradd["uweight"] = 0.00;
+                        dradd["tweight"] = 0.00;
+                        dt.Rows.Add(dradd);
+                        sl++;
+
+                    }
+
+
+
+                }
+
+
+                ViewState["tblmb"] = dt;
+                this.Data_Bind();
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalDetails();", true);
+            }
+
+
+            catch (Exception ex)
+            {
+
+                string msg = "Error: " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
+
+
+            }
+        }
+        private void Data_Bind()
+        {
+            try
+            {
+                this.gvdetails.DataSource = (DataTable)ViewState["tblmb"];
+                this.gvdetails.DataBind();
+                this.FooterCalCulation();
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
+
             }
 
+
+
+
         }
-       
-      
-       
 
-      
 
-       
-        private DataTable GetTermsConIDSerial(DataTable dt)
+        private void FooterCalCulation()
         {
-            double j = 0;
-            for (int i = 0; i < dt.Rows.Count; i++)
+
+            DataTable dt = (DataTable)ViewState["tblmb"];
+            if (dt.Rows.Count > 0)
+                ((Label)this.gvdetails.FooterRow.FindControl("lgvFtoWeight")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(tweight)", "")) ?
+                                          0 : dt.Compute("sum(tweight)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
+        }
+    
+
+        private void SaveValueDetails()
+        {
+
+
+            DataTable dt = (DataTable)ViewState["tblmb"];
+            int rowindex, i = 0;
+            double toweight = 0;
+            foreach (GridViewRow gv1 in gvdetails.Rows)
             {
-                j++;
-                dt.Rows[i]["termsid"] = ASTUtility.Right("000" + j, 3); 
-                dt.AcceptChanges();
+
+                double nos = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvnos")).Text.Trim());
+                double Length = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvlength")).Text.Trim());
+                double breadth = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvbreadth")).Text.Trim());
+                double height = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvheight")).Text.Trim());
+                double uweight = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvuweight")).Text.Trim());
+
+                toweight = nos * Length * breadth * height * uweight;
+                rowindex = (gvdetails.PageIndex) * gvdetails.PageSize + i;
+                dt.Rows[rowindex]["nos"] = nos;
+                dt.Rows[rowindex]["lnght"] = Length;
+                dt.Rows[rowindex]["breadth"] = breadth;
+                dt.Rows[rowindex]["height"] = height;
+                dt.Rows[rowindex]["uweight"] = uweight;
+                dt.Rows[rowindex]["tweight"] = toweight;
+                i++;
             }
-            return dt;
+
+
+            ViewState["tblmb"] = dt;
+
+
+
         }
 
+        protected void lnkbtnTotal_Click(object sender, EventArgs e)
+        {
+            this.SaveValueDetails();
+            this.Data_Bind();
+          //  ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModalDetails();", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModalDetailsBack();", true);
+
+        }
+
+        protected void lbtnDeldet_Click(object sender, EventArgs e)
+        {
+
+            // Log Data
+
+
+            DataTable dt = (DataTable)ViewState["tblmb"];
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string rsircode = ((Label)this.gvdetails.Rows[RowIndex].FindControl("lblgvItmCode")).Text.Trim();
+            string flrcod = ((Label)this.gvdetails.Rows[RowIndex].FindControl("lblgvflrcod")).Text.Trim();
+            string sl = ((Label)this.gvdetails.Rows[RowIndex].FindControl("lblgvserial")).Text.Trim();
+            DataRow dr1 = dt.Select("rsircode='" + rsircode + "' and flrcod='" + flrcod + "' and sl='" + sl + "'")[0];
+            dt.Rows.Remove(dr1);
+            dt.AcceptChanges();
+
+            ViewState["tblmb"] = dt;
+            this.Data_Bind();
+           // ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModalDetails();", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModalDetailsBack();", true);
+        }
+
+        protected void lbtnAddRow_Click(object sender, EventArgs e)
+        {
+
+
+            DataTable dt = (DataTable)ViewState["tblmb"];
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string rsircode = ((Label)this.gvdetails.Rows[RowIndex].FindControl("lblgvItmCode")).Text.Trim();
+            string flrcod = ((Label)this.gvdetails.Rows[RowIndex].FindControl("lblgvflrcod")).Text.Trim();
+            string sl = ((Label)this.gvdetails.Rows[RowIndex].FindControl("lblgvserial")).Text.Trim();
+            DataRow dr1 = dt.Select("rsircode='" + rsircode + "' and flrcod='" + flrcod + "' and sl='" + sl + "'")[0];
+            int asl = Convert.ToInt32(dt.Rows[dt.Rows.Count - 1]["sl"]);
+            asl++;
+            dr1["sl"] = asl;
+            dt.ImportRow(dr1);
+            this.Data_Bind();
+            
        
-    }
+             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModalDetailsBack();", true);
+
+          //  ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalDetails();", true);
+
+
+
+
+
+        }
+
+
+
+        protected void lbtnUpdatembinfo_Click(object sender, EventArgs e)
+        {
+
+
+
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            this.SaveValue();
+            DataTable dt = (DataTable)ViewState["tblmb"];
+            bool result = false;
+            foreach (DataRow dr in dt.Rows)
+            {
+
+                string mbno = "";
+                string rsircode = dr["rsircode"].ToString();
+                string flrcod = dr["flrcod"].ToString();
+                string nos = dr["nos"].ToString();
+                string Length = dr["Length"].ToString();
+                string breadth = dr["breadth"].ToString();
+                string height = dr["height"].ToString();
+                
+                string uweight = dr["uweight"].ToString();
+                string toweight = dr["toweight"].ToString();
+
+
+
+                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_ESTSTDANA", "INSORUPDATEESTSTDANA", mbno,
+                        rsircode, flrcod, nos, Length, breadth, height, uweight, toweight, "", "", "", "", "", "");
+                if (!result)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+ purData.ErrorObject["Msg"]+"');", true);
+                   
+                  
+                    return;
+                }
+            }
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModalDetails();", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Update Successfully');", true);
+
+
+        }
+
+    }    
+            
+        
+    
 }

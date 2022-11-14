@@ -52,7 +52,11 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+<<<<<<< HEAD
       <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+=======
+      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+>>>>>>> 9dcbaed56e2cea9069e1272287e7556f13ddbf1e
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -228,6 +232,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalSummaryInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+bnkStatement.datasource" />
+    <Content Include="Reports\RptPurchaseOrderCPDL.rdlc" />
     <EmbeddedResource Include="Reports\RptPurchaseOrderFinlayInd.rdlc" />
     <EmbeddedResource Include="RptPurMktSurveyCPDL04.rdlc" />
     <EmbeddedResource Include="R_02_Fea\rptCostAnlys.rdlc" />
@@ -780,6 +785,7 @@
     <EmbeddedResource Include="R_21_MKT\RptCallCenterLead.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptClietList.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptCRMClientInfo.rdlc" />
+    <EmbeddedResource Include="R_21_MKT\RptDailyWorkStatus.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptProspectTransfer.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptProspectWorking.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptSourceWiseLeads.rdlc" />

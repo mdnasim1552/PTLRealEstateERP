@@ -26,11 +26,21 @@ namespace RealERPWEB.F_99_Allinterface
                 //((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "AI Interface";
 
-                DateTime now = DateTime.Now;
-                var startDate = new DateTime(now.Year, now.Month, 1);
-                var endDate = startDate.AddMonths(1).AddDays(-1);
+
+                DateTime startDate = DateTime.Now;
+                DateTime enddate = DateTime.Now.AddDays(1);
                 this.txtfrmdate.Text = Convert.ToDateTime(startDate).ToString("dd-MMM-yyyy");
-                this.txttodate.Text = Convert.ToDateTime(endDate).ToString("dd-MMM-yyyy");
+                if( startDate < enddate)
+                {
+                    this.txttodate.Text = Convert.ToDateTime(enddate).ToString("dd-MMM-yyyy");
+
+                }
+                else
+                {
+                    string msg = "Please Enter your Currect DateTime";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
+
+                }
 
                 //this.GetEmplist();
 
@@ -750,7 +760,7 @@ namespace RealERPWEB.F_99_Allinterface
             string sircode = "";
 
             string comcod = this.GetCompCode();
-            string calltype = (code == "" ? "GETLASTPRJCODEID" : "GETLASTPRJCODESOWID");
+            string calltype = (code == "" ? "GETLASTPRJCODESOWID" : "GETLASTPRJCODEID"  );
             DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", calltype, "", "", "", "", "", "");
 
 
@@ -1140,12 +1150,13 @@ namespace RealERPWEB.F_99_Allinterface
                         string sow = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
                         if (sow == "80201")
                         {
-                            sircode = prjcode.Length > 0 ? prjcode : this.GetLastid(sow);
 
+                            sircode = prjcode.Length > 0 ? prjcode : this.GetLastid("");
                         }
                         else
                         {
-                            sircode = prjcode.Length > 0 ? prjcode : this.GetLastid("");
+                           
+                            sircode = prjcode.Length > 0 ? prjcode : this.GetLastid(sow);
                         }
 
 
@@ -1994,6 +2005,27 @@ namespace RealERPWEB.F_99_Allinterface
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
             }
 
+        }
+
+        protected void txttodate_TextChanged(object sender, EventArgs e)
+        {
+            string startDate = this.txtfrmdate.Text;
+            string enddate = this.txttodate.Text;
+            
+           
+            
+            
+            if (Convert.ToInt32(startDate )< Convert.ToInt32(enddate))
+            {
+                this.txttodate.Text = Convert.ToDateTime(enddate).ToString("dd-MMM-yyyy");
+
+            }
+            else
+            {
+                string msg = "Please Enter your Currect DateTime";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
+
+            }
         }
     }
 }
