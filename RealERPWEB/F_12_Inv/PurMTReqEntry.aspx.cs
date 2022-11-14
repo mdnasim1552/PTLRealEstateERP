@@ -1145,7 +1145,18 @@ namespace RealERPWEB.F_12_Inv
             //ddlprjlistto
             //lblddlProjectTo
             //lbtnOk
+            this.setReqInfoIntoLabel(ds1);
 
+        }
+
+        private void setReqInfoIntoLabel(DataSet _ds1)
+        {
+            this.txtrefno.Text = _ds1.Tables[1].Rows[0]["mtrref"].ToString();
+            this.txtrefno.ReadOnly = true;
+            this.lblCurTransNo1.Text = _ds1.Tables[1].Rows[0]["mtreqno"].ToString().Trim().Substring(0, 3) + _ds1.Tables[1].Rows[0]["mtreqno"].ToString().Trim().Substring(7, 2);
+            this.txtCurTransNo2.Text = _ds1.Tables[1].Rows[0]["mtreqno"].ToString().Trim().Substring(9);
+            this.txtCurTransDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            this.txtCurTransDate_CalendarExtender.EndDate = System.DateTime.Today;
 
         }
 
@@ -1165,12 +1176,16 @@ namespace RealERPWEB.F_12_Inv
             ViewState["tblreqprjchk"] = ds1.Tables[1];
             this.Data_Bind_Checked();
             this.txtNarchk.Visible = true;
-            this.txtNarchk.Text= ds1.Tables[1].Rows[0]["mtrnar"].ToString(); 
+            this.txtNarchk.Text= ds1.Tables[1].Rows[0]["mtrnar"].ToString();
 
+            this.setReqInfoIntoLabel(ds1);
             //ddlprjlistfrom
             //ddlprjlistto
             //lblddlProjectTo
             //lbtnOk
+
+
+
         }        
 
         private void Data_Bind_Aprv()
@@ -1503,6 +1518,8 @@ namespace RealERPWEB.F_12_Inv
             ViewState["tblreqchkmgt"] = ds1.Tables[0];
             ViewState["tblreqprjchkmgt"] = ds1.Tables[1];
             this.Data_Bind_MgtChecked();
+
+            this.setReqInfoIntoLabel(ds1);
             this.txtnarmgchk.Visible = true;
             this.txtnarmgchk.Text = ds1.Tables[1].Rows[0]["mtrnar"].ToString();
         }
