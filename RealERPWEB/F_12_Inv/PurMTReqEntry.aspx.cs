@@ -86,6 +86,20 @@ namespace RealERPWEB.F_12_Inv
                     this.txtCurTransDate.ReadOnly = true;
                     this.getMatReqInfoChk();
                 }
+                else if (this.Request.QueryString["Type"].ToString() == "MgtChecked")
+                {
+                    title = "MATERIALS TRANSFER Requisition MGT Checked";
+                    this.lblddlProjectFrom.Visible = true;
+                    this.lblddlProjectTo.Visible = true;
+                    this.ddlprjlistfrom.Visible = false;
+                    this.ddlprjlistto.Visible = false;
+                    this.lbtnOk.Visible = false;
+                    this.pnlprevious.Visible = false;
+                    this.pnlreqaprv.Visible = false;
+                    this.pnlreqchkmgt.Visible = true;
+                    this.txtCurTransDate.ReadOnly = true;
+                    this.getMatReqMgtChecked();
+                }
                 else if (this.Request.QueryString["Type"].ToString() == "ReqEdit")
                 {
                     title = "MATERIALS TRANSFER Requisition Edit";
@@ -519,8 +533,6 @@ namespace RealERPWEB.F_12_Inv
                 return;
             }
 
-
-
             foreach (DataRow dr in dt.Rows)
             {
 
@@ -674,9 +686,6 @@ namespace RealERPWEB.F_12_Inv
             }
         }
 
-
-
-
         private string getCompReApproval()
         {
             string comcod = this.GetCompCode();
@@ -691,9 +700,33 @@ namespace RealERPWEB.F_12_Inv
                     ptype = "Approved";
                     break;
 
+                // need to open this section if any company need two step check (MgtChecked/Checked)
                 case "3101":
                 case "3367":
-                    ptype = "Checked";
+                    ptype = "MgtChecked";
+                    break;
+
+                // need to open this section if any company need only one step check (Checked)
+                //case "3101":
+                //    ptype = "Checked";
+                //    break;
+
+                default:
+                    ptype = "";
+                    break;
+
+            }
+            return ptype;
+        } 
+        private string getCompMgtChecked()
+        {
+            string comcod = this.GetCompCode();
+            string ptype = "";
+            switch (comcod)
+            {
+                case "3101":
+                case "3367":
+                    ptype = "MgtChecked";
                     break;
 
                 default:
@@ -1112,7 +1145,18 @@ namespace RealERPWEB.F_12_Inv
             //ddlprjlistto
             //lblddlProjectTo
             //lbtnOk
+            this.setReqInfoIntoLabel(ds1);
 
+        }
+
+        private void setReqInfoIntoLabel(DataSet _ds1)
+        {
+            this.txtrefno.Text = _ds1.Tables[1].Rows[0]["mtrref"].ToString();
+            this.txtrefno.ReadOnly = true;
+            this.lblCurTransNo1.Text = _ds1.Tables[1].Rows[0]["mtreqno"].ToString().Trim().Substring(0, 3) + _ds1.Tables[1].Rows[0]["mtreqno"].ToString().Trim().Substring(7, 2);
+            this.txtCurTransNo2.Text = _ds1.Tables[1].Rows[0]["mtreqno"].ToString().Trim().Substring(9);
+            this.txtCurTransDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            this.txtCurTransDate_CalendarExtender.EndDate = System.DateTime.Today;
 
         }
 
@@ -1132,15 +1176,17 @@ namespace RealERPWEB.F_12_Inv
             ViewState["tblreqprjchk"] = ds1.Tables[1];
             this.Data_Bind_Checked();
             this.txtNarchk.Visible = true;
-            this.txtNarchk.Text= ds1.Tables[1].Rows[0]["mtrnar"].ToString(); 
+            this.txtNarchk.Text= ds1.Tables[1].Rows[0]["mtrnar"].ToString();
 
+            this.setReqInfoIntoLabel(ds1);
             //ddlprjlistfrom
             //ddlprjlistto
             //lblddlProjectTo
             //lbtnOk
 
 
-        }
+
+        }        
 
         private void Data_Bind_Aprv()
         {
@@ -1326,7 +1372,6 @@ namespace RealERPWEB.F_12_Inv
                 return;
             this.FooterCalCulationChecked();
         }
-
         private void FooterCalCulationChecked()
         {
             DataTable dt1 = (DataTable)ViewState["tblreqchk"];
@@ -1458,5 +1503,158 @@ namespace RealERPWEB.F_12_Inv
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
         }
 
+        private void getMatReqMgtChecked()
+        {
+            string comcod = this.GetCompCode();
+            string reqno = this.Request.QueryString["genno"].ToString();
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GETPREVMTRREQMGT", reqno, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+
+            this.lblddlProjectFrom.Text = ds1.Tables[1].Rows[0]["fproject"].ToString();
+            this.lblddlProjectTo.Text = ds1.Tables[1].Rows[0]["tproject"].ToString();
+
+            ViewState["tblreqchkmgt"] = ds1.Tables[0];
+            ViewState["tblreqprjchkmgt"] = ds1.Tables[1];
+            this.Data_Bind_MgtChecked();
+
+            this.setReqInfoIntoLabel(ds1);
+            this.txtnarmgchk.Visible = true;
+            this.txtnarmgchk.Text = ds1.Tables[1].Rows[0]["mtrnar"].ToString();
+        }
+
+
+        private void Data_Bind_MgtChecked()
+        {
+            DataTable dt1 = (DataTable)ViewState["tblreqchkmgt"];
+            this.gvreqchkmgt.PageSize = Convert.ToInt16(this.ddlpagesize.SelectedValue.ToString());
+            this.gvreqchkmgt.DataSource = dt1;
+            this.gvreqchkmgt.DataBind();
+
+            if (dt1.Rows.Count == 0)
+                return;
+            this.FooterCalCulationMGTChecked();
+        }
+
+        private void FooterCalCulationMGTChecked()
+        {
+            DataTable dt1 = (DataTable)ViewState["tblreqchkmgt"];
+
+            if (dt1.Rows.Count == 0)
+                return;
+            ((Label)this.gvreqchkmgt.FooterRow.FindControl("lblgvFmgamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(amt)", "")) ?
+            0.00 : dt1.Compute("sum(amt)", ""))).ToString("#,##0.00;(#,##0.00);-");
+        }
+
+        protected void gvreqchkmgt_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            DataTable dt = (DataTable)ViewState["tblreqchkmgt"]; 
+            string rsircode = ((Label)this.gvreqchkmgt.Rows[e.RowIndex].FindControl("lblgvmgrsircode")).Text.Trim();
+            string spcfcod = ((Label)this.gvreqchkmgt.Rows[e.RowIndex].FindControl("lblgvmgspcfcod")).Text.Trim();
+            string mISUNO = this.Request.QueryString["genno"].ToString();
+
+            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "DELMTRREQAPPROVALMGT", mISUNO, rsircode, spcfcod, "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (result == true)
+            {
+                int rowindex = (this.gvreqchk.PageSize) * (this.gvreqchk.PageIndex) + e.RowIndex;
+                dt.Rows[rowindex].Delete();
+            }
+
+            DataView dv = dt.DefaultView;
+            ViewState.Remove("tblreqchkmgt");
+            ViewState["tblreqchkmgt"] = dv.ToTable();
+            this.Data_Bind_MgtChecked(); 
+        }
+
+        protected void lnkmgchktotal_Click(object sender, EventArgs e)
+        {
+            this.SaveMGTChecked();
+            this.Data_Bind_MgtChecked();
+        }
+        private void SaveMGTChecked()
+        {
+            DataTable tbl1 = (DataTable)ViewState["tblreqchkmgt"];
+            int index;
+            for (int j = 0; j < this.gvreqchkmgt.Rows.Count; j++)
+            {
+                index = (this.gvreqchkmgt.PageSize) * (this.gvreqchkmgt.PageIndex) + j; 
+                double reqqty = Convert.ToDouble(tbl1.Rows[index]["tqty"]);
+                double chkqty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvreqchkmgt.Rows[j].FindControl("txtgvmgtqty")).Text.Trim()));
+                double rat = Convert.ToDouble("0" + ((Label)this.gvreqchkmgt.Rows[j].FindControl("lblgvmgrate")).Text.Trim());
+                if (chkqty > reqqty)
+                {
+                    string message = "Checked Qty Can't Large Requisition Qty";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
+                    return;
+                }
+                tbl1.Rows[index]["tqty"] = chkqty;
+                double damt = chkqty * rat;
+                tbl1.Rows[j]["rate"] = rat;
+                tbl1.Rows[j]["amt"] = damt;
+            }
+            ViewState["tblreqchkmgt"] = tbl1;
+        }
+
+        protected void lnkbtnMgtChecked_Click(object sender, EventArgs e)
+        {
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+            string msg1 = "";
+
+            if (!Convert.ToBoolean(dr1[0]["entry"]))
+            {
+                msg1 = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg1 + "');", true);
+                return;
+            }
+            this.SaveMGTChecked();
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string APRVBYID = hst["usrid"].ToString();
+            string APRVDAT = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+            string APRVTRMID = hst["compname"].ToString();
+            string APRVSESON = hst["session"].ToString();
+
+
+            string comcod = this.GetCompCode();
+            DataTable dt1 = (DataTable)ViewState["tblreqchkmgt"];
+            DataTable dt2 = (DataTable)ViewState["tblreqprjchkmgt"];
+
+            string mtreqno = this.Request.QueryString["genno"].ToString();
+            string fromprj = dt2.Rows[0]["TFPACTCODE"].ToString();
+            string toprj = dt2.Rows[0]["TTPACTCODE"].ToString();
+
+            string txtNarchk = this.txtnarmgchk.Text.Trim();
+
+            bool result;
+
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+                string mRSIRCODE = dt1.Rows[i]["rsircode"].ToString();
+                string mSPCFCOD = dt1.Rows[i]["spcfcod"].ToString();
+                double reqty = Convert.ToDouble(dt1.Rows[i]["tqty"]);
+                double reqamt = Convert.ToDouble(dt1.Rows[i]["amt"]);
+                result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_05", "UPDATEMTRREQAPROVALMGT", mtreqno, mRSIRCODE, mSPCFCOD, reqty.ToString(), reqamt.ToString(), "", "", "", "", "", "", "");
+
+                if (!result)
+                {
+                    msg1 = purData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg1 + "');", true);
+                    return;
+                }
+            }
+            result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_05", "MTREQCHECKEDMGT", mtreqno, fromprj, toprj, APRVBYID, APRVDAT, APRVSESON, APRVTRMID, txtNarchk, "", "", "", "", "", "", "", "", "");
+            if (!result)
+            {
+                msg1 = purData.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg1 + "');", true);
+                return;
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
+        }
     }
 }

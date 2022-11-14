@@ -52,7 +52,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -148,6 +148,7 @@
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptMonthlyProbCollection.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptSupplierOverAllPSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptSupplierOverAllPSummaryDetails.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+ListIsssuChq.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+OppPayment1.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+ReceptPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO.datasource" />
@@ -227,6 +228,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalSummaryInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+bnkStatement.datasource" />
+    <Content Include="Reports\RptPurchaseOrderCPDL.rdlc" />
     <EmbeddedResource Include="Reports\RptPurchaseOrderFinlayInd.rdlc" />
     <EmbeddedResource Include="RptPurMktSurveyCPDL04.rdlc" />
     <EmbeddedResource Include="R_02_Fea\rptCostAnlys.rdlc" />
@@ -277,6 +279,8 @@
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherIntech.rdlc" />
     <EmbeddedResource Include="R_17_Acc\PrintChqFinlayBRAC.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeIBBL_Old.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptIssuedChequeCP.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptIssuedChequeCPALL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptMonSalPerTarWise.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherBDTropical.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherCCTropical.rdlc" />
@@ -818,6 +822,7 @@
     <EmbeddedResource Include="R_22_Sal\RptEnvelopNew.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptAcme02.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptAcme.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptCPDL - Copy.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalesVsAchivementDPC.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalesVsAchivementLO.rdlc" />

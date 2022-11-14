@@ -263,11 +263,11 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading blue counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["workorder"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content blue'><div class='circle-tile-description text-faded'>Work Order</div></div></div>";
 
 
-            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["workorder"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>MB</div></div></div>";
+            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["mb"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>MB</div></div></div>";
 
 
 
-            this.RadioButtonList1.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["workorder"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>MB Approval</div></div></div>";
+            this.RadioButtonList1.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["mbapp"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>MB Approval</div></div></div>";
 
 
 
@@ -290,13 +290,7 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1.Items[16].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["paycount"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content  orange '><div class='circle-tile-description text-faded'>Bill Update</div></div></div>";
 
 
-            //this.RadioButtonList1.Items[0].Text = "<span class='fa  fa-signal fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["impcout"]).ToString("#,##0;(#,##0); ") + "</span>" + "<span class='lbldata2'>" + "Monthly Imp.Plan" + "</span>";
-            //this.RadioButtonList1.Items[1].Text = "<span class='fa fa-pencil-square-o fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["execount"]).ToString("#,##0;(#,##0); ") + "</span>" + "<span class=lbldata2>" + "Work Execution" + "</span>";
-            //this.RadioButtonList1.Items[2].Text = "<span class='fa fa-pencil-square-o fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["subbillcount"]).ToString("#,##0;(#,##0); ") + "</span>" + "<span class=lbldata2>" + "Sub-Con.Bill" + "</span>";
-            //this.RadioButtonList1.Items[3].Text = "<span class='fa fa-check-square-o fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["billcount"]).ToString("#,##0;(#,##0); ") + "</span>" + "<span class=lbldata2>" + "Bill Finalization" + "</span>";
-            //this.RadioButtonList1.Items[4].Text = "<span class='fa fa-calculator fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["billconfirm"]).ToString("#,##0;(#,##0); ") + "</span>" + "<span class=lbldata2>" + "Bill Confirmed" + "</span></a>";
-            //this.RadioButtonList1.Items[5].Text = "<span class='fa fa-calculator fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["paycount"]).ToString("#,##0;(#,##0); ") + "</span>" + "<span class=lbldata2>" + "Bill Update" + "</span></a>";
-
+          
 
 
             DataTable dt = new DataTable();
@@ -341,14 +335,14 @@ namespace RealERPWEB.F_99_Allinterface
             /// Measurement Book
             dt = ((DataTable)ds1.Tables[7]).Copy();
             dv = dt.DefaultView;
-            dv.RowFilter = ("orderno =''");
+            dv.RowFilter = ("orderno <>'' and mbno =''");
             this.Data_Bind("gvmbook", dv.ToTable());
 
 
             /// Measurement Book Approval
             dt = ((DataTable)ds1.Tables[7]).Copy();
             dv = dt.DefaultView;
-            dv.RowFilter = ("orderno =''");
+            dv.RowFilter = ("orderno <>'' and mbno <>'' and mbnoapp=''");
             this.Data_Bind("gvmbookapp", dv.ToTable());
 
 
@@ -358,7 +352,7 @@ namespace RealERPWEB.F_99_Allinterface
             /// Ready For Bill
             dt = ((DataTable)ds1.Tables[7]).Copy();
             dv = dt.DefaultView;
-            dv.RowFilter = ("orderno <>'' and lisueno=''");
+            dv.RowFilter = ("orderno <>'' and mbno <>'' and mbnoapp<>'' and lisueno=''");
             this.Data_Bind("gvReadyForBill", dv.ToTable());
 
 
@@ -2021,6 +2015,17 @@ namespace RealERPWEB.F_99_Allinterface
         protected void gvmbook_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlnbillapp = (HyperLink)e.Row.FindControl("hlnklnkmb");
+
+                string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
+                string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "csircode")).ToString();
+
+                hlnbillapp.NavigateUrl = "~/F_09_PImp/BillingMBEntry?Type=Entry&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + sircode;
+                //F_09_PImp/PurLabIssue2?Type=Current&prjcode=&genno=&sircode=
+            }
         }
 
         protected void btnDelmb_Click(object sender, EventArgs e)
@@ -2030,6 +2035,18 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void gvmbookapp_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlnbillapp = (HyperLink)e.Row.FindControl("hlnklnkmbapp");
+
+                string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
+                string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "csircode")).ToString();
+
+                hlnbillapp.NavigateUrl = "~/F_09_PImp/BillingMBEntry?Type=Approved&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + sircode;
+                //F_09_PImp/PurLabIssue2?Type=Current&prjcode=&genno=&sircode=
+            }
 
         }
 
