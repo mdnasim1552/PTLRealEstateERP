@@ -1581,7 +1581,7 @@
 
                         var data = JSON.parse(response.d);
                         funDataBind(data);
-                        //console.log(data);
+                        console.log(data);
                         //var date=data[0].gdesc1;
                         //alert(date);
                         $('#lbtntfollowup').click();

@@ -80,18 +80,22 @@ namespace RealERPWEB.F_21_MKT
                 {
                     ViewState["tblempsup"] = ds3.Tables[0];
                     DataTable dt1 = (DataTable)ViewState["tblempsup"];
+                    string cdate = todate;
+                    string proscod = dt1.Rows[0]["sircode"].ToString();
+                    DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "SHOWPROSPECTIVEDISCUSSION", proscod, cdate, "", "", "", "");
+                    DataTable dt2 = (DataTable)ds1.Tables[1];
 
                     this.lblname.Text = dt1.Rows[0]["sircode"].ToString();
                     this.lblconper.Text = dt1.Rows[0]["sirdesc"].ToString();
                     this.lblmbl.Text = dt1.Rows[0]["phone"].ToString();
                     this.lblhomead.Text = dt1.Rows[0]["caddress"].ToString();
-                    this.lblprof.Text = dt1.Rows[0]["cprof"].ToString();
+                    this.lblprof.Text = dt2.Rows[0]["profession"].ToString();
                     this.lblstatus.Text = dt1.Rows[0]["virnotes"].ToString();
+                   
 
 
-                    string proscod = dt1.Rows[0]["sircode"].ToString();
-                    string cdate = todate;
-                    DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "SHOWPROSPECTIVEDISCUSSION", proscod, cdate, "", "", "", "");
+
+
                     this.rpclientinfo.DataSource = ds1.Tables[0];
                     this.rpclientinfo.DataBind();
                     
@@ -173,5 +177,90 @@ namespace RealERPWEB.F_21_MKT
            
 
         }
+        protected void btnqclink_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+
+                this.pnlSidebar.Visible = true; 
+                this.pnlfollowup.Visible = false;
+                ShowDiscussion();
+
+
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
+        protected void pnlsidebarClose_Click(object sender, EventArgs e)
+        {
+            this.pnlSidebar.Visible = false;
+            this.pnlfollowup.Visible = true;
+        }
+        private void ShowDiscussion()
+        {
+            string comcod = this.GetComeCode();
+            DataTable tbl1 = (DataTable)ViewState["tbModalData"];
+            string YmonID = Convert.ToDateTime(System.DateTime.Now).ToString("yyyyMM");
+            string Empid = this.ddlEmpid.SelectedValue.ToString();
+            //string grpcode = this.lblgrp.Text;
+            string todate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+            DataTable dt1 = (DataTable)ViewState["tblempsup"];
+           
+            string Client = dt1.Rows[0]["sircode"].ToString();
+           
+            string kpigrp = "000000000000";// this.rbtnlist.SelectedValue.ToString();
+            string wrkdpt = "000000000000";
+            DateTime time = System.DateTime.Now;
+            string qcdate = this.Request.QueryString["followupdate"] ?? "";
+            string cdate = todate;
+           // string cdate = qcdate.Length == 0 ? System.DateTime.Now + " " + time.ToString("HH:mm") : qcdate;
+
+
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "DAILYDISCUIND", Empid, Client, kpigrp, "", wrkdpt, cdate);
+
+
+            // DataSet ds1 = KpiData.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "DAILYDISCUIND", Empid, Client, kpigrp, "", wrkdpt, cdate);
+            ViewState["tbModalData"] = HiddenSameData(ds1.Tables[0]);
+            DataTable dt = (DataTable)ViewState["tbModalData"];
+            this.gvInfo.DataSource = dt;
+            this.gvInfo.DataBind();
+
+
+
+
+        }
+
+        private DataTable HiddenSameData(DataTable dt1)
+        {
+            if (dt1.Rows.Count == 0)
+                return dt1;
+            int j;
+            string gp = dt1.Rows[0]["gp"].ToString();
+            for (j = 1; j < dt1.Rows.Count; j++)
+            {
+                if (dt1.Rows[j]["gp"].ToString() == gp)
+                {
+                    gp = dt1.Rows[j]["gp"].ToString();
+                    dt1.Rows[j]["gpdesc"] = "";
+                }
+
+                else
+                    gp = dt1.Rows[j]["gp"].ToString();
+            }
+
+
+            return dt1;
+
+        }
+
+
+
+
     }
 }
