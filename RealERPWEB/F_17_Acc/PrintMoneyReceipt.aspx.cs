@@ -499,6 +499,7 @@ namespace RealERPWEB.F_17_Acc
             string custadd = dtrpt.Rows[0]["custadd"].ToString();
             string custmob = dtrpt.Rows[0]["custmob"].ToString();
             string udesc = dtrpt.Rows[0]["udesc"].ToString();
+            string flr = dtrpt.Rows[0]["flr"].ToString();
             string project = dtrpt.Rows[0]["islandowner"].ToString() == "True" ? dtrpt.Rows[0]["pactdesc"].ToString() + " (L/O Part)" : dtrpt.Rows[0]["pactdesc"].ToString();
             string usize = Convert.ToDouble(dtrpt.Rows[0]["usize"]).ToString("#,##0;(#,##0); -");
             string munit = dtrpt.Rows[0]["munit"].ToString();
@@ -883,6 +884,7 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.ComInfoWithoutNumber()));
                     Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
                     Rpt1.SetParameters(new ReportParameter("footer", "Note : This is a system generated receipt and does not require any physical signature"));
+                    Rpt1.SetParameters(new ReportParameter("flr", flr));
 
                     Session["Report1"] = Rpt1;
                     ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
@@ -1025,6 +1027,8 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.ComInfoWithoutNumber()));
                 Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.ComInfoWithoutNumber()));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+       
+
 
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
