@@ -270,6 +270,7 @@
     <EmbeddedResource Include="R_14_Pro\RptSupAdvanceDetails.rdlc" />
     <EmbeddedResource Include="R_16_Bill\RptBillInvoiceAcme.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherEpic.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptChequeDhakaBankCPDL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeOneBankBti_Old.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeOneBankBti.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerWqty.rdlc" />
