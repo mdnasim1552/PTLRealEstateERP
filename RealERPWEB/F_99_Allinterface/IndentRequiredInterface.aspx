@@ -659,7 +659,7 @@
 
                              <div class="table-responsive">
                                   <asp:GridView ID="gv_hodChecked" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" Width="100%"  >
+                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" Width="100%" OnRowDataBound="gv_hodChecked_RowDataBound"  >
                                         <Columns>
 
                                             <asp:TemplateField HeaderText="SL # ">
@@ -734,7 +734,7 @@
                                             <asp:TemplateField HeaderText="Action">
                                                 <ItemTemplate>
                                                     
-                                                    <asp:HyperLink runat="server" ID="hybtnhodidentlink" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-edit"></i></asp:HyperLink>
+                                                    <asp:HyperLink runat="server" ID="hybtnhodidentlink" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-check"></i></asp:HyperLink>
                                                     <asp:LinkButton ID="btnhoddeleteIndent"  runat="server" CssClass="text-danger"  ToolTip="delete"><i class="fa fa-trash"></i></asp:LinkButton>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />

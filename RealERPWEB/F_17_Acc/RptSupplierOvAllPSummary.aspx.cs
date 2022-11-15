@@ -263,7 +263,7 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "Supplier Overall Summary" ));
                 Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("printdate", "( From " + this.txtfrmdate.Text.Trim() + " )"));
+                Rpt1.SetParameters(new ReportParameter("printdate", "( From " + this.txtfrmdate.Text.Trim() +" To " + this.txttodate.Text.Trim() + " )" ));
 
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
@@ -280,7 +280,7 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "Supplier Overall Details"));
                 Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("printdate", "( From " + this.txtfrmdate.Text.Trim() + " )"));
+                Rpt1.SetParameters(new ReportParameter("printdate", "( From " + this.txtfrmdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
 
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
@@ -304,6 +304,7 @@ namespace RealERPWEB.F_17_Acc
                 Label lblgvDrAmountalsasubNet = (Label)e.Row.FindControl("lblgvDrAmountalsasubNet");
                 Label lblgvCrAmtalsasubpay = (Label)e.Row.FindControl("lblgvCrAmtalsasubpay");
                 Label lblgvCrAmnetpayable1 = (Label)e.Row.FindControl("lblgvCrAmnetpayable1");
+                Label lbldiscount = (Label)e.Row.FindControl("lbldiscount");
 
 
 
@@ -321,23 +322,30 @@ namespace RealERPWEB.F_17_Acc
 
 
 
-                if (grp == "B")
+                if (grp == "B" )
                 {
 
-                    //lgvfgrp.Font.Bold = true;
-                    //lblgvOpndetails.Font.Bold = true;
-                    //lblgvDrAmount.Font.Bold = true;
-                    //lblgvCrAmt.Font.Bold = true;
-                    //lblgvClsing.Font.Bold = true;
-                    //lblprjName.Font.Bold = true;
+                    
+                    lblgvOpnamalsasub.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lblgvDrAmountalsasub.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lblgvDrAmountalsasubsd.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lblgvDrAmountalsasubsdtax.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lblgvDrAmountalsasubsdvat.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lblgvDrAmountalsasubNet.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lblgvCrAmtalsasubpay.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lblgvCrAmnetpayable1.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lbldiscount.Attributes["style"] = "font-weight:bold; color:Navy;";
 
-                    //lblgvOpndetails.Font.Size = 10;
-                    //lblgvDrAmount.Font.Size = 10;
-                    //lblgvCrAmt.Font.Size = 10;
-                    //lblgvClsing.Font.Size = 10;
-                    //lblprjName.Font.Size = 10;
+                   
+                   
+                    lblgvOpnamalsasub.Style.Add("text-align", "right");
 
-                    //lblprjName.Attributes["style"] = "font-weight:bold; color:maroon;";
+                }
+                if ( grp == "C" )
+                {
+
+                   
+          
                     lblgvOpnamalsasub.Attributes["style"] = "font-weight:bold; color:Orange;";
                     lblgvDrAmountalsasub.Attributes["style"] = "font-weight:bold; color:Orange;";
                     lblgvDrAmountalsasubsd.Attributes["style"] = "font-weight:bold; color:Orange;";
@@ -346,47 +354,97 @@ namespace RealERPWEB.F_17_Acc
                     lblgvDrAmountalsasubNet.Attributes["style"] = "font-weight:bold; color:Orange;";
                     lblgvCrAmtalsasubpay.Attributes["style"] = "font-weight:bold; color:Orange;";
                     lblgvCrAmnetpayable1.Attributes["style"] = "font-weight:bold; color:Orange;";
+                    lbldiscount.Attributes["style"] = "font-weight:bold; color:Orange;";
 
-                   
+
+
+                    lblgvOpnamalsasub.Style.Add("text-align", "right");
+
+                }
+
+
+                if (grp == "D")
+                {
+
+                  
+
+                    lblgvOpnamalsasub.Attributes["style"] = "font-weight:bold; color:Green;";
+                    lblgvDrAmountalsasub.Attributes["style"] = "font-weight:bold; color:Green;";
+                    lblgvDrAmountalsasubsd.Attributes["style"] = "font-weight:bold; color:Green;";
+                    lblgvDrAmountalsasubsdtax.Attributes["style"] = "font-weight:bold; color:Green;";
+                    lblgvDrAmountalsasubsdvat.Attributes["style"] = "font-weight:bold; color:Green;";
+                    lblgvDrAmountalsasubNet.Attributes["style"] = "font-weight:bold; color:Green;";
+                    lblgvCrAmtalsasubpay.Attributes["style"] = "font-weight:bold; color:Green;";
+                    lblgvCrAmnetpayable1.Attributes["style"] = "font-weight:bold; color:Green;";
+                    lbldiscount.Attributes["style"] = "font-weight:bold; color:Green;";
+
+
                     //lgvNagad.Style.Add("text-align", "left");
                     lblgvOpnamalsasub.Style.Add("text-align", "right");
 
                 }
 
 
-                //if (grp == "D")
-                //{
-
-                //    //lgvfgrp.Font.Bold = true;
-                //    //lblgvOpndetails.Font.Bold = true;
-                //    //lblgvDrAmount.Font.Bold = true;
-                //    //lblgvCrAmt.Font.Bold = true;
-                //    //lblgvClsing.Font.Bold = true;
-                //    //lblprjName.Font.Bold = true;
-
-                //    //lblgvOpndetails.Font.Size = 10;
-                //    //lblgvDrAmount.Font.Size = 10;
-                //    //lblgvCrAmt.Font.Size = 10;
-                //    //lblgvClsing.Font.Size = 10;
-                //    //lblprjName.Font.Size = 10;
-
-                //    lblprjName.Attributes["style"] = "font-weight:bold; color:green;";
-                //    lblgvOpndetails.Attributes["style"] = "font-weight:bold; color:green;";
-                //    lblgvDrAmount.Attributes["style"] = "font-weight:bold; color:green;";
-                //    lblgvCrAmt.Attributes["style"] = "font-weight:bold; color:green;";
-                //    lblgvClsing.Attributes["style"] = "font-weight:bold; color:green;";
-
-
-                //    //lgvNagad.Style.Add("text-align", "left");
-                //    lblprjName.Style.Add("text-align", "right");
-
-                //}
-
-
 
             }
         }
 
-        
+        protected void gvspaysummary_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                Label lblprjName = (Label)e.Row.FindControl("lblprjName");
+                Label lblgvCrAmt = (Label)e.Row.FindControl("lblgvCrAmt");
+                Label lblgvSdAmt = (Label)e.Row.FindControl("lblgvSdAmt");
+                Label lblgvTaxAmt = (Label)e.Row.FindControl("lblgvTaxAmt");
+                Label lblgvVatAmt = (Label)e.Row.FindControl("lblgvVatAmt");
+                Label lblgvNetAmt = (Label)e.Row.FindControl("lblgvNetAmt");
+                Label lblgvPayable = (Label)e.Row.FindControl("lblgvPayable");
+               
+                string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString().Trim();
+       
+                if (grp == "")
+                {
+                    return;
+                }
+
+                if (grp == "B" )
+                {
+
+                   
+                    lblprjName.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lblgvCrAmt.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lblgvSdAmt.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lblgvTaxAmt.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lblgvVatAmt.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lblgvNetAmt.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lblgvPayable.Attributes["style"] = "font-weight:bold; color:Navy;";
+
+
+
+                    lblprjName.Style.Add("text-align", "right");
+
+                }
+                if (grp == "C")
+                {
+
+
+                    lblprjName.Attributes["style"] = "font-weight:bold; color:Orange;";
+                    lblgvCrAmt.Attributes["style"] = "font-weight:bold; color:Orange;";
+                    lblgvSdAmt.Attributes["style"] = "font-weight:bold; color:Orange;";
+                    lblgvTaxAmt.Attributes["style"] = "font-weight:bold; color:Orange;";
+                    lblgvVatAmt.Attributes["style"] = "font-weight:bold; color:Orange;";
+                    lblgvNetAmt.Attributes["style"] = "font-weight:bold; color:Orange;";
+                    lblgvPayable.Attributes["style"] = "font-weight:bold; color:Orange;";
+
+
+
+                    lblprjName.Style.Add("text-align", "right");
+
+                }
+
+            }
+        }
     }
 }

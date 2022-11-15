@@ -15,7 +15,7 @@
     <script type="text/javascript" language="javascript">
 
         $(document).ready(function () {
-         
+
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
             Visibility();
 
@@ -23,7 +23,7 @@
         });
         function pageLoaded() {
 
-            $("input, select").bind("keydown", fuEmp.Namenction (event) {
+            $("input, select").bind("keydown", fuEmp.Namenction(event) {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
 
@@ -81,26 +81,24 @@
 
     </script>
     <style>
-
-
     </style>
     <div class="RealProgressbar">
-                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
-                    <ProgressTemplate>
-                        <div id="loader">
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="lading"></div>
-                        </div>
-                    </ProgressTemplate>
-                </asp:UpdateProgress>
-            </div>
+        <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
+            <ProgressTemplate>
+                <div id="loader">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="lading"></div>
+                </div>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
+    </div>
     <div class="container moduleItemWrpper">
         <div class="contentPart">
             <asp:MultiView ID="MultiView1" runat="server">
@@ -337,7 +335,7 @@
 
                                             <asp:RadioButtonList ID="rbtPaymentType" runat="server" AutoPostBack="True"
                                                 CssClass="rbtnList1 chkBoxControl margin5px"
-                                                Font-Size="12px" ForeColor="Black" 
+                                                Font-Size="12px" ForeColor="Black"
                                                 OnSelectedIndexChanged="rbtPaymentType_SelectedIndexChanged"
                                                 RepeatColumns="6" RepeatDirection="Horizontal" TabIndex="23">
                                                 <asp:ListItem Value="Cash">Cash</asp:ListItem>
@@ -367,7 +365,7 @@
                                                     <asp:Label ID="lblAcNo1" runat="server" CssClass=" smLbl">A/C No 01</asp:Label>
                                                     <asp:TextBox ID="txtAcNo1" runat="server" TabIndex="25" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
 
-                                                                <asp:Label ID="lblroute" runat="server" CssClass=" smLbl">Routing 01</asp:Label>
+                                                    <asp:Label ID="lblroute" runat="server" CssClass=" smLbl">Routing 01</asp:Label>
                                                     <asp:TextBox ID="txtroute" runat="server" TabIndex="25" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
 
                                                     <asp:Label ID="lbltBankName2" runat="server" CssClass="smLbl">Bank 02</asp:Label>
@@ -381,7 +379,7 @@
                                                     <asp:Label ID="lblAcNo2" runat="server" CssClass="smLbl">A/C No 02</asp:Label>
                                                     <asp:TextBox ID="txtAcNo2" runat="server" TabIndex="27" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
 
-                                                                     <asp:Label ID="lblroute2" runat="server" CssClass=" smLbl">Routing 02</asp:Label>
+                                                    <asp:Label ID="lblroute2" runat="server" CssClass=" smLbl">Routing 02</asp:Label>
                                                     <asp:TextBox ID="txtroute2" runat="server" TabIndex="25" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
 
                                                     <asp:Label ID="lblbankamt" runat="server" CssClass="smLbl text-right ">Bank Amt.</asp:Label>
@@ -434,6 +432,7 @@
                                                         <asp:ListItem>Fixed(Hourly)</asp:ListItem>
                                                         <asp:ListItem>For.(Hourly)</asp:ListItem>
                                                         <asp:ListItem>Ceiling</asp:ListItem>
+                                                        <asp:ListItem>Times slot </asp:ListItem>
                                                     </asp:RadioButtonList>
 
 
@@ -468,6 +467,55 @@
 
                                                     <asp:Label ID="lblCeilingRate3" runat="server" CssClass="smLbl_to">Ceiling(2:1AM-6PM)</asp:Label>
                                                     <asp:TextBox ID="txtceilingRate3" runat="server" TabIndex="35" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
+                                                </div>
+                                            </asp:Panel>
+                                            <asp:Panel ID="pnlTimesslot" runat="server" Visible="false">
+                                                <div class="col-md-12">
+                                                    <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName">Hour</asp:Label>
+                                                    <asp:TextBox ID="txtHourTimeSlot" runat="server" TabIndex="32" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
+
+                                                    <asp:Label ID="Label3" runat="server" CssClass=" lblTxt lblName">Rate</asp:Label>
+                                                    <asp:TextBox ID="txtRateTimeSlot" runat="server" TabIndex="32" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
+
+                                                    <asp:LinkButton ID="lnkAdd" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lnkAdd_Click">+</asp:LinkButton>
+                                                </div>
+                                                <div class="col-md-12">
+
+                                                    <asp:GridView ID="gvTimsSlot" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                                        ShowFooter="True">
+                                                        <RowStyle />
+                                                        <Columns>
+
+                                                            <asp:TemplateField HeaderText="Hour">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox ID="txtgvslothour" runat="server" BackColor="Transparent"
+                                                                        Height="20px" BorderStyle="None" Font-Size="11px"
+                                                                        Style="text-align: right"
+                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "slothour")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                                        Width="80px"></asp:TextBox>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+
+                                                            <asp:TemplateField>
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox ID="txtgvotrate" runat="server" BackColor="Transparent"
+                                                                        Height="20px" BorderStyle="None" Font-Size="11px"
+                                                                        Style="text-align: right"
+                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "otrate")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                                        Width="80px"></asp:TextBox>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                                <ItemStyle HorizontalAlign="right" />
+                                                                <FooterStyle HorizontalAlign="right" />
+                                                            </asp:TemplateField>
+                                                        </Columns>
+                                                        <FooterStyle CssClass="grvFooter" />
+                                                        <EditRowStyle />
+                                                        <AlternatingRowStyle />
+                                                        <PagerStyle CssClass="gvPagination" />
+                                                        <HeaderStyle CssClass="grvHeader" />
+                                                    </asp:GridView>
                                                 </div>
                                             </asp:Panel>
 
@@ -510,9 +558,6 @@
                                         <asp:ListItem>Tropical</asp:ListItem>
                                         <asp:ListItem>CPDL</asp:ListItem>
                                         <%--<asp:ListItem>PEB</asp:ListItem>--%>
-
-                                        
-
                                     </asp:RadioButtonList>
 
                                 </div>
@@ -855,10 +900,10 @@
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
                                 <asp:LinkButton ID="lnkbtnFinalSWUpdate" runat="server" CssClass="btn btn-success"
-                                    OnClick="lnkbtnFinalSWUpdate_Click" 
-                                    Visible="False" TabIndex="39">Final Update</asp:LinkButton>                                
-                                <asp:LinkButton ID="lnkUserGenerate" runat="server"  CssClass="btn btn-warning" Visible="false"
-                                    OnClick="lnkUserGenerate_Click" 
+                                    OnClick="lnkbtnFinalSWUpdate_Click"
+                                    Visible="False" TabIndex="39">Final Update</asp:LinkButton>
+                                <asp:LinkButton ID="lnkUserGenerate" runat="server" CssClass="btn btn-warning" Visible="false"
+                                    OnClick="lnkUserGenerate_Click"
                                     TabIndex="39">User Generate</asp:LinkButton>
                             </div>
                         </div>
@@ -889,7 +934,7 @@
                                             <asp:LinkButton ID="imgbtnDeptSrch" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="imgbtnDeptSrch_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                         </div>
                                         <div class="col-md-4 pading5px">
-                                            <asp:DropDownList ID="ddlDepartment"  runat="server" CssClass="form-control inputTxt" TabIndex="2">
+                                            <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control inputTxt" TabIndex="2">
                                             </asp:DropDownList>
                                             <asp:Label ID="lblDeptDesc" runat="server" CssClass="form-control dataLblview" Height="22" Style="line-height: 1.5" Visible="false"></asp:Label>
                                         </div>
