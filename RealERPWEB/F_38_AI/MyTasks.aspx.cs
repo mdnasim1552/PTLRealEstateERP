@@ -153,6 +153,12 @@ namespace RealERPWEB.F_38_AI
 
 
             Session["tblActivities"] = ds.Tables[0];
+            DataTable dt1 = new DataTable();
+            DataView view = new DataView();
+            view.Table = ds.Tables[0]; 
+            view.RowFilter = " trackertype='99220'";
+            dt1 = view.ToTable();
+            Session["tblcompletejob"] = dt1;
             this.data_Bind();
 
         }
@@ -163,6 +169,8 @@ namespace RealERPWEB.F_38_AI
             DataTable tbltodays = (DataTable)Session["tbltodaylist"];
             DataTable tblasing = (DataTable)Session["tblassinglist"];
             DataTable tblActivities = (DataTable)Session["tblActivities"];
+            DataTable tblcompletesjob = (DataTable)Session["tblcompletejob"];
+
 
             this.gvAssingJob.DataSource = tblasing;
             this.gvAssingJob.DataBind();
@@ -172,6 +180,14 @@ namespace RealERPWEB.F_38_AI
 
             this.gvActivities.DataSource = tblActivities;
             this.gvActivities.DataBind();
+
+           
+           
+           
+            this.gv_Completejob.DataSource = tblcompletesjob;
+            this.gv_Completejob.DataBind();
+
+
 
 
 
