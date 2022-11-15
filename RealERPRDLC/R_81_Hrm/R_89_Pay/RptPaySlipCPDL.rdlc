@@ -276,6 +276,10 @@
           <DataField>ohour</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="otallow">
+          <DataField>otallow</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="oth">
           <DataField>oth</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -8050,7 +8054,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!haircutal.Value, "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!oth.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -8800,7 +8804,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!mbill.Value, "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!mbillded.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -8838,6 +8842,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -9256,7 +9261,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!oth.Value, "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!otallow.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
