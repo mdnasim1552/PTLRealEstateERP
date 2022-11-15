@@ -131,20 +131,23 @@ namespace RealERPLIB
                 string mobile = "88" + mobilenum; //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
                 string mobilewccode =  mobilenum; //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
                     string apiinfo = "";
-                  
-                switch(comcod)
+                Random rnd1 = new Random(5); //seed value 10
+                string cmsid = rnd1.Next().ToString();
+                switch (comcod)
                 {
-
-                    
                     case "3315"://Assure
                     case "3316"://Assure
                     case "3317"://Assure
                         apiinfo = ApiUrl + "&username=" + user + "&password=" + pass + "&message=" + text + "&msisdn=" + mobilewccode + "&cli=" + sender;
                         break;
 
+                    case "3101"://Assure
+                    case "3366"://lanco
+                        apiinfo = ApiUrl + "&username=" + user + "&password=" + pass + "&message=" + text + "&msisdn=" + mobilewccode + "&cli=" + sender;
+                        break;
+
                     default:
-                        apiinfo = ApiUrl + user + "&password=" + pass + "&sender=" + sender + "&SMSText=" + text + "&GSM=" + mobile + "&type=longSMS";
-                      
+                        apiinfo = ApiUrl + user + "&password=" + pass + "&sender=" + sender + "&SMSText=" + text + "&GSM=" + mobile + "&type=longSMS";                      
                         break;
                 
                 
