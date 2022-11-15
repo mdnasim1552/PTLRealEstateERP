@@ -514,6 +514,9 @@
                                                                         </asp:DropDownList>
                                                                     </div>
                                                                 </div>
+
+
+
                                                                 <div class="col-md-7">
                                                                     <div class="form-group row">
                                                                         <asp:Label ID="lblPayto" runat="server" CssClass="lblTxt lblName" Text="Pay To"></asp:Label>
@@ -529,6 +532,25 @@
                                                                     </div>
 
                                                                 </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="col-md-5">
+                                                                    <div class="form-group row">
+                                                                        <asp:Label ID="lblpayeetype" runat="server" CssClass="lblTxt lblName" Text="Payee Type"></asp:Label>
+                                                                        <asp:DropDownList ID="ddlpayeelist" runat="server" CssClass="chzn-select"  OnSelectedIndexChanged="ddlpayeelist_SelectedIndexChanged"   AutoPostBack="true" Style="width: 100px;">
+                                                                        </asp:DropDownList>
+                                                                    </div>
+                                                                </div>
+
+
+
+                                                                
                                                             </div>
                                                         </div>
 
