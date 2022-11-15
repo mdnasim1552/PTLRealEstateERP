@@ -2051,6 +2051,8 @@ namespace RealERPWEB.F_34_Mgt
 
                     case "3336":
                     case "3337":
+                   // case "3101":
+
                         result = purData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "INSERTORUPONLINEPAY",
                                     mREQNO, "", "", "", "", "", "", "",
                                     "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
@@ -2067,7 +2069,7 @@ namespace RealERPWEB.F_34_Mgt
 
 
                     case "1103": // Tanvir
-                                 // case "3101":
+                    case "3370":
                         result = purData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "INSERTORUPONLINEPAYTAN",
                             mREQNO, "", "", "", "", "", "", "",
                             "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");

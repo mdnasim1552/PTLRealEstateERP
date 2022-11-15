@@ -179,7 +179,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2219,6 +2219,7 @@
     <Content Include="F_09_LCM\LCOpening.aspx" />
     <Content Include="F_09_LCM\LcQcRecv.aspx" />
     <Content Include="F_09_LCM\LcReceive.aspx" />
+    <Content Include="F_09_PImp\BillingMBEntry.aspx" />
     <Content Include="F_09_PImp\ConBillTracking.aspx" />
     <Content Include="F_09_PImp\ImplementPlan.aspx" />
     <Content Include="F_09_PImp\InvResourceRequirement.aspx" />
@@ -4093,6 +4094,13 @@
     </Compile>
     <Compile Include="F_07_Ten\UnitConversion.aspx.designer.cs">
       <DependentUpon>UnitConversion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_09_PImp\BillingMBEntry.aspx.cs">
+      <DependentUpon>BillingMBEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_09_PImp\BillingMBEntry.aspx.designer.cs">
+      <DependentUpon>BillingMBEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_09_PImp\RptSubConTopsheetTypeWise.aspx.cs">
       <DependentUpon>RptSubConTopsheetTypeWise.aspx</DependentUpon>
