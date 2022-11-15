@@ -149,8 +149,6 @@ namespace RealERPLIB
                     default:
                         apiinfo = ApiUrl + user + "&password=" + pass + "&sender=" + sender + "&SMSText=" + text + "&GSM=" + mobile + "&type=longSMS";                      
                         break;
-                
-                
                 }
                 System.Net.ServicePointManager.Expect100Continue = false;
                 System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Ssl3 | System.Net.SecurityProtocolType.Tls;
