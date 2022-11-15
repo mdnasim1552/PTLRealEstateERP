@@ -62,9 +62,7 @@
 
                                         <div class="colMdbtn">
                                             <asp:LinkButton ID="imgbtnFindProject" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnFindProject_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
                                         </div>
-
                                     </div>
 
                                     <div class="col-md-4 pading5px ">

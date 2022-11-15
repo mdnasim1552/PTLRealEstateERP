@@ -38,9 +38,7 @@ namespace RealERPWEB.F_17_Acc
                 ((Label)this.Master.FindControl("lblTitle")).Text = "List of  issued Cheque	";
                 this.Master.Page.Title = "List of  issued Cheque";
                 this.GetBankName();
-
             }
-
         }
 
 
@@ -76,7 +74,7 @@ namespace RealERPWEB.F_17_Acc
             double totalamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(trnamt)", "")) ? 0.00 : dt.Compute("sum(trnamt)", "")));
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.ListIsssuChq>();
-            string Bankcode = (this.ddlBankName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlBankName.SelectedValue.ToString() + "%";
+            string Bankcode = this.ddlBankName.SelectedValue.ToString();
 
 
             switch (comcod)

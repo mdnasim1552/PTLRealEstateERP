@@ -778,7 +778,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Left>0.28171in</Left>
             <Height>0.84375in</Height>
-            <Width>7.04473in</Width>
+            <Width>7.04476in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -819,44 +819,11 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="printFooter">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!printFooter.Value</Value>
-                    <Style>
-                      <FontFamily>cambria</FontFamily>
-                      <FontSize>8pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>printFooter</rd:DefaultName>
-            <Top>1.30556in</Top>
-            <Left>0.28171in</Left>
-            <Height>0.2in</Height>
-            <Width>5.67049in</Width>
-            <ZIndex>2</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
         </ReportItems>
-        <Height>1.50556in</Height>
+        <Height>1.29723in</Height>
         <Style />
       </Body>
-      <Width>7.32644in</Width>
+      <Width>7.32647in</Width>
       <Page>
         <PageHeader>
           <Height>1.08681in</Height>
@@ -1028,9 +995,43 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.03125in</Height>
+          <Height>0.22778in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="printFooter">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!printFooter.Value</Value>
+                      <Style>
+                        <FontFamily>cambria</FontFamily>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>printFooter</rd:DefaultName>
+              <Top>0.01389in</Top>
+              <Left>0.28171in</Left>
+              <Height>0.2in</Height>
+              <Width>5.67049in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
           <Style>
             <Border>
               <Style>None</Style>
