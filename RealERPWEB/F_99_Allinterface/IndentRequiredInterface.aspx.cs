@@ -46,7 +46,7 @@ namespace RealERPWEB.F_99_Allinterface
             string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
             switch (comcod)
-            { 
+            {
                 default:
                     Hashtable hst = (Hashtable)Session["tblLogin"];
                     this.txtfrmdate.Text = Convert.ToDateTime(hst["opndate"].ToString()).AddDays(1).ToString("dd-MMM-yyyy");
@@ -56,8 +56,8 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
         {
-             
-            this.GetIndentRequirdData();            
+
+            this.GetIndentRequirdData();
             string view = this.RadioButtonList1.SelectedValue.ToString();
             switch (view)
             {
@@ -122,45 +122,54 @@ namespace RealERPWEB.F_99_Allinterface
 
         private void GetIndentRequirdData()
         {
-
-
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = this.GetCompCode();
-            string userid = hst["usrid"].ToString();
-            string frmdate = this.txtfrmdate.Text.Trim();
-            string todate = this.txttodate.Text.Trim();            
-            string mtrrf = "%" + this.txtmtrrf.Text.Trim().ToString() + "%";
-
-            DataSet ds2 = feaData.GetTransInfo(comcod, "[dbo].[SP_REPORT_INDENT_STATUS]", "GETINDENTREQUIREDINTERFACEDATA", frmdate, mtrrf, todate, "", "", "", "", "", "");
-            if (ds2 == null)
+            try
             {
-                return;
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = this.GetCompCode();
+                string userid = hst["usrid"].ToString();
+                string userrole = hst["usrid"].ToString();
+                string frmdate = this.txtfrmdate.Text.Trim();
+                string todate = this.txttodate.Text.Trim();
+                string mtrrf = "%" + this.txtmtrrf.Text.Trim().ToString() + "%";
+
+                DataSet ds2 = feaData.GetTransInfo(comcod, "[dbo].[SP_REPORT_INDENT_STATUS]", "GETINDENTREQUIREDINTERFACEDATA", frmdate, todate, mtrrf, userrole, userid, "", "", "", "");
+                if (ds2 == null)
+                {
+                    return;
+                }
+
+
+                this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["statuses"]) + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
+                this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["hodchecked"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>HOD Checked</div></div></div>";
+                this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["hrapproval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>HR/Admin Approval</div></div></div>";
+                this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["pendingissues"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Pending Issue</div></div></div>";
+                this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["complete"]) + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>Complete</div></div></div>";
+
+                Session["tbladdwrk"] = ds2.Tables[0];
+
+                DataTable dt = new DataTable();
+                DataView view = new DataView();
+                this.gv_IndRequired.DataSource = ds2.Tables[0];
+                this.gv_IndRequired.DataBind();
+                this.gv_hodChecked.DataSource = ds2.Tables[0];
+                this.gv_hodChecked.DataBind();
+
+                //Status
+
+                //this.Data_Bind("gvstatus", ds2.Tables[0]);
+                //this.Data_Bind("gvreqchk", ds2.Tables[1]);
+                //this.Data_Bind("gvreqaprv", ds2.Tables[2]);
+                //this.Data_Bind("gvgatepass", ds2.Tables[3]);
+                //this.Data_Bind("gvapproval", ds2.Tables[4]);
+                //this.Data_Bind("gvaudit", ds2.Tables[5]);
+                //this.Data_Bind("gvaccount", ds2.Tables[6]);
             }
-            
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
-            this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["statuses"]) + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
-            this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["hodchecked"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>HOD Checked</div></div></div>";
-            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["hrapproval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>HR/Admin Approval</div></div></div>";
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["pendingissues"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Pending Issue</div></div></div>";
-            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["complete"]) + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>Complete</div></div></div>";
-
-            Session["tbladdwrk"] = ds2.Tables[0];
-
-            DataTable dt = new DataTable();
-            DataView view = new DataView();
-            this.gv_IndRequired.DataSource = ds2.Tables[0];
-            this.gv_IndRequired.DataBind();
-
-            //Status
-
-            //this.Data_Bind("gvstatus", ds2.Tables[0]);
-            //this.Data_Bind("gvreqchk", ds2.Tables[1]);
-            //this.Data_Bind("gvreqaprv", ds2.Tables[2]);
-            //this.Data_Bind("gvgatepass", ds2.Tables[3]);
-            //this.Data_Bind("gvapproval", ds2.Tables[4]);
-            //this.Data_Bind("gvaudit", ds2.Tables[5]);
-            //this.Data_Bind("gvaccount", ds2.Tables[6]);
-
+            }
         }
 
 
@@ -179,11 +188,39 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink hlink = (HyperLink)e.Row.FindControl("hybtnidentlink");
-                
+
                 string issueno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "issueno")).ToString().Trim();
-               
-                hlink.NavigateUrl = "~/F_12_Inv/IndentMaterialRequired?ype=Entry&genno=" + issueno ;
-               
+
+                hlink.NavigateUrl = "~/F_12_Inv/IndentMaterialRequired?ype=Entry&genno=" + issueno;
+
+
+            }
+        }
+
+        protected void btndeleteIndent_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string comcod = this.GetCompCode();
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;
+                string issueno = ((Label)this.gv_IndRequired.Rows[index].FindControl("lblgvissueno")).Text.ToString();
+                bool result = feaData.UpdateTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "GETINDENTREQUIREDDELETE", issueno, "", "", "", "", "", "", "", "");
+
+                if (!result)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Delete Fail..!!');", true);
+                    return;
+                }
+
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Batch Deleted Successfully');", true);
+                this.GetIndentRequirdData();
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
             }
         }
