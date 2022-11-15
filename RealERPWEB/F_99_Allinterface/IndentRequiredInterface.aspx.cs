@@ -191,7 +191,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 string issueno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "issueno")).ToString().Trim();
 
-                hlink.NavigateUrl = "~/F_12_Inv/IndentMaterialRequired?ype=Entry&genno=" + issueno;
+                hlink.NavigateUrl = "~/F_12_Inv/IndentMaterialRequired?Type=Entry&genno=" + issueno;
 
 
             }
@@ -221,6 +221,20 @@ namespace RealERPWEB.F_99_Allinterface
             catch (Exception exp)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
+
+        protected void gv_hodChecked_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("hybtnhodidentlink");
+
+                string issueno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "issueno")).ToString().Trim();
+
+                hlink.NavigateUrl = "~/F_12_Inv/IndentMaterialRequired?Type=Checked&genno=" + issueno;
+
 
             }
         }
