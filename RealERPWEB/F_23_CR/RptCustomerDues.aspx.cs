@@ -45,11 +45,20 @@ namespace RealERPWEB.F_23_CR
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
+            string comcod = this.GetCompCode();
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
-            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Visible = true;
+            switch(comcod)
+            {
+                case "3366":
+                case "3101":
+                    ((LinkButton)this.Master.FindControl("lnkbtnNew")).Visible = true;
+                    break;
+
+            }
+           
             ((LinkButton)this.Master.FindControl("lnkbtnNew")).Text = "SMS";
             ((LinkButton)this.Master.FindControl("lnkbtnNew")).Click += new EventHandler(lnkSendSMS_Click);
             //((LinkButton)this.Master.FindControl("lnkbtnAdd")).Click += new EventHandler(lnkbtnUpdate_Click);
