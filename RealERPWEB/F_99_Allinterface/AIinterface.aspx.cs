@@ -693,17 +693,21 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void btnaddPrj_Click(object sender, EventArgs e)
         {
+            
             this.pnlSidebar.Visible = true;
             this.pnlProjectadd.Visible = true;
             this.pnlBatchadd.Visible = false;
-
+          
             this.GetEmployeeName();
 
             this.GetCountry();
             this.GetProjectDetails();
             this.GetCustomerList();
+          
             this.GetLastid();
+       
             this.LoadGrid();
+            this.IsClearAddProject();
 
         }
         private void GetEmployeeName()
@@ -792,7 +796,7 @@ namespace RealERPWEB.F_99_Allinterface
         }
         private void LoadGrid(string custid = "", string value = "", string empid = "", string doneqty = "")
         {
-
+           
             string comcod = this.GetCompCode();
             string sircode = this.lblproj.Text ?? "";
 
@@ -1524,7 +1528,7 @@ namespace RealERPWEB.F_99_Allinterface
                         dr1["assignqty"] = Convert.ToDouble("0" + this.txtquantity.Text.Trim());
                         dr1["workhour"] = Convert.ToDouble("0" + this.txtworkhour.Text.Trim());
                         dr1["isoutsrc"] = this.checkinoutsourcing.Checked;
-                        dr1["workrate"] = this.textrate.Text.Trim();
+                        dr1["workrate"] = this.textrate.Text.Trim()==""?"0": this.textrate.Text.Trim();
                         tblt01.Rows.Add(dr1);
 
                     }
@@ -1663,7 +1667,7 @@ namespace RealERPWEB.F_99_Allinterface
         {
             try
             {
-
+                string comcod = this.GetCompCode();
 
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
@@ -1672,6 +1676,24 @@ namespace RealERPWEB.F_99_Allinterface
                 string prjid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcprjid")).Text.ToString();
                 string title = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqctasktitle")).Text.ToString();
                 string assignqty = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcdoneqty")).Text.ToString();
+
+                DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "ASSIGNQTYCOUNT", prjid, batchid, "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+                DataTable dt = ds1.Tables[0];
+                double pedingannotor = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["pendingqty"].ToString());
+                double pedingqc = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qcpending"].ToString());
+                double pedingqar = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qapending"].ToString());
+                double doneannotor = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["doneqty"].ToString());
+                double doneqc = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qcdoneqty"].ToString());
+                double doneqa = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qadoneqty"].ToString());
+                this.lblcountannotid.Text = pedingannotor.ToString("#,##0;(#,##0); ");
+                this.lblcountQC.Text = pedingqc.ToString("#,##0;(#,##0); ");
+                this.lblcountQA.Text = pedingqar.ToString("#,##0;(#,##0); ");
+                this.lblDoneAnnot.Text = doneannotor.ToString("#,##0;(#,##0); ");
+                this.lblDoneQC.Text = doneqc.ToString("#,##0;(#,##0); ");
+                this.lblDoneQA.Text = doneqa.ToString("#,##0;(#,##0); ");
+
                 this.txttasktitle.Text = title;
                 this.txttasktitle.Enabled = true;
                 this.txttasktitle.ReadOnly = true;
@@ -1697,7 +1719,7 @@ namespace RealERPWEB.F_99_Allinterface
         {
             try
             {
-
+                string comcod = this.GetCompCode();
 
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
@@ -1707,6 +1729,24 @@ namespace RealERPWEB.F_99_Allinterface
                 string prjid = ((Label)this.gv_AssignQA.Rows[index].FindControl("lblqaprjid")).Text.ToString();
                 string title = ((Label)this.gv_AssignQA.Rows[index].FindControl("lblgvqatasktitle")).Text.ToString();
                 string assignqty = ((Label)this.gv_AssignQA.Rows[index].FindControl("lblgvqadoneqty")).Text.ToString();
+
+                DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "ASSIGNQTYCOUNT", prjid, batchid, "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+                DataTable dt = ds1.Tables[0];
+                double pedingannotor = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["pendingqty"].ToString());
+                double pedingqc = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qcpending"].ToString());
+                double pedingqar = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qapending"].ToString());
+                double doneannotor = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["doneqty"].ToString());
+                double doneqc = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qcdoneqty"].ToString());
+                double doneqa = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qadoneqty"].ToString());
+                this.lblcountannotid.Text = pedingannotor.ToString("#,##0;(#,##0); ");
+                this.lblcountQC.Text = pedingqc.ToString("#,##0;(#,##0); ");
+                this.lblcountQA.Text = pedingqar.ToString("#,##0;(#,##0); ");
+                this.lblDoneAnnot.Text = doneannotor.ToString("#,##0;(#,##0); ");
+                this.lblDoneQC.Text = doneqc.ToString("#,##0;(#,##0); ");
+                this.lblDoneQA.Text = doneqa.ToString("#,##0;(#,##0); ");
+
                 this.txttasktitle.Text = title;
                 this.txttasktitle.Enabled = true;
                 this.txttasktitle.ReadOnly = true;
@@ -1733,7 +1773,7 @@ namespace RealERPWEB.F_99_Allinterface
         {
             try
             {
-
+                string comcod = this.GetCompCode();
 
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
@@ -1742,6 +1782,28 @@ namespace RealERPWEB.F_99_Allinterface
                 string prjid = ((Label)this.gv_AcceptReject.Rows[index].FindControl("lblgvarprjid")).Text.ToString();
                 string title = ((Label)this.gv_AcceptReject.Rows[index].FindControl("lblgvartasktitle")).Text.ToString();
                 string assignqty = ((Label)this.gv_AcceptReject.Rows[index].FindControl("lblgvardoneqty")).Text.ToString();
+
+                DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "ASSIGNQTYCOUNT", prjid, batchid, "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+                DataTable dt = ds1.Tables[0];
+                double pedingannotor = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["pendingqty"].ToString());
+                double pedingqc = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qcpending"].ToString());
+                double pedingqar = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qapending"].ToString());
+                double doneannotor = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["doneqty"].ToString());
+                double doneqc = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qcdoneqty"].ToString());
+                double doneqa = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qadoneqty"].ToString());
+                this.lblcountannotid.Text = pedingannotor.ToString("#,##0;(#,##0); ");
+                this.lblcountQC.Text = pedingqc.ToString("#,##0;(#,##0); ");
+                this.lblcountQA.Text = pedingqar.ToString("#,##0;(#,##0); ");
+                this.lblDoneAnnot.Text = doneannotor.ToString("#,##0;(#,##0); ");
+                this.lblDoneQC.Text = doneqc.ToString("#,##0;(#,##0); ");
+                this.lblDoneQA.Text = doneqa.ToString("#,##0;(#,##0); ");
+
+
+
+
+
                 this.txttasktitle.Text = title;
                 this.txttasktitle.Enabled = true;
                 this.txttasktitle.ReadOnly = true;
@@ -2025,6 +2087,21 @@ namespace RealERPWEB.F_99_Allinterface
                 string msg = "Please Enter your Currect DateTime";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
 
+            }
+        }
+
+        protected void checkinoutsourcing_CheckedChanged(object sender, EventArgs e)
+        {
+            bool check = this.checkinoutsourcing.Checked;
+            if (!check)
+            {
+                this.textrate.Text = "";
+                
+            }
+            else
+            {
+                string rate = "80";
+                this.textrate.Text = rate;
             }
         }
     }

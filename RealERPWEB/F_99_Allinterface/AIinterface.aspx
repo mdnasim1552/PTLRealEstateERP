@@ -2664,15 +2664,16 @@
                                         <asp:Label ID="Label28" runat="server">Work Hour</asp:Label>
                                         <asp:TextBox ID="txtworkhour" runat="server" min="0" TextMode="Number" CssClass="form-control"></asp:TextBox>
                                     </div>
-                                    <div class=" col-lg-3 col-md-3 col-sm-12">
-                                        <asp:Label ID="Label29" runat="server">Per Rate</asp:Label>
-                                        <asp:TextBox ID="textrate" runat="server" Text="80" CssClass="form-control"></asp:TextBox>
-                                    </div>
-                                    <div class=" col-lg-2 col-md-2 col-sm-12 mt-4">
-                                        <asp:CheckBox runat="server" ID="checkinoutsourcing" AutoPostBack="True" ForeColor="red"></asp:CheckBox>
+                                     <div class=" col-lg-2 col-md-2 col-sm-12 mt-4">
+                                        <asp:CheckBox runat="server" ID="checkinoutsourcing" OnCheckedChanged="checkinoutsourcing_CheckedChanged" AutoPostBack="True" ForeColor="red"></asp:CheckBox>
 
                                         <asp:Label ID="Label30" runat="server">&nbsp;  Freelancing</asp:Label>
                                     </div>
+                                    <div class=" col-lg-3 col-md-3 col-sm-12">
+                                        <asp:Label ID="Label29" runat="server">Per Rate</asp:Label>
+                                        <asp:TextBox ID="textrate" runat="server"  CssClass="form-control"></asp:TextBox>
+                                    </div>
+                                   
                                     <div class=" col-lg-1 col-md-1 col-sm-12 mt-4 ">
                                         <asp:LinkButton ID="btnaddrow" runat="server" OnClick="btnaddrow_Click" CssClass=" btn btn-primary ml-auto btn-sm mt20 mr-1 float-left"><i class="fa fa-plus"></i></asp:LinkButton>
 
