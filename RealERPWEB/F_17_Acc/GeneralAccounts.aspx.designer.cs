@@ -690,6 +690,24 @@ namespace RealERPWEB.F_17_Acc
         protected global::AjaxControlToolkit.AutoCompleteExtender txtPayto_AutoCompleteExtender;
 
         /// <summary>
+        /// lblpayeetype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblpayeetype;
+
+        /// <summary>
+        /// ddlpayeelist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlpayeelist;
+
+        /// <summary>
         /// lblNaration control.
         /// </summary>
         /// <remarks>

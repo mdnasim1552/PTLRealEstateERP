@@ -136,6 +136,11 @@ namespace RealERPWEB.F_17_Acc
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
             string comadd = hst["comadd1"].ToString();
+
+
+
+            string comfadd = hst["comadd"].ToString().Replace("<br />", "\n");
+
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
@@ -860,6 +865,8 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("CompName", comnam));
                     Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
                     Rpt1.SetParameters(new ReportParameter("CompAdd", comadd));
+                    Rpt1.SetParameters(new ReportParameter("ComFAdd", comfadd));
+       
                     Rpt1.SetParameters(new ReportParameter("CustAdd", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
                     Rpt1.SetParameters(new ReportParameter("CustAdd1", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
                     Rpt1.SetParameters(new ReportParameter("custteam", "Received by: " + custteam));
