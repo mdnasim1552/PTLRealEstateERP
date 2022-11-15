@@ -113,7 +113,7 @@ namespace RealERPWEB.F_21_MKT
                     Session["Report1"] = gvDailyWorkStatus;
                     string frmdate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
                     Session["ReportName"] = "Daily_Work_Report_" + frmdate;
-                    ((HyperLink)this.gvDailyWorkStatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RDLCViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
+                    ((HyperLink)this.gvDailyWorkStatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RDLCViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
                 }
             }
             catch (Exception ex)
