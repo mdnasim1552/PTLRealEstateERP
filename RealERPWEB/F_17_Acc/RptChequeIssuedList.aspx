@@ -223,7 +223,7 @@
                                     <asp:TemplateField HeaderText="Remarks">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvnarration" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rmks")) %>'
-                                                Width="25px"></asp:Label>
+                                                Width="250px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Left" />
                                     </asp:TemplateField>
