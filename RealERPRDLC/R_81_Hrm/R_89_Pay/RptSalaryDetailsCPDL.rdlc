@@ -5519,7 +5519,7 @@ Amount</Value>
       <Width>16.43899in</Width>
       <Page>
         <PageHeader>
-          <Height>1.04581in</Height>
+          <Height>1.06249in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -5545,7 +5545,7 @@ Amount</Value>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.74305in</Top>
-              <Left>4.14459in</Left>
+              <Left>4.63626in</Left>
               <Height>0.25in</Height>
               <Width>6.54291in</Width>
               <Style>
@@ -5562,7 +5562,7 @@ Amount</Value>
               <Source>External</Source>
               <Value>=Parameters!comLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
-              <Left>6.7543in</Left>
+              <Left>7.24597in</Left>
               <Height>0.60069in</Height>
               <Width>1.375in</Width>
               <ZIndex>1</ZIndex>

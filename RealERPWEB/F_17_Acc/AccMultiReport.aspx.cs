@@ -1466,11 +1466,11 @@ namespace RealERPWEB.F_17_Acc
             string mTRNDAT2 = Request.QueryString["Date2"].ToString();
             //string withOutOpn = "withoutopening";
 
-
+            string callType = mACTCODE == mRESCODE ? "ACCOUNTSLEDGERSH" : "ACCOUNTSLEDGERSUB"; 
             string withOutOpn = Request.QueryString["opnoption"].ToString();// Request.QueryString["opnoption"].Length > 0 ? Request.QueryString["opnoption"].ToString() : "withoutopening";
 
             string spclcode = this.Request.QueryString["spclcode"] ?? "%";
-            DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_LG", "ACCOUNTSLEDGERSUB", mACTCODE, mTRNDAT1, mTRNDAT2, mRESCODE, "", "", "", withOutOpn, spclcode);
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_LG", callType, mACTCODE, mTRNDAT1, mTRNDAT2, mRESCODE, "", "", "", withOutOpn, spclcode);
 
             if (ds1.Tables[0].Rows.Count == 0)
                 return;
@@ -1510,6 +1510,7 @@ namespace RealERPWEB.F_17_Acc
             string mRESCODE = Request.QueryString["rescode"].ToString();
             string mTRNDAT1 = Request.QueryString["frmdate"].ToString();
             string mTRNDAT2 = Request.QueryString["todate"].ToString();
+
 
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "SPLEDGERPROJECT", mRESCODE, mTRNDAT1, mTRNDAT2, "", mACTCODE, "", "", "", "");
 
