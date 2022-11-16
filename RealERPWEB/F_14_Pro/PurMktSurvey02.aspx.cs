@@ -1511,7 +1511,8 @@ namespace RealERPWEB.F_14_Pro
             dv1.RowFilter = ("rsircode like '01%' or rsircode like '03%' or rsircode like '21%' or rsircode like '22%'");
             DataTable dt1 = dv1.ToTable();
 
-            string csinfo = surveyNo + " , " + Convert.ToDateTime(this.GetStdDate(this.txtCurMSRDate.Text.Trim())).ToString("dd-MMM-yyyy");
+            string csinfo = mMSRNo;
+            string csdate=Convert.ToDateTime(this.GetStdDate(this.txtCurMSRDate.Text.Trim())).ToString("dd-MMM-yyyy");
 
             var lst = dt1.DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay02>();
             var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay03>();
@@ -1540,15 +1541,7 @@ namespace RealERPWEB.F_14_Pro
 
                     i++;
                 }
-                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
-                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
 
-                Rpt1.SetParameters(new ReportParameter("csinfo", "CS No : " + csinfo));
-                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statements"));
-                Rpt1.SetParameters(new ReportParameter("comments", comments));
-                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             }
 
             else if (lst1.Count == 4)
@@ -1574,15 +1567,6 @@ namespace RealERPWEB.F_14_Pro
 
                     i++;
                 }
-                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
-                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-
-                Rpt1.SetParameters(new ReportParameter("csinfo", "CS No : " + csinfo));
-                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statements"));
-                Rpt1.SetParameters(new ReportParameter("comments", comments));
-                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             }
             else
             {
@@ -1606,16 +1590,16 @@ namespace RealERPWEB.F_14_Pro
 
                     i++;
                 }
-                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
-                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-
-                Rpt1.SetParameters(new ReportParameter("csinfo", "CS No : " + csinfo));
-                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statements"));
-                Rpt1.SetParameters(new ReportParameter("comments", comments));
-                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             }
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statements"));
+            Rpt1.SetParameters(new ReportParameter("comments", comments));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("csinfo", "CS No : " + csinfo));
+            Rpt1.SetParameters(new ReportParameter("csdate", "CS Date : " + csdate));
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +

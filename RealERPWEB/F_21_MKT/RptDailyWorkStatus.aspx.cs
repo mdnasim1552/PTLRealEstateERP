@@ -1,5 +1,6 @@
 ﻿using Microsoft.Reporting.WinForms;
 using RealERPLIB;
+using RealERPRDLC;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -111,9 +112,7 @@ namespace RealERPWEB.F_21_MKT
                 if (dt.Rows.Count > 0)
                 {
                     Session["Report1"] = gvDailyWorkStatus;
-                    string frmdate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
-                    Session["ReportName"] = "Daily_Work_Report_" + frmdate;
-                    ((HyperLink)this.gvDailyWorkStatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RDLCViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
+                    ((HyperLink)this.gvDailyWorkStatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                 }
             }
             catch (Exception ex)
@@ -146,11 +145,11 @@ namespace RealERPWEB.F_21_MKT
                 string grp = ((Label)e.Row.FindControl("lblgvGrp")).Text.Trim();
                 Label grpdesc = (Label)e.Row.FindControl("lblgvWorkStatus");
 
-                if (grp == "AAAA")
+                if (grp == "BBBB")
                 {
                     grpdesc.Attributes["style"] = "background:blue; color:white!important";
                 }
-                else if(grp == "BBBB")
+                else if(grp == "CCCC")
                 {
                     grpdesc.Attributes["style"] = "background:red; color:white!important";
                 }               
@@ -175,7 +174,7 @@ namespace RealERPWEB.F_21_MKT
 
             LocalReport Rpt1 = new LocalReport();
             var list = dt.DataTableToList<RealEntity.C_21_Mkt.ECRMClientInfo.EClassDailyWorkStatus>();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_21_MKT.RptDailyWorkStatus", list, null, null);
+            Rpt1 = RptSetupClass1.GetLocalReport("R_21_MKT.RptDailyWorkStatus", list, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
