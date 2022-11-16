@@ -55,6 +55,7 @@ namespace RealERPWEB.F_22_Sal
                     this.gvAailChart.Columns[10].Visible = false;
                     this.gvAailChart.Columns[11].Visible = false;
                     this.gvAailChart.Columns[12].Visible = false;
+                    this.gvAailChart.Columns[13].Visible = false;
                     if (comcod == "3366" || comcod == "3101")
                     {
                         this.gvAailChart.Columns[9].Visible = false;
@@ -340,6 +341,11 @@ namespace RealERPWEB.F_22_Sal
                 Label lgQty = (Label)e.Row.FindControl("lgQty");
                 Label sizeSft = (Label)e.Row.FindControl("lgSize1");
                 Label percent = (Label)e.Row.FindControl("lgper");
+                Label pamt = (Label)e.Row.FindControl("lgpamt");
+                Label utility = (Label)e.Row.FindControl("lgputility");
+                Label Cooperative = (Label)e.Row.FindControl("lgpCooperative");
+                Label famt = (Label)e.Row.FindControl("lgpfamt");
+
 
                 string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usircode2")).ToString().Trim();
 
@@ -372,7 +378,10 @@ namespace RealERPWEB.F_22_Sal
                     sizeSft.Font.Bold = true;
                     unitdesc.Style.Add("text-align", "right");
                     percent.Font.Bold = true;
-
+                    pamt.Font.Bold = true;
+                    utility.Font.Bold = true;
+                    Cooperative.Font.Bold = true;
+                    famt.Font.Bold = true;
                 }
 
 

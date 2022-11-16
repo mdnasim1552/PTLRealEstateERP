@@ -218,7 +218,7 @@
                                 CssClass="table-striped table-hover table-bordered grvContentarea" ShowFooter="True" Width="430px">
                                 <RowStyle />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Sl.No.">
+                                    <asp:TemplateField HeaderText="Sl">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo0" runat="server"
                                                 Style="text-align: right"
@@ -292,11 +292,12 @@
                                         <ItemStyle HorizontalAlign="left" />
                                     </asp:TemplateField>
                                 </Columns>
-                                <FooterStyle BackColor="#F5F5F5" />
-                                <EditRowStyle />
-                                <AlternatingRowStyle />
-                                <PagerStyle CssClass="gvPagination" />
-                                <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" />
+                                 <FooterStyle CssClass="grvFooter" />
+                            <EditRowStyle />
+                            <AlternatingRowStyle />
+                            <PagerStyle CssClass="gvPagination" />
+                            <HeaderStyle CssClass="grvHeader" />
+                            <RowStyle CssClass="grvRows" />
                             </asp:GridView>
                         </div>
                         <div class="col-md-4" id="imgpanel" runat="server" visible="false">
