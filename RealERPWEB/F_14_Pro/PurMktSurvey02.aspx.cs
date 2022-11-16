@@ -1508,7 +1508,7 @@ namespace RealERPWEB.F_14_Pro
 
 
             DataView dv1 = ds1.Tables[0].DefaultView;
-            dv1.RowFilter = ("rsircode like '01%' ");
+            dv1.RowFilter = ("rsircode like '01%' or rsircode like '03%' or rsircode like '21%' or rsircode like '22%'");
             DataTable dt1 = dv1.ToTable();
 
             string csinfo = surveyNo + " , " + Convert.ToDateTime(this.GetStdDate(this.txtCurMSRDate.Text.Trim())).ToString("dd-MMM-yyyy");

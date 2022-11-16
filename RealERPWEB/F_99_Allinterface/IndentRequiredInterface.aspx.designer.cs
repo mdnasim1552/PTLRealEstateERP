@@ -132,6 +132,15 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.Panel pnlreqchk;
 
         /// <summary>
+        /// gv_hodChecked control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_hodChecked;
+
+        /// <summary>
         /// pnlReqAprv control.
         /// </summary>
         /// <remarks>

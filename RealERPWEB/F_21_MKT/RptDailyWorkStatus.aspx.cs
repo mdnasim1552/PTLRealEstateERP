@@ -81,6 +81,10 @@ namespace RealERPWEB.F_21_MKT
 
         private object HiddenSameData(DataTable dt)
         {
+            if (dt.Rows.Count == 0)
+            {
+                return dt;
+            }
             string grp = dt.Rows[0]["grp"].ToString();
 
             for (int i = 1; i < dt.Rows.Count; i++)
@@ -109,7 +113,7 @@ namespace RealERPWEB.F_21_MKT
                     Session["Report1"] = gvDailyWorkStatus;
                     string frmdate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
                     Session["ReportName"] = "Daily_Work_Report_" + frmdate;
-                    ((HyperLink)this.gvDailyWorkStatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RDLCViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
+                    ((HyperLink)this.gvDailyWorkStatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RDLCViewer.aspx?PrintOpt=GRIDTOEXCELNEW";
                 }
             }
             catch (Exception ex)
@@ -162,10 +166,12 @@ namespace RealERPWEB.F_21_MKT
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string session = hst["session"].ToString();
+           
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string compLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             DataTable dt = (DataTable)ViewState["tbldayworkstatus"];
             string txtDate =Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
+            string teamdesc = dt.Rows[0]["teamdesc"].ToString();
 
             LocalReport Rpt1 = new LocalReport();
             var list = dt.DataTableToList<RealEntity.C_21_Mkt.ECRMClientInfo.EClassDailyWorkStatus>();
@@ -173,14 +179,15 @@ namespace RealERPWEB.F_21_MKT
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
-            Rpt1.SetParameters(new ReportParameter("compLogo", compLogo));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", compLogo));
+            Rpt1.SetParameters(new ReportParameter("teamdesc", "Employee Name : " + teamdesc));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "Daily Work Status (Employee Wise)"));
-            Rpt1.SetParameters(new ReportParameter("txtDate", txtDate));
+            Rpt1.SetParameters(new ReportParameter("txtDate","Date : "+ txtDate));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate, session)));
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_');</script>";
         }
     }
 }

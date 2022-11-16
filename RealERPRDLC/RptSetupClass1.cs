@@ -387,6 +387,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptChequeGreenwoodFSIBL": Rpt1a = SetRptChequeGreenwoodFSIBL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.PrintChqFinlayBRAC": Rpt1a = SetPrintChqFinlayBRAC(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptChequeOneBankBti": Rpt1a = SetRptChequeOneBankBti(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptChequeDhakaBankCPDL": Rpt1a = SetRptChequeDhakaBankCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 case "R_17_Acc.RptTrialBl1": Rpt1a = SetRptTrialBl1(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -440,7 +441,9 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptPrintVoucher02": Rpt1a = SetRptPrintVoucher02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptIssuedCheque": Rpt1a = SetRptIssuedCheque(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptIssuedChequeBridge": Rpt1a = SetRptIssuedChequeBridge(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-
+                case "R_17_Acc.RptIssuedChequeCP": Rpt1a = SetRptIssuedChequeCP(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptIssuedChequeCPALL": Rpt1a = SetRptIssuedChequeCPALL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                    
                 case "R_17_Acc.RptIssueClearence": Rpt1a = SetRptIssueClearence(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptIssueVsClr": Rpt1a = SetRptIssueVsClr(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptPaymentChqClearance": Rpt1a = SetRptPaymentChqClearance(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -643,6 +646,7 @@ namespace RealERPRDLC
                 case "R_21_MKT.RptProspectWorking": SetRptProspectWorking(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_MKT.RptProspectTransfer": SetRptProspectTransfer(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_MKT.ClientLetter": SetRptClientLetter(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_21_MKT.RptDailyWorkStatus": SetRptDailyWorkStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 #endregion
@@ -3900,6 +3904,21 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
+
+        private static LocalReport SetRptIssuedChequeCP(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.ListIsssuChq>)RptDataSet));
+            return Rpt1a;
+        }
+
+        private static LocalReport SetRptIssuedChequeCPALL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.ListIsssuChq>)RptDataSet));
+            return Rpt1a;
+        }
+
+
+
         private static LocalReport SetRptIssuedCheque(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.ListIsssuChq>)RptDataSet));
@@ -6068,6 +6087,21 @@ namespace RealERPRDLC
             Rpt1a.SetParameters(new ReportParameter("ProjectDesc", hshParm["prjdesc"].ToString()));
             Rpt1a.SetParameters(new ReportParameter("totalAmount", hshParm["amt"].ToString()));
             return Rpt1a;
+        } 
+        private static LocalReport SetRptChequeDhakaBankCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        { 
+            Hashtable hshParm = (Hashtable)RptDataSet;
+            Rpt1a.SetParameters(new ReportParameter("bankName", hshParm["bankName"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("payTo", hshParm["payTo"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amtWord", hshParm["amtWord"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("date", hshParm["date"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("date1", hshParm["date1"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amt", " = "+hshParm["amt"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amtWord1", hshParm["amtWord1"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("acpayee", hshParm["acpayee"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("ProjectDesc", hshParm["ProjectDesc"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("totalAmount", hshParm["totalAmount"].ToString()));
+            return Rpt1a;
         }
         private static LocalReport SetRptChequeGreenwoodSHBL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -6580,6 +6614,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptMktRequisition(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_28_Mpro.EClassMktProcurement.RptMktPurchaseRequisition>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptDailyWorkStatus(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_21_Mkt.ECRMClientInfo.EClassDailyWorkStatus>)RptDataSet));
             return Rpt1a;
         }
         private static LocalReport SetRptMktPurMarketSurvey(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)

@@ -703,6 +703,8 @@ namespace RealEntity.C_17_Acc
             public string voudat { get; set; }
             public string rmks { get; set; }
             public string pactdesc { get; set; }
+            public string chequetype { get; set; }
+            
 
 
             public ListIsssuChq() { }

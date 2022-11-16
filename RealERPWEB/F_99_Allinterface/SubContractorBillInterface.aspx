@@ -530,6 +530,7 @@
                         $(".tbMenuWrp table tr td:nth-child(1)").hide();
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();
                         $(".tbMenuWrp table tr td:nth-child(3)").show();
+                        $(".tbMenuWrp table tr td:nth-child(8)").hide();
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
                         $(".tbMenuWrp table tr td:nth-child(15)").hide();
@@ -2935,7 +2936,7 @@
                                 </asp:Panel>
                                  <asp:Panel ID="pnlMbook" runat="server">
                                        <asp:GridView ID="gvmbook" runat="server" AutoGenerateColumns="False"
-                                        ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvmbook_RowDataBound">
+                                        ShowFooter="True" CssClass=" table-striped table-bordered grvContentarea" OnRowDataBound="gvmbook_RowDataBound">
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Sl.No.">

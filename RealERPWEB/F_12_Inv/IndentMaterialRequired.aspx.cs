@@ -132,7 +132,7 @@ namespace RealERPWEB.F_12_Inv
         {
             try
             {
-                 
+
                 if (this.lbtnOk.Text == "Ok")
                 {
                     this.lbtnOk.Text = "New";
@@ -494,77 +494,102 @@ namespace RealERPWEB.F_12_Inv
 
         private void lbtnUpdate_Click(object sender, EventArgs e)
         {
-            //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-            //if (!Convert.ToBoolean(dr1[0]["entry"]))
-            //{
-            //    this.lblmsg1.Text = "You have no permission";
-            //    return;
-            //}
-            this.SaveValue();
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string PostedByid = hst["usrid"].ToString();
-            string Posttrmid = hst["compname"].ToString();
-            string PostSession = hst["session"].ToString();
-            string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-            string comcod = this.GetCompCode();
-            DataTable dt = (DataTable)ViewState["tblIssue"];
-            string curdate = this.txtaplydate.Text.ToString().Trim();
-
-            if (this.ddlPreList.Items.Count == 0)
-                this.GetLSDNo();
-            string Issueno = this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurNo1.Text.ToString().Trim().Substring(3, 2) + this.txtCurNo2.Text.ToString().Trim();
-            string Refno = this.txtrefno.Text.ToString();
-            if (Refno.Length == 0)
+            try
             {
-                string msg = "Ref. No. Should Not Be Empty";
-                this.txtrefno.Focus();
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                //if (!Convert.ToBoolean(dr1[0]["entry"]))
+                //{
+                //    this.lblmsg1.Text = "You have no permission";
+                //    return;
+                //}
+                this.SaveValue();
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string PostedByid = hst["usrid"].ToString();
+                string Posttrmid = hst["compname"].ToString();
+                string PostSession = hst["session"].ToString();
+                string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+                string comcod = this.GetCompCode();
+                DataTable dt = (DataTable)ViewState["tblIssue"];
+                string curdate = this.txtaplydate.Text.ToString().Trim();
 
-                return;
-            }
-
-            DataSet ds2 = dbaccess.GetTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "CHECKEDDUPINDREFNO", Refno, "", "", "", "", "", "", "", "");
-            if (ds2.Tables[0].Rows.Count == 0) ;
-
-
-            else
-            {
-
-                DataView dv1 = ds2.Tables[0].DefaultView;
-                dv1.RowFilter = ("issueno <>'" + Issueno + "'");
-                DataTable dt1 = dv1.ToTable();
-                if (dt1.Rows.Count == 0)
-                    ;
-                else
+                if (this.ddlPreList.Items.Count == 0)
+                    this.GetLSDNo();
+                string Issueno = this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurNo1.Text.ToString().Trim().Substring(3, 2) + this.txtCurNo2.Text.ToString().Trim();
+                string Refno = this.txtrefno.Text.ToString();
+                if (Refno.Length == 0)
                 {
-
-                    string msg = "Found Duplicate Ref. No.";
+                    string msg = "Ref. No. Should Not Be Empty";
+                    this.txtrefno.Focus();
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
                     return;
                 }
+
+                DataSet ds2 = dbaccess.GetTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "CHECKEDDUPINDREFNO", Refno, "", "", "", "", "", "", "", "");
+                if (ds2.Tables[0].Rows.Count == 0) ;
+
+
+                else
+                {
+
+                    DataView dv1 = ds2.Tables[0].DefaultView;
+                    dv1.RowFilter = ("issueno <>'" + Issueno + "'");
+                    DataTable dt1 = dv1.ToTable();
+                    if (dt1.Rows.Count == 0)
+                        ;
+                    else
+                    {
+
+                        string msg = "Found Duplicate Ref. No.";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
+                        return;
+                    }
+                }
+                string pactcode = this.ddlMaterials.SelectedValue.ToString();
+                string reqno = "";
+                bool result;
+                string type = Request.QueryString["Type"].ToString();
+                if (type == "Checked")
+                {
+                    string id = "0";
+                    string steptype = "Checked";
+                    //comcod,issueno,aprvbyid,aprvdat,aprvtrmid,aprvseson,steptype
+                    result = dbaccess.UpdateTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "INSERTAPPROVEDINDENT",id, Issueno, PostedByid, curdate, Posttrmid, PostSession, steptype, "", "", "", "", "", "", "");
+                }
+                else
+                {
+
+
+                    result = dbaccess.UpdateTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "INSORUPTXTTTOEMPINF", "indrequiredb", Issueno, curdate, Refno, PostedByid, Posttrmid, PostSession, Posteddat, pactcode, reqno, "", "", "", "");
+
+
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        string rsircode = dr["rsircode"].ToString().Trim();
+                        string spcfcod = dr["spcfcod"].ToString().Trim();
+                        string deptcode = dr["deptcode"].ToString().Trim();
+                        string issueqty = dr["issueqty"].ToString().Trim();
+                        string remarks = dr["remarks"].ToString().Trim();
+
+                        result = dbaccess.UpdateTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "INSORUPTXTTTOEMPINF", "indrequireda", Issueno, rsircode, spcfcod,
+                           deptcode, issueqty, remarks, "", "", "", "", "", "");
+                    }
+                }
+                if (!result)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + dbaccess.ErrorObject["Msg"].ToString() + "');", true);
+                    return;
+                }
+                string msgsuccess = "Updated Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msgsuccess + "');", true);
+
             }
-            string pactcode = this.ddlMaterials.SelectedValue.ToString();
-            string reqno = "";
-            bool result;
-            result = dbaccess.UpdateTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "INSORUPTXTTTOEMPINF", "indrequiredb", Issueno, curdate, Refno, PostedByid, Posttrmid, PostSession, Posteddat, pactcode, reqno, "", "", "", "");
-
-
-            foreach (DataRow dr in dt.Rows)
+            catch (Exception exp)
             {
-                string rsircode = dr["rsircode"].ToString().Trim();
-                string spcfcod = dr["spcfcod"].ToString().Trim();
-                string deptcode = dr["deptcode"].ToString().Trim();
-                string issueqty = dr["issueqty"].ToString().Trim();
-                string remarks = dr["remarks"].ToString().Trim();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
-                result = dbaccess.UpdateTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "INSORUPTXTTTOEMPINF", "indrequireda", Issueno, rsircode, spcfcod,
-                   deptcode, issueqty, remarks, "", "", "", "", "", "");
             }
-
-            string msgsuccess = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msgsuccess + "');", true);
-
         }
 
         protected void lnkPrvList_Click(object sender, EventArgs e)

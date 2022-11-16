@@ -2051,6 +2051,8 @@ namespace RealERPWEB.F_34_Mgt
 
                     case "3336":
                     case "3337":
+                   // case "3101":
+
                         result = purData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "INSERTORUPONLINEPAY",
                                     mREQNO, "", "", "", "", "", "", "",
                                     "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
@@ -2067,7 +2069,7 @@ namespace RealERPWEB.F_34_Mgt
 
 
                     case "1103": // Tanvir
-                                 // case "3101":
+                  
                         result = purData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "INSERTORUPONLINEPAYTAN",
                             mREQNO, "", "", "", "", "", "", "",
                             "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
@@ -2081,6 +2083,29 @@ namespace RealERPWEB.F_34_Mgt
                             return;
                         }
                         break;
+
+
+
+                    case "3370"://CPDL 
+                    //case "3101"://CPDL 
+
+                        if (adjcod == "000000000000")
+                        {
+                            result = purData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "INSERTORUPONLINEPAYTAN",
+                                mREQNO, "", "", "", "", "", "", "",
+                                "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+                            if (!result)
+                            {
+                                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+
+                                ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
+                                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                                return;
+                            }
+                        }
+                        break;
+
 
 
                     default:

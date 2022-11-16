@@ -36,9 +36,17 @@
           <DataField>comcod</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="deptdesc">
+          <DataField>deptdesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="dispercnt">
           <DataField>dispercnt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="expusedt">
+          <DataField>expusedt</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="grp">
           <DataField>grp</DataField>
@@ -47,6 +55,10 @@
         <Field Name="grpdesc">
           <DataField>grpdesc</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="grpsl">
+          <DataField>grpsl</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="mrfno">
           <DataField>mrfno</DataField>
@@ -82,6 +94,10 @@
         </Field>
         <Field Name="reqno">
           <DataField>reqno</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="rmrks">
+          <DataField>rmrks</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="rowid">
@@ -2066,7 +2082,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!aprovrate.Value,"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!aprovsrate.Value,"#,##0.00;(#,##0.00); "))</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2136,7 +2152,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!aprovsrate.Value,"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!aprovrate.Value,"#,##0.00;(#,##0.00); "))</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3551,7 +3567,7 @@
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!grp.Value</Value>
+                      <Value>=Fields!grpsl.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                   <TablixMembers>

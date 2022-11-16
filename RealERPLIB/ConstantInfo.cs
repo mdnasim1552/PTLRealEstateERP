@@ -347,9 +347,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0902000", "0902090", "F_09_PImp", "PurConWrkOrderEntry?", "Type=Entry", "Contractor Work Order(Acme)", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0902000", "0902092", "F_09_PImp", "PurConWrkOrderEntry02?", "Type=Entry", "Contractor Work Order(Standard)", "Project Implementation", "False", "False", "False", "False" });
 
-            tblObj.Rows.Add(new Object[] { "0902000", "0902095", "F_09_PImp", "MktMBEntry?", "Type=Entry", "MB Entry", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0902000", "0902095", "F_09_PImp", "BillingMBEntry?", "Type=Entry", "MB Entry", "Project Implementation", "False", "False", "False", "False" });
 
-            tblObj.Rows.Add(new Object[] { "0902000", "0902096", "F_09_PImp", "MktMBEntry?", "Type=Approved", "MB Entry(Approvaed)", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0902000", "0902096", "F_09_PImp", "BillingMBEntry?", "Type=Approved", "MB Entry(Approvaed)", "Project Implementation", "False", "False", "False", "False" });
 
 
 
@@ -448,6 +448,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1203000", "1202122", "F_12_Inv", "PurMTReqEntry?", "Type=ReqEdit", "MTR Requisition Edit", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1202121", "F_12_Inv", "PurMTReqEntry?", "Type=ReqApproval", "Transfer Requisition Approval", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1202123", "F_12_Inv", "PurMTReqEntry?", "Type=ReqChecked", "Transfer Requisition Checked", "Inventory", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1203000", "1202124", "F_12_Inv", "PurMTReqEntry?", "Type=MgtChecked", "MGT Requisition Checked", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203130", "F_12_Inv", "PurMTReqGatePass?", "Type=Entry", "Gate Pass", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203131", "F_12_Inv", "PurMTReqGatePass?", "Type=GpaEdit", "MTR Gate Pass Edit", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203140", "F_12_Inv", "RptMaterialStock?", "Type=inv", "Materials Stock Information(Project Wise)", "Inventory", "False", "False", "False", "False" }); ;
@@ -463,6 +464,7 @@ namespace RealERPLIB
             ///nahid
             tblObj.Rows.Add(new Object[] { "1203000", "1203185", "F_12_Inv", "IndentMaterialRequired?", "Type=Entry", "Indent Materials Required", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1203000", "1203186", "F_12_Inv", "IndentMaterialRequired?", "Type=Approve", "Indent Materials Required Approve", "Inventory", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1203000", "1203187", "F_12_Inv", "IndentMaterialRequired?", "Type=Checked", "Indent Materials Required Checked", "Inventory", "False", "False", "False", "False" });
 
             //Added 
             tblObj.Rows.Add(new Object[] { "1203000", "1203190", "F_12_Inv", "MatConversion", "", "Material Conversion", "Inventory", "False", "False", "False", "False" });
@@ -5048,7 +5050,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301050000", "11. Monthly Resource Requirement", "F_04_Bgd/RptMonthlyResRequir?Type=Report", "", true, "" });
 
 
-            mnuTbl1.Rows.Add(new Object[] { "0301060000", "11. MB Entry", "F_09_PImp/MktMBEntry?Type=Entry", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301060000", "11. MB Entry", "F_09_PImp/BillingMBEntry?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301070000", "11. Sub-Contractor Bill", "F_09_PImp/RptSubConBill?Type=SubBill&comcod=&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301080000", "12. Periodic Sub-Contractor Bill", "F_09_PImp/RptSubConBill?Type=SubConBill&comcod=&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301090000", "13. Sub-Contractor Bill Tracking", "F_09_PImp/ConBillTracking", "", true, "" });
@@ -5278,6 +5280,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000011", "05. Indent Materials Approve ", "F_12_Inv/Material_Issue?Type=Approve&genno=&prjcode=&sircode=", "", true, "" });
           
             mnuTbl1.Rows.Add(new Object[] { "0302000012", "05. Indent Materials Rrquired ", "F_12_Inv/IndentMaterialRequired?Type=Entry&genno=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000013", "05. Indent Materials Checked ", "F_12_Inv/IndentMaterialRequired?Type=Checked&genno=", "", true, "" });
 
             //mnuTbl1.Rows.Add(new Object[] { "0311000000", "", "", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0312000000", "", "", "", true, "" });
