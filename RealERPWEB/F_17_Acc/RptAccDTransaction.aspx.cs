@@ -1241,17 +1241,37 @@ namespace RealERPWEB.F_17_Acc
                 return;
             var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.AccCashBankBook1>();
             LocalReport Rpt1 = new LocalReport();
+            string Tittle = "";
 
             switch (comcod)
             {
 
                 case "3348":// Credence
-
+                    Tittle = "CASH BOOK";
                     //rptsl = new RealERPRPT.R_17_Acc.RPTSpecialLedgerRup();
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccCashbook1Credence", lst, null, null);
                     break;
 
                 default:
+
+                    string booktittle = this.ddlVoucharCash.SelectedValue.ToString();
+                    switch (booktittle)
+                    {
+                        case "C":
+                            Tittle = "CASH BOOK";
+                            break;
+
+                        case "B":
+                            Tittle = "BANK BOOK";
+                            break;
+
+                        default:
+                            Tittle = "CASH & BANK BOOK";
+                            break;
+
+
+
+                    }
 
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccCashbook1", lst, null, null);
 
@@ -1263,8 +1283,8 @@ namespace RealERPWEB.F_17_Acc
             // Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptSPLedger", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("txtCompanyName", comnam.ToUpper()));
-            Rpt1.SetParameters(new ReportParameter("txtrptTitle", "CASH BOOK"));
-            Rpt1.SetParameters(new ReportParameter("txtdate", "CASH BOOK"));
+            Rpt1.SetParameters(new ReportParameter("txtrptTitle", Tittle));
+           // Rpt1.SetParameters(new ReportParameter("txtdate", "CASH BOOK"));
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
             Rpt1.SetParameters(new ReportParameter("txtdate", "(From " + this.txtfromdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + ")"));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
