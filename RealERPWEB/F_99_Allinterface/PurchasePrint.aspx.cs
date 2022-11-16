@@ -4464,6 +4464,7 @@ namespace RealERPWEB.F_99_Allinterface
                     
                     case "3370": //Epic                        
                         Reportpath = "~/Report/RptPurchaseOrderCPDL.rdlc";
+                        porderno = wrkid;
                         break;
 
                     default:
@@ -6152,6 +6153,10 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3368":
                     PrintReq = "PrintBillFinlay";
                     break;
+                // bill epic
+                case "3367":
+                    PrintReq = "PrintBillEpic";
+                    break;
 
                 default:
                     PrintReq = "PrintBill01";
@@ -6445,10 +6450,16 @@ namespace RealERPWEB.F_99_Allinterface
                 rptbill.SetParameters(new ReportParameter("IssueRefNo", IssueRefNo));
 
             }
+            else if(pCompanyBill== "PrintBillEpic")
+            {
+                rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBillEpic", lst, null, null);
+                rptbill.EnableExternalImages = true;
+                rptbill.SetParameters(new ReportParameter("IssueNo", "Issue No: " + dt.Rows[0]["lisuno2"].ToString()));
+                rptbill.SetParameters(new ReportParameter("IssueRefNo", IssueRefNo));
+
+            }
             else
             {
-
-
                 rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBill", lst, null, null);
                 rptbill.EnableExternalImages = true;
                 rptbill.SetParameters(new ReportParameter("IssueNo", "Issue No: " + dt.Rows[0]["lisuno2"].ToString()));
@@ -6462,9 +6473,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //TextObject rptrefno = rptstk.ReportDefinition.ReportObjects["rptrefno"] as TextObject;
                 //rptrefno.Text = (dt.Rows[0]["lisurefno"].ToString().Length > 0) ? "Issue Ref No: " + dt.Rows[0]["lisurefno"].ToString() : "Issue Ref No:";
 
-
             }
-
 
 
             // var TAmt = lst.Select(p => p.billamt).Sum();

@@ -1471,6 +1471,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 DataTable dtsalsub = (DataTable)Session["tblsalsub"];
                 DataTable dtallowadd = (DataTable)Session["tblallowadd"];
                 DataTable dtallowsub = (DataTable)Session["tblallowsub"];
+                DataTable tblTimeSlot = (DataTable)Session["tblTimeSlot"];
 
 
 
@@ -1524,7 +1525,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
                 int i;
-                string gcode, gtype, gval, percnt, unit, qty, rate; ;
+                string gcode, gtype, gval, percnt, unit, qty, rate;
 
                 for (i = 0; i < dtsaladd.Rows.Count; i++)
                 {
@@ -1564,6 +1565,18 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "07005", "N", "0", projectcode, holidaytype, "", "", "", "0", "", "0", holidayrate
                     , "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
 
+                ///Time sloat Insert 
+                string slothour; string otrate;
+                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "DELETETIMESSLOT", empid, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+                for (i = 0; i < tblTimeSlot.Rows.Count; i++)
+                {
+                    slothour = Convert.ToDouble("0" + tblTimeSlot.Rows[i]["slothour"]).ToString();
+                    otrate = Convert.ToDouble("0" + tblTimeSlot.Rows[i]["otrate"]).ToString(); 
+
+                    result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTTIMESSLOT", empid, slothour, otrate, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+                }
 
 
                 if (result == false)
@@ -2189,6 +2202,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             if (this.rbtnOverTime.SelectedIndex == 4)
             {
                 this.pnlTimesslot.Visible = true;
+                this.lblfiexedRate.Visible = false;
+                this.txtfixedRate.Visible = false;
+
+            }
+            else
+            {
+                this.pnlTimesslot.Visible = false;
+                this.lblfiexedRate.Visible = true;
+                this.txtfixedRate.Visible = true;
 
             }
 
@@ -2414,9 +2436,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.lblmsg2.Text = "Data Is Not Updated";
                     return;
                 }
-                 
+
             }
-             
+
 
             this.lblmsg2.Text = "Updated Successfully";
 
@@ -2546,7 +2568,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
         private void DataSlotOTBind()
         {
-            DataTable tbl1 = (DataTable)ViewState["tblTimeSlot"];
+            DataTable tbl1 = (DataTable)Session["tblTimeSlot"];
 
             this.gvTimsSlot.DataSource = tbl1;
             this.gvTimsSlot.DataBind();
@@ -2556,7 +2578,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             DataTable tblTimeSlot = new DataTable();
             tblTimeSlot.Columns.Add("slothour", Type.GetType("System.Double"));
             tblTimeSlot.Columns.Add("otrate", Type.GetType("System.Double"));
-            ViewState["tblTimeSlot"] = tblTimeSlot;
+            Session["tblTimeSlot"] = tblTimeSlot;
         }
 
 
@@ -2621,7 +2643,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
         protected void lnkAdd_Click(object sender, EventArgs e)
         {
-            DataTable tbl1 = (DataTable)ViewState["tblTimeSlot"];
+            DataTable tbl1 = (DataTable)Session["tblTimeSlot"];
             string slothour = this.txtHourTimeSlot.Text;
             string SlototRae = this.txtRateTimeSlot.Text;
             DataRow[] dr2 = tbl1.Select("slothour = '" + slothour + "'");
@@ -2632,8 +2654,31 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 dr1["otrate"] = Convert.ToDouble("0" + SlototRae.Trim());
                 tbl1.Rows.Add(dr1);
             }
-            ViewState["tblTimeSlot"] = tbl1;
+            Session["tblTimeSlot"] = tbl1;
             this.DataSlotOTBind();
+        }
+
+        protected void TImeSlotlnkDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string comcod = this.GetCompCode();
+
+                DataTable dt = (DataTable)Session["tblTimeSlot"];
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;
+                
+                    dt.Rows[index].Delete();
+                
+                Session["tblTimeSlot"] = dt;
+                this.DataSlotOTBind();
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
         }
     }
 }

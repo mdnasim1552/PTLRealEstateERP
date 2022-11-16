@@ -710,6 +710,8 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double swf { get; set; }
             public double subfee { get; set; }
             public double  otallow { get; set; }
+            public double tallow { get; set; }
+
 
             public SalaryPaySlip()
             {
