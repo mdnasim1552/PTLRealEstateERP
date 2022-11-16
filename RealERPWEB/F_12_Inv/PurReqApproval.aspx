@@ -396,11 +396,7 @@
                                             <asp:CheckBox ID="chkvmrno" runat="server" Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chkmv"))=="True" %>'
                                                 Width="15px" />
                                         </ItemTemplate>
-
-
                                         <HeaderTemplate>
-
-
                                             <asp:CheckBox ID="chkAll" runat="server" AutoPostBack="True"
                                                 OnCheckedChanged="chkAll_CheckedChanged" Width="15px" />
 
@@ -409,7 +405,8 @@
                                     <asp:TemplateField HeaderText="" Visible="false">
                                         <ItemTemplate>
                                             <asp:LinkButton ID="lbok" runat="server" CommandArgument="lbok" OnClientClick="return Confirmation();" OnClick="lbok_Click"
-                                                Width="15px">OK</asp:LinkButton>
+                                                Width="35px" Text="Update" >
+                                            </asp:LinkButton>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
@@ -481,7 +478,7 @@
                                             <asp:HyperLink ID="hlnkgvSurvey" runat="server" BorderColor="#99CCFF" BorderStyle="none"
                                                 Font-Size="11px" Style="background-color: Transparent; color: Black;" Font-Underline="false"
                                                 Target="_blank" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "msrno"))%>'
-                                                Width="60px">
+                                                Width="80px">
                                             </asp:HyperLink>
 
 
