@@ -189,7 +189,12 @@ namespace RealERPWEB.F_24_CC
                     case "58005":
                     case "58007":
                     case "58009":
-                    case "58011":            
+                    case "58011":
+                    case "58013":
+                    case "58015":
+                    case "58017":
+                    case "58019":
+                    case "58021":
 
                         ((TextBox)this.gvCustLCInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         break;
@@ -289,7 +294,8 @@ namespace RealERPWEB.F_24_CC
                     
                    
 
-                    if (Gcode == "58001" || Gcode == "58003" || Gcode == "58005" || Gcode == "58007"|| Gcode == "58009" || Gcode == "58011")
+                    if (Gcode == "58001" || Gcode == "58003" || Gcode == "58005" || Gcode == "58007"|| Gcode == "58009" || Gcode == "58011" || Gcode == "58013" || 
+                        Gcode == "58015" || Gcode == "58017" || Gcode == "58019" || Gcode == "58021")
                     {
                         Gvalue = (((TextBox)this.gvCustLCInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? "01-Jan-1900" : ((TextBox)this.gvCustLCInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
                     }
