@@ -1382,7 +1382,7 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>1.475in</Top>
-            <Height>1.56375in</Height>
+            <Height>1.56374in</Height>
             <Width>7.81376in</Width>
             <ZIndex>1</ZIndex>
             <Style>
@@ -2388,7 +2388,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>= BDT</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
                                   </Style>
