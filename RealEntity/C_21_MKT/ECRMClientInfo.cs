@@ -127,6 +127,8 @@ namespace RealEntity.C_21_Mkt
             public DateTime nfollowupdate { get; set; }
             public string followup { get; set; }
             public string followupdesc { get; set; }
+            public string statuslead { get; set; }
+            public string statusleadp { get; set; }
             public EClassDailyWorkStatus() { }
         }
 

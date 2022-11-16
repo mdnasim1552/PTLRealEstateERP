@@ -42,7 +42,6 @@
                  $('.chzn-select').chosen({ search_contains: true });
                  var comcod =<%=this.GetComeCode()%>;
 
-                 VisibilitycomNotification();
 
                  $('.lbtnschedule').click(function () {
 
@@ -305,7 +304,7 @@
         }
 
         .card-header span {
-            font-size: 1.5rem;
+            font-size: 14px;
             font-weight: bolder;
         }
 
@@ -725,7 +724,9 @@
                         </div>
                         <div class="col-md-8" id="pnlfollowup" runat="server">
                             <div class="card mt-3 mb-3">
-                                <div class="card-header bg-light"><span class="font-weight-bold text-muted">Follow Up Summary</span></div>
+      
+                                <div class="card-header bg-light"><span class="font-weight-bold text-muted">FollowUp Summary</span></div>
+                              <div id="pnlflw" runat="server" visible="false" class="card-header bg-light"><span class="font-weight-bold text-muted"><asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ID="lbtntfollowup" data-target="#followup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton></span></div>
                                 <div class="card-body">
                                     <asp:Repeater ID="rpclientinfo" runat="server">
                                         <HeaderTemplate>
@@ -876,8 +877,9 @@
 
 
 
-                                                            <asp:TextBox ID="txtgvValdis" runat="server" BorderWidth="0" BackColor="Transparent" Font-Size="14px"
+                                                            <asp:TextBox ID="txtgvValdis" runat="server" BorderWidth="0" BackColor="Transparent" Font-Size="14px" Style="width: 80px; float: left;"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
+
 
                                                             <asp:TextBox ID="txtgvdValdis" CssClass="disable_past_dates" runat="server" BorderWidth="0" Style="width: 80px; float: left;" BackColor="Transparent"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
@@ -1013,7 +1015,7 @@
 
 
                                                             <asp:Panel ID="pnlVisit" runat="server" Visible="false">
-                                                                <asp:DropDownList ID="ddlVisit" Visible="false" runat="server" CssClass="chzn-select inputTxt form-control" Style="width: 300px !important;">
+                                                                <asp:DropDownList ID="ddlVisit" Visible="false" runat="server" CssClass="form-control" Style="width: 300px !important;">
                                                                 </asp:DropDownList>
                                                             </asp:Panel>
 
