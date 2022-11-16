@@ -31,10 +31,11 @@ namespace RealERPWEB.F_21_MKT
                 this.GetFollow();
                 this.GetParcipants();
                 this.GetAllSubdata();
-
-
-
-
+                this.GetVisitoraStatinfo();
+                this.GetProjectAUnit();
+              
+                this.IsTeamLeader();
+               
             }
         }
         public string GetComeCode()
@@ -117,6 +118,7 @@ namespace RealERPWEB.F_21_MKT
            
 
         }
+        
 
 
         private void GETEMPLOYEEUNDERSUPERVISED()
@@ -240,7 +242,19 @@ namespace RealERPWEB.F_21_MKT
 
 
         }
-
+        bool IsTeamLeader()
+        {
+            string comcod = GetComeCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userrole = hst["userrole"].ToString();
+            string empid = hst["empid"].ToString();
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETEMPLOYEEUNDERSUPERVISED", empid, "", "", "", "", "", "", "", "");
+            DataTable dt = ds1.Tables[1];
+            if (dt.Rows.Count > 0 || userrole == "1")
+                return true;
+            else
+                return false;
+        }
         private DataTable HiddenSameData(DataTable dt1)
         {
             if (dt1.Rows.Count == 0)
@@ -271,7 +285,6 @@ namespace RealERPWEB.F_21_MKT
             ViewState["tblproaunit"] = dss;
             dss.Dispose();
         }
-
         private void GetVisitoraStatinfo()
         {
             ViewState.Remove("tblvisitor");
@@ -281,6 +294,7 @@ namespace RealERPWEB.F_21_MKT
             ViewState["tblvisiastator"] = dt;
 
         }
+       
 
         private void GetFollow()
         {
