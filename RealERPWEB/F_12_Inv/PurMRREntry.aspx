@@ -274,6 +274,10 @@
 
 
                                 <asp:TemplateField HeaderText="Req No.">
+                                    <FooterTemplate>
+                                        <asp:LinkButton ID="lbtnResFooterTotal" runat="server"
+                                            OnClick="lbtnResFooterTotal_Click" CssClass="btn btn-primary primarygrdBtn">Total :</asp:LinkButton>
+                                    </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvReqno" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno1")) %>'
                                             Width="70px"></asp:Label>
@@ -335,8 +339,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="This MRR">
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnResFooterTotal" runat="server"
-                                            OnClick="lbtnResFooterTotal_Click" CssClass="btn btn-primary primarygrdBtn">Total :</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnUpdateMRR" runat="server" OnClientClick="return Confirmation()" OnClick="lbtnUpdateMRR_Click" CssClass="btn btn-danger primarygrdBtn">Update</asp:LinkButton>
                                     </FooterTemplate>
 
                                     <ItemTemplate>
@@ -348,9 +351,6 @@
                                     <ItemStyle HorizontalAlign="Right" BackColor="#69AEE7" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Rate">
-                                    <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnUpdateMRR" runat="server" OnClientClick="return Confirmation()" OnClick="lbtnUpdateMRR_Click" CssClass="btn btn-danger primarygrdBtn">Update</asp:LinkButton>
-                                    </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvMRRRate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                             BorderWidth="0px" Font-Size="11px" Style="text-align: right; background-color: Transparent"

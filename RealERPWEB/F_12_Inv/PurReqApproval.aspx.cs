@@ -321,7 +321,7 @@ namespace RealERPWEB.F_12_Inv
                 case "1205": //p2p
                 case "3351": //p2p
                 case "3352": //p2p
-                case "3101": 
+                case "3101":
                 case "3353": //manama
                 case "3370": //cpdl
                     length = "length";
@@ -420,12 +420,6 @@ namespace RealERPWEB.F_12_Inv
         {
             DataTable dt = (DataTable)Session["tblreq"];
 
-
-
-
-
-
-
             this.dgv1.DataSource = dt;
             this.dgv1.DataBind();
             if (dt.Rows.Count > 0)
@@ -434,9 +428,6 @@ namespace RealERPWEB.F_12_Inv
                 ((TextBox)this.dgv1.Rows[0].FindControl("txtgvsupRat")).Focus();
                 ((LinkButton)this.dgv1.FooterRow.FindControl("lbtnFinalUpdate")).Visible = ((this.Request.QueryString["Type"].ToString().Trim() == "VenSelect")
                                                                                            || (this.Request.QueryString["Type"].ToString().Trim() == "RateInput") || (this.Request.QueryString["Type"].ToString().Trim() == "FirstRecom") || (this.Request.QueryString["Type"].ToString().Trim() == "SecRecom") || (this.Request.QueryString["Type"].ToString().Trim() == "ThirdRecom"));
-
-
-
             }
             for (int i = 0; i < this.dgv1.Rows.Count; i++)
             {
@@ -487,6 +478,8 @@ namespace RealERPWEB.F_12_Inv
                     }
                     ((HyperLink)dgv1.FooterRow.FindControl("HypMakeSurvey")).Visible = true;
                     ((HyperLink)dgv1.FooterRow.FindControl("HypMakeSurvey")).NavigateUrl = "~/F_12_Inv/LinkMktSurvey.aspx?reqno=" + reqno + rescode;
+                    break;
+                default:
                     break;
             }
 
@@ -1445,7 +1438,7 @@ namespace RealERPWEB.F_12_Inv
                 HyperLink resourceLink = (HyperLink)e.Row.FindControl("lblgvResDesc");
                 TextBox supRat = (TextBox)e.Row.FindControl("txtgvsupRat");
 
-                Label boqrate = (Label)e.Row.FindControl("lblgvboqRate");
+                LinkButton lbtnok = (LinkButton)e.Row.FindControl("lbok"); 
 
 
                 string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "gpsl")).ToString().Trim();
@@ -1506,6 +1499,8 @@ namespace RealERPWEB.F_12_Inv
                     ddl4.DataSource = dtp;
                     ddl4.DataBind();
                     ddl4.SelectedValue = ptype;
+                    lbtnok.Visible = true;
+                    lbtnok.Style.Add("color", "blue");
                 }
                 else
                 {
@@ -1514,14 +1509,9 @@ namespace RealERPWEB.F_12_Inv
                     ddl3.Visible = false;
                     ddl4.Visible = false;
                     supRat.Visible = false;
+                    lbtnok.Visible = false;
+
                 }
-
-
-
-
-
-
-
 
 
                 if (code == "")
@@ -1534,7 +1524,7 @@ namespace RealERPWEB.F_12_Inv
                     prodesc.Font.Bold = true;
                     amt.Font.Bold = true;
                     //sign.Font.Bold = true;
-                    prodesc.Style.Add("text-align", "right");
+                    prodesc.Style.Add("text-align", "right") ;
 
                 }
                 survey.Style.Add("color", "blue");
@@ -1561,7 +1551,7 @@ namespace RealERPWEB.F_12_Inv
                 }
                 else
                 {
-                    survey.NavigateUrl = "~/F_12_Inv/LinkMktSurvey.aspx?reqno=" + reqno + "&msrno="+ msrno;
+                    survey.NavigateUrl = "~/F_12_Inv/LinkMktSurvey.aspx?reqno=" + reqno + "&msrno=" + msrno;
                     // survey.NavigateUrl = "~/F_12_Inv/LinkShowMktSurvey.aspx?Type=TarVsAch&msrno=" + msrno;
 
                 }
@@ -2416,7 +2406,7 @@ namespace RealERPWEB.F_12_Inv
                                     //string frmname = "PurReqApproval?Type=Approval";
 
                                     string empid = "930100101086"; // MD Sir Employee ID
-                                   // string empid = "930100101005";
+                                                                   // string empid = "930100101005";
                                     var ds1 = accData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETSUPERVISERMAIL", empid, "", "", "", "", "", "", "", "");
 
                                     if (ds1 == null)
@@ -2426,8 +2416,8 @@ namespace RealERPWEB.F_12_Inv
                                     string tomail = ds1.Tables[0].Rows[0]["mail"].ToString();
                                     string idcard = (string)ds1.Tables[1].Rows[0]["idcard"];
 
-                                    string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath ;
-                                    string currentptah = "/F_12_Inv/PurReqApproval?Type=Approval&prjcode="+ projcod + "&genno="+ reqno + "&comcod=" + comcod + "&usrid=" + suserid;
+                                    string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath;
+                                    string currentptah = "/F_12_Inv/PurReqApproval?Type=Approval&prjcode=" + projcod + "&genno=" + reqno + "&comcod=" + comcod + "&usrid=" + suserid;
                                     string totalpath = uhostname + currentptah;
 
                                     string maildescription = "Dear Sir, Please check details information <br>"

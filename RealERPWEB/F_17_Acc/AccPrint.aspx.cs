@@ -3068,24 +3068,46 @@ namespace RealERPWEB.F_17_Acc
                 DataSet _ReportDataSet = AccData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "PRINTCHECK", vounum, "", "", "", "", "", "", "", "");
                 if (_ReportDataSet == null)
                     return;
+                //DataTable dt1 = _ReportDataSet.Tables[0];
+                //string woutchq1 = this.Request.QueryString["woutchqdat"].ToString();
+
+                //string woutchqdat = (this.Request.QueryString["woutchqdat"] == "0") ? "" : "woutchqdat";
+
+
+                //string voudat = woutchqdat.Length > 0 ? "01011900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("ddMMyyyy");
+                //string voudat1 = woutchqdat.Length > 0 ? "01011900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("dd.MM.yyyy");
+
+                //if (voudat.Trim() == "01011900")
+                //{
+                //    voudat = "          ";
+                //}
+                //if (voudat1.Trim() == "01.01.1900")
+                //{
+                //    voudat1 = "";
+                //}
+
+
                 DataTable dt1 = _ReportDataSet.Tables[0];
-                // string woutchq1 = this.Request.QueryString["woutchqdat"].ToString();
-
-                string woutchqdat = (this.Request.QueryString["woutchqdat"] == "0") ? "" : "woutchqdat";
-
-
-                string voudat = woutchqdat.Length > 0 ? "01011900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("ddMMyyyy");
-                string voudat1 = woutchqdat.Length > 0 ? "01011900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("dd.MM.yyyy");
-
-                if (voudat.Trim() == "01011900")
+                string woutchqdat = "", voudat = "", voudat1 = "";
+                if (Request.QueryString.AllKeys.Contains("woutchqdat"))
                 {
-                    voudat = "          ";
+                    woutchqdat = (this.Request.QueryString["woutchqdat"] == "0") ? "" : "woutchqdat";
+                    voudat = woutchqdat.Length > 0 ? "01/01/1900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("ddMMyyyy");
+                    voudat1 = woutchqdat.Length > 0 ? "01/01/1900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("dd.MM.yyyy");
+                    if (voudat.Trim() == "01/01/1900")
+                    {
+                        voudat = "";
+                    }
+                    if (voudat1.Trim() == "01/01/1900")
+                    {
+                        voudat1 = "";
+                    }
                 }
-                if (voudat1.Trim() == "01.01.1900")
+                else
                 {
-                    voudat1 = "";
+                    voudat = Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("ddMMyyyy");
+                    voudat1 = Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("dd.MM.yyyy");
                 }
-
                 string bankcode = dt1.Rows[0]["bnkcode"].ToString();
                 string payto = dt1.Rows[0]["payto"].ToString();
                 double amt = Convert.ToDouble(dt1.Rows[0]["tamt"].ToString());
@@ -3183,10 +3205,10 @@ namespace RealERPWEB.F_17_Acc
                 {
                     rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeDhakaBankCPDL", hshtbl, null, null);
                 }
-                //else if (bankcode == "SBL")
-                //{
-                //    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeSBL", hshtbl, null, null);
-                //}
+                else if (bankcode == "UCB")
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeUCBCPDL", hshtbl, null, null);
+                }
                 else
                 {
                     rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeDhakaBankCPDL", hshtbl, null, null);
