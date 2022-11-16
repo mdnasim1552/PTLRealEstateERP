@@ -82,32 +82,7 @@ namespace RealERPWEB.F_17_Acc
             return (hst["comcod"].ToString());
 
         }
-        private string GetCompCallType()
-        {
-
-            string comcod = this.GetCompCode();
-            string CallType = "";
-            switch (comcod)
-            {
-                case "1301":
-                case "2301":
-                case "3301":
-                    CallType = "GETBILlACCSAN";
-                    break;
-
-
-                default:
-                    CallType = "GETBILlACC";
-                    break;
-
-
-
-
-            }
-
-            return CallType;
-
-        }
+     
         private void LoadBillCombo()
         {
 
@@ -115,7 +90,7 @@ namespace RealERPWEB.F_17_Acc
             string Billno = (this.Request.QueryString["genno"].ToString()).Length == 0 ? "%" + this.txtBillno.Text.Trim() + "%" : this.Request.QueryString["genno"].ToString() + "%"; //"%" + this.txtBillno.Text.Trim() + "%";
                                                                                                                                                                                       // string Billno ="%" +this.txtBillno.Text.Trim()+"%";
             string date = (this.Request.QueryString["Date1"].ToString()).Length == 0 ? Convert.ToDateTime(this.txtdate.Text.Trim()).ToString("dd-MMM-yyyy") : this.Request.QueryString["Date1"].ToString();
-            //string CalType = this.GetCompCallType();
+          
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "GETOTHERBILL", Billno, date, "", "", "", "", "", "", "");
             this.ddlBillList.Items.Clear();
             this.ddlBillList.DataTextField = "textfield";
@@ -981,14 +956,39 @@ namespace RealERPWEB.F_17_Acc
             return excludetax;
 
         }
+
+        private string GetCompCallType()
+        {
+            string CallType = "";
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+
+                case "3370":// CPDL
+                case "3101"://
+                    CallType = "GETACCOTHERPURCHASESADJ";
+                    break;
+
+
+                default:
+                    CallType = "GETACCOTHERPURCHASES";
+                    break;
+            }
+
+            return CallType;
+
+
+
+        }
         protected void lbtnSelectBill_Click(object sender, EventArgs e)
         {
             ViewState.Remove("tblt01");
             this.CreateTable();
             string comcod = this.GetCompCode();
+            string CallType = this.GetCompCallType();
             // string ExcludeTax = this.CompanyPurchase();
             string billid = this.ddlBillList.SelectedValue.ToString();
-            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "GETACCOTHERPURCHASES", billid,
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", CallType, billid,
                           "", "", "", "", "", "", "", "");
             DataTable dt1 = ds1.Tables[0];
             DataTable tblt01 = (DataTable)ViewState["tblt01"];

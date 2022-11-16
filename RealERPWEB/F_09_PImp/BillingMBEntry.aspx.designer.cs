@@ -51,31 +51,31 @@ namespace RealERPWEB.F_09_PImp
         protected global::AjaxControlToolkit.CalendarExtender txtCurOrderDate_CalendarExtender;
 
         /// <summary>
-        /// lblOrderNo control.
+        /// lblmbno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblOrderNo;
+        protected global::System.Web.UI.WebControls.Label lblmbno;
 
         /// <summary>
-        /// lblCurOrderNo1 control.
+        /// lblmbno1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCurOrderNo1;
+        protected global::System.Web.UI.WebControls.Label lblmbno1;
 
         /// <summary>
-        /// txtCurOrderNo2 control.
+        /// txtmbno2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCurOrderNo2;
+        protected global::System.Web.UI.WebControls.TextBox txtmbno2;
 
         /// <summary>
         /// lblRefNo control.
@@ -87,13 +87,13 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.Label lblRefNo;
 
         /// <summary>
-        /// txtOrderRefNo control.
+        /// txtRefNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOrderRefNo;
+        protected global::System.Web.UI.WebControls.TextBox txtRefNo;
 
         /// <summary>
         /// lbtnOk control.
@@ -175,6 +175,33 @@ namespace RealERPWEB.F_09_PImp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvcorder;
+
+        /// <summary>
+        /// hdnflrcod control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnflrcod;
+
+        /// <summary>
+        /// hdnorderno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnorderno;
+
+        /// <summary>
+        /// hdnrsircode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnrsircode;
 
         /// <summary>
         /// lblmobile control.

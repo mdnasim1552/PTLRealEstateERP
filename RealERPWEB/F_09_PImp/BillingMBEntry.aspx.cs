@@ -58,13 +58,12 @@ namespace RealERPWEB.F_09_PImp
 
                     else
                     {
-
-
-
+                        this.hdnorderno.Value = ordero;
 
                     }
 
                 }
+               
 
             }
         }
@@ -121,11 +120,11 @@ namespace RealERPWEB.F_09_PImp
         private void lnkPrint_Click2(object sender, EventArgs e)
         {
 
-            string orderno = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
-            string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
-            string currentptah = "PurchasePrint.aspx?Type=MktOrderPrint&orderno=" + orderno;
-            string totalpath = hostname + currentptah;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
+            //string orderno = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
+            //string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
+            //string currentptah = "PurchasePrint.aspx?Type=MktOrderPrint&orderno=" + orderno;
+            //string totalpath = hostname + currentptah;
+            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
 
         }
 
@@ -179,17 +178,17 @@ namespace RealERPWEB.F_09_PImp
                 this.lbtnPrevOrderList.Visible = true;
                 this.ddlPrevOrderList.Visible = true;
                 this.ddlPrevOrderList.Items.Clear();
-                this.lblCurOrderNo1.Text = "POR" + DateTime.Today.ToString("MM") + "-";
+              
                 this.txtCurOrderDate.Enabled = true;
-                this.txtOrderRefNo.Text = "";
-                this.txtOrderRefNo.ReadOnly = false;
+                this.txtRefNo.Text = "";
+               
                 this.lbtnOk.Text = "Ok";
                 return;
             }
             this.lblpreviousmb.Visible = false;
             this.lbtnPrevOrderList.Visible = false;
             this.ddlPrevOrderList.Visible = false;
-            this.txtCurOrderNo2.ReadOnly = true;
+            this.txtmbno2.ReadOnly = true;
             this.lbtnOk.Text = "New";
             this.Get_MB_Info();
         }
@@ -213,8 +212,8 @@ namespace RealERPWEB.F_09_PImp
                     return;
                 if (ds1.Tables[0].Rows.Count > 0)
                 {
-                    this.lblCurOrderNo1.Text = ds1.Tables[0].Rows[0]["maxno1"].ToString().Substring(0, 6);
-                    this.txtCurOrderNo2.Text = ds1.Tables[0].Rows[0]["maxno1"].ToString().Substring(6, 5);
+                    this.lblmbno1.Text = ds1.Tables[0].Rows[0]["maxno1"].ToString().Substring(0, 6);
+                    this.txtmbno2.Text = ds1.Tables[0].Rows[0]["maxno1"].ToString().Substring(6, 5);
                     this.ddlPrevOrderList.DataTextField = "maxno1";
                     this.ddlPrevOrderList.DataValueField = "maxno";
                     this.ddlPrevOrderList.DataSource = ds1.Tables[0];
@@ -264,6 +263,7 @@ namespace RealERPWEB.F_09_PImp
                 return;
 
             ViewState["tblmb"] = ds1.Tables[0];
+           
             this.GetCorderListInfo();
             if (mMBNo == "NEWMB")
             {
@@ -273,8 +273,8 @@ namespace RealERPWEB.F_09_PImp
                     return;
                 if (ds1.Tables[0].Rows.Count > 0)
                 {
-                    this.lblCurOrderNo1.Text = ds1.Tables[0].Rows[0]["maxno1"].ToString().Substring(0, 6);
-                    this.txtCurOrderNo2.Text = ds1.Tables[0].Rows[0]["maxno1"].ToString().Substring(6, 5);
+                    this.lblmbno1.Text = ds1.Tables[0].Rows[0]["maxno1"].ToString().Substring(0, 6);
+                    this.txtmbno2.Text = ds1.Tables[0].Rows[0]["maxno1"].ToString().Substring(6, 5);
                 }
 
 
@@ -282,9 +282,10 @@ namespace RealERPWEB.F_09_PImp
 
             }
 
-            this.lblCurOrderNo1.Text = ds1.Tables[2].Rows[0]["orderno1"].ToString().Substring(0, 6);
-            this.txtCurOrderNo2.Text = ds1.Tables[2].Rows[0]["orderno1"].ToString().Substring(6, 5);
-            this.txtOrderRefNo.Text = ds1.Tables[2].Rows[0]["pordref"].ToString();
+            this.hdnorderno.Value= ds1.Tables[2].Rows[0]["orderno"].ToString().Substring(0, 6); 
+            this.lblmbno1.Text = ds1.Tables[2].Rows[0]["orderno1"].ToString().Substring(0, 6);
+            this.txtmbno2.Text = ds1.Tables[2].Rows[0]["orderno1"].ToString().Substring(6, 5);
+            this.txtRefNo.Text = ds1.Tables[2].Rows[0]["pordref"].ToString();
 
 
             this.txtCurOrderDate.Text = Convert.ToDateTime(ds1.Tables[2].Rows[0]["orderdat"]).ToString("dd.MM.yyyy");
@@ -370,23 +371,7 @@ namespace RealERPWEB.F_09_PImp
             // ViewState["tblOrder"] = tbl1;
 
         }
-        private void CreateDataTable()
-        {
-
-            ViewState.Remove("tblapproval");
-            DataTable tblt01 = new DataTable();
-            tblt01.Columns.Add("fappid", Type.GetType("System.String"));
-            tblt01.Columns.Add("fappdat", Type.GetType("System.String"));
-            tblt01.Columns.Add("fapptrmid", Type.GetType("System.String"));
-            tblt01.Columns.Add("fappseson", Type.GetType("System.String"));
-            tblt01.Columns.Add("secappid", Type.GetType("System.String"));
-            tblt01.Columns.Add("secappdat", Type.GetType("System.String"));
-            tblt01.Columns.Add("secapptrmid", Type.GetType("System.String"));
-            tblt01.Columns.Add("secappseson", Type.GetType("System.String"));
-            ViewState["tblapproval"] = tblt01;
-        }
-
-
+     
 
 
 
@@ -610,6 +595,9 @@ namespace RealERPWEB.F_09_PImp
                 string flrcod = ((DataTable)ViewState["tblcorder"]).Rows[index]["flrcod"].ToString();
                 string flrdes = ((DataTable)ViewState["tblcorder"]).Rows[index]["flrdes"].ToString();
                 DataTable dt = (DataTable)ViewState["tblmb"];
+                this.hdnrsircode.Value = rsircode;
+                this.hdnflrcod.Value = flrcod;
+
                 DataRow[] dr1 = dt.Select("rsircode='" + rsircode + "' and flrcod='" + flrcod + "'");
                 int sl = 1;
                 if (dr1.Length == 0)
@@ -631,6 +619,7 @@ namespace RealERPWEB.F_09_PImp
                         dradd["height"] = 0.00;
                         dradd["uweight"] = 0.00;
                         dradd["tweight"] = 0.00;
+                        dradd["remarks"] = "";
                         dt.Rows.Add(dradd);
                         sl++;
 
@@ -661,9 +650,18 @@ namespace RealERPWEB.F_09_PImp
         {
             try
             {
-                this.gvdetails.DataSource = (DataTable)ViewState["tblmb"];
+
+               
+                string  rsircode = this.hdnrsircode.Value;
+                string flrcod = this.hdnflrcod.Value;
+                DataTable  dt = ((DataTable)ViewState["tblmb"]).Copy();
+                DataView dv1 = dt.DefaultView;
+                dv1.RowFilter = ("rsircode='" + rsircode + "' and flrcod='" + flrcod + "'");
+                this.gvdetails.DataSource = dv1.ToTable() ;
                 this.gvdetails.DataBind();
-                this.FooterCalCulation();
+
+                
+                 this.FooterCalCulation(dv1.ToTable());
             }
             catch (Exception ex)
             {
@@ -677,13 +675,13 @@ namespace RealERPWEB.F_09_PImp
         }
 
 
-        private void FooterCalCulation()
+        private void FooterCalCulation(DataTable dt)
         {
 
-            DataTable dt = (DataTable)ViewState["tblmb"];
+            
             if (dt.Rows.Count > 0)
                 ((Label)this.gvdetails.FooterRow.FindControl("lgvFtoWeight")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(tweight)", "")) ?
-                                          0 : dt.Compute("sum(tweight)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                                          0 : dt.Compute("sum(tweight)", ""))).ToString("#,##0.0000;-#,##0.0000; ");
 
         }
     
@@ -695,23 +693,34 @@ namespace RealERPWEB.F_09_PImp
             DataTable dt = (DataTable)ViewState["tblmb"];
             int rowindex, i = 0;
             double toweight = 0;
+            string rsircode, flrcod;
+            rsircode = this.hdnrsircode.Value;
+            flrcod = this.hdnflrcod.Value;
+
             foreach (GridViewRow gv1 in gvdetails.Rows)
             {
 
-                double nos = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvnos")).Text.Trim());
+
+                string sl =  ((Label)gv1.FindControl("lblgvserial")).Text.Trim(); 
+                double nos = ASTUtility.StrPosOrNagative(((TextBox)gv1.FindControl("txtgvnos")).Text.Trim());
                 double Length = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvlength")).Text.Trim());
                 double breadth = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvbreadth")).Text.Trim());
                 double height = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvheight")).Text.Trim());
                 double uweight = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvuweight")).Text.Trim());
+                toweight = ASTUtility.StrPosOrNagative(((TextBox)gv1.FindControl("txtgvtotalweight")).Text.Trim());
+                string remarks = ((TextBox)gv1.FindControl("txtgvremarks")).Text.Trim();
 
-                toweight = nos * Length * breadth * height * uweight;
-                rowindex = (gvdetails.PageIndex) * gvdetails.PageSize + i;
-                dt.Rows[rowindex]["nos"] = nos;
-                dt.Rows[rowindex]["lnght"] = Length;
-                dt.Rows[rowindex]["breadth"] = breadth;
-                dt.Rows[rowindex]["height"] = height;
-                dt.Rows[rowindex]["uweight"] = uweight;
-                dt.Rows[rowindex]["tweight"] = toweight;
+               // toweight = nos * Length * breadth * height * uweight;
+                //rowindex = (gvdetails.PageIndex) * gvdetails.PageSize + i;
+
+                DataRow[] dr1 = dt.Select("rsircode='" + rsircode + "' and flrcod='" + flrcod + "' and sl='" + sl + "'");               
+                dr1[0]["nos"] = nos;
+                dr1[0]["lnght"] = Length;
+                dr1[0]["breadth"] = breadth;
+                dr1[0]["height"] = height;
+                dr1[0]["uweight"] = uweight;
+                dr1[0]["tweight"] = toweight;
+                dr1[0]["remarks"] = remarks;
                 i++;
             }
 
@@ -756,19 +765,37 @@ namespace RealERPWEB.F_09_PImp
         {
 
 
-            DataTable dt = (DataTable)ViewState["tblmb"];
+            DataTable dt = ((DataTable)ViewState["tblmb"]).Copy();
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string rsircode = ((Label)this.gvdetails.Rows[RowIndex].FindControl("lblgvItmCode")).Text.Trim();
             string flrcod = ((Label)this.gvdetails.Rows[RowIndex].FindControl("lblgvflrcod")).Text.Trim();
             string sl = ((Label)this.gvdetails.Rows[RowIndex].FindControl("lblgvserial")).Text.Trim();
             DataRow dr1 = dt.Select("rsircode='" + rsircode + "' and flrcod='" + flrcod + "' and sl='" + sl + "'")[0];
-            int asl = Convert.ToInt32(dt.Rows[dt.Rows.Count - 1]["sl"]);
-            asl++;
-            dr1["sl"] = asl;
-            dt.ImportRow(dr1);
-            this.Data_Bind();
+            DataView dv = dt.DefaultView;
+            dv.RowFilter = ("rsircode='" + rsircode + "' and flrcod='" + flrcod + "'");
+            DataTable dt1 = dv.ToTable();
             
-       
+            int asl = Convert.ToInt32(dt1.Rows[dt1.Rows.Count - 1]["sl"]);
+            asl++;
+            
+            //Add Row
+            DataRow dradd = dt.NewRow();
+            dradd["rsircode"] = dr1["rsircode"];
+            dradd["rsirdesc"] = dr1["rsirdesc"];
+            dradd["rsirunit"] = dr1["rsirunit"];
+            dradd["flrcod"] = dr1["flrcod"];
+            dradd["flrdes"] = dr1["flrdes"];
+            dradd["sl"] = asl;
+            dradd["nos"] = dr1["nos"];
+            dradd["lnght"] = dr1["lnght"];
+            dradd["breadth"] = dr1["breadth"];
+            dradd["height"] = dr1["height"];
+            dradd["uweight"] = dr1["uweight"];
+            dradd["tweight"] = dr1["tweight"];
+            dradd["remarks"] = dr1["remarks"];
+            dt.Rows.Add(dradd);
+            ViewState["tblmb"] = dt;
+            this.Data_Bind();       
              ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModalDetailsBack();", true);
 
           //  ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalDetails();", true);
@@ -780,6 +807,49 @@ namespace RealERPWEB.F_09_PImp
         }
 
 
+        protected void lnkbtnCalculation_Click(object sender, EventArgs e)
+        {
+
+            DataTable dt = (DataTable)ViewState["tblmb"];
+            int i = 0;
+            double toweight = 0;
+            string rsircode, flrcod;
+            rsircode = this.hdnrsircode.Value;
+            flrcod = this.hdnflrcod.Value;
+            foreach (GridViewRow gv1 in gvdetails.Rows)
+            {
+
+
+                string sl = ((Label)gv1.FindControl("lblgvserial")).Text.Trim();
+                double nos = ASTUtility.StrPosOrNagative(((TextBox)gv1.FindControl("txtgvnos")).Text.Trim());
+                double Length = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvlength")).Text.Trim());
+                double breadth = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvbreadth")).Text.Trim());
+                double height = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvheight")).Text.Trim());
+                double uweight = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvuweight")).Text.Trim());
+                // toweight = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvtotalweight")).Text.Trim());
+                string remarks = ((TextBox)gv1.FindControl("txtgvremarks")).Text.Trim();
+
+                toweight = Math.Round((nos * Length * breadth * height * uweight), 4);
+                //rowindex = (gvdetails.PageIndex) * gvdetails.PageSize + i;
+
+                DataRow[] dr1 = dt.Select("rsircode='" + rsircode + "' and flrcod='" + flrcod + "' and sl='" + sl + "'");
+                dr1[0]["nos"] = nos;
+                dr1[0]["lnght"] = Length;
+                dr1[0]["breadth"] = breadth;
+                dr1[0]["height"] = height;
+                dr1[0]["uweight"] = uweight;
+                dr1[0]["tweight"] = toweight;
+                dr1[0]["remarks"] = remarks;
+                i++;
+            }
+
+
+            ViewState["tblmb"] = dt;
+
+            this.Data_Bind();
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModalDetailsBack();", true);
+
+        }
 
         protected void lbtnUpdatembinfo_Click(object sender, EventArgs e)
         {
@@ -789,27 +859,56 @@ namespace RealERPWEB.F_09_PImp
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            this.SaveValue();
+            this.SaveValueDetails();
             DataTable dt = (DataTable)ViewState["tblmb"];
             bool result = false;
-            foreach (DataRow dr in dt.Rows)
-            {
+         
 
-                string mbno = "";
+              if (this.ddlPrevOrderList.Items.Count == 0)
+                this.GetMBNo();
+            string mbdat= this.GetStdDate(this.txtCurOrderDate.Text.Trim());
+            string mbno = this.lblmbno1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblmbno1.Text.Trim().Substring(3, 2) + this.txtmbno2.Text.Trim();
+            string orderno = this.hdnorderno.Value;
+            string mbrefno = this.txtRefNo.Text.Trim();
+            string userid = hst["usrid"].ToString();
+            string Terminal = hst["compname"].ToString();
+            string Sessionid = hst["session"].ToString();
+            string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+
+
+
+            result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_03", "INSERTORUPDATEPURCONMBAB", "PURCONMBB",
+                             mbno, orderno,mbrefno, mbdat,userid, Terminal, Date, Sessionid, "", "",
+                             "", "", "");
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
+                return;
+                }
+
+
+
+
+                foreach (DataRow dr in dt.Rows)
+           
+                {
                 string rsircode = dr["rsircode"].ToString();
                 string flrcod = dr["flrcod"].ToString();
+                string sl = dr["sl"].ToString();
                 string nos = dr["nos"].ToString();
-                string Length = dr["Length"].ToString();
+                string Length = dr["lnght"].ToString();
                 string breadth = dr["breadth"].ToString();
                 string height = dr["height"].ToString();
                 
                 string uweight = dr["uweight"].ToString();
-                string toweight = dr["toweight"].ToString();
+                string toweight = dr["tweight"].ToString();
+                string remarks= dr["remarks"].ToString();
 
 
 
-                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_ESTSTDANA", "INSORUPDATEESTSTDANA", mbno,
-                        rsircode, flrcod, nos, Length, breadth, height, uweight, toweight, "", "", "", "", "", "");
+                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "INSERTORUPDATEPURCONMBAB", "PURCONMBA", mbno,
+                        rsircode, flrcod, sl, nos, Length, breadth, height, uweight, toweight, remarks, "", "", "");
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+ purData.ErrorObject["Msg"]+"');", true);
@@ -817,7 +916,7 @@ namespace RealERPWEB.F_09_PImp
                   
                     return;
                 }
-            }
+                }
 
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModalDetails();", true);
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Update Successfully');", true);

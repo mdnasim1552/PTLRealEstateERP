@@ -549,21 +549,38 @@ namespace RealERPWEB.F_12_Inv
                 string pactcode = this.ddlMaterials.SelectedValue.ToString();
                 string reqno = "";
                 bool result;
-                result = dbaccess.UpdateTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "INSORUPTXTTTOEMPINF", "indrequiredb", Issueno, curdate, Refno, PostedByid, Posttrmid, PostSession, Posteddat, pactcode, reqno, "", "", "", "");
-
-
-                foreach (DataRow dr in dt.Rows)
+                string type = Request.QueryString["Type"].ToString();
+                if (type == "Checked")
                 {
-                    string rsircode = dr["rsircode"].ToString().Trim();
-                    string spcfcod = dr["spcfcod"].ToString().Trim();
-                    string deptcode = dr["deptcode"].ToString().Trim();
-                    string issueqty = dr["issueqty"].ToString().Trim();
-                    string remarks = dr["remarks"].ToString().Trim();
-
-                    result = dbaccess.UpdateTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "INSORUPTXTTTOEMPINF", "indrequireda", Issueno, rsircode, spcfcod,
-                       deptcode, issueqty, remarks, "", "", "", "", "", "");
+                    string id = "0";
+                    string steptype = "Checked";
+                    //comcod,issueno,aprvbyid,aprvdat,aprvtrmid,aprvseson,steptype
+                    result = dbaccess.UpdateTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "INSERTAPPROVEDINDENT",id, Issueno, PostedByid, curdate, Posttrmid, PostSession, steptype, "", "", "", "", "", "", "");
                 }
+                else
+                {
 
+
+                    result = dbaccess.UpdateTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "INSORUPTXTTTOEMPINF", "indrequiredb", Issueno, curdate, Refno, PostedByid, Posttrmid, PostSession, Posteddat, pactcode, reqno, "", "", "", "");
+
+
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        string rsircode = dr["rsircode"].ToString().Trim();
+                        string spcfcod = dr["spcfcod"].ToString().Trim();
+                        string deptcode = dr["deptcode"].ToString().Trim();
+                        string issueqty = dr["issueqty"].ToString().Trim();
+                        string remarks = dr["remarks"].ToString().Trim();
+
+                        result = dbaccess.UpdateTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "INSORUPTXTTTOEMPINF", "indrequireda", Issueno, rsircode, spcfcod,
+                           deptcode, issueqty, remarks, "", "", "", "", "", "");
+                    }
+                }
+                if (!result)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + dbaccess.ErrorObject["Msg"].ToString() + "');", true);
+                    return;
+                }
                 string msgsuccess = "Updated Successfully";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msgsuccess + "');", true);
 
