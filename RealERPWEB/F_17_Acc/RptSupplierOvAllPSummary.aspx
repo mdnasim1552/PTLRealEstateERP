@@ -272,7 +272,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblSupName" runat="server" CssClass="GridLebelL"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "resdesc")) %>'
-                                                Width="240px"></asp:Label>
+                                                Width="210px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="left" />
                                         <HeaderStyle VerticalAlign="Middle" />
@@ -416,7 +416,7 @@
                                         <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
-
+                                     
                                        <asp:TemplateField HeaderText="Bill Payment">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvbillpayAmt" runat="server" CssClass="GridLebel"
@@ -433,7 +433,21 @@
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
-                                        
+                                        <asp:TemplateField HeaderText="Discount Amount">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbldiscount" runat="server" CssClass="GridLebel"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "discountamt")).ToString("#,##0;(#,##0); ") %>'
+                                                Width="70px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvftdiscount" runat="server" Font-Bold="True" Font-Size="12px"
+                                                Style="text-align: right" Width="90px"></asp:Label>
+                                        </FooterTemplate>
+                                        <FooterStyle HorizontalAlign="Right" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle VerticalAlign="Middle" />
+                                        <HeaderStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
 
                                     
                                         <asp:TemplateField HeaderText="Net Payable">

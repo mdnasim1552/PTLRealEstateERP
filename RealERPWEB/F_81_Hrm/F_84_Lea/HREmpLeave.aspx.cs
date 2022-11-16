@@ -345,10 +345,19 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             {
                 dtfilter = view.ToTable();
             }
+            if (GetComeCode() == "3354")
+            {
+                this.gvLeaveRule.Columns[0].HeaderText = "sl no";
 
+                this.gvLeaveRule.Columns[14].HeaderText = "Paternity Leave";
+                this.gvLeaveRule.Columns[17].HeaderText = "Leave On Probation";
+
+            }
             this.gvLeaveRule.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvLeaveRule.DataSource = dtfilter;
+
             this.gvLeaveRule.DataBind();
+
         }
 
         private DataTable HiddenSameData(DataTable dt1)

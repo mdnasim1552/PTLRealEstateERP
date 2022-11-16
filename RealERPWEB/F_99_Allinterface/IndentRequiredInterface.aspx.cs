@@ -82,7 +82,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlReqAprv.Visible = false;
                     this.pnlgatepass.Visible = false;
                     this.pnlcomplete.Visible = false;
-
+                    GetIndentRequirdData();
                     //this.RadioButtonList1.Items[1].Attributes["style"] = "background: #430000; display:block; ";
                     this.RadioButtonList1.Items[1].Attributes["class"] = "lblactive blink_me";
                     break;
@@ -93,6 +93,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlReqAprv.Visible = true;
                     this.pnlgatepass.Visible = false;
                     this.pnlcomplete.Visible = false;
+                     GetIndentRequirdData();
                     //this.RadioButtonList1.Items[1].Attributes["style"] = "background: #430000; display:block; ";
                     this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
                     break;
@@ -154,6 +155,12 @@ namespace RealERPWEB.F_99_Allinterface
                 this.gv_IndRequired.DataBind();
                 this.gv_hodChecked.DataSource = ds2.Tables[0];
                 this.gv_hodChecked.DataBind();
+
+                view.Table = ds2.Tables[0];
+                view.RowFilter = "steptype= 'Checked'";
+                dt = view.ToTable();
+                this.gv_hradminapproval.DataSource = dt;
+                this.gv_hradminapproval.DataBind();
 
                 //Status
 

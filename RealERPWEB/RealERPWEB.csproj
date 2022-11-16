@@ -2291,6 +2291,7 @@
     <Content Include="F_23_CR\RptDuesReportAll.aspx" />
     <Content Include="F_23_CR\RptMonthlyProbCollection.aspx" />
     <Content Include="F_23_CR\RptOtherCollHistory.aspx" />
+    <Content Include="F_24_CC\CustCycInformation.aspx" />
     <Content Include="F_28_MPro\AccMktMonthlyBgd.aspx" />
     <Content Include="F_28_MPro\MktMarketSurvey.aspx" />
     <Content Include="F_28_MPro\MktMatIssue.aspx" />
@@ -4345,6 +4346,13 @@
     </Compile>
     <Compile Include="F_23_CR\RptOtherCollHistory.aspx.designer.cs">
       <DependentUpon>RptOtherCollHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_24_CC\CustCycInformation.aspx.cs">
+      <DependentUpon>CustCycInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_24_CC\CustCycInformation.aspx.designer.cs">
+      <DependentUpon>CustCycInformation.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_28_MPro\AccMktMonthlyBgd.aspx.cs">
       <DependentUpon>AccMktMonthlyBgd.aspx</DependentUpon>

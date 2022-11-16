@@ -167,7 +167,7 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Followup">
+                                <asp:TemplateField HeaderText="Action">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvFollowup" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Style="text-align: left"
