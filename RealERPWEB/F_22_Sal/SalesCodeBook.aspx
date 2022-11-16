@@ -28,8 +28,7 @@
             <div class="row mt-5" runat="server">
                 <div class="col-lg-12">
                     <div class="card">
-                        <div class="card-header bg-light"><span class="font-weight-bold text-muted">Supplier/Sub-Contractor Information Field- Entry</span></div>
-
+                        
                         <div class="card-body" runat="server">
                             <div class="row">
                                 <div class="col-lg-3">
@@ -70,7 +69,7 @@
                         <FooterStyle Font-Bold="True" />
 
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl.No.">
+                            <asp:TemplateField HeaderText="Sl">
                                 <ItemTemplate>
                                     <asp:Label ID="lblserialnoid" runat="server" Style="text-align: right"
                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
