@@ -68,8 +68,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 case "3354":                
                    // ddlReqType.Items.Add(new ListItem("Late Approval Request", "LA"));
                      ddlReqType.Items.Add(new ListItem("Late Present Approval ", "LP"));
+                     ddlReqType.Items.Add(new ListItem("Project Visit", "TC"));
+
                     // ddlReqType.Items.Add(new ListItem("Time Correction Approval Request(Project Visit, Customer visit, etc)", "TC"));
-                    ddlReqType.Items.Add(new ListItem("Absent Approval Request (IF Finger/Attandance missed but present)", "AB"));
+                    //ddlReqType.Items.Add(new ListItem("Absent Approval Request (IF Finger/Attandance missed but present)", "AB"));
                     break;
                 case "3366":
                     ddlReqType.Items.Add(new ListItem("Late Approval Request", "LA"));
@@ -853,7 +855,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModalAbs();", true);
 
-            if (ddlReqType.SelectedValue.ToString() == "TC")
+            if (ddlReqType.SelectedValue.ToString() == "TC" )
             {
                 this.lbldadteTime.Enabled = true;
             }
