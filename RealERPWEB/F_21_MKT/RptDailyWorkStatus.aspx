@@ -167,11 +167,22 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Followup">
+                                <asp:TemplateField HeaderText="Action">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvFollowup" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Style="text-align: left"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "followupdesc")).ToString() %>'
+                                            Width="100px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    <ItemStyle HorizontalAlign="left" />
+                                    <FooterStyle HorizontalAlign="left" />
+                                </asp:TemplateField>
+                                 <asp:TemplateField HeaderText="Status">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvstatuslead" runat="server" BackColor="Transparent"
+                                            BorderStyle="None" Style="text-align: left"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "statuslead")).ToString() %>'
                                             Width="100px"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />

@@ -82,7 +82,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlReqAprv.Visible = false;
                     this.pnlgatepass.Visible = false;
                     this.pnlcomplete.Visible = false;
-
+                    GetIndentRequirdData();
                     //this.RadioButtonList1.Items[1].Attributes["style"] = "background: #430000; display:block; ";
                     this.RadioButtonList1.Items[1].Attributes["class"] = "lblactive blink_me";
                     break;
@@ -93,6 +93,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlReqAprv.Visible = true;
                     this.pnlgatepass.Visible = false;
                     this.pnlcomplete.Visible = false;
+                     GetIndentRequirdData();
                     //this.RadioButtonList1.Items[1].Attributes["style"] = "background: #430000; display:block; ";
                     this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
                     break;
@@ -155,6 +156,12 @@ namespace RealERPWEB.F_99_Allinterface
                 this.gv_hodChecked.DataSource = ds2.Tables[0];
                 this.gv_hodChecked.DataBind();
 
+                view.Table = ds2.Tables[0];
+                view.RowFilter = "steptype= 'Checked'";
+                dt = view.ToTable();
+                this.gv_hradminapproval.DataSource = dt;
+                this.gv_hradminapproval.DataBind();
+
                 //Status
 
                 //this.Data_Bind("gvstatus", ds2.Tables[0]);
@@ -191,7 +198,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 string issueno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "issueno")).ToString().Trim();
 
-                hlink.NavigateUrl = "~/F_12_Inv/IndentMaterialRequired?ype=Entry&genno=" + issueno;
+                hlink.NavigateUrl = "~/F_12_Inv/IndentMaterialRequired?Type=Entry&genno=" + issueno;
 
 
             }
@@ -221,6 +228,20 @@ namespace RealERPWEB.F_99_Allinterface
             catch (Exception exp)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
+
+        protected void gv_hodChecked_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("hybtnhodidentlink");
+
+                string issueno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "issueno")).ToString().Trim();
+
+                hlink.NavigateUrl = "~/F_12_Inv/IndentMaterialRequired?Type=Checked&genno=" + issueno;
+
 
             }
         }

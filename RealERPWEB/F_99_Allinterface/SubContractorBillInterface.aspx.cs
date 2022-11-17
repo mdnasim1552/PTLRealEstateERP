@@ -332,18 +332,16 @@ namespace RealERPWEB.F_99_Allinterface
             this.Data_Bind("gvWorkOrder", dv.ToTable());
 
 
-            /// Measurement Book
-            dt = ((DataTable)ds1.Tables[7]).Copy();
-            dv = dt.DefaultView;
-            dv.RowFilter = ("orderno <>'' and mbno =''");
-            this.Data_Bind("gvmbook", dv.ToTable());
+            /// Measurement Book  
+            dt = (DataTable)ds1.Tables[11];
+            this.Data_Bind("gvmbook", dt);
 
 
             /// Measurement Book Approval
-            dt = ((DataTable)ds1.Tables[7]).Copy();
-            dv = dt.DefaultView;
-            dv.RowFilter = ("orderno <>'' and mbno <>'' and mbnoapp=''");
-            this.Data_Bind("gvmbookapp", dv.ToTable());
+            //dt = ((DataTable)ds1.Tables[11]).Copy();
+            //dv = dt.DefaultView;
+            //dv.RowFilter = ("orderno <>'' and mbno <>'' and mbnoapp=''");
+            //this.Data_Bind("gvmbookapp", dv.ToTable());
 
 
 
@@ -352,7 +350,7 @@ namespace RealERPWEB.F_99_Allinterface
             /// Ready For Bill
             dt = ((DataTable)ds1.Tables[7]).Copy();
             dv = dt.DefaultView;
-            dv.RowFilter = ("orderno <>'' and mbno <>'' and mbnoapp<>'' and lisueno=''");
+            dv.RowFilter = ("orderno <>''  and lisueno=''");
             this.Data_Bind("gvReadyForBill", dv.ToTable());
 
 

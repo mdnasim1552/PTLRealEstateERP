@@ -136,6 +136,11 @@ namespace RealERPWEB.F_17_Acc
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
             string comadd = hst["comadd1"].ToString();
+
+
+
+            string comfadd = hst["comadd"].ToString().Replace("<br />", "\n");
+
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
@@ -804,7 +809,7 @@ namespace RealERPWEB.F_17_Acc
             else if (Type == "MRPrintCPDL")
             {
                 var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
-                string currentdate = DateTime.Now.ToString("dd-MMM-yyyy");
+                string currentdate = DateTime.Now.ToString("MMM dd, yyyy hh:mm:ss tt");
                 string vounum = dtrpt.Rows[0]["vounum"].ToString();
                 if (vounum == "00000000000000")
                 {
@@ -827,7 +832,7 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("usize", usize));
                     Rpt1.SetParameters(new ReportParameter("munit", munit));
                     Rpt1.SetParameters(new ReportParameter("usize1", udesc + ", " + usize + " " + munit));
-                    Rpt1.SetParameters(new ReportParameter("amount", "TK. " + Convert.ToDouble(paidamt).ToString("#,##0;(#,##0)")));
+                    Rpt1.SetParameters(new ReportParameter("amount", Convert.ToDouble(paidamt).ToString("#,##0;(#,##0)")));
                     Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(paidamt).ToString("#,##0;(#,##0)")));
                     Rpt1.SetParameters(new ReportParameter("takainword", amt1t.Replace("Taka", "").Replace("Only", "Taka Only")));
                     Rpt1.SetParameters(new ReportParameter("As", ((Installment == "") ? rectype : Installment)));
@@ -842,8 +847,9 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.ComInfoWithoutNumber()));
                     Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.ComInfoWithoutNumber()));
                     Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-                    Rpt1.SetParameters(new ReportParameter("footer1", "Original money Receipt will be provided after encashment the PO/DD/cross cheque in favor of CPDL."));
+                    Rpt1.SetParameters(new ReportParameter("footer1", "Money Receipt will be provided after encashment of the PO/DD/Cheque in favor of CPDL."));
                     Rpt1.SetParameters(new ReportParameter("footer2", "Thanking you"));
+                    Rpt1.SetParameters(new ReportParameter("Depart", "Property Solution Department"));
                     Rpt1.SetParameters(new ReportParameter("notes", "Note: This is a system generated document and does not require physical signature."));
 
 
@@ -859,6 +865,8 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("CompName", comnam));
                     Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
                     Rpt1.SetParameters(new ReportParameter("CompAdd", comadd));
+                    Rpt1.SetParameters(new ReportParameter("ComFAdd", comfadd));
+       
                     Rpt1.SetParameters(new ReportParameter("CustAdd", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
                     Rpt1.SetParameters(new ReportParameter("CustAdd1", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
                     Rpt1.SetParameters(new ReportParameter("custteam", "Received by: " + custteam));
@@ -869,7 +877,7 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("usize", usize));
                     Rpt1.SetParameters(new ReportParameter("munit", munit));
                     Rpt1.SetParameters(new ReportParameter("usize1", udesc + ", " + usize + " " + munit));
-                    Rpt1.SetParameters(new ReportParameter("amount", "TK. " + Convert.ToDouble(paidamt).ToString("#,##0;(#,##0)")));
+                    Rpt1.SetParameters(new ReportParameter("amount",  Convert.ToDouble(paidamt).ToString("#,##0;(#,##0)")));
                     Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(paidamt).ToString("#,##0;(#,##0)")));
                     Rpt1.SetParameters(new ReportParameter("takainword", amt1t.Replace("Taka", "").Replace("Only", "Taka Only")));
                     Rpt1.SetParameters(new ReportParameter("As", ((Installment == "") ? rectype : Installment)));
@@ -884,7 +892,7 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.ComInfoWithoutNumber()));
                     Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.ComInfoWithoutNumber()));
                     Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-                    Rpt1.SetParameters(new ReportParameter("footer", "Note : This is a system generated receipt and does not require any physical signature"));
+                    Rpt1.SetParameters(new ReportParameter("footer", "Note : This is  system generated receipt and does not require any physical signature."));
                     Rpt1.SetParameters(new ReportParameter("flr", flr));
 
                     Session["Report1"] = Rpt1;

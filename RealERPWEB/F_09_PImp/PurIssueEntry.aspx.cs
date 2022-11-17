@@ -99,9 +99,11 @@ namespace RealERPWEB.F_09_PImp
         }
         protected void Load_Project_Combo()
         {
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+             
             string comcod = this.GetCompCode();
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUEPRJLIST01", "%", "", "", "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUEPRJLIST01", "%", "", userid, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             this.ddlprjlist.DataTextField = "actdesc1";

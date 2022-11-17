@@ -19,8 +19,13 @@
 
             function pageLoaded() {
 
+<<<<<<< HEAD
                 $('.chzn-select').chosen({ search_contains: true });
                 //$(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
+=======
+
+                $('.chzn-select').chosen({ search_contains: true });
+>>>>>>> f5aa924c98eafd29259f7bed1b23471f552b327d
 
             }
         }
@@ -220,8 +225,8 @@
 
                                     <asp:TemplateField HeaderText="Remarks">
                                         <ItemTemplate>
-                                            <asp:Label ID="Label1" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rmks")) %>'
-                                                Width="100px"></asp:Label>
+                                            <asp:Label ID="lblgvnarration" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rmks")) %>'
+                                                Width="250px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Left" />
                                     </asp:TemplateField>
@@ -230,6 +235,7 @@
                                 <FooterStyle CssClass="grvFooter" />
                                 <EditRowStyle />
                                 <AlternatingRowStyle />
+                                <PagerSettings Mode="NumericFirstLast" />
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>

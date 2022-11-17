@@ -464,6 +464,7 @@ namespace RealERPLIB
             ///nahid
             tblObj.Rows.Add(new Object[] { "1203000", "1203185", "F_12_Inv", "IndentMaterialRequired?", "Type=Entry", "Indent Materials Required", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1203000", "1203186", "F_12_Inv", "IndentMaterialRequired?", "Type=Approve", "Indent Materials Required Approve", "Inventory", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1203000", "1203187", "F_12_Inv", "IndentMaterialRequired?", "Type=Checked", "Indent Materials Required Checked", "Inventory", "False", "False", "False", "False" });
 
             //Added 
             tblObj.Rows.Add(new Object[] { "1203000", "1203190", "F_12_Inv", "MatConversion", "", "Material Conversion", "Inventory", "False", "False", "False", "False" });
@@ -1434,6 +1435,7 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "2401000", "2401080", "F_24_CC", "CompCodeBook", "", "Complain Code Book ", "Customer Care", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2401000", "2401090", "F_24_CC", "EntryRegCodeBook", "", "Code Registration", "Customer Care", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2401000", "2401170", "F_24_CC", "CustCycInformation?", "Type=Cust", "Customer Life Cycle", "Customer Care", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "2402000", "2402860", "F_24_CC", "EntryComplain", "", "Entry Complain Form ", "Customer Care", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2402000", "2402865", "F_24_CC", "EntryRegistrationCost", "", "Cost Registration", "Customer Care", "False", "False", "False", "False" });
@@ -5279,6 +5281,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000011", "05. Indent Materials Approve ", "F_12_Inv/Material_Issue?Type=Approve&genno=&prjcode=&sircode=", "", true, "" });
           
             mnuTbl1.Rows.Add(new Object[] { "0302000012", "05. Indent Materials Rrquired ", "F_12_Inv/IndentMaterialRequired?Type=Entry&genno=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000013", "05. Indent Materials Checked ", "F_12_Inv/IndentMaterialRequired?Type=Checked&genno=", "", true, "" });
 
             //mnuTbl1.Rows.Add(new Object[] { "0311000000", "", "", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0312000000", "", "", "", true, "" });
@@ -7853,7 +7856,7 @@ namespace RealERPLIB
         public static void MenuCustCare(DataTable mnuTbl1)
         {
 
-
+            //tblObj.Rows.Add(new Object[] { "2401000", "2401170", "F_24_CC", "", "", "", "Customer Care", "False", "False", "False", "False" });
             mnuTbl1.Rows.Add(new Object[] { "0201000001", "01. Money Receipt Create", "F_23_CR/MktMoneyReceipt?Type=CustCare", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000002", "02. Collection  Other's", "F_23_CR/CustOthMoneyReceipt?Type=CustCare", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000003", "03. Company Standard(Choice)", "F_24_CC/CompanyStandardChoice", "", true, "" });
@@ -7865,6 +7868,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000009", "06. Loan Information", "F_22_Sal/MktSalsPayment?Type=Loan", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000010", "07. Handover Letter", "F_24_CC/CustHandOverLetter", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000011", "07. Cost Registration", "F_24_CC/EntryRegistrationCost", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000012", "07. Customer Life Cycle", "F_24_CC/CustCycInformation?Type=Cust&prjcode=", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0202000000", "Modification-Landowner's ", "", "", false, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000001", "01. Landowner's Unit Fixation", "F_22_Sal/MktLOnerUnitEntry", "", true, "" });

@@ -4,7 +4,54 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+      <script type="text/javascript" language="javascript">
 
+          $(document).ready(function () {
+
+              Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+          });
+          function pageLoaded() {
+
+              try {
+
+
+                  var gridViewScroll = new GridViewScroll({
+                      elementID: "gvspaymentdetails",
+                      width: 1250,
+                      height: 500,
+                      freezeColumn: true,
+                      freezeFooter: true,
+                      freezeColumnCssClass: "GridViewScrollItemFreeze",
+                      freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                      freezeHeaderRowCount: 1,
+                      freezeColumnCount: 8,
+
+                  });
+                  
+
+                  gridViewScroll.enhance();
+             
+                  $('.chzn-select').chosen({ search_contains: true });
+          <%--  $('#<%=this.gvsupstatus.ClientID%>').tblScrollable();--%>
+                  $(function () {
+                      $('[id*=chkSupCategory').multiselect({
+                          includeSelectAllOption: true,
+
+                          enableCaseInsensitiveFiltering: true,
+                          //enableFiltering: true,
+
+                      });
+
+                  });
+                 
+              }
+
+              catch (e) {
+                  alert(e);
+              }
+          }
+      </script>
    <%-- <style type="text/css">
         .modalcss {
             margin: 0;
@@ -57,36 +104,63 @@
 
         .grvContentarea {
         }
-    </style>
-
-    <script type="text/javascript" language="javascript">
-
-        $(document).ready(function () {
-
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-        });
-
-        function pageLoaded() {
-
-            $('.chzn-select').chosen({ search_contains: true });
-          <%--  $('#<%=this.gvsupstatus.ClientID%>').tblScrollable();--%>
-            $(function () {
-                $('[id*=chkSupCategory').multiselect({
-                    includeSelectAllOption: true,
-
-                    enableCaseInsensitiveFiltering: true,
-                    //enableFiltering: true,
-
-                });
-
-            });
-
+         .GridViewScrollHeader TH, .GridViewScrollHeader TD,.GridViewScroll1Header TH, .GridViewScroll1Header TD,.GridViewScroll2Header TH, .GridViewScroll2Header TD {
+            font-weight: normal;
+            white-space: nowrap;
+            border-right: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            background-color: #F4F4F4;
+            color: #999999;
+            text-align: left;
+            vertical-align: bottom;
         }
 
 
+        .GridViewScrollItem TD, .GridViewScroll1Item TD,.GridViewScroll2Item TD{
+            white-space: nowrap;
+            border-right: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            background-color: #FFFFFF;
+            color: #444444;
+        }
 
-    </script>
+        .GridViewScrollItemFreeze TD, .GridViewScroll1ItemFreeze TD,  .GridViewScroll2ItemFreeze TD {
+            white-space: nowrap;
+            border-right: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            background-color: #FAFAFA;
+            color: #444444;
+        }
+
+        .GridViewScrollFooterFreeze TD, .GridViewScroll1FooterFreeze TD, .GridViewScroll2FooterFreeze TD {
+            white-space: nowrap;
+            border-right: 1px solid #e6e6e6;
+            border-top: 1px solid #e6e6e6;
+            border-bottom: 1px solid #e6e6e6;
+            background-color: #F4F4F4;
+            color: #444444;
+        }
+
+        .grvHeader {
+            height: 38px !important;
+        }
+
+        .WrpTxt {
+            white-space: normal !important;
+            word-break: break-word !important;
+        }
+                       .mt20 {
+            margin-top: 20px;
+        }
+                       .table th, .table td{
+                           padding:0px;
+                       }
+                       .chzn-single {
+            border-radius: 3px !important;
+            height: 29px !important;}
+    </style>
+
+   
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -130,7 +204,7 @@
                         <div class="col-md-2">
                             <div class="from-group">
                                 <label class="control-label">Supplier Name</label>
-                                <asp:DropDownList ID="ddlSuplist" runat="server" CssClass="form-control form-control-sm  chzn-select" AutoPostBack="True" Width="320px"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlSuplist" runat="server" CssClass="form-control form-control-sm  chzn-select" AutoPostBack="True"></asp:DropDownList>
                             </div>
                         </div>
 
@@ -172,10 +246,10 @@
             
 
                     <asp:GridView ID="gvspaysummary" runat="server" AutoGenerateColumns="False" 
-                                ShowFooter="True" AllowPaging="false" CssClass=" table-striped table-bordered grvContentarea" >
+                                ShowFooter="True" AllowPaging="false" CssClass="table-striped  table-bordered grvContentarea" OnRowDataBound="gvspaysummary_RowDataBound">
                                 <RowStyle />
                                 <Columns>
-                                    <asp:TemplateField HeaderText="SL">
+                                    <asp:TemplateField HeaderText="SL" >
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo" runat="server" Height="16px"
                                                 Style="text-align: right"
@@ -190,7 +264,7 @@
                                                 Width="90px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="left" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="left" />
                                     </asp:TemplateField>
 
@@ -198,10 +272,10 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblSupName" runat="server" CssClass="GridLebelL"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "resdesc")) %>'
-                                                Width="240px"></asp:Label>
+                                                Width="210px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="left" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="left" />
                                     </asp:TemplateField>
 
@@ -212,7 +286,7 @@
                                                 Width="230px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="left" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="left" />
                                     </asp:TemplateField>
 
@@ -223,7 +297,7 @@
                                                 Width="40px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="left" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="left" />
                                     </asp:TemplateField>
 
@@ -273,7 +347,7 @@
                                         </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
@@ -289,7 +363,7 @@
                                         </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
@@ -307,7 +381,7 @@
                                         </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
@@ -323,7 +397,7 @@
                                         </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
@@ -339,10 +413,10 @@
                                         </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
-
+                                     
                                        <asp:TemplateField HeaderText="Bill Payment">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvbillpayAmt" runat="server" CssClass="GridLebel"
@@ -355,11 +429,25 @@
                                         </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
-                                        
+                                        <asp:TemplateField HeaderText="Discount Amount">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbldiscount" runat="server" CssClass="GridLebel"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "discountamt")).ToString("#,##0;(#,##0); ") %>'
+                                                Width="70px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvftdiscount" runat="server" Font-Bold="True" Font-Size="12px"
+                                                Style="text-align: right" Width="90px"></asp:Label>
+                                        </FooterTemplate>
+                                        <FooterStyle HorizontalAlign="Right" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle VerticalAlign="Middle" />
+                                        <HeaderStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
 
                                     
                                         <asp:TemplateField HeaderText="Net Payable">
@@ -374,7 +462,7 @@
                                         </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
@@ -398,12 +486,12 @@
 
                                 </Columns>
                                 <HeaderStyle HorizontalAlign="Center" />
-                                <FooterStyle CssClass="grvFooterNew" />
-                                
+                                <FooterStyle CssClass="grvHeader" />
+                                 <HeaderStyle CssClass="grvHeader" />
                                 <EditRowStyle />
                                 <AlternatingRowStyle />
                                 <PagerStyle CssClass="gvPagination" />
-                                <HeaderStyle CssClass="grvFooterNew" />
+                               
                             </asp:GridView>
 
 
@@ -418,7 +506,7 @@
                     <%--<div class="card card-fluid">
                         <div class="card-body">--%>
                             
-                    <asp:GridView ID="gvspaymentdetails" runat="server" CssClass=" table-striped table-bordered grvContentarea"
+                    <asp:GridView ID="gvspaymentdetails" runat="server" ClientIDMode="Static" CssClass="table-striped  table-bordered grvContentarea"
                 AutoGenerateColumns="False" ShowFooter="True" OnRowDataBound="gvspaymentdetails_RowDataBound">
                 <PagerSettings Visible="False" />
 
@@ -441,7 +529,7 @@
                                                 Width="90px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="left" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="left" />
                                     </asp:TemplateField>
 
@@ -484,17 +572,17 @@
                                       <asp:TemplateField HeaderText="Supplier Name" >
 
                                     <HeaderTemplate>
-                                    <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Supplier Name" Width="220px"></asp:Label>
+                                    <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Supplier Name" Width="180px"></asp:Label>
 
-                                    <asp:HyperLink ID="HLgvSupDescalsasub" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel-o "></i>
-                                    </asp:HyperLink>
+                                    <asp:HyperLink ID="HLgvSupDescalsasub" runat="server"
+                                                CssClass="btn btn-success ml-2 btn-xs" ToolTip="Export Excel"><i class="fas fa-file-excel"></i></asp:HyperLink>
                                 </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lgvResDescd" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "resdesc")) %>'
                                                 Width="220px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Left" />
-                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
 
 
@@ -502,7 +590,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvOpnamalsasub" runat="server" CssClass="GridLebel"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
-                                                Width="150px"></asp:Label>
+                                                Width="200px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterTemplate>
                                             <asp:Label ID="lgvFOpalsasub" runat="server" Font-Bold="True" Font-Size="12px"
@@ -510,7 +598,7 @@
                                         </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Left" />
                                         <ItemStyle HorizontalAlign="Left" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
@@ -526,7 +614,7 @@
                                         </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Left" />
                                         <ItemStyle HorizontalAlign="Left" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
@@ -543,7 +631,7 @@
                                         </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Left" />
                                         <ItemStyle HorizontalAlign="Left" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
@@ -559,7 +647,7 @@
                                         </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Left" />
                                         <ItemStyle HorizontalAlign="Left" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
@@ -576,7 +664,7 @@
                                         </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
@@ -592,7 +680,7 @@
                                         </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
@@ -608,7 +696,7 @@
                                         </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
@@ -616,7 +704,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvDrAmountalsasubsdvat" runat="server" CssClass="GridLebel"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "vatamt")).ToString("#,##0;(#,##0); ") %>'
-                                                Width="90px"></asp:Label>
+                                                Width="70px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterTemplate>
                                             <asp:Label ID="lgvFDrAmtalsasubsdvat" runat="server" Font-Bold="True" Font-Size="12px"
@@ -624,7 +712,7 @@
                                         </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
@@ -640,7 +728,22 @@
                                         </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
+                                        <HeaderStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Discount Amount">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbldiscount" runat="server" CssClass="GridLebel"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "discountamt")).ToString("#,##0;(#,##0); ") %>'
+                                                Width="70px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvftdiscount" runat="server" Font-Bold="True" Font-Size="12px"
+                                                Style="text-align: right" Width="90px"></asp:Label>
+                                        </FooterTemplate>
+                                        <FooterStyle HorizontalAlign="Right" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
@@ -656,7 +759,7 @@
                                         </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
@@ -672,7 +775,7 @@
                                         </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
-                                        <HeaderStyle VerticalAlign="Top" />
+                                        <HeaderStyle VerticalAlign="Middle" />
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
@@ -752,12 +855,13 @@
                                     </asp:TemplateField>--%>
                                 </Columns>
 
-                                <FooterStyle CssClass="grvFooterNew" />
+                                <FooterStyle CssClass="grvHeader" />
+                                 <HeaderStyle CssClass="grvHeader" />
                                <HeaderStyle HorizontalAlign="Center" />
                                 <EditRowStyle />
                                 <AlternatingRowStyle />
                                 <PagerStyle CssClass="gvPagination" />
-                                <HeaderStyle CssClass="grvFooterNew" />
+                               
                             </asp:GridView>
 
                        <%-- </div>

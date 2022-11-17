@@ -244,7 +244,7 @@ namespace RealERPWEB.F_17_Acc
                 case "3338"://  ACME
                 case "3369"://  ACME
                 case "3356"://  INtech
-              
+
 
 
 
@@ -768,7 +768,7 @@ namespace RealERPWEB.F_17_Acc
                 //case "3101": //
                 //
                 //brothers 
-               // case "3101":
+                // case "3101":
                 case "1102": // islam brothers 
                     vouprint = "VocherPrintISBL";
                     break;
@@ -776,7 +776,7 @@ namespace RealERPWEB.F_17_Acc
                 case "3368": // Finaly
                     vouprint = "VocherPrintFinlay";
                     break;
-                
+
                 case "3101": // Finaly
                 case "3370": // cpdl
                     vouprint = "VocherPrintCPDL";
@@ -842,8 +842,6 @@ namespace RealERPWEB.F_17_Acc
             }
             return ntype;
         }
-
-
 
         private string Getpouaction(string vounum)
         {
@@ -1213,7 +1211,7 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("txtauthorizeby", aprvby1));
                     Rpt1.SetParameters(new ReportParameter("txtaprvby1", authorizeby));
 
-                } 
+                }
                 else if (Type == "VocherPrintCPDL")
                 {
                     var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
@@ -2378,6 +2376,11 @@ namespace RealERPWEB.F_17_Acc
                     this.PrintChqFinlay();
                     break;
 
+                case "3101":
+                case "3370":
+                    this.PrintChequeCPDL();
+                    break;
+
                 default:
                     this.PrinCheque();
                     break;
@@ -3052,6 +3055,178 @@ namespace RealERPWEB.F_17_Acc
             //    ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
             //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             //}
+
+        }
+        private void PrintChequeCPDL()
+        {
+            try
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+
+                string vounum = this.Request.QueryString["vounum"].ToString();
+                DataSet _ReportDataSet = AccData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "PRINTCHECK", vounum, "", "", "", "", "", "", "", "");
+                if (_ReportDataSet == null)
+                    return;
+                //DataTable dt1 = _ReportDataSet.Tables[0];
+                //string woutchq1 = this.Request.QueryString["woutchqdat"].ToString();
+
+                //string woutchqdat = (this.Request.QueryString["woutchqdat"] == "0") ? "" : "woutchqdat";
+
+
+                //string voudat = woutchqdat.Length > 0 ? "01011900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("ddMMyyyy");
+                //string voudat1 = woutchqdat.Length > 0 ? "01011900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("dd.MM.yyyy");
+
+                //if (voudat.Trim() == "01011900")
+                //{
+                //    voudat = "          ";
+                //}
+                //if (voudat1.Trim() == "01.01.1900")
+                //{
+                //    voudat1 = "";
+                //}
+
+
+                DataTable dt1 = _ReportDataSet.Tables[0];
+                string woutchqdat = "", voudat = "", voudat1 = "";
+                if (Request.QueryString.AllKeys.Contains("woutchqdat"))
+                {
+                    woutchqdat = (this.Request.QueryString["woutchqdat"] == "0") ? "" : "woutchqdat";
+                    voudat = woutchqdat.Length > 0 ? "01/01/1900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("ddMMyyyy");
+                    voudat1 = woutchqdat.Length > 0 ? "01/01/1900" : Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("dd.MM.yyyy");
+                    if (voudat.Trim() == "01/01/1900")
+                    {
+                        voudat = "";
+                    }
+                    if (voudat1.Trim() == "01/01/1900")
+                    {
+                        voudat1 = "";
+                    }
+                }
+                else
+                {
+                    voudat = Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("ddMMyyyy");
+                    voudat1 = Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("dd.MM.yyyy");
+                }
+                string bankcode = dt1.Rows[0]["bnkcode"].ToString();
+                string payto = dt1.Rows[0]["payto"].ToString();
+                double amt = Convert.ToDouble(dt1.Rows[0]["tamt"].ToString());
+                string amt1 = ASTUtility.Trans(Math.Round(amt), 2);
+                int len = amt1.Length;
+                string amt2 = amt1.Substring(7, (len - 8));
+                string wam1 = string.Empty;
+                string wam2 = string.Empty;
+                string Chequeprint = this.CompanyPrintCheque();
+                string[] amtWrd1 = ASTUtility.Trans(Math.Round(amt, 0), 2).Split('(', ')');
+                string[] amtdivide = amtWrd1[1].Split(' ');
+                string RNaration = _ReportDataSet.Tables[1].Rows[0]["naration"].ToString();
+                string Chequeno = _ReportDataSet.Tables[0].Rows[0]["refnum"].ToString();
+                string value = (this.Request.QueryString["paytype"] == "0") ? "A/C Payee" : "";
+
+                string projnam1 = ((_ReportDataSet.Tables[1].Rows.Count == 0) ? "" : (string)_ReportDataSet.Tables[1].Rows[0]["actdesc"]);
+                string projnam2 = ((_ReportDataSet.Tables[1].Rows.Count < 2) ? "" : (string)_ReportDataSet.Tables[1].Rows[1]["actdesc"]);
+                string projnam3 = ((_ReportDataSet.Tables[1].Rows.Count < 3) ? "" : (string)_ReportDataSet.Tables[1].Rows[2]["actdesc"]);
+                string projnam4 = ((_ReportDataSet.Tables[1].Rows.Count < 4) ? "" : (string)_ReportDataSet.Tables[1].Rows[3]["actdesc"]);
+                string projnam5 = ((_ReportDataSet.Tables[1].Rows.Count < 5) ? "" : (string)_ReportDataSet.Tables[1].Rows[4]["actdesc"]);
+
+                double projamt1 = ((_ReportDataSet.Tables[1].Rows.Count == 0) ? 0 : Convert.ToDouble(_ReportDataSet.Tables[1].Rows[0]["trnam"]));
+                double projamt2 = ((_ReportDataSet.Tables[1].Rows.Count < 2) ? 0 : Convert.ToDouble(_ReportDataSet.Tables[1].Rows[1]["trnam"]));
+                double projamt3 = ((_ReportDataSet.Tables[1].Rows.Count < 3) ? 0 : Convert.ToDouble(_ReportDataSet.Tables[1].Rows[2]["trnam"]));
+                double projamt4 = ((_ReportDataSet.Tables[1].Rows.Count < 4) ? 0 : Convert.ToDouble(_ReportDataSet.Tables[1].Rows[3]["trnam"]));
+                double projamt5 = ((_ReportDataSet.Tables[1].Rows.Count < 5) ? 0 : Convert.ToDouble(_ReportDataSet.Tables[1].Rows[4]["trnam"]));
+
+                // double advamt = Convert.ToDouble(dt1.Rows[0]["advamt"]);
+
+                double totalAmount = projamt1 + projamt2 + projamt3 + projamt4 + projamt5;
+
+                string prjDesc = projnam1;
+
+                if (projnam2 != "")
+                {
+                    prjDesc = String.Join(",", projnam1, projnam2);
+                }
+                if (projnam3 != "")
+                {
+                    prjDesc = String.Join(",", projnam1, projnam2, projnam3);
+                }
+                if (projnam4 != "")
+                {
+                    prjDesc = String.Join(",", projnam1, projnam2, projnam3, projnam4);
+                }
+                if (projnam5 != "")
+                {
+                    prjDesc = String.Join(",", projnam1, projnam2, projnam3, projnam4, projnam5);
+                }
+
+                for (int i = 2; i <= amtdivide.Length - 1; i++)
+                {
+                    if (i == amtdivide.Length)
+                    {
+                        return;
+                    }
+                    else if (i > 6)
+                    {
+                        wam1 += " " + amtdivide[i].ToString();
+                    }
+                    else
+                    {
+                        wam2 += " " + amtdivide[i].ToString();
+                    }
+                }
+
+                Hashtable hshtbl = new Hashtable();
+                hshtbl["bankName"] = "";
+                hshtbl["payTo"] = payto;
+                hshtbl["acpayee"] = value;
+                hshtbl["date"] = voudat;
+                hshtbl["amtWord"] = wam2.ToUpper();//.ToUpper();
+                hshtbl["amtWord1"] = wam1.ToUpper();//.ToUpper();
+                                                    // hshtbl["payble"] = value;
+                hshtbl["amt"] = Convert.ToDouble(amt).ToString("#,##0;(#,##0); ") + "/-";
+                hshtbl["projnam1"] = projnam1;
+                hshtbl["projnam2"] = projnam2;
+                hshtbl["projnam3"] = projnam3;
+                hshtbl["projnam4"] = projnam4;
+                hshtbl["projnam5"] = projnam5;
+                hshtbl["projamt1"] = Convert.ToDouble(projamt1).ToString("#,##0;(#,##0); ");
+                hshtbl["projamt2"] = Convert.ToDouble(projamt2).ToString("#,##0;(#,##0); ");
+                hshtbl["projamt3"] = Convert.ToDouble(projamt3).ToString("#,##0;(#,##0); ");
+                hshtbl["projamt4"] = Convert.ToDouble(projamt4).ToString("#,##0;(#,##0); ");
+                hshtbl["projamt5"] = Convert.ToDouble(projamt5).ToString("#,##0;(#,##0); ");
+                hshtbl["date1"] = voudat1;
+                hshtbl["naration"] = RNaration.ToUpper();
+                hshtbl["Chequeno"] = Chequeno;
+                hshtbl["ProjectDesc"] = prjDesc;
+                hshtbl["totalAmount"] = Convert.ToDouble(totalAmount).ToString("#,##0;(#,##0); ");
+
+                LocalReport rpt1 = new LocalReport();
+                
+                if (bankcode == "DBL")
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeDhakaBankCPDL", hshtbl, null, null);
+                }
+                else if (bankcode == "UCB")
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeUCBCPDL", hshtbl, null, null);
+                }
+                else
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeDhakaBankCPDL", hshtbl, null, null);
+                }
+
+                Session["Report1"] = rpt1;
+
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
+                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+
+
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
 
         }
         private void PrinCheque()

@@ -857,7 +857,7 @@ namespace RealERPWEB.F_17_Acc
                 Session["UserLog"] = _NewDataSet.Tables[1];
                 Session.Remove("tblvoucher");
 
-
+                this.GetPayeeType();
                 if (this.ddlPrivousVou.Items.Count > 0)
                 {
                     //DataSet _NewDataSet = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_VOUCHER", "EDITVOUCHER", newvoumum, "", "", "", "", "", "", "", "");
@@ -866,7 +866,7 @@ namespace RealERPWEB.F_17_Acc
                     DataTable dtuser = (DataTable)Session["UserLog"];
                     string aprovbyid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["aprvbyid"].ToString();
                     string pounaction = (dtuser.Rows.Count == 0) ? ((this.chkpost.Checked) ? "U" : "") : dtuser.Rows[0]["pounaction"].ToString().Trim();
-
+                   
                     string CallType = (this.chkpost.Checked && pounaction.Length == 0) ? "EDITVOUCHER"
                         : (this.chkpost.Checked == false && pounaction.Length > 0) ? "EDITUNVOUCHER" : (this.chkpost.Checked) ? "EDITUNVOUCHER" : "EDITVOUCHER";
                     vounum = this.ddlPrivousVou.SelectedValue.ToString();
@@ -895,6 +895,7 @@ namespace RealERPWEB.F_17_Acc
                     this.txtEntryDate.Text = Convert.ToDateTime(dtedit.Rows[0]["voudat"]).ToString("dd-MMM-yyyy");
                     this.lblisunum.Text = dtedit.Rows[0]["isunum"].ToString();
                     this.txtRefNum.Text = dtedit.Rows[0]["refnum"].ToString();
+                    this.ddlpayeelist.SelectedValue = dtedit.Rows[0]["payeetype"].ToString().Trim(); //payee Type
                     this.txtSrinfo.Text = dtedit.Rows[0]["srinfo"].ToString();
                     this.txtPayto.Text = dtedit.Rows[0]["payto"].ToString();
                     this.txtBankNam.Text = dtedit.Rows[0]["banknam"].ToString();
@@ -941,6 +942,8 @@ namespace RealERPWEB.F_17_Acc
                     if (VNo3 == "BD" || VNo3 == "CT")
                     {
                         this.ChequeNo();
+                        
+
                     }
 
                     this.txtchequedate.Text = (VNo3 == "BD" || VNo3 == "CT" || VNo3 == "BC") ? this.txtEntryDate.Text : "";
@@ -1029,6 +1032,8 @@ namespace RealERPWEB.F_17_Acc
                 this.txtBankNam.Text = "";
                 this.lblbalamt.Text = "";
                 this.ddlcheque.Items.Clear();
+                this.ddlpayeelist.Items.Clear();
+
                 this.ddlacccode.BackColor = System.Drawing.Color.White;
                 this.ddlresuorcecode.BackColor = System.Drawing.Color.White;
                 this.ddlSpclinf.BackColor = System.Drawing.Color.White;
@@ -1116,6 +1121,23 @@ namespace RealERPWEB.F_17_Acc
             this.ddlcheque.SelectedValue = "";
 
             this.ddlcheque_SelectedIndexChanged(null, null);
+
+        }
+
+        private void GetPayeeType()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            
+          
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETPAYEETYPE", "", "", "", "", "", "", "", "", "");
+            this.ddlpayeelist.DataTextField = "gdesc";
+            this.ddlpayeelist.DataValueField = "gcod";
+            this.ddlpayeelist.DataSource = ds1.Tables[0];
+            Session["tblpayeetype"] = ds1.Tables[0];
+            this.ddlpayeelist.DataBind();
+            this.ddlpayeelist.SelectedValue = "";
+            this.ddlpayeelist_SelectedIndexChanged(null, null);
 
         }
         private void Refrsh()
@@ -1966,6 +1988,8 @@ namespace RealERPWEB.F_17_Acc
             string vounum = this.txtcurrentvou.Text.Trim().Substring(0, 2) + voudat.Substring(7, 4) +
                             this.txtcurrentvou.Text.Trim().Substring(2, 2) + this.txtCurrntlast6.Text.Trim();
             string refnum = this.txtRefNum.Text.Trim();
+            string ddlPayee = this.ddlpayeelist.SelectedValue.ToString().Trim(); // addd payee Type
+
             string srinfo = this.txtSrinfo.Text;
             //string recivedbank = this.txtBankNam.Text;
             string vounarration1 = this.txtNarration.Text.Trim();
@@ -2138,7 +2162,7 @@ namespace RealERPWEB.F_17_Acc
 
                 //-----------Update Transaction B Table-----------------//
                 bool resultb = accData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", CallType, vounum, voudat, refnum, srinfo, vounarration1,
-                                vounarration2, voutype, vtcode, edit, PostedByid, Posttrmid, PostSession, Posteddat, EditByid, Editdat, Payto, isunum, aprovbyid, aprvtrmid, aprvseson, aprvdat, pounaction, rbankname, chequedat, "", "");
+                                vounarration2, voutype, vtcode, edit, PostedByid, Posttrmid, PostSession, Posteddat, EditByid, Editdat, Payto, isunum, aprovbyid, aprvtrmid, aprvseson, aprvdat, pounaction, rbankname, chequedat, "", ddlPayee);
 
 
                 if (!resultb)
@@ -2982,6 +3006,7 @@ namespace RealERPWEB.F_17_Acc
                 return;
             this.txtRefNum.Text = this.ddlcheque.SelectedItem.Text;
         }
+
         protected void dgv1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
 
@@ -3644,6 +3669,17 @@ namespace RealERPWEB.F_17_Acc
         }
         protected void ddlacccode_SelectedIndexChanged1(object sender, EventArgs e)
         {
+
+        }
+
+        protected void ddlpayeelist_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (this.ddlpayeelist.Items.Count == 0)
+                return;
+
+            //this.ddlvoucher.SelectedValue.ToString();
+            //this.ddlpayeelist.SelectedValue = this.ddlpayeelist.SelectedItem.Text;
 
         }
     }

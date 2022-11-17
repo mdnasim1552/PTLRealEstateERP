@@ -659,7 +659,7 @@
 
                              <div class="table-responsive">
                                   <asp:GridView ID="gv_hodChecked" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" Width="100%"  >
+                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" Width="100%" OnRowDataBound="gv_hodChecked_RowDataBound"  >
                                         <Columns>
 
                                             <asp:TemplateField HeaderText="SL # ">
@@ -734,7 +734,7 @@
                                             <asp:TemplateField HeaderText="Action">
                                                 <ItemTemplate>
                                                     
-                                                    <asp:HyperLink runat="server" ID="hybtnhodidentlink" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-edit"></i></asp:HyperLink>
+                                                    <asp:HyperLink runat="server" ID="hybtnhodidentlink" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-check"></i></asp:HyperLink>
                                                     <asp:LinkButton ID="btnhoddeleteIndent"  runat="server" CssClass="text-danger"  ToolTip="delete"><i class="fa fa-trash"></i></asp:LinkButton>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -755,7 +755,88 @@
                         <asp:Panel runat="server" ID="pnlReqAprv" Visible="false">
 
                             <div class="table-responsive">
-                                 
+                                 <asp:GridView ID="gv_hradminapproval" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" Width="100%"  >
+                                        <Columns>
+
+                                            <asp:TemplateField HeaderText="SL # ">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
+                                                        Style="text-align: right; font-size: 12px;"
+                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"
+                                                        ForeColor="Black"></asp:Label>
+
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Issue Date" >
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvaprvdat" runat="server" Height="16px"  Width="150px"
+                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "aprvdat")).ToString("dd-MMM-yyyy") %>'></asp:Label>
+
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            </asp:TemplateField>
+                                             <asp:TemplateField HeaderText="Created By" >
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvadcreatedby" runat="server" Height="16px"  Width="150px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "createby"))%>'></asp:Label>
+
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Issue No" >
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvadissueno" runat="server" Height="16px"  Width="200px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "issueno")) %>'></asp:Label>
+
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Ref No">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvadrefno" runat="server" Height="16px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "refno")) %>'
+                                                        Width="100px"></asp:Label>
+
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            </asp:TemplateField>
+                                             <asp:TemplateField HeaderText="Status">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvadsteptype" runat="server"  CssClass="badge badge-pill badge-success"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "steptype")) %>'
+                                                        ></asp:Label>
+
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Issue Qty">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvadissueqty" runat="server" Height="16px"  Width="150px"
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "issueqty")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            </asp:TemplateField>                                        
+                                           
+
+                                            <asp:TemplateField HeaderText="Action">
+                                                <ItemTemplate>
+                                                    
+                                                    <asp:HyperLink runat="server" ID="hybtnadidentlink" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-check"></i></asp:HyperLink>
+                                                    <%--<asp:LinkButton ID="btndeleteIndent"  runat="server" CssClass="text-danger" OnClick="btndeleteIndent_Click" ToolTip="delete"><i class="fa fa-trash"></i></asp:LinkButton>--%>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            </asp:TemplateField>
+
+                                        </Columns>
+
+                                        <PagerStyle CssClass="gvPagination" />
+
+                                        <HeaderStyle CssClass="grvHeader" />
+                                    </asp:GridView>
 
                             </div>
 

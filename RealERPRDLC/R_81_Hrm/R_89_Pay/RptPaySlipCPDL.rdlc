@@ -276,6 +276,10 @@
           <DataField>ohour</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="otallow">
+          <DataField>otallow</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="oth">
           <DataField>oth</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -342,6 +346,10 @@
         </Field>
         <Field Name="swf">
           <DataField>swf</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="tallow">
+          <DataField>tallow</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="tdeduc">
@@ -2906,7 +2914,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!swf.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                   </Style>
@@ -3207,7 +3215,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!adv.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                   </Style>
@@ -4266,7 +4274,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!haircutal.Value, "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!oth.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -4716,7 +4724,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!subfee.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                   </Style>
@@ -5472,7 +5480,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!othearn.Value, "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!otallow.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -5766,7 +5774,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!grossalsub.Value, "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!tallow.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -6991,7 +6999,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!adv.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                   </Style>
@@ -8050,7 +8058,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!haircutal.Value, "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!oth.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -8800,10 +8808,9 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!mbill.Value, "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!mbillded.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -9256,7 +9263,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!oth.Value, "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!otallow.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -9550,7 +9557,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!grossalsub.Value, "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!tallow.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
