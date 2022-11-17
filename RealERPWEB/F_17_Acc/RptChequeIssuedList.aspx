@@ -12,15 +12,20 @@
         });
         function pageLoaded() {
             $(document).ready(function () {
-
+                $('.chzn-select').chosen({ search_contains: true });
                 Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
             });
 
             function pageLoaded() {
 
+<<<<<<< HEAD
+                $('.chzn-select').chosen({ search_contains: true });
+                //$(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
+=======
 
                 $('.chzn-select').chosen({ search_contains: true });
+>>>>>>> f5aa924c98eafd29259f7bed1b23471f552b327d
 
             }
         }
@@ -57,14 +62,12 @@
                                 <div class="form-group">
                                     <div class="col-md-3 pading5px asitCol3">
                                         <asp:Label ID="lblProjectname" runat="server" CssClass="lblTxt lblName">Bank Name</asp:Label>
-                                        <asp:TextBox ID="txtSrcBank" runat="server" CssClass=" inputTxt inputName inpPixedWidth chzn-single"></asp:TextBox>
+                                        <asp:TextBox ID="txtSrcBank" runat="server" CssClass=" inputTxt inputName inpPixedWidth"></asp:TextBox>
 
 
                                         <div class="colMdbtn">
                                             <asp:LinkButton ID="imgbtnFindProject" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnFindProject_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
                                         </div>
-
                                     </div>
 
                                     <div class="col-md-4 pading5px ">

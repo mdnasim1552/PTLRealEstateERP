@@ -1087,7 +1087,7 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>2in</Height>
+        <Height>1.90625in</Height>
         <Style />
       </Body>
       <Width>7.41624in</Width>
@@ -1262,7 +1262,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.29028in</Height>
+          <Height>0.26944in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
