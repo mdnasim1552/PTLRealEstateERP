@@ -183,7 +183,7 @@
                                         <asp:TemplateField HeaderText="Transfer From">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvtfpactdesc" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "tfpactdesc")) %>'
-                                                    Width="100px"></asp:Label>
+                                                    Width="120px"></asp:Label>
                                             </ItemTemplate>
 
                                             <FooterStyle HorizontalAlign="Center" />
@@ -193,7 +193,7 @@
                                         <asp:TemplateField HeaderText="Transfer To">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvttpactdesc" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ttpactdesc")) %>'
-                                                    Width="100px"></asp:Label>
+                                                    Width="120px"></asp:Label>
                                             </ItemTemplate>
 
                                             <FooterStyle HorizontalAlign="Center" />
@@ -241,7 +241,7 @@
                                         <asp:TemplateField HeaderText="Req. No.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvReqNo1" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mtreqno1")) %>'
-                                                    Width="50px"></asp:Label>
+                                                    Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:LinkButton ID="lbtnResFooterTotal" runat="server" CssClass="btn btn-primary   primarygrdBtn"
@@ -252,15 +252,15 @@
                                         <asp:TemplateField HeaderText="MRF No.">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvmrfno" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mtrref")) %>'
-                                                    Width="50px"></asp:Label>
+                                                    Width="60px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                             <asp:TemplateField HeaderText="Actual Stock <br>Qty">
+                                             <asp:TemplateField HeaderText="Actual Stock Qty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvacstockqty" runat="server" Font-Size="11px" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "stockbal")).ToString("#,##0.000;(#,##0.000); ") %>'
-                                                    Width="55px"></asp:Label>
+                                                    Width="65px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                               
@@ -297,12 +297,12 @@
 
 
 
-                                        <asp:TemplateField HeaderText="Approved Qty.">
+                                        <asp:TemplateField HeaderText="Approved Qty">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvaprovedQty" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                     BorderWidth="0px" Font-Size="11px" Style="text-align: right; background-color: Transparent"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "getpqty")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                    Width="60px"></asp:TextBox>
+                                                    Width="70px"></asp:TextBox>
                                             </ItemTemplate>
 
                                             <ItemStyle HorizontalAlign="Right" />

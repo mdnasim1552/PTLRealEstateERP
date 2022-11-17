@@ -577,6 +577,23 @@
                         $(".tbMenuWrp table tr td:nth-child(15)").hide();
                         break;
 
+                    case 3366:
+                        $(".tbMenuWrp table tr td:nth-child(1)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(2)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(3)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(4)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(5)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(6)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(8)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(9)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(11)").hide(); // 9 - for billApproval
+                        $(".tbMenuWrp table tr td:nth-child(13)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(14)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(15)").hide();
+                        break;
+
+
                     default:
                         $(".tbMenuWrp table tr td:nth-child(3)").hide();
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
