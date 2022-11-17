@@ -1846,6 +1846,8 @@ namespace RealERPWEB.F_22_Sal
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
             string custid = this.ddlCustName.SelectedValue.ToString();
             DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTPAYMENTSCHEDULE", pactcode, custid, "", "", "", "", "", "", "");
+            if (ds2 == null || ds2.Tables[0].Rows.Count == 0 || ds2.Tables[1].Rows.Count == 0)
+                return;
             DataTable dt = ds2.Tables[1];
             DataView dv = dt.DefaultView;
             dv.RowFilter = ("grp='A'");
@@ -1863,7 +1865,8 @@ namespace RealERPWEB.F_22_Sal
 
             switch (comcod)
             {
-                case "3101": // finlay 
+               
+                // finlay 
                 case "3368":
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPaySchedule", lst, null, null);
                     Rpt1.EnableExternalImages = true;
@@ -1872,6 +1875,7 @@ namespace RealERPWEB.F_22_Sal
                     break;
 
                 //case "3101": // epic 
+               
                 case "3367":
                     sign1 = ds2.Tables[0].Rows[0]["name"].ToString() + "\n" + "Customer";
                     sign2 = ds2.Tables[0].Rows[0]["usrname"].ToString() + "\n" + ds2.Tables[0].Rows[0]["usrdesig"].ToString();
@@ -1886,22 +1890,43 @@ namespace RealERPWEB.F_22_Sal
                     Rpt1.SetParameters(new ReportParameter("sign3", sign3));
                     Rpt1.SetParameters(new ReportParameter("sign4", sign4));
                     break;
+
+                case "3101":
+                case "3370":
+                    Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPayScheduleCPDL", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
+                  
+                    Rpt1.SetParameters(new ReportParameter("apttype", ds2.Tables[0].Rows[0]["apttype"].ToString()));
+                    Rpt1.SetParameters(new ReportParameter("flrdesc", ds2.Tables[0].Rows[0]["flrdesc"].ToString()));
+                    Rpt1.SetParameters(new ReportParameter("bookdate", ds2.Tables[0].Rows[0]["bookdate"].ToString()));
+                    Rpt1.SetParameters(new ReportParameter("bookno", ds2.Tables[0].Rows[0]["bookno"].ToString()));
+                    Rpt1.SetParameters(new ReportParameter("projectname", ds2.Tables[0].Rows[0]["projectname"].ToString()));
+                    Rpt1.SetParameters(new ReportParameter("padrss", ds2.Tables[0].Rows[0]["paddress"].ToString()));
+                    Rpt1.SetParameters(new ReportParameter("custnum", ds2.Tables[0].Rows[0]["usircode"].ToString()));
+
+
+                    break;
                 default:
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPaySchedule", lst, null, null);
                     Rpt1.EnableExternalImages = true;
                     address = ds2.Tables[0].Rows[0]["paddress"].ToString();
                     break;
             }
+
+
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
 
             Rpt1.SetParameters(new ReportParameter("custnam", ds2.Tables[0].Rows[0]["name"].ToString()));
+
             Rpt1.SetParameters(new ReportParameter("Address", address));
             Rpt1.SetParameters(new ReportParameter("Telephone", ds2.Tables[0].Rows[0]["telephone"].ToString()));
             Rpt1.SetParameters(new ReportParameter("ProjectNam", projectname));
+
             Rpt1.SetParameters(new ReportParameter("FloorType", ds2.Tables[0].Rows[0]["aptname"].ToString()));
             Rpt1.SetParameters(new ReportParameter("Mobile", ds2.Tables[0].Rows[0]["mobile"].ToString()));
             Rpt1.SetParameters(new ReportParameter("Size", ds2.Tables[0].Rows[0]["aptsize"].ToString()));
+
             Rpt1.SetParameters(new ReportParameter("InWord", "Taka In Word: " + ASTUtility.Trans(directcost, 2)));
             Rpt1.SetParameters(new ReportParameter("RptTitle", "Payment Schedule"));
             Rpt1.SetParameters(new ReportParameter("AppNo", ds2.Tables[0].Rows[0]["aptname"].ToString()));
