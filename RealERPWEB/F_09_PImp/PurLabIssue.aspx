@@ -243,8 +243,8 @@
 
                         <div class="col-sm-12 col-md-2">
                             <div class="form-group">
-                                <asp:LinkButton ID="lbtnPrevISSList" runat="server" CssClass="form-label" OnClick="lbtnPrevISSList_Click">Prev. List</asp:LinkButton>
-                                <asp:LinkButton ID="ibtnPreBillList" runat="server" CssClass="form-label" OnClick="ibtnPreBillList_Click" Visible="false"></asp:LinkButton>
+                                <asp:LinkButton ID="ibtnPreBillList" runat="server" CssClass="form-label" OnClick="ibtnPreBillList_Click">Prev. List</asp:LinkButton>
+                               
 
                                 <asp:TextBox ID="txtSrcPreBill" runat="server" CssClass="inputTxt inputDateBox" Visible="false"></asp:TextBox>
                                 <asp:DropDownList ID="ddlPrevISSList" runat="server" CssClass="form-control chzn-select">
@@ -774,6 +774,8 @@
 
                 <asp:Label ID="lblBillno" runat="server" Visible="False"></asp:Label>
                 <asp:Label ID="lblvalvounum" runat="server" CssClass="lblTxt lblName" Visible="false"></asp:Label>
+                <asp:HiddenField ID="hdnmbno" runat="server" />
+                <asp:HiddenField ID="hdnforderno" runat="server" />
 
             </div>
 

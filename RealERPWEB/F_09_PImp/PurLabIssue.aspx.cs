@@ -45,10 +45,14 @@ namespace RealERPWEB.F_09_PImp
                 this.DateForOpeningBill();
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 this.ComRefText();
-                if (this.Request.QueryString["genno"].ToString().Length > 0)
+                string qgenno = this.Request.QueryString["genno"] ?? "";
+                if (qgenno.Length > 0)
                 {
-                    if (this.Request.QueryString["genno"].ToString().Substring(0, 3) == "COR")
+                    
+                    if (qgenno.Substring(0, 3) == "COR" || qgenno.Substring(0, 3) == "MBK")
                     {
+                        this.hdnmbno.Value = qgenno;
+                        this.hdnforderno.Value = this.Request.QueryString["vounum"] ?? "";
                         this.lbtnOk_Click(null, null);
                     }
                     else
@@ -589,7 +593,7 @@ namespace RealERPWEB.F_09_PImp
                 this.txtISSNarr.Text = "";
                 this.lblBillno.Text = "";
 
-                this.lbtnPrevISSList.Visible = true;
+             
                 this.ddlPrevISSList.Visible = true;
                 this.txtSrcPreBill.Visible = true;
                 this.ibtnPreBillList.Visible = true;
@@ -618,8 +622,7 @@ namespace RealERPWEB.F_09_PImp
             this.ddlprjlist.Enabled = false;
             //this.lblddlProject.Visible = true;
             this.ddlcontractorlist.Enabled = false;
-            //this.lblSubContractor.Visible = true;
-            this.lbtnPrevISSList.Visible = false;
+            //this.lblSubContractor.Visible = true;          
             this.ddlPrevISSList.Visible = false;
             this.txtSrcPreBill.Visible = false;
             this.ibtnPreBillList.Visible = false;
@@ -690,7 +693,7 @@ namespace RealERPWEB.F_09_PImp
                 // this.ddlRA.Enabled = false;
                 mISSNo = this.ddlPrevISSList.SelectedValue.ToString();
             }
-            string workorder = (this.Request.QueryString["genno"].ToString().Length > 0) ? (this.Request.QueryString["genno"].ToString().Substring(0, 3) == "COR") ? this.Request.QueryString["genno"].ToString() : "" : "";
+            string workorder = (this.Request.QueryString["genno"].ToString().Length > 0) ? ((this.Request.QueryString["genno"].ToString().Substring(0, 3) == "COR" || this.Request.QueryString["genno"].ToString().Substring(0, 3) == "MBK") ? this.Request.QueryString["genno"].ToString() : "") : "";
             DataSet ds1 = new DataSet();
             ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPURLABISSUEINFO", mISSNo, CurDate1,
                          pactcode, workorder, "", "", "", "", "");
@@ -768,7 +771,8 @@ namespace RealERPWEB.F_09_PImp
             double Reward = Convert.ToDouble("0" + this.txtreward.Text.Trim());
 
             this.lblvalnettotal.Text = (amount + Reward - (security + deduction + penalty + Advanced)).ToString("#,##0;(#,##0); ");
-
+            this.hdnforderno.Value = ds1.Tables[1].Rows[0]["workordr"].ToString();
+            this.hdnmbno.Value = ds1.Tables[1].Rows[0]["mbno"].ToString();
 
 
 
@@ -1493,11 +1497,12 @@ namespace RealERPWEB.F_09_PImp
             //string appxml = tbl2.Rows[0]["approval"].ToString();
             //string Approval = this.GetReqApproval(appxml);
 
-            string workorder = (this.Request.QueryString["genno"].ToString().Length > 0) ? (this.Request.QueryString["genno"].ToString().Substring(0, 3) == "COR") ? this.Request.QueryString["genno"].ToString() : "" : "";
+            string workorder = this.hdnforderno.Value;
+            string mbno = this.hdnmbno.Value;
 
             //string workorder = (this.Request.QueryString["genno"].ToString().Substring(0, 3) == "COR") ? this.Request.QueryString["genno"].ToString() : "";
             bool result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURLABISSUEINFO", "PURLISSUEB",
-                             mISUNO, mISUDAT, mPACTCODE, mCONCODE, mISURNAR, Refno, usrid, Sessionid, trmid, trade, rano, percentage, sdamt, dedamt, Penalty, advamt, Reward, workorder, "", "");
+                             mISUNO, mISUDAT, mPACTCODE, mCONCODE, mISURNAR, Refno, usrid, Sessionid, trmid, trade, rano, percentage, sdamt, dedamt, Penalty, advamt, Reward, workorder, mbno, "");
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();

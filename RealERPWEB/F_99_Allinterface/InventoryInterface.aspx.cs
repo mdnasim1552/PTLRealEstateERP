@@ -231,8 +231,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 return;
             }
-            string gatePass = "";
-            string approval = "";
+            string gatePass = "",  approval = "", Audit = "Audit";
             switch (comcod)
             {
 
@@ -249,7 +248,13 @@ namespace RealERPWEB.F_99_Allinterface
                     gatePass = "Gate Pass";
                     approval = "Received";
                     break;
-                // todo for skip mrtreq approval part
+
+                case"3370":
+                    gatePass = "Gate Pass";
+                    approval = "Received";
+                    Audit = "Approval";
+                    break;     
+                    
                 default:
                     gatePass = "Gate Pass";
                     approval = "Approval";
@@ -262,7 +267,7 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[8].Rows[0]["reqapproval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Req Approval</div></div></div>";
             this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[8].Rows[0]["gatepass"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + gatePass + "</div></div></div>";
             this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[8].Rows[0]["approval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>" + approval + "</div></div></div>";
-            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[8].Rows[0]["audited"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Audit</div></div></div>";
+            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[8].Rows[0]["audited"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>"+ Audit + "</div></div></div>";
             this.RadioButtonList1.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[8].Rows[0]["account"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Accounts Update</div></div></div>";
 
             Session["tbladdwrk"] = ds2.Tables[0];
@@ -290,6 +295,10 @@ namespace RealERPWEB.F_99_Allinterface
                 case "gvstatus":
                     this.gvstatus.DataSource = dt;
                     this.gvstatus.DataBind();
+                    if (GetCompCode() == "3370")
+                    {
+                        this.gvstatus.Columns[8].Visible = false;
+                    }
                     if (dt.Rows.Count == 0)
                         return;
                     break;
@@ -311,6 +320,10 @@ namespace RealERPWEB.F_99_Allinterface
                 case "gvreqaprv":
                     this.gvreqaprv.DataSource = dt;
                     this.gvreqaprv.DataBind();
+                    if (GetCompCode() == "3370")
+                    {
+                        this.gvreqaprv.Columns[7].Visible = false;
+                    }
                     if (dt.Rows.Count == 0)
                         return;
                     break;
@@ -318,6 +331,10 @@ namespace RealERPWEB.F_99_Allinterface
                 case "gvgatepass":
                     this.gvgatepass.DataSource = dt;
                     this.gvgatepass.DataBind();
+                    if (GetCompCode() == "3370")
+                    {
+                        this.gvgatepass.Columns[8].Visible = false;
+                    }
                     if (dt.Rows.Count == 0)
                         return;
                     break;
@@ -325,12 +342,20 @@ namespace RealERPWEB.F_99_Allinterface
                 case "gvapproval":
                     this.gvapproval.DataSource = dt;
                     this.gvapproval.DataBind();
+                    if (GetCompCode() == "3370")
+                    {
+                        this.gvapproval.Columns[8].Visible = false;
+                    }
                     if (dt.Rows.Count == 0)
                         return;
                     break;
                 case "gvaudit":
                     this.gvaudit.DataSource = dt;
                     this.gvaudit.DataBind();
+                    if (GetCompCode() == "3370")
+                    {
+                        this.gvaudit.Columns[8].Visible = false;
+                    }
                     if (dt.Rows.Count == 0)
                         return;
                     break;
