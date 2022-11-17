@@ -332,28 +332,31 @@ namespace RealERPWEB.F_99_Allinterface
             this.Data_Bind("gvWorkOrder", dv.ToTable());
 
 
-            /// Measurement Book
-            dt = ((DataTable)ds1.Tables[7]).Copy();
-            dv = dt.DefaultView;
-            dv.RowFilter = ("orderno <>'' and mbno =''");
-            this.Data_Bind("gvmbook", dv.ToTable());
+            /// Measurement Book  
+            dt = (DataTable)ds1.Tables[11];
+            this.Data_Bind("gvmbook", dt);
 
 
             /// Measurement Book Approval
-            dt = ((DataTable)ds1.Tables[7]).Copy();
-            dv = dt.DefaultView;
-            dv.RowFilter = ("orderno <>'' and mbno <>'' and mbnoapp=''");
-            this.Data_Bind("gvmbookapp", dv.ToTable());
+            //dt = ((DataTable)ds1.Tables[11]).Copy();
+            //dv = dt.DefaultView;
+            //dv.RowFilter = ("orderno <>'' and mbno <>'' and mbnoapp=''");
+            //this.Data_Bind("gvmbookapp", dv.ToTable());
 
 
+
+
+            // Ready For Bill
+            dt = (DataTable)ds1.Tables[12];
+            this.Data_Bind("gvReadyForBill", dt);
 
 
 
             /// Ready For Bill
-            dt = ((DataTable)ds1.Tables[7]).Copy();
-            dv = dt.DefaultView;
-            dv.RowFilter = ("orderno <>'' and mbno <>'' and mbnoapp<>'' and lisueno=''");
-            this.Data_Bind("gvReadyForBill", dv.ToTable());
+            //dt = ((DataTable)ds1.Tables[7]).Copy();
+            //dv = dt.DefaultView;
+            //dv.RowFilter = ("orderno <>''  and lisueno=''");
+            //this.Data_Bind("gvReadyForBill", dv.ToTable());
 
 
             dtb = ((DataTable)ds1.Tables[2]).Copy();
@@ -1957,9 +1960,10 @@ namespace RealERPWEB.F_99_Allinterface
                 string lreqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lreqno")).ToString();
                 string csircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "csircode")).ToString();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                string mbno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mbno")).ToString();
                 string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
-
-                hlink1.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Current&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + csircode;
+                
+                hlink1.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Current&prjcode=" + pactcode + "&genno=" + mbno + "&vounum=" + orderno + "&sircode=" + csircode;
                 hlink2.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Entry&genno=" + lreqno + "&sircode=" + csircode + "&actcode=" + pactcode + "&orderno=" + orderno;
 
             }

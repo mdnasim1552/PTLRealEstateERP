@@ -301,7 +301,7 @@ namespace RealERPWEB.F_09_PImp
             ViewState.Remove("tblcorder");
             string comcod = this.GetCompCode();
             string orderno = this.Request.QueryString["genno"] ?? "";
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETCONORDERINFO", orderno, "",
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETCONORDERLISTINFO", orderno, "",
                           "", "", "", "", "", "", "");
             if (ds1 == null)
             {

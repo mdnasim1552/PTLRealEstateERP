@@ -5,6 +5,182 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script src="../../../Scripts/gridviewScrollHaVertworow.min.js"></script>
+     <script type="text/javascript" language="javascript">
+
+
+         $(document).ready(function () {
+
+             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+         });
+
+         function pageLoaded() {
+
+             try {
+
+
+                 var gridViewScroll = new GridViewScroll({
+                     elementID: "gvInfo",
+                     width: 1000,
+                     height: 465,
+                     freezeColumn: true,
+                     freezeFooter: true,
+                     freezeColumnCssClass: "GridViewScrollItemFreeze",
+                     freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                     freezeHeaderRowCount: 1,
+                     freezeColumnCount: 8,
+
+                 });
+
+                 gridViewScroll.enhance();
+
+                 $("input, select").bind("keydown", function (event) {
+                     var k1 = new KeyPress();
+                     k1.textBoxHandler(event);
+                 });
+
+                 $('.chzn-select').chosen({ search_contains: true });
+                 var comcod =<%=this.GetComeCode()%>;
+
+
+                 $('.lbtnschedule').click(function () {
+
+
+                     var subject = $(this).parent().find('#txtdate').val();
+                     var lblcdate = $(this).parent().find('#lblcdate').val();
+
+                 });
+
+
+                 $('.datepicker').datepicker({
+                     format: 'mm/dd/yyyy',
+                 });
+
+
+
+                 $("input, select").bind("keydown", function (event) {
+                     var k1 = new KeyPress();
+                     k1.textBoxHandler(event);
+                 });
+
+                 $(".chosen-select").chosen({
+                     search_contains: true,
+                     no_results_text: "Sorry, no match!",
+                     allow_single_deselect: true
+                 });
+                 $('.chosen-continer').css('width', '600px');
+
+                 $('.chzn-select').chosen({ search_contains: true });
+
+               
+                 var comcod =<%=this.GetComeCode()%>;
+
+                 var gcod;
+
+                 var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
+                 var arrgschval = $('#<%=this.gvInfo.ClientID %>').find('input:text[id$="txtgvValdis"]');
+                 var arrgsschcheckbox = $('#<%=this.gvInfo.ClientID %>').find('input:text[id$="ChkBoxLstFollow"]');
+                 var txtnfollowupdate, checkboxlastfollowup;
+                 for (var i = 0; i < arrgschcodl.length; i++) {
+
+
+                     gcod = $(arrgschcodl[i]).text();
+                     var number, numberlq, numbercom;
+                     switch (gcod) {
+
+
+                         //Company
+                         case '810100101007':
+                             numbercom = i;
+                             break;
+
+                         //Last Followup
+                         case '810100101020':
+                             number = i;
+                             break;
+
+
+                         case '810100101014':
+                             numberlq = i;
+                             break;
+
+
+
+
+                     }
+
+                 }
+
+                 var txtgvdValdis = '#ContentPlaceHolder1_gvInfo_txtgvdValdis_' + number;
+                 var ChkBoxLstFollow = 'ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_' + (number - 1);
+                 $(txtgvdValdis).change(function () {
+                     var followupdate = $(this).val();
+                     var lastfollowup = "";
+                     $('input[type=checkbox][id^="' + ChkBoxLstFollow + '"]:checked').each(function (index, item) {
+
+                         lastfollowup = $(item).val();
+
+                     });
+
+                     if (lastfollowup.length > 0) {
+
+                         funschedulenumber(comcod, followupdate, lastfollowup, number);
+                     }
+
+                 });
+
+
+                 $('#' + ChkBoxLstFollow).change(function () {
+                     var followupdate = $(txtgvdValdis).val();
+                     var lastfollowup = "";
+                     alet(followupdate);
+                     $('input[type=checkbox][id^="' + ChkBoxLstFollow + '"]:checked').each(function (index, item) {
+
+                         lastfollowup = $(item).val();
+
+                     });
+
+                     if (lastfollowup.length > 0) {
+
+                         funschedulenumber(comcod, followupdate, lastfollowup, number);
+                     }
+
+                 });
+
+                 //Company
+
+
+                 var ddlcompany = '#ContentPlaceHolder1_gvInfo_ddlCompany_' + numbercom;
+                 $(ddlcompany).change(function () {
+                     var company = $(this).val();
+                     // console.log(company);
+                     funCompanyProject(comcod, company);
+
+
+                 });
+
+                 //Lead Reason
+
+                 var ddlvisit = '#ContentPlaceHolder1_gvInfo_ddlVisit_' + numberlq;
+                 $(ddlvisit).change(function () {
+                     leadquality = $(this).val();
+                     funLeadReason(comcod, leadquality);
+
+
+                 });
+
+
+                }
+
+             catch (e) {
+                 alert(e);
+             }
+
+         }
+
+
+
+     </script>
     <style>
         body {
             font-family: "Century Gothic";
@@ -128,7 +304,7 @@
         }
 
         .card-header span {
-            font-size: 1.5rem;
+            font-size: 14px;
             font-weight: bolder;
         }
 
@@ -332,9 +508,7 @@
 
         tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td {
         }
-    </style>
-    <style type="text/css">
-        .GridViewScrollHeader TH, .GridViewScrollHeader TD, .GridViewScroll1Header TH, .GridViewScroll1Header TD, .GridViewScroll2Header TH, .GridViewScroll2Header TD {
+         .GridViewScrollHeader TH, .GridViewScrollHeader TD, .GridViewScroll1Header TH, .GridViewScroll1Header TD, .GridViewScroll2Header TH, .GridViewScroll2Header TD {
             font-weight: normal;
             white-space: nowrap;
             border-right: 1px solid #e6e6e6;
@@ -410,72 +584,8 @@
             padding: 5px 5px;
         }
     </style>
-    <script type="text/javascript" language="javascript">
-
-
-        $(document).ready(function () {
-
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-        });
-
-        function pageLoaded() {
-
-            try {
-
-
-                var gridViewScroll = new GridViewScroll({
-                    elementID: "gvInfo",
-                    width: 1000,
-                    height: 400,
-                    freezeColumn: true,
-                    freezeFooter: true,
-                    freezeColumnCssClass: "GridViewScrollItemFreeze",
-                    freezeFooterCssClass: "GridViewScrollFooterFreeze",
-                    freezeHeaderRowCount: 1,
-                    freezeColumnCount: 8,
-
-                });
-
-
-
-
-                //var gridViewScroll = new GridViewScroll({
-                //    elementID: "gvBonus",
-                //    width: 1000,
-                //    height: 500,
-                //    freezeColumn: true,
-                //    freezeFooter: true,
-                //    freezeColumnCssClass: "GridViewScrollItemFreeze",
-                //    freezeFooterCssClass: "GridViewScrollFooterFreeze",
-                //    freezeHeaderRowCount: 1,
-                //    freezeColumnCount: 8,
-
-                //});
-
-                gridViewScroll.enhance();
-
-                $("input, select").bind("keydown", function (event) {
-                    var k1 = new KeyPress();
-                    k1.textBoxHandler(event);
-                });
-
-                $('.chzn-select').chosen({ search_contains: true });
-                var comcod =<%=this.GetComeCode()%>;
-
-
-
-            }
-
-            catch (e) {
-                alert(e);
-            }
-
-        }
-
-
-
-    </script>
+    
+   
 
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -525,7 +635,7 @@
                         </div>
                         <div class="col-md-2">
                             <asp:Label ID="Label2" runat="server" CssClass="form-label">Search </asp:Label>
-                            <asp:TextBox ID="txtVal" runat="server" CssClass="form-control" TextMode="Search" autocomplete="off"></asp:TextBox>
+                            <asp:TextBox ID="txtVal" runat="server" CssClass="form-control form-control-sm" TextMode="Search" autocomplete="off"></asp:TextBox>
 
                         </div>
 
@@ -614,7 +724,9 @@
                         </div>
                         <div class="col-md-8" id="pnlfollowup" runat="server">
                             <div class="card mt-3 mb-3">
-                                <div class="card-header bg-light"><span class="font-weight-bold text-muted">Follow Up Summary</span></div>
+      
+                                <div class="card-header bg-light"><span class="font-weight-bold text-muted">FollowUp Summary</span></div>
+                              <div id="pnlflw" runat="server" visible="false" class="card-header bg-light"><span class="font-weight-bold text-muted"><asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ID="lbtntfollowup" data-target="#followup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton></span></div>
                                 <div class="card-body">
                                     <asp:Repeater ID="rpclientinfo" runat="server">
                                         <HeaderTemplate>
@@ -760,17 +872,14 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField>
 
-                                                        <FooterTemplate>
-
-                                                            <asp:LinkButton ID="lbtnUpdateDiscussion" runat="server" OnClientClick="CloseModaldis();" OnClick="lbtnUpdateDiscussion_Click" CssClass="btn  btn-success btn-xs ">Final Update</asp:LinkButton>
-
-                                                        </FooterTemplate>
+                                                        
                                                         <ItemTemplate>
 
 
 
-                                                            <asp:TextBox ID="txtgvValdis" runat="server" BorderWidth="0" BackColor="Transparent" Font-Size="14px"
+                                                            <asp:TextBox ID="txtgvValdis" runat="server" BorderWidth="0" BackColor="Transparent" Font-Size="14px" Style="width: 80px; float: left;"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
+
 
                                                             <asp:TextBox ID="txtgvdValdis" CssClass="disable_past_dates" runat="server" BorderWidth="0" Style="width: 80px; float: left;" BackColor="Transparent"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
@@ -880,7 +989,7 @@
                                                             </asp:Panel>
 
                                                             <asp:Panel ID="pnlParic" runat="server" Visible="false">
-                                                                <asp:ListBox ID="ddlPartic" runat="server" SelectionMode="Multiple" class="form-control chosen-select" Style="width: 300px !important;"
+                                                                <asp:ListBox ID="ddlPartic" runat="server" SelectionMode="Multiple" class="form-control chzn-select" Style="width: 300px !important;"
                                                                     data-placeholder="Choose Person......" multiple="true"></asp:ListBox>
 
                                                             </asp:Panel>
@@ -906,7 +1015,7 @@
 
 
                                                             <asp:Panel ID="pnlVisit" runat="server" Visible="false">
-                                                                <asp:DropDownList ID="ddlVisit" Visible="false" runat="server" CssClass="chzn-select inputTxt form-control" Style="width: 300px !important;">
+                                                                <asp:DropDownList ID="ddlVisit" Visible="false" runat="server" CssClass="form-control" Style="width: 300px !important;">
                                                                 </asp:DropDownList>
                                                             </asp:Panel>
 
@@ -936,6 +1045,11 @@
 
 
                                                         </ItemTemplate>
+                                                        <FooterTemplate>
+
+                                                            <asp:LinkButton ID="lbtnUpdateDiscussion" runat="server" OnClientClick="CloseModaldis();" OnClick="lbtnUpdateDiscussion_Click" CssClass="btn  btn-success btn-xs ">Final Update</asp:LinkButton>
+
+                                                        </FooterTemplate>
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                         <ItemStyle Width="700px" />
                                                     </asp:TemplateField>

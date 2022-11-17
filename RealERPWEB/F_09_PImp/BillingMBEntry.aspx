@@ -207,7 +207,7 @@
                                 <ItemStyle Font-Size="10pt" HorizontalAlign="left" />
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Qty">
+                            <asp:TemplateField HeaderText="Order Qty">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvQty" runat="server"
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ordqty")).ToString("#,##0.00;(#,##0.00); ") %>'
@@ -216,22 +216,42 @@
                                 <ItemStyle Font-Size="10pt" HorizontalAlign="Center" />
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Rate">
+
+                             <asp:TemplateField HeaderText="Upto Bill">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvmbqty" runat="server"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "uptombqty")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                        Width="70px" BackColor="Transparent" Style="text-align: right" BorderStyle="None"></asp:Label>
+                                </ItemTemplate>
+                                <ItemStyle Font-Size="10pt" HorizontalAlign="Center" />
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Balance Qty">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvbalqty" runat="server"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balqty")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                        Width="70px" BackColor="Transparent" Style="text-align: right" BorderStyle="None"></asp:Label>
+                                </ItemTemplate>
+                                <ItemStyle Font-Size="10pt" HorizontalAlign="Center" />
+                            </asp:TemplateField>
+
+
+<%--                            <asp:TemplateField HeaderText="Rate" Visible="false">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvrate" runat="server"
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ordrrate")).ToString("#,##0.00;(#,##0.00); ") %>'
                                         Width="70px" BackColor="Transparent" Style="text-align: right" BorderStyle="None"></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle Font-Size="10pt" HorizontalAlign="Center" />
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Amount">
+                            </asp:TemplateField>--%>
+                          <%--  <asp:TemplateField HeaderText="Amount">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvAmount" runat="server"
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ordamt")).ToString("#,##0.00;(#,##0.00); ") %>'
                                         Width="70px" BackColor="Transparent" Style="text-align: right" BorderStyle="None"></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle Font-Size="10pt" HorizontalAlign="Center" />
-                            </asp:TemplateField>
+                            </asp:TemplateField>--%>
 
 
 

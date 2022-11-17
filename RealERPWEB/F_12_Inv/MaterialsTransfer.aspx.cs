@@ -365,79 +365,79 @@ namespace RealERPWEB.F_12_Inv
             ViewState["tblmattrns"] = dt;
             this.Data_Bind();
 
-
-
         }
 
 
 
         private void SaveValue()
         {
-
             DataTable dt1 = (DataTable)ViewState["tblmattrns"];
             string comcod = this.GetCompCode();
             ((Label)this.Master.FindControl("lblmsg")).Text = "";
-            for (int i = 0; i < this.grvacc.Rows.Count; i++)
+
+            switch (GetCompCode())
             {
+                case "3370":
+                    for (int i = 0; i < this.grvacc.Rows.Count; i++)
+                    {
+                        double mtrfqty = Convert.ToDouble("0" + ((Label)this.grvacc.Rows[i].FindControl("lblgvmtrfqty")).Text.Trim());
+                        double balqty = Convert.ToDouble("0" + ((Label)this.grvacc.Rows[i].FindControl("lblBalqty")).Text.Trim());
+                        double qty = Convert.ToDouble("0" + ((TextBox)this.grvacc.Rows[i].FindControl("txtqty")).Text.Trim());
 
-                double mtrfqty = Convert.ToDouble("0" + ((Label)this.grvacc.Rows[i].FindControl("lblgvmtrfqty")).Text.Trim());
-                double balqty = Convert.ToDouble("0" + ((Label)this.grvacc.Rows[i].FindControl("lblBalqty")).Text.Trim());
-                double qty = Convert.ToDouble("0" + ((TextBox)this.grvacc.Rows[i].FindControl("txtqty")).Text.Trim());
-                double rat = Convert.ToDouble("0" + ((TextBox)this.grvacc.Rows[i].FindControl("txtrate")).Text.Trim());
-                int rowindex = (this.grvacc.PageSize * this.grvacc.PageIndex) + i;
+                        string rsircode = ((Label)this.grvacc.Rows[i].FindControl("lblgvMatCode")).Text.ToString();
+                        string spcfcod = ((Label)this.grvacc.Rows[i].FindControl("lblgspcfcode")).Text.ToString();
 
-                switch (comcod)
-                {
-                    case "3330":
+                        DataRow[] dr3 = dt1.Select("rsircode = '" + rsircode + "' and spcfcod = '" + spcfcod + "'");
+                        double rate1 = Convert.ToDouble(dr3[0]["rate"]);
 
-                        if (mtrfqty > 0)
+                        double rat = Convert.ToDouble("0" + rate1);
+                        int rowindex = (this.grvacc.PageSize * this.grvacc.PageIndex) + i;
+
+                        dt1.Rows[rowindex]["qty"] = qty;
+                        double damt = qty * rat;
+                        dt1.Rows[i]["rate"] = rat;
+                        dt1.Rows[i]["amt"] = damt;
+                    }
+                    break;
+
+                default:
+                    for (int i = 0; i < this.grvacc.Rows.Count; i++)
+                    {
+                        double mtrfqty = Convert.ToDouble("0" + ((Label)this.grvacc.Rows[i].FindControl("lblgvmtrfqty")).Text.Trim());
+                        double balqty = Convert.ToDouble("0" + ((Label)this.grvacc.Rows[i].FindControl("lblBalqty")).Text.Trim());
+                        double qty = Convert.ToDouble("0" + ((TextBox)this.grvacc.Rows[i].FindControl("txtqty")).Text.Trim());
+                        double rat = Convert.ToDouble("0" + ((TextBox)this.grvacc.Rows[i].FindControl("txtrate")).Text.Trim());
+                        int rowindex = (this.grvacc.PageSize * this.grvacc.PageIndex) + i;
+
+                        switch (comcod)
                         {
-
-
-                            if (mtrfqty < qty)
-                            {
-                                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                                ((Label)this.Master.FindControl("lblmsg")).Text = "Not Within the Budget";
+                            case "3330":
+                                if (mtrfqty > 0)
+                                {
+                                    if (mtrfqty < qty)
+                                    {
+                                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Not Within the Budget');", true);
+                                        break;
+                                    }
+                                }
+                                else if (balqty < qty)
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Not Within the Budget');", true);
+                                    break;
+                                }
                                 break;
 
-                            }
-
-
-
-                        }
-
-                        else if (balqty < qty)
-                        {
-
-
-                            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Not Within the Budget";
-                            break;
+                            default:
+                                break;
 
                         }
-                        break;
 
-                    default:
-                        break;
-
-
-                }
-
-
-                dt1.Rows[rowindex]["qty"] = qty;
-                double damt = qty * rat;
-                dt1.Rows[i]["rate"] = rat;
-                dt1.Rows[i]["amt"] = damt;
-                //string qty = "0" + ((TextBox)this.grvacc.Rows[i].FindControl("txtqty")).Text.Trim();
-                //dqty = Convert.ToDouble(qty.Trim());
-                //dt1.Rows[i]["qty"] = dqty;
-
-                //string rat = "0" + ((TextBox)this.grvacc.Rows[i].FindControl("txtrate")).Text.Trim();
-                //drat = Convert.ToDouble(rat.Trim());
-                //damt = dqty * drat;
-                //int rowindex = (this.grvacc.PageSize * this.grvacc.PageIndex) + i;
-                //dt1.Rows[i]["rate"] = drat;
-                //dt1.Rows[i]["amt"] = damt;
+                        dt1.Rows[rowindex]["qty"] = qty;
+                        double damt = qty * rat;
+                        dt1.Rows[i]["rate"] = rat;
+                        dt1.Rows[i]["amt"] = damt;
+                    }
+                    break;
             }
             ViewState["tblmattrns"] = dt1;
         }
@@ -446,9 +446,7 @@ namespace RealERPWEB.F_12_Inv
         {
             this.SaveValue();
             this.Data_Bind();
-
         }
-
 
         private void CreateDataTable()
         {
@@ -486,18 +484,17 @@ namespace RealERPWEB.F_12_Inv
                     {
                         // todo for audit part
                         //case "3101":
-                        case "3338":
-                        case "1205":
-                        case "3351":
-                        case "3352":
+                        case "3338": // p2p
+                        case "1205": // p2p
+                        case "3351": // p2p
+                        case "3352": // p2p
+                        case "3370": // cpdl
 
                             break;
 
                         default:
                             if (audit == "")
                             {
-
-
                                 this.CreateDataTable();
                                 DataTable dt = (DataTable)ViewState["tblapproval"];
                                 DataRow dr1 = dt.NewRow();
@@ -977,6 +974,17 @@ namespace RealERPWEB.F_12_Inv
             this.grvacc.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.grvacc.DataSource = (DataTable)ViewState["tblmattrns"];
             this.grvacc.DataBind();
+            switch (GetCompCode())
+            {
+                case "3370":
+                    this.grvacc.Columns[11].Visible = false;
+                    this.grvacc.Columns[12].Visible = false;
+                    break;
+                default:
+                    this.grvacc.Columns[11].Visible = true;
+                    this.grvacc.Columns[12].Visible = true;
+                    break;
+            }
 
             this.grvacc.Columns[1].Visible = (this.lblVoucherNo.Text.Trim() == "" || this.lblVoucherNo.Text.Trim() == "00000000000000");
             ((LinkButton)this.grvacc.FooterRow.FindControl("lnkupdate")).Visible = (this.lblVoucherNo.Text.Trim() == "" || this.lblVoucherNo.Text.Trim() == "00000000000000");

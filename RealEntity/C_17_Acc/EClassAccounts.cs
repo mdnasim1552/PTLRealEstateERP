@@ -1235,8 +1235,8 @@ namespace RealEntity.C_17_Acc
             public double cbookam { get; set; }
             public double cinsam { get; set; }
             public double todues { get; set; }
+
            
-            
             public RptDuesReportAll()
             {
 
@@ -1288,8 +1288,8 @@ namespace RealEntity.C_17_Acc
             public double cram { get; set; }
      
             public double netpayable { get; set; }
-          
-           
+
+            public double discountamt { get; set; }
 
             public RptSupplierOverAllPSummary()
             {
