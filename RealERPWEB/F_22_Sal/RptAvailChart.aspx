@@ -290,6 +290,7 @@
                                 <ItemStyle HorizontalAlign="Right" />
                                 <FooterStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
+                             
                              <asp:TemplateField HeaderText="Parking">
                                 <ItemTemplate>
                                     <asp:Label ID="lgpamt" runat="server" BackColor="Transparent"
@@ -334,7 +335,7 @@
                                 <ItemStyle HorizontalAlign="Right" />
                                 <FooterStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
-
+                           
 
                         </Columns>
                         <FooterStyle CssClass="grvFooter" />

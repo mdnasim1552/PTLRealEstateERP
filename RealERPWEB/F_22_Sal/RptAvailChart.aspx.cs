@@ -368,6 +368,8 @@ namespace RealERPWEB.F_22_Sal
             ((Label)this.gvAailChart.FooterRow.FindControl("lgvFSize2")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(losize)", "")) ?
                                 0 : dt.Compute("sum(losize)", ""))).ToString("#,##0;(#,##0); ");
 
+            
+
 
 
             //DataTable dt = (DataTable)Session["tblAvChart"];
