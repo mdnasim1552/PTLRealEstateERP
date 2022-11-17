@@ -3368,6 +3368,19 @@
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
+
+                                             <asp:TemplateField HeaderText="MB No">
+
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvmbno" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mbno1")) %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
                                             <asp:TemplateField HeaderText="Req Item">
 
                                                 <ItemTemplate>
@@ -3384,7 +3397,7 @@
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvReqQty" runat="server"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "reqqty")).ToString("#,##0;(#,##0").ToString() %>'
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "reqqty")).ToString("#,##0.00;(#,##0.00").ToString() %>'
                                                         Width="70px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
