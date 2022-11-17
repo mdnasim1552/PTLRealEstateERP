@@ -68,11 +68,11 @@
                                         </cc1:CalendarExtender>
                                         
                                   
-                                        <asp:Label ID="Label9" runat="server" CssClass="smLbl_to" Text="SMCR.No."></asp:Label>
+                                        <asp:Label ID="lblSMCR" runat="server" CssClass="smLbl_to" Text=""></asp:Label>
 
                                         <asp:TextBox ID="txtMIsuRef" runat="server" CssClass="inputTxt inputDateBox" TabIndex="3"></asp:TextBox>
    
-                                        <asp:Label ID="Label3" runat="server" CssClass="lblTxt smLbl_to" Text="DMIRF No."></asp:Label>
+                                        <asp:Label ID="lblDMIR" runat="server" CssClass="lblTxt smLbl_to" Text=""></asp:Label>
                                         <asp:TextBox ID="txtsmcr" runat="server" CssClass="inputTxt inputDateBox" TabIndex="3" Width="66px"></asp:TextBox>
 
                                         <div class="col-md-3 pading5px pull-right">

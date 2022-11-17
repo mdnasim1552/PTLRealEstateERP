@@ -47,7 +47,7 @@ namespace RealERPWEB.F_12_Inv
                 }
                 this.txtCurISSDate_CalendarExtender.EndDate = System.DateTime.Today;
 
-                this.Visible();
+                this.VisibleLabel();
 
 
 
@@ -67,20 +67,23 @@ namespace RealERPWEB.F_12_Inv
         }
 
 
-        private void Visible()
+        private void VisibleLabel()
         {
             string comcod = this.GetCompCode();
-
             switch (comcod)
             {
                 case "3340":
-
-                    this.Label9.Text = "SRF";
-                    this.Label3.Text = "DMMS";
-
+                    this.lblSMCR.Text = "SRF";
+                    this.lblDMIR.Text = "DMMS";
+                    break;
+                
+                case "3370":
+                    this.lblSMCR.Text = "MTR";
+                    this.lblDMIR.Text = "ATR";
                     break;
                 default:
-
+                    this.lblSMCR.Text = "SMCR.No.";
+                    this.lblDMIR.Text = "DMIRF No.";
                     break;
 
             }
