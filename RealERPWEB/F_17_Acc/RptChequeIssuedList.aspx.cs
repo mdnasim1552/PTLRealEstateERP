@@ -52,8 +52,6 @@ namespace RealERPWEB.F_17_Acc
         }
 
 
-
-
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
             // Iqbal  Nayan 
