@@ -38,9 +38,7 @@ namespace RealERPWEB.F_17_Acc
                 ((Label)this.Master.FindControl("lblTitle")).Text = "List of  issued Cheque	";
                 this.Master.Page.Title = "List of  issued Cheque";
                 this.GetBankName();
-
             }
-
         }
 
 
@@ -52,8 +50,6 @@ namespace RealERPWEB.F_17_Acc
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
-
-
 
 
         protected void lnkPrint_Click(object sender, EventArgs e)
