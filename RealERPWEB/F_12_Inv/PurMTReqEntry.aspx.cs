@@ -366,15 +366,40 @@ namespace RealERPWEB.F_12_Inv
         {
 
             DataTable dt1 = (DataTable)ViewState["tblmattrns"];
-            for (int i = 0; i < this.grvacc.Rows.Count; i++)
+            DataTable dt2 = (DataTable)Session["projectreslist"];
+            switch (GetCompCode())
             {
-                double qty = Convert.ToDouble("0" + ((TextBox)this.grvacc.Rows[i].FindControl("txtqty")).Text.Trim());
-                double rat = Convert.ToDouble("0" + ((TextBox)this.grvacc.Rows[i].FindControl("txtrate")).Text.Trim());
-                int rowindex = (this.grvacc.PageSize * this.grvacc.PageIndex) + i;
-                dt1.Rows[rowindex]["qty"] = qty;
-                double damt = qty * rat;
-                dt1.Rows[i]["rate"] = rat;
-                dt1.Rows[i]["amt"] = damt;
+                case "3370":
+                    for (int i = 0; i < this.grvacc.Rows.Count; i++)
+                    {
+                        string rsircode = ((Label)this.grvacc.Rows[i].FindControl("lblgvMatCode")).Text.ToString(); 
+                        string spcfcod = ((Label)this.grvacc.Rows[i].FindControl("lblgspcfcode")).Text.ToString(); 
+                        double qty = Convert.ToDouble("0" + ((TextBox)this.grvacc.Rows[i].FindControl("txtqty")).Text.Trim());
+
+                        DataRow[] dr3 = dt2.Select("rsircode = '" + rsircode + "' and spcfcod = '" + spcfcod + "'");
+                        double rate1 = Convert.ToDouble(dr3[0]["rate"]);
+
+                        double rat = Convert.ToDouble("0" + (rate1)) ;
+                        int rowindex = (this.grvacc.PageSize * this.grvacc.PageIndex) + i;
+                        dt1.Rows[rowindex]["qty"] = qty;
+                        double damt = qty * rat;
+                        dt1.Rows[i]["rate"] = rat;
+                        dt1.Rows[i]["amt"] = damt;
+                    }
+                    break;
+
+                default:
+                    for (int i = 0; i < this.grvacc.Rows.Count; i++)
+                    {
+                        double qty = Convert.ToDouble("0" + ((TextBox)this.grvacc.Rows[i].FindControl("txtqty")).Text.Trim());
+                        double rat = Convert.ToDouble("0" + ((TextBox)this.grvacc.Rows[i].FindControl("txtrate")).Text.Trim());
+                        int rowindex = (this.grvacc.PageSize * this.grvacc.PageIndex) + i;
+                        dt1.Rows[rowindex]["qty"] = qty;
+                        double damt = qty * rat;
+                        dt1.Rows[i]["rate"] = rat;
+                        dt1.Rows[i]["amt"] = damt;
+                    }
+                    break;
             }
             ViewState["tblmattrns"] = dt1;
         }
@@ -452,7 +477,7 @@ namespace RealERPWEB.F_12_Inv
 
             dr1 = dt.Select("balqty<qty");
 
-            if ((comcod=="3367") && ASTUtility.Left(fromprj, 2) == "11")
+            if ((comcod == "3367") && ASTUtility.Left(fromprj, 2) == "11")
             {
 
             }
@@ -467,7 +492,7 @@ namespace RealERPWEB.F_12_Inv
                 }
 
             }
-           
+
 
             if (mtrref.Length == 0)
             {
@@ -519,7 +544,7 @@ namespace RealERPWEB.F_12_Inv
                     break;
             }
 
-           
+
             string reqno = this.lblreqno.Text.Trim();
             string reqApproval = this.getCompReApproval();
 
@@ -612,18 +637,15 @@ namespace RealERPWEB.F_12_Inv
             string mtrref = this.txtrefno.Text.ToString();
             string mtrnar = this.txtReqNarr.Text.ToString();
 
-       
 
-            dr1 = dt.Select("balqty<qty");          
-           if (dr1.Length > 0)
+
+            dr1 = dt.Select("balqty<qty");
+            if (dr1.Length > 0)
             {
                 string Messaged = "Not Within the Balance";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 return;
             }
-
-
-            
 
             if (mtrref.Length == 0)
             {
@@ -692,42 +714,26 @@ namespace RealERPWEB.F_12_Inv
             string ptype = "";
             switch (comcod)
             {
-                //case "3101":
-                case "1205":
-                case "3351":
-                case "3352":
+                case "3101":
+                case "3370": //cpdl
+                case "1205": // p2p
+                case "3351": // p2p
+                case "3352": // p2p
                 case "8306":
                     ptype = "Approved";
                     break;
 
                 // need to open this section if any company need two step check (MgtChecked/Checked)
-                case "3101":
+                //case "3101":
                 case "3367":
                     ptype = "MgtChecked";
                     break;
 
                 // need to open this section if any company need only one step check (Checked)
-                //case "3101":
+                // cpdl
+                //case "3370":
                 //    ptype = "Checked";
                 //    break;
-
-                default:
-                    ptype = "";
-                    break;
-
-            }
-            return ptype;
-        } 
-        private string getCompMgtChecked()
-        {
-            string comcod = this.GetCompCode();
-            string ptype = "";
-            switch (comcod)
-            {
-                case "3101":
-                case "3367":
-                    ptype = "MgtChecked";
-                    break;
 
                 default:
                     ptype = "";
@@ -911,6 +917,19 @@ namespace RealERPWEB.F_12_Inv
             this.grvacc.DataBind();
 
             this.grvacc.Columns[1].Visible = (this.lblVoucherNo.Text.Trim() == "" || this.lblVoucherNo.Text.Trim() == "00000000000000");
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "3370":
+                    this.grvacc.Columns[9].Visible = false;
+                    this.grvacc.Columns[10].Visible = false;
+                    break;
+                default:
+                    this.grvacc.Columns[9].Visible = true;
+                    this.grvacc.Columns[10].Visible = true;
+                    break;
+            }
+
             if (dt1.Rows.Count == 0)
                 return;
             ((LinkButton)this.grvacc.FooterRow.FindControl("lnkupdate")).Visible = (this.lblVoucherNo.Text.Trim() == "" || this.lblVoucherNo.Text.Trim() == "00000000000000");
@@ -1176,7 +1195,7 @@ namespace RealERPWEB.F_12_Inv
             ViewState["tblreqprjchk"] = ds1.Tables[1];
             this.Data_Bind_Checked();
             this.txtNarchk.Visible = true;
-            this.txtNarchk.Text= ds1.Tables[1].Rows[0]["mtrnar"].ToString();
+            this.txtNarchk.Text = ds1.Tables[1].Rows[0]["mtrnar"].ToString();
 
             this.setReqInfoIntoLabel(ds1);
             //ddlprjlistfrom
@@ -1186,7 +1205,7 @@ namespace RealERPWEB.F_12_Inv
 
 
 
-        }        
+        }
 
         private void Data_Bind_Aprv()
         {
@@ -1194,6 +1213,18 @@ namespace RealERPWEB.F_12_Inv
             this.gvreqaprv.PageSize = Convert.ToInt16(this.ddlpagesize.SelectedValue.ToString());
             this.gvreqaprv.DataSource = dt1;
             this.gvreqaprv.DataBind();
+
+            switch (GetCompCode())
+            {
+                case "3370": //8 9col
+                    this.gvreqaprv.Columns[8].Visible = false;
+                    this.gvreqaprv.Columns[9].Visible = false;
+                    break;
+                default:
+                    this.gvreqaprv.Columns[8].Visible = true;
+                    this.gvreqaprv.Columns[9].Visible = true;
+                    break;
+            }
 
             if (dt1.Rows.Count == 0)
                 return;
@@ -1550,7 +1581,7 @@ namespace RealERPWEB.F_12_Inv
         protected void gvreqchkmgt_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string comcod = this.GetCompCode();
-            DataTable dt = (DataTable)ViewState["tblreqchkmgt"]; 
+            DataTable dt = (DataTable)ViewState["tblreqchkmgt"];
             string rsircode = ((Label)this.gvreqchkmgt.Rows[e.RowIndex].FindControl("lblgvmgrsircode")).Text.Trim();
             string spcfcod = ((Label)this.gvreqchkmgt.Rows[e.RowIndex].FindControl("lblgvmgspcfcod")).Text.Trim();
             string mISUNO = this.Request.QueryString["genno"].ToString();
@@ -1566,7 +1597,7 @@ namespace RealERPWEB.F_12_Inv
             DataView dv = dt.DefaultView;
             ViewState.Remove("tblreqchkmgt");
             ViewState["tblreqchkmgt"] = dv.ToTable();
-            this.Data_Bind_MgtChecked(); 
+            this.Data_Bind_MgtChecked();
         }
 
         protected void lnkmgchktotal_Click(object sender, EventArgs e)
@@ -1580,7 +1611,7 @@ namespace RealERPWEB.F_12_Inv
             int index;
             for (int j = 0; j < this.gvreqchkmgt.Rows.Count; j++)
             {
-                index = (this.gvreqchkmgt.PageSize) * (this.gvreqchkmgt.PageIndex) + j; 
+                index = (this.gvreqchkmgt.PageSize) * (this.gvreqchkmgt.PageIndex) + j;
                 double reqqty = Convert.ToDouble(tbl1.Rows[index]["tqty"]);
                 double chkqty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvreqchkmgt.Rows[j].FindControl("txtgvmgtqty")).Text.Trim()));
                 double rat = Convert.ToDouble("0" + ((Label)this.gvreqchkmgt.Rows[j].FindControl("lblgvmgrate")).Text.Trim());
