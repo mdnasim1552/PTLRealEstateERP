@@ -318,6 +318,7 @@ namespace RealERPWEB.F_22_Sal
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
             string compname = hst["compname"].ToString();
+            string comadd = hst["comadd1"].ToString();
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
@@ -412,7 +413,7 @@ namespace RealERPWEB.F_22_Sal
                     rpt = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalPaySchedule", list, list2, list3);
                     break;
 
-                case "3101":
+               
                 case "3366": // Lanco
                     rpt = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalPayScheduleLanco", list, list2, list3);
                     rpt.SetParameters(new ReportParameter("cname", cname));
@@ -422,6 +423,12 @@ namespace RealERPWEB.F_22_Sal
                     rpt.SetParameters(new ReportParameter("bkdate", bkdate));
                     rpt.SetParameters(new ReportParameter("agdate", agdate));
                     rpt.SetParameters(new ReportParameter("hodate", hodate));
+
+                    break;
+                case "3101":
+                case "3370":
+                    rpt = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalPayScheduleCPDL", list, list2, list3);
+    
 
                     break;
 
@@ -441,6 +448,7 @@ namespace RealERPWEB.F_22_Sal
             rpt.SetParameters(new ReportParameter("aprtsize", aprtsize));
             rpt.SetParameters(new ReportParameter("appatn", appatn));
             rpt.SetParameters(new ReportParameter("lbldisamt", lbldisamt));
+            rpt.SetParameters(new ReportParameter("comadd", comadd));
             // rpt.SetParameters(new ReportParameter("txtdisamt", txtdisamt));
             rpt.SetParameters(new ReportParameter("lblunitamt", ""));
             rpt.SetParameters(new ReportParameter("txtunitamt", txtunitamt));
