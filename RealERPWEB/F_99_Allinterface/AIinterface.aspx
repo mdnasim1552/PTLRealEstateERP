@@ -1191,7 +1191,7 @@
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Project Name">
+                                            <asp:TemplateField HeaderText="Project Name" Visible="false">
                                                 <ItemTemplate>
                                                     
                                                     

@@ -187,8 +187,8 @@ namespace RealERPWEB.F_38_AI
                 this.returntask.Visible = false;
                 this.rejecttask.Visible = false;
                 this.task.Visible = true;
-                string comcod = this.GetComdCode();
-
+                string comcod = this.GetComdCode();             
+              
                 string prjid = Request.QueryString["PID"].ToString() == "" ? "" : Request.QueryString["PID"].ToString();
                 string batchid = Request.QueryString["BatchID"].ToString() == "" ? "" : Request.QueryString["BatchID"].ToString();
                 DataSet ds1 = MktData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "ASSIGNQTYCOUNT", prjid, batchid, "", "", "", "", "");
@@ -321,45 +321,44 @@ namespace RealERPWEB.F_38_AI
 
             try
             {
+                
                 string roletype = this.ddlUserRoleType.SelectedValue;
                 double assignqty = Convert.ToDouble("0" + this.txtquantity.Text.ToString());
                 double pedingannotor = Convert.ToDouble("0" + this.lblcountannotid.Text.ToString());
                 double pedingqc = Convert.ToDouble("0" + this.lblcountQC.Text.ToString());
                 double pedingqar = Convert.ToDouble("0" + this.lblcountQA.Text.ToString());
-                
-                if (roletype == "95001" && pedingannotor < assignqty && pedingannotor!=0)
+                double doneannotor = Convert.ToDouble("0" + this.lblDoneAnnot.Text.ToString());
+                double doneqc = Convert.ToDouble("0" + this.lblDoneQC.Text.ToString());
+                double doneqa = Convert.ToDouble("0" + this.lblDoneQA.Text.ToString());
+
+                if (roletype == "95001" && pedingannotor < assignqty )
                 {
 
 
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then PendingAnnotator  " + pedingannotor.ToString();
                     this.txtquantity.Focus();
-
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
-
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
 
                 }
-                else if (roletype == "95002" && pedingqc < assignqty && pedingqc!=0)
+                else if (roletype == "95002" && doneannotor < assignqty )
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then PendingAnnotator  " + pedingqc.ToString();
                     this.txtquantity.Focus();
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
                 }
-                else if (roletype == "95003" && pedingqar < assignqty && pedingqar!=0)
+                else if (roletype == "95003" && doneqc < assignqty )
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then PendingAnnotator  " + pedingqar.ToString();
                     this.txtquantity.Focus();
-
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
-
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
                 }
                 else
                 {
 
                     DataTable tblt01 = (DataTable)ViewState["tblt01"];
-
                     //DataTable tbl1 = (DataTable)ViewState["tblReq"];
                     string empid = this.ddlassignmember.SelectedValue.ToString();
                     string annoid = this.ddlAnnotationid.SelectedValue.ToString();
@@ -819,6 +818,19 @@ namespace RealERPWEB.F_38_AI
             }
         }
 
+        protected void checkinoutsourcing_CheckedChanged(object sender, EventArgs e)
+        {
+            bool check = this.checkinoutsourcing.Checked;
+            if (!check)
+            {
+                this.textrate.Text = "";
 
+            }
+            else
+            {
+                string rate = "80";
+                this.textrate.Text = rate;
+            }
+        }
     }
 }
