@@ -185,7 +185,8 @@ namespace RealERPWEB.F_99_Allinterface
             string comadd = hst["comadd1"].ToString();
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
             string mMRRNo = this.Request.QueryString["mrno"].ToString();
@@ -205,9 +206,15 @@ namespace RealERPWEB.F_99_Allinterface
             DataTable dt = this.HiddenSameDataMRRReceipt(ds1.Tables[0]);
 
             string mrrno1 = ds1.Tables[1].Rows[0]["mrrno1"].ToString();
+            string mrrno = ds1.Tables[1].Rows[0]["mrrno"].ToString();
+            string address = ds1.Tables[1].Rows[0]["address"].ToString();
+            string chlandate = ds1.Tables[1].Rows[0]["challandat"].ToString();
+            string pordar = ds1.Tables[1].Rows[0]["orderno"].ToString();
+            string orderdat = ds1.Tables[1].Rows[0]["orderdat"].ToString(); 
             string porno = ds1.Tables[1].Rows[0]["orderno1"].ToString();
             string prjname = ds1.Tables[1].Rows[0]["pactdesc1"].ToString();
             string suppliername = ds1.Tables[1].Rows[0]["ssirdesc1"].ToString();
+            string clndate = Convert.ToDateTime(chlandate).ToString("dd-MMM-yyyy");
 
             // DataTable dt = ds1.Tables[0];
             LocalReport Rpt1 = new LocalReport();
@@ -218,6 +225,21 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3368":
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptPurMrrEntryFinlay", lst, null, null);
                     Rpt1.EnableExternalImages = true;
+                    break;
+
+                case "3370"://CPDL
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptPurMrrEntryCPDL", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                    Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                    Rpt1.SetParameters(new ReportParameter("mrrno", mrrno));
+                    Rpt1.SetParameters(new ReportParameter("address", address));
+                    Rpt1.SetParameters(new ReportParameter("chlandate",clndate));
+                    Rpt1.SetParameters(new ReportParameter("pordar", pordar+ " , "+ orderdat));
+                    Rpt1.SetParameters(new ReportParameter("CurDate1","Date :"+ CurDate1));
+                    Rpt1.SetParameters(new ReportParameter("Note","MRR must be reached at Head Office within 2 working days of material receiving."));
+
+                  
                     break;
                 default:
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptPurMrrEntry", lst, null, null);
@@ -231,7 +253,7 @@ namespace RealERPWEB.F_99_Allinterface
             Rpt1.SetParameters(new ReportParameter("txtchalanno", "Chalan No : " + ds1.Tables[1].Rows[0]["chlnno"]));
             Rpt1.SetParameters(new ReportParameter("txtMrrno", "MRR No : " + mrrno1));
             Rpt1.SetParameters(new ReportParameter("txtMrrRef", "MRR Ref : " + ds1.Tables[1].Rows[0]["mrrref"]));
-            Rpt1.SetParameters(new ReportParameter("txtDate", "Date : " + Convert.ToDateTime(ds1.Tables[1].Rows[0]["mrrdat"]).ToString("dd.MM.yyyy")));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "MRR Date : " + Convert.ToDateTime(ds1.Tables[1].Rows[0]["mrrdat"]).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("txtQc", "Quality Certificate : " + ds1.Tables[1].Rows[0]["qcno"].ToString()));
             Rpt1.SetParameters(new ReportParameter("txtOrder", ds1.Tables[1].Rows[0]["pordref"].ToString()));
             Rpt1.SetParameters(new ReportParameter("txtpostedby", ds1.Tables[1].Rows[0]["usrnam"].ToString()));

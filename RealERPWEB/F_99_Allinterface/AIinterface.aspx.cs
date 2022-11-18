@@ -764,7 +764,7 @@ namespace RealERPWEB.F_99_Allinterface
             string sircode = "";
 
             string comcod = this.GetCompCode();
-            string calltype = (code == "" ? "GETLASTPRJCODESOWID" : "GETLASTPRJCODEID"  );
+            string calltype = (code == "" ? "GETLASTPRJCODEID" : "GETLASTPRJCODESOWID"  );
             DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", calltype, "", "", "", "", "", "");
 
 
@@ -1137,7 +1137,8 @@ namespace RealERPWEB.F_99_Allinterface
 
                 //}
                 //    string ordertype = "";
-
+                string sircode = "";
+                sircode = prjcode.Length > 0 ? prjcode : this.GetLastid();
 
                 for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
                 {
@@ -1147,24 +1148,8 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                     string Gvalue = (((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
-                    string sircode = "";
-                    if (Gcode == "03018")
-                    {
-
-                        string sow = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
-                        if (sow == "80201")
-                        {
-
-                            sircode = prjcode.Length > 0 ? prjcode : this.GetLastid("");
-                        }
-                        else
-                        {
-                           
-                            sircode = prjcode.Length > 0 ? prjcode : this.GetLastid(sow);
-                        }
-
-
-                    }
+               
+                   
                     if (Gcode == "03008" || Gcode == "03009")
                     {
                         Gvalue = (((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? "01-Jan-1900" : ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
@@ -1471,7 +1456,7 @@ namespace RealERPWEB.F_99_Allinterface
                 double doneannotor = Convert.ToDouble("0" + this.lblDoneAnnot.Text.ToString());
                 double doneqc = Convert.ToDouble("0" + this.lblDoneQC.Text.ToString());
                 double doneqa = Convert.ToDouble("0" + this.lblDoneQA.Text.ToString());
-                if (roletype == "95001" && pedingannotor < assignqty && pedingannotor != 0 )
+                if (roletype == "95001" && pedingannotor < assignqty )
                 {
 
 
@@ -1483,16 +1468,16 @@ namespace RealERPWEB.F_99_Allinterface
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
 
                 }
-                else if (roletype == "95002" && pedingqc < assignqty && pedingqc != 0 )
+                else if (roletype == "95002" && doneannotor < assignqty  )
                 {
-                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then PendingAnnotator  " + pedingqc.ToString();
+                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then PendingAnnotator  " + doneannotor.ToString();
                     this.txtquantity.Focus();
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
                 }
-                else if (roletype == "95003" && pedingqar < assignqty && pedingqar != 0 )
+                else if (roletype == "95003" && doneqc < assignqty )
                 {
-                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then PendingAnnotator  " + pedingqar.ToString();
+                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then PendingAnnotator  " + doneqc.ToString();
                     this.txtquantity.Focus();
 
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;

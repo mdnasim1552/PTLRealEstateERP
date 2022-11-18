@@ -63,6 +63,10 @@
     <Reference Include="CrystalDecisions.CrystalReports.Engine">
       <HintPath>..\..\..\..\..\bin\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
     </Reference>
+    <Reference Include="CrystalDecisions.ReportAppServer.CommLayer">
+      <HintPath>..\..\..\..\Backup\Projects\Project Reference\SPEERP BIN\bin\CrystalDecisions.ReportAppServer.CommLayer.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="CrystalDecisions.ReportAppServer.CommonObjectModel, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -164,7 +168,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\..\Backup\Projects\Project Reference\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -3081,6 +3085,7 @@
     <Content Include="F_81_Hrm\F_83_Att\RptEmpDailyAttendance02.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\RptEmpMonthPresent.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\RptHREmpStatus.aspx" />
+    <Content Include="F_81_Hrm\F_83_Att\RptMonthlyAttnSummary.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\RptMonthlyLate.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\RptWeekPresence.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\TodayAttendanceSheet.aspx" />
@@ -5025,6 +5030,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\RptHREmpStatus.aspx.designer.cs">
       <DependentUpon>RptHREmpStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_83_Att\RptMonthlyAttnSummary.aspx.cs">
+      <DependentUpon>RptMonthlyAttnSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_83_Att\RptMonthlyAttnSummary.aspx.designer.cs">
+      <DependentUpon>RptMonthlyAttnSummary.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\RptMonthlyLate.aspx.cs">
       <DependentUpon>RptMonthlyLate.aspx</DependentUpon>
