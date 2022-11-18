@@ -2279,6 +2279,7 @@
     <Content Include="F_21_MKT\RptDailyWorkStatus.aspx" />
     <Content Include="F_21_MKT\RptPerDeleteProspect.aspx" />
     <Content Include="F_22_Sal\ClusterSetup.aspx" />
+    <Content Include="F_22_Sal\MktBookigApp2.aspx" />
     <Content Include="F_22_Sal\MktSampleNoteSheet.aspx" />
     <Content Include="F_22_Sal\MktGrandNoteSheet.aspx" />
     <Content Include="F_22_Sal\SaleSurvey.aspx" />
@@ -4239,6 +4240,13 @@
     </Compile>
     <Compile Include="F_22_Sal\ClusterSetup.aspx.designer.cs">
       <DependentUpon>ClusterSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_22_Sal\MktBookigApp2.aspx.cs">
+      <DependentUpon>MktBookigApp2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\MktBookigApp2.aspx.designer.cs">
+      <DependentUpon>MktBookigApp2.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_22_Sal\MktSampleNoteSheet.aspx.cs">
       <DependentUpon>MktSampleNoteSheet.aspx</DependentUpon>
