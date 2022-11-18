@@ -33,6 +33,8 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
 
                 //   this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.GetCompanyName();
+                this.SelectView();
+                this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -40,6 +42,31 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
         }
+
+        private void SelectView()
+        {
+            string Type = this.Request.QueryString["Type"].ToString().Trim();
+            switch (Type)
+            {
+                case "IndPfund":             
+                    this.MultiView1.ActiveViewIndex = 0;
+                   
+                    break;
+
+
+                case "Indswfsum":
+                    this.MultiView1.ActiveViewIndex = 1;
+                    break;
+
+                case "IndPfSattlement":
+                    this.MultiView1.ActiveViewIndex = 2;
+                    break;
+
+            }
+
+
+        }
+
 
         private void GetCompanyName()
         {
@@ -164,6 +191,54 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
         }
         protected void lnkbtnSerOk_Click(object sender, EventArgs e)
         {
+            string Type = this.Request.QueryString["Type"].ToString().Trim();
+
+            switch (Type)
+            {
+                case "IndPfund":
+               
+                    this.GetIndpfund();
+                    break;
+
+
+                case "Indswfsum":
+                    this.ShowindSwfSum();
+                    break;
+
+                case "IndPfSattlement":
+                    this.ShowindPFSattlement();
+                    break;
+
+                    
+
+            }
+
+
+
+
+           
+
+        }
+
+        private void ShowindPFSattlement()
+        {
+            string comcod = this.GetComeCode();
+            string empid = this.ddlEmpNameAllInfo.SelectedValue.ToString();
+            string date = this.txttodate.Text.Trim();
+
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETINDSWFANDPFSATTLEMENTSTATUS", empid, date, "", "", "", "", "", "", "");
+            if (ds == null)
+                return;
+            ViewState["tblempinfo"] = ds.Tables[1];
+            ViewState["tblemppfinfo"] = ds.Tables[0];
+            this.Data_Bind();
+
+        }
+
+
+
+        private void GetIndpfund()
+        {
             string comcod = this.GetComeCode();
             string empid = this.ddlEmpNameAllInfo.SelectedValue.ToString();
             DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "EMPINDPAY", empid, "", "", "", "", "", "", "", "");
@@ -171,27 +246,146 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                 return;
             ViewState["tblempinfo"] = ds.Tables[1];
             ViewState["tblemppfinfo"] = ds.Tables[0];
+            this.Data_Bind();
 
-            this.gvpayinfo.DataSource = ds.Tables[0];
-            this.gvpayinfo.DataBind();
-            this.FooterCalCulation(ds.Tables[0]);
+            //this.gvpayinfo.DataSource = ds.Tables[0];
+            //this.gvpayinfo.DataBind();
+            
 
         }
-        private void FooterCalCulation(DataTable dt)
-        {
 
+        private void ShowindSwfSum()
+        {
+            string comcod = this.GetComeCode();
+            string empid = this.ddlEmpNameAllInfo.SelectedValue.ToString();
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETINDSWFANDPFSTATUS", empid, "", "", "", "", "", "", "", "");
+            if (ds == null)
+                return;
+            ViewState["tblempinfo"] = ds.Tables[1];
+            ViewState["tblemppfinfo"] = ds.Tables[0];
+            this.Data_Bind();
+            //this.gvswfsum.DataSource = ds.Tables[0];
+            //this.gvswfsum.DataBind();
+            //this.FooterCalCulation(ds.Tables[0]);
+
+        }
+
+        private void Data_Bind()
+        {
+        
+            string Type = this.Request.QueryString["Type"].ToString().Trim();
+            DataTable dt = (DataTable)ViewState["tblemppfinfo"];
+            switch (Type)
+            {
+           
+                case "IndPfund":
+                    this.gvpayinfo.DataSource = dt;
+                    this.gvpayinfo.DataBind();
+                    this.FooterCalCulation();
+                    break;
+
+
+                case "Indswfsum":
+                    this.gvswfsum.DataSource = dt;
+                    this.gvswfsum.DataBind();
+                    this.FooterCalCulation();
+                    break;
+
+                case "IndPfSattlement":
+                    this.gvpfSattlement.DataSource = dt;
+                    this.gvpfSattlement.DataBind();
+                    this.FooterCalCulation();
+                    break;
+            }
+
+        }
+
+
+
+        private void FooterCalCulation()
+        {
+            DataTable dt = (DataTable)ViewState["tblemppfinfo"];
             if (dt.Rows.Count == 0)
                 return;
-            ((Label)this.gvpayinfo.FooterRow.FindControl("lbltotalpf")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(pfamt)", "")) ? 0.00 : dt.Compute("sum(pfamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
-            ((Label)this.gvpayinfo.FooterRow.FindControl("gvFcontribu")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(contribu)", "")) ? 0.00 : dt.Compute("sum(contribu)", ""))).ToString("#,##0.00;(#,##0.00); ");
-            ((Label)this.gvpayinfo.FooterRow.FindControl("gvFBalance")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(balance)", "")) ? 0.00 : dt.Compute("sum(balance)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
+            string type = this.Request.QueryString["Type"].ToString().Trim();
+            switch (type)
+            {
+                case "IndPfund":
+
+
+                    ((Label)this.gvpayinfo.FooterRow.FindControl("lbltotalpf")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(pfamt)", "")) ? 0.00
+                        : dt.Compute("sum(pfamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                    ((Label)this.gvpayinfo.FooterRow.FindControl("gvFcontribu")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(contribu)", "")) ? 0.00
+                        : dt.Compute("sum(contribu)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                    ((Label)this.gvpayinfo.FooterRow.FindControl("gvFBalance")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(balance)", "")) ? 0.00
+                        : dt.Compute("sum(balance)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
+                    break;
+
+                case "Indswfsum":
+
+
+                    ((Label)this.gvswfsum.FooterRow.FindControl("gvFgvswfamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(swf)", "")) ? 0.00
+                        : dt.Compute("sum(swf)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                    ((Label)this.gvswfsum.FooterRow.FindControl("lblFgvpfswf")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(pfamt)", "")) ? 0.00
+                        : dt.Compute("sum(pfamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                    ((Label)this.gvswfsum.FooterRow.FindControl("gvFtotamat")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(totalamt)", "")) ? 0.00
+                        : dt.Compute("sum(totalamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
+                    break;
+
+                case "IndPfSattlement":
+
+                    ((Label)this.gvpfSattlement.FooterRow.FindControl("lblFgvpfsattle")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(pfamt)", "")) ? 0.00
+                        : dt.Compute("sum(pfamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                    ((Label)this.gvpfSattlement.FooterRow.FindControl("gvFgvswfamtsattle")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(swf)", "")) ? 0.00
+                        : dt.Compute("sum(swf)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                    ((Label)this.gvpfSattlement.FooterRow.FindControl("gvFtotamatsattle")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(totalamt)", "")) ? 0.00
+                        : dt.Compute("sum(totalamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                    break;
+
+            }
+                    
+
 
         }
         protected void txtsrchdeptagg_TextChanged(object sender, EventArgs e)
         {
 
         }
+
         protected void lnkPrint_Click(object sender, EventArgs e)
+        {
+
+            string Type = this.Request.QueryString["Type"].ToString().Trim();
+
+            switch (Type)
+            {
+                case "IndPfund":
+
+                    this.PrintIndpfund();
+                    break;
+
+
+                case "Indswfsum":
+                    this.PrintindSwfSum();
+                    break;
+
+            }
+
+
+
+
+
+        }
+
+        private void PrintindSwfSum()
+        {
+
+        }
+
+        private void PrintIndpfund()
         {
             string comcod = this.GetComeCode();
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -238,5 +432,6 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
+       
     }
 }
