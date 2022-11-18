@@ -102,7 +102,7 @@
                                             <span class="font-weight-bold text-muted">Project Information</span>
                                         </div>
                                         <div class="card-body">
-                                           <%-- <img src="~/../../../Images/noimageavl.png" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" alt="User Image">--%>
+                                            <%-- <img src="~/../../../Images/noimageavl.png" style="display: block; margin-left: auto; margin-right: auto; width: 50%;" alt="User Image">--%>
 
                                             <asp:GridView ID="gv_projOverView" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                                                 ShowFooter="False" ShowHeader="false" AllowPaging="false" Visible="True" Width="100%">
@@ -210,7 +210,7 @@
 
                                     </div>
 
-                                    <div class="row" runat="server" id="taskoverview" >
+                                    <div class="row" runat="server" id="taskoverview">
                                         <div class="col-md-8">
                                             <div class="tbMenuWrp nav nav-tabs rptPurInt">
                                                 <asp:RadioButtonList ID="btnbatchtask" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" OnSelectedIndexChanged="btnbatchtask_SelectedIndexChanged">
@@ -242,7 +242,7 @@
                                                         </ItemTemplate>
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                     </asp:TemplateField>
-                                                     <asp:TemplateField HeaderText="Tasktitle">
+                                                    <asp:TemplateField HeaderText="Tasktitle">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvAsignid" Visible="false" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "id")) %>'></asp:Label>
                                                             <asp:Label ID="lblgvtaskid" Visible="false" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "taskid")) %>'></asp:Label>
@@ -275,7 +275,7 @@
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvpassigntype" Visible="false" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assigntype")) %>'></asp:Label>
                                                             <asp:Label ID="lblgvpassigndesc" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assigndesc")) %>' Width="100px" ForeColor="Black" Font-Size="12px"></asp:Label>
-                                                           
+
 
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -440,20 +440,18 @@
                                                     <asp:TemplateField HeaderText="Action">
                                                         <ItemTemplate>
                                                             <asp:LinkButton ID="btntaskEdit" runat="server" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "workstatus"))=="99220" ? false:true %>' CssClass="text-primary" OnClick="btntaskEdit_Click" ToolTip="edit"><i class="fa fa-edit"></i></asp:LinkButton>
-                                                            <asp:LinkButton ID="btntaskQC" runat="server" OnClick="btntaskQC_Click" Visible='<%# (Convert.ToDouble(DataBinder.Eval(Container.DataItem, "doneqty")) > 0) & (Convert.ToString(DataBinder.Eval(Container.DataItem, "roletype"))=="Annotator")  ? true:false %>' CssClass="text-primary"  ToolTip="assgin for QC"><i class="fa fa-user-plus"></i></asp:LinkButton>
+                                                            <asp:LinkButton ID="btntaskQC" runat="server" OnClick="btntaskQC_Click" Visible='<%# (Convert.ToDouble(DataBinder.Eval(Container.DataItem, "doneqty")) > 0) & (Convert.ToString(DataBinder.Eval(Container.DataItem, "roletype"))=="Annotator")  ? true:false %>' CssClass="text-primary" ToolTip="assgin for QC"><i class="fa fa-user-plus"></i></asp:LinkButton>
 
-                                                               <asp:LinkButton ID="removeRow" runat="server" OnClientClick="return confirm('Are You Sure?')"
+                                                            <asp:LinkButton ID="removeRow" runat="server" OnClientClick="return confirm('Are You Sure?')"
                                                                 Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus"))=="00000" ? true:false %>'
                                                                 OnClick="removeRow_Click" CssClass="text-danger pr-2"><i class="fa fa-trash"></i></asp:LinkButton>
-                                                           <%-- <asp:LinkButton runat="server" ID="removeRow" CommandName="Delete"
+                                                            <%-- <asp:LinkButton runat="server" ID="removeRow" CommandName="Delete"
                                                                 ClientIDMode="Static"
                                                                 ToolTip="Delete"
                                                                 Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus"))=="00000" ? true:false %>'
                                                                 CssClass="text-danger pr-2 isdeleteRow" CausesValidation="false"
                                                                 CommandArgument='<%# DataBinder.Eval(Container.DataItem, "jobid") %>'
                                                                 OnClientClick="return sweetAlertConfirm(this);"><i class="fa fa-trash"></i></asp:LinkButton>--%>
-
-
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
@@ -467,12 +465,12 @@
                                         </div>
 
                                     </div>
-                                     <div class="card" id="returntask" runat="server" visible="false">
-                                         <div class="card-header bg-light p-1">
+                                    <div class="card" id="returntask" runat="server" visible="false">
+                                        <div class="card-header bg-light p-1">
                                             <span class="font-weight-bold text-muted">Return Tasks</span>
                                         </div>
-                                         <div class="from-group">
-                                              <asp:GridView ID="gv_ReturnTask" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                        <div class="from-group">
+                                            <asp:GridView ID="gv_ReturnTask" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                                 ShowFooter="True" Width="">
                                                 <RowStyle />
                                                 <Columns>
@@ -502,7 +500,7 @@
                                                             <asp:Label ID="lblgvreempname" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>' Width="180px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    
+
                                                     <asp:TemplateField HeaderText="Role <br> Type">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblrerolettpcode" Visible="false" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletypecode")) %>' ForeColor="Black" Font-Size="12px"></asp:Label>
@@ -531,20 +529,17 @@
                                                         <ItemStyle HorizontalAlign="Center" />
                                                     </asp:TemplateField>
 
-                                                   <asp:TemplateField HeaderText="Return <br> QTY">
+                                                    <asp:TemplateField HeaderText="Return <br> QTY">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvrereturnqty" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "returnqty")).ToString("#,##0;(#,##0); ") %>' Width="40px" ForeColor="Black" Font-Size="12px"></asp:Label>
 
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" />
-                                                    </asp:TemplateField>                                               
-                                                  
-                                                  
+                                                    </asp:TemplateField>
+
+
                                                     <asp:TemplateField HeaderText="Action">
                                                         <ItemTemplate>
-                                                          
-                                           
-
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
@@ -557,14 +552,14 @@
                                             </asp:GridView>
 
 
-                                         </div>
-                                     </div>
-                                     <div class="card" id="rejecttask" runat="server" visible="false">
-                                         <div class="card-header bg-light p-1">
+                                        </div>
+                                    </div>
+                                    <div class="card" id="rejecttask" runat="server" visible="false">
+                                        <div class="card-header bg-light p-1">
                                             <span class="font-weight-bold text-muted">Reject Tasks</span>
                                         </div>
-                                         <div class="from-group">
-                                              <asp:GridView ID="gv_Rejecttask" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                        <div class="from-group">
+                                            <asp:GridView ID="gv_Rejecttask" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                                 ShowFooter="True" Width="">
                                                 <RowStyle />
                                                 <Columns>
@@ -594,7 +589,7 @@
                                                             <asp:Label ID="lblgvrejempname" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>' Width="180px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    
+
                                                     <asp:TemplateField HeaderText="Role <br> Type">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblrejrolettpcode" Visible="false" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "roletypecode")) %>' ForeColor="Black" Font-Size="12px"></asp:Label>
@@ -623,20 +618,17 @@
                                                         <ItemStyle HorizontalAlign="Center" />
                                                     </asp:TemplateField>
 
-                                                   <asp:TemplateField HeaderText="Reject <br> QTY">
+                                                    <asp:TemplateField HeaderText="Reject <br> QTY">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvrejrejectqty" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rejectqty")).ToString("#,##0;(#,##0); ") %>' Width="40px" ForeColor="Black" Font-Size="12px"></asp:Label>
 
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" />
-                                                    </asp:TemplateField>                                               
-                                                  
-                                                  
+                                                    </asp:TemplateField>
+
+
                                                     <asp:TemplateField HeaderText="Action">
                                                         <ItemTemplate>
-                                                          
-                                           
-
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
@@ -649,19 +641,26 @@
                                             </asp:GridView>
 
 
-                                         </div>
-                                     </div>
+                                        </div>
+                                    </div>
 
                                     <div class=" card bg-light">
                                         <div class="col-md-12" visible="false" id="task" runat="server">
-                                            
+
                                             <div class="form-group row">
+                                                <asp:Label runat="server" ID="lblDoneAnnot" Visible="false"></asp:Label>
+                                                <asp:Label runat="server" ID="Assigndataqty" Visible="false"></asp:Label>
+                                                <asp:Label runat="server" ID="lblDoneQC" Visible="false"></asp:Label>
+                                                <asp:Label runat="server" ID="lblDoneQA" Visible="false"></asp:Label>
                                                 <asp:HiddenField ID="HiddinTaskid" runat="server" Value="0" />
                                                 <div class="d-flex w-100" style="padding: 10px 8px 4px 0px;">
                                                     <asp:Label ID="Label11" runat="server" CssClass="float-left">Task Name &nbsp;</asp:Label>
-                                                    <span class="text-danger">&nbsp;PendingAnnotator( <asp:Label runat="server" ID="lblcountannotid"></asp:Label>)</span>
-                                                     <span class="text-danger">&nbsp; &nbsp;PendingQC( <asp:Label runat="server" ID="lblcountQC"></asp:Label>)</span>
-                                                     <span class="text-danger">&nbsp; &nbsp; PendingQA( <asp:Label runat="server" ID="lblcountQA"></asp:Label>)</span>
+                                                    <span class="text-danger">&nbsp;PendingAnnotator(
+                                                        <asp:Label runat="server" ID="lblcountannotid"></asp:Label>)</span>
+                                                    <span class="text-danger">&nbsp; &nbsp;PendingQC(
+                                                        <asp:Label runat="server" ID="lblcountQC"></asp:Label>)</span>
+                                                    <span class="text-danger">&nbsp; &nbsp; PendingQA(
+                                                        <asp:Label runat="server" ID="lblcountQA"></asp:Label>)</span>
                                                     <asp:LinkButton runat="server" type="button" ID="LinkButton1" OnClick="removefield_Click" class="ml-auto text-danger"><i class="fa fa-times-circle" style="font-size: 20px;"></i></asp:LinkButton>
 
                                                 </div>
@@ -707,22 +706,21 @@
 
                                                 <div class="col-lg-3 col-md-3 col-sm-12">
                                                     <asp:Label ID="Label9" runat="server"> Assigned QYT</asp:Label>
-                                                    <asp:TextBox ID="txtquantity"  min="0" runat="server" TextMode="Number"  CssClass="form-control"></asp:TextBox>
+                                                    <asp:TextBox ID="txtquantity" min="0" runat="server" TextMode="Number" CssClass="form-control"></asp:TextBox>
                                                 </div>
 
                                                 <div class=" col-lg-3 col-md-3 col-sm-12">
                                                     <asp:Label ID="Label10" runat="server">Work Hour</asp:Label>
                                                     <asp:TextBox ID="txtworkhour" runat="server" min="0" TextMode="Number" CssClass="form-control"></asp:TextBox>
                                                 </div>
-                                                <div class=" col-lg-3 col-md-3 col-sm-12">
-                                                    <asp:Label ID="Label2" runat="server">Per Rate</asp:Label>
-                                                    <asp:TextBox ID="textrate" runat="server" Text="80" CssClass="form-control"></asp:TextBox>
-                                                </div>
-                                                <div class=" col-lg-2 col-md-2 col-sm-12 mt-4">
-                                                    <asp:CheckBox runat="server" ID="checkinoutsourcing" AutoPostBack="True" ForeColor="red"></asp:CheckBox>
-
+                                                 <div class=" col-lg-2 col-md-2 col-sm-12 mt-4">
+                                                    <asp:CheckBox runat="server" ID="checkinoutsourcing" OnCheckedChanged="checkinoutsourcing_CheckedChanged" AutoPostBack="True" ForeColor="red"></asp:CheckBox>
                                                     <asp:Label ID="Label1" runat="server">&nbsp;  Freelancing</asp:Label>
                                                 </div>
+                                                <div class=" col-lg-3 col-md-3 col-sm-12">
+                                                    <asp:Label ID="Label2" runat="server">Per Rate</asp:Label>
+                                                    <asp:TextBox ID="textrate" runat="server" CssClass="form-control"></asp:TextBox>
+                                                </div>                                               
                                                 <div class=" col-lg-1 col-md-1 col-sm-12 mt-4 ">
                                                     <asp:LinkButton ID="btnaddrow" runat="server" OnClick="btnaddrow_Click" CssClass=" btn btn-primary ml-auto btn-sm mt20 mr-1 float-left"><i class="fa fa-plus"></i></asp:LinkButton>
 
@@ -824,7 +822,7 @@
                                             </div>
                                             <asp:LinkButton runat="server" ID="btntaskSave" OnClick="btntaskSave_Click" CssClass="btn btn-primary btn-sm  float-right">Task Save</asp:LinkButton>
                                             <asp:LinkButton runat="server" ID="btntaskUpdate" Visible="false" OnClick="btntaskUpdate_Click" CssClass="btn btn-primary btn-sm   float-right"> Update</asp:LinkButton>
-                                           
+
 
                                         </div>
 
@@ -1000,7 +998,7 @@
         //    }
         //}
 
-        
+
 
     </script>
 

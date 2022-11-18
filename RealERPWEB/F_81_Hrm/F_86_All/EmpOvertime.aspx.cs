@@ -549,6 +549,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             {
                 case "Overtime":
                     this.MultiView1.ActiveViewIndex = 0;
+                    this.pnlDedEarnExcel.Visible = true;
+
                     this.ShowOvertime();
                     this.Visibilitypeb();
                     break;
@@ -584,6 +586,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     break;
                 case "arrear":
                     this.MultiView1.ActiveViewIndex = 7;
+                    this.pnlDedEarnExcel.Visible = true;
+
                     this.EmpArrearSalary();
                     break;
                 case "otherearn":

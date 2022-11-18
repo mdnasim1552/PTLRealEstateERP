@@ -60,5 +60,45 @@ namespace RealEntity.C_81_Hrm.C_83_Att
 
        }
 
+        [Serializable]
+        public class RptMonAttnSumEmpWise
+        {
+            public string comcod { get; set; }
+            public string empid { get; set; }
+            public string idcardno { get; set; }
+            public string company { get; set; }
+            public string deptid { get; set; }
+            public string section { get; set; }
+            public string joindate { get; set; }
+            public string desigid { get; set; }
+            public string gradeid { get; set; }
+            public int present { get; set; }
+            public int latecount { get; set; }
+            public int earlv { get; set; }
+            public int ab { get; set; }
+            public int wh { get; set; }
+            public int fh { get; set; }
+            public int cl { get; set; }
+            public int sl { get; set; }
+            public int ml { get; set; }
+            public int el { get; set; }
+            public int wpl { get; set; }
+            public string desig { get; set; }
+            public string empname { get; set; }
+            public string companyname { get; set; }
+            public string sectionname { get; set; }
+            public string deptname { get; set; }
+            public string grade { get; set; }
+            public int paydays { get; set; }
+            public int monthdays { get; set; }
+            public int wrkday { get; set; }
+            public int holiday { get; set; }
+            public int leave { get; set; }
+
+            public RptMonAttnSumEmpWise()
+            {
+                    
+            }
+        }
     }
 }

@@ -91,13 +91,35 @@
                             <div class="col-md-4" style="margin-top:22px;">
                                 <asp:Label ID="Label5" runat="server" CssClass="form-label"
                                     Text="Sold:-Red Color, MgtBooking:- Blue Color "></asp:Label>
+
                             </div>
                         </div>
             </div>
         </div>
     <div class="card" style="min-height:480px">
+        <div class="card-header">
+                        <!-- .steps -->
+                        <div class="steps steps- d-none" role="tablist">
+                          <ul>
+                            <li class="step success" data-target="#test-l-1" data-validate="fieldset01">
+                              <a href="#" class="step-trigger" tabindex="-1" aria-selected="false"><span class="step-indicator step-indicator-icon"><i class="oi oi-account-login"></i></span> <span class="d-none d-sm-inline">Account</span></a>
+                            </li>
+                            <li class="step success" data-target="#test-l-2" data-validate="fieldset02">
+                              <a href="#" class="step-trigger" tabindex="-1" aria-selected="false"><span class="step-indicator step-indicator-icon"><i class="oi oi-person"></i></span> <span class="d-none d-sm-inline">Personal</span></a>
+                            </li>
+                            <li class="step success" data-target="#test-l-3" data-validate="fieldset03">
+                              <a href="#" class="step-trigger" tabindex="-1" aria-selected="false"><span class="step-indicator step-indicator-icon"><i class="oi oi-credit-card"></i></span> <span class="d-none d-sm-inline">Payment</span></a>
+                            </li>
+                            <li class="step active" data-target="#test-l-4" data-validate="agreement">
+                              <a href="#" class="step-trigger" tabindex="-1" aria-selected="true"><span class="step-indicator step-indicator-icon"><i class="oi oi-check"></i></span> <span class="d-none d-sm-inline">Confirm</span></a>
+                            </li>
+                          </ul>
+                        </div><!-- /.steps -->
+                      </div>
         <div class="card-body">
             <div class="row">
+                 
+
                  <div class="table table-responsive">
                     <asp:GridView ID="gvAailChart" runat="server" AutoGenerateColumns="False"
                         ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
@@ -290,6 +312,7 @@
                                 <ItemStyle HorizontalAlign="Right" />
                                 <FooterStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
+                             
                              <asp:TemplateField HeaderText="Parking">
                                 <ItemTemplate>
                                     <asp:Label ID="lgpamt" runat="server" BackColor="Transparent"
@@ -334,7 +357,7 @@
                                 <ItemStyle HorizontalAlign="Right" />
                                 <FooterStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
-
+                           
 
                         </Columns>
                         <FooterStyle CssClass="grvFooter" />

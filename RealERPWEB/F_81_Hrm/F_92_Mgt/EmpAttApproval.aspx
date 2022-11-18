@@ -108,7 +108,7 @@
 
                                     </div>
                                 
-                                        <div class="col-md-3 mb-3">
+                                        <div class="col-md-2 mb-3">
                                         <label for="validationTooltip02">
                                             Date 
                                         </label>
@@ -118,16 +118,23 @@
                                         <%--<asp:Label ID="lbldadte" runat="server" class="form-control"></asp:Label>--%>
 
                                     </div>
-                                       <div class="col-md-3 mb-3">
+                                       <div class="col-md-2 mb-3">
                                         <label for="validationTooltip02">
                                             Time  
                                         </label>
                                         <asp:Label ID="lbldadteOuttime" Visible="false" runat="server" class="form-control"></asp:Label>
                                         <asp:Label ID="lbldadteIntime" Visible="false" runat="server" class="form-control"></asp:Label>
                                         <%--<asp:Label ID="lbldadteTime" runat="server" class="form-control"></asp:Label>--%>
-                                            <asp:TextBox ID="lbldadteTime" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="lbldadteTime" runat="server" CssClass="form-control" ></asp:TextBox>
 
                                     </div>
+
+                                                         <div class="col-md-2">
+                                            <label >
+                                           Out Time  
+                                        </label>
+                                        <asp:TextBox ID="lblouttime" class="form-control" runat="server"  ></asp:TextBox>
+
                                     </div>
                                     
 
