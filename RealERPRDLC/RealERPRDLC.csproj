@@ -250,6 +250,7 @@
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasisDetails.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasis.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptProMatStock2Leisure.rdlc" />
+    <EmbeddedResource Include="R_12_Inv\rptPurMrrEntryCPDL.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptPurMrrEntryFinlay.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptReqEntryEpic.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptReqEntryJBS.rdlc" />
