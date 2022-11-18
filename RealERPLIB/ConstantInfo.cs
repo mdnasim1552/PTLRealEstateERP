@@ -1172,6 +1172,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2202000", "2202011", "F_24_CC", "CustMaintenanceWork?", "Type=EntrySales", "Sales Increase Info", "Sales & Recovery", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "2202000", "2202015", "F_22_Sal", "MktBookigApp?Type=Entry", "", "Booking Application", "Sales & Recovery", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2202000", "2202017", "F_22_Sal", "MktBookigApp2?Type=Entry", "", "Booking Application2", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2202000", "2202020", "F_22_Sal", "MktSalsPayment?Type=Sales", "", "Sales With Payment Schedule", "Sales & Recovery", "False", "False", "False", "False" });
 
             
@@ -7403,6 +7404,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000006", "01. Grand Note Sheet", "F_22_Sal/MktGrandNoteSheet?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000006", "01. Sample Note Sheet", "F_22_Sal/MktSampleNoteSheet?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000007", "01. Booking Application", "F_22_Sal/MktBookigApp?Type=Entry", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000007", "01. Booking Application2", "F_22_Sal/MktBookigApp2?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000008", "03. Sales With Payment Schedule", "F_22_Sal/MktSalsPayment?Type=Sales", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000009", "14. Monthly Budget (Sales & Collection)", "F_22_Sal/MonthlySalesBudget?Type=Monthly", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000010", "14. Yearly  Sales Budget", "F_22_Sal/MonthlySalesBudget02", "", true, "" });
