@@ -1875,5 +1875,22 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string printype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
             ScriptManager.RegisterStartupScript(this, GetType(), "target", "PrintRpt('" + printype + "');", true);
         }
+
+        protected void LoGenprint_Click(object sender, EventArgs e)
+        {
+            this.stepIDNEXT.Value = "7";
+
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string lnid = ((Label)this.gvGen.Rows[index].FindControl("lblidPend")).Text.ToString().Trim();
+            string empid = ((Label)this.gvGen.Rows[index].FindControl("lblpendempid")).Text.ToString().Trim();
+            //this.PrintLoan.Visible = true;
+            this.ComponentVisibale();
+            this.AllVie_Data(empid, lnid);
+            this.GetGross();
+            GetApprovalLog(lnid);
+            this.PrintLoan_Click(null, null);
+            this.PrintLoan.Visible = false;
+        }
     }
 }
