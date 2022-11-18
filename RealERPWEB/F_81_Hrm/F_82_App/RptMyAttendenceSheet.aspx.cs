@@ -66,12 +66,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             switch (comcod)
             {
                 case "3354":                
-                   // ddlReqType.Items.Add(new ListItem("Late Approval Request", "LA"));
+          
                      ddlReqType.Items.Add(new ListItem("Late Present Approval ", "LP"));
-                     ddlReqType.Items.Add(new ListItem("Project Visit", "TC"));
+                    //ddlReqType.Items.Add(new ListItem("Project Visit", "TC"));
 
                     // ddlReqType.Items.Add(new ListItem("Time Correction Approval Request(Project Visit, Customer visit, etc)", "TC"));
-                    //ddlReqType.Items.Add(new ListItem("Absent Approval Request (IF Finger/Attandance missed but present)", "AB"));
+                    ddlReqType.Items.Add(new ListItem("Absent Approval Request (Project Visit/Finger Missed)", "AB"));
+                    //ddlReqType.Items.Add(new ListItem("Project Visit)", "PV"));
                     break;
                 case "3366":
                     ddlReqType.Items.Add(new ListItem("Late Approval Request", "LA"));
@@ -525,13 +526,22 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             Label lblisremarks = (Label)Rptitem.FindControl("lblisremarks");
             Label lblRequid = (Label)Rptitem.FindControl("lblRequid");
             Label lblapremarks = (Label)Rptitem.FindControl("lblapremarks");
-   
+            Label actualout = (Label)Rptitem.FindControl("lblactualout");
+
+            
+
+
 
             string attstatus = lblstatus.Text.Trim();
             //ddlReqType.SelectedValue = (attstatus == "" && comcod == "3365" ? "TC" : attstatus == "A" ? "AB" : "LA");
             ddlReqType.SelectedValue = (attstatus == "" && comcod == "3365" ? "TC" : attstatus == "" && comcod == "3354" ? "LP": attstatus == "A" ? "AB" : "LA");
 
             ddlReqType.Enabled = (attstatus == "A" ? false : true);
+
+            if (comcod == "3354")
+            {
+
+            }
 
             if (attstatus == "A")
             {
@@ -579,6 +589,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.lbldadteOuttime.Text = lblIntime.Text;
             this.txtAreaReson.Text = lblisremarks.Text;
             this.ReqID.Value = lblRequid.Text;
+            this.lblouttime.Text = actualout.Text;
 
         }
         protected void lbntnAbsentApproval_Click(object sender, EventArgs e)
@@ -604,7 +615,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string reqdate = this.lbldadte.Text.Trim();
             string dayID =  Convert.ToDateTime(this.lbldadte.Text.Trim()).ToString("yyyyMMdd");
             string reqtimeIN = this.lbldadteTime.Text.Trim();
-            string reqtimeOUT = this.lbldadteOuttime.Text.Trim();
+            //string reqtimeOUT = this.lbldadteOuttime.Text.Trim();
+            string reqtimeOUT = this.lblouttime.Text.Trim();
+
             string txtReson = txtAreaReson.Text.Trim();
             string reqid = this.ReqID.Value;
             if(txtReson=="")
@@ -854,14 +867,18 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         protected void ddlReqType_SelectedIndexChanged(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModalAbs();", true);
+            string comcod = this.GetComeCode();
 
-            if (ddlReqType.SelectedValue.ToString() == "TC" )
+            if (ddlReqType.SelectedValue.ToString() == "TC" || this.GetComeCode()=="3354" )
             {
                 this.lbldadteTime.Enabled = true;
+                this.lblouttime.Enabled = true;
             }
             else
             {
                 this.lbldadteTime.Enabled = false;
+                this.lblouttime.Enabled = false; ;
+
             }
         }
     }
