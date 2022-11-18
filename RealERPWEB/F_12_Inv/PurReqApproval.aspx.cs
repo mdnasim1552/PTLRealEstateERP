@@ -422,6 +422,7 @@ namespace RealERPWEB.F_12_Inv
 
             this.dgv1.DataSource = dt;
             this.dgv1.DataBind();
+
             if (dt.Rows.Count > 0)
             {
 
@@ -2792,7 +2793,71 @@ namespace RealERPWEB.F_12_Inv
             Session["tblreq"] = dt;
             this.Data_Bind();
         }
-        // end nahid 20211013
+
+        protected void lbtnHistory_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int RowIndex = gvr.RowIndex;
+                int index = this.dgv1.PageSize * this.dgv1.PageIndex + RowIndex;
+
+                string rsircode = ((Label)dgv1.Rows[0].FindControl("lblgvrsircode")).Text.ToString();
+                string spcfcod = ((Label)dgv1.Rows[0].FindControl("lblgvSpcfCod")).Text.ToString();
+                string rsirdesc = ((HyperLink)dgv1.Rows[0].FindControl("lblgvResDesc")).Text.ToString();
+                string prjcode = this.ddlProject.SelectedValue.ToString();
+
+                spanMatName.InnerText = rsirdesc.ToString();
+                string comcod = this.GetCompCode();
+                DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_REQUISITION_APPROVAL", "GETMATHISTORYVIEW", prjcode, rsircode, spcfcod, "", "", "", "", "", "");
+                if (ds1.Tables[0].Rows.Count == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
+                    return;
+                }
+
+                this.gvsupres.DataSource = HiddenSameDate2(ds1.Tables[0]);
+                this.gvsupres.DataBind();
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openSupModal();", true);
+            }
+
+
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+
+            }
+        }
+
+        private DataTable HiddenSameDate2(DataTable dt1)
+        {
+
+            if (dt1.Rows.Count == 0)
+                return dt1;
+
+            string pactcode = dt1.Rows[0]["pactcode"].ToString();
+            for (int j = 1; j < dt1.Rows.Count; j++)
+            {
+                if (dt1.Rows[j]["pactcode"].ToString() == pactcode)
+                {
+                    pactcode = dt1.Rows[j]["pactcode"].ToString();
+                    dt1.Rows[j]["pactdesc"] = "";
+                }
+                else
+                {
+                    pactcode = dt1.Rows[j]["pactcode"].ToString();
+
+                }
+            }
+
+            return dt1;
+
+
+        }
+
         protected void btnDelall_OnClick(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)Session["tblAttDocs"];

@@ -2399,7 +2399,11 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8103000", "8103080", "F_81_Hrm/F_82_App", "RptEmpInformation?", "Type=EmpAllInfo", "Employee Information", "Appointment", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103081", "F_81_Hrm/F_90_PF", "RptPaymentAndProvidentinf", "", "Payment Schedule Of Provident Fund", "PF Account", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103082", "F_81_Hrm/F_83_Att", "RptEmpDailyAttendance?", "Type=deptlist", "Department Wise Employee List", "Attendance", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "8103000", "8103083", "F_81_Hrm/F_90_PF", "RptPFIndvPay", "", "Individual Payment Schedule Of P.F", "PF Account", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8103000", "8103083", "F_81_Hrm/F_90_PF", "RptPFIndvPay?", "Type=IndPfund", "Individual Payment Schedule Of P.F", "PF Account", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8103000", "8103084", "F_81_Hrm/F_90_PF", "RptPFIndvPay?", "Type=Indswfsum", "Employee Wise SWF Status", "PF Account", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8103000", "8103086", "F_81_Hrm/F_90_PF", "RptPFIndvPay?", "Type=IndPfSattlement", "Final Sattlement of PF and WF", "PF Account", "False", "False", "False", "False" }); ;
+
+
             tblObj.Rows.Add(new Object[] { "8103000", "8103130", "F_81_Hrm/F_89_Pay", "EmpMonthSummary?", "Type=salati", "AIT Purpose Salary Statement", "Attendance", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8103000", "8103131", "F_81_Hrm/F_89_Pay", "EmpMonthSummary?", "Type=salsumMonth", "Salary Summary (Month Wise)", "Attendance", "False", "False", "False", "False" });
 
@@ -15946,7 +15950,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0309000003", "03. Payment Voucher", "F_81_Hrm/F_90_PF/GeneralAccounts?tcode=99&tname=Payment Voucher", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0309000004", "04. Deposit Voucher", "F_81_Hrm/F_90_PF/GeneralAccounts?tcode=99&tname=Deposit Voucher", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0309000005", "05. Journal Voucher", "F_81_Hrm/F_90_PF/GeneralAccounts?tcode=99&tname=Journal Voucher", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0309000006", "06. Individual Payment Schedule Of P.F", "F_81_Hrm/F_90_PF/RptPFIndvPay", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0309000006", "06. Individual Payment Schedule Of P.F", "F_81_Hrm/F_90_PF/RptPFIndvPay?Type=IndPfund", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0309000007", "07. Bank Reconcilation", "F_81_Hrm/F_90_PF/AccBankRecon", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0309000008", "08. InterCompany Payment", "F_81_Hrm/F_90_PF/AccInterComVoucher", "", true, "" });
 
@@ -16102,9 +16106,12 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0409000010", "10. Cheque Print", "F_17_Acc/TransectionPrint?Type=AccCheque", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0409000011", "11. Total P.F Fund Report", "F_81_Hrm/F_90_PF/RptAccProFund?Type=Pffund", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0409000012", "12. Payment Schedule Of Provident Fund", "F_81_Hrm/F_90_PF/RptPaymentAndProvidentinf", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0409000013", "13. Individual Payment Schedule Of P.F", "F_81_Hrm/F_90_PF/RptPFIndvPay", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0409000014", "14. AIT Purpose Salary Statement", "F_81_Hrm/F_89_Pay/EmpMonthSummary?Type=salati", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0409000015", "14. Salary Summary (Month Wise)", "F_81_Hrm/F_89_Pay/EmpMonthSummary?Type=salsumMonth", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0409000013", "13. Individual Payment Schedule Of P.F", "F_81_Hrm/F_90_PF/RptPFIndvPay?Type=IndPfund", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0409000014", "14. Employee Wise SWF", "F_81_Hrm/F_90_PF/RptPFIndvPay?Type=Indswfsum", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0409000014", "14. Final Sattlement of PF and WF", "F_81_Hrm/F_90_PF/RptPFIndvPay?Type=IndPfSattlement", "", true, "" });
+           
+            mnuTbl1.Rows.Add(new Object[] { "0409000015", "15. AIT Purpose Salary Statement", "F_81_Hrm/F_89_Pay/EmpMonthSummary?Type=salati", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0409000016", "16. Salary Summary (Month Wise)", "F_81_Hrm/F_89_Pay/EmpMonthSummary?Type=salsumMonth", "", true, "" });
 
 
             //mnuTbl1.Rows.Add(new Object[] { "0201000000", "01. Accounts Code", "F_81_Hrm/F_82_App/AccCodeBook?InputType=Accounts", "", true, "" });
