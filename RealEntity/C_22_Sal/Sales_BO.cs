@@ -1170,6 +1170,7 @@ namespace RealEntity.C_22_Sal
             public string comcod { get; set; }
             public string grp { get; set; }
             public string grpdesc { get; set; }
+            public string gdesc { get; set; }
             public string pactcode { get; set; }
             public string usircode { get; set; }
             public string gcod { get; set; }
@@ -1178,7 +1179,7 @@ namespace RealEntity.C_22_Sal
             public double urate { get; set; }
             public DateTime schdate { get; set; }
             public double amt { get; set; }
-            public string gdesc { get; set; }
+           
             public PaymentScheduleN() { }
         }
 
