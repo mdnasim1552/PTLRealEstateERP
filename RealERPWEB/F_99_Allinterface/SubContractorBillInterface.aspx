@@ -1531,6 +1531,13 @@
 
                                                     <asp:HyperLink ID="lnkbtnbillapp" runat="server" ToolTip="Bill Approval" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                     </asp:HyperLink>
+
+                                                     <asp:HyperLink ID="hlnkBillDetails" runat="server" ToolTip="MB Details" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs" ><i class=" fa fa-info-circle" aria-hidden="false"></i>
+                                                    </asp:HyperLink>
+                                                 
+
+
+
                                                   <%--  <asp:HyperLink ID="lnkbtnEditBilll" ToolTip="Edit" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span style="color:black" class="fas fa-edit"></span>
                                                     </asp:HyperLink>
                                                     <asp:LinkButton ID="btnDelReqCheck" OnClick="btnDelReqCheck_OnClick" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa  fa-recycle"></span> </asp:LinkButton>--%>
@@ -2931,7 +2938,7 @@
 
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
-                                                    <asp:HyperLink ID="lnkWorkOrder" runat="server" ToolTip="CS" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
+                                                    <asp:HyperLink ID="lnkWorkOrder" runat="server" ToolTip="MB" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                     </asp:HyperLink>
 
                                                     <asp:LinkButton ID="btnDelWrkodr" OnClick="btnDelWrkodr_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa  fa-recycle"></span> </asp:LinkButton>
@@ -3094,7 +3101,7 @@
 
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
-                                                    <asp:HyperLink ID="hlnklnkmb" runat="server" ToolTip="CS" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
+                                                    <asp:HyperLink ID="hlnklnkmb" runat="server" ToolTip="Bill Generate" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                     </asp:HyperLink>
 
                                                     <asp:LinkButton ID="btnDelmb" OnClick="btnDelmb_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa  fa-recycle"></span> </asp:LinkButton>

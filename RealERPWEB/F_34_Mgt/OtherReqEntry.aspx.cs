@@ -1582,6 +1582,64 @@ namespace RealERPWEB.F_34_Mgt
 
             switch (type)
             {
+                case "OreqChecked":
+                    switch (comcod)
+                    {
+                        case "3370": //CPDL
+                        case "3101":
+                            if (approval == "")
+                            {
+                                this.CreateDataTable();
+                                DataTable dt = (DataTable)ViewState["tblapproval"];
+                                DataRow dr1 = dt.NewRow();
+                                dr1["frecid"] = usrid;
+                                dr1["frecdat"] = Date;
+                                dr1["frectrmid"] = trmnid;
+                                dr1["frecseson"] = session;
+                                dr1["secrecid"] = usrid;
+                                dr1["secrecdat"] = Date;
+                                dr1["secrectrmid"] = trmnid;
+                                dr1["secrecseson"] = session;
+                                dr1["threcid"] = usrid;
+                                dr1["threcdat"] = Date;
+                                dr1["threctrmid"] = trmnid;
+                                dr1["threcseson"] = session;
+                                dt.Rows.Add(dr1);
+                                ds1.Merge(dt);
+                                ds1.Tables[0].TableName = "tbl1";
+                                approval = ds1.GetXml();
+                            }
+
+                            else
+                            {
+                                xmlSR = new System.IO.StringReader(approval);
+                                ds1.ReadXml(xmlSR);
+                                ds1.Tables[0].TableName = "tbl1";
+                                ds1.Tables[0].Rows[0]["frecid"] = usrid;
+                                ds1.Tables[0].Rows[0]["frecdat"] = Date;
+                                ds1.Tables[0].Rows[0]["frectrmid"] = trmnid;
+                                ds1.Tables[0].Rows[0]["frecseson"] = session;
+                                ds1.Tables[0].Rows[0]["secrecid"] = usrid;
+                                ds1.Tables[0].Rows[0]["secrecdat"] = Date;
+                                ds1.Tables[0].Rows[0]["secrectrmid"] = trmnid;
+                                ds1.Tables[0].Rows[0]["secrecseson"] = session;
+                                ds1.Tables[0].Rows[0]["threcid"] = usrid;
+                                ds1.Tables[0].Rows[0]["threcdat"] = Date;
+                                ds1.Tables[0].Rows[0]["threctrmid"] = trmnid;
+                                ds1.Tables[0].Rows[0]["threcseson"] = session;
+                                approval = ds1.GetXml();
+                            }
+                            break;
+
+                        default:
+                           
+                            break;
+                    }
+
+                    break;
+
+
+
                 case "OreqApproved":
                     switch (comcod)
                     {
@@ -2255,6 +2313,123 @@ namespace RealERPWEB.F_34_Mgt
             }
         }
 
+
+
+        protected void lbtnOreqChecked_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            this.Session_tblReq_Update();
+            string comcod = this.GetCompCode();
+            string mMRFNO = this.txtMRFNo.Text.Trim();
+            string mREQDAT = this.GetStdDate(this.txtCurReqDate.Text.Trim());
+            string mREQNO = this.Request.QueryString["genno"].ToString();
+            string type = this.Request.QueryString["Type"].ToString();
+
+            //log Report
+          
+
+            
+            DataTable dtuser = (DataTable)Session["tblUserReq"];
+
+            string userid = hst["usrid"].ToString();
+            string Terminal = hst["compname"].ToString();
+            string Sessionid = hst["session"].ToString();
+            string PostedByid = "";
+            string Posttrmid = "";
+            string PostSession = "";
+            string posteddat = "";
+            string ApprovByid, approvdat, Approvtrmid, ApprovSession;
+            //Skip Approval
+
+            switch (comcod)
+            {
+                case "3370":  //CPDL
+                case "3101":
+                    ApprovByid = userid;
+                     approvdat = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                     Approvtrmid = Terminal ;
+                     ApprovSession = Sessionid;
+                    break;
+
+                default:
+                     ApprovByid = "";
+                     approvdat = "01-Jan-1900";
+                     Approvtrmid = "";
+                     ApprovSession = "";
+                    break;
+
+
+            }
+
+            
+
+
+            /////log end
+
+            string nARRATION = txtReqNarr.Text.Trim();
+
+            string paytype = this.rblpaytype.SelectedValue.ToString();
+            string payto = this.txtPayto.Text.Trim().ToString();
+            string supcode = ddlSupplier.SelectedValue.ToString();
+            string termncon = this.termncon.Text.ToString();
+            string payofmod = this.mofpay.Text.ToString();
+            string deptcode = this.ddlDeptCode.SelectedValue.ToString();
+            supcode = (supcode.Trim() == "" ? "000000000000" : supcode);
+            supcode = dtuser.Rows[0]["supcode"].ToString();
+
+            DataTable tbl1 = (DataTable)Session["tblReq"];
+            bool result = false;
+            string adjcod = this.ddlactcode.SelectedValue.ToString();
+            string bundleno = this.ddlBundle.SelectedValue.ToString().Trim();
+
+            // todo for other req checked 
+            string chckid = userid;
+            string checkdat = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+
+            string bankcode = this.ddlBankName.SelectedValue.ToString();
+            string refnum = this.txtRefNum.Text.Trim();
+            for (int i = 0; i < tbl1.Rows.Count; i++)
+            {
+                string mPACTCODE = tbl1.Rows[i]["pactcode"].ToString();
+                string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
+                string spcfcod = tbl1.Rows[i]["spcfcod"].ToString();
+                string billno = tbl1.Rows[i]["billno"].ToString();
+                double mProAMT = Convert.ToDouble(tbl1.Rows[i]["proamt"]);
+                double mAPPAMT = Convert.ToDouble(tbl1.Rows[i]["appamt"]);
+                double qty = Convert.ToDouble(tbl1.Rows[i]["qty"]);
+                double rate = Convert.ToDouble(tbl1.Rows[i]["rate"]);
+                double ppdamt = Convert.ToDouble(tbl1.Rows[i]["ppdamt"]);
+                string appxml = tbl1.Rows[i]["approval"].ToString();
+                string Approval = this.GetReqApproval(appxml);
+                string advanced = this.chkAdvanced.Checked ? "1" : "0";
+                string attnper = this.txtAttn.Text.ToString();
+
+                if (mProAMT > 0)
+                {
+                    result = purData.UpdateTransInfo01(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "OTHERREQCHECKED",
+                             mREQNO, mPACTCODE, mRSIRCODE, mREQDAT, mMRFNO, mProAMT.ToString(), mAPPAMT.ToString(), nARRATION,
+                             PostedByid, PostSession, Posttrmid, ApprovByid, approvdat, Approvtrmid, ApprovSession, qty.ToString(), paytype, payto,
+                             ppdamt.ToString(), posteddat, supcode, spcfcod, adjcod, type, termncon, payofmod, bundleno, billno, bankcode, refnum, Approval,
+                             advanced, attnper, deptcode, chckid, checkdat);
+                }
+                if (!result)
+                {
+                    string message = purData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
+                    return;
+                }
+
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Data Updated successfully" + "');", true);
+            if (ConstantInfo.LogStatus == true)
+            {
+                string eventtype = "Other Req Entry";
+                string eventdesc = "Update Req";
+                string eventdesc2 = mREQNO;
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+        }
         private bool SendSSLMail(string subject, string SMSText, string userid, string frmname)
         {
             try
@@ -2998,98 +3173,6 @@ namespace RealERPWEB.F_34_Mgt
 
         }
 
-        protected void lbtnOreqChecked_Click(object sender, EventArgs e)
-        {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            this.Session_tblReq_Update();
-            string comcod = this.GetCompCode();
-            string mMRFNO = this.txtMRFNo.Text.Trim();
-            string mREQDAT = this.GetStdDate(this.txtCurReqDate.Text.Trim());
-            string mREQNO = this.Request.QueryString["genno"].ToString();
-            string type = this.Request.QueryString["Type"].ToString();
-
-            //log Report
-            DataTable dtuser = (DataTable)Session["tblUserReq"];
-
-            string userid = hst["usrid"].ToString();
-            string Terminal = hst["compname"].ToString();
-            string Sessionid = hst["session"].ToString();
-            string PostedByid = "";
-            string Posttrmid = "";
-            string PostSession = "";
-            string posteddat = "";
-
-            string ApprovByid = "";
-            string approvdat = "";
-            string Approvtrmid = "";
-            string ApprovSession = "";
-
-
-            /////log end
-
-            string nARRATION = txtReqNarr.Text.Trim();
-
-            string paytype = this.rblpaytype.SelectedValue.ToString();
-            string payto = this.txtPayto.Text.Trim().ToString();
-            string supcode = ddlSupplier.SelectedValue.ToString();
-            string termncon = this.termncon.Text.ToString();
-            string payofmod = this.mofpay.Text.ToString();
-            string deptcode = this.ddlDeptCode.SelectedValue.ToString();
-            supcode = (supcode.Trim() == "" ? "000000000000" : supcode);
-            supcode = dtuser.Rows[0]["supcode"].ToString();
-
-            DataTable tbl1 = (DataTable)Session["tblReq"];
-            bool result = false;
-            string adjcod = this.ddlactcode.SelectedValue.ToString();
-            string bundleno = this.ddlBundle.SelectedValue.ToString().Trim();
-
-            // todo for other req checked 
-            string chckid = userid;
-            string checkdat = System.DateTime.Today.ToString("dd-MMM-yyyy");
-
-
-            string bankcode = this.ddlBankName.SelectedValue.ToString();
-            string refnum = this.txtRefNum.Text.Trim();
-            for (int i = 0; i < tbl1.Rows.Count; i++)
-            {
-                string mPACTCODE = tbl1.Rows[i]["pactcode"].ToString();
-                string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
-                string spcfcod = tbl1.Rows[i]["spcfcod"].ToString();
-                string billno = tbl1.Rows[i]["billno"].ToString();
-                double mProAMT = Convert.ToDouble(tbl1.Rows[i]["proamt"]);
-                double mAPPAMT = Convert.ToDouble(tbl1.Rows[i]["appamt"]);
-                double qty = Convert.ToDouble(tbl1.Rows[i]["qty"]);
-                double rate = Convert.ToDouble(tbl1.Rows[i]["rate"]);
-                double ppdamt = Convert.ToDouble(tbl1.Rows[i]["ppdamt"]);
-                string appxml = tbl1.Rows[i]["approval"].ToString();
-                string Approval = this.GetReqApproval(appxml);
-                string advanced = this.chkAdvanced.Checked ? "1" : "0";
-                string attnper = this.txtAttn.Text.ToString();
-
-                if (mProAMT > 0)
-                {
-                    result = purData.UpdateTransInfo01(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "OTHERREQCHECKED",
-                             mREQNO, mPACTCODE, mRSIRCODE, mREQDAT, mMRFNO, mProAMT.ToString(), mAPPAMT.ToString(), nARRATION,
-                             PostedByid, PostSession, Posttrmid, ApprovByid, approvdat, Approvtrmid, ApprovSession, qty.ToString(), paytype, payto,
-                             ppdamt.ToString(), posteddat, supcode, spcfcod, adjcod, type, termncon, payofmod, bundleno, billno, bankcode, refnum, Approval,
-                             advanced, attnper, deptcode, chckid, checkdat);
-                }
-                if (!result)
-                {
-                    string message = purData.ErrorObject["Msg"].ToString();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
-                    return;
-                }
-
-            }
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Data Updated successfully" + "');", true);
-            if (ConstantInfo.LogStatus == true)
-            {
-                string eventtype = "Other Req Entry";
-                string eventdesc = "Update Req";
-                string eventdesc2 = mREQNO;
-                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-            }
-        }
+       
     }
 }

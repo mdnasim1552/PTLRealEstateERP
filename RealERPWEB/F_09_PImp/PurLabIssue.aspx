@@ -94,6 +94,8 @@
         .grvHeader {
             height: 58px !important;
         }
+
+
  
     </style>
     <script language="javascript" type="text/javascript">
@@ -707,11 +709,14 @@
                     <div class="row">
                         <div class="col-md-1">
                             <asp:Label ID="lblsecurity" runat="server" CssClass="form-label">Security Deposit</asp:Label>
-                            <asp:TextBox ID="txtpercentage" runat="server" CssClass="form-control form-control-sm  w100"></asp:TextBox>
+                            <asp:TextBox ID="txtpercentage" runat="server" CssClass="form-control form-control-sm  w100" Text="5%"></asp:TextBox>
                         </div>
                         <div class="col-md-1">
+                             
+                            <asp:Label ID="lbldeposit" runat="server" CssClass="form-label">Cal. Amount</asp:Label>
                             <asp:LinkButton ID="lbtnDepost" runat="server" CssClass="form-label" OnClick="lbtnDepost_Click">
-                                Calculation Amount <i class="fa fa-search" aria-hidden="true"></i></asp:LinkButton>
+                                <i class="fa fa-search" aria-hidden="true"></i></asp:LinkButton>
+                          
                             <asp:TextBox ID="txtSDAmount" runat="server" CssClass="form-control form-control-sm  w100"></asp:TextBox>
                         </div>
                         <div class="col-md-1">
@@ -733,7 +738,12 @@
                         <div class="col-md-1">
                             <asp:Label ID="lblnettotal" runat="server" CssClass="form-label">Net Total</asp:Label>
                             <asp:TextBox ID="lblvalnettotal" runat="server" CssClass="form-control form-control-sm  w100" Enabled="false" Style="text-align: right; color: blue;"></asp:TextBox>
-                            <asp:HyperLink ID="lbtnBalance" runat="server" Target="_blank" Style="margin-left: 10px; color: blue; font-weight: bold; font-size: 14px;"></asp:HyperLink>
+                          
+
+                        </div>
+
+                        <div class="col-md-2">
+                             <asp:HyperLink ID="lbtnBalance" runat="server" Target="_blank" Style="margin-left: 10px; color: blue; font-weight: bold; font-size: 14px;"></asp:HyperLink>
 
                         </div>
                     </div>
