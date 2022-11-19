@@ -1167,7 +1167,9 @@ namespace RealERPWEB.F_17_Acc
                             break;
                     }
                     break;
-
+                case 11:
+                    this.ProjectwiseReceiptandPaymentDetails();
+                    break;
                 case 12://Rupayan
                     this.PrintRecAndPayCustomized();
                     break;
@@ -1624,6 +1626,35 @@ namespace RealERPWEB.F_17_Acc
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
+        private  void ProjectwiseReceiptandPaymentDetails()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm tt");
+            LocalReport Rpt1 = new LocalReport();
+            DataTable dt = (DataTable)Session["recandpay"];
+            var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PWRPDetails>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptProjectwiseReceptsandPayment", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("date", "From  " + Convert.ToDateTime(this.txtfrmdat2.Text).ToString("dd-MMM-yyyy") + "  To  " + Convert.ToDateTime(this.txttodat2.Text).ToString("dd-MMM-yyyy") + ")"));
+            Rpt1.SetParameters(new ReportParameter("Rpttitle", "Project Wise Recepits & Payments Details"));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
 
         private void PrintIssuedVsCollection()
         {
@@ -1996,7 +2027,6 @@ namespace RealERPWEB.F_17_Acc
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_RP", CallType, fromdate, todate, rp, CBorBoth, "", "", "", "", "");
             if (ds1 == null)
                 return;
-
             Session["recandpay"] = this.HiddenSameDate(ds1.Tables[0]);
             Session["recandpayFo"] = ds1.Tables[1];
             ViewState["recandpayNote"] = ds1.Tables[2];
@@ -2363,7 +2393,6 @@ namespace RealERPWEB.F_17_Acc
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_RP", CallType, fromdate, todate, rp, CBorBoth, prjcode, "", "", "", "");
             if (ds1 == null)
                 return;
-
             Session["recandpay"] = this.HiddenSameDate(ds1.Tables[0]);
             Session["recandpayFo"] = ds1.Tables[1];
             ViewState["recandpayNote"] = ds1.Tables[2];

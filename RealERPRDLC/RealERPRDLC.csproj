@@ -744,6 +744,7 @@
     <EmbeddedResource Include="R_17_Acc\RptProjectPettyCash.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptProjectSpecification.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptProjectWiseCollection.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptProjectwiseReceptsandPayment.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPurNotUpdated.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptRatioAnalysis.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptRealCollDetails.rdlc" />
