@@ -791,10 +791,11 @@ namespace RealERPWEB.F_12_Inv
             // Duplicate 
             switch (comcod)
             {
-                case "3315":
-                case "3316":
-                case "3317":
-               // case "3101":
+                case "3315": // assure 
+                case "3316": // assure
+                case "3317": // assure
+                case "3367": // epic 
+                //case "3101": // epic 
 
                     break;
 
@@ -807,7 +808,6 @@ namespace RealERPWEB.F_12_Inv
                         this.ddlPrevISSList.Items.Clear();
                         return;
                     }
-
                     else if (dmirfno.Length == 0)
                     {
                         ((Label)this.Master.FindControl("lblmsg")).Text = "DMIRF No Should Not Be Empty";
@@ -816,7 +816,6 @@ namespace RealERPWEB.F_12_Inv
                         return;
                     }
 
-
                     DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "CHECKEDDUPISUMRFNO", mRef, "", "", "", "", "", "", "", "");
                     if (ds2.Tables[0].Rows.Count == 0)
                     {
@@ -824,7 +823,6 @@ namespace RealERPWEB.F_12_Inv
 
                     else
                     {
-
                         DataView dv1 = ds2.Tables[0].DefaultView;
                         dv1.RowFilter = ("isuno <>'" + mISUNO + "'");
                         DataTable dt = dv1.ToTable();
@@ -837,16 +835,8 @@ namespace RealERPWEB.F_12_Inv
                             return;
                         }
                     }
-
                     break;
-
-            }
-
-
-
-
-
-          
+            }         
 
 
             string mPACTCODE = this.ddlprjlist.SelectedValue.ToString().Trim();
@@ -864,11 +854,6 @@ namespace RealERPWEB.F_12_Inv
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
                 return;
             }
-
-
-
-
-
             for (int i = 0; i < tbl2.Rows.Count; i++)
             {
                 string Rsircode = tbl2.Rows[i]["rsircode"].ToString();

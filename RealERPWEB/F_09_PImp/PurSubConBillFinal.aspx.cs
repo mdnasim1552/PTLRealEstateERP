@@ -1574,6 +1574,7 @@ namespace RealERPWEB.F_09_PImp
 
                         case "3368"://Finlay
                         case "3367"://epic
+                        case "3366": //Lanco
 
                             break;
 
@@ -1593,13 +1594,8 @@ namespace RealERPWEB.F_09_PImp
                                 ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + PurData.ErrorObject["Msg"];
                                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                                 return;
-
                             }
-
-
                             break;
-
-
 
                     }
                 }
