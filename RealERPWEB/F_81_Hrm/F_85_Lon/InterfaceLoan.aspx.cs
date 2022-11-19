@@ -1188,7 +1188,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string empid = ((Label)this.gvPending.Rows[index].FindControl("lblpendempid")).Text.ToString();
             this.delid.Value = lnid;
             this.delempid.Value = empid.ToString();
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "confirmDelete_click();", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenDeleteModal();", true);
             
         }
 
@@ -1876,6 +1876,45 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             ScriptManager.RegisterStartupScript(this, GetType(), "target", "PrintRpt('" + printype + "');", true);
         }
 
+        private void GetRowwisePrint(string empid,string lnid)
+        {
+            try
+            {
+                string comcod = this.GetCompCode();
+
+                DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LOANAPP", "GETLOANBYID", empid, lnid, "", "", "", "", "", "", "", "");
+                if (ds == null || ds.Tables.Count == 0)
+                    return;
+                DataTable dt = ds.Tables[0];
+
+
+                this.txtLoanId.Text = "Ln-" + dt.Rows[0]["id"].ToString();
+                this.txtcreateDate.Text = Convert.ToDateTime(dt.Rows[0]["createdate"]).ToString("dd-MMM-yyyy");
+
+                this.txtLoanAmt.Text = Convert.ToDouble(dt.Rows[0]["loanamt"]).ToString("#,##0.00;(#,##0.00); ");
+                this.txtInstNum.Text = Convert.ToInt32(dt.Rows[0]["instlnum"]).ToString("#,##0;(#,##0); ");
+                this.txtAmtPerIns.Text = Convert.ToDouble(dt.Rows[0]["perinstlamt"]).ToString("#,##0.00;(#,##0.00); ");
+                this.txtStd.Text = Convert.ToDouble(dt.Rows[0]["statdeduction"]).ToString("#,##0.00;(#,##0.00); ");
+                this.txtOI.Text = Convert.ToDouble(dt.Rows[0]["othincome"]).ToString("#,##0.00;(#,##0.00); ");
+                this.txtOD.Text = Convert.ToDouble(dt.Rows[0]["othdeduction"]).ToString("#,##0.00;(#,##0.00); ");
+                this.txtrt.Text = Convert.ToDouble(dt.Rows[0]["rate"]).ToString("#,##0.00;(#,##0.00); ");
+
+                this.txtEffDate.Text = Convert.ToDateTime(dt.Rows[0]["effdate"]).ToString("dd-MMM-yyyy");
+                ddlLoanType.ClearSelection();
+                string loantype = dt.Rows[0]["loantype"].ToString().Trim();
+                this.ddlEmpList.SelectedValue = empid;
+                ddlLoanType.Items.FindByValue(loantype).Selected = true;
+                this.txtLoanDescc.Text = dt.Rows[0]["loandesc"].ToString() ?? "";
+            }
+            catch(Exception Exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Exp.Message.ToString() + "');", true);
+
+            }
+        }
+
+
+
         protected void LoGenprint_Click(object sender, EventArgs e)
         {
             this.stepIDNEXT.Value = "7";
@@ -1886,7 +1925,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string empid = ((Label)this.gvGen.Rows[index].FindControl("lblpendempid")).Text.ToString().Trim();
             //this.PrintLoan.Visible = true;
             this.ComponentVisibale();
-            this.AllVie_Data(empid, lnid);
+            this.GetRowwisePrint(empid, lnid);
             this.GetGross();
             GetApprovalLog(lnid);
             this.PrintLoan_Click(null, null);
