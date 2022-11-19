@@ -616,7 +616,7 @@ namespace RealERPWEB.F_99_Allinterface
             switch (comcod)
             {
                 case "3370"://CPDL
-                case "3101":
+                //case "3101":
                     userwise = "UserWise";
                     break;
 
@@ -676,7 +676,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
 
                 case "3370"://CPDL
-                case "3101":
+              //  case "3101":
                     dv.RowFilter = ("checkbyid = ''and suserid='"+ usrid + "'");
 
                     break;
@@ -1146,22 +1146,29 @@ namespace RealERPWEB.F_99_Allinterface
 
         {
             string comcod = this.GetCompCode();
-            string delskip3 = "";
+            string delskip = "";
             switch (comcod)
             {
                 case "1102"://IBCEL
                     break;
 
-                default:
-                    delskip3 = "delskip3";
+                case "3370":// CPDL
+                case "3368":// Finaly              
+                    delskip = "delskip5";
                     break;
 
+
+                default:
+                    delskip = "delskip4";
+                    break;
+
+              
 
 
             }
 
 
-            return delskip3;
+            return delskip;
         }
 
         protected void btnDelOrder_Click(object sender, EventArgs e)
@@ -1172,8 +1179,8 @@ namespace RealERPWEB.F_99_Allinterface
             int rowindex = gvr.RowIndex;
             string comcod = this.GetCompCode();
             string reqno = ((Label)this.gvFinlApproval.Rows[rowindex].FindControl("lblgvreqnoFnApp")).Text.Trim();
-            string delskip3 = this.GetComDelSkip3();
-            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "DELETEOTHERREQ", reqno, delskip3, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            string delskip = this.GetComDelSkip3();
+            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "DELETEOTHERREQ", reqno, delskip, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (result == true)
             {
@@ -1272,7 +1279,7 @@ namespace RealERPWEB.F_99_Allinterface
             string reqno = ((Label)this.gvfrec.Rows[rowindex].FindControl("lblgvreqnofrec")).Text.Trim();
 
 
-            // bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "DELETEOTHERREQ", reqno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+           
             bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "DELETEFIRSTRECON", reqno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (result == true)
@@ -1327,7 +1334,7 @@ namespace RealERPWEB.F_99_Allinterface
             string reqno = ((Label)this.gvsrec.Rows[rowindex].FindControl("lblgvreqnosrec")).Text.Trim();
 
 
-            // bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "DELETEOTHERREQ", reqno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            
 
             bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "DELETESECONDRECOMMEND", reqno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 
@@ -1576,8 +1583,8 @@ namespace RealERPWEB.F_99_Allinterface
                     string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
                     switch (comcod)
                     {
-                        case "3370":
-                        case "3101":                           
+                        case "3370"://CPDL
+                       // case "3101":                           
                             string suserid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "suserid")).ToString();
                             if (suserid == userid)
                             {

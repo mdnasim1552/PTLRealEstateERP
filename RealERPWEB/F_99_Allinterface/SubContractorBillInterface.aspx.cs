@@ -451,9 +451,9 @@ namespace RealERPWEB.F_99_Allinterface
             //Purchase gvfinal
 
             // bill approval
-            dtb = ((DataTable)ds1.Tables[10]).Copy();
-            dv = dtb.DefaultView;
-            this.Data_Bind("gvbillapp", dv.ToTable());
+            dt = ((DataTable)ds1.Tables[10]).Copy();
+            //dv = dtb.DefaultView;
+            this.Data_Bind("gvbillapp", dt);
 
 
 
