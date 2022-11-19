@@ -37,6 +37,12 @@
 
     </script>
 
+    <style>
+        #ContentPlaceHolder1_GridViewPriceDetail > tr:nth-of-type(3) {
+            display: none
+        }
+    </style>
+
 
     <%--    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>--%>

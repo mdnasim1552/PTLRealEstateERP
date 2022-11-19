@@ -263,16 +263,21 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-            //DataTable dt1 = (DataTable)Session["tblprjinfo"];
-            //DataTable dt2 = (DataTable)Session["tblpricedetail"];
+            DataTable dt1 = (DataTable)Session["tblprjinfo"];
+            DataTable dt2 = (DataTable)Session["tblpricedetail"];
 
 
-      
-            //double rate = Convert.ToDouble(dt2.Select("Code='01'")[0]["amount"]);
-            //double propertyprice = Convert.ToDouble(dt2.Select("Code='02'")[0]["amount"]);
-            //double carParkingPrice = Convert.ToDouble(dt2.Select("Code='03'")[0]["amount"]);
-            //double size = Convert.ToDouble(dt2.Select("Code='07'")[0]["amount"]);
-            //double amt = rate * size;
+
+
+
+            double rate = Convert.ToDouble(dt2.Select("Code='01'")[0]["amount"]);
+            double propertyprice = Convert.ToDouble(dt2.Select("Code='02'")[0]["amount"]);
+            double carParkingPrice = Convert.ToDouble(dt2.Select("Code='03'")[0]["amount"]);
+            double utility = Convert.ToDouble(dt2.Select("Code='04'")[0]["amount"]);
+            double others = Convert.ToDouble(dt2.Select("Code='05'")[0]["amount"]);
+            double size = Convert.ToDouble(dt2.Select("Code='07'")[0]["amount"]);
+
+            double amt = rate * size;
 
             //((TextBox)this.gvProjectInfo.Rows[0].FindControl("txtgvVal")).Text = size.ToString();
             //((TextBox)this.gvProjectInfo.Rows[0].FindControl("txtgvValAmount")).Text = amt.ToString();
@@ -300,7 +305,7 @@ namespace RealERPWEB.F_22_Sal
             DataTable dt = (DataTable)Session["tblnomineeinfo"];
             this.GridViewNominee.DataSource = dt;
             this.GridViewNominee.DataBind();
-            //this.GridTextDDLVisibleNominee();
+            this.GridTextDDLVisibleNominee();
         }
 
         private void Data_BindNominated()
@@ -318,7 +323,7 @@ namespace RealERPWEB.F_22_Sal
             DataTable dt = (DataTable)Session["tblpricedetail"];
             this.GridViewPriceDetail.DataSource = dt;
             this.GridViewPriceDetail.DataBind();
-            //this.GridTextDDLVisibleNominated();
+            //this.GridTextDDLVisiblePriceDetail();
         }
 
 
@@ -397,8 +402,25 @@ namespace RealERPWEB.F_22_Sal
 
         //}
 
+        
+        private void GridTextDDLVisiblePriceDetail()
+        {
 
+            //string comcod = this.GetCompCode();
+            //DataTable dt = ((DataTable)Session["tblpricedetail"]).Copy();
 
+            ((TextBox)this.GridViewPriceDetail.Rows[6].FindControl("txtgvValAmount")).Visible = false;
+
+            //for (int i = 0; i < dt.Rows.Count; i++)
+            //{
+                
+            //    string Gcode = dt.Rows[i]["code"].ToString();
+            //    if (Gcode == "07") {
+                    
+            //    }
+            //}
+
+        }
         private void GridTextDDLVisibleNominee()
         {
 
@@ -411,72 +433,72 @@ namespace RealERPWEB.F_22_Sal
 
                 string Gcode = dt.Rows[i]["gcod"].ToString();
                 string val = dt.Rows[i]["gdesc1"].ToString();
-                //switch (Gcode)
-                //{
+                switch (Gcode)
+                {
 
-                //    case "01009": //Birthdate                 
-                //        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvValper")).Visible = false;
-                //        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValper")).Visible = true;
-                //        //((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper")).Visible = false;
-                //        ((LinkButton)this.GridViewNominee.Rows[i].FindControl("lnkbtnImg")).Visible = false;
-                //        break;
+                    case "01109": //Birthdate                 
+                        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvValper")).Visible = false;
+                        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValper")).Visible = true;
+                        //((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper")).Visible = false;
+                        //((LinkButton)this.GridViewNominee.Rows[i].FindControl("lnkbtnImg")).Visible = false;
+                        break;
 
-                //    case "01010": //Marriage Date                  
-                //        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvValper")).Visible = false;
-                //        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValper")).Visible = true;
-                //        //((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper")).Visible = false;
-                //        ((LinkButton)this.GridViewNominee.Rows[i].FindControl("lnkbtnImg")).Visible = false;
+                    //case "01010": //Marriage Date                  
+                    //    ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvValper")).Visible = false;
+                    //    ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValper")).Visible = true;
+                    //    //((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper")).Visible = false;
+                    //    ((LinkButton)this.GridViewNominee.Rows[i].FindControl("lnkbtnImg")).Visible = false;
 
-                //        //DropDownList ddlcatag = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlcataloc"));
-
-
-                //        //DataSet dscatg = SalData.GetTransInfo(comcod, "SP_ENTRY_LP_PROFEASIBILITY", "GETCATAGORY", "", "", "", "", "", "", "", "", "");
-                //        //ddlcatag.DataTextField = "prgdesc";
-                //        //ddlcatag.DataValueField = "prgcod";
-                //        //ddlcatag.DataSource = dscatg.Tables[0];
-                //        //ddlcatag.DataBind();
-                //        //ddlcatag.SelectedValue = val;
-
-                //        break;
-
-                //    case "01027": //Type                  
-                //        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvValper")).Visible = false;
-                //        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValper")).Visible = false;
-                //        ((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper")).Visible = true;
-                //        ((LinkButton)this.GridViewNominee.Rows[i].FindControl("lnkbtnImg")).Visible = false;
-
-                //        CheckBoxList cbl = ((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper"));
-                //        cbl.SelectedValue = (val == "") ? "Open" : val;
-                //        //DropDownList ddlcatag = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlcataloc"));
+                    //    //DropDownList ddlcatag = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlcataloc"));
 
 
-                //        //DataSet dscatg = SalData.GetTransInfo(comcod, "SP_ENTRY_LP_PROFEASIBILITY", "GETCATAGORY", "", "", "", "", "", "", "", "", "");
-                //        //ddlcatag.DataTextField = "prgdesc";
-                //        //ddlcatag.DataValueField = "prgcod";
-                //        //ddlcatag.DataSource = dscatg.Tables[0];
-                //        //ddlcatag.DataBind();
-                //        //ddlcatag.SelectedValue = val;
+                    //    //DataSet dscatg = SalData.GetTransInfo(comcod, "SP_ENTRY_LP_PROFEASIBILITY", "GETCATAGORY", "", "", "", "", "", "", "", "", "");
+                    //    //ddlcatag.DataTextField = "prgdesc";
+                    //    //ddlcatag.DataValueField = "prgcod";
+                    //    //ddlcatag.DataSource = dscatg.Tables[0];
+                    //    //ddlcatag.DataBind();
+                    //    //ddlcatag.SelectedValue = val;
 
-                //        break;
+                    //    break;
 
-                //    //lnkbtnImg Nominee Image
+                    //case "01027": //Type                  
+                    //    ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvValper")).Visible = false;
+                    //    ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValper")).Visible = false;
+                    //    ((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper")).Visible = true;
+                    //    ((LinkButton)this.GridViewNominee.Rows[i].FindControl("lnkbtnImg")).Visible = false;
 
-                //    case "01290":
-                //    case "01291":
-                //    case "01292":
-                //        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvValper")).Visible = false;
-                //        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValper")).Visible = false;
-                //        ((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper")).Visible = false;
-                //        ((LinkButton)this.GridViewNominee.Rows[i].FindControl("lnkbtnImg")).Visible = true;
-                //        break;
+                    //    CheckBoxList cbl = ((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper"));
+                    //    cbl.SelectedValue = (val == "") ? "Open" : val;
+                    //    //DropDownList ddlcatag = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlcataloc"));
 
-                //    default:
-                //        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValper")).Visible = false;
-                //        ((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper")).Visible = false;
-                //        ((LinkButton)this.GridViewNominee.Rows[i].FindControl("lnkbtnImg")).Visible = false;
-                //        break;
 
-                //}
+                    //    //DataSet dscatg = SalData.GetTransInfo(comcod, "SP_ENTRY_LP_PROFEASIBILITY", "GETCATAGORY", "", "", "", "", "", "", "", "", "");
+                    //    //ddlcatag.DataTextField = "prgdesc";
+                    //    //ddlcatag.DataValueField = "prgcod";
+                    //    //ddlcatag.DataSource = dscatg.Tables[0];
+                    //    //ddlcatag.DataBind();
+                    //    //ddlcatag.SelectedValue = val;
+
+                    //    break;
+
+                    ////lnkbtnImg Nominee Image
+
+                    //case "01290":
+                    //case "01291":
+                    //case "01292":
+                    //    ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvValper")).Visible = false;
+                    //    ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValper")).Visible = false;
+                    //    ((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper")).Visible = false;
+                    //    ((LinkButton)this.GridViewNominee.Rows[i].FindControl("lnkbtnImg")).Visible = true;
+                    //    break;
+
+                    default:
+                        //((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValper")).Visible = false;
+                        //((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper")).Visible = false;
+                        //((LinkButton)this.GridViewNominee.Rows[i].FindControl("lnkbtnImg")).Visible = false;
+                        break;
+
+                }
             }
 
         }
