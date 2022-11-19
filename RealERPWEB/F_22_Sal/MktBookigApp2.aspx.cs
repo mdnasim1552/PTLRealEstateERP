@@ -228,9 +228,9 @@ namespace RealERPWEB.F_22_Sal
             Session["tblnominatedinfo"] = ds2.Tables[5];
             Session["tblnominated"] = ds2.Tables[6];
             Session["tblpricedetail"] = ds2.Tables[7];
+            Session["tblprice"] = ds2.Tables[8];
 
-            //Session["pricedetail"] = ds2.Tables[8];
-            
+
 
             DataTable dt = ds2.Tables[2];
 
@@ -260,27 +260,6 @@ namespace RealERPWEB.F_22_Sal
             this.Data_BindNominee();
             this.Data_BindNominated();
             this.Data_BindPriceDetail();
-
-
-
-            DataTable dt1 = (DataTable)Session["tblprjinfo"];
-            DataTable dt2 = (DataTable)Session["tblpricedetail"];
-
-
-
-
-
-            double rate = Convert.ToDouble(dt2.Select("Code='01'")[0]["amount"]);
-            double propertyprice = Convert.ToDouble(dt2.Select("Code='02'")[0]["amount"]);
-            double carParkingPrice = Convert.ToDouble(dt2.Select("Code='03'")[0]["amount"]);
-            double utility = Convert.ToDouble(dt2.Select("Code='04'")[0]["amount"]);
-            double others = Convert.ToDouble(dt2.Select("Code='05'")[0]["amount"]);
-            double size = Convert.ToDouble(dt2.Select("Code='07'")[0]["amount"]);
-
-            double amt = rate * size;
-
-            //((TextBox)this.gvProjectInfo.Rows[0].FindControl("txtgvVal")).Text = size.ToString();
-            //((TextBox)this.gvProjectInfo.Rows[0].FindControl("txtgvValAmount")).Text = amt.ToString();
         }
 
         private void Data_BindPrj()
@@ -323,7 +302,7 @@ namespace RealERPWEB.F_22_Sal
             DataTable dt = (DataTable)Session["tblpricedetail"];
             this.GridViewPriceDetail.DataSource = dt;
             this.GridViewPriceDetail.DataBind();
-            //this.GridTextDDLVisiblePriceDetail();
+            
         }
 
 
@@ -903,81 +882,81 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-            Rpt1 = RDLCAccountSetup.GetLocalReport("R_22_Sal.RptCustApp", list, null, null);
+            Rpt1 = RDLCAccountSetup.GetLocalReport("R_22_Sal.RptBookingApp2", list, null, null);
 
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comlogo", comlogo));
-            Rpt1.SetParameters(new ReportParameter("custimg", custimg));
-            Rpt1.SetParameters(new ReportParameter("txtAdd", comadd));
+            //Rpt1.SetParameters(new ReportParameter("custimg", custimg));
+            //Rpt1.SetParameters(new ReportParameter("txtAdd", comadd));
 
-            Rpt1.SetParameters(new ReportParameter("ProjectName", ProjectName));
-            Rpt1.SetParameters(new ReportParameter("UnitName", UnitName));
+            //Rpt1.SetParameters(new ReportParameter("ProjectName", ProjectName));
+            //Rpt1.SetParameters(new ReportParameter("UnitName", UnitName));
 
-            Rpt1.SetParameters(new ReportParameter("pactcode", dt2.Rows[0]["pactcode"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("usircode", dt2.Rows[0]["usircode"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("appdate", Convert.ToDateTime(dt2.Rows[0]["appdate"]).ToString("dd-MMM-yyyy")));
-            Rpt1.SetParameters(new ReportParameter("bookamt", dt2.Rows[0]["bookamt"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("bookdate", bookdate));
-            Rpt1.SetParameters(new ReportParameter("chequeno", dt2.Rows[0]["chequeno"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("bankname", dt2.Rows[0]["bankname"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("bbranch", dt2.Rows[0]["bbranch"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("paydate", dt2.Rows[0]["paydate"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("intavail", dt2.Rows[0]["intavail"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("paymode", dt2.Rows[0]["paymode"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("pactcode", dt2.Rows[0]["pactcode"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("usircode", dt2.Rows[0]["usircode"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("appdate", Convert.ToDateTime(dt2.Rows[0]["appdate"]).ToString("dd-MMM-yyyy")));
+            //Rpt1.SetParameters(new ReportParameter("bookamt", dt2.Rows[0]["bookamt"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("bookdate", bookdate));
+            //Rpt1.SetParameters(new ReportParameter("chequeno", dt2.Rows[0]["chequeno"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("bankname", dt2.Rows[0]["bankname"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("bbranch", dt2.Rows[0]["bbranch"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("paydate", dt2.Rows[0]["paydate"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("intavail", dt2.Rows[0]["intavail"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("paymode", dt2.Rows[0]["paymode"].ToString()));
 
-            Rpt1.SetParameters(new ReportParameter("bookingType", dt2.Rows[0]["bookingType"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("clientID", dt2.Rows[0]["clientID"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("towerNo", dt2.Rows[0]["towerNo"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("Apartmenttype", dt2.Rows[0]["Apartmenttype"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("ttype", dt2.Rows[0]["ttype"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("floorr", dt2.Rows[0]["floorr"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("side", dt2.Rows[0]["side"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("parkingNo", dt2.Rows[0]["parkingNo"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("parkingLevel", dt2.Rows[0]["parkingLevel"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("locatedAt", dt2.Rows[0]["locatedAt"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("parkingLevel", dt2.Rows[0]["parkingLevel"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("locatedAt", dt2.Rows[0]["locatedAt"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("moneyReceipt", dt2.Rows[0]["moneyReceipt"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("bookingChart", dt2.Rows[0]["bookingChart"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("bookingType", dt2.Rows[0]["bookingType"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("clientID", dt2.Rows[0]["clientID"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("towerNo", dt2.Rows[0]["towerNo"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("Apartmenttype", dt2.Rows[0]["Apartmenttype"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("ttype", dt2.Rows[0]["ttype"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("floorr", dt2.Rows[0]["floorr"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("side", dt2.Rows[0]["side"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("parkingNo", dt2.Rows[0]["parkingNo"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("parkingLevel", dt2.Rows[0]["parkingLevel"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("locatedAt", dt2.Rows[0]["locatedAt"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("parkingLevel", dt2.Rows[0]["parkingLevel"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("locatedAt", dt2.Rows[0]["locatedAt"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("moneyReceipt", dt2.Rows[0]["moneyReceipt"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("bookingChart", dt2.Rows[0]["bookingChart"].ToString()));
 
-            Rpt1.SetParameters(new ReportParameter("fullname", dt2.Rows[0]["fullname"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("spouse", dt2.Rows[0]["spouse"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("fathername", dt2.Rows[0]["fathername"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("mothername", dt2.Rows[0]["mothername"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("presentaddr", dt2.Rows[0]["presentaddr"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("permenentaddr", dt2.Rows[0]["permenentaddr"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("mobilenum", dt2.Rows[0]["mobilenum"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("telephonenum", dt2.Rows[0]["telephonenum"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("birthdate", dt2.Rows[0]["birthdate"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("marriageday", dt2.Rows[0]["marriageday"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("nationalid", dt2.Rows[0]["nationalid"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("tinnumber", dt2.Rows[0]["tinnumber"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("mailingaddre", dt2.Rows[0]["mailingaddre"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("occupation", dt2.Rows[0]["occupation"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("nationality", dt2.Rows[0]["nationality"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("religion", dt2.Rows[0]["religion"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("drivlicence", dt2.Rows[0]["drivlicence"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("bloodgroup", dt2.Rows[0]["bloodgroup"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("emailaddr", dt2.Rows[0]["emailaddr"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("fax", dt2.Rows[0]["fax"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("ClientStatus", dt2.Rows[0]["ClientStatus"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("namapplicant", dt2.Rows[0]["namapplicant"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("relationApp", dt2.Rows[0]["relationApp"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("nationaldr", dt2.Rows[0]["nationaldr"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("applicant", dt2.Rows[0]["applicant"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("nomineinfo", dt2.Rows[0]["nomineinfo"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("nameofnominee1", dt2.Rows[0]["nameofnominee1"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("relationshipnom1", dt2.Rows[0]["relationshipnom1"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("custnote", dt2.Rows[0]["custnote"].ToString()));
-            Rpt1.SetParameters(new ReportParameter("nominenumber", dt2.Rows[0]["nominenumber"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("fullname", dt2.Rows[0]["fullname"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("spouse", dt2.Rows[0]["spouse"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("fathername", dt2.Rows[0]["fathername"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("mothername", dt2.Rows[0]["mothername"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("presentaddr", dt2.Rows[0]["presentaddr"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("permenentaddr", dt2.Rows[0]["permenentaddr"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("mobilenum", dt2.Rows[0]["mobilenum"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("telephonenum", dt2.Rows[0]["telephonenum"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("birthdate", dt2.Rows[0]["birthdate"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("marriageday", dt2.Rows[0]["marriageday"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("nationalid", dt2.Rows[0]["nationalid"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("tinnumber", dt2.Rows[0]["tinnumber"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("mailingaddre", dt2.Rows[0]["mailingaddre"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("occupation", dt2.Rows[0]["occupation"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("nationality", dt2.Rows[0]["nationality"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("religion", dt2.Rows[0]["religion"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("drivlicence", dt2.Rows[0]["drivlicence"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("bloodgroup", dt2.Rows[0]["bloodgroup"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("emailaddr", dt2.Rows[0]["emailaddr"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("fax", dt2.Rows[0]["fax"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("ClientStatus", dt2.Rows[0]["ClientStatus"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("namapplicant", dt2.Rows[0]["namapplicant"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("relationApp", dt2.Rows[0]["relationApp"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("nationaldr", dt2.Rows[0]["nationaldr"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("applicant", dt2.Rows[0]["applicant"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("nomineinfo", dt2.Rows[0]["nomineinfo"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("nameofnominee1", dt2.Rows[0]["nameofnominee1"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("relationshipnom1", dt2.Rows[0]["relationshipnom1"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("custnote", dt2.Rows[0]["custnote"].ToString()));
+            //Rpt1.SetParameters(new ReportParameter("nominenumber", dt2.Rows[0]["nominenumber"].ToString()));
 
-            //Application Date
-            Rpt1.SetParameters(new ReportParameter("date1", appdate));
-            Rpt1.SetParameters(new ReportParameter("bookamt01", Convert.ToDouble("0" + this.txtbookamt.Text).ToString("#,##0.00;(#,##0.00); ")));
-            Rpt1.SetParameters(new ReportParameter("InWrd", "In Words : " + ASTUtility.Trans(Math.Round(inword), 2)));
+            ////Application Date
+            //Rpt1.SetParameters(new ReportParameter("date1", appdate));
+            //Rpt1.SetParameters(new ReportParameter("bookamt01", Convert.ToDouble("0" + this.txtbookamt.Text).ToString("#,##0.00;(#,##0.00); ")));
+            //Rpt1.SetParameters(new ReportParameter("InWrd", "In Words : " + ASTUtility.Trans(Math.Round(inword), 2)));
 
-            Rpt1.SetParameters(new ReportParameter("intloan", inttoavailloan));
-            Rpt1.SetParameters(new ReportParameter("modeofpay", modeofpay));
+            //Rpt1.SetParameters(new ReportParameter("intloan", inttoavailloan));
+            //Rpt1.SetParameters(new ReportParameter("modeofpay", modeofpay));
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
@@ -1170,6 +1149,72 @@ namespace RealERPWEB.F_22_Sal
 
             }
         }
+
+        //protected void txtgvValAmount_TextChanged(object sender, EventArgs e)
+        //{
+        //    DataTable dt1 = (DataTable)Session["tblprjinfo"];
+        //    DataTable dt2 = (DataTable)Session["tblpricedetail"];
+        //    double usize = Convert.ToDouble(dt1.Select("gcod='65021'")[0]["gdesc1"]);
+        //    double rate = Convert.ToDouble(dt2.Select("Code='01'")[0]["amount"]);
+
+        //    double upirce = usize * rate;
+        //    DataRow[] drp = dt2.Select("Code='02'");
+        //    drp[0]["amount"] = upirce;
+        //    double carParkingPrice = Convert.ToDouble(dt2.Select("Code='03'")[0]["amount"]);
+        //    double utility = Convert.ToDouble(dt2.Select("Code='04'")[0]["amount"]);
+        //    double others = Convert.ToDouble(dt2.Select("Code='05'")[0]["amount"]);
+
+        //    double toamt = upirce + carParkingPrice + utility + others;
+
+        //    DataRow[] drt = dt2.Select("Code='06'");
+        //    drt[0]["amount"] = toamt;
+        //    //dt2.Rows[0]["amount"] = toamt;
+
+        //    Session["tblprjinfo"] = dt1;
+        //    Session["tblpricedetail"] = dt2;
+
+        //    this.Data_BindPriceDetail();
+        //}
+
+       
+        protected void llbtnCalculation_Click(object sender, EventArgs e)
+        {
+            int i = 0;
+            DataTable dt2 = (DataTable)Session["tblpricedetail"];
+            foreach (GridViewRow gv1 in  GridViewPriceDetail.Rows)
+            {
+                
+                double amount =Convert.ToDouble("0"+ ((TextBox)gv1.FindControl("txtgvValAmount")).Text.Trim());
+                dt2.Rows[i]["amount"] = amount;
+                i++;
+            }
+
+
+            DataTable dt1 = (DataTable)Session["tblprjinfo"];
+           
+            double usize = Convert.ToDouble(dt1.Select("gcod='65021'")[0]["gdesc1"]);
+            double rate = Convert.ToDouble(dt2.Select("Code='01'")[0]["amount"]);
+
+            double upirce = usize * rate;
+            DataRow[] drp = dt2.Select("Code='02'");
+            drp[0]["amount"] = upirce;
+            double carParkingPrice = Convert.ToDouble(dt2.Select("Code='03'")[0]["amount"]);
+            double utility = Convert.ToDouble(dt2.Select("Code='04'")[0]["amount"]);
+            double others = Convert.ToDouble(dt2.Select("Code='05'")[0]["amount"]);
+
+            double toamt = upirce + carParkingPrice + utility + others;
+
+            DataRow[] drt = dt2.Select("Code='06'");
+            drt[0]["amount"] = toamt;
+            //dt2.Rows[0]["amount"] = toamt;
+
+            Session["tblprjinfo"] = dt1;
+            Session["tblpricedetail"] = dt2;
+
+            this.Data_BindPriceDetail();
+        }
+
+
 
 
         //private void LoadImg()

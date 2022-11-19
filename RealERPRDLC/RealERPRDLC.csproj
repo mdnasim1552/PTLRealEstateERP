@@ -801,6 +801,7 @@
     <EmbeddedResource Include="R_22_Sal\RptAllProDuesColl02.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptAvailbilityPrint.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptBgdSales.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptBookingApp2.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptBookingtDues.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCalTValAvgVal.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCollDetailsInfo.rdlc" />

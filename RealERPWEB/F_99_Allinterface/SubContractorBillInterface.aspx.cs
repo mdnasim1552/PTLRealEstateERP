@@ -175,7 +175,27 @@ namespace RealERPWEB.F_99_Allinterface
             }
             return billchk;
 
-        }  
+        }
+
+        private string GetOrderApproval()
+        {
+            string billchk = "";
+            string comcod = this.GetCompCode();
+
+            switch (comcod)
+            {
+                case "3101":
+                case "3370"://
+                    billchk = "Bill Checked";
+                    break;
+
+                default:
+                    billchk = "Bill Approval";
+                    break;
+            }
+            return billchk;
+
+        }
         private string GettxtBillFinal()
         {
             string billfinal = "";
@@ -251,7 +271,18 @@ namespace RealERPWEB.F_99_Allinterface
             string billapprove = this.GettxtBillApproved();
             string frecon = this.Gettxtfrecon();
             string billchk = this.GettxtBillChecked();
+            string orderApp="";
+            switch (comcod)
+            {
+                case "3101":
+                case "3370"://
+                    orderApp = "Bill Generate";
+                    break;
 
+                default:
+                    orderApp = "Order App.";
+                    break;
+            }
 
 
             this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["impcout"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Monthly Plan</div></div></div>";
@@ -271,7 +302,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-            this.RadioButtonList1.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading yellow counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["redyforbill"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content yellow'><div class='circle-tile-description text-faded'>Order App.</div></div></div>";
+            this.RadioButtonList1.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading yellow counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["redyforbill"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content yellow'><div class='circle-tile-description text-faded'>"+ orderApp + "</div></div></div>";
 
 
 
@@ -2005,13 +2036,18 @@ namespace RealERPWEB.F_99_Allinterface
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                HyperLink hlnkBillDetails = (HyperLink)e.Row.FindControl("hlnkBillDetails");
                 HyperLink hlnbillapp = (HyperLink)e.Row.FindControl("lnkbtnbillapp");
 
+                string mbno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mbno")).ToString();
                 string lisuno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lisuno")).ToString();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "csircode")).ToString();
-
+                
                 hlnbillapp.NavigateUrl = "~/F_09_PImp/PurLabIssue2?Type=BillApproval&prjcode=" + pactcode + "&genno=" + lisuno + "&sircode=" + sircode;
+                hlnkBillDetails.NavigateUrl = "~/F_09_PImp/BillingMBEntry?Type=Entry&prjcode=" + pactcode + "&genno=" + mbno + "&sircode=" + sircode;
+
+
                 //F_09_PImp/PurLabIssue2?Type=Current&prjcode=&genno=&sircode=
             }
         }
