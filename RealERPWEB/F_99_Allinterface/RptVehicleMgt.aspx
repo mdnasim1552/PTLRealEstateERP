@@ -618,7 +618,8 @@
                                         <div class="form-horizontal">
                                             <div class="form-group">
                                                 <div class="tbMenuWrp nav nav-tabs rptPurInt">
-                                                    <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" RepeatDirection="Horizontal">
+                                                    <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" 
+                                                        RepeatDirection="Horizontal">
                                                         <asp:ListItem Value="0"></asp:ListItem>
                                                         <asp:ListItem Value="1"></asp:ListItem>
 

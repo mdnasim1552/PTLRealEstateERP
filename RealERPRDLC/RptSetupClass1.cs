@@ -456,6 +456,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptDailyTransaction": Rpt1a = SetRptDailyTransaction(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptBankPosition": Rpt1a = SetRptBankPosition(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptRecAndPaymentActual": Rpt1a = SetRptRecAndPaymentActual(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptProjectwiseReceptsandPayment": Rpt1a = SetRptProjectwiseReceptsandPayment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptOpPayment": Rpt1a = SetRptOpPayment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptRecAndPaymentAlli": Rpt1a = SetRptRecAndPaymentAlli(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptBankBalance02": Rpt1a = SetRptBankBalance02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -3654,6 +3655,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptRecAndPaymentActual(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.IssuedVsColl>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptProjectwiseReceptsandPayment(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.PWRPDetails>)RptDataSet));
             return Rpt1a;
         }
 
