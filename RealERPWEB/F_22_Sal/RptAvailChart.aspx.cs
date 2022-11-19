@@ -369,7 +369,7 @@ namespace RealERPWEB.F_22_Sal
             DataTable dt = (DataTable)Session["tblflorlist"];
             DataTable dtunit = (DataTable)Session["tblflorUnit"];
             string str = string.Empty;
-
+            string strunit = string.Empty;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 string usircode = dt.Rows[i]["usircode1"].ToString();
@@ -381,7 +381,7 @@ namespace RealERPWEB.F_22_Sal
                 dtunitfilter = dv.ToTable();
 
 
-                string strunit = string.Empty;
+               
                 for (int j = 0; j < dtunitfilter.Rows.Count; j++)
                 {                    
                     strunit += "<a hrf='#' class='" + dtunitfilter.Rows[i]["cssStype"].ToString() + " btn text-white m-1'>" + dtunitfilter.Rows[i]["udesc"].ToString() + "</a>";
