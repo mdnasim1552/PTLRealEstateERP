@@ -5,182 +5,181 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script src="../../../Scripts/gridviewScrollHaVertworow.min.js"></script>
-     <script type="text/javascript" language="javascript">
+    <script type="text/javascript" language="javascript">
 
 
-         $(document).ready(function () {
+        $(document).ready(function () {
 
-             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
-         });
+        });
 
-         function pageLoaded() {
+        function pageLoaded() {
 
-             try {
-
-
-                 var gridViewScroll = new GridViewScroll({
-                     elementID: "gvInfo",
-                     width: 1000,
-                     height: 465,
-                     freezeColumn: true,
-                     freezeFooter: true,
-                     freezeColumnCssClass: "GridViewScrollItemFreeze",
-                     freezeFooterCssClass: "GridViewScrollFooterFreeze",
-                     freezeHeaderRowCount: 1,
-                     freezeColumnCount: 8,
-
-                 });
-
-                 gridViewScroll.enhance();
-
-                 $("input, select").bind("keydown", function (event) {
-                     var k1 = new KeyPress();
-                     k1.textBoxHandler(event);
-                 });
-
-                 $('.chzn-select').chosen({ search_contains: true });
-                 var comcod =<%=this.GetComeCode()%>;
+            try {
 
 
-                 $('.lbtnschedule').click(function () {
+                var gridViewScroll = new GridViewScroll({
+                    elementID: "gvInfo",
+                    width: 1000,
+                    height: 475,
+                    freezeColumn: true,
+                    freezeFooter: true,
+                    freezeColumnCssClass: "GridViewScrollItemFreeze",
+                    freezeFooterCssClass: "GridViewScrollFooterFreeze",
+                    freezeHeaderRowCount: 1,
+                    freezeColumnCount: 8,
+
+                });
+
+                gridViewScroll.enhance();
+
+                $("input, select").bind("keydown", function (event) {
+                    var k1 = new KeyPress();
+                    k1.textBoxHandler(event);
+                });
+
+                $('.chzn-select').chosen({ search_contains: true });
+                var comcod =<%=this.GetComeCode()%>;
 
 
-                     var subject = $(this).parent().find('#txtdate').val();
-                     var lblcdate = $(this).parent().find('#lblcdate').val();
-
-                 });
+                $('.lbtnschedule').click(function () {
 
 
-                 $('.datepicker').datepicker({
-                     format: 'mm/dd/yyyy',
-                 });
+                    var subject = $(this).parent().find('#txtdate').val();
+                    var lblcdate = $(this).parent().find('#lblcdate').val();
+
+                });
 
 
-
-                 $("input, select").bind("keydown", function (event) {
-                     var k1 = new KeyPress();
-                     k1.textBoxHandler(event);
-                 });
-
-                 $(".chosen-select").chosen({
-                     search_contains: true,
-                     no_results_text: "Sorry, no match!",
-                     allow_single_deselect: true
-                 });
-                 $('.chosen-continer').css('width', '600px');
-
-                 $('.chzn-select').chosen({ search_contains: true });
-
-               
-                 var comcod =<%=this.GetComeCode()%>;
-
-                 var gcod;
-
-                 var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
-                 var arrgschval = $('#<%=this.gvInfo.ClientID %>').find('input:text[id$="txtgvValdis"]');
-                 var arrgsschcheckbox = $('#<%=this.gvInfo.ClientID %>').find('input:text[id$="ChkBoxLstFollow"]');
-                 var txtnfollowupdate, checkboxlastfollowup;
-                 for (var i = 0; i < arrgschcodl.length; i++) {
-
-
-                     gcod = $(arrgschcodl[i]).text();
-                     var number, numberlq, numbercom;
-                     switch (gcod) {
-
-
-                         //Company
-                         case '810100101007':
-                             numbercom = i;
-                             break;
-
-                         //Last Followup
-                         case '810100101020':
-                             number = i;
-                             break;
-
-
-                         case '810100101014':
-                             numberlq = i;
-                             break;
+                $('.datepicker').datepicker({
+                    format: 'mm/dd/yyyy',
+                });
 
 
 
+                $("input, select").bind("keydown", function (event) {
+                    var k1 = new KeyPress();
+                    k1.textBoxHandler(event);
+                });
 
-                     }
+                $(".chosen-select").chosen({
+                    search_contains: true,
+                    no_results_text: "Sorry, no match!",
+                    allow_single_deselect: true
+                });
+                $('.chosen-continer').css('width', '600px');
 
-                 }
-
-                 var txtgvdValdis = '#ContentPlaceHolder1_gvInfo_txtgvdValdis_' + number;
-                 var ChkBoxLstFollow = 'ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_' + (number - 1);
-                 $(txtgvdValdis).change(function () {
-                     var followupdate = $(this).val();
-                     var lastfollowup = "";
-                     $('input[type=checkbox][id^="' + ChkBoxLstFollow + '"]:checked').each(function (index, item) {
-
-                         lastfollowup = $(item).val();
-
-                     });
-
-                     if (lastfollowup.length > 0) {
-
-                         funschedulenumber(comcod, followupdate, lastfollowup, number);
-                     }
-
-                 });
+                $('.chzn-select').chosen({ search_contains: true });
 
 
-                 $('#' + ChkBoxLstFollow).change(function () {
-                     var followupdate = $(txtgvdValdis).val();
-                     var lastfollowup = "";
-                     alet(followupdate);
-                     $('input[type=checkbox][id^="' + ChkBoxLstFollow + '"]:checked').each(function (index, item) {
+                var comcod =<%=this.GetComeCode()%>;
 
-                         lastfollowup = $(item).val();
+                var gcod;
 
-                     });
-
-                     if (lastfollowup.length > 0) {
-
-                         funschedulenumber(comcod, followupdate, lastfollowup, number);
-                     }
-
-                 });
-
-                 //Company
+                var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
+                var arrgschval = $('#<%=this.gvInfo.ClientID %>').find('input:text[id$="txtgvValdis"]');
+                var arrgsschcheckbox = $('#<%=this.gvInfo.ClientID %>').find('input:text[id$="ChkBoxLstFollow"]');
+                var txtnfollowupdate, checkboxlastfollowup;
+                for (var i = 0; i < arrgschcodl.length; i++) {
 
 
-                 var ddlcompany = '#ContentPlaceHolder1_gvInfo_ddlCompany_' + numbercom;
-                 $(ddlcompany).change(function () {
-                     var company = $(this).val();
-                     // console.log(company);
-                     funCompanyProject(comcod, company);
+                    gcod = $(arrgschcodl[i]).text();
+                    var number, numberlq, numbercom;
+                    switch (gcod) {
 
 
-                 });
+                        //Company
+                        case '810100101007':
+                            numbercom = i;
+                            break;
 
-                 //Lead Reason
-
-                 var ddlvisit = '#ContentPlaceHolder1_gvInfo_ddlVisit_' + numberlq;
-                 $(ddlvisit).change(function () {
-                     leadquality = $(this).val();
-                     funLeadReason(comcod, leadquality);
+                        //Last Followup
+                        case '810100101020':
+                            number = i;
+                            break;
 
 
-                 });
+                        case '810100101014':
+                            numberlq = i;
+                            break;
 
+
+
+
+                    }
 
                 }
 
-             catch (e) {
-                 alert(e);
-             }
+                var txtgvdValdis = '#ContentPlaceHolder1_gvInfo_txtgvdValdis_' + number;
+                var ChkBoxLstFollow = 'ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_' + (number - 1);
+                $(txtgvdValdis).change(function () {
+                    var followupdate = $(this).val();
+                    var lastfollowup = "";
+                    $('input[type=checkbox][id^="' + ChkBoxLstFollow + '"]:checked').each(function (index, item) {
 
-         }
+                        lastfollowup = $(item).val();
+
+                    });
+
+                    if (lastfollowup.length > 0) {
+
+                        funschedulenumber(comcod, followupdate, lastfollowup, number);
+                    }
+
+                });
 
 
+                $('#' + ChkBoxLstFollow).change(function () {
+                    var followupdate = $(txtgvdValdis).val();
+                    var lastfollowup = "";
+                    alet(followupdate);
+                    $('input[type=checkbox][id^="' + ChkBoxLstFollow + '"]:checked').each(function (index, item) {
 
-     </script>
+                        lastfollowup = $(item).val();
+
+                    });
+
+                    if (lastfollowup.length > 0) {
+
+                        funschedulenumber(comcod, followupdate, lastfollowup, number);
+                    }
+
+                });
+
+                //Company
+
+
+                var ddlcompany = '#ContentPlaceHolder1_gvInfo_ddlCompany_' + numbercom;
+                $(ddlcompany).change(function () {
+                    var company = $(this).val();
+                    // console.log(company);
+                    funCompanyProject(comcod, company);
+
+
+                });
+
+                //Lead Reason
+
+                var ddlvisit = '#ContentPlaceHolder1_gvInfo_ddlVisit_' + numberlq;
+                $(ddlvisit).change(function () {
+                    leadquality = $(this).val();
+                    funLeadReason(comcod, leadquality);
+
+
+                });
+
+
+            }
+
+            catch (e) {
+                alert(e);
+            }
+
+        }
+
+
+    </script>
     <style>
         body {
             font-family: "Century Gothic";
@@ -508,7 +507,8 @@
 
         tr#ContentPlaceHolder1_Cal3_daysTableHeaderRow td {
         }
-         .GridViewScrollHeader TH, .GridViewScrollHeader TD, .GridViewScroll1Header TH, .GridViewScroll1Header TD, .GridViewScroll2Header TH, .GridViewScroll2Header TD {
+
+        .GridViewScrollHeader TH, .GridViewScrollHeader TD, .GridViewScroll1Header TH, .GridViewScroll1Header TD, .GridViewScroll2Header TH, .GridViewScroll2Header TD {
             font-weight: normal;
             white-space: nowrap;
             border-right: 1px solid #e6e6e6;
@@ -564,7 +564,7 @@
         }
 
         .table th, .table td, card-header {
-            padding: 4px;
+            padding: 0px;
         }
 
         .pnlSidebarCl {
@@ -584,8 +584,8 @@
             padding: 5px 5px;
         }
     </style>
-    
-   
+
+
 
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -651,14 +651,15 @@
 
             </div>
 
-            <div class="card" style="background-color: whitesmoke; align-content: center">
+            <div class="card pt-2 pb-2" runat="server" id="pnlempinfo" style="background-color: whitesmoke; align-content: center">
                 <div class="card-body">
 
                     <div class="row">
 
-                        <div class="col-md-4" runat="server" id="pnlempinfo">
+                        <div class="col-md-4">
                             <div class="card">
                                 <div class="card-header bg-light"><span class="font-weight-bold text-muted">Employee Information</span></div>
+                                <asp:LinkButton ID="lnkEdit" runat="server" Font-Bold="True" Height="12px" Style="text-align: right" ToolTip="Edit Client Info" Text="Edit" OnClick="lnkEdit_Click"> <span class=" fa   fa-edit"></span></asp:LinkButton>
                                 <div class="card-body" runat="server" id="engst">
                                     <img src="~/../../../Upload/UserImages/3365001.png" style="display: block; margin-left: auto; margin-right: auto; width: 30%;" alt="User Image">
                                     <table class="table table-striped table-hober tblEMPinfo mt-2">
@@ -709,6 +710,9 @@
                                                 <td>
                                                     <asp:Label ID="lblstatus" runat="server"></asp:Label>
                                                 </td>
+                                                <td id="pnlretrive" runat="server" visible="false">
+                                                    <asp:LinkButton ID="lnkbtnRetreive" runat="server" Font-Bold="True" Height="12px" ToolTip="Retreive Prospect" Style="text-align: right" OnClientClick="javascript:return  FunConfirm()" OnClick="lnkbtnRetreive_Click"><span><i class="fa fa-undo" Style="text-align: center"></i></span></asp:LinkButton>
+                                                </td>
                                             </tr>
                                             <asp:HiddenField ID="lblproscod" runat="server" />
                                             <asp:HiddenField ID="lbleditempid" runat="server" />
@@ -722,67 +726,71 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-8" id="pnlfollowup" runat="server">
-                            <div class="card mt-3 mb-3">
-      
+                        <div class="col-md-8">
+                            <div class="card mb-3">
+
                                 <div class="card-header bg-light"><span class="font-weight-bold text-muted">FollowUp Summary</span></div>
-                              <div id="pnlflw" runat="server" visible="false" class="card-header bg-light"><span class="font-weight-bold text-muted"><asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ID="lbtntfollowup" data-target="#followup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton></span></div>
-                                <div class="card-body">
+                                <div id="pnlflw" runat="server" visible="false" class="card-header bg-light">
+                                    <span class="font-weight-bold text-muted">
+                                        <asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ID="lbtntfollowup" data-target="#followup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton></span>
+                                </div>
+                                <div class="card-body" style="min-height: 380px" id="pnlfollowup" runat="server">
                                     <asp:Repeater ID="rpclientinfo" runat="server">
                                         <HeaderTemplate>
                                         </HeaderTemplate>
                                         <ItemTemplate>
 
                                             <div class="col-md-12  col-lg-12 ">
-                                                <div class="well">
-
-                                                    <div class="col-sm-12 panel pt-3 b-3">
-
-                                                        <div class=" col-sm-12">
-
-                                                            <p>
-                                                                <strong><%# DataBinder.Eval(Container, "DataItem.prosdesc")%></strong> <%# DataBinder.Eval(Container, "DataItem.kpigrpdesc").ToString() %>  on <%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("dd-MMM-yyyy hh:mm tt") %><br>
 
 
+                                                <div class="col-sm-12 panel" style="background-color: whitesmoke">
 
+                                                    <div class=" col-sm-12 pt-3 pb-3">
 
-                                                                <strong>Participants:</strong> <%# DataBinder.Eval(Container, "DataItem.partcilist").ToString() %><br>
-
-
-                                                                <strong>Summary:</strong><span class="textwrap"><%# DataBinder.Eval(Container, "DataItem.discus").ToString() %></span><br>
-
-
-
-                                                                <strong>Next Action:</strong> <%# DataBinder.Eval(Container, "DataItem.nfollowup").ToString() %> on <%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.napnt")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"":Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.napnt")).ToString("dd-MMM-yyyy hh:mm tt")%><br>
-                                                                <strong>Comments:</strong> <%# DataBinder.Eval(Container, "DataItem.disgnote").ToString() %>
+                                                        <p>
+                                                            <strong><%# DataBinder.Eval(Container, "DataItem.prosdesc")%></strong> <%# DataBinder.Eval(Container, "DataItem.kpigrpdesc").ToString() %>  on <%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("dd-MMM-yyyy hh:mm tt") %><br>
 
 
 
 
-
-                                                                <br>
-                                                            </p>
+                                                            <strong>Participants:</strong> <%# DataBinder.Eval(Container, "DataItem.partcilist").ToString() %><br>
 
 
-
-                                                        </div>
-                                                        <div class="row mb-5">
-                                                            <div class="col-md-12">
-
-                                                                <a href="#" class="btn btn-sm btn-primary mt-2">Re-schdule</a>
-                                                                <a href="#" class="btn btn-sm btn-success mt-2">Delete</a>
-
-                                                                <asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ID="lbtntfollowup" data-target="#followup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton>
-
-                                                                <a href="#" class="btn btn-sm btn-success mt-2">Addition</a>
+                                                            <strong>Summary:</strong><span class="textwrap"><%# DataBinder.Eval(Container, "DataItem.discus").ToString() %></span><br>
 
 
-                                                            </div>
+
+                                                            <strong>Next Action:</strong> <%# DataBinder.Eval(Container, "DataItem.nfollowup").ToString() %> on <%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.napnt")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"":Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.napnt")).ToString("dd-MMM-yyyy hh:mm tt")%><br>
+                                                            <strong>Comments:</strong> <%# DataBinder.Eval(Container, "DataItem.disgnote").ToString() %>
+
+
+
+
+
+                                                            <br>
+                                                        </p>
+
+
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12 mb-2">
+
+
+
+
+                                                            <asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ID="lbtntfollowup" data-target="#followup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton>
+                                                            <a href="#" class="btn btn-sm btn-primary mt-2">Re-schdule</a>
+
+
+
 
                                                         </div>
 
                                                     </div>
+
                                                 </div>
+
 
 
 
@@ -801,278 +809,389 @@
 
 
                         </div>
-                        <div class="col-md-12" id="pnlSidebar" runat="server" visible="false">
-                            <div class="divPnl">
-                                <div class="card pnlSidebarCl">
-                                    <div class="modal-content">
-                                        <div class="modal-header pt-0 pb-0 bg-light">
-                                            <h6 class="modal-title mt-2">Add FollowUp</h6>
-                                            <asp:LinkButton ID="pnlsidebarClose" OnClick="pnlsidebarClose_Click" CssClass="btn btn-danger  btn-sm pr-2 pl-2" runat="server">&times;</asp:LinkButton>
-                                        </div>
-                                        <div class="modal-body" id="followup">
 
-                                            <asp:GridView ID="gvInfo" runat="server" AllowPaging="false"
-                                                AutoGenerateColumns="False" ShowFooter="true" ClientIDMode="Static"
-                                                CssClass="table-condensed table-hover table-bordered grvContentarea">
-
-                                                <Columns>
-                                                    <asp:TemplateField HeaderText="Sl">
-                                                        <ItemTemplate>
-                                                            <asp:Label ID="lblgvSlNodis" runat="server" Font-Bold="True" Height="16px"
-                                                                Style="text-align: right"
-                                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
-                                                        </ItemTemplate>
-                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Code" ControlStyle-CssClass="displayhide">
-                                                        <ItemTemplate>
-                                                            <asp:Label ID="lblgvItmCodedis" ClientIDMode="Static" runat="server" Height="16px"
-                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'
-                                                                Width="49px"></asp:Label>
-                                                            <asp:Label ID="lblgvTime" runat="server" BorderWidth="0" BackColor="Transparent" Visible="false"
-                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gtime")) %>'></asp:Label>
-
-                                                        </ItemTemplate>
-                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="">
-                                                        <ItemTemplate>
-                                                            <asp:Label ID="lgcGrpdis" runat="server"
-                                                                Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "gpdesc"))  + "</B>" %>'
-                                                                Width="80px"></asp:Label>
-                                                        </ItemTemplate>
-                                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Description">
-
-                                                        <ItemTemplate>
-                                                            <asp:Label ID="lgcResDesc1dis" runat="server"
-                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'></asp:Label>
-                                                        </ItemTemplate>
-                                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                        <ItemStyle VerticalAlign="Middle" Width="130px" />
-                                                    </asp:TemplateField>
-
-
-                                                    <asp:TemplateField>
-                                                        <ItemTemplate>
-                                                            <asp:Label ID="lgpdis" runat="server" Font-Bold="True" Font-Size="12px"
-                                                                Height="16px"
-                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gph")) %>'
-                                                                Width="5px"></asp:Label>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Type">
-                                                        <ItemTemplate>
-                                                            <asp:Label ID="lgvgvaldis" runat="server"
-                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField>
-
-                                                        
-                                                        <ItemTemplate>
-
-
-
-                                                            <asp:TextBox ID="txtgvValdis" runat="server" BorderWidth="0" BackColor="Transparent" Font-Size="14px" Style="width: 80px; float: left;"
-                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
-
-
-                                                            <asp:TextBox ID="txtgvdValdis" CssClass="disable_past_dates" runat="server" BorderWidth="0" Style="width: 80px; float: left;" BackColor="Transparent"
-                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
-                                                            <cc1:CalendarExtender ID="txtgvdValdis_CalendarExtender" runat="server"
-                                                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdValdis"></cc1:CalendarExtender>
-
-                                                            <asp:Panel ID="pnlTime" runat="server" Visible="false">
-                                                                <asp:DropDownList ID="ddlhour" runat="server" CssClass="inputTxt ddlPage" Style="width: 50px; line-height: 22px;">
-                                                                    <asp:ListItem Value="01">01</asp:ListItem>
-                                                                    <asp:ListItem Value="02">02</asp:ListItem>
-                                                                    <asp:ListItem Value="03">03</asp:ListItem>
-                                                                    <asp:ListItem Value="04">04</asp:ListItem>
-                                                                    <asp:ListItem Value="05">05</asp:ListItem>
-                                                                    <asp:ListItem Value="06">06</asp:ListItem>
-                                                                    <asp:ListItem Value="07">07</asp:ListItem>
-                                                                    <asp:ListItem Value="08">08</asp:ListItem>
-                                                                    <asp:ListItem Value="09" Selected="True">09</asp:ListItem>
-                                                                    <asp:ListItem Value="10">10</asp:ListItem>
-                                                                    <asp:ListItem Value="11">11</asp:ListItem>
-                                                                    <asp:ListItem Value="12">12</asp:ListItem>
-
-                                                                </asp:DropDownList>
-                                                                <asp:DropDownList ID="ddlMmin" runat="server" CssClass="ddlPage" Style="width: 50px; line-height: 22px;">
-                                                                    <asp:ListItem Value="00">00</asp:ListItem>
-                                                                    <asp:ListItem Value="01">01</asp:ListItem>
-                                                                    <asp:ListItem Value="02">02</asp:ListItem>
-                                                                    <asp:ListItem Value="03">03</asp:ListItem>
-                                                                    <asp:ListItem Value="04">04</asp:ListItem>
-                                                                    <asp:ListItem Value="05">05</asp:ListItem>
-                                                                    <asp:ListItem Value="06">06</asp:ListItem>
-                                                                    <asp:ListItem Value="07">07</asp:ListItem>
-                                                                    <asp:ListItem Value="08">08</asp:ListItem>
-                                                                    <asp:ListItem Value="09">09</asp:ListItem>
-                                                                    <asp:ListItem Value="10">10</asp:ListItem>
-                                                                    <asp:ListItem Value="11">11</asp:ListItem>
-                                                                    <asp:ListItem Value="12">12</asp:ListItem>
-                                                                    <asp:ListItem Value="13">13</asp:ListItem>
-                                                                    <asp:ListItem Value="14">14</asp:ListItem>
-                                                                    <asp:ListItem Value="15">15</asp:ListItem>
-                                                                    <asp:ListItem Value="16">16</asp:ListItem>
-                                                                    <asp:ListItem Value="17">17</asp:ListItem>
-                                                                    <asp:ListItem Value="18">18</asp:ListItem>
-                                                                    <asp:ListItem Value="19">19</asp:ListItem>
-                                                                    <asp:ListItem Value="20">20</asp:ListItem>
-                                                                    <asp:ListItem Value="21">21</asp:ListItem>
-                                                                    <asp:ListItem Value="22">22</asp:ListItem>
-                                                                    <asp:ListItem Value="23">23</asp:ListItem>
-                                                                    <asp:ListItem Value="24">24</asp:ListItem>
-                                                                    <asp:ListItem Value="25">25</asp:ListItem>
-                                                                    <asp:ListItem Value="26">26</asp:ListItem>
-                                                                    <asp:ListItem Value="27">27</asp:ListItem>
-                                                                    <asp:ListItem Value="28">28</asp:ListItem>
-                                                                    <asp:ListItem Value="29">29</asp:ListItem>
-                                                                    <asp:ListItem Value="30">30</asp:ListItem>
-                                                                    <asp:ListItem Value="31">31</asp:ListItem>
-                                                                    <asp:ListItem Value="32">32</asp:ListItem>
-                                                                    <asp:ListItem Value="33">33</asp:ListItem>
-                                                                    <asp:ListItem Value="34">34</asp:ListItem>
-                                                                    <asp:ListItem Value="35">35</asp:ListItem>
-                                                                    <asp:ListItem Value="36">36</asp:ListItem>
-                                                                    <asp:ListItem Value="37">37</asp:ListItem>
-                                                                    <asp:ListItem Value="38">38</asp:ListItem>
-                                                                    <asp:ListItem Value="39">39</asp:ListItem>
-                                                                    <asp:ListItem Value="40">40</asp:ListItem>
-                                                                    <asp:ListItem Value="41">41</asp:ListItem>
-                                                                    <asp:ListItem Value="42">42</asp:ListItem>
-                                                                    <asp:ListItem Value="43">43</asp:ListItem>
-                                                                    <asp:ListItem Value="44">44</asp:ListItem>
-                                                                    <asp:ListItem Value="45">45</asp:ListItem>
-                                                                    <asp:ListItem Value="46">46</asp:ListItem>
-                                                                    <asp:ListItem Value="47">47</asp:ListItem>
-                                                                    <asp:ListItem Value="48">48</asp:ListItem>
-                                                                    <asp:ListItem Value="49">49</asp:ListItem>
-                                                                    <asp:ListItem Value="50">50</asp:ListItem>
-                                                                    <asp:ListItem Value="51">51</asp:ListItem>
-                                                                    <asp:ListItem Value="52">52</asp:ListItem>
-                                                                    <asp:ListItem Value="53">53</asp:ListItem>
-                                                                    <asp:ListItem Value="54">54</asp:ListItem>
-                                                                    <asp:ListItem Value="55">55</asp:ListItem>
-                                                                    <asp:ListItem Value="56">56</asp:ListItem>
-                                                                    <asp:ListItem Value="57">57</asp:ListItem>
-                                                                    <asp:ListItem Value="58">58</asp:ListItem>
-                                                                    <asp:ListItem Value="59">59</asp:ListItem>
-
-
-                                                                </asp:DropDownList>
-                                                                <asp:DropDownList ID="ddlslb" runat="server" CssClass="ddlPage" Style="width: 50px; line-height: 22px;">
-                                                                    <asp:ListItem Value="AM">AM</asp:ListItem>
-                                                                    <asp:ListItem Value="PM">PM</asp:ListItem>
-
-
-
-
-                                                                </asp:DropDownList>
-                                                                <asp:Label ID="lblschedulenumber" runat="server" BorderWidth="0" CssClass="btn btn-success btn-xs" Font-Size="14px"
-                                                                    Text="Schedule(0)"></asp:Label>
-
-
-                                                            </asp:Panel>
-                                                            <asp:Panel ID="pnlStatus" runat="server" Visible="false">
-
-
-                                                                <asp:CheckBoxList ID="ChkBoxLstStatus" RepeatLayout="Flow" RepeatDirection="Horizontal"
-                                                                    runat="server" CssClass="form-control checkbox">
-                                                                </asp:CheckBoxList>
-
-                                                            </asp:Panel>
-
-                                                            <asp:Panel ID="pnlParic" runat="server" Visible="false">
-                                                                <asp:ListBox ID="ddlPartic" runat="server" SelectionMode="Multiple" class="form-control chzn-select" Style="width: 300px !important;"
-                                                                    data-placeholder="Choose Person......" multiple="true"></asp:ListBox>
-
-                                                            </asp:Panel>
-
-
-                                                            <%-- <asp:Panel ID="Pnlcompany" runat="server">--%>
-                                                            <asp:DropDownList ID="ddlCompany" runat="server" CssClass="inputTxt form-control" Style="width: 300px !important;"
-                                                                TabIndex="12">
-                                                            </asp:DropDownList>
-                                                            <%--</asp:Panel>--%>
-
-
-                                                            <asp:Panel ID="PnlProject" runat="server">
-                                                                <asp:DropDownList ID="ddlProject" runat="server" CssClass="inputTxt form-control" Style="width: 300px !important;"
-                                                                    TabIndex="12">
-                                                                </asp:DropDownList>
-                                                            </asp:Panel>
-                                                            <asp:Panel ID="PnlUnit" runat="server">
-                                                                <asp:DropDownList ID="ddlUnit" runat="server" CssClass="chzn-select inputTxt form-control" Style="width: 300px !important;"
-                                                                    TabIndex="12">
-                                                                </asp:DropDownList>
-                                                            </asp:Panel>
-
-
-                                                            <asp:Panel ID="pnlVisit" runat="server" Visible="false">
-                                                                <asp:DropDownList ID="ddlVisit" Visible="false" runat="server" CssClass="form-control" Style="width: 300px !important;">
-                                                                </asp:DropDownList>
-                                                            </asp:Panel>
-
-                                                            <asp:Panel ID="pnlFollow" runat="server" Visible="false">
-                                                                <%-- <asp:DropDownList ID="ddlFollow" Visible="false" runat="server" CssClass="chzn-select inputTxt form-control">
-                                                        </asp:DropDownList>--%>
-
-
-
-                                                                <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal"
-                                                                    runat="server" CssClass="form-control checkbox">
-                                                                </asp:CheckBoxList>
-
-
-                                                            </asp:Panel>
-                                                            <asp:Panel ID="pnlLostResion" runat="server" Visible="false">
-                                                                <%-- <asp:DropDownList ID="ddlFollow" Visible="false" runat="server" CssClass="chzn-select inputTxt form-control">
-                                                        </asp:DropDownList>--%>
-
-
-                                                                <asp:DropDownList ID="checkboxReson" Visible="false" runat="server" CssClass="inputTxt form-control" Style="width: 300px !important;">
-                                                                </asp:DropDownList>
-
-
-                                                            </asp:Panel>
-
-
-
-                                                        </ItemTemplate>
-                                                        <FooterTemplate>
-
-                                                            <asp:LinkButton ID="lbtnUpdateDiscussion" runat="server" OnClientClick="CloseModaldis();" OnClick="lbtnUpdateDiscussion_Click" CssClass="btn  btn-success btn-xs ">Final Update</asp:LinkButton>
-
-                                                        </FooterTemplate>
-                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                        <ItemStyle Width="700px" />
-                                                    </asp:TemplateField>
-
-
-                                                </Columns>
-                                                <PagerStyle CssClass="gvPagination" />
-                                                <HeaderStyle CssClass="grvHeader" />
-                                                <RowStyle CssClass="grvRows" />
-                                            </asp:GridView>
-
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
             </div>
+            <div class="col-md-2">
 
+            </div>
+            <div class="col-md-10" id="pnlSidebar" runat="server" visible="false">
+                <div class="divPnl">
+                    <div class="card pnlSidebarCl">
+                        <div class="modal-content">
+                            <div class="modal-header pt-0 pb-0 bg-light">
+                                <div class="card-header bg-light"><span class="font-weight-bold text-muted">Add FollowUp</span></div>
+
+                                <asp:LinkButton ID="pnlsidebarClose" OnClick="pnlsidebarClose_Click" CssClass="btn btn-danger  btn-sm pr-2 pl-2" runat="server">&times;</asp:LinkButton>
+                            </div>
+                            <div class="modal-body" id="followup">
+
+                                <asp:GridView ID="gvInfo" runat="server" AllowPaging="false"
+                                    AutoGenerateColumns="False" ShowFooter="true" ClientIDMode="Static"
+                                    CssClass="table-condensed table-hover table-bordered grvContentarea">
+
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Sl">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvSlNodis" runat="server" Font-Bold="True" Height="16px"
+                                                    Style="text-align: right"
+                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField ControlStyle-CssClass="displayhide">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvItmCodedis" ClientIDMode="Static" runat="server" Height="16px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'
+                                                    Width="70px"></asp:Label>
+                                                <asp:Label ID="lblgvTime" runat="server" BorderWidth="0" BackColor="Transparent" Visible="false"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gtime")) %>'></asp:Label>
+
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgcGrpdis" runat="server"
+                                                    Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "gpdesc"))  + "</B>" %>'
+                                                    Width="80px"></asp:Label>
+                                            </ItemTemplate>
+                                            <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Description">
+
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgcResDesc1dis" runat="server"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            <ItemStyle VerticalAlign="Middle" Width="130px" />
+                                        </asp:TemplateField>
+
+
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgpdis" runat="server" Font-Bold="True" Font-Size="12px"
+                                                    Height="16px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gph")) %>'
+                                                    Width="5px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Type">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvgvaldis" runat="server"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField>
+
+
+                                            <ItemTemplate>
+
+
+
+                                                <asp:TextBox ID="txtgvValdis" runat="server" BorderWidth="0" BackColor="Transparent" Font-Size="14px" Style="width: 80px; float: left;"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
+                                                <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
+                                                    Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdValdis"></cc1:CalendarExtender>
+
+                                                <asp:TextBox ID="txtgvdValdis" CssClass="disable_past_dates" runat="server" BorderWidth="0" Style="width: 80px; float: left;" BackColor="Transparent"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
+                                                <cc1:CalendarExtender ID="txtgvdValdis_CalendarExtender" runat="server"
+                                                    Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdValdis"></cc1:CalendarExtender>
+
+                                                <asp:Panel ID="pnlTime" runat="server" Visible="false">
+                                                    <asp:DropDownList ID="ddlhour" runat="server" CssClass="inputTxt ddlPage" Style="width: 50px; line-height: 22px;">
+                                                        <asp:ListItem Value="01">01</asp:ListItem>
+                                                        <asp:ListItem Value="02">02</asp:ListItem>
+                                                        <asp:ListItem Value="03">03</asp:ListItem>
+                                                        <asp:ListItem Value="04">04</asp:ListItem>
+                                                        <asp:ListItem Value="05">05</asp:ListItem>
+                                                        <asp:ListItem Value="06">06</asp:ListItem>
+                                                        <asp:ListItem Value="07">07</asp:ListItem>
+                                                        <asp:ListItem Value="08">08</asp:ListItem>
+                                                        <asp:ListItem Value="09" Selected="True">09</asp:ListItem>
+                                                        <asp:ListItem Value="10">10</asp:ListItem>
+                                                        <asp:ListItem Value="11">11</asp:ListItem>
+                                                        <asp:ListItem Value="12">12</asp:ListItem>
+
+                                                    </asp:DropDownList>
+                                                    <asp:DropDownList ID="ddlMmin" runat="server" CssClass="ddlPage" Style="width: 50px; line-height: 22px;">
+                                                        <asp:ListItem Value="00">00</asp:ListItem>
+                                                        <asp:ListItem Value="01">01</asp:ListItem>
+                                                        <asp:ListItem Value="02">02</asp:ListItem>
+                                                        <asp:ListItem Value="03">03</asp:ListItem>
+                                                        <asp:ListItem Value="04">04</asp:ListItem>
+                                                        <asp:ListItem Value="05">05</asp:ListItem>
+                                                        <asp:ListItem Value="06">06</asp:ListItem>
+                                                        <asp:ListItem Value="07">07</asp:ListItem>
+                                                        <asp:ListItem Value="08">08</asp:ListItem>
+                                                        <asp:ListItem Value="09">09</asp:ListItem>
+                                                        <asp:ListItem Value="10">10</asp:ListItem>
+                                                        <asp:ListItem Value="11">11</asp:ListItem>
+                                                        <asp:ListItem Value="12">12</asp:ListItem>
+                                                        <asp:ListItem Value="13">13</asp:ListItem>
+                                                        <asp:ListItem Value="14">14</asp:ListItem>
+                                                        <asp:ListItem Value="15">15</asp:ListItem>
+                                                        <asp:ListItem Value="16">16</asp:ListItem>
+                                                        <asp:ListItem Value="17">17</asp:ListItem>
+                                                        <asp:ListItem Value="18">18</asp:ListItem>
+                                                        <asp:ListItem Value="19">19</asp:ListItem>
+                                                        <asp:ListItem Value="20">20</asp:ListItem>
+                                                        <asp:ListItem Value="21">21</asp:ListItem>
+                                                        <asp:ListItem Value="22">22</asp:ListItem>
+                                                        <asp:ListItem Value="23">23</asp:ListItem>
+                                                        <asp:ListItem Value="24">24</asp:ListItem>
+                                                        <asp:ListItem Value="25">25</asp:ListItem>
+                                                        <asp:ListItem Value="26">26</asp:ListItem>
+                                                        <asp:ListItem Value="27">27</asp:ListItem>
+                                                        <asp:ListItem Value="28">28</asp:ListItem>
+                                                        <asp:ListItem Value="29">29</asp:ListItem>
+                                                        <asp:ListItem Value="30">30</asp:ListItem>
+                                                        <asp:ListItem Value="31">31</asp:ListItem>
+                                                        <asp:ListItem Value="32">32</asp:ListItem>
+                                                        <asp:ListItem Value="33">33</asp:ListItem>
+                                                        <asp:ListItem Value="34">34</asp:ListItem>
+                                                        <asp:ListItem Value="35">35</asp:ListItem>
+                                                        <asp:ListItem Value="36">36</asp:ListItem>
+                                                        <asp:ListItem Value="37">37</asp:ListItem>
+                                                        <asp:ListItem Value="38">38</asp:ListItem>
+                                                        <asp:ListItem Value="39">39</asp:ListItem>
+                                                        <asp:ListItem Value="40">40</asp:ListItem>
+                                                        <asp:ListItem Value="41">41</asp:ListItem>
+                                                        <asp:ListItem Value="42">42</asp:ListItem>
+                                                        <asp:ListItem Value="43">43</asp:ListItem>
+                                                        <asp:ListItem Value="44">44</asp:ListItem>
+                                                        <asp:ListItem Value="45">45</asp:ListItem>
+                                                        <asp:ListItem Value="46">46</asp:ListItem>
+                                                        <asp:ListItem Value="47">47</asp:ListItem>
+                                                        <asp:ListItem Value="48">48</asp:ListItem>
+                                                        <asp:ListItem Value="49">49</asp:ListItem>
+                                                        <asp:ListItem Value="50">50</asp:ListItem>
+                                                        <asp:ListItem Value="51">51</asp:ListItem>
+                                                        <asp:ListItem Value="52">52</asp:ListItem>
+                                                        <asp:ListItem Value="53">53</asp:ListItem>
+                                                        <asp:ListItem Value="54">54</asp:ListItem>
+                                                        <asp:ListItem Value="55">55</asp:ListItem>
+                                                        <asp:ListItem Value="56">56</asp:ListItem>
+                                                        <asp:ListItem Value="57">57</asp:ListItem>
+                                                        <asp:ListItem Value="58">58</asp:ListItem>
+                                                        <asp:ListItem Value="59">59</asp:ListItem>
+
+
+                                                    </asp:DropDownList>
+                                                    <asp:DropDownList ID="ddlslb" runat="server" CssClass="ddlPage" Style="width: 50px; line-height: 22px;">
+                                                        <asp:ListItem Value="AM">AM</asp:ListItem>
+                                                        <asp:ListItem Value="PM">PM</asp:ListItem>
+
+
+
+
+                                                    </asp:DropDownList>
+                                                    <asp:Label ID="lblschedulenumber" runat="server" BorderWidth="0" CssClass="btn btn-success btn-xs" Font-Size="14px"
+                                                        Text="Schedule(0)"></asp:Label>
+
+
+                                                </asp:Panel>
+                                                <asp:Panel ID="pnlStatus" runat="server" Visible="false">
+
+
+                                                    <asp:CheckBoxList ID="ChkBoxLstStatus" RepeatLayout="Flow" RepeatDirection="Horizontal"
+                                                        runat="server" CssClass="form-control checkbox">
+                                                    </asp:CheckBoxList>
+
+                                                </asp:Panel>
+
+                                                <asp:Panel ID="pnlParic" runat="server" Visible="false">
+                                                    <asp:ListBox ID="ddlPartic" runat="server" SelectionMode="Multiple" class="form-control chzn-select" Style="width: 300px !important;"
+                                                        data-placeholder="Choose Person......" multiple="true"></asp:ListBox>
+
+                                                </asp:Panel>
+
+
+                                                <%-- <asp:Panel ID="Pnlcompany" runat="server">--%>
+                                                <asp:DropDownList ID="ddlCompany" runat="server" CssClass="inputTxt form-control" Style="width: 300px !important;"
+                                                    TabIndex="12">
+                                                </asp:DropDownList>
+                                                <%--</asp:Panel>--%>
+
+
+                                                <asp:Panel ID="PnlProject" runat="server">
+                                                    <asp:DropDownList ID="ddlProject" runat="server" CssClass="inputTxt form-control" Style="width: 300px !important;"
+                                                        TabIndex="12">
+                                                    </asp:DropDownList>
+                                                </asp:Panel>
+                                                <asp:Panel ID="PnlUnit" runat="server">
+                                                    <asp:DropDownList ID="ddlUnit" runat="server" CssClass="chzn-select inputTxt form-control" Style="width: 300px !important;"
+                                                        TabIndex="12">
+                                                    </asp:DropDownList>
+                                                </asp:Panel>
+
+
+                                                <asp:Panel ID="pnlVisit" runat="server" Visible="false">
+                                                    <asp:DropDownList ID="ddlVisit" Visible="false" runat="server" CssClass="form-control" Style="width: 300px !important;">
+                                                    </asp:DropDownList>
+                                                </asp:Panel>
+
+                                                <asp:Panel ID="pnlFollow" runat="server" Visible="false">
+                                                    <%-- <asp:DropDownList ID="ddlFollow" Visible="false" runat="server" CssClass="chzn-select inputTxt form-control">
+                                                        </asp:DropDownList>--%>
+
+
+
+                                                    <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal"
+                                                        runat="server" CssClass="form-control checkbox">
+                                                    </asp:CheckBoxList>
+
+
+                                                </asp:Panel>
+                                                <asp:Panel ID="pnlLostResion" runat="server" Visible="false">
+                                                    <%-- <asp:DropDownList ID="ddlFollow" Visible="false" runat="server" CssClass="chzn-select inputTxt form-control">
+                                                        </asp:DropDownList>--%>
+
+
+                                                    <asp:DropDownList ID="checkboxReson" Visible="false" runat="server" CssClass="inputTxt form-control" Style="width: 300px !important;">
+                                                    </asp:DropDownList>
+
+
+                                                </asp:Panel>
+
+
+
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+
+                                                <asp:LinkButton ID="lbtnUpdateDiscussion" runat="server" OnClientClick="CloseModaldis();" OnClick="lbtnUpdateDiscussion_Click" CssClass="btn  btn-success btn-xs ">Final Update</asp:LinkButton>
+
+                                            </FooterTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle Width="700px" />
+                                        </asp:TemplateField>
+
+
+                                    </Columns>
+                                    <PagerStyle CssClass="gvPagination" />
+                                    <HeaderStyle CssClass="grvHeader" />
+                                    <RowStyle CssClass="grvRows" />
+                                </asp:GridView>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10" id="pnlEditProspect" runat="server" visible="false">
+                <div class="divPnl">
+                    <div class="card pnlEditProspect">
+                        <div class="modal-content">
+                            <div class="modal-header pt-0 pb-0 bg-light">
+                                <div class="card-header bg-light"><span class="font-weight-bold text-muted">Edit Prospect</span></div>
+
+                                <asp:LinkButton ID="pnlEditProspectClose" OnClick="pnlEditProspectClose_Click" CssClass="btn btn-danger  btn-sm pr-2 pl-2" runat="server">&times;</asp:LinkButton>
+                            </div>
+                            <div class="modal-body" id="followup">
+                                
+                                <asp:MultiView ID="MultiView1" runat="server">
+                                    <asp:View runat="server">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+
+                                                        <asp:HiddenField ID="lblnewprospect" runat="server" />
+                                                        <h4 class="panel-title"><span class="clickable small "><i class="fa fa-minus "></i></span>Basic Information
+    					
+                                                        </h4>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title"><span class="clickable small "><i class="fa fa-minus "></i></span>Source Information 					
+                                                        </h4>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title" runat="server" id="hpref"><span class="clickable small"><i class="fa fa-plus "></i></span>
+                                                            <asp:Label ID="lblheadprospect" runat="server" Text="Prospect's Preference"></asp:Label>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title"><span class="clickable small panel-collapsed"><i class="fa fa-plus "></i></span>Home Information  					
+                                                        </h4>
+                                                    </div>
+                                                    <div class="panel-body" style="display: none;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title"><span class="clickable small panel-collapsed"><i class="fa fa-plus "></i></span>Business Address  					
+                                                        </h4>
+                                                    </div>
+                                                    <div class="panel-body" style="display: none;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title"><span class="clickable small panel-collapsed"><i class="fa fa-plus "></i></span>More Information 					
+                                                        </h4>
+                                                    </div>
+                                                    <div class="panel-body" style="display: none;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-2 btnsavefix">
+
+                                            <div class="w-100">
+                                                <%--//OnClientClick="javascript:return funDupAllMobile();"--%> <%--Req by Emdad by for new add country code 20221023--%>
+                                                <asp:LinkButton ID="lnkUpdate" runat="server"
+                                                    CssClass="btn btn-primary">Save</asp:LinkButton>
+                                            </div>
+
+                                        </div>
+                                    </asp:View>
+
+                                </asp:MultiView>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
