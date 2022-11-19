@@ -94,15 +94,19 @@ namespace RealERPWEB.F_21_MKT
                     DataTable dt1 = (DataTable)ViewState["tblempsup"];
                     string cdate = todate;
                     string proscod = dt1.Rows[0]["sircode"].ToString();
-                    DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "SHOWPROSPECTIVEDISCUSSION", proscod, cdate, "", "", "", "");
-                    DataTable dt2 = (DataTable)ds1.Tables[1];
+                    DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_REPORT_CRM_MODULE", "SHOWPROSPECTIVEDISCUSSION", proscod, cdate, "", "", "", "");
+                    ViewState["tblfollow"]= ds1.Tables[1];
+                    DataTable dt2 = (DataTable)ViewState["tblfollow"];
+
                     if (ds1.Tables[0].Rows.Count == 0)
                     {
 
                         this.pnlflw.Visible = true;
+                        this.pnlfollowup.Visible = false;
                     }
                     else
                     {
+                       
                         this.pnlflw.Visible = false;
                     }
                    
@@ -111,7 +115,22 @@ namespace RealERPWEB.F_21_MKT
                     this.lblmbl.Text = dt1.Rows[0]["phone"].ToString();
                     this.lblhomead.Text = dt1.Rows[0]["caddress"].ToString();
                     this.lblprof.Text = dt2.Rows[0]["profession"].ToString();
-                    this.lblstatus.Text = dt1.Rows[0]["virnotes"].ToString();
+
+                    bool reject = Convert.ToBoolean(dt1.Rows[0]["reject"].ToString());
+
+
+                    if (reject == true)
+                    {
+                        this.lblstatus.Text = "Rejected";
+                        lblstatus.Attributes["style"] = "font-weight:bold; Color:Red;";
+                        this.pnlretrive.Visible = true;
+                    }
+                    else
+                    {
+                        this.lblstatus.Text = "Active";
+                        this.pnlretrive.Visible = false;
+                        lblstatus.Attributes["style"] = "font-weight:bold; Color:Green;";
+                    }
                     this.lblproscod.Value = ds1.Tables[0].Rows.Count == 0 ? proscod : ds1.Tables[0].Rows[0]["proscod"].ToString();
                     this.lblgeneratedate.Value = ds1.Tables[1].Rows.Count == 0 ? "01-Jan-1900" : Convert.ToDateTime(ds1.Tables[1].Rows[0]["createdate"]).ToString("dd-MMM-yyyy");
                     this.hiddenLedStatus.Value = (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlstcode"].ToString());
@@ -133,7 +152,55 @@ namespace RealERPWEB.F_21_MKT
            
 
         }
+     
+        protected void lnkbtnRetreive_Click(object sender, EventArgs e)
+        {
+            int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+
+            if (!Convert.ToBoolean(dr1[0]["delete"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                return;
+            }
+
+
+            DataTable dt = (DataTable)ViewState["tblempsup"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+            string comcod = this.GetComeCode();
+           
+           
+            string proscod = dt.Rows[0]["sircode"].ToString();
+            bool result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_XML_INFO_01", "RETREIVEPROSPECT", null, null, null, proscod, userid, Posteddat, "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+
+            if (!result)
+            {
+
+
+              string Messagesd = "Retreived Fail";
+              ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                return;
+
+            }
+
+
+            //dt.Rows[RowIndex].Delete();
         
+
+           
+
+         
+           
+            string Messages = "Successfully Retreived";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messages + "');", true);
+            this.lnkbtnOk_Click(null, null);
+           
+            
+
+        }
 
 
         private void GETEMPLOYEEUNDERSUPERVISED()
@@ -208,6 +275,7 @@ namespace RealERPWEB.F_21_MKT
                 this.pnlSidebar.Visible = true; 
                 this.pnlfollowup.Visible = false;
                 this.pnlempinfo.Visible = false;
+                this.pnlflw.Visible = false;
                 ShowDiscussion();
 
 
@@ -225,6 +293,7 @@ namespace RealERPWEB.F_21_MKT
             this.pnlSidebar.Visible = false;
             this.pnlfollowup.Visible = true;
             this.pnlempinfo.Visible = true;
+            
         }
         private void ShowDiscussion()
         {
@@ -383,14 +452,6 @@ namespace RealERPWEB.F_21_MKT
             dv = dtvs.DefaultView;
             dv.RowFilter = ("gcod like '95%'");
             DataTable dts = dv.ToTable();
-
-
-
-
-
-
-
-
 
             // Visitor
             GetVisitoraStatinfo();
@@ -979,8 +1040,6 @@ namespace RealERPWEB.F_21_MKT
             }
 
 
-
-
             ////DataTable dt = (DataTable)ViewState["tbModalData"];
             //foreach (GridViewRow gvr1 in gvInfo.Rows)
             //{
@@ -998,13 +1057,10 @@ namespace RealERPWEB.F_21_MKT
 
 
 
-
-
-
-
-
-
         }
+         
+
+      
         protected void lbtnUpdateDiscussion_Click(object sender, EventArgs e)
         {
             try
@@ -1218,7 +1274,7 @@ namespace RealERPWEB.F_21_MKT
 
                     if (Gvalue != "")
                     {
-                        result = instcrm.UpdateTransInfo3(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "INSERTUPDATESCDINF", hempid, Client, kpigrp, "", wrkdpt, cdate, Gcode, gtype, Gvalue, remarks);
+                        result = instcrm.UpdateTransInfo3(comcod, "dbo.SP_REPORT_CRM_MODULE", "INSERTUPDATESCDINF", hempid, Client, kpigrp, "", wrkdpt, cdate, Gcode, gtype, Gvalue, remarks);
 
                         if (result)
                         {
@@ -1263,8 +1319,24 @@ namespace RealERPWEB.F_21_MKT
 
 
         }
+        
 
+        protected void pnlEditProspectClose_Click(object sender, EventArgs e)
+        {
+            this.pnlEditProspect.Visible = false;
+            this.pnlfollowup.Visible = true;
+            this.pnlempinfo.Visible = true;
+            this.lnkbtnOk_Click(null, null);
+        }
+        protected void lnkEdit_Click(object sender, EventArgs e)
+        {
+            this.pnlEditProspect.Visible = true;
+            this.pnlfollowup.Visible = false;
+            this.pnlempinfo.Visible = false;
+            this.pnlflw.Visible = false;
+          
 
-
+        }
+        
     }
 }

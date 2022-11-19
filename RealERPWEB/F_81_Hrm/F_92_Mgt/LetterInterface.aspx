@@ -146,7 +146,7 @@
         .tbMenuWrp table tr td {
             /*height: 50px;*/
             height: 36px;
-            width: 108%;
+            width: 100%;
             padding: 0 0;
             float: left;
             list-style: none;
@@ -310,7 +310,7 @@
 
                      <div class="card-body">
                          <div class="row">
-                         <div class="col-2">
+                         <div class="col-3">
                            <div class="tabMenu">
                         <div class="form-horizontal">
                             <div class="form-group">
@@ -318,12 +318,11 @@
                                 <div class="tbMenuWrp nav nav-tabs">
                                     <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="true" RepeatDirection="Horizontal" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged">
                                         <asp:ListItem Value="10003" ></asp:ListItem>
-                                        <asp:ListItem Value="10002"></asp:ListItem>
-                             
                                         <asp:ListItem Value="acceptoffletter"></asp:ListItem>
-                                        <asp:ListItem Value="acceptappletter"></asp:ListItem>
-
                                         <asp:ListItem Value="reject"></asp:ListItem>
+
+                                        <asp:ListItem Value="10002"></asp:ListItem>
+                                        <asp:ListItem Value="acceptappletter"></asp:ListItem>
 
 
                                       <%--  <asp:ListItem Value="10003"></asp:ListItem>--%>
@@ -334,7 +333,7 @@
                         </div>
                           </div>
                          </div>
-                         <div class="col-10">
+                         <div class="col-9">
                              
                  
            

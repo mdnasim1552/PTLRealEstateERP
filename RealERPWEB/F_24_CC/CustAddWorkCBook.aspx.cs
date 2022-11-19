@@ -298,5 +298,10 @@ namespace RealERPWEB.F_24_CC
 
             }
         }
+
+        protected void lbtnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
