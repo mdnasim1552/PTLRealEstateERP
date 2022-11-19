@@ -1148,7 +1148,6 @@ namespace RealERPWEB.F_14_Pro
 
         private void PrintBillCPDL()
         {
-
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetCompCode();
             string comnam = hst["comnam"].ToString();
@@ -1197,23 +1196,24 @@ namespace RealERPWEB.F_14_Pro
             // rdlc start
             string inword = "Taka In Word: " + ASTUtility.Trans((amt1 - amt2), 2);
             string mrfno = ds1.Tables[1].Rows[0]["mrfno"].ToString();
-            string orderno = ds1.Tables[0].Rows[0]["orderno"].ToString();
+            string orderno = GetCustomFormat(ds1.Tables[0].Rows[0]["orderno"].ToString());
             string refno = this.txtBillRef.Text;
             string chlno = ds1.Tables[0].Rows[0]["chlnno"].ToString();
-            string mrrno = ds1.Tables[0].Rows[0]["mrrno"].ToString();
+            string mrrno = GetCustomFormat(ds1.Tables[0].Rows[0]["mrrno"].ToString());
             string projectName = "Project Name : " + ds1.Tables[0].Rows[0]["pactdesc"].ToString();
             string suppname = "Supplier Name: " + ds1.Tables[1].Rows[0]["ssirdesc"].ToString();
-            string billno = ds1.Tables[1].Rows[0]["billno"].ToString();            
+            string billno = GetCustomFormat(ds1.Tables[1].Rows[0]["billno"].ToString());            
+            string mrrref = ds1.Tables[0].Rows[0]["mrrref"].ToString();             
             string narration = "Narration : " + ds1.Tables[1].Rows[0]["billnar"].ToString();
 
-            string txtMrrdate = "", txtReqno = "", txtChalandate = "", txtPodate = "", txtBillref = "", billdat="";
 
-            txtMrrdate = ds1.Tables[0].Rows[0]["mrrdate"].ToString();
-            txtReqno = ds1.Tables[0].Rows[0]["reqno"].ToString();
-            txtChalandate = ds1.Tables[0].Rows[0]["challandat"].ToString();
-            txtPodate = ds1.Tables[3].Rows[0]["orddat"].ToString();
-            txtBillref = ds1.Tables[1].Rows[0]["billref"].ToString();
-            billdat = ds1.Tables[1].Rows[0]["billdat"].ToString();
+
+            string txtMrrdate = ds1.Tables[0].Rows[0]["mrrdate"].ToString();
+            string txtReqno = GetCustomFormat(ds1.Tables[0].Rows[0]["reqno"].ToString());           
+            string txtChalandate = ds1.Tables[0].Rows[0]["challandat"].ToString();
+            string txtPodate = ds1.Tables[3].Rows[0]["orddat"].ToString();
+            string txtBillref = ds1.Tables[1].Rows[0]["billref"].ToString();
+            string billdat = Convert.ToDateTime(ds1.Tables[1].Rows[0]["billdat"]).ToString("dd-MMM-yyyy");
 
 
             ////Signing Part
@@ -1240,6 +1240,7 @@ namespace RealERPWEB.F_14_Pro
             rpt.SetParameters(new ReportParameter("txtBilldate", billdat));
             rpt.SetParameters(new ReportParameter("txtBillno",billno));
             rpt.SetParameters(new ReportParameter("txtMrrno",mrrno));
+            rpt.SetParameters(new ReportParameter("mrrref", mrrref));
             rpt.SetParameters(new ReportParameter("txtProjectName", projectName));
             rpt.SetParameters(new ReportParameter("txtInword", inword));
             rpt.SetParameters(new ReportParameter("txtNarration", narration));
@@ -1273,8 +1274,22 @@ namespace RealERPWEB.F_14_Pro
             // rdlc end
 
 
+        }
 
+        private string GetCustomFormat(string refno)
+        {
+            string _refno = refno;
+            if (refno.Length == 14)
+            {
+                string part1 = "", part2 = "", part3 = "", part4 = "";
+                part1 = refno.Substring(0, 3);
+                part2 = refno.Substring(5, 2);
+                part3 = refno.Substring(7, 2);
+                part4 = refno.Substring(9);
 
+                _refno = part1 + part2 + "-" + part3 + "-" + part4;
+            }
+            return _refno;
         }
 
 
