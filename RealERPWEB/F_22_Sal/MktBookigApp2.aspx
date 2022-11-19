@@ -25,6 +25,8 @@
 
             $('.chzn-select').chosen({ search_contains: true });
 
+
+
         }
 
         function openModal() {
@@ -37,9 +39,15 @@
 
     </script>
 
+    <style>
+        #ContentPlaceHolder1_GridViewPriceDetail > tr:nth-of-type(3) {
+            display: none;
+        }
+    </style>
 
-    <%--    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>--%>
+
+     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
     <div class="container moduleItemWrpper">
         <div class="contentPart">
             <div class="RealProgressbar">
@@ -288,11 +296,20 @@
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "description")) %>'
                                                     Width="200px"></asp:Label>
                                             </ItemTemplate>
+                                            <FooterTemplate>
+                                                   <asp:LinkButton ID="Calculation"
+                                                runat="server"
+                                                OnClick="llbtnCalculation_Click" CssClass="btn btn-sm  btn-primary  primarygrdBtn">Total</asp:LinkButton>
+
+                                            </FooterTemplate>
+
+                                         
                                             <FooterStyle Font-Bold="True"
                                                 HorizontalAlign="Left" />
                                             <HeaderStyle HorizontalAlign="Center"
                                                 VerticalAlign="Top" />
                                         </asp:TemplateField>
+
 
                                         <%--<asp:TemplateField HeaderText="Type" Visible="False">
                                     <ItemTemplate>
@@ -783,7 +800,7 @@
 
     <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>--%>
-    <%-- </ContentTemplate>
-    </asp:UpdatePanel>--%>
+  </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>
 
