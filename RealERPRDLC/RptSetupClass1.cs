@@ -1093,6 +1093,8 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_83_Att.RptHRAllEmpStatus": Rpt1a = SetRptHRAllEmpStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_83_Att.RptRetiredEmployee": Rpt1a = SetRptRetiredEmployee(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_83_Att.RptEmpConfirmation": Rpt1a = SetRptEmpConfirmation(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_83_Att.RptMonAttnSumEmpWise": Rpt1a = SetRptMonAttnSumEmpWise(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
                 //Pay Slip
                 case "R_81_Hrm.R_89_Pay.RptPaySlip1": Rpt1a = SetRptPaySlip1(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptPaySlipTro": Rpt1a = SetRptPaySlipTro(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -6566,7 +6568,11 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_83_Att.EClassAttendance.RptEmployeeStatus>)RptDataSet));
             return Rpt1a;
         }
-
+        private static LocalReport SetRptMonAttnSumEmpWise(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_83_Att.EClassAttendance.RptMonAttnSumEmpWise>)RptDataSet));
+            return Rpt1a;
+        }
         // NAhid
 
 

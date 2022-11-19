@@ -1172,6 +1172,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2202000", "2202011", "F_24_CC", "CustMaintenanceWork?", "Type=EntrySales", "Sales Increase Info", "Sales & Recovery", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "2202000", "2202015", "F_22_Sal", "MktBookigApp?Type=Entry", "", "Booking Application", "Sales & Recovery", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2202000", "2202017", "F_22_Sal", "MktBookigApp2?Type=Entry", "", "Booking Application2", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2202000", "2202020", "F_22_Sal", "MktSalsPayment?Type=Sales", "", "Sales With Payment Schedule", "Sales & Recovery", "False", "False", "False", "False" });
 
             
@@ -2232,6 +2233,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102172", "F_81_Hrm/F_84_Lea", "YearlyHoliday", "", "Yearly Holidays", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102173", "F_81_Hrm/F_99_MgtAct", "RptgroupAttendance?", "Type=Dept", "Employee Daily Attendance(Department Wise)", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102174", "F_81_Hrm/F_92_Mgt", "EmployeeListEpic", "", "Employee List Details", "HR Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8102000", "8102175", "F_81_Hrm/F_83_Att", "RptMonthlyAttnSummary?", "Type=EmpWise", "Monthly Attendance Summary (Personnel Wise)", "HR Management", "False", "False", "False", "False" });
 
 
 
@@ -7402,6 +7404,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000006", "01. Grand Note Sheet", "F_22_Sal/MktGrandNoteSheet?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000006", "01. Sample Note Sheet", "F_22_Sal/MktSampleNoteSheet?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000007", "01. Booking Application", "F_22_Sal/MktBookigApp?Type=Entry", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000007", "01. Booking Application2", "F_22_Sal/MktBookigApp2?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000008", "03. Sales With Payment Schedule", "F_22_Sal/MktSalsPayment?Type=Sales", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000009", "14. Monthly Budget (Sales & Collection)", "F_22_Sal/MonthlySalesBudget?Type=Monthly", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000010", "14. Yearly  Sales Budget", "F_22_Sal/MonthlySalesBudget02", "", true, "" });
@@ -16001,6 +16004,10 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0403000014", "07. Employee Absent Count List", "F_81_Hrm/F_83_Att/RptEmpAbsCount?Type=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0403000015", "08. Yearly Holidays", "F_81_Hrm/F_84_Lea/YearlyHoliday?Type=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0403000016", "09. Employee Daily Attendance(Department Wise)", "F_81_Hrm/F_99_MgtAct/RptgroupAttendance?Type=Dept", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0403000017", "10. Monthly Attendance Summary (Personnel Wise)", "F_81_Hrm/F_83_Att/RptMonthlyAttnSummary?Type=EmpWise", "", true, "" });
+
+
+
             // d. Leave Monitoring
             mnuTbl1.Rows.Add(new Object[] { "0404000000", "Leave Monitoring", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0404000001", "01. Individual Employee Leave Status", "F_81_Hrm/F_84_Lea/RptHREmpLeave?Type=EmpLeaveSt", "", true, "" });
@@ -16011,7 +16018,6 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0404000005", "05. Employee Leave Record", "F_81_Hrm/F_84_Lea/RptEmpLeaveRecod?Type=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0404000006", "05. Yearly Leave Record", "F_81_Hrm/F_84_Lea/RptYearlyLeaveRecord", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0404000006", "05. Leave Register(Yearly)", "F_81_Hrm/F_84_Lea/RptEmpLeaveStatus02?Type=yearlylvRegister", "", true, "" });
-
 
 
            
