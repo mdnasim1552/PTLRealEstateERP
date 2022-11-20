@@ -204,15 +204,6 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
 
         /// <summary>
-        /// lbtnPrevISSList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnPrevISSList;
-
-        /// <summary>
         /// ibtnPreBillList control.
         /// </summary>
         /// <remarks>
@@ -391,6 +382,15 @@ namespace RealERPWEB.F_09_PImp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtpercentage;
+
+        /// <summary>
+        /// lbldeposit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbldeposit;
 
         /// <summary>
         /// lbtnDepost control.
@@ -625,5 +625,23 @@ namespace RealERPWEB.F_09_PImp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblvalvounum;
+
+        /// <summary>
+        /// hdnmbno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnmbno;
+
+        /// <summary>
+        /// hdnforderno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnforderno;
     }
 }

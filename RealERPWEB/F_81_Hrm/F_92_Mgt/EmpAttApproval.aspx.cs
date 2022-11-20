@@ -99,9 +99,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string reqdate= dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["strtdat"].ToString();
             string restatus = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["lvstatus1"].ToString();
             string intime = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["intime"].ToString();
+            string outtime = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["outtime"].ToString();
+
 
             this.lbldadte.Text =Convert.ToDateTime(reqdate).ToString("dd-MMM-yyyy");
             this.lbldadteTime.Text = Convert.ToDateTime(intime).ToString("hh:mm tt");
+            this.lblouttime.Text = Convert.ToDateTime(outtime).ToString("hh:mm tt");
             this.ddlReqType.SelectedValue = reqtype;
 
             string comcod = this.GetCompCode();
@@ -371,6 +374,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string reqtype = this.ddlReqType.SelectedValue.ToString();
                 string remarks = this.txtremarks.Text.ToString();
                 string intime = this.lbldadteTime.Text.Trim();
+                string outtime = this.lblouttime.Text.Trim();
                 string ldate = Convert.ToDateTime(this.lbldadte.Text.Trim()).ToString("yyyyMMdd");
 
 
@@ -390,7 +394,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 else
                 {
                    // this.LeaveUpdate();
-                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_MGT_INTERFACE", "UPDATEATTAPPREQ", Orderno, ApprovByid, Approvtrmid, ApprovSession, approvdat, Centrid, roletype, remarks, reqtype, "", "", "", "", "", "");
+                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_MGT_INTERFACE", "UPDATEATTAPPREQ", Orderno, ApprovByid, Approvtrmid, ApprovSession, approvdat, Centrid, roletype, remarks, reqtype, intime, outtime, "", "", "", "");
                     if (result == false)
                     {
                         string Messagesd = "Request Approved Fail";

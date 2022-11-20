@@ -24,12 +24,20 @@
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
             });
+
+
             $('.chzn-select').chosen({ search_contains: true });
             $(".chosen-select").chosen({
                 search_contains: true,
                 no_results_text: "Sorry, no match!",
                 allow_single_deselect: true
             });
+
+
+            var gvdetails = $('#<%=this.gvdetails.ClientID %>');
+            $.keynavigation(gvdetails);
+
+
 
 
 
@@ -183,16 +191,8 @@
                                 <ItemTemplate>
                                     <asp:Label ID="lblwrkdesc" runat="server"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) %>'
-                                        Width="200px"></asp:Label>
-                                    <asp:TextBox ID="txtwrkdesc" BackColor="Transparent" BorderStyle="None" runat="server" ReadOnly="true" TextMode="MultiLine" Height="50px"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sdetails")).Trim()
-                                         
-                                                                         
-                                                                    %>'
-                                        Width="500px">
-                                            <%--sdetails--%>
-                                    </asp:TextBox>
-
+                                        Width="500px"></asp:Label>
+                                   
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Left" />
                                 <ItemStyle Font-Size="10pt" HorizontalAlign="Left" />
@@ -312,13 +312,14 @@
                                     ShowFooter="True" Style="margin-right: 0px" Width="430px">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl.No.">
+                                        <asp:TemplateField HeaderText="Sl">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
-                                                    Style="text-align: right"
+                                                   
                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Code" Visible="False">
                                             <ItemTemplate>
@@ -342,9 +343,11 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvserial" runat="server" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sl")) %>'
-                                                    Width="49px"></asp:Label>
+                                                    Width="40px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                              <ItemStyle HorizontalAlign="Center" />
+                                              
                                         </asp:TemplateField>
 
 
@@ -385,6 +388,8 @@
                                                     CssClass="btn btn-sm btn-primary">Total</asp:LinkButton>
                                             </FooterTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="Center" />
+                                            <FooterStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="NOS">
@@ -478,7 +483,7 @@
                                                 <asp:TextBox ID="txtgvremarks" runat="server" BackColor="Transparent"
                                                     BorderStyle="None" 
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "remarks")) %>'
-                                                    Width="150px"></asp:TextBox>
+                                                    Width="250px"></asp:TextBox>
                                             </ItemTemplate>
                                            
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />

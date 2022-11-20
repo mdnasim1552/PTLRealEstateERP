@@ -47,6 +47,17 @@
         .card-header {
             padding: 0.2rem 1rem !important;
         }
+                .gview tr td {
+            border: 0;
+        }
+
+        .gview .form-control {
+            height: 25px;
+            line-height: 25px;
+            padding: 0 12px;
+            border-style: solid !important;
+            border-color: #c6c9d5 !important;
+        }
     </style>
 
     <script type="text/javascript" language="javascript">
@@ -110,26 +121,24 @@
 
 
 
-                            <asp:GridView ID="gvNewRec" runat="server" AutoGenerateColumns="False" BorderStyle="None" Width="100%"
-                                howFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea">
-                                <RowStyle />
+                            <asp:GridView ID="gvNewRec" runat="server" AutoGenerateColumns="False" BorderStyle="None" Width="100%" CssClass="table-striped">
+               
                                 <Columns>
 
-                                    <asp:TemplateField HeaderText="">
+                                    <asp:TemplateField HeaderText="" >
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgcode" ClientIDMode="Static" runat="server" Visible="false" Height="16px"
+                                            <asp:Label ID="lblgcode" ClientIDMode="Static" runat="server" 
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'></asp:Label>
                                         </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                              
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblgdesc" runat="server" Width="130px" Height="16px"
+                                        <ItemTemplate >
+                                            <asp:Label ID="lblgdesc" runat="server" Width="130px" 
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgdesc")) %>'></asp:Label>
                                         </ItemTemplate>
-                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                         
                                     </asp:TemplateField>
 
                                     <asp:TemplateField>
@@ -139,40 +148,40 @@
                                                 AutoPostBack="true"></asp:TextBox>
 
                                             <asp:TextBox ID="txtarea" ClientIDMode="Static" runat="server" BackColor="Transparent" CssClass="ml-1 form-control " TextMode="MultiLine"
-                                                AutoPostBack="true"></asp:TextBox>
+                                                AutoPostBack="true" Height="60"></asp:TextBox>
 
 
-                                            <div class="form-group">
+                                     
                                                 <asp:DropDownList ID="ddldesig" runat="server" CssClass="custom-select chzn-select ">
                                                 </asp:DropDownList>
-                                            </div>
+                                   
 
-                                            <div class="form-group">
+                                
 
                                                 <asp:TextBox ID="txtjoindat" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                                 <cc1:CalendarExtender ID="txtjoindat_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtjoindat"></cc1:CalendarExtender>
-                                            </div>
+                               
 
-
-                                            <div class="form-group">
+                                   
 
                                                 <asp:FileUpload ID="imgFileUpload" CssClass="form-control form-control-sm" runat="server" accept=".pdf" />
                                                 <%--                                      <asp:RequiredFieldValidator ForeColor="Red" runat="server" ControlToValidate="imgFileUpload" ValidationGroup="group1" ErrorMessage="Please enter an image" />--%>
-                                            </div>
+                                
+                                                 
                                         </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        <ItemStyle  VerticalAlign="Middle"/>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
                                 </Columns>
-                                <FooterStyle CssClass="grvFooter" />
-                                <EditRowStyle />
-                                <AlternatingRowStyle />
-                                <PagerStyle CssClass="gvPagination" />
-                                <HeaderStyle CssClass="grvHeader" />
+                            
                             </asp:GridView>
-                            <asp:LinkButton ID="lnkReset" runat="server" CssClass="btn btn-sm btn-success" Width="100px" OnClick="lnkReset_Click"><i class="fa fa-spinner"></i> Reset</asp:LinkButton>
+                            <div class="mt-2 mb-2">
+                              <asp:LinkButton ID="lnkReset" runat="server" CssClass="btn btn-sm btn-success" Width="100px" OnClick="lnkReset_Click"><i class="fa fa-spinner"></i> Reset</asp:LinkButton>
 
                             <asp:LinkButton ID="lnkSave" runat="server" CssClass="btn btn-sm btn-primary float-right" OnClick="lnkSave_Click" Width="100px"
                                 OnClientClick="return confirm('Are You Sure?')"><span class="fa fa-save " style="color:white;" aria-hidden="true"  ></span>&nbsp; Save</asp:LinkButton>
+                            </div>
+ 
                         </div>
                     </div>
 

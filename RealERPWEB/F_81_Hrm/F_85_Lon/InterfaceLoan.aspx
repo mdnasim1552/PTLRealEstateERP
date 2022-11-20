@@ -662,6 +662,13 @@
                                                         <ItemStyle VerticalAlign="Middle" HorizontalAlign="center" />
 
                                                     </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="# Stepid" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblinstepid" runat="server" Text='<%#Eval("stepid")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <ItemStyle VerticalAlign="Middle" HorizontalAlign="center" />
+
+                                                    </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Per </br> Installment">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblperinstlamt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "perinstlamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
@@ -670,7 +677,8 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Status">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblstatus" runat="server"
+                                                            <asp:Label ID="lblstatus" runat="server" 
+
                                                                 CssClass='<%#Convert.ToBoolean(Eval("isaproved"))==false? "badge badge-danger" :"badge badge-success" %>'
                                                                 Text='<%#Eval("stepslug")%>'> 
                                                             </asp:Label>
@@ -685,7 +693,7 @@
                                                         <ItemTemplate>
                                                             <div class="btn-group">
                                                                 <asp:LinkButton ID="pendlnView" OnClick="pendlnView_Click" CssClass="" runat="server" ToolTip="View Loan"><i class="fa fa-eye"></i></asp:LinkButton>
-                                                                <asp:LinkButton ID="confmDelModal" OnClick="confmDelModal_Click" runat="server" Visible="false" CssClass='<%#Convert.ToBoolean(Eval("isaproved"))==false? "" :"d-none" %>'><i class="fa fa-trash"></i></asp:LinkButton>
+                                                                <asp:LinkButton ID="confmDelModal" OnClick="confmDelModal_Click" Visible='<%# Convert.ToString( Eval("stepid"))=="2" ? true : false %>' runat="server"  ><i class="fa fa-trash"></i></asp:LinkButton>
 
                                                             </div>
                                                         </ItemTemplate>
@@ -1170,6 +1178,8 @@
                                                             <div class="btn-group">
                                                                 <asp:HyperLink ID="lnkbtnInd" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs" ToolTip="Aprove Loan"><span class=" fa fa-check"></span>
                                                                 </asp:HyperLink>
+                                                                <asp:LinkButton ID="LoGenprint" runat="server" OnClick="LoGenprint_Click" CssClass="btn btn-default btn-xs" ToolTip="print Loan"><i class="fa fa-print"></i></asp:LinkButton>
+
                                                             </div>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>

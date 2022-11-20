@@ -993,7 +993,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.86944in</Top>
             <Height>1.02291in</Height>
-            <Width>7.73817in</Width>
+            <Width>7.73818in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1950,7 +1950,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.07431in</Top>
             <Left>0.025in</Left>
-            <Height>0.7375in</Height>
+            <Height>0.73752in</Height>
             <Width>2.67639in</Width>
             <ZIndex>4</ZIndex>
             <Style>
@@ -2314,10 +2314,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>2.90764in</Height>
+        <Height>2.89931in</Height>
         <Style />
       </Body>
-      <Width>7.73817in</Width>
+      <Width>7.73818in</Width>
       <Page>
         <PageHeader>
           <Height>0.77514in</Height>

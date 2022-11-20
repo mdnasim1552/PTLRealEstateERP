@@ -577,6 +577,23 @@
                         $(".tbMenuWrp table tr td:nth-child(15)").hide();
                         break;
 
+                    case 3366:
+                        $(".tbMenuWrp table tr td:nth-child(1)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(2)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(3)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(4)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(5)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(6)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(8)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(9)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(11)").hide(); // 9 - for billApproval
+                        $(".tbMenuWrp table tr td:nth-child(13)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(14)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(15)").hide();
+                        break;
+
+
                     default:
                         $(".tbMenuWrp table tr td:nth-child(3)").hide();
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
@@ -1514,6 +1531,13 @@
 
                                                     <asp:HyperLink ID="lnkbtnbillapp" runat="server" ToolTip="Bill Approval" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                     </asp:HyperLink>
+
+                                                     <asp:HyperLink ID="hlnkBillDetails" runat="server" ToolTip="MB Details" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs" ><i class=" fa fa-info-circle" aria-hidden="false"></i>
+                                                    </asp:HyperLink>
+                                                 
+
+
+
                                                   <%--  <asp:HyperLink ID="lnkbtnEditBilll" ToolTip="Edit" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span style="color:black" class="fas fa-edit"></span>
                                                     </asp:HyperLink>
                                                     <asp:LinkButton ID="btnDelReqCheck" OnClick="btnDelReqCheck_OnClick" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa  fa-recycle"></span> </asp:LinkButton>--%>
@@ -2914,7 +2938,7 @@
 
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
-                                                    <asp:HyperLink ID="lnkWorkOrder" runat="server" ToolTip="CS" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
+                                                    <asp:HyperLink ID="lnkWorkOrder" runat="server" ToolTip="MB" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                     </asp:HyperLink>
 
                                                     <asp:LinkButton ID="btnDelWrkodr" OnClick="btnDelWrkodr_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa  fa-recycle"></span> </asp:LinkButton>
@@ -3077,7 +3101,7 @@
 
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
-                                                    <asp:HyperLink ID="hlnklnkmb" runat="server" ToolTip="CS" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
+                                                    <asp:HyperLink ID="hlnklnkmb" runat="server" ToolTip="Bill Generate" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                     </asp:HyperLink>
 
                                                     <asp:LinkButton ID="btnDelmb" OnClick="btnDelmb_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa  fa-recycle"></span> </asp:LinkButton>
@@ -3368,6 +3392,19 @@
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
+
+                                             <asp:TemplateField HeaderText="MB No">
+
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvmbno" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mbno1")) %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
                                             <asp:TemplateField HeaderText="Req Item">
 
                                                 <ItemTemplate>
@@ -3384,7 +3421,7 @@
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvReqQty" runat="server"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "reqqty")).ToString("#,##0;(#,##0").ToString() %>'
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "reqqty")).ToString("#,##0.00;(#,##0.00").ToString() %>'
                                                         Width="70px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>

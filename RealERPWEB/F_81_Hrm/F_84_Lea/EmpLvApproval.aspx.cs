@@ -734,6 +734,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                     string frmdate = Convert.ToDateTime(((TextBox)this.gvLvReq.Rows[i].FindControl("txtgvlstdate")).Text.Trim()).ToString("dd-MMM-yyyy");
                     string todate = Convert.ToDateTime(((Label)this.gvLvReq.Rows[i].FindControl("lblgvenddat")).Text.Trim()).ToString("dd-MMM-yyyy");
+                    string roletype = this.Request.QueryString["RoleType"].ToString();
+                    if (comcod == "3354" && roletype == "SUP" )
+                    {
+                        this.Chboxforward.Checked = false;
+                    }
+                    else if (comcod == "3354" && roletype == "SUP")
+                    {
+                        this.Chboxforward.Checked = true ;
+                    }
                     string forword = Convert.ToBoolean(this.Chboxforward.Checked).ToString();
 
                     result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP02", trnid, empid, gcod, frmdate, todate, applydat, forword, ishalfday, lbllevid, lapplied.ToString(), "", "", "", "", "");
@@ -1395,11 +1404,21 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string ApprovByid = hst["usrid"].ToString();
                 string Approvtrmid = hst["compname"].ToString();
                 string ApprovSession = hst["session"].ToString();
+                string roletype = this.Request.QueryString["RoleType"].ToString();
                 this.SaveLeave();
+
+                if (comcod == "3354" && roletype =="SUP")
+                {
+                    this.Chboxforward.Checked = true;
+                }else if (comcod == "3354" && roletype == "DPT")
+                {
+                    this.Chboxforward.Checked = false;
+                }
+        
                 string isForward = Convert.ToBoolean(this.Chboxforward.Checked).ToString();
 
 
-                string roletype = this.Request.QueryString["RoleType"].ToString();
+           
                 string approvdat = System.DateTime.Now.ToString("dd-MMM-yyyy");
                 string Centrid = this.ddlCenter.SelectedValue.ToString();
                 string Orderno = this.lstOrderNo.SelectedValue.ToString();

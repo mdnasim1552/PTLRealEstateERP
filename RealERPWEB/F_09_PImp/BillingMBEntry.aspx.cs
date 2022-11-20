@@ -156,7 +156,7 @@ namespace RealERPWEB.F_09_PImp
             string orderno = (qorderno.Length == 0 ? "" : this.Request.QueryString["genno"].ToString()) + "%";
 
 
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_02", "GET_PREV_ORDER_LIST", CurDate1,
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPREVIOUSMBNO", CurDate1,
                           orderno, "", usrid, "", "", "", "", "");
             if (ds1 == null)
                 return;

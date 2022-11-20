@@ -547,8 +547,18 @@
                         break;
 
                     case 3368://finlay
-                    case 3101://IBCEL
+                  
                         //$(".tbMenuWrp table tr td:nth-child(2)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(5)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(6)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
+                        break;
+
+
+                    case 3370://CPDL
+                    //case 3101://
+                        $(".tbMenuWrp table tr td:nth-child(2)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(4)").hide();
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
                         $(".tbMenuWrp table tr td:nth-child(6)").hide();
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
@@ -696,6 +706,7 @@
                         </asp:Panel>
 
                         <asp:Panel ID="pnlReqInfo" runat="server" Visible="false">
+                    
                             <div class="table-responsive">
                                 <asp:GridView ID="gvReqInfo" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     ShowFooter="True" OnRowDataBound="gvReqInfo_RowDataBound">
@@ -2213,6 +2224,7 @@
                         </asp:Panel>
 
                         <asp:Panel ID="pnlpayOrder" runat="server" Visible="false">
+                          
                             <div class="table-responsive">
                                 <asp:GridView ID="gvPayOrder" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     ShowFooter="True" OnRowDataBound="gvPayOrder_RowDataBound">
@@ -2416,10 +2428,11 @@
 
 
                         </asp:Panel>
-
+                       
 
                         <asp:Panel ID="PnlreqInfo1" runat="server" Visible="false">
-
+                                    
+                            <div class="table-responsive">
                             <asp:GridView ID="gvReqInfo1" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                                 ShowFooter="True">
                                 <RowStyle />
@@ -2631,6 +2644,7 @@
                                 <HeaderStyle CssClass="grvHeader" />
                                 <RowStyle CssClass="grvRows" />
                             </asp:GridView>
+                                </div>
                         </asp:Panel>
 
                     </div>

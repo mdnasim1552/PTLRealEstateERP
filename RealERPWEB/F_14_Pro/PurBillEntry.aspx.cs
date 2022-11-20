@@ -207,18 +207,20 @@ namespace RealERPWEB.F_14_Pro
                     PrintReq = "PrintBill08";
 
                     break;
-                              
+
                 //case "3101":
                 case "3366":// Lanco
                     PrintReq = "PrintBill09";
 
                     break;
-                
+
                 case "3368":// Lanco
                     PrintReq = "PrintBillFinlay";
-
                     break;
 
+                case "3370": // 
+                    PrintReq = "PrintBillCPDL";
+                    break;
 
                 default:
                     PrintReq = "PrintBill05";
@@ -265,9 +267,12 @@ namespace RealERPWEB.F_14_Pro
 
             else if (printcomreq == "PrintBill09")
                 this.PrintBill09();
-            
+
             else if (printcomreq == "PrintBillFinlay")
                 this.PrintBillFinlay();
+
+            else if (printcomreq == "PrintBillCPDL")
+                this.PrintBillCPDL();
 
             else
                 this.PrintBill02();
@@ -1139,10 +1144,152 @@ namespace RealERPWEB.F_14_Pro
                           ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
             }
             // rdlc end
+        }
+
+        private void PrintBillCPDL()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string CurDate1 = "";
+            string mBILLNo = "";
+            string txtnar = this.txtBillNarr.Text.Trim();
+            bool isAccBill = this.isBillFromAcc();
+            if (isAccBill)
+            {
+                CurDate1 = this.Request.QueryString["Date1"].ToString();
+                mBILLNo = this.Request.QueryString["genno"].ToString();
+            }
+            else
+            {
+                CurDate1 = this.GetStdDate(this.txtCurBillDate.Text.Trim());
+                mBILLNo = this.lblCurBillNo1.Text.Trim().Substring(0, 3) + this.txtCurBillDate.Text.Trim().Substring(6, 4) + this.lblCurBillNo1.Text.Trim().Substring(3, 2) + this.txtCurBillNo2.Text.Trim();
+            }
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GENPURBILLINFO", mBILLNo, CurDate1,
+                          "", "", "", "", "", "", "");
+
+            if (ds1 == null)
+                return;
+            DataTable dt = ds1.Tables[0];
+
+            //For Tk In Word
+
+            DataTable td1 = dt.Copy();
+            DataTable td2 = dt.Copy();
+            DataView dv1;
+            //Deduction
+            dv1 = td2.DefaultView;
+            dv1.RowFilter = ("rsircode like'019999902%'");
+            td2 = dv1.ToTable();
+            // Others
+            dv1 = td1.DefaultView;
+            dv1.RowFilter = ("rsircode not like '019999902%'");
+            td1 = dv1.ToTable();
+            double amt2 = (td2.Rows.Count == 0) ? 0.00 : Convert.ToDouble((Convert.IsDBNull(td2.Compute("Sum(mrramt)", "")) ? 0.00 : td2.Compute("Sum(mrramt)", "")));
+            double amt1 = Convert.ToDouble((Convert.IsDBNull(td1.Compute("Sum(mrramt)", "")) ? 0.00 : td1.Compute("Sum(mrramt)", "")));
+            //
+            // rdlc start
+            string inword = "Taka In Word: " + ASTUtility.Trans((amt1 - amt2), 2);
+            string mrfno = ds1.Tables[1].Rows[0]["mrfno"].ToString();
+            string orderno = GetCustomFormat(ds1.Tables[0].Rows[0]["orderno"].ToString());
+            string refno = this.txtBillRef.Text;
+            string chlno = ds1.Tables[0].Rows[0]["chlnno"].ToString();
+            string mrrno = GetCustomFormat(ds1.Tables[0].Rows[0]["mrrno"].ToString());
+            string projectName = "Project Name : " + ds1.Tables[0].Rows[0]["pactdesc"].ToString();
+            string suppname = "Supplier Name: " + ds1.Tables[1].Rows[0]["ssirdesc"].ToString();
+            string billno = GetCustomFormat(ds1.Tables[1].Rows[0]["billno"].ToString());            
+            string mrrref = ds1.Tables[0].Rows[0]["mrrref"].ToString();             
+            string narration = "Narration : " + ds1.Tables[1].Rows[0]["billnar"].ToString();
 
 
 
+            string txtMrrdate = ds1.Tables[0].Rows[0]["mrrdate"].ToString();
+            string txtReqno = GetCustomFormat(ds1.Tables[0].Rows[0]["reqno"].ToString());           
+            string txtChalandate = ds1.Tables[0].Rows[0]["challandat"].ToString();
+            string txtPodate = ds1.Tables[3].Rows[0]["orddat"].ToString();
+            string txtBillref = ds1.Tables[1].Rows[0]["billref"].ToString();
+            string billdat = Convert.ToDateTime(ds1.Tables[1].Rows[0]["billdat"]).ToString("dd-MMM-yyyy");
 
+
+            ////Signing Part
+
+            string reqname = ds1.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["reqdat"].ToString();
+            string reqapname = ds1.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["reqadat"].ToString();
+            string ordpro = ds1.Tables[3].Rows[0]["appnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["appdat"].ToString();
+            string purchord = ds1.Tables[3].Rows[0]["ordnam1"].ToString() + "\n" + ds1.Tables[3].Rows[0]["orddat"].ToString();
+            string recvby = ds1.Tables[3].Rows[0]["mrrnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["mrrdat"].ToString();
+            string billname = ds1.Tables[3].Rows[0]["billnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["billdat"].ToString();
+
+
+            var list = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptBillConfirmation01>();
+            LocalReport rpt = new LocalReport();
+            rpt = RptSetupClass1.GetLocalReport("R_14_Pro.RptBillInfoCPDL", list, null, null);
+            rpt.EnableExternalImages = true;
+            rpt.SetParameters(new ReportParameter("compName", comnam));
+            rpt.SetParameters(new ReportParameter("txtTitle", "Software Generated Bill"));
+            rpt.SetParameters(new ReportParameter("supname", suppname));
+            rpt.SetParameters(new ReportParameter("txtMrfno", mrfno));
+            rpt.SetParameters(new ReportParameter("txtPono", orderno));
+            rpt.SetParameters(new ReportParameter("txtRefno", refno));
+            rpt.SetParameters(new ReportParameter("txtChalan",chlno));
+            rpt.SetParameters(new ReportParameter("txtBilldate", billdat));
+            rpt.SetParameters(new ReportParameter("txtBillno",billno));
+            rpt.SetParameters(new ReportParameter("txtMrrno",mrrno));
+            rpt.SetParameters(new ReportParameter("mrrref", mrrref));
+            rpt.SetParameters(new ReportParameter("txtProjectName", projectName));
+            rpt.SetParameters(new ReportParameter("txtInword", inword));
+            rpt.SetParameters(new ReportParameter("txtNarration", narration));
+
+            rpt.SetParameters(new ReportParameter("txtMrrdate", txtMrrdate));
+            rpt.SetParameters(new ReportParameter("txtReqno", txtReqno));
+            rpt.SetParameters(new ReportParameter("txtChalandate", txtChalandate));
+            rpt.SetParameters(new ReportParameter("txtPodate", txtPodate));
+            rpt.SetParameters(new ReportParameter("txtBillref", txtBillref));
+
+            rpt.SetParameters(new ReportParameter("ftReqIn", reqname));
+            rpt.SetParameters(new ReportParameter("ftReqapv", reqapname));
+            rpt.SetParameters(new ReportParameter("ftOrdpro", ordpro));
+            rpt.SetParameters(new ReportParameter("ftPurchord", purchord));
+            rpt.SetParameters(new ReportParameter("ftRecvby", recvby));
+            rpt.SetParameters(new ReportParameter("ftBillconf", billname));
+            rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            rpt.SetParameters(new ReportParameter("comlogo", ComLogo));
+
+            Session["Report1"] = rpt;
+            if (isAccBill)
+            {
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+            }
+            else
+            {
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            }
+            // rdlc end
+
+
+        }
+
+        private string GetCustomFormat(string refno)
+        {
+            string _refno = refno;
+            if (refno.Length == 14)
+            {
+                string part1 = "", part2 = "", part3 = "", part4 = "";
+                part1 = refno.Substring(0, 3);
+                part2 = refno.Substring(5, 2);
+                part3 = refno.Substring(7, 2);
+                part4 = refno.Substring(9);
+
+                _refno = part1 + part2 + "-" + part3 + "-" + part4;
+            }
+            return _refno;
         }
 
 
@@ -1432,9 +1579,9 @@ namespace RealERPWEB.F_14_Pro
             if (ds1 == null)
                 return;
             DataTable dt = ds1.Tables[0];
-            string mrrref="", chlnno="";
+            string mrrref = "", chlnno = "";
             var dr01 = (from DataRow rows in dt.Rows
-                                select rows["mrrref"]).Distinct();
+                        select rows["mrrref"]).Distinct();
 
             foreach (var rows in dr01)
             {
@@ -1443,7 +1590,7 @@ namespace RealERPWEB.F_14_Pro
 
             var dr02 = (from DataRow rows in dt.Rows
                         select rows["chlnno"]).Distinct();
-            
+
             foreach (var rows in dr02)
             {
                 chlnno += rows + ", ";
@@ -1463,7 +1610,7 @@ namespace RealERPWEB.F_14_Pro
             td1 = dv1.ToTable();
             double amt2 = (td2.Rows.Count == 0) ? 0.00 : Convert.ToDouble((Convert.IsDBNull(td2.Compute("Sum(mrramt)", "")) ? 0.00 : td2.Compute("Sum(mrramt)", "")));
             double amt1 = Convert.ToDouble((Convert.IsDBNull(td1.Compute("Sum(mrramt)", "")) ? 0.00 : td1.Compute("Sum(mrramt)", "")));
-            string totalamt = Convert.ToDouble(amt1 - amt2).ToString("#,##0.00;(#,##0.00); "); 
+            string totalamt = Convert.ToDouble(amt1 - amt2).ToString("#,##0.00;(#,##0.00); ");
             //
 
             string txtSupName, txtBillid, txtNarration, billref;
@@ -1511,7 +1658,7 @@ namespace RealERPWEB.F_14_Pro
             rpt.SetParameters(new ReportParameter("txtPono", orderno));
             rpt.SetParameters(new ReportParameter("txtRefno", billref));
             rpt.SetParameters(new ReportParameter("txtChalan", chlnno.Substring(0, chlnno.Length - 2)));
-            rpt.SetParameters(new ReportParameter("txtBilldate",  CurDate1));
+            rpt.SetParameters(new ReportParameter("txtBilldate", CurDate1));
             rpt.SetParameters(new ReportParameter("txtBillno", txtBillid));
             rpt.SetParameters(new ReportParameter("txtMrrno", mrrno));
             rpt.SetParameters(new ReportParameter("txtProjectName", projectName));
@@ -1523,11 +1670,11 @@ namespace RealERPWEB.F_14_Pro
             rpt.SetParameters(new ReportParameter("ftPurchord", purchord));
             rpt.SetParameters(new ReportParameter("ftRecvby", recvby));
             rpt.SetParameters(new ReportParameter("ftBillconf", billname));
-            rpt.SetParameters(new ReportParameter("txtmrrref", mrrref.Substring(0, mrrref.Length-2)));
+            rpt.SetParameters(new ReportParameter("txtmrrref", mrrref.Substring(0, mrrref.Length - 2)));
             rpt.SetParameters(new ReportParameter("rptReqChk", rptReqChk));
             rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             rpt.SetParameters(new ReportParameter("comlogo", ComLogo));
-            rpt.SetParameters(new ReportParameter("totalamt", totalamt)); 
+            rpt.SetParameters(new ReportParameter("totalamt", totalamt));
 
             Session["Report1"] = rpt;
             if (isAccBill)
@@ -1544,7 +1691,7 @@ namespace RealERPWEB.F_14_Pro
 
         }
 
-        private void PrintBillFinlay() 
+        private void PrintBillFinlay()
         {
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -1591,7 +1738,7 @@ namespace RealERPWEB.F_14_Pro
             td1 = dv1.ToTable();
             double amt2 = (td2.Rows.Count == 0) ? 0.00 : Convert.ToDouble((Convert.IsDBNull(td2.Compute("Sum(mrramt)", "")) ? 0.00 : td2.Compute("Sum(mrramt)", "")));
             double amt1 = Convert.ToDouble((Convert.IsDBNull(td1.Compute("Sum(mrramt)", "")) ? 0.00 : td1.Compute("Sum(mrramt)", "")));
-           
+
             double security, deduction, penalty, advanced;
             string txtSupName, percntge;
             if (isAccBill)
@@ -1656,7 +1803,7 @@ namespace RealERPWEB.F_14_Pro
             rpt.SetParameters(new ReportParameter("txtPono", orderno));
             rpt.SetParameters(new ReportParameter("txtRefno", refno));
             rpt.SetParameters(new ReportParameter("txtChalan", chlno));
-            rpt.SetParameters(new ReportParameter("txtBilldate",CurDate1));
+            rpt.SetParameters(new ReportParameter("txtBilldate", CurDate1));
             rpt.SetParameters(new ReportParameter("txtBillno", billno));
             rpt.SetParameters(new ReportParameter("txtMrrno", mrrno));
             rpt.SetParameters(new ReportParameter("txtProjectName", projectName));
@@ -2775,10 +2922,10 @@ namespace RealERPWEB.F_14_Pro
             switch (comcod)
             {
 
-               // case "3101":
+                // case "3101":
                 case "3366"://Lanco
                 case "3367"://Epic
- 
+
                 case "3340":
                     aprovedByid = "";
                     aprvdat = "";
