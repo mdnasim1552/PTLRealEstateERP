@@ -21,7 +21,7 @@
 
                 var gridViewScroll = new GridViewScroll({
                     elementID: "gvInfo",
-                    width: 1000,
+                    width: 1200,
                     height: 475,
                     freezeColumn: true,
                     freezeFooter: true,
@@ -169,7 +169,105 @@
 
                 });
 
+                var sircode = $('#<%=this.lblnewprospect.ClientID%>').val();
+                var arrgcodl = $('#<%=this.gvPersonalInfo.ClientID %>').find('[id$="lblgvItmCodeper"]');
+                var arraygval = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:text[id$="txtgvVal"]');
+                //var codePhone = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:option:selected[id$="ddlcountryPhone"]').text;
+               // var codePhone = $('#<%=this.gvPersonalInfo.ClientID %>').find('[id$="ddlcountryPhone"]');
+              <%-- // var codePhone = $('#<%=this.gvPersonalInfo.ClientID %>').find('input[type=select][id*=ddlcountryPhone]').value;
+                //console.log(countryPhone[1]);
+                console.log(arraygval);
+                console.log(codePhone);
+                //elementId: selected
+                // var txtmobile=arraygval[1];  --%>
+                var txtmobile, txtaltmobile1, txtaltmobile2, countryPhone;
 
+                for (var i = 0; i < arrgcodl.length; i++) {
+
+
+                    gcod = $(arrgcodl[i]).text();
+
+                    switch (gcod) {
+
+                        case '0301003':
+                            txtmobile = arraygval[i];
+                            break;
+
+                        case '0301004':
+                            switch (comcod) {
+                                case "3315":
+                                case "3316":
+                                    break;
+
+                                default:
+                                    txtaltmobile1 = arraygval[i];
+                                    break;
+                            }
+                            break;
+
+                        case '0301005':
+                            txtaltmobile2 = arraygval[i];
+                            break;
+                    }
+
+                }
+
+
+                //      console.log(countryPhone);
+                //console.log("Nahid");
+
+                $(txtmobile).keyup(function () {
+                    var mobile = $(this).val(); if (!($.isNumeric(mobile))) {
+
+                        alert("Mobile Number must be numeric");
+
+                        return false;
+                    }
+                    // funDupMobile(comcod, sircode, mobile);
+
+                });
+
+
+
+
+                $(txtaltmobile1).keyup(function () {
+                    var mobile = $(this).val();
+                    if (mobile.length != 11) {
+                        return false;
+                    }
+
+                    if (!($.isNumeric(mobile))) {
+
+                        alert("Mobile Number must be numeric");
+
+                        return false;
+                    }
+                    if (gcod != "0301025" && (comcod == "3315" || comcod == "3316")) {
+                        //alert("test--");
+                        funDupMobile(comcod, sircode, mobile);
+                    }
+
+                });
+
+
+                $(txtaltmobile2).keyup(function () {
+
+                    var mobile = $(this).val();
+                    if (mobile.length != 11) {
+
+
+                        return false;
+                    }
+
+                    if (!($.isNumeric(mobile))) {
+
+                        alert("Mobile Number must be numeric");
+
+                        return false;
+                    }
+                    funDupMobile(comcod, sircode, mobile);
+
+                });
             }
 
             catch (e) {
@@ -177,7 +275,573 @@
             }
 
         }
+        $(document).on('click', '.panel-heading span.clickable', function (e) {
 
+
+
+            var $this = $(this);
+            if (!$this.hasClass('panel-collapsed')) {
+                $this.parents('.panel').find('.panel-body').slideUp();
+                $this.addClass('panel-collapsed');
+                $this.find('i').removeClass('fa fa-minus').addClass('fa fa-plus');
+            } else {
+                $this.parents('.panel').find('.panel-body').slideDown();
+                $this.removeClass('panel-collapsed');
+                $this.find('i').removeClass('fa fa-plus').addClass('fa fa-minus');
+            }
+        });
+        function funDupMobile(comcod, sircode, mobile) {
+
+            try {
+                $.ajax({
+
+                    url: "CrmClientInfo.aspx/CheckMobile",
+                    type: "POST",
+                    data: '{comcod:"' + comcod + '", sircode:"' + sircode + '", mobile:"' + mobile + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    //  async: false,
+                    success: function (data) {
+                        var jdata = JSON.parse(data.d);
+
+                        var mesult = jdata.result;
+                        if (!mesult) {
+                            alert(jdata.Message);
+
+                        }
+                    }
+                });
+
+            }
+
+
+            catch (e) {
+                alert(e.message);
+
+            }
+
+        }
+
+
+
+       
+
+
+        function funCompanyProject(comcod, company) {
+            try {
+                $.ajax({
+                    type: "POST",
+                    url: "CrmClientInfo.aspx/GetCompanyProject",
+                    data: '{comcod:"' + comcod + '", company:"' + company + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+
+                        var data = JSON.parse(response.d);
+
+                        var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
+                        var numberrl;
+
+                        for (var i = 0; i < arrgschcodl.length; i++) {
+
+                            gcod = $(arrgschcodl[i]).text();
+                            switch (gcod) {
+
+                                case '810100101003':
+                                    numberrl = i;
+                                    break;
+
+                            }
+
+                        }
+
+
+
+                        //    ContentPlaceHolder1_gvInfo_checkboxReson_6_chzn
+
+                        var ddlProject = '#ContentPlaceHolder1_gvInfo_ddlProject_' + numberrl;
+
+                        //console.log(ddlProject);
+                        $(ddlProject).html('');
+                        $.each(data, function (key, data) {
+
+                            $(ddlProject).append("<option value='" + data.actcode + "'>" + data.actdesc + "</option>");
+                        });
+
+
+
+
+
+
+                    },
+
+
+                    failure: function (response) {
+
+                        alert("failure");
+                    }
+                });
+
+
+
+            }
+
+            catch (e) {
+
+                alert(e.message);
+
+            }
+
+
+
+        }
+
+
+
+        function funLeadReason(comcod, leadquality) {
+
+            try {
+                $.ajax({
+                    type: "POST",
+                    url: "CrmClientInfo.aspx/GetLeadReason",
+                    data: '{comcod:"' + comcod + '", leadquality:"' + leadquality + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        var data = JSON.parse(response.d);
+
+                        var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
+                        var numberrl;
+
+                        for (var i = 0; i < arrgschcodl.length; i++) {
+
+                            gcod = $(arrgschcodl[i]).text();
+                            switch (gcod) {
+
+                                case '810100101012':
+                                    numberrl = i;
+                                    break;
+                            }
+                        }
+
+                        //    ContentPlaceHolder1_gvInfo_checkboxReson_6_chzn
+                        var ddllreason = '#ContentPlaceHolder1_gvInfo_checkboxReson_' + numberrl;
+                        $(ddllreason).html('');
+                        $.each(data, function (key, data) {
+
+                            $(ddllreason).append("<option value='" + data.gcod + "'>" + data.gdesc + "</option>");
+                        });
+
+                        // console.log(data);
+                        //  funDataBind(data);                      
+
+                    },
+
+
+                    failure: function (response) {
+
+                        alert("failure");
+                    }
+                });
+
+
+
+            }
+
+            catch (e) {
+
+                alert(e.message);
+
+            }
+
+
+        }
+
+
+        function funDupAllMobile() {
+
+            try {
+
+
+                //Company Name change
+                var comcod =<%=this.GetComeCode()%>;
+                var sircode = $('#<%=this.lblnewprospect.ClientID%>').val();
+                var arrgcodl = $('#<%=this.gvPersonalInfo.ClientID %>').find('[id$="lblgvItmCodeper"]');
+                var arraygval = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:text[id$="txtgvVal"]');
+                var arryccc = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:select[id$="ddlcountryPhone"]');
+
+                console.log(sircode + "" + arrgcodl + "" + arraygval + "" + arryccc);
+               
+                var cc0 = "";
+                var cc1 = "";
+                var cc2 = "";
+                var number = "";
+                var gval;
+                //number = gval.Length > 0 ? gval + "," : "";
+                //number = number + (gval.Length > 0 ? gval + "," : "");
+                //number = number + (gval.Length > 0 ? gval + "," : "");
+                //number = number.Length > 0 ? number.Substring(0, number.Length - 1) : number;
+
+                for (var i = 0; i < arrgcodl.length; i++) {
+
+
+                    var gcod = $(arrgcodl[i]).text();
+
+                    var number;
+                    switch (gcod) {
+
+                        case '0301003':
+                            gval = $(arraygval[i]).val();
+                            cc0 = $(arryccc[i]).val();
+                            number = gval.length > 0 ? gval + "," : "";
+                            console.log(cc0);
+                            
+                            break;
+
+
+                        case '0301004':
+
+                            switch (comcod) {
+                                case '3315':
+                                case '3316':
+                                    break;
+
+                                default:
+                                    gval = $(arraygval[i]).val();
+                                    number = number + (gval.length > 0 ? gval + "," : "");
+                                    break;
+                            }
+                            break;
+
+                        case '0301005':
+                            gval = $(arraygval[i]).val();
+                            number = number + (gval.length > 0 ? gval + "," : "");
+                            break;
+                    }
+
+                }
+                alert(cc0);
+
+                number = number.length > 0 ? number.substring(0, number.length - 1) : number;
+                var objchkmob = new RealERPScript();
+                var res = objchkmob.DupAllMobile(comcod, sircode, number);
+                var jdata = JSON.parse(res);
+                if (!jdata.result) {
+
+
+                    alert(jdata.Message);
+                    return false;
+
+                }
+                else {
+
+                    return true;
+
+                }
+            }
+
+
+            catch (e) {
+                // alert(e.message);
+
+            }
+
+        }
+
+
+        
+
+
+        
+
+
+        function funDataBind(data) {
+            try {
+                var number = 0;
+                $.each(data, function (index, data) {
+
+                    var gcod = data.gcod;
+
+
+                    switch (gcod) {
+
+                        case "810100101001": //Followup Date                        
+                            var txtgvdValdis = '#ContentPlaceHolder1_gvInfo_txtgvdValdis_' + number;
+                            $(txtgvdValdis).val(data.gdesc1);
+                            $(txtgvdValdis).attr("disabled", true);
+
+                            //var dropdown
+                            var dtimehour = data.gtime;
+                            var ddlhour = '#ContentPlaceHolder1_gvInfo_ddlhour_' + number;
+                            $(ddlhour).val(dtimehour.substr(0, 2));
+                            $(ddlhour).attr("disabled", true);
+
+                            var ddlmin = '#ContentPlaceHolder1_gvInfo_ddlMmin_' + number;
+                            $(ddlmin).val(dtimehour.substr(3, 2));
+                            $(ddlmin).attr("disabled", true);
+
+                            var ddlslb = '#ContentPlaceHolder1_gvInfo_ddlslb_' + number;
+                            $(ddlslb).val(dtimehour.substr(6, 2));
+                            $(ddlslb).attr("disabled", true);
+                            break;
+
+                        case "810100101002": //New Followup
+                            var ChkBoxLstFollow = '#ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_' + number;
+                            //alert(data.gdesc1);
+                            var newfollowup = data.gdesc1;
+                            if (newfollowup.length <= 7) {
+
+
+                                $('' + ChkBoxLstFollow + '> input').each(function (index, item) {
+
+                                    if ($(item).val() == newfollowup) {
+                                        $(item).attr('checked', true);
+                                    }
+                                    else {
+
+                                        $(item).attr('checked', false);
+
+                                    }
+
+
+                                });
+
+                            }
+                            else {
+                                var ar = new Array();
+                                // alert(newfollowup);
+                                var j = 0;
+                                for (i = 0; i < newfollowup.length; i = i + 7) {
+                                    ar[j++] = newfollowup.substr(i, 7);
+                                }
+
+                                //console.log(ar);
+                                //alert(ar.length);
+
+                                for (i = 0; i < ar.length; i++) {
+
+                                    $('' + ChkBoxLstFollow + '> input').each(function (index, item) {
+                                        if ($(item).val() == ar[i]) {
+                                            $(item).attr('checked', true);
+                                        }
+                                        else {
+                                            $(item).attr('checked', false);
+
+                                        }
+
+                                    });
+
+
+                                }
+                            }
+
+                            break;
+
+
+
+                        case "810100101007": //Company
+                            console.log(data.gdesc1);
+
+                            var ddlcompany = '#ContentPlaceHolder1_gvInfo_ddlCompany_' + number;
+
+                            $(ddlcompany + ' > option').each(function (index, item) {
+                                if ($(item).val() == data.gdesc1) {
+                                    $(item).attr("selected", true);
+                                }
+
+
+                            });
+
+
+
+                            break;
+
+
+                        case "810100101003": //Project
+
+                            var ddlProject = '#ContentPlaceHolder1_gvInfo_ddlProject_' + number;
+
+
+
+                            $(ddlProject + ' > option').each(function (index, item) {
+                                if ($(item).val() == data.gdesc1) {
+                                    $(item).attr("selected", true);
+                                }
+
+
+                            });
+
+
+
+
+                            break;
+
+
+
+
+
+
+
+
+                        case "810100101019"://Follow
+
+                            var ChkBoxLstFollow = '#ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_' + number;
+                            var newfollowup = data.gdesc1;
+                            if (newfollowup.length = 7) {
+
+                                $('' + ChkBoxLstFollow + '> input').each(function (index, item) {
+                                    if ($(item).val() == newfollowup) {
+                                        $(item).attr('checked', true);
+
+                                    }
+                                    else {
+
+                                        $(item).attr('checked', false);
+
+                                    }
+
+
+                                });
+
+                            }
+                            break;
+
+
+
+
+
+                        case "810100101016": //Status
+
+
+
+                            var ChkBoxLstStatus = '#ContentPlaceHolder1_gvInfo_ChkBoxLstStatus_' + number;
+                            var status = data.gdesc1;
+                            if (status.length = 7) {
+
+                                $('' + ChkBoxLstStatus + '> input').each(function (index, item) {
+                                    if ($(item).val() == status) {
+                                        $(item).attr('checked', true);
+
+                                    }
+                                    else {
+                                        $(item).attr('checked', false);
+
+
+                                    }
+
+
+                                });
+
+                            }
+
+
+                            break;
+
+                        case "810100101018": //PARTICIPANTS  
+
+
+
+
+                            //var ddlParticipant='#ContentPlaceHolder1_gvInfo_ddlParticdis_'+number;  
+                            //var participant=data.gdesc1;
+
+
+                            //if(participant.length=12)
+                            //{ 
+
+                            //    var inci=1;
+                            //    $('#ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn .chzn-choices').html('');
+
+                            //    $(''+ddlParticipant+' > option').each(function (index,item) 
+                            //    {  
+
+
+                            //        alert($(item).text());
+                            //        if($(item).val()==participant)
+                            //        {
+
+
+
+
+                            //            $('.chzn-choices').append('<li class="search-choice" id="ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn_c_'+inci+'"><span>'+$(item).text()+'</span><a href="javascript:void(0)" class="search-choice-close" rel="'+inci+'"></a></li>')
+
+                            //            $(' .chzn-choices .chzn-results #ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn_o_'+inci-1+'').removeClass('active-result');
+                            //            $('.chzn-choices .chzn-results #ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn_o_'+inci-1+'').addClass('result-selected');
+
+                            //        }
+                            //        else{
+                            //            $('.chzn-choices .chzn-results #ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn_o_'+inci-1+'').removeClass('result-selected');
+                            //            $('.chzn-choices .chzn-results #ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn_o_'+inci-1+'').addClass('active-result');
+                            //        }
+
+                            //        inci++;
+                            //    });
+
+
+
+                            //    $('.chzn-choices').append('<li class="search-field"><input type="text" value="Choose Participant......" class="" autocomplete="off" style="width: 25px;"></li>');
+
+
+
+
+
+
+
+                            // }
+
+
+
+
+
+                            break;
+
+
+
+                        case "810100101015": //Summary
+                        case "810100101025": //Subject
+
+                            var txtgvdValdis = '#ContentPlaceHolder1_gvInfo_txtgvValdis_' + number;
+                            $(txtgvdValdis).val(data.gdesc1);
+                            break;
+
+
+                        case "810100101020": //next Followup date
+                            var txtgvdValdis = '#ContentPlaceHolder1_gvInfo_txtgvdValdis_' + number;
+                            $(txtgvdValdis).val(data.gdesc1);
+                            //var dropdown
+                            var dtimehour = data.gtime;
+                            var ddlhour = '#ContentPlaceHolder1_gvInfo_ddlhour_' + number;
+                            $(ddlhour).val(dtimehour.substr(0, 2));
+                            var ddlmin = '#ContentPlaceHolder1_gvInfo_ddlMmin_' + number;
+                            $(ddlmin).val(dtimehour.substr(3, 2));
+                            var ddlslb = '#ContentPlaceHolder1_gvInfo_ddlslb_' + number;
+                            $(ddlslb).val(dtimehour.substr(6, 2));
+
+
+                            break;
+
+
+                        default:
+
+
+                            break;
+
+                    }
+                    number++;
+
+
+                });
+            }
+
+
+
+            catch (e) {
+                alert(e.message);
+
+            }
+
+
+        }
 
     </script>
     <style>
@@ -733,6 +1397,11 @@
                                 <div id="pnlflw" runat="server" visible="false" class="card-header bg-light">
                                     <span class="font-weight-bold text-muted">
                                         <asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ID="lbtntfollowup" data-target="#followup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton></span>
+                                     <div class="col-3" runat="server" id="divexland">
+                            <div class="form-group">
+                                <asp:Label runat="server" ID="lbllandname" Font-Size="16px" class="form-control bg-danger font-weight-bold text-white margin-top30px" Visible="false"></asp:Label>
+                            </div>
+                        </div>
                                 </div>
                                 <div class="card-body" style="min-height: 380px" id="pnlfollowup" runat="server">
                                     <asp:Repeater ID="rpclientinfo" runat="server">
@@ -821,7 +1490,7 @@
                 <div class="divPnl">
                     <div class="card pnlSidebarCl">
                         <div class="modal-content">
-                            <div class="bg-light pt-2 pb-2 ml-2">
+                            <div class="modal-header bg-light pt-2 pb-2 ml-2">
                                 <div class="bg-light"><span class="font-weight-bold text-muted" style="padding:0px;">Add FollowUp</span></div>
 
                                 <asp:LinkButton ID="pnlsidebarClose" OnClick="pnlsidebarClose_Click" CssClass="btn btn-danger  btn-sm pr-2 pl-2" runat="server">&times;</asp:LinkButton>
@@ -1087,12 +1756,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-10" id="pnlEditProspect" runat="server" visible="false">
+            <div class="col-md-12" id="pnlEditProspect" runat="server" visible="false">
                 <div class="divPnl">
                     <div class="card pnlEditProspect">
                         <div class="modal-content">
-                            <div class=" pt-2 pb-2 ml-2 bg-light">
-                                <div class=" bg-light"><span class="font-weight-bold text-muted">Edit Prospect</span></div>
+                            <div class="modal-header pt-2 pb-2 ml-2 bg-light">
+                                <div class="bg-light"><span class="font-weight-bold text-muted">Edit Prospect</span></div>
 
                                 <asp:LinkButton ID="pnlEditProspectClose" OnClick="pnlEditProspectClose_Click" CssClass="btn btn-danger  btn-sm pr-2 pl-2" runat="server">&times;</asp:LinkButton>
                             </div>
@@ -1111,6 +1780,78 @@
                                                         </h4>
                                                     </div>
                                                     <div class="panel-body">
+                                                        <asp:GridView ID="gvPersonalInfo" runat="server" AutoGenerateColumns="False"
+                                                ShowFooter="True" OnRowDataBound="gvPersonalInfo_RowDataBound" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow">
+                                                <RowStyle />
+                                                <Columns>
+                                                    <asp:TemplateField HeaderText="Code" ControlStyle-CssClass="classhidden">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblgvItmCodeper" ClientIDMode="Static" runat="server"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Description">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lgcResDesc1" runat="server" Width="170px"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblgvgph" runat="server"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gph")) %>'
+                                                                Width="20px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                        <ItemStyle Font-Bold="True" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Type" Visible="False">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lgvgval" runat="server"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField>
+
+                                                        <ItemTemplate>
+                                                          
+                                                            <asp:DropDownList ID="ddlcountryPhone" runat="server" CssClass="custom-select chzn-select" Style="float: left; padding-left: 0; padding-right: 0" Visible="false"
+                                                                Width="120px" >
+                                                                <asp:ListItem Selected="True" Value="+88">+88</asp:ListItem>                                                                
+                                                            </asp:DropDownList>
+
+                                                            <asp:TextBox ID="txtgvVal" ClientIDMode="Static" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
+                                                                BorderColor="#660033" BorderStyle="None" BorderWidth="1px" OnTextChanged="txtgvVal_TextChanged1" AutoPostBack="true"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+
+                                                            <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
+                                                                BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+
+                                                            <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server"
+                                                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdVal"></cc1:CalendarExtender>
+                                                            <asp:Panel ID="Panegrd" runat="server">
+
+                                                                <div class="form-group">
+                                                                    <asp:DropDownList ID="ddlval" runat="server" OnDataBound="ddlval_DataBound" Width="300px" CssClass="custom-select chzn-select">
+                                                                    </asp:DropDownList>
+                                                                </div>
+
+
+                                                            </asp:Panel>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                                <FooterStyle CssClass="grvFooter" />
+                                                <EditRowStyle />
+                                                <AlternatingRowStyle />
+                                                <PagerStyle CssClass="gvPagination" />
+                                                <HeaderStyle CssClass="grvHeader" />
+                                            </asp:GridView>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1121,6 +1862,75 @@
                                                         </h4>
                                                     </div>
                                                     <div class="panel-body">
+                                                        <asp:GridView ID="gvSourceInfo" runat="server" AutoGenerateColumns="False"
+                                                ShowFooter="True" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow" OnRowDataBound="gvSourceInfo_RowDataBound">
+                                                <RowStyle />
+                                                <Columns>
+                                                    <asp:TemplateField HeaderText="Code" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblgvItmCode" runat="server"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Description">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lgcResDescsr" runat="server" Width="170px"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblgvgph" runat="server"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gph")) %>'
+                                                                Width="20px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                        <ItemStyle Font-Bold="True" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Type" Visible="False">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lgvgvalsr" runat="server"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField>
+
+                                                        <ItemTemplate>
+
+                                                            <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
+                                                                BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+                                                            <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
+                                                                BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+
+                                                            <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server"
+                                                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdVal"></cc1:CalendarExtender>
+                                                            <asp:Panel ID="Panegrd" runat="server">
+
+                                                                <div class="form-group mt-2">
+
+                                                                    <asp:DropDownList ID="ddlval" runat="server" Width="300px" OnSelectedIndexChanged="ddlval_SelectedIndexChanged" AutoPostBack="true" CssClass="custom-select chzn-select">
+                                                                    </asp:DropDownList>
+
+
+                                                                </div>
+
+
+                                                            </asp:Panel>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                                <FooterStyle CssClass="grvFooter" />
+                                                <EditRowStyle />
+                                                <AlternatingRowStyle />
+                                                <PagerStyle CssClass="gvPagination" />
+                                                <HeaderStyle CssClass="grvHeader" />
+                                            </asp:GridView>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1134,6 +1944,96 @@
                                                         </h4>
                                                     </div>
                                                     <div class="panel-body">
+                                                        <asp:GridView ID="gvpinfo" runat="server" AutoGenerateColumns="False" OnRowDataBound="gvpinfo_RowDataBound"
+                                                ShowFooter="True" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow">
+                                                <RowStyle />
+                                                <Columns>
+                                                    <asp:TemplateField HeaderText="Code" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblgvItmCode" runat="server"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Description">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lgcResDesc1" runat="server" Width="170px"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblgvgph" runat="server"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gph")) %>'
+                                                                Width="20px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                        <ItemStyle Font-Bold="True" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Type" Visible="False">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lgvgvalpinf" runat="server"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField>
+
+                                                        <ItemTemplate>
+
+                                                            <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
+                                                                BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+
+                                                            <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
+                                                                BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+
+                                                            <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server"
+                                                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdVal"></cc1:CalendarExtender>
+                                                            <asp:Panel ID="Panegrd" runat="server">
+
+
+
+                                                                <div class="form-group mt-2">
+
+                                                                    <asp:DropDownList ID="ddlvalcom" runat="server" Width="300px" OnSelectedIndexChanged="ddlvalcom_SelectedIndexChanged" AutoPostBack="true" CssClass="custom-select chzn-select">
+                                                                    </asp:DropDownList>
+
+
+                                                                </div>
+
+
+
+                                                                <div class="form-group mt-2">
+
+                                                                    <asp:DropDownList ID="ddlvalpros" runat="server" Width="300px" CssClass="custom-select chzn-select">
+                                                                    </asp:DropDownList>
+
+
+                                                                </div>
+
+
+                                                            </asp:Panel>
+
+
+                                                            <asp:Panel ID="pnlMullocation" runat="server" Visible="false">
+                                                                <asp:ListBox ID="lstlocation" runat="server" SelectionMode="Multiple" Style="width: 300px !important;"
+                                                                    data-placeholder="Choose Location......" multiple="true" class="form-control chosen-select"></asp:ListBox>
+
+                                                            </asp:Panel>
+
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                                <FooterStyle CssClass="grvFooter" />
+                                                <EditRowStyle />
+                                                <AlternatingRowStyle />
+                                                <PagerStyle CssClass="gvPagination" />
+                                                <HeaderStyle CssClass="grvHeader" />
+                                            </asp:GridView>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1144,6 +2044,135 @@
                                                         </h4>
                                                     </div>
                                                     <div class="panel-body" style="display: none;">
+                                                        <asp:GridView ID="gvplot" runat="server" AutoGenerateColumns="False"
+                                                ShowFooter="True" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow">
+                                                <RowStyle />
+                                                <Columns>
+
+                                                    <asp:TemplateField HeaderText="Code" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblgvItmCode" runat="server"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Description">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lgcResDescp" runat="server" Width="170px"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblgvgph" runat="server"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gph")) %>'
+                                                                Width="20px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                        <ItemStyle Font-Bold="True" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Type" Visible="False">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lgvgvalplot" runat="server"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField>
+
+                                                        <ItemTemplate>
+
+                                                            <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
+                                                                BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+
+
+
+
+                                                            <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
+                                                                BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+
+                                                            <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server"
+                                                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdVal"></cc1:CalendarExtender>
+                                                            <asp:Panel ID="Panegrd" runat="server">
+                                                                <div class="form-group">
+                                                                    <div class="col-md-12 pading5px">
+                                                                        <asp:DropDownList ID="ddlvalplot" runat="server" CssClass="ddlcountry chzn-select form-control" Width="300px" AutoPostBack="true" OnSelectedIndexChanged="ddlvalplot_SelectedIndexChanged">
+                                                                        </asp:DropDownList>
+                                                                    </div>
+                                                                </div>
+                                                            </asp:Panel>
+                                                            <asp:Panel ID="pnldist" runat="server">
+
+                                                                <div class="form-group mt-2">
+                                                                    <div class="col-md-12 pading5px">
+                                                                        <asp:DropDownList ID="ddlvald" runat="server" CssClass=" chzn-select form-control" Width="300px" TabIndex="2" AutoPostBack="true" OnSelectedIndexChanged="ddlvald_SelectedIndexChanged">
+                                                                        </asp:DropDownList>
+
+                                                                    </div>
+                                                                </div>
+                                                            </asp:Panel>
+                                                            <asp:Panel ID="pnlz" runat="server">
+
+                                                                <div class="form-group mt-2">
+                                                                    <div class="col-md-12 pading5px">
+                                                                        <asp:DropDownList ID="ddlvalz" runat="server" CssClass=" chzn-select form-control" Width="300px" AutoPostBack="true" OnSelectedIndexChanged="ddlvalz_SelectedIndexChanged">
+                                                                        </asp:DropDownList>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </asp:Panel>
+                                                            <asp:Panel ID="pnlp" runat="server">
+
+                                                                <div class="form-group mt-2">
+                                                                    <div class="col-md-12 pading5px">
+                                                                        <asp:DropDownList ID="ddlvalp" runat="server" CssClass=" chzn-select form-control" Width="300px" AutoPostBack="true" OnSelectedIndexChanged="ddlvalp_SelectedIndexChanged">
+                                                                        </asp:DropDownList>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </asp:Panel>
+                                                            <asp:Panel ID="pnla" runat="server">
+
+                                                                <div class="form-group mt-2">
+                                                                    <div class="col-md-12 pading5px">
+                                                                        <asp:DropDownList ID="ddlvala" runat="server" CssClass=" chzn-select form-control" Width="300px">
+                                                                        </asp:DropDownList>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </asp:Panel>
+                                                            <asp:Panel ID="PanelBl" runat="server">
+
+                                                                <div class="form-group mt-2">
+                                                                    <div class="col-md-12 pading5px">
+                                                                        <asp:DropDownList ID="ddlblock" runat="server" CssClass=" chzn-select form-control" Width="300px" AutoPostBack="true" OnSelectedIndexChanged="ddlblock_SelectedIndexChanged">
+                                                                        </asp:DropDownList>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </asp:Panel>
+
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                                <FooterStyle CssClass="grvFooter" />
+                                                <EditRowStyle />
+                                                <AlternatingRowStyle />
+                                                <PagerStyle CssClass="gvPagination" />
+                                                <HeaderStyle CssClass="grvHeader" />
+                                            </asp:GridView>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1156,6 +2185,129 @@
                                                         </h4>
                                                     </div>
                                                     <div class="panel-body" style="display: none;">
+                                                        <asp:GridView ID="gvbusinfo" runat="server" AutoGenerateColumns="False"
+                                                ShowFooter="True" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow">
+                                                <RowStyle />
+                                                <Columns>
+                                                    <asp:TemplateField HeaderText="Code" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblgvItmCode" runat="server"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Description">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lgcResDesc1" runat="server" Width="170px"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblgvgph" runat="server"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gph")) %>'
+                                                                Width="20px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                        <ItemStyle Font-Bold="True" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Type" Visible="False">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lgvgvalbuinf" runat="server"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField>
+
+                                                        <ItemTemplate>
+
+                                                            <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
+                                                                BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+                                                            <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent"
+                                                                BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+
+                                                            <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server" CssClass="ml-1 form-control"
+                                                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdVal"></cc1:CalendarExtender>
+                                                            <asp:Panel ID="Panegrd" runat="server">
+                                                                <div class="form-group">
+                                                                    <div class="col-md-12 pading5px">
+                                                                        <asp:DropDownList ID="ddlvalplot" runat="server" CssClass="ddlcountry chzn-select form-control" Width="300px" AutoPostBack="true" OnSelectedIndexChanged="ddlvalbusinfo_SelectedIndexChanged">
+                                                                        </asp:DropDownList>
+                                                                    </div>
+                                                                </div>
+                                                            </asp:Panel>
+                                                            <asp:Panel ID="pnldist" runat="server">
+
+                                                                <div class="form-group mt-2">
+                                                                    <div class="col-md-12 pading5px">
+                                                                        <asp:DropDownList ID="ddlvald" runat="server" CssClass=" chzn-select form-control" Width="300px" TabIndex="2" AutoPostBack="true" OnSelectedIndexChanged="ddlvaldbusinfo_SelectedIndexChanged">
+                                                                        </asp:DropDownList>
+
+                                                                    </div>
+                                                                </div>
+                                                            </asp:Panel>
+                                                            <asp:Panel ID="pnlz" runat="server">
+
+                                                                <div class="form-group mt-2">
+                                                                    <div class="col-md-12 pading5px">
+                                                                        <asp:DropDownList ID="ddlvalz" runat="server" CssClass=" chzn-select form-control" Width="300px" AutoPostBack="true" OnSelectedIndexChanged="ddlvalzbusinfo_SelectedIndexChanged">
+                                                                        </asp:DropDownList>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </asp:Panel>
+                                                            <asp:Panel ID="pnlp" runat="server">
+
+                                                                <div class="form-group mt-2">
+                                                                    <div class="col-md-12 pading5px">
+                                                                        <asp:DropDownList ID="ddlvalp" runat="server" CssClass=" chzn-select form-control" Width="300px" AutoPostBack="true" OnSelectedIndexChanged="ddlvalpbusinfo_SelectedIndexChanged">
+                                                                        </asp:DropDownList>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </asp:Panel>
+                                                            <asp:Panel ID="pnla" runat="server">
+
+                                                                <div class="form-group mt-2">
+                                                                    <div class="col-md-12 pading5px">
+                                                                        <asp:DropDownList ID="ddlvala" runat="server" CssClass=" chzn-select form-control" Width="300px">
+                                                                        </asp:DropDownList>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </asp:Panel>
+                                                            <asp:Panel ID="PanelBl" runat="server">
+
+                                                                <div class="form-group mt-2">
+                                                                    <div class="col-md-12 pading5px">
+                                                                        <asp:DropDownList ID="ddlblock" runat="server" CssClass=" chzn-select form-control" Width="300px" AutoPostBack="true" OnSelectedIndexChanged="ddlblockbusinfo_SelectedIndexChanged">
+                                                                        </asp:DropDownList>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </asp:Panel>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                                <FooterStyle CssClass="grvFooter" />
+                                                <EditRowStyle />
+                                                <AlternatingRowStyle />
+                                                <PagerStyle CssClass="gvPagination" />
+                                                <HeaderStyle CssClass="grvHeader" />
+                                            </asp:GridView>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1166,6 +2318,75 @@
                                                         </h4>
                                                     </div>
                                                     <div class="panel-body" style="display: none;">
+                                                        <asp:GridView ID="gvMoreInfo" runat="server" AutoGenerateColumns="False"
+                                                ShowFooter="True" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow">
+                                                <RowStyle />
+                                                <Columns>
+                                                    <asp:TemplateField HeaderText="Code" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblgvItmCode" runat="server"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Description">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lgcResDesc1" runat="server" Width="170px"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblgvgph" runat="server"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gph")) %>'
+                                                                Width="20px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                        <ItemStyle Font-Bold="True" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Type" Visible="False">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lgvgvalminfo" runat="server"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField>
+
+                                                        <ItemTemplate>
+
+                                                            <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
+                                                                BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+                                                            <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
+                                                                BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+
+                                                            <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server"
+                                                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdVal"></cc1:CalendarExtender>
+                                                            <asp:Panel ID="Panegrd" runat="server">
+
+                                                                <div class="form-group mt-2">
+
+                                                                    <asp:DropDownList ID="ddlval" runat="server" Width="300px" CssClass="custom-select chzn-select">
+                                                                    </asp:DropDownList>
+
+
+                                                                </div>
+
+
+                                                            </asp:Panel>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                                <FooterStyle CssClass="grvFooter" />
+                                                <EditRowStyle />
+                                                <AlternatingRowStyle />
+                                                <PagerStyle CssClass="gvPagination" />
+                                                <HeaderStyle CssClass="grvHeader" />
+                                            </asp:GridView>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1173,17 +2394,79 @@
 
                                         <div class="row mb-2 btnsavefix">
 
-                                            <div class="w-100">
-                                                <%--//OnClientClick="javascript:return funDupAllMobile();"--%> <%--Req by Emdad by for new add country code 20221023--%>
-                                                <asp:LinkButton ID="lnkUpdate" runat="server"
-                                                    CssClass="btn btn-primary">Save</asp:LinkButton>
-                                            </div>
+                                <div class="w-100">
+                                    <%--//OnClientClick="javascript:return funDupAllMobile();"--%> <%--Req by Emdad by for new add country code 20221023--%>
+                                    <asp:LinkButton ID="lnkUpdate" runat="server" 
+                                        CssClass="btn btn-primary" OnClick="lnkUpdate_Click">Save</asp:LinkButton>
+                                </div>
 
-                                        </div>
+                            </div>
                                     </asp:View>
 
                                 </asp:MultiView>
+                                <div class="modal" tabindex="-1" role="dialog" id="modalassure">
+                        <div class="modal-dialog " role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Lead</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row mt-3">
 
+                                        <div class="col-md-4">
+                                            <label class="control-label">Date:</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <asp:TextBox ID="txtentrydate" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtentrydate"></cc1:CalendarExtender>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-4">
+                                            <label class="control-label">Client Name:</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <asp:TextBox ID="txtentryClient" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-4">
+                                            <label class="control-label">Mobile Number:</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <asp:TextBox ID="txtentrymobile" runat="server" CssClass="form-control" TextMode="Number"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-4 ">
+                                            <label class="control-label">Email:</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <asp:TextBox ID="txtentryemail" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-4">
+                                            <label class="control-label">Source:</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddlgval" runat="server" CssClass="custom-select chzn-select" TabIndex="2">
+                                            </asp:DropDownList>
+                                        </div>
+                                        <asp:Label runat="server" ID="txtentryEmpID" Visible="true"></asp:Label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <asp:LinkButton ID="lnkSaveModalEntry" Style="float: right; margin-right: 10px;" runat="server" class="btn btn-success" OnClientClick="CloseAssureModal();" OnClick="lnkSaveModalEntry_Click">Save</asp:LinkButton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                             </div>
 
                         </div>
