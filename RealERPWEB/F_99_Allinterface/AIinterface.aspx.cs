@@ -704,7 +704,7 @@ namespace RealERPWEB.F_99_Allinterface
             this.GetProjectDetails();
             this.GetCustomerList();
           
-            this.GetLastid();
+           // this.GetLastid();
        
             this.LoadGrid();
             this.IsClearAddProject();
@@ -764,10 +764,11 @@ namespace RealERPWEB.F_99_Allinterface
             string sircode = "";
 
             string comcod = this.GetCompCode();
-            string calltype = (code == "" ? "GETLASTPRJCODEID" : "GETLASTPRJCODESOWID"  );
+            string orderType = this.ddlPrjtype.SelectedValue.ToString();
+
+
+            string calltype =(orderType == "80101" ? "GETLASTPRJCODEID" : "GETLASTPRJCODESOWID");// (code == "" ? "GETLASTPRJCODEID" : "GETLASTPRJCODESOWID"  );
             DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", calltype, "", "", "", "", "", "");
-
-
             if (ds1 == null)
                 return sircode;
             sircode = ds1.Tables[0].Rows[0]["sircode"].ToString();
@@ -1139,6 +1140,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //    string ordertype = "";
                 string sircode = "";
                 sircode = prjcode.Length > 0 ? prjcode : this.GetLastid();
+                 //sircode = prjcode.Length > 0 ? prjcode :"";
 
                 for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
                 {
