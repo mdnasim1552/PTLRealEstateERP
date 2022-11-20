@@ -978,6 +978,9 @@ namespace RealEntity.C_17_Acc
             public string rleb2 { get; set; }
             public string pleb2 { get; set; }
             public string grppaydesc { get; set; }
+            public string grprpdesc { get; set; }    
+
+
             public PWRPDetails() { }
         }
 

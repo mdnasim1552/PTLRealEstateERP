@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>824215a4-c6b8-425f-9403-4fb66131ace6</rd:DataSourceID>
+      <rd:DataSourceID>636fc072-90f3-4c68-b7e2-e27b01d79f66</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -47,6 +47,10 @@
         </Field>
         <Field Name="opnam">
           <DataField>opnam</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="payamt">
+          <DataField>payamt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="rescode">
@@ -885,7 +889,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!dram.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!payamt.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
