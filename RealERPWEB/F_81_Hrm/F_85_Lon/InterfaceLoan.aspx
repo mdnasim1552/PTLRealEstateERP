@@ -662,6 +662,13 @@
                                                         <ItemStyle VerticalAlign="Middle" HorizontalAlign="center" />
 
                                                     </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="# Stepid" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblinstepid" runat="server" Text='<%#Eval("stepid")%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <ItemStyle VerticalAlign="Middle" HorizontalAlign="center" />
+
+                                                    </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Per </br> Installment">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblperinstlamt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "perinstlamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="80px"></asp:Label>
@@ -686,7 +693,7 @@
                                                         <ItemTemplate>
                                                             <div class="btn-group">
                                                                 <asp:LinkButton ID="pendlnView" OnClick="pendlnView_Click" CssClass="" runat="server" ToolTip="View Loan"><i class="fa fa-eye"></i></asp:LinkButton>
-                                                                <asp:LinkButton ID="confmDelModal" OnClick="confmDelModal_Click" runat="server"  ><i class="fa fa-trash"></i></asp:LinkButton>
+                                                                <asp:LinkButton ID="confmDelModal" OnClick="confmDelModal_Click" Visible='<%# Convert.ToString( Eval("stepid"))=="2" ? true : false %>' runat="server"  ><i class="fa fa-trash"></i></asp:LinkButton>
 
                                                             </div>
                                                         </ItemTemplate>
