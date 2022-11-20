@@ -184,7 +184,7 @@
         body {
             font-family: "Century Gothic";
         }
-
+        
 
         .panel {
             margin-bottom: 20px;
@@ -658,7 +658,7 @@
 
                         <div class="col-md-4">
                             <div class="card">
-                                <div class="card-header bg-light"><span class="font-weight-bold text-muted">Employee Information</span></div>
+                                <div class="pt-2 pb-2 m-2 bg-light"><span class="font-weight-bold text-muted">Employee Information</span></div>
                                 <asp:LinkButton ID="lnkEdit" runat="server" Font-Bold="True" Height="12px" Style="text-align: right" ToolTip="Edit Client Info" Text="Edit" OnClick="lnkEdit_Click"> <span class=" fa   fa-edit"></span></asp:LinkButton>
                                 <div class="card-body" runat="server" id="engst">
                                     <img src="~/../../../Upload/UserImages/3365001.png" style="display: block; margin-left: auto; margin-right: auto; width: 30%;" alt="User Image">
@@ -729,7 +729,7 @@
                         <div class="col-md-8">
                             <div class="card mb-3">
 
-                                <div class="card-header bg-light"><span class="font-weight-bold text-muted">FollowUp Summary</span></div>
+                                <div class="pb-2 pt-2 ml-2 bg-light"><span class="font-weight-bold text-muted">FollowUp Summary</span></div>
                                 <div id="pnlflw" runat="server" visible="false" class="card-header bg-light">
                                     <span class="font-weight-bold text-muted">
                                         <asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ID="lbtntfollowup" data-target="#followup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton></span>
@@ -821,8 +821,8 @@
                 <div class="divPnl">
                     <div class="card pnlSidebarCl">
                         <div class="modal-content">
-                            <div class="modal-header pt-0 pb-0 bg-light">
-                                <div class="card-header bg-light"><span class="font-weight-bold text-muted">Add FollowUp</span></div>
+                            <div class="bg-light pt-2 pb-2 ml-2">
+                                <div class="bg-light"><span class="font-weight-bold text-muted" style="padding:0px;">Add FollowUp</span></div>
 
                                 <asp:LinkButton ID="pnlsidebarClose" OnClick="pnlsidebarClose_Click" CssClass="btn btn-danger  btn-sm pr-2 pl-2" runat="server">&times;</asp:LinkButton>
                             </div>
@@ -1091,8 +1091,8 @@
                 <div class="divPnl">
                     <div class="card pnlEditProspect">
                         <div class="modal-content">
-                            <div class="modal-header pt-0 pb-0 bg-light">
-                                <div class="card-header bg-light"><span class="font-weight-bold text-muted">Edit Prospect</span></div>
+                            <div class=" pt-2 pb-2 ml-2 bg-light">
+                                <div class=" bg-light"><span class="font-weight-bold text-muted">Edit Prospect</span></div>
 
                                 <asp:LinkButton ID="pnlEditProspectClose" OnClick="pnlEditProspectClose_Click" CssClass="btn btn-danger  btn-sm pr-2 pl-2" runat="server">&times;</asp:LinkButton>
                             </div>
