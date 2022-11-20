@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>1e1d42aa-b010-4c32-85c4-5b63d79d5779</rd:DataSourceID>
+      <rd:DataSourceID>a557a208-fc76-4afa-b206-bf296d983d47</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -23,6 +23,10 @@
         </Field>
         <Field Name="grppaydesc">
           <DataField>grppaydesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="grprpdesc">
+          <DataField>grprpdesc</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="payam">
@@ -331,10 +335,11 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!recpdesc.Value</Value>
+                                  <Value>=Fields!grprpdesc.Value+iif(Len(trim(Fields!recpdesc.Value))&gt;0,iif(Len(trim(Fields!grprpdesc.Value))&gt;0,System.Environment.NewLine,Fields!recpdesc.Value),"")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
+                                    <FontWeight>=IIF( Fields!recpcode.Value="AAAAAAAAAAAA" or Fields!recpcode.Value="BBBBAAAAAAAA", "Bold","Default")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -403,10 +408,11 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!paydesc.Value</Value>
+                                  <Value>=Fields!grppaydesc.Value+iif(Len(trim(Fields!paydesc.Value))&gt;0,iif(Len(trim(Fields!grppaydesc.Value))&gt;0,System.Environment.NewLine,Fields!paydesc.Value),"")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
+                                    <FontWeight>=IIF( Fields!paycode.Value="AAAAAAAAAAAA" or Fields!paycode.Value="BBBBAAAAAAAA","Bold","Default")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
