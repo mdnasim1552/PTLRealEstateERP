@@ -535,7 +535,7 @@
                 switch (comcod) {
 
 
-                    //case 3101:   //ASIT
+                   
                     case 1103:   //Tanvir
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();
                         $(".tbMenuWrp table tr td:nth-child(3)").hide();
@@ -556,7 +556,7 @@
 
 
                     case 3370://CPDL
-                    //case 3101://
+                    case 3101://
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
