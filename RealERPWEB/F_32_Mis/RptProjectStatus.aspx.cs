@@ -197,13 +197,41 @@ namespace RealERPWEB.F_32_Mis
             }
             return callType;
         }
+
+
+        private string CallType()
+        {
+            string comcod = this.GetComeCode();
+            string calltype = "";
+            switch (comcod)
+            {
+                case "2305":
+                case "3305":
+                case "3306":
+                case "3309":
+                case "3310":
+                case "3311":
+                    calltype = "RPTPROJECTSTATUSRUPAYAN";
+                    break;
+                default:
+                    calltype = "RPTPROJECTSTATUS";
+                    break;
+            }
+            return calltype;
+        }
+
+
+
+
+
+
         private void ShowPrjStatus()
         {
             Session.Remove("tbPrjStatus");
             string comcod = this.GetComeCode();
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string consolidate = (this.chkconsolidate.Checked) ? "consolidate" : "";
-            string calltype = this.PrjCallType();
+            string calltype = this.CallType();
             DataSet ds1 = prjData.GetTransInfo(comcod, "SP_REPORT_PROJECT_STATUS", "RPTPROJECTSTATUS", frmdate, consolidate, "", "", "", "", "", "", "");
             if (ds1 == null)
             {

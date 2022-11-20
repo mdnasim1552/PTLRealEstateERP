@@ -257,7 +257,9 @@ namespace RealERPRDLC
         private static LocalReport RptBookingApp2(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
 
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales_02.RptCustApp>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales_02.RptCustBookApp2>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_22_Sal.EClassSales_02.RptNomineeBookApp2>)RptDataSet2));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet3", (List<RealEntity.C_22_Sal.EClassSales_02.RptNominatedBookApp2>)UserDataset));
             return Rpt1a;
         }
         
