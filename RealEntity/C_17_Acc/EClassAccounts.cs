@@ -1280,6 +1280,7 @@ namespace RealEntity.C_17_Acc
             public string grp { get; set; }
             public double opnam { get; set; }
             public double sdamt { get; set; }
+            public double payamt { get; set; }
             public double taxamt { get; set; }
             public double vatamt { get; set; }
             public double netbillamt { get; set; }
