@@ -349,6 +349,7 @@
                 <asp:ScriptReference Path="~/Scripts/highchartexporting.js" />                   
                 <asp:ScriptReference Path="~/tinymce/tinymce.min.js" />   
                <asp:ScriptReference Path="~/Scripts/select2.min.js" />
+               <asp:ScriptReference Path="~/Scripts/jquery.keynavigation.js" />
                 --%>
             </Scripts>
 

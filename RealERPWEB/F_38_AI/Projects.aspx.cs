@@ -331,7 +331,7 @@ namespace RealERPWEB.F_38_AI
                 double doneqc = Convert.ToDouble("0" + this.lblDoneQC.Text.ToString());
                 double doneqa = Convert.ToDouble("0" + this.lblDoneQA.Text.ToString());
 
-                if (roletype == "95001" && pedingannotor < assignqty )
+                if (roletype == "95001" && pedingannotor < assignqty && pedingannotor!=0)
                 {
 
 
@@ -343,14 +343,14 @@ namespace RealERPWEB.F_38_AI
                 }
                 else if (roletype == "95002" && doneannotor < assignqty )
                 {
-                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then PendingAnnotator  " + pedingqc.ToString();
+                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneannotor  " + doneannotor.ToString();
                     this.txtquantity.Focus();
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
                 }
                 else if (roletype == "95003" && doneqc < assignqty )
                 {
-                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then PendingAnnotator  " + pedingqar.ToString();
+                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneqc  " + doneqc.ToString();
                     this.txtquantity.Focus();
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);

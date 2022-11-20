@@ -1648,7 +1648,7 @@ namespace RealERPWEB.F_17_Acc
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("printdate", printdate));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
-            Rpt1.SetParameters(new ReportParameter("date", "From  " + Convert.ToDateTime(this.txtfrmdat2.Text).ToString("dd-MMM-yyyy") + "  To  " + Convert.ToDateTime(this.txttodat2.Text).ToString("dd-MMM-yyyy") + ")"));
+            Rpt1.SetParameters(new ReportParameter("date", "From  " + Convert.ToDateTime(this.txtfrmdat2.Text).ToString("dd-MMM-yyyy") + "  To  " + Convert.ToDateTime(this.txttodat2.Text).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("Rpttitle", "Project Wise Recepits & Payments Details"));
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +

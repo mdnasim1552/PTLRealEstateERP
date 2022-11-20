@@ -1930,8 +1930,9 @@ namespace RealERPWEB.F_34_Mgt
             // todo for other req checked 
             string chckid = "", checkdat = "";
             switch (comcod)
-            {
-                case "3368":
+            {  //Checked defaul all company without finlay and cpdl
+                case "3368"://Finlay
+                case "3370"://CPDL
                 case "3101":
                     chckid = "";
                     checkdat = "01-Jan-1900";

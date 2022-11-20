@@ -704,7 +704,7 @@ namespace RealERPWEB.F_99_Allinterface
             this.GetProjectDetails();
             this.GetCustomerList();
           
-            this.GetLastid();
+           // this.GetLastid();
        
             this.LoadGrid();
             this.IsClearAddProject();
@@ -764,10 +764,11 @@ namespace RealERPWEB.F_99_Allinterface
             string sircode = "";
 
             string comcod = this.GetCompCode();
-            string calltype = (code == "" ? "GETLASTPRJCODEID" : "GETLASTPRJCODESOWID"  );
+            string orderType = this.ddlPrjtype.SelectedValue.ToString();
+
+
+            string calltype =(orderType == "80101" ? "GETLASTPRJCODEID" : "GETLASTPRJCODESOWID");// (code == "" ? "GETLASTPRJCODEID" : "GETLASTPRJCODESOWID"  );
             DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", calltype, "", "", "", "", "", "");
-
-
             if (ds1 == null)
                 return sircode;
             sircode = ds1.Tables[0].Rows[0]["sircode"].ToString();
@@ -1139,6 +1140,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //    string ordertype = "";
                 string sircode = "";
                 sircode = prjcode.Length > 0 ? prjcode : this.GetLastid();
+                 //sircode = prjcode.Length > 0 ? prjcode :"";
 
                 for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
                 {
@@ -1456,11 +1458,11 @@ namespace RealERPWEB.F_99_Allinterface
                 double doneannotor = Convert.ToDouble("0" + this.lblDoneAnnot.Text.ToString());
                 double doneqc = Convert.ToDouble("0" + this.lblDoneQC.Text.ToString());
                 double doneqa = Convert.ToDouble("0" + this.lblDoneQA.Text.ToString());
-                if (roletype == "95001" && pedingannotor < assignqty )
+                if (roletype == "95001" && pedingannotor < assignqty && pedingannotor !=0)
                 {
 
 
-                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then PendingAnnotator  " + pedingannotor.ToString();
+                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then DataSet Qty  " + pedingannotor.ToString();
                     this.txtquantity.Focus();
 
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
@@ -1470,14 +1472,14 @@ namespace RealERPWEB.F_99_Allinterface
                 }
                 else if (roletype == "95002" && doneannotor < assignqty  )
                 {
-                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then PendingAnnotator  " + doneannotor.ToString();
+                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneannotor  " + doneannotor.ToString();
                     this.txtquantity.Focus();
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
                 }
                 else if (roletype == "95003" && doneqc < assignqty )
                 {
-                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then PendingAnnotator  " + doneqc.ToString();
+                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneqc  " + doneqc.ToString();
                     this.txtquantity.Focus();
 
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
