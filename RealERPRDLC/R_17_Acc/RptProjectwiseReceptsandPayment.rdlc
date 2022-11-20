@@ -339,7 +339,7 @@
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
-                                    <FontWeight>=IIF( Fields!recpcode.Value="AAAAAAAAAAAA" or Fields!recpcode.Value="BBBBAAAAAAAA", "Bold","Default")</FontWeight>
+                                    <FontWeight>=IIF(Fields!recpcode.Value="AAAAAAAAAAAA" or Fields!recpcode.Value="OP0000000000" or Fields!recpcode.Value="RP0000000000" or Fields!recpcode.Value="BBBBAAAAAAAA","Bold","Default")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -376,6 +376,7 @@
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
+                                    <FontWeight>=IIF(Fields!recpcode.Value="AAAAAAAAAAAA" or Fields!recpcode.Value="BBBBAAAAAAAA","Bold","Default")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -412,7 +413,7 @@
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
-                                    <FontWeight>=IIF( Fields!paycode.Value="AAAAAAAAAAAA" or Fields!paycode.Value="BBBBAAAAAAAA","Bold","Default")</FontWeight>
+                                    <FontWeight>=IIF(Fields!paycode.Value="AAAAAAAAAAAA" or Fields!recpcode.Value="CL0000000000" or Fields!recpcode.Value="RP0000000000" or Fields!paycode.Value="BBBBAAAAAAAA","Bold","Default")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -449,6 +450,7 @@
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
+                                    <FontWeight>=IIF(Fields!recpcode.Value="AAAAAAAAAAAA" or Fields!recpcode.Value="BBBBAAAAAAAA","Bold","Default")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
