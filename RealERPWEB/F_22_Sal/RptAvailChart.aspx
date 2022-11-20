@@ -24,6 +24,9 @@
         .table th, .table td {
             padding: 4px;
         }
+        .florHead{
+            line-height:40px;
+        }
     </style>
 
     <div class="RealProgressbar">
@@ -87,17 +90,12 @@
 
 
                 </div>
-                <div class="col-md-2">
-                    <asp:RadioButtonList ID="rbtnList" runat="server" RepeatDirection="Horizontal" Style="margin-top: 22px;" AutoPostBack="true" OnSelectedIndexChanged="rbtnList_SelectedIndexChanged">
-                        <asp:ListItem Value="0" Selected="true">Details</asp:ListItem>
-                        <asp:ListItem Value="1">Graph</asp:ListItem>
-                    </asp:RadioButtonList>
-                </div>
+               
                 <div class="col-md-4" style="margin-top: 22px;">
                     <div class="metric-badge">
                         <asp:Label ID="Label1" runat="server" CssClass="form-label" Text="Flug:"></asp:Label>
                         <span class="badge badge-lg badge-danger bg-red">Sold</span>
-                        <span class="badge badge-lg badge-success bg-blue">Unsold</span>
+                        <span class="badge badge-lg badge-success">Unsold</span>
                         <span class="badge badge-lg badge-primary bg-blue">Mgt Booking</span>
                     </div>
                 </div>

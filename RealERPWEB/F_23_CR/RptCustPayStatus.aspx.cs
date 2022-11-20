@@ -347,6 +347,31 @@ namespace RealERPWEB.F_23_CR
 
         }
 
+        private string GetComPanyOrdeMRWISE()
+        {
+
+            string comcod = this.GetComeCode();
+            string orderbymr = "";
+            switch (comcod)
+            {
+                case "3368"://Finlay
+                case "3101"://Finlay
+                    orderbymr = "orderbymr";
+                    break;
+
+                default:
+                    break;
+
+            }
+
+            return orderbymr;
+
+
+        }
+
+
+
+
         private void showClLedger()
         {
             string comcod = this.GetComeCode();
@@ -358,9 +383,10 @@ namespace RealERPWEB.F_23_CR
             string length = comcod == "3348" ? "length" : "";
             string Procedure = this.ProcedureType ();
             string reconcile = this.GetReceiptOnlyRecon();
+            string orderbymr = this.GetComPanyOrdeMRWISE();
 
 
-            DataSet ds2 = purData.GetTransInfo(comcod, Procedure, CallType, pactcode, custid, Date, length, reconcile, "", "", "", "");
+            DataSet ds2 = purData.GetTransInfo(comcod, Procedure, CallType, pactcode, custid, Date, length, reconcile, orderbymr, "", "", "");
             if (ds2 == null)
             {
                 this.gvCustLedger.DataSource = null;
