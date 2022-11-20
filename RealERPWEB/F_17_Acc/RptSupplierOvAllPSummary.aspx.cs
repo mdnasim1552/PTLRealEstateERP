@@ -166,11 +166,10 @@ namespace RealERPWEB.F_17_Acc
                 string todate = txttodate.Text.ToString();
                 string stindex = this.rbtnAtStatus.SelectedIndex.ToString();
                 string Rescode = this.ddlSuplist.SelectedValue.ToString() == "000000000000" ? "99%" : this.ddlSuplist.SelectedValue.ToString() + "%";
-                //string mRptGroup = "12";
-                //string calltype = (stindex == "0" ? "RPTALLSUPPAYMENTSTATUS" : "GETSUPLLIERANDSUBCONTRACTORSATUS");
-                //  DataSet ds2 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "RPTALLSUPPAYMENT", frmdate, todate, Rescode, mRptGroup, supplier, Rescodegrp, search, "", "");
-                //  DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETSUPLIERPAYMENTDETIAL", Rescode, frmdate, todate, "", "", "", "", "", "");
-                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETSUPLIERPAYMENTACCOUTSDETAILS", frmdate, Rescode, todate, "", "", "", "", "", "");
+                string res = this.dddSupgrp.SelectedValue.Substring(0, 4).ToString();
+                string Rescodegrp = res.Substring(2, 2).ToString() == "00" ? res.Substring(0, 2).ToString() + "%" : res + "%";
+               
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETSUPLIERPAYMENTACCOUTSDETAILS", frmdate, Rescode, todate, Rescodegrp, "", "", "", "", "");
 
 
 
