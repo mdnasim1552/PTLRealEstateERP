@@ -321,240 +321,6 @@
             }
 
         }
-
-
-
-
-
-
-        function funCompanyProject(comcod, company) {
-            try {
-                $.ajax({
-                    type: "POST",
-                    url: "CrmClientInfo.aspx/GetCompanyProject",
-                    data: '{comcod:"' + comcod + '", company:"' + company + '"}',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-
-                        var data = JSON.parse(response.d);
-
-                        var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
-                        var numberrl;
-
-                        for (var i = 0; i < arrgschcodl.length; i++) {
-
-                            gcod = $(arrgschcodl[i]).text();
-                            switch (gcod) {
-
-                                case '810100101003':
-                                    numberrl = i;
-                                    break;
-
-                            }
-
-                        }
-
-
-
-                        //    ContentPlaceHolder1_gvInfo_checkboxReson_6_chzn
-
-                        var ddlProject = '#ContentPlaceHolder1_gvInfo_ddlProject_' + numberrl;
-
-                        //console.log(ddlProject);
-                        $(ddlProject).html('');
-                        $.each(data, function (key, data) {
-
-                            $(ddlProject).append("<option value='" + data.actcode + "'>" + data.actdesc + "</option>");
-                        });
-
-
-
-
-
-
-                    },
-
-
-                    failure: function (response) {
-
-                        alert("failure");
-                    }
-                });
-
-
-
-            }
-
-            catch (e) {
-
-                alert(e.message);
-
-            }
-
-
-
-        }
-
-
-
-        function funLeadReason(comcod, leadquality) {
-
-            try {
-                $.ajax({
-                    type: "POST",
-                    url: "CrmClientInfo.aspx/GetLeadReason",
-                    data: '{comcod:"' + comcod + '", leadquality:"' + leadquality + '"}',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-                        var data = JSON.parse(response.d);
-
-                        var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
-                        var numberrl;
-
-                        for (var i = 0; i < arrgschcodl.length; i++) {
-
-                            gcod = $(arrgschcodl[i]).text();
-                            switch (gcod) {
-
-                                case '810100101012':
-                                    numberrl = i;
-                                    break;
-                            }
-                        }
-
-                        //    ContentPlaceHolder1_gvInfo_checkboxReson_6_chzn
-                        var ddllreason = '#ContentPlaceHolder1_gvInfo_checkboxReson_' + numberrl;
-                        $(ddllreason).html('');
-                        $.each(data, function (key, data) {
-
-                            $(ddllreason).append("<option value='" + data.gcod + "'>" + data.gdesc + "</option>");
-                        });
-
-                        // console.log(data);
-                        //  funDataBind(data);                      
-
-                    },
-
-
-                    failure: function (response) {
-
-                        alert("failure");
-                    }
-                });
-
-
-
-            }
-
-            catch (e) {
-
-                alert(e.message);
-
-            }
-
-
-        }
-
-
-        function funDupAllMobile() {
-
-            try {
-
-
-                //Company Name change
-                var comcod =<%=this.GetComeCode()%>;
-                var sircode = $('#<%=this.lblnewprospect.ClientID%>').val();
-                var arrgcodl = $('#<%=this.gvPersonalInfo.ClientID %>').find('[id$="lblgvItmCodeper"]');
-                var arraygval = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:text[id$="txtgvVal"]');
-                var arryccc = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:select[id$="ddlcountryPhone"]');
-
-                console.log(sircode + "" + arrgcodl + "" + arraygval + "" + arryccc);
-
-                var cc0 = "";
-                var cc1 = "";
-                var cc2 = "";
-                var number = "";
-                var gval;
-                //number = gval.Length > 0 ? gval + "," : "";
-                //number = number + (gval.Length > 0 ? gval + "," : "");
-                //number = number + (gval.Length > 0 ? gval + "," : "");
-                //number = number.Length > 0 ? number.Substring(0, number.Length - 1) : number;
-
-                for (var i = 0; i < arrgcodl.length; i++) {
-
-
-                    var gcod = $(arrgcodl[i]).text();
-
-                    var number;
-                    switch (gcod) {
-
-                        case '0301003':
-                            gval = $(arraygval[i]).val();
-                            cc0 = $(arryccc[i]).val();
-                            number = gval.length > 0 ? gval + "," : "";
-                            console.log(cc0);
-
-                            break;
-
-
-                        case '0301004':
-
-                            switch (comcod) {
-                                case '3315':
-                                case '3316':
-                                    break;
-
-                                default:
-                                    gval = $(arraygval[i]).val();
-                                    number = number + (gval.length > 0 ? gval + "," : "");
-                                    break;
-                            }
-                            break;
-
-                        case '0301005':
-                            gval = $(arraygval[i]).val();
-                            number = number + (gval.length > 0 ? gval + "," : "");
-                            break;
-                    }
-
-                }
-                alert(cc0);
-
-                number = number.length > 0 ? number.substring(0, number.length - 1) : number;
-                var objchkmob = new RealERPScript();
-                var res = objchkmob.DupAllMobile(comcod, sircode, number);
-                var jdata = JSON.parse(res);
-                if (!jdata.result) {
-
-
-                    alert(jdata.Message);
-                    return false;
-
-                }
-                else {
-
-                    return true;
-
-                }
-            }
-
-
-            catch (e) {
-                // alert(e.message);
-
-            }
-
-        }
-
-
-
-
-
-
-
-
         function funDataBind(data) {
             try {
                 var number = 0;
@@ -842,6 +608,293 @@
 
 
         }
+        function funReschedule(cdate, number) {
+            try {
+
+
+                //var  comdate =$('#txtcomdate'+number).val();
+                var comcod =<%=this.GetComeCode()%>;
+                var empid =<%=this.GetEmpID()%>;
+                var proscod = $('#<%=this.lblproscod.ClientID%>').val();
+
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "AdvancedSearchFilter.aspx/GetReschedule",
+                    data: '{comcod:"' + comcod + '", empid:"' + empid + '",  proscod: "' + proscod + '", cdate:"' + cdate + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+
+
+                    success: function (response) {
+                        
+                        var data = JSON.parse(response.d);
+                        funDataBind(data);
+                        console.log(data);
+                        //var date=data[0].gdesc1;
+                        //alert(date);
+                        
+                        $('#ContentPlaceHolder1_rpclientinfo_lbtntfollowupf_0').find('a').trigger('click');
+                        alert('nazmul');
+
+
+                    },
+
+
+                    failure: function (response) {
+
+                        alert("failure");
+                    }
+                });
+
+
+
+            }
+
+            catch (e) {
+
+                alert(e.message);
+
+            }
+
+
+
+
+        }
+
+
+
+
+        function funCompanyProject(comcod, company) {
+            try {
+                $.ajax({
+                    type: "POST",
+                    url: "CrmClientInfo.aspx/GetCompanyProject",
+                    data: '{comcod:"' + comcod + '", company:"' + company + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+
+                        var data = JSON.parse(response.d);
+
+                        var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
+                        var numberrl;
+
+                        for (var i = 0; i < arrgschcodl.length; i++) {
+
+                            gcod = $(arrgschcodl[i]).text();
+                            switch (gcod) {
+
+                                case '810100101003':
+                                    numberrl = i;
+                                    break;
+
+                            }
+
+                        }
+
+
+
+                        //    ContentPlaceHolder1_gvInfo_checkboxReson_6_chzn
+
+                        var ddlProject = '#ContentPlaceHolder1_gvInfo_ddlProject_' + numberrl;
+
+                        //console.log(ddlProject);
+                        $(ddlProject).html('');
+                        $.each(data, function (key, data) {
+
+                            $(ddlProject).append("<option value='" + data.actcode + "'>" + data.actdesc + "</option>");
+                        });
+
+
+
+
+
+
+                    },
+
+
+                    failure: function (response) {
+
+                        alert("failure");
+                    }
+                });
+
+
+
+            }
+
+            catch (e) {
+
+                alert(e.message);
+
+            }
+
+
+
+        }
+
+
+
+        function funLeadReason(comcod, leadquality) {
+
+            try {
+                $.ajax({
+                    type: "POST",
+                    url: "CrmClientInfo.aspx/GetLeadReason",
+                    data: '{comcod:"' + comcod + '", leadquality:"' + leadquality + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        var data = JSON.parse(response.d);
+
+                        var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
+                        var numberrl;
+
+                        for (var i = 0; i < arrgschcodl.length; i++) {
+
+                            gcod = $(arrgschcodl[i]).text();
+                            switch (gcod) {
+
+                                case '810100101012':
+                                    numberrl = i;
+                                    break;
+                            }
+                        }
+
+                        //    ContentPlaceHolder1_gvInfo_checkboxReson_6_chzn
+                        var ddllreason = '#ContentPlaceHolder1_gvInfo_checkboxReson_' + numberrl;
+                        $(ddllreason).html('');
+                        $.each(data, function (key, data) {
+
+                            $(ddllreason).append("<option value='" + data.gcod + "'>" + data.gdesc + "</option>");
+                        });
+
+                        // console.log(data);
+                        //  funDataBind(data);                      
+
+                    },
+
+
+                    failure: function (response) {
+
+                        alert("failure");
+                    }
+                });
+
+
+
+            }
+
+            catch (e) {
+
+                alert(e.message);
+
+            }
+
+
+        }
+
+
+        function funDupAllMobile() {
+
+            try {
+
+
+                //Company Name change
+                var comcod =<%=this.GetComeCode()%>;
+                var sircode = $('#<%=this.lblnewprospect.ClientID%>').val();
+                var arrgcodl = $('#<%=this.gvPersonalInfo.ClientID %>').find('[id$="lblgvItmCodeper"]');
+                var arraygval = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:text[id$="txtgvVal"]');
+                var arryccc = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:select[id$="ddlcountryPhone"]');
+
+                console.log(sircode + "" + arrgcodl + "" + arraygval + "" + arryccc);
+
+                var cc0 = "";
+                var cc1 = "";
+                var cc2 = "";
+                var number = "";
+                var gval;
+                //number = gval.Length > 0 ? gval + "," : "";
+                //number = number + (gval.Length > 0 ? gval + "," : "");
+                //number = number + (gval.Length > 0 ? gval + "," : "");
+                //number = number.Length > 0 ? number.Substring(0, number.Length - 1) : number;
+
+                for (var i = 0; i < arrgcodl.length; i++) {
+
+
+                    var gcod = $(arrgcodl[i]).text();
+
+                    var number;
+                    switch (gcod) {
+
+                        case '0301003':
+                            gval = $(arraygval[i]).val();
+                            cc0 = $(arryccc[i]).val();
+                            number = gval.length > 0 ? gval + "," : "";
+                            console.log(cc0);
+
+                            break;
+
+
+                        case '0301004':
+
+                            switch (comcod) {
+                                case '3315':
+                                case '3316':
+                                    break;
+
+                                default:
+                                    gval = $(arraygval[i]).val();
+                                    number = number + (gval.length > 0 ? gval + "," : "");
+                                    break;
+                            }
+                            break;
+
+                        case '0301005':
+                            gval = $(arraygval[i]).val();
+                            number = number + (gval.length > 0 ? gval + "," : "");
+                            break;
+                    }
+
+                }
+                alert(cc0);
+
+                number = number.length > 0 ? number.substring(0, number.length - 1) : number;
+                var objchkmob = new RealERPScript();
+                var res = objchkmob.DupAllMobile(comcod, sircode, number);
+                var jdata = JSON.parse(res);
+                if (!jdata.result) {
+
+
+                    alert(jdata.Message);
+                    return false;
+
+                }
+                else {
+
+                    return true;
+
+                }
+            }
+
+
+            catch (e) {
+                // alert(e.message);
+
+            }
+
+        }
+
+
+
+
+
+
+
+
+        
 
     </script>
     <style>
@@ -1311,7 +1364,7 @@
                         <div class="col-md-2">
                         </div>
                         <div class="col-md-2">
-                            <asp:LinkButton ID="btnaddland" runat="server" ToolTip="Add Lead" CssClass="mt-4 btn btn-primary btn-sm mt-2 align-self-end" OnClick="btnaddland_Click">Add Lead</asp:LinkButton>
+                            <asp:LinkButton ID="btnaddland" runat="server" ToolTip="Add Lead" CssClass="mt-4 btn btn-primary btn-sm  align-self-end" style="margin-top:20px;" OnClick="btnaddland_Click">Add Lead</asp:LinkButton>
                         </div>
 
                     </div>
@@ -1348,7 +1401,7 @@
 
                                             </tr>
                                             <tr>
-                                                <td class="font-weight-bold ">Contact Person</td>
+                                                <td class="font-weight-bold ">Prospect Name</td>
                                                 <td>
                                                     <asp:Label ID="lblconper" runat="server"></asp:Label>
                                                 </td>
@@ -1379,7 +1432,7 @@
                                                 <td>
                                                     <asp:Label ID="lblstatus" runat="server"></asp:Label>
                                                     <td id="pnlretrive" runat="server" visible="false">
-                                                        <asp:LinkButton ID="lnkbtnRetreive" runat="server" Font-Bold="True" Height="12px" ToolTip="Retreive Prospect" Style="text-align: right" OnClientClick="javascript:return  FunConfirm()" Text="Do You Want to Retreive Prospect?" OnClick="lnkbtnRetreive_Click"><span><i class="fa fa-undo" Style="text-align: center"></i></span></asp:LinkButton>
+                                                        <asp:LinkButton ID="lnkbtnRetreive" runat="server" Font-Bold="True" Height="12px" ToolTip="Retreive Prospect" Style="text-align: right" OnClientClick="javascript:return  confirm('Do You Want to Retreive Prospect?');" Text="" OnClick="lnkbtnRetreive_Click"><span><i class="fa fa-undo" Style="text-align: center"></i></span></asp:LinkButton>
                                                     </td>
                                                 </td>
 
@@ -1387,7 +1440,7 @@
                                             <tr>
                                                 <td></td>
 
-                                                <td>
+                                                <td id="pnledit" runat="server" visible="false">
 
                                                     <asp:LinkButton ID="lnkEdit" runat="server" Height="22px" class="btn btn-xs  text-center" Font-Bold="True" ToolTip="Edit Client Info" Text="Edit" OnClick="lnkEdit_Click"><span class=" fa   fa-edit"></span></asp:LinkButton>
                                                 </td>
@@ -1462,8 +1515,9 @@
 
 
 
-                                                            <asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ID="lbtntfollowup" data-target="#followup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton>
-                                                            <a href="#" class="btn btn-sm btn-primary mt-2">Re-schdule</a>
+                                                            <asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ID="lbtntfollowupf" data-target="#followup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton>
+                                                       <button type="button" class="btn  btn-success btn-xs" id="lbtnreschedule" onclick="funReschedule('<%# DataBinder.Eval(Container, "DataItem.cdate").ToString()%>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString()%>')">Re-Schdule</button>
+                                                            <%--<button type="button" class="btn  btn-success btn-xs" >Re-Schdule</button>--%>
 
 
 
@@ -1506,7 +1560,7 @@
                             <div class="modal-header bg-light pt-2 pb-2 ml-2">
                                 <div class="bg-light"><span class="font-weight-bold text-muted" style="padding: 0px;">Add FollowUp</span></div>
 
-                                <asp:LinkButton ID="pnlsidebarClose" OnClick="pnlsidebarClose_Click" CssClass="btn btn-danger  btn-sm pr-2 pl-2" runat="server">&times;</asp:LinkButton>
+                                <asp:LinkButton ID="pnlsidebarClose" OnClick="pnlsidebarClose_Click" ToolTip="Close the Window" CssClass="btn btn-danger  btn-sm pr-2 pl-2" runat="server">&times;</asp:LinkButton>
                             </div>
                             <div class="modal-body" id="followup">
 
@@ -1776,7 +1830,7 @@
                             <div class="modal-header pt-2 pb-2 ml-2 bg-light">
                                 <div class="bg-light" id="lblprospect"><span class="font-weight-bold text-muted">Edit Prospect</span></div>
 
-                                <asp:LinkButton ID="pnlEditProspectClose" OnClick="pnlEditProspectClose_Click" CssClass="btn btn-danger  btn-sm pr-2 pl-2" runat="server">&times;</asp:LinkButton>
+                                <asp:LinkButton ID="pnlEditProspectClose" OnClick="pnlEditProspectClose_Click" ToolTip="Close the Window" CssClass="btn btn-danger  btn-sm pr-2 pl-2" runat="server">&times;</asp:LinkButton>
                             </div>
                             <div class="modal-body" id="followup">
 
