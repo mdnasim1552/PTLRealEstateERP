@@ -323,7 +323,6 @@ namespace RealERPWEB.F_15_DPayReg
             this.lblprintstkl.Text = "";
             string value = this.RadioButtonList1.SelectedValue.ToString();
 
-
             switch (value)
             {
                 case "0":
@@ -428,11 +427,10 @@ namespace RealERPWEB.F_15_DPayReg
                     //    this.RadioButtonList1.Items[6].Attributes.Add("class", "lblactive");
 
                     //    break;
-
-
-
             }
+
         }
+
 
         protected void grvRecm_RowDataBound(object sender, GridViewRowEventArgs e)
         {
