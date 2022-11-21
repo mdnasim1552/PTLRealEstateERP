@@ -2043,7 +2043,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string lisuno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lisuno")).ToString();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "csircode")).ToString();
-                
+                hlnkBillDetails.Enabled = mbno.Length > 0;
                 hlnbillapp.NavigateUrl = "~/F_09_PImp/PurLabIssue2?Type=BillApproval&prjcode=" + pactcode + "&genno=" + lisuno + "&sircode=" + sircode;
                 hlnkBillDetails.NavigateUrl = "~/F_09_PImp/BillingMBEntry?Type=Entry&prjcode=" + pactcode + "&genno=" + mbno + "&sircode=" + sircode;
 

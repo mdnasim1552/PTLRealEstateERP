@@ -150,6 +150,7 @@
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptSupplierOverAllPSummaryDetails.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+ListIsssuChq.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+OppPayment1.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+PWRPDetails.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+ReceptPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+SpLedger.datasource" />
@@ -175,7 +176,10 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+EClasActual.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+EClasActual01.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptAvailability.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptCustBookApp2.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptMonWiseNewSales.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptNominatedBookApp2.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptNomineeBookApp2.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptSalPaySchedules.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EnvelopModel.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+CustomerMoneyrecipt.datasource" />
