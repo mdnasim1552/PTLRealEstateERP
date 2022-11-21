@@ -616,7 +616,7 @@ namespace RealERPWEB.F_99_Allinterface
             switch (comcod)
             {
                 case "3370"://CPDL
-                //case "3101":
+                case "3101":
                     userwise = "UserWise";
                     break;
 
@@ -676,7 +676,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
 
                 case "3370"://CPDL
-              //  case "3101":
+                case "3101":
                     dv.RowFilter = ("checkbyid = ''and suserid='"+ usrid + "'");
 
                     break;
@@ -1154,6 +1154,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 case "3370":// CPDL
                 case "3368":// Finaly              
+                case "3101":// Finaly              
                     delskip = "delskip5";
                     break;
 
@@ -1584,7 +1585,7 @@ namespace RealERPWEB.F_99_Allinterface
                     switch (comcod)
                     {
                         case "3370"://CPDL
-                       // case "3101":                           
+                        case "3101":                           
                             string suserid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "suserid")).ToString();
                             if (suserid == userid)
                             {

@@ -163,8 +163,8 @@ namespace RealERPWEB.F_09_PImp
                 if (ds1 == null)
                     return;
                 this.ddlPrevOrderList.Items.Clear();
-                this.ddlPrevOrderList.DataTextField = "orderno1";
-                this.ddlPrevOrderList.DataValueField = "orderno";
+                this.ddlPrevOrderList.DataTextField = "mbno1";
+                this.ddlPrevOrderList.DataValueField = "mbno";
                 this.ddlPrevOrderList.DataSource = ds1.Tables[0];
                 this.ddlPrevOrderList.DataBind();
                 ds1.Dispose();
@@ -303,7 +303,7 @@ namespace RealERPWEB.F_09_PImp
             this.txtRefNo.Text = ds1.Tables[1].Rows[0]["mbrefno"].ToString();
 
 
-            this.txtCurOrderDate.Text = Convert.ToDateTime(ds1.Tables[2].Rows[0]["mbdat"]).ToString("dd.MM.yyyy");
+            this.txtCurOrderDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["mbdat"]).ToString("dd.MM.yyyy");
 
 
             this.gvOrderInfo_DataBind();
