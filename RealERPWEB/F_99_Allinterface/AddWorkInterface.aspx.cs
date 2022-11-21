@@ -218,14 +218,14 @@ namespace RealERPWEB.F_99_Allinterface
             string userid = hst["usrid"].ToString();
             string todate = this.txttodate.Text.Trim();
 
-            DataSet ds2 = feaData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT02_rnd", "PRINTCLIENTMODDASHEP", todate, "", "", "", "", "", "", "", "");
+            DataSet ds2 = feaData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT02", "PRINTCLIENTMODDASHEP", todate, "", "", "", "", "", "", "", "");
             if (ds2 == null)
             {
                 return;
             }
             //intial	checked	audited	approv	fappid	sappid
 
-            this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["intial"]) + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Initial</div></div></div>";
+            this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["intial"]) + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
             this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["checked"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Checked</div></div></div>";
             this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["fappid"]) + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>1st Approval</div></div></div>";
             this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading blue counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["sappid"]) + "</i></div></a><div class='circle-tile-content blue'><div class='circle-tile-description text-faded'>2nd Approval</div></div></div>";
@@ -346,9 +346,6 @@ namespace RealERPWEB.F_99_Allinterface
                 string auditid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "auditid")).ToString();
                 string approvbyid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "approvbyid")).ToString();
 
-
-
-
                 // hlnkprj.NavigateUrl = "~/F_01_LPA/PriLandProposal?Type=Report&prjcode=" + pactcode;
 
                 Label track = (Label)e.Row.FindControl("lgvtrack");
@@ -367,17 +364,8 @@ namespace RealERPWEB.F_99_Allinterface
                 {
                     track.Attributes.CssStyle.Add("color", "Green");
                 }
-
-
-
-
             }
-
-
         }
-
-
-
 
         protected void gvcltmodchk_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -416,9 +404,11 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink hlnkchk = (HyperLink)e.Row.FindControl("lnkapp");
-                string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "adno")).ToString();
+                HyperLink hlnkprintapp = (HyperLink)e.Row.FindControl("hlnkprintapp");
+                string adno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "adno")).ToString();
                 string date = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "addate")).ToString("dd-MMM-yyyy");
-                hlnkchk.NavigateUrl = "~/F_24_CC/CustMaintenanceWork?Type=Approv&Genno=" + pactcode + "&Date1=" + date;
+                hlnkchk.NavigateUrl = "~/F_24_CC/CustMaintenanceWork?Type=Approv&Genno=" + adno + "&Date1=" + date;
+                hlnkprintapp.NavigateUrl = "~/F_24_CC/CustMaintenanceWork?Type=ReqPrint&Genno=" + adno + "&Date1=" + date;
             }
         }
 
@@ -582,6 +572,8 @@ namespace RealERPWEB.F_99_Allinterface
         {
             int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string adno = ((Label)this.gvCltmodapp.Rows[Rowindex].FindControl("lbladdnoap")).Text.Trim();
+            
+            
             Hashtable hst = (Hashtable)Session["tblLogin"];
             DataTable dt = (DataTable)Session["tbladdwrk"];
             DataView dv = dt.DefaultView;
