@@ -100,8 +100,32 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
 
                 return;
             }
-            ViewState["tblgroupAttendace"] = ds.Tables[0];
-            ViewState["tblgroupAttenPersen"] = ds.Tables[1];
+            switch (comcod)
+            {
+                
+                case "3367":
+                    DataTable dt = new DataTable();
+                    DataView view = new DataView();
+                   
+                    view.Table = ds.Tables[0];
+                    view.RowFilter = "deptcode like '9401%'";
+                    dt = view.ToTable();
+                    ViewState["tblgroupAttendace"] = dt;
+
+                    DataTable dt2 = new DataTable();
+                    DataView view1 = new DataView();
+                    view1.Table = ds.Tables[1];
+                    view1.RowFilter = "deptcode like '9401%'";
+                    dt2 = view1.ToTable();
+                    ViewState["tblgroupAttenPersen"] = dt2;
+
+                    break;
+                default:
+                    ViewState["tblgroupAttendace"] = ds.Tables[0];
+                    ViewState["tblgroupAttenPersen"] = ds.Tables[1];
+                    break;
+            }
+   
             ViewState["tblattgraph"] = ds.Tables[2];
             this.Data_Bind();
         }
@@ -208,6 +232,7 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
             ViewState["tblLVatlet"] = ds1.Tables[2];
             
             DataTable dt = (DataTable)ViewState["tblgroupAttendace"];
+
             DataTable dt1 = (DataTable)ViewState["tblLVatlet"];
             DataTable dt3 = (DataTable)ViewState["tblattgraph"];
 

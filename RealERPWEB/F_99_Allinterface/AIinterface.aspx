@@ -943,8 +943,8 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="work Status">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblbatchworkstatus" runat="server" Height="16px" CssClass="badge badge-pill badge-info"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "workstatus")) %>' Width="100px"></asp:Label>
+                                                    <asp:Label ID="lblbatchworkstatus" runat="server"  CssClass="badge badge-pill badge-info"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "workstatus")) %>' ></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1457,9 +1457,9 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Job Status">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvqcjobstatus" runat="server" Height="16px" CssClass="badge badge-pill badge-info"
+                                                    <asp:Label ID="lblgvqcjobstatus" runat="server" CssClass="badge badge-pill badge-info"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus")) %>'
-                                                        Width="100px"></asp:Label>
+                                                        ></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1654,9 +1654,9 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Job Status">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvqajobstatus" runat="server" Height="16px" CssClass="badge badge-pill badge-info"
+                                                    <asp:Label ID="lblgvqajobstatus" runat="server"  CssClass="badge badge-pill badge-info"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus")) %>'
-                                                        Width="100px"></asp:Label>
+                                                        ></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1996,9 +1996,9 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Job Status">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvarjobstatus" runat="server" Height="16px" CssClass="badge badge-pill badge-info"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus")) %>'
-                                                        Width="100px"></asp:Label>
+                                                    <asp:Label ID="lblgvarjobstatus" runat="server"  CssClass="badge badge-pill badge-info"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus")) %>'>
+                                                        </asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
