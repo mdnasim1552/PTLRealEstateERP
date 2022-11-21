@@ -279,29 +279,7 @@ namespace RealERPWEB.F_21_MKT
            
 
         }
-        protected void btnqclink_Click(object sender, EventArgs e)
-         {
-            try
-            {
-
-
-                this.pnlSidebar.Visible = true; 
-                this.pnlfollowup.Visible = false;
-                this.pnlempinfo.Visible = false;
-                this.pnlflw.Visible = false;
-                this.pnlsrc.Visible = false;
-                ShowDiscussion();
-
-
-
-
-            }
-            catch (Exception exp)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
-
-            }
-        }
+        
         protected void pnlsidebarClose_Click(object sender, EventArgs e)
         {
             this.pnlSidebar.Visible = false;
@@ -4703,7 +4681,29 @@ namespace RealERPWEB.F_21_MKT
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
         }
+        protected void btnqclink_Click(object sender, EventArgs e)
+        {
+            try
+            {
 
+
+                this.pnlSidebar.Visible = true;
+                this.pnlfollowup.Visible = false;
+                this.pnlempinfo.Visible = false;
+                this.pnlflw.Visible = false;
+                this.pnlsrc.Visible = false;
+                ShowDiscussion();
+
+
+
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
         protected void lbtnReshedule_Click(object sender, EventArgs e)
         {
 
