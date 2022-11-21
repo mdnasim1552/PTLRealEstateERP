@@ -21,7 +21,7 @@ namespace RealERPWEB.F_21_MKT
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.UpdatePanel UpdatePanel1;
 
         /// <summary>
         /// UpdateProgress2 control.
@@ -30,7 +30,7 @@ namespace RealERPWEB.F_21_MKT
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdateProgress UpdateProgress2;
+        protected global::System.Web.UI.WebControls.UpdateProgress UpdateProgress2;
 
         /// <summary>
         /// pnlsrc control.
