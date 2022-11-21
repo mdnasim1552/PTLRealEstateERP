@@ -1732,6 +1732,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3502000", "3502080", "F_34_Mgt", "CodeDataTrans?", "Type=CodeTransfer", "Code Transfer Information", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502006", "F_04_Bgd", "BgdMaster?", "InputType=BgdSub", " Budget-General Approval", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502088", "F_34_Mgt", "OtherReqEntry?", "Type=OreqEntry", "Create Requisition", "Management", "False", "False", "False", "False" });
+
+
             tblObj.Rows.Add(new Object[] { "3502000", "3502089", "F_34_Mgt", "OtherReqEntry?", "Type=OreqEdit", "Other Requisition (Edit)", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502090", "F_34_Mgt", "OtherReqEntry?", "Type=OreqApproved", "Requisition First Approval(Genral Bill)", "Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "3502000", "3502091", "F_34_Mgt", "OtherReqEntry?", "Type=FirstRecom", "First Recommendation(Other Requisition)", "Management", "False", "False", "False", "False" });
@@ -1741,6 +1743,7 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "3502000", "3502094", "F_34_Mgt", "SMCodeBook", "", "SMS/Mail Template Code", "Management", "False", "False", "False", "False" });
 
+            tblObj.Rows.Add(new Object[] { "3502000", "3502096", "F_34_Mgt", "OtherReqEntry?", "Type=mgtOreqEntry", "Create Requisition(Management)", "Management", "False", "False", "False", "False" });
 
 
             tblObj.Rows.Add(new Object[] { "3502000", "3502100", "F_17_Acc", "TransectionPrint?", "Type=AccVoucher&Mod=Management", "Voucher Cancellation", "Management", "False", "False", "False", "False" }); ;
