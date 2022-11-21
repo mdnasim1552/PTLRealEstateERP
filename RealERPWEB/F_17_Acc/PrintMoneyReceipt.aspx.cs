@@ -819,7 +819,7 @@ namespace RealERPWEB.F_17_Acc
             {
                 var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
                 string currentdate = DateTime.Now.ToString("MMM dd, yyyy hh:mm tt");
-                string changetext = Paydesc== ""? "Cheque": paytype;
+                string changetext = Paydesc == "CHEQUE" ? "Cheque": Paydesc == "CASH" ? "Cash":  paytype;
                 string shortcomnam = "CPDL.";
                 string amt22 = amt1t.Replace("(", "").Replace(")", "").Trim();
                 string vounum = dtrpt.Rows[0]["vounum"].ToString();
@@ -850,7 +850,7 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("takainword", amt22.Replace("Taka", "").Replace("Only", "Taka Only")));
                     Rpt1.SetParameters(new ReportParameter("As", ((Installment == "") ? rectype : Installment)));
                     Rpt1.SetParameters(new ReportParameter("takainword1", amt1t.Replace("Taka", "").Replace("Only", "Taka Only") + " " + "AS " + ((Installment == "") ? rectype : Installment)));
-                    Rpt1.SetParameters(new ReportParameter("paytype", (Typedes=="")? "Cheque No :" + chqno : Typedes));
+                    Rpt1.SetParameters(new ReportParameter("paytype", (Paydesc== "CHEQUE")? "Cheque No :" + chqno : Paydesc));
                     Rpt1.SetParameters(new ReportParameter("chqno", chqno));
                     Rpt1.SetParameters(new ReportParameter("bank", bankname));
                     Rpt1.SetParameters(new ReportParameter("branch", branch));

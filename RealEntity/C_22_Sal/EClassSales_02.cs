@@ -468,6 +468,99 @@ namespace RealEntity.C_22_Sal
 
         }
 
+
+
+
+        [Serializable]
+        public class RptCustBookApp2
+        {
+            public string comcod { get; set; }
+            public string pactcode { get; set; }
+            public string usircode { get; set; }
+            public string appdate { get; set; }
+            public string bookamt { get; set; }
+            public string chequeno { get; set; }
+            public string bankname { get; set; }
+            public string bbranch { get; set; }
+            public string paydate { get; set; }
+            public string intavail { get; set; }
+            public string paymode { get; set; }
+            public string custimg { get; set; }
+            public string bookingType { get; set; }
+            public string clientID { get; set; }
+            public string towerNo { get; set; }
+            public string Apartmenttype { get; set; }
+            public string ttype { get; set; }
+            public string floorr { get; set; }
+            public string size { get; set; }
+            public string side { get; set; }
+            public string parkingNo { get; set; }
+            public string parkingLevel { get; set; }
+            public string locatedAt { get; set; }
+            public string moneyReceipt { get; set; }
+            public string bookingChart { get; set; }
+            public string fullname { get; set; }
+            public string spouse { get; set; }
+            public string fathername { get; set; }
+            public string mothername { get; set; }
+            public string presentaddr { get; set; }
+            public string permenentaddr { get; set; }
+            public string mobilenum { get; set; }
+            public string telephonenum { get; set; }
+            public string birthdate { get; set; }
+            public string marriageday { get; set; }
+            public string nationalid { get; set; }
+            public string tinnumber { get; set; }
+            public string mailingaddre { get; set; }
+            public string occupation { get; set; }
+            public string nationality { get; set; }
+            public string religion { get; set; }
+            public string drivlicence { get; set; }
+            public string bloodgroup { get; set; }
+            public string emailaddr { get; set; }
+            public string ClientStatus { get; set; }
+            public string namapplicant { get; set; }
+            public string relationApp { get; set; }
+            public string nationaldr { get; set; }
+            public string applicant { get; set; }
+            public string nomineinfo { get; set; }
+            public string nameofnominee1 { get; set; }
+            public string relationshipnom1 { get; set; }
+            public string custnote { get; set; }
+            public string nominenumber { get; set; }
+        }
+
+
+        [Serializable]
+        public class RptNomineeBookApp2
+        {
+            public string nomineename { get; set; }
+            public string fathersname { get; set; }
+            public string mothersname { get; set; }
+            public string presentaddr { get; set; }
+            public string permanentaddr { get; set; }
+            public string mobileno { get; set; }
+            public string telephone { get; set; }
+            public string dateofbirth { get; set; }
+            public string nationalid { get; set; }
+        }
+
+
+        [Serializable]
+        public class RptNominatedBookApp2
+        {
+            public string nomineename { get; set; }
+            public string presentaddr { get; set; }
+            public string permanentaddress { get; set; }
+            public string mobileno { get; set; }
+            public string email { get; set; }
+            public string csignature { get; set; }
+            public string relation { get; set; }
+            public string telephone { get; set; }
+        }
+
+
+
         [Serializable]
         public class Customerinf
         {
@@ -499,8 +592,6 @@ namespace RealEntity.C_22_Sal
             public double utility { get; set; }
             public double cooperative { get; set; }
             public double famt { get; set; }
-
-
 
         }
 
