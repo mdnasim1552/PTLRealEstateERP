@@ -21,8 +21,8 @@
 
                 var gridViewScroll = new GridViewScroll({
                     elementID: "gvInfo",
-                    width: 1200,
-                    height: 475,
+                    width: 1000,
+                    height:580,
                     freezeColumn: true,
                     freezeFooter: true,
                     freezeColumnCssClass: "GridViewScrollItemFreeze",
@@ -1272,7 +1272,7 @@
                 </asp:UpdateProgress>
             </div>
 
-            <div class="card mt-4 pb-4">
+            <div class="card mt-4 pb-4" runat="server" id="pnlsrc" visible="true">
                 <div class="card-body">
                     <div class="row ml-2">
 
@@ -1305,8 +1305,14 @@
 
                         <div class="col-md-1" style="margin-top: 22px">
 
-                            <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="btn btn-success" OnClick="lnkbtnOk_Click" AutoPostBack="True">Show</asp:LinkButton>
+                            <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="btn btn-success btn-sm" OnClick="lnkbtnOk_Click" AutoPostBack="True">Show</asp:LinkButton>
 
+                        </div>
+                        <div class="col-md-2">
+
+                        </div>
+                        <div class="col-md-2">
+                             <asp:LinkButton ID="btnaddland" runat="server" CssClass="mt-4 btn btn-primary btn-sm mt-2 align-self-end" OnClick="btnaddland_Click">Add Lead</asp:LinkButton>
                         </div>
 
                     </div>
@@ -1322,8 +1328,8 @@
 
                         <div class="col-md-4">
                             <div class="card">
-                                <div class="pt-2 pb-2 m-2 bg-light"><span class="font-weight-bold text-muted">Employee Information</span></div>
-                                <asp:LinkButton ID="lnkEdit" runat="server" Font-Bold="True" Height="12px" Style="text-align: right" ToolTip="Edit Client Info" Text="Edit" OnClick="lnkEdit_Click"> <span class=" fa   fa-edit"></span></asp:LinkButton>
+                                <div class="pt-2 pb-2 pl-4 bg-light"><span class="font-weight-bold text-muted">Employee Information</span></div>
+                                
                                 <div class="card-body" runat="server" id="engst">
                                     <img src="~/../../../Upload/UserImages/3365001.png" style="display: block; margin-left: auto; margin-right: auto; width: 30%;" alt="User Image">
                                     <table class="table table-striped table-hober tblEMPinfo mt-2">
@@ -1378,6 +1384,16 @@
                                                     <asp:LinkButton ID="lnkbtnRetreive" runat="server" Font-Bold="True" Height="12px" ToolTip="Retreive Prospect" Style="text-align: right" OnClientClick="javascript:return  FunConfirm()" OnClick="lnkbtnRetreive_Click"><span><i class="fa fa-undo" Style="text-align: center"></i></span></asp:LinkButton>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td>
+
+                                                </td>
+                                              
+                                                <td>
+                                                     
+                                                    <asp:LinkButton ID="lnkEdit" runat="server" Height="22px" class="btn  btn-success btn-xs  text-center"  Font-Bold="True" ToolTip="Edit Client Info"  Text="Edit" OnClick="lnkEdit_Click">Edit Prospect</span></asp:LinkButton>
+                                                </td>
+                                            </tr>
                                             <asp:HiddenField ID="lblproscod" runat="server" />
                                             <asp:HiddenField ID="lbleditempid" runat="server" />
                                             <asp:HiddenField ID="lblgeneratedate" runat="server" />
@@ -1393,7 +1409,7 @@
                         <div class="col-md-8">
                             <div class="card mb-3">
 
-                                <div class="pb-2 pt-2 ml-2 bg-light"><span class="font-weight-bold text-muted">FollowUp Summary</span></div>
+                                <div class="pb-2 pt-2 pl-5 bg-light"><span class="font-weight-bold text-muted">FollowUp Summary</span></div>
                                 <div id="pnlflw" runat="server" visible="false" class="card-header bg-light">
                                     <span class="font-weight-bold text-muted">
                                         <asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ID="lbtntfollowup" data-target="#followup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton></span>
@@ -1403,7 +1419,7 @@
                             </div>
                         </div>
                                 </div>
-                                <div class="card-body" style="min-height: 380px" id="pnlfollowup" runat="server">
+                                <div class="card-body" style="min-height: 300px" id="pnlfollowup" runat="server">
                                     <asp:Repeater ID="rpclientinfo" runat="server">
                                         <HeaderTemplate>
                                         </HeaderTemplate>
@@ -1488,7 +1504,7 @@
             </div>
             <div class="col-md-10" id="pnlSidebar" runat="server" visible="false">
                 <div class="divPnl">
-                    <div class="card pnlSidebarCl">
+                    <div class="card pnlSidebarCl mt-4">
                         <div class="modal-content">
                             <div class="modal-header bg-light pt-2 pb-2 ml-2">
                                 <div class="bg-light"><span class="font-weight-bold text-muted" style="padding:0px;">Add FollowUp</span></div>
@@ -1758,10 +1774,10 @@
             </div>
             <div class="col-md-12" id="pnlEditProspect" runat="server" visible="false">
                 <div class="divPnl">
-                    <div class="card pnlEditProspect">
+                    <div class="card pnlEditProspect mt-4">
                         <div class="modal-content">
                             <div class="modal-header pt-2 pb-2 ml-2 bg-light">
-                                <div class="bg-light"><span class="font-weight-bold text-muted">Edit Prospect</span></div>
+                                <div class="bg-light" id="lblprospect"><span class="font-weight-bold text-muted">Edit Prospect</span></div>
 
                                 <asp:LinkButton ID="pnlEditProspectClose" OnClick="pnlEditProspectClose_Click" CssClass="btn btn-danger  btn-sm pr-2 pl-2" runat="server">&times;</asp:LinkButton>
                             </div>

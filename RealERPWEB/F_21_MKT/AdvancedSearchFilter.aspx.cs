@@ -102,7 +102,7 @@ namespace RealERPWEB.F_21_MKT
                     {
 
                         this.pnlflw.Visible = true;
-                        this.pnlfollowup.Visible = false;
+                       
                     }
                     else
                     {
@@ -276,6 +276,7 @@ namespace RealERPWEB.F_21_MKT
                 this.pnlfollowup.Visible = false;
                 this.pnlempinfo.Visible = false;
                 this.pnlflw.Visible = false;
+                this.pnlsrc.Visible = false;
                 ShowDiscussion();
 
 
@@ -293,7 +294,10 @@ namespace RealERPWEB.F_21_MKT
             this.pnlSidebar.Visible = false;
             this.pnlfollowup.Visible = true;
             this.pnlempinfo.Visible = true;
-            
+            this.pnlsrc.Visible = true;
+            this.lbllandname.Visible = true;
+            this.lnkbtnOk_Click(null, null);
+
         }
         private void ShowDiscussion()
         {
@@ -1326,7 +1330,11 @@ namespace RealERPWEB.F_21_MKT
             this.pnlEditProspect.Visible = false;
             this.pnlfollowup.Visible = true;
             this.pnlempinfo.Visible = true;
-            this.lnkbtnOk_Click(null, null);
+            this.pnlsrc.Visible = true;
+           
+            this.lbllandname.Visible = false;
+           
+            Response.Redirect(Request.Url.ToString());
         }
         protected void lnkEdit_Click(object sender, EventArgs e)
         {
@@ -1334,6 +1342,7 @@ namespace RealERPWEB.F_21_MKT
             this.pnlfollowup.Visible = false;
             this.pnlempinfo.Visible = false;
             this.pnlflw.Visible = false;
+            this.pnlsrc.Visible = false;
             DataTable dt2 = (DataTable)ViewState["tblfollow"];
 
             if(dt2 == null)
@@ -1358,7 +1367,7 @@ namespace RealERPWEB.F_21_MKT
             string Message = "Edit Client Form";
 
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
-
+            ViewState["tblfollow"] = null;
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string events = hst["events"].ToString();
             if (Convert.ToBoolean(events) == true)
@@ -1369,8 +1378,7 @@ namespace RealERPWEB.F_21_MKT
 
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
-
-
+               
             }
 
         }
@@ -4514,7 +4522,7 @@ namespace RealERPWEB.F_21_MKT
             //if (this.lbllandname.Visible == true)
             //{
             //lbllandname.Visible = false;
-            if (this.lbllandname.Visible == false)
+            if (this.lbllandname.Visible == true)
             {
                 // Check Duplicate
                 DataSet ds2 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_CODEBOOK_NEW", "CHECKEDDUPUCLIENT", number, "", "", "", "", "", "", "", "");
@@ -4604,6 +4612,82 @@ namespace RealERPWEB.F_21_MKT
 
 
             //this.MultiView1.ActiveViewIndex = 0;
+        }
+        protected void btnaddland_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.pnlEditProspect.Visible = true;
+                this.pnlfollowup.Visible = false;
+                this.pnlempinfo.Visible = false;
+                this.pnlflw.Visible = false;
+                this.pnlsrc.Visible = false;
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string empid = hst["empid"].ToString();
+                string usrid = hst["usrid"].ToString();
+                string userrole = hst["userrole"].ToString();
+                if (empid == "" && userrole != "1")
+                {
+                    string Messaged = "User ID did not set Employee ID, please contact your supervisor";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                    return;
+                }
+
+                GetData();
+                this.lbllandname.Text = "";
+                if (btnaddland.Text == "Add Lead")
+                {
+                    string comcod = this.GetComeCode();
+                 
+                    this.MultiView1.ActiveViewIndex = 0;
+
+                    ShowPersonalInfo();
+                    ShowSourceInfo();
+                    Showpinfo();
+                    ShowhomeInfo();
+                    Showbusinfo();
+                    ShowMoreInfo();
+                    
+
+                    string Message = "Add Client Form";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
+
+
+                    this.lblnewprospect.Value = "";
+
+
+                    string events = hst["events"].ToString();
+                    if (Convert.ToBoolean(events) == true)
+                    {
+                        string eventtype = "Add Lead (Sales CRM)";
+                        string eventdesc = "Add Lead (Sales CRM)";
+                        string eventdesc2 = "";
+                        bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+
+                    }
+                    this.lnkbtnOk_Click(null, null);
+                    
+
+                    //  }
+                }
+                else
+                {
+                    btnaddland.Text = "Add Lead";
+                   
+                    lbllandname.Visible = false;
+                    ViewState["existclientcode"] = null;
+                    this.MultiView1.ActiveViewIndex = 1;
+                    this.lnkbtnOk_Click(null, null);
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
         }
     }
 }

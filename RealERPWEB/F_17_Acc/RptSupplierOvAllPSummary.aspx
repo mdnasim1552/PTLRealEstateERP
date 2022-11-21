@@ -434,7 +434,7 @@
                                        <asp:TemplateField HeaderText="Bill Payment">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvbillpayAmt" runat="server" CssClass="GridLebel"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dram")).ToString("#,##0;(#,##0); ") %>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "payamt")).ToString("#,##0;(#,##0); ") %>'
                                                 Width="90px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterTemplate>

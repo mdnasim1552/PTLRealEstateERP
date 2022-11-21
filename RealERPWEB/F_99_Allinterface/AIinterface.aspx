@@ -2233,6 +2233,12 @@
                             <div class="modal-body">
                                 <asp:Label runat="server" Visible="false" ID="lblsowproject"></asp:Label>
                                 <asp:Label runat="server" ID="lblproj" Visible="false"></asp:Label>
+
+                                <asp:DropDownList ID="ddlPrjtype" runat="server">
+                                    <asp:ListItem Value="80201">Piolt</asp:ListItem>
+                                    <asp:ListItem Value="80202">Sow</asp:ListItem>
+                                </asp:DropDownList>
+
                                 <asp:GridView ID="gvProjectInfo" runat="server" AutoGenerateColumns="False" CssClass="table-bordered gview"
                                     ShowFooter="False" ShowHeader="false" AllowPaging="false" Visible="True" Width="100%">
 
