@@ -321,7 +321,288 @@
             }
 
         }
-        function funDataBind(data) {
+
+        function funReschedule(cdate, number) {
+            try {
+
+
+                //var  comdate =$('#txtcomdate'+number).val();
+                var comcod =<%=this.GetComeCode()%>;
+                var empid =<%=this.GetEmpID()%>;
+                var proscod = $('#<%=this.lblproscod.ClientID%>').val();
+
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "AdvancedSearchFilter.aspx/GetReschedule",
+                    data: '{comcod:"' + comcod + '", empid:"' + empid + '",  proscod: "' + proscod + '", cdate:"' + cdate + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+
+
+                    success: function (response) {
+
+                        var data = JSON.parse(response.d);
+                        funDataBind(data);
+                        console.log(data);
+                        //var date=data[0].gdesc1;
+                        //alert(date);
+                        $('#lbtntfollowup').click();
+
+
+                    },
+
+
+                    failure: function (response) {
+
+                        alert("failure");
+                    }
+                });
+
+
+
+            }
+
+            catch (e) {
+
+                alert(e.message);
+
+            }
+
+
+
+
+        }
+
+
+
+
+        function funCompanyProject(comcod, company) {
+            try {
+                $.ajax({
+                    type: "POST",
+                    url: "CrmClientInfo.aspx/GetCompanyProject",
+                    data: '{comcod:"' + comcod + '", company:"' + company + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+
+                        var data = JSON.parse(response.d);
+
+                        var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
+                        var numberrl;
+
+                        for (var i = 0; i < arrgschcodl.length; i++) {
+
+                            gcod = $(arrgschcodl[i]).text();
+                            switch (gcod) {
+
+                                case '810100101003':
+                                    numberrl = i;
+                                    break;
+
+                            }
+
+                        }
+
+
+
+                        //    ContentPlaceHolder1_gvInfo_checkboxReson_6_chzn
+
+                        var ddlProject = '#ContentPlaceHolder1_gvInfo_ddlProject_' + numberrl;
+
+                        //console.log(ddlProject);
+                        $(ddlProject).html('');
+                        $.each(data, function (key, data) {
+
+                            $(ddlProject).append("<option value='" + data.actcode + "'>" + data.actdesc + "</option>");
+                        });
+
+
+
+
+
+
+                    },
+
+
+                    failure: function (response) {
+
+                        alert("failure");
+                    }
+                });
+
+
+
+            }
+
+            catch (e) {
+
+                alert(e.message);
+
+            }
+
+
+
+        }
+
+
+
+        function funLeadReason(comcod, leadquality) {
+
+            try {
+                $.ajax({
+                    type: "POST",
+                    url: "CrmClientInfo.aspx/GetLeadReason",
+                    data: '{comcod:"' + comcod + '", leadquality:"' + leadquality + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        var data = JSON.parse(response.d);
+
+                        var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
+                        var numberrl;
+
+                        for (var i = 0; i < arrgschcodl.length; i++) {
+
+                            gcod = $(arrgschcodl[i]).text();
+                            switch (gcod) {
+
+                                case '810100101012':
+                                    numberrl = i;
+                                    break;
+                            }
+                        }
+
+                        //    ContentPlaceHolder1_gvInfo_checkboxReson_6_chzn
+                        var ddllreason = '#ContentPlaceHolder1_gvInfo_checkboxReson_' + numberrl;
+                        $(ddllreason).html('');
+                        $.each(data, function (key, data) {
+
+                            $(ddllreason).append("<option value='" + data.gcod + "'>" + data.gdesc + "</option>");
+                        });
+
+                        // console.log(data);
+                        //  funDataBind(data);                      
+
+                    },
+
+
+                    failure: function (response) {
+
+                        alert("failure");
+                    }
+                });
+
+
+
+            }
+
+            catch (e) {
+
+                alert(e.message);
+
+            }
+
+
+        }
+
+
+        function funDupAllMobile() {
+
+            try {
+
+
+                //Company Name change
+                var comcod =<%=this.GetComeCode()%>;
+                var sircode = $('#<%=this.lblnewprospect.ClientID%>').val();
+                var arrgcodl = $('#<%=this.gvPersonalInfo.ClientID %>').find('[id$="lblgvItmCodeper"]');
+                var arraygval = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:text[id$="txtgvVal"]');
+                var arryccc = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:select[id$="ddlcountryPhone"]');
+
+                console.log(sircode + "" + arrgcodl + "" + arraygval + "" + arryccc);
+
+                var cc0 = "";
+                var cc1 = "";
+                var cc2 = "";
+                var number = "";
+                var gval;
+                //number = gval.Length > 0 ? gval + "," : "";
+                //number = number + (gval.Length > 0 ? gval + "," : "");
+                //number = number + (gval.Length > 0 ? gval + "," : "");
+                //number = number.Length > 0 ? number.Substring(0, number.Length - 1) : number;
+
+                for (var i = 0; i < arrgcodl.length; i++) {
+
+
+                    var gcod = $(arrgcodl[i]).text();
+
+                    var number;
+                    switch (gcod) {
+
+                        case '0301003':
+                            gval = $(arraygval[i]).val();
+                            cc0 = $(arryccc[i]).val();
+                            number = gval.length > 0 ? gval + "," : "";
+                            console.log(cc0);
+
+                            break;
+
+
+                        case '0301004':
+
+                            switch (comcod) {
+                                case '3315':
+                                case '3316':
+                                    break;
+
+                                default:
+                                    gval = $(arraygval[i]).val();
+                                    number = number + (gval.length > 0 ? gval + "," : "");
+                                    break;
+                            }
+                            break;
+
+                        case '0301005':
+                            gval = $(arraygval[i]).val();
+                            number = number + (gval.length > 0 ? gval + "," : "");
+                            break;
+                    }
+
+                }
+                alert(cc0);
+
+                number = number.length > 0 ? number.substring(0, number.length - 1) : number;
+                var objchkmob = new RealERPScript();
+                var res = objchkmob.DupAllMobile(comcod, sircode, number);
+                var jdata = JSON.parse(res);
+                if (!jdata.result) {
+
+
+                    alert(jdata.Message);
+                    return false;
+
+                }
+                else {
+
+                    return true;
+
+                }
+            }
+
+
+            catch (e) {
+                // alert(e.message);
+
+            }
+
+        }
+
+
+e>
+        body {
+function funDataBind(data) {
             try {
                 var number = 0;
                 $.each(data, function (index, data) {
@@ -607,299 +888,7 @@
             }
 
 
-        }
-        function funReschedule(cdate, number) {
-            try {
-
-
-                //var  comdate =$('#txtcomdate'+number).val();
-                var comcod =<%=this.GetComeCode()%>;
-                var empid =<%=this.GetEmpID()%>;
-                var proscod = $('#<%=this.lblproscod.ClientID%>').val();
-
-
-
-                $.ajax({
-                    type: "POST",
-                    url: "AdvancedSearchFilter.aspx/GetReschedule",
-                    data: '{comcod:"' + comcod + '", empid:"' + empid + '",  proscod: "' + proscod + '", cdate:"' + cdate + '"}',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-
-
-                    success: function (response) {
-                        
-                        var data = JSON.parse(response.d);
-                        funDataBind(data);
-                        console.log(data);
-                        //var date=data[0].gdesc1;
-                        //alert(date);
-                        
-                        $('#ContentPlaceHolder1_rpclientinfo_lbtntfollowupf_0').find('a').trigger('click');
-                        alert('nazmul');
-
-
-                    },
-
-
-                    failure: function (response) {
-
-                        alert("failure");
-                    }
-                });
-
-
-
-            }
-
-            catch (e) {
-
-                alert(e.message);
-
-            }
-
-
-
-
-        }
-
-
-
-
-        function funCompanyProject(comcod, company) {
-            try {
-                $.ajax({
-                    type: "POST",
-                    url: "CrmClientInfo.aspx/GetCompanyProject",
-                    data: '{comcod:"' + comcod + '", company:"' + company + '"}',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-
-                        var data = JSON.parse(response.d);
-
-                        var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
-                        var numberrl;
-
-                        for (var i = 0; i < arrgschcodl.length; i++) {
-
-                            gcod = $(arrgschcodl[i]).text();
-                            switch (gcod) {
-
-                                case '810100101003':
-                                    numberrl = i;
-                                    break;
-
-                            }
-
-                        }
-
-
-
-                        //    ContentPlaceHolder1_gvInfo_checkboxReson_6_chzn
-
-                        var ddlProject = '#ContentPlaceHolder1_gvInfo_ddlProject_' + numberrl;
-
-                        //console.log(ddlProject);
-                        $(ddlProject).html('');
-                        $.each(data, function (key, data) {
-
-                            $(ddlProject).append("<option value='" + data.actcode + "'>" + data.actdesc + "</option>");
-                        });
-
-
-
-
-
-
-                    },
-
-
-                    failure: function (response) {
-
-                        alert("failure");
-                    }
-                });
-
-
-
-            }
-
-            catch (e) {
-
-                alert(e.message);
-
-            }
-
-
-
-        }
-
-
-
-        function funLeadReason(comcod, leadquality) {
-
-            try {
-                $.ajax({
-                    type: "POST",
-                    url: "CrmClientInfo.aspx/GetLeadReason",
-                    data: '{comcod:"' + comcod + '", leadquality:"' + leadquality + '"}',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-                        var data = JSON.parse(response.d);
-
-                        var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
-                        var numberrl;
-
-                        for (var i = 0; i < arrgschcodl.length; i++) {
-
-                            gcod = $(arrgschcodl[i]).text();
-                            switch (gcod) {
-
-                                case '810100101012':
-                                    numberrl = i;
-                                    break;
-                            }
-                        }
-
-                        //    ContentPlaceHolder1_gvInfo_checkboxReson_6_chzn
-                        var ddllreason = '#ContentPlaceHolder1_gvInfo_checkboxReson_' + numberrl;
-                        $(ddllreason).html('');
-                        $.each(data, function (key, data) {
-
-                            $(ddllreason).append("<option value='" + data.gcod + "'>" + data.gdesc + "</option>");
-                        });
-
-                        // console.log(data);
-                        //  funDataBind(data);                      
-
-                    },
-
-
-                    failure: function (response) {
-
-                        alert("failure");
-                    }
-                });
-
-
-
-            }
-
-            catch (e) {
-
-                alert(e.message);
-
-            }
-
-
-        }
-
-
-        function funDupAllMobile() {
-
-            try {
-
-
-                //Company Name change
-                var comcod =<%=this.GetComeCode()%>;
-                var sircode = $('#<%=this.lblnewprospect.ClientID%>').val();
-                var arrgcodl = $('#<%=this.gvPersonalInfo.ClientID %>').find('[id$="lblgvItmCodeper"]');
-                var arraygval = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:text[id$="txtgvVal"]');
-                var arryccc = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:select[id$="ddlcountryPhone"]');
-
-                console.log(sircode + "" + arrgcodl + "" + arraygval + "" + arryccc);
-
-                var cc0 = "";
-                var cc1 = "";
-                var cc2 = "";
-                var number = "";
-                var gval;
-                //number = gval.Length > 0 ? gval + "," : "";
-                //number = number + (gval.Length > 0 ? gval + "," : "");
-                //number = number + (gval.Length > 0 ? gval + "," : "");
-                //number = number.Length > 0 ? number.Substring(0, number.Length - 1) : number;
-
-                for (var i = 0; i < arrgcodl.length; i++) {
-
-
-                    var gcod = $(arrgcodl[i]).text();
-
-                    var number;
-                    switch (gcod) {
-
-                        case '0301003':
-                            gval = $(arraygval[i]).val();
-                            cc0 = $(arryccc[i]).val();
-                            number = gval.length > 0 ? gval + "," : "";
-                            console.log(cc0);
-
-                            break;
-
-
-                        case '0301004':
-
-                            switch (comcod) {
-                                case '3315':
-                                case '3316':
-                                    break;
-
-                                default:
-                                    gval = $(arraygval[i]).val();
-                                    number = number + (gval.length > 0 ? gval + "," : "");
-                                    break;
-                            }
-                            break;
-
-                        case '0301005':
-                            gval = $(arraygval[i]).val();
-                            number = number + (gval.length > 0 ? gval + "," : "");
-                            break;
-                    }
-
-                }
-                alert(cc0);
-
-                number = number.length > 0 ? number.substring(0, number.length - 1) : number;
-                var objchkmob = new RealERPScript();
-                var res = objchkmob.DupAllMobile(comcod, sircode, number);
-                var jdata = JSON.parse(res);
-                if (!jdata.result) {
-
-
-                    alert(jdata.Message);
-                    return false;
-
-                }
-                else {
-
-                    return true;
-
-                }
-            }
-
-
-            catch (e) {
-                // alert(e.message);
-
-            }
-
-        }
-
-
-
-
-
-
-
-
-        
-
-    </script>
-    <style>
-        body {
-            font-family: "Century Gothic";
+        }            font-family: "Century Gothic";
         }
 
 
@@ -1515,8 +1504,8 @@
 
 
 
-                                                            <asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ID="lbtntfollowupf" data-target="#followup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton>
-                                                       <button type="button" class="btn  btn-success btn-xs" id="lbtnreschedule" onclick="funReschedule('<%# DataBinder.Eval(Container, "DataItem.cdate").ToString()%>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString()%>')">Re-Schdule</button>
+                                                            <asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ID="lbtntfollowupf" data-target="#followup" OnClick="btnqclink_Clck"><span>FollowUp</span></asp:LinkButton>
+        FollowUp                          <button type="button" class="btn  btn-primary btn-sm" id="lbtnreschedule" style="margisuccesspx" oxslick="funReschedule('tainer, "DataItem.cdate").ToString()%>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString()%>')">Re-Schdule</button>
                                                             <%--<button type="button" class="btn  btn-success btn-xs" >Re-Schdule</button>--%>
 
 
