@@ -287,7 +287,7 @@ namespace RealERPWEB.F_34_Mgt
 
                 this.pnlnew.Visible = false;
             }
-            if ((Request.QueryString["Type"].ToString() == "OreqEntry"))
+            if ((Request.QueryString["Type"].ToString() == "OreqEntry" || Request.QueryString["Type"].ToString() == "mgtOreqEntry"))
             {
                 this.pnlnew.Visible = true;
 
@@ -1874,17 +1874,18 @@ namespace RealERPWEB.F_34_Mgt
             string userid = hst["usrid"].ToString();
             string Terminal = hst["compname"].ToString();
             string Sessionid = hst["session"].ToString();
-            string PostedByid = (this.Request.QueryString["Type"] == "OreqEntry") ? userid : (tblPostedByid == "") ? userid : tblPostedByid;
+           
+            string PostedByid = (this.Request.QueryString["Type"] == "OreqEntry" || this.Request.QueryString["Type"] == "mgtOreqEntry") ? userid : (tblPostedByid == "") ? userid : tblPostedByid;
 
-            string Posttrmid = (this.Request.QueryString["Type"] == "OreqEntry") ? Terminal : (tblPostedtrmid == "") ? Terminal : tblPostedtrmid;
+            string Posttrmid = (this.Request.QueryString["Type"] == "OreqEntry" || this.Request.QueryString["Type"] == "mgtOreqEntry") ? Terminal : (tblPostedtrmid == "") ? Terminal : tblPostedtrmid;
 
-            string PostSession = (this.Request.QueryString["Type"] == "OreqEntry") ? Sessionid : (tblPostedSession == "") ? Sessionid : tblPostedSession;
-            string posteddat = (this.Request.QueryString["Type"] == "OreqEntry") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : (tblPostedDate == "01-Jan-1900") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : tblPostedDate;
+            string PostSession = (this.Request.QueryString["Type"] == "OreqEntry" || this.Request.QueryString["Type"] == "mgtOreqEntry") ? Sessionid : (tblPostedSession == "") ? Sessionid : tblPostedSession;
+            string posteddat = (this.Request.QueryString["Type"] == "OreqEntry" || this.Request.QueryString["Type"] == "mgtOreqEntry") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : (tblPostedDate == "01-Jan-1900") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : tblPostedDate;
 
-            string ApprovByid = (this.Request.QueryString["Type"] == "OreqEntry") ? "" : ((this.Request.QueryString["Type"] == "FinalAppr") ? userid : ((tblApprovByid == "") ? userid : tblApprovByid));
-            string approvdat = (this.Request.QueryString["Type"] == "OreqEntry") ? "01-Jan-1900" : ((this.Request.QueryString["Type"] == "FinalAppr") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : (tblApprovDat == "01-Jan-1900") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : tblApprovDat);
-            string Approvtrmid = (this.Request.QueryString["Type"] == "OreqEntry") ? "" : ((this.Request.QueryString["Type"] == "FinalAppr") ? Terminal : (tblApprovtrmid == "") ? Terminal : tblApprovtrmid);
-            string ApprovSession = (this.Request.QueryString["Type"] == "OreqEntry") ? "" : ((this.Request.QueryString["Type"] == "FinalAppr") ? Sessionid : (tblApprovSession == "") ? Sessionid : tblApprovSession);
+            string ApprovByid = (this.Request.QueryString["Type"] == "OreqEntry" || this.Request.QueryString["Type"] == "mgtOreqEntry") ? "" : ((this.Request.QueryString["Type"] == "FinalAppr") ? userid : ((tblApprovByid == "") ? userid : tblApprovByid));
+            string approvdat = (this.Request.QueryString["Type"] == "OreqEntry" || this.Request.QueryString["Type"] == "mgtOreqEntry") ? "01-Jan-1900" : ((this.Request.QueryString["Type"] == "FinalAppr") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : (tblApprovDat == "01-Jan-1900") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : tblApprovDat);
+            string Approvtrmid = (this.Request.QueryString["Type"] == "OreqEntry" || this.Request.QueryString["Type"] == "mgtOreqEntry") ? "" : ((this.Request.QueryString["Type"] == "FinalAppr") ? Terminal : (tblApprovtrmid == "") ? Terminal : tblApprovtrmid);
+            string ApprovSession = (this.Request.QueryString["Type"] == "OreqEntry" || this.Request.QueryString["Type"] == "mgtOreqEntry") ? "" : ((this.Request.QueryString["Type"] == "FinalAppr") ? Sessionid : (tblApprovSession == "") ? Sessionid : tblApprovSession);
 
 
             /////log end
@@ -1971,7 +1972,7 @@ namespace RealERPWEB.F_34_Mgt
             //}
             string bankcode = this.ddlBankName.SelectedValue.ToString();
             string refnum = this.txtRefNum.Text.Trim();
-            // string CallType = (this.Request.QueryString["Type"] == "OreqEntry") ? "INSERTOTHERREQ" : this.ComCallType();
+            
             for (int i = 0; i < tbl1.Rows.Count; i++)
             {
                 string mPACTCODE = tbl1.Rows[i]["pactcode"].ToString();
@@ -2617,10 +2618,10 @@ namespace RealERPWEB.F_34_Mgt
 
                 string comcod = this.GetCompCode();
 
-
+                
                 rate = rate > 0 ? rate : (qty > 0 ? (Proamt / qty) : 0.00);
-                Proamt = (type == "OreqEntry") ? (rate > 0 ? qty * rate : Proamt) : Proamt;
-                appamt = (type == "OreqEntry") ? 0.00 : (rate > 0 ? qty * rate : appamt);
+                Proamt = (type == "OreqEntry" ||type== "mgtOreqEntry") ? (rate > 0 ? qty * rate : Proamt) : Proamt;
+                appamt = (type == "OreqEntry" || type == "mgtOreqEntry") ? 0.00 : (rate > 0 ? qty * rate : appamt);
 
                 tbl1.Rows[i]["proamt"] = Proamt;// qty* rate; proamt
                 tbl1.Rows[i]["appamt"] = appamt; //qty * rate;//appamt;
@@ -2714,19 +2715,6 @@ namespace RealERPWEB.F_34_Mgt
             this.ProjectData();
 
 
-            //string Type = Request.QueryString["Type"].ToString();
-            //if (Type == "OreqEntry" )
-            //{
-            //    this.ddlPrevReqList.Items.Clear();
-
-            //}
-
-
-            //else
-            //{
-            //    this.lbtnPrevReqList_Click(null, null);
-
-            //}
         }
 
         protected void gvOtherReq_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -2932,8 +2920,8 @@ namespace RealERPWEB.F_34_Mgt
                 double appamt = Convert.ToDouble('0' + ((TextBox)this.gvOtherReq.Rows[rowindex].FindControl("txtgvApamt")).Text.Trim());
 
                 rate = rate > 0 ? rate : (qty > 0 ? (Proamt / qty) : 0.00);
-                Proamt = (type == "OreqEntry") ? (rate > 0 ? qty * rate : Proamt) : Proamt;
-                appamt = (type == "OreqEntry") ? 0.00 : (rate > 0 ? qty * rate : appamt);
+                Proamt = (type == "OreqEntry" || type == "mgtOreqEntry") ? (rate > 0 ? qty * rate : Proamt) : Proamt;
+                appamt = (type == "OreqEntry" || type == "mgtOreqEntry") ? 0.00 : (rate > 0 ? qty * rate : appamt);
 
 
                 dr2[0]["pactcode"] = ((DropDownList)this.gvOtherReq.Rows[rowindex].FindControl("ddlgrdacccode")).SelectedValue.ToString();
