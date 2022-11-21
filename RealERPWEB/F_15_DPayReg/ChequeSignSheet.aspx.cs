@@ -81,7 +81,10 @@ namespace RealERPWEB.F_15_DPayReg
                 }
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Cheque Preparation";
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
+
+                this.GetPayeeType();
             }
+            
 
         }
 
@@ -258,6 +261,22 @@ namespace RealERPWEB.F_15_DPayReg
 
 
         }
+
+        private void GetPayeeType()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+
+
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETPAYEETYPE", "", "", "", "", "", "", "", "", "");
+            this.ddlpayeelist.DataTextField = "gdesc";
+            this.ddlpayeelist.DataValueField = "gcod";
+            this.ddlpayeelist.DataSource = ds1.Tables[0];
+            Session["tblpayeetype"] = ds1.Tables[0];
+            this.ddlpayeelist.DataBind();
+            this.ddlpayeelist.SelectedValue = "";
+        }
+
         private void Refrsh()
         {
 
@@ -2095,6 +2114,7 @@ namespace RealERPWEB.F_15_DPayReg
                 string userdate = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
 
                 string sameChqval = this.SameChqValue(chequeno.ToString().Trim().ToUpper());
+                string payeeType = this.ddlpayeelist.SelectedValue.ToString();
 
                 //string voutype = "Online Payment Voucher";
                 string voutype = "";
@@ -2161,7 +2181,7 @@ namespace RealERPWEB.F_15_DPayReg
                         //                vounarration2, voutype, vtcode, "EDIT", PostedByid, Posttrmid, PostSession, Posteddat, EditByid, Editdat, payto, slnum, "", "", "", "");
 
                         bool resultb = accData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "ACVUPDATE02", acvounum, voudat, chequeno, srinfo, vounarration1,
-                       vounarration2, voutype, vtcode, edit, PostedByid, Posttrmid, PostSession, Posteddat, EditByid, Editdat, Payto, slnum, aprovbyid, aprvtrmid, aprvseson, aprvdat, pounaction, rbankname, chequedat, "", "");
+                       vounarration2, voutype, vtcode, edit, PostedByid, Posttrmid, PostSession, Posteddat, EditByid, Editdat, Payto, slnum, aprovbyid, aprvtrmid, aprvseson, aprvdat, pounaction, rbankname, chequedat, "", payeeType);
 
                         if (!resultb)
                         {
@@ -2214,14 +2234,17 @@ namespace RealERPWEB.F_15_DPayReg
                                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                                 return;
                             }
-                            resulta = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "UPDATEPROAPP", slnum, actcode, rescode, acvounum, billno, chequedat, "", "", "", "", "", "", "", "", "");
+                            resulta = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "UPDATEPROAPP", slnum, actcode, rescode, acvounum, billno, chequedat, "", "", "", "", "", "", "", "");
 
                         }
+
+                       
+
+
 
                         // Another Part of Journal
                         if (isjv)
                         {
-
                             double netam = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(netamt)", "")) ? 0.00 : dt.Compute("Sum(netamt)", "")));
                             netam = netam * -1;
                             string conactcode = this.ddlBankName.SelectedValue.ToString();

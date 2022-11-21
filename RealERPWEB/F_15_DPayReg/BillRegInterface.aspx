@@ -561,7 +561,6 @@
                             </fieldset>
                             <div>
 
-
                                 <asp:Panel ID="pnlBillInfo" runat="server" Visible="false">
                                     <div class="row">
                                         <div class="table-responsive col-lg-12">

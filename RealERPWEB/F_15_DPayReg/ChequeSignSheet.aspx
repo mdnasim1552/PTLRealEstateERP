@@ -426,6 +426,17 @@
                                             </cc1:AutoCompleteExtender>
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-6 pading5px">
+                                            <asp:Label ID="Label3" runat="server" CssClass="lblTxt lblName" Text="Payee Type"></asp:Label>
+                                            <asp:DropDownList ID="ddlpayeelist" runat="server" Visible="true" CssClass="form-control form-control-sm" AutoPostBack="true" Style="width: 260px;">
+                                                </asp:DropDownList>
+                                        </div>
+                                    </div>
+
+
+
                                     <div class="form-group">
                                         <div class="col-md-6 pading5px">
                                             <div class="input-group">
