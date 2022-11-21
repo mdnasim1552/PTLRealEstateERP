@@ -166,6 +166,7 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesInterest.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesInventory.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesInventory1.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesOpening.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesSurveyEntry.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesvsAchievement.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales+SalesvsAchievementtypecount.datasource" />
@@ -800,6 +801,7 @@
     <EmbeddedResource Include="R_21_MKT\RptProspectWorking.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptSourceWiseLeads.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptYearlySales.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptSalesOpening.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptAccSumCustPayStatus.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptAccSummaryInflow.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptAcknowledgementSlipCPDL.rdlc" />
@@ -969,8 +971,9 @@
     <EmbeddedResource Include="R_24_CC\RptCustLnStatus.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptHandOverWork.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptLoanStatus.rdlc" />
-    <EmbeddedResource Include="R_24_CC\RptMaintenanceWrkAssure.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptMaintenanceWrk.rdlc" />
+    <EmbeddedResource Include="R_24_CC\RptMaintenanceWrkAssure.rdlc" />
+    <EmbeddedResource Include="R_24_CC\RptMaintenanceWrkEpic.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptMaintenanceWrkSan.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptRegisrationStatusAllPro.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptSalesPermissionCost.rdlc" />

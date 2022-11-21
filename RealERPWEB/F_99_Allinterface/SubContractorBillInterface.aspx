@@ -2179,6 +2179,22 @@
                                                 <HeaderStyle HorizontalAlign="Center" Width="150px" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
+
+                                            <asp:TemplateField HeaderText="">
+                                                <ItemTemplate>
+                                                    
+                                                     <asp:HyperLink ID="hlnkBillDetailsfin" runat="server" ToolTip="MB Details" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs" ><i class=" fa fa-info-circle" aria-hidden="false"></i>
+                                                    </asp:HyperLink>
+                                                 
+
+                                                </ItemTemplate>
+                                               
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+
+
+
                                         </Columns>
                                         <FooterStyle CssClass="grvFooter" />
                                         <EditRowStyle />
@@ -2411,6 +2427,20 @@
                                                 <ItemStyle Width="40px" />
                                                 <HeaderStyle HorizontalAlign="Center" Width="40px" VerticalAlign="Top" />
                                             </asp:TemplateField>
+
+
+                                             <asp:TemplateField HeaderText="">
+                                                <ItemTemplate>
+                                                    
+                                                     <asp:HyperLink ID="hlnkBillDetailsfinapp" runat="server" ToolTip="MB Details" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs" ><i class=" fa fa-info-circle" aria-hidden="false"></i>
+                                                    </asp:HyperLink>
+                                                 
+
+                                                </ItemTemplate>
+                                               
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
 
 
                                         </Columns>
