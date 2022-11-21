@@ -7,9 +7,14 @@ using System.Web.UI.WebControls;
 using System.Collections;
 using System.IO;
 using RealERPLIB;
+using System.Linq;
 using System.Data.OleDb;
 using System.Data;
+using System.Web.Script.Services;
+using System.Web.Services;
+using System.Drawing;
 using Microsoft.Reporting.WinForms;
+using System.Web.Script.Serialization;
 namespace RealERPWEB.F_21_MKT
 {
     public partial class AdvancedSearchFilter : System.Web.UI.Page
@@ -102,15 +107,16 @@ namespace RealERPWEB.F_21_MKT
                     {
 
                         this.pnlflw.Visible = true;
+                        this.pnledit.Visible = false;
                        
                     }
                     else
                     {
-                       
+                        this.pnledit.Visible = true;
                         this.pnlflw.Visible = false;
                     }
                    
-                    this.lblname.Text = dt1.Rows[0]["sircode"].ToString();
+                    this.lblname.Text = dt2.Rows[0]["pid"].ToString(); ;
                     this.lblconper.Text = dt1.Rows[0]["sirdesc"].ToString();
                     this.lblmbl.Text = dt1.Rows[0]["phone"].ToString();
                     this.lblhomead.Text = dt1.Rows[0]["caddress"].ToString();
@@ -201,7 +207,14 @@ namespace RealERPWEB.F_21_MKT
             
 
         }
+        public string GetEmpID()
+        {
 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string Empid = (hst["empid"].ToString() == "") ? "93" : hst["empid"].ToString();
+            return (Empid);
+
+        }
 
         private void GETEMPLOYEEUNDERSUPERVISED()
         {
@@ -267,7 +280,7 @@ namespace RealERPWEB.F_21_MKT
 
         }
         protected void btnqclink_Click(object sender, EventArgs e)
-        {
+         {
             try
             {
 
@@ -592,6 +605,7 @@ namespace RealERPWEB.F_21_MKT
                         ChkBoxLstFollow.DataValueField = "gcod";
                         ChkBoxLstFollow.DataSource = dv1.ToTable();
                         ChkBoxLstFollow.DataBind();
+                        
                         //  ChkBoxLstFollow.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
 
                         break;
@@ -4688,6 +4702,47 @@ namespace RealERPWEB.F_21_MKT
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
+        }
+
+        protected void lbtnReshedule_Click(object sender, EventArgs e)
+        {
+
+        }
+        [WebMethod(EnableSession = false)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string GetReschedule(string comcod, string empid, string proscod, string cdate)
+        {
+            string kpigrp = "000000000000";
+            string wrkdpt = "000000000000";
+            ProcessAccess JData = new ProcessAccess();
+            DataSet ds1 = JData.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "DAILYDISCUIND", empid, proscod, kpigrp, "", wrkdpt, cdate, "", "", "", "");
+
+
+            //DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "DAILYDISCUIND", Empid, Client, kpigrp, "", wrkdpt, cdate);
+
+            //   DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "DAILYLANDOWNERDISCUS", Empid, Client, kpigrp, "", wrkdpt, cdate);
+
+            if (ds1 == null)
+            {
+                //List<RealEntity.C_32_Mis.EClassAcc_03.EclassBalSheetSum> lst5 = ds2.Tables[0].DataTableToList<RealEntity.C_32_Mis.EClassAcc_03.EclassBalSheetSum>();
+                var lst = ds1.Tables[0].DataTableToList<RealEntity.C_01_LPA.BO_Fesibility.EclassPreLandownerDiscuss>().ToList();
+                var jsonSerialiser = new JavaScriptSerializer();
+                var json = jsonSerialiser.Serialize(lst);
+                return json;
+            }
+
+            else
+            {
+                var lst = ds1.Tables[0].DataTableToList<RealEntity.C_01_LPA.BO_Fesibility.EclassPreLandownerDiscuss>().ToList();
+                // var lst = new { Message = "Update successfully.", result = true };
+                var jsonSerialiser = new JavaScriptSerializer();
+                var json = jsonSerialiser.Serialize(lst);
+                return json;
+            }
+
+
+
+
         }
     }
 }

@@ -330,6 +330,24 @@ namespace RealERPWEB.F_15_DPayReg
         protected global::AjaxControlToolkit.AutoCompleteExtender txtPayto_AutoCompleteExtender;
 
         /// <summary>
+        /// Label3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
+
+        /// <summary>
+        /// ddlpayeelist control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlpayeelist;
+
+        /// <summary>
         /// lblNaration control.
         /// </summary>
         /// <remarks>

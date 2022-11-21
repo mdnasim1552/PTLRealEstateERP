@@ -539,10 +539,17 @@ namespace RealEntity.C_22_Sal
             public string mothersname { get; set; }
             public string presentaddr { get; set; }
             public string permanentaddr { get; set; }
+            public string email { get; set; }
+            public string relationship { get; set; }
             public string mobileno { get; set; }
             public string telephone { get; set; }
             public string dateofbirth { get; set; }
             public string nationalid { get; set; }
+            public string csignature { get; set; }
+            public string share { get; set; }
+            public string nationality { get; set; }
+            public string date { get; set; }
+            public string nomineeimage { get; set; }
         }
 
 
@@ -550,6 +557,7 @@ namespace RealEntity.C_22_Sal
         public class RptNominatedBookApp2
         {
             public string nomineename { get; set; }
+            public string profession { get; set; }
             public string presentaddr { get; set; }
             public string permanentaddress { get; set; }
             public string mobileno { get; set; }
@@ -557,6 +565,10 @@ namespace RealEntity.C_22_Sal
             public string csignature { get; set; }
             public string relation { get; set; }
             public string telephone { get; set; }
+            public string nominatedsig { get; set; }
+            public string nationality { get; set; }
+            public string date { get; set; }
+            public string nominatedimage { get; set; }
         }
 
 

@@ -223,6 +223,28 @@ namespace RealEntity.C_22_Sal
 
 
         }
+        public class SalesOpening
+        {
+            public string comcod { get; set; }
+
+            public string pactdesc { get; set; }
+            public string pactcode { get; set; }
+            public string udesc { get; set; }
+            public string custname { get; set; }
+            public string usircode { get; set; }
+            public double schamt { get; set; }
+            public string munit { get; set; }
+            public double usize { get; set; }
+            public double opnamt { get; set; }
+           
+
+            public SalesOpening()
+            {
+
+            }
+
+
+        }
 
     }
 }
