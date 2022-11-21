@@ -496,7 +496,7 @@
             try {
                 var comcod = <%=this.GetCompCode()%>;
                 switch (comcod) {
-                    //case 3101:   // ptl 
+                    case 3101:   // ptl 
                     case 3367:   // Epic Properties
                         //$(".tbMenuWrp table tr td:nth-child(3)").hide();// 1st approval
                         //$(".tbMenuWrp table tr td:nth-child(4)").hide();// 2nd approval
@@ -1129,13 +1129,11 @@
                     </asp:Panel>
 
                     <asp:Panel runat="server" ID="pnlapproval" Visible="false">
-
-
                         <asp:GridView ID="gvCltmodapp" runat="server" AutoGenerateColumns="False"
                             ShowFooter="True" Style="text-align: left" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvCltmodapp_RowDataBound">
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.No.">
+                                <asp:TemplateField HeaderText="SL">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNoap" runat="server" Font-Bold="True"
                                             Style="text-align: right"
@@ -1227,8 +1225,7 @@
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lnkremoveap" runat="server" OnClick="lnkremoveap_Click" ToolTip="Cancel" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
                                         <asp:HyperLink ID="lnkapp" runat="server" Target="_blank" ToolTip="Approval" CssClass="btn btn-default btn-xs"><span style="color:green" class="fa fa-check"></span> </asp:HyperLink>
-                                        <asp:LinkButton ID="hlnkprintapp" runat="server" ToolTip="Print" OnClick="hlnkprintapp_Click" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
-                                        </asp:LinkButton>
+                                        <asp:HyperLink ID="hlnkprintapp" runat="server" Target="_blank" ToolTip="Print Additional Work" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span></asp:HyperLink>
                                     </ItemTemplate>
                                     <ItemStyle Width="110px" />
                                     <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
