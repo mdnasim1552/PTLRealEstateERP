@@ -1140,6 +1140,13 @@ namespace RealERPWEB.F_99_Allinterface
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "csircode")).ToString();
                 string isudate = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "isudat")).ToString("dd-MMM-yyyy");
+
+                HyperLink hlnkBillDetails = (HyperLink)e.Row.FindControl("hlnkBillDetailsfin");  
+                string mbno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mbno")).ToString();
+                hlnkBillDetails.Enabled = mbno.Length > 0;               
+                hlnkBillDetails.NavigateUrl = "~/F_09_PImp/BillingMBEntry?Type=Entry&prjcode=" + pactcode + "&genno=" + mbno + "&sircode=" + sircode;
+
+
                 if (issustatus == "S")
                 {
                     hlink2.NavigateUrl = "~/F_09_PImp/PurSubConBillFinal?Type=BillServiceEntry&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode + "&status=" + issustatus;
@@ -1373,7 +1380,7 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink lnkbtnbfinapp = (HyperLink)e.Row.FindControl("lnkbtnbfinapp");
 
                 LinkButton btnDelfinapp = (LinkButton)e.Row.FindControl("btnDelfinapp");
-
+                HyperLink hlnkBillDetails = (HyperLink)e.Row.FindControl("hlnkBillDetailsfinapp");
 
 
                 // HyperLink lnkbtnEditBilll = (HyperLink)e.Row.FindControl("lnkbtnEditBilll");
@@ -1387,17 +1394,18 @@ namespace RealERPWEB.F_99_Allinterface
 
                 string billstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "billstatus")).ToString();
 
+                string mbno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mbno")).ToString();
+                hlnkBillDetails.Enabled = mbno.Length > 0;
+                hlnkBillDetails.NavigateUrl = "~/F_09_PImp/BillingMBEntry?Type=Entry&prjcode=" + pactcode + "&genno=" + mbno + "&sircode=" + sircode;
+
                 hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ConBillFinalization&billno=" + billno;
 
                 lnkbtnbfinapp.NavigateUrl = "~/F_09_PImp/PurSubConBillFinal?Type=BillConfirmed&genno=" + billno + "&prjcode=" + pactcode + "&sircode=" + sircode + "&status=" + billstatus;
 
-                // lnkbtnEditBilll.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Edit&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
+               
+            
 
 
-                //if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "8306" )
-                //{
-                //    btnDelfinapp.Visible = false;
-                //}
 
 
 

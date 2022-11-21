@@ -1228,9 +1228,9 @@ namespace RealERPWEB.F_17_Acc
                     }
                     Rpt1.SetParameters(new ReportParameter("signprep", postuser));
                     Rpt1.SetParameters(new ReportParameter("signapp", aprvuser));
-                    Rpt1.SetParameters(new ReportParameter("Vounum", "Voucher No.: " + vounum));
-                    Rpt1.SetParameters(new ReportParameter("voudat", "Voucher Date: " + voudat));
-                    Rpt1.SetParameters(new ReportParameter("refnum", "Cheque/Ref. No.: " + refnum));
+                    Rpt1.SetParameters(new ReportParameter("Vounum", ": " + vounum));
+                    Rpt1.SetParameters(new ReportParameter("voudat", ": " + voudat));
+                    Rpt1.SetParameters(new ReportParameter("refnum", "Cheque/Ref. No : " + refnum));
                     Rpt1.SetParameters(new ReportParameter("txtPartyName", (payto == "") ? "" : Partytype + " " + payto));
                     Rpt1.SetParameters(new ReportParameter("voutype", (ASTUtility.Left(vounum, 2) == "CC") ? "Cash Received Voucher" : voutype));
                     Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));

@@ -1997,12 +1997,7 @@ namespace RealERPWEB.F_12_Inv
                                 ds1.Merge(dt);
                                 ds1.Tables[0].TableName = "tbl1";
                                 approval = ds1.GetXml();
-
                             }
-
-
-
-
                             break;
 
                     }
@@ -2059,11 +2054,6 @@ namespace RealERPWEB.F_12_Inv
                         ds1.Tables[0].Rows[0]["threctrmid"] = "";
                         ds1.Tables[0].Rows[0]["threcseson"] = "";
                         approval = ds1.GetXml();
-
-
-
-
-
 
                     }
 
