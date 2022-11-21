@@ -117,7 +117,7 @@ namespace RealERPWEB.F_09_PImp
                     break;
 
                 case "3339":
-                    // case "3101":
+                 
 
                     this.gvSubBill.Columns[11].Visible = true;
                     this.gvSubBill.Columns[12].Visible = true;
@@ -454,13 +454,13 @@ namespace RealERPWEB.F_09_PImp
                 case "3330":// Bridge
                     PrintReq = "PrintBill02";
                     break;
-                //case "3101":
+                
                 case "3332": //inster
                     PrintReq = "PrintBill03";
                     break;
 
                 case "3333":// Alliance
-                            // case"3101":
+                          
                     PrintReq = "PrintBill04";
                     break;
 
@@ -485,7 +485,7 @@ namespace RealERPWEB.F_09_PImp
                     break;
 
 
-                // case "3101"://ASIT
+               
                 case "2305": //Land
                 case "3305":// Housing
                 case "3306":// Ratul
@@ -1171,7 +1171,7 @@ namespace RealERPWEB.F_09_PImp
                 case "BillServiceEntry":
                     switch (comcod)
                     {
-                        case "3101":
+                       
                         case "1103":
                         case "3368": // finlay
 

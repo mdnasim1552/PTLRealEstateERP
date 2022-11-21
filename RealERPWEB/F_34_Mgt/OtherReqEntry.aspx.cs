@@ -71,10 +71,16 @@ namespace RealERPWEB.F_34_Mgt
                         this.lbtnUpdateResReq.Visible = false;
                         this.RequisitionPrint();
                     }
-                    this.lbtnCheckedCompShow();
+                 //   this.lbtnCheckedCompShow();
                 }
+
+
+
                 this.GetRecAndPayto();
                 this.RbtnPrint.SelectedIndex = 0;
+
+                this.lbtnOreqChecked.Visible = (Request.QueryString["Type"].ToString() == "OreqChecked");
+                this.lbtnUpdateResReq.Visible = !(Request.QueryString["Type"].ToString() == "OreqChecked");
 
             }
         }
@@ -83,20 +89,25 @@ namespace RealERPWEB.F_34_Mgt
         {
             if (Request.QueryString["Type"].ToString() == "OreqChecked")
             {
-                string comcod = this.GetCompCode();
-                switch (comcod)
-                {
-                    case "3101":
-                    case "3368":
-                        this.lbtnOreqChecked.Visible = true;
-                        this.lbtnUpdateResReq.Visible = false;
-                        break;
 
-                    default:
-                        this.lbtnOreqChecked.Visible = false;
-                        this.lbtnUpdateResReq.Visible = true;
-                        break;
-                }
+
+
+
+                //string comcod = this.GetCompCode();
+                //switch (comcod)
+                //{
+                //    case "3101":
+                //    case "3370":
+                //    case "3368":
+                //        this.lbtnOreqChecked.Visible = true;
+                //        this.lbtnUpdateResReq.Visible = false;
+                //        break;
+
+                //    default:
+                //        this.lbtnOreqChecked.Visible = false;
+                //        this.lbtnUpdateResReq.Visible = true;
+                //        break;
+                //}
             }
 
         }
