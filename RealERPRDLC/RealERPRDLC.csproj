@@ -969,8 +969,9 @@
     <EmbeddedResource Include="R_24_CC\RptCustLnStatus.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptHandOverWork.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptLoanStatus.rdlc" />
-    <EmbeddedResource Include="R_24_CC\RptMaintenanceWrkAssure.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptMaintenanceWrk.rdlc" />
+    <EmbeddedResource Include="R_24_CC\RptMaintenanceWrkAssure.rdlc" />
+    <EmbeddedResource Include="R_24_CC\RptMaintenanceWrkEpic.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptMaintenanceWrkSan.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptRegisrationStatusAllPro.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptSalesPermissionCost.rdlc" />

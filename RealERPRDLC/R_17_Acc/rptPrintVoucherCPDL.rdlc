@@ -1621,7 +1621,7 @@
       <Width>7.75792in</Width>
       <Page>
         <PageHeader>
-          <Height>1.44001in</Height>
+          <Height>1.41501in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1646,9 +1646,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>companyname</rd:DefaultName>
-              <Top>0.00688in</Top>
-              <Left>1.09291in</Left>
-              <Height>0.25in</Height>
+              <Top>0.01733in</Top>
+              <Left>1.07374in</Left>
+              <Height>0.275in</Height>
               <Width>5.97751in</Width>
               <Style>
                 <Border>
@@ -1681,9 +1681,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>comadd</rd:DefaultName>
-              <Top>0.2598in</Top>
-              <Left>1.09291in</Left>
-              <Height>0.3125in</Height>
+              <Top>0.2967in</Top>
+              <Left>1.07374in</Left>
+              <Height>0.22917in</Height>
               <Width>5.97751in</Width>
               <ZIndex>1</ZIndex>
               <Style>
@@ -1717,9 +1717,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>voutype</rd:DefaultName>
-              <Top>0.57514in</Top>
-              <Left>1.09291in</Left>
-              <Height>0.26416in</Height>
+              <Top>0.53559in</Top>
+              <Left>1.07374in</Left>
+              <Height>0.27666in</Height>
               <Width>5.97751in</Width>
               <ZIndex>2</ZIndex>
               <Style>
@@ -1732,14 +1732,30 @@
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
-            <Textbox Name="bankCash">
+            <Image Name="Image1">
+              <Source>External</Source>
+              <Value>=Parameters!comLogo.Value</Value>
+              <Sizing>FitProportional</Sizing>
+              <Top>0.02025in</Top>
+              <Left>0.0125in</Left>
+              <Height>0.5625in</Height>
+              <Width>0.9975in</Width>
+              <ZIndex>3</ZIndex>
+              <ToolTip>=Parameters!comLogo.Value</ToolTip>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Image>
+            <Textbox Name="bankCash2">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Parameters!Vounum.Value</Value>
+                      <Value>=Parameters!refnum.Value</Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
                         <FontWeight>Bold</FontWeight>
@@ -1752,11 +1768,14 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>bankCash</rd:DefaultName>
-              <Top>0.90597in</Top>
-              <Left>0.02875in</Left>
-              <Height>0.21875in</Height>
-              <Width>2.98958in</Width>
-              <ZIndex>3</ZIndex>
+              <Top>1.05045in</Top>
+              <Left>0.0125in</Left>
+              <Height>0.22222in</Height>
+              <Width>4.15625in</Width>
+              <ZIndex>4</ZIndex>
+              <Visibility>
+                <Hidden>=Globals!PageNumber&gt;1</Hidden>
+              </Visibility>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1789,69 +1808,16 @@
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Right</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>voudate</rd:DefaultName>
-              <Top>0.90597in</Top>
-              <Left>3.08777in</Left>
-              <Height>0.21875in</Height>
-              <Width>4.64182in</Width>
-              <ZIndex>4</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Image Name="Image1">
-              <Source>External</Source>
-              <Value>=Parameters!comLogo.Value</Value>
-              <Sizing>FitProportional</Sizing>
-              <Top>0.0098in</Top>
-              <Height>0.5625in</Height>
-              <Width>0.9975in</Width>
-              <ZIndex>5</ZIndex>
-              <ToolTip>=Parameters!comLogo.Value</ToolTip>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-              </Style>
-            </Image>
-            <Textbox Name="bankCash2">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Parameters!refnum.Value</Value>
-                      <Style>
-                        <FontFamily>Cambria</FontFamily>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
                     <TextAlign>Left</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <rd:DefaultName>bankCash</rd:DefaultName>
-              <Top>1.1525in</Top>
-              <Left>0.02875in</Left>
-              <Height>0.22222in</Height>
-              <Width>2.98958in</Width>
-              <ZIndex>6</ZIndex>
-              <Visibility>
-                <Hidden>=Globals!PageNumber&gt;1</Hidden>
-              </Visibility>
+              <rd:DefaultName>voudate</rd:DefaultName>
+              <Top>0.88285in</Top>
+              <Left>6.32749in</Left>
+              <Height>0.19375in</Height>
+              <Width>1.39182in</Width>
+              <ZIndex>5</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1869,28 +1835,106 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Parameters!txtPartyName.Value</Value>
+                      <Value xml:space="preserve"> </Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
-                        <FontSize>9pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Parameters!Vounum.Value</Value>
+                      <Style>
+                        <FontFamily>Cambria</FontFamily>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Right</TextAlign>
+                    <TextAlign>Left</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>bankCash</rd:DefaultName>
-              <Top>1.16639in</Top>
-              <Left>3.08777in</Left>
-              <Height>0.22222in</Height>
-              <Width>4.64182in</Width>
-              <ZIndex>7</ZIndex>
+              <Top>1.09049in</Top>
+              <Left>6.32749in</Left>
+              <Height>0.18611in</Height>
+              <Width>1.39182in</Width>
+              <ZIndex>6</ZIndex>
               <Visibility>
                 <Hidden>=Globals!PageNumber&gt;1</Hidden>
               </Visibility>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox1">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Voucher Date</Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontFamily>cambria</FontFamily>
+                        <FontWeight>Bold</FontWeight>
+                        <TextDecoration>None</TextDecoration>
+                        <Color>#000000</Color>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>0.88007in</Top>
+              <Left>5.3511in</Left>
+              <Height>0.19653in</Height>
+              <Width>0.95833in</Width>
+              <ZIndex>7</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox10">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Voucher No</Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontFamily>cambria</FontFamily>
+                        <FontWeight>Bold</FontWeight>
+                        <TextDecoration>None</TextDecoration>
+                        <Color>#000000</Color>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>1.09188in</Top>
+              <Left>5.3511in</Left>
+              <Height>0.18472in</Height>
+              <Width>0.95833in</Width>
+              <ZIndex>8</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
