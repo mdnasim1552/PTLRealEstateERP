@@ -24,8 +24,9 @@
         .table th, .table td {
             padding: 4px;
         }
-        .florHead{
-            line-height:40px;
+
+        .florHead {
+            line-height: 40px;
         }
     </style>
 
@@ -90,7 +91,7 @@
 
 
                 </div>
-               
+
                 <div class="col-md-4" style="margin-top: 22px;">
                     <div class="metric-badge">
                         <asp:Label ID="Label1" runat="server" CssClass="form-label" Text="Flug:"></asp:Label>
@@ -358,21 +359,27 @@
                 </div>
             </div>
             <div id="divgvChart" visible="false" runat="server">
+                <div class="row">
+                    <div class="col-md-3">
+                        <asp:Label ID="Label2" runat="server" CssClass="form-lable" Text="Group Name"></asp:Label>
 
-                <div id="divUnitGraph" runat="server"></div>
-                <div class="row d-none">
+                        <asp:DropDownList ID="ddlGroup" runat="server" CssClass="chzn-select form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlGroup_SelectedIndexChanged" TabIndex="4">
+                        </asp:DropDownList>
 
-                    
 
-                    <div class="col-md-2">
-                        <h5 class="text-right">1st Floor</h5>
                     </div>
-                    <div class="col-md-10">
-                        <asp:HyperLink ID="HyperLink21" runat="server" class="bg-red btn text-white">Unit 1 </asp:HyperLink>
+                    <div class="col-md-3">
+                        <asp:Label ID="Label3" runat="server" CssClass="form-lable" Text="Category Name"></asp:Label>
+
+                        <asp:DropDownList ID="ddlFloor" runat="server" CssClass="chzn-select form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlFloor_SelectedIndexChanged" TabIndex="4">
+                        </asp:DropDownList>
+
+
                     </div>
-                     
                 </div>
-                
+                <div id="divUnitGraph" runat="server"></div>
+
+
             </div>
         </div>
 

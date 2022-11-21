@@ -35,7 +35,7 @@ namespace RealERPWEB.F_22_Sal
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string type = this.Request.QueryString["Type"].ToString();
-                if (type== "BookingChart")
+                if (type == "BookingChart")
                 {
                     this.divGVData.Visible = false;
                     this.divgvChart.Visible = true;
@@ -70,16 +70,16 @@ namespace RealERPWEB.F_22_Sal
                     if (comcod == "3366" || comcod == "3101")
                     {
                         this.gvAailChart.Columns[9].Visible = false;
-                    }                    
-                    break;               
+                    }
+                    break;
                 default:
-                   
+
                     break;
             }
 
         }
-         
-    private void CompVisibility()
+
+        private void CompVisibility()
         {
             string type = ASTUtility.Left(this.GetComCode(), 1);
             switch (type)
@@ -120,7 +120,7 @@ namespace RealERPWEB.F_22_Sal
             Session.Remove("tblAvChart");
             Session.Remove("tblflorlist");
             Session.Remove("tblflorUnit");
-            this.ShowReport(); 
+            this.ShowReport();
         }
 
         protected void lnkPrint_Click(object sender, EventArgs e)
@@ -252,15 +252,15 @@ namespace RealERPWEB.F_22_Sal
         }
         private void ShowReport()
         {
-           
+
             string comcod = this.GetComCode();
             string type = this.Request.QueryString["Type"].ToString();
 
-            string CallType = (type == "Details") ? "AVAILCHART" : (type == "BookingChart") ? "AVAILCHART": "AVAILCHART02";
+            string CallType = (type == "Details") ? "AVAILCHART" : (type == "BookingChart") ? "AVAILCHART" : "AVAILCHART02";
             string pactcode = ((this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "18" : this.ddlProjectName.SelectedValue.ToString()) + "%";
-            if (type== "BookingChart" && pactcode== "18%")
+            if (type == "BookingChart" && pactcode == "18%")
             {
-                string    Message = "Please Select Project";
+                string Message = "Please Select Project";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
                 return;
             }
@@ -279,9 +279,17 @@ namespace RealERPWEB.F_22_Sal
             Session["tblAvChart"] = dt;
             this.Data_Bind();
             Session["tblFtCal"] = (DataTable)ds2.Tables[1];
-            Session["tblflorlist"] = (DataTable)ds2.Tables[2];
-            Session["tblflorUnit"] = (DataTable)ds2.Tables[3];
-            GetAvailabilityChart();
+           
+             
+            if(type== "BookingChart")
+            {
+                Session["tblflorlist"] = (DataTable)ds2.Tables[2];
+                Session["tblflorUnit"] = (DataTable)ds2.Tables[3];
+                Session["grpname"] = (DataTable)ds2.Tables[4];
+                Session["floorname"] = (DataTable)ds2.Tables[5];
+                GetAvailabilityChart();
+                
+            }
             // this.FooterCalculation();
         }
 
@@ -358,7 +366,7 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
-        
+
 
         private void Data_Bind()
         {
@@ -371,65 +379,105 @@ namespace RealERPWEB.F_22_Sal
             this.CompVisibility();
         }
 
+        protected void ddlGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+            GetAvailabilityChartFilterData();
+        }
+        protected void ddlFloor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetAvailabilityChartFilterData();
+        }
+
         private void GetAvailabilityChart()
         {
-            try {
-                DataTable dt = (DataTable)Session["tblflorlist"];
-                DataTable dtunit = (DataTable)Session["tblflorUnit"];
-                string str = string.Empty;
+            try
+            {
+                DataTable dtgrp = (DataTable)Session["grpname"];
+                DataTable dtglorname = (DataTable)Session["floorname"];
+
                
-               
-                string bgcolor = "";
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    string usircode1 = dt.Rows[i]["usircode1"].ToString();
-                    string pactcode = dt.Rows[i]["pactcode"].ToString();
-                    DataTable dtunitfilter = new DataTable();
-                    string strunit = string.Empty;
+                this.ddlGroup.DataTextField = "groupdesc";
+                this.ddlGroup.DataValueField = "groupcode"; 
+                this.ddlGroup.DataSource = dtgrp;                 
+                this.ddlGroup.DataBind();
 
+                this.ddlFloor.DataTextField = "flrdesc";
+                this.ddlFloor.DataValueField = "floorcode";                
+                this.ddlFloor.DataSource = dtglorname;
+                this.ddlFloor.DataBind();
 
-                    DataView dv = dtunit.Copy().DefaultView;
-                    dv.RowFilter = ("usircode1='" + usircode1 + "' and pactcode='" + pactcode + "'");
-                    dtunitfilter = dv.ToTable();
-                     
-
-                    for (int j = 0; j < dtunitfilter.Rows.Count; j++)
-                    {
-
-                        strunit += "<a hrf='#' class='" + dtunitfilter.Rows[j]["cssStype"].ToString() + " btn text-white m-1'>" + dtunitfilter.Rows[j]["udesc"].ToString() + "</a>";
-                    }
-                    if (i % 2 == 0)
-                    {
-                        bgcolor = " btn-subtle-primary ";
-                    }
-                    else
-                    {
-                        bgcolor = "";
-                    }
-
-
-                    str += "<div class='row mt-1 " + bgcolor + "'>" +
-                    "" +
-                    "<div class='col-md-2'><h5 class='text-right m-0 florHead'>" + dt.Rows[i]["flrdesc"].ToString() + "</h5></div>" +
-                    "" +
-                    "<div class='col-md-10'>" + strunit +
-                    "</div>" +
-                    "" +
-                    "</div>";
-                }
-                this.divUnitGraph.InnerHtml = str;
-
+                GetAvailabilityChartFilterData();
             }
             catch (Exception ex)
             {
 
             }
-           
-             
+
+
 
         }
 
-        
+
+        private void GetAvailabilityChartFilterData()
+        {
+            DataTable dt = (DataTable)Session["tblflorlist"];
+            DataTable dtunit = (DataTable)Session["tblflorUnit"];
+
+            string grp = this.ddlGroup.SelectedValue.ToString();
+            string florr = this.ddlFloor.SelectedValue.ToString();
+
+            DataView dvflor = dt.Copy().DefaultView;
+            dvflor.RowFilter = ("groupcode like'" + grp + "%' and floorcode like'" + florr + "%'");
+            dt = dvflor.ToTable();
+
+
+            string str = string.Empty;
+
+            string bgcolor = "";
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string usircode1 = dt.Rows[i]["usircode1"].ToString();
+                string pactcode = dt.Rows[i]["pactcode"].ToString();
+                DataTable dtunitfilter = new DataTable();
+                string strunit = string.Empty;
+
+
+                DataView dv = dtunit.Copy().DefaultView;
+                dv.RowFilter = ("usircode1='" + usircode1 + "' and pactcode='" + pactcode + "'");
+                dtunitfilter = dv.ToTable();
+
+
+                for (int j = 0; j < dtunitfilter.Rows.Count; j++)
+                {
+
+                    strunit += "<a hrf='#' class='" + dtunitfilter.Rows[j]["cssStype"].ToString() + " btn text-white m-1'>" + dtunitfilter.Rows[j]["udesc"].ToString() + "</a>";
+                }
+                if (i % 2 == 0)
+                {
+                    bgcolor = " btn-subtle-primary ";
+                }
+                else
+                {
+                    bgcolor = "";
+                }
+
+
+                str += "<div class='row mt-1 " + bgcolor + "'>" +
+                "" +
+                "<div class='col-md-2'><h6 class='text-right m-0 florHead'>" + dt.Rows[i]["flrdesc"].ToString() + "</h6></div>" +
+                "" +
+                "<div class='col-md-10'>" + strunit +
+                "</div>" +
+                "" +
+                "</div>";
+            }
+            this.divUnitGraph.InnerHtml = str;
+        }
+
+
+
+
         private void FooterCalculation()
         {
 
@@ -450,7 +498,7 @@ namespace RealERPWEB.F_22_Sal
             ((Label)this.gvAailChart.FooterRow.FindControl("lgvFSize2")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(losize)", "")) ?
                                 0 : dt.Compute("sum(losize)", ""))).ToString("#,##0;(#,##0); ");
 
-            
+
 
 
 
