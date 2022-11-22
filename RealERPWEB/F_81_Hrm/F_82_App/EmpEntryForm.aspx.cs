@@ -341,11 +341,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string empid = ((Label)this.gvEmpList.Rows[index].FindControl("lblEmpid")).Text.ToString();
             string usrfname = ((Label)this.gvEmpList.Rows[index].FindControl("lblEmpName")).Text.ToString();
             string usrsname = ((Label)this.gvEmpList.Rows[index].FindControl("lblgvcardnoemp")).Text.ToString();
-            string usrdesig = ((Label)this.gvEmpList.Rows[index].FindControl("lblgvdesignationemp")).Text.ToString();             
-            string usrpass = "123";
+            string usrdesig = ((Label)this.gvEmpList.Rows[index].FindControl("lblgvdesignationemp")).Text.ToString();
+            string usrpass = (comcod == "3365"? "123" : comcod == "3354"? "ER@1234%":"123");
             string usrrmrk = "";
             string active ="1";
-            usrsname = (comcod == "3365" ? "bti"+ usrsname : usrsname);
+            usrsname = (comcod == "3365" ? "bti"+ usrsname : comcod == "3354" ? usrsname :usrsname);
             string usermail = "";
             string webmailpwd = "";
             string userRole = "3";
@@ -383,6 +383,41 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             // title  details recvier id
             //bool result2 = UserNotify.SendNotification(eventdesc, eventdesc2, usrid);
              
+        }
+
+        protected void gvEmpList_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                //DateTime startdate = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "nstartdate"));
+                string  usrsname = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usrsname"));
+                //DateTime today = System.DateTime.Now;
+                //if (e.Row.RowIndex > 1)
+                //{
+                //    Label txtHours = e.Row.FindControl("NoticeDet") as Label;
+                //    txtHours.Text = "";
+
+                //}
+
+
+                //if (today >= startdate && today <= enddate)
+                //{
+
+                //    e.Row.FindControl("NoticeDet").Visible = true;
+                //}
+                //else
+                //{
+                //    e.Row.FindControl("NoticeDet").Visible = false;
+                //}
+                if((GetComeCode()=="3365" || GetComeCode() == "3354" ) && usrsname =="")
+                {
+                    e.Row.FindControl("lnkUserGenarate").Visible = true;
+
+                }
+
+
+            }
         }
     }
 }
