@@ -12,15 +12,20 @@
         });
         function pageLoaded() {
             $(document).ready(function () {
-
+                $('.chzn-select').chosen({ search_contains: true });
                 Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
             });
 
             function pageLoaded() {
 
+<<<<<<< HEAD
+                $('.chzn-select').chosen({ search_contains: true });
+                //$(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
+=======
 
-                $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
+                $('.chzn-select').chosen({ search_contains: true });
+>>>>>>> f5aa924c98eafd29259f7bed1b23471f552b327d
 
             }
         }
@@ -62,13 +67,11 @@
 
                                         <div class="colMdbtn">
                                             <asp:LinkButton ID="imgbtnFindProject" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnFindProject_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
                                         </div>
-
                                     </div>
 
                                     <div class="col-md-4 pading5px ">
-                                        <asp:DropDownList ID="ddlBankName" runat="server" CssClass="form-control inputTxt">
+                                        <asp:DropDownList ID="ddlBankName" runat="server" CssClass="form-control inputTxt chzn-select">
                                         </asp:DropDownList>
 
                                     </div>
@@ -222,8 +225,8 @@
 
                                     <asp:TemplateField HeaderText="Remarks">
                                         <ItemTemplate>
-                                            <asp:Label ID="Label1" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rmks")) %>'
-                                                Width="100px"></asp:Label>
+                                            <asp:Label ID="lblgvnarration" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rmks")) %>'
+                                                Width="250px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Left" />
                                     </asp:TemplateField>
@@ -232,6 +235,7 @@
                                 <FooterStyle CssClass="grvFooter" />
                                 <EditRowStyle />
                                 <AlternatingRowStyle />
+                                <PagerSettings Mode="NumericFirstLast" />
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>

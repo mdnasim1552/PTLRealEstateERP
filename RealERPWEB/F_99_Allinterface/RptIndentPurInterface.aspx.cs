@@ -573,11 +573,13 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
 
             string reqcheck = "Checked";
+            string chkSecondApp = "";
+            string reqcheckapp = "";
             string reqapproval = "Req. App";
             string reqforward = "";
             string OrderfApproved = "";
             string Order2ndAprv = "Ord. 2nd App";
-
+            string billAudit = "Final Bill App.";
             switch (comcod)
             {
                 case "3336":
@@ -630,6 +632,13 @@ namespace RealERPWEB.F_99_Allinterface
                     Order2ndAprv = "Ord. Final App";
                     break;
 
+                case "3367": //Epic
+               // case "3101": //Epic
+                    chkSecondApp = "Mgt App.";
+                    reqcheckapp = "Checked App.";
+
+                    break;
+
 
 
                 default:
@@ -649,9 +658,9 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["iscrchecked"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>CRM Check</div></div></div>";
 
             this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["chqqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + reqcheck + "</div></div></div>";
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["faprvqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>1st App.</div></div></div>";
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["faprvqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>" + reqcheckapp + "</div></div></div>";
 
-            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["saprvqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>2nd App.</div></div></div>";
+            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["saprvqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>"+ chkSecondApp +"</div></div></div>";
 
             this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["raproqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Rate Prop.</div></div></div>";
 
@@ -677,7 +686,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             if (this.RadioButtonList1.Items[17].Enabled == true)
             {
-                this.RadioButtonList1.Items[17].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["billaudit"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red''><div class='circle-tile-description text-faded'>Bill Audit</div></div></div>";
+                this.RadioButtonList1.Items[17].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["billaudit"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red''><div class='circle-tile-description text-faded'>" + billAudit + "</div></div></div>";
 
             }
             this.RadioButtonList1.Items[19].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble(ds1.Tables[9].Rows[0]["indisu"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray''><div class='circle-tile-description text-faded'>Indent Issue</div></div></div>";

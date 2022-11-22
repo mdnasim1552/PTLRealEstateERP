@@ -50,7 +50,7 @@
             <div class="card mt-4 pb-4" style="min-width:480px;" id="divBody" runat="server">
                 <div class="card-body">
                     <div class="row">
-                         <div class="col-md-1">
+                         <div class="col-md-3">
                           
                             <label class="control-label">ID Card Length</label>
                               <asp:TextBox ID="txtIdcard" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
@@ -64,7 +64,7 @@
                           <asp:TextBox ID="txtstrtdat" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
 
                         </div>
-                        <div class="col-md-4" style="margin-top:34px;">
+                        <div class="col-md-6" style="margin-top:34px;">
                              <asp:CheckBox ID="chkCRMddata" runat="server" ></asp:CheckBox>
                             <label class="control-label">CRM Back Date Data</label>
                              <asp:CheckBox ID="chkBag" runat="server" style="margin-left:12px;" ></asp:CheckBox>

@@ -37,9 +37,10 @@ namespace RealERPWEB
                 Get_Events();
                 getLink();
                 getServiceLen();
-                getclientdata();
+               
                 GetAllHolidays();
                 gethrpolicy();
+                GetWidget();
                ((Label)this.Master.FindControl("lblTitle")).Text = "User Profile";
 
 
@@ -131,7 +132,9 @@ namespace RealERPWEB
 
 
             checkVisibility();
+            checkPendingAprval();
         }
+       
         private void checkVisibility()
         {
             string comcod = this.GetCompCode();
@@ -148,6 +151,69 @@ namespace RealERPWEB
 
 
         }
+   
+        
+        private void checkPendingAprval()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string usrid = hst["usrid"].ToString();
+
+            string txFdate = "";
+            string txtdate = "";
+
+
+        
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                return;
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "26" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            switch (comcod)
+            {
+                case "3330":
+                case "3355":
+                case "3365":
+
+                    txFdate= System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    txFdate = startdate + txFdate.Trim().Substring(2);
+                    txtdate= Convert.ToDateTime(txFdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                    break;
+                default:
+                    if (startdate == "26")
+                    {
+                        txFdate = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    }
+                    else
+                    {
+                        txFdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    }
+                    txFdate = startdate + txFdate.Trim().Substring(2);
+                    txtdate = Convert.ToDateTime(txFdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+                    //this.txFdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    //this.txFdate.Text = startdate + this.txFdate.Text.Trim().Substring(2);
+                    //this.txtdate.Text = Convert.ToDateTime(this.txFdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+                    break;
+            }
+
+            string type = "";
+            string DeptHead = "";
+            string searchkey = "%%";
+            string CompanyName = "94";
+            string branch = "94%";
+            string projectcode = branch;
+            string section =  projectcode ;
+            string leavtype = "%%";
+
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_MGT_INTERFACE", "GETLEAVEREQUEST", txFdate, txtdate, usrid, type, DeptHead, searchkey,
+                CompanyName, branch, projectcode, section, leavtype);
+            if (ds1 == null)
+                return;
+            this.lappcount.InnerText = ds1.Tables[1].Rows[0]["fappcount"].ToString();
+        }
+
         private void GetAllTimeOff()
         {
             string comcod = this.GetCompCode();
@@ -166,18 +232,29 @@ namespace RealERPWEB
 
         }
 
+        private void GetWidget()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string usrid = hst["usrid"].ToString();
+            string comcod = hst["comcod"].ToString();
+            string fdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            DataSet ds2 = HRData.GetTransInfo(comcod, "SP_UTILITY_USER_DASHBOARD", "GETUSERHOMEWIDGET", usrid, "0", fdate, "", "", "", "", "", "");
+            if (ds2 == null)
+                return;
+            DataTable dt = ds2.Tables[0];
+            int topuserAct = (from DataRow dr in dt.Rows
+                              where (int)dr["menuid"] == 1386
+                              select (int)dr["menuid"]).FirstOrDefault();
+
+            if (topuserAct > 0)
+            {
+                this.pnlClientMrrdayFinlay.Visible = true;
+                getclientdata();
+            }
+        }
         private void getclientdata()
         {
-            string comcod = this.GetCompCode();
-            if (comcod == "3368" || comcod=="3367")
-            {
-
-            this.pnlClientMrrdayFinlay.Visible = true;
-            }
-            else
-            {
-                this.pnlClientMrrdayFinlay.Visible = false;
-            }
+            string comcod = this.GetCompCode();             
             Hashtable hst = (Hashtable)Session["tblLogin"];
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "CLIENTBIRTHDAY", "", "", "", "", "", "", "");
@@ -190,7 +267,11 @@ namespace RealERPWEB
             }
             this.gvclientbthday.DataSource = (ds1.Tables[0]);
             this.gvclientbthday.DataBind();
-
+            if (comcod == "3367")
+            {
+                this.gvclientbthday.Columns[5].Visible = true;
+            }
+                
 
             if (ds1 == null || ds1.Tables[1].Rows.Count == 0)
             {
@@ -200,6 +281,10 @@ namespace RealERPWEB
             }
             this.gvmarriageday.DataSource = (ds1.Tables[1]);
             this.gvmarriageday.DataBind();
+            if (comcod == "3367")
+            {
+                this.gvclientbthday.Columns[5].Visible = true;
+            }
 
         }
         private void getLink()

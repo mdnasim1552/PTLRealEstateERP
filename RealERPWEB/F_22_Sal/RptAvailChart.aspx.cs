@@ -14,6 +14,9 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
+using Microsoft.Reporting.WinForms;
+using RealERPRDLC;
+
 namespace RealERPWEB.F_22_Sal
 {
     public partial class RptAvailChart : System.Web.UI.Page
@@ -32,9 +35,17 @@ namespace RealERPWEB.F_22_Sal
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string type = this.Request.QueryString["Type"].ToString();
-
-                ((Label)this.Master.FindControl("lblTitle")).Text = type == "Details" ? "Availability Chart 1" : "Availability Chart 2";
-
+                if (type == "BookingChart")
+                {
+                    this.divGVData.Visible = false;
+                    this.divgvChart.Visible = true;
+                }
+                else
+                {
+                    this.divGVData.Visible = true;
+                    this.divgvChart.Visible = false;
+                }
+                ((Label)this.Master.FindControl("lblTitle")).Text = (type == "Details" ? "Availability Chart 1" : type == "BookingChart" ? "Booking Chart" : "Availability Chart 2");
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -55,12 +66,14 @@ namespace RealERPWEB.F_22_Sal
                     this.gvAailChart.Columns[10].Visible = false;
                     this.gvAailChart.Columns[11].Visible = false;
                     this.gvAailChart.Columns[12].Visible = false;
+                    this.gvAailChart.Columns[13].Visible = false;
                     if (comcod == "3366" || comcod == "3101")
                     {
                         this.gvAailChart.Columns[9].Visible = false;
                     }
                     break;
                 default:
+
                     break;
             }
 
@@ -103,11 +116,27 @@ namespace RealERPWEB.F_22_Sal
         }
         protected void lnkbtnSerOk_Click(object sender, EventArgs e)
         {
+            this.divUnitGraph.InnerHtml = "";
+            Session.Remove("tblAvChart");
+            Session.Remove("tblflorlist");
+            Session.Remove("tblflorUnit");
             this.ShowReport();
         }
 
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
+
+
+            string comcod = this.GetComCode();
+            switch (comcod)
+            {
+                case "3101":
+                case "3370":
+                    this.PrintAvailityChart();
+                    break;
+                default:
+                    break;
+            }
             //Hashtable hst = (Hashtable)Session["tblLogin"];
             //string comcod = hst["comcod"].ToString();
             //string comname = hst["comnam"].ToString();
@@ -179,17 +208,65 @@ namespace RealERPWEB.F_22_Sal
             //                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
+        private void PrintAvailityChart()
+        {
+            try
+            {
+                string comcod = this.GetComCode();
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comnam = hst["comnam"].ToString();
+                string compname = hst["compname"].ToString();
+                string comsnam = hst["comsnam"].ToString();
+                string comadd = hst["comadd1"].ToString();
+                string session = hst["session"].ToString();
+                string username = hst["username"].ToString();
+                string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+                string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+                string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+                DataTable dt = (DataTable)Session["tblAvChart"];
 
+                var list = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptAvailability>();
+
+                LocalReport Rpt1 = new LocalReport();
+                Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptAvailbilityPrint", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("compname", comnam));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+
+                Rpt1.SetParameters(new ReportParameter("title", "Availability Chart"));
+                Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+            }
+            catch (Exception Exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Exp.Message.ToString() + "');", true);
+
+            }
+
+        }
         private void ShowReport()
         {
-            Session.Remove("tblAvChart");
+
             string comcod = this.GetComCode();
-            string CallType = (this.Request.QueryString["Type"].ToString() == "Details") ? "AVAILCHART" : "AVAILCHART02";
+            string type = this.Request.QueryString["Type"].ToString();
+
+            string CallType = (type == "Details") ? "AVAILCHART" : (type == "BookingChart") ? "AVAILCHART" : "AVAILCHART02";
             string pactcode = ((this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "18" : this.ddlProjectName.SelectedValue.ToString()) + "%";
-
-
+            if (type == "BookingChart" && pactcode == "18%")
+            {
+                string Message = "Please Select Project";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+                return;
+            }
 
             DataSet ds2 = feaData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, "", "", "", "", "", "", "", "");
+
 
             if (ds2 == null || ds2.Tables[0].Rows.Count == 0 || ds2.Tables[1].Rows.Count == 0)
             {
@@ -200,10 +277,19 @@ namespace RealERPWEB.F_22_Sal
 
             DataTable dt = this.HiddenSameData(ds2.Tables[0]);
             Session["tblAvChart"] = dt;
-
             this.Data_Bind();
             Session["tblFtCal"] = (DataTable)ds2.Tables[1];
-
+           
+             
+            if(type== "BookingChart")
+            {
+                Session["tblflorlist"] = (DataTable)ds2.Tables[2];
+                Session["tblflorUnit"] = (DataTable)ds2.Tables[3];
+                Session["grpname"] = (DataTable)ds2.Tables[4];
+                Session["floorname"] = (DataTable)ds2.Tables[5];
+                GetAvailabilityChart();
+                
+            }
             // this.FooterCalculation();
         }
 
@@ -281,6 +367,7 @@ namespace RealERPWEB.F_22_Sal
         }
 
 
+
         private void Data_Bind()
         {
 
@@ -291,6 +378,105 @@ namespace RealERPWEB.F_22_Sal
             this.Visibility();
             this.CompVisibility();
         }
+
+        protected void ddlGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+            GetAvailabilityChartFilterData();
+        }
+        protected void ddlFloor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetAvailabilityChartFilterData();
+        }
+
+        private void GetAvailabilityChart()
+        {
+            try
+            {
+                DataTable dtgrp = (DataTable)Session["grpname"];
+                DataTable dtglorname = (DataTable)Session["floorname"];
+
+               
+                this.ddlGroup.DataTextField = "groupdesc";
+                this.ddlGroup.DataValueField = "groupcode"; 
+                this.ddlGroup.DataSource = dtgrp;                 
+                this.ddlGroup.DataBind();
+
+                this.ddlFloor.DataTextField = "flrdesc";
+                this.ddlFloor.DataValueField = "floorcode";                
+                this.ddlFloor.DataSource = dtglorname;
+                this.ddlFloor.DataBind();
+
+                GetAvailabilityChartFilterData();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
+
+        }
+
+
+        private void GetAvailabilityChartFilterData()
+        {
+            DataTable dt = (DataTable)Session["tblflorlist"];
+            DataTable dtunit = (DataTable)Session["tblflorUnit"];
+
+            string grp = this.ddlGroup.SelectedValue.ToString();
+            string florr = this.ddlFloor.SelectedValue.ToString();
+
+            DataView dvflor = dt.Copy().DefaultView;
+            dvflor.RowFilter = ("groupcode like'" + grp + "%' and floorcode like'" + florr + "%'");
+            dt = dvflor.ToTable();
+
+
+            string str = string.Empty;
+
+            string bgcolor = "";
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string usircode1 = dt.Rows[i]["usircode1"].ToString();
+                string pactcode = dt.Rows[i]["pactcode"].ToString();
+                DataTable dtunitfilter = new DataTable();
+                string strunit = string.Empty;
+
+
+                DataView dv = dtunit.Copy().DefaultView;
+                dv.RowFilter = ("usircode1='" + usircode1 + "' and pactcode='" + pactcode + "'");
+                dtunitfilter = dv.ToTable();
+
+
+                for (int j = 0; j < dtunitfilter.Rows.Count; j++)
+                {
+
+                    strunit += "<a hrf='#' class='" + dtunitfilter.Rows[j]["cssStype"].ToString() + " btn text-white m-1'>" + dtunitfilter.Rows[j]["udesc"].ToString() + "</a>";
+                }
+                if (i % 2 == 0)
+                {
+                    bgcolor = " btn-subtle-primary ";
+                }
+                else
+                {
+                    bgcolor = "";
+                }
+
+
+                str += "<div class='row mt-1 " + bgcolor + "'>" +
+                "" +
+                "<div class='col-md-2'><h6 class='text-right m-0 florHead'>" + dt.Rows[i]["flrdesc"].ToString() + "</h6></div>" +
+                "" +
+                "<div class='col-md-10'>" + strunit +
+                "</div>" +
+                "" +
+                "</div>";
+            }
+            this.divUnitGraph.InnerHtml = str;
+        }
+
+
+
 
         private void FooterCalculation()
         {
@@ -311,6 +497,8 @@ namespace RealERPWEB.F_22_Sal
 
             ((Label)this.gvAailChart.FooterRow.FindControl("lgvFSize2")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(losize)", "")) ?
                                 0 : dt.Compute("sum(losize)", ""))).ToString("#,##0;(#,##0); ");
+
+
 
 
 
@@ -340,6 +528,11 @@ namespace RealERPWEB.F_22_Sal
                 Label lgQty = (Label)e.Row.FindControl("lgQty");
                 Label sizeSft = (Label)e.Row.FindControl("lgSize1");
                 Label percent = (Label)e.Row.FindControl("lgper");
+                Label pamt = (Label)e.Row.FindControl("lgpamt");
+                Label utility = (Label)e.Row.FindControl("lgputility");
+                Label Cooperative = (Label)e.Row.FindControl("lgpCooperative");
+                Label famt = (Label)e.Row.FindControl("lgpfamt");
+
 
                 string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usircode2")).ToString().Trim();
 
@@ -372,7 +565,10 @@ namespace RealERPWEB.F_22_Sal
                     sizeSft.Font.Bold = true;
                     unitdesc.Style.Add("text-align", "right");
                     percent.Font.Bold = true;
-
+                    pamt.Font.Bold = true;
+                    utility.Font.Bold = true;
+                    Cooperative.Font.Bold = true;
+                    famt.Font.Bold = true;
                 }
 
 

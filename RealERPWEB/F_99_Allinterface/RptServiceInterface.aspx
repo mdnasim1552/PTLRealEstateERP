@@ -812,7 +812,9 @@
                                                                     <asp:Label ID="lblqamt" runat="server" Style="text-align: right;"
                                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qamt")).ToString("#,##0;(#,##0);") %>'
                                                                         Width="200px"></asp:Label>
+
                                                                 </ItemTemplate>
+
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lblgvFAmt" runat="server" BackColor="Transparent"
                                                                         BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
@@ -829,7 +831,6 @@
                                                                     </asp:HyperLink>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
-
 
                                                         </Columns>
 
@@ -1202,7 +1203,18 @@
                                                                 <HeaderStyle HorizontalAlign="Left" />
 
                                                             </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Ref. Quantino" Visible="false">
 
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblquotid1" runat="server"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "quotid1")) %>'
+                                                                        Width="200px"></asp:Label>
+                                                                </ItemTemplate>
+
+
+                                                                <HeaderStyle HorizontalAlign="Left" />
+
+                                                            </asp:TemplateField>
 
 
                                                             <asp:TemplateField HeaderText="Customer Name">

@@ -11,53 +11,15 @@
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
         function pageLoaded() {
-
-
-
-
             $("input, select").bind("keydown", function (event) {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
-
             });
-
-
             var gridview = $('#<%=this.dgv1.ClientID %>');
             $.keynavigation(gridview);
             $('.chzn-select').chosen({ search_contains: true });
-
-
-
-
-
-
-
-            //gridview.gridviewScroll({
-
-            //    width: 1160,
-            //    height: 420,
-            //    barsize: 8,
-            //    startHorizontal: 3,
-            //    wheelstep: 10,
-            //    arrowsize: 30,
-            //    railsize: 16,
-            //    varrowtopimg: "../Image/arrowvt.png",
-            //    varrowbottomimg: "../Image/arrowvb.png",
-            //    harrowleftimg: "../Image/arrowhl.png",
-            //    harrowrightimg: "../Image/arrowhr.png",
-            //    freezesize: 6,
-
-
-
-
-            // });
-
-
-
-
+            //$('#<%=this.gvsupres.ClientID%>').tblScrollable();
         }
-
-
         function Confirmation() {
             if (confirm('Are you sure you want to save?')) {
                 return;
@@ -65,10 +27,14 @@
                 return false;
             }
         }
+        function openSupModal() {
+            $('#modalSupRate').modal('toggle');
+        }
 
+        function closeSupModal() {
+            $('#modalSupRate').modal('hide');
+        }
     </script>
-
-
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -396,11 +362,7 @@
                                             <asp:CheckBox ID="chkvmrno" runat="server" Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chkmv"))=="True" %>'
                                                 Width="15px" />
                                         </ItemTemplate>
-
-
                                         <HeaderTemplate>
-
-
                                             <asp:CheckBox ID="chkAll" runat="server" AutoPostBack="True"
                                                 OnCheckedChanged="chkAll_CheckedChanged" Width="15px" />
 
@@ -409,7 +371,8 @@
                                     <asp:TemplateField HeaderText="" Visible="false">
                                         <ItemTemplate>
                                             <asp:LinkButton ID="lbok" runat="server" CommandArgument="lbok" OnClientClick="return Confirmation();" OnClick="lbok_Click"
-                                                Width="15px">OK</asp:LinkButton>
+                                                Width="35px" Text="Update">
+                                            </asp:LinkButton>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
@@ -465,32 +428,18 @@
                                         <FooterStyle HorizontalAlign="Left" />
                                     </asp:TemplateField>
 
-
-
-
-
-
-
                                     <asp:TemplateField HeaderText="Survey Link">
-
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-
                                         <ItemTemplate>
-
-
                                             <asp:HyperLink ID="hlnkgvSurvey" runat="server" BorderColor="#99CCFF" BorderStyle="none"
                                                 Font-Size="11px" Style="background-color: Transparent; color: Black;" Font-Underline="false"
                                                 Target="_blank" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "msrno"))%>'
-                                                Width="60px">
+                                                Width="80px">
                                             </asp:HyperLink>
-
-
                                         </ItemTemplate>
                                         <FooterTemplate>
                                             <asp:HyperLink Visible="false" ID="HypMakeSurvey" runat="server" Target="_blank">Survey</asp:HyperLink>
                                         </FooterTemplate>
-
-
                                         <FooterStyle HorizontalAlign="left" />
                                     </asp:TemplateField>
 
@@ -568,6 +517,16 @@
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Left" />
                                     </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="History">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="lbtnHistory" runat="server" OnClick="lbtnHistory_Click"
+                                                Width="50px" Text="Show">
+                                            </asp:LinkButton>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+
                                 </Columns>
                                 <FooterStyle CssClass="grvFooter" />
                                 <EditRowStyle />
@@ -576,17 +535,7 @@
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
                         </div>
-
                     </div>
-
-
-
-
-
-
-
-
-
                     <div class=" row table-responsive">
                         <asp:Panel ID="pnlnara" runat="server">
                             <div class="form-group">
@@ -598,13 +547,10 @@
 
                                     </div>
                                 </div>
-
                                 <div class="col-md-4 pading5px">
                                     <div class="input-group">
                                         <asp:HyperLink ID="lnkCreateMat" runat="server" CssClass="btn btn-warning primaryBtn" Visible="false"
                                             NavigateUrl="~/F_17_Acc/AccSubCodeBook.aspx?InputType=Res" Target="_blank">Create Material</asp:HyperLink>
-
-
                                     </div>
                                 </div>
 
@@ -614,48 +560,34 @@
 
                         <%--  Rahain to Request below panle visible false, by nahid--%>
                         <asp:Panel ID="fotpanel" Visible="false" runat="server">
-
-
                             <div class="col-md-12">
-
                                 <div class="panel with-nav-tabs panel-deafult">
                                     <div class="panel-heading">
                                         <ul class="nav nav-tabs ">
-
                                             <li class="active"><a href="#tab3primary" data-toggle="tab"><span class="glyphicon glyphicon-upload"></span>Upload </a></li>
-
                                         </ul>
                                     </div>
                                     <div class="panel-body">
                                         <div class="tab-content">
-
-
-
                                             <div class="tab-pane fade in active" id="tab3primary">
-
                                                 <div class="form-group">
                                                     <div class="col-md-4 col-sm-4 col-lg-4">
                                                         <asp:Panel runat="server" ID="pnlQutatt">
-
-
                                                             <div class="panel panel-primary">
                                                                 <div class="panel-heading">
-                                                                    <span class="glyphicon glyphicon-upload"></span>Qutation Image Upload
-   
+                                                                    <span class="glyphicon glyphicon-upload">Qutation Image Upload</span>
                                                                 </div>
                                                                 <div class="panel-body">
                                                                     <div class="row">
                                                                         <div class="col-lg-12">
                                                                             <div class="row">
                                                                                 <div class="form-group">
-
                                                                                     <asp:Label ID="Label2" runat="server" CssClass="col-md-4" Text="Supplier Name"></asp:Label>
                                                                                     <div class="col-md-8">
                                                                                         <asp:DropDownList ID="ddlBestSupplier" runat="server" CssClass="form-control"></asp:DropDownList>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-
                                                                             <div class="row">
                                                                                 <fieldset class="alert alert-success">
 
@@ -669,32 +601,21 @@
                                                                                     <br />
                                                                                     <asp:Label ID="lblMesg" runat="server" Text=""></asp:Label>
                                                                                 </fieldset>
-
-
-
-
-
                                                                             </div>
-
-
-
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </asp:Panel>
-
                                                     </div>
                                                     <div class="col-md-7">
                                                         <div class="panel panel-primary">
                                                             <div class="panel-heading">
-                                                                <span class="glyphicon glyphicon-picture"></span>Uploaded Files
-       
-                                            <div class="pull-right">
-                                                <asp:Button ID="btnShowimg" runat="server" CssClass="btn btn-success btn-xs" Text="Show Image" OnClick="btnShowimg_Click" />
-                                                <asp:LinkButton ID="btnDelall" runat="server" OnClick="btnDelall_OnClick" Visible="true" CssClass=" btn btn-xs btn-danger">Delete</asp:LinkButton>
-
-                                            </div>
+                                                                <span class="glyphicon glyphicon-picture">Uploaded Files</span>
+                                                                <div class="pull-right">
+                                                                    <asp:Button ID="btnShowimg" runat="server" CssClass="btn btn-success btn-xs" Text="Show Image" OnClick="btnShowimg_Click" />
+                                                                    <asp:LinkButton ID="btnDelall" runat="server" OnClick="btnDelall_OnClick" Visible="true" CssClass=" btn btn-xs btn-danger">Delete</asp:LinkButton>
+                                                                </div>
                                                             </div>
                                                             <div class="panel-body ">
                                                                 <div class="row">
@@ -743,14 +664,7 @@
 
 
                         </asp:Panel>
-
-
-
                     </div>
-
-
-
-
                     <asp:Panel runat="server" ID="pnlApproval" Visible="true">
                         <div class="row">
                             <fieldset class="scheduler-border fieldset_A">
@@ -760,25 +674,16 @@
                                             <asp:Label ID="lblCarring" runat="server" CssClass="lblTxt lblName" Text="Carring"></asp:Label>
                                             <asp:TextBox ID="txtCarring" runat="server" CssClass=" inputTxt inputName inpPixedWidth" Style="text-align: right;"
                                                 TabIndex="9"></asp:TextBox>
-
                                         </div>
-
                                     </div>
-
-
-
-
                                 </div>
                             </fieldset>
                         </div>
                     </asp:Panel>
-
-
                     <div class="table-responsive">
                         <div class=" form-group">
                             <asp:Label ID="lblsurveyby" Style="font-size: 16px; color: blue; margin: 10px 0" runat="server" Text="Approv.Date" Visible="False"></asp:Label>
                         </div>
-
                         <asp:GridView ID="gvMSRInfo" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                             ShowFooter="True" Width="274px" Visible="false">
                             <PagerSettings />
@@ -911,6 +816,92 @@
                 </div>
             </div>
 
+            <div id="modalSupRate" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-dialog-md-width">
+                    <div class="modal-content modal-content-md-width">
+                        <div class="modal-header">
+                            <h4 class="modal-title">
+                                <i class="fa fa-hand-point-right"></i>Material Purchase History </h4>
+                            <button type="button" class="btn btn-xs pull-right" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="modal-body " style="min-height: 400px">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <h4 class="modal-title"><span id="spanMatName" runat="server"></span></h4>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <asp:GridView ID="gvsupres" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                            AutoGenerateColumns="False" Font-Size="12px" Width="560px">
+                                            <FooterStyle BackColor="#5F9467" Font-Bold="True" ForeColor="#000" />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="SL">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblserialnoid" runat="server" Style="text-align: right"
+                                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                                    <ItemStyle Font-Size="12px" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Project">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="mlblpactdesc" runat="server" Font-Size="12px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
+                                                            Width="120px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                                    <ItemStyle Font-Size="12px" />
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="MPR/MRF">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="mlblmrfno" runat="server" Font-Size="12px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrfno")) %>'
+                                                            Width="100px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                                    <ItemStyle Font-Size="12px" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Supplier">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="mlblssirdesc" runat="server" Font-Size="12px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ssirdesc")) %>'
+                                                            Width="180px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                                    <ItemStyle Font-Size="12px" />
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Rate">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="mtxtgvlimit" runat="server" Font-Size="11px" Style="text-align: right;"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem,  "rate")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                            Width="70px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle Font-Size="16px" HorizontalAlign="Center" />
+                                                    <ItemStyle Font-Size="12px" HorizontalAlign="Center" />
+                                                </asp:TemplateField>
+                                            </Columns>
+                                            <FooterStyle CssClass="grvFooter" />
+                                            <PagerStyle CssClass="gvPagination" />
+                                            <HeaderStyle CssClass="grvHeader" />
+                                        </asp:GridView>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            </div>
+
             <script type="text/javascript">
                 function uploadComplete(sender) {
                     $get("<%=lblMesg.ClientID%>").style.color = "green";
@@ -921,14 +912,8 @@
                     $get("<%=lblMesg.ClientID%>").style.color = "red";
                     $get("<%=lblMesg.ClientID%>").innerHTML = "File upload failed.";
                 }
-
-
             </script>
 
         </ContentTemplate>
-
-
     </asp:UpdatePanel>
-
-
 </asp:Content>

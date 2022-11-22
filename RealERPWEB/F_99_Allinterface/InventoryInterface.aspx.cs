@@ -97,6 +97,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 case "0":
                     this.pnlstatus.Visible = true;
+                    this.pnlmgcheck.Visible = false;
                     this.pnlreqchk.Visible = false;
                     this.pnlReqAprv.Visible = false;
                     this.pnlgatepass.Visible = false;
@@ -106,10 +107,12 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[0].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[0].Attributes["style"] = "background: #430000; display:block; ";
                     break;
-                // mat req checked
+                
+                    // MGT / HOD req checked
                 case "1":
                     this.pnlstatus.Visible = false;
-                    this.pnlreqchk.Visible = true;
+                    this.pnlmgcheck.Visible = true;
+                    this.pnlreqchk.Visible = false;
                     this.pnlReqAprv.Visible = false;
                     this.pnlgatepass.Visible = false;
                     this.pnlapproval.Visible = false;
@@ -118,11 +121,13 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.RadioButtonList1.Items[1].Attributes["style"] = "background: #430000; display:block; ";
                     this.RadioButtonList1.Items[1].Attributes["class"] = "lblactive blink_me";
                     break;
-                // mat req approval
+                    
+                // mat req checked
                 case "2":
                     this.pnlstatus.Visible = false;
-                    this.pnlreqchk.Visible = false;
-                    this.pnlReqAprv.Visible = true;
+                    this.pnlmgcheck.Visible = false;
+                    this.pnlreqchk.Visible = true;
+                    this.pnlReqAprv.Visible = false;
                     this.pnlgatepass.Visible = false;
                     this.pnlapproval.Visible = false;
                     this.pnlaudit.Visible = false;
@@ -130,52 +135,69 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.RadioButtonList1.Items[1].Attributes["style"] = "background: #430000; display:block; ";
                     this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
                     break;
-                // gate pass
+                // mat req approval
                 case "3":
                     this.pnlstatus.Visible = false;
+                    this.pnlmgcheck.Visible = false;
+                    this.pnlreqchk.Visible = false;
+                    this.pnlReqAprv.Visible = true;
+                    this.pnlgatepass.Visible = false;
+                    this.pnlapproval.Visible = false;
+                    this.pnlaudit.Visible = false;
+                    this.pnlaccount.Visible = false;
+                    //this.RadioButtonList1.Items[1].Attributes["style"] = "background: #430000; display:block; ";
+                    this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
+                    break;
+                // gate pass
+                case "4":
+                    this.pnlstatus.Visible = false;
+                    this.pnlmgcheck.Visible = false;
                     this.pnlreqchk.Visible = false;
                     this.pnlReqAprv.Visible = false;
                     this.pnlgatepass.Visible = true;
                     this.pnlapproval.Visible = false;
                     this.pnlaudit.Visible = false;
                     this.pnlaccount.Visible = false;
-                    this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[2].Attributes["style"] = "background: #430000; display:block; ";
                     break;
                 //gate pass Approval
-                case "4":
+                case "5":
                     this.pnlstatus.Visible = false;
+                    this.pnlmgcheck.Visible = false;
                     this.pnlreqchk.Visible = false;
                     this.pnlReqAprv.Visible = false;
                     this.pnlgatepass.Visible = false;
                     this.pnlapproval.Visible = true;
                     this.pnlaudit.Visible = false;
                     this.pnlaccount.Visible = false;
-                    this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[3].Attributes["style"] = "background: #430000; display:block; ";
                     break;
 
                 // audit
-                case "5":
+                case "6":
                     this.pnlstatus.Visible = false;
+                    this.pnlmgcheck.Visible = false;
                     this.pnlreqchk.Visible = false;
                     this.pnlReqAprv.Visible = false;
                     this.pnlgatepass.Visible = false;
                     this.pnlapproval.Visible = false;
                     this.pnlaudit.Visible = true;
                     this.pnlaccount.Visible = false;
-                    this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[6].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[3].Attributes["style"] = "background: #430000; display:block; ";
                     break;
-                case "6":
+                case "7":
                     this.pnlstatus.Visible = false;
+                    this.pnlmgcheck.Visible = false;
                     this.pnlreqchk.Visible = false;
                     this.pnlReqAprv.Visible = false;
                     this.pnlgatepass.Visible = false;
                     this.pnlapproval.Visible = false;
                     this.pnlaudit.Visible = false;
                     this.pnlaccount.Visible = true;
-                    this.RadioButtonList1.Items[6].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[7].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[3].Attributes["style"] = "background: #430000; display:block; ";
                     break;
 
@@ -196,8 +218,6 @@ namespace RealERPWEB.F_99_Allinterface
         }
         private void GetintoryData()
         {
-
-
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetCompCode();
             string userid = hst["usrid"].ToString();
@@ -211,8 +231,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 return;
             }
-            string gatePass = "";
-            string approval = "";
+            string gatePass = "",  approval = "", Audit = "Audit";
             switch (comcod)
             {
 
@@ -229,20 +248,27 @@ namespace RealERPWEB.F_99_Allinterface
                     gatePass = "Gate Pass";
                     approval = "Received";
                     break;
-                // todo for skip mrtreq approval part
+
+                case"3370":
+                    gatePass = "Gate Pass";
+                    approval = "Received";
+                    Audit = "Approval";
+                    break;     
+                    
                 default:
                     gatePass = "Gate Pass";
                     approval = "Approval";
                     break;
             }
 
-            this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["statuses"]) + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
-            this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["reqchecked"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Req Checked</div></div></div>";
-            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["reqapproval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Req Approval</div></div></div>";
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["gatepass"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + gatePass + "</div></div></div>";
-            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["approval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>" + approval + "</div></div></div>";
-            this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["audited"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Audit</div></div></div>";
-            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[7].Rows[0]["account"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Accounts Update</div></div></div>";
+            this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToInt32(ds2.Tables[8].Rows[0]["statuses"]) + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
+            this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[8].Rows[0]["mgchecked"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>HOD Checked</div></div></div>";
+            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[8].Rows[0]["reqchecked"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Req Checked</div></div></div>";
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[8].Rows[0]["reqapproval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Req Approval</div></div></div>";
+            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[8].Rows[0]["gatepass"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + gatePass + "</div></div></div>";
+            this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[8].Rows[0]["approval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>" + approval + "</div></div></div>";
+            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[8].Rows[0]["audited"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>"+ Audit + "</div></div></div>";
+            this.RadioButtonList1.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[8].Rows[0]["account"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Accounts Update</div></div></div>";
 
             Session["tbladdwrk"] = ds2.Tables[0];
 
@@ -251,12 +277,13 @@ namespace RealERPWEB.F_99_Allinterface
             //Status
 
             this.Data_Bind("gvstatus", ds2.Tables[0]);
-            this.Data_Bind("gvreqchk", ds2.Tables[1]);
-            this.Data_Bind("gvreqaprv", ds2.Tables[2]);
-            this.Data_Bind("gvgatepass", ds2.Tables[3]);
-            this.Data_Bind("gvapproval", ds2.Tables[4]);
-            this.Data_Bind("gvaudit", ds2.Tables[5]);
-            this.Data_Bind("gvaccount", ds2.Tables[6]);
+            this.Data_Bind("gvmgchecked", ds2.Tables[1]);
+            this.Data_Bind("gvreqchk", ds2.Tables[2]);
+            this.Data_Bind("gvreqaprv", ds2.Tables[3]);
+            this.Data_Bind("gvgatepass", ds2.Tables[4]);
+            this.Data_Bind("gvapproval", ds2.Tables[5]);
+            this.Data_Bind("gvaudit", ds2.Tables[6]);
+            this.Data_Bind("gvaccount", ds2.Tables[7]);
 
         }
 
@@ -268,10 +295,21 @@ namespace RealERPWEB.F_99_Allinterface
                 case "gvstatus":
                     this.gvstatus.DataSource = dt;
                     this.gvstatus.DataBind();
+                    if (GetCompCode() == "3370")
+                    {
+                        this.gvstatus.Columns[8].Visible = false;
+                    }
                     if (dt.Rows.Count == 0)
                         return;
                     break;
 
+                case "gvmgchecked":
+                    this.gvmgchecked.DataSource = dt;
+                    this.gvmgchecked.DataBind();
+                    if (dt.Rows.Count == 0)
+                        return;
+                    break;
+                
                 case "gvreqchk":
                     this.gvreqchk.DataSource = dt;
                     this.gvreqchk.DataBind();
@@ -282,6 +320,10 @@ namespace RealERPWEB.F_99_Allinterface
                 case "gvreqaprv":
                     this.gvreqaprv.DataSource = dt;
                     this.gvreqaprv.DataBind();
+                    if (GetCompCode() == "3370")
+                    {
+                        this.gvreqaprv.Columns[7].Visible = false;
+                    }
                     if (dt.Rows.Count == 0)
                         return;
                     break;
@@ -289,6 +331,10 @@ namespace RealERPWEB.F_99_Allinterface
                 case "gvgatepass":
                     this.gvgatepass.DataSource = dt;
                     this.gvgatepass.DataBind();
+                    if (GetCompCode() == "3370")
+                    {
+                        this.gvgatepass.Columns[8].Visible = false;
+                    }
                     if (dt.Rows.Count == 0)
                         return;
                     break;
@@ -296,12 +342,20 @@ namespace RealERPWEB.F_99_Allinterface
                 case "gvapproval":
                     this.gvapproval.DataSource = dt;
                     this.gvapproval.DataBind();
+                    if (GetCompCode() == "3370")
+                    {
+                        this.gvapproval.Columns[8].Visible = false;
+                    }
                     if (dt.Rows.Count == 0)
                         return;
                     break;
                 case "gvaudit":
                     this.gvaudit.DataSource = dt;
                     this.gvaudit.DataBind();
+                    if (GetCompCode() == "3370")
+                    {
+                        this.gvaudit.Columns[8].Visible = false;
+                    }
                     if (dt.Rows.Count == 0)
                         return;
                     break;
@@ -568,6 +622,12 @@ namespace RealERPWEB.F_99_Allinterface
                 string mtreqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mtreqno")).ToString();
                 switch (status)
                 {
+                    case "HOD Checked":
+                        track.Attributes.CssStyle.Add("color", "red");
+                        break;                    
+                    case "Req Checked":
+                        track.Attributes.CssStyle.Add("color", "Green");
+                        break;
                     case "Req Approval":
                         track.Attributes.CssStyle.Add("color", "Purple");
                         break;
@@ -702,6 +762,44 @@ namespace RealERPWEB.F_99_Allinterface
         }
 
         protected void lnkremovechk_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string mtreqno = ((Label)this.gvreqchk.Rows[Rowindex].FindControl("lblmtreqnochk")).Text.Trim();
+
+            DataSet ds1 = feaData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "PrevMTRInfo", mtreqno, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+            bool result = log.XmlDataInsertReq(mtreqno, ds1);
+
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail');", true);
+                return;
+            }
+
+            bool result1 = feaData.UpdateTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", "DELETEMTRREQCHECK", mtreqno, "", "", "", "", "", "", "", "", "", "");
+            if (!result1)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Removed Fail .. !!');", true);
+                return;
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Successfully Removed');", true);
+            this.RadioButtonList1_SelectedIndexChanged(null, null);
+        }
+
+        protected void gvmgchecked_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink lnkmgcheked = (HyperLink)e.Row.FindControl("lnkmgcheked");
+                string mtreqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mtreqno")).ToString();
+                lnkmgcheked.NavigateUrl = "~/F_12_Inv/PurMTReqEntry?Type=MgtChecked&prjcode=" + "" + "&genno=" + mtreqno;
+            }
+        }
+
+        protected void lnkremovemg_Click(object sender, EventArgs e)
         {
             string comcod = this.GetCompCode();
             int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;

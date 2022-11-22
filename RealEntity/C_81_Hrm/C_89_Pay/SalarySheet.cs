@@ -602,8 +602,9 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public string fgrp { get; set; }
             public string ftdesc { get; set; }
             public string desig2 { get; set; }
+            public double swf { get; set; }
+            public double subfee { get; set; }
 
-           
             public RptSalarySheet ()
             {
 
@@ -706,6 +707,11 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double transded { get; set; }
             public DateTime joindate { get; set; }
             public string deptname { get; set; }
+            public double swf { get; set; }
+            public double subfee { get; set; }
+            public double  otallow { get; set; }
+            public double tallow { get; set; }
+
 
             public SalaryPaySlip()
             {

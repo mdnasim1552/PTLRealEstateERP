@@ -9,7 +9,6 @@
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
-
         function pageLoaded() {
             var grvacc = $('#<%=this.grvacc.ClientID %>');
             //grvacc.Scrollable();
@@ -20,14 +19,13 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="card card-fluid">
-                <div class="card-body">
+                <div class="card-header">
                     <div class="row">
                         <div class="col-md-2">
                             <asp:Label ID="LblBookName1" runat="server" CssClass="lblTxt lblName" Text="Sales Code"></asp:Label>
                             <asp:DropDownList ID="ddlOthersBook" runat="server" CssClass="form-control"></asp:DropDownList>
                         </div>
                         <div class="col-md-2">
-
                             <asp:DropDownList ID="ddlOthersBookSegment" runat="server" CssClass="form-control" Style="margin-top: 23px">
                                 <asp:ListItem Value="2">Main Code</asp:ListItem>
                                 <asp:ListItem Value="4">Sub-1</asp:ListItem>
@@ -58,12 +56,11 @@
                             </asp:DropDownList>
                         </div>
                         <asp:Label ID="ConfirmMessage" runat="server" CssClass="btn btn-danger primaryBtn" Visible="false"></asp:Label>
-
-
                     </div>
-
-                    <div class="table table-responsive" style="margin-top: 20px">
-                        <asp:GridView ID="grvacc" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea" AutoGenerateColumns="False" BorderColor="SteelBlue" Font-Size="12px"
+                </div>
+                <div class="card-body">
+                    <div class="table table-responsive" style="min-height: 350px;">
+                        <asp:GridView ID="grvacc" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea" AutoGenerateColumns="False"
                             OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing" OnRowUpdating="grvacc_RowUpdating" OnPageIndexChanging="grvacc_PageIndexChanging"
                             OnDataBound="grvacc_DataBound" AllowPaging="true" Width="700px" ShowFooter="True" PageSize="600" OnRowDataBound="grvacc_RowDataBound">
                             <FooterStyle BackColor="#5F9467" />
@@ -75,6 +72,15 @@
                                     </ItemTemplate>
                                     <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                     <ItemStyle Font-Size="12px" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="+">
+
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lbtnAdd" runat="server" CssClass="btn btn-xs btn-default" ToolTip="Add New Code" BackColor="Transparent" Visible="false" OnClick="lbtnAdd_Click"><span class="fa fa-plus" aria-hidden="true"></span></asp:LinkButton>
+                                    </ItemTemplate>
+                                    <HeaderStyle Font-Bold="True" Font-Size="16px" Width="20px" HorizontalAlign="Center" />
+
+                                    <ItemStyle HorizontalAlign="Left" />
                                 </asp:TemplateField>
                                 <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText=""
                                     SelectText="" ShowEditButton="True">

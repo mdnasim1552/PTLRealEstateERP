@@ -70,7 +70,7 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
                 case "3339":
-               // case "3101":
+                    // case "3101":
                     mrprint = "MRPrint5";
                     break;
 
@@ -88,12 +88,23 @@ namespace RealERPWEB.F_17_Acc
                     // case "3101":
                     mrprint = "MRPrintIntech";
                     break;
+                case "3101":
+                case "3370":
+                    // case "3101":
+                    mrprint = "MRPrintCPDL";
+                    break;
 
-                
-                case "3101": //Finlay
+                //Finlay
                 case "3368":
                     mrprint = "MRPrintFinlay";
                     break;
+                
+                case "1206":
+                case "1207":
+                case "3338":
+                    mrprint = "MRPrintAcme";
+                    break;
+
 
                 default:
                     mrprint = "MRPrint";
@@ -109,24 +120,14 @@ namespace RealERPWEB.F_17_Acc
             switch (comcod)
             {
                 case "3368": //Finlay
-                case "3101": //Finlay
                     irectype = "rectypewise";
                     break;
 
-
                 default:
+                    irectype = "";
                     break;
-
-
-            
-            
-            
-            
             }
-
             return irectype;
-
-
 
         }
         private void PrintMoneyReceiptAll()
@@ -135,6 +136,11 @@ namespace RealERPWEB.F_17_Acc
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
             string comadd = hst["comadd1"].ToString();
+
+
+
+            string comfadd = hst["comadd"].ToString().Replace("<br />", "\n");
+
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
@@ -155,186 +161,299 @@ namespace RealERPWEB.F_17_Acc
             bool isMoneyRecpt = false;
             bool isPartial = false;
 
-            string insrectype= GetComInsrecType();
-            if (insrectype.Length == 0)
+            string insrectype = GetComInsrecType();
+            string instpart2 = "";
+
+            switch (comcod)
             {
+                case "3101":
+                case "1205":
+                case "3351":
+                case "3352":
+                case "3356":
 
-                for (int i = 0; i < dtmr.Rows.Count; i++)
-                {
-                    if (i == 0)
+                    for (int i = 0; i < dtmr.Rows.Count; i++)
                     {
-                        if (Convert.ToDouble(dtmr.Rows[i]["schamt"].ToString()) == Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()))
+                        if (i == 0)
                         {
-                            Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
+                            if (Convert.ToDouble(dtmr.Rows[i]["schamt"].ToString()) == Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()))
+                            {
+                                if ((ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81001") || (ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81002"))
+                                {
+                                    instpart2 = instpart2 + dtmr.Rows[i]["gdesc"] + ", ";
+                                }
+                                else
+                                {
+                                    Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
+                                }
+
+                            }
+
+                            else if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
+                            {
+                                if ((ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81001") || (ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81002"))
+                                {
+                                    instpart2 = instpart2 + "REFUNDABLE COLLECTION, ";
+                                }
+                                else
+                                {
+                                    Installment = Installment + "REFUNDABLE COLLECTION, ";
+                                }
+
+                            }
+
+                            else
+                            {
+                                if ((ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81001") || (ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81002"))
+                                {
+                                    instpart2 = instpart2 + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+                                }
+                                else
+                                {
+                                    Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+                                }
+
+                            }
+
+
                         }
 
-                        else if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
+                        else if (dtmr.Rows[i - 1]["gdesc"].ToString().Trim() != dtmr.Rows[i]["gdesc"].ToString().Trim())
                         {
-                            Installment = Installment + "REFUNDABLE COLLECTION, ";
-                        }
+                            if (Convert.ToDouble(dtmr.Rows[i]["schamt"].ToString()) == Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()))
+                            {
+                                if ((ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81001") || (ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81002"))
+                                {
+                                    instpart2 = instpart2 + dtmr.Rows[i]["gdesc"] + ", ";
+                                }
+                                else
+                                {
+                                    Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
+                                    isMoneyRecpt = true;
+                                }
 
-                        else
-                        {
-                            Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
-                        }
+                            }
 
+                            else if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
+                            {
+                                if ((ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81001") || (ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81002"))
+                                {
+                                    instpart2 = instpart2 + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+                                }
+                                else
+                                {
+                                    Installment = Installment + "REFUNDABLE COLLECTION, ";
 
-                    }
+                                }
+                            }
+                            else
+                            {
 
-                    else if (dtmr.Rows[i - 1]["gdesc"].ToString().Trim() != dtmr.Rows[i]["gdesc"].ToString().Trim())
-                    {
-                        if (Convert.ToDouble(dtmr.Rows[i]["schamt"].ToString()) == Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()))
-                        {
-                            Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
-                            isMoneyRecpt = true;
-                        }
-
-                        else if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
-                        {
-                            Installment = Installment + "REFUNDABLE COLLECTION, ";
-                        }
-                        else
-                        {
-                            Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
-                            isPartial = true;
-                        }
-
-                    }
-
-                }
-            }
-
-            else
-            {
-
-                //MR (1 Row Existed), MR(More than one row existed)
-                string prectype = "";
-                int count = dtmr.Rows.Count;
-                for (int i = 0; i < dtmr.Rows.Count; i++)
-                {
+                                if ((ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81001") || (ASTUtility.Left(dtmr.Rows[i]["gcod"].ToString(), 5) == "81002"))
+                                {
+                                    instpart2 = instpart2 + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+                                }
+                                else
+                                {
+                                    Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+                                    isPartial = true;
+                                }
 
 
-                    if (i == 0)
-                    {
+                            }
 
-                        if (Convert.ToDouble(dtmr.Rows[i]["schamt"].ToString()) == Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()))
-                        {
-                            Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
-                        }
-
-                        else if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
-                        {
-                            Installment = Installment + "REFUNDABLE COLLECTION, ";
-                        }
-
-                        else
-                        {
-                            Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
-                        }
-
-                        //If DataRow is 1, then insert  installment in  insdesc 
-
-                        if (dtmr.Rows.Count == 1)
-                            dtmr.Rows[i]["insdesc"] = (Installment.Length == 0) ? "" : ASTUtility.Left(Installment, Installment.Length - 2);
-
-
-                    }
-
-                    else if (prectype == dtmr.Rows[i]["rectype"].ToString().Trim())
-                    {
-                        if (Convert.ToDouble(dtmr.Rows[i]["schamt"].ToString()) == Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()))
-                        {
-                            Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
-                            isMoneyRecpt = true;
-                        }
-
-                        else if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
-                        {
-                            Installment = Installment + "REFUNDABLE COLLECTION, ";
-                        }
-                        else
-                        {
-                            Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
-                            isPartial = true;
                         }
 
                     }
-                    else
+                    break;
+
+
+
+                case "3368":
+
+                    //MR (1 Row Existed), MR(More than one row existed)
+                    string prectype = "";
+                    int count = dtmr.Rows.Count;
+                    for (int i = 0; i < dtmr.Rows.Count; i++)
                     {
-                        Installment=(Installment.Length == 0) ? "" : ASTUtility.Left(Installment, Installment.Length - 2);
 
-                        //Full Schedule
-                        if (isMoneyRecpt)
-                        {
-                            string part1 = ASTUtility.Left(Installment, 4);
-                            string part2 = isPartial == true ? ASTUtility.Right(Installment, 25) : ASTUtility.Right(Installment, 16);
-                            Installment = part1 + " - " + part2;
-                        }                      
 
-                        dtmr.Rows[i-1]["insdesc"] = Installment;
-                        Installment = "";
-                        if (Convert.ToDouble(dtmr.Rows[i]["schamt"].ToString()) == Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()))
+                        if (i == 0)
                         {
-                            Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
-                            isMoneyRecpt = true;
+
+                            if (Convert.ToDouble(dtmr.Rows[i]["schamt"].ToString()) == Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()))
+                            {
+                                Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
+                            }
+
+                            else if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
+                            {
+                                Installment = Installment + "REFUNDABLE COLLECTION, ";
+                            }
+
+                            else
+                            {
+                                Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+                            }
+
+                            //If DataRow is 1, then insert  installment in  insdesc 
+
+                            if (dtmr.Rows.Count == 1)
+                                dtmr.Rows[i]["insdesc"] = (Installment.Length == 0) ? "" : ASTUtility.Left(Installment, Installment.Length - 2);
+
+
                         }
 
-                        else if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
+                        else if (prectype == dtmr.Rows[i]["rectype"].ToString().Trim())
                         {
-                            Installment = Installment + "REFUNDABLE COLLECTION, ";
+                            if (Convert.ToDouble(dtmr.Rows[i]["schamt"].ToString()) == Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()))
+                            {
+                                Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
+                                isMoneyRecpt = true;
+                            }
+
+                            else if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
+                            {
+                                Installment = Installment + "REFUNDABLE COLLECTION, ";
+                            }
+                            else
+                            {
+                                Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+                                isPartial = true;
+                            }
+
                         }
                         else
-                        {
-                            Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
-                            isPartial = true;
-                        }
-
-
-                    }
-
-                    //if Row More than 1 and then insert  installment in  insdesc 
-
-                    if (i != 0 && i == count - 1)
-                    {
-
-                        //Full Schedule
-                        if (Installment.Contains(","))
                         {
                             Installment = (Installment.Length == 0) ? "" : ASTUtility.Left(Installment, Installment.Length - 2);
+
+                            //Full Schedule
+                            if (isMoneyRecpt)
+                            {
+                                string part1 = ASTUtility.Left(Installment, 4);
+                                string part2 = isPartial == true ? ASTUtility.Right(Installment, 25) : ASTUtility.Right(Installment, 16);
+                                Installment = part1 + " - " + part2;
+                            }
+
+                            dtmr.Rows[i - 1]["insdesc"] = Installment;
+                            Installment = "";
+                            if (Convert.ToDouble(dtmr.Rows[i]["schamt"].ToString()) == Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()))
+                            {
+                                Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
+                                isMoneyRecpt = true;
+                            }
+
+                            else if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
+                            {
+                                Installment = Installment + "REFUNDABLE COLLECTION, ";
+                            }
+                            else
+                            {
+                                Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+                                isPartial = true;
+                            }
+
+
                         }
-                       
-                        if (isMoneyRecpt)
+
+                        //if Row More than 1 and then insert  installment in  insdesc 
+
+                        if (i != 0 && i == count - 1)
                         {
-                            string part1 = ASTUtility.Left(Installment, 4);
-                            string part2 = isPartial == true ? ASTUtility.Right(Installment, 25) : ASTUtility.Right(Installment, 16);
-                            Installment = part1 + " - " + part2;
+
+                            //Full Schedule
+                            if (Installment.Contains(","))
+                            {
+                                Installment = (Installment.Length == 0) ? "" : ASTUtility.Left(Installment, Installment.Length - 2);
+                            }
+
+                            if (isMoneyRecpt)
+                            {
+                                string part1 = ASTUtility.Left(Installment, 4);
+                                string part2 = isPartial == true ? ASTUtility.Right(Installment, 25) : ASTUtility.Right(Installment, 16);
+                                Installment = part1 + " - " + part2;
+                            }
+                            dtmr.Rows[i]["insdesc"] = Installment;
                         }
-                        dtmr.Rows[i]["insdesc"] = Installment;
+
+
+                        prectype = dtmr.Rows[i]["rectype"].ToString().Trim();
+
+                    }
+                    break;
+                
+                
+                default:
+                    for (int i = 0; i < dtmr.Rows.Count; i++)
+                    {
+                        if (i == 0)
+                        {
+                            if (Convert.ToDouble(dtmr.Rows[i]["schamt"].ToString()) == Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()))
+                            {
+                                Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
+                            }
+                            else if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
+                            {
+                                Installment = Installment + "REFUNDABLE COLLECTION, ";
+                            }
+                            else
+                            {
+                                Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+                            }
+                        }
+
+                        else if (dtmr.Rows[i - 1]["gdesc"].ToString().Trim() != dtmr.Rows[i]["gdesc"].ToString().Trim())
+                        {
+                            if (Convert.ToDouble(dtmr.Rows[i]["schamt"].ToString()) == Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()))
+                            {
+                                Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
+                                isMoneyRecpt = true;
+                            }
+                            else if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
+                            {
+                                Installment = Installment + "REFUNDABLE COLLECTION, ";
+                            }
+                            else
+                            {
+                                Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+                                isPartial = true;
+                            }
+                        }
                     }
 
-
-
-                    prectype = dtmr.Rows[i]["rectype"].ToString().Trim();
-
-
-
-
-                }
-
+                    break;
             }
 
-
-           //. DataTable dt = dtmr;
+            //. DataTable dt = dtmr;
 
 
             int len = Installment.Length;
             Installment = (len == 0) ? "" : ASTUtility.Left(Installment, len - 2);
-            //Installment2 = (len == 0) ? "" : ASTUtility.Left(Installment, len - 2);
 
+            Installment2 = (len == 0) ? "" : ASTUtility.Left(Installment, len - 2);
+            if (IsAutoLengthDesc())
+            {
+                if (isMoneyRecpt)
+                {
+                    string part1 = ASTUtility.Left(Installment2, 4);
+                    string part2 = isPartial == true ? ASTUtility.Right(Installment2, 25) : ASTUtility.Right(Installment2, 16);
+                    Installment = instpart2 + part1 + " - " + part2;
+                }
+                else
+                {
+                    Installment = Installment2;
+                }
+                //  Installment = (Installment.Length == 0) ? "" : ASTUtility.Left(Installment, Installment.Length - 2);
+
+            }
+
+            //Installment2 = (len == 0) ? "" : ASTUtility.Left(Installment, len - 2);
             //switch (comcod)
             //{
             //    case "3101":
-            //    case "3368":                   
+            //    case "1205":
+            //    case "3351":
+            //    case "3352":
             //    case "3356":
             //    case "3325":
             //    case "2325":
@@ -355,44 +474,38 @@ namespace RealERPWEB.F_17_Acc
             //        Installment = Installment2;
             //        break;
             //}
-
-
-           // Installment=(Installment.Length == 0) ? "" : ASTUtility.Left(Installment, Installment.Length - 2)
+            //Installment = (Installment.Length == 0) ? "" : ASTUtility.Left(Installment, Installment.Length - 2);
 
 
             DataSet ds4 = accData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "REPORTMONEYRECEIPT", pactCode, usirCode, mrno, "", "", "", "", "", "");
             if (ds4 == null || ds4.Tables[0].Rows.Count == 0)
                 return;
 
-
-
             if (insrectype.Length > 0)
             {
-
                 foreach (DataRow dr in ds4.Tables[0].Rows)
                 {
                     string mrectpe = dr["rectcode"].ToString();
                     DataView dv = dtmr.DefaultView;
-                    dv.RowFilter=("rectype='" + mrectpe + "'");
+                    dv.RowFilter = ("rectype='" + mrectpe + "'");
                     DataTable dt1 = dv.ToTable();
                     int lrow = dt1.Rows.Count;
                     dr["insdesc"] = dt1.Rows[lrow - 1]["insdesc"].ToString();
 
                 }
-            
-            
             }
 
 
 
 
-                //islandowner
-                DataTable dtrpt = ds4.Tables[0];
+            //islandowner
+            DataTable dtrpt = ds4.Tables[0];
             string custname = dtrpt.Rows[0]["custname"].ToString();
             string custadd = dtrpt.Rows[0]["custadd"].ToString();
             string custmob = dtrpt.Rows[0]["custmob"].ToString();
             string udesc = dtrpt.Rows[0]["udesc"].ToString();
-            string project = dtrpt.Rows[0]["islandowner"].ToString()=="True" ? dtrpt.Rows[0]["pactdesc"].ToString() + " (L/O Part)" : dtrpt.Rows[0]["pactdesc"].ToString() ;
+            string flr = dtrpt.Rows[0]["flr"].ToString();
+            string project = dtrpt.Rows[0]["islandowner"].ToString() == "True" ? dtrpt.Rows[0]["pactdesc"].ToString() + " (L/O Part)" : dtrpt.Rows[0]["pactdesc"].ToString();
             string usize = Convert.ToDouble(dtrpt.Rows[0]["usize"]).ToString("#,##0;(#,##0); -");
             string munit = dtrpt.Rows[0]["munit"].ToString();
             string paytype = dtrpt.Rows[0]["paytype"].ToString();
@@ -407,27 +520,37 @@ namespace RealERPWEB.F_17_Acc
             string rectype = dtrpt.Rows[0]["rectype"].ToString();
             string rectcode = dtrpt.Rows[0]["rectcode"].ToString();
             string parking = dtrpt.Rows[0]["parking"].ToString();
-            string benefname = dtrpt.Rows[0]["benefname"].ToString().Length==0?"":("Beneficiary:  "+ dtrpt.Rows[0]["benefname"].ToString());
-             
+            string benefname = dtrpt.Rows[0]["benefname"].ToString().Length == 0 ? "" : ("Beneficiary:  " + dtrpt.Rows[0]["benefname"].ToString());
 
+           
 
             double amt1 = Convert.ToDouble((Convert.IsDBNull(dtrpt.Compute("Sum(paidamt)", "")) ? 0.00 : dtrpt.Compute("Sum(paidamt)", "")));
             string amt1t = ASTUtility.Trans(amt1, 2);
             string Typedes = "";
+            string Paydesc = "";
+
             if (paytype == "CHEQUE")
             {
                 Typedes = paytype + ", " + "No: " + chqno + ", Bank: " + bankname + ", Branch: " + branch;
+                Paydesc = paytype;
 
             }
             else if (paytype == "P.O")
             {
                 Typedes = paytype + ", " + "No: " + chqno + ", Bank: " + bankname + ", Branch: " + branch;
+                Paydesc = paytype;
 
+            }
+            else if(paytype == "CASH")
+            {
+                Typedes = paytype;
+                Paydesc = paytype;
             }
             else
             {
 
                 Typedes = paytype;
+                Paydesc = paytype;
             }
 
             string Type = this.CompanyPrintMR();
@@ -692,6 +815,106 @@ namespace RealERPWEB.F_17_Acc
                             ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
             }
 
+            else if (Type == "MRPrintCPDL")
+            {
+                var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
+                string currentdate = DateTime.Now.ToString("MMM dd, yyyy hh:mm tt");
+                string changetext = Paydesc == "CHEQUE" ? "Cheque": Paydesc == "CASH" ? "Cash":  paytype;
+                string shortcomnam = "CPDL.";
+                string amt22 = amt1t.Replace("(", "").Replace(")", "").Trim();
+                string vounum = dtrpt.Rows[0]["vounum"].ToString();
+                if (vounum == "00000000000000")
+                {
+                    //Title=Acknowledgement Slip
+                   
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptAcknowledgementSlipCPDL", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("CompName", comnam));
+                    Rpt1.SetParameters(new ReportParameter("shortcomnam", shortcomnam));
+                    Rpt1.SetParameters(new ReportParameter("Title", "PAYMENT ACKNOWLEDGEMENT "));
+                    Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
+                    Rpt1.SetParameters(new ReportParameter("currentdate", currentdate));
+                    Rpt1.SetParameters(new ReportParameter("CompAdd", comfadd));
+                    Rpt1.SetParameters(new ReportParameter("CustAdd", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
+                    Rpt1.SetParameters(new ReportParameter("CustAdd1", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
+                    Rpt1.SetParameters(new ReportParameter("custteam", "Received by: " + custteam));
+                    Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
+                    Rpt1.SetParameters(new ReportParameter("rmrks", "Remarks: " + rmrks));
+                    Rpt1.SetParameters(new ReportParameter("rmrks1", "Remarks: " + rmrks));
+                    Rpt1.SetParameters(new ReportParameter("aptno", udesc));
+                    Rpt1.SetParameters(new ReportParameter("usize", usize));
+                    Rpt1.SetParameters(new ReportParameter("munit", munit));
+                    Rpt1.SetParameters(new ReportParameter("usize1", udesc + ", " + usize + " " + munit));
+                    Rpt1.SetParameters(new ReportParameter("amount", Convert.ToDouble(paidamt).ToString("#,##0.00;(#,##0.00)")));
+                    Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(paidamt).ToString("#,##0;(#,##0)")));
+                    Rpt1.SetParameters(new ReportParameter("takainword", amt22.Replace("Taka", "").Replace("Only", "Taka Only")));
+                    Rpt1.SetParameters(new ReportParameter("As", ((Installment == "") ? rectype : Installment)));
+                    Rpt1.SetParameters(new ReportParameter("takainword1", amt1t.Replace("Taka", "").Replace("Only", "Taka Only") + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+                    Rpt1.SetParameters(new ReportParameter("paytype", (Paydesc== "CHEQUE")? "Cheque No :" + chqno : Paydesc));
+                    Rpt1.SetParameters(new ReportParameter("chqno", chqno));
+                    Rpt1.SetParameters(new ReportParameter("bank", bankname));
+                    Rpt1.SetParameters(new ReportParameter("branch", branch));
+                    Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
+                    Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+                    Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
+                    Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.ComInfoWithoutNumber()));
+                    Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.ComInfoWithoutNumber()));
+                    Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+                    Rpt1.SetParameters(new ReportParameter("footer1", "Money Receipt will be provided after encashment of the "+changetext+" in favor of "));
+                    Rpt1.SetParameters(new ReportParameter("footer2", "Thanking you"));
+                    Rpt1.SetParameters(new ReportParameter("Depart", "Property Solution Department"));
+                    Rpt1.SetParameters(new ReportParameter("notes", "Note: This is system generated document and does not require physical signature."));
+
+
+                    Session["Report1"] = Rpt1;
+                    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "&Title=Acknowledgement Slip', target='_self');</script>";
+                }
+                else
+                {
+
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptCPDL", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("CompName", comnam));
+                    Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
+                    Rpt1.SetParameters(new ReportParameter("CompAdd", comadd));
+                    Rpt1.SetParameters(new ReportParameter("ComFAdd", comfadd));
+       
+                    Rpt1.SetParameters(new ReportParameter("CustAdd", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
+                    Rpt1.SetParameters(new ReportParameter("CustAdd1", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
+                    Rpt1.SetParameters(new ReportParameter("custteam", "Received by: " + custteam));
+                    Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
+                    Rpt1.SetParameters(new ReportParameter("rmrks", "Remarks: " + rmrks));
+                    Rpt1.SetParameters(new ReportParameter("rmrks1", "Remarks: " + rmrks));
+                    Rpt1.SetParameters(new ReportParameter("aptno", udesc));
+                    Rpt1.SetParameters(new ReportParameter("usize", usize));
+                    Rpt1.SetParameters(new ReportParameter("munit", munit));
+                    Rpt1.SetParameters(new ReportParameter("usize1", udesc + ", " + usize + " " + munit));
+                    Rpt1.SetParameters(new ReportParameter("amount",  Convert.ToDouble(paidamt).ToString("#,##0;(#,##0)")));
+                    Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(paidamt).ToString("#,##0;(#,##0)")));
+                    Rpt1.SetParameters(new ReportParameter("takainword", amt1t.Replace("Taka", "").Replace("Only", "Taka Only")));
+                    Rpt1.SetParameters(new ReportParameter("As", ((Installment == "") ? rectype : Installment)));
+                    Rpt1.SetParameters(new ReportParameter("takainword1", amt1t.Replace("Taka", "").Replace("Only", "Taka Only") + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+                    Rpt1.SetParameters(new ReportParameter("paytype", Typedes));
+                    Rpt1.SetParameters(new ReportParameter("chqno", chqno));
+                    Rpt1.SetParameters(new ReportParameter("bank", bankname));
+                    Rpt1.SetParameters(new ReportParameter("branch", branch));
+                    Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
+                    Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+                    Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
+                    Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.ComInfoWithoutNumber()));
+                    Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.ComInfoWithoutNumber()));
+                    Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+                    Rpt1.SetParameters(new ReportParameter("footer", "Note : This is  system generated receipt and does not require any physical signature."));
+                    Rpt1.SetParameters(new ReportParameter("flr", flr));
+
+                    Session["Report1"] = Rpt1;
+                    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+                }
+
+            }
+
             else if (Type == "MRPrintFinlay")
             {
                 var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
@@ -715,7 +938,7 @@ namespace RealERPWEB.F_17_Acc
 
                 Rpt1.EnableExternalImages = true;
 
-                
+
                 Rpt1.SetParameters(new ReportParameter("txtbenefname", benefname));
                 Rpt1.SetParameters(new ReportParameter("txtDate", mrDate));
                 Rpt1.SetParameters(new ReportParameter("txtDate1", curDate));
@@ -733,7 +956,7 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("unit1", udesc));
                 Rpt1.SetParameters(new ReportParameter("amount", Convert.ToDouble(paidamt).ToString("#,##0.00;(#,##0.00) ")));
                 Rpt1.SetParameters(new ReportParameter("amount1", Convert.ToDouble(paidamt).ToString("#,##0.00;(#,##0.00) ")));
-                Rpt1.SetParameters(new ReportParameter("takainword",  amt22));
+                Rpt1.SetParameters(new ReportParameter("takainword", amt22));
                 Rpt1.SetParameters(new ReportParameter("takainword1", amt22));
                 Rpt1.SetParameters(new ReportParameter("txtperpose", pertype));
 
@@ -749,12 +972,30 @@ namespace RealERPWEB.F_17_Acc
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" + PrintOpt + "', target='_self');</script>";
             }
 
-            else
+            else if (Type== "MRPrintAcme")
             {
-
+               
                 var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceipt", list, null, null);
-                Rpt1.EnableExternalImages = true;
+                if (comcod == "1207")
+                {
+                    DataTable dtservice = ds4.Tables[1];
+                    string custid = dtservice.Rows[0]["customerid"].ToString();
+                    string workdesc = dtservice.Rows[0]["workdesc"].ToString();
+                    string quotid = dtservice.Rows[0]["quotid"].ToString();
+                    string paddress = dtservice.Rows[0]["paddress"].ToString();
+
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptAcme02", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("custid", custid));
+                    Rpt1.SetParameters(new ReportParameter("workdesc", workdesc));
+                    Rpt1.SetParameters(new ReportParameter("paddress", paddress));
+                }
+                else
+                {
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptAcme", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                }
+
                 Rpt1.SetParameters(new ReportParameter("CompName", comnam));
                 Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
                 Rpt1.SetParameters(new ReportParameter("CustAdd", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
@@ -781,7 +1022,65 @@ namespace RealERPWEB.F_17_Acc
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                             ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
 
+            }else
+            {
+
+                var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceipt", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("CompName", comnam));
+                Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
+                Rpt1.SetParameters(new ReportParameter("CustAdd", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
+                Rpt1.SetParameters(new ReportParameter("CustAdd1", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
+                Rpt1.SetParameters(new ReportParameter("custteam", "Received by: " + custteam));
+                Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
+                Rpt1.SetParameters(new ReportParameter("rmrks", "Remarks: " + rmrks));
+                Rpt1.SetParameters(new ReportParameter("rmrks1", "Remarks: " + rmrks));
+                Rpt1.SetParameters(new ReportParameter("usize", udesc + ", " + usize + " " + munit));
+                Rpt1.SetParameters(new ReportParameter("usize1", udesc + ", " + usize + " " + munit));
+                Rpt1.SetParameters(new ReportParameter("amount", "TK. " + Convert.ToDouble(paidamt).ToString("#,##0;(#,##0)")));
+                Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(paidamt).ToString("#,##0;(#,##0)")));
+                Rpt1.SetParameters(new ReportParameter("takainword", amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+                Rpt1.SetParameters(new ReportParameter("takainword1", amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+                Rpt1.SetParameters(new ReportParameter("paytype", Typedes));
+                Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
+                Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+                Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
+                Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.ComInfoWithoutNumber()));
+                Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.ComInfoWithoutNumber()));
+                Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+       
+
+
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+
             }
+        }
+
+        private bool IsAutoLengthDesc()
+        {
+            bool isDesc = false;
+            string comcod = GetCompCode();
+            switch (comcod)
+            {
+                case "3101":
+                case "1205": // p2p
+                case "3351": // p2p
+                case "3352": // p2p
+                case "3356": // intech
+                case "3325": // leisure
+                case "2325": // leisure
+                    isDesc = true;
+                    break;
+
+                default:
+                    isDesc = false;
+                    break;
+
+            }
+            return isDesc;
         }
     }
 }

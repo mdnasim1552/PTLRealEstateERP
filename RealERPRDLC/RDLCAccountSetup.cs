@@ -62,6 +62,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_81_Rec.RptConfmlt": Rpt1a = RptConfmlt (Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptConAssess": Rpt1a = RptConAssess (Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptCustApp": Rpt1a = RptCustApp (Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptBookingApp2": Rpt1a = RptBookingApp2(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptCustomerinf": Rpt1a = RptCustomerinf(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptSuppAss": Rpt1a = RptSuppAss (Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptBundle": Rpt1a = RptBundle (Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -252,6 +253,18 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales_02.RptCustApp>)RptDataSet));
             return Rpt1a;
         }
+
+        private static LocalReport RptBookingApp2(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales_02.RptCustBookApp2>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_22_Sal.EClassSales_02.RptNomineeBookApp2>)RptDataSet2));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet3", (List<RealEntity.C_22_Sal.EClassSales_02.RptNominatedBookApp2>)UserDataset));
+            return Rpt1a;
+        }
+        
+
+
         private static LocalReport RptSuppAss(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
 

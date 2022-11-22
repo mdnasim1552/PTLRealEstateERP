@@ -45,10 +45,23 @@ namespace RealERPWEB.F_23_CR
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
+            string comcod = this.GetCompCode();
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+            switch(comcod)
+            {
+                case "3366":
+                case "3101":
+                    ((LinkButton)this.Master.FindControl("lnkbtnNew")).Visible = true;
+                    break;
+
+            }
+           
+            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Text = "SMS";
+            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Click += new EventHandler(lnkSendSMS_Click);
+            //((LinkButton)this.Master.FindControl("lnkbtnAdd")).Click += new EventHandler(lnkbtnUpdate_Click);
 
         }
 
@@ -65,7 +78,7 @@ namespace RealERPWEB.F_23_CR
         private void GetProjectName()
         {
             string comcod = this.GetCompCode();
-            string txtSProject = this.txtSrcProject.Text.Trim() + "%";
+            string txtSProject =  "%";
             DataSet ds1 = CustData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETPROJECTNAME", txtSProject, "", "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "pactdesc";
             this.ddlProjectName.DataValueField = "pactcode";
@@ -364,6 +377,42 @@ namespace RealERPWEB.F_23_CR
             {
                 this.chkCurrentdues.Checked = false;
             }
+        }
+
+        protected void lnkSendSMS_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dt = (DataTable)Session["tblCustDues"];
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string compsms = hst["compsms"].ToString();
+                string compmail = hst["compmail"].ToString();
+                string ssl = hst["ssl"].ToString();
+                string comcod = this.GetCompCode();
+
+                SendSmsProcess sms = new SendSmsProcess();
+
+                if (compsms == "True")
+                {
+                    for (int j = 0; j < dt.Rows.Count; j++)
+                    {
+                        if (dt.Rows[j]["custmob"].ToString().Length > 0)
+                        {
+                            string supphone = dt.Rows[j]["custmob"].ToString();
+                            string SMSText = dt.Rows[j]["smstxt"].ToString();
+                            bool resultsms = sms.SendSmmsPwd(comcod, SMSText, supphone);
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                string Messagesd = "SMS has not been sent " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+            }
+            
         }
     }
 }

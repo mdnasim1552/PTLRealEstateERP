@@ -111,24 +111,27 @@ namespace RealERPWEB.F_09_PImp
             {
                 case "3336":
                 case "3337":
-
-                    this.gvSubBill.Columns[7].Visible = false;
-                    this.gvSubBill.Columns[8].Visible = false;
+                    this.gvSubBill.Columns[9].Visible = false;
+                    this.gvSubBill.Columns[10].Visible = false;
                     break;
 
                 case "3339":
-                    // case "3101":
-
-                    this.gvSubBill.Columns[11].Visible = true;
-                    this.gvSubBill.Columns[12].Visible = true;
                     this.gvSubBill.Columns[13].Visible = true;
                     this.gvSubBill.Columns[14].Visible = true;
                     this.gvSubBill.Columns[15].Visible = true;
+                    this.gvSubBill.Columns[16].Visible = true;
+                    this.gvSubBill.Columns[17].Visible = true;
                     break;
 
+                case "3367":
+                case "3101":
+                    this.gvSubBill.Columns[7].Visible = true;
+                    this.gvSubBill.Columns[8].Visible = true;
+                    break;
 
                 default:
-
+                    this.gvSubBill.Columns[7].Visible = false;
+                    this.gvSubBill.Columns[8].Visible = false;
                     break;
             }
 
@@ -454,13 +457,13 @@ namespace RealERPWEB.F_09_PImp
                 case "3330":// Bridge
                     PrintReq = "PrintBill02";
                     break;
-                //case "3101":
+
                 case "3332": //inster
                     PrintReq = "PrintBill03";
                     break;
 
                 case "3333":// Alliance
-                            // case"3101":
+
                     PrintReq = "PrintBill04";
                     break;
 
@@ -485,7 +488,7 @@ namespace RealERPWEB.F_09_PImp
                     break;
 
 
-                // case "3101"://ASIT
+
                 case "2305": //Land
                 case "3305":// Housing
                 case "3306":// Ratul
@@ -1171,18 +1174,15 @@ namespace RealERPWEB.F_09_PImp
                 case "BillServiceEntry":
                     switch (comcod)
                     {
-                        case "3101":
+
                         case "1103":
                         case "3368": // finlay
-                        //case "3367": // epic
 
                             break;
 
                         default:
                             if (approval == "")
                             {
-
-
                                 this.CreateDataTable();
                                 DataTable dt = (DataTable)ViewState["tblapproval"];
                                 DataRow dr1 = dt.NewRow();
@@ -1201,39 +1201,21 @@ namespace RealERPWEB.F_09_PImp
                                 dr1["threcseson"] = session;
                                 dt.Rows.Add(dr1);
 
-
                                 ds1.Merge(dt);
                                 ds1.Tables[0].TableName = "tbl1";
                                 approval = ds1.GetXml();
-
                             }
-
-
-
-
                             break;
-
                     }
-
                     break;
 
 
-
-
-
-
-
-
                 case "FirstRecom":
-
-
                     if (approval == "")
                     {
 
-
                         if (comcod == "3368")
                         {
-
                             this.CreateDataTable();
                             DataTable dt = (DataTable)ViewState["tblapproval"];
                             DataRow dr1 = dt.NewRow();
@@ -1255,7 +1237,6 @@ namespace RealERPWEB.F_09_PImp
                             ds1.Merge(dt);
                             ds1.Tables[0].TableName = "tbl1";
                             approval = ds1.GetXml();
-
 
                         }
 
@@ -1282,11 +1263,7 @@ namespace RealERPWEB.F_09_PImp
                             ds1.Merge(dt);
                             ds1.Tables[0].TableName = "tbl1";
                             approval = ds1.GetXml();
-
                         }
-
-
-
 
                     }
 
@@ -1308,25 +1285,10 @@ namespace RealERPWEB.F_09_PImp
                         ds1.Tables[0].Rows[0]["threcdat"] = "";
                         ds1.Tables[0].Rows[0]["threctrmid"] = "";
                         ds1.Tables[0].Rows[0]["threcseson"] = "";
-
-
-
-
                         approval = ds1.GetXml();
 
-
-
-
-
-
                     }
-
-
-
                     break;
-
-
-
 
                 case "SecRecom":
                     xmlSR = new System.IO.StringReader(approval);
@@ -1337,7 +1299,6 @@ namespace RealERPWEB.F_09_PImp
                     ds1.Tables[0].Rows[0]["secrectrmid"] = trmnid;
                     ds1.Tables[0].Rows[0]["secrecseson"] = session;
                     approval = ds1.GetXml();
-
                     break;
 
                 case "ThirdRecom":
@@ -1351,11 +1312,6 @@ namespace RealERPWEB.F_09_PImp
                     ds1.Tables[0].Rows[0]["threcseson"] = session;
                     approval = ds1.GetXml();
                     break;
-
-
-
-
-
 
             }
 
@@ -1621,6 +1577,7 @@ namespace RealERPWEB.F_09_PImp
 
                         case "3368"://Finlay
                         case "3367"://epic
+                        case "3366": //Lanco
 
                             break;
 
@@ -1640,13 +1597,8 @@ namespace RealERPWEB.F_09_PImp
                                 ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + PurData.ErrorObject["Msg"];
                                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                                 return;
-
                             }
-
-
                             break;
-
-
 
                     }
                 }
@@ -1732,8 +1684,6 @@ namespace RealERPWEB.F_09_PImp
 
         protected void lbtnSelectRes_Click(object sender, EventArgs e)
         {
-
-
             string comcod = this.GetCompCode();
             string issueno = this.ddlRAList.SelectedValue.ToString();
             DataTable tbl1 = (DataTable)Session["tblbill"];
@@ -1774,11 +1724,8 @@ namespace RealERPWEB.F_09_PImp
                     dr1["dedrate"] = dt2.Rows[i]["dedrate"].ToString();
                     dr1["idedamt"] = dt2.Rows[i]["idedamt"].ToString();
                     dr1["adedamt"] = dt2.Rows[i]["adedamt"].ToString();
-
-
-
-
-
+                    dr1["wrkqty"] = dt2.Rows[i]["wrkqty"].ToString();
+                    dr1["prcent"] = dt2.Rows[i]["prcent"].ToString();
                     //dr1["rsircode"] = mResCode;
 
                     tbl1.Rows.Add(dr1);
@@ -1802,14 +1749,9 @@ namespace RealERPWEB.F_09_PImp
                     this.txtCBillRefNo.Text = this.ddlRAList.SelectedItem.Text.Substring(3, 8);
                     break;
             }
-
-
-
             this.Data_DataBind();
 
-
         }
-
 
         private void ClearSecurity()
         {
@@ -2058,7 +2000,7 @@ namespace RealERPWEB.F_09_PImp
                         rate.Enabled = true;
                     }
                 }
-                
+
             }
         }
 

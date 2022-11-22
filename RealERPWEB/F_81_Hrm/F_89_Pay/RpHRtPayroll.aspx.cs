@@ -1287,7 +1287,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         if (dt.Rows.Count > 0)
                         {
                             this.gvpayroll.Columns[1].Visible = (this.ddlProjectName.SelectedValue == "000000000000") ? true : false;
-                            ((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked = (this.lblComSalLock.Text == "True") ? true : false;
+                            //((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked = (this.lblComSalLock.Text == "True") ? true : false;
+
+
+                            this.chkSalaryLock.Checked= (this.lblComSalLock.Text == "True") ? true : false;
+                            this.chkSalaryLock.Visible = true;
                         }
 
                         switch (comcod)
@@ -1347,8 +1351,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         {
                             if (dt.Rows.Count > 0)
                             {
-                                ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = (((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked) ? false : true;
-                                ((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Enabled = false;
+                                //((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = (((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked) ? false : true;
+                                ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = this.chkSalaryLock.Checked ? false : true;
+                                //((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Enabled = false;
+                                this.chkSalaryLock.Enabled = false;
                             }
                         }
                         this.FooterCalculation();
@@ -5049,6 +5055,16 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     string dresslon = dt.Rows[i]["dresslon"].ToString();
                     string msetlon = dt.Rows[i]["msetloan"].ToString();
                     string msclon = dt.Rows[i]["mscloan"].ToString();
+                    string pwf = "0.0";
+                    string subfee = "0.0";
+                    if (comcod == "3370")
+                    {
+                         pwf = dt.Rows[i]["swf"].ToString();
+                         subfee = dt.Rows[i]["subfee"].ToString();
+                    }
+
+          
+
 
 
 
@@ -5056,7 +5072,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         mallow, arsal, pickup, fuel, entaint, mcell, incent, oth, pfund, itax, adv, othded, dallow, oallow, ohour, hallow, elallow, mbill, lwided, loanins, gssal, salpday, gspay, absded,
                         tallow, tdeduc, dedday.ToString(), sdedamt, netpay, section, desigid, mcadj, othallow, othearn, mcallow, teallow, thday, lwpday, arded, cashamt, bankamt, wjd, empcont, elftam, elfthour,
                         dalday, ddaya10, dday10amt, fallded, mbillded, bankamt2, wkday, govday, rmrks, tptallow, kpi, perbon, haircutal, foodal, nfoodal, otallow, redamt, chequepay, todecashsal, hardship, fine,
-                        cashded, tripal, absded2, absded3, rmrks2, ottotal, finedays, lateday, latededuc, adjustamt, transded, genloan, carloan, perloan, motolon, dresslon, msetlon, msclon, emptype);
+                        cashded, tripal, absded2, absded3, rmrks2, ottotal, finedays, lateday, latededuc, adjustamt, transded, genloan, carloan, perloan, motolon, dresslon, msetlon, msclon, emptype,pwf,subfee);
                     if (!result)
                     {
                         ((Label)this.Master.FindControl("lblmsg")).Text = HRData.ErrorObject["Msg"].ToString();
@@ -5082,7 +5098,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 //bool islock = (((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked==true) ? true : false;
                 //string Salarylock = islock == false ? "0" : "1";
-                string Salarylock = (((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked) ? "1" : "0";
+                //string Salarylock = (((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked) ? "1" : "0";
+                string Salarylock =  this.chkSalaryLock.Checked ? "1" : "0";
 
                 result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "INORUPSALLOCK", monthid, branch, Salarylock, userid, Posteddat, Terminal, Sessionid, "", "", "", "", "", "", "", "");
 
@@ -5734,15 +5751,17 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         {
 
 
-            if (((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked == true)
+            if (chkSalaryLock.Checked == true)
             {
-                ((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked = true;
+                chkSalaryLock.Checked = true;
                 this.lblComSalLock.Text = "True";
             }
             else
             {
+                chkSalaryLock.Checked = false;
+
                 this.lblComSalLock.Text = "False";
-                ((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked = false;
+            
             }
 
         }

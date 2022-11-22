@@ -348,6 +348,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         this.lblPEmpName.Text = this.ddlPEmpName.SelectedItem.Text.Substring(7);
                         empid = this.ddlPEmpName.SelectedValue.ToString();
                     }
+
                     this.chknewEmp_CheckedChanged(null, null);
                     this.lbtnDeletelink.Visible = false;
                     this.ddlCompanyAgg.Visible = false;
@@ -382,6 +383,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.TSandAllow();
                     this.OverTimeFORRate();
                     this.GetEmpBasicData(empid);
+
+                    CreateTableOverTimeFORRate();
+                    this.SlotOverTimeFORRate(empid);
                     this.lblvaljoindate.Text = Convert.ToDateTime(((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["joindate"]).ToString("dd-MMM-yyyy");
                     //this.txtPf.Text = Convert.ToDateTime(((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["pfdate"]).ToString("dd-MMM-yyyy");
                 }
@@ -426,6 +430,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.gvAllowAdd.DataBind();
                     this.gvAllowSub.DataSource = null;
                     this.gvAllowSub.DataBind();
+
+                    this.gvTimsSlot.DataSource = null;
+                    this.gvTimsSlot.DataBind();
+
                     this.lblCompanyNameAgg.Text = "";
                     this.lblProjectdesc.Text = "";
                     this.lblPEmpName.Text = "";
@@ -474,6 +482,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string empid = (this.ddlNPEmpName.Items.Count > 0) ? this.ddlNPEmpName.SelectedValue.ToString() : this.ddlPEmpName.SelectedValue.ToString();
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETGENINFO", empid, "", "", "", "", "", "", "", "");
             Session["UserLog"] = ds5.Tables[7];
+
+
 
             if (ds5 == null)
                 return;
@@ -618,6 +628,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.rbtGross.Visible = false;
                     this.rbtGross.SelectedIndex = 3;
                     break;
+                case "3370": //CPDL
+                    this.rbtGross.SelectedIndex = 7;
+                    break;
                 default:
                     //  this.rbtGross.Visible = true;
                     this.rbtGross.SelectedIndex = 2;
@@ -661,7 +674,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 {
 
                     this.rbtnOverTime.SelectedIndex = (dr1[0]["gdatat1"].ToString().Trim() == "0") ? 0 : (dr1[0]["gdatat1"].ToString().Trim() == "1") ? 1
-                                                : (dr1[0]["gdatat1"].ToString().Trim() == "2") ? 2 : 3;
+                                                : (dr1[0]["gdatat1"].ToString().Trim() == "2") ? 2 : (dr1[0]["gdatat1"].ToString().Trim() == "4") ? 4: 3;
                     if (this.rbtnOverTime.SelectedIndex == 2)
                     {
                         switch (comcod)
@@ -1066,6 +1079,12 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             //((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = toaddamt.ToString("#,##0;(#,##0); ");
                             break;
 
+                        case "3370": //Acme serv
+                            toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
+                            ((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = toaddamt.ToString("#,##0;(#,##0); ");
+                            this.txtgrossal.Text = toaddamt.ToString("#,##0;(#,##0); ");
+
+                            break;
                         default:
 
                             toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
@@ -1407,7 +1426,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 }
 
                 // Bank COde
-                result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "19001", "T", bank1, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", acno1, bank2, acno2, bankamt2, "0", cashamt, "", "01-jan-1900", "01-jan-1900", "", "", "", paytypedesc, "", cash0Bank1, "",routing1,routing2);
+                result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "19001", "T", bank1, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", acno1, bank2, acno2, bankamt2, "0", cashamt, "", "01-jan-1900", "01-jan-1900", "", "", "", paytypedesc, "", cash0Bank1, "", routing1, routing2);
                 if (result == false)
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
@@ -1452,8 +1471,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 DataTable dtsalsub = (DataTable)Session["tblsalsub"];
                 DataTable dtallowadd = (DataTable)Session["tblallowadd"];
                 DataTable dtallowsub = (DataTable)Session["tblallowsub"];
+                DataTable tblTimeSlot = (DataTable)Session["tblTimeSlot"];
 
-                
+
 
                 string holidayrate = (this.rbtholiday.SelectedIndex == 0) ? "0" : (this.rbtholiday.SelectedIndex == 2) ? Convert.ToDouble("0" + this.txtholidayallowance.Text.Trim()).ToString() : (Math.Round((Convert.ToDouble((dtsaladd.Select("gcod='04001'"))[0]["gval"]) / 31), 0)).ToString();
 
@@ -1505,7 +1525,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
                 int i;
-                string gcode, gtype, gval, percnt, unit, qty, rate; ;
+                string gcode, gtype, gval, percnt, unit, qty, rate;
 
                 for (i = 0; i < dtsaladd.Rows.Count; i++)
                 {
@@ -1545,6 +1565,18 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "07005", "N", "0", projectcode, holidaytype, "", "", "", "0", "", "0", holidayrate
                     , "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
 
+                ///Time sloat Insert 
+                string slothour; string otrate;
+                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "DELETETIMESSLOT", empid, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+                for (i = 0; i < tblTimeSlot.Rows.Count; i++)
+                {
+                    slothour = Convert.ToDouble("0" + tblTimeSlot.Rows[i]["slothour"]).ToString();
+                    otrate = Convert.ToDouble("0" + tblTimeSlot.Rows[i]["otrate"]).ToString(); 
+
+                    result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTTIMESSLOT", empid, slothour, otrate, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+                }
 
 
                 if (result == false)
@@ -1567,19 +1599,19 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     rate = dtallowsub.Rows[i]["rate"].ToString();
                     result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, gcode, gtype, gval, projectcode, "", "", "", "", percnt, unit, qty, rate, "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
                 }
-                 
+
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
 
                 string eventtype = "Change Aggrement";
-            string eventdesc = empid;
-            string eventdesc2 = "Change somethings";
+                string eventdesc = empid;
+                string eventdesc2 = "Change somethings";
 
-            if (ConstantInfo.LogStatus == true)
-            {
-                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-            }
+                if (ConstantInfo.LogStatus == true)
+                {
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                }
 
             }
             catch (Exception ex)
@@ -1966,8 +1998,87 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             }
 
 
+            // basic salary cpdl
+            else if (this.rbtGross.SelectedIndex == 7)
+            {
+                basic = Convert.ToDouble("0" + ((TextBox)this.gvSalAdd.Rows[0].FindControl("txtgvSaladd")).Text.Trim());
+                double grsal = Convert.ToDouble("0" + this.txtgrossal.Text.Trim());
+                double totaladd = 0.0;
 
 
+
+                for (int i = 0; i < this.gvSalAdd.Rows.Count; i++)
+                {
+                    string gcod = ((Label)this.gvSalAdd.Rows[i].FindControl("lblgvItmCodesaladd")).Text.ToString();
+                    if (gcod == "04002" || gcod == "04004")
+                    {
+                        percent = Convert.ToDouble("0" + ((TextBox)this.gvSalAdd.Rows[i].FindControl("txtgvgperadd")).Text.Trim());
+                        dtsaladd.Rows[i]["gval"] = Math.Round((percent * basic * 0.01), 0);
+                        dtsaladd.Rows[i]["percnt"] = percent;
+                    }
+                    else
+                    {
+                        dtsaladd.Rows[i]["gval"] = Convert.ToDouble("0" + ((TextBox)this.gvSalAdd.Rows[i].FindControl("txtgvSaladd")).Text.Trim());
+                        dtsaladd.Rows[i]["percnt"] = 0.0;
+
+                    }
+                }
+
+                for (int i = 0; i < this.gvSalAdd.Rows.Count; i++)
+                {
+                    string gcod = ((Label)this.gvSalAdd.Rows[i].FindControl("lblgvItmCodesaladd")).Text.ToString();
+                    if (gcod != "04012")
+                    {
+                        totaladd = totaladd + Convert.ToDouble(dtsaladd.Rows[i]["gval"]);
+                    }
+
+                }
+
+
+                for (int i = 1; i < this.gvSalAdd.Rows.Count; i++)
+                {
+                    string gcod = ((Label)this.gvSalAdd.Rows[i].FindControl("lblgvItmCodesaladd")).Text.ToString();
+                    if (gcod == "04012")
+                    {
+                        dtsaladd.Rows[i]["gval"] = grsal - totaladd;
+
+                    }
+                    else if (gcod == "04020" || gcod == "04099")
+                    {
+                        dtsaladd.Rows[i]["gval"] = Convert.ToDouble("0" + ((TextBox)this.gvSalAdd.Rows[i].FindControl("txtgvSaladd")).Text.Trim());
+
+                    }
+
+                }
+
+
+
+
+
+
+                if (comcod == "3370")
+                {
+                    dtsaladd.Rows[0]["gval"] = Convert.ToDouble("0" + ((TextBox)this.gvSalAdd.Rows[0].FindControl("txtgvSaladd")).Text.Trim());
+                }
+
+                for (int i = 0; i < this.gvSalSub.Rows.Count; i++)
+                {
+                    string gcod = ((Label)this.gvSalSub.Rows[i].FindControl("lblgvItmCodesalsub")).Text.ToString();
+                    if (gcod == "04101")
+                    {
+                        percent = Convert.ToDouble("0" + ((TextBox)this.gvSalSub.Rows[i].FindControl("txtgvgpersub")).Text.Trim());
+                        dtsalsub.Rows[i]["gval"] = Math.Round((percent * 0.01 * basic), 0);
+                        dtsalsub.Rows[i]["percnt"] = percent;
+                    }
+                    else
+                    {
+                        dtsalsub.Rows[i]["gval"] = Convert.ToDouble("0" + ((TextBox)this.gvSalSub.Rows[i].FindControl("txtgvSalSub")).Text.Trim());
+                    }
+
+                }
+            }
+
+            // txtgvSalSub
             // Basic Salary
             else
             {
@@ -2087,6 +2198,21 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.txtceilingRate1.Visible = (this.rbtnOverTime.SelectedIndex == 3);
             this.txtceilingRate2.Visible = (this.rbtnOverTime.SelectedIndex == 3);
             this.txtceilingRate3.Visible = (this.rbtnOverTime.SelectedIndex == 3);
+
+            if (this.rbtnOverTime.SelectedIndex == 4)
+            {
+                this.pnlTimesslot.Visible = true;
+                this.lblfiexedRate.Visible = false;
+                this.txtfixedRate.Visible = false;
+
+            }
+            else
+            {
+                this.pnlTimesslot.Visible = false;
+                this.lblfiexedRate.Visible = true;
+                this.txtfixedRate.Visible = true;
+
+            }
 
             if (this.rbtnOverTime.SelectedIndex == 0)
             {
@@ -2311,20 +2437,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     return;
                 }
 
-
-
-
             }
-
-
-
-
-
-
-
-
-
-
 
 
             this.lblmsg2.Text = "Updated Successfully";
@@ -2439,6 +2552,37 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             return (userid);
         }
 
+        private void SlotOverTimeFORRate(string empid)
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPTIMESLOTDATA", empid, "", "", "", "", "", "", "", "");
+            if (ds3 == null)
+            {
+                this.gvTimsSlot.DataSource = null;
+                this.gvTimsSlot.DataBind();
+                return;
+            }
+            Session["tblTimeSlot"] = ds3.Tables[0];
+
+            this.DataSlotOTBind();
+
+        }
+
+        private void DataSlotOTBind()
+        {
+            DataTable tbl1 = (DataTable)Session["tblTimeSlot"];
+
+            this.gvTimsSlot.DataSource = tbl1;
+            this.gvTimsSlot.DataBind();
+        }
+        private void CreateTableOverTimeFORRate()
+        {
+            DataTable tblTimeSlot = new DataTable();
+            tblTimeSlot.Columns.Add("slothour", Type.GetType("System.Double"));
+            tblTimeSlot.Columns.Add("otrate", Type.GetType("System.Double"));
+            Session["tblTimeSlot"] = tblTimeSlot;
+        }
+
 
         protected void lnkUserGenerate_Click(object sender, EventArgs e)
         {
@@ -2496,6 +2640,46 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             if (ConstantInfo.LogStatus == true)
             {
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+        }
+
+        protected void lnkAdd_Click(object sender, EventArgs e)
+        {
+            DataTable tbl1 = (DataTable)Session["tblTimeSlot"];
+            string slothour = this.txtHourTimeSlot.Text;
+            string SlototRae = this.txtRateTimeSlot.Text;
+            DataRow[] dr2 = tbl1.Select("slothour = '" + slothour + "'");
+            if (dr2.Length == 0)
+            {
+                DataRow dr1 = tbl1.NewRow();
+                dr1["slothour"] = Convert.ToDouble("0" + slothour.Trim());
+                dr1["otrate"] = Convert.ToDouble("0" + SlototRae.Trim());
+                tbl1.Rows.Add(dr1);
+            }
+            Session["tblTimeSlot"] = tbl1;
+            this.DataSlotOTBind();
+        }
+
+        protected void TImeSlotlnkDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string comcod = this.GetCompCode();
+
+                DataTable dt = (DataTable)Session["tblTimeSlot"];
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;
+                
+                    dt.Rows[index].Delete();
+                
+                Session["tblTimeSlot"] = dt;
+                this.DataSlotOTBind();
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
             }
         }
     }

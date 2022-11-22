@@ -703,6 +703,8 @@ namespace RealEntity.C_17_Acc
             public string voudat { get; set; }
             public string rmks { get; set; }
             public string pactdesc { get; set; }
+            public string chequetype { get; set; }
+            
 
 
             public ListIsssuChq() { }
@@ -961,7 +963,26 @@ namespace RealEntity.C_17_Acc
             public BankPosition() { }
 
         }
+        [Serializable]
+        public class PWRPDetails
+        {
+            // Iqbal Nayan
+            public string rowid { get; set; }
+            public string comcod { get; set; }
+            public string recpcode { get; set; }
+            public string recpdesc { get; set; }
+            public double recpam { get; set; }
+            public string paycode { get; set; }
+            public string paydesc { get; set; }
+            public double payam { get; set; }
+            public string rleb2 { get; set; }
+            public string pleb2 { get; set; }
+            public string grppaydesc { get; set; }
+            public string grprpdesc { get; set; }    
 
+
+            public PWRPDetails() { }
+        }
 
         [Serializable]
         public class IssuedVsColl

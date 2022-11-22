@@ -185,7 +185,8 @@ namespace RealERPWEB.F_99_Allinterface
             string comadd = hst["comadd1"].ToString();
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
             string mMRRNo = this.Request.QueryString["mrno"].ToString();
@@ -205,9 +206,15 @@ namespace RealERPWEB.F_99_Allinterface
             DataTable dt = this.HiddenSameDataMRRReceipt(ds1.Tables[0]);
 
             string mrrno1 = ds1.Tables[1].Rows[0]["mrrno1"].ToString();
+            string mrrno = ds1.Tables[1].Rows[0]["mrrno"].ToString();
+            string address = ds1.Tables[1].Rows[0]["address"].ToString();
+            string chlandate = ds1.Tables[1].Rows[0]["challandat"].ToString();
+            string pordar = ds1.Tables[1].Rows[0]["orderno"].ToString();
+            string orderdat = ds1.Tables[1].Rows[0]["orderdat"].ToString(); 
             string porno = ds1.Tables[1].Rows[0]["orderno1"].ToString();
             string prjname = ds1.Tables[1].Rows[0]["pactdesc1"].ToString();
             string suppliername = ds1.Tables[1].Rows[0]["ssirdesc1"].ToString();
+            string clndate = Convert.ToDateTime(chlandate).ToString("dd-MMM-yyyy");
 
             // DataTable dt = ds1.Tables[0];
             LocalReport Rpt1 = new LocalReport();
@@ -218,6 +225,21 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3368":
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptPurMrrEntryFinlay", lst, null, null);
                     Rpt1.EnableExternalImages = true;
+                    break;
+
+                case "3370"://CPDL
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptPurMrrEntryCPDL", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                    Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                    Rpt1.SetParameters(new ReportParameter("mrrno", mrrno));
+                    Rpt1.SetParameters(new ReportParameter("address", address));
+                    Rpt1.SetParameters(new ReportParameter("chlandate",clndate));
+                    Rpt1.SetParameters(new ReportParameter("pordar", pordar+ " , "+ orderdat));
+                    Rpt1.SetParameters(new ReportParameter("CurDate1","Date :"+ CurDate1));
+                    Rpt1.SetParameters(new ReportParameter("Note","MRR must be reached at Head Office within 2 working days of material receiving."));
+
+                  
                     break;
                 default:
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptPurMrrEntry", lst, null, null);
@@ -231,7 +253,7 @@ namespace RealERPWEB.F_99_Allinterface
             Rpt1.SetParameters(new ReportParameter("txtchalanno", "Chalan No : " + ds1.Tables[1].Rows[0]["chlnno"]));
             Rpt1.SetParameters(new ReportParameter("txtMrrno", "MRR No : " + mrrno1));
             Rpt1.SetParameters(new ReportParameter("txtMrrRef", "MRR Ref : " + ds1.Tables[1].Rows[0]["mrrref"]));
-            Rpt1.SetParameters(new ReportParameter("txtDate", "Date : " + Convert.ToDateTime(ds1.Tables[1].Rows[0]["mrrdat"]).ToString("dd.MM.yyyy")));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "MRR Date : " + Convert.ToDateTime(ds1.Tables[1].Rows[0]["mrrdat"]).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("txtQc", "Quality Certificate : " + ds1.Tables[1].Rows[0]["qcno"].ToString()));
             Rpt1.SetParameters(new ReportParameter("txtOrder", ds1.Tables[1].Rows[0]["pordref"].ToString()));
             Rpt1.SetParameters(new ReportParameter("txtpostedby", ds1.Tables[1].Rows[0]["usrnam"].ToString()));
@@ -1237,6 +1259,10 @@ namespace RealERPWEB.F_99_Allinterface
                     PrintReq = "PrintReqJBS";
                     break;
 
+                case "3367":
+                    PrintReq = "PrintReqEpic";
+                    break;
+
                 default:
                     PrintReq = "PrintReque02";
                     break;
@@ -1311,7 +1337,11 @@ namespace RealERPWEB.F_99_Allinterface
             else if (printcomreq == "PrintReqJBS")
             {
                 this.PrintRequisitionJBS();
-            }
+            } 
+            else if (printcomreq == "PrintReqEpic")
+            {
+                this.PrintRequisitionEpic();
+            } 
 
             else
             {
@@ -1391,7 +1421,6 @@ namespace RealERPWEB.F_99_Allinterface
 
 
         }
-
 
         private void PrintRequisition02()
         {
@@ -1535,6 +1564,101 @@ namespace RealERPWEB.F_99_Allinterface
             Rpt1.SetParameters(new ReportParameter("txtSign6", txtSign6));
             Rpt1.SetParameters(new ReportParameter("txtSign7", txtSign7));
 
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+
+
+        }  
+        private void PrintRequisitionEpic()
+        {
+
+            //DataTable dt1 = (DataTable)Session["tblUserReq"]; 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MMM.yyyy hh:mm:ss tt");
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
+            string mReqNo = this.Request.QueryString["reqno"].ToString();
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETPURREQINFO", mReqNo, "",
+                     "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+            DataTable dt1 = ds1.Tables[1];
+            DataTable dt = ds1.Tables[2];
+            DataTable tblsign = ds1.Tables[4];
+
+            string txtcrno = dt1.Rows[0]["reqno1"].ToString();
+            string txtcrdate = Convert.ToDateTime(dt1.Rows[0]["reqdat"].ToString()).ToString("dd-MMM-yyyy");
+            string txtmrfno = dt1.Rows[0]["mrfno"].ToString();
+            string txtprojectname = dt1.Rows[0]["pactdesc"].ToString();
+            string txtAddress = dt1.Rows[0]["paddress"].ToString();
+
+
+            string txtbuildno = ((dt.Rows.Count == 0) ? "" : (dt.Select("termsid='001'").Length > 0 ? (dt.Select("termsid='001'")[0]["termsdesc"]).ToString() : ""));
+            //string txtbuildno = dt.Rows[0]["termsdesc"].ToString();
+            string floorno = ((dt.Rows.Count == 0) ? "" : (dt.Select("termsid='002'").Length > 0 ? (dt.Select("termsid='002'")[0]["termsdesc"]).ToString() : ""));
+            string txtfloorno = (dt.Rows.Count == 0) ? "" : (floorno + (dt.Select("termsid='003'").Length > 0 ? (", " + (dt.Select("termsid='003'")[0]["termsdesc"]).ToString()) : ""));
+
+            //  string txtfloorno =(dt.Rows.Count<2)?"": (dt.Rows[1]["termsdesc"].ToString() + ((dt.Rows[2]["termsdesc"].ToString().Length == 0) ? "" : " , ") + dt.Rows[2]["termsdesc"].ToString());
+
+            string txtpforused = ((dt.Rows.Count == 0) ? "" : (dt.Select("termsid='004'").Length > 0 ? (dt.Select("termsid='004'")[0]["termsdesc"]).ToString() : ""));
+
+            DataTable dtr = ds1.Tables[0];
+
+            double reqamt = Convert.ToDouble((Convert.IsDBNull(dtr.Compute("Sum(preqamt)", "")) ? 0.00 : dtr.Compute("Sum(preqamt)", "")));
+            double aprvamt = Convert.ToDouble((Convert.IsDBNull(dtr.Compute("Sum(areqamt)", "")) ? 0.00 : dtr.Compute("Sum(areqamt)", "")));
+            double reqoapamt = aprvamt > 0 ? aprvamt : reqamt;
+
+
+
+            string txttoamt = Convert.ToDouble(reqoapamt).ToString("#,##0.00;(#,##0.00); ");
+            string txttoamt02 = Convert.ToDouble(reqoapamt).ToString("#,##0.00;(#,##0.00); ");
+            string rpttxtnaration = dt1.Rows[0]["reqnar"].ToString();
+            string txtuserinfo = ASTUtility.Concat(compname, username, printdate);
+
+            string post1 = tblsign.Rows[0]["reqpostname"].ToString() + "\n" + tblsign.Rows[0]["posteddat"].ToString();
+            string check1 = tblsign.Rows[0]["reqchkname"].ToString() + "\n" + tblsign.Rows[0]["checkdat"].ToString();
+            string first1 = tblsign.Rows[0]["fappname"].ToString() + "\n" + tblsign.Rows[0]["fappdat"].ToString();
+            string second1 = tblsign.Rows[0]["sappname"].ToString() + "\n" + tblsign.Rows[0]["sappdat"].ToString();
+
+
+
+
+
+
+            var lst = dtr.DataTableToList<RealEntity.C_12_Inv.RptMaterialPurchaseRequisition>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptReqEntryEpic", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+
+            Rpt1.SetParameters(new ReportParameter("txtcompanyname", comnam));
+            Rpt1.SetParameters(new ReportParameter("txtRptTitle", "Materials Purchase Requisition"));
+            Rpt1.SetParameters(new ReportParameter("txtReqNo", txtcrno));
+            Rpt1.SetParameters(new ReportParameter("txtReqDate", txtcrdate));
+            Rpt1.SetParameters(new ReportParameter("txtMrfno", txtmrfno));
+            Rpt1.SetParameters(new ReportParameter("txtProjectName", txtprojectname));
+            Rpt1.SetParameters(new ReportParameter("txtAddress", txtAddress));
+            Rpt1.SetParameters(new ReportParameter("txtBuildingNo", txtbuildno));
+            Rpt1.SetParameters(new ReportParameter("txtFloorNo", txtfloorno));
+            Rpt1.SetParameters(new ReportParameter("txtPurposeofUsed", txtpforused));
+            Rpt1.SetParameters(new ReportParameter("txttoamt", txttoamt));
+            Rpt1.SetParameters(new ReportParameter("txttoamt02", txttoamt02));
+            Rpt1.SetParameters(new ReportParameter("rpttxtnaration", rpttxtnaration));
+            Rpt1.SetParameters(new ReportParameter("txtRptFooter", txtuserinfo));
+            Rpt1.SetParameters(new ReportParameter("txtSign1", post1));
+            Rpt1.SetParameters(new ReportParameter("txtSign2", check1));
+            Rpt1.SetParameters(new ReportParameter("txtSign3", first1));
+            Rpt1.SetParameters(new ReportParameter("txtSign4", second1));
+            Rpt1.SetParameters(new ReportParameter("txtSign5", ""));
+            Rpt1.SetParameters(new ReportParameter("txtSign6", ""));
+            Rpt1.SetParameters(new ReportParameter("txtSign7", ""));
+             
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
@@ -2633,10 +2757,11 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3360": // Entrust
                 case "3361": // Entrust 
 
-                case "1206": // acme 
-                case "1207": // acme 
-                case "3338": // acme 
-                case "3369": // acme 
+                case "1206": // acme construction
+                case "1207": // acme service
+                case "3338": // acme technologies
+                case "3369": // acme ai 
+                case "3370": // cpdl 
 
 
                     this.OrderPrintRDLC();
@@ -4101,6 +4226,7 @@ namespace RealERPWEB.F_99_Allinterface
                     //case "3101": // Pintech
 
                     case "3366": // Lanco
+                    case "3370": // cpdl
                     case "1205": //P2P
                     case "3351": //P2P
                     case "3352": //P2P 
@@ -4357,6 +4483,11 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3367": //Epic                        
                         Reportpath = "~/Report/RptPurchaseOrderEpic.rdlc";
                         break;
+                    
+                    case "3370": //Epic                        
+                        Reportpath = "~/Report/RptPurchaseOrderCPDL.rdlc";
+                        porderno = wrkid;
+                        break;
 
                     default:
                         Reportpath = "~/Report/RptPurchaseOrder.rdlc";
@@ -4459,6 +4590,11 @@ namespace RealERPWEB.F_99_Allinterface
                         Rpt1.SetParameters(new ReportParameter("sign7", sign7));
                         break;
                     
+                    case "3370": // cpdl
+                        Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
+                        Rpt1.SetParameters(new ReportParameter("supemail", supemail));
+                        break;
+                    
                     case "1205": // p2p
                     case "3351": // p2p
                     case "3352": // p2p
@@ -4502,6 +4638,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3101": // pintech
                     case "3366": // lanco
                     case "3367": // epic
+   
                         break;
 
                     default:
@@ -4601,6 +4738,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3366": // lanco
                 case "3367": // epic
                 case "3101":
+                case "3370": // cpdl
                     isDynamic = true;
                     break;
                 default:
@@ -6037,6 +6175,10 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3368":
                     PrintReq = "PrintBillFinlay";
                     break;
+                // bill epic
+                case "3367":
+                    PrintReq = "PrintBillEpic";
+                    break;
 
                 default:
                     PrintReq = "PrintBill01";
@@ -6330,10 +6472,16 @@ namespace RealERPWEB.F_99_Allinterface
                 rptbill.SetParameters(new ReportParameter("IssueRefNo", IssueRefNo));
 
             }
+            else if(pCompanyBill== "PrintBillEpic")
+            {
+                rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBillEpic", lst, null, null);
+                rptbill.EnableExternalImages = true;
+                rptbill.SetParameters(new ReportParameter("IssueNo", "Issue No: " + dt.Rows[0]["lisuno2"].ToString()));
+                rptbill.SetParameters(new ReportParameter("IssueRefNo", IssueRefNo));
+
+            }
             else
             {
-
-
                 rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBill", lst, null, null);
                 rptbill.EnableExternalImages = true;
                 rptbill.SetParameters(new ReportParameter("IssueNo", "Issue No: " + dt.Rows[0]["lisuno2"].ToString()));
@@ -6347,9 +6495,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //TextObject rptrefno = rptstk.ReportDefinition.ReportObjects["rptrefno"] as TextObject;
                 //rptrefno.Text = (dt.Rows[0]["lisurefno"].ToString().Length > 0) ? "Issue Ref No: " + dt.Rows[0]["lisurefno"].ToString() : "Issue Ref No:";
 
-
             }
-
 
 
             // var TAmt = lst.Select(p => p.billamt).Sum();

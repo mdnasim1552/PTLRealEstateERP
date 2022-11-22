@@ -349,6 +349,7 @@
                 <asp:ScriptReference Path="~/Scripts/highchartexporting.js" />                   
                 <asp:ScriptReference Path="~/tinymce/tinymce.min.js" />   
                <asp:ScriptReference Path="~/Scripts/select2.min.js" />
+               <asp:ScriptReference Path="~/Scripts/jquery.keynavigation.js" />
                 --%>
             </Scripts>
 
@@ -850,20 +851,20 @@
 
 
 
-                                <li class="menu-item has-child">
+                                <li class="menu-item has-child" id="archIve" runat="server" visible="false">
                                     <a href="#" class="menu-link"><span class="menu-icon fas fa-table" title="Archive"></span><span class="menu-text">Archive</span></a>
                                     <!-- child menu -->
                                     <ul class="menu" runat="server" id="Ul1">
                                         <li class="menu-item">
-                                            <a href="MyDashboard?Type=5000" target="_blank" class="menu-link"><span class="menu-icon fa fa-th"></span><span class="menu-text">Master Page</span></a>
+                                            <a href="MyDashboard?Type=5000" id="menuMaster" runat="server" visible="false" target="_blank" class="menu-link"><span class="menu-icon fa fa-th"></span><span class="menu-text">Master Page</span></a>
 
                                         </li>
                                         <li class="menu-item">
-                                            <a href="DeafultMenu?Type=8010" target="_blank" class="menu-link"><span class="menu-icon fa fa-chart-area"></span><span class="menu-text">General Flow</span></a>
+                                            <a href="DeafultMenu?Type=8010" id="GeneralFlow" runat="server" visible="false" target="_blank" class="menu-link"><span class="menu-icon fa fa-chart-area"></span><span class="menu-text">General Flow</span></a>
 
                                         </li>
                                         <li class="menu-item">
-                                            <a href="DashboardHRM" target="_blank" class="menu-link"><span class="menu-icon fa fa-chart-bar"></span><span class="menu-text">HRM Flow</span></a>
+                                            <a href="DashboardHRM"  id="dashHRM" runat="server" visible="false"  target="_blank" class="menu-link"><span class="menu-icon fa fa-chart-bar"></span><span class="menu-text">HRM Flow</span></a>
 
                                         </li>
 
@@ -926,7 +927,7 @@
                                     <!-- /child menu -->
                                 </li>
                                 <li class="menu-item has-active">
-                                    <a href="AllGraph" id="allGraph" runat="server" target="_blank" class="menu-link"><span class="menu-icon fa fa-meteor" title="DashBoard"></span><span class="menu-text">Dashboard</span></a>
+                                    <a href="AllGraph" id="allGraph" visible="false" runat="server" target="_blank" class="menu-link"><span class="menu-icon fa fa-meteor" title="DashBoard"></span><span class="menu-text">Dashboard</span></a>
                                 </li>
                                 <%--<li class="menu-item">
                                     <a href=<%= ResolveUrl("~/F_34_Mgt/RptAllDashboard?Type=Purchase") %> target="_blank" class="menu-link"><span class="menu-icon fa fa-meteor" title="Tickets"></span><span class="menu-text">Tickets</span></a>
@@ -1015,7 +1016,7 @@
 
                                         <asp:LinkButton ID="lnkbtnNew" runat="server" Visible="false" CssClass="btnsave btncommon " Style="margin: 0 5px;" OnClick="lnkbtnNew_Click"><i class="fa fa-file-o" aria-hidden="true"></i>New</asp:LinkButton>
                                         <asp:LinkButton ID="lnkbtnAdd" runat="server" Visible="false" CssClass="btn btn-primary btn-sm" OnClick="lnkbtnAdd_Click1" Style="margin: 0 5px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</asp:LinkButton>
-                                        <asp:LinkButton ID="lnkbtnSave" Visible="false" ClientIDMode="Static" OnClientClick="return confirm('Do You want to Save?');" runat="server" CssClass="btn btn-sm btn-info" Style="margin: 0 5px;" OnClick="lnkbtnSave_Click"><i class="fas fa-save"></i>&nbsp;Save</asp:LinkButton>
+                                        <asp:LinkButton ID="lnkbtnSave" Visible="false" ClientIDMode="Static" OnClientClick="return confirm('Do You want to Save?');" runat="server" CssClass="btn btn-md btn-info" Style="margin: 0 5px;" OnClick="lnkbtnSave_Click"><i class="fas fa-save"></i>&nbsp;Save</asp:LinkButton>
                                         <asp:LinkButton ID="lnkbtnEdit" Visible="false" runat="server" CssClass="btnEdit btncommon" OnClick="lnkbtnEdit_Click" Style="margin: 0 5px;"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</asp:LinkButton>
 
                                         <asp:LinkButton ID="lnkbtnDelete" Visible="false" runat="server" OnClick="lnkbtnDelete_Click" CssClass="btnDelete btncommon " Style="margin: 0 5px;"><i class="fa fa-minus-square-o" aria-hidden="true"></i> Delete</asp:LinkButton>

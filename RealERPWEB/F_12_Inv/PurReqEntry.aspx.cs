@@ -707,6 +707,8 @@ namespace RealERPWEB.F_12_Inv
             DataTable tbl1 = (DataTable)ViewState["tblReq"];
             string mResCode = this.ddlResList.SelectedValue.ToString();
             string Specification = this.ddlResSpcf.SelectedValue.ToString();
+            string pactcode = ASTUtility.Left(this.ddlProject.SelectedValue.ToString(),4); 
+            double dgvBgdQty = 0;
             DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode + "' and spcfcod='" + Specification + "'");
             if (dr2.Length == 0)
             {
@@ -718,11 +720,12 @@ namespace RealERPWEB.F_12_Inv
                 dr1["spcfdesc"] = this.ddlResSpcf.SelectedItem.Text.Trim();
                 DataTable tbl2 = (DataTable)ViewState["tblMat"];
                 DataRow[] dr3 = tbl2.Select("rsircode = '" + mResCode + "'");
+                dgvBgdQty = pactcode=="1102" ? 0.00 : Convert.ToDouble(dr3[0]["bbgdqty"]);
                 dr1["rsirunit"] = dr3[0]["rsirunit"];
                 dr1["bgdqty"] = dr3[0]["bgdqty"];
                 dr1["bgdrat"] = dr3[0]["bgdrat"];
                 dr1["treceived"] = dr3[0]["treceived"];
-                dr1["bbgdqty"] = dr3[0]["bbgdqty"];
+                dr1["bbgdqty"] = dgvBgdQty;
                 dr1["bbgdamt"] = dr3[0]["bbgdamt"];
                 dr1["bbgdqty1"] = dr3[0]["bbgdqty1"];
                 dr1["bbgdamt1"] = dr3[0]["bbgdamt1"];
@@ -2110,9 +2113,7 @@ namespace RealERPWEB.F_12_Inv
                 string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_12_Inv/";
                 string currentptah = "PurReqEntry?InputType=ReqSecondApproved&prjcode=" + prjcode + "&genno=" + txtMRFNo.Text + "&comcod=" + comcod;
                 string apprlink = uhostname + currentptah;
-
                 string msgbodyText = "Dear Sir,<br>Requisition Request are  Waitting for your approval." + "<br> Requisition Type : " + projname + ", <br>" + "Requisition No : " + reqno + "<br>Created by : " + createBy + "<br>Created Date : " + createDat + "<br>";
-
 
                 string msgbody = @"
 <html lang=""en"">
@@ -2702,7 +2703,9 @@ namespace RealERPWEB.F_12_Inv
 
 
             string Type = Request.QueryString["InputType"].ToString();
-            if (Type == "Entry" || Type == "FxtAstEntry")
+
+            if (Type == "Entry" || Type == "IndentEntry" ||  Type == "FxtAstEntry")
+
             {
                 this.ddlPrevReqList.Items.Clear();
             }

@@ -16,6 +16,8 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
+using Microsoft.Reporting.WinForms;
+using RealERPRDLC;
 namespace RealERPWEB.F_22_Sal
 {
     public partial class SalesOpening : System.Web.UI.Page
@@ -390,31 +392,31 @@ namespace RealERPWEB.F_22_Sal
             string comnam = hst["comnam"].ToString();
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
 
             string Receiveno = this.lblReceiveNo.Text.Trim();
             string pactcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
             string UnitName = "%" + this.txtSearchUnit.Text.Trim() + "%";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "PRINTSALOPENINGINFO", Receiveno, pactcode, UnitName, "", "", "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "SALOPENINGINFO", Receiveno, pactcode, UnitName, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
 
             DataTable dt1 = HiddenSameData(ds1.Tables[0]);
-            ReportDocument rrs2 = new RealERPRPT.R_22_Sal.RptSalesOpening();
-            TextObject rptCname = rrs2.ReportDefinition.ReportObjects["txtCompanyName"] as TextObject;
-            rptCname.Text = comnam;
+            
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt1.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesOpening>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSalesOpening", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));          
+            Rpt1.SetParameters(new ReportParameter("printdate", "Date: " + Convert.ToDateTime(this.txtOpeningDate.Text).ToString("dd-MMM-yyyy")));          
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Sales Opening" ));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
 
-            TextObject txtProDate = rrs2.ReportDefinition.ReportObjects["txtdate"] as TextObject;
-            txtProDate.Text = "Date: " + Convert.ToDateTime(this.txtOpeningDate.Text).ToString("dd-MMM-yyyy");
-
-            TextObject txtuserinfo = rrs2.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
-            txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
-            rrs2.SetDataSource(dt1);
-            //string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
-            //rrs2.SetParameterValue("ComLogo", ComLogo);
-            Session["Report1"] = rrs2;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-                              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
 

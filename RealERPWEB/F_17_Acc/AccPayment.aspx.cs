@@ -1341,7 +1341,9 @@ namespace RealERPWEB.F_17_Acc
         private void DirectPrint()
         {
 
-            //ReportDocument report1 = new CrystalReport1();
+            //ReportDocument
+            //
+            //1 = new CrystalReport1();
             //PrintDialog dialog1 = new PrintDialog();
 
             //report1.SetDatabaseLogon("username", "password");

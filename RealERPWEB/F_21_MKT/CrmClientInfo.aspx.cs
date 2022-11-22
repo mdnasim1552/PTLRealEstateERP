@@ -40,7 +40,7 @@ namespace RealERPWEB.F_21_MKT
 
                 this.txtfrmdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.txtkpitodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy"); ;
+                this.txtkpitodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy"); 
 
                 this.MultiView1.ActiveViewIndex = 1;
                 GetAllSubdata();
@@ -238,10 +238,11 @@ namespace RealERPWEB.F_21_MKT
         {
             string comcod = GetComeCode();
             Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userrole = hst["userrole"].ToString();
             string empid = hst["empid"].ToString();
             DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETEMPLOYEEUNDERSUPERVISED", empid, "", "", "", "", "", "", "", "");
             DataTable dt = ds1.Tables[1];
-            if (dt.Rows.Count > 0)
+            if (dt.Rows.Count > 0 || userrole == "1")
                 return true;
             else
                 return false;
@@ -464,6 +465,7 @@ namespace RealERPWEB.F_21_MKT
             DropDownList ddlgval1;
             string gvalue = "";
             string ccc = "";
+            bool teamLeader = IsTeamLeader();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
 
@@ -475,7 +477,7 @@ namespace RealERPWEB.F_21_MKT
                         switch (comcod)
                         {
                             case "3368"://Finlay
-                                bool teamLeader = IsTeamLeader();
+                               
                                 if (lbllandname.Text.Length > 0)
                                 {
                                     if (teamLeader)
@@ -563,18 +565,16 @@ namespace RealERPWEB.F_21_MKT
 
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Attributes.Add("style", "width:165px; float:right; margin-top:-34px");
 
-                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
-                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;
-                        //For changing Mobile No by Team Leader
+                        //((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
+                        //((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;
+                      
+                        //For changing Mobile No. by Team Leader
                         switch (comcod)
                         {
-
-                           // case "3102": 
-                            case "3367"://Epic
-                            case "3368"://Finlay
-                                        //case "3101":
-
-                                bool teamLeader = IsTeamLeader();
+                          
+                            case "3315"://Assure
+                            case "3316"://Assure
+                                //Edit     
                                 if (lbllandname.Text.Length > 0)
                                 {
                                     if (teamLeader)
@@ -582,8 +582,77 @@ namespace RealERPWEB.F_21_MKT
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = false;
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
-                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = false;
-                                     
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;
+
+                                    }
+                                    else
+                                    {
+                                        switch (gcod)
+                                        {
+                                            case "0301004":
+                                            case "0301005":
+                                                ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = false;
+                                                ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                                                ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                                ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
+                                                ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;
+                                                break;
+
+                                            default:
+                                                ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = true;
+                                                ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                                                ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                                ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
+                                                ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = false;
+                                                break;
+                                        }                                       
+
+                                    }
+                                }
+                                else
+                                {                                   
+
+                                    ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = false;
+                                    ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                                    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
+                                    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;
+
+                                    //if (((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim().Length > 0)
+                                    //{
+                                    //    ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = true;
+                                    //    ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                                    //    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                    //    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
+                                    //    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = false;
+
+                                    //}
+                                    //else
+                                    //{
+                                    //    ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = false;
+                                    //    ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                                    //    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                    //    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
+                                    //    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;
+
+                                    //}
+                                }
+                                break;
+
+                            // case "3102": 
+                            case "3367"://Epic
+                            case "3368"://Finlay
+
+                                if (lbllandname.Text.Length > 0)
+                                {
+                                    if (teamLeader)
+                                    {
+                                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = false;
+                                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;                                     
 
                                     }
                                     else
@@ -591,31 +660,37 @@ namespace RealERPWEB.F_21_MKT
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = true;
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
-                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;
-                                         
-
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = false;                                        
 
                                     }
                                 }
                                 else
                                 {
-                                    if (((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim().Length > 0)
-                                    {
-                                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = true;
-                                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
-                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
-                                  
-                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;
+                                    ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = false;
+                                    ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                                    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
+                                    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;
 
-                                    }
-                                    else
-                                    {
-                                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = false;
-                                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
-                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
-                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = false;
+                                    //if (((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim().Length > 0)
+                                    //{
+                                    //    ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = true;
+                                    //    ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                                    //    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                    //    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
+                                    //    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = false;
 
-                                    }
+                                    //}
+                                    //else
+                                    //{
+                                    //    ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = false;
+                                    //    ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                                    //    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                                    //    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
+                                    //    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;
+
+                                    //}
                                 }
                                 break;
 
@@ -627,6 +702,7 @@ namespace RealERPWEB.F_21_MKT
                                     ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                                     ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
                                     ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
+                                    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;
                                 }
                                 else
                                 {
@@ -634,6 +710,7 @@ namespace RealERPWEB.F_21_MKT
                                     ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                                     ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
                                     ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
+                                    ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;
                                 }
                                 break;
                         }
@@ -2970,7 +3047,19 @@ namespace RealERPWEB.F_21_MKT
                                 string sourceRemarks = ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                                 if (sourceRemarks.Trim().Length == 0)
                                 {
-                                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Source Remarks is not empty!');", true);
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Source Remarks is not Empty!');", true);
+                                    return;
+                                }
+                            }
+                            break;
+                        //Epic
+                        case "3367":
+                            if (sourcecode == "3101010" )
+                            {
+                                string sourceRemarks = ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                                if (sourceRemarks.Trim().Length == 0)
+                                {
+                                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('IR Reference is not Empty!');", true);
                                     return;
                                 }
                             }
@@ -5255,7 +5344,7 @@ namespace RealERPWEB.F_21_MKT
 
 
             //    GetFollow();
-            DataTable dt5 = ((DataTable)ViewState["tblFollow"]).Copy(); ;
+            DataTable dt5 = ((DataTable)ViewState["tblFollow"]).Copy(); 
             DataView dv1;
             dv1 = dt5.DefaultView;
             dv1.RowFilter = ("gcod like '96%'");
@@ -5437,7 +5526,8 @@ namespace RealERPWEB.F_21_MKT
                         ddlcomp.DataValueField = "comcod";
                         ddlcomp.DataSource = (DataTable)ViewState["tblcompany"];// ds1.Tables[0];
                         ddlcomp.DataBind();
-                        ddlcomp.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+                        //ddlcomp.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+                        ddlcomp.SelectedValue = this.GetComeCode();
                         pcomcod = ddlcomp.SelectedValue.ToString();
                         break;
 

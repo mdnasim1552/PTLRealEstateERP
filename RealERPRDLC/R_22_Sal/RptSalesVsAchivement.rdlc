@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>51435820-fa2d-42cf-9407-752526d4c441</rd:DataSourceID>
+      <rd:DataSourceID>8232dd6f-5262-4b82-9c27-28caa7d8e913</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -36,6 +36,10 @@
         <Field Name="flrdesc">
           <DataField>flrdesc</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="loamt">
+          <DataField>loamt</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="netvalue">
           <DataField>netvalue</DataField>
@@ -77,6 +81,10 @@
           <DataField>steamdesc</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="tramt">
+          <DataField>tramt</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="tsalval">
           <DataField>tsalval</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -101,7 +109,7 @@
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_22_Sal</rd:DataSetName>
         <rd:TableName>SalesvsAchievement</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_22_Sal.EClassSales+SalesvsAchievement, RealERPEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>RealEntity.C_22_Sal.EClassSales+SalesvsAchievement, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -169,7 +177,7 @@
                   <Width>0.24318in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.84365in</Width>
+                  <Width>0.78115in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.57859in</Width>
@@ -178,7 +186,7 @@
                   <Width>1.36692in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.20693in</Width>
+                  <Width>1.05068in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.18042in</Width>
@@ -187,7 +195,7 @@
                   <Width>0.74432in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.80209in</Width>
+                  <Width>0.71876in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.92708in</Width>
@@ -196,10 +204,10 @@
                   <Width>0.95833in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.89015in</Width>
+                  <Width>0.97348in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.88541in</Width>
+                  <Width>0.93749in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.58668in</Width>
@@ -643,7 +651,22 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>D/P Amount </Value>
+                                  <Value>D/P</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Amount </Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -696,7 +719,8 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Received Amount</Value>
+                                  <Value>Received Amount
+</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1848,9 +1872,8 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.09203in</Top>
-            <Left>0.025in</Left>
             <Height>0.97917in</Height>
-            <Width>11.21375in</Width>
+            <Width>11.04708in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -1884,7 +1907,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Total Sales</Value>
+                                  <Value>=Parameters!totalsal.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1907,75 +1930,11 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <ColSpan>3</ColSpan>
                       </CellContents>
                     </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox5">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>:</Value>
-                                  <Style>
-                                    <FontFamily>caMbria</FontFamily>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox5</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>None</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox6">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Parameters!totalsal.Value</Value>
-                                  <Style>
-                                    <FontFamily>Cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox6</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>None</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
+                    <TablixCell />
+                    <TablixCell />
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
@@ -2216,7 +2175,6 @@
             </TablixRowHierarchy>
             <KeepTogether>true</KeepTogether>
             <Top>1.38958in</Top>
-            <Left>0.04708in</Left>
             <Height>0.53124in</Height>
             <Width>3.34944in</Width>
             <ZIndex>2</ZIndex>
@@ -2227,10 +2185,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>2.8757in</Height>
+        <Height>2.85626in</Height>
         <Style />
       </Body>
-      <Width>11.23875in</Width>
+      <Width>11.04708in</Width>
       <Page>
         <PageHeader>
           <Height>0.95709in</Height>
@@ -2259,7 +2217,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox3</rd:DefaultName>
               <Top>0.00972in</Top>
-              <Left>1.74236in</Left>
+              <Left>1.77986in</Left>
               <Height>0.27361in</Height>
               <Width>7.47556in</Width>
               <Style>
@@ -2293,7 +2251,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
               <Top>0.29722in</Top>
-              <Left>1.74236in</Left>
+              <Left>1.77986in</Left>
               <Height>0.17432in</Height>
               <Width>7.47556in</Width>
               <ZIndex>1</ZIndex>
@@ -2312,7 +2270,6 @@
               <Value>=Parameters!ComLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
               <Top>0.03472in</Top>
-              <Left>0.025in</Left>
               <Height>0.62862in</Height>
               <Width>1.13959in</Width>
               <ZIndex>2</ZIndex>
@@ -2352,7 +2309,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox83</rd:DefaultName>
               <Top>0.70695in</Top>
-              <Left>9.76249in</Left>
+              <Left>9.52499in</Left>
               <Height>0.18347in</Height>
               <Width>1.47626in</Width>
               <ZIndex>3</ZIndex>
@@ -2388,7 +2345,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox13</rd:DefaultName>
               <Top>0.45431in</Top>
-              <Left>1.74236in</Left>
+              <Left>1.77986in</Left>
               <Height>0.23125in</Height>
               <Width>7.47556in</Width>
               <ZIndex>4</ZIndex>
@@ -2424,7 +2381,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox14</rd:DefaultName>
               <Top>0.7175in</Top>
-              <Left>1.74236in</Left>
+              <Left>1.77986in</Left>
               <Height>0.18403in</Height>
               <Width>7.47556in</Width>
               <ZIndex>5</ZIndex>
@@ -2446,7 +2403,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.15869in</Height>
+          <Height>0.20036in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -2469,9 +2426,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Left>0.025in</Left>
-              <Height>0.15869in</Height>
-              <Width>7.6897in</Width>
+              <Height>0.17952in</Height>
+              <Width>5.61678in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -2502,9 +2458,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Left>7.74248in</Left>
+              <Left>5.64039in</Left>
               <Height>0.15869in</Height>
-              <Width>3.49627in</Width>
+              <Width>5.28794in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>

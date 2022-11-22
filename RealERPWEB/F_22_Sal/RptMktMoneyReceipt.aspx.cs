@@ -91,7 +91,7 @@ namespace RealERPWEB.F_22_Sal
             string comcod = this.GetCompCode();
             //string txtSProject = "%" + this.txtSrcPro.Text + "%";
             string qgenno = this.Request.QueryString["genno"] ?? "";
-            string txtSProject = (qgenno.Length == 0 ? ("%" + this.txtSrcPro.Text) : this.Request.QueryString["genno"].ToString()) + "%";
+            string txtSProject = (qgenno.Length == 0 ? ("%" ) : this.Request.QueryString["genno"].ToString()) + "%";
 
             string type = (this.Request.QueryString["Type"].ToString() == "CustCare" || this.Request.QueryString["Type"].ToString() == "Billing") ? "GETMRNODATEWISEALL" : "GETMRNODATEWISE";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", type, txtSProject, fromdate, todate, "", "", "", "", "", "");
@@ -174,7 +174,7 @@ namespace RealERPWEB.F_22_Sal
                 //case "3101":
                     mrprint = "MRPrint360";
                     break;
-                case "3101":
+
                 case "3356":
                     mrprint = "MRPrintIntech";
                     break;

@@ -239,11 +239,14 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
 
                 case "3101":
-                case "3368":
+                case "3368":                
                     this.UploadDataFinlay();
                     break;
 
-
+                case "3370":
+                    this.UploadDataCPDL();
+                    break;
+                    
                 default:
                     this.UploadDataGreenLand();
                     break;
@@ -1126,7 +1129,150 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
 
         }
+        private void UploadDataCPDL()
+        {
 
+
+
+            try
+            {
+                string StrFileName = string.Empty;
+                if (File1.PostedFile != null)
+                {
+                    StrFileName = File1.PostedFile.FileName.Substring(File1.PostedFile.FileName.LastIndexOf("\\") + 1);
+                    string StrFileType = File1.PostedFile.ContentType;
+                    int IntFileSize = File1.PostedFile.ContentLength;
+                    if (IntFileSize <= 0)
+                    {
+                        Msg = "Uploading of file failed";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+
+                    }
+
+                    else
+                    {
+                        File1.PostedFile.SaveAs(Server.MapPath("..\\..\\Upload\\Attndancefiles\\" + StrFileName));
+                        Msg = "Data Uploading Successfully";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Msg + "');", true);
+
+
+                    }
+                }
+                if (StrFileName == "")
+                {
+                    Msg = "Please fill a file";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+
+                    return;
+
+                }
+
+                if (txtMrrDate.Text.Trim() == "")
+                {
+                    Msg = " Date can not be a blank";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+
+
+                    return;
+
+                }
+
+
+                string filename1 = Server.MapPath("~") + ("\\Upload\\Attndancefiles\\" + StrFileName); //IIS Path
+
+                //string filename1 = Server.MapPath("~") + ("../Upload/" + StrFileName); //IIS Path
+                //string filename1 = Server.MapPath("~") + ("Upload/" + StrFileName); Local Path
+
+                //string savelocation = Server.MapPath("~") + "\\Image1";
+
+                System.IO.FileStream fs = new System.IO.FileStream(filename1, System.IO.FileMode.Open);
+                System.IO.StreamReader r = new System.IO.StreamReader(fs);
+                Label3.Text = r.ReadToEnd();
+                Label4.Text = filename1;
+                //UpdatePanel1.Controls.Add(Label1);
+                r.Close();
+
+
+                // Update  Data
+
+                string comcod = this.GetCompCode();
+                DataTable t4 = new DataTable();
+                t4.Columns.Add("adate", typeof(String));
+                t4.Columns.Add("atime", typeof(String));
+                t4.Columns.Add("IDCARDNO", typeof(String));
+                t4.Columns.Add("machid", typeof(String));
+
+
+                string ROWID = string.Empty;
+                string MACHID = string.Empty;
+                string IDCARDNO = string.Empty;
+                string LastNo = string.Empty;
+                string seldate = Convert.ToDateTime(this.txtMrrDate.Text).ToString("dd-MMM-yyyy");//Problem
+                DateTime ADAT;
+                DateTime ATIME;
+                string retFilePath = Label4.Text.Trim();
+                StreamReader objReader = new StreamReader(retFilePath);
+                ///////
+                string[] X1 = new string[30000];
+                string sLine = "";
+                int i = 0;
+                DataTable t1 = new DataTable();
+                t1.Columns.Add("empattn", typeof(String));
+                while (sLine != null)
+                {
+                    DataRow dr = t1.NewRow();
+                    sLine = objReader.ReadLine();
+                    X1[i] = sLine;
+                    dr["empattn"] = X1[i];
+                    t1.Rows.Add(dr);
+                    i = i + 1;
+                }
+                objReader.Close();
+                string IDCARDNO1;
+                string adt;
+                string[] arr;
+                foreach (DataRow dr1 in t1.Rows)
+                {
+                    arr = dr1["empattn"].ToString().Trim().Split(',');
+
+                    if (dr1["empattn"].ToString().Trim().Length != 0)
+                    {
+                        IDCARDNO1 = arr[0].Trim();
+                        adt = arr[2].Trim();
+                        ATIME = Convert.ToDateTime(adt + " " + arr[3]);
+                        MACHID = arr[1];
+                        bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ATTN_UPDATE", "ATTENDANCEUPDATE", "", IDCARDNO1, Convert.ToDateTime(adt).ToString(),
+                                Convert.ToDateTime(ATIME).ToString(), MACHID.Trim(), seldate, "", "", "", "", "", "", "", "", "");
+
+                    } 
+                }
+
+                Msg = "Updated Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+
+
+                //Delete File
+                string savelocation = Server.MapPath("~") + "\\Upload\\Attndancefiles\\";
+                string[] filePaths = Directory.GetFiles(savelocation);
+                foreach (string filePath in filePaths)
+                    File.Delete(filePath);
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Msg = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+
+            }
+
+
+
+
+        }
         protected void lbtnShowData_Click(object sender, EventArgs e)
         {
             this.ShowData();

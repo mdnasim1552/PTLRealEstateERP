@@ -345,6 +345,9 @@ namespace RealERPWEB.F_17_Acc
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
+
             LocalReport Rpt1 = new LocalReport();
             DataTable dt = (DataTable)Session["tranlist"];
             var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.EClassTranList>();
@@ -354,22 +357,21 @@ namespace RealERPWEB.F_17_Acc
             if (comcod == "3348")
             {
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptDailyTransactionCredence", lst, null, null);
+                Rpt1.SetParameters(new ReportParameter("ProjectDesc", comcod == "3338" ? (this.ddlAccHead.SelectedValue == "000000000000" ? "" : this.ddlAccHead.SelectedItem.Text.Substring(13)) : ""));
             }
             else
             {
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptDailyTransaction", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
             }
-
-            //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptDailyTransaction", lst, null, null);
             Rpt1.SetParameters(new ReportParameter("compname", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("Date", "(From " + Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy") + ")"));
-            Rpt1.SetParameters(new ReportParameter("ProjectDesc", comcod == "3338" ? (this.ddlAccHead.SelectedValue == "000000000000" ? "" : this.ddlAccHead.SelectedItem.Text.Substring(13)) : ""));
+            Rpt1.SetParameters(new ReportParameter("title", "TRANSACTION LIST"));
             Rpt1.SetParameters(new ReportParameter("dramt", Dtdram.ToString("#,##0;(#,##0); ")));
-            Rpt1.SetParameters(new ReportParameter("Rpttitle", "TRANSACTION LIST"));
             Rpt1.SetParameters(new ReportParameter("cramt", Dtcram.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("Date", "(From " + Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy") + ")"));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
-            // Rpt1.SetParameters(new ReportParameter("InWrd", "In Words : " + ASTUtility.Trans(Math.Round(TAmt), 2)));
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";

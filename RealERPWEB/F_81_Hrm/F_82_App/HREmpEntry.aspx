@@ -15,7 +15,7 @@
     <script type="text/javascript" language="javascript">
 
         $(document).ready(function () {
-         
+
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
             Visibility();
 
@@ -23,7 +23,7 @@
         });
         function pageLoaded() {
 
-            $("input, select").bind("keydown", fuEmp.Namenction (event) {
+            $("input, select").bind("keydown", fuEmp.Namenction(event) {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
 
@@ -81,26 +81,34 @@
 
     </script>
     <style>
+        .padymentType .chkBoxControl input[type="checkbox"], .chkBoxControl input[type="radio"], .chkBoxControl label {
+            margin: 0;
+        }
 
-
+        .pnlTimesslot {
+            /* position:absolute;
+            top:0;
+            left:0;
+            z-index:999;*/
+        }
     </style>
     <div class="RealProgressbar">
-                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
-                    <ProgressTemplate>
-                        <div id="loader">
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="lading"></div>
-                        </div>
-                    </ProgressTemplate>
-                </asp:UpdateProgress>
-            </div>
+        <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
+            <ProgressTemplate>
+                <div id="loader">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="lading"></div>
+                </div>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
+    </div>
     <div class="container moduleItemWrpper">
         <div class="contentPart">
             <asp:MultiView ID="MultiView1" runat="server">
@@ -230,10 +238,7 @@
                                             <asp:Label ID="lbljoindate" runat="server" CssClass="lblTxt lblName" Style="width: 100px;">Joining Date</asp:Label>
                                             <asp:Label ID="lblvaljoindate" runat="server" ReadOnly="true" Width="98" CssClass="inputTxt inputName inpPixedWidth"></asp:Label>
                                         </div>
-
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-5 pading5px ">
+                                        <div class="col-md-3 pading5px " style="width: 380px;">
                                             <asp:Label ID="lblpfstdate" runat="server" CssClass="lblTxt lblName" Style="width: 100px;">PF Starting Date</asp:Label>
                                             <asp:TextBox ID="txtPf" runat="server" Width="98" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
 
@@ -247,11 +252,6 @@
                                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtpfend"></cc1:CalendarExtender>
                                         </div>
 
-                                    </div>
-
-
-
-                                    <div class="form-group">
                                         <div class="col-md-3 pading5px asitCol3">
                                             <asp:Label ID="lbltDesignation" runat="server" CssClass="lblTxt lblName" Style="width: 100px;">Designation</asp:Label>
                                             <asp:Label ID="lblDesgination" runat="server" ReadOnly="true" Width="98" CssClass="inputTxt inputName inpPixedWidth"></asp:Label>
@@ -260,7 +260,10 @@
                                             <asp:DropDownList ID="ddlDesignation" AutoPostBack="true" OnSelectedIndexChanged="ddlDesignation_SelectedIndexChanged" runat="server" CssClass="chzn-select form-control inputTxt" TabIndex="15">
                                             </asp:DropDownList>
                                         </div>
+
+
                                     </div>
+
 
 
                                     <div class="form-group">
@@ -268,58 +271,53 @@
                                             <asp:Label ID="lbltOfftime" runat="server" CssClass="lblTxt lblName">Office InTime</asp:Label>
                                             <asp:Label ID="lbloffintime" runat="server" ReadOnly="true" Width="98" CssClass="inputTxt inputName inpPixedWidth"></asp:Label>
                                         </div>
-                                        <div class="col-md-2 pading5px">
+                                        <div class="col-md-1 pading5px">
                                             <asp:DropDownList ID="ddlOffintime" AutoPostBack="true" OnSelectedIndexChanged="ddlOffintime_SelectedIndexChanged" runat="server" CssClass="form-control inputTxt" TabIndex="16">
                                             </asp:DropDownList>
                                         </div>
-                                    </div>
-
-                                    <div class="form-group">
                                         <div class="col-md-3 pading5px asitCol3">
                                             <asp:Label ID="lbltOfftime0" runat="server" CssClass="lblTxt lblName">Office OutTime</asp:Label>
                                             <asp:Label ID="lbloffouttime" runat="server" ReadOnly="true" Width="98" CssClass="inputTxt inputName inpPixedWidth"></asp:Label>
                                         </div>
-                                        <div class="col-md-2 pading5px">
+                                        <div class="col-md-1 pading5px">
                                             <asp:DropDownList ID="ddlOffouttime" AutoPostBack="true" OnSelectedIndexChanged="ddlOffouttime_SelectedIndexChanged" runat="server" CssClass="form-control inputTxt" TabIndex="17">
                                             </asp:DropDownList>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
                                         <div class="col-md-3 pading5px asitCol3">
                                             <asp:Label ID="lbltLantime" runat="server" CssClass="lblTxt lblName">Launch InTime</asp:Label>
                                             <asp:Label ID="lbllanintime" runat="server" Width="98" ReadOnly="true" CssClass="inputTxt inputName inpPixedWidth"></asp:Label>
                                         </div>
-                                        <div class="col-md-2 pading5px">
+                                        <div class="col-md-1 pading5px">
                                             <asp:DropDownList ID="ddlLanintime" AutoPostBack="true" OnSelectedIndexChanged="ddlLanintime_SelectedIndexChanged" runat="server" CssClass="form-control inputTxt" TabIndex="17">
                                             </asp:DropDownList>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
+
                                         <div class="col-md-3 pading5px asitCol3">
                                             <asp:Label ID="lbltLantime0" runat="server" CssClass="lblTxt lblName">Launch OutTime</asp:Label>
                                             <asp:Label ID="lbllanouttime" runat="server" Width="98" ReadOnly="true" CssClass="inputTxt inputName inpPixedWidth"></asp:Label>
                                         </div>
-                                        <div class="col-md-2 pading5px">
+                                        <div class="col-md-1 pading5px">
                                             <asp:DropDownList ID="ddlLanouttime" AutoPostBack="true" OnSelectedIndexChanged="ddlLanouttime_SelectedIndexChanged" runat="server" CssClass="form-control inputTxt" TabIndex="18">
                                             </asp:DropDownList>
                                         </div>
+
                                     </div>
+
+
 
                                     <div class="form-group">
                                         <div class="col-md-3 pading5px asitCol3">
                                             <asp:Label ID="lbltEduQua" runat="server" CssClass="lblTxt lblName">Last Degree</asp:Label>
                                             <asp:Label ID="lblEduQua" runat="server" Width="98" CssClass="inputTxt inputName inpPixedWidth"></asp:Label>
                                         </div>
-                                        <div class="col-md-2 pading5px">
+                                        <div class="col-md-1 pading5px">
                                             <asp:DropDownList ID="ddlEduQua" AutoPostBack="true" OnSelectedIndexChanged="ddlEduQua_SelectedIndexChanged" runat="server" CssClass="form-control inputTxt" TabIndex="21">
                                             </asp:DropDownList>
                                         </div>
                                         <div class="col-md-3 pading5px asitCol3">
-                                            <asp:Label ID="lbltEduPass" runat="server" CssClass="lblTxt lblName">Passing Year</asp:Label>
-                                            <asp:TextBox ID="txtEduPass" runat="server" Width="98" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
+                                            <asp:Label ID="lbltEduPass" runat="server" Style="width: 75px;" CssClass="lblTxt lblName">Passing Year</asp:Label>
+                                            <asp:TextBox ID="txtEduPass" runat="server" Width="60" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
                                         <div class="col-md-3 pading5px asitCol3">
                                             <asp:Label ID="lbltAtype" runat="server" CssClass="lblTxt lblName">Agreement Type</asp:Label>
                                             <asp:TextBox ID="lblAtype" runat="server" Width="98" ReadOnly="true" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
@@ -328,16 +326,15 @@
                                             <asp:DropDownList ID="ddlAggrement" AutoPostBack="true" OnSelectedIndexChanged="ddlProQua_SelectedIndexChanged" runat="server" CssClass="form-control inputTxt" TabIndex="22">
                                             </asp:DropDownList>
                                         </div>
+
                                     </div>
+
                                     <div class="form-group">
-                                        <div class="col-md-3 pading5px">
+                                        <div class="col-md-2 padymentType pading5px" style="width: 240px">
                                             <asp:Label ID="lbltAtype2" runat="server" CssClass="lblTxt lblName">Payment Type</asp:Label>
-
-
-
                                             <asp:RadioButtonList ID="rbtPaymentType" runat="server" AutoPostBack="True"
                                                 CssClass="rbtnList1 chkBoxControl margin5px"
-                                                Font-Size="12px" ForeColor="Black" 
+                                                Font-Size="12px" ForeColor="Black"
                                                 OnSelectedIndexChanged="rbtPaymentType_SelectedIndexChanged"
                                                 RepeatColumns="6" RepeatDirection="Horizontal" TabIndex="23">
                                                 <asp:ListItem Value="Cash">Cash</asp:ListItem>
@@ -352,7 +349,7 @@
 
 
                                         </div>
-                                        <div class="col-md-9 pading5px">
+                                        <div class="col-md-10 pading5px">
                                             <asp:Panel ID="pnlPaymenttype" runat="server" Visible="false">
 
                                                 <div class="col-md-12 pading5px">
@@ -367,7 +364,7 @@
                                                     <asp:Label ID="lblAcNo1" runat="server" CssClass=" smLbl">A/C No 01</asp:Label>
                                                     <asp:TextBox ID="txtAcNo1" runat="server" TabIndex="25" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
 
-                                                                <asp:Label ID="lblroute" runat="server" CssClass=" smLbl">Routing 01</asp:Label>
+                                                    <asp:Label ID="lblroute" runat="server" CssClass=" smLbl">Routing 01</asp:Label>
                                                     <asp:TextBox ID="txtroute" runat="server" TabIndex="25" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
 
                                                     <asp:Label ID="lbltBankName2" runat="server" CssClass="smLbl">Bank 02</asp:Label>
@@ -381,18 +378,21 @@
                                                     <asp:Label ID="lblAcNo2" runat="server" CssClass="smLbl">A/C No 02</asp:Label>
                                                     <asp:TextBox ID="txtAcNo2" runat="server" TabIndex="27" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
 
-                                                                     <asp:Label ID="lblroute2" runat="server" CssClass=" smLbl">Routing 02</asp:Label>
+                                                    <asp:Label ID="lblroute2" runat="server" CssClass=" smLbl">Routing 02</asp:Label>
                                                     <asp:TextBox ID="txtroute2" runat="server" TabIndex="25" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
 
                                                     <asp:Label ID="lblbankamt" runat="server" CssClass="smLbl text-right ">Bank Amt.</asp:Label>
                                                     <asp:TextBox ID="txtBankamt02" runat="server" TabIndex="32" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
 
 
-                                                    <asp:Label ID="lblCahsamt" runat="server" CssClass=" smLbl_to ">Amt</asp:Label>
-                                                    <asp:TextBox ID="txtCashAmt" runat="server" TabIndex="32" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-
+                                                    <asp:Label ID="lblCahsamt" runat="server" CssClass=" smLbl_to  pading5px">Amt</asp:Label>
+                                                    <asp:TextBox ID="txtCashAmt" runat="server" Width="58px" TabIndex="32" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
                                                     <asp:CheckBox ID="chkcash0bank1" runat="server" ClientIDMode="Static" ToolTip="Checked for Bank" Text="C/B" CssClass=" checkBox" AutoPostBack="true" OnCheckedChanged="chkcash0bank1_CheckedChanged" />
+
                                                 </div>
+
+
+
 
 
                                             </asp:Panel>
@@ -434,6 +434,7 @@
                                                         <asp:ListItem>Fixed(Hourly)</asp:ListItem>
                                                         <asp:ListItem>For.(Hourly)</asp:ListItem>
                                                         <asp:ListItem>Ceiling</asp:ListItem>
+                                                        <asp:ListItem>Times slot </asp:ListItem>
                                                     </asp:RadioButtonList>
 
 
@@ -471,6 +472,7 @@
                                                 </div>
                                             </asp:Panel>
 
+
                                         </div>
                                     </div>
                                 </div>
@@ -496,8 +498,6 @@
                         <asp:Panel ID="Panel5" runat="server">
                             <div class="form-group">
                                 <div class="col-md-7 pading5px">
-                                    <asp:Label ID="lblhSalaryAdd" runat="server" Visible="false" CssClass="lblTxt lblName">Addition: </asp:Label>
-
                                     <asp:RadioButtonList ID="rbtGross" runat="server" Font-Bold="True" CssClass="rbtnList1 chkBoxControl margin5px flotLeft"
                                         Font-Size="14px" Height="16px" RepeatColumns="8" RepeatDirection="Horizontal" Visible="false"
                                         TabIndex="37" Width="58%">
@@ -508,12 +508,9 @@
                                         <asp:ListItem>GLG</asp:ListItem>
                                         <asp:ListItem>Alliance</asp:ListItem>
                                         <asp:ListItem>Tropical</asp:ListItem>
+                                        <asp:ListItem>CPDL</asp:ListItem>
                                         <%--<asp:ListItem>PEB</asp:ListItem>--%>
-
-                                        
-
                                     </asp:RadioButtonList>
-
                                 </div>
 
                             </div>
@@ -521,8 +518,10 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <asp:GridView ID="gvSalAdd" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
+                        <div class="col-md-5 col-sm-5">
+                            <asp:Label ID="lblhSalaryAdd" runat="server" Visible="false" CssClass="">Addition: </asp:Label>
+
+                            <asp:GridView ID="gvSalAdd" runat="server" AutoGenerateColumns="False" Style="background-color: whitesmoke" CssClass="table-striped table-hover table-bordered grvContentarea"
                                 ShowFooter="True">
                                 <RowStyle />
                                 <Columns>
@@ -530,7 +529,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
                                                 Style="text-align: right"
-                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
@@ -603,7 +602,8 @@
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
                         </div>
-                        <div class="col-sm-5 col-md-5 ">
+                        <div class="col-sm-4 col-md-4 ">
+
                             <asp:Label ID="lblhSalaryDed" runat="server" Text="Deduction" Visible="False"></asp:Label>
 
                             <asp:GridView ID="gvSalSub" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
@@ -682,8 +682,81 @@
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
+
+
                         </div>
-                        <div class="clearfix"></div>
+
+
+                        <asp:Panel ID="pnlTimesslot" CssClass="pnlTimesslot col-md-3 col-sm-3" runat="server" Visible="false">
+                            <div style="background-color: whitesmoke; paddint-top: 5px;">
+                                <h4 class="text-center">Times slot Entry</h4>
+                                <div class="col-md-12">
+                                    <asp:Label ID="Label1" runat="server" Width="50px" Style="text-align: left" CssClass="lblTxt lblName text-left">Hour</asp:Label>
+                                    <asp:TextBox ID="txtHourTimeSlot" runat="server" TextMode="Number" TabIndex="32" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
+
+                                    <asp:Label ID="Label3" runat="server" Width="50px" CssClass=" lblTxt lblName">Rate</asp:Label>
+                                    <asp:TextBox ID="txtRateTimeSlot" runat="server" TextMode="Number" TabIndex="32" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
+
+                                    <asp:LinkButton ID="lnkAdd" runat="server" CssClass="btn btn-sm btn-success" Style="padding: 2px 5px; margin-left: 5px" OnClick="lnkAdd_Click"><span class="glyphicon glyphicon-plus"></span></asp:LinkButton>
+                                </div>
+                                <hr />
+                                <div class="col-md-12" id="GVsLOTdIV">
+                                    <asp:GridView ID="gvTimsSlot" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                        ShowFooter="false">
+                                        <RowStyle />
+                                        <Columns>
+                                              <asp:TemplateField HeaderText="Sl.No.">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvTimsSlotSlNo2" runat="server" Font-Bold="True" Height="16px"
+                                                Style="text-align: right"
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField> 
+                                            <asp:TemplateField HeaderText="Action">
+                                                <ItemTemplate>
+                                                    <asp:LinkButton ID="TImeSlotlnkDelete" runat="server" CssClass="btn btn-sm btn-danger" Style="padding: 2px" OnClick="TImeSlotlnkDelete_Click"><span class="glyphicon glyphicon-trash"></span></asp:LinkButton>
+                                                    
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Hour">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtgvslothour" runat="server" BackColor="Transparent"
+                                                        Height="20px" BorderStyle="None" Font-Size="11px"
+                                                        Style="text-align: right"
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "slothour")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                        Width="80px"></asp:TextBox>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Amount">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtgvotrate" runat="server" BackColor="Transparent"
+                                                        Height="20px" BorderStyle="None" Font-Size="11px"
+                                                        Style="text-align: right"
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "otrate")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                        Width="80px"></asp:TextBox>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <ItemStyle HorizontalAlign="right" />
+                                                <FooterStyle HorizontalAlign="right" />
+                                            </asp:TemplateField>
+                                        </Columns>
+                                        <FooterStyle CssClass="grvFooter" />
+                                        <EditRowStyle />
+                                        <AlternatingRowStyle />
+                                        <PagerStyle CssClass="gvPagination" />
+                                        <HeaderStyle CssClass="grvHeader" />
+                                    </asp:GridView>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </asp:Panel>
+
+
 
                     </div>
 
@@ -854,10 +927,10 @@
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
                                 <asp:LinkButton ID="lnkbtnFinalSWUpdate" runat="server" CssClass="btn btn-success"
-                                    OnClick="lnkbtnFinalSWUpdate_Click" 
-                                    Visible="False" TabIndex="39">Final Update</asp:LinkButton>                                
-                                <asp:LinkButton ID="lnkUserGenerate" runat="server"  CssClass="btn btn-warning" Visible="false"
-                                    OnClick="lnkUserGenerate_Click" 
+                                    OnClick="lnkbtnFinalSWUpdate_Click"
+                                    Visible="False" TabIndex="39">Final Update</asp:LinkButton>
+                                <asp:LinkButton ID="lnkUserGenerate" runat="server" CssClass="btn btn-warning" Visible="false"
+                                    OnClick="lnkUserGenerate_Click"
                                     TabIndex="39">User Generate</asp:LinkButton>
                             </div>
                         </div>
@@ -888,7 +961,7 @@
                                             <asp:LinkButton ID="imgbtnDeptSrch" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="imgbtnDeptSrch_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                         </div>
                                         <div class="col-md-4 pading5px">
-                                            <asp:DropDownList ID="ddlDepartment"  runat="server" CssClass="form-control inputTxt" TabIndex="2">
+                                            <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control inputTxt" TabIndex="2">
                                             </asp:DropDownList>
                                             <asp:Label ID="lblDeptDesc" runat="server" CssClass="form-control dataLblview" Height="22" Style="line-height: 1.5" Visible="false"></asp:Label>
                                         </div>

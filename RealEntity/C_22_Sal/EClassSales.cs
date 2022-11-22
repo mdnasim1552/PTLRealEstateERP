@@ -150,6 +150,8 @@ namespace RealEntity.C_22_Sal
             public string steamdesc { get; set; }
             public string downstatus { get; set; }
             public double tsalval { get; set; }
+            public double loamt { get; set; }
+            public double tramt { get; set; }
             public double netvalue { get; set; }
             public double downpamt { get; set; }
             public double ramt { get; set; }
@@ -215,6 +217,28 @@ namespace RealEntity.C_22_Sal
             public double chqamt { get; set; }
           
             public TransactionSt()
+            {
+
+            }
+
+
+        }
+        public class SalesOpening
+        {
+            public string comcod { get; set; }
+
+            public string pactdesc { get; set; }
+            public string pactcode { get; set; }
+            public string udesc { get; set; }
+            public string custname { get; set; }
+            public string usircode { get; set; }
+            public double schamt { get; set; }
+            public string munit { get; set; }
+            public double usize { get; set; }
+            public double opnamt { get; set; }
+           
+
+            public SalesOpening()
             {
 
             }

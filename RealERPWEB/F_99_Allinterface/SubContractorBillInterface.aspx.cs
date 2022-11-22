@@ -76,6 +76,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
+                case "3101": // ptl
                 case "3370": // cpdl
                 case "1205":
                 case "3351":
@@ -156,6 +157,45 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
+        private string GettxtBillChecked()
+        {
+            string billchk = "";
+            string comcod = this.GetCompCode();
+
+            switch (comcod)
+            {
+                case "3101":
+                case "3367":
+                    billchk = "Bill Checked";
+                    break;
+
+                default:
+                    billchk = "Bill Approval";
+                    break;
+            }
+            return billchk;
+
+        }
+
+        private string GetOrderApproval()
+        {
+            string billchk = "";
+            string comcod = this.GetCompCode();
+
+            switch (comcod)
+            {
+                case "3101":
+                case "3370"://
+                    billchk = "Bill Checked";
+                    break;
+
+                default:
+                    billchk = "Bill Approval";
+                    break;
+            }
+            return billchk;
+
+        }
         private string GettxtBillFinal()
         {
             string billfinal = "";
@@ -172,9 +212,6 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
             }
             return billfinal;
-
-
-
 
         }
 
@@ -233,7 +270,19 @@ namespace RealERPWEB.F_99_Allinterface
             string billfinal = this.GettxtBillFinal();
             string billapprove = this.GettxtBillApproved();
             string frecon = this.Gettxtfrecon();
+            string billchk = this.GettxtBillChecked();
+            string orderApp = "";
+            switch (comcod)
+            {
+                case "3101":
+                case "3370"://
+                    orderApp = "Bill Generate";
+                    break;
 
+                default:
+                    orderApp = "Order App.";
+                    break;
+            }
 
 
             this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["impcout"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Monthly Plan</div></div></div>";
@@ -243,28 +292,35 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading light-gray counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billcs"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content light-gray'><div class='circle-tile-description text-faded'>Bill CS APP</div></div></div>";
 
             this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading blue counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["workorder"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content blue'><div class='circle-tile-description text-faded'>Work Order</div></div></div>";
-            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading yellow counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["redyforbill"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content yellow'><div class='circle-tile-description text-faded'>Order App.</div></div></div>";
-
-            this.RadioButtonList1.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["subbillcount"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Sub-Con.Bill</div></div></div>";
-
-            this.RadioButtonList1.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billApproval"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>Bill Approval</div></div></div>";
-
-            this.RadioButtonList1.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading  orange counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billcount"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>" + billfinal + "</div></div></div>";
-
-            this.RadioButtonList1.Items[10].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray  counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["frecom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray  '><div class='circle-tile-description text-faded'>" + frecon + "</div></div></div>";
-            this.RadioButtonList1.Items[11].Text = "<div class='circle-tile'><a><div class='circle-tile-heading   dark-blue  counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["secrecom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue '><div class='circle-tile-description text-faded'>2nd Recom.</div></div></div>";
-            this.RadioButtonList1.Items[12].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red  counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["threcom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red '><div class='circle-tile-description text-faded'>Forward</div></div></div>";
-
-            this.RadioButtonList1.Items[13].Text = "<div class='circle-tile'><a><div class='circle-tile-heading  purple   counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billconfirm"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content  purple   '><div class='circle-tile-description text-faded'>" + billapprove + "</div></div></div>";
-            this.RadioButtonList1.Items[14].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["paycount"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content  orange '><div class='circle-tile-description text-faded'>Bill Update</div></div></div>";
 
 
-            //this.RadioButtonList1.Items[0].Text = "<span class='fa  fa-signal fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["impcout"]).ToString("#,##0;(#,##0); ") + "</span>" + "<span class='lbldata2'>" + "Monthly Imp.Plan" + "</span>";
-            //this.RadioButtonList1.Items[1].Text = "<span class='fa fa-pencil-square-o fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["execount"]).ToString("#,##0;(#,##0); ") + "</span>" + "<span class=lbldata2>" + "Work Execution" + "</span>";
-            //this.RadioButtonList1.Items[2].Text = "<span class='fa fa-pencil-square-o fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["subbillcount"]).ToString("#,##0;(#,##0); ") + "</span>" + "<span class=lbldata2>" + "Sub-Con.Bill" + "</span>";
-            //this.RadioButtonList1.Items[3].Text = "<span class='fa fa-check-square-o fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["billcount"]).ToString("#,##0;(#,##0); ") + "</span>" + "<span class=lbldata2>" + "Bill Finalization" + "</span>";
-            //this.RadioButtonList1.Items[4].Text = "<span class='fa fa-calculator fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["billconfirm"]).ToString("#,##0;(#,##0); ") + "</span>" + "<span class=lbldata2>" + "Bill Confirmed" + "</span></a>";
-            //this.RadioButtonList1.Items[5].Text = "<span class='fa fa-calculator fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["paycount"]).ToString("#,##0;(#,##0); ") + "</span>" + "<span class=lbldata2>" + "Bill Update" + "</span></a>";
+            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["mb"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>MB</div></div></div>";
+
+
+
+            this.RadioButtonList1.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["mbapp"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>MB Approval</div></div></div>";
+
+
+
+            this.RadioButtonList1.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading yellow counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["redyforbill"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content yellow'><div class='circle-tile-description text-faded'>" + orderApp + "</div></div></div>";
+
+
+
+
+            this.RadioButtonList1.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["subbillcount"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Sub-Con.Bill</div></div></div>";
+
+            this.RadioButtonList1.Items[10].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billApproval"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>" + billchk + "</div></div></div>";
+
+            this.RadioButtonList1.Items[11].Text = "<div class='circle-tile'><a><div class='circle-tile-heading  orange counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billcount"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>" + billfinal + "</div></div></div>";
+
+            this.RadioButtonList1.Items[12].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray  counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["frecom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray  '><div class='circle-tile-description text-faded'>" + frecon + "</div></div></div>";
+            this.RadioButtonList1.Items[13].Text = "<div class='circle-tile'><a><div class='circle-tile-heading   dark-blue  counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["secrecom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue '><div class='circle-tile-description text-faded'>2nd Recom.</div></div></div>";
+            this.RadioButtonList1.Items[14].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red  counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["threcom"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red '><div class='circle-tile-description text-faded'>Forward</div></div></div>";
+
+            this.RadioButtonList1.Items[15].Text = "<div class='circle-tile'><a><div class='circle-tile-heading  purple   counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billconfirm"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content  purple   '><div class='circle-tile-description text-faded'>" + billapprove + "</div></div></div>";
+            this.RadioButtonList1.Items[16].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["paycount"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content  orange '><div class='circle-tile-description text-faded'>Bill Update</div></div></div>";
+
+
 
 
 
@@ -306,11 +362,32 @@ namespace RealERPWEB.F_99_Allinterface
             dv.RowFilter = ("orderno =''");
             this.Data_Bind("gvWorkOrder", dv.ToTable());
 
+
+            /// Measurement Book  
+            dt = (DataTable)ds1.Tables[11];
+            this.Data_Bind("gvmbook", dt);
+
+
+            /// Measurement Book Approval
+            //dt = ((DataTable)ds1.Tables[11]).Copy();
+            //dv = dt.DefaultView;
+            //dv.RowFilter = ("orderno <>'' and mbno <>'' and mbnoapp=''");
+            //this.Data_Bind("gvmbookapp", dv.ToTable());
+
+
+
+
+            // Ready For Bill
+            dt = (DataTable)ds1.Tables[12];
+            this.Data_Bind("gvReadyForBill", dt);
+
+
+
             /// Ready For Bill
-            dt = ((DataTable)ds1.Tables[7]).Copy();
-            dv = dt.DefaultView;
-            dv.RowFilter = ("orderno <>'' and lisueno=''");
-            this.Data_Bind("gvReadyForBill", dv.ToTable());
+            //dt = ((DataTable)ds1.Tables[7]).Copy();
+            //dv = dt.DefaultView;
+            //dv.RowFilter = ("orderno <>''  and lisueno=''");
+            //this.Data_Bind("gvReadyForBill", dv.ToTable());
 
 
             dtb = ((DataTable)ds1.Tables[2]).Copy();
@@ -374,9 +451,9 @@ namespace RealERPWEB.F_99_Allinterface
             //Purchase gvfinal
 
             // bill approval
-            dtb = ((DataTable)ds1.Tables[10]).Copy();
-            dv = dtb.DefaultView;
-            this.Data_Bind("gvbillapp", dv.ToTable());
+            dt = ((DataTable)ds1.Tables[10]).Copy();
+            //dv = dtb.DefaultView;
+            this.Data_Bind("gvbillapp", dt);
 
 
 
@@ -436,6 +513,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlthrec.Visible = false;
                     this.PanelReadyForBil.Visible = false;
                     this.pnlbillapp.Visible = false;
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
 
                     this.RadioButtonList1.Items[0].Attributes["class"] = "lblactive blink_me";
 
@@ -459,7 +538,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.PanelWorkOrder.Visible = false;
                     this.PanelReadyForBil.Visible = false;
                     this.pnlbillapp.Visible = false;
-
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
                     this.RadioButtonList1.Items[1].Attributes["class"] = "lblactive blink_me";
                     break;
 
@@ -479,7 +559,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.PanelWorkOrder.Visible = false;
                     this.PanelReadyForBil.Visible = false;
                     this.pnlbillapp.Visible = false;
-
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
                     this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
                     break;
 
@@ -500,7 +581,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.PanelWorkOrder.Visible = false;
                     this.PanelReadyForBil.Visible = false;
                     this.pnlbillapp.Visible = false;
-
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
                     this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
 
 
@@ -522,7 +604,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlthrec.Visible = false;
                     this.PanelReadyForBil.Visible = false;
                     this.pnlbillapp.Visible = false;
-
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
                     this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
 
                     break;
@@ -544,11 +627,58 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlthrec.Visible = false;
                     this.PanelReadyForBil.Visible = false;
                     this.pnlbillapp.Visible = false;
-
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
                     this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
-
                     break;
-                case "6": // Read For BIll
+
+                case "6": //MB Entry
+                    this.PanelWorkOrder.Visible = false;
+                    this.pnlAllReq.Visible = false;
+                    this.PanelBillReq.Visible = false;
+                    this.PanelBillCs.Visible = false;
+                    this.PnlImp.Visible = false;
+                    this.PnlExe.Visible = false;
+                    this.pnlgvupdate.Visible = false;
+                    this.pnlSubbill.Visible = false;
+                    this.Pnlbillfapp.Visible = false;
+                    this.Pnlbillf.Visible = false;
+
+                    this.pnlfrec.Visible = false;
+                    this.pnlsrec.Visible = false;
+                    this.pnlthrec.Visible = false;
+                    this.PanelReadyForBil.Visible = false;
+                    this.pnlbillapp.Visible = false;
+                    this.pnlMbook.Visible = true;
+                    this.pnlMbookApp.Visible = false;
+                    this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
+                    break;
+
+                case "7": // MB Book Approval
+                    this.PanelWorkOrder.Visible = false;
+                    this.pnlAllReq.Visible = false;
+                    this.PanelBillReq.Visible = false;
+                    this.PanelBillCs.Visible = false;
+                    this.PnlImp.Visible = false;
+                    this.PnlExe.Visible = false;
+                    this.pnlgvupdate.Visible = false;
+                    this.pnlSubbill.Visible = false;
+                    this.Pnlbillfapp.Visible = false;
+                    this.Pnlbillf.Visible = false;
+
+                    this.pnlfrec.Visible = false;
+                    this.pnlsrec.Visible = false;
+                    this.pnlthrec.Visible = false;
+                    this.PanelReadyForBil.Visible = false;
+                    this.pnlbillapp.Visible = false;
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = true;
+                    this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
+                    break;
+
+
+
+                case "8": // Read For BIll
                     this.PanelWorkOrder.Visible = false;
                     this.pnlAllReq.Visible = false;
                     this.PanelBillReq.Visible = false;
@@ -565,12 +695,14 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlthrec.Visible = false;
                     this.PanelReadyForBil.Visible = true;
                     this.pnlbillapp.Visible = false;
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
 
                     this.RadioButtonList1.Items[6].Attributes["class"] = "lblactive blink_me";
 
                     break;
 
-                case "7": // Subcontractor Bill
+                case "9": // Subcontractor Bill
                     this.PanelBillReq.Visible = false;
                     this.PanelBillCs.Visible = false;
                     this.pnlAllReq.Visible = false;
@@ -588,13 +720,15 @@ namespace RealERPWEB.F_99_Allinterface
                     this.PanelWorkOrder.Visible = false;
                     this.PanelReadyForBil.Visible = false;
                     this.pnlbillapp.Visible = false;
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
 
                     this.RadioButtonList1.Items[7].Attributes["class"] = "lblactive blink_me";
                     break;
 
 
 
-                case "8": // Bill Finalization
+                case "10": // Bill Finalization
                     this.PanelBillReq.Visible = false;
                     this.PanelBillCs.Visible = false;
                     this.PnlImp.Visible = false;
@@ -610,12 +744,14 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlthrec.Visible = false;
                     this.PanelWorkOrder.Visible = false;
                     this.pnlbillapp.Visible = true;
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
 
                     this.RadioButtonList1.Items[8].Attributes["class"] = "lblactive blink_me";
 
-                    break; 
+                    break;
 
-                case "9": // Bill Finalization
+                case "11": // Bill Finalization
                     this.PanelBillReq.Visible = false;
                     this.PanelBillCs.Visible = false;
                     this.PnlImp.Visible = false;
@@ -631,30 +767,16 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlthrec.Visible = false;
                     this.PanelWorkOrder.Visible = false;
                     this.pnlbillapp.Visible = false;
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
 
                     this.RadioButtonList1.Items[9].Attributes["class"] = "lblactive blink_me";
 
                     break;
 
-                //case "4": // Checked
-                //    this.PnlImp.Visible = false;
-                //    this.PnlExe.Visible = false;
-                //    this.pnlgvupdate.Visible = false;
-                //    this.pnlSubbill.Visible = false;
-                //    this.Pnlbillfapp.Visible = false;
-                //    this.Pnlbillf.Visible = false;
-                //    this.pnlchaverify.Visible = true;
-                //    this.pnlfrec.Visible = false;
-                //    this.pnlsrec.Visible = false;
-                //    this.pnlthrec.Visible = false;
-                //    this.pnlApproved.Visible = false;
-                //    this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
 
 
-                //    break;
-
-
-                case "10": // First Recommendation
+                case "12": // First Recommendation
                     this.PanelBillReq.Visible = false;
                     this.PanelBillCs.Visible = false;
                     this.pnlAllReq.Visible = false;
@@ -670,13 +792,15 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlthrec.Visible = false;
                     this.PanelWorkOrder.Visible = false;
                     this.pnlbillapp.Visible = false;
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
 
                     this.RadioButtonList1.Items[10].Attributes["class"] = "lblactive blink_me";
 
 
                     break;
 
-                case "11": // Second Recommendation
+                case "13": // Second Recommendation
                     this.PanelBillReq.Visible = false;
                     this.PanelBillCs.Visible = false;
                     this.PnlImp.Visible = false;
@@ -692,11 +816,13 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlthrec.Visible = false;
                     this.PanelWorkOrder.Visible = false;
                     this.pnlbillapp.Visible = false;
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
                     this.RadioButtonList1.Items[11].Attributes["class"] = "lblactive blink_me";
 
 
                     break;
-                case "12": // Third Recommendation
+                case "14": // Third Recommendation
                     this.PanelBillReq.Visible = false;
                     this.PanelBillCs.Visible = false;
                     this.PnlImp.Visible = false;
@@ -712,30 +838,16 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlthrec.Visible = true;
                     this.PanelWorkOrder.Visible = false;
                     this.pnlbillapp.Visible = false;
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
                     this.RadioButtonList1.Items[12].Attributes["class"] = "lblactive blink_me";
 
 
                     break;
 
 
-                //case "7": // Final Approval 
-                //    this.PnlImp.Visible = false;
-                //    this.PnlExe.Visible = false;
-                //    this.pnlgvupdate.Visible = false;
-                //    this.pnlSubbill.Visible = false;
-                //    this.Pnlbillfapp.Visible = false;
-                //    this.Pnlbillf.Visible = false;
-                //    this.pnlchaverify.Visible = false;
-                //    this.pnlfrec.Visible = false;
-                //    this.pnlsrec.Visible = false;
-                //    this.pnlthrec.Visible = false;
-                //    this.pnlApproved.Visible = true;
-                //    this.RadioButtonList1.Items[7].Attributes["class"] = "lblactive blink_me";
 
-                //    break;
-
-
-                case "13": // Bill Confirmed
+                case "15": // Bill Confirmed
                     this.PanelBillReq.Visible = false;
                     this.PanelBillCs.Visible = false;
                     this.PnlImp.Visible = false;
@@ -752,6 +864,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlthrec.Visible = false;
                     this.PanelWorkOrder.Visible = false;
                     this.pnlbillapp.Visible = false;
+                    this.pnlMbook.Visible = false;
+                    this.pnlMbookApp.Visible = false;
 
                     this.RadioButtonList1.Items[13].Attributes["class"] = "lblactive blink_me";
 
@@ -762,7 +876,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-                case "14":// Bill Update
+                case "16":// Bill Update
                     this.PanelBillReq.Visible = false;
                     this.PanelBillCs.Visible = false;
                     this.PnlImp.Visible = false;
@@ -783,7 +897,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                     break;
             }
-           
+
         }
 
 
@@ -876,11 +990,8 @@ namespace RealERPWEB.F_99_Allinterface
 
         private void Data_Bind(string gv, DataTable dt)
         {
-
-
             switch (gv)
             {
-
                 case "grvImple":
                     this.grvImple.DataSource = HiddenSameData(dt);
                     this.grvImple.DataBind();
@@ -956,6 +1067,16 @@ namespace RealERPWEB.F_99_Allinterface
                     this.gvWorkOrder.DataBind();
                     break;
 
+                case "gvmbook":
+                    this.gvmbook.DataSource = HiddenSameData(dt);
+                    this.gvmbook.DataBind();
+                    break;
+
+
+                case "gvmbookapp":
+                    this.gvmbookapp.DataSource = HiddenSameData(dt);
+                    this.gvmbookapp.DataBind();
+                    break;
                 case "gvReadyForBill":
                     this.gvReadyForBill.DataSource = HiddenSameData(dt);
                     this.gvReadyForBill.DataBind();
@@ -964,18 +1085,25 @@ namespace RealERPWEB.F_99_Allinterface
                 case "gvbillapp":
                     this.gvbillapp.DataSource = HiddenSameData(dt);
                     this.gvbillapp.DataBind();
-
                     break;
 
-
-
-
-
             }
+        }
 
-
-
-
+        private bool showCompMBColumn()
+        {
+            bool isShow = false;
+            switch (GetCompCode())
+            {
+                case "3101":
+                case "3370":
+                    isShow = true;
+                    break;
+                default:
+                    isShow = false;
+                    break;
+            }
+            return isShow;
         }
 
 
@@ -996,8 +1124,6 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkbtnPrintIN");
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnApp");
                 LinkButton btnDelReqCheck = (LinkButton)e.Row.FindControl("btnDelReqCheck");
-
-
                 HyperLink lnkbtnEditBilll = (HyperLink)e.Row.FindControl("lnkbtnEditBilll");
 
 
@@ -1010,6 +1136,12 @@ namespace RealERPWEB.F_99_Allinterface
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "csircode")).ToString();
                 string isudate = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "isudat")).ToString("dd-MMM-yyyy");
+
+                HyperLink hlnkBillDetails = (HyperLink)e.Row.FindControl("hlnkBillDetailsfin");
+                string mbno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mbno")).ToString();
+                hlnkBillDetails.Enabled = mbno.Length > 0;
+                hlnkBillDetails.NavigateUrl = "~/F_09_PImp/BillingMBEntry?Type=Entry&prjcode=" + pactcode + "&genno=" + mbno + "&sircode=" + sircode;
+
                 if (issustatus == "S")
                 {
                     hlink2.NavigateUrl = "~/F_09_PImp/PurSubConBillFinal?Type=BillServiceEntry&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode + "&status=" + issustatus;
@@ -1031,11 +1163,6 @@ namespace RealERPWEB.F_99_Allinterface
                     lnkbtnEditBilll.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Edit&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
 
                 }
-
-
-
-
-
                 switch (comcod)
                 {
                     case "3336":
@@ -1046,17 +1173,11 @@ namespace RealERPWEB.F_99_Allinterface
                     default:
                         btnDelReqCheck.Visible = true;
                         break;
-
                 }
-
-
-
             }
         }
         protected void gvsubbill_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-
-
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -1194,10 +1315,8 @@ namespace RealERPWEB.F_99_Allinterface
 
             }
 
-
-            bool resulbill = accData.UpdateTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "DELETEUPDATEPURLISUUE", lisuno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-
-
+            string callType = CompCallType();
+            bool resulbill = accData.UpdateTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", callType, lisuno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (!resulbill)
             {
@@ -1207,8 +1326,25 @@ namespace RealERPWEB.F_99_Allinterface
             else
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
 
+        }
 
-
+        private string CompCallType()
+        {
+            string ctype = "";
+            switch (GetCompCode())
+            {
+                case "3101":
+                case "3368": // finlay
+                case "3367": // epic
+                case "3370": // cpdl
+                case "3366": // lanco
+                    ctype = "DELETEUPDATEPURLISUUE02";
+                    break;
+                default:
+                    ctype = "DELETEUPDATEPURLISUUE";
+                    break;
+            }
+            return ctype;
         }
 
         protected void gvConUpdat_OnRowDataBound(object sender, GridViewRowEventArgs e)
@@ -1243,7 +1379,7 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink lnkbtnbfinapp = (HyperLink)e.Row.FindControl("lnkbtnbfinapp");
 
                 LinkButton btnDelfinapp = (LinkButton)e.Row.FindControl("btnDelfinapp");
-
+                HyperLink hlnkBillDetails = (HyperLink)e.Row.FindControl("hlnkBillDetailsfinapp");
 
 
                 // HyperLink lnkbtnEditBilll = (HyperLink)e.Row.FindControl("lnkbtnEditBilll");
@@ -1257,17 +1393,18 @@ namespace RealERPWEB.F_99_Allinterface
 
                 string billstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "billstatus")).ToString();
 
+                string mbno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mbno")).ToString();
+                hlnkBillDetails.Enabled = mbno.Length > 0;
+                hlnkBillDetails.NavigateUrl = "~/F_09_PImp/BillingMBEntry?Type=Entry&prjcode=" + pactcode + "&genno=" + mbno + "&sircode=" + sircode;
+
                 hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ConBillFinalization&billno=" + billno;
 
                 lnkbtnbfinapp.NavigateUrl = "~/F_09_PImp/PurSubConBillFinal?Type=BillConfirmed&genno=" + billno + "&prjcode=" + pactcode + "&sircode=" + sircode + "&status=" + billstatus;
 
-                // lnkbtnEditBilll.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Edit&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
 
 
-                //if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "8306" )
-                //{
-                //    btnDelfinapp.Visible = false;
-                //}
+
+
 
 
 
@@ -1729,6 +1866,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "1205":   //p2p
                     case "3351":   //p2p
                     case "3352":   //p2p
+                    case "3101":   //ptl
 
                         hlink1.NavigateUrl = "~/F_14_Pro/PurMktSurveyCont?Type=ConCS&lisuno=" + blreqno + "&pactcode=" + pactcode;
 
@@ -1860,9 +1998,10 @@ namespace RealERPWEB.F_99_Allinterface
                 string lreqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lreqno")).ToString();
                 string csircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "csircode")).ToString();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                string mbno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mbno")).ToString();
                 string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
 
-                hlink1.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Current&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + csircode;
+                hlink1.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Current&prjcode=" + pactcode + "&genno=" + mbno + "&vounum=" + orderno + "&sircode=" + csircode;
                 hlink2.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Entry&genno=" + lreqno + "&sircode=" + csircode + "&actcode=" + pactcode + "&orderno=" + orderno;
 
             }
@@ -1904,15 +2043,94 @@ namespace RealERPWEB.F_99_Allinterface
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                HyperLink hlnkBillDetails = (HyperLink)e.Row.FindControl("hlnkBillDetails");
                 HyperLink hlnbillapp = (HyperLink)e.Row.FindControl("lnkbtnbillapp");
 
+                string mbno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mbno")).ToString();
                 string lisuno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lisuno")).ToString();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "csircode")).ToString();
-
+                hlnkBillDetails.Enabled = mbno.Length > 0;
                 hlnbillapp.NavigateUrl = "~/F_09_PImp/PurLabIssue2?Type=BillApproval&prjcode=" + pactcode + "&genno=" + lisuno + "&sircode=" + sircode;
+                hlnkBillDetails.NavigateUrl = "~/F_09_PImp/BillingMBEntry?Type=Entry&prjcode=" + pactcode + "&genno=" + mbno + "&sircode=" + sircode;
+
+
                 //F_09_PImp/PurLabIssue2?Type=Current&prjcode=&genno=&sircode=
             }
+        }
+
+        protected void gvmbook_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlnbillapp = (HyperLink)e.Row.FindControl("hlnklnkmb");
+
+                string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
+                string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "csircode")).ToString();
+
+                hlnbillapp.NavigateUrl = "~/F_09_PImp/BillingMBEntry?Type=Entry&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + sircode;
+                //F_09_PImp/PurLabIssue2?Type=Current&prjcode=&genno=&sircode=
+            }
+        }
+
+        protected void btnDelmb_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvmbookapp_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlnbillapp = (HyperLink)e.Row.FindControl("hlnklnkmbapp");
+
+                string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
+                string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "csircode")).ToString();
+
+                hlnbillapp.NavigateUrl = "~/F_09_PImp/BillingMBEntry?Type=Approved&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + sircode;
+                //F_09_PImp/PurLabIssue2?Type=Current&prjcode=&genno=&sircode=
+            }
+
+        }
+
+        protected void btnDelmbapp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnDelbillapp_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            int index = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string lisuno = ((Label)this.gvbillapp.Rows[index].FindControl("lbllisuno2")).Text.Trim();
+
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPURLABISSUEINFO", lisuno, "", "", "", "", "", "", "", "");
+
+            if (ds1 == null)
+                return;
+
+            bool result = this.XmlDataInsertReq(lisuno, ds1);
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Fail');", true);
+                return;
+            }
+            bool resulbill = accData.UpdateTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "DELETEUPDATEPURLISUUE", lisuno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (!resulbill)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted  Fail');", true);
+                return;
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
+            }
+
         }
     }
 }

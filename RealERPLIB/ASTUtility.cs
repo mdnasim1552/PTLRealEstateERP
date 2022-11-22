@@ -598,6 +598,21 @@ namespace RealERPLIB
             string[] days = { "31", "28", "31", "30", "31", "30", "31", "31", "30", "31", "30", "31" };
             return days[mon];
         }
+
+        public static string CustomReqFormat(string refno)  
+        {
+            string _refno = refno;
+            if (refno.Length == 14)
+            {
+                string part1 = "", part2 = "", part3 = "", part4 = "";
+                part1 = refno.Substring(0, 3);
+                part2 = refno.Substring(5, 2);
+                part3 = refno.Substring(7, 2);
+                part4 = refno.Substring(9);
+                _refno = part1 + part2 + "-" + part3 + "-" + part4;
+            }
+            return _refno;
+        }
     }
 
 }

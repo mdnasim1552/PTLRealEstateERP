@@ -21,8 +21,12 @@
 
     </script>
     <style type="text/css">
-        .table th, .table td{
+        .table th, .table td {
             padding: 4px;
+        }
+
+        .florHead {
+            line-height: 40px;
         }
     </style>
 
@@ -46,59 +50,66 @@
     <div class="card mt-4">
         <div class="card-body">
             <div class="row mb-4">
-               
 
-                   
-                            <div class="col-md-5 pading5px asitCol5 d-none">
 
-                                <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputtextbox inputTxt"></asp:TextBox>
-                                <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
-                            </div>
-                <div class="col-md-3">
-                       <asp:Label ID="Label4" runat="server" CssClass="form-lable" Text="Project Name:"></asp:Label>
-                     <asp:DropDownList ID="ddlProjectName" CssClass="chzn-select form-control" runat="server" Font-Bold="True">
-                                </asp:DropDownList>
+                <div class="col-md-5 pading5px asitCol5 d-none">
+
+                    <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputtextbox inputTxt"></asp:TextBox>
+                    <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                 </div>
-                            <div class="col-md-1" style="margin-top:22px;">
-                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary primaryBtn"
-                                    OnClick="lnkbtnSerOk_Click">Ok</asp:LinkButton>
-                            </div>
+                <div class="col-md-3">
+                    <asp:Label ID="Label4" runat="server" CssClass="form-lable" Text="Project Name:"></asp:Label>
+                    <asp:DropDownList ID="ddlProjectName" CssClass="chzn-select form-control" runat="server" Font-Bold="True">
+                    </asp:DropDownList>
 
-                        
-                       
-                            <div class="col-md-1">
-
-                                <asp:Label ID="lblPage" runat="server" CssClass="form-label" Text="Size:"></asp:Label>
-
-                                <asp:DropDownList ID="ddlpagesize" CssClass="form-control from-control-sm" runat="server" AutoPostBack="True"
-                                    OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Width="70px">
-                                    <asp:ListItem Value="10">10</asp:ListItem>
-                                    <asp:ListItem Value="20">20</asp:ListItem>
-                                    <asp:ListItem Value="30">30</asp:ListItem>
-                                    <asp:ListItem Value="50">50</asp:ListItem>
-                                    <asp:ListItem Value="100">100</asp:ListItem>
-                                    <asp:ListItem Value="150">150</asp:ListItem>
-                                    <asp:ListItem Value="200">200</asp:ListItem>
-                                    <asp:ListItem Value="300">300</asp:ListItem>
-                                </asp:DropDownList>
+                </div>
+                <div class="col-md-1" style="margin-top: 22px;">
+                    <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary primaryBtn"
+                        OnClick="lnkbtnSerOk_Click">Ok</asp:LinkButton>
+                </div>
 
 
 
-                            </div>
+                <div class="col-md-1">
 
-                            <div class="col-md-4" style="margin-top:22px;">
-                                <asp:Label ID="Label5" runat="server" CssClass="form-label"
-                                    Text="Sold:-Red Color, MgtBooking:- Blue Color "></asp:Label>
-                            </div>
-                        </div>
+                    <asp:Label ID="lblPage" runat="server" CssClass="form-label" Text="Size:"></asp:Label>
+
+                    <asp:DropDownList ID="ddlpagesize" CssClass="form-control from-control-sm" runat="server" AutoPostBack="True"
+                        OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Width="70px">
+                        <asp:ListItem Value="10">10</asp:ListItem>
+                        <asp:ListItem Value="20">20</asp:ListItem>
+                        <asp:ListItem Value="30">30</asp:ListItem>
+                        <asp:ListItem Value="50">50</asp:ListItem>
+                        <asp:ListItem Value="100">100</asp:ListItem>
+                        <asp:ListItem Value="150">150</asp:ListItem>
+                        <asp:ListItem Value="200">200</asp:ListItem>
+                        <asp:ListItem Value="300">300</asp:ListItem>
+                    </asp:DropDownList>
+
+
+
+                </div>
+
+                <div class="col-md-4" style="margin-top: 22px;">
+                    <div class="metric-badge">
+                        <asp:Label ID="Label1" runat="server" CssClass="form-label" Text="Flug:"></asp:Label>
+                        <span class="badge badge-lg badge-danger bg-red">Sold</span>
+                        <span class="badge badge-lg badge-success">Unsold</span>
+                        <span class="badge badge-lg badge-primary bg-blue">Mgt Booking</span>
+                    </div>
+                </div>
             </div>
         </div>
-    <div class="card" style="min-height:480px">
+    </div>
+    <div class="card" style="min-height: 480px">
+        <div class="card-header pt-0 pb-0">
+        </div>
         <div class="card-body">
-            <div class="row">
-                 <div class="table table-responsive">
+
+            <div class="row" id="divGVData" runat="server">
+                <div class="table table-responsive">
                     <asp:GridView ID="gvAailChart" runat="server" AutoGenerateColumns="False"
                         ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
                         OnRowDataBound="gvAailChart_RowDataBound">
@@ -291,6 +302,50 @@
                                 <FooterStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
 
+                            <asp:TemplateField HeaderText="Parking">
+                                <ItemTemplate>
+                                    <asp:Label ID="lgpamt" runat="server" BackColor="Transparent"
+                                        BorderStyle="None" Font-Size="11px" Height="18px" Style="text-align: right"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pamt")).ToString("#,##0;(#,##0); ") %>'
+                                        Width="60px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                <ItemStyle HorizontalAlign="Right" />
+                                <FooterStyle HorizontalAlign="Right" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Utility">
+                                <ItemTemplate>
+                                    <asp:Label ID="lgputility" runat="server" BackColor="Transparent"
+                                        BorderStyle="None" Font-Size="11px" Height="18px" Style="text-align: right"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "utility")).ToString("#,##0;(#,##0); ") %>'
+                                        Width="60px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                <ItemStyle HorizontalAlign="Right" />
+                                <FooterStyle HorizontalAlign="Right" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Co-operative">
+                                <ItemTemplate>
+                                    <asp:Label ID="lgpCooperative" runat="server" BackColor="Transparent"
+                                        BorderStyle="None" Font-Size="11px" Height="18px" Style="text-align: right"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cooperative")).ToString("#,##0;(#,##0); ") %>'
+                                        Width="60px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                <ItemStyle HorizontalAlign="Right" />
+                                <FooterStyle HorizontalAlign="Right" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Total Amount">
+                                <ItemTemplate>
+                                    <asp:Label ID="lgpfamt" runat="server" BackColor="Transparent"
+                                        BorderStyle="None" Font-Size="11px" Height="18px" Style="text-align: right"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "famt")).ToString("#,##0;(#,##0); ") %>'
+                                        Width="60px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                <ItemStyle HorizontalAlign="Right" />
+                                <FooterStyle HorizontalAlign="Right" />
+                            </asp:TemplateField>
 
 
                         </Columns>
@@ -302,11 +357,36 @@
 
                     </asp:GridView>
                 </div>
+            </div>
+            <div id="divgvChart" visible="false" runat="server">
+                <div class="row">
+                    <div class="col-md-3">
+                        <asp:Label ID="Label2" runat="server" CssClass="form-lable" Text="Group Name"></asp:Label>
+
+                        <asp:DropDownList ID="ddlGroup" runat="server" CssClass="chzn-select form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlGroup_SelectedIndexChanged" TabIndex="4">
+                        </asp:DropDownList>
+
+
+                    </div>
+                    <div class="col-md-3">
+                        <asp:Label ID="Label3" runat="server" CssClass="form-lable" Text="Category Name"></asp:Label>
+
+                        <asp:DropDownList ID="ddlFloor" runat="server" CssClass="chzn-select form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlFloor_SelectedIndexChanged" TabIndex="4">
+                        </asp:DropDownList>
+
+
+                    </div>
                 </div>
+                <div id="divUnitGraph" runat="server"></div>
+
+
+            </div>
         </div>
-    </div>    
-               
-            
+
+
+    </div>
+
+
 
 
 </asp:Content>

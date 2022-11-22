@@ -8,52 +8,58 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+             <div class="RealProgressbar">
+                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
+                    <ProgressTemplate>
+                        <div id="loader">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="lading"></div>
+                        </div>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+            </div>
+            <div class="row mt-5" runat="server">
+                <div class="col-lg-12">
+                    <div class="card">
+                        
+                        <div class="card-body" runat="server">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <label for="ddlLvType" class="d-block">
+                                        Select Code Book    
+                                    </label>
+                                    <asp:DropDownList ID="ddlOthersBook" runat="server"  CssClass="chzn-select form-control" TabIndex="1">
+                                    </asp:DropDownList>
+                                </div>
 
-
-                    <div class="row">
-                        <fieldset class="scheduler-border">
-
-                            <div class="form-horizontal">
-                                <div class="form-group">
-
-                                    <asp:Label ID="LblBookName1" runat="server" CssClass="col-md-2 control-label lblTxt" Text="Select Code Book:"></asp:Label>
-
-                                    <div class="col-md-4 pading5px">
-                                        <asp:DropDownList ID="ddlOthersBook" runat="server" CssClass="form-control inputTxt">
-                                        </asp:DropDownList>
-
-                                        <asp:Label ID="lbalterofddl" runat="server" Visible="False" CssClass="form-control inputTxt"></asp:Label>
-                                    </div>
-                                    <div class="col-md-2 pading5px">
+                                <div class="col-lg-2">
+                                    <label for="ddlLvType" class="d-block">
+                                       Filter  
+                                    </label>
                                         <asp:DropDownList ID="ddlOthersBookSegment" CssClass="form-control inputTxt" runat="server">
                                             <asp:ListItem Value="2">Sub Code-1</asp:ListItem>
                                             <asp:ListItem Selected="True" Value="5">Details Code</asp:ListItem>
                                         </asp:DropDownList>
                                         <asp:Label ID="lbalterofddl0" runat="server" Visible="False" CssClass="form-control inputTxt"></asp:Label>
                                     </div>
-                                    <div class="col-md-1 pading5px">
+
+                                <div class="col-lg-2" Style="margin-top: 28px;"> 
                                         <asp:LinkButton ID="lnkok" runat="server" Text="Ok" OnClick="lnkok_Click" CssClass="btn btn-primary okBtn"></asp:LinkButton>
-                                    </div>
-                                    <div class="col-md-4 pading5px">
-                                        <div class="msgHandSt">
-                                            <asp:Label ID="ConfirmMessage" CssClass="btn-danger btn disabled" runat="server" Visible="false"></asp:Label>
-                                        </div>
-                                    </div>
-                                    <asp:LinkButton ID="lnknewentry" runat="server" Font-Bold="True"
+                                    
+                                      <asp:LinkButton ID="lnknewentry" runat="server" Font-Bold="True" CssClass="btn btn-primary okBtn"
                                         Font-Size="12px" OnClick="lnknewentry_Click" Style="height: 16px"
-                                        Visible="False" Width="120px" CssClass="style15">New Entry</asp:LinkButton>
-
-                                    <div class="clearfix"></div>
+                                        Visible="False">New Entry</asp:LinkButton>
                                 </div>
-
-
-
                             </div>
-                        </fieldset>
-                    </div>
-
+                            <div class="row  mt-2">
+                               
                     <asp:GridView ID="grvacc" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                         AutoGenerateColumns="False" Font-Size="12px"
                         OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
@@ -63,7 +69,7 @@
                         <FooterStyle Font-Bold="True" />
 
                         <Columns>
-                            <asp:TemplateField HeaderText="Sl.No.">
+                            <asp:TemplateField HeaderText="Sl">
                                 <ItemTemplate>
                                     <asp:Label ID="lblserialnoid" runat="server" Style="text-align: right"
                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
@@ -213,10 +219,17 @@
                         <FooterStyle CssClass="grvFooter" />
                         <AlternatingRowStyle BackColor="" />
                     </asp:GridView>
+                            </div>
+                        </div>
 
 
+
+                    </div>
                 </div>
             </div>
+
+
+             
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

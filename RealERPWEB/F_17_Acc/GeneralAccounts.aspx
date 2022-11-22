@@ -250,8 +250,8 @@
                                                         <asp:TextBox ID="txtserceacc" runat="server" CssClass="hidden inputtextbox"></asp:TextBox>
 
 
-                                                        <div class="colMdbtn hidden">
-                                                            <asp:LinkButton ID="lnkAcccode" runat="server" CssClass="hidden btn btn-primary srearchBtn" OnClick="lnkAcccode_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                                        <div class="colMdbtn ">
+                                                            <asp:LinkButton ID="lnkAcccode" runat="server" CssClass=" btn btn-primary srearchBtn" OnClick="lnkAcccode_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                                         </div>
 
@@ -277,8 +277,8 @@
 
                                                         <asp:Label ID="lblrescode" runat="server" CssClass="lblTxt lblName">Sub of Account</asp:Label>
                                                         <asp:TextBox ID="txtserchReCode" runat="server" CssClass=" inputtextbox hidden" ng-model="txtasrchrescode"></asp:TextBox>
-                                                        <div class="colMdbtn hidden">
-                                                            <asp:LinkButton ID="lnkRescode" runat="server" CssClass="btn btn-primary hidden srearchBtn " OnClick="lnkRescode_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                                        <div class="colMdbtn">
+                                                            <asp:LinkButton ID="lnkRescode" runat="server" CssClass="btn btn-primary srearchBtn " OnClick="lnkRescode_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                                         </div>
 
@@ -309,8 +309,8 @@
                                                         <asp:TextBox ID="txtSearchSpeci" runat="server" CssClass=" hidden" Visible="false"></asp:TextBox>
 
 
-                                                        <div class="colMdbtn hidden">
-                                                            <asp:LinkButton ID="lnkSpecification" runat="server" CssClass="hidden btn btn-primary srearchBtn" OnClick="lnkSpecification_Click" Visible="false"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                                        <div class="colMdbtn">
+                                                            <asp:LinkButton ID="lnkSpecification" runat="server" CssClass=" btn btn-primary srearchBtn" OnClick="lnkSpecification_Click" Visible="false"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                                         </div>
 
@@ -514,6 +514,9 @@
                                                                         </asp:DropDownList>
                                                                     </div>
                                                                 </div>
+
+
+
                                                                 <div class="col-md-7">
                                                                     <div class="form-group row">
                                                                         <asp:Label ID="lblPayto" runat="server" CssClass="lblTxt lblName" Text="Pay To"></asp:Label>
@@ -529,6 +532,25 @@
                                                                     </div>
 
                                                                 </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="col-md-5">
+                                                                    <div class="form-group row">
+                                                                        <asp:Label ID="lblpayeetype" runat="server" CssClass="lblTxt lblName" Text="Payee Type"></asp:Label>
+                                                                        <asp:DropDownList ID="ddlpayeelist" runat="server" CssClass="chzn-select"  OnSelectedIndexChanged="ddlpayeelist_SelectedIndexChanged"   AutoPostBack="true" Style="width: 100px;">
+                                                                        </asp:DropDownList>
+                                                                    </div>
+                                                                </div>
+
+
+
+                                                                
                                                             </div>
                                                         </div>
 

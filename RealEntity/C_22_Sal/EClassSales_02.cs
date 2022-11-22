@@ -449,7 +449,7 @@ namespace RealEntity.C_22_Sal
             public string mob { get; set; }
             public string nationality { get; set; }
             public string email { get; set; }
-            public  DateTime dob { get; set; }
+            public DateTime dob { get; set; }
             public string bloodg { get; set; }
             public string religion { get; set; }
             public string hname { get; set; }
@@ -465,18 +465,147 @@ namespace RealEntity.C_22_Sal
             public double othprice { get; set; }
             public double bookamt { get; set; }
             public double downamt { get; set; }
-          
+
         }
-         
+
+
+
+
+        [Serializable]
+        public class RptCustBookApp2
+        {
+            public string comcod { get; set; }
+            public string pactcode { get; set; }
+            public string usircode { get; set; }
+            public string appdate { get; set; }
+            public string bookamt { get; set; }
+            public string chequeno { get; set; }
+            public string bankname { get; set; }
+            public string bbranch { get; set; }
+            public string paydate { get; set; }
+            public string intavail { get; set; }
+            public string paymode { get; set; }
+            public string custimg { get; set; }
+            public string bookingType { get; set; }
+            public string clientID { get; set; }
+            public string towerNo { get; set; }
+            public string Apartmenttype { get; set; }
+            public string ttype { get; set; }
+            public string floorr { get; set; }
+            public string size { get; set; }
+            public string side { get; set; }
+            public string parkingNo { get; set; }
+            public string parkingLevel { get; set; }
+            public string locatedAt { get; set; }
+            public string moneyReceipt { get; set; }
+            public string bookingChart { get; set; }
+            public string fullname { get; set; }
+            public string spouse { get; set; }
+            public string fathername { get; set; }
+            public string mothername { get; set; }
+            public string presentaddr { get; set; }
+            public string permenentaddr { get; set; }
+            public string mobilenum { get; set; }
+            public string telephonenum { get; set; }
+            public string birthdate { get; set; }
+            public string marriageday { get; set; }
+            public string nationalid { get; set; }
+            public string tinnumber { get; set; }
+            public string mailingaddre { get; set; }
+            public string occupation { get; set; }
+            public string nationality { get; set; }
+            public string religion { get; set; }
+            public string drivlicence { get; set; }
+            public string bloodgroup { get; set; }
+            public string emailaddr { get; set; }
+            public string ClientStatus { get; set; }
+            public string namapplicant { get; set; }
+            public string relationApp { get; set; }
+            public string nationaldr { get; set; }
+            public string applicant { get; set; }
+            public string nomineinfo { get; set; }
+            public string nameofnominee1 { get; set; }
+            public string relationshipnom1 { get; set; }
+            public string custnote { get; set; }
+            public string nominenumber { get; set; }
+        }
+
+
+        [Serializable]
+        public class RptNomineeBookApp2
+        {
+            public string nomineename { get; set; }
+            public string fathersname { get; set; }
+            public string mothersname { get; set; }
+            public string presentaddr { get; set; }
+            public string permanentaddr { get; set; }
+            public string email { get; set; }
+            public string relationship { get; set; }
+            public string mobileno { get; set; }
+            public string telephone { get; set; }
+            public string dateofbirth { get; set; }
+            public string nationalid { get; set; }
+            public string csignature { get; set; }
+            public string share { get; set; }
+            public string nationality { get; set; }
+            public string date { get; set; }
+            public string nomineeimage { get; set; }
+        }
+
+
+        [Serializable]
+        public class RptNominatedBookApp2
+        {
+            public string nomineename { get; set; }
+            public string profession { get; set; }
+            public string presentaddr { get; set; }
+            public string permanentaddress { get; set; }
+            public string mobileno { get; set; }
+            public string email { get; set; }
+            public string csignature { get; set; }
+            public string relation { get; set; }
+            public string telephone { get; set; }
+            public string nominatedsig { get; set; }
+            public string nationality { get; set; }
+            public string date { get; set; }
+            public string nominatedimage { get; set; }
+        }
+
+
+
         [Serializable]
         public class Customerinf
         {
             public string gdesc { get; set; }
             public string gdesc1 { get; set; }
-         
+
 
         }
 
+        [Serializable]
+        public class RptAvailability
+        {
+            public string pactcode { get; set; }
+            public string pactdesc { get; set; }
+            public string usircode { get; set; }
+            public string flrdesc3 { get; set; }
+            public string flrdesc { get; set; }
+            public string udesc { get; set; }
+            public string custname { get; set; }
+            public string munit { get; set; }
+            public double uqty { get; set; }
+            public double usize { get; set; }
+            public double rate { get; set; }
+            public double parcent { get; set; }
+            public string udesc2 { get; set; }
+            public double luqty { get; set; }
+            public double ownsize { get; set; }
+            public double pamt { get; set; }
+            public double utility { get; set; }
+            public double cooperative { get; set; }
+            public double famt { get; set; }
+
+        }
 
         [Serializable]
         public class CustomerImagePath
@@ -484,14 +613,14 @@ namespace RealEntity.C_22_Sal
             public string imgath { get; set; }
 
 
-            public CustomerImagePath() 
+            public CustomerImagePath()
             { }
 
-            public CustomerImagePath(string imgath) 
+            public CustomerImagePath(string imgath)
             {
                 this.imgath = imgath;
 
-            
+
             }
 
         }
@@ -528,7 +657,7 @@ namespace RealEntity.C_22_Sal
             public string gcod { get; set; }
             public string gdesc { get; set; }
             public DateTime schdate { get; set; }
-            public double schamt  { get; set; }
+            public double schamt { get; set; }
 
 
             public EClassDumPaSchdule()
@@ -586,8 +715,8 @@ namespace RealEntity.C_22_Sal
 
         }
 
-          [Serializable]
-         public class EClasActual01
+        [Serializable]
+        public class EClasActual01
         {
             public string comcod { get; set; }
             public string pactcode { get; set; }
@@ -597,7 +726,7 @@ namespace RealEntity.C_22_Sal
             public EClasActual01()
             { }
 
-            public EClasActual01 (string comcod, string pactcode, string usircode, string code, double charge)
+            public EClasActual01(string comcod, string pactcode, string usircode, string code, double charge)
             {
                 this.comcod = comcod;
                 this.pactcode = pactcode;
@@ -609,25 +738,25 @@ namespace RealEntity.C_22_Sal
         }
 
 
-          [Serializable]
-          public class EClasInterestCalculation
-          {
-              public string comcod { get; set; }
-              public DateTime cinsdat { get; set; }
-              public DateTime trdat { get; set; }
-              public DateTime recndat { get; set; }
-              public double day { get; set; }
-              public double cinsam { get; set; }
-              public double cumdue { get; set; }
-              public double pamount { get; set; }
-              public double cumpaid { get; set; }
-              public double cumbalance { get; set; }
-              public double interest { get; set; }
-              public double cuminterest { get; set; }
-              public double dueamt { get; set; }
-              public EClasInterestCalculation()
-              { }
-          }
+        [Serializable]
+        public class EClasInterestCalculation
+        {
+            public string comcod { get; set; }
+            public DateTime cinsdat { get; set; }
+            public DateTime trdat { get; set; }
+            public DateTime recndat { get; set; }
+            public double day { get; set; }
+            public double cinsam { get; set; }
+            public double cumdue { get; set; }
+            public double pamount { get; set; }
+            public double cumpaid { get; set; }
+            public double cumbalance { get; set; }
+            public double interest { get; set; }
+            public double cuminterest { get; set; }
+            public double dueamt { get; set; }
+            public EClasInterestCalculation()
+            { }
+        }
 
         [Serializable]
         public class EClassInterestDummyPay02
@@ -651,219 +780,219 @@ namespace RealEntity.C_22_Sal
             public EClassInterestDummyPay02() { }
         }
 
-         [Serializable]
-       public class account
+        [Serializable]
+        public class account
         {
             public string grp { get; set; }
             public string head { get; set; }
             public double amount { get; set; }
             public double peramt { get; set; }
 
-             public account()
-             {
-                 
-             } 
+            public account()
+            {
+
+            }
         }
 
 
 
-         [Serializable]
-         public class sales
-         {
-             public string gcod { get; set; }
-             public string head { get; set; }
-             public double amount { get; set; }
-             public double peramt { get; set; }
+        [Serializable]
+        public class sales
+        {
+            public string gcod { get; set; }
+            public string head { get; set; }
+            public double amount { get; set; }
+            public double peramt { get; set; }
 
-             public sales ( )
-             {
+            public sales()
+            {
 
-             }
-         }
+            }
+        }
 
-         //[Serializable]
-         //public class purchase
-         //{
-         //    public string gcod { get; set; }
-         //    public string head { get; set; }
-         //    public double amount { get; set; }
+        //[Serializable]
+        //public class purchase
+        //{
+        //    public string gcod { get; set; }
+        //    public string head { get; set; }
+        //    public double amount { get; set; }
 
-         //    public purchase ( )
-         //    {
+        //    public purchase ( )
+        //    {
 
-         //    }
-         //}
+        //    }
+        //}
 
-         //[Serializable]
-         //public class construction
-         //{
-         //    public string gcod { get; set; }
-         //    public string head { get; set; }
-         //    public double amount { get; set; }
+        //[Serializable]
+        //public class construction
+        //{
+        //    public string gcod { get; set; }
+        //    public string head { get; set; }
+        //    public double amount { get; set; }
 
-         //    public construction ( )
-         //    {
+        //    public construction ( )
+        //    {
 
-         //    }
-         //}
+        //    }
+        //}
 
-         //[Serializable]
-         //public class bankbalance
-         //{
-         //    public string gcod { get; set; }
-         //    public string head { get; set; }
-         //    public double amount { get; set; }
+        //[Serializable]
+        //public class bankbalance
+        //{
+        //    public string gcod { get; set; }
+        //    public string head { get; set; }
+        //    public double amount { get; set; }
 
-         //    public bankbalance ( )
-         //    {
+        //    public bankbalance ( )
+        //    {
 
-         //    }
-         //}
+        //    }
+        //}
 
-         //[Serializable]
-         //public class stock
-         //{
-         //    public string gcod { get; set; }
-         //    public string head { get; set; }
-         //    public double amount { get; set; }
+        //[Serializable]
+        //public class stock
+        //{
+        //    public string gcod { get; set; }
+        //    public string head { get; set; }
+        //    public double amount { get; set; }
 
-         //    public stock ( )
-         //    {
+        //    public stock ( )
+        //    {
 
-         //    }
-         //}
-         //[Serializable]
-         //public class duesoverdue
-         //{
-         //    public string gcod { get; set; }
-         //    public string head { get; set; }
-         //    public double amount { get; set; }
+        //    }
+        //}
+        //[Serializable]
+        //public class duesoverdue
+        //{
+        //    public string gcod { get; set; }
+        //    public string head { get; set; }
+        //    public double amount { get; set; }
 
-         //    public duesoverdue ( )
-         //    {
+        //    public duesoverdue ( )
+        //    {
 
-         //    }
-         //}
-         //[Serializable]
-         //public class penbil
-         //{
-         //    public string gcod { get; set; }
-         //    public string head { get; set; }
-         //    public double amount { get; set; }
+        //    }
+        //}
+        //[Serializable]
+        //public class penbil
+        //{
+        //    public string gcod { get; set; }
+        //    public string head { get; set; }
+        //    public double amount { get; set; }
 
-         //    public penbil ( )
-         //    {
+        //    public penbil ( )
+        //    {
 
-         //    }
-         //}
-
-
-         //[Serializable]
-         //public class ffund
-         //{
-         //    public string gcod { get; set; }
-         //    public string head { get; set; }
-         //    public double amount { get; set; }
-
-         //    public ffund ( )
-         //    {
-
-         //    }
-         //}
-
-         //[Serializable]
-         //public class fcost
-         //{
-         //    public string gcod { get; set; }
-         //    public string head { get; set; }
-         //    public double amount { get; set; }
-
-         //    public fcost ( )
-         //    {
-
-         //    }
-         //}
-
-         //[Serializable]
-         //public class conprogress
-         //{
-         //    public string gcod { get; set; }
-         //    public string head { get; set; }
-         //    public double amount { get; set; }
-
-         //    public conprogress ( )
-         //    {
-
-         //    }
-         //}
+        //    }
+        //}
 
 
-         //[Serializable]
-         //public class fundcost
-         //{
-         //    public string gcod { get; set; }
-         //    public string head { get; set; }
-         //    public double amount { get; set; }
+        //[Serializable]
+        //public class ffund
+        //{
+        //    public string gcod { get; set; }
+        //    public string head { get; set; }
+        //    public double amount { get; set; }
 
-         //    public fundcost ( )
-         //    {
+        //    public ffund ( )
+        //    {
 
-         //    }
-         //}
+        //    }
+        //}
 
-         [Serializable]
-         public class monsale
-         {
-             public string comcod { get; set; }
-             public string team { get; set; }
-             public double uasaleamt { get; set; }
-             public double msaleamt { get; set; }
-             public double pmonsaleamt { get; set; }
-             public double lstymonth { get; set; }
+        //[Serializable]
+        //public class fcost
+        //{
+        //    public string gcod { get; set; }
+        //    public string head { get; set; }
+        //    public double amount { get; set; }
 
-             public monsale ( )
-             {
+        //    public fcost ( )
+        //    {
 
-             }
-         }
+        //    }
+        //}
 
+        //[Serializable]
+        //public class conprogress
+        //{
+        //    public string gcod { get; set; }
+        //    public string head { get; set; }
+        //    public double amount { get; set; }
 
-         [Serializable]
-         public class yearsale
-         {
-             public string comcod { get; set; }
-             public string team { get; set; }
-             public double actty { get; set; }
-             public double msaleamt { get; set; }
-             public double actly { get; set; }
-             
+        //    public conprogress ( )
+        //    {
 
-             public yearsale ( )
-             {
-
-             }
-         }
+        //    }
+        //}
 
 
+        //[Serializable]
+        //public class fundcost
+        //{
+        //    public string gcod { get; set; }
+        //    public string head { get; set; }
+        //    public double amount { get; set; }
 
-         [Serializable]
-         public class PrjSummary
-         {
-             public string mrptcode  { get; set; }
-             public string rptcode { get; set; }
-             public string  rptunit { get; set; }
-             public double  qty { get; set; }
-             public double  amt { get; set; }
-             public double  rate { get; set; }
-             public string  rptdesc { get; set; }
-             //public string  colst { get; set; }
-             //public double  peramt { get; set; }
+        //    public fundcost ( )
+        //    {
 
-             public PrjSummary ( )
-             {
+        //    }
+        //}
 
-             }
-         }
+        [Serializable]
+        public class monsale
+        {
+            public string comcod { get; set; }
+            public string team { get; set; }
+            public double uasaleamt { get; set; }
+            public double msaleamt { get; set; }
+            public double pmonsaleamt { get; set; }
+            public double lstymonth { get; set; }
+
+            public monsale()
+            {
+
+            }
+        }
+
+
+        [Serializable]
+        public class yearsale
+        {
+            public string comcod { get; set; }
+            public string team { get; set; }
+            public double actty { get; set; }
+            public double msaleamt { get; set; }
+            public double actly { get; set; }
+
+
+            public yearsale()
+            {
+
+            }
+        }
+
+
+
+        [Serializable]
+        public class PrjSummary
+        {
+            public string mrptcode { get; set; }
+            public string rptcode { get; set; }
+            public string rptunit { get; set; }
+            public double qty { get; set; }
+            public double amt { get; set; }
+            public double rate { get; set; }
+            public string rptdesc { get; set; }
+            //public string  colst { get; set; }
+            //public double  peramt { get; set; }
+
+            public PrjSummary()
+            {
+
+            }
+        }
 
         [Serializable]
         public class dammySchedule
@@ -874,74 +1003,74 @@ namespace RealEntity.C_22_Sal
             public dammySchedule() { }
         }
 
-          [Serializable]
-          public class Eclassdummyschedule
-          {            
-              public List<EClassSales_02.EClassDumPaSchdule> Lst01EClassDumPaSchdule { get; set; }
-              public List<EClassSales_02.EClassAcPaSchdule> Lst02EClassAcPaSchdule { get; set; }
-              public List<EClassSales_02.EClasActual> Lst04EClasActual { get; set; }
-              public List<EClassSales_02.EClasActual01> Lst05EClasActual01 { get; set; }
-              public List<EClassSales_02.EClasInterestCalculation> Lst06EClasInterestCalculation { get; set; }
-              public List<EClassSales_02.dammySchedule> Lst03EClassSehedual { get; set; }
-              public List<EClassSales_02.EClassInterestDummyPay02> Lst07EClassInterestDummyPay02 { get; set; }
-              public Eclassdummyschedule() { }
-          }
+        [Serializable]
+        public class Eclassdummyschedule
+        {
+            public List<EClassSales_02.EClassDumPaSchdule> Lst01EClassDumPaSchdule { get; set; }
+            public List<EClassSales_02.EClassAcPaSchdule> Lst02EClassAcPaSchdule { get; set; }
+            public List<EClassSales_02.EClasActual> Lst04EClasActual { get; set; }
+            public List<EClassSales_02.EClasActual01> Lst05EClasActual01 { get; set; }
+            public List<EClassSales_02.EClasInterestCalculation> Lst06EClasInterestCalculation { get; set; }
+            public List<EClassSales_02.dammySchedule> Lst03EClassSehedual { get; set; }
+            public List<EClassSales_02.EClassInterestDummyPay02> Lst07EClassInterestDummyPay02 { get; set; }
+            public Eclassdummyschedule() { }
+        }
 
-       
-        #endregion 
+
+        #endregion
 
         #region
-          [Serializable]
-          public class RptBookingtDues
-          {
-              public string pactdesc { get; set; }
-              public string pactcode { get; set; }
-              public string custname { get; set; }
-              public string udesc { get; set; }
-              public double usize { get; set; }
-              public double aptrate { get; set; }
-              public double aptcost { get; set; }
-              public double cpcost { get; set; }
-              public double utltycost { get; set; }
-              public double othcost { get; set; }
-              public double tocost { get; set; }
-              public double reconamt { get; set; }
-              public double retcheque { get; set; }
-              public double fcheque { get; set; }
-              public double pcheque { get; set; }
-              public double ramt { get; set; }
-              public double pbookam { get; set; }
-              public double cbookam { get; set; }
-              public double tbdues { get; set; }
-             
+        [Serializable]
+        public class RptBookingtDues
+        {
+            public string pactdesc { get; set; }
+            public string pactcode { get; set; }
+            public string custname { get; set; }
+            public string udesc { get; set; }
+            public double usize { get; set; }
+            public double aptrate { get; set; }
+            public double aptcost { get; set; }
+            public double cpcost { get; set; }
+            public double utltycost { get; set; }
+            public double othcost { get; set; }
+            public double tocost { get; set; }
+            public double reconamt { get; set; }
+            public double retcheque { get; set; }
+            public double fcheque { get; set; }
+            public double pcheque { get; set; }
+            public double ramt { get; set; }
+            public double pbookam { get; set; }
+            public double cbookam { get; set; }
+            public double tbdues { get; set; }
 
-              public RptBookingtDues() { }
 
-          }
+            public RptBookingtDues() { }
 
-          #region
-          [Serializable]
-          public class RptCalTValAvgVal
-          {
-              public string grp { get; set; }
-              public string pactcode { get; set; }
-              public string pactcode1 { get; set; }
-              public string pactdesc { get; set; }
-              public string usircode { get; set; }
-              public string custname { get; set; }
-              public string munit { get; set; }
-              public string udesc { get; set; }
-              public double usize { get; set; }
-              public double urate { get; set; }
-              public double uamt { get; set; }
-              public double cparkam { get; set; }
-              public double utlityam { get; set; }
-              public double coprtvam { get; set; }
-              public double otham { get; set; }
-              public double totalval { get; set; }
-              public RptCalTValAvgVal() { }
+        }
 
-          }
+        #region
+        [Serializable]
+        public class RptCalTValAvgVal
+        {
+            public string grp { get; set; }
+            public string pactcode { get; set; }
+            public string pactcode1 { get; set; }
+            public string pactdesc { get; set; }
+            public string usircode { get; set; }
+            public string custname { get; set; }
+            public string munit { get; set; }
+            public string udesc { get; set; }
+            public double usize { get; set; }
+            public double urate { get; set; }
+            public double uamt { get; set; }
+            public double cparkam { get; set; }
+            public double utlityam { get; set; }
+            public double coprtvam { get; set; }
+            public double otham { get; set; }
+            public double totalval { get; set; }
+            public RptCalTValAvgVal() { }
+
+        }
 
 
 
@@ -949,266 +1078,266 @@ namespace RealEntity.C_22_Sal
         #endregion
 
 
-          #region
-          [Serializable]
-          public class RptUnsoldUnit
-          {
-              public string pactcode { get; set; }
-              public string pactdesc { get; set; }
-              public string udesc { get; set; }
-              public string munit { get; set; }
-              public double usize { get; set; }
-              public double urate { get; set; }
-              public double uamt { get; set; }
-              public double pamt { get; set; }
-              public double utility { get; set; }
-              public double cooperative { get; set; }
-              public double usuamt { get; set; }
-              public string facing { get; set; }
-              public string uview { get; set; }
-              public RptUnsoldUnit() { }
+        #region
+        [Serializable]
+        public class RptUnsoldUnit
+        {
+            public string pactcode { get; set; }
+            public string pactdesc { get; set; }
+            public string udesc { get; set; }
+            public string munit { get; set; }
+            public double usize { get; set; }
+            public double urate { get; set; }
+            public double uamt { get; set; }
+            public double pamt { get; set; }
+            public double utility { get; set; }
+            public double cooperative { get; set; }
+            public double usuamt { get; set; }
+            public string facing { get; set; }
+            public string uview { get; set; }
+            public RptUnsoldUnit() { }
 
-          }
-
-
-
-
-          #endregion
-
-          #region
-          [Serializable]
-          public class RptCollDetailsinfo
-          {
-              public string pactdesc { get; set; }
-              public string custname { get; set; }           
-              public string udesc { get; set; }
-              public double pbookam { get; set; }
-              public double pinsam { get; set; }
-              public double cbookam { get; set; }
-              public double cinsam { get; set; }
-              public double advcoll { get; set; }
-              public double tocollam { get; set; }
-              public double repchqamt { get; set; }
-             
-
-
-              public RptCollDetailsinfo() { }
-
-          }
-          #endregion
-          #region
-          [Serializable]
-          public class RptSalSummery
-          {
-
-              public string deptcode { get; set; }
-              public string mdeptcode { get; set; }             
-              public string mdeptname { get; set; }
-              public string deptname { get; set; }
-              public double msaleamt { get; set; }
-              public double uasaleamt { get; set; }
-              public double salsfall { get; set; }
-              public double perontsale { get; set; }
-              public double pmonsaleamt { get; set; }
-              public double tsaleamt { get; set; }
-              public double tasaleamt { get; set; }
-              public double mcollamt { get; set; }
-              public double uacollamt { get; set; }
-              public double collsfall { get; set; }
-              public double perontcoll { get; set; }
-              public double tcollamt { get; set; }
-              public double tacollamt { get; set; }
-              public double pmoncollamt { get; set; }
-            
+        }
 
 
 
 
-   
+        #endregion
 
-              public RptSalSummery() { }
-
-          }
-          #endregion
-
-
-          #region
-          [Serializable]
-          public class RptSalSummeryDetails 
-          {
-              public string comcod { get; set; }
-
-              public string pactcode { get; set; }
-
-              public string usircode{ get; set; }
-
-              public string deptcode { get; set; }
-
-              public string pactdesc { get; set; }
-              public string custname { get; set; }
-              public string mrno { get; set; }
-
-              public string frmcode{ get; set; }
-
-              public string rectype { get; set; }
-              public string rectypedesc { get; set; }
-              public double acamt { get; set; }
-              public double bankclear { get; set; }
-              public double reconamt { get; set; }
-              public double depchq { get; set; }
-              public double inhrchq { get; set; }
-              public double inhfchq { get; set; }
-              public double inhpchq { get; set; }
-              public double repchq { get; set; }
-
-              public RptSalSummeryDetails() { }
-
-          }
-          #endregion
+        #region
+        [Serializable]
+        public class RptCollDetailsinfo
+        {
+            public string pactdesc { get; set; }
+            public string custname { get; set; }
+            public string udesc { get; set; }
+            public double pbookam { get; set; }
+            public double pinsam { get; set; }
+            public double cbookam { get; set; }
+            public double cinsam { get; set; }
+            public double advcoll { get; set; }
+            public double tocollam { get; set; }
+            public double repchqamt { get; set; }
 
 
 
-          #region
-          [Serializable]
-          public class RevenueStatus
-          {
+            public RptCollDetailsinfo() { }
 
-              public string grpdesc { get; set; }
-              public string pactdesc { get; set; }
-              public double tstkam { get; set; }
-              public double ususize { get; set; }
-              public double usamt { get; set; }
-              public double percnt { get; set; }
-              public double usize { get; set; }
-              public double aptrate { get; set; }
-              public double aptcost { get; set; }
-              public double cpaocost { get; set; }
-              public double tocost { get; set; }
-              public double reconamt { get; set; }
-              public double retcheque { get; set; }
-              public double fcheque { get; set; }
-              public double pcheque { get; set; }
-              public double ramt { get; set; }
-              public double atodues { get; set; }
-              public double todues { get; set; }
-              public double bamt { get; set; }
-              public double pbookam { get; set; }
-              public double pinsam { get; set; }
-              public double cbookam { get; set; }
-              public double cinsam { get; set; }
-              public double ctodues { get; set; }
-              public double vbamt { get; set; }
-              public double cdelay { get; set; }
-              public double ntodues { get; set; }
-              public double discharge { get; set; }
-              public double ptodues { get; set; }
-              public double vtodues { get; set; }
+        }
+        #endregion
+        #region
+        [Serializable]
+        public class RptSalSummery
+        {
 
-            
-
-              
-                 
-
-                  
+            public string deptcode { get; set; }
+            public string mdeptcode { get; set; }
+            public string mdeptname { get; set; }
+            public string deptname { get; set; }
+            public double msaleamt { get; set; }
+            public double uasaleamt { get; set; }
+            public double salsfall { get; set; }
+            public double perontsale { get; set; }
+            public double pmonsaleamt { get; set; }
+            public double tsaleamt { get; set; }
+            public double tasaleamt { get; set; }
+            public double mcollamt { get; set; }
+            public double uacollamt { get; set; }
+            public double collsfall { get; set; }
+            public double perontcoll { get; set; }
+            public double tcollamt { get; set; }
+            public double tacollamt { get; set; }
+            public double pmoncollamt { get; set; }
 
 
 
 
-              public RevenueStatus() { }
 
-          }
-          #endregion
+
+
+            public RptSalSummery() { }
+
+        }
+        #endregion
+
+
+        #region
+        [Serializable]
+        public class RptSalSummeryDetails
+        {
+            public string comcod { get; set; }
+
+            public string pactcode { get; set; }
+
+            public string usircode { get; set; }
+
+            public string deptcode { get; set; }
+
+            public string pactdesc { get; set; }
+            public string custname { get; set; }
+            public string mrno { get; set; }
+
+            public string frmcode { get; set; }
+
+            public string rectype { get; set; }
+            public string rectypedesc { get; set; }
+            public double acamt { get; set; }
+            public double bankclear { get; set; }
+            public double reconamt { get; set; }
+            public double depchq { get; set; }
+            public double inhrchq { get; set; }
+            public double inhfchq { get; set; }
+            public double inhpchq { get; set; }
+            public double repchq { get; set; }
+
+            public RptSalSummeryDetails() { }
+
+        }
+        #endregion
+
+
+
+        #region
+        [Serializable]
+        public class RevenueStatus
+        {
+
+            public string grpdesc { get; set; }
+            public string pactdesc { get; set; }
+            public double tstkam { get; set; }
+            public double ususize { get; set; }
+            public double usamt { get; set; }
+            public double percnt { get; set; }
+            public double usize { get; set; }
+            public double aptrate { get; set; }
+            public double aptcost { get; set; }
+            public double cpaocost { get; set; }
+            public double tocost { get; set; }
+            public double reconamt { get; set; }
+            public double retcheque { get; set; }
+            public double fcheque { get; set; }
+            public double pcheque { get; set; }
+            public double ramt { get; set; }
+            public double atodues { get; set; }
+            public double todues { get; set; }
+            public double bamt { get; set; }
+            public double pbookam { get; set; }
+            public double pinsam { get; set; }
+            public double cbookam { get; set; }
+            public double cinsam { get; set; }
+            public double ctodues { get; set; }
+            public double vbamt { get; set; }
+            public double cdelay { get; set; }
+            public double ntodues { get; set; }
+            public double discharge { get; set; }
+            public double ptodues { get; set; }
+            public double vtodues { get; set; }
+
+
+
+
+
+
+
+
+
+
+
+            public RevenueStatus() { }
+
+        }
+        #endregion
 
         #endregion
 
 
 
-          [Serializable]
-          public class CustomerID
-          {
-              public string custcode { get; set; }
+        [Serializable]
+        public class CustomerID
+        {
+            public string custcode { get; set; }
 
 
 
-              public CustomerID()
-              {
-                 
+            public CustomerID()
+            {
 
 
-              }
 
-              public CustomerID(string custcode)
-              {
+            }
 
-                  this.custcode = custcode;
+            public CustomerID(string custcode)
+            {
 
-              }
+                this.custcode = custcode;
 
-          }
+            }
 
-          //nahid
-          #region
+        }
 
-          [Serializable]
-          public class EclassComInfo
-          {
-              public string comcod { get; set; }
-              public string compname { get; set; }
+        //nahid
+        #region
 
-
-              public EclassComInfo()
-              { }
-
-              public EclassComInfo(string comcod, string compname)
-              {
-                  this.comcod = comcod;
-                  this.compname = compname;
+        [Serializable]
+        public class EclassComInfo
+        {
+            public string comcod { get; set; }
+            public string compname { get; set; }
 
 
-              }
+            public EclassComInfo()
+            { }
 
-          }
-          #endregion
-
-          #region
-
-          [Serializable]
-          public class EclassPrjInfo
-          {
-              public string actcode { get; set; }
-              public string actdesc { get; set; }
+            public EclassComInfo(string comcod, string compname)
+            {
+                this.comcod = comcod;
+                this.compname = compname;
 
 
-              public EclassPrjInfo()
-              { }
+            }
 
-              public EclassPrjInfo(string actcode, string actdesc)
-              {
-                  this.actcode = actcode;
-                  this.actdesc = actdesc;
+        }
+        #endregion
+
+        #region
+
+        [Serializable]
+        public class EclassPrjInfo
+        {
+            public string actcode { get; set; }
+            public string actdesc { get; set; }
 
 
-              }
+            public EclassPrjInfo()
+            { }
 
-          }
-          #endregion
+            public EclassPrjInfo(string actcode, string actdesc)
+            {
+                this.actcode = actcode;
+                this.actdesc = actdesc;
 
-          #region
 
-          [Serializable]
-          public class EclassCustInfo
-          {
-              public string usircode { get; set; }
-              public string custdesc { get; set; }
-              public EclassCustInfo()
-              { }
-              public EclassCustInfo(string usircode, string custdesc)
-              {
-                  this.usircode = usircode;
-                  this.custdesc = custdesc;
-              }
-          }
-          #endregion
+            }
+
+        }
+        #endregion
+
+        #region
+
+        [Serializable]
+        public class EclassCustInfo
+        {
+            public string usircode { get; set; }
+            public string custdesc { get; set; }
+            public EclassCustInfo()
+            { }
+            public EclassCustInfo(string usircode, string custdesc)
+            {
+                this.usircode = usircode;
+                this.custdesc = custdesc;
+            }
+        }
+        #endregion
 
         #region
 
@@ -1235,9 +1364,9 @@ namespace RealEntity.C_22_Sal
             public string custdesc { get; set; }
             public string unitinf { get; set; }
             public double unitsize { get; set; }
-            
 
-            public EclassSunOfFlow() 
+
+            public EclassSunOfFlow()
             { }
             public EclassSunOfFlow(string inflowid, string comcod, string actcode, string rescode, string acccomcod, string accactcode, string accrescode,
                 double uamt, double paidamt, double recvbale, double accuamt, double accpaidamt, double accrecvbale, double ttlsolamt,
@@ -1302,7 +1431,7 @@ namespace RealEntity.C_22_Sal
 
             public AccCustPayLedger()
             { }
-            
+
         }
 
 
@@ -1378,13 +1507,12 @@ namespace RealEntity.C_22_Sal
             public double uamt { get; set; }
             public double schamt { get; set; }
             public DateTime schdate { get; set; }
-            public string rmrks { get; set; }  
+            public string rmrks { get; set; }
 
             public RptSalPaySchedules() { }
 
         }
 
-    }   
- 
+    }
+
 }
-        

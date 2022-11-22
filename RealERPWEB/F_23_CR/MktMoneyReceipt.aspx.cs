@@ -689,6 +689,51 @@ namespace RealERPWEB.F_23_CR
             this.btnexcuplosd.Enabled = true;
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
         }
+
+
+        private string GetComPanyOrdeMRWISE()
+        {
+
+            string comcod = this.GetComCode();
+            string orderbymr = "";
+            switch (comcod)
+            {
+                case "3368"://Finlay
+                case "3101"://Finlay
+                    orderbymr = "orderbymr";
+                    break;
+
+                default:
+                    break;
+
+            }
+
+            return orderbymr;
+
+
+        }
+
+        private string GetReceiptOnlyRecon()
+        {
+
+            string comcod = this.GetComCode();
+            string recon = "";
+            switch (comcod)
+            {
+                case "3368"://Finlay
+                case "3101"://Finlay
+                    recon = "reconcile";
+                    break;
+
+                default:
+                    break;
+
+            }
+
+            return recon;
+
+
+        }
         private void PayInf()
         {
             string comcod = this.GetComCode();
@@ -696,9 +741,20 @@ namespace RealERPWEB.F_23_CR
             string PactCode = this.ddlProjectName.SelectedValue.ToString();
             string date = this.txtReceiveDate.Text.Trim().Length == 0 ? System.DateTime.Today.ToString("dd-MMM-yyyy") : this.txtReceiveDate.Text;
             //string date =Convert.ToDateTime(this.txtReceiveDate.Text).ToString("dd-MMM-yyyy");
+          
             string ProcName = this.chkConsolidate.Checked ? "SP_REPORT_SALSMGT01" : "SP_ENTRY_SALSMGT";
             string CallType = this.chkConsolidate.Checked ? "RPTCLIENTLEDGER" : "INSTALLMANTWITHMRR";
-            DataSet ds2 = MktData.GetTransInfo(comcod, ProcName, CallType, PactCode, UsirCode, date, "", "", "", "", "", "");
+            string length = "";
+            string reconcile = this.GetReceiptOnlyRecon();
+            string orderbymr = this.GetComPanyOrdeMRWISE();
+           
+            DataSet ds2 = MktData.GetTransInfo(comcod, ProcName, CallType, PactCode, UsirCode, date, length, reconcile, orderbymr, "", "", "");
+           
+            if(ds2.Tables[0].Rows.Count==0)
+            {
+                return;
+
+            }
 
             this.HiddenSameDate(ds2.Tables[0]);
             this.ShowTotalAmt();
@@ -1230,6 +1286,7 @@ namespace RealERPWEB.F_23_CR
                 {
                     //case "3101": // Pintech                   
                     case "3356": //Intech                    
+                    case "3366": //Intech                    
                         this.SMSSendMoneyRecipt(comcod, PactCode, Usircode, mrno, mrdate);
                         break;
                     default:

@@ -26,11 +26,21 @@ namespace RealERPWEB.F_99_Allinterface
                 //((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "AI Interface";
 
-                DateTime now = DateTime.Now;
-                var startDate = new DateTime(now.Year, now.Month, 1);
-                var endDate = startDate.AddMonths(1).AddDays(-1);
+
+                DateTime startDate = DateTime.Now;
+                DateTime enddate = DateTime.Now.AddDays(1);
                 this.txtfrmdate.Text = Convert.ToDateTime(startDate).ToString("dd-MMM-yyyy");
-                this.txttodate.Text = Convert.ToDateTime(endDate).ToString("dd-MMM-yyyy");
+                if( startDate < enddate)
+                {
+                    this.txttodate.Text = Convert.ToDateTime(enddate).ToString("dd-MMM-yyyy");
+
+                }
+                else
+                {
+                    string msg = "Please Enter your Currect DateTime";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
+
+                }
 
                 //this.GetEmplist();
 
@@ -108,7 +118,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
             Session["tblprojectlist"] = ds.Tables[0];
-            Session["tblassinglist"] = ds.Tables[2];
+            Session["tblassinglist"] = this.HiddenSameData(ds.Tables[2]);
 
 
             this.data_Bind();
@@ -125,10 +135,7 @@ namespace RealERPWEB.F_99_Allinterface
             DataTable tblasing = (DataTable)Session["tblassinglist"];
 
             this.gvInterface.DataSource = tbl1;
-
-
             this.gvInterface.DataBind();
-
             this.gvAssingJob.DataSource = tblasing;
             this.gvAssingJob.DataBind();
 
@@ -334,7 +341,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.gv_Production.DataBind();
 
 
-                
+
                 view1.Table = ds.Tables[0];
                 view1.RowFilter = "roletype='95002'";
                 dt1 = view1.ToTable();
@@ -342,7 +349,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.gv_QCQA.DataBind();
 
 
-                
+
                 view2.Table = ds.Tables[0];
                 view2.RowFilter = "roletype='95003'";
                 dt1 = view2.ToTable();
@@ -686,17 +693,21 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void btnaddPrj_Click(object sender, EventArgs e)
         {
+            
             this.pnlSidebar.Visible = true;
             this.pnlProjectadd.Visible = true;
             this.pnlBatchadd.Visible = false;
-
+          
             this.GetEmployeeName();
 
             this.GetCountry();
             this.GetProjectDetails();
             this.GetCustomerList();
-            this.GetLastid();
+          
+           // this.GetLastid();
+       
             this.LoadGrid();
+            this.IsClearAddProject();
 
         }
         private void GetEmployeeName()
@@ -752,15 +763,29 @@ namespace RealERPWEB.F_99_Allinterface
         {
             string sircode = "";
 
-            string comcod = this.GetCompCode();
+            string comcod = this.GetCompCode();           
 
-            DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETLASTPRJCODEID", "", "", "", "", "", "");
+
+            //string calltype =(orderType == "80101" ?  : "GETLASTPRJCODESOWID");// (code == "" ? "GETLASTPRJCODEID" : "GETLASTPRJCODESOWID"  );
+            DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI","GETLASTPRJCODEID", "", "", "", "", "", "");
             if (ds1 == null)
                 return sircode;
             sircode = ds1.Tables[0].Rows[0]["sircode"].ToString();
 
             return sircode;
 
+        }
+        private string GetSowLastId()
+        {
+            string sircode = "";
+            string comcod = this.GetCompCode();
+            DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETLASTPRJCODESOWID", "", "", "", "", "", "");
+            if (ds1 == null)
+                return sircode;
+            sircode = ds1.Tables[0].Rows[0]["sircode"].ToString();
+
+            return sircode;
+            
         }
 
         private void isFiledClear()
@@ -781,9 +806,9 @@ namespace RealERPWEB.F_99_Allinterface
 
             }
         }
-        private void LoadGrid(string custid = "")
+        private void LoadGrid(string custid = "", string value = "", string empid = "", string doneqty = "")
         {
-
+           
             string comcod = this.GetCompCode();
             string sircode = this.lblproj.Text ?? "";
 
@@ -810,7 +835,10 @@ namespace RealERPWEB.F_99_Allinterface
                 string Gcode = dt.Rows[i]["gcod"].ToString();
                 switch (Gcode)
                 {
+
+
                     case "03002": //project type
+
                         //gvalue = dt.Rows[i]["value"].ToString();
                         dv2 = dt3.DefaultView;
                         dv2.RowFilter = ("gcod like '60%' and gcod like'%00'");
@@ -859,21 +887,51 @@ namespace RealERPWEB.F_99_Allinterface
                         ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
                         break;
                     case "03007"://customer
-                        //gvalue = dt.Rows[i]["value"].ToString();
-                        dv3 = dt4.DefaultView;
-                        dv3.RowFilter = ("infcod like '51%' and infcod not like'%00'");
-                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-                        ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = true;
-                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
-                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
-                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
-                        ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
-                        ddlgval.DataTextField = "infdesc";
-                        ddlgval.DataValueField = "infcod";
-                        ddlgval.DataSource = dv3.ToTable();
-                        ddlgval.DataBind();
-                        ddlgval.SelectedValue = (custid == "") ? ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString()
-                            : custid;
+                        if (value == "1")
+                        {
+                            DataRow[] results = dt4.Select(" infcod= '" + empid + "'");
+                            string infdesc = results[0]["infdesc"].ToString();
+                            string infcod = results[0]["infcod"].ToString();
+
+                            //gvalue = dt.Rows[i]["value"].ToString();
+                            dv3 = dt4.DefaultView;
+                            dv3.RowFilter = ("infcod like '51%' and infcod not like'%00'");
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                            ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = true;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                            ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
+                            ddlgval.DataTextField = "infdesc";
+                            ddlgval.DataValueField = "infcod";
+                            ddlgval.DataSource = dv3.ToTable();
+                            ddlgval.DataBind();
+                            ddlgval.SelectedValue = infcod;
+                            ddlgval.Enabled = false;
+
+                        }
+                        else
+                        {
+
+
+
+                            //gvalue = dt.Rows[i]["value"].ToString();
+                            dv3 = dt4.DefaultView;
+                            dv3.RowFilter = ("infcod like '51%' and infcod not like'%00'");
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                            ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = true;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                            ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
+                            ddlgval.DataTextField = "infdesc";
+                            ddlgval.DataValueField = "infcod";
+                            ddlgval.DataSource = dv3.ToTable();
+                            ddlgval.DataBind();
+                            ddlgval.SelectedValue = (custid == "") ? ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString()
+                                : custid;
+
+                        }
                         break;
 
                     case "03025"://get team leader
@@ -917,23 +975,61 @@ namespace RealERPWEB.F_99_Allinterface
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Visible = false;
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text = gdatat;
                         break;
-                    case "03018":
+                    case "03018": //order type
+                        if (value == "1")
+                        {
+                            dv2 = dt3.DefaultView;
+                            dv2.RowFilter = (" gcod like '802%' and gcod like '%00'");
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                            ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = false;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                            ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
 
-                        dv2 = dt3.DefaultView;
-                        dv2.RowFilter = ("gcod like '80%' and gcod not like'%00'");
-                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
-                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
-                        ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = false;
-                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
-                        ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
-                        ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
-                        ddlgval.DataTextField = "gdesc";
-                        ddlgval.DataValueField = "gcod";
-                        ddlgval.DataSource = dv2.ToTable();
-                        ddlgval.DataBind();
-                        ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
+                            ddlgval.DataTextField = "gdesc";
+                            ddlgval.DataValueField = "gcod";
+                            ddlgval.DataSource = dv2.ToTable();
+                            ddlgval.DataBind();
+                            ddlgval.SelectedValue = "80200";
+                            ddlgval.Enabled = false;
+                        }
+                        else
+                        {
+                            dv2 = dt3.DefaultView;
+                            dv2.RowFilter = ("gcod like '80%' and gcod not like'%00'");
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                            ((LinkButton)this.gvProjectInfo.Rows[i].FindControl("btnAdd")).Visible = false;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                            ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
+                            ddlgval.DataTextField = "gdesc";
+                            ddlgval.DataValueField = "gcod";
+                            ddlgval.DataSource = dv2.ToTable();
+                            ddlgval.DataBind();
+                            ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
+                        }
                         break;
                     case "03015":
+                        if (value == "1")
+                        {
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Visible = true;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Text = doneqty;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                        }
+                        else
+                        {
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Visible = true;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                            ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                            ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = false;
+                        }
+                        break;
                     case "03017":
                     case "03019":
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Visible = true;
@@ -1031,7 +1127,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CustomerCreate();", true);
                 string customerId = result.Tables[0].Rows[0]["custid"].ToString();
                 GetCustomerList();
-                this.LoadGrid(customerId);
+                this.LoadGrid(customerId, "", "", "");
             }
             catch (Exception exp)
             {
@@ -1046,15 +1142,27 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 string prjcode = this.lblproj.Text.Trim().ToString();
                 string comcod = this.GetCompCode();
-                string sircode = prjcode.Length > 0 ? prjcode : this.GetLastid();
+                //DataTable dt = (DataTable)ViewState["tblcustinf"];
+                //for (int i = 0; i < dt.Rows.Count; i++)
+                //{
+                //    string Gcode = dt.Rows[i]["gcod"].ToString();
+
+                //}
+                //    string ordertype = "";
+                string sircode = "";
+                sircode = this.GetLastid();
+                 //sircode = prjcode.Length > 0 ? prjcode :"";
 
                 for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
                 {
+
                     string Gcode = ((Label)this.gvProjectInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
                     string gtype = ((Label)this.gvProjectInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
 
 
                     string Gvalue = (((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
+               
+                   
                     if (Gcode == "03008" || Gcode == "03009")
                     {
                         Gvalue = (((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? "01-Jan-1900" : ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
@@ -1201,7 +1309,7 @@ namespace RealERPWEB.F_99_Allinterface
                 if (ds3 == null)
                     return;
                 Session["tblAIdelivery"] = ds3.Tables[0];
-               
+
                 this.gv_Delivery.DataSource = ds3;
                 this.gv_Delivery.DataBind();
 
@@ -1219,7 +1327,7 @@ namespace RealERPWEB.F_99_Allinterface
         {
             try
             {
-
+                string comcod = this.GetCompCode();
 
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
@@ -1229,6 +1337,25 @@ namespace RealERPWEB.F_99_Allinterface
                 string title = ((Label)this.gv_Production.Rows[index].FindControl("lblgvtasktitle")).Text.ToString();
                 string assignqty = ((Label)this.gv_Production.Rows[index].FindControl("lblgvdoneqty")).Text.ToString();
                 string assigntype = ((Label)this.gv_Production.Rows[index].FindControl("lblgvassigntype")).Text.ToString();
+
+                DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "ASSIGNQTYCOUNT", prjid, batchid, "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+                DataTable dt = ds1.Tables[0];
+                double pedingannotor = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["pendingqty"].ToString());
+                double pedingqc = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qcpending"].ToString());
+                double pedingqar = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qapending"].ToString());
+                double doneannotor = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["doneqty"].ToString());
+                double doneqc = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qcdoneqty"].ToString());
+                double doneqa = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qadoneqty"].ToString());
+                this.lblcountannotid.Text = pedingannotor.ToString("#,##0;(#,##0); ");
+                this.lblcountQC.Text = pedingqc.ToString("#,##0;(#,##0); ");
+                this.lblcountQA.Text = pedingqar.ToString("#,##0;(#,##0); ");
+                this.lblDoneAnnot.Text = doneannotor.ToString("#,##0;(#,##0); ");
+                this.lblDoneQC.Text = doneqc.ToString("#,##0;(#,##0); ");
+                this.lblDoneQA.Text = doneqa.ToString("#,##0;(#,##0); ");
+
+
 
                 this.txttasktitle.Text = title;
                 this.txttasktitle.Enabled = true;
@@ -1255,7 +1382,7 @@ namespace RealERPWEB.F_99_Allinterface
         private void GetAnnotationList()
         {
             string comcod = this.GetCompCode();
-            string prjlist = this.lblproprjid.Text.Trim()+"%";
+            string prjlist = this.lblproprjid.Text.Trim() + "%";
             string usrrole = this.ddlUserRoleType.SelectedValue.ToString() == "95002" ? "03403" :
                             this.ddlUserRoleType.SelectedValue.ToString() == "95003" ? "03402" : "03401";
             DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETANNOTAIONID", prjlist, usrrole, "", "", "", "");
@@ -1333,51 +1460,93 @@ namespace RealERPWEB.F_99_Allinterface
 
             try
             {
-                DataTable tblt01 = (DataTable)ViewState["tblt01"];
-
-                //DataTable tbl1 = (DataTable)ViewState["tblReq"];
-                string empid = this.ddlassignmember.SelectedValue.ToString();
-                string annoid = this.ddlAnnotationid.SelectedValue.ToString();
-                //DataRow[] dr2 = tblt01.Select("empid ='"+ empid + "'");
-                //if (dr2.Length == 0)
-                //{
-
-                DataRow[] dr3 = tblt01.Select("annoid='" + annoid + "'");
-                if (dr3.Length == 0)
+                string roletype = this.ddlUserRoleType.SelectedValue;
+                double assignqty = Convert.ToDouble("0" + this.txtquantity.Text.ToString());
+                double pedingannotor = Convert.ToDouble("0" + this.lblcountannotid.Text.ToString());
+                double pedingqc = Convert.ToDouble("0" + this.lblcountQC.Text.ToString());
+                double pedingqar = Convert.ToDouble("0" + this.lblcountQA.Text.ToString());
+               
+                double doneannotor = Convert.ToDouble("0" + this.lblDoneAnnot.Text.ToString());
+                double doneqc = Convert.ToDouble("0" + this.lblDoneQC.Text.ToString());
+                double doneqa = Convert.ToDouble("0" + this.lblDoneQA.Text.ToString());
+                if (roletype == "95001" && pedingannotor < assignqty && pedingannotor !=0)
                 {
-                    DataRow dr1 = tblt01.NewRow();
-                    DataTable tbl2 = (DataTable)ViewState["tblMat"];
-                    dr1["batchid"] = this.lblabatchid.Text.ToString();
-                    dr1["empid"] = this.ddlassignmember.SelectedValue.ToString();
-                    dr1["empname"] = this.ddlassignmember.SelectedItem.Text;
-                    dr1["roletype"] = this.ddlUserRoleType.SelectedItem.Value;
-                    dr1["roledesc"] = this.ddlUserRoleType.SelectedItem.Text;
-                    dr1["assigntype"] = this.ddlassigntype.SelectedItem.Value.Trim();
-                    dr1["assigndesc"] = this.ddlassigntype.SelectedItem.Text.Trim();
-                    dr1["annoid"] = this.ddlAnnotationid.SelectedItem.Value.Trim().ToString();
-                    dr1["assignqty"] = Convert.ToDouble("0" + this.txtquantity.Text.Trim());
-                    dr1["workhour"] = Convert.ToDouble("0" + this.txtworkhour.Text.Trim());
-                    dr1["isoutsrc"] = this.checkinoutsourcing.Checked;
-                    dr1["workrate"] = this.textrate.Text.Trim();
-                    tblt01.Rows.Add(dr1);
+
+
+                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then DataSet Qty  " + pedingannotor.ToString();
+                    this.txtquantity.Focus();
+
+                    this.txtquantity.ForeColor = System.Drawing.Color.Red;
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
 
                 }
+                else if (roletype == "95002" && doneannotor < assignqty  )
+                {
+                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneannotor  " + doneannotor.ToString();
+                    this.txtquantity.Focus();
+                    this.txtquantity.ForeColor = System.Drawing.Color.Red;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
+                }
+                else if (roletype == "95003" && doneqc < assignqty )
+                {
+                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneqc  " + doneqc.ToString();
+                    this.txtquantity.Focus();
+
+                    this.txtquantity.ForeColor = System.Drawing.Color.Red;
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
+                }
+
                 else
                 {
-                    string msg = "Alredy Exists Annotr ID";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
+                    DataTable tblt01 = (DataTable)ViewState["tblt01"];
+
+                    //DataTable tbl1 = (DataTable)ViewState["tblReq"];
+                    string empid = this.ddlassignmember.SelectedValue.ToString();
+                    string annoid = this.ddlAnnotationid.SelectedValue.ToString();
+                    //DataRow[] dr2 = tblt01.Select("empid ='"+ empid + "'");
+                    //if (dr2.Length == 0)
+                    //{
+
+                    DataRow[] dr3 = tblt01.Select("annoid='" + annoid + "'");
+                    if (dr3.Length == 0)
+                    {
+                        DataRow dr1 = tblt01.NewRow();
+                        DataTable tbl2 = (DataTable)ViewState["tblMat"];
+                        dr1["batchid"] = this.lblabatchid.Text.ToString();
+                        dr1["empid"] = this.ddlassignmember.SelectedValue.ToString();
+                        dr1["empname"] = this.ddlassignmember.SelectedItem.Text;
+                        dr1["roletype"] = this.ddlUserRoleType.SelectedItem.Value;
+                        dr1["roledesc"] = this.ddlUserRoleType.SelectedItem.Text;
+                        dr1["assigntype"] = this.ddlassigntype.SelectedItem.Value.Trim();
+                        dr1["assigndesc"] = this.ddlassigntype.SelectedItem.Text.Trim();
+                        dr1["annoid"] = this.ddlAnnotationid.SelectedItem.Value.Trim().ToString();
+                        dr1["assignqty"] = Convert.ToDouble("0" + this.txtquantity.Text.Trim());
+                        dr1["workhour"] = Convert.ToDouble("0" + this.txtworkhour.Text.Trim());
+                        dr1["isoutsrc"] = this.checkinoutsourcing.Checked;
+                        dr1["workrate"] = this.textrate.Text.Trim()==""?"0": this.textrate.Text.Trim();
+                        tblt01.Rows.Add(dr1);
+
+                    }
+                    else
+                    {
+                        string msg = "Alredy Exists Annotr ID";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
+                    }
+                    //}
+                    //else
+                    //{
+                    //    string msg = "Alredy Exists";
+                    //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
+                    //}
+
+                    ViewState["tblt01"] = tblt01;
+                    this.VirtualGrid_DataBind();
                 }
-                //}
-                //else
-                //{
-                //    string msg = "Alredy Exists";
-                //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-
-                //}
-
-                ViewState["tblt01"] = tblt01;
-                this.VirtualGrid_DataBind();
             }
             catch (Exception ex)
             {
@@ -1496,7 +1665,7 @@ namespace RealERPWEB.F_99_Allinterface
         {
             try
             {
-
+                string comcod = this.GetCompCode();
 
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
@@ -1505,6 +1674,24 @@ namespace RealERPWEB.F_99_Allinterface
                 string prjid = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcprjid")).Text.ToString();
                 string title = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqctasktitle")).Text.ToString();
                 string assignqty = ((Label)this.gv_QCQA.Rows[index].FindControl("lblgvqcdoneqty")).Text.ToString();
+
+                DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "ASSIGNQTYCOUNT", prjid, batchid, "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+                DataTable dt = ds1.Tables[0];
+                double pedingannotor = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["pendingqty"].ToString());
+                double pedingqc = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qcpending"].ToString());
+                double pedingqar = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qapending"].ToString());
+                double doneannotor = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["doneqty"].ToString());
+                double doneqc = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qcdoneqty"].ToString());
+                double doneqa = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qadoneqty"].ToString());
+                this.lblcountannotid.Text = pedingannotor.ToString("#,##0;(#,##0); ");
+                this.lblcountQC.Text = pedingqc.ToString("#,##0;(#,##0); ");
+                this.lblcountQA.Text = pedingqar.ToString("#,##0;(#,##0); ");
+                this.lblDoneAnnot.Text = doneannotor.ToString("#,##0;(#,##0); ");
+                this.lblDoneQC.Text = doneqc.ToString("#,##0;(#,##0); ");
+                this.lblDoneQA.Text = doneqa.ToString("#,##0;(#,##0); ");
+
                 this.txttasktitle.Text = title;
                 this.txttasktitle.Enabled = true;
                 this.txttasktitle.ReadOnly = true;
@@ -1530,7 +1717,7 @@ namespace RealERPWEB.F_99_Allinterface
         {
             try
             {
-
+                string comcod = this.GetCompCode();
 
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
@@ -1540,6 +1727,24 @@ namespace RealERPWEB.F_99_Allinterface
                 string prjid = ((Label)this.gv_AssignQA.Rows[index].FindControl("lblqaprjid")).Text.ToString();
                 string title = ((Label)this.gv_AssignQA.Rows[index].FindControl("lblgvqatasktitle")).Text.ToString();
                 string assignqty = ((Label)this.gv_AssignQA.Rows[index].FindControl("lblgvqadoneqty")).Text.ToString();
+
+                DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "ASSIGNQTYCOUNT", prjid, batchid, "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+                DataTable dt = ds1.Tables[0];
+                double pedingannotor = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["pendingqty"].ToString());
+                double pedingqc = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qcpending"].ToString());
+                double pedingqar = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qapending"].ToString());
+                double doneannotor = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["doneqty"].ToString());
+                double doneqc = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qcdoneqty"].ToString());
+                double doneqa = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qadoneqty"].ToString());
+                this.lblcountannotid.Text = pedingannotor.ToString("#,##0;(#,##0); ");
+                this.lblcountQC.Text = pedingqc.ToString("#,##0;(#,##0); ");
+                this.lblcountQA.Text = pedingqar.ToString("#,##0;(#,##0); ");
+                this.lblDoneAnnot.Text = doneannotor.ToString("#,##0;(#,##0); ");
+                this.lblDoneQC.Text = doneqc.ToString("#,##0;(#,##0); ");
+                this.lblDoneQA.Text = doneqa.ToString("#,##0;(#,##0); ");
+
                 this.txttasktitle.Text = title;
                 this.txttasktitle.Enabled = true;
                 this.txttasktitle.ReadOnly = true;
@@ -1566,7 +1771,7 @@ namespace RealERPWEB.F_99_Allinterface
         {
             try
             {
-
+                string comcod = this.GetCompCode();
 
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
@@ -1575,6 +1780,28 @@ namespace RealERPWEB.F_99_Allinterface
                 string prjid = ((Label)this.gv_AcceptReject.Rows[index].FindControl("lblgvarprjid")).Text.ToString();
                 string title = ((Label)this.gv_AcceptReject.Rows[index].FindControl("lblgvartasktitle")).Text.ToString();
                 string assignqty = ((Label)this.gv_AcceptReject.Rows[index].FindControl("lblgvardoneqty")).Text.ToString();
+
+                DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "ASSIGNQTYCOUNT", prjid, batchid, "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+                DataTable dt = ds1.Tables[0];
+                double pedingannotor = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["pendingqty"].ToString());
+                double pedingqc = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qcpending"].ToString());
+                double pedingqar = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qapending"].ToString());
+                double doneannotor = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["doneqty"].ToString());
+                double doneqc = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qcdoneqty"].ToString());
+                double doneqa = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qadoneqty"].ToString());
+                this.lblcountannotid.Text = pedingannotor.ToString("#,##0;(#,##0); ");
+                this.lblcountQC.Text = pedingqc.ToString("#,##0;(#,##0); ");
+                this.lblcountQA.Text = pedingqar.ToString("#,##0;(#,##0); ");
+                this.lblDoneAnnot.Text = doneannotor.ToString("#,##0;(#,##0); ");
+                this.lblDoneQC.Text = doneqc.ToString("#,##0;(#,##0); ");
+                this.lblDoneQA.Text = doneqa.ToString("#,##0;(#,##0); ");
+
+
+
+
+
                 this.txttasktitle.Text = title;
                 this.txttasktitle.Enabled = true;
                 this.txttasktitle.ReadOnly = true;
@@ -1748,7 +1975,7 @@ namespace RealERPWEB.F_99_Allinterface
                 DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GET_INVOICE_SUMMAY_SHEET", "", "", "");
                 if (ds == null)
                     return;
-                
+
                 Session["tblinvoicelist"] = ds.Tables[0];
                 this.gv_Invoice.DataSource = ds.Tables[0];
                 this.gv_Invoice.DataBind();
@@ -1777,11 +2004,11 @@ namespace RealERPWEB.F_99_Allinterface
                 string comadd = hst["comadd1"].ToString();
                 string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
                 string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
-                DataTable dt = (DataTable)Session["tblinvoicelist"];            
-               
+                DataTable dt = (DataTable)Session["tblinvoicelist"];
+
                 DataView dv0 = dt.DefaultView;
                 dv0.RowFilter = "invno = '" + id + "'";
-                dt = dv0.ToTable();               
+                dt = dv0.ToTable();
                 double amount = Convert.ToDouble(dt.Rows[0]["totalamount"]);
 
 
@@ -1804,6 +2031,134 @@ namespace RealERPWEB.F_99_Allinterface
                 string type = "PDF";
                 ScriptManager.RegisterStartupScript(this, GetType(), "target", "SetTarget('" + type + "');", true);
 
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+            }
+        }
+
+        protected void lnkbtnsow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.pnlSidebar.Visible = true;
+                this.pnlProjectadd.Visible = true;
+                this.pnlBatchadd.Visible = false;
+                this.pnlAssginUser.Visible = false;
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;
+                string id = ((Label)this.gv_Delivery.Rows[index].FindControl("lblgvdeliprjid")).Text.ToString();
+                this.lblproj.Text = id;
+                //this.lblsowproject.Text ="1";
+                string value = "1";
+                string empid = ((Label)this.gv_Delivery.Rows[index].FindControl("lblgvdeliclientid")).Text.ToString();
+                string doneqty = ((Label)this.gv_Delivery.Rows[index].FindControl("lblgvdelidoneqty")).Text.ToString();
+                this.GetEmployeeName();
+                this.GetCustomerList();
+                this.GetCountry();
+                this.GetProjectDetails();
+                this.LoadGrid("", value, empid, doneqty);
+                this.btnProjectSave.Visible = false;
+                this.btnsowConvert.Visible = true;
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+            }
+
+        }
+
+        protected void txttodate_TextChanged(object sender, EventArgs e)
+        {
+            string startDate = this.txtfrmdate.Text;
+            string enddate = this.txttodate.Text;
+            
+           
+            
+            
+            if (Convert.ToInt32(startDate )< Convert.ToInt32(enddate))
+            {
+                this.txttodate.Text = Convert.ToDateTime(enddate).ToString("dd-MMM-yyyy");
+
+            }
+            else
+            {
+                string msg = "Please Enter your Currect DateTime";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
+
+            }
+        }
+
+        protected void checkinoutsourcing_CheckedChanged(object sender, EventArgs e)
+        {
+            bool check = this.checkinoutsourcing.Checked;
+            if (!check)
+            {
+                this.textrate.Text = "";
+                
+            }
+            else
+            {
+                string rate = "80";
+                this.textrate.Text = rate;
+            }
+        }
+
+        protected void btnsowConvert_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string prjcode = this.lblproj.Text.Trim().ToString();
+                string comcod = this.GetCompCode();
+                //DataTable dt = (DataTable)ViewState["tblcustinf"];
+                //for (int i = 0; i < dt.Rows.Count; i++)
+                //{
+                //    string Gcode = dt.Rows[i]["gcod"].ToString();
+
+                //}
+                //    string ordertype = "";
+                string sircode = "";
+                sircode = this.GetSowLastId();
+                //sircode = prjcode.Length > 0 ? prjcode :"";
+
+                for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
+                {
+
+                    string Gcode = ((Label)this.gvProjectInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
+                    string gtype = ((Label)this.gvProjectInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
+
+
+                    string Gvalue = (((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
+
+
+                    if (Gcode == "03008" || Gcode == "03009")
+                    {
+                        Gvalue = (((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? "01-Jan-1900" : ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
+                    }
+                    if (Gcode == "03015" || Gcode == "03017" || Gcode == "03019")
+                    {
+                        Gvalue = (((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Text.Trim() == "") ? "0.00" : ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Text.Trim();
+                    }
+
+                    Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : Gvalue;
+                    Gvalue = (gtype == "N") ? Convert.ToDouble("0" + Gvalue).ToString() : Gvalue;
+
+
+
+                    bool result = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "PROJECT_INSERTUPDATE", sircode, Gcode, gtype, Gvalue, "", "", "", "");
+                    if (!result)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail..!!');", true);
+                        return;
+                    }
+
+                }
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Project Saved Successfully');", true);
+                this.TasktState.SelectedIndex = 0;
+                this.TasktState_SelectedIndexChanged(null, null);
+                this.IsClearAddProject();
             }
             catch (Exception exp)
             {

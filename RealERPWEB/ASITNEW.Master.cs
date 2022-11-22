@@ -77,10 +77,7 @@ namespace RealERPWEB
                     this.WraperMain.Attributes.Add("class", "app has-fullwidth");
                     this.mySidenav.Attributes.Add("class", "app-aside ");
                     this.main.Attributes.Add("class", "app-main ml-0 ");
-                    this.GroupMenu.Visible = true;
-
-
-
+                    this.GroupMenu.Visible = true; 
                 }
                 getLinkPRofile();
 
@@ -551,7 +548,7 @@ namespace RealERPWEB
             foreach (DataRow row in rslt2)
             {
                 this.prjdash.Visible = true;
-                this.prjdash.HRef = this.ResolveUrl("~/" + row["urlinf"] + comcod);
+                this.prjdash.HRef = this.ResolveUrl("~/" + row["floc"] + "/" + row["urlinf"] + comcod);
             }
             DataRow[] rslt3 = dtanylsis.Select("frmid  = '3261003'");
             foreach (DataRow row in rslt3)
@@ -560,7 +557,38 @@ namespace RealERPWEB
                 this.allGraph.HRef = this.ResolveUrl("~/" + row["urlinf"]); ;
             }
 
-           
+
+
+            /// ARchive
+            /// 
+            DataRow[] rsltArch4 = dtanylsis.Select("frmid  like '326102%'");
+
+            if (rsltArch4.Length> 0)
+            {
+                this.archIve.Visible = true;
+            }
+
+
+            DataRow[] rslt4 = dtanylsis.Select("frmid  = '3261020'");
+            foreach (DataRow row in rslt4)
+            {
+                this.menuMaster.Visible = true;
+                this.menuMaster.HRef = this.ResolveUrl("~/" + row["urlinf"]); ;
+            }
+            DataRow[] rslt5 = dtanylsis.Select("frmid  = '3261021'");
+            foreach (DataRow row in rslt5)
+            {
+                this.GeneralFlow.Visible = true;
+                this.GeneralFlow.HRef = this.ResolveUrl("~/" + row["urlinf"]); ;
+            }
+            DataRow[] rslt6 = dtanylsis.Select("frmid  = '3261023'");
+            foreach (DataRow row in rslt6)
+            {
+                this.dashHRM.Visible = true;
+                this.dashHRM.HRef = this.ResolveUrl("~/" + row["urlinf"]); ;
+            }
+
+
 
 
             DataView dvAna = dtint.Tables[1].Copy().DefaultView;

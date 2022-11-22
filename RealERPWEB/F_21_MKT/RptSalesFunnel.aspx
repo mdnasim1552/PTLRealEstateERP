@@ -125,19 +125,32 @@
 
             try {
 
-
+                //console.log(data);
+                //console.log(data1);
+                //console.log(data2);
+               // console.log(data3);
+               // console.log(data4);
                 // alert(gtype); 
 
                 //var rbtn = $("input[name='ctl00$ContentPlaceHolder1$rbtnlst']:checked").val();;
 
-
+                
 
                 var saldata = JSON.parse(data);
                 var empleadst = JSON.parse(data1);
+               
                 var empleadstdets = JSON.parse(data2);// employee wise leads deatails
-                var prjLead = JSON.parse(data3);// Project wise leads deatails
-                var prjLeadTeam = JSON.parse(data4);// Project wise leads deatails
-
+              
+                //var prjLead = JSON.parse(data3);// Project wise leads deatails
+                var prjLead = $.parseJSON(data3.replace(/\s+/g, ""));
+                var prjLeadTeam = $.parseJSON(data4.replace(/\s+/g, ""));
+                
+                //console.log(prjLead);
+                //console.log(prjLeadTeam);
+                
+                
+               // var prjLeadTeam = JSON.parse(data4);// Project wise leads deatails
+               
                 var prjLeadProfess = JSON.parse(data5);// Project wise leads deatails
                 var prjLeadProfssTeam = JSON.parse(data6);// Project wise leads deatails
 
@@ -147,8 +160,7 @@
                 var teamlead = JSON.parse(data10);// Source TEam wise leads deatails
                 var leadlist = JSON.parse(data12);// Source TEam wise leads deatails
 
-
-
+               
                 var rbtn = $("#<%=this.rbtnlst.ClientID %> input[type='radio']:checked").val();
                 var leadstatus = $('#<%=this.ddlleadstatus.ClientID%>').val();
 

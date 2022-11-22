@@ -101,7 +101,7 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.78125in</Width>
+                  <Width>2.71458in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.175in</Width>
@@ -1426,7 +1426,7 @@
             <Top>0.0625in</Top>
             <Left>0.00375in</Left>
             <Height>1.03125in</Height>
-            <Width>7.81167in</Width>
+            <Width>7.745in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1800,7 +1800,7 @@
         <Height>2.95626in</Height>
         <Style />
       </Body>
-      <Width>7.81542in</Width>
+      <Width>7.74875in</Width>
       <Page>
         <PageHeader>
           <Height>1.44001in</Height>

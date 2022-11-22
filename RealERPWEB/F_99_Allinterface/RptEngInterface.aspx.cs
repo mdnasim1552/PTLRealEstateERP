@@ -221,8 +221,6 @@ namespace RealERPWEB.F_99_Allinterface
                     this.gvPayOrder.Columns[4].Visible = false;
                     this.gvPayOrder.Columns[7].Visible = false;
                     this.gvPayOrder.Columns[15].Visible = true;
-
-
                     break;
 
                 default:
@@ -610,6 +608,31 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
+        private string ComUserWiseInterface()
+        {
+
+            string comcod = this.GetCompCode();
+            string userwise = "";
+            switch (comcod)
+            {
+                case "3370"://CPDL
+                case "3101":
+                    userwise = "UserWise";
+                    break;
+
+
+                default:
+                    break;
+              
+            
+            
+            }
+            return userwise;
+
+
+
+        }
+
         private void reqStatus()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -618,8 +641,12 @@ namespace RealERPWEB.F_99_Allinterface
             string comcod = this.GetCompCode();
             // string frmdate = Convert.ToDateTime(this.txFdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
+            string refno = "%%";
+            string userwise = this.ComUserWiseInterface();
 
-            DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_SALES_INTERFACE", "BILLREGISTER", todate, "", "", "", "", "", "", "", "");
+
+
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_SALES_INTERFACE", "BILLREGISTER", todate, refno, usrid, userwise, "", "", "", "", "");
             if (ds1 == null)
                 return;
 
@@ -643,20 +670,37 @@ namespace RealERPWEB.F_99_Allinterface
 
 
             //req checked  checkbyid <>''
-            dv.RowFilter = ("checkbyid = ''");
+
+            //
+            switch (comcod)
+            {
+
+                case "3370"://CPDL
+                case "3101":
+                    dv.RowFilter = ("checkbyid = ''and suserid='"+ usrid + "'");
+
+                    break;
+                default:
+                    dv.RowFilter = ("checkbyid = ''");
+                    break;
+            
+            }
+
+
+           
             dv = dt.DefaultView;
             this.Data_Bind("gvReqCheck", dv.ToTable());
 
 
 
             //dt = ((DataTable)ds1.Tables[1]).Copy();  // and appamt <= 0
-            dv.RowFilter = ("checkbyid <>'' and aprvbyid='' ");
+            dv.RowFilter = ("checkbyid <>'' and aprvbyid=''");
             dv = dt.DefaultView;
             this.Data_Bind("gvPenApproval", dv.ToTable());
 
 
             //First Recommendate
-            dv.RowFilter = ("checkbyid <> '' and appamt > 0 and aprvbyid <>'' and faprvbyid='' and frecid=''");
+            dv.RowFilter = ("checkbyid <>'' and aprvbyid <>'' and  frecid=''  and appamt > 0.00");
             //dv.RowFilter = ("empid ='" + usrid + "'");
             dv = dt.DefaultView;
             this.Data_Bind("gvfrec", dv.ToTable());
@@ -664,7 +708,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
             //Second Recommendate
-            dv.RowFilter = ("checkbyid<>'' and appamt > 0 and aprvbyid <>'' and faprvbyid = '' and  frecid<>''  and  secrecid=''");
+            dv.RowFilter = ("checkbyid <>'' and aprvbyid <>'' and  frecid<>'' and  secrecid='' and faprvbyid='' and appamt > 0.00 ");
             //dv.RowFilter = ("empid ='" + usrid + "'");
             dv = dt.DefaultView;
             this.Data_Bind("gvsrec", dv.ToTable());
@@ -672,22 +716,22 @@ namespace RealERPWEB.F_99_Allinterface
 
 
             //Third Recommendate
-            dv.RowFilter = ("checkbyid <> '' and appamt > 0 and aprvbyid <> '' and faprvbyid = ''  and  frecid<>'' and  secrecid<>'' and threcid=''");
+            dv.RowFilter = ("checkbyid <>'' and aprvbyid <>'' and  frecid<>'' and  secrecid<>'' and threcid='' and faprvbyid='' and appamt > 0.00 ");
             //dv.RowFilter = ("empid ='" + usrid + "'");
             dv = dt.DefaultView;
             this.Data_Bind("gvthrec", dv.ToTable());
 
 
-
-            dv.RowFilter = ("checkbyid <>'' and faprvbyid = '' and frecid<>'' and  secrecid<>'' and threcid<>'' and appamt > 0 and aprvbyid <>''");
+            /// final approval 
+            dv.RowFilter = ("checkbyid <>'' and aprvbyid <>'' and  frecid<>'' and  secrecid<>'' and threcid<>'' and faprvbyid='' and appamt > 0.00");
             dv = dt.DefaultView;
             this.Data_Bind("gvFinlApproval", dv.ToTable());
             Session["tblfApproal"] = dv.ToTable();
 
+            //pen approval / payment due
             dv.RowFilter = ("checkbyid <>'' and balamt > 0 and faprvbyid<>''");
             dv = dt.DefaultView;
             Session["tblpaydue"] = dv.ToTable();
-
             this.Data_Bind("gvPayOrder", dv.ToTable());
             this.Data_Bind("gvReqInfo1", dt);
 
@@ -1102,22 +1146,30 @@ namespace RealERPWEB.F_99_Allinterface
 
         {
             string comcod = this.GetCompCode();
-            string delskip3 = "";
+            string delskip = "";
             switch (comcod)
             {
                 case "1102"://IBCEL
                     break;
 
-                default:
-                    delskip3 = "delskip3";
+                case "3370":// CPDL
+                case "3368":// Finaly              
+                case "3101":// Finaly              
+                    delskip = "delskip5";
                     break;
 
+
+                default:
+                    delskip = "delskip4";
+                    break;
+
+              
 
 
             }
 
 
-            return delskip3;
+            return delskip;
         }
 
         protected void btnDelOrder_Click(object sender, EventArgs e)
@@ -1128,8 +1180,8 @@ namespace RealERPWEB.F_99_Allinterface
             int rowindex = gvr.RowIndex;
             string comcod = this.GetCompCode();
             string reqno = ((Label)this.gvFinlApproval.Rows[rowindex].FindControl("lblgvreqnoFnApp")).Text.Trim();
-            string delskip3 = this.GetComDelSkip3();
-            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "DELETEOTHERREQ", reqno, delskip3, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            string delskip = this.GetComDelSkip3();
+            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "DELETEOTHERREQ", reqno, delskip, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (result == true)
             {
@@ -1228,7 +1280,7 @@ namespace RealERPWEB.F_99_Allinterface
             string reqno = ((Label)this.gvfrec.Rows[rowindex].FindControl("lblgvreqnofrec")).Text.Trim();
 
 
-            // bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "DELETEOTHERREQ", reqno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+           
             bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "DELETEFIRSTRECON", reqno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (result == true)
@@ -1283,7 +1335,7 @@ namespace RealERPWEB.F_99_Allinterface
             string reqno = ((Label)this.gvsrec.Rows[rowindex].FindControl("lblgvreqnosrec")).Text.Trim();
 
 
-            // bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "DELETEOTHERREQ", reqno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            
 
             bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "DELETESECONDRECOMMEND", reqno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 
@@ -1517,11 +1569,56 @@ namespace RealERPWEB.F_99_Allinterface
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkbtnReqChecked");
-                string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
-                string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
 
-                hlink1.NavigateUrl = "~/F_34_Mgt/OtherReqEntry?Type=OreqChecked&prjcode=" + pactcode + "&genno=" + reqno;
+
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                   
+                    
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    
+                    string userid = hst["usrid"].ToString();
+                    string comcod = this.GetCompCode();
+                    HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkbtnReqChecked");
+                    string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                    string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
+                    switch (comcod)
+                    {
+                        case "3370"://CPDL
+                        case "3101":                           
+                            string suserid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "suserid")).ToString();
+                            if (suserid == userid)
+                            {
+                                hlink1.Attributes["style"] = "color:green;";
+                                hlink1.Enabled = true;
+                            }
+                            else
+
+                            {
+                                hlink1.Attributes["style"] = "color:red;";
+                                hlink1.Enabled = false;
+
+                            }
+                            break;
+
+                        default:
+                            break;
+                    
+                    
+                    
+                    }
+
+                    hlink1.NavigateUrl = "~/F_34_Mgt/OtherReqEntry?Type=OreqChecked&prjcode=" + pactcode + "&genno=" + reqno;
+
+
+
+
+                }
+
+                
+               
+
+                
             }
         }
     }

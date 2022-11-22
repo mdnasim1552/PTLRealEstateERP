@@ -86,6 +86,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.ddlEmpName.DataValueField = "empid";
             this.ddlEmpName.DataSource = dv.ToTable();
             this.ddlEmpName.DataBind();
+
             Session["tblempinfo"] = dv.ToTable();
         }
 
@@ -268,5 +269,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
 
         }
+    
     }
 }

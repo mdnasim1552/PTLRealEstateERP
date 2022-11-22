@@ -45,10 +45,14 @@ namespace RealERPWEB.F_09_PImp
                 this.DateForOpeningBill();
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 this.ComRefText();
-                if (this.Request.QueryString["genno"].ToString().Length > 0)
+                string qgenno = this.Request.QueryString["genno"] ?? "";
+                if (qgenno.Length > 0)
                 {
-                    if (this.Request.QueryString["genno"].ToString().Substring(0, 3) == "COR")
+                    
+                    if (qgenno.Substring(0, 3) == "COR" || qgenno.Substring(0, 3) == "MBK")
                     {
+                        this.hdnmbno.Value = qgenno;
+                        this.hdnforderno.Value = this.Request.QueryString["vounum"] ?? "";
                         this.lbtnOk_Click(null, null);
                     }
                     else
@@ -130,6 +134,8 @@ namespace RealERPWEB.F_09_PImp
                 case "3339": // Tropical
                 case "3101": // ASIT
                 case "3368": // finaly
+                case "3367": // epic
+                case "3370": // cpdl
 
                     this.chkCharging.Visible = true;
                     this.grvissue.Columns[7].Visible = false;
@@ -147,7 +153,7 @@ namespace RealERPWEB.F_09_PImp
                     this.grvissue.Columns[26].Visible = true;
                     this.grvissue.Columns[27].Visible = true;
                     this.grvissue.Columns[28].Visible = true;
-                    this.divgrp.Attributes["style"] = "width: 750px;float: left;";
+                    //this.divgrp.Attributes["style"] = "width: 750px;float: left;";
                     this.ddlgroup.Visible = true;
                     this.lblgrp.Visible = true;
                     break;
@@ -578,22 +584,22 @@ namespace RealERPWEB.F_09_PImp
             if (this.lbtnOk.Text == "New")
             {
                 this.lbtnOk.Text = "Ok";
-                this.ddlprjlist.Visible = true;
-                this.ddlcontractorlist.Visible = true;
-                this.lblddlProject.Visible = false;
-                this.lblSubContractor.Visible = false;
+                this.ddlprjlist.Enabled = true;
+                this.ddlcontractorlist.Enabled = true;
+                //this.lblddlProject.Visible = false;
+                //this.lblSubContractor.Visible = false;
                 this.lblCurISSNo1.Text = "LIS00-";
                 this.txtCurISSNo2.Text = "";
                 this.txtISSNarr.Text = "";
                 this.lblBillno.Text = "";
 
-                this.lbtnPrevISSList.Visible = true;
+             
                 this.ddlPrevISSList.Visible = true;
                 this.txtSrcPreBill.Visible = true;
                 this.ibtnPreBillList.Visible = true;
                 this.txtCurISSDate.Enabled = (this.Request.QueryString["Type"].ToString() == "Opening") ? false : true;
                 this.ddlPrevISSList.Items.Clear();
-                this.ddlcontractorlist.Enabled = true;
+              
                 this.ddlRA.Enabled = true;
                 this.ddlfloorno.Items.Clear();
                 DropCheck1.Items.Clear();
@@ -611,17 +617,15 @@ namespace RealERPWEB.F_09_PImp
             }
 
 
-            this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
-            this.lblSubContractor.Text = this.ddlcontractorlist.SelectedItem.Text.Trim();
-            this.ddlprjlist.Visible = false;
-            this.lblddlProject.Visible = true;
-            this.ddlcontractorlist.Visible = false;
-            this.lblSubContractor.Visible = true;
-            this.lbtnPrevISSList.Visible = false;
+            //this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
+            //this.lblSubContractor.Text = this.ddlcontractorlist.SelectedItem.Text.Trim();
+            this.ddlprjlist.Enabled = false;
+            //this.lblddlProject.Visible = true;
+            this.ddlcontractorlist.Enabled = false;
+            //this.lblSubContractor.Visible = true;          
             this.ddlPrevISSList.Visible = false;
             this.txtSrcPreBill.Visible = false;
             this.ibtnPreBillList.Visible = false;
-            this.ddlcontractorlist.Enabled = true;
             this.PnlRes.Visible = true;
             this.PnlNarration.Visible = true;
             this.lbtnOk.Text = "New";
@@ -689,7 +693,7 @@ namespace RealERPWEB.F_09_PImp
                 // this.ddlRA.Enabled = false;
                 mISSNo = this.ddlPrevISSList.SelectedValue.ToString();
             }
-            string workorder = (this.Request.QueryString["genno"].ToString().Length > 0) ? (this.Request.QueryString["genno"].ToString().Substring(0, 3) == "COR") ? this.Request.QueryString["genno"].ToString() : "" : "";
+            string workorder = (this.Request.QueryString["genno"].ToString().Length > 0) ? ((this.Request.QueryString["genno"].ToString().Substring(0, 3) == "COR" || this.Request.QueryString["genno"].ToString().Substring(0, 3) == "MBK") ? this.Request.QueryString["genno"].ToString() : "") : "";
             DataSet ds1 = new DataSet();
             ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPURLABISSUEINFO", mISSNo, CurDate1,
                          pactcode, workorder, "", "", "", "", "");
@@ -744,7 +748,7 @@ namespace RealERPWEB.F_09_PImp
             this.txtCurISSNo2.Text = ds1.Tables[1].Rows[0]["lisuno1"].ToString().Substring(6, 5);
             this.txtCurISSDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["isudat"]).ToString("dd-MMM-yyyy");
             this.ddlprjlist.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
-            this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
+            //this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
             this.ddlcontractorlist.SelectedValue = ds1.Tables[1].Rows[0]["csircode"].ToString();
             this.txtISSNarr.Text = ds1.Tables[1].Rows[0]["rmrks"].ToString();
             this.lblBillno.Text = ds1.Tables[1].Rows[0]["billno"].ToString();
@@ -767,7 +771,8 @@ namespace RealERPWEB.F_09_PImp
             double Reward = Convert.ToDouble("0" + this.txtreward.Text.Trim());
 
             this.lblvalnettotal.Text = (amount + Reward - (security + deduction + penalty + Advanced)).ToString("#,##0;(#,##0); ");
-
+            this.hdnforderno.Value = ds1.Tables[1].Rows[0]["workordr"].ToString();
+            this.hdnmbno.Value = ds1.Tables[1].Rows[0]["mbno"].ToString();
 
 
 
@@ -1063,10 +1068,7 @@ namespace RealERPWEB.F_09_PImp
 
             catch (Exception ed)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                ((Label)this.Master.FindControl("lblmsg")).Text = ed.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ed.Message.ToString() + "');", true);
             }
 
 
@@ -1495,11 +1497,12 @@ namespace RealERPWEB.F_09_PImp
             //string appxml = tbl2.Rows[0]["approval"].ToString();
             //string Approval = this.GetReqApproval(appxml);
 
-            string workorder = (this.Request.QueryString["genno"].ToString().Length > 0) ? (this.Request.QueryString["genno"].ToString().Substring(0, 3) == "COR") ? this.Request.QueryString["genno"].ToString() : "" : "";
+            string workorder = this.hdnforderno.Value;
+            string mbno = this.hdnmbno.Value;
 
             //string workorder = (this.Request.QueryString["genno"].ToString().Substring(0, 3) == "COR") ? this.Request.QueryString["genno"].ToString() : "";
             bool result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURLABISSUEINFO", "PURLISSUEB",
-                             mISUNO, mISUDAT, mPACTCODE, mCONCODE, mISURNAR, Refno, usrid, Sessionid, trmid, trade, rano, percentage, sdamt, dedamt, Penalty, advamt, Reward, workorder, "", "");
+                             mISUNO, mISUDAT, mPACTCODE, mCONCODE, mISURNAR, Refno, usrid, Sessionid, trmid, trade, rano, percentage, sdamt, dedamt, Penalty, advamt, Reward, workorder, mbno, "");
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
@@ -1662,7 +1665,10 @@ namespace RealERPWEB.F_09_PImp
             switch (comcod)
             {
                 case "3101":
-                case "3368":
+                case "3368": // finlay
+                case "3367": // epic
+                case "3370": // cpdl
+                case "3366": // lanco
                     break;
 
                 default:
@@ -1677,140 +1683,143 @@ namespace RealERPWEB.F_09_PImp
         }
         private void SaveValue()
         {
-            ((Label)this.Master.FindControl("lblmsg")).Text = "";
-            DataTable dt = (DataTable)ViewState["tblmatissue"];
-            int TblRowIndex;
-            // double labrate
-            double adedamt = 0.00;
-            for (int i = 0; i < this.grvissue.Rows.Count; i++)
+            try
             {
-
-             
-
-                string grp = ((Label)this.grvissue.Rows[i].FindControl("gvlblgrp")).Text.Trim();
-                string rsircode = ((Label)this.grvissue.Rows[i].FindControl("lblitemcode")).Text.Trim();
-                double wrkqty = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtwrkqty")).Text.Trim()));
-                double balqty = Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.grvissue.Rows[i].FindControl("lblbalqty")).Text.Trim()));
-                double preqty = Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.grvissue.Rows[i].FindControl("lblpreqty")).Text.Trim()));
-                double dgvQty = ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtisuqty")).Text.Trim());
-                double percent = Convert.ToDouble("0" + ((TextBox)this.grvissue.Rows[i].FindControl("txtpercentge")).Text.Trim());
-                  
-                double labrate = Convert.ToDouble("0" + ((TextBox)this.grvissue.Rows[i].FindControl("txtlabrate")).Text.Trim());
-                //// double balamt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.grvissue.Rows[i].FindControl("lblbalamt")).Text.Trim()));
-                double dedqty = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtgvdedqty")).Text.Trim()));
-                string dedunit = ((TextBox)this.grvissue.Rows[i].FindControl("txtgvdedunit")).Text.Trim();
-                double dedrate = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtgvdedrate")).Text.Trim()));
-                double idedamt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtgvdedamt")).Text.Trim()));
-                double amount = ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtgvamount")).Text.Trim());
-                double above = ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtgvabove")).Text.Trim());
-                double issueamt = ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtissueamt")).Text.Trim());
-                string mbbook = (((TextBox)this.grvissue.Rows[i].FindControl("txtmbbook")).Text.Trim());
-
-
-               // dgvQty = ASTUtility.Left(grp, 1) == "2" ? dgvQty * -1 : dgvQty;
-               // amount = ASTUtility.Left(grp, 1) == "2" ? amount * -1 : amount;
-
-
-
-                double toqty = preqty + dgvQty;
-                string comcod = this.GetCompCode();
-                TblRowIndex = (grvissue.PageIndex) * grvissue.PageSize + i;
-                double isuqty;
-                switch (comcod)
+                ((Label)this.Master.FindControl("lblmsg")).Text = "";
+                DataTable dt = (DataTable)ViewState["tblmatissue"];
+                int TblRowIndex;
+                // double labrate
+                double adedamt = 0.00;
+                for (int i = 0; i < this.grvissue.Rows.Count; i++)
                 {
-                    case "3338":
-
-                        dgvQty = (issueamt > 0) ? (labrate > 0 ? Math.Round(issueamt / labrate, 4) : 0.00) : dgvQty;
-                        issueamt = (issueamt > 0) ? issueamt : (dgvQty * labrate);
-
-                        dt.Rows[TblRowIndex]["wrkqty"] = wrkqty;
-                        dt.Rows[TblRowIndex]["prcent"] = percent;
-                        isuqty = (percent > 0) ? (wrkqty > 0 ? wrkqty * percent * 0.01 : balqty * percent * 0.01) : dgvQty;
-                        dt.Rows[TblRowIndex]["isuqty"] = isuqty;
-                        dt.Rows[TblRowIndex]["toqty"] = toqty;
-                        dt.Rows[TblRowIndex]["isurat"] = labrate;
-                        dt.Rows[TblRowIndex]["amount"] = amount;
-                        dt.Rows[TblRowIndex]["dedqty"] = dedqty;
-                        dt.Rows[TblRowIndex]["dedunit"] = dedunit;
-                        dt.Rows[TblRowIndex]["dedrate"] = dedrate;
-                        dt.Rows[TblRowIndex]["idedamt"] = idedamt;
-                        dt.Rows[TblRowIndex]["above"] = above;
-                        dt.Rows[TblRowIndex]["isuamt"] = issueamt;
-                        dt.Rows[TblRowIndex]["mbbook"] = mbbook;
-
-                        break;
 
 
 
+                    string grp = ((Label)this.grvissue.Rows[i].FindControl("gvlblgrp")).Text.Trim();
+                    string rsircode = ((Label)this.grvissue.Rows[i].FindControl("lblitemcode")).Text.Trim();
+                    double wrkqty = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtwrkqty")).Text.Trim()));
+                    double balqty = Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.grvissue.Rows[i].FindControl("lblbalqty")).Text.Trim()));
+                    double preqty = Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.grvissue.Rows[i].FindControl("lblpreqty")).Text.Trim()));
+                    double dgvQty = ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtisuqty")).Text.Trim());
+                    double percent = Convert.ToDouble("0" + ((TextBox)this.grvissue.Rows[i].FindControl("txtpercentge")).Text.Trim());
+
+                    double labrate = Convert.ToDouble("0" + ((TextBox)this.grvissue.Rows[i].FindControl("txtlabrate")).Text.Trim());
+                    //// double balamt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.grvissue.Rows[i].FindControl("lblbalamt")).Text.Trim()));
+                    double dedqty = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtgvdedqty")).Text.Trim()));
+                    string dedunit = ((TextBox)this.grvissue.Rows[i].FindControl("txtgvdedunit")).Text.Trim();
+                    double dedrate = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtgvdedrate")).Text.Trim()));
+                    double idedamt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtgvdedamt")).Text.Trim()));
+                    double amount = ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtgvamount")).Text.Trim());
+                    double above = ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtgvabove")).Text.Trim());
+                    double issueamt = ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtissueamt")).Text.Trim());
+                    string mbbook = (((TextBox)this.grvissue.Rows[i].FindControl("txtmbbook")).Text.Trim());
 
 
-                    //case "3339":
-                    //case "3101":
-                    //    dt.Rows[TblRowIndex]["wrkqty"] = wrkqty;
-                    //    dt.Rows[TblRowIndex]["prcent"] = percent;
-                    //    isuqty = (percent > 0) ? (wrkqty > 0 ? wrkqty * percent * 0.01 : balqty * percent * 0.01) : dgvQty;
-                    //    dedrate = idedamt > 0 ? (idedamt / dedqty) : dedrate;
-                    //    idedamt = idedamt > 0 ? idedamt : dedqty*dedrate;
-
-                    //    amount =amount>0?amount:isuqty * labrate;
-                    //    labrate = amount > 0 ? amount / isuqty : labrate;
-                    //    adedamt = amount - idedamt;
-                    //    issueamt = (rsircode.Substring(0,7)=="0499999")?issueamt:adedamt + (adedamt * 0.01 * above);                    
-                    //    dt.Rows[TblRowIndex]["isuqty"] = isuqty;
-                    //    dt.Rows[TblRowIndex]["isurat"] = labrate;
-                    //    dt.Rows[TblRowIndex]["amount"] =amount;
-                    //    dt.Rows[TblRowIndex]["dedqty"] = dedqty;
-                    //    dt.Rows[TblRowIndex]["dedunit"] = dedunit;
-                    //    dt.Rows[TblRowIndex]["dedrate"] = dedrate;
-                    //    dt.Rows[TblRowIndex]["idedamt"] = idedamt;
-                    //    dt.Rows[TblRowIndex]["adedamt"] = adedamt;
-                    //    dt.Rows[TblRowIndex]["above"] =above;
-                    //    dt.Rows[TblRowIndex]["isuamt"] = issueamt;
-                    //    dt.Rows[TblRowIndex]["mbbook"] = mbbook;
-                    //    break;
+                    // dgvQty = ASTUtility.Left(grp, 1) == "2" ? dgvQty * -1 : dgvQty;
+                    // amount = ASTUtility.Left(grp, 1) == "2" ? amount * -1 : amount;
 
 
-                    default:
-                        dt.Rows[TblRowIndex]["wrkqty"] = wrkqty;
-                        dt.Rows[TblRowIndex]["prcent"] = percent;
-                        isuqty = (percent > 0) ? (wrkqty > 0 ? wrkqty * percent * 0.01 : balqty * percent * 0.01) : dgvQty;
-                        dedrate = idedamt > 0 ? (idedamt / dedqty) : dedrate;
-                        idedamt = idedamt > 0 ? idedamt : dedqty * dedrate;
 
-                        amount = amount > 0 ? amount : isuqty * labrate;
+                    double toqty = preqty + dgvQty;
+                    string comcod = this.GetCompCode();
+                    TblRowIndex = (grvissue.PageIndex) * grvissue.PageSize + i;
+                    double isuqty;
+                    switch (comcod)
+                    {
+                        case "3338":
 
-                        //amount = ASTUtility.Left(grp, 1) == "2" ? amount * -1 : 0;
+                            dgvQty = (issueamt > 0) ? (labrate > 0 ? Math.Round(issueamt / labrate, 4) : 0.00) : dgvQty;
+                            issueamt = (issueamt > 0) ? issueamt : (dgvQty * labrate);
+
+                            dt.Rows[TblRowIndex]["wrkqty"] = wrkqty;
+                            dt.Rows[TblRowIndex]["prcent"] = percent;
+                            isuqty = (percent > 0) ? (wrkqty > 0 ? wrkqty * percent * 0.01 : balqty * percent * 0.01) : dgvQty;
+                            dt.Rows[TblRowIndex]["isuqty"] = isuqty;
+                            dt.Rows[TblRowIndex]["toqty"] = toqty;
+                            dt.Rows[TblRowIndex]["isurat"] = labrate;
+                            dt.Rows[TblRowIndex]["amount"] = amount;
+                            dt.Rows[TblRowIndex]["dedqty"] = dedqty;
+                            dt.Rows[TblRowIndex]["dedunit"] = dedunit;
+                            dt.Rows[TblRowIndex]["dedrate"] = dedrate;
+                            dt.Rows[TblRowIndex]["idedamt"] = idedamt;
+                            dt.Rows[TblRowIndex]["above"] = above;
+                            dt.Rows[TblRowIndex]["isuamt"] = issueamt;
+                            dt.Rows[TblRowIndex]["mbbook"] = mbbook;
+
+                            break;
 
 
-                        labrate = amount > 0 ? amount / isuqty : labrate;
-                        adedamt = amount - idedamt;
-                        issueamt = (rsircode.Substring(0, 7) == "0499999") ? issueamt : adedamt + (adedamt * 0.01 * above);
-                        dt.Rows[TblRowIndex]["isuqty"] = isuqty;
-                        dt.Rows[TblRowIndex]["toqty"] = toqty;
-                        dt.Rows[TblRowIndex]["isurat"] = labrate;
-                        dt.Rows[TblRowIndex]["amount"] = amount;
-                        dt.Rows[TblRowIndex]["dedqty"] = dedqty;
-                        dt.Rows[TblRowIndex]["dedunit"] = dedunit;
-                        dt.Rows[TblRowIndex]["dedrate"] = dedrate;
-                        dt.Rows[TblRowIndex]["idedamt"] = idedamt;
-                        dt.Rows[TblRowIndex]["adedamt"] = adedamt;
-                        dt.Rows[TblRowIndex]["above"] = above;
-                        dt.Rows[TblRowIndex]["isuamt"] = issueamt;
-                        dt.Rows[TblRowIndex]["mbbook"] = mbbook;
 
-                        break;
 
+
+                        //case "3339":
+                        //case "3101":
+                        //    dt.Rows[TblRowIndex]["wrkqty"] = wrkqty;
+                        //    dt.Rows[TblRowIndex]["prcent"] = percent;
+                        //    isuqty = (percent > 0) ? (wrkqty > 0 ? wrkqty * percent * 0.01 : balqty * percent * 0.01) : dgvQty;
+                        //    dedrate = idedamt > 0 ? (idedamt / dedqty) : dedrate;
+                        //    idedamt = idedamt > 0 ? idedamt : dedqty*dedrate;
+
+                        //    amount =amount>0?amount:isuqty * labrate;
+                        //    labrate = amount > 0 ? amount / isuqty : labrate;
+                        //    adedamt = amount - idedamt;
+                        //    issueamt = (rsircode.Substring(0,7)=="0499999")?issueamt:adedamt + (adedamt * 0.01 * above);                    
+                        //    dt.Rows[TblRowIndex]["isuqty"] = isuqty;
+                        //    dt.Rows[TblRowIndex]["isurat"] = labrate;
+                        //    dt.Rows[TblRowIndex]["amount"] =amount;
+                        //    dt.Rows[TblRowIndex]["dedqty"] = dedqty;
+                        //    dt.Rows[TblRowIndex]["dedunit"] = dedunit;
+                        //    dt.Rows[TblRowIndex]["dedrate"] = dedrate;
+                        //    dt.Rows[TblRowIndex]["idedamt"] = idedamt;
+                        //    dt.Rows[TblRowIndex]["adedamt"] = adedamt;
+                        //    dt.Rows[TblRowIndex]["above"] =above;
+                        //    dt.Rows[TblRowIndex]["isuamt"] = issueamt;
+                        //    dt.Rows[TblRowIndex]["mbbook"] = mbbook;
+                        //    break;
+
+
+                        default:
+                            dt.Rows[TblRowIndex]["wrkqty"] = wrkqty;
+                            dt.Rows[TblRowIndex]["prcent"] = percent;
+                            isuqty = (percent > 0) ? (wrkqty > 0 ? wrkqty * percent * 0.01 : balqty * percent * 0.01) : dgvQty;
+                            dedrate = idedamt > 0 ? (idedamt / dedqty) : dedrate;
+                            idedamt = idedamt > 0 ? idedamt : dedqty * dedrate;
+
+                            amount = amount > 0 ? amount : isuqty * labrate;
+
+                            //amount = ASTUtility.Left(grp, 1) == "2" ? amount * -1 : 0;
+
+
+                            labrate = amount > 0 ? amount / isuqty : labrate;
+                            adedamt = amount - idedamt;
+                            issueamt = (rsircode.Substring(0, 7) == "0499999") ? issueamt : adedamt + (adedamt * 0.01 * above);
+                            dt.Rows[TblRowIndex]["isuqty"] = isuqty;
+                            dt.Rows[TblRowIndex]["toqty"] = toqty;
+                            dt.Rows[TblRowIndex]["isurat"] = labrate;
+                            dt.Rows[TblRowIndex]["amount"] = amount;
+                            dt.Rows[TblRowIndex]["dedqty"] = dedqty;
+                            dt.Rows[TblRowIndex]["dedunit"] = dedunit;
+                            dt.Rows[TblRowIndex]["dedrate"] = dedrate;
+                            dt.Rows[TblRowIndex]["idedamt"] = idedamt;
+                            dt.Rows[TblRowIndex]["adedamt"] = adedamt;
+                            dt.Rows[TblRowIndex]["above"] = above;
+                            dt.Rows[TblRowIndex]["isuamt"] = issueamt;
+                            dt.Rows[TblRowIndex]["mbbook"] = mbbook;
+
+                            break;
+
+
+                    } 
 
                 }
-
-
-
-
-
-
+                ViewState["tblmatissue"] = dt;
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message.ToString() + "');", true);
 
             }
-            ViewState["tblmatissue"] = dt;
+
         }
 
 

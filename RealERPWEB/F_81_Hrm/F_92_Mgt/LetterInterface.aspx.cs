@@ -57,7 +57,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 view.Sort = "advno desc";
                 dt1 = view.ToTable();
             }
-            //appointment letter sendappflag=0 and  and isreject=0 and isappaccept=1
+            //appointment letter sendappflag=0 and   isreject=0 and isappaccept=1
             else if (type == "10002")
             {
                 view.RowFilter = " isreject='False' and isoffaccept='True' and isappaccept='False'  ";
@@ -118,13 +118,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             DataSet ds1 = accData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_NEW_REC", "LETTER_COUNT", "", "", "", "", "", "", "", "", "");
             if (ds1 == null || ds1.Tables[0].Rows.Count==0)
                 return;
-            this.RadioButtonList1.Items[0].Text = "<a>Eligible for offer letter" + "<span class=lbldata>" + (string)ds1.Tables[0].Rows[0]["offletter"] + "</span></a>";//
-            this.RadioButtonList1.Items[1].Text = "<a>Eligible for appointment letter" + "<span class=lbldata>" + (string)ds1.Tables[0].Rows[0]["appletter"] + "</span></a>";//
-                                                                                                                                                                
-            // this.RadioButtonList1.Items[2].Text = "<a> Confirmation Letter" + "<span class=lbldata>" + (string)ds1.Tables[0].Rows[0]["confletter"] + "</span></a>";//
-            this.RadioButtonList1.Items[2].Text = "<a> Accepted Offer Letter" + "<span class=lbldata>" + (string)ds1.Tables[0].Rows[0]["acceptedOffLetter"] + "</span></a>";
-            this.RadioButtonList1.Items[3].Text = "<a> Accepted Appointment Letter" + "<span class=lbldata>" + (string)ds1.Tables[0].Rows[0]["acceptedAppLetter"] + "</span></a>";
-            this.RadioButtonList1.Items[4].Text = "<a> Rejected Letter" + "<span class=lbldata>" + (string)ds1.Tables[0].Rows[0]["rejectedLetter"] + "</span></a>";//
+            this.RadioButtonList1.Items[0].Text = "<a>Eligible for offer letter" + "<span class=lbldata>" + ds1.Tables[0].Rows[0]["offletter"].ToString() + "</span></a>";
+            this.RadioButtonList1.Items[1].Text = "<a> Accepted Offer Letter" + "<span class=lbldata>" + ds1.Tables[0].Rows[0]["acceptedOffLetter"].ToString() + "</span></a>";
+            this.RadioButtonList1.Items[2].Text = "<a> Rejected Letter" + "<span class=lbldata>" + ds1.Tables[0].Rows[0]["rejectedLetter"].ToString() + "</span></a>";
+            this.RadioButtonList1.Items[3].Text = "<a>Eligible for appointment letter" + "<span class=lbldata>" + ds1.Tables[0].Rows[0]["appletter"].ToString() + "</span></a>";
+            this.RadioButtonList1.Items[4].Text = "<a> Accepted Appointment Letter" + "<span class=lbldata>" + ds1.Tables[0].Rows[0]["acceptedAppLetter"].ToString() + "</span></a>";
 
         }
 
