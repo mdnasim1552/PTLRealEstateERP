@@ -2055,7 +2055,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!levded.Value</Value>
+                                  <Value>=IIF(Fields!levded.Value&gt;0,"Deduction of "+ Cstr(Fields!levded.Value) +"days basic pay","")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>

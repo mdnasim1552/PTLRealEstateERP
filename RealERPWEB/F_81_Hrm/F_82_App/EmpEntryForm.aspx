@@ -170,7 +170,7 @@
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-lg-12">
                                 <asp:GridView ID="gvEmpList" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                    AutoGenerateColumns="False" OnPageIndexChanging="gvEmpList_PageIndexChanging" AllowPaging="True"
+                                    AutoGenerateColumns="False" OnPageIndexChanging="gvEmpList_PageIndexChanging" AllowPaging="True" OnRowDataBound="gvEmpList_RowDataBound"
                                     ShowFooter="True" PageSize="3000">
                                     <RowStyle />
                                     <Columns>
@@ -211,6 +211,9 @@
                                                 <asp:Label ID="lblEmpid" runat="server" Visible="false"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
                                                     Width="80px"></asp:Label>
+
+                                                                 <asp:Label ID="lblusrsname" runat="server" Visible="false"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "usrsname")) %>'></asp:Label>
                                                 <asp:Label ID="lblgvcardnoemp" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
                                                     Width="80px"></asp:Label>
@@ -364,7 +367,7 @@
                                         <asp:TemplateField HeaderText="User Create">
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="lnkUserGenarate" ToolTip="User Create" OnClick="lnkUserGenarate_Click"
-                                                    Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")).ToString()=="3365"? true:false %>'
+                                                    Visible="false"
                                                     runat="server" CssClass="btn btn-sm btn-primary "> User Generate</asp:LinkButton>
 
                                             </ItemTemplate>
