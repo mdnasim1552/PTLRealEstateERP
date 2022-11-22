@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-     <style>
+    <style>
         div#ContentPlaceHolder1_ddlCompany_chzn {
             width: 100% !important;
         }
@@ -54,8 +54,8 @@
 
 
     </script>
-    
-   
+
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -85,11 +85,11 @@
                                 <div class="form-group">
                                     <div class="col-lg-6 ">
                                         <asp:Label ID="lblopndate" runat="server" CssClass="lblTxt lblName">Opening Date</asp:Label>
-                                        <asp:TextBox ID="txtdate" runat="server" CssClass="form-control inputtextbox"></asp:TextBox>
+                                        <asp:TextBox ID="txtdate" runat="server" CssClass="form-control"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtdate_CalendarExtender" runat="server"
                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
                                     </div>
-                                     <div class="col-lg-6 ">
+                                    <div class="col-lg-6 ">
                                         <div class="msgHandSt">
                                             <asp:Label ID="lblmsg" CssClass="btn-danger btn disabled" runat="server" Visible="false"></asp:Label>
                                         </div>
@@ -97,44 +97,43 @@
 
                                     </div>
                                 </div>
-                                
-                                   
+
+
 
                             </div>
                             <div class="col-lg-4">
-                                <div class="form-group">
-                                    <div class="col-lg-6 ">
-                                        <asp:Label ID="lblacccode1" runat="server" CssClass="lblTxt lblName">Accounts Code</asp:Label>
-                                        <asp:TextBox ID="txtFilter" runat="server" CssClass="form-control inputtextbox"></asp:TextBox>
-                                        </div>
-                                   
 
-                                </div>
-                                
+                                <asp:Label ID="lblacccode1" runat="server" CssClass="lblTxt lblName">Accounts Code
+
+                                <asp:LinkButton ID="ImageButton2" runat="server"   OnClick="ImageButton2_Click"><i class="fa fa-search"> </i></asp:LinkButton>
+
+                                </asp:Label>
+                                <asp:TextBox ID="txtFilter" runat="server" CssClass="form-control"></asp:TextBox>
+
+
 
                             </div>
-                             <div class="col-lg-2">
-                                        <div class="colMdbtn">
-                                            <asp:LinkButton ID="ImageButton1" runat="server" CssClass="btn btn-primary srearchBtn mt20" Text="OK" OnClick="ImageButton1_Click"></asp:LinkButton>
+                            <div class="col-lg-2">
 
-                                        </div>
+                                <asp:LinkButton ID="ImageButton1" runat="server" CssClass="btn btn-primary srearchBtn mt20" Text="OK" OnClick="ImageButton1_Click"></asp:LinkButton>
 
-                                    </div>
+
+                            </div>
                         </div>
 
 
 
                     </div>
                 </div>
-              <div class="body">
+                <div class="body">
                     <div class="row">
 
                         <asp:GridView ID="dgv2" runat="server" AllowPaging="True"
                             AutoGenerateColumns="False" OnRowCreated="dgv2_RowCreated"
                             PagerSettings-Position="Bottom" PagerStyle-BackColor="#4A89BC"
-                            PagerSettings-Visible="false"
+                            PagerSettings-Visible="true"
                             PagerStyle-HorizontalAlign="Center" RowStyle-Font-Size="12px" ShowFooter="True"
-                            Width="600px" OnRowCommand="dgv2_RowCommand" PageSize="15" CssClass="table-striped table-hover table-bordered grvContentarea">
+                            OnRowCommand="dgv2_RowCommand" PageSize="50" CssClass="table-striped table-hover table-bordered grvContentarea">
                             <PagerSettings Visible="False" />
                             <RowStyle />
                             <Columns>
@@ -143,7 +142,7 @@
                                         <asp:Label ID="lblserialnoid" runat="server" Style="text-align: right"
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                     </ItemTemplate>
-                                    
+
                                     <ItemStyle Font-Size="12px" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ActCode" Visible="False">
@@ -154,22 +153,22 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Head of Accounts">
                                     <FooterTemplate>
-                                      
 
-                                         <asp:LinkButton ID="lnkFinalUpdate" runat="server"
-                                                OnClick="lnkFinalUpdate_Click"
-                                                CssClass="btn btn-danger primarygrdBtn" >Final Update</asp:LinkButton>
-                                      
 
-                                            <asp:DropDownList ID="dgv2ddlPageNo" runat="server" AutoPostBack="True"
-                                                Font-Bold="True" Font-Size="14px"
-                                                OnSelectedIndexChanged="dgv2ddlPageNo_SelectedIndexChanged"
-                                                Style="margin:0 0 0 10px; border-right: navy 1px solid; border-top: navy 1px solid; border-left: navy 1px solid; border-bottom: navy 1px solid"
-                                                Width="180px">
-                                            </asp:DropDownList>
-                                      
-                                           
-                                       
+                                        <asp:LinkButton ID="lnkFinalUpdate" runat="server"
+                                            OnClick="lnkFinalUpdate_Click"
+                                            CssClass="btn btn-danger primarygrdBtn">Final Update</asp:LinkButton>
+
+
+                                        <asp:DropDownList ID="dgv2ddlPageNo" runat="server" AutoPostBack="True"
+                                            Font-Bold="True" Font-Size="14px"
+                                            OnSelectedIndexChanged="dgv2ddlPageNo_SelectedIndexChanged"
+                                            Style="margin: 0 0 0 10px; border-right: navy 1px solid; border-top: navy 1px solid; border-left: navy 1px solid; border-bottom: navy 1px solid"
+                                            Width="180px">
+                                        </asp:DropDownList>
+
+
+
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblAccdesc" runat="server"
@@ -235,90 +234,54 @@
 
 
                     <asp:Panel ID="pnlsub" runat="server">
-
+                        <div class="card-header">
+                            <h6 class="m-0">Resource Entry Screen</h6>
+                        </div>
                         <div class="row">
 
-                            <fieldset class="scheduler-border fieldset_B">
-
-                                <div class="form-horizontal">
-
-                                    <div class="form-group">
-
-                                        <asp:Label ID="lblacccode2" runat="server" Font-Bold="True"
-                                            Font-Names="Verdana" Font-Size="16px" Text="Resource Entry Screen"></asp:Label>
 
 
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-6 pading5px ">
-                                            <asp:Label ID="lblacccode" runat="server" CssClass="lblTxt lblName">Accounts Code</asp:Label>
-                                            <asp:TextBox ID="txtActcode" runat="server" CssClass=" form-control inputTxt" Width="450px" ReadOnly="true"></asp:TextBox>
-
-                                        </div>
-
-
-                                        <div class="col-md-3 pading5px asitCol3">
-                                            <asp:Label ID="lblPage" runat="server" CssClass=" smLbl_to" Text="Page"></asp:Label>
-
-                                            <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="ddlPage" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
-                                                <asp:ListItem>10</asp:ListItem>
-                                                <asp:ListItem>15</asp:ListItem>
-                                                <asp:ListItem>20</asp:ListItem>
-                                                <asp:ListItem>30</asp:ListItem>
-                                                <asp:ListItem>50</asp:ListItem>
-                                                <asp:ListItem>100</asp:ListItem>
-                                                <asp:ListItem>150</asp:ListItem>
-                                                <asp:ListItem>200</asp:ListItem>
-                                                <asp:ListItem>300</asp:ListItem>
-                                            </asp:DropDownList>
-
-                                           
+                            <div class="col-md-4">
+                                <asp:Label ID="lblacccode" runat="server">Accounts Code</asp:Label>
+                                <asp:TextBox ID="txtActcode" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:Label ID="Label11" runat="server">Resource Code</asp:Label>
+                                <asp:TextBox ID="txtResSearch" runat="server" CssClass="form-control"></asp:TextBox>
 
 
-                                        </div>
+                            </div>
+                            <div class="col-md-1">
+                                <asp:Label ID="lblPage" runat="server" Text="Page"></asp:Label>
 
-                                        <div class="col-md-1  pull-right">
-                                             <div class="colMdbtn">
-                                                <asp:LinkButton ID="lnkSubmit" runat="server" CssClass="btn btn-primary  primaryBtn" OnClick="lnkSubmit_Click">Home</asp:LinkButton>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-3 pading5px asitCol3">
-                                            <asp:Label ID="Label11" runat="server" CssClass="lblTxt lblName">Resource Code</asp:Label>
-                                            <asp:TextBox ID="txtResSearch" runat="server" CssClass=" inputtextbox"></asp:TextBox>
-
-
-                                            <div class="colMdbtn">
-                                                <asp:LinkButton ID="ImageButton2" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ImageButton2_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-md-3 pading5px pull-right">
-                                            <div class="msgHandSt">
-                                                <asp:Label ID="lblmsg01" CssClass="btn-danger btn disabled" runat="server" Visible="false"></asp:Label>
-                                            </div>
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                    <asp:ListItem>10</asp:ListItem>
+                                    <asp:ListItem>15</asp:ListItem>
+                                    <asp:ListItem>20</asp:ListItem>
+                                    <asp:ListItem>30</asp:ListItem>
+                                    <asp:ListItem>50</asp:ListItem>
+                                    <asp:ListItem>100</asp:ListItem>
+                                    <asp:ListItem>150</asp:ListItem>
+                                    <asp:ListItem>200</asp:ListItem>
+                                    <asp:ListItem>300</asp:ListItem>
+                                    <asp:ListItem>1300</asp:ListItem>
+                                </asp:DropDownList>
 
 
-                                        </div>
+                            </div>
+                            <div class="col-md-1">
+                            </div>
+                            <div class="col-md-2 pull-right">
+                                <asp:LinkButton ID="lnkSubmit" runat="server" CssClass="btn btn-info btn-sm mt-4" OnClick="lnkSubmit_Click">Home</asp:LinkButton>
 
-                                    </div>
+                            </div>
 
-
-                                </div>
-
-
-                            </fieldset>
-
-
+                        </div>
+                        <div class="row">
 
                             <asp:GridView ID="dgv3" runat="server" AllowPaging="True"
                                 AutoGenerateColumns="False" OnPageIndexChanging="dgv3_PageIndexChanging"
-                                ShowFooter="True" Width="831px" CssClass="table-striped table-hover table-bordered grvContentarea">
+                                ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea">
                                 <PagerSettings Position="TopAndBottom" />
                                 <RowStyle />
 
@@ -334,7 +297,7 @@
                                     <asp:TemplateField HeaderText="Code">
                                         <ItemTemplate>
                                             <asp:Label ID="gvlblrescode" runat="server"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rescode")) %>' Width="80px"></asp:Label>
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rescode")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Description"
@@ -349,7 +312,7 @@
                                     </asp:TemplateField>
 
 
-                                    <asp:TemplateField HeaderText="Card No"
+                                    <asp:TemplateField HeaderText="Card #"
                                         FooterStyle-HorizontalAlign="Right">
 
                                         <ItemTemplate>
@@ -359,14 +322,14 @@
                                         </ItemTemplate>
                                         <FooterStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
-                                    
-                                    
 
-                                   
+
+
+
                                     <asp:TemplateField HeaderText="Quantity" ItemStyle-HorizontalAlign="Center">
                                         <FooterTemplate>
-                                            <asp:LinkButton ID="lnkbtnUpdateRes" runat="server" Font-Bold="True" CssClass="btn btn-danger  primarygrdBtn"
-                                               OnClick="lnkbtnUpdateRes_Click">Update</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkbtnUpdateRes" runat="server" Font-Bold="True" CssClass="btn btn-success btn-sm "
+                                                OnClick="lnkbtnUpdateRes_Click">Update</asp:LinkButton>
                                         </FooterTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="gvtxtQty" runat="server" BackColor="Transparent"
@@ -379,8 +342,8 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Rate" ItemStyle-HorizontalAlign="Right">
                                         <FooterTemplate>
-                                            <asp:LinkButton ID="gvlnkFTotal" runat="server" CssClass="btn btn-primary primarygrdBtn" OnClick="gvlnkFTotal_Click">Total 
-                                                                    :</asp:LinkButton>
+                                            <asp:LinkButton ID="gvlnkFTotal" runat="server" CssClass="btn btn-primary btn-sm " OnClick="gvlnkFTotal_Click">Total 
+                                            </asp:LinkButton>
                                         </FooterTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvRate" runat="server" BackColor="Transparent"
@@ -392,36 +355,33 @@
                                         <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Dr. Amount" >
+                                    <asp:TemplateField HeaderText="Dr. Amount">
                                         <ItemTemplate>
                                             <asp:TextBox ID="gvtxtDrAmt" runat="server" BackColor="Transparent"
-                                                BorderColor="Transparent" BorderStyle="None" BorderWidth="1px" style="text-align:right"
-                                                 
+                                                BorderColor="Transparent" BorderStyle="None" BorderWidth="1px" Style="text-align: right"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "Dr")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="106px"></asp:TextBox>
                                         </ItemTemplate>
                                         <FooterTemplate>
                                             <asp:TextBox ID="gvtxtftDramt" runat="server" BackColor="Transparent"
-                                                Font-Bold="True" 
-                                                BorderColor="Transparent" BorderStyle="None" 
-                                                Width="116px" ReadOnly="True" style="text-align:right">></asp:TextBox>
+                                                Font-Bold="True"
+                                                BorderColor="Transparent" BorderStyle="None"
+                                                Width="116px" ReadOnly="True" Style="text-align: right">></asp:TextBox>
                                         </FooterTemplate>
-                                        <FooterStyle Font-Bold="True"  HorizontalAlign="Right" />
+                                        <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Cr. Amount" >
+                                    <asp:TemplateField HeaderText="Cr. Amount">
                                         <ItemTemplate>
                                             <asp:TextBox ID="gvtxtCrAmt" runat="server" BackColor="Transparent"
-                                                BorderColor="Transparent" BorderStyle="None" 
-                                                
+                                                BorderColor="Transparent" BorderStyle="None"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "Cr")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                Width="106px" style="text-align:right"></asp:TextBox>
+                                                Width="106px" Style="text-align: right"></asp:TextBox>
                                         </ItemTemplate>
                                         <FooterTemplate>
                                             <asp:TextBox ID="gvtxtftCramt" runat="server" BackColor="Transparent"
-                                               
                                                 BorderStyle="None"
-                                                Width="106px" style="text-align:right">></asp:TextBox>
+                                                Width="106px" Style="text-align: right">></asp:TextBox>
                                         </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
@@ -434,12 +394,7 @@
                                 <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" />
                             </asp:GridView>
 
-
-
-
-
-</div>
-
+                        </div>
 
 
                     </asp:Panel>
@@ -447,10 +402,10 @@
 
 
 
-           
-                <!-- End of contentpart-->
-            </div>
-            <!-- End of Container-->
+
+                    <!-- End of contentpart-->
+                </div>
+                <!-- End of Container-->
             </div>
 
 
