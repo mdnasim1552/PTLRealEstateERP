@@ -1305,10 +1305,10 @@
 
 
 
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <asp:UpdatePanel ID="UpdatePanel" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
-                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
+                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel" DisplayAfter="30">
                     <ProgressTemplate>
                         <div id="loader">
                             <div class="dot"></div>
