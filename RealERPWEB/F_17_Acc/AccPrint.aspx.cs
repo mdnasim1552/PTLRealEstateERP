@@ -3200,26 +3200,37 @@ namespace RealERPWEB.F_17_Acc
                 hshtbl["totalAmount"] = Convert.ToDouble(totalAmount).ToString("#,##0;(#,##0); ");
 
                 LocalReport rpt1 = new LocalReport();
-                
-                if (bankcode == "DBL")
-                {
-                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeDhakaBankCPDL", hshtbl, null, null);
-                }
-                else if (bankcode == "UCB")
-                {
-                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeUCBCPDL", hshtbl, null, null);
-                }
-                else
-                {
-                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeDhakaBankCPDL", hshtbl, null, null);
-                }
+
+                //if (bankcode == "DBL")
+                //{
+                //    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeDhakaBankCPDL", hshtbl, null, null);
+                //}
+                //else if (bankcode == "UCB")
+                //{
+                //    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeUCBCPDL", hshtbl, null, null);
+                //}
+                //else if (bankcode == "IBBL")
+                //{
+                rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeIBBLCPDL", hshtbl, null, null);
+                //}
+                //else if (bankcode == "AIBL")
+                //{
+                //    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeAIBLCPDL", hshtbl, null, null);
+                //}
+                //else if (bankcode == "TBL")
+                //{
+                //rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeTBLCPDL", hshtbl, null, null);
+                //}
+
+                //else
+                //{
+                //    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeDhakaBankCPDL", hshtbl, null, null);
+                //}
 
                 Session["Report1"] = rpt1;
 
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
                     ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
-
-
             }
             catch (Exception ex)
             {
@@ -3227,7 +3238,6 @@ namespace RealERPWEB.F_17_Acc
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
-
         }
         private void PrinCheque()
         {
