@@ -595,6 +595,7 @@ namespace RealERPWEB.F_24_CC
             Rpt1.SetParameters(new ReportParameter("ftxtapp1st", ftxtapp1st));
             Rpt1.SetParameters(new ReportParameter("ftxtapp2nd", ftxtapp2nd));
             Rpt1.SetParameters(new ReportParameter("ftxtapp3rd", ftxtapp3rd));
+            Rpt1.SetParameters(new ReportParameter("finalapvusr", finalapvusr));
 
             Session["Report1"] = Rpt1;
             if (this.Request.QueryString["Type"].ToString() == "ReqPrint")

@@ -649,6 +649,7 @@
 
                                             <div class="form-group row">
                                                 <asp:Label runat="server" ID="lblDoneAnnot" Visible="false"></asp:Label>
+                                                <asp:Label runat="server" ID="lbltotalassign" Visible="false"></asp:Label>
                                                 <asp:Label runat="server" ID="Assigndataqty" Visible="false"></asp:Label>
                                                 <asp:Label runat="server" ID="lblDoneQC" Visible="false"></asp:Label>
                                                 <asp:Label runat="server" ID="lblDoneQA" Visible="false"></asp:Label>
