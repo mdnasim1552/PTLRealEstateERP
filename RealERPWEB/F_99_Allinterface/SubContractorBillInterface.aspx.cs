@@ -157,7 +157,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-        private string GettxtBillChecked() 
+        private string GettxtBillChecked()
         {
             string billchk = "";
             string comcod = this.GetCompCode();
@@ -271,7 +271,7 @@ namespace RealERPWEB.F_99_Allinterface
             string billapprove = this.GettxtBillApproved();
             string frecon = this.Gettxtfrecon();
             string billchk = this.GettxtBillChecked();
-            string orderApp="";
+            string orderApp = "";
             switch (comcod)
             {
                 case "3101":
@@ -302,14 +302,14 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-            this.RadioButtonList1.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading yellow counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["redyforbill"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content yellow'><div class='circle-tile-description text-faded'>"+ orderApp + "</div></div></div>";
+            this.RadioButtonList1.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading yellow counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["redyforbill"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content yellow'><div class='circle-tile-description text-faded'>" + orderApp + "</div></div></div>";
 
 
 
 
             this.RadioButtonList1.Items[9].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["subbillcount"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Sub-Con.Bill</div></div></div>";
 
-            this.RadioButtonList1.Items[10].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billApproval"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>"+ billchk + "</div></div></div>";
+            this.RadioButtonList1.Items[10].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billApproval"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>" + billchk + "</div></div></div>";
 
             this.RadioButtonList1.Items[11].Text = "<div class='circle-tile'><a><div class='circle-tile-heading  orange counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["billcount"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>" + billfinal + "</div></div></div>";
 
@@ -321,7 +321,7 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1.Items[16].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[8].Rows[0]["paycount"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content  orange '><div class='circle-tile-description text-faded'>Bill Update</div></div></div>";
 
 
-          
+
 
 
             DataTable dt = new DataTable();
@@ -749,7 +749,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                     this.RadioButtonList1.Items[8].Attributes["class"] = "lblactive blink_me";
 
-                    break; 
+                    break;
 
                 case "11": // Bill Finalization
                     this.PanelBillReq.Visible = false;
@@ -774,7 +774,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                     break;
 
-                
+
 
                 case "12": // First Recommendation
                     this.PanelBillReq.Visible = false;
@@ -846,7 +846,7 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
 
-             
+
                 case "15": // Bill Confirmed
                     this.PanelBillReq.Visible = false;
                     this.PanelBillCs.Visible = false;
@@ -897,7 +897,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                     break;
             }
-           
+
         }
 
 
@@ -990,11 +990,8 @@ namespace RealERPWEB.F_99_Allinterface
 
         private void Data_Bind(string gv, DataTable dt)
         {
-
-
             switch (gv)
             {
-
                 case "grvImple":
                     this.grvImple.DataSource = HiddenSameData(dt);
                     this.grvImple.DataBind();
@@ -1080,12 +1077,6 @@ namespace RealERPWEB.F_99_Allinterface
                     this.gvmbookapp.DataSource = HiddenSameData(dt);
                     this.gvmbookapp.DataBind();
                     break;
-
-
-
-                  
-
-
                 case "gvReadyForBill":
                     this.gvReadyForBill.DataSource = HiddenSameData(dt);
                     this.gvReadyForBill.DataBind();
@@ -1094,18 +1085,25 @@ namespace RealERPWEB.F_99_Allinterface
                 case "gvbillapp":
                     this.gvbillapp.DataSource = HiddenSameData(dt);
                     this.gvbillapp.DataBind();
-
                     break;
 
-
-
-
-
             }
+        }
 
-
-
-
+        private bool showCompMBColumn()
+        {
+            bool isShow = false;
+            switch (GetCompCode())
+            {
+                case "3101":
+                case "3370":
+                    isShow = true;
+                    break;
+                default:
+                    isShow = false;
+                    break;
+            }
+            return isShow;
         }
 
 
@@ -1126,8 +1124,6 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkbtnPrintIN");
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnApp");
                 LinkButton btnDelReqCheck = (LinkButton)e.Row.FindControl("btnDelReqCheck");
-
-
                 HyperLink lnkbtnEditBilll = (HyperLink)e.Row.FindControl("lnkbtnEditBilll");
 
 
@@ -1141,11 +1137,10 @@ namespace RealERPWEB.F_99_Allinterface
                 string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "csircode")).ToString();
                 string isudate = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "isudat")).ToString("dd-MMM-yyyy");
 
-                HyperLink hlnkBillDetails = (HyperLink)e.Row.FindControl("hlnkBillDetailsfin");  
+                HyperLink hlnkBillDetails = (HyperLink)e.Row.FindControl("hlnkBillDetailsfin");
                 string mbno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mbno")).ToString();
-                hlnkBillDetails.Enabled = mbno.Length > 0;               
+                hlnkBillDetails.Enabled = mbno.Length > 0;
                 hlnkBillDetails.NavigateUrl = "~/F_09_PImp/BillingMBEntry?Type=Entry&prjcode=" + pactcode + "&genno=" + mbno + "&sircode=" + sircode;
-
 
                 if (issustatus == "S")
                 {
@@ -1168,11 +1163,6 @@ namespace RealERPWEB.F_99_Allinterface
                     lnkbtnEditBilll.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Edit&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
 
                 }
-
-
-
-
-
                 switch (comcod)
                 {
                     case "3336":
@@ -1183,17 +1173,11 @@ namespace RealERPWEB.F_99_Allinterface
                     default:
                         btnDelReqCheck.Visible = true;
                         break;
-
                 }
-
-
-
             }
         }
         protected void gvsubbill_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-
-
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -1331,10 +1315,8 @@ namespace RealERPWEB.F_99_Allinterface
 
             }
 
-
-            bool resulbill = accData.UpdateTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "DELETEUPDATEPURLISUUE", lisuno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-
-
+            string callType = CompCallType();
+            bool resulbill = accData.UpdateTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", callType, lisuno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (!resulbill)
             {
@@ -1344,8 +1326,25 @@ namespace RealERPWEB.F_99_Allinterface
             else
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
 
+        }
 
-
+        private string CompCallType()
+        {
+            string ctype = "";
+            switch (GetCompCode())
+            {
+                case "3101":
+                case "3368": // finlay
+                case "3367": // epic
+                case "3370": // cpdl
+                case "3366": // lanco
+                    ctype = "DELETEUPDATEPURLISUUE02";
+                    break;
+                default:
+                    ctype = "DELETEUPDATEPURLISUUE";
+                    break;
+            }
+            return ctype;
         }
 
         protected void gvConUpdat_OnRowDataBound(object sender, GridViewRowEventArgs e)
@@ -1402,8 +1401,8 @@ namespace RealERPWEB.F_99_Allinterface
 
                 lnkbtnbfinapp.NavigateUrl = "~/F_09_PImp/PurSubConBillFinal?Type=BillConfirmed&genno=" + billno + "&prjcode=" + pactcode + "&sircode=" + sircode + "&status=" + billstatus;
 
-               
-            
+
+
 
 
 
@@ -2001,7 +2000,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string mbno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mbno")).ToString();
                 string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
-                
+
                 hlink1.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Current&prjcode=" + pactcode + "&genno=" + mbno + "&vounum=" + orderno + "&sircode=" + csircode;
                 hlink2.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Entry&genno=" + lreqno + "&sircode=" + csircode + "&actcode=" + pactcode + "&orderno=" + orderno;
 
@@ -2100,6 +2099,37 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void btnDelmbapp_Click(object sender, EventArgs e)
         {
+
+        }
+
+        protected void btnDelbillapp_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            int index = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string lisuno = ((Label)this.gvbillapp.Rows[index].FindControl("lbllisuno2")).Text.Trim();
+
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPURLABISSUEINFO", lisuno, "", "", "", "", "", "", "", "");
+
+            if (ds1 == null)
+                return;
+
+            bool result = this.XmlDataInsertReq(lisuno, ds1);
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Fail');", true);
+                return;
+            }
+            bool resulbill = accData.UpdateTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "DELETEUPDATEPURLISUUE", lisuno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (!resulbill)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted  Fail');", true);
+                return;
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
+            }
 
         }
     }

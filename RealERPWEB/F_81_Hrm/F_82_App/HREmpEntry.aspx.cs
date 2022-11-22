@@ -674,7 +674,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 {
 
                     this.rbtnOverTime.SelectedIndex = (dr1[0]["gdatat1"].ToString().Trim() == "0") ? 0 : (dr1[0]["gdatat1"].ToString().Trim() == "1") ? 1
-                                                : (dr1[0]["gdatat1"].ToString().Trim() == "2") ? 2 : 3;
+                                                : (dr1[0]["gdatat1"].ToString().Trim() == "2") ? 2 : (dr1[0]["gdatat1"].ToString().Trim() == "4") ? 4: 3;
                     if (this.rbtnOverTime.SelectedIndex == 2)
                     {
                         switch (comcod)
@@ -2562,6 +2562,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 this.gvTimsSlot.DataBind();
                 return;
             }
+            Session["tblTimeSlot"] = ds3.Tables[0];
+
             this.DataSlotOTBind();
 
         }

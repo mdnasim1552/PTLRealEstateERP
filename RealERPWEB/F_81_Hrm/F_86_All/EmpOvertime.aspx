@@ -999,7 +999,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvCardno" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
-                                                        Width="40px"></asp:Label>
+                                                        Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
@@ -1011,7 +1011,7 @@
                                                         Width="150px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
-                                                    <asp:LinkButton ID="lbntUpdateOtherDed" runat="server" CssClass="btn btn-primary btn-sm" OnClick="lbntUpdateOtherDed_Click">Update</asp:LinkButton>
+                                                    <asp:LinkButton ID="lbntUpdateOtherDed" runat="server" CssClass="btn btn-success btn-sm" OnClick="lbntUpdateOtherDed_Click">Update</asp:LinkButton>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
