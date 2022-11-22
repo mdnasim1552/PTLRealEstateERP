@@ -1046,7 +1046,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         this.gvEmpOtherded.Columns[9].HeaderText = "Food";
                         this.gvEmpOtherded.HeaderRow.Cells[13].Text = "Penalty";
                     }
-                    if (comcod == "3368" || comcod == "3101")//For Finlay
+                    if (comcod == "3368")//For Finlay
                     {
                         this.gvEmpOtherded.Columns[6].Visible = false;
                         this.gvEmpOtherded.Columns[7].Visible = false;
@@ -1069,9 +1069,24 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                             this.gvothearn.Columns[14].HeaderText = "Trainning";
   
                     }
+                    if (comcod == "3370" || comcod == "3101")//For Finlay
+                    {
+                        this.gvEmpOtherded.Columns[6].Visible = false;
+                        this.gvEmpOtherded.Columns[7].Visible = false;
+                        this.gvEmpOtherded.Columns[8].Visible = false;
+                        this.gvEmpOtherded.Columns[9].Visible = true;
+                        this.gvEmpOtherded.Columns[10].Visible = true;
+                        this.gvEmpOtherded.Columns[11].Visible = false;
+                        this.gvEmpOtherded.Columns[12].Visible = false;
+                        this.gvEmpOtherded.Columns[13].Visible = false;
+                        this.gvEmpOtherded.Columns[14].Visible = false;
+                        this.gvEmpOtherded.Columns[15].Visible = false;
+                        this.gvEmpOtherded.Columns[17].Visible = false;
+                        this.gvEmpOtherded.Columns[18].Visible = false;
+                        this.gvEmpOtherded.Columns[9].HeaderText = "Meal";
+                    }
 
-                  
-                   
+
                     break;
 
 
@@ -1117,12 +1132,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                             this.gvothearn.Columns[9].Visible = false;
                             this.gvothearn.Columns[10].Visible = false;
                             this.gvothearn.Columns[14].Visible = false;
-                            // this.gvothearn.HeaderRow.Cells[14].Text = "Dress Bill";
-
-                            //this.gvothearn.Columns[6].Visible = true;
-                            //this.gvothearn.Columns[7].Visible = true;
-                            //this.gvothearn.Columns[8].Visible = true;
-                            //this.gvothearn.Columns[12].Visible = false;
+                            
                             break;
 
                         case "3101":
@@ -1138,6 +1148,25 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                             this.gvothearn.Columns[14].Visible = true;
                             this.gvothearn.Columns[15].Visible = true;
                             this.gvothearn.Columns[16].Visible = true;
+                            break;
+
+                        case "3370"://For CPDL                                   
+                            this.gvothearn.HeaderRow.Cells[6].Text = "Earned Leave";
+                            this.gvothearn.HeaderRow.Cells[7].Text = "Arear Salary";                            
+                            this.gvothearn.HeaderRow.Cells[8].Text = "Bonus";                            
+                            this.gvothearn.Columns[6].Visible = true;
+                            this.gvothearn.Columns[7].Visible = true;
+                            this.gvothearn.Columns[8].Visible = true;
+
+            
+                            this.gvothearn.Columns[9].Visible = false;
+                            this.gvothearn.Columns[10].Visible = false;
+                            this.gvothearn.Columns[12].Visible = false;
+                            this.gvothearn.Columns[13].Visible = false;
+                            this.gvothearn.Columns[14].Visible = false;
+                            this.gvothearn.Columns[15].Visible = false;
+                            this.gvothearn.Columns[16].Visible = false;
+                            
                             break;
 
                         default:
@@ -3320,19 +3349,34 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             string Type = this.Request.QueryString["Type"].ToString().Trim();
             switch (Type)
             {
-                case "OtherDeduction":
-
-                    //DataView dv = dt.DefaultView;
-                    //dv.RowFilter = ("Card <> ''");
-                    //dt = dv.ToTable();
+                case "OtherDeduction": 
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         string Card = dt.Rows[i]["Card"].ToString();
                         // string Adv_Deduction = dt.Rows[i]["Adv_Deduction"].ToString().Length == 0 ? "0" : dt.Rows[i]["Adv_Deduction"].ToString();
-                        string Mobile_Bill = dt.Rows[i]["Mobile_Bill"].ToString().Length == 0 ? "0" : dt.Rows[i]["Mobile_Bill"].ToString();
-                        string Other_Deduction = dt.Rows[i]["Other_Deduction"].ToString().Length == 0 ? "0" : dt.Rows[i]["Other_Deduction"].ToString();
+                        string Mobile_Bill = "0.00"; //dt.Rows[i]["Mobile_Bill"].ToString().Length == 0 ? "0" : dt.Rows[i]["Mobile_Bill"].ToString();
+                        string Other_Deduction = "0.00"; //(comcod=="3370"? "0" : dt.Rows[i]["Other_Deduction"].ToString().Length == 0 ? "0" : dt.Rows[i]["Other_Deduction"].ToString());
                         string Transport ="0.00";//dt.Rows[i]["Transport"].ToString().Length == 0 ? "0" : dt.Rows[i]["Transport"].ToString();
-                        string Penalty = dt.Rows[i]["Penalty"].ToString().Length == 0 ? "0" : dt.Rows[i]["Penalty"].ToString();
+                        string Penalty = "0.00"; //(comcod == "3370" ? "0" : dt.Rows[i]["Penalty"].ToString().Length == 0 ? "0" : dt.Rows[i]["Penalty"].ToString());
+
+                        string Meal = "0.00";// (comcod == "3370" ? dt.Rows[i]["Meal"].ToString().Length == 0 ? "0" : dt.Rows[i]["Meal"].ToString(): "0");
+
+                        switch (comcod)
+                        {
+                            case "3370":
+                                Mobile_Bill = dt.Rows[i]["Mobile_Bill"].ToString().Length == 0 ? "0" : dt.Rows[i]["Mobile_Bill"].ToString();
+                                Meal = dt.Rows[i]["Meal"].ToString().Length == 0 ? "0" : dt.Rows[i]["Meal"].ToString() ;
+                                break;
+                            default:
+                                Mobile_Bill = dt.Rows[i]["Mobile_Bill"].ToString().Length == 0 ? "0" : dt.Rows[i]["Mobile_Bill"].ToString();
+                                Other_Deduction = dt.Rows[i]["Other_Deduction"].ToString().Length == 0 ? "0" : dt.Rows[i]["Other_Deduction"].ToString();
+                                Penalty = dt.Rows[i]["Penalty"].ToString().Length == 0 ? "0" : dt.Rows[i]["Penalty"].ToString();
+                                break;
+                        }
+
+
+
+
 
                         if (Card.Length == 0)
                         {
@@ -3360,6 +3404,14 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         {
                             dt.Rows[i]["Penalty"] = 0.00;
                         }
+
+                        // Check Penalty is Number or not.
+                        if (!IsNuoDecimal(Meal))
+                        {
+                            dt.Rows[i]["Meal"] = 0.00;
+                        }
+
+
                         dt.AcceptChanges();
                         isAllValid = true;
                     }
@@ -3371,14 +3423,38 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                             if (rows.Length > 0)
                             {
-                                double Mobile_Bill = Convert.ToDouble("0" + (rows[0]["Mobile_Bill"]));
-                              //  double transded = 0.00;// Convert.ToDouble("0" + (rows[0]["Transport"]));
-                                double otherded = Convert.ToDouble("0" + (rows[0]["Other_Deduction"]));
-                                double Penalty = Convert.ToDouble("0" + (rows[0]["Penalty"]));
-                                double ttlamt = Mobile_Bill + otherded+ Penalty;
+                                double Mobile_Bill = 0.00;
+                                double otherded = 0.00;
+                                double Penalty = 0.00;
+                                double Meal = 0.00;
+
+                                switch (comcod)
+                                {
+                                    case "3370":
+                                        Mobile_Bill = Convert.ToDouble("0" + (rows[0]["Mobile_Bill"]));
+                                        Meal = Convert.ToDouble("0" + (rows[0]["Meal"]));
+
+                                        break;
+                                    default:
+                                        Mobile_Bill = Convert.ToDouble("0" + (rows[0]["Mobile_Bill"]));
+                                        otherded = Convert.ToDouble("0" + (rows[0]["Other_Deduction"]));
+                                        Penalty = Convert.ToDouble("0" + (rows[0]["Penalty"])); 
+
+                                        break;
+                                }
+
+
+                              //  double Mobile_Bill = Convert.ToDouble("0" + (rows[0]["Mobile_Bill"]));
+                              ////  double transded = 0.00;// Convert.ToDouble("0" + (rows[0]["Transport"]));
+                              //  double otherded = (comcod == "3370" ? 0 : Convert.ToDouble("0" + (rows[0]["Other_Deduction"])));
+                              //  double Penalty = (comcod == "3370" ? 0 : Convert.ToDouble("0" + (rows[0]["Penalty"])));
+                              //  double Meal = (comcod == "3370" ? Convert.ToDouble("0" + (rows[0]["Meal"])) : 0);
+
+                                double ttlamt = Mobile_Bill + otherded+ Penalty+ Meal;
                                 dt1.Rows[i]["mbillded"] = Mobile_Bill;
                                // dt1.Rows[i]["transded"] = transded;
                                 dt1.Rows[i]["otherded"] = otherded;
+                                dt1.Rows[i]["fallded"] = Meal;
                                 dt1.Rows[i]["fine"] = Penalty;
                                 dt1.Rows[i]["toamt"] = ttlamt;
                                 rowCount++;
@@ -3397,6 +3473,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         string Fooding = "0.00";
                         string Refund = "0.00";
                         string Others = "0.00";
+                        string Bonus = "0.00";
                         string Dress_Bill = "0.00";
                         switch (comcod)
                         {
@@ -3407,6 +3484,12 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                                  //Car_Allow = dt.Rows[i]["Car_Allow"].ToString().Length == 0 ? "0" : dt.Rows[i]["Car_Allow"].ToString();                                 
                                  Refund = dt.Rows[i]["Refund"].ToString().Length == 0 ? "0" : dt.Rows[i]["Refund"].ToString();
                                  Others = dt.Rows[i]["Others"].ToString().Length == 0 ? "0" : dt.Rows[i]["Others"].ToString();                               
+                                break;
+                            case "3370":
+                                Earned_Leave = dt.Rows[i]["Earned_Leave"].ToString().Length == 0 ? "0" : dt.Rows[i]["Earned_Leave"].ToString();
+                                Arear_Salary = dt.Rows[i]["Arear_Salary"].ToString().Length == 0 ? "0" : dt.Rows[i]["Arear_Salary"].ToString();
+                                Bonus = dt.Rows[i]["Bonus"].ToString().Length == 0 ? "0" : dt.Rows[i]["Bonus"].ToString();
+                                
                                 break;
                             default:
                                  Earned_Leave = dt.Rows[i]["Earned_Leave"].ToString().Length == 0 ? "0" : dt.Rows[i]["Earned_Leave"].ToString();
@@ -3462,6 +3545,10 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         {
                             dt.Rows[i]["Dress_Bill"] = 0.00;
                         }
+                        if (!IsNuoDecimal(Bonus))
+                        {
+                            dt.Rows[i]["Bonus"] = 0.00;
+                        }
 
                         dt.AcceptChanges();
                         isAllValid = true;
@@ -3484,6 +3571,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                                 double Others = 0.00;
                                 double Refund = 0.00;
                                 double Dress_Bill = 0.00;
+                               
 
 
                                 switch (comcod)
@@ -3497,6 +3585,14 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                                          Car_Allow = Convert.ToDouble("0" + rows[0]["Car_Allow"]);                                       
                                          Others = Convert.ToDouble("0" + rows[0]["Others"]);
                                          Refund = Convert.ToDouble("0" + rows[0]["Refund"]);                                      
+
+                                        break;
+                                    case "3370":
+
+                                        Earned_Leave = Convert.ToDouble("0" + rows[0]["Earned_Leave"]);
+                                        Arear_Salary = Convert.ToDouble("0" + rows[0]["Arear_Salary"]);
+                                        Project_Visit = Convert.ToDouble("0" + rows[0]["Bonus"]);                                        
+
 
                                         break;
 
