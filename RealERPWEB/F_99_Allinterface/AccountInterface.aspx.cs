@@ -2273,9 +2273,13 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkbtnApp");
+                HyperLink lnkbtnPrint = (HyperLink)e.Row.FindControl("lnkbtnPrintIN");
                 //string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string adno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "adno")).ToString();
+                string todate = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
+
                 hlink1.NavigateUrl = "~/F_17_Acc/AccSalesADandDelay?Type=Entry&genno=" + adno;
+                lnkbtnPrint.NavigateUrl = "~/F_24_CC/CustMaintenanceWork?Type=ReqPrint&Genno=" + adno + "&Date1=" + todate;
             }
         }
 
