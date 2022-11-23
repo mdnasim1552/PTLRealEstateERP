@@ -1113,7 +1113,7 @@
                                             <ItemTemplate>
                                                 <asp:HyperLink ID="lnkbtnReqChecked" runat="server" CssClass="btn btn-xs btn-default" Target="_blank" ForeColor="Black" Font-Underline="false" ToolTip="Requisition Checked"><span class="fa fa-check"></span>
                                                 </asp:HyperLink>
-                                                <asp:LinkButton ID="btnDelReqChecked" runat="server" CssClass="btn btn-xs btn-default" OnClick="btnDelOrderfapproved_Click"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
+                                                <asp:LinkButton ID="btnDelReqChecked" runat="server" CssClass="btn btn-xs btn-default" OnClick="btnDelReqChecked_Click" OnClientClick="return FunConfirm();"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
                                             </ItemTemplate>
                                             <ItemStyle Width="80px" />
                                             <HeaderStyle HorizontalAlign="Center" Width="80px" VerticalAlign="Middle" />
