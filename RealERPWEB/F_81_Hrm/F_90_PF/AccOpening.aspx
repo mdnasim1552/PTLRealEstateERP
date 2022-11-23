@@ -101,7 +101,7 @@
 
 
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-3">
 
                                 <asp:Label ID="lblacccode1" runat="server" CssClass="lblTxt lblName">Accounts Code
 
@@ -111,6 +111,21 @@
                                 <asp:TextBox ID="txtFilter" runat="server" CssClass="form-control"></asp:TextBox>
 
 
+
+                            </div>
+                            <div class="col-lg-2" id="mainDDlPage" runat="server">
+                                 <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName">Page Size</asp:Label>
+                                <asp:DropDownList ID="dgv2ddlPageNo" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="dgv2ddlPageNo_SelectedIndexChanged">
+                                   
+                                    <asp:ListItem>20</asp:ListItem>
+                                    <asp:ListItem>30</asp:ListItem>
+                                    <asp:ListItem>50</asp:ListItem>
+                                    <asp:ListItem>100</asp:ListItem>
+                                    <asp:ListItem>150</asp:ListItem>
+                                    <asp:ListItem>200</asp:ListItem>
+                                    <asp:ListItem>300</asp:ListItem>
+                                    <asp:ListItem>1300</asp:ListItem>
+                                </asp:DropDownList>
 
                             </div>
                             <div class="col-lg-2">
@@ -137,7 +152,7 @@
                             <PagerSettings Visible="False" />
                             <RowStyle />
                             <Columns>
-                                <asp:TemplateField HeaderText="Sl.">
+                                <asp:TemplateField HeaderText="Sl #">
                                     <ItemTemplate>
                                         <asp:Label ID="lblserialnoid" runat="server" Style="text-align: right"
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
@@ -158,17 +173,7 @@
                                         <asp:LinkButton ID="lnkFinalUpdate" runat="server"
                                             OnClick="lnkFinalUpdate_Click"
                                             CssClass="btn btn-danger primarygrdBtn">Final Update</asp:LinkButton>
-
-
-                                        <asp:DropDownList ID="dgv2ddlPageNo" runat="server" AutoPostBack="True"
-                                            Font-Bold="True" Font-Size="14px"
-                                            OnSelectedIndexChanged="dgv2ddlPageNo_SelectedIndexChanged"
-                                            Style="margin: 0 0 0 10px; border-right: navy 1px solid; border-top: navy 1px solid; border-left: navy 1px solid; border-bottom: navy 1px solid"
-                                            Width="180px">
-                                        </asp:DropDownList>
-
-
-
+                                         
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblAccdesc" runat="server"
@@ -241,11 +246,11 @@
 
 
 
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <asp:Label ID="lblacccode" runat="server">Accounts Code</asp:Label>
                                 <asp:TextBox ID="txtActcode" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <asp:Label ID="Label11" runat="server">Resource Code</asp:Label>
                                 <asp:TextBox ID="txtResSearch" runat="server" CssClass="form-control"></asp:TextBox>
 
@@ -269,15 +274,15 @@
 
 
                             </div>
-                            <div class="col-md-1">
+                            <div class="col-md-3">
                             </div>
                             <div class="col-md-2 pull-right">
                                 <asp:LinkButton ID="lnkSubmit" runat="server" CssClass="btn btn-info btn-sm mt-4" OnClick="lnkSubmit_Click">Home</asp:LinkButton>
 
                             </div>
-
+                             
                         </div>
-                        <div class="row">
+                        <div class="row mt-2">
 
                             <asp:GridView ID="dgv3" runat="server" AllowPaging="True"
                                 AutoGenerateColumns="False" OnPageIndexChanging="dgv3_PageIndexChanging"
@@ -286,7 +291,7 @@
                                 <RowStyle />
 
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Sl.">
+                                    <asp:TemplateField HeaderText="Sl #">
                                         <ItemTemplate>
                                             <asp:Label ID="lblserialnoid" runat="server" Style="text-align: right"
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
@@ -386,6 +391,26 @@
                                         <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Company Amount">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="gvtxcompamt" runat="server" BackColor="Transparent"
+                                                BorderColor="Transparent" BorderStyle="None"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "compamt")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="106px" Style="text-align: right"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:TextBox ID="gvtxtftcompamt" runat="server" BackColor="Transparent"
+                                                BorderStyle="None"
+                                                Width="106px" Style="text-align: right">0.00</asp:TextBox>
+                                        </FooterTemplate>
+                                        <FooterStyle HorizontalAlign="Right" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                    </asp:TemplateField>
+
+
+
+
                                 </Columns>
                                 <FooterStyle BackColor="#F5F5F5" />
                                 <EditRowStyle />

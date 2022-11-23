@@ -1228,15 +1228,7 @@ namespace RealERPWEB.F_99_Allinterface
                     hlnkgvacamt.Style.Add("color", "blue");
                     hlnkgvacamt.NavigateUrl = "~/F_32_Mis/LinkImpExeStatus?Type=DayWiseExecution&pactcode=" + pactcode + "&Date1=" + "01-jan-2015" + "&Date2=" + todate;
 
-
-
-
                 }
-
-
-
-
-
 
             }
 

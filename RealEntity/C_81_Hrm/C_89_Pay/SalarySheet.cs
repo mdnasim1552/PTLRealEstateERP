@@ -604,6 +604,7 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public string desig2 { get; set; }
             public double swf { get; set; }
             public double subfee { get; set; }
+            public int seq { get; set; }
 
             public RptSalarySheet ()
             {

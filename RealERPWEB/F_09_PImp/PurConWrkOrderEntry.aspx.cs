@@ -39,7 +39,7 @@ namespace RealERPWEB.F_09_PImp
                 this.GetContractorList();
                 this.GetProjectList();
 
-                string sbody = "Reference to our duccussion and your quotation dated " + System.DateTime.Today.ToString("dd.MM.yyyy") + " , we are pleased to issue works order under the following specifications, terms and conditions and mode of payment.";
+                string sbody = "Reference to our discussion and your quotation dated " + System.DateTime.Today.ToString("dd.MM.yyyy") + " , we are pleased to issue work order under the following specifications, terms and conditions and mode of payment.";
 
 
 
@@ -349,11 +349,13 @@ namespace RealERPWEB.F_09_PImp
         private void printWorkOrderFInt()  
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
+            
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
             string compname = hst["compname"].ToString();
             string comsnam = hst["comsnam"].ToString();
             string comadd = hst["comadd1"].ToString();
+            string comfadd = hst["comadd"].ToString().Replace("<br />", "\n");
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string CurDate = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
@@ -411,6 +413,18 @@ namespace RealERPWEB.F_09_PImp
                 Rpt1.SetParameters(new ReportParameter("Suppl1", Suppl));
                 Rpt1.SetParameters(new ReportParameter("Suppl2", Supp2));
 
+            }
+            else if (comcod == "3370")
+            {
+                refNo = ds1.Tables[1].Rows[0]["pordref"].ToString(); 
+                string orderno = ASTUtility.CustomReqFormat(ds1.Tables[1].Rows[0]["orderno"].ToString());
+               
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrderCPDL", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("workSuppl", Suppl));
+                Rpt1.SetParameters(new ReportParameter("fullComAdd", comfadd));
+                Rpt1.SetParameters(new ReportParameter("refNo1",  refNo));
+                Rpt1.SetParameters(new ReportParameter("orderno", orderno));
             }
             else
             {
