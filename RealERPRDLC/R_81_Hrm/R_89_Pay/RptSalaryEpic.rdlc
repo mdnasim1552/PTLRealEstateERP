@@ -37,9 +37,17 @@
           <DataField>acat</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="adjustamt">
+          <DataField>adjustamt</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="adv">
           <DataField>adv</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="aknment">
+          <DataField>aknment</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="arded">
           <DataField>arded</DataField>
@@ -47,6 +55,34 @@
         </Field>
         <Field Name="arsal">
           <DataField>arsal</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="balleave">
+          <DataField>balleave</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="bank1">
+          <DataField>bank1</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="bank2">
+          <DataField>bank2</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="bank3">
+          <DataField>bank3</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="bank4">
+          <DataField>bank4</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="bank5">
+          <DataField>bank5</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="bank6">
+          <DataField>bank6</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="bankacno">
@@ -65,12 +101,24 @@
           <DataField>bsal</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="carallow">
+          <DataField>carallow</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="carloan">
+          <DataField>carloan</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="cashamt">
           <DataField>cashamt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="cashded">
           <DataField>cashded</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="casuleave">
+          <DataField>casuleave</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="ChequePay">
@@ -101,8 +149,16 @@
           <DataField>dedday</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="deptsl">
+          <DataField>deptsl</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="desig">
           <DataField>desig</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="desig2">
+          <DataField>desig2</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="desigid">
@@ -111,6 +167,10 @@
         </Field>
         <Field Name="elallow">
           <DataField>elallow</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="elencash">
+          <DataField>elencash</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="elftam">
@@ -137,20 +197,48 @@
           <DataField>entaint</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="factualday">
+          <DataField>factualday</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="fallded">
           <DataField>fallded</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="fgrp">
+          <DataField>fgrp</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="fine">
           <DataField>fine</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="finedays">
+          <DataField>finedays</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="foodal">
           <DataField>foodal</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="fpayamt">
+          <DataField>fpayamt</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="ftdesc">
+          <DataField>ftdesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="fuel">
           <DataField>fuel</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="genloan">
+          <DataField>genloan</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="gloan">
+          <DataField>gloan</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="govday">
@@ -165,6 +253,18 @@
           <DataField>grosscash</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="grpcod">
+          <DataField>grpcod</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="grpcode">
+          <DataField>grpcode</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="grpdesc">
+          <DataField>grpdesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="gspay">
           <DataField>gspay</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -175,6 +275,10 @@
         </Field>
         <Field Name="gssal">
           <DataField>gssal</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="gssal1">
+          <DataField>gssal1</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="haircutal">
@@ -201,6 +305,10 @@
           <DataField>incent</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="incrdate">
+          <DataField>incrdate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
         <Field Name="itax">
           <DataField>itax</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -209,8 +317,24 @@
           <DataField>joindate</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
+        <Field Name="joindatebn">
+          <DataField>joindatebn</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="joinsal">
+          <DataField>joinsal</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="kpi">
           <DataField>kpi</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="lateday">
+          <DataField>lateday</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="latededuc">
+          <DataField>latededuc</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="loanbal">
@@ -232,6 +356,14 @@
         <Field Name="lwpday">
           <DataField>lwpday</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="maingrp">
+          <DataField>maingrp</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="maingrpdesc">
+          <DataField>maingrpdesc</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="mallow">
           <DataField>mallow</DataField>
@@ -257,12 +389,28 @@
           <DataField>mcell</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="months">
+          <DataField>months</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="nagadno">
+          <DataField>nagadno</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="nagpercommi">
+          <DataField>nagpercommi</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="netpay">
           <DataField>netpay</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="netpayatax">
           <DataField>netpayatax</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="netpaywnag">
+          <DataField>netpaywnag</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="netwday">
@@ -301,12 +449,32 @@
           <DataField>othearn</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="otrate">
+          <DataField>otrate</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="ottotal">
           <DataField>ottotal</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="payables">
+          <DataField>payables</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="payamta">
+          <DataField>payamta</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="payodramt">
+          <DataField>payodramt</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="perbon">
           <DataField>perbon</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="perloan">
+          <DataField>perloan</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="pfund">
@@ -316,6 +484,14 @@
         <Field Name="pickup">
           <DataField>pickup</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="predeg">
+          <DataField>predeg</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="prodat">
+          <DataField>prodat</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
         <Field Name="redamt">
           <DataField>redamt</DataField>
@@ -328,6 +504,10 @@
         <Field Name="refno">
           <DataField>refno</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="refund">
+          <DataField>refund</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="rmrks">
           <DataField>rmrks</DataField>
@@ -353,6 +533,10 @@
           <DataField>sdedamt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="secsl">
+          <DataField>secsl</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="section">
           <DataField>section</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -360,6 +544,34 @@
         <Field Name="sectionname">
           <DataField>sectionname</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="sectionname1">
+          <DataField>sectionname1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="seq">
+          <DataField>seq</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="sicklv">
+          <DataField>sicklv</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="slno">
+          <DataField>slno</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="stamp">
+          <DataField>stamp</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="subfee">
+          <DataField>subfee</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="swf">
+          <DataField>swf</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="tabday">
           <DataField>tabday</DataField>
@@ -397,8 +609,20 @@
           <DataField>tptallow</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="transded">
+          <DataField>transded</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="tripal">
           <DataField>tripal</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="tripday">
+          <DataField>tripday</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="trprate">
+          <DataField>trprate</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="wd">
@@ -415,6 +639,10 @@
         </Field>
         <Field Name="wld">
           <DataField>wld</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="years">
+          <DataField>years</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
       </Fields>
@@ -4488,7 +4716,7 @@
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!sectionname.Value</Value>
+                      <Value>=Fields!seq.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                   <TablixMembers>
@@ -4507,9 +4735,14 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
+            <SortExpressions>
+              <SortExpression>
+                <Value>=Fields!idcard.Value</Value>
+              </SortExpression>
+            </SortExpressions>
             <Top>0.05034in</Top>
             <Left>0.025in</Left>
-            <Height>1.325in</Height>
+            <Height>1.32499in</Height>
             <Width>13.6049in</Width>
             <Style>
               <Border>
