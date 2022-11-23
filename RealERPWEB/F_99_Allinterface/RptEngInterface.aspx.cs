@@ -1621,5 +1621,41 @@ namespace RealERPWEB.F_99_Allinterface
                 
             }
         }
+
+        protected void btnDelReqChecked_Click(object sender, EventArgs e)
+        {
+            GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int rowindex = gvr.RowIndex;
+            string comcod = this.GetCompCode();
+            string reqno = ((Label)this.gvReqCheck.Rows[rowindex].FindControl("lblgvReqChkreqno")).Text.Trim();
+            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "DELETEOTHERREQCHECK", reqno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (result == true)
+            {
+
+                this.reqStatus();
+                this.RadioButtonList1_SelectedIndexChanged(null, null);
+            }
+
+            else
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Update Fail');", true);
+                return;
+
+            }
+
+
+            
+
+            if (ConstantInfo.LogStatus == true)
+            {
+                string eventtype = "Final Approval";
+                string eventdesc = "Final Approval Delete";
+                string eventdesc2 = "Requisition No: " + reqno;
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+
+        }
     }
 }
