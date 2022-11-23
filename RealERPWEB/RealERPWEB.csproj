@@ -168,14 +168,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-
-
-
       <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
-
-
-
-
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2281,6 +2274,7 @@
     <Content Include="F_17_Acc\RptOPPaymentTopSheet.aspx" />
     <Content Include="F_17_Acc\RptSupplierOvAllPSummary.aspx" />
     <Content Include="F_21_MKT\AdvancedSearchFilter.aspx" />
+    <Content Include="F_21_MKT\FunnelAnalysis.aspx" />
     <Content Include="F_21_MKT\LandProspectTransfer.aspx" />
     <Content Include="F_21_MKT\MktGenCodeBookLand.aspx" />
     <Content Include="F_21_MKT\RptDailyWorkStatus.aspx" />
@@ -4212,6 +4206,13 @@
     </Compile>
     <Compile Include="F_21_MKT\AdvancedSearchFilter.aspx.designer.cs">
       <DependentUpon>AdvancedSearchFilter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\FunnelAnalysis.aspx.cs">
+      <DependentUpon>FunnelAnalysis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\FunnelAnalysis.aspx.designer.cs">
+      <DependentUpon>FunnelAnalysis.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\LandProspectTransfer.aspx.cs">
       <DependentUpon>LandProspectTransfer.aspx</DependentUpon>
