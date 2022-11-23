@@ -1132,6 +1132,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2103000", "2103125", "F_21_MKT", "AdvancedSearchFilter", "", "Advanced Search Filter", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2103000", "2103126", "F_21_MKT", "RptDailyWorkStatus?", "Type=EmpWise", "Daily Work Status (Employee Wise)", "CRM", "False", "False", "False", "False" });
 
+            tblObj.Rows.Add(new Object[] { "2103000", "2103127", "F_21_MKT", "FunnelAnalysis?", "Type=Report", "Funnel Analysis - Month Wise", "CRM", "False", "False", "False", "False" });
+             
+
             //tblObj.Rows.Add(new Object[] { "3903000", "3903001", "EmpKpiEntry03?", "Type=Client", "Daily Job Execution", "My Marketing Interface(Marketing)", "False", "False", "False"});
             tblObj.Rows.Add(new Object[] { "2103000", "2102125", "F_39_MyPage", "RptEmpMonthWiseEva03?", "Type=IndEmp", "Month Wise Evaluation", "My Marketing Interface(Marketing)", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2103000", "2102126", "F_39_MyPage", "RptMIS02?", "Type=EvaonProBasis", "Evaluation on Project", "My Marketing Interface(Marketing)", "False", "False", "False" });
@@ -7346,6 +7349,9 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000005", "18. Source Wise Leads", "F_21_MKT/RptCallCenterLead?Type=SourceWise", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000006", "19. Sales Person Wise Leads", "F_21_MKT/RptCallCenterLead?Type=SalespWise", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000007", "20. Daily Work Status (Employee Wise)", "F_21_MKT/RptDailyWorkStatus?Type=EmpWise", "", true, "" });
+
+            mnuTbl1.Rows.Add(new Object[] { "0401000008", "21. Funnel Analysis - Month Wise", "F_21_MKT/FunnelAnalysis?Type=Report", "", true, "" });
+ 
 
 
 
