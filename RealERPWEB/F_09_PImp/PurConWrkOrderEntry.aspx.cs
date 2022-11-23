@@ -39,7 +39,7 @@ namespace RealERPWEB.F_09_PImp
                 this.GetContractorList();
                 this.GetProjectList();
 
-                string sbody = "Reference to our duccussion and your quotation dated " + System.DateTime.Today.ToString("dd.MM.yyyy") + " , we are pleased to issue works order under the following specifications, terms and conditions and mode of payment.";
+                string sbody = "Reference to our discussion and your quotation dated " + System.DateTime.Today.ToString("dd.MM.yyyy") + " , we are pleased to issue work order under the following specifications, terms and conditions and mode of payment.";
 
 
 
