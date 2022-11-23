@@ -704,7 +704,7 @@ namespace RealERPWEB.F_99_Allinterface
             this.GetProjectDetails();
             this.GetCustomerList();
           
-            this.GetLastid();
+           // this.GetLastid();
        
             this.LoadGrid();
             this.IsClearAddProject();
@@ -759,21 +759,33 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
             Session["tblprojectdetails"] = dt3.Tables[0];
         }
-        private string GetLastid(string code = "")
+        private string GetLastid()
         {
             string sircode = "";
 
-            string comcod = this.GetCompCode();
-            string calltype = (code == "" ? "GETLASTPRJCODEID" : "GETLASTPRJCODESOWID"  );
-            DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", calltype, "", "", "", "", "", "");
+            string comcod = this.GetCompCode();           
 
 
+            //string calltype =(orderType == "80101" ?  : "GETLASTPRJCODESOWID");// (code == "" ? "GETLASTPRJCODEID" : "GETLASTPRJCODESOWID"  );
+            DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI","GETLASTPRJCODEID", "", "", "", "", "", "");
             if (ds1 == null)
                 return sircode;
             sircode = ds1.Tables[0].Rows[0]["sircode"].ToString();
 
             return sircode;
 
+        }
+        private string GetSowLastId()
+        {
+            string sircode = "";
+            string comcod = this.GetCompCode();
+            DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETLASTPRJCODESOWID", "", "", "", "", "", "");
+            if (ds1 == null)
+                return sircode;
+            sircode = ds1.Tables[0].Rows[0]["sircode"].ToString();
+
+            return sircode;
+            
         }
 
         private void isFiledClear()
@@ -1138,7 +1150,8 @@ namespace RealERPWEB.F_99_Allinterface
                 //}
                 //    string ordertype = "";
                 string sircode = "";
-                sircode = prjcode.Length > 0 ? prjcode : this.GetLastid();
+                sircode = this.GetLastid();
+                 //sircode = prjcode.Length > 0 ? prjcode :"";
 
                 for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
                 {
@@ -1456,11 +1469,11 @@ namespace RealERPWEB.F_99_Allinterface
                 double doneannotor = Convert.ToDouble("0" + this.lblDoneAnnot.Text.ToString());
                 double doneqc = Convert.ToDouble("0" + this.lblDoneQC.Text.ToString());
                 double doneqa = Convert.ToDouble("0" + this.lblDoneQA.Text.ToString());
-                if (roletype == "95001" && pedingannotor < assignqty )
+                if (roletype == "95001" && pedingannotor < assignqty && pedingannotor !=0)
                 {
 
 
-                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then PendingAnnotator  " + pedingannotor.ToString();
+                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then DataSet Qty  " + pedingannotor.ToString();
                     this.txtquantity.Focus();
 
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
@@ -1470,14 +1483,14 @@ namespace RealERPWEB.F_99_Allinterface
                 }
                 else if (roletype == "95002" && doneannotor < assignqty  )
                 {
-                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then PendingAnnotator  " + doneannotor.ToString();
+                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneannotor  " + doneannotor.ToString();
                     this.txtquantity.Focus();
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
                 }
                 else if (roletype == "95003" && doneqc < assignqty )
                 {
-                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then PendingAnnotator  " + doneqc.ToString();
+                    string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneqc  " + doneqc.ToString();
                     this.txtquantity.Focus();
 
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
@@ -2046,6 +2059,8 @@ namespace RealERPWEB.F_99_Allinterface
                 this.GetCountry();
                 this.GetProjectDetails();
                 this.LoadGrid("", value, empid, doneqty);
+                this.btnProjectSave.Visible = false;
+                this.btnsowConvert.Visible = true;
             }
             catch (Exception exp)
             {
@@ -2087,6 +2102,67 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 string rate = "80";
                 this.textrate.Text = rate;
+            }
+        }
+
+        protected void btnsowConvert_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string prjcode = this.lblproj.Text.Trim().ToString();
+                string comcod = this.GetCompCode();
+                //DataTable dt = (DataTable)ViewState["tblcustinf"];
+                //for (int i = 0; i < dt.Rows.Count; i++)
+                //{
+                //    string Gcode = dt.Rows[i]["gcod"].ToString();
+
+                //}
+                //    string ordertype = "";
+                string sircode = "";
+                sircode = this.GetSowLastId();
+                //sircode = prjcode.Length > 0 ? prjcode :"";
+
+                for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
+                {
+
+                    string Gcode = ((Label)this.gvProjectInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
+                    string gtype = ((Label)this.gvProjectInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
+
+
+                    string Gvalue = (((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
+
+
+                    if (Gcode == "03008" || Gcode == "03009")
+                    {
+                        Gvalue = (((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? "01-Jan-1900" : ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
+                    }
+                    if (Gcode == "03015" || Gcode == "03017" || Gcode == "03019")
+                    {
+                        Gvalue = (((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Text.Trim() == "") ? "0.00" : ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Text.Trim();
+                    }
+
+                    Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : Gvalue;
+                    Gvalue = (gtype == "N") ? Convert.ToDouble("0" + Gvalue).ToString() : Gvalue;
+
+
+
+                    bool result = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "PROJECT_INSERTUPDATE", sircode, Gcode, gtype, Gvalue, "", "", "", "");
+                    if (!result)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Updated Fail..!!');", true);
+                        return;
+                    }
+
+                }
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Project Saved Successfully');", true);
+                this.TasktState.SelectedIndex = 0;
+                this.TasktState_SelectedIndexChanged(null, null);
+                this.IsClearAddProject();
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
             }
         }
     }

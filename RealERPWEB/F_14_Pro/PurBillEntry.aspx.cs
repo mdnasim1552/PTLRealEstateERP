@@ -208,9 +208,9 @@ namespace RealERPWEB.F_14_Pro
 
                     break;
 
-                //case "3101":
+                case "3101":
                 case "3366":// Lanco
-                    PrintReq = "PrintBill09";
+                    PrintReq = "PrintBillLanco";
 
                     break;
 
@@ -265,8 +265,8 @@ namespace RealERPWEB.F_14_Pro
             else if (printcomreq == "PrintBill08")
                 this.PrintBill08();
 
-            else if (printcomreq == "PrintBill09")
-                this.PrintBill09();
+            else if (printcomreq == "PrintBillLanco")
+                this.PrintBillLanco(); 
 
             else if (printcomreq == "PrintBillFinlay")
                 this.PrintBillFinlay();
@@ -1196,20 +1196,20 @@ namespace RealERPWEB.F_14_Pro
             // rdlc start
             string inword = "Taka In Word: " + ASTUtility.Trans((amt1 - amt2), 2);
             string mrfno = ds1.Tables[1].Rows[0]["mrfno"].ToString();
-            string orderno = GetCustomFormat(ds1.Tables[0].Rows[0]["orderno"].ToString());
+            string orderno = ASTUtility.CustomReqFormat(ds1.Tables[0].Rows[0]["orderno"].ToString());
             string refno = this.txtBillRef.Text;
             string chlno = ds1.Tables[0].Rows[0]["chlnno"].ToString();
-            string mrrno = GetCustomFormat(ds1.Tables[0].Rows[0]["mrrno"].ToString());
+            string mrrno = ASTUtility.CustomReqFormat(ds1.Tables[0].Rows[0]["mrrno"].ToString());
             string projectName = "Project Name : " + ds1.Tables[0].Rows[0]["pactdesc"].ToString();
             string suppname = "Supplier Name: " + ds1.Tables[1].Rows[0]["ssirdesc"].ToString();
-            string billno = GetCustomFormat(ds1.Tables[1].Rows[0]["billno"].ToString());            
+            string billno = ASTUtility.CustomReqFormat(ds1.Tables[1].Rows[0]["billno"].ToString());            
             string mrrref = ds1.Tables[0].Rows[0]["mrrref"].ToString();             
             string narration = "Narration : " + ds1.Tables[1].Rows[0]["billnar"].ToString();
 
 
 
             string txtMrrdate = ds1.Tables[0].Rows[0]["mrrdate"].ToString();
-            string txtReqno = GetCustomFormat(ds1.Tables[0].Rows[0]["reqno"].ToString());           
+            string txtReqno = ASTUtility.CustomReqFormat(ds1.Tables[0].Rows[0]["reqno"].ToString());           
             string txtChalandate = ds1.Tables[0].Rows[0]["challandat"].ToString();
             string txtPodate = ds1.Tables[3].Rows[0]["orddat"].ToString();
             string txtBillref = ds1.Tables[1].Rows[0]["billref"].ToString();
@@ -1275,23 +1275,6 @@ namespace RealERPWEB.F_14_Pro
 
 
         }
-
-        private string GetCustomFormat(string refno)
-        {
-            string _refno = refno;
-            if (refno.Length == 14)
-            {
-                string part1 = "", part2 = "", part3 = "", part4 = "";
-                part1 = refno.Substring(0, 3);
-                part2 = refno.Substring(5, 2);
-                part3 = refno.Substring(7, 2);
-                part4 = refno.Substring(9);
-
-                _refno = part1 + part2 + "-" + part3 + "-" + part4;
-            }
-            return _refno;
-        }
-
 
         private void PrintBill07()
         {
@@ -1547,7 +1530,7 @@ namespace RealERPWEB.F_14_Pro
             // rdlc end
 
         }
-        private void PrintBill09()
+        private void PrintBillLanco() 
         {
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -1641,7 +1624,7 @@ namespace RealERPWEB.F_14_Pro
             string reqname = ds1.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["reqdat"].ToString();
             string reqapname = ds1.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["reqadat"].ToString();
             string ordpro = ds1.Tables[3].Rows[0]["appnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["appdat"].ToString();
-            string purchord = ds1.Tables[3].Rows[0]["ordnam1"].ToString() + "\n" + ds1.Tables[3].Rows[0]["orddat"].ToString();
+            string purchord = ds1.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["orddat"].ToString();
             string recvby = ds1.Tables[3].Rows[0]["mrrnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["mrrdat"].ToString();
             string billname = ds1.Tables[3].Rows[0]["billnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["billdat"].ToString();
             string rptReqChk = ds1.Tables[3].Rows[0]["checknam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["checkdat"].ToString();

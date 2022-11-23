@@ -527,25 +527,30 @@ namespace RealERPWEB.F_17_Acc
             double amt1 = Convert.ToDouble((Convert.IsDBNull(dtrpt.Compute("Sum(paidamt)", "")) ? 0.00 : dtrpt.Compute("Sum(paidamt)", "")));
             string amt1t = ASTUtility.Trans(amt1, 2);
             string Typedes = "";
+            string Paydesc = "";
 
             if (paytype == "CHEQUE")
             {
                 Typedes = paytype + ", " + "No: " + chqno + ", Bank: " + bankname + ", Branch: " + branch;
+                Paydesc = paytype;
 
             }
             else if (paytype == "P.O")
             {
                 Typedes = paytype + ", " + "No: " + chqno + ", Bank: " + bankname + ", Branch: " + branch;
+                Paydesc = paytype;
 
             }
             else if(paytype == "CASH")
             {
                 Typedes = paytype;
+                Paydesc = paytype;
             }
             else
             {
 
                 Typedes = paytype;
+                Paydesc = paytype;
             }
 
             string Type = this.CompanyPrintMR();
@@ -814,7 +819,7 @@ namespace RealERPWEB.F_17_Acc
             {
                 var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
                 string currentdate = DateTime.Now.ToString("MMM dd, yyyy hh:mm tt");
-                string changetext = Typedes == ""? "Cheque": Typedes;
+                string changetext = Paydesc == "CHEQUE" ? "Cheque": Paydesc == "CASH" ? "Cash":  paytype;
                 string shortcomnam = "CPDL.";
                 string amt22 = amt1t.Replace("(", "").Replace(")", "").Trim();
                 string vounum = dtrpt.Rows[0]["vounum"].ToString();
@@ -845,7 +850,7 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("takainword", amt22.Replace("Taka", "").Replace("Only", "Taka Only")));
                     Rpt1.SetParameters(new ReportParameter("As", ((Installment == "") ? rectype : Installment)));
                     Rpt1.SetParameters(new ReportParameter("takainword1", amt1t.Replace("Taka", "").Replace("Only", "Taka Only") + " " + "AS " + ((Installment == "") ? rectype : Installment)));
-                    Rpt1.SetParameters(new ReportParameter("paytype", (Typedes=="")? "Cheque No :" + chqno : Typedes));
+                    Rpt1.SetParameters(new ReportParameter("paytype", (Paydesc== "CHEQUE")? "Cheque No :" + chqno : Paydesc));
                     Rpt1.SetParameters(new ReportParameter("chqno", chqno));
                     Rpt1.SetParameters(new ReportParameter("bank", bankname));
                     Rpt1.SetParameters(new ReportParameter("branch", branch));

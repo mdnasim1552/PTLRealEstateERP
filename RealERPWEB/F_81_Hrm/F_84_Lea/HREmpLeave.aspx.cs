@@ -345,7 +345,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             {
                 dtfilter = view.ToTable();
             }
-            if (GetComeCode() == "3354")
+            if (GetComeCode() == "3354" || GetComeCode() == "3370")
             {
                 this.gvLeaveRule.Columns[0].HeaderText = "sl no";
 

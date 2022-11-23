@@ -705,7 +705,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Order Type">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblordertype" runat="server" Height="16px"
+                                                    <asp:Label ID="lblordertype" runat="server"  CssClass='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype")) =="Pilot" ? "btn btn-info text-white":" " %>'
                                                         Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype"))%>'
                                                         ForeColor="Black"></asp:Label>
                                                 </ItemTemplate>
@@ -943,8 +943,8 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="work Status">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblbatchworkstatus" runat="server" Height="16px" CssClass="badge badge-pill badge-info"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "workstatus")) %>' Width="100px"></asp:Label>
+                                                    <asp:Label ID="lblbatchworkstatus" runat="server"  CssClass="badge badge-pill badge-info"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "workstatus")) %>' ></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1457,9 +1457,9 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Job Status">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvqcjobstatus" runat="server" Height="16px" CssClass="badge badge-pill badge-info"
+                                                    <asp:Label ID="lblgvqcjobstatus" runat="server" CssClass="badge badge-pill badge-info"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus")) %>'
-                                                        Width="100px"></asp:Label>
+                                                        ></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1654,9 +1654,9 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Job Status">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvqajobstatus" runat="server" Height="16px" CssClass="badge badge-pill badge-info"
+                                                    <asp:Label ID="lblgvqajobstatus" runat="server"  CssClass="badge badge-pill badge-info"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus")) %>'
-                                                        Width="100px"></asp:Label>
+                                                        ></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1996,9 +1996,9 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Job Status">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvarjobstatus" runat="server" Height="16px" CssClass="badge badge-pill badge-info"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus")) %>'
-                                                        Width="100px"></asp:Label>
+                                                    <asp:Label ID="lblgvarjobstatus" runat="server"  CssClass="badge badge-pill badge-info"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus")) %>'>
+                                                        </asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -2233,6 +2233,7 @@
                             <div class="modal-body">
                                 <asp:Label runat="server" Visible="false" ID="lblsowproject"></asp:Label>
                                 <asp:Label runat="server" ID="lblproj" Visible="false"></asp:Label>
+
                                 <asp:GridView ID="gvProjectInfo" runat="server" AutoGenerateColumns="False" CssClass="table-bordered gview"
                                     ShowFooter="False" ShowHeader="false" AllowPaging="false" Visible="True" Width="100%">
 
@@ -2308,6 +2309,7 @@
                                     <HeaderStyle CssClass="grvHeader" />
                                 </asp:GridView>
                                 <asp:LinkButton ID="btnProjectSave" runat="server" OnClick="btnProjectSave_Click" CssClass="btn btn-primary btn-sm  float-right">Project Save</asp:LinkButton>
+                                <asp:LinkButton ID="btnsowConvert" runat="server" OnClick="btnsowConvert_Click" Visible="false" CssClass="btn btn-primary btn-sm  float-right">Projects Save</asp:LinkButton>
 
                             </div>
                         </div>

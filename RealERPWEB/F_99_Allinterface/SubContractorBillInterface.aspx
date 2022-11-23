@@ -509,7 +509,7 @@
                 comcod = <%=this.GetCompCode()%>;
                 switch (comcod) {
 
-                    
+
                     case 1205:   //p2p
                     case 3351:   //p2p
                     case 3352:   //p2p
@@ -525,7 +525,7 @@
                         $('#<%=this.txtrefno.ClientID%>').prop('readonly', false);
                         break;
 
-                    case 3101://ASIT
+                    //case 3101://ASIT
                     case 3370:   //cpdl
                         $(".tbMenuWrp table tr td:nth-child(1)").hide();
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();
@@ -577,6 +577,7 @@
                         $(".tbMenuWrp table tr td:nth-child(15)").hide();
                         break;
 
+                    case 3101:
                     case 3366:
                         $(".tbMenuWrp table tr td:nth-child(1)").hide();
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();
@@ -587,7 +588,7 @@
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
                         $(".tbMenuWrp table tr td:nth-child(8)").hide();
                         $(".tbMenuWrp table tr td:nth-child(9)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(11)").hide(); // 9 - for billApproval
+                        //$(".tbMenuWrp table tr td:nth-child(11)").hide(); // 9 - for billApproval
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
                         $(".tbMenuWrp table tr td:nth-child(15)").hide();
@@ -903,8 +904,10 @@
                                                     <asp:ListItem Value="5"></asp:ListItem>
                                                     <%--bill work Order--%>
 
-                                                     <asp:ListItem Value="6"></asp:ListItem> <%--mb book entry--%>   
-                                                     <asp:ListItem Value="7"></asp:ListItem> <%--mb book Approval--%>   
+                                                    <asp:ListItem Value="6"></asp:ListItem>
+                                                    <%--mb book entry--%>
+                                                    <asp:ListItem Value="7"></asp:ListItem>
+                                                    <%--mb book Approval--%>
                                                     <asp:ListItem Value="8"></asp:ListItem>
                                                     <%--Ready for Bill--%>
                                                     <asp:ListItem Value="9"></asp:ListItem>
@@ -1527,21 +1530,19 @@
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
                                                     <%--<asp:HyperLink ID="lnkbtnPrintIN" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span></asp:HyperLink>--%>
-
-
                                                     <asp:HyperLink ID="lnkbtnbillapp" runat="server" ToolTip="Bill Approval" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                     </asp:HyperLink>
 
-                                                     <asp:HyperLink ID="hlnkBillDetails" runat="server" ToolTip="MB Details" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs" ><i class=" fa fa-info-circle" aria-hidden="false"></i>
+                                                    <asp:HyperLink ID="hlnkBillDetails" runat="server" ToolTip="MB Details" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"
+                                                        Visible='<%# (Convert.ToBoolean((Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) == "3370") || (Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) == "3101")) ? true : false)%>'>  
+                                                         <i class=" fa fa-info-circle" aria-hidden="false"></i>
                                                     </asp:HyperLink>
-                                                 
 
-
-
-                                                  <%--  <asp:HyperLink ID="lnkbtnEditBilll" ToolTip="Edit" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span style="color:black" class="fas fa-edit"></span>
-                                                    </asp:HyperLink>
-                                                    <asp:LinkButton ID="btnDelReqCheck" OnClick="btnDelReqCheck_OnClick" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa  fa-recycle"></span> </asp:LinkButton>--%>
-
+                                                 <%-- <asp:HyperLink ID="lnkbtnEditBilll" ToolTip="Edit" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span style="color:black" class="fas fa-edit"></span>
+                                                    </asp:HyperLink>--%>
+                                                    <asp:LinkButton ID="btnDelbillapp" OnClick="btnDelbillapp_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs" ToolTip="Delete Bill Checked"
+                                                        Visible='<%# (Convert.ToBoolean((Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) == "3370")) ? false : true)%>'>
+                                                        <span style="color:red" class="fa  fa-recycle"></span> </asp:LinkButton>
                                                 </ItemTemplate>
                                                 <ItemStyle Width="150px" />
                                                 <HeaderStyle HorizontalAlign="Center" Width="150px" VerticalAlign="Top" />
@@ -2179,6 +2180,19 @@
                                                 <HeaderStyle HorizontalAlign="Center" Width="150px" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
+
+                                            <asp:TemplateField HeaderText="">
+                                                <ItemTemplate>
+                                                    <asp:HyperLink ID="hlnkBillDetailsfin" runat="server" ToolTip="MB Details" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs" visible='<%# (Convert.ToBoolean((Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) == "3370") || (Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) == "3101")) ? true : false)%>'><i class=" fa fa-info-circle" aria-hidden="false"></i>
+                                                    </asp:HyperLink>
+                                                </ItemTemplate>
+
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+
+
+
                                         </Columns>
                                         <FooterStyle CssClass="grvFooter" />
                                         <EditRowStyle />
@@ -2402,15 +2416,23 @@
 
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
-
-
-
                                                     <asp:LinkButton ID="btnDelfinapp" OnClick="btnDelfinapp_OnClick" ToolTip="Cancel" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa  fa-recycle"></span> </asp:LinkButton>
-
                                                 </ItemTemplate>
                                                 <ItemStyle Width="40px" />
                                                 <HeaderStyle HorizontalAlign="Center" Width="40px" VerticalAlign="Top" />
                                             </asp:TemplateField>
+
+
+                                            <asp:TemplateField HeaderText="">
+                                                <ItemTemplate>
+                                                    <asp:HyperLink ID="hlnkBillDetailsfinapp" runat="server" ToolTip="MB Details" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"
+                                                        visible='<%# (Convert.ToBoolean((Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) == "3370") || (Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) == "3101")) ? true : false)%>' ><i class=" fa fa-info-circle" aria-hidden="false"></i> 
+                                                    </asp:HyperLink>
+                                                </ItemTemplate>
+
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
 
 
                                         </Columns>
@@ -2958,8 +2980,8 @@
                                         <RowStyle CssClass="grvRows" />
                                     </asp:GridView>
                                 </asp:Panel>
-                                 <asp:Panel ID="pnlMbook" runat="server">
-                                       <asp:GridView ID="gvmbook" runat="server" AutoGenerateColumns="False"
+                                <asp:Panel ID="pnlMbook" runat="server">
+                                    <asp:GridView ID="gvmbook" runat="server" AutoGenerateColumns="False"
                                         ShowFooter="True" CssClass=" table-striped table-bordered grvContentarea" OnRowDataBound="gvmbook_RowDataBound">
                                         <RowStyle />
                                         <Columns>
@@ -3120,10 +3142,10 @@
                                         <HeaderStyle CssClass="grvHeader" />
                                         <RowStyle CssClass="grvRows" />
                                     </asp:GridView>
-                                     </asp:Panel>
+                                </asp:Panel>
 
-                                  <asp:Panel ID="pnlMbookApp" runat="server">
-                                             <asp:GridView ID="gvmbookapp" runat="server" AutoGenerateColumns="False"
+                                <asp:Panel ID="pnlMbookApp" runat="server">
+                                    <asp:GridView ID="gvmbookapp" runat="server" AutoGenerateColumns="False"
                                         ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvmbookapp_RowDataBound">
                                         <RowStyle />
                                         <Columns>
@@ -3285,7 +3307,7 @@
                                         <RowStyle CssClass="grvRows" />
                                     </asp:GridView>
 
-                                     </asp:Panel>
+                                </asp:Panel>
                                 <asp:Panel ID="PanelReadyForBil" runat="server">
                                     <asp:GridView ID="gvReadyForBill" runat="server" AutoGenerateColumns="False"
                                         ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvReadyForBill_RowDataBound">
@@ -3393,7 +3415,7 @@
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                             <asp:TemplateField HeaderText="MB No">
+                                            <asp:TemplateField HeaderText="MB No">
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvmbno" runat="server"

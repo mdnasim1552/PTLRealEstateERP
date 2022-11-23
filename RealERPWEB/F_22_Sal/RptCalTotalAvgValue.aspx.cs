@@ -148,6 +148,25 @@ namespace RealERPWEB.F_22_Sal
 
 
 
+        private string Calltype()
+        {
+            string comcod = this.GetCompCode();
+            string Calltype = "";
+            switch (comcod)
+            {
+                case "3101":
+                case "3368":
+
+                    Calltype = "CALTOTALAVGVAL02";
+                    break;
+                default:
+                    Calltype = "CALTOTALAVGVAL";
+                    break;
+
+            }
+            return Calltype;
+        }
+
 
 
         protected void lbtnOk_Click(object sender, EventArgs e)
@@ -157,8 +176,8 @@ namespace RealERPWEB.F_22_Sal
             string frmdate = this.txtDate.Text.ToString();
             string todate = this.txttodate.Text.ToString();
             string ProjectCode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "000000000000" : this.ddlProjectName.SelectedValue.ToString();
-
-            DataSet ds2 = CustData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "CALTOTALAVGVAL", ProjectCode, frmdate, todate, "", "", "", "", "", "");
+            string Calltype = this.Calltype();
+            DataSet ds2 = CustData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", Calltype, ProjectCode, frmdate, todate, "", "", "", "", "", "");
             if (ds2 == null)
             {
                 this.grvsoldinf.DataSource = null;

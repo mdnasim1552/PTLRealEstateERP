@@ -35,8 +35,17 @@ namespace RealERPWEB.F_22_Sal
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string type = this.Request.QueryString["Type"].ToString();
-
-                ((Label)this.Master.FindControl("lblTitle")).Text = type == "Details" ? "Availability Chart 1" : "Availability Chart 2";
+                if (type == "BookingChart")
+                {
+                    this.divGVData.Visible = false;
+                    this.divgvChart.Visible = true;
+                }
+                else
+                {
+                    this.divGVData.Visible = true;
+                    this.divgvChart.Visible = false;
+                }
+                ((Label)this.Master.FindControl("lblTitle")).Text = (type == "Details" ? "Availability Chart 1" : type == "BookingChart" ? "Booking Chart" : "Availability Chart 2");
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -64,6 +73,7 @@ namespace RealERPWEB.F_22_Sal
                     }
                     break;
                 default:
+
                     break;
             }
 
@@ -106,9 +116,11 @@ namespace RealERPWEB.F_22_Sal
         }
         protected void lnkbtnSerOk_Click(object sender, EventArgs e)
         {
+            this.divUnitGraph.InnerHtml = "";
+            Session.Remove("tblAvChart");
+            Session.Remove("tblflorlist");
+            Session.Remove("tblflorUnit");
             this.ShowReport();
-            rbtnList_SelectedIndexChanged(null, null);
-
         }
 
         protected void lnkPrint_Click(object sender, EventArgs e)
@@ -240,13 +252,22 @@ namespace RealERPWEB.F_22_Sal
         }
         private void ShowReport()
         {
-            Session.Remove("tblAvChart");
-            Session.Remove("tblflorlist");
-            Session.Remove("tblflorUnit");
+
             string comcod = this.GetComCode();
-            string CallType = (this.Request.QueryString["Type"].ToString() == "Details") ? "AVAILCHART" : "AVAILCHART02";
-            string pactcode = ((this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "18" : this.ddlProjectName.SelectedValue.ToString()) + "%"; 
+            string type = this.Request.QueryString["Type"].ToString();
+
+            string CallType = (type == "Details") ? "AVAILCHART" : (type == "BookingChart") ? "AVAILCHART" : "AVAILCHART02";
+            string pactcode = ((this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "18" : this.ddlProjectName.SelectedValue.ToString()) + "%";
+            if (type == "BookingChart" && pactcode == "18%")
+            {
+                string Message = "Please Select Project";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+                return;
+            }
+
             DataSet ds2 = feaData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, "", "", "", "", "", "", "", "");
+
+
             if (ds2 == null || ds2.Tables[0].Rows.Count == 0 || ds2.Tables[1].Rows.Count == 0)
             {
                 this.gvAailChart.DataSource = null;
@@ -258,9 +279,17 @@ namespace RealERPWEB.F_22_Sal
             Session["tblAvChart"] = dt;
             this.Data_Bind();
             Session["tblFtCal"] = (DataTable)ds2.Tables[1];
-            Session["tblflorlist"] = (DataTable)ds2.Tables[2];
-            Session["tblflorUnit"] = (DataTable)ds2.Tables[3];
-
+           
+             
+            if(type== "BookingChart")
+            {
+                Session["tblflorlist"] = (DataTable)ds2.Tables[2];
+                Session["tblflorUnit"] = (DataTable)ds2.Tables[3];
+                Session["grpname"] = (DataTable)ds2.Tables[4];
+                Session["floorname"] = (DataTable)ds2.Tables[5];
+                GetAvailabilityChart();
+                
+            }
             // this.FooterCalculation();
         }
 
@@ -337,21 +366,7 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
-        protected void rbtnList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string datatype = this.rbtnList.SelectedValue.ToString();
-            if (datatype=="0")
-            {
-                this.divGVData.Visible = true;
-                this.divgvChart.Visible = false;
-            }
-            else
-            {
-                this.divGVData.Visible = false;
-                this.divgvChart.Visible = true;
-                GetAvailabilityChart();
-            }
-        }
+
 
         private void Data_Bind()
         {
@@ -364,42 +379,105 @@ namespace RealERPWEB.F_22_Sal
             this.CompVisibility();
         }
 
+        protected void ddlGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+            GetAvailabilityChartFilterData();
+        }
+        protected void ddlFloor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetAvailabilityChartFilterData();
+        }
+
         private void GetAvailabilityChart()
+        {
+            try
+            {
+                DataTable dtgrp = (DataTable)Session["grpname"];
+                DataTable dtglorname = (DataTable)Session["floorname"];
+
+               
+                this.ddlGroup.DataTextField = "groupdesc";
+                this.ddlGroup.DataValueField = "groupcode"; 
+                this.ddlGroup.DataSource = dtgrp;                 
+                this.ddlGroup.DataBind();
+
+                this.ddlFloor.DataTextField = "flrdesc";
+                this.ddlFloor.DataValueField = "floorcode";                
+                this.ddlFloor.DataSource = dtglorname;
+                this.ddlFloor.DataBind();
+
+                GetAvailabilityChartFilterData();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
+
+        }
+
+
+        private void GetAvailabilityChartFilterData()
         {
             DataTable dt = (DataTable)Session["tblflorlist"];
             DataTable dtunit = (DataTable)Session["tblflorUnit"];
+
+            string grp = this.ddlGroup.SelectedValue.ToString();
+            string florr = this.ddlFloor.SelectedValue.ToString();
+
+            DataView dvflor = dt.Copy().DefaultView;
+            dvflor.RowFilter = ("groupcode like'" + grp + "%' and floorcode like'" + florr + "%'");
+            dt = dvflor.ToTable();
+
+
             string str = string.Empty;
-            string strunit = string.Empty;
+
+            string bgcolor = "";
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                string usircode = dt.Rows[i]["usircode1"].ToString();
+                string usircode1 = dt.Rows[i]["usircode1"].ToString();
                 string pactcode = dt.Rows[i]["pactcode"].ToString();
-
                 DataTable dtunitfilter = new DataTable();
-                DataView dv = dtunit.DefaultView;
-                dv.RowFilter = ("usircode1='" + usircode + "' and pactcode='"+ pactcode + "'");   
+                string strunit = string.Empty;
+
+
+                DataView dv = dtunit.Copy().DefaultView;
+                dv.RowFilter = ("usircode1='" + usircode1 + "' and pactcode='" + pactcode + "'");
                 dtunitfilter = dv.ToTable();
 
 
-               
                 for (int j = 0; j < dtunitfilter.Rows.Count; j++)
-                {                    
-                    strunit += "<a hrf='#' class='" + dtunitfilter.Rows[i]["cssStype"].ToString() + " btn text-white m-1'>" + dtunitfilter.Rows[i]["udesc"].ToString() + "</a>";
+                {
+
+                    strunit += "<a hrf='#' class='" + dtunitfilter.Rows[j]["cssStype"].ToString() + " btn text-white m-1'>" + dtunitfilter.Rows[j]["udesc"].ToString() + "</a>";
                 }
-                 
-                    str += "<div class='row mt-1'>" +
-                    "" +
-                    "<div class='col-md-2'><h5 class='text-right'>" + dt.Rows[i]["flrdesc"].ToString() + "</h5></div>" +
-                    "" +
-                    "<div class='col-md-10'>" + strunit +
-                    "</div>" +
-                    "" +
-                    "</div>";
+                if (i % 2 == 0)
+                {
+                    bgcolor = " btn-subtle-primary ";
+                }
+                else
+                {
+                    bgcolor = "";
+                }
+
+
+                str += "<div class='row mt-1 " + bgcolor + "'>" +
+                "" +
+                "<div class='col-md-2'><h6 class='text-right m-0 florHead'>" + dt.Rows[i]["flrdesc"].ToString() + "</h6></div>" +
+                "" +
+                "<div class='col-md-10'>" + strunit +
+                "</div>" +
+                "" +
+                "</div>";
             }
             this.divUnitGraph.InnerHtml = str;
         }
 
-        
+
+
+
         private void FooterCalculation()
         {
 
@@ -420,7 +498,7 @@ namespace RealERPWEB.F_22_Sal
             ((Label)this.gvAailChart.FooterRow.FindControl("lgvFSize2")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(losize)", "")) ?
                                 0 : dt.Compute("sum(losize)", ""))).ToString("#,##0;(#,##0); ");
 
-            
+
 
 
 

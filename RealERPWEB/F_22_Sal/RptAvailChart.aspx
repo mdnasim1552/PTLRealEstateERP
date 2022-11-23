@@ -24,6 +24,10 @@
         .table th, .table td {
             padding: 4px;
         }
+
+        .florHead {
+            line-height: 40px;
+        }
     </style>
 
     <div class="RealProgressbar">
@@ -87,17 +91,12 @@
 
 
                 </div>
-                <div class="col-md-2">
-                    <asp:RadioButtonList ID="rbtnList" runat="server" RepeatDirection="Horizontal" Style="margin-top: 22px;" AutoPostBack="true" OnSelectedIndexChanged="rbtnList_SelectedIndexChanged">
-                        <asp:ListItem Value="0" Selected="true">Details</asp:ListItem>
-                        <asp:ListItem Value="1">Graph</asp:ListItem>
-                    </asp:RadioButtonList>
-                </div>
+
                 <div class="col-md-4" style="margin-top: 22px;">
                     <div class="metric-badge">
                         <asp:Label ID="Label1" runat="server" CssClass="form-label" Text="Flug:"></asp:Label>
                         <span class="badge badge-lg badge-danger bg-red">Sold</span>
-                        <span class="badge badge-lg badge-success bg-blue">Unsold</span>
+                        <span class="badge badge-lg badge-success">Unsold</span>
                         <span class="badge badge-lg badge-primary bg-blue">Mgt Booking</span>
                     </div>
                 </div>
@@ -360,21 +359,27 @@
                 </div>
             </div>
             <div id="divgvChart" visible="false" runat="server">
+                <div class="row">
+                    <div class="col-md-3">
+                        <asp:Label ID="Label2" runat="server" CssClass="form-lable" Text="Group Name"></asp:Label>
 
-                <div id="divUnitGraph" runat="server"></div>
-                <div class="row d-none">
+                        <asp:DropDownList ID="ddlGroup" runat="server" CssClass="chzn-select form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlGroup_SelectedIndexChanged" TabIndex="4">
+                        </asp:DropDownList>
 
-                    
 
-                    <div class="col-md-2">
-                        <h5 class="text-right">1st Floor</h5>
                     </div>
-                    <div class="col-md-10">
-                        <asp:HyperLink ID="HyperLink21" runat="server" class="bg-red btn text-white">Unit 1 </asp:HyperLink>
+                    <div class="col-md-3">
+                        <asp:Label ID="Label3" runat="server" CssClass="form-lable" Text="Category Name"></asp:Label>
+
+                        <asp:DropDownList ID="ddlFloor" runat="server" CssClass="chzn-select form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlFloor_SelectedIndexChanged" TabIndex="4">
+                        </asp:DropDownList>
+
+
                     </div>
-                     
                 </div>
-                
+                <div id="divUnitGraph" runat="server"></div>
+
+
             </div>
         </div>
 

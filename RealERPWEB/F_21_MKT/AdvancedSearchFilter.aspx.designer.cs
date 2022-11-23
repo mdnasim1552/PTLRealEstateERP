@@ -15,13 +15,13 @@ namespace RealERPWEB.F_21_MKT
     {
 
         /// <summary>
-        /// UpdatePanel1 control.
+        /// UpdatePanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel;
 
         /// <summary>
         /// UpdateProgress2 control.
@@ -31,6 +31,15 @@ namespace RealERPWEB.F_21_MKT
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
+
+        /// <summary>
+        /// pnlsrc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnlsrc;
 
         /// <summary>
         /// lblem control.
@@ -96,6 +105,15 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnOk;
 
         /// <summary>
+        /// btnaddland control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnaddland;
+
+        /// <summary>
         /// pnlempinfo control.
         /// </summary>
         /// <remarks>
@@ -103,15 +121,6 @@ namespace RealERPWEB.F_21_MKT
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnlempinfo;
-
-        /// <summary>
-        /// lnkEdit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkEdit;
 
         /// <summary>
         /// engst control.
@@ -195,6 +204,24 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnRetreive;
 
         /// <summary>
+        /// pnledit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTableCell pnledit;
+
+        /// <summary>
+        /// lnkEdit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkEdit;
+
+        /// <summary>
         /// lblproscod control.
         /// </summary>
         /// <remarks>
@@ -247,6 +274,24 @@ namespace RealERPWEB.F_21_MKT
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtntfollowup;
+
+        /// <summary>
+        /// divexland control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divexland;
+
+        /// <summary>
+        /// lbllandname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbllandname;
 
         /// <summary>
         /// pnlfollowup control.
@@ -330,6 +375,24 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.HiddenField lblnewprospect;
 
         /// <summary>
+        /// gvPersonalInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvPersonalInfo;
+
+        /// <summary>
+        /// gvSourceInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvSourceInfo;
+
+        /// <summary>
         /// hpref control.
         /// </summary>
         /// <remarks>
@@ -348,6 +411,42 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.Label lblheadprospect;
 
         /// <summary>
+        /// gvpinfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvpinfo;
+
+        /// <summary>
+        /// gvplot control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvplot;
+
+        /// <summary>
+        /// gvbusinfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvbusinfo;
+
+        /// <summary>
+        /// gvMoreInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvMoreInfo;
+
+        /// <summary>
         /// lnkUpdate control.
         /// </summary>
         /// <remarks>
@@ -355,5 +454,77 @@ namespace RealERPWEB.F_21_MKT
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkUpdate;
+
+        /// <summary>
+        /// txtentrydate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtentrydate;
+
+        /// <summary>
+        /// CalendarExtender2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
+
+        /// <summary>
+        /// txtentryClient control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtentryClient;
+
+        /// <summary>
+        /// txtentrymobile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtentrymobile;
+
+        /// <summary>
+        /// txtentryemail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtentryemail;
+
+        /// <summary>
+        /// ddlgval control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlgval;
+
+        /// <summary>
+        /// txtentryEmpID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtentryEmpID;
+
+        /// <summary>
+        /// lnkSaveModalEntry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkSaveModalEntry;
     }
 }

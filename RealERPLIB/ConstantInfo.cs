@@ -1228,11 +1228,12 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2203142", "F_22_Sal", "RptSoldUnsoldUnitAvgPrice?", "Type=AvgPrice", "Sold & Unsold Unit (Average Price)", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203144", "F_22_Sal", "ClusterSetup?", "Type=ClusterSetup", "Cluster Setup", "Sales & Recovery", "False", "False", "False", "False" });
 
-
+           
             tblObj.Rows.Add(new Object[] { "2203000", "2203150", "F_22_Sal", "RptRateChart?", "Type=Report", "Sales Inventory(Details)", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203160", "F_22_Sal", "RptSalesInventory?", "Type=Report", "Sales Inventory Report", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203170", "F_22_Sal", "RptAvailChart?", "Type=Details", "Availability Chart 1", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203171", "F_22_Sal", "RptAvailChart?", "Type=Summary", "Availability Chart 2", "Sales & Recovery", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2203000", "2203172", "F_22_Sal", "RptAvailChart?", "Type=BookingChart", "Booking Chart", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203185", "F_22_Sal", "ProPriceTrading", "", "Product Pricing(Trading)", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203187", "F_22_Sal", "RptProPriceTrading", "", "Product Pricing(Trading) Report", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2202000", "2202190", "F_22_Sal", "InterestOPCode", "", "Interest Opening", "Sales & Recovery", "False", "False", "False", "False" }); ;
@@ -1393,6 +1394,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2402000", "2402002", "F_24_CC", "CustMaintenanceWork?", "Type=Check", "Client's Modification", "Customer Care", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2402000", "2402003", "F_24_CC", "CustMaintenanceWork?", "Type=Audit", "Client's Modification", "Customer Care", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2402000", "2402004", "F_24_CC", "CustMaintenanceWork?", "Type=Approv", "Client's Modification", "Customer Care", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2402000", "2402005", "F_24_CC", "CustMaintenanceWork?", "Type=FirstApproval", "CR First Approval", "Customer Care", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2402000", "2402006", "F_24_CC", "CustMaintenanceWork?", "Type=SecondApproval", "CR Second Approval", "Customer Care", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2402000", "2402007", "F_24_CC", "CustMaintenanceWork?", "Type=ReqPrint", "CR Modification Print", "Customer Care", "False", "False", "False", "False" });
 
 
             tblObj.Rows.Add(new Object[] { "2402000", "2402008", "F_24_CC", "CustUtility?", "Type=Entry", "Client's Utilities", "Customer Care", "False", "False", "False", "False" });
@@ -1729,6 +1733,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3502000", "3502080", "F_34_Mgt", "CodeDataTrans?", "Type=CodeTransfer", "Code Transfer Information", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502006", "F_04_Bgd", "BgdMaster?", "InputType=BgdSub", " Budget-General Approval", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502088", "F_34_Mgt", "OtherReqEntry?", "Type=OreqEntry", "Create Requisition", "Management", "False", "False", "False", "False" });
+
+
             tblObj.Rows.Add(new Object[] { "3502000", "3502089", "F_34_Mgt", "OtherReqEntry?", "Type=OreqEdit", "Other Requisition (Edit)", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502090", "F_34_Mgt", "OtherReqEntry?", "Type=OreqApproved", "Requisition First Approval(Genral Bill)", "Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "3502000", "3502091", "F_34_Mgt", "OtherReqEntry?", "Type=FirstRecom", "First Recommendation(Other Requisition)", "Management", "False", "False", "False", "False" });
@@ -1738,6 +1744,7 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "3502000", "3502094", "F_34_Mgt", "SMCodeBook", "", "SMS/Mail Template Code", "Management", "False", "False", "False", "False" });
 
+            tblObj.Rows.Add(new Object[] { "3502000", "3502096", "F_34_Mgt", "OtherReqEntry?", "Type=mgtOreqEntry", "Create Requisition(Management)", "Management", "False", "False", "False", "False" });
 
 
             tblObj.Rows.Add(new Object[] { "3502000", "3502100", "F_17_Acc", "TransectionPrint?", "Type=AccVoucher&Mod=Management", "Voucher Cancellation", "Management", "False", "False", "False", "False" }); ;
@@ -3924,7 +3931,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0402000013", "20. Top Sheet Provisional Budget Vs Actual", "F_02_Fea/RptFeasiVsActualAll", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000014", "21. Sales Statement", "F_02_Fea/RptPrjFeasibility04?Type=SoldUSold", "", true, "" });
 
-            mnuTbl1.Rows.Add(new Object[] { "0402000015", "", "", "", true, "" });
+         
             mnuTbl1.Rows.Add(new Object[] { "0402000016", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000017", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000018", "", "", "", true, "" });
@@ -7538,8 +7545,10 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000013", "19. Collection Summary Of Current Month Sales", "F_22_Sal/RptCollSumOfCurMSale", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000014", "19. Client Data File", "F_22_Sal/RptClientDateFile", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000015", "20. Month Wise Sale Report (New Sale)", "F_22_Sal/RptMonthWiseNewSales", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000016", "21. Booking Chart", "F_22_Sal/RptAvailChart?Type=BookingChart", "", true, "" });
+
             mnuTbl1.Rows.Add(new Object[] { "0302000017", "Competitive Survey", "", "", false, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0302000017", "20. Competitive Price Survey", "F_22_Sal/SaleSurvey?Type=CS", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000018", "20. Competitive Price Survey", "F_22_Sal/SaleSurvey?Type=CS", "", true, "" });
 
 
 
@@ -7584,7 +7593,7 @@ namespace RealERPLIB
 
 
 
-          
+
 
 
 

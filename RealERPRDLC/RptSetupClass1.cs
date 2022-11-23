@@ -364,6 +364,7 @@ namespace RealERPRDLC
                 case "R_12_Inv.RptIndentIssueStatus": Rpt1a = SetRptIndentIssueStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptIndentIssueStatusSummary": Rpt1a = SetRptIndentIssueStatusSummary(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptTransactionSt": Rpt1a = SetRptTransactionSt(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptSalesOpening": Rpt1a = SetRptSalesOpening(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptTopSheetFactory": Rpt1a = SetRptTopSheetFactory(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 
 
@@ -392,6 +393,9 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptChequeOneBankBti": Rpt1a = SetRptChequeOneBankBti(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptChequeDhakaBankCPDL": Rpt1a = SetRptChequeDhakaBankCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptChequeUCBCPDL": Rpt1a = SetRptChequeUCBCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptChequeIBBLCPDL": Rpt1a = SetRptChequeIBBLCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptChequeAIBLCPDL": Rpt1a = SetRptChequeAIBLCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptChequeTBLCPDL": Rpt1a = SetRptChequeTBLCPDLL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 case "R_17_Acc.RptTrialBl1": Rpt1a = SetRptTrialBl1(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -845,6 +849,7 @@ namespace RealERPRDLC
                 case "R_24_CC.RptMaintenanceWrk": SetRptMaintenanceWrk(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_24_CC.RptMaintenanceWrkAssure": SetRptMaintenanceWrkAssure(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_24_CC.RptMaintenanceWrkSan": SetRptMaintenanceWrkSan(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_24_CC.RptMaintenanceWrkEpic": SetRptMaintenanceWrkEpic(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_24_CC.RptCustLnStatus": SetRptCustLnStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_24_CC.RptHandOverWork": SetRptHandOverWork(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_24_CC.RptComplain": SetRptComplain(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1400,6 +1405,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptTransactionSt(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales.TransactionSt>)RptDataSet));
+
+            return Rpt1a;
+        }private static LocalReport SetRptSalesOpening(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales.SalesOpening>)RptDataSet));
 
             return Rpt1a;
         }
@@ -3127,6 +3137,11 @@ namespace RealERPRDLC
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_24_CC.EClassAddwork.AddWorkCus>)RptDataSet));
             return Rpt1a;
+        }
+        private static LocalReport SetRptMaintenanceWrkEpic(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_24_CC.EClassAddwork.AddWorkCus>)RptDataSet));
+            return Rpt1a; 
         }
         private static LocalReport SetRptMaintenanceWrkAssure(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -6162,6 +6177,65 @@ namespace RealERPRDLC
             Rpt1a.SetParameters(new ReportParameter("totalAmount", hshParm["totalAmount"].ToString()));
             return Rpt1a;
         }
+
+        private static LocalReport SetRptChequeIBBLCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Hashtable hshParm = (Hashtable)RptDataSet;
+            Rpt1a.SetParameters(new ReportParameter("bankName", hshParm["bankName"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("payTo", hshParm["payTo"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amtWord", hshParm["amtWord"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("date", hshParm["date"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("date1", hshParm["date1"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amt", " = " + hshParm["amt"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amtWord1", hshParm["amtWord1"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("acpayee", hshParm["acpayee"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("ProjectDesc", hshParm["ProjectDesc"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("totalAmount", hshParm["totalAmount"].ToString()));
+            return Rpt1a;
+        }
+        
+        private static LocalReport SetRptChequeAIBLCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Hashtable hshParm = (Hashtable)RptDataSet;
+            Rpt1a.SetParameters(new ReportParameter("bankName", hshParm["bankName"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("payTo", hshParm["payTo"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amtWord", hshParm["amtWord"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("date", hshParm["date"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("date1", hshParm["date1"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amt", " = " + hshParm["amt"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amtWord1", hshParm["amtWord1"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("acpayee", hshParm["acpayee"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("ProjectDesc", hshParm["ProjectDesc"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("totalAmount", hshParm["totalAmount"].ToString()));
+            return Rpt1a;
+        }
+
+        private static LocalReport SetRptChequeTBLCPDLL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Hashtable hshParm = (Hashtable)RptDataSet;
+            //Rpt1a.SetParameters(new ReportParameter("bankName", hshParm["bankName"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("payTo", hshParm["payTo"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amtWord", hshParm["amtWord"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("date", hshParm["date"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amt", hshParm["amt"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amtWord1", hshParm["amtWord1"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("acpayee", hshParm["acpayee"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("payTo1", hshParm["payTo"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("date1", hshParm["date1"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("projnam1", hshParm["projnam1"].ToString()));
+
+            Rpt1a.SetParameters(new ReportParameter("naration", hshParm["naration"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("Chequeno", hshParm["Chequeno"].ToString()));
+
+            return Rpt1a;
+        }
+
+
+
+
+
+
+
         private static LocalReport SetRptChequeGreenwoodSHBL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Hashtable hshParm = (Hashtable)RptDataSet;
