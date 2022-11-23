@@ -279,16 +279,16 @@ namespace RealERPWEB.F_22_Sal
             Session["tblAvChart"] = dt;
             this.Data_Bind();
             Session["tblFtCal"] = (DataTable)ds2.Tables[1];
-           
-             
-            if(type== "BookingChart")
+
+
+            if (type == "BookingChart")
             {
                 Session["tblflorlist"] = (DataTable)ds2.Tables[2];
                 Session["tblflorUnit"] = (DataTable)ds2.Tables[3];
                 Session["grpname"] = (DataTable)ds2.Tables[4];
                 Session["floorname"] = (DataTable)ds2.Tables[5];
                 GetAvailabilityChart();
-                
+
             }
             // this.FooterCalculation();
         }
@@ -381,7 +381,7 @@ namespace RealERPWEB.F_22_Sal
 
         protected void ddlGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
             GetAvailabilityChartFilterData();
         }
         protected void ddlFloor_SelectedIndexChanged(object sender, EventArgs e)
@@ -396,14 +396,14 @@ namespace RealERPWEB.F_22_Sal
                 DataTable dtgrp = (DataTable)Session["grpname"];
                 DataTable dtglorname = (DataTable)Session["floorname"];
 
-               
+
                 this.ddlGroup.DataTextField = "groupdesc";
-                this.ddlGroup.DataValueField = "groupcode"; 
-                this.ddlGroup.DataSource = dtgrp;                 
+                this.ddlGroup.DataValueField = "groupcode";
+                this.ddlGroup.DataSource = dtgrp;
                 this.ddlGroup.DataBind();
 
                 this.ddlFloor.DataTextField = "flrdesc";
-                this.ddlFloor.DataValueField = "floorcode";                
+                this.ddlFloor.DataValueField = "floorcode";
                 this.ddlFloor.DataSource = dtglorname;
                 this.ddlFloor.DataBind();
 
@@ -535,11 +535,25 @@ namespace RealERPWEB.F_22_Sal
 
 
                 string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usircode2")).ToString().Trim();
+                string code2 = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usircode")).ToString().Trim();
 
 
                 if (code == "")
                 {
                     return;
+                }
+                if (code2 == "AAAAAAAAAAAA")
+                {
+                    unitdesc.Font.Bold = true;
+                    lgQty.Font.Bold = true;
+                    sizeSft.Font.Bold = true;
+                    unitdesc.Style.Add("text-align", "right");
+                    percent.Font.Bold = true;
+                    pamt.Font.Bold = true;
+                    utility.Font.Bold = true;
+                    Cooperative.Font.Bold = true;
+                    famt.Font.Bold = true;
+
                 }
                 else if (ASTUtility.Right(code, 1) == "A")
                 {
