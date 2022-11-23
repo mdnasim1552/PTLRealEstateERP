@@ -105,6 +105,7 @@ namespace RealERPRDLC
                 #endregion
                 #region Project Implementation
                 case "R_09_PIMP.RptWorkOrder": Rpt1a = SetRptWorkOrder(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_09_PIMP.RptWorkOrderCPDL": Rpt1a = SetRptWorkOrderCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_09_PIMP.RptWorkOrder2": Rpt1a = SetRptWorkOrder2(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptWorkOrderP2PBN": Rpt1a = SetRptWorkOrderP2PBN(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -393,6 +394,9 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptChequeOneBankBti": Rpt1a = SetRptChequeOneBankBti(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptChequeDhakaBankCPDL": Rpt1a = SetRptChequeDhakaBankCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptChequeUCBCPDL": Rpt1a = SetRptChequeUCBCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptChequeIBBLCPDL": Rpt1a = SetRptChequeIBBLCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptChequeAIBLCPDL": Rpt1a = SetRptChequeAIBLCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptChequeTBLCPDL": Rpt1a = SetRptChequeTBLCPDLL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 case "R_17_Acc.RptTrialBl1": Rpt1a = SetRptTrialBl1(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1601,6 +1605,11 @@ namespace RealERPRDLC
 
 
         private static LocalReport SetRptWorkOrder2(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.EClassOrder.GetWorkOrder>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptWorkOrderCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.EClassOrder.GetWorkOrder>)RptDataSet));
             return Rpt1a;
@@ -6174,6 +6183,65 @@ namespace RealERPRDLC
             Rpt1a.SetParameters(new ReportParameter("totalAmount", hshParm["totalAmount"].ToString()));
             return Rpt1a;
         }
+
+        private static LocalReport SetRptChequeIBBLCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Hashtable hshParm = (Hashtable)RptDataSet;
+            Rpt1a.SetParameters(new ReportParameter("bankName", hshParm["bankName"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("payTo", hshParm["payTo"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amtWord", hshParm["amtWord"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("date", hshParm["date"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("date1", hshParm["date1"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amt", " = " + hshParm["amt"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amtWord1", hshParm["amtWord1"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("acpayee", hshParm["acpayee"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("ProjectDesc", hshParm["ProjectDesc"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("totalAmount", hshParm["totalAmount"].ToString()));
+            return Rpt1a;
+        }
+        
+        private static LocalReport SetRptChequeAIBLCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Hashtable hshParm = (Hashtable)RptDataSet;
+            Rpt1a.SetParameters(new ReportParameter("bankName", hshParm["bankName"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("payTo", hshParm["payTo"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amtWord", hshParm["amtWord"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("date", hshParm["date"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("date1", hshParm["date1"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amt", " = " + hshParm["amt"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amtWord1", hshParm["amtWord1"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("acpayee", hshParm["acpayee"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("ProjectDesc", hshParm["ProjectDesc"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("totalAmount", hshParm["totalAmount"].ToString()));
+            return Rpt1a;
+        }
+
+        private static LocalReport SetRptChequeTBLCPDLL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Hashtable hshParm = (Hashtable)RptDataSet;
+            //Rpt1a.SetParameters(new ReportParameter("bankName", hshParm["bankName"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("payTo", hshParm["payTo"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amtWord", hshParm["amtWord"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("date", hshParm["date"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amt", hshParm["amt"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amtWord1", hshParm["amtWord1"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("acpayee", hshParm["acpayee"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("payTo1", hshParm["payTo"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("date1", hshParm["date1"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("projnam1", hshParm["projnam1"].ToString()));
+
+            Rpt1a.SetParameters(new ReportParameter("naration", hshParm["naration"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("Chequeno", hshParm["Chequeno"].ToString()));
+
+            return Rpt1a;
+        }
+
+
+
+
+
+
+
         private static LocalReport SetRptChequeGreenwoodSHBL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Hashtable hshParm = (Hashtable)RptDataSet;

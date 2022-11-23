@@ -24,8 +24,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>payTo</rd:DefaultName>
-            <Top>2.58625in</Top>
-            <Left>4.35417in</Left>
+            <Top>4.01216in</Top>
+            <Left>4.362in</Left>
             <Height>4.25869in</Height>
             <Width>0.27291in</Width>
             <Style>
@@ -56,8 +56,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox8</rd:DefaultName>
-            <Top>2.98417in</Top>
-            <Left>3.975in</Left>
+            <Top>4.41008in</Top>
+            <Left>3.98283in</Left>
             <Height>3.3191in</Height>
             <Width>0.29875in</Width>
             <ZIndex>1</ZIndex>
@@ -91,8 +91,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
-            <Top>6.38521in</Top>
-            <Left>3.85833in</Left>
+            <Top>7.54515in</Top>
+            <Left>3.84667in</Left>
             <Height>2.125in</Height>
             <Width>0.42708in</Width>
             <ZIndex>2</ZIndex>
@@ -358,7 +358,7 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>6.5132in</Top>
+            <Top>7.76947in</Top>
             <Left>5.01195in</Left>
             <Height>2.075in</Height>
             <Width>0.259in</Width>
@@ -387,8 +387,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>amtWord1</rd:DefaultName>
-            <Top>2.0875in</Top>
-            <Left>3.58086in</Left>
+            <Top>3.51341in</Top>
+            <Left>3.58869in</Left>
             <Height>3.80952in</Height>
             <Width>0.29528in</Width>
             <ZIndex>4</ZIndex>
@@ -407,8 +407,8 @@
             <Source>Embedded</Source>
             <Value>ckprint</Value>
             <Sizing>FitProportional</Sizing>
-            <Top>1.775in</Top>
-            <Left>4.513in</Left>
+            <Top>3.20091in</Top>
+            <Left>4.52083in</Left>
             <Height>1.35417in</Height>
             <Width>1.22083in</Width>
             <ZIndex>5</ZIndex>
@@ -423,110 +423,7 @@
           </Image>
           <Rectangle Name="Rectangle1">
             <ReportItems>
-              <Textbox Name="Textbox28">
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>TOTAL</Value>
-                        <Style>
-                          <FontFamily>Cambria</FontFamily>
-                          <FontSize>8pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style />
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox25</rd:DefaultName>
-                <Top>0.65981in</Top>
-                <Left>0.0625in</Left>
-                <Height>0.175in</Height>
-                <Width>0.43317in</Width>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox20">
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Parameters!date1.Value</Value>
-                        <Style>
-                          <FontFamily>Cambria</FontFamily>
-                          <FontSize>7pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Center</TextAlign>
-                    </Style>
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox16</rd:DefaultName>
-                <Top>0.33273in</Top>
-                <Left>1.47136in</Left>
-                <Height>0.17316in</Height>
-                <Width>1.12709in</Width>
-                <ZIndex>1</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                  <WritingMode>Horizontal</WritingMode>
-                </Style>
-              </Textbox>
               <Textbox Name="Textbox32">
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=" ="&amp;Space(1) &amp; Format(Parameters!amt.Value)</Value>
-                        <Style>
-                          <FontFamily>cambria</FontFamily>
-                          <FontSize>7pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Center</TextAlign>
-                    </Style>
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox25</rd:DefaultName>
-                <Top>0.6619in</Top>
-                <Left>0.53265in</Left>
-                <Height>0.18333in</Height>
-                <Width>0.80192in</Width>
-                <ZIndex>2</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox3">
                 <KeepTogether>true</KeepTogether>
                 <Paragraphs>
                   <Paragraph>
@@ -541,15 +438,104 @@
                       </TextRun>
                     </TextRuns>
                     <Style>
-                      <TextAlign>Center</TextAlign>
+                      <TextAlign>Left</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox25</rd:DefaultName>
+                <Top>0.63988in</Top>
+                <Left>1.3551in</Left>
+                <Height>1.45385in</Height>
+                <Width>0.28605in</Width>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                  <WritingMode>Vertical</WritingMode>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox21">
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Parameters!date1.Value</Value>
+                        <Style>
+                          <FontFamily>Cambria</FontFamily>
+                          <FontSize>7pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Left</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox16</rd:DefaultName>
+                <Top>0.64488in</Top>
+                <Left>1.64115in</Left>
+                <Height>1.45385in</Height>
+                <Width>0.28046in</Width>
+                <ZIndex>1</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                  <WritingMode>Vertical</WritingMode>
+                </Style>
+              </Textbox>
+              <Image Name="Image10">
+                <Source>Embedded</Source>
+                <Value>ckprint</Value>
+                <Sizing>FitProportional</Sizing>
+                <Top>0.64488in</Top>
+                <Left>2.10847in</Left>
+                <Height>1.15625in</Height>
+                <Width>1.11666in</Width>
+                <ZIndex>2</ZIndex>
+                <Visibility>
+                  <Hidden>=Microsoft.VisualBasic.Interaction.iif(Parameters!acpayee.Value = "A/C Payee", False, True)</Hidden>
+                </Visibility>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                </Style>
+              </Image>
+              <Textbox Name="Textbox3">
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Parameters!naration.Value</Value>
+                        <Style>
+                          <FontFamily>cambria</FontFamily>
+                          <FontSize>7pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Left</TextAlign>
                     </Style>
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox3</rd:DefaultName>
-                <Top>0.49523in</Top>
-                <Left>1.46344in</Left>
-                <Height>0.15208in</Height>
-                <Width>1.41667in</Width>
+                <Top>0.63988in</Top>
+                <Left>1.05782in</Left>
+                <Height>1.45385in</Height>
+                <Width>0.30962in</Width>
                 <ZIndex>3</ZIndex>
                 <Style>
                   <Border>
@@ -559,7 +545,7 @@
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
                   <PaddingBottom>2pt</PaddingBottom>
-                  <WritingMode>Horizontal</WritingMode>
+                  <WritingMode>Vertical</WritingMode>
                 </Style>
               </Textbox>
               <Textbox Name="Textbox4">
@@ -568,7 +554,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Parameters!projnam1.Value</Value>
+                        <Value>=" ="&amp;Space(1) &amp; Format(Parameters!amt.Value)</Value>
                         <Style>
                           <FontFamily>cambria</FontFamily>
                           <FontSize>7pt</FontSize>
@@ -577,15 +563,15 @@
                       </TextRun>
                     </TextRuns>
                     <Style>
-                      <TextAlign>Center</TextAlign>
+                      <TextAlign>Left</TextAlign>
                     </Style>
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox3</rd:DefaultName>
-                <Top>0.66012in</Top>
-                <Left>1.46344in</Left>
-                <Height>0.15208in</Height>
-                <Width>1.41667in</Width>
+                <Top>0.64987in</Top>
+                <Left>0.65445in</Left>
+                <Height>1.44886in</Height>
+                <Width>0.3617in</Width>
                 <ZIndex>4</ZIndex>
                 <Style>
                   <Border>
@@ -595,50 +581,14 @@
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>
                   <PaddingBottom>2pt</PaddingBottom>
-                  <WritingMode>Horizontal</WritingMode>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox21">
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Parameters!Chequeno.Value</Value>
-                        <Style>
-                          <FontFamily>Cambria</FontFamily>
-                          <FontSize>7pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Center</TextAlign>
-                    </Style>
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox16</rd:DefaultName>
-                <Top>0.17354in</Top>
-                <Left>1.47281in</Left>
-                <Height>0.14816in</Height>
-                <Width>1.12709in</Width>
-                <ZIndex>5</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                  <WritingMode>Horizontal</WritingMode>
+                  <WritingMode>Vertical</WritingMode>
                 </Style>
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>0.30616in</Top>
             <Left>2.49157in</Left>
-            <Height>1.19523in</Height>
+            <Height>2.4869in</Height>
             <Width>3.27272in</Width>
             <ZIndex>6</ZIndex>
             <Style>
@@ -647,26 +597,8 @@
               </Border>
             </Style>
           </Rectangle>
-          <Image Name="Image10">
-            <Source>Embedded</Source>
-            <Value>ckprint</Value>
-            <Sizing>FitProportional</Sizing>
-            <Top>0.31656in</Top>
-            <Left>4.625in</Left>
-            <Height>1.15625in</Height>
-            <Width>1.11666in</Width>
-            <ZIndex>7</ZIndex>
-            <Visibility>
-              <Hidden>=Microsoft.VisualBasic.Interaction.iif(Parameters!acpayee.Value = "A/C Payee", False, True)</Hidden>
-            </Visibility>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Image>
         </ReportItems>
-        <Height>8.78729in</Height>
+        <Height>10.61021in</Height>
         <Style />
       </Body>
       <Width>7.89583in</Width>
