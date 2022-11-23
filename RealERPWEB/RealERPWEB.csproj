@@ -170,11 +170,9 @@
       <SpecificVersion>False</SpecificVersion>
 
 
+      <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
 
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
-
-
-
+      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
 
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
