@@ -502,7 +502,7 @@
                         break;
 
 
-                        
+
                     default:
                         tblData = document.getElementById("<%=gvReqInfo.ClientID %>");
                         break;
@@ -794,22 +794,22 @@
                                         <asp:TemplateField HeaderText="Project Name">
 
                                             <HeaderTemplate>
-                                                <asp:TextBox ID="txtSearchpactdesc" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None"   runat="server" Width="170" onkeyup="Search_Gridview(this,1,'gvReqInfo')" placeholder="Project Name"></asp:TextBox>
+                                                <asp:TextBox ID="txtSearchpactdesc" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="170" onkeyup="Search_Gridview(this,1,'gvReqInfo')" placeholder="Project Name"></asp:TextBox>
                                             </HeaderTemplate>
 
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvpatcdesc" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
                                                     Width="170px"></asp:Label>
                                             </ItemTemplate>
-                                            <HeaderStyle HorizontalAlign="Center"  VerticalAlign="Middle"/>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Resource">
-                                             <HeaderTemplate>
+                                            <HeaderTemplate>
                                                 <asp:TextBox ID="txtresdesc" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="170" placeholder="Resource" onkeyup="Search_Gridview(this,2,'gvReqInfo')"></asp:TextBox>
                                             </HeaderTemplate>
-                                            
-                                            
+
+
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvresdesc" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc")) %>'
                                                     Width="170px"></asp:Label>
@@ -999,12 +999,12 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Project Name">
-                                                 <HeaderTemplate>
-                                                <asp:TextBox ID="txtSearchpactdescreqchk" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None"   runat="server" Width="170" onkeyup="Search_Gridview(this,1,'gvReqCheck')" placeholder="Project Name"></asp:TextBox>
+                                            <HeaderTemplate>
+                                                <asp:TextBox ID="txtSearchpactdescreqchk" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="170" onkeyup="Search_Gridview(this,1,'gvReqCheck')" placeholder="Project Name"></asp:TextBox>
                                             </HeaderTemplate>
 
-                                            
-                                            
+
+
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvReqChkpactdesc" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
                                                     Width="170px"></asp:Label>
@@ -1013,11 +1013,11 @@
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Resource">
-                                          
-                                              <HeaderTemplate>
+
+                                            <HeaderTemplate>
                                                 <asp:TextBox ID="txtresdescreqchk" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="170" placeholder="Resource" onkeyup="Search_Gridview(this,2,'gvReqCheck')"></asp:TextBox>
                                             </HeaderTemplate>
-                                            
+
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvReqChksirdesc" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc")) %>'
                                                     Width="170px"></asp:Label>
@@ -2061,8 +2061,8 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Project Name">
-                                               <HeaderTemplate>
-                                                <asp:TextBox ID="txtSearchpactdescfinapp" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None"   runat="server" Width="170" onkeyup="Search_Gridview(this,1,'gvFinlApproval')" placeholder="Project Name"></asp:TextBox>
+                                            <HeaderTemplate>
+                                                <asp:TextBox ID="txtSearchpactdescfinapp" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="170" onkeyup="Search_Gridview(this,1,'gvFinlApproval')" placeholder="Project Name"></asp:TextBox>
                                             </HeaderTemplate>
 
                                             <ItemTemplate>
@@ -2072,10 +2072,10 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Resource">
-                                             <HeaderTemplate>
+                                            <HeaderTemplate>
                                                 <asp:TextBox ID="txtresdescfinapp" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="170" placeholder="Resource" onkeyup="Search_Gridview(this,2,'gvFinlApproval')"></asp:TextBox>
                                             </HeaderTemplate>
-                                            
+
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvresdescfi" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc")) %>'
                                                     Width="170px"></asp:Label>
