@@ -42,6 +42,33 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Lvform;
 
         /// <summary>
+        /// Label8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label8;
+
+        /// <summary>
+        /// ddlYear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlYear;
+
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
         /// rbtType control.
         /// </summary>
         /// <remarks>
