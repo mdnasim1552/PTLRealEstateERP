@@ -598,16 +598,16 @@
 
                                     <ItemTemplate>
                                         <asp:TextBox
-                                            ID="txtgvValper" runat="server" BackColor="Transparent" BorderStyle="None"
+                                            ID="txtgvdValNominee" runat="server" BackColor="Transparent" BorderStyle="None"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'
                                             Width="300px"></asp:TextBox>
 
-                                        <asp:TextBox
-                                            ID="txtgvdValper" runat="server" BackColor="Transparent" BorderStyle="None" Visible="false"
+                                        <%--<asp:TextBox
+                                            ID="txtgvdValNominee" runat="server" BackColor="Transparent" BorderStyle="None" Visible="false"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'
-                                            Width="300px"></asp:TextBox>
+                                            Width="300px"></asp:TextBox>--%>
 
-                                        <cc1:CalendarExtender ID="CalendarExtender_txtgvdValper" runat="server" Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdValper"></cc1:CalendarExtender>
+                                        <cc1:CalendarExtender ID="CalendarExtender_txtgvdValNominee" runat="server" Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdValNominee"></cc1:CalendarExtender>
 
                                         <asp:Panel runat="server" Visible="false">
                                             <asp:CheckBoxList ID="cbldescper" runat="server" CellPadding="2" CellSpacing="0" Visible="false"
