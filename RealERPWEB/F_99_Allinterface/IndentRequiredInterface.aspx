@@ -756,7 +756,7 @@
 
                             <div class="table-responsive">
                                  <asp:GridView ID="gv_hradminapproval" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" Width="100%"  >
+                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" Width="100%" OnRowDataBound="gv_hradminapproval_RowDataBound"  >
                                         <Columns>
 
                                             <asp:TemplateField HeaderText="SL # ">
