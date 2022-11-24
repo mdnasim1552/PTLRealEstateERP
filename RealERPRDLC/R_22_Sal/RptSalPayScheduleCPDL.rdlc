@@ -674,7 +674,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>3.63in</Top>
             <Height>0.61146in</Height>
-            <Width>7.87499in</Width>
+            <Width>7.87498in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3331,7 +3331,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>ComAddress</rd:DefaultName>
-              <Top>0.30625in</Top>
+              <Top>0.30041in</Top>
               <Left>0.99306in</Left>
               <Height>0.1875in</Height>
               <Width>5.6786in</Width>
