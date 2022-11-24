@@ -385,7 +385,7 @@
                                                 <span class="input-group-addon glypingraddon">
                                                     <asp:Label ID="Label12" runat="server" CssClass="lblTxt lblName" Text="Subject:"></asp:Label>
                                                 </span>
-                                                <asp:TextBox ID="txtSubject" runat="server" class="form-control inputTxt">Purchase Order For Materials</asp:TextBox>
+                                                <asp:TextBox ID="txtSubject" runat="server" class="form-control inputTxt">Work Order For Materials</asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
@@ -393,7 +393,7 @@
                                         <div class="col-md-6 pading5px">
                                             <div class="input-group">
                                                 <span class="input-group-addon glypingraddon">
-                                                    <asp:Label ID="Label5" runat="server" CssClass="lblTxt lblName" Text="Dear Sir,"></asp:Label>
+                                                    <asp:Label ID="Label5" runat="server" CssClass="lblTxt lblName" Text="Dear Vendor,"></asp:Label>
                                                 </span>
 
                                             </div>

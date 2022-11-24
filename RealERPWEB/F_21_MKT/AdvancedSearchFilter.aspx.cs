@@ -279,29 +279,7 @@ namespace RealERPWEB.F_21_MKT
            
 
         }
-        protected void btnqclink_Click(object sender, EventArgs e)
-         {
-            try
-            {
-
-
-                this.pnlSidebar.Visible = true; 
-                this.pnlfollowup.Visible = false;
-                this.pnlempinfo.Visible = false;
-                this.pnlflw.Visible = false;
-                this.pnlsrc.Visible = false;
-                ShowDiscussion();
-
-
-
-
-            }
-            catch (Exception exp)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
-
-            }
-        }
+        
         protected void pnlsidebarClose_Click(object sender, EventArgs e)
         {
             this.pnlSidebar.Visible = false;
@@ -606,7 +584,7 @@ namespace RealERPWEB.F_21_MKT
                         ChkBoxLstFollow.DataSource = dv1.ToTable();
                         ChkBoxLstFollow.DataBind();
                         
-                        //  ChkBoxLstFollow.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+                          ChkBoxLstFollow.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
 
                         break;
 
@@ -1296,9 +1274,10 @@ namespace RealERPWEB.F_21_MKT
 
                         if (result)
                         {
-                          
+                            this.pnlsidebarClose_Click(null, null);
                             string Messagesd = "Update Successfully";
                             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
+                           
 
                         }
                         else
@@ -1316,7 +1295,7 @@ namespace RealERPWEB.F_21_MKT
 
 
                 this.clearModalField();
-
+                  
 
                 string events = hst["events"].ToString();
                 if (Convert.ToBoolean(events) == true)
@@ -1327,6 +1306,8 @@ namespace RealERPWEB.F_21_MKT
 
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }
+               
+
             }
             catch (Exception ex)
             {
@@ -4578,7 +4559,7 @@ namespace RealERPWEB.F_21_MKT
             bool result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "UPDATE_CLNTINFO", ds, null, null, clientid, Name, usrid, Phone, email, empid, maddress, active.ToString(), kpidiscu, Posteddat, CCC0);
             if (result == true)
             {
-
+               
                 string totmsg = "Updated Successfully";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + totmsg + "');", true);
 
@@ -4703,7 +4684,29 @@ namespace RealERPWEB.F_21_MKT
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
         }
+        protected void btnqclink_Click(object sender, EventArgs e)
+        {
+            try
+            {
 
+
+                this.pnlSidebar.Visible = true;
+                this.pnlfollowup.Visible = false;
+                this.pnlempinfo.Visible = false;
+                this.pnlflw.Visible = false;
+                this.pnlsrc.Visible = false;
+                ShowDiscussion();
+
+
+
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
         protected void lbtnReshedule_Click(object sender, EventArgs e)
         {
 
