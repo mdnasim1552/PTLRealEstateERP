@@ -245,5 +245,20 @@ namespace RealERPWEB.F_99_Allinterface
 
             }
         }
+       
+
+        protected void gv_hradminapproval_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("hybtnadidentlink");
+
+                string issueno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "issueno")).ToString().Trim();
+
+                hlink.NavigateUrl = "~/F_12_Inv/IndentMaterialRequired?Type=Approve&genno=" + issueno;
+
+
+            }
+        }
     }
 }
