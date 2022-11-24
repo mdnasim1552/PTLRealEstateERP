@@ -569,8 +569,10 @@ namespace RealERPWEB.F_14_Pro
                 case "3352":
                 case "1205":
                 case "3101":
-                case "3370": // cpdl
                     this.printP2P_cs_approval();
+                    break;
+                case "3370": // cpdl
+                    this.printCPDL_cs_approval();
                     break;
                 default:
                     this.printAll_cs();
@@ -863,13 +865,13 @@ namespace RealERPWEB.F_14_Pro
             var lst = ds1.Tables[0].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay02>();
             var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay03>();
 
-            string reqinfo = ds1.Tables[3].Rows[0]["reqno"].ToString();
-            string csinfo = ds1.Tables[2].Rows[0]["msrno"].ToString() + ", " + Convert.ToDateTime(ds1.Tables[2].Rows[0]["msrdat"]).ToString("dd-MMM-yyyy");
+            string reqinfo =ASTUtility.CustomReqFormat(ds1.Tables[3].Rows[0]["reqno"].ToString());
+            string csinfo =ASTUtility.CustomReqFormat(ds1.Tables[2].Rows[0]["msrno"].ToString()) + ", " + Convert.ToDateTime(ds1.Tables[2].Rows[0]["msrdat"]).ToString("dd-MMM-yyyy");
 
 
             if (lst1.Count == 5)
             {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyP2P05", lst, lst1, null);
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyCPDL05C", lst, lst1, null);
                 Rpt1.EnableExternalImages = true;
                 DataTable dt = (DataTable)Session["tblt01"];
                 int i = 1;
@@ -913,7 +915,7 @@ namespace RealERPWEB.F_14_Pro
 
             else if (lst1.Count == 4)
             {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyP2P02", lst, lst1, null);
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyCPDL04C", lst, lst1, null);
                 Rpt1.EnableExternalImages = true;
                 DataTable dt = (DataTable)Session["tblt01"];
                 int i = 1;
@@ -957,7 +959,7 @@ namespace RealERPWEB.F_14_Pro
             }
             else
             {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyP_2_P", lst, lst1, null);
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyCPDL03C", lst, lst1, null);
                 Rpt1.EnableExternalImages = true;
                 DataTable dt = (DataTable)Session["tblt01"];
                 int i = 1;

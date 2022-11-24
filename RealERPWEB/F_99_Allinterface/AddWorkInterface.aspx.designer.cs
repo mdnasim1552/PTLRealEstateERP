@@ -51,13 +51,13 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
 
         /// <summary>
-        /// lnkok control.
+        /// lbtnok control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkok;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnok;
 
         /// <summary>
         /// HyperLink1 control.
