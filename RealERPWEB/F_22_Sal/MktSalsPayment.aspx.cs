@@ -413,7 +413,7 @@ namespace RealERPWEB.F_22_Sal
                     rpt = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalPaySchedule", list, list2, list3);
                     break;
 
-               
+                case "3101":
                 case "3366": // Lanco
                     rpt = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalPayScheduleLanco", list, list2, list3);
                     rpt.SetParameters(new ReportParameter("cname", cname));
@@ -425,11 +425,9 @@ namespace RealERPWEB.F_22_Sal
                     rpt.SetParameters(new ReportParameter("hodate", hodate));
 
                     break;
-                case "3101":
                 case "3370":
                     rpt = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalPayScheduleCPDL", list, list2, list3);
-    
-
+                    rpt.SetParameters(new ReportParameter("comadd", comadd));
                     break;
 
                 default:
@@ -448,7 +446,6 @@ namespace RealERPWEB.F_22_Sal
             rpt.SetParameters(new ReportParameter("aprtsize", aprtsize));
             rpt.SetParameters(new ReportParameter("appatn", appatn));
             rpt.SetParameters(new ReportParameter("lbldisamt", lbldisamt));
-            rpt.SetParameters(new ReportParameter("comadd", comadd));
             // rpt.SetParameters(new ReportParameter("txtdisamt", txtdisamt));
             rpt.SetParameters(new ReportParameter("lblunitamt", ""));
             rpt.SetParameters(new ReportParameter("txtunitamt", txtunitamt));
