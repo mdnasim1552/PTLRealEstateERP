@@ -2944,7 +2944,7 @@
                         <Value>Accounts &amp; Finance</Value>
                         <Style>
                           <FontFamily>Cambria</FontFamily>
-                          <FontSize>9pt</FontSize>
+                          <FontSize>8pt</FontSize>
                           <FontWeight>Bold</FontWeight>
                         </Style>
                       </TextRun>
@@ -3053,7 +3053,7 @@
                         <Value>The Fighting Falcons</Value>
                         <Style>
                           <FontFamily>Cambria</FontFamily>
-                          <FontSize>9pt</FontSize>
+                          <FontSize>8pt</FontSize>
                           <FontWeight>Bold</FontWeight>
                         </Style>
                       </TextRun>
@@ -3392,7 +3392,7 @@
         </PageFooter>
         <PageHeight>13.02in</PageHeight>
         <PageWidth>9.27in</PageWidth>
-        <LeftMargin>0.4in</LeftMargin>
+        <LeftMargin>0.5in</LeftMargin>
         <RightMargin>0.25in</RightMargin>
         <TopMargin>0.25in</TopMargin>
         <BottomMargin>0.1in</BottomMargin>

@@ -1029,7 +1029,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>MtL</Value>
+                                                <Value>Late</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
                                                   <FontWeight>Bold</FontWeight>
@@ -1740,7 +1740,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!mtl.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!late.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2055,7 +2055,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!levded.Value</Value>
+                                  <Value>=IIF(Fields!levded.Value&gt;0,"Deduction of "+ Cstr(Fields!levded.Value) +" days basic pay","")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>

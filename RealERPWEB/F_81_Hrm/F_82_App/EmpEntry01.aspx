@@ -196,7 +196,7 @@
                                     </asp:GridView>
                                 </div>
                                 <div class="col-6">
-
+                                    
                                     <asp:GridView ID="gvPersonalInfo2" runat="server" AutoGenerateColumns="False"
                                         ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                                         OnRowDataBound="gvPersonalInfo2_RowDataBound">
@@ -256,19 +256,19 @@
                                                 <ItemTemplate>
 
                                                     <asp:TextBox ID="txtgvVal" runat="server"
-                                                        CssClass="form control" BackColor="Transparent"
+                                                        CssClass="form-control" BackColor="Transparent"
                                                         BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
 
                                                     <asp:TextBox ID="txtgvdVal" runat="server" AutoCompleteType="Disabled"
-                                                        CssClass="form control" BackColor="Transparent"
+                                                        CssClass="form-control" BackColor="Transparent"
                                                         BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
 
                                                     <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server"
                                                         Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdVal" PopupPosition="TopLeft" PopupButtonID="txtgvdVal"></cc1:CalendarExtender>
                                                     <asp:Panel ID="Panegrd" runat="server">
-                                                        <div class="  mb-0" style="width:260px;">
+                                                        <div class="mb-0" style="width:260px;">
 
                                                             <asp:DropDownList ID="ddlval" runat="server" OnSelectedIndexChanged="ddlval_SelectedIndexChanged"
                                                                 CssClass="select2 col-12" AutoPostBack="true" TabIndex="2">

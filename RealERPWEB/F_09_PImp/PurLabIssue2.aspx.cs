@@ -1535,6 +1535,7 @@ namespace RealERPWEB.F_09_PImp
                 case "3368": // finlay
                 case "3367": // epic
                 case "3370": // cpdl
+                case "3366": // lanco
                     break;
                 default:
                     bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "ISSUEAPPROVEDAUTO", _issuno, usrid, Date, trmnid, session, "", "", "", "", "", "", "", "", "", "");

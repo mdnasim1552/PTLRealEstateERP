@@ -370,7 +370,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         ddlgval.DataSource = dv1.ToTable();
                         ddlgval.DataBind();
                         ddlgval.SelectedValue = gdesc1 == "" ? provcode : gdesc1;
-                        ddlval_SelectedIndexChanged(null,null);
+                        if(comcod != "3370")
+                        {
+                            ddlval_SelectedIndexChanged(null, null);
+
+                        }
+
+
+
+
                         break;
 
                     case "01009": //Blood Group
@@ -1345,11 +1353,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             ConDate = Joindate;
 
                         }
-                         
-                        ((TextBox)this.gvPersonalInfo.Rows[i + 1].FindControl("txtgvdVal")).Text = ConDate;
-                        
-                        
- 
+                         if(comcod != "3370")// no need probation period dropdown list
+                        {
+                            ((TextBox)this.gvPersonalInfo.Rows[i + 1].FindControl("txtgvdVal")).Text = ConDate;
+                        }
+
+
+
 
                         break;
                 }

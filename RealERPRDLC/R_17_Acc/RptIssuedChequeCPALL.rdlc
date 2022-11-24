@@ -81,7 +81,7 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.25288in</Width>
+                  <Width>0.37776in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.85577in</Width>
@@ -93,13 +93,13 @@
                   <Width>0.84606in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.54455in</Width>
+                  <Width>1.53117in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.07881in</Width>
+                  <Width>0.89287in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.09305in</Width>
+                  <Width>2.17641in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -1045,7 +1045,7 @@
             <Top>0.06944in</Top>
             <Left>0.21973in</Left>
             <Height>1.59375in</Height>
-            <Width>7.19651in</Width>
+            <Width>7.20543in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1090,7 +1090,7 @@
         <Height>1.90625in</Height>
         <Style />
       </Body>
-      <Width>7.41624in</Width>
+      <Width>7.42516in</Width>
       <Page>
         <PageHeader>
           <Height>1.13542in</Height>
@@ -1262,7 +1262,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.26944in</Height>
+          <Height>1.16875in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1284,14 +1284,125 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>printFooter</rd:DefaultName>
-              <Top>0.06944in</Top>
-              <Left>0.21527in</Left>
-              <Height>0.2in</Height>
+              <Top>0.78958in</Top>
+              <Left>0.18393in</Left>
+              <Height>0.17569in</Height>
               <Width>7.20097in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox8">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Prepared By</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox3</rd:DefaultName>
+              <Top>0.50834in</Top>
+              <Left>0.47249in</Left>
+              <Height>0.23958in</Height>
+              <Width>1.2381in</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <TopBorder>
+                  <Color>Black</Color>
+                  <Style>Solid</Style>
+                  <Width>1pt</Width>
+                </TopBorder>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox4">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Checked By </Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox3</rd:DefaultName>
+              <Top>0.49445in</Top>
+              <Left>3.09353in</Left>
+              <Height>0.23958in</Height>
+              <Width>1.2381in</Width>
+              <ZIndex>2</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <TopBorder>
+                  <Color>Black</Color>
+                  <Style>Solid</Style>
+                  <Width>1pt</Width>
+                </TopBorder>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox6">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Approved By</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox3</rd:DefaultName>
+              <Top>0.48056in</Top>
+              <Left>5.90603in</Left>
+              <Height>0.23958in</Height>
+              <Width>1.22768in</Width>
+              <ZIndex>3</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <TopBorder>
+                  <Color>Black</Color>
+                  <Style>Solid</Style>
+                  <Width>1pt</Width>
+                </TopBorder>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>

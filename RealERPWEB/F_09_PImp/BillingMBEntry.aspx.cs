@@ -148,24 +148,36 @@ namespace RealERPWEB.F_09_PImp
 
         protected void lbtnPrevOrderList_Click(object sender, EventArgs e)
         {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string usrid = hst["usrid"].ToString();
-            string comcod = this.GetCompCode();
-            string CurDate1 = this.GetStdDate(this.txtCurOrderDate.Text.Trim());
-            string qorderno = this.Request.QueryString["genno"] ?? "";
-            string orderno = (qorderno.Length == 0 ? "" : this.Request.QueryString["genno"].ToString()) + "%";
+            try
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string usrid = hst["usrid"].ToString();
+                string comcod = this.GetCompCode();
+                string CurDate1 = this.GetStdDate(this.txtCurOrderDate.Text.Trim());
+                string qmbno = this.Request.QueryString["genno"] ?? "";
+                string mbno = (qmbno.Length == 0 ? "" : this.Request.QueryString["genno"].ToString()) + "%";
 
 
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_02", "GET_PREV_ORDER_LIST", CurDate1,
-                          orderno, "", usrid, "", "", "", "", "");
-            if (ds1 == null)
-                return;
+                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPREVIOUSMBNO", CurDate1,
+                              mbno, "", "", "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+                this.ddlPrevOrderList.Items.Clear();
+                this.ddlPrevOrderList.DataTextField = "mbno1";
+                this.ddlPrevOrderList.DataValueField = "mbno";
+                this.ddlPrevOrderList.DataSource = ds1.Tables[0];
+                this.ddlPrevOrderList.DataBind();
+                ds1.Dispose();
+            }
 
-            this.ddlPrevOrderList.Items.Clear();
-            this.ddlPrevOrderList.DataTextField = "orderno1";
-            this.ddlPrevOrderList.DataValueField = "orderno";
-            this.ddlPrevOrderList.DataSource = ds1.Tables[0];
-            this.ddlPrevOrderList.DataBind();
+            catch (Exception ex)
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
+
+
+            }
+            
         }
 
         protected void lbtnOk_Click(object sender, EventArgs e)
@@ -263,8 +275,9 @@ namespace RealERPWEB.F_09_PImp
                 return;
 
             ViewState["tblmb"] = ds1.Tables[0];
-           
-            this.GetCorderListInfo();
+            ViewState["tblcorder"] = ds1.Tables[2];
+        
+
             if (mMBNo == "NEWMB")
             {
 
@@ -277,18 +290,20 @@ namespace RealERPWEB.F_09_PImp
                     this.txtmbno2.Text = ds1.Tables[0].Rows[0]["maxno1"].ToString().Substring(6, 5);
                 }
 
+                this.GetCorderListInfo();
+
 
                 return;
 
             }
 
-            this.hdnorderno.Value= ds1.Tables[2].Rows[0]["orderno"].ToString().Substring(0, 6); 
-            this.lblmbno1.Text = ds1.Tables[2].Rows[0]["orderno1"].ToString().Substring(0, 6);
-            this.txtmbno2.Text = ds1.Tables[2].Rows[0]["orderno1"].ToString().Substring(6, 5);
-            this.txtRefNo.Text = ds1.Tables[2].Rows[0]["pordref"].ToString();
+            this.hdnorderno.Value= ds1.Tables[1].Rows[0]["orderno"].ToString().Substring(0, 6); 
+            this.lblmbno1.Text = ds1.Tables[1].Rows[0]["mbno1"].ToString().Substring(0, 6);
+            this.txtmbno2.Text = ds1.Tables[1].Rows[0]["mbno1"].ToString().Substring(6, 5);
+            this.txtRefNo.Text = ds1.Tables[1].Rows[0]["mbrefno"].ToString();
 
 
-            this.txtCurOrderDate.Text = Convert.ToDateTime(ds1.Tables[2].Rows[0]["orderdat"]).ToString("dd.MM.yyyy");
+            this.txtCurOrderDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["mbdat"]).ToString("dd.MM.yyyy");
 
 
             this.gvOrderInfo_DataBind();

@@ -527,21 +527,30 @@ namespace RealERPWEB.F_17_Acc
             double amt1 = Convert.ToDouble((Convert.IsDBNull(dtrpt.Compute("Sum(paidamt)", "")) ? 0.00 : dtrpt.Compute("Sum(paidamt)", "")));
             string amt1t = ASTUtility.Trans(amt1, 2);
             string Typedes = "";
+            string Paydesc = "";
 
             if (paytype == "CHEQUE")
             {
                 Typedes = paytype + ", " + "No: " + chqno + ", Bank: " + bankname + ", Branch: " + branch;
+                Paydesc = paytype;
 
             }
             else if (paytype == "P.O")
             {
                 Typedes = paytype + ", " + "No: " + chqno + ", Bank: " + bankname + ", Branch: " + branch;
+                Paydesc = paytype;
 
+            }
+            else if(paytype == "CASH")
+            {
+                Typedes = paytype;
+                Paydesc = paytype;
             }
             else
             {
 
                 Typedes = paytype;
+                Paydesc = paytype;
             }
 
             string Type = this.CompanyPrintMR();
@@ -809,19 +818,23 @@ namespace RealERPWEB.F_17_Acc
             else if (Type == "MRPrintCPDL")
             {
                 var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
-                string currentdate = DateTime.Now.ToString("MMM dd, yyyy hh:mm:ss tt");
+                string currentdate = DateTime.Now.ToString("MMM dd, yyyy hh:mm tt");
+                string changetext = Paydesc == "CHEQUE" ? "Cheque": Paydesc == "CASH" ? "Cash":  paytype;
+                string shortcomnam = "CPDL.";
+                string amt22 = amt1t.Replace("(", "").Replace(")", "").Trim();
                 string vounum = dtrpt.Rows[0]["vounum"].ToString();
                 if (vounum == "00000000000000")
                 {
                     //Title=Acknowledgement Slip
-
+                   
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptAcknowledgementSlipCPDL", list, null, null);
                     Rpt1.EnableExternalImages = true;
                     Rpt1.SetParameters(new ReportParameter("CompName", comnam));
+                    Rpt1.SetParameters(new ReportParameter("shortcomnam", shortcomnam));
                     Rpt1.SetParameters(new ReportParameter("Title", "PAYMENT ACKNOWLEDGEMENT "));
                     Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
                     Rpt1.SetParameters(new ReportParameter("currentdate", currentdate));
-                    Rpt1.SetParameters(new ReportParameter("CompAdd", comadd));
+                    Rpt1.SetParameters(new ReportParameter("CompAdd", comfadd));
                     Rpt1.SetParameters(new ReportParameter("CustAdd", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
                     Rpt1.SetParameters(new ReportParameter("CustAdd1", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
                     Rpt1.SetParameters(new ReportParameter("custteam", "Received by: " + custteam));
@@ -832,12 +845,12 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("usize", usize));
                     Rpt1.SetParameters(new ReportParameter("munit", munit));
                     Rpt1.SetParameters(new ReportParameter("usize1", udesc + ", " + usize + " " + munit));
-                    Rpt1.SetParameters(new ReportParameter("amount", Convert.ToDouble(paidamt).ToString("#,##0;(#,##0)")));
+                    Rpt1.SetParameters(new ReportParameter("amount", Convert.ToDouble(paidamt).ToString("#,##0.00;(#,##0.00)")));
                     Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(paidamt).ToString("#,##0;(#,##0)")));
-                    Rpt1.SetParameters(new ReportParameter("takainword", amt1t.Replace("Taka", "").Replace("Only", "Taka Only")));
+                    Rpt1.SetParameters(new ReportParameter("takainword", amt22.Replace("Taka", "").Replace("Only", "Taka Only")));
                     Rpt1.SetParameters(new ReportParameter("As", ((Installment == "") ? rectype : Installment)));
                     Rpt1.SetParameters(new ReportParameter("takainword1", amt1t.Replace("Taka", "").Replace("Only", "Taka Only") + " " + "AS " + ((Installment == "") ? rectype : Installment)));
-                    Rpt1.SetParameters(new ReportParameter("paytype", Typedes));
+                    Rpt1.SetParameters(new ReportParameter("paytype", (Paydesc== "CHEQUE")? "Cheque No :" + chqno : Paydesc));
                     Rpt1.SetParameters(new ReportParameter("chqno", chqno));
                     Rpt1.SetParameters(new ReportParameter("bank", bankname));
                     Rpt1.SetParameters(new ReportParameter("branch", branch));
@@ -847,10 +860,10 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.ComInfoWithoutNumber()));
                     Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.ComInfoWithoutNumber()));
                     Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-                    Rpt1.SetParameters(new ReportParameter("footer1", "Money Receipt will be provided after encashment of the PO/DD/Cheque in favor of CPDL."));
+                    Rpt1.SetParameters(new ReportParameter("footer1", "Money Receipt will be provided after encashment of the "+changetext+" in favor of "));
                     Rpt1.SetParameters(new ReportParameter("footer2", "Thanking you"));
                     Rpt1.SetParameters(new ReportParameter("Depart", "Property Solution Department"));
-                    Rpt1.SetParameters(new ReportParameter("notes", "Note: This is a system generated document and does not require physical signature."));
+                    Rpt1.SetParameters(new ReportParameter("notes", "Note: This is system generated document and does not require physical signature."));
 
 
                     Session["Report1"] = Rpt1;
