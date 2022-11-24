@@ -210,17 +210,13 @@
                                             <asp:ListItem>50</asp:ListItem>
                                             <asp:ListItem>100</asp:ListItem>
                                             <asp:ListItem>150</asp:ListItem>
-                                            <asp:ListItem>200</asp:ListItem>
                                             <asp:ListItem>300</asp:ListItem>
-                                            <asp:ListItem>400</asp:ListItem>
-                                            <asp:ListItem>500</asp:ListItem>
                                             <asp:ListItem>600</asp:ListItem>
-                                            <asp:ListItem>700</asp:ListItem>
-                                            <asp:ListItem>800</asp:ListItem>
                                             <asp:ListItem>900</asp:ListItem>
-
-
-
+                                            <asp:ListItem>1200</asp:ListItem>
+                                            <asp:ListItem>1500</asp:ListItem>
+                                            <asp:ListItem>3000</asp:ListItem>
+                                            <asp:ListItem>6000</asp:ListItem>
 
                                         </asp:DropDownList>
                                     </div>
