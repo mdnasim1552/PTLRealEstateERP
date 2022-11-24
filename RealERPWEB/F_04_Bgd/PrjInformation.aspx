@@ -174,8 +174,6 @@
                                         </asp:DropDownList>
                                         <asp:Label ID="lblProjectdesc" runat="server" CssClass="form-control inputTxt" Visible="false"></asp:Label>
 
-
-
                                     </div>
 
                                     <div class="col-md-1 ml-4">
@@ -185,7 +183,6 @@
                                             <asp:LinkButton ID="lbtnEnglish" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnEnglish_Click" Visible="false">Bangla</asp:LinkButton>
 
                                         </div>
-
                                     </div>
 
                                     <div class="progress progress-bar-danger" style="display: none;">

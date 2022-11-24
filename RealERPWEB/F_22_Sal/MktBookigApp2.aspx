@@ -113,6 +113,22 @@
                             </div>
                             <div class="clearfix"></div>
                         </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-3 pading5px asitCol3">
+                                <asp:Label ID="Label3" runat="server" CssClass="lblTxt" Text="Customer Number:"></asp:Label>
+                            </div>
+
+                            <div class="col-md-4 pading5px  asitCol4">
+                               <asp:TextBox ID="txtCustmerNumber" runat="server" TabIndex="3"  CssClass="inputTxt inputName"></asp:TextBox>
+                            </div>
+                            <div class="col-md-1 pading5px">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
                     </div>
                 </fieldset>
 
@@ -378,6 +394,12 @@
 
                                         <asp:Label ID="lblbankbranch" runat="server" CssClass="smLbl_to" Text="Branch"></asp:Label>
                                         <asp:TextBox ID="txtbankbranch" runat="server" TabIndex="5" CssClass="inputtextbox"></asp:TextBox>
+
+                                        <asp:Label ID="Label4" runat="server" CssClass="smLbl_to" Text="Installment Amount Per Month"></asp:Label>
+                                        <asp:TextBox ID="Textinsamt" runat="server" TabIndex="5" CssClass="inputtextbox"></asp:TextBox>
+
+                                         <asp:Label ID="Label5" runat="server" CssClass="smLbl_to" Text="No of Total Installment"></asp:Label>
+                                        <asp:TextBox ID="TxtNoTInstall" runat="server" TabIndex="5" CssClass="inputtextbox"></asp:TextBox>
 
                                         <asp:Label ID="lblbookdate" runat="server" CssClass="smLbl_to" Text="Pay Date"></asp:Label>
                                         <asp:TextBox ID="txtbookdate" runat="server" TabIndex="5" CssClass="inputtextbox"></asp:TextBox>

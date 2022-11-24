@@ -48,6 +48,7 @@ namespace RealERPWEB.F_22_Sal
                 this.txtbookdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
                 this.GetProjectName();
+                this.GetMaxCustNumber();
             }
 
 
@@ -97,6 +98,25 @@ namespace RealERPWEB.F_22_Sal
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
+        }
+
+        private void GetMaxCustNumber()
+        {
+            try
+            {
+                string comcod = this.GetCompCode();
+                string applicationDate = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
+                DataSet ds = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT_TEST", "MAXCUTOMERNUMBER", applicationDate, "", "", "", "", "", "", "", "");
+                DataTable dt = ds.Tables[0];
+                this.txtCustmerNumber.Text = (dt.Rows.Count) == 0 ? "" : dt.Rows[0]["customerno"].ToString();
+                this.txtCustmerNumber.Enabled = false;
+            }
+
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
         }
 
         private void GetProjectName()
@@ -173,6 +193,7 @@ namespace RealERPWEB.F_22_Sal
                     this.ddlCustName.Enabled = false;
                     this.MultiView1.ActiveViewIndex = 0;
                     this.ShowData();
+                    this.GetMaxCustNumber();
                     return;
 
 
@@ -242,6 +263,8 @@ namespace RealERPWEB.F_22_Sal
             this.txtbankname.Text = (dt.Rows.Count == 0) ? "" : dt.Rows[0]["bankname"].ToString();
             this.txtbankbranch.Text = (dt.Rows.Count == 0) ? "" : dt.Rows[0]["bbranch"].ToString();
             this.txtbookdate.Text = (dt.Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(dt.Rows[0]["paydate"]).ToString("dd-MMM-yyyy");
+            this.Textinsamt.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["insamptpermonth"]).ToString("#,##0;(#,##0); ");
+            this.TxtNoTInstall.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["totalinstallment"]).ToString("#,##0;(#,##0); ");
 
 
             this.cblintavailloan.SelectedValue = (dt.Rows.Count == 0) ? "No" : dt.Rows[0]["intavail"].ToString();
@@ -864,10 +887,17 @@ namespace RealERPWEB.F_22_Sal
 
             string inttoavailloan = this.cblintavailloan.SelectedValue.ToString();
             string modeofpay = this.cblpaytype.SelectedValue.ToString();
-
+            string projectName = this.ddlProjectName.SelectedItem.Text;
             DataTable dt2 = (DataTable)Session["tblcustinfo"];
             DataTable dt3 = (DataTable)Session["tblprice"];
-            
+            DataTable dt4 = (DataTable)Session["tblnominee"];
+            DataTable dt5 = (DataTable)Session["tblnominated"];
+
+
+
+
+
+
             string custimg = new Uri(Server.MapPath(dt2.Rows[0]["custimg"].ToString())).AbsoluteUri;
 
             double inword = Convert.ToDouble(dt2.Rows[0]["bookamt"]);
@@ -881,8 +911,8 @@ namespace RealERPWEB.F_22_Sal
 
 
             var list = dt2.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptCustBookApp2>();
-            var list2 = dt2.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptNomineeBookApp2>();
-            var list3 = dt2.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptNominatedBookApp2>();
+            var list2 = dt4.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptNomineeBookApp2>();
+            var list3 = dt5.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptNominatedBookApp2>();
             LocalReport Rpt1 = new LocalReport();
 
 
@@ -901,7 +931,39 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("utility", dt3.Rows[0]["utility"].ToString()));
             Rpt1.SetParameters(new ReportParameter("others", dt3.Rows[0]["others"].ToString()));
             Rpt1.SetParameters(new ReportParameter("total", dt3.Rows[0]["total"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("nomineenationalid", dt4.Rows[0]["nationalid"].ToString()));
             Rpt1.SetParameters(new ReportParameter("enrolmentdate", Convert.ToDateTime(dt2.Rows[0]["appdate"]).ToString("ddMMyyyy")));
+            Rpt1.SetParameters(new ReportParameter("customerno", dt2.Rows[0]["customerno"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("installmentamtpermonth", dt2.Rows[0]["insamptpermonth"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("nooftotalinstallment", dt2.Rows[0]["totalinstallment"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("bookingno", dt2.Rows[0]["bookingno"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("projectName", projectName));
+            Rpt1.SetParameters(new ReportParameter("custimg", custimg));
+            Rpt1.SetParameters(new ReportParameter("propertyaddress", "Devpahar, Chattogram."));
+
+            
+
+
+            string bookingmoney = (dt2.Rows.Count == 0) ? "" : Convert.ToDouble(dt2.Rows[0]["bookamt"]).ToString("#,##0;(#,##0); ");
+            Rpt1.SetParameters(new ReportParameter("bookingmoney", bookingmoney));
+
+            string checkno = (dt2.Rows.Count == 0) ? "" : dt2.Rows[0]["chequeno"].ToString();
+            Rpt1.SetParameters(new ReportParameter("checkno", checkno));
+
+            string bank = (dt2.Rows.Count == 0) ? "" : dt2.Rows[0]["bankname"].ToString();
+            Rpt1.SetParameters(new ReportParameter("bankname", bankname));
+
+            string branch = (dt2.Rows.Count == 0) ? "" : dt2.Rows[0]["bbranch"].ToString();
+            Rpt1.SetParameters(new ReportParameter("branch", branch));
+
+            string paydate = (dt2.Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(dt2.Rows[0]["paydate"]).ToString("dd-MMM-yyyy");
+            Rpt1.SetParameters(new ReportParameter("installmentdate", paydate));
+
+            string paymentmode = this.cblpaytype.SelectedValue.ToString();
+            Rpt1.SetParameters(new ReportParameter("modeofpay", paymentmode));
+
+
+
 
 
 
@@ -999,9 +1061,13 @@ namespace RealERPWEB.F_22_Sal
             string chequeno = this.txtCheqNo.Text.Trim();
             string bankname = this.txtbankname.Text.Trim();
             string branch = this.txtbankbranch.Text.Trim();
+            string InstallAmtPerMonth = Convert.ToDouble("0" + this.Textinsamt.Text).ToString();
+            string NoofTotalInstall = Convert.ToDouble("0" + this.TxtNoTInstall.Text).ToString();
             string bookdate = Convert.ToDateTime(this.txtbookdate.Text).ToString("dd-MMM-yyyy");
             string inttoavailloan = this.cblintavailloan.SelectedValue.ToString();
             string modeofpay = this.cblpaytype.SelectedValue.ToString();
+            string customerMaxNo = this.txtCustmerNumber.Text.Trim();
+
 
 
 
@@ -1070,16 +1136,13 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-
-
-            bool result = SalData.UpdateXmlTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT_TEST", "INSORUPDATECUSTAPPINF", ds1, null, null, pactcode, usircode, appdate, bookamt, bankname, branch, bookdate, inttoavailloan, modeofpay, chequeno);
+            bool result = SalData.UpdateXmlTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT_TEST", "INSORUPDATECUSTAPPINF", ds1, null, null, pactcode, usircode, appdate, bookamt, bankname, branch, bookdate, inttoavailloan, modeofpay, chequeno, customerMaxNo, InstallAmtPerMonth, NoofTotalInstall);
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = SalData.ErrorObject["Msg"].ToString();
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                 return;
             }
-
 
             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);

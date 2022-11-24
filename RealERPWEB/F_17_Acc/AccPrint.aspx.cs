@@ -3036,7 +3036,6 @@ namespace RealERPWEB.F_17_Acc
                 //Commented
                 // rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeIBBL", hshtbl, null, null);        
 
-
             }
 
             //rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeSBL", hshtbl, null, null);
