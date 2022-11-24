@@ -243,6 +243,7 @@
     <EmbeddedResource Include="R_02_Fea\rptCostAnlys.rdlc" />
     <EmbeddedResource Include="R_02_Fea\rptEstmtProfitLoss.rdlc" />
     <EmbeddedResource Include="R_04_Bgd\RptProjectBgdFinlay.rdlc" />
+    <EmbeddedResource Include="R_09_PIMP\RptConBillCPDL.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillEpic.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillFinaly.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillIntech.rdlc" />
@@ -1184,8 +1185,8 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryAssureTourism.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsAcmeAI.rdlc" />
-    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsCPDL - Copy.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsCPDL.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsCPDL- Copy.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryEpic - Copy.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryHOBTIPdf.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryHOBTIExcel.rdlc" />
