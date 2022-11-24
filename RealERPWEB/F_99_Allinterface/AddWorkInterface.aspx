@@ -515,7 +515,6 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-
             <div class="RealProgressbar">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
                     <ProgressTemplate>
@@ -553,7 +552,7 @@
                         </div>
                         <div class="col-md-1">
                             <div class="form-group">
-                                <asp:LinkButton ID="lnkok" runat="server" Text="Reload" OnClick="lnkok_Click" CssClass="btn btn-primary"></asp:LinkButton>
+                                <asp:LinkButton ID="lbtnok" runat="server" Text="Reload" OnClick="lbtnok_Click" CssClass="btn btn-primary"></asp:LinkButton>
 
                             </div>
                         </div>
@@ -675,7 +674,7 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle HorizontalAlign="right" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Tracking">
+                                <asp:TemplateField HeaderText="Status">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvtrack" Target="_blank" runat="server" AutoCompleteType="Disabled" BackColor="Transparent"
                                             BorderStyle="None" Font-Size="11px" Font-Bold="true" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "track"))   %>'
@@ -699,7 +698,6 @@
                     </asp:Panel>
 
                     <asp:Panel runat="server" ID="pnlcheck" Visible="false">
-
                         <asp:GridView ID="gvcltmodchk" runat="server" AutoGenerateColumns="False"
                             ShowFooter="True" Style="text-align: left" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvcltmodchk_RowDataBound">
                             <RowStyle />
@@ -788,9 +786,11 @@
                                         <asp:HyperLink ID="lnkchk" Target="_blank" runat="server" ToolTip="Checked" CssClass="btn btn-default btn-xs"><span style="color:green" class=" fa fa-check"></span> </asp:HyperLink>
                                         <asp:LinkButton ID="hlnkprintchk" runat="server" ToolTip="Print" ForeColor="Blue" OnClick="hlnkprintchk_Click" CssClass="btn btn-default btn-xs"><span class=" fa fa-print"></span>
                                         </asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnDelChk" runat="server" ToolTip="Cancel Check" ForeColor="Blue" CssClass="btn btn-default btn-xs" OnClick="lbtnDelChk_Click"><span style="color:red;" class=" fa fa-trash"></span>
+                                        </asp:LinkButton>
                                     </ItemTemplate>
-                                    <ItemStyle Width="90px" />
-                                    <HeaderStyle HorizontalAlign="Center" Width="90px" VerticalAlign="Top" />
+                                    <ItemStyle Width="110px" />
+                                    <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
                                 </asp:TemplateField>
                             </Columns>
                             <FooterStyle CssClass="grvFooter" />
@@ -895,9 +895,11 @@
                                         <asp:HyperLink ID="lnkchk1st" Target="_blank" runat="server" ToolTip="Checked" CssClass="btn btn-default btn-xs"><span style="color:green" class=" fa fa-check"></span> </asp:HyperLink>
                                         <asp:LinkButton ID="hlnkprintchk1st" runat="server" ToolTip="Print" ForeColor="Blue" OnClick="hlnkprintchk1st_Click" CssClass="btn btn-default btn-xs"><span class=" fa fa-print"></span>
                                         </asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnDel1stApp" runat="server" ToolTip="Cancel Check Approval" ForeColor="Blue" CssClass="btn btn-default btn-xs" OnClick="lbtnDel1stApp_Click"><span style="color:red;" class=" fa fa-trash"></span>
+                                        </asp:LinkButton>
                                     </ItemTemplate>
-                                    <ItemStyle Width="90px" />
-                                    <HeaderStyle HorizontalAlign="Center" Width="90px" VerticalAlign="Top" />
+                                    <ItemStyle Width="110px" />
+                                    <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
                                 </asp:TemplateField>
                             </Columns>
                             <FooterStyle CssClass="grvFooter" />
@@ -998,9 +1000,11 @@
                                         <asp:HyperLink ID="lnkchk2nd" Target="_blank" runat="server" ToolTip="Checked" CssClass="btn btn-default btn-xs"><span style="color:green" class=" fa fa-check"></span> </asp:HyperLink>
                                         <asp:LinkButton ID="hlnkprintchk2nd" runat="server" ToolTip="Print" ForeColor="Blue" OnClick="hlnkprintchk2nd_Click" CssClass="btn btn-default btn-xs"><span class=" fa fa-print"></span>
                                         </asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnDel2ndApp" runat="server" ToolTip="Cancel 1st Approval" ForeColor="Blue" CssClass="btn btn-default btn-xs" OnClick="lbtnDel2ndApp_Click"><span style="color:red;" class=" fa fa-trash"></span>
+                                        </asp:LinkButton>
                                     </ItemTemplate>
-                                    <ItemStyle Width="90px" />
-                                    <HeaderStyle HorizontalAlign="Center" Width="90px" VerticalAlign="Top" />
+                                    <ItemStyle Width="110px" />
+                                    <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
                                 </asp:TemplateField>
                             </Columns>
                             <FooterStyle CssClass="grvFooter" />
@@ -1013,8 +1017,6 @@
                     </asp:Panel>
 
                     <asp:Panel runat="server" ID="pnlaudit" Visible="false">
-
-
                         <asp:GridView ID="gvCltmodaduit" runat="server" AutoGenerateColumns="False"
                             ShowFooter="True" Style="text-align: left" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvCltmodaduit_RowDataBound">
                             <RowStyle />
@@ -1106,10 +1108,11 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="lnkremoveadt" runat="server" OnClick="lnkremoveadt_Click" ToolTip="Remove" CssClass="btn btn-default btn-xs"><span style="color:red" class=" fa fa-recycle"></span> </asp:LinkButton>
                                         <asp:HyperLink ID="lnkadt" Target="_blank" runat="server" ToolTip="Audit" CssClass="btn btn-default btn-xs"><span style="color:green" class="fa fa-check"></span> </asp:HyperLink>
                                         <asp:LinkButton ID="hlnkprintadt" runat="server" ToolTip="Print" OnClick="hlnkprintadt_Click" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
                                         </asp:LinkButton>
+                                        <asp:LinkButton ID="lnkremoveadt" runat="server" OnClick="lnkremoveadt_Click" ToolTip="Remove" CssClass="btn btn-default btn-xs"><span style="color:red" class=" fa fa-trash"></span> </asp:LinkButton>
+
                                     </ItemTemplate>
                                     <ItemStyle Width="110px" />
                                     <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
@@ -1223,10 +1226,11 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="lnkremoveap" runat="server" OnClick="lnkremoveap_Click" ToolTip="Cancel" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
                                         <asp:HyperLink ID="lnkapp" runat="server" Target="_blank" ToolTip="Approval" CssClass="btn btn-default btn-xs"><span style="color:green" class="fa fa-check"></span> </asp:HyperLink>
                                         <asp:HyperLink ID="hlnkprintapp" runat="server" Target="_blank" ToolTip="Print Additional Work" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span></asp:HyperLink>
-                                    </ItemTemplate>
+                                        <asp:LinkButton ID="lnkremoveap" runat="server" OnClick="lnkremoveap_Click" ToolTip="Cancel" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-trash"></span> </asp:LinkButton>
+                                   
+                                        </ItemTemplate>
                                     <ItemStyle Width="110px" />
                                     <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
                                 </asp:TemplateField>
@@ -1247,8 +1251,5 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-
-
-
 </asp:Content>
 

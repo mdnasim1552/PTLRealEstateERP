@@ -113,6 +113,22 @@
                             </div>
                             <div class="clearfix"></div>
                         </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-3 pading5px asitCol3">
+                                <asp:Label ID="Label3" runat="server" CssClass="lblTxt" Text="Customer Number:"></asp:Label>
+                            </div>
+
+                            <div class="col-md-4 pading5px  asitCol4">
+                               <asp:TextBox ID="txtCustmerNumber" runat="server" TabIndex="3"  CssClass="inputTxt inputName"></asp:TextBox>
+                            </div>
+                            <div class="col-md-1 pading5px">
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
                     </div>
                 </fieldset>
 
@@ -379,6 +395,12 @@
                                         <asp:Label ID="lblbankbranch" runat="server" CssClass="smLbl_to" Text="Branch"></asp:Label>
                                         <asp:TextBox ID="txtbankbranch" runat="server" TabIndex="5" CssClass="inputtextbox"></asp:TextBox>
 
+                                        <asp:Label ID="Label4" runat="server" CssClass="smLbl_to" Text="Installment Amount Per Month"></asp:Label>
+                                        <asp:TextBox ID="Textinsamt" runat="server" TabIndex="5" CssClass="inputtextbox"></asp:TextBox>
+
+                                         <asp:Label ID="Label5" runat="server" CssClass="smLbl_to" Text="No of Total Installment"></asp:Label>
+                                        <asp:TextBox ID="TxtNoTInstall" runat="server" TabIndex="5" CssClass="inputtextbox"></asp:TextBox>
+
                                         <asp:Label ID="lblbookdate" runat="server" CssClass="smLbl_to" Text="Pay Date"></asp:Label>
                                         <asp:TextBox ID="txtbookdate" runat="server" TabIndex="5" CssClass="inputtextbox"></asp:TextBox>
 
@@ -598,16 +620,16 @@
 
                                     <ItemTemplate>
                                         <asp:TextBox
-                                            ID="txtgvValper" runat="server" BackColor="Transparent" BorderStyle="None"
+                                            ID="txtgvdValNominee" runat="server" BackColor="Transparent" BorderStyle="None"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'
                                             Width="300px"></asp:TextBox>
 
-                                        <asp:TextBox
-                                            ID="txtgvdValper" runat="server" BackColor="Transparent" BorderStyle="None" Visible="false"
+                                        <%--<asp:TextBox
+                                            ID="txtgvdValNominee" runat="server" BackColor="Transparent" BorderStyle="None" Visible="false"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'
-                                            Width="300px"></asp:TextBox>
+                                            Width="300px"></asp:TextBox>--%>
 
-                                        <cc1:CalendarExtender ID="CalendarExtender_txtgvdValper" runat="server" Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdValper"></cc1:CalendarExtender>
+                                        <cc1:CalendarExtender ID="CalendarExtender_txtgvdValNominee" runat="server" Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdValNominee"></cc1:CalendarExtender>
 
                                         <asp:Panel runat="server" Visible="false">
                                             <asp:CheckBoxList ID="cbldescper" runat="server" CellPadding="2" CellSpacing="0" Visible="false"
