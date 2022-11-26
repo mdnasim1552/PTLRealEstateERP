@@ -105,7 +105,9 @@ namespace RealERPWEB.F_22_Sal
             try
             {
                 string comcod = this.GetCompCode();
-                string applicationDate = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
+               DataTable dt1 = (DataTable)Session["tblcustinfo"];
+                string applicationDate = (dt1.Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(dt1.Rows[0]["appdate"]).ToString("dd-MMM-yyyy");
+
                 DataSet ds = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT_TEST", "MAXCUTOMERNUMBER", applicationDate, "", "", "", "", "", "", "", "");
                 DataTable dt = ds.Tables[0];
                 this.txtCustmerNumber.Text = (dt.Rows.Count) == 0 ? "" : dt.Rows[0]["customerno"].ToString();
@@ -170,6 +172,7 @@ namespace RealERPWEB.F_22_Sal
         {
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
             this.GetCustomerName();
+            this.lbtnOk_Click(null, null);
 
         }
         protected void imgbtnFindProject_Click(object sender, EventArgs e)
@@ -185,7 +188,7 @@ namespace RealERPWEB.F_22_Sal
         {
 
             try
-            {
+             {
                 if (this.lbtnOk.Text == "Ok")
                 {
                     this.lbtnOk.Text = "New";
@@ -252,7 +255,7 @@ namespace RealERPWEB.F_22_Sal
             Session["tblprice"] = ds2.Tables[8];
 
 
-
+            Session["tblcustinfo"] = ds2.Tables[2];
             DataTable dt = ds2.Tables[2];
 
             this.EmpImg.ImageUrl = (dt.Rows.Count) == 0 ? "" : dt.Rows[0]["custimg"].ToString();
@@ -439,7 +442,7 @@ namespace RealERPWEB.F_22_Sal
                 {
 
                     case "01109": //Birthdate                 
-                        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValNominee")).Visible = false;
+                        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtValNominee")).Visible = false;
                         ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValNominee")).Visible = true;
                         //((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper")).Visible = false;
                         //((LinkButton)this.GridViewNominee.Rows[i].FindControl("lnkbtnImg")).Visible = false;
@@ -747,7 +750,7 @@ namespace RealERPWEB.F_22_Sal
             {
                 string Gcode = ((Label)this.GridViewNominee.Rows[i].FindControl("lblgvItmCodeper")).Text.Trim();
                 //string gtype = ((Label)this.GridViewNominee.Rows[i].FindControl("lgvgvalper")).Text.Trim();
-                string Gvalue = ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValNominee")).Text.Trim();
+                string Gvalue = ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtValNominee")).Text.Trim();
                 //if (Gcode == "01027")
                 //{
                 //    CheckBoxList cbldesc = (CheckBoxList)this.gvperinfo.Rows[i].FindControl("cbldescper");
@@ -939,9 +942,7 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("bookingno", dt2.Rows[0]["bookingno"].ToString()));
             Rpt1.SetParameters(new ReportParameter("projectName", projectName));
             Rpt1.SetParameters(new ReportParameter("custimg", custimg));
-            Rpt1.SetParameters(new ReportParameter("propertyaddress", "Devpahar, Chattogram."));
-
-            
+            Rpt1.SetParameters(new ReportParameter("propertyaddress", dt3.Rows[0]["propertyAddress"].ToString()));
 
 
             string bookingmoney = (dt2.Rows.Count == 0) ? "" : Convert.ToDouble(dt2.Rows[0]["bookamt"]).ToString("#,##0;(#,##0); ");
@@ -963,78 +964,6 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("modeofpay", paymentmode));
 
 
-
-
-
-
-            //Rpt1.SetParameters(new ReportParameter("ProjectName", ProjectName));
-            //Rpt1.SetParameters(new ReportParameter("UnitName", UnitName));
-
-            //Rpt1.SetParameters(new ReportParameter("pactcode", dt2.Rows[0]["pactcode"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("usircode", dt2.Rows[0]["usircode"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("appdate", Convert.ToDateTime(dt2.Rows[0]["appdate"]).ToString("dd-MMM-yyyy")));
-            //Rpt1.SetParameters(new ReportParameter("bookamt", dt2.Rows[0]["bookamt"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("bookdate", bookdate));
-            //Rpt1.SetParameters(new ReportParameter("chequeno", dt2.Rows[0]["chequeno"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("bankname", dt2.Rows[0]["bankname"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("bbranch", dt2.Rows[0]["bbranch"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("paydate", dt2.Rows[0]["paydate"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("intavail", dt2.Rows[0]["intavail"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("paymode", dt2.Rows[0]["paymode"].ToString()));
-
-            //Rpt1.SetParameters(new ReportParameter("bookingType", dt2.Rows[0]["bookingType"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("clientID", dt2.Rows[0]["clientID"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("towerNo", dt2.Rows[0]["towerNo"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("Apartmenttype", dt2.Rows[0]["Apartmenttype"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("ttype", dt2.Rows[0]["ttype"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("floorr", dt2.Rows[0]["floorr"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("side", dt2.Rows[0]["side"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("parkingNo", dt2.Rows[0]["parkingNo"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("parkingLevel", dt2.Rows[0]["parkingLevel"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("locatedAt", dt2.Rows[0]["locatedAt"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("parkingLevel", dt2.Rows[0]["parkingLevel"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("locatedAt", dt2.Rows[0]["locatedAt"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("moneyReceipt", dt2.Rows[0]["moneyReceipt"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("bookingChart", dt2.Rows[0]["bookingChart"].ToString()));
-
-            //Rpt1.SetParameters(new ReportParameter("fullname", dt2.Rows[0]["fullname"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("spouse", dt2.Rows[0]["spouse"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("fathername", dt2.Rows[0]["fathername"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("mothername", dt2.Rows[0]["mothername"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("presentaddr", dt2.Rows[0]["presentaddr"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("permenentaddr", dt2.Rows[0]["permenentaddr"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("mobilenum", dt2.Rows[0]["mobilenum"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("telephonenum", dt2.Rows[0]["telephonenum"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("birthdate", dt2.Rows[0]["birthdate"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("marriageday", dt2.Rows[0]["marriageday"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("nationalid", dt2.Rows[0]["nationalid"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("tinnumber", dt2.Rows[0]["tinnumber"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("mailingaddre", dt2.Rows[0]["mailingaddre"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("occupation", dt2.Rows[0]["occupation"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("nationality", dt2.Rows[0]["nationality"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("religion", dt2.Rows[0]["religion"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("drivlicence", dt2.Rows[0]["drivlicence"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("bloodgroup", dt2.Rows[0]["bloodgroup"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("emailaddr", dt2.Rows[0]["emailaddr"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("fax", dt2.Rows[0]["fax"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("ClientStatus", dt2.Rows[0]["ClientStatus"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("namapplicant", dt2.Rows[0]["namapplicant"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("relationApp", dt2.Rows[0]["relationApp"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("nationaldr", dt2.Rows[0]["nationaldr"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("applicant", dt2.Rows[0]["applicant"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("nomineinfo", dt2.Rows[0]["nomineinfo"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("nameofnominee1", dt2.Rows[0]["nameofnominee1"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("relationshipnom1", dt2.Rows[0]["relationshipnom1"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("custnote", dt2.Rows[0]["custnote"].ToString()));
-            //Rpt1.SetParameters(new ReportParameter("nominenumber", dt2.Rows[0]["nominenumber"].ToString()));
-
-            ////Application Date
-            //Rpt1.SetParameters(new ReportParameter("date1", appdate));
-            //Rpt1.SetParameters(new ReportParameter("bookamt01", Convert.ToDouble("0" + this.txtbookamt.Text).ToString("#,##0.00;(#,##0.00); ")));
-            //Rpt1.SetParameters(new ReportParameter("InWrd", "In Words : " + ASTUtility.Trans(Math.Round(inword), 2)));
-
-            //Rpt1.SetParameters(new ReportParameter("intloan", inttoavailloan));
-            //Rpt1.SetParameters(new ReportParameter("modeofpay", modeofpay));
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +

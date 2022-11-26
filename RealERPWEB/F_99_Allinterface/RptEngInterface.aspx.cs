@@ -677,7 +677,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 case "3370"://CPDL
                 case "3101":
-                    dv.RowFilter = ("checkbyid = ''and suserid='"+ usrid + "'");
+                    dv.RowFilter = ("checkbyid = ''and (suserid='"+ usrid + "' or asuserid='"+usrid+"' )");
 
                     break;
                 default:
@@ -1587,7 +1587,8 @@ namespace RealERPWEB.F_99_Allinterface
                         case "3370"://CPDL
                         case "3101":                           
                             string suserid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "suserid")).ToString();
-                            if (suserid == userid)
+                            string asuserid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "asuserid")).ToString();
+                            if (suserid == userid || asuserid == userid)
                             {
                                 hlink1.Attributes["style"] = "color:green;";
                                 hlink1.Enabled = true;
