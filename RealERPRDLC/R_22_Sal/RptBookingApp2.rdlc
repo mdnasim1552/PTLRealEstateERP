@@ -2558,7 +2558,7 @@
                                                         <Paragraph>
                                                           <TextRuns>
                                                             <TextRun>
-                                                              <Value>=format(CDate(today), "dd MMM yyyy")</Value>
+                                                              <Value>=Parameters!dateforapplicant.Value</Value>
                                                               <Style>
                                                                 <FontFamily>Cambria</FontFamily>
                                                               </Style>
@@ -3728,7 +3728,7 @@
                                                         <Paragraph>
                                                           <TextRuns>
                                                             <TextRun>
-                                                              <Value>=format(CDate(today), "dd MMM yyyy")</Value>
+                                                              <Value>=Parameters!datefornominee.Value</Value>
                                                               <Style>
                                                                 <FontFamily>Cambria</FontFamily>
                                                               </Style>
@@ -4802,7 +4802,7 @@
                                                         <Paragraph>
                                                           <TextRuns>
                                                             <TextRun>
-                                                              <Value>=format(CDate(today), "dd MMM yyyy")</Value>
+                                                              <Value>=Parameters!datefornominated.Value</Value>
                                                               <Style>
                                                                 <FontFamily>Cambria</FontFamily>
                                                               </Style>
@@ -5714,7 +5714,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox578</rd:DefaultName>
@@ -5786,7 +5788,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox582</rd:DefaultName>
@@ -5858,7 +5862,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox585</rd:DefaultName>
@@ -5930,7 +5936,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox588</rd:DefaultName>
@@ -5996,13 +6004,15 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!others.Value</Value>
+                                  <Value>Parameters!others.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox603</rd:DefaultName>
@@ -6074,7 +6084,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox606</rd:DefaultName>
@@ -6889,7 +6901,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox566</rd:DefaultName>
-            <Top>33.47708in</Top>
+            <Top>33.59166in</Top>
             <Left>0.02681in</Left>
             <Height>0.25in</Height>
             <Width>7.3732in</Width>
@@ -6936,7 +6948,7 @@ The information and particulars furnished by me/us in this enrollment from are t
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox655</rd:DefaultName>
-            <Top>33.78264in</Top>
+            <Top>33.89722in</Top>
             <Left>0.03819in</Left>
             <Height>2.96527in</Height>
             <Width>7.83154in</Width>
@@ -6969,7 +6981,7 @@ The information and particulars furnished by me/us in this enrollment from are t
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox566</rd:DefaultName>
-            <Top>37.55347in</Top>
+            <Top>37.66805in</Top>
             <Left>0.05498in</Left>
             <Height>0.25in</Height>
             <Width>7.3732in</Width>
@@ -7004,7 +7016,7 @@ The information and particulars furnished by me/us in this enrollment from are t
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox659</rd:DefaultName>
-            <Top>36.16458in</Top>
+            <Top>36.27916in</Top>
             <Left>5.72593in</Left>
             <Height>0.46875in</Height>
             <Width>1.66297in</Width>
@@ -7115,7 +7127,7 @@ The information and particulars furnished by me/us in this enrollment from are t
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox659</rd:DefaultName>
-            <Top>38.64827in</Top>
+            <Top>38.76285in</Top>
             <Left>0.32639in</Left>
             <Height>0.375in</Height>
             <Width>1.53797in</Width>
@@ -7152,7 +7164,7 @@ The information and particulars furnished by me/us in this enrollment from are t
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox659</rd:DefaultName>
-            <Top>38.64827in</Top>
+            <Top>38.76285in</Top>
             <Left>3.2819in</Left>
             <Height>0.375in</Height>
             <Width>1.51771in</Width>
@@ -7191,7 +7203,7 @@ The information and particulars furnished by me/us in this enrollment from are t
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox659</rd:DefaultName>
-            <Top>38.64827in</Top>
+            <Top>38.76285in</Top>
             <Left>5.95443in</Left>
             <Height>0.375in</Height>
             <Width>1.54838in</Width>
@@ -7230,7 +7242,7 @@ The information and particulars furnished by me/us in this enrollment from are t
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox659</rd:DefaultName>
-            <Top>39.70729in</Top>
+            <Top>39.82187in</Top>
             <Left>5.95444in</Left>
             <Height>0.375in</Height>
             <Width>1.54838in</Width>
@@ -8014,11 +8026,29 @@ The information and particulars furnished by me/us in this enrollment from are t
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="dateforapplicant">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="datefornominee">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="datefornominated">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>6</NumberOfRows>
+      <NumberOfRows>7</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -8129,6 +8159,21 @@ The information and particulars furnished by me/us in this enrollment from are t
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>5</RowIndex>
           <ParameterName>propertyaddress</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>3</ColumnIndex>
+          <RowIndex>5</RowIndex>
+          <ParameterName>dateforapplicant</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>6</RowIndex>
+          <ParameterName>datefornominee</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>6</RowIndex>
+          <ParameterName>datefornominated</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
