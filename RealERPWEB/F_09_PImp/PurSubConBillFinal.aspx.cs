@@ -500,7 +500,10 @@ namespace RealERPWEB.F_09_PImp
 
                     PrintReq = "PrintBill08";
                     break;
+                case "3370":// Chittagong
 
+                    PrintReq = "PrintBill09";
+                    break;
 
 
                 default:
@@ -630,6 +633,12 @@ namespace RealERPWEB.F_09_PImp
             else if (pCompanyBill == "PrintBill08")
             {
                 rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBillRup", lst, null, null);
+
+
+            }
+            else if (pCompanyBill == "PrintBill09")
+            {
+                rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBillCPDL", lst, null, null);
 
 
             }
