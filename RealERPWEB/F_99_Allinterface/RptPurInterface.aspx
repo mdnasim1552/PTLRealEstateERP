@@ -704,9 +704,8 @@
 
                         break;
 
-                    case 3101:
+                    //case 3101:
                     case 3368:  //Finlay
-
 
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
                         //  $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
@@ -722,7 +721,7 @@
 
 
                     case 3367:  //Epic  
-                        //case 3101:  //Epic
+                    case 3101:  //ptl
 
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check      
                         //$(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
@@ -841,9 +840,14 @@
         function openReqModal() {
             $('#modalReqNote').modal('toggle');
         }
-
         function closeReqModal() {
             $('#modalReqNote').modal('hide');
+        }
+        function openNoteModal() {
+            $('#modalDelNote').modal('toggle');
+        }
+        function closeNoteModal() {
+            $('#modalDelNote').modal('hide');
         }
     </script>
 
@@ -1677,6 +1681,23 @@
                                                                 </ItemTemplate>
                                                                 <ItemStyle Width="100px" />
                                                                 <HeaderStyle HorizontalAlign="Center" Width="100px" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText=" Req. No" Visible="false">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvreqno2" runat="server" Font-Bold="True" Style="text-align: left"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno"))%>' Width="80px"></asp:Label>
+
+                                                                </ItemTemplate>
+
+                                                                <HeaderStyle />
+                                                            </asp:TemplateField>
+
+                                                            <asp:TemplateField HeaderText="Notes">
+                                                                <ItemTemplate>
+                                                                    <asp:LinkButton ID="lbtnNotes" runat="server" OnClick="lbtnNotes_Click" Width="50px" Text="Notes">
+                                                                    </asp:LinkButton>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
 
@@ -4666,6 +4687,7 @@
                             <asp:Label ID="lblreqno" runat="server" CssClass="form-control" Text="" Visible="false"></asp:Label>
                             <asp:Label ID="lblmrfno" runat="server" CssClass="form-control" Text="" Visible="false"></asp:Label>
                             <asp:Label ID="lblpactcode" runat="server" CssClass="form-control" Text="" Visible="false"></asp:Label>
+                            <asp:Label ID="lblstatus" runat="server" CssClass="form-control" Text="" Visible="false"></asp:Label>
                         </div>
                         <div class="modal-body">
                             <div class="container">
@@ -4687,6 +4709,90 @@
 
                         <div class="modal-footer">
                             <asp:LinkButton ID="btnSaveReqNote" runat="server" OnClick="btnSaveReqNote_Click" OnClientClick="closeReqModal();" CssClass="btn btn-primary">Delete</asp:LinkButton>
+                            <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modalDelNote" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-dialog-md-width">
+                    <div class="modal-content modal-content-md-width" style="width:700px;">
+                        <div class="modal-header">
+                            <h4 class="modal-title">
+                                <i class="fa fa-hand-point-right"></i>Material Cancelation History </h4>
+                            <button type="button" class="btn btn-xs pull-right" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        </div>
+                        <div class="modal-body " style="min-height: 400px">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="form-group">
+                                        <h4 class="modal-title"><span id="spanMrfno" runat="server"></span></h4>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <asp:GridView ID="gvNote" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                            AutoGenerateColumns="False" Font-Size="12px" Width="660px">
+                                            <FooterStyle BackColor="#5F9467" Font-Bold="True" ForeColor="#000" />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="SL">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvNoteSL" runat="server" Style="text-align: right"
+                                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                                    <ItemStyle Font-Size="12px" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Project">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvNotepactdesc" runat="server" Font-Size="12px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
+                                                            Width="100px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                                    <ItemStyle Font-Size="12px" />
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="MPR/MRF">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvNotemrfno" runat="server" Font-Size="12px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrfno")) %>'
+                                                            Width="100px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                                    <ItemStyle Font-Size="12px" />
+                                                </asp:TemplateField>           
+
+                                                <asp:TemplateField HeaderText="Notes ">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvNotemrfno" runat="server" Font-Size="12px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "notes")) %>'
+                                                            Width="100px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                                    <ItemStyle Font-Size="12px" />
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Status ">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvNotemrfno" runat="server" Font-Size="12px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "nstatus")) %>'
+                                                            Width="180px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                                    <ItemStyle Font-Size="12px" />
+                                                </asp:TemplateField>
+                                            </Columns>
+                                            <FooterStyle CssClass="grvFooter" />
+                                            <PagerStyle CssClass="gvPagination" />
+                                            <HeaderStyle CssClass="grvHeader" />
+                                        </asp:GridView>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
                             <button class="btn btn-primary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
