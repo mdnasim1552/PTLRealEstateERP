@@ -134,9 +134,10 @@ namespace RealERPWEB.F_17_Acc
 
                 string res = this.dddSupgrp.SelectedValue.Substring(0, 4).ToString();
                 string Rescodegrp = res.Substring(2, 2).ToString() == "00" ? res.Substring(0, 2).ToString() + "%" : res + "%";
+                string withpay = this.chkWithPay.Checked ? "Length" : "";
                 //string mRptGroup = "12";
                 // DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "RPTALLSUPPAYMENTSTATUS", frmdate, todate, Rescode, mRptGroup, "", "", "", "", "");
-                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETSUPLIERPAYMENTACCOUTS", Rescode, frmdate, todate, Rescodegrp, "", "", "", "", "");
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETSUPLIERPAYMENTACCOUTS", Rescode, frmdate, todate, Rescodegrp, withpay, "", "", "", "");
 
                 if (ds1 == null)
                 {
@@ -168,8 +169,9 @@ namespace RealERPWEB.F_17_Acc
                 string Rescode = this.ddlSuplist.SelectedValue.ToString() == "000000000000" ? "99%" : this.ddlSuplist.SelectedValue.ToString() + "%";
                 string res = this.dddSupgrp.SelectedValue.Substring(0, 4).ToString();
                 string Rescodegrp = res.Substring(2, 2).ToString() == "00" ? res.Substring(0, 2).ToString() + "%" : res + "%";
-               
-                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETSUPLIERPAYMENTACCOUTSDETAILS", frmdate, Rescode, todate, Rescodegrp, "", "", "", "", "");
+                string withpay = this.chkWithPay.Checked ? "Length" : "";
+
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETSUPLIERPAYMENTACCOUTSDETAILS", frmdate, Rescode, todate, Rescodegrp, withpay, "", "", "", "");
 
 
 
