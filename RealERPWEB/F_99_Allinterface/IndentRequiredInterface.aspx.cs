@@ -149,12 +149,21 @@ namespace RealERPWEB.F_99_Allinterface
 
                 Session["tbladdwrk"] = ds2.Tables[0];
 
+                DataTable dt1 = new DataTable();
+                DataView view1 = new DataView();
+                view1.Table = ds2.Tables[0];
+                view1.RowFilter = "steptype= 'Entry'";
+                dt1 = view1.ToTable();
+                this.gv_IndRequired.DataSource = dt1;
+                this.gv_IndRequired.DataBind();
+
+                this.gv_hodChecked.DataSource = dt1;
+                this.gv_hodChecked.DataBind();
+
+
                 DataTable dt = new DataTable();
                 DataView view = new DataView();
-                this.gv_IndRequired.DataSource = ds2.Tables[0];
-                this.gv_IndRequired.DataBind();
-                this.gv_hodChecked.DataSource = ds2.Tables[0];
-                this.gv_hodChecked.DataBind();
+                
 
                 view.Table = ds2.Tables[0];
                 view.RowFilter = "steptype= 'Checked'";

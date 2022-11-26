@@ -24,10 +24,10 @@ namespace RealERPWEB.F_12_Inv
                 this.GetDeparment();
                 this.CommonButton();
 
-                if (this.Request.QueryString["genno"].Length > 0)
-                {
-                    this.PreList();
-                }
+                //if (this.Request.QueryString["genno"].Length > 0)
+                //{
+                  this.PreList();
+                //}
 
             }
 
@@ -656,7 +656,7 @@ namespace RealERPWEB.F_12_Inv
                 {
                     dt.Rows[index].Delete();
                 }
-
+                dt.AcceptChanges();
                 ViewState["tblIssue"] = dt;
                 this.Data_Bind();
 
