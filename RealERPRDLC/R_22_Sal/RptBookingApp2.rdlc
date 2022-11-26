@@ -896,6 +896,7 @@
                                   <Value>Enrollment Date (DD MM YYYY) :</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontSize>14pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1182,6 +1183,7 @@
                                 <TextRun>
                                   <Value> Applicant's Name (Block Letter)   </Value>
                                   <Style>
+                                    <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1251,6 +1253,7 @@
                                 <TextRun>
                                   <Value>Co-Applicant Name (if any)  </Value>
                                   <Style>
+                                    <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1319,6 +1322,7 @@
                                 <TextRun>
                                   <Value>Father's Name                         </Value>
                                   <Style>
+                                    <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1388,6 +1392,7 @@
                                 <TextRun>
                                   <Value>Mother's Name                         </Value>
                                   <Style>
+                                    <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1457,6 +1462,7 @@
                                 <TextRun>
                                   <Value>Spouse Name                           </Value>
                                   <Style>
+                                    <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1526,6 +1532,7 @@
                                 <TextRun>
                                   <Value>Profession/Occupation             </Value>
                                   <Style>
+                                    <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2451,21 +2458,21 @@
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
-                                      <Textbox Name="Textbox89">
+                                      <Textbox Name="namapplicant">
                                         <CanGrow>true</CanGrow>
                                         <KeepTogether>true</KeepTogether>
                                         <Paragraphs>
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value />
+                                                <Value>=Fields!namapplicant.Value</Value>
                                                 <Style />
                                               </TextRun>
                                             </TextRuns>
                                             <Style />
                                           </Paragraph>
                                         </Paragraphs>
-                                        <rd:DefaultName>Textbox89</rd:DefaultName>
+                                        <rd:DefaultName>namapplicant</rd:DefaultName>
                                         <Style>
                                           <Border>
                                             <Color>LightGrey</Color>
@@ -2671,7 +2678,7 @@
             <Top>11.7948in</Top>
             <Left>0.1202in</Left>
             <Height>3.61464in</Height>
-            <Width>7.74953in</Width>
+            <Width>7.74954in</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -4872,6 +4879,7 @@
                 <Style>None</Style>
               </Border>
               <BackgroundColor>LightGrey</BackgroundColor>
+              <VerticalAlign>Middle</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -4891,20 +4899,23 @@
                     </Style>
                   </TextRun>
                 </TextRuns>
-                <Style />
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox566</rd:DefaultName>
             <Top>19.15765in</Top>
-            <Left>0.03928in</Left>
+            <Left>0.02681in</Left>
             <Height>0.31944in</Height>
-            <Width>7.42534in</Width>
+            <Width>7.44783in</Width>
             <ZIndex>10</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
               <BackgroundColor>LightGrey</BackgroundColor>
+              <VerticalAlign>Middle</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -7157,7 +7168,7 @@ The information and particulars furnished by me/us in this enrollment from are t
                       <TextRun>
                         <Value>=Format(Parameters!enrolmentdate.Value).Substring(0,1)</Value>
                         <Style>
-                          <FontFamily>cambria</FontFamily>
+                          <FontFamily>Cambria</FontFamily>
                           <FontSize>12pt</FontSize>
                         </Style>
                       </TextRun>
@@ -7189,7 +7200,7 @@ The information and particulars furnished by me/us in this enrollment from are t
                       <TextRun>
                         <Value>=Format(Parameters!enrolmentdate.Value).Substring(1,1)</Value>
                         <Style>
-                          <FontFamily>cambria</FontFamily>
+                          <FontFamily>Cambria</FontFamily>
                           <FontSize>12pt</FontSize>
                         </Style>
                       </TextRun>
@@ -7222,7 +7233,7 @@ The information and particulars furnished by me/us in this enrollment from are t
                       <TextRun>
                         <Value>=Microsoft.VisualBasic.Strings.Format(Parameters!enrolmentdate.Value).Substring(3,1)</Value>
                         <Style>
-                          <FontFamily>cambria</FontFamily>
+                          <FontFamily>Cambria</FontFamily>
                           <FontSize>12pt</FontSize>
                         </Style>
                       </TextRun>
@@ -7255,7 +7266,7 @@ The information and particulars furnished by me/us in this enrollment from are t
                       <TextRun>
                         <Value>=Microsoft.VisualBasic.Strings.Format(Parameters!enrolmentdate.Value).Substring(4,1)</Value>
                         <Style>
-                          <FontFamily>cambria</FontFamily>
+                          <FontFamily>Cambria</FontFamily>
                           <FontSize>12pt</FontSize>
                         </Style>
                       </TextRun>
@@ -7288,7 +7299,7 @@ The information and particulars furnished by me/us in this enrollment from are t
                       <TextRun>
                         <Value>=Microsoft.VisualBasic.Strings.Format(Parameters!enrolmentdate.Value).Substring(5, 1)</Value>
                         <Style>
-                          <FontFamily>cambria</FontFamily>
+                          <FontFamily>Cambria</FontFamily>
                           <FontSize>12pt</FontSize>
                         </Style>
                       </TextRun>
@@ -7297,9 +7308,9 @@ The information and particulars furnished by me/us in this enrollment from are t
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>date</rd:DefaultName>
-                <Top>0.02431in</Top>
+                <Top>0.03523in</Top>
                 <Left>1.86352in</Left>
-                <Height>0.26737in</Height>
+                <Height>0.25645in</Height>
                 <Width>0.31156in</Width>
                 <ZIndex>4</ZIndex>
                 <Style>
@@ -7321,7 +7332,7 @@ The information and particulars furnished by me/us in this enrollment from are t
                       <TextRun>
                         <Value>=Microsoft.VisualBasic.Strings.Format(Parameters!enrolmentdate.Value).Substring(7, 1)</Value>
                         <Style>
-                          <FontFamily>cambria</FontFamily>
+                          <FontFamily>Cambria</FontFamily>
                           <FontSize>12pt</FontSize>
                         </Style>
                       </TextRun>
@@ -7354,7 +7365,7 @@ The information and particulars furnished by me/us in this enrollment from are t
                       <TextRun>
                         <Value>=Microsoft.VisualBasic.Strings.Format(Parameters!enrolmentdate.Value).Substring(6, 1)</Value>
                         <Style>
-                          <FontFamily>cambria</FontFamily>
+                          <FontFamily>Cambria</FontFamily>
                           <FontSize>12pt</FontSize>
                         </Style>
                       </TextRun>
@@ -7387,7 +7398,7 @@ The information and particulars furnished by me/us in this enrollment from are t
                       <TextRun>
                         <Value>=Microsoft.VisualBasic.Strings.Format(Parameters!enrolmentdate.Value).Substring(2,1)</Value>
                         <Style>
-                          <FontFamily>cambria</FontFamily>
+                          <FontFamily>Cambria</FontFamily>
                           <FontSize>12pt</FontSize>
                         </Style>
                       </TextRun>
@@ -7499,7 +7510,8 @@ The information and particulars furnished by me/us in this enrollment from are t
                   <TextRun>
                     <Value>Booking No :</Value>
                     <Style>
-                      <FontSize>12pt</FontSize>
+                      <FontFamily>Cambria</FontFamily>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -7536,6 +7548,7 @@ The information and particulars furnished by me/us in this enrollment from are t
                   <TextRun>
                     <Value>=Parameters!bookingno.Value</Value>
                     <Style>
+                      <FontFamily>Cambria</FontFamily>
                       <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
@@ -7690,36 +7703,6 @@ The information and particulars furnished by me/us in this enrollment from are t
                 <Width>0.3pt</Width>
               </Border>
               <VerticalAlign>Middle</VerticalAlign>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox36">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value />
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox36</rd:DefaultName>
-            <Top>2.66541in</Top>
-            <Left>1.155in</Left>
-            <Height>4.01042in</Height>
-            <Width>5.61458in</Width>
-            <ZIndex>43</ZIndex>
-            <Style>
-              <Border>
-                <Style>Solid</Style>
-              </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
