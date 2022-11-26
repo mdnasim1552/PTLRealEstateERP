@@ -2821,6 +2821,7 @@
     <Content Include="F_34_Mgt\AccUserCash.aspx" />
     <Content Include="F_34_Mgt\AccUserModule.aspx" />
     <Content Include="F_34_Mgt\CACodeLink.aspx" />
+    <Content Include="F_34_Mgt\AlternativeSupvervisor.aspx" />
     <Content Include="F_34_Mgt\CodeDataTrans.aspx" />
     <Content Include="F_34_Mgt\CodeDataTransMR.aspx" />
     <Content Include="F_34_Mgt\CodeLink.aspx" />
@@ -4689,6 +4690,13 @@
     </Compile>
     <Compile Include="F_33_Doc\UploadDocumentation.aspx.designer.cs">
       <DependentUpon>UploadDocumentation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_34_Mgt\AlternativeSupvervisor.aspx.cs">
+      <DependentUpon>AlternativeSupvervisor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_34_Mgt\AlternativeSupvervisor.aspx.designer.cs">
+      <DependentUpon>AlternativeSupvervisor.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_34_Mgt\CompUtilitySetUp.aspx.cs">
       <DependentUpon>CompUtilitySetUp.aspx</DependentUpon>
