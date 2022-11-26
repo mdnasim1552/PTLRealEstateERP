@@ -547,7 +547,7 @@ namespace RealERPWEB.F_12_Inv
                         return;
                     }
                 }
-                string pactcode = this.ddlMaterials.SelectedValue.ToString();
+                string pactcode = this.ddlStoreList.SelectedValue.ToString();
                 string reqno = "";
                 bool result;
                 string type = Request.QueryString["Type"].ToString();
@@ -570,7 +570,7 @@ namespace RealERPWEB.F_12_Inv
                                        
                 //}
 
-
+                
                 result = dbaccess.UpdateTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "INSORUPTXTTTOEMPINF", "indrequiredb", Issueno, curdate, Refno, PostedByid, Posttrmid, PostSession, Posteddat, pactcode, reqno, type, "", "", "");
 
                 /// Details data insert 
@@ -589,7 +589,7 @@ namespace RealERPWEB.F_12_Inv
                         string remarks = dr["remarks"].ToString().Trim();
 
                         result = dbaccess.UpdateTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "INSORUPTXTTTOEMPINF", "indrequireda", Issueno, rsircode, spcfcod,
-                           deptcode, issueqty, remarks, "", "", "", "", "", "");
+                           deptcode, issueqty, remarks, "", "", "", type, "", "");
                     }
 
                     result = dbaccess.UpdateTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "INSERTAPPROVEDINDENT", Issueno, PostedByid, curdate, Posttrmid, PostSession, type, "", "", "", "", "", "", "");
@@ -647,17 +647,24 @@ namespace RealERPWEB.F_12_Inv
         {
             try
             {
+                string comcod = this.GetCompCode();
                 DataTable dt = (DataTable)ViewState["tblIssue"];
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int index = row.RowIndex;
                 string id = ((Label)this.gvIssue.Rows[index].FindControl("lblgvMatCode")).Text.Trim();
-
-                if (dt.Rows[index]["rsircode"].ToString() == id)
+                string issueno = Request.QueryString["genno"].ToString();
+                string rsircode = dt.Rows[index]["rsircode"].ToString();
+                if (rsircode == id)
                 {
+                  
                     dt.Rows[index].Delete();
+                    bool result = dbaccess.UpdateTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "GETINDENTREQUIREDDELETE", issueno, rsircode, "", "", "", "", "", "", "", "");
+
                 }
+               
                 dt.AcceptChanges();
                 ViewState["tblIssue"] = dt;
+
                 this.Data_Bind();
 
             }

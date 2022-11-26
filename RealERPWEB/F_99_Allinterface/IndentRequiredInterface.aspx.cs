@@ -152,7 +152,7 @@ namespace RealERPWEB.F_99_Allinterface
                 DataTable dt1 = new DataTable();
                 DataView view1 = new DataView();
                 view1.Table = ds2.Tables[0];
-                view1.RowFilter = "steptype= 'Entry'";
+                view1.RowFilter = "steptype='Entry'";
                 dt1 = view1.ToTable();
                 this.gv_IndRequired.DataSource = dt1;
                 this.gv_IndRequired.DataBind();
@@ -166,11 +166,21 @@ namespace RealERPWEB.F_99_Allinterface
                 
 
                 view.Table = ds2.Tables[0];
-                view.RowFilter = "steptype= 'Checked'";
+                view.RowFilter = "steptype= 'Checked' and approved=' '";
                 dt = view.ToTable();
                 this.gv_hradminapproval.DataSource = dt;
                 this.gv_hradminapproval.DataBind();
 
+
+                DataTable dt2 = new DataTable();
+                DataView view2 = new DataView();
+
+
+                view2.Table = ds2.Tables[0];
+                view2.RowFilter = "steptype= 'Approve' ";
+                dt2 = view2.ToTable();
+                this.gv_Pending.DataSource = dt2;
+                this.gv_Pending.DataBind();
                 //Status
 
                 //this.Data_Bind("gvstatus", ds2.Tables[0]);

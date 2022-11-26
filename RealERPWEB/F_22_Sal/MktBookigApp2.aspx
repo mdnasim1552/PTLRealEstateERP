@@ -620,14 +620,14 @@
 
                                     <ItemTemplate>
                                         <asp:TextBox
-                                            ID="txtgvdValNominee" runat="server" BackColor="Transparent" BorderStyle="None"
+                                            ID="txtValNominee" runat="server" BackColor="Transparent" BorderStyle="None"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'
                                             Width="300px"></asp:TextBox>
 
-                                        <%--<asp:TextBox
+                                        <asp:TextBox
                                             ID="txtgvdValNominee" runat="server" BackColor="Transparent" BorderStyle="None" Visible="false"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'
-                                            Width="300px"></asp:TextBox>--%>
+                                            Width="300px"></asp:TextBox>
 
                                         <cc1:CalendarExtender ID="CalendarExtender_txtgvdValNominee" runat="server" Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdValNominee"></cc1:CalendarExtender>
 
@@ -643,8 +643,6 @@
                                             <asp:Image ID="Image1" runat="server" Height="50px" Width="50px" Visible='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod"))=="01290" || Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod"))=="01291") ? true: false%>' ImageUrl='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>' />
                                             <asp:LinkButton ID="lnkbtnImg" runat="server" CssClass="btn btn-xs btn-default" ToolTip="Nominee Image Upload.. " BackColor="Transparent" OnClick="lnkbtnImg_Click" Width="30px" Style="float: right"><span class="fa fa-plus" aria-hidden="true"></span></asp:LinkButton>
                                         </asp:Panel>
-
-
                                     </ItemTemplate>
 
 

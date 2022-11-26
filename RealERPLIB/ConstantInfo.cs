@@ -1704,7 +1704,12 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3501000", "3501010", "F_34_Mgt", "CodeLink", "", "Code Link(BS)", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3501000", "3501011", "F_34_Mgt", "CodeLinkCf", "", "Code Link(CF)", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3501000", "3501012", "F_34_Mgt", "CodeLinkWs", "", "Code Link(WS)", "Management", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "3501000", "3501013", "F_34_Mgt", "CodeLinkCoReBa", "", "Code Link(Cost Resource Basis)", "Management", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3501000", "3501013", "F_34_Mgt", "CodeLinkCoReBa", "", "Code Link(Cost Resource Basis)", "Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3501000", "3501300", "F_34_Mgt", "AccProjectCode", "", "Project Code Book", "Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3501000", "3501310", "F_34_Mgt", "AlternativeSupvervisor", "", "Alternative Supervisor", "Management", "False", "False", "False", "False" });
+
+
+
             tblObj.Rows.Add(new Object[] { "3502000", "3502001", "F_04_Bgd", "BgdPrjAna?", "InputType=BgdSub", "Project Budget Approval", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502005", "F_04_Bgd", "BgdLevelRate?", "Type=Level", "Construction Level", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502007", "F_04_Bgd", "BgdLevelRate?", "Type=ItemLock", "Item Lock(Project)", "Management", "False", "False", "False", "False" });
@@ -1804,7 +1809,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3502000", "3502290", "F_02_Fea", "ProjectFeasibility02?", "Type=Management", "Project Feasibility 02", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502291", "F_02_Fea", "ProjectFeasibility03?", "Type=Management", "Feasibility City Development", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502292", "F_01_LPA", "LandDevProposal?", "Type=Management", "Land Development Proposal", "Management", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "3501000", "3501300", "F_34_Mgt", "AccProjectCode", "", "Project Code Book", "Management", "False", "False", "False", "False" }); ;
+           
             tblObj.Rows.Add(new Object[] { "3502000", "3502301", "F_34_Mgt", "DeletePDC", "", "Cancellation Post Dated Cheque", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502310", "F_02_Fea", "ProjFeasibilityLandDev?", "Type=Management", "Feasibility Land Development", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502320", "F_34_Mgt", "Tranlimitdate", "", "Transaction Limit Day", "Management", "False", "False", "False", "False" }); ;
