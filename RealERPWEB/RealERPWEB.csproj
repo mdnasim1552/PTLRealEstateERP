@@ -168,7 +168,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2821,6 +2821,7 @@
     <Content Include="F_34_Mgt\AccUserCash.aspx" />
     <Content Include="F_34_Mgt\AccUserModule.aspx" />
     <Content Include="F_34_Mgt\CACodeLink.aspx" />
+    <Content Include="F_34_Mgt\AlternativeSupvervisor.aspx" />
     <Content Include="F_34_Mgt\CodeDataTrans.aspx" />
     <Content Include="F_34_Mgt\CodeDataTransMR.aspx" />
     <Content Include="F_34_Mgt\CodeLink.aspx" />
@@ -4689,6 +4690,13 @@
     </Compile>
     <Compile Include="F_33_Doc\UploadDocumentation.aspx.designer.cs">
       <DependentUpon>UploadDocumentation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_34_Mgt\AlternativeSupvervisor.aspx.cs">
+      <DependentUpon>AlternativeSupvervisor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_34_Mgt\AlternativeSupvervisor.aspx.designer.cs">
+      <DependentUpon>AlternativeSupvervisor.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_34_Mgt\CompUtilitySetUp.aspx.cs">
       <DependentUpon>CompUtilitySetUp.aspx</DependentUpon>
