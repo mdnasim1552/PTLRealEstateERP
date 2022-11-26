@@ -400,6 +400,8 @@ namespace RealERPWEB.F_17_Acc
                 Label lblgvVatAmt = (Label)e.Row.FindControl("lblgvVatAmt");
                 Label lblgvNetAmt = (Label)e.Row.FindControl("lblgvNetAmt");
                 Label lblgvPayable = (Label)e.Row.FindControl("lblgvPayable");
+                Label lbldiscount = (Label)e.Row.FindControl("lbldiscount");
+                Label lblgvRmk = (Label)e.Row.FindControl("lblgvRmk");
                
                 string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString().Trim();
        
@@ -412,13 +414,15 @@ namespace RealERPWEB.F_17_Acc
                 {
 
                    
-                    lblprjName.Attributes["style"] = "font-weight:bold; color:Navy;";
-                    lblgvCrAmt.Attributes["style"] = "font-weight:bold; color:Navy;";
-                    lblgvSdAmt.Attributes["style"] = "font-weight:bold; color:Navy;";
-                    lblgvTaxAmt.Attributes["style"] = "font-weight:bold; color:Navy;";
-                    lblgvVatAmt.Attributes["style"] = "font-weight:bold; color:Navy;";
-                    lblgvNetAmt.Attributes["style"] = "font-weight:bold; color:Navy;";
-                    lblgvPayable.Attributes["style"] = "font-weight:bold; color:Navy;";
+                    lblprjName.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+                    lblgvCrAmt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+                    lblgvSdAmt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+                    lblgvTaxAmt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+                    lblgvVatAmt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+                    lblgvNetAmt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+                    lblgvPayable.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+                    lbldiscount.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+                    lblgvRmk.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
 
 
 
@@ -429,15 +433,16 @@ namespace RealERPWEB.F_17_Acc
                 {
 
 
-                    lblprjName.Attributes["style"] = "font-weight:bold; color:Orange;";
-                    lblgvCrAmt.Attributes["style"] = "font-weight:bold; color:Orange;";
-                    lblgvSdAmt.Attributes["style"] = "font-weight:bold; color:Orange;";
-                    lblgvTaxAmt.Attributes["style"] = "font-weight:bold; color:Orange;";
-                    lblgvVatAmt.Attributes["style"] = "font-weight:bold; color:Orange;";
-                    lblgvNetAmt.Attributes["style"] = "font-weight:bold; color:Orange;";
-                    lblgvPayable.Attributes["style"] = "font-weight:bold; color:Orange;";
+                    lblprjName.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+                    lblgvCrAmt.Attributes["style"] = "font-weight:bold; font-size: 15px;  color:Orange;";
+                    lblgvSdAmt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+                    lblgvTaxAmt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+                    lblgvVatAmt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+                    lblgvNetAmt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+                    lblgvPayable.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+                    lbldiscount.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
 
-
+                    lblgvRmk.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
 
                     lblprjName.Style.Add("text-align", "right");
 
