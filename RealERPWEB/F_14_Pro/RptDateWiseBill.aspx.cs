@@ -70,10 +70,20 @@ namespace RealERPWEB.F_14_Pro
         }
         private void Data_Bind()
         {
-            DataTable dt = (DataTable)Session["tblDateWiseBill"];
-            this.gvDWBill.DataSource = (DataTable)Session["tblDateWiseBill"];
-            this.gvDWBill.DataBind();
-            FooterCalculation();
+            try
+            {
+                DataTable dt = (DataTable)Session["tblDateWiseBill"];
+                this.gvDWBill.DataSource = (DataTable)Session["tblDateWiseBill"];
+                this.gvDWBill.DataBind();
+                FooterCalculation();
+            }
+
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message.ToString() + "');", true);
+
+
+            }
 
         }
 

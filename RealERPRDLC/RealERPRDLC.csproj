@@ -52,7 +52,11 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+<<<<<<< HEAD
       <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+=======
+      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+>>>>>>> 4d766dbad4e9381fc471921c0f129b5bb0cfe34b
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -243,6 +247,7 @@
     <EmbeddedResource Include="R_02_Fea\rptCostAnlys.rdlc" />
     <EmbeddedResource Include="R_02_Fea\rptEstmtProfitLoss.rdlc" />
     <EmbeddedResource Include="R_04_Bgd\RptProjectBgdFinlay.rdlc" />
+    <EmbeddedResource Include="R_09_PIMP\RptConBillCPDL.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillEpic.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillFinaly.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillIntech.rdlc" />
@@ -1184,8 +1189,8 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipFinlay.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryAssureTourism.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsAcmeAI.rdlc" />
-    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsCPDL - Copy.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsCPDL.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsCPDL- Copy.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryEpic - Copy.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryHOBTIPdf.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryHOBTIExcel.rdlc" />
