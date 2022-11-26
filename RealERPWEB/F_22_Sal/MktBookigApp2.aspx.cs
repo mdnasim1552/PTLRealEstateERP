@@ -54,7 +54,6 @@ namespace RealERPWEB.F_22_Sal
 
             if (imgFileUpload.HasFile)
             {
-
                 string pactcode = this.ddlProjectName.SelectedValue.ToString();
                 string usircode = this.ddlCustName.SelectedValue.ToString();
                 string extension = Path.GetExtension(imgFileUpload.PostedFile.FileName);
@@ -63,12 +62,6 @@ namespace RealERPWEB.F_22_Sal
 
                 Url = "~/Upload/CUSTOMER/" + pactcode + usircode + random + extension;
                 EmpImg.ImageUrl = Url;
-
-                // Upload = System.IO.Path.GetFileName (imgFileUpload.PostedFile.FileName);
-                //string savelocation = Server.MapPath ("~") + Url;
-                //string filepath = savelocation;
-                //imgFileUpload.PostedFile.SaveAs (savelocation);
-
                 Session["imgUrl"] = Url;
             }
             if (imgFileUploadN.HasFile)
@@ -82,17 +75,14 @@ namespace RealERPWEB.F_22_Sal
 
                 Url = "~/Upload/CUSTOMER/" + pactcode + usircode + gcode + random + extension;
                 Session["imgUrl2"] = Url;
-
                 this.SaveValueImage(gcode, Url);
-
             }
-
         }
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
         }
-
 
         private string GetCompCode()
         {
@@ -108,12 +98,11 @@ namespace RealERPWEB.F_22_Sal
                DataTable dt1 = (DataTable)Session["tblcustinfo"];
                 string applicationDate = (dt1.Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(dt1.Rows[0]["appdate"]).ToString("dd-MMM-yyyy");
 
-                DataSet ds = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT_TEST", "MAXCUTOMERNUMBER", applicationDate, "", "", "", "", "", "", "", "");
+                DataSet ds = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "MAXCUTOMERNUMBER", applicationDate, "", "", "", "", "", "", "", "");
                 DataTable dt = ds.Tables[0];
                 this.txtCustmerNumber.Text = (dt.Rows.Count) == 0 ? "" : dt.Rows[0]["customerno"].ToString();
                 this.txtCustmerNumber.Enabled = false;
             }
-
             catch (Exception ex)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
@@ -127,7 +116,7 @@ namespace RealERPWEB.F_22_Sal
             {
                 string comcod = this.GetCompCode();
                 string txtSProject = "%" + this.txtSrcProject.Text.Trim() + "%";
-                DataSet ds1 = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT_TEST", "GETPROJECTNAME", txtSProject, "", "", "", "", "", "", "", "");
+                DataSet ds1 = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "GETPROJECTNAME", txtSProject, "", "", "", "", "", "", "", "");
                 this.ddlProjectName.DataTextField = "actdesc";
                 this.ddlProjectName.DataValueField = "actcode";
                 this.ddlProjectName.DataSource = ds1.Tables[0];
@@ -147,33 +136,26 @@ namespace RealERPWEB.F_22_Sal
         {
             try
             {
-
                 string comcod = this.GetCompCode();
                 string pactcode = this.ddlProjectName.SelectedValue.ToString();
                 string txtSProject = "%" + this.txtSrcCustomer.Text.Trim() + "%";
-                DataSet ds2 = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT_TEST", "DETAILSIRINFINFORMATION", pactcode, txtSProject, "", "", "", "", "", "", "");
+                DataSet ds2 = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "DETAILSIRINFINFORMATION", pactcode, txtSProject, "", "", "", "", "", "", "");
                 this.ddlCustName.DataTextField = "udesc";
                 this.ddlCustName.DataValueField = "usircode";
                 this.ddlCustName.DataSource = ds2.Tables[0];
                 this.ddlCustName.DataBind();
             }
-
             catch (Exception ex)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
         }
-
-
-
-
         protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
             this.GetCustomerName();
             this.lbtnOk_Click(null, null);
-
         }
         protected void imgbtnFindProject_Click(object sender, EventArgs e)
         {
@@ -186,7 +168,6 @@ namespace RealERPWEB.F_22_Sal
         }
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
-
             try
              {
                 if (this.lbtnOk.Text == "Ok")
@@ -198,26 +179,17 @@ namespace RealERPWEB.F_22_Sal
                     this.ShowData();
                     this.GetMaxCustNumber();
                     return;
-
-
                 }
                 this.lbtnOk.Text = "Ok";
                 this.ddlProjectName.Enabled = true;
                 this.ddlCustName.Enabled = true;
                 this.MultiView1.ActiveViewIndex = -1;
-
             }
-
-
             catch (Exception ex)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-
             }
-
-
-
         }
 
         private void ShowData()
@@ -231,19 +203,14 @@ namespace RealERPWEB.F_22_Sal
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
             string custid = this.ddlCustName.SelectedValue.ToString();
 
-
-            DataSet ds2 = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT_TEST", "GETBOOKINGAPPLICATION", pactcode, custid, "", "", "", "", "", "", "");
+            DataSet ds2 = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "GETBOOKINGAPPLICATION", pactcode, custid, "", "", "", "", "", "", "");
             if (ds2 == null)
             {
                 this.gvProjectInfo.DataSource = null;
                 this.gvProjectInfo.DataBind();
-
                 return;
             }
 
-
-
-            // DataTable dt = gvInterest_DataBind(ds2);
             Session["tblprjinfo"] = ds2.Tables[0];
             Session["tblperinfo"] = ds2.Tables[1];
             Session["tblcustinfo"] = ds2.Tables[2];
@@ -269,17 +236,9 @@ namespace RealERPWEB.F_22_Sal
             this.Textinsamt.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["insamptpermonth"]).ToString("#,##0;(#,##0); ");
             this.TxtNoTInstall.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["totalinstallment"]).ToString("#,##0;(#,##0); ");
 
-
             this.cblintavailloan.SelectedValue = (dt.Rows.Count == 0) ? "No" : dt.Rows[0]["intavail"].ToString();
             this.cblpaytype.SelectedValue = (dt.Rows.Count == 0) ? "OneTime" : dt.Rows[0]["paymode"].ToString();
-
-            
-
-            //this.txtentryben.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Select("code='001'")[0]["charge"]).ToString("#,##0.00;(#,##0.00); ");
-            //this.txtdelaychrg.Text = (dt.Rows.Count < 1) ? "" : Convert.ToDouble(dt.Select("code='002'")[0]["charge"]).ToString("#,##0.00;(#,##0.00); ");
-            //this.Data_Bind();
-
-
+                       
             ds2.Dispose();
             this.Data_BindPrj();
             this.Data_BindPer();
@@ -297,7 +256,6 @@ namespace RealERPWEB.F_22_Sal
         }
         private void Data_BindPer()
         {
-
             DataTable dt = (DataTable)Session["tblperinfo"];
             this.gvperinfo.DataSource = dt;
             this.gvperinfo.DataBind();
@@ -306,7 +264,6 @@ namespace RealERPWEB.F_22_Sal
 
         private void Data_BindNominee()
         {
-
             DataTable dt = (DataTable)Session["tblnomineeinfo"];
             this.GridViewNominee.DataSource = dt;
             this.GridViewNominee.DataBind();
@@ -315,11 +272,10 @@ namespace RealERPWEB.F_22_Sal
 
         private void Data_BindNominated()
         {
-
             DataTable dt = (DataTable)Session["tblnominatedinfo"];
             this.GridViewNominated.DataSource = dt;
             this.GridViewNominated.DataBind();
-            //this.GridTextDDLVisibleNominated();
+            this.GridTextDDLVisibleNominated();
         }
 
         private void Data_BindPriceDetail()
@@ -328,25 +284,18 @@ namespace RealERPWEB.F_22_Sal
             DataTable dt = (DataTable)Session["tblpricedetail"];
             this.GridViewPriceDetail.DataSource = dt;
             this.GridViewPriceDetail.DataBind();
-            
         }
-
-
 
         private void GridTextDDLVisible()
         {
             string comcod = this.GetCompCode();
             DataTable dt = ((DataTable)Session["tblprjinfo"]).Copy();
-
-
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-
                 string Gcode = dt.Rows[i]["gcod"].ToString();
                 string val = dt.Rows[i]["gdesc1"].ToString();
                 switch (Gcode)
                 {
-
                     case "65001": //Type                  
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
@@ -354,77 +303,18 @@ namespace RealERPWEB.F_22_Sal
                         ((CheckBoxList)this.gvProjectInfo.Rows[i].FindControl("cbldesc")).Visible = true;
                         CheckBoxList cbl = ((CheckBoxList)this.gvProjectInfo.Rows[i].FindControl("cbldesc"));
                         cbl.SelectedValue = (val == "") ? "Apartment" : val;
-
-                        //DropDownList ddlcatag = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlcataloc"));
-                        //DataSet dscatg = SalData.GetTransInfo(comcod, "SP_ENTRY_LP_PROFEASIBILITY", "GETCATAGORY", "", "", "", "", "", "", "", "", "");
-                        //ddlcatag.DataTextField = "prgdesc";
-                        //ddlcatag.DataValueField = "prgcod";
-                        //ddlcatag.DataSource = dscatg.Tables[0];
-                        //ddlcatag.DataBind();
-                        //ddlcatag.SelectedValue = val;
-
                         break;
                     default:
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                         ((CheckBoxList)this.gvProjectInfo.Rows[i].FindControl("cbldesc")).Visible = false;
                         break;
-
                 }
             }
-
         }
 
-        //protected void AsyncFileUpload1_OnUploadedComplete ( object sender, AsyncFileUploadEventArgs e )
-        //{
-        //    string comcod = this.GetCompCode();
-        //    //DataTable dt = (DataTable)ViewState["tblimages"];
-        //    string filename = System.IO.Path.GetFileName (AsyncFileUpload1.FileName);
-
-        //    string pactcode="";
-        //    string usircode="";
-        //    if (AsyncFileUpload1.HasFile)
-        //    {
-        //         pactcode = this.ddlProjectName.SelectedValue.ToString ();
-        //         usircode = this.ddlCustName.SelectedValue.ToString ();
-
-        //        //string holder = this.ddlimgperson.SelectedValue.ToString ();
-
-        //        string extension = Path.GetExtension (AsyncFileUpload1.PostedFile.FileName);
-        //        string random = ASTUtility.RandNumber (1, 99999).ToString ();
-        //        AsyncFileUpload1.SaveAs (Server.MapPath ("~/Upload/CUSTOMER/") + pactcode + usircode + random + extension);
-
-        //        Url = "~/Upload/CUSTOMER/" + pactcode +usircode+ random + extension;
-
-        //    }
-        //    bool result = SalData.UpdateTransInfo (comcod, "SP_ENTRY_DUMMYSALSMGT", "INSORUPDATECUSTIMG", pactcode, usircode, Url);
-
-        //    if (result == true)
-        //    {
-        //        this.lblMesg.Text = " Successfully Updated ";
-
-        //    }
-
-
-        //}
-
-        
         private void GridTextDDLVisiblePriceDetail()
         {
-
-            //string comcod = this.GetCompCode();
-            //DataTable dt = ((DataTable)Session["tblpricedetail"]).Copy();
-
             ((TextBox)this.GridViewPriceDetail.Rows[6].FindControl("txtgvValAmount")).Visible = false;
-
-            //for (int i = 0; i < dt.Rows.Count; i++)
-            //{
-                
-            //    string Gcode = dt.Rows[i]["code"].ToString();
-            //    if (Gcode == "07") {
-                    
-            //    }
-            //}
-
         }
         private void GridTextDDLVisibleNominee()
         {
@@ -440,72 +330,17 @@ namespace RealERPWEB.F_22_Sal
                 string val = dt.Rows[i]["gdesc1"].ToString();
                 switch (Gcode)
                 {
-
+                    case "01118":
                     case "01109": //Birthdate                 
                         ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtValNominee")).Visible = false;
                         ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValNominee")).Visible = true;
-                        //((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper")).Visible = false;
-                        //((LinkButton)this.GridViewNominee.Rows[i].FindControl("lnkbtnImg")).Visible = false;
                         break;
 
-                    //case "01010": //Marriage Date                  
-                    //    ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvValper")).Visible = false;
-                    //    ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValper")).Visible = true;
-                    //    //((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper")).Visible = false;
-                    //    ((LinkButton)this.GridViewNominee.Rows[i].FindControl("lnkbtnImg")).Visible = false;
-
-                    //    //DropDownList ddlcatag = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlcataloc"));
-
-
-                    //    //DataSet dscatg = SalData.GetTransInfo(comcod, "SP_ENTRY_LP_PROFEASIBILITY", "GETCATAGORY", "", "", "", "", "", "", "", "", "");
-                    //    //ddlcatag.DataTextField = "prgdesc";
-                    //    //ddlcatag.DataValueField = "prgcod";
-                    //    //ddlcatag.DataSource = dscatg.Tables[0];
-                    //    //ddlcatag.DataBind();
-                    //    //ddlcatag.SelectedValue = val;
-
-                    //    break;
-
-                    //case "01027": //Type                  
-                    //    ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvValper")).Visible = false;
-                    //    ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValper")).Visible = false;
-                    //    ((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper")).Visible = true;
-                    //    ((LinkButton)this.GridViewNominee.Rows[i].FindControl("lnkbtnImg")).Visible = false;
-
-                    //    CheckBoxList cbl = ((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper"));
-                    //    cbl.SelectedValue = (val == "") ? "Open" : val;
-                    //    //DropDownList ddlcatag = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlcataloc"));
-
-
-                    //    //DataSet dscatg = SalData.GetTransInfo(comcod, "SP_ENTRY_LP_PROFEASIBILITY", "GETCATAGORY", "", "", "", "", "", "", "", "", "");
-                    //    //ddlcatag.DataTextField = "prgdesc";
-                    //    //ddlcatag.DataValueField = "prgcod";
-                    //    //ddlcatag.DataSource = dscatg.Tables[0];
-                    //    //ddlcatag.DataBind();
-                    //    //ddlcatag.SelectedValue = val;
-
-                    //    break;
-
-                    ////lnkbtnImg Nominee Image
-
-                    //case "01290":
-                    //case "01291":
-                    //case "01292":
-                    //    ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvValper")).Visible = false;
-                    //    ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValper")).Visible = false;
-                    //    ((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper")).Visible = false;
-                    //    ((LinkButton)this.GridViewNominee.Rows[i].FindControl("lnkbtnImg")).Visible = true;
-                    //    break;
-
                     default:
-                        //((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValper")).Visible = false;
-                        //((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper")).Visible = false;
-                        //((LinkButton)this.GridViewNominee.Rows[i].FindControl("lnkbtnImg")).Visible = false;
                         break;
 
                 }
             }
-
         }
 
 
@@ -521,72 +356,18 @@ namespace RealERPWEB.F_22_Sal
 
                 string Gcode = dt.Rows[i]["gcod"].ToString();
                 string val = dt.Rows[i]["gdesc1"].ToString();
-                //switch (Gcode)
-                //{
+                switch (Gcode)
+                {
 
-                //    case "01009": //Birthdate                 
-                //        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvValper")).Visible = false;
-                //        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValper")).Visible = true;
-                //        //((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper")).Visible = false;
-                //        ((LinkButton)this.GridViewNominee.Rows[i].FindControl("lnkbtnImg")).Visible = false;
-                //        break;
+                    case "01307":                
+                        ((TextBox)this.GridViewNominated.Rows[i].FindControl("txtgvValNominated")).Visible = false;
+                        ((TextBox)this.GridViewNominated.Rows[i].FindControl("txtgvdValNominated")).Visible = true;
+                        break;
 
-                //    case "01010": //Marriage Date                  
-                //        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvValper")).Visible = false;
-                //        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValper")).Visible = true;
-                //        //((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper")).Visible = false;
-                //        ((LinkButton)this.GridViewNominee.Rows[i].FindControl("lnkbtnImg")).Visible = false;
-
-                //        //DropDownList ddlcatag = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlcataloc"));
-
-
-                //        //DataSet dscatg = SalData.GetTransInfo(comcod, "SP_ENTRY_LP_PROFEASIBILITY", "GETCATAGORY", "", "", "", "", "", "", "", "", "");
-                //        //ddlcatag.DataTextField = "prgdesc";
-                //        //ddlcatag.DataValueField = "prgcod";
-                //        //ddlcatag.DataSource = dscatg.Tables[0];
-                //        //ddlcatag.DataBind();
-                //        //ddlcatag.SelectedValue = val;
-
-                //        break;
-
-                //    case "01027": //Type                  
-                //        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvValper")).Visible = false;
-                //        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValper")).Visible = false;
-                //        ((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper")).Visible = true;
-                //        ((LinkButton)this.GridViewNominee.Rows[i].FindControl("lnkbtnImg")).Visible = false;
-
-                //        CheckBoxList cbl = ((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper"));
-                //        cbl.SelectedValue = (val == "") ? "Open" : val;
-                //        //DropDownList ddlcatag = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlcataloc"));
-
-
-                //        //DataSet dscatg = SalData.GetTransInfo(comcod, "SP_ENTRY_LP_PROFEASIBILITY", "GETCATAGORY", "", "", "", "", "", "", "", "", "");
-                //        //ddlcatag.DataTextField = "prgdesc";
-                //        //ddlcatag.DataValueField = "prgcod";
-                //        //ddlcatag.DataSource = dscatg.Tables[0];
-                //        //ddlcatag.DataBind();
-                //        //ddlcatag.SelectedValue = val;
-
-                //        break;
-
-                //    //lnkbtnImg Nominee Image
-
-                //    case "01290":
-                //    case "01291":
-                //    case "01292":
-                //        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvValper")).Visible = false;
-                //        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValper")).Visible = false;
-                //        ((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper")).Visible = false;
-                //        ((LinkButton)this.GridViewNominee.Rows[i].FindControl("lnkbtnImg")).Visible = true;
-                //        break;
-
-                //    default:
-                //        ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValper")).Visible = false;
-                //        ((CheckBoxList)this.GridViewNominee.Rows[i].FindControl("cbldescper")).Visible = false;
-                //        ((LinkButton)this.GridViewNominee.Rows[i].FindControl("lnkbtnImg")).Visible = false;
-                //        break;
-
-                //}
+                    default:
+                        
+                        break;
+                }
             }
 
 
@@ -607,72 +388,20 @@ namespace RealERPWEB.F_22_Sal
                 string val = dt.Rows[i]["gdesc1"].ToString();
                 switch (Gcode)
                 {
-
+                    case "01031":
                     case "01009": //Birthdate                 
                         ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvValper")).Visible = false;
                         ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvdValper")).Visible = true;
                         ((CheckBoxList)this.gvperinfo.Rows[i].FindControl("cbldescper")).Visible = false;
                         ((LinkButton)this.gvperinfo.Rows[i].FindControl("lnkbtnImg")).Visible = false;
                         break;
-
-                    case "01010": //Marriage Date                  
-                        ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvValper")).Visible = false;
-                        ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvdValper")).Visible = true;
-                        ((CheckBoxList)this.gvperinfo.Rows[i].FindControl("cbldescper")).Visible = false;
-                        ((LinkButton)this.gvperinfo.Rows[i].FindControl("lnkbtnImg")).Visible = false;
-
-                        //DropDownList ddlcatag = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlcataloc"));
-
-
-                        //DataSet dscatg = SalData.GetTransInfo(comcod, "SP_ENTRY_LP_PROFEASIBILITY", "GETCATAGORY", "", "", "", "", "", "", "", "", "");
-                        //ddlcatag.DataTextField = "prgdesc";
-                        //ddlcatag.DataValueField = "prgcod";
-                        //ddlcatag.DataSource = dscatg.Tables[0];
-                        //ddlcatag.DataBind();
-                        //ddlcatag.SelectedValue = val;
-
-                        break;
-
-                    case "01027": //Type                  
-                        ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvValper")).Visible = false;
-                        ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvdValper")).Visible = false;
-                        ((CheckBoxList)this.gvperinfo.Rows[i].FindControl("cbldescper")).Visible = true;
-                        ((LinkButton)this.gvperinfo.Rows[i].FindControl("lnkbtnImg")).Visible = false;
-
-                        CheckBoxList cbl = ((CheckBoxList)this.gvperinfo.Rows[i].FindControl("cbldescper"));
-                        cbl.SelectedValue = (val == "") ? "Open" : val;
-                        //DropDownList ddlcatag = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlcataloc"));
-
-
-                        //DataSet dscatg = SalData.GetTransInfo(comcod, "SP_ENTRY_LP_PROFEASIBILITY", "GETCATAGORY", "", "", "", "", "", "", "", "", "");
-                        //ddlcatag.DataTextField = "prgdesc";
-                        //ddlcatag.DataValueField = "prgcod";
-                        //ddlcatag.DataSource = dscatg.Tables[0];
-                        //ddlcatag.DataBind();
-                        //ddlcatag.SelectedValue = val;
-
-                        break;
-
-                    //lnkbtnImg Nominee Image
-
-                    case "01290":
-                    case "01291":
-                    case "01292":
-                        ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvValper")).Visible = false;
-                        ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvdValper")).Visible = false;
-                        ((CheckBoxList)this.gvperinfo.Rows[i].FindControl("cbldescper")).Visible = false;
-                        ((LinkButton)this.gvperinfo.Rows[i].FindControl("lnkbtnImg")).Visible = true;
-                        break;
-
                     default:
                         ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvdValper")).Visible = false;
                         ((CheckBoxList)this.gvperinfo.Rows[i].FindControl("cbldescper")).Visible = false;
                         ((LinkButton)this.gvperinfo.Rows[i].FindControl("lnkbtnImg")).Visible = false;
                         break;
-
                 }
             }
-
         }
         private void SaveValue()
         {
@@ -731,7 +460,7 @@ namespace RealERPWEB.F_22_Sal
                         }
                 }
 
-                if (Gcode == "01009" || Gcode == "01010")
+                if (Gcode == "01009" || Gcode == "01031")
                 {
 
                     Gvalue = (((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvdValper")).Text.Trim() == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvdValper")).Text.Trim();
@@ -748,29 +477,28 @@ namespace RealERPWEB.F_22_Sal
 
             for (int i = 0; i < this.GridViewNominee.Rows.Count; i++)
             {
+                //string Gcode = ((Label)this.GridViewNominee.Rows[i].FindControl("lblgvItmCodeper")).Text.Trim();
+                ////string gtype = ((Label)this.GridViewNominee.Rows[i].FindControl("lgvgvalper")).Text.Trim();
+                //string Gvalue = ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtValNominee")).Text.Trim();
+                //dtn.Rows[i]["gdesc1"] = Gvalue;
+
+
+
                 string Gcode = ((Label)this.GridViewNominee.Rows[i].FindControl("lblgvItmCodeper")).Text.Trim();
-                //string gtype = ((Label)this.GridViewNominee.Rows[i].FindControl("lgvgvalper")).Text.Trim();
+                string gtype = ((Label)this.GridViewNominee.Rows[i].FindControl("lgvgvalNominee")).Text.Trim();
                 string Gvalue = ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtValNominee")).Text.Trim();
-                //if (Gcode == "01027")
-                //{
-                //    CheckBoxList cbldesc = (CheckBoxList)this.gvperinfo.Rows[i].FindControl("cbldescper");
 
-                //    for (int j = 0; j < cbldesc.Items.Count; j++)
-                //        if (cbldesc.Items[j].Selected)
-                //        {
-                //            Gvalue = cbldesc.Items[j].Value.ToString();
-                //            break;
-                //        }
-                //}
 
-                //if (Gcode == "01009" || Gcode == "01010")
-                //{
 
-                //    Gvalue = (((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvdValper")).Text.Trim() == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvdValper")).Text.Trim();
-                //}
+                if (Gcode == "01109" || Gcode == "01118")
+                {
 
-                //Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : (gtype == "N") ? Convert.ToDouble("0" + Gvalue).ToString() : Gvalue;
+                    Gvalue = (((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValNominee")).Text.Trim() == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.GridViewNominee.Rows[i].FindControl("txtgvdValNominee")).Text.Trim();
+                }
+
+                Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : (gtype == "N") ? Convert.ToDouble("0" + Gvalue).ToString() : Gvalue;
                 dtn.Rows[i]["gdesc1"] = Gvalue;
+
             }
 
             Session["tblnomineeinfo"] = dtn;
@@ -778,30 +506,25 @@ namespace RealERPWEB.F_22_Sal
 
             for (int i = 0; i < this.GridViewNominated.Rows.Count; i++)
             {
+                //string Gcode = ((Label)this.GridViewNominated.Rows[i].FindControl("lblgvItmCodeper")).Text.Trim();
+                //string Gvalue = ((TextBox)this.GridViewNominated.Rows[i].FindControl("txtgvValNominated")).Text.Trim();
+
+
+
                 string Gcode = ((Label)this.GridViewNominated.Rows[i].FindControl("lblgvItmCodeper")).Text.Trim();
-                //string gtype = ((Label)this.GridViewNominated.Rows[i].FindControl("lgvgvalper")).Text.Trim();
+                string gtype = ((Label)this.GridViewNominated.Rows[i].FindControl("lgvgvalNominated")).Text.Trim();
                 string Gvalue = ((TextBox)this.GridViewNominated.Rows[i].FindControl("txtgvValNominated")).Text.Trim();
-                //if (Gcode == "01027")
-                //{
-                //    CheckBoxList cbldesc = (CheckBoxList)this.gvperinfo.Rows[i].FindControl("cbldescper");
+                
 
-                //    for (int j = 0; j < cbldesc.Items.Count; j++)
-                //        if (cbldesc.Items[j].Selected)
-                //        {
-                //            Gvalue = cbldesc.Items[j].Value.ToString();
-                //            break;
-                //        }
-                //}
+                if (Gcode == "01307")
+                {
 
-                //if (Gcode == "01009" || Gcode == "01010")
-                //{
-                //    Gvalue = (((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvdValper")).Text.Trim() == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.gvperinfo.Rows[i].FindControl("txtgvdValper")).Text.Trim();
-                //}
-
-                //Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : (gtype == "N") ? Convert.ToDouble("0" + Gvalue).ToString() : Gvalue;
+                    Gvalue = (((TextBox)this.GridViewNominated.Rows[i].FindControl("txtgvdValNominated")).Text.Trim() == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.GridViewNominated.Rows[i].FindControl("txtgvdValNominated")).Text.Trim();
+                }
+                Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : (gtype == "N") ? Convert.ToDouble("0" + Gvalue).ToString() : Gvalue;
+                
                 dtntd.Rows[i]["gdesc1"] = Gvalue;
             }
-
             Session["tblnominatedinfo"] = dtntd;
 
 
@@ -943,6 +666,9 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("projectName", projectName));
             Rpt1.SetParameters(new ReportParameter("custimg", custimg));
             Rpt1.SetParameters(new ReportParameter("propertyaddress", dt3.Rows[0]["propertyAddress"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("dateforapplicant", Convert.ToDateTime(dt2.Rows[0]["dateforapplicant"]).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("datefornominee", Convert.ToDateTime(dt4.Rows[0]["datefornominee"]).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("datefornominated", Convert.ToDateTime(dt5.Rows[0]["datefornominated"]).ToString("dd-MMM-yyyy")));
 
 
             string bookingmoney = (dt2.Rows.Count == 0) ? "" : Convert.ToDouble(dt2.Rows[0]["bookamt"]).ToString("#,##0;(#,##0); ");
@@ -962,7 +688,6 @@ namespace RealERPWEB.F_22_Sal
 
             string paymentmode = this.cblpaytype.SelectedValue.ToString();
             Rpt1.SetParameters(new ReportParameter("modeofpay", paymentmode));
-
 
 
             Session["Report1"] = Rpt1;
@@ -1065,7 +790,7 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-            bool result = SalData.UpdateXmlTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT_TEST", "INSORUPDATECUSTAPPINF", ds1, null, null, pactcode, usircode, appdate, bookamt, bankname, branch, bookdate, inttoavailloan, modeofpay, chequeno, customerMaxNo, InstallAmtPerMonth, NoofTotalInstall);
+            bool result = SalData.UpdateXmlTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "INSORUPDATECUSTAPPINF", ds1, null, null, pactcode, usircode, appdate, bookamt, bankname, branch, bookdate, inttoavailloan, modeofpay, chequeno, customerMaxNo, InstallAmtPerMonth, NoofTotalInstall);
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = SalData.ErrorObject["Msg"].ToString();
@@ -1115,7 +840,7 @@ namespace RealERPWEB.F_22_Sal
                 ////Save the Image File in Folder.
                 //imgFileUpload.PostedFile.SaveAs(Server.MapPath(filePath));
                 string imgurl = Session["imgUrl"].ToString();
-                bool result = SalData.UpdateTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT_TEST", "INSORUPDATECUSTIMG", pactcode,
+                bool result = SalData.UpdateTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "INSORUPDATECUSTIMG", pactcode,
                     usircode, imgurl);
 
                 if (result == true)
@@ -1187,6 +912,8 @@ namespace RealERPWEB.F_22_Sal
        
         protected void llbtnCalculation_Click(object sender, EventArgs e)
         {
+
+
             int i = 0;
             DataTable dt2 = (DataTable)Session["tblpricedetail"];
             foreach (GridViewRow gv1 in  GridViewPriceDetail.Rows)
