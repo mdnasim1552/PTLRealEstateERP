@@ -628,7 +628,7 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
                 case "3367": //Epic
-                //case "3101": //Epic
+                case "3101": //Epic
                     chkSecondApp = "Mgt App.";
                     reqcheckapp = "Checked App.";
                    
@@ -864,7 +864,8 @@ namespace RealERPWEB.F_99_Allinterface
                     dt = ((DataTable)ds1.Tables[1]).Copy();
                     dv = dt.DefaultView;
                     dv.RowFilter = ("cstatus = 'CRM Check' ");
-                    this.Data_Bind("gvCRM", dv.ToTable());
+                    dt1 = dv.ToTable();
+                    this.Data_Bind("gvCRM", dt1);
                     this.pnlReqInfo.Visible = false;
                     this.pnlCRM.Visible = true;
                     this.PnlReqChq.Visible = false;
@@ -888,7 +889,7 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.RadioButtonList1.Items[1].Attributes.Add("class", "lblactive");
                     //this.RadioButtonList1.Items[1].Attributes["style"] = "background:#5A5C59; display:block";
 
-                    if (dt.Rows.Count > 0)
+                    if (dt1.Rows.Count > 0)
                     {
                         ((TextBox)this.gvCRM.HeaderRow.FindControl("txtSearchrefnumrchq")).Attributes.Add("placeholder", ReadCookie());
                     }
@@ -1000,7 +1001,8 @@ namespace RealERPWEB.F_99_Allinterface
                     dt = ((DataTable)ds1.Tables[1]).Copy();
                     dv = dt.DefaultView;
                     dv.RowFilter = ("cstatus = 'Second Approval' ");
-                    this.Data_Bind("gvreqsecapproved", dv.ToTable());
+                    dt1 = dv.ToTable();
+                    this.Data_Bind("gvreqsecapproved", dt1);
                     this.pnlReqInfo.Visible = false;
                     this.PnlReqChq.Visible = false;
                     this.pnlCRM.Visible = false;
@@ -1025,7 +1027,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[2].Attributes.Add("class", "lblactive");
                     //this.RadioButtonList1.Items[2].Attributes["style"] = "background:#5A5C59; display:block";
-                    if (dt.Rows.Count > 0)
+                    if (dt1.Rows.Count > 0)
                     {
                         ((TextBox)this.gvreqsecapproved.HeaderRow.FindControl("txtSearchrefnumsecapproved")).Attributes.Add("placeholder", ReadCookie());
                     }
@@ -1076,8 +1078,8 @@ namespace RealERPWEB.F_99_Allinterface
                     dt = ((DataTable)ds1.Tables[1]).Copy();
                     dv = dt.DefaultView;
                     dv.RowFilter = ("cstatus='First Recommendation'  ");
-                    this.Data_Bind("gvFRec", dv.ToTable());
-
+                    dt1 = dv.ToTable();
+                    this.Data_Bind("gvFRec", dt1);
                     this.pnlCRM.Visible = false;
                     this.pnlReqInfo.Visible = false;
                     this.PnlReqChq.Visible = false;
@@ -1102,7 +1104,7 @@ namespace RealERPWEB.F_99_Allinterface
                     // this.RadioButtonList1.Items[4].Attributes.Add("class", "lblactive");
                     //  this.RadioButtonList1.Items[4].Attributes["style"] = "background:#5A5C59; display:block";
 
-                    if (dt.Rows.Count > 0)
+                    if (dt1.Rows.Count > 0)
                     {
                         ((TextBox)this.gvFRec.HeaderRow.FindControl("txtSearchrefnumfrec")).Attributes.Add("placeholder", ReadCookie());
                     }
@@ -1114,7 +1116,8 @@ namespace RealERPWEB.F_99_Allinterface
                     dt = ((DataTable)ds1.Tables[1]).Copy();
                     dv = dt.DefaultView;
                     dv.RowFilter = ("cstatus='Second Recommendation'  ");
-                    this.Data_Bind("gvSecRec", dv.ToTable());
+                    dt1 = dv.ToTable();
+                    this.Data_Bind("gvSecRec", dt1);
                     this.pnlReqInfo.Visible = false;
                     this.PnlReqChq.Visible = false;
                     this.Pnlfirstapp.Visible = false;
@@ -1138,7 +1141,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.PanelBillAudit.Visible = false;
                     this.RadioButtonList1.Items[7].Attributes["class"] = "lblactive blink_me";
 
-                    if (dt.Rows.Count > 0)
+                    if (dt1.Rows.Count > 0)
                     {
                         ((TextBox)this.gvSecRec.HeaderRow.FindControl("txtSearchrefnumsrec")).Attributes.Add("placeholder", ReadCookie());
                     }
@@ -1150,7 +1153,8 @@ namespace RealERPWEB.F_99_Allinterface
                     dt = ((DataTable)ds1.Tables[1]).Copy();
                     dv = dt.DefaultView;
                     dv.RowFilter = ("cstatus='Forward'  ");
-                    this.Data_Bind("gvThRec", dv.ToTable());
+                    dt1 = dv.ToTable();
+                    this.Data_Bind("gvThRec", dt1);
                     this.pnlReqInfo.Visible = false;
                     this.PnlReqChq.Visible = false;
                     this.Pnlfirstapp.Visible = false;
@@ -1174,7 +1178,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[8].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[6].Attributes.Add("class", "lblactive");
                     //this.RadioButtonList1.Items[6].Attributes["style"] = "background:#5A5C59; display:block";
-                    if (dt.Rows.Count > 0)
+                    if (dt1.Rows.Count > 0)
                     {
                         ((TextBox)this.gvThRec.HeaderRow.FindControl("txtSearchrefnumthrec")).Attributes.Add("placeholder", ReadCookie());
                     }
@@ -1297,7 +1301,8 @@ namespace RealERPWEB.F_99_Allinterface
                     dt = (DataTable)ds1.Tables[4];
                     dv = dt.DefaultView;
                     dv.RowFilter = ("cstatus='Purchase Order (1st Approval)'  ");
-                    this.Data_Bind("gvordfapp", dv.ToTable());
+                    dt1 = dv.ToTable();
+                    this.Data_Bind("gvordfapp", dt1);
                     this.pnlReqInfo.Visible = false;
                     this.PnlReqChq.Visible = false;
                     this.Pnlfirstapp.Visible = false;
@@ -1321,7 +1326,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[12].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[9].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[9].Attributes["style"] = "background:#5A5C59; display:block";
-                    if (dt.Rows.Count > 0)
+                    if (dt1.Rows.Count > 0)
                     {
                         ((TextBox)this.gvordfapp.HeaderRow.FindControl("txtSearchrefnumofap")).Attributes.Add("placeholder", ReadCookie());
                     }
@@ -1332,7 +1337,8 @@ namespace RealERPWEB.F_99_Allinterface
                     dt = (DataTable)ds1.Tables[4];
                     dv = dt.DefaultView;
                     dv.RowFilter = ("cstatus='Purchase Order (2nd Approval)'  ");
-                    this.Data_Bind("gvordsapp", dv.ToTable());
+                    dt1 = dv.ToTable();
+                    this.Data_Bind("gvordsapp", dt1);
                     this.pnlReqInfo.Visible = false;
                     this.PnlReqChq.Visible = false;
                     this.Pnlfirstapp.Visible = false;
@@ -1356,15 +1362,11 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[13].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[9].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[9].Attributes["style"] = "background:#5A5C59; display:block";
-                    if (dt.Rows.Count > 0)
+                    if (dt1.Rows.Count > 0)
                     {
                         ((TextBox)this.gvordsapp.HeaderRow.FindControl("txtSearchrefnumosapp")).Attributes.Add("placeholder", ReadCookie());
                     }
                     break;
-
-
-
-
 
 
                 case "14":
@@ -1411,7 +1413,8 @@ namespace RealERPWEB.F_99_Allinterface
                     dt = ((DataTable)ds1.Tables[6]).Copy();
                     dv = dt.DefaultView;
                     dv.RowFilter = ("mrrapp = 0");
-                    this.Data_Bind("gvmrrapp", dv.ToTable());
+                    dt1 = dv.ToTable();
+                    this.Data_Bind("gvmrrapp", dt1);
 
                     this.pnlReqInfo.Visible = false;
                     this.PnlReqChq.Visible = false;
@@ -1453,7 +1456,8 @@ namespace RealERPWEB.F_99_Allinterface
                     dt = ((DataTable)ds1.Tables[6]).Copy();
                     dv = dt.DefaultView;
                     dv.RowFilter = ("mrrapp = 1");
-                    this.Data_Bind("gvPurBill", dv.ToTable());
+                    dt1 = dv.ToTable();
+                    this.Data_Bind("gvPurBill", dt1);
 
                     this.pnlReqInfo.Visible = false;
                     this.PnlReqChq.Visible = false;
@@ -1479,7 +1483,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[16].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[11].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[11].Attributes["style"] = "background:#5A5C59; display:block";
-                    if (dt.Rows.Count > 0)
+                    if (dt1.Rows.Count > 0)
                     {
                         ((TextBox)this.gvPurBill.HeaderRow.FindControl("txtSearchrefnumbill")).Attributes.Add("placeholder", ReadCookie());
                     }
@@ -1539,13 +1543,6 @@ namespace RealERPWEB.F_99_Allinterface
                     // this.RadioButtonList1.Items[12].Attributes["style"] = "background:#5A5C59; display:block";
 
                     break;
-
-
-
-
-
-
-
 
             }
         }
@@ -2766,6 +2763,7 @@ namespace RealERPWEB.F_99_Allinterface
             this.lblmrfno.Text = mrfno.ToString();
             this.lblpactcode.Text = pactcode.ToString();
             this.lblresdesc.Text = "Material : " + catdesc.ToString();
+            this.lblstatus.Text = "CHECKED";
             //catdesc
 
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openReqModal();", true);
@@ -5077,7 +5075,6 @@ namespace RealERPWEB.F_99_Allinterface
         }
         protected void btnDelReqsecapproved_Click(object sender, EventArgs e)
         {
-
             string comcod = this.GetCompCode();
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
             string url = "PurReqEntry?InputType=ReqFirstApproved";
@@ -5090,14 +5087,28 @@ namespace RealERPWEB.F_99_Allinterface
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string genno = ((Label)this.gvreqsecapproved.Rows[RowIndex].FindControl("lblgvreqnorqsecapproved")).Text.Trim();
 
-
-            //accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "RPTACCOUNTDASHBOARD", "%", Date, "%", "", "", "", "", "", "");
-
-
-
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETPURREQINFO", genno, "", "", "", "", "", "", "", "");
-            //  DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPURBILLINFO", genno, "",
 
+            string pactcode = ds1.Tables[1].Rows[0]["pactcode"].ToString();
+            string catdesc = ((Label)this.gvreqsecapproved.Rows[RowIndex].FindControl("lblgvcatagoryfapproved")).Text.Trim();
+            string mrfno = ((Label)this.gvreqsecapproved.Rows[RowIndex].FindControl("lblgvmrfnosecapproved")).Text.Trim();
+
+            spanReqInfo.InnerText = "MPR No - " + mrfno + " ( Delete )";
+            spanpactdec.InnerText = ds1.Tables[1].Rows[0]["pactdesc"].ToString();
+            this.lblreqno.Text = genno.ToString();
+            this.lblmrfno.Text = mrfno.ToString();
+            this.lblpactcode.Text = pactcode.ToString();
+            this.lblresdesc.Text = "Material : " + catdesc.ToString();
+            this.lblstatus.Text = "MGT";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openReqModal();", true);
+
+
+
+
+            //lblstatus
+            /*
+
+            
             if (ds1 == null)
                 return;
 
@@ -5127,6 +5138,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             this.PurchaseInfoRpt();
             this.RadioButtonList1_SelectedIndexChanged(null, null);
+            */
 
         }
         protected void gvCRM_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -5423,6 +5435,7 @@ namespace RealERPWEB.F_99_Allinterface
             string mrfno = this.lblmrfno.Text.ToString();
             string pactcode = this.lblpactcode.Text.ToString();
             string notes = this.txtReqNote.Text.Trim().ToString();
+            string status = this.lblstatus.Text.Trim().ToString(); 
 
             if (notes.Length == 0 && (comcod=="3340"||comcod=="3101"))
             {
@@ -5456,31 +5469,87 @@ namespace RealERPWEB.F_99_Allinterface
 
             else
             {
-                bool result = this.XmlDataInsertReq(genno, ds1);
-                if (!result)
+                if (status == "MGT")
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Update Failed .. !!');", true);
-                    return;
-                }
-                bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEREQINFO", genno, pactcode, mrfno, notes, "", "", "", "", "", "", "", "", "", "", "");
-
-                if (!resulbill)
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Delete Failed .. !!');", true);
-                    return;
+                    bool result = this.XmlDataInsertReq(genno, ds1);
+                    if (!result)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Update Failed .. !!');", true);
+                        return;
+                    }
+                    bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEREFIRSTAPPROVED", genno, pactcode, mrfno, notes, status, "", "", "", "", "", "", "", "", "", "");
+                    if (!resulbill)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Delete Failed .. !!');", true);
+                        return;
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Deleted Successfully');", true);
+                        this.txtReqNote.Text = "";
+                    }
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Deleted Successfully');", true);
-                    this.txtReqNote.Text = "";
+                    bool result = this.XmlDataInsertReq(genno, ds1);
+                    if (!result)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Update Failed .. !!');", true);
+                        return;
+                    }
+                    bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEREQINFO", genno, pactcode, mrfno, notes, status, "", "", "", "", "", "", "", "", "", "");
+
+                    if (!resulbill)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Delete Failed .. !!');", true);
+                        return;
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Deleted Successfully');", true);
+                        this.txtReqNote.Text = "";
+                    }
                 }
-
             }
-
-
             this.PurchaseInfoRpt();
             this.RadioButtonList1_SelectedIndexChanged(null, null);
 
+        }
+
+        protected void lbtnNotes_Click(object sender, EventArgs e)
+        {
+            try 
+            {
+                GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int RowIndex = gvr.RowIndex;
+                int index = this.gvreqfapproved.PageSize * this.gvreqfapproved.PageIndex + RowIndex;
+
+                string mrfno= ((Label)gvreqfapproved.Rows[0].FindControl("lblgvmrfnofapproved")).Text.ToString();  
+                string reqno= ((Label)gvreqfapproved.Rows[0].FindControl("lblgvreqno2")).Text.ToString();  
+                string patcode= ((Label)gvreqfapproved.Rows[0].FindControl("lblgvpactcodefapproved")).Text.ToString();
+
+                spanMrfno.InnerText = "MPR/MRF No : "+mrfno.ToString();
+                string comcod = this.GetCompCode();
+                DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_REQUISITION_APPROVAL", "GETREQNOTEVIEW", reqno, patcode, mrfno, "", "", "", "", "", "");
+                if (ds1.Tables[0].Rows.Count == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
+                    return;
+                }
+                this.gvNote.DataSource = ds1.Tables[0];
+                this.gvNote.DataBind();
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openNoteModal();", true);
+            }
+
+
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+
+            }
         }
     }
 }
