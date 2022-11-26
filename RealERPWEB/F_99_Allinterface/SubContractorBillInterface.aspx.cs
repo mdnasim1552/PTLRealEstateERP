@@ -2057,14 +2057,18 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink hlnbillapp = (HyperLink)e.Row.FindControl("hlnklnkmb");
+                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lbtnPrintWorkOrder");
 
                 string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
+                string lreqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lreqno")).ToString();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "csircode")).ToString();
 
                 hlnbillapp.NavigateUrl = "~/F_09_PImp/BillingMBEntry?Type=Entry&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + sircode;
                 //F_09_PImp/PurLabIssue2?Type=Current&prjcode=&genno=&sircode=
-            }
+                hlink2.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Entry&genno=" + lreqno + "&sircode=" + sircode + "&actcode=" + pactcode + "&orderno=" + orderno;
+
+            } 
         }
 
         protected void btnDelmb_Click(object sender, EventArgs e)

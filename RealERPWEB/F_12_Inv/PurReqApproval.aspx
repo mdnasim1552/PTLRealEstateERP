@@ -34,6 +34,16 @@
         function closeSupModal() {
             $('#modalSupRate').modal('hide');
         }
+
+        function uploadComplete(sender) {
+            $get("<%=lblMesg.ClientID%>").style.color = "green";
+            $get("<%=lblMesg.ClientID%>").innerHTML = "File Uploaded Successfully";
+        }
+
+        function uploadError(sender) {
+            $get("<%=lblMesg.ClientID%>").style.color = "red";
+            $get("<%=lblMesg.ClientID%>").innerHTML = "File upload failed.";
+        }
     </script>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -893,27 +903,11 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                        <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                            <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
-                    </div>
-
-                    
                 </div>
             </div>
-            </div>
-
-            <script type="text/javascript">
-                function uploadComplete(sender) {
-                    $get("<%=lblMesg.ClientID%>").style.color = "green";
-                    $get("<%=lblMesg.ClientID%>").innerHTML = "File Uploaded Successfully";
-                }
-
-                function uploadError(sender) {
-                    $get("<%=lblMesg.ClientID%>").style.color = "red";
-                    $get("<%=lblMesg.ClientID%>").innerHTML = "File upload failed.";
-                }
-            </script>
-
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

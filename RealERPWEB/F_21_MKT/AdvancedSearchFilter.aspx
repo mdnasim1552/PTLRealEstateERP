@@ -21,8 +21,8 @@
 
                 var gridViewScroll = new GridViewScroll({
                     elementID: "gvInfo",
-                    width: 1000,
-                    height: 580,
+                    width: 1135,
+                    height: 648,
                     freezeColumn: true,
                     freezeFooter: true,
                     freezeColumnCssClass: "GridViewScrollItemFreeze",
@@ -447,6 +447,21 @@
 
 
 
+                        case "810100101014"://Lead Quality
+
+                           // console.log(data.gdesc1)
+                            var ddllead = '#ContentPlaceHolder1_gvInfo_ddlVisit_' + number;
+
+
+
+                            $(ddllead + ' > option').each(function (index, item) {
+                                if ($(item).val() == data.gdesc1) {
+                                    $(item).attr("selected", true);
+                                }
+
+
+                            });
+                            break;
 
 
 
@@ -638,7 +653,7 @@
                         //alert(date);
 
                         $('#ContentPlaceHolder1_rpclientinfo_lbtntfollowupf_0').find('a').trigger('click');
-                        alert('nazmul');
+                      
 
 
                     },
