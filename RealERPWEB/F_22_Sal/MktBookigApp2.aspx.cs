@@ -105,8 +105,6 @@ namespace RealERPWEB.F_22_Sal
             try
             {
                 string comcod = this.GetCompCode();
-                //string applicationDate = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
-                this.txtCustmerNumber.Text = "";
                DataTable dt1 = (DataTable)Session["tblcustinfo"];
                 string applicationDate = (dt1.Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(dt1.Rows[0]["appdate"]).ToString("dd-MMM-yyyy");
 
