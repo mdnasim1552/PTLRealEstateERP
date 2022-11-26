@@ -77,14 +77,7 @@ namespace RealERPWEB.F_99_Allinterface
                     Hashtable hst = (Hashtable)Session["tblLogin"];
                     this.txtfrmdate.Text = Convert.ToDateTime(hst["opndate"].ToString()).AddDays(1).ToString("dd-MMM-yyyy");
                     break;
-
-
-
             }
-
-
-
-
         }
 
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)

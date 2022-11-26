@@ -157,6 +157,7 @@ namespace RealERPRDLC
                 case "R_09_PIMP.RptSubConOverAll": Rpt1a = SetRptSubConOverAll(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.rptsubconbill": Rpt1a = Setrptsubconbill(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptPerodSubConBill": Rpt1a = SetRptPerodSubConBill(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_09_PIMP.RptConBillCPDL": Rpt1a = SetRptConBillCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
 
@@ -180,7 +181,11 @@ namespace RealERPRDLC
 
                 case "R_14_Pro.RptPurMktSurveyEpic02": Rpt1a = SetRptPurMktSurveyEpic02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptPurMktSurveyEpic03": Rpt1a = SetRptPurMktSurveyEpic03(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                case "R_14_Pro.RptPurMktSurveyEpic05": Rpt1a = SetRptPurMktSurveyEpic05(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_14_Pro.RptPurMktSurveyEpic05": Rpt1a = SetRptPurMktSurveyEpic05(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;                
+                
+                case "R_14_Pro.RptPurMktSurveyCPDL03C": Rpt1a = SetRptPurMktSurveyCPDL03C(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_14_Pro.RptPurMktSurveyCPDL04C": Rpt1a = SetRptPurMktSurveyCPDL04C(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_14_Pro.RptPurMktSurveyCPDL05C": Rpt1a = SetRptPurMktSurveyCPDL05C(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_14_Pro.RptSupplierDetials": Rpt1a = SetRptSupplierDetials(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptConDetials": Rpt1a = SetRptConDetials(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -2205,6 +2210,22 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_14_Pro.EClassPur.MkrServay03>)rptDataSet2));
             return Rpt1a;
         }
+        private static LocalReport SetRptPurMktSurveyCPDL03C(LocalReport Rpt1a, object rptDataSet, object rptDataSet2, object userDataset) 
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.MkrServay02>)rptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_14_Pro.EClassPur.MkrServay03>)rptDataSet2));
+            return Rpt1a;
+        }private static LocalReport SetRptPurMktSurveyCPDL04C(LocalReport Rpt1a, object rptDataSet, object rptDataSet2, object userDataset) 
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.MkrServay02>)rptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_14_Pro.EClassPur.MkrServay03>)rptDataSet2));
+            return Rpt1a;
+        }private static LocalReport SetRptPurMktSurveyCPDL05C(LocalReport Rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.MkrServay02>)rptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_14_Pro.EClassPur.MkrServay03>)rptDataSet2));
+            return Rpt1a;
+        }
 
         private static LocalReport SetRptUserLogDetails(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -2285,6 +2306,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptPerodSubConBill(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.SubConBill.SubConAllBill>)RptDataSet));
+            return Rpt1a;
+        } 
+        private static LocalReport SetRptConBillCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.EClassOrder.BillFinalization>)RptDataSet));
             return Rpt1a;
         }
         private static LocalReport SetRptMonCollReceiptType(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)

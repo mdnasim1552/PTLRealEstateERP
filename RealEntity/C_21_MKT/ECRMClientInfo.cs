@@ -77,7 +77,8 @@ namespace RealEntity.C_21_Mkt
             public string grpdesc { get; set; }
             public string teamcode { get; set; }
             public string proscod { get; set; }
-            public DateTime createdate { get; set; }
+            public DateTime generatedate { get; set; }
+            public DateTime followupdate { get; set; }
             public string assocname { get; set; }
             public string prospectname { get; set; }
             public string phone { get; set; }
