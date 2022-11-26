@@ -223,10 +223,16 @@
                                 RepeatDirection="Horizontal">
                                 <asp:ListItem Selected="True">&nbsp; Summary &nbsp;&nbsp;</asp:ListItem>
                                 <asp:ListItem>&nbsp; Details</asp:ListItem>
+       
 
                             </asp:RadioButtonList>
 
+                       <asp:CheckBox ID="chkWithPay" runat="server"  Text="With Payment" />
+
                         </div>
+
+
+                        
 
                         <div class="col-md-1">
                             <div class="form-group">
