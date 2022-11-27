@@ -756,7 +756,7 @@ namespace RealERPWEB.F_21_MKT
                         if(ddlVisitor.SelectedValue == "4201006")
                         {
                             ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstStatus")).Enabled = false;
-                            ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow")).Enabled = false;
+                            ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
                         }
                         break;
 
