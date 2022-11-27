@@ -1393,13 +1393,13 @@ namespace RealERPLIB
 
             //24. Customer Care
             #region  CustCare
-            tblObj.Rows.Add(new Object[] { "2402000", "2402001", "F_24_CC", "CustMaintenanceWork?", "Type=Entry", "Client's Modification", "Customer Care", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "2402000", "2402002", "F_24_CC", "CustMaintenanceWork?", "Type=Check", "Client's Modification", "Customer Care", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "2402000", "2402003", "F_24_CC", "CustMaintenanceWork?", "Type=Audit", "Client's Modification", "Customer Care", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "2402000", "2402004", "F_24_CC", "CustMaintenanceWork?", "Type=Approv", "Client's Modification", "Customer Care", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2402000", "2402005", "F_24_CC", "CustMaintenanceWork?", "Type=FirstApproval", "CR First Approval", "Customer Care", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2402000", "2402006", "F_24_CC", "CustMaintenanceWork?", "Type=SecondApproval", "CR Second Approval", "Customer Care", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2402000", "2402007", "F_24_CC", "CustMaintenanceWork?", "Type=ReqPrint", "CR Modification Print", "Customer Care", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2402000", "2402001", "F_24_CC", "CustMaintenanceWork?", "Type=Entry", "ADW Entry", "Customer Care", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2402000", "2402002", "F_24_CC", "CustMaintenanceWork?", "Type=Check", "ADW Checked", "Customer Care", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2402000", "2402003", "F_24_CC", "CustMaintenanceWork?", "Type=Audit", "ADW Third Approval (Audit)", "Customer Care", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2402000", "2402004", "F_24_CC", "CustMaintenanceWork?", "Type=Approv", "ADW Final Approval", "Customer Care", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2402000", "2402005", "F_24_CC", "CustMaintenanceWork?", "Type=FirstApproval", "ADW First Approval", "Customer Care", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2402000", "2402006", "F_24_CC", "CustMaintenanceWork?", "Type=SecondApproval", "ADW Second Approval", "Customer Care", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2402000", "2402007", "F_24_CC", "CustMaintenanceWork?", "Type=ReqPrint", "ADW Modification Print", "Customer Care", "False", "False", "False", "False" });
 
 
             tblObj.Rows.Add(new Object[] { "2402000", "2402008", "F_24_CC", "CustUtility?", "Type=Entry", "Client's Utilities", "Customer Care", "False", "False", "False", "False" });

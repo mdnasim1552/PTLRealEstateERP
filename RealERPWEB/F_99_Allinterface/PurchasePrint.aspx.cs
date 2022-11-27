@@ -4150,6 +4150,8 @@ namespace RealERPWEB.F_99_Allinterface
 
                 string cperson2 = "";
 
+                string reqdat = _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
+                 
                 // Terms & Conditions Variables//
 
                 string terms1 = "", terms2 = "", terms3 = "", terms4 = "", terms5 = "", terms6 = "", terms7 = "", terms8 = "",
@@ -4587,6 +4589,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3370": // cpdl
                         Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
                         Rpt1.SetParameters(new ReportParameter("supemail", supemail));
+                        Rpt1.SetParameters(new ReportParameter("reqdat", reqdat));
                         break;
                     
                     case "1205": // p2p
