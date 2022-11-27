@@ -262,7 +262,7 @@ namespace RealERPWEB
             {
                 this.gvclientbthday.DataSource = null;
                 this.gvclientbthday.DataBind();
-                return;
+                
 
             }
             this.gvclientbthday.DataSource = (ds1.Tables[0]);
