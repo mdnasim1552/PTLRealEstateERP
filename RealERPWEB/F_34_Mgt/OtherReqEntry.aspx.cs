@@ -71,7 +71,7 @@ namespace RealERPWEB.F_34_Mgt
                         this.lbtnUpdateResReq.Visible = false;
                         this.RequisitionPrint();
                     }
-                 //   this.lbtnCheckedCompShow();
+                    //   this.lbtnCheckedCompShow();
                 }
 
 
@@ -1164,8 +1164,8 @@ namespace RealERPWEB.F_34_Mgt
 
                 case "1102":// ISBL
                     this.OtherReqPrintISBL();
-                    break; 
-                
+                    break;
+
                 case "3368":// Finlay
                     this.OtherReqPrintFinlay();
                     break;
@@ -1198,6 +1198,8 @@ namespace RealERPWEB.F_34_Mgt
             string refno = "Ref No : " + this.txtMRFNo.Text.ToString().Trim();
             string reqno = "Requisition No : " + this.lblCurReqNo1.Text + this.txtCurReqNo2.Text.ToString().Trim();
             string narration = "Narration:" + this.txtReqNarr.Text.Trim();
+            string title = this.Request.QueryString["Type"].ToString() == "OreqEntry" ? "General Bill Requisition" : "Software Generated Bill";
+
 
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "GETPURREQINFO", mReqNo, CurDate1,
                  "", "", "", "", "", "", "");
@@ -1215,7 +1217,7 @@ namespace RealERPWEB.F_34_Mgt
             var lst = ds1.Tables[0].DataTableToList<RealEntity.C_34_Mgt.EClassOtherReq>();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqStatus", lst, null, null);
             Rpt1.EnableExternalImages = true;
-            Rpt1.SetParameters(new ReportParameter("rpttitle", "Work Order"));
+            Rpt1.SetParameters(new ReportParameter("rpttitle", title));
             Rpt1.SetParameters(new ReportParameter("paytype", paytype));
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("payto", payto));
@@ -1312,8 +1314,8 @@ namespace RealERPWEB.F_34_Mgt
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
             }
 
-        } 
-        private void OtherReqPrintFinlay() 
+        }
+        private void OtherReqPrintFinlay()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = GetCompCode();
@@ -1337,7 +1339,7 @@ namespace RealERPWEB.F_34_Mgt
 
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "GETPURREQINFO", mReqNo, CurDate1,
                  "", "", "", "", "", "", "");
-             
+
             DataTable dtsign = ds1.Tables[2];
             string requsinput = dtsign.Rows[0]["reqnam"].ToString() + "\n" + dtsign.Rows[0]["reqdesig"].ToString() + "\n" + dtsign.Rows[0]["reqdat"].ToString();     // req posted 
             string checkedby = dtsign.Rows[0]["chkusrnam"].ToString() + "\n" + dtsign.Rows[0]["chkusrdesig"].ToString() + "\n" + dtsign.Rows[0]["checkdat"].ToString();     // req checked
@@ -1360,7 +1362,7 @@ namespace RealERPWEB.F_34_Mgt
             Rpt1.SetParameters(new ReportParameter("reqno", reqno));
             Rpt1.SetParameters(new ReportParameter("narration", narration));
             Rpt1.SetParameters(new ReportParameter("requsinput", requsinput));
-            Rpt1.SetParameters(new ReportParameter("checkedby", checkedby)); 
+            Rpt1.SetParameters(new ReportParameter("checkedby", checkedby));
             Rpt1.SetParameters(new ReportParameter("confirmby", confirmby));
             Rpt1.SetParameters(new ReportParameter("approved", approved));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
@@ -1643,7 +1645,7 @@ namespace RealERPWEB.F_34_Mgt
                             break;
 
                         default:
-                           
+
                             break;
                     }
 
@@ -1874,7 +1876,7 @@ namespace RealERPWEB.F_34_Mgt
             string userid = hst["usrid"].ToString();
             string Terminal = hst["compname"].ToString();
             string Sessionid = hst["session"].ToString();
-           
+
             string PostedByid = (this.Request.QueryString["Type"] == "OreqEntry" || this.Request.QueryString["Type"] == "mgtOreqEntry") ? userid : (tblPostedByid == "") ? userid : tblPostedByid;
 
             string Posttrmid = (this.Request.QueryString["Type"] == "OreqEntry" || this.Request.QueryString["Type"] == "mgtOreqEntry") ? Terminal : (tblPostedtrmid == "") ? Terminal : tblPostedtrmid;
@@ -1972,7 +1974,7 @@ namespace RealERPWEB.F_34_Mgt
             //}
             string bankcode = this.ddlBankName.SelectedValue.ToString();
             string refnum = this.txtRefNum.Text.Trim();
-            
+
             for (int i = 0; i < tbl1.Rows.Count; i++)
             {
                 string mPACTCODE = tbl1.Rows[i]["pactcode"].ToString();
@@ -2122,7 +2124,7 @@ namespace RealERPWEB.F_34_Mgt
 
                     case "3336":
                     case "3337":
-                   // case "3101":
+                        // case "3101":
 
                         result = purData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "INSERTORUPONLINEPAY",
                                     mREQNO, "", "", "", "", "", "", "",
@@ -2140,7 +2142,7 @@ namespace RealERPWEB.F_34_Mgt
 
 
                     case "1103": // Tanvir
-                  
+
                         result = purData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "INSERTORUPONLINEPAYTAN",
                             mREQNO, "", "", "", "", "", "", "",
                             "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
@@ -2158,7 +2160,7 @@ namespace RealERPWEB.F_34_Mgt
 
 
                     case "3370"://CPDL 
-                    //case "3101"://CPDL 
+                                //case "3101"://CPDL 
 
                         if (adjcod == "000000000000")
                         {
@@ -2339,9 +2341,9 @@ namespace RealERPWEB.F_34_Mgt
             string type = this.Request.QueryString["Type"].ToString();
 
             //log Report
-          
 
-            
+
+
             DataTable dtuser = (DataTable)Session["tblUserReq"];
 
             string userid = hst["usrid"].ToString();
@@ -2359,22 +2361,22 @@ namespace RealERPWEB.F_34_Mgt
                 case "3370":  //CPDL
                 case "3101":
                     ApprovByid = userid;
-                     approvdat = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                     Approvtrmid = Terminal ;
-                     ApprovSession = Sessionid;
+                    approvdat = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    Approvtrmid = Terminal;
+                    ApprovSession = Sessionid;
                     break;
 
                 default:
-                     ApprovByid = "";
-                     approvdat = "01-Jan-1900";
-                     Approvtrmid = "";
-                     ApprovSession = "";
+                    ApprovByid = "";
+                    approvdat = "01-Jan-1900";
+                    Approvtrmid = "";
+                    ApprovSession = "";
                     break;
 
 
             }
 
-            
+
 
 
             /////log end
@@ -2618,9 +2620,9 @@ namespace RealERPWEB.F_34_Mgt
 
                 string comcod = this.GetCompCode();
 
-                
+
                 rate = rate > 0 ? rate : (qty > 0 ? (Proamt / qty) : 0.00);
-                Proamt = (type == "OreqEntry" ||type== "mgtOreqEntry") ? (rate > 0 ? qty * rate : Proamt) : Proamt;
+                Proamt = (type == "OreqEntry" || type == "mgtOreqEntry") ? (rate > 0 ? qty * rate : Proamt) : Proamt;
                 appamt = (type == "OreqEntry" || type == "mgtOreqEntry") ? 0.00 : (rate > 0 ? qty * rate : appamt);
 
                 tbl1.Rows[i]["proamt"] = Proamt;// qty* rate; proamt
@@ -3173,6 +3175,6 @@ namespace RealERPWEB.F_34_Mgt
 
         }
 
-       
+
     }
 }
