@@ -753,6 +753,11 @@ namespace RealERPWEB.F_21_MKT
                         ddlVisitor.DataBind();
                         ddlVisitor.Items.Insert(0, new ListItem("None", ""));
                         ddlVisitor.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+                        if(ddlVisitor.SelectedValue == "4201006")
+                        {
+                            ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstStatus")).Enabled = false;
+                            ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow")).Enabled = false;
+                        }
                         break;
 
 
@@ -782,7 +787,15 @@ namespace RealERPWEB.F_21_MKT
                         ChkBoxLstStatus.DataSource = dts;
                         ChkBoxLstStatus.DataBind();
                         ChkBoxLstStatus.SelectedValue = (lstleadstatus.Length > 0 ? lstleadstatus : ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim());
+                        if(ChkBoxLstStatus.SelectedValue == "9501001")
+                        {
+                            
+                            ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstStatus")).Enabled = false;
+                            ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow")).Enabled = false;
 
+
+
+                        }
 
                         break;
 

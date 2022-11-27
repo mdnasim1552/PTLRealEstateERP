@@ -641,6 +641,10 @@
           <DataField>sectionid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="seq">
+          <DataField>seq</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="siclev">
           <DataField>siclev</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -2119,7 +2123,7 @@
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!sectionid.Value</Value>
+                      <Value>=Fields!seq.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                   <TablixMembers>

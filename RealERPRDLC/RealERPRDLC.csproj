@@ -778,6 +778,7 @@
     <EmbeddedResource Include="R_17_Acc\RptSalPerWise.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptShareQty.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptSupplierOvAllPSummary.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptSupplierOvAllPSummaryCOPY.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptSupplierOvAllPSummaryDetails.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptSPLedger02Intech.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptSPLedgerIntect.rdlc" />

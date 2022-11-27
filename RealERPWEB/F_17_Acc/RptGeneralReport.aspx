@@ -7,6 +7,36 @@
 
      <script type="text/javascript" language="javascript">
 
+
+         function Search_Gridview(strKey, cellNr) {
+             try {
+
+                 var strData = strKey.value.toLowerCase().split(" ");
+                 tblData = document.getElementById("<%=this.gvgenreq.ClientID %>");
+                
+                
+                   var rowData;
+                   for (var i = 0; i < tblData.rows.length; i++) {
+                       rowData = tblData.rows[i].cells[cellNr].innerHTML;
+                       var styleDisplay = 'none';
+                       for (var j = 0; j < strData.length; j++) {
+                           if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                               styleDisplay = '';
+                           else {
+                               styleDisplay = 'none';
+                               break;
+                           }
+                       }
+                       tblData.rows[i].style.display = styleDisplay;
+                   }
+               }
+
+               catch (e) {
+                   alert(e.message);
+               }
+
+           }
+
         $(document).ready(function () {
 
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
@@ -125,6 +155,9 @@
 
                                         
                                         <asp:TemplateField HeaderText="Project Name">
+                                              <HeaderTemplate>
+                                                <asp:TextBox ID="txtSearchpactdesc" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="170" onkeyup="Search_Gridview(this,1)" placeholder="Project Name"></asp:TextBox>
+                                            </HeaderTemplate>
 
 
                                             <ItemTemplate>
