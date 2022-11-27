@@ -25,7 +25,7 @@
             </Paragraphs>
             <rd:DefaultName>payTo</rd:DefaultName>
             <Top>4.01216in</Top>
-            <Left>4.362in</Left>
+            <Left>4.4936in</Left>
             <Height>4.25869in</Height>
             <Width>0.27291in</Width>
             <Style>
@@ -57,7 +57,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox8</rd:DefaultName>
             <Top>4.41008in</Top>
-            <Left>3.98283in</Left>
+            <Left>4.11443in</Left>
             <Height>3.3191in</Height>
             <Width>0.29875in</Width>
             <ZIndex>1</ZIndex>
@@ -92,7 +92,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
             <Top>7.54515in</Top>
-            <Left>3.84667in</Left>
+            <Left>3.9861in</Left>
             <Height>2.125in</Height>
             <Width>0.42708in</Width>
             <ZIndex>2</ZIndex>
@@ -358,8 +358,8 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>7.76947in</Top>
-            <Left>5.01195in</Left>
+            <Top>7.75697in</Top>
+            <Left>5.11612in</Left>
             <Height>2.075in</Height>
             <Width>0.259in</Width>
             <ZIndex>3</ZIndex>
@@ -388,7 +388,7 @@
             </Paragraphs>
             <rd:DefaultName>amtWord1</rd:DefaultName>
             <Top>3.51341in</Top>
-            <Left>3.58869in</Left>
+            <Left>3.72029in</Left>
             <Height>3.80952in</Height>
             <Width>0.29528in</Width>
             <ZIndex>4</ZIndex>
@@ -444,9 +444,9 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox25</rd:DefaultName>
                 <Top>0.63988in</Top>
-                <Left>1.3551in</Left>
+                <Left>2.26304in</Left>
                 <Height>1.45385in</Height>
-                <Width>0.28605in</Width>
+                <Width>0.24593in</Width>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -478,10 +478,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox16</rd:DefaultName>
-                <Top>0.64488in</Top>
-                <Left>1.64115in</Left>
+                <Top>0.63988in</Top>
+                <Left>2.53675in</Left>
                 <Height>1.45385in</Height>
-                <Width>0.28046in</Width>
+                <Width>0.24574in</Width>
                 <ZIndex>1</ZIndex>
                 <Style>
                   <Border>
@@ -533,46 +533,10 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox3</rd:DefaultName>
                 <Top>0.63988in</Top>
-                <Left>1.05782in</Left>
+                <Left>2.00203in</Left>
                 <Height>1.45385in</Height>
-                <Width>0.30962in</Width>
+                <Width>0.26101in</Width>
                 <ZIndex>3</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                  <WritingMode>Vertical</WritingMode>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox4">
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=" ="&amp;Space(1) &amp; Format(Parameters!amt.Value)</Value>
-                        <Style>
-                          <FontFamily>cambria</FontFamily>
-                          <FontSize>7pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Left</TextAlign>
-                    </Style>
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox3</rd:DefaultName>
-                <Top>0.64987in</Top>
-                <Left>0.65445in</Left>
-                <Height>1.44886in</Height>
-                <Width>0.3617in</Width>
-                <ZIndex>4</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
