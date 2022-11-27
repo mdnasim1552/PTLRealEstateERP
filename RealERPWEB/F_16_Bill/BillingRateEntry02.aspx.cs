@@ -245,7 +245,7 @@ namespace RealERPWEB.F_16_Bill
             string calltype;
             if (this.Request.QueryString["Type"] == "Entry")
             {
-                calltype = "PRJCODELIST";
+                calltype = "PRJCODELIST02";
             }
             else
             {
