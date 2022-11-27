@@ -171,7 +171,7 @@ namespace RealERPWEB.F_38_AI
             string batchname = ds1.Tables[0].Rows[0]["batchname"].ToString();
             this.lblbatchid.Text = batchname;
             this.hiddnbatchID.Value = ds1.Tables[0].Rows[0]["id"].ToString();
-            ViewState["tblgetprojectwisebatch"] = dt;
+            ViewState["tblgetprojectwisebatch"] = ds1;
             this.gv_BatchName.DataSource = dt;
             this.gv_BatchName.DataBind();
         }
@@ -195,6 +195,7 @@ namespace RealERPWEB.F_38_AI
                 if (ds1 == null)
                     return;
                 DataTable dt = ds1.Tables[0];
+                Session["assignqtycount"] = ds1;
                 if (dt.Rows.Count > 0)
                 {
 
@@ -322,7 +323,9 @@ namespace RealERPWEB.F_38_AI
 
             try
             {
-                
+
+                DataSet dt = (DataSet)ViewState["tblgetprojectwisebatch"];
+           
                 string roletype = this.ddlUserRoleType.SelectedValue;
                 double assignqty = Convert.ToDouble("0" + this.txtquantity.Text.ToString());
                 double pedingannotor = Convert.ToDouble("0" + this.lblcountannotid.Text.ToString());
@@ -331,7 +334,7 @@ namespace RealERPWEB.F_38_AI
                 double doneannotor = Convert.ToDouble("0" + this.lblDoneAnnot.Text.ToString());
                 double doneqc = Convert.ToDouble("0" + this.lblDoneQC.Text.ToString());
                 double doneqa = Convert.ToDouble("0" + this.lblDoneQA.Text.ToString());
-                double totalassign = Convert.ToDouble("0" + this.lbltotalassign.Text.ToString());
+                double totalassign = Convert.ToDouble("0" + dt.Tables[0].Rows[0]["datasetqty"].ToString()); 
 
                 if (roletype == "95001" && totalassign < assignqty )
                 {
@@ -384,7 +387,7 @@ namespace RealERPWEB.F_38_AI
                         dr1["assignqty"] = Convert.ToDouble("0" + this.txtquantity.Text.Trim());
                         dr1["workhour"] = Convert.ToDouble("0" + this.txtworkhour.Text.Trim());
                         dr1["isoutsrc"] = this.checkinoutsourcing.Checked;
-                        dr1["workrate"] = this.textrate.Text.Trim();
+                        dr1["workrate"] = this.textrate.Text.Trim() == "" ? "0" : this.textrate.Text.Trim();
                         tblt01.Rows.Add(dr1);
 
                     }
@@ -459,11 +462,14 @@ namespace RealERPWEB.F_38_AI
                 //    return;
                 //}
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Task Create  Successfully');", true);
+                this.perrate.Visible = false;
+
                 this.IsClear();
                 //this.task.Visible = false;
                 this.assigntask.Visible = true;
                 this.taskoverview.Visible = true;
                 this.task.Visible = false;
+
                 this.GetBatchInfo();
             }
             catch (Exception ex)
@@ -825,11 +831,13 @@ namespace RealERPWEB.F_38_AI
             bool check = this.checkinoutsourcing.Checked;
             if (!check)
             {
+                this.perrate.Visible = false;
                 this.textrate.Text = "";
 
             }
             else
             {
+                this.perrate.Visible = true;
                 string rate = "80";
                 this.textrate.Text = rate;
             }

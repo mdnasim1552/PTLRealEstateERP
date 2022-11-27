@@ -718,7 +718,7 @@
                                                     <asp:CheckBox runat="server" ID="checkinoutsourcing" OnCheckedChanged="checkinoutsourcing_CheckedChanged" AutoPostBack="True" ForeColor="red"></asp:CheckBox>
                                                     <asp:Label ID="Label1" runat="server">&nbsp;  Freelancing</asp:Label>
                                                 </div>
-                                                <div class=" col-lg-3 col-md-3 col-sm-12">
+                                                <div class=" col-lg-3 col-md-3 col-sm-12" ID="perrate" runat="server" visible="false">
                                                     <asp:Label ID="Label2" runat="server">Per Rate</asp:Label>
                                                     <asp:TextBox ID="textrate" runat="server" CssClass="form-control"></asp:TextBox>
                                                 </div>                                               
