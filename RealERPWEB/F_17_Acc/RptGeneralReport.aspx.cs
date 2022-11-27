@@ -73,7 +73,7 @@ namespace RealERPWEB.F_17_Acc
             if (ds1 == null)
                 return;
 
-            ViewState["tblgenreq"] = HiddenSameData(ds1.Tables[0]); //ds1.Tables[0];    
+            ViewState["tblgenreq"] = ds1.Tables[0]; //ds1.Tables[0];    
             this.Data_Bind();
 
         }
