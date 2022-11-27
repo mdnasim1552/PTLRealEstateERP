@@ -1242,7 +1242,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>MPR No</Value>
+                                                    <Value>MPR No &amp; Date</Value>
                                                     <Style>
                                                       <FontFamily>Times New Roman</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -1309,7 +1309,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=First(Fields!mrfno.Value)</Value>
+                                                    <Value>=First(Fields!mrfno.Value) +" , "+Parameters!reqdat.Value</Value>
                                                     <Style>
                                                       <FontFamily>times New Roman</FontFamily>
                                                     </Style>
@@ -4471,11 +4471,17 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="reqdat">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>2</NumberOfColumns>
-      <NumberOfRows>26</NumberOfRows>
+      <NumberOfRows>27</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -4736,6 +4742,11 @@
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>25</RowIndex>
           <ParameterName>pcperson</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>26</RowIndex>
+          <ParameterName>reqdat</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
