@@ -332,7 +332,6 @@ namespace RealERPLIB
                 DataRow[] dr1 = dt.Select("(frmname+qrytype)='" + frmname + "'");
                 return (dr1.Length > 0);
             }
-
         }
         public static DataRow[] PagePermission1(string frmname, DataSet ds)
         {
