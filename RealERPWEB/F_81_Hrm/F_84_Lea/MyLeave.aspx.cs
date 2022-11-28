@@ -659,6 +659,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string isHalfday = (this.chkHalfDay.Checked ? "True" : "False");
                 string ttdays = this.Duration.Value.ToString();
                 string qtype = this.Request.QueryString["Type"] ?? "";
+             
 
                 if (ttdays != "0")
                 {
@@ -673,8 +674,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string dnameadesig = onDutiesEmp + this.txtdutiesnameandDesig.Text.Trim();
                     string delegationEMPID = this.ddlDutyEmp.SelectedValue.ToString() == "000000000000" ? "" : this.ddlDutyEmp.SelectedValue.ToString();
                     string APRdate = (qtype == "MGT" ? applydat : "");
+                   
+                    if(gcod== "51999" && frmdate==todate)
+                    {
+                        string Messaged = "Leave day and Off day can not be same!";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                        return;
+                    }
 
-                    bool result = false;
+                        bool result = false;
                     //below code for if apply without date range 
                     if (chkBoxSkippWH.Checked == true)
                     {

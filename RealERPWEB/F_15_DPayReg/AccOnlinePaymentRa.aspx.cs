@@ -326,7 +326,7 @@ namespace RealERPWEB.F_15_DPayReg
 
                 DataTable dt1 = (DataTable)ViewState["tblpayment"];
                 bool result = true;
-
+                string narration = this.txtNarration.Text.Trim();
 
 
                 //  string CallType = (this.Request.QueryString["Type"].ToString().Trim() == "ChequeApproval") ? "UPDATECHEQUEREAPPROVAL" : "UPDATECHEQUEREADY";
@@ -356,8 +356,8 @@ namespace RealERPWEB.F_15_DPayReg
 
                     if (amt > 0)
                     {
-                        result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "UPDATECHEQUEREADY", slnum, chqreadydate, amt.ToString(),
-                                                                   apppaydate, nochq.ToString(), Remarks, userid, Terminal, Sessionid, Date, actcode, rescode, billno, spcfcod, "");
+                        result = accData.UpdateTransInfo2(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "UPDATECHEQUEREADY", slnum, chqreadydate, amt.ToString(),
+                                                                   apppaydate, nochq.ToString(), Remarks, userid, Terminal, Sessionid, Date, actcode, rescode, billno, spcfcod, narration,"", "", "", "","","");
                     }
                     if (result == false)
                     {
@@ -411,7 +411,7 @@ namespace RealERPWEB.F_15_DPayReg
 
 
 
-
+                string narration = this.txtNarration.Text.Trim();
 
                 foreach (DataRow dr in dt1.Rows)
                 {
@@ -431,8 +431,8 @@ namespace RealERPWEB.F_15_DPayReg
 
                     if (amt > 0)
                     {
-                        result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "UPDATECHEQUEREAPPROVAL", slnum, chqreadydate, amt.ToString(),
-                                                                   apppaydate, nochq.ToString(), Remarks, userid, Terminal, Sessionid, Date, actcode, rescode, billno, spcfcod, "");
+                        result = accData.UpdateTransInfo2(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "UPDATECHEQUEREAPPROVAL", slnum, chqreadydate, amt.ToString(),
+                                                                   apppaydate, nochq.ToString(), Remarks, userid, Terminal, Sessionid, Date, actcode, rescode, billno, spcfcod, narration,"","","","","","");
                     }
                     if (result == false)
                     {

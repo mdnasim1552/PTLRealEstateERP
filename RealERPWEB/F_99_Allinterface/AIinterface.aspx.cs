@@ -1063,6 +1063,13 @@ namespace RealERPWEB.F_99_Allinterface
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     string gval = dt.Rows[i]["gval"].ToString();
+                    string gcod = dt.Rows[i]["gcod"].ToString();
+                    if (gcod== "03001")
+                    {
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text = "";
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text = "";
+                        ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Text = "0.00";
+                    }
                     if (gval == "T")
                     {
 
@@ -1190,6 +1197,9 @@ namespace RealERPWEB.F_99_Allinterface
                 this.TasktState.SelectedIndex = 0;
                 this.TasktState_SelectedIndexChanged(null, null);
                 this.IsClearAddProject();
+                this.pnlProjectadd.Visible = false;
+                this.pnlSidebar.Visible = false;
+                
             }
             catch (Exception exp)
             {
@@ -1372,6 +1382,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.pnlProjectadd.Visible = false;
                 this.pnlBatchadd.Visible = false;
                 this.pnlAssginUser.Visible = true;
+                ddlUserRoleType_SelectedIndexChanged(null,null);
             }
             catch (Exception exp)
             {
@@ -1705,6 +1716,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.pnlProjectadd.Visible = false;
                 this.pnlBatchadd.Visible = false;
                 this.pnlAssginUser.Visible = true;
+                ddlUserRoleType_SelectedIndexChanged(null, null);
             }
             catch (Exception exp)
             {
@@ -1759,6 +1771,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.pnlProjectadd.Visible = false;
                 this.pnlBatchadd.Visible = false;
                 this.pnlAssginUser.Visible = true;
+                ddlUserRoleType_SelectedIndexChanged(null, null);
             }
             catch (Exception exp)
             {
@@ -1816,6 +1829,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.pnlProjectadd.Visible = false;
                 this.pnlBatchadd.Visible = false;
                 this.pnlAssginUser.Visible = true;
+                ddlUserRoleType_SelectedIndexChanged(null, null);
             }
             catch (Exception exp)
             {
@@ -2095,11 +2109,13 @@ namespace RealERPWEB.F_99_Allinterface
             bool check = this.checkinoutsourcing.Checked;
             if (!check)
             {
+                this.perrate.Visible = false;
                 this.textrate.Text = "";
                 
             }
             else
             {
+                this.perrate.Visible = true;
                 string rate = "80";
                 this.textrate.Text = rate;
             }
