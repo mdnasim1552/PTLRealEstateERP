@@ -123,7 +123,7 @@
 
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" Width="230px" VerticalAlign="Middle" />
+                                                <HeaderStyle HorizontalAlign="Center" Width="330px" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="">
 
