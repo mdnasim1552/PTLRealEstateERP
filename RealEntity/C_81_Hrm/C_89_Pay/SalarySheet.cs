@@ -605,6 +605,8 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double swf { get; set; }
             public double subfee { get; set; }
             public int seq { get; set; }
+            public double extday { get; set; }
+            public double extdayamt { get; set; }
 
             public RptSalarySheet ()
             {
@@ -712,6 +714,9 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double subfee { get; set; }
             public double  otallow { get; set; }
             public double tallow { get; set; }
+
+            public double extday { get; set; }
+            public double extdayamt { get; set; }
 
 
             public SalaryPaySlip()
