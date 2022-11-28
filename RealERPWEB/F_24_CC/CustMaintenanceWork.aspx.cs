@@ -559,7 +559,7 @@ namespace RealERPWEB.F_24_CC
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string projectName = this.ddlProjectName.SelectedItem.Text.Substring(13);
+            string projectName = this.ddlProjectName.SelectedItem.Text.Substring(16);
             string unitName = this.ddlUnitName.SelectedItem.Text.Trim();
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
