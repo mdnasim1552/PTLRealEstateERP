@@ -827,7 +827,7 @@ namespace RealERPWEB.F_09_PImp
                 this.SaveValue();
                 string flrcode = this.ddlfloorno.SelectedValue.ToString().Trim();
                 string flrdes = this.ddlfloorno.SelectedItem.Text.Trim();
-
+                string comcod = this.GetCompCode();
                 foreach (ListItem lab1 in DropCheck1.Items)
                 {
                     if (lab1.Selected)
@@ -839,8 +839,9 @@ namespace RealERPWEB.F_09_PImp
 
                         DataTable dt = (DataTable)ViewState["tblbillreq"];
                         DataRow[] dr = dt.Select(" flrcod='" + flrcode + "' and rsircode='" + rsircode + "'");
-
                         DataTable dt1 = (DataTable)ViewState["itemlist"];
+                        double balqty = 0.00;
+
                         if (dr.Length == 0)
                         {
 
@@ -848,17 +849,18 @@ namespace RealERPWEB.F_09_PImp
                             dr1["flrcod"] = flrcode;
                             dr1["flrdes"] = flrdes;
                             dr1["rsircode"] = rsircode;
-                            dr1["rsirdesc"] = (((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'"))[0]["rsirdesc"];
+                            dr1["rsirdesc"] = ((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["rsirdesc"];
                             //dr1["grp"] = grp;
                             //dr1["grpdesc"] = grpdesc;
-                            dr1["rsirunit"] = (((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'"))[0]["rsirunit"];
-                            dr1["bgdqty"] = Convert.ToDouble((((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'"))[0]["bgdqty"]).ToString(); ;
+                            dr1["rsirunit"] = ((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["rsirunit"];
+                            dr1["bgdqty"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["bgdqty"]).ToString();
 
-                            dr1["balqty"] = Convert.ToDouble((((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'"))[0]["balqty"]).ToString();
-                            dr1["balamt"] = Convert.ToDouble((((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'"))[0]["balamt"]).ToString();
-                            dr1["reqqty"] = 0.00;
-                            dr1["bgdrat"] = Convert.ToDouble((((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'"))[0]["bgdrat"]).ToString();
-                            dr1["reqrat"] = Convert.ToDouble((((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'"))[0]["isurat"]).ToString();
+                            dr1["balqty"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["balqty"]).ToString();
+                            balqty = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["balqty"].ToString());
+                            dr1["balamt"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["balamt"]).ToString();
+                            dr1["reqqty"] = comcod == "3370" ? balqty : 0.00;  
+                            dr1["bgdrat"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["bgdrat"]).ToString();
+                            dr1["reqrat"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["isurat"]).ToString();
                             dr1["amount"] = 0.00;
                             dr1["reqamt"] = 0.00;
                             dr1["csircode"] = "000000000000";

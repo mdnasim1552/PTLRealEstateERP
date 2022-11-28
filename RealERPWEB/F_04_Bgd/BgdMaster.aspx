@@ -446,8 +446,9 @@
                                         <asp:TemplateField HeaderText="Rate" ItemStyle-HorizontalAlign="Right">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="gvtxtRate" runat="server" BackColor="Transparent" BorderColor="Transparent"
-                                                    BorderStyle="None" ReadOnly="true" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdrate")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                    Width="80px" Style="text-align: right;"></asp:TextBox>
+                                                    BorderStyle="None" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdrate")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="80px" Style="text-align: right;"
+                                                    ReadOnly='<%# Convert.ToBoolean((this.GetCompCode()=="3101"||this.GetCompCode()=="3367" || this.GetCompCode()=="3368") ? false:true ) %>'></asp:TextBox>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:LinkButton ID="gvlnkFTotal" runat="server" Style="color: white; font-weight: bold;"
