@@ -364,7 +364,7 @@
                                 </div>
                                 <div class="media-body align-self-center">
                                     <div class="text-center">
-                                        <h4 class="font-20 my-0 font-weight-bold"><span class="tile-circle bg-purple text-white counterup" id="lblrating" runat="server" data-plugin="counterup">0</span></h4>
+                                        <h4 class="font-20 my-0 font-weight-bold"><span class="tile-circle bg-purple text-white counterup" id="lblrating" runat="server" data-plugin="counterup" >0</span></h4>
                                         <p class="mb-0 mt-1 text-truncate">Valuable Prospect</p>
                                     </div>
                                 </div>
