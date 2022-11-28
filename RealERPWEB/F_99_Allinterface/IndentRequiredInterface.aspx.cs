@@ -141,22 +141,25 @@ namespace RealERPWEB.F_99_Allinterface
                 }
 
 
-                this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["statuses"]) + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
-                this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["hodchecked"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>HOD Checked</div></div></div>";
-                this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["hrapproval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>HR/Admin Approval</div></div></div>";
-                this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["pendingissues"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Pending Issue</div></div></div>";
-                this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToInt32(ds2.Tables[1].Rows[0]["complete"]) + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>Complete</div></div></div>";
+                this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToInt32(ds2.Tables[2].Rows[0]["statuses"]) + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
+                this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[2].Rows[0]["hodchecked"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>HOD Checked</div></div></div>";
+                this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[2].Rows[0]["hrapproval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>HR/Admin Approval</div></div></div>";
+                this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[2].Rows[0]["pendingissues"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Pending Issue</div></div></div>";
+                this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToInt32(ds2.Tables[2].Rows[0]["complete"]) + "</i></div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>Complete</div></div></div>";
 
                 Session["tbladdwrk"] = ds2.Tables[0];
+                Session["tblstepwise"] = ds2.Tables[1];
+                
+                this.gv_IndRequired.DataSource = ds2.Tables[1];
+                this.gv_IndRequired.DataBind();
 
                 DataTable dt1 = new DataTable();
                 DataView view1 = new DataView();
-                view1.Table = ds2.Tables[0];
-                view1.RowFilter = "steptype='Entry'";
-                dt1 = view1.ToTable();
-                this.gv_IndRequired.DataSource = dt1;
-                this.gv_IndRequired.DataBind();
 
+
+                view1.Table = ds2.Tables[1];
+                view1.RowFilter = "steptype= 'Entry'";
+                dt1 = view1.ToTable();
                 this.gv_hodChecked.DataSource = dt1;
                 this.gv_hodChecked.DataBind();
 
@@ -165,8 +168,8 @@ namespace RealERPWEB.F_99_Allinterface
                 DataView view = new DataView();
                 
 
-                view.Table = ds2.Tables[0];
-                view.RowFilter = "steptype= 'Checked' and approved=' '";
+                view.Table = ds2.Tables[1];
+                view.RowFilter = "steptype= 'Checked'";
                 dt = view.ToTable();
                 this.gv_hradminapproval.DataSource = dt;
                 this.gv_hradminapproval.DataBind();
@@ -176,7 +179,7 @@ namespace RealERPWEB.F_99_Allinterface
                 DataView view2 = new DataView();
 
 
-                view2.Table = ds2.Tables[0];
+                view2.Table = ds2.Tables[1];
                 view2.RowFilter = "steptype= 'Approve' ";
                 dt2 = view2.ToTable();
                 this.gv_Pending.DataSource = dt2;
@@ -199,6 +202,10 @@ namespace RealERPWEB.F_99_Allinterface
         }
 
 
+
+       
+
+
         private void GetAllIndRequired()
         {
 
@@ -206,6 +213,9 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void lnkok_Click(object sender, EventArgs e)
         {
+
+            this.GetIndentRequirdData();
+
 
         }
 

@@ -2671,7 +2671,7 @@
 
                                         <asp:Label ID="Label30" runat="server">&nbsp;  Freelancing</asp:Label>
                                     </div>
-                                    <div class=" col-lg-3 col-md-3 col-sm-12">
+                                    <div class=" col-lg-3 col-md-3 col-sm-12" ID="perrate" runat="server" visible="false">
                                         <asp:Label ID="Label29" runat="server">Per Rate</asp:Label>
                                         <asp:TextBox ID="textrate" runat="server"  CssClass="form-control"></asp:TextBox>
                                     </div>
