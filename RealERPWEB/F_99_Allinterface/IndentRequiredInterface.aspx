@@ -617,8 +617,8 @@
                                             </asp:TemplateField>
                                              <asp:TemplateField HeaderText="Status">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvissuestatus" runat="server"  CssClass="badge badge-pill badge-success"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "issuestatus")) %>'
+                                                    <asp:Label ID="lblgvsteptype" runat="server"  CssClass='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "steptype"))=="Entry"? "badge badge-pill badge-danger": Convert.ToString(DataBinder.Eval(Container.DataItem, "steptype"))=="Checked"?"badge badge-pill badge-info":"badge badge-pill badge-success" %>'
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "steptype")) %>'
                                                         ></asp:Label>
 
                                                 </ItemTemplate>
@@ -707,8 +707,8 @@
                                             </asp:TemplateField>
                                              <asp:TemplateField HeaderText="Status">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvhodissuestatus" runat="server"  CssClass="badge badge-pill badge-success"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "issuestatus")) %>'
+                                                    <asp:Label ID="lblgvhodsteptype" runat="server"  CssClass="badge badge-pill badge-danger"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "steptype")) %>'
                                                         ></asp:Label>
 
                                                 </ItemTemplate>
@@ -804,7 +804,7 @@
                                             </asp:TemplateField>
                                              <asp:TemplateField HeaderText="Status">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvadsteptype" runat="server"  CssClass="badge badge-pill badge-success"
+                                                    <asp:Label ID="lblgvadsteptype" runat="server"  CssClass="badge badge-pill badge-info"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "steptype")) %>'
                                                         ></asp:Label>
 
