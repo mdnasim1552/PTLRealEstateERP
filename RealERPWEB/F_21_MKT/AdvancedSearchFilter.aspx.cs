@@ -107,12 +107,12 @@ namespace RealERPWEB.F_21_MKT
                     {
 
                         this.pnlflw.Visible = true;
-                        this.pnledit.Visible = false;
+                        this.lnkEdit.Visible = false;
                        
                     }
                     else
                     {
-                        this.pnledit.Visible = true;
+                        this.lnkEdit.Visible = true;
                         this.pnlflw.Visible = false;
                     }
                    
@@ -404,6 +404,13 @@ namespace RealERPWEB.F_21_MKT
             ViewState["tblproject"] = ds2.Tables[2];
             ViewState["tblcompany"] = ds2.Tables[3];
             ds2.Dispose();
+        }
+        public string GetUserID()
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["usrid"].ToString());
+
         }
         private void Modal_Data_Bind()
         {
@@ -4572,7 +4579,7 @@ namespace RealERPWEB.F_21_MKT
             bool result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "UPDATE_CLNTINFO", ds, null, null, clientid, Name, usrid, Phone, email, empid, maddress, active.ToString(), kpidiscu, Posteddat, CCC0);
             if (result == true)
             {
-               
+                this.pnlEditProspectClose_Click(null, null);
                 string totmsg = "Updated Successfully";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + totmsg + "');", true);
 

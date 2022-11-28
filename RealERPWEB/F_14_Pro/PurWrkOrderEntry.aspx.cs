@@ -3693,6 +3693,7 @@ namespace RealERPWEB.F_14_Pro
                 string Cperson = _ReportDataSet.Tables[1].Rows[0]["cperson"].ToString();
                 string Phone = _ReportDataSet.Tables[1].Rows[0]["phone"].ToString();
                 string mobile = _ReportDataSet.Tables[1].Rows[0]["mobile"].ToString();
+                string supemail = _ReportDataSet.Tables[1].Rows[0]["supemail"].ToString();
 
 
                 DataTable dtterm = _ReportDataSet.Tables[2];
@@ -3760,7 +3761,7 @@ namespace RealERPWEB.F_14_Pro
                     case "3311":
                     case "2305":
                     case "2306":
-                    case "3101":
+                    
 
                         rptwork = new RealERPRPT.R_14_Pro.rptWorkOrderRupayan();
                         //          
@@ -3946,6 +3947,10 @@ namespace RealERPWEB.F_14_Pro
                         txtappby.Text = (comcod == "3335") ? "Head of Procurement" : "Approved By";
                         TextObject txtPhoneNumber2 = rptwork.ReportDefinition.ReportObjects["txtPhoneNumber"] as TextObject;
                         txtPhoneNumber2.Text = Phone;
+                        TextObject txtperson = rptwork.ReportDefinition.ReportObjects["txtperson"] as TextObject;
+                        txtperson.Text = Cperson;
+                        TextObject txtsupemail = rptwork.ReportDefinition.ReportObjects["txtsupemail"] as TextObject;
+                        txtsupemail.Text = supemail;
                         // sign end 
                         break;
 
