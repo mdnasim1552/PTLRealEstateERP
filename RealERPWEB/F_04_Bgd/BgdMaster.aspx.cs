@@ -50,7 +50,7 @@ namespace RealERPWEB.F_04_Bgd
                 }
             }
         }
-        private string GetCompCode()
+        public string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
@@ -426,9 +426,21 @@ namespace RealERPWEB.F_04_Bgd
                 double dgvCrAm = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvRes.Rows[j].FindControl("gvtxtCrAmt")).Text.Trim()));
                 double dgvRate = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvRes.Rows[j].FindControl("gvtxtRate")).Text.Trim()));
                 string dgvRmrk = ((TextBox)this.gvRes.Rows[j].FindControl("gvtxtRmRk")).Text.Trim();
-                dgvCrAm = (dgvDrAm > 0 ? 0 : dgvCrAm);
 
-                dgvRate = (dgvQty == 0 ? 0.00 : (dgvDrAm + dgvCrAm) / dgvQty);
+                if (dgvQty > 0 && dgvRate > 0)
+                {
+                    dgvDrAm = dgvQty * dgvRate;
+                    dgvCrAm = (dgvDrAm > 0 ? 0 : dgvCrAm);
+                }
+                else
+                {
+                    dgvCrAm = (dgvDrAm > 0 ? 0 : dgvCrAm);
+                    dgvRate = (dgvQty == 0 ? 0.00 : (dgvDrAm + dgvCrAm) / dgvQty);
+
+                }
+
+                //dgvCrAm = (dgvDrAm > 0 ? 0 : dgvCrAm);
+                //dgvRate = (dgvQty == 0 ? 0.00 : (dgvDrAm + dgvCrAm) / dgvQty);
 
                 ((TextBox)this.gvRes.Rows[j].FindControl("gvtxtQty")).Text = dgvQty.ToString("#,##0.0000;(#,##0.0000); ");
                 ((TextBox)this.gvRes.Rows[j].FindControl("gvtxtDrAmt")).Text = dgvDrAm.ToString("#,##0.00;(#,##0.00); ");
