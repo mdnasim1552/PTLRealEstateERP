@@ -98,7 +98,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint1";
                     break;
 
-                //            case "3101":
+                case "3101":
                 case "3305":
                 case "3310":
                     //case "3311":          
@@ -690,6 +690,7 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
 
+                case "3101":
                 case "3305":
                 case "3310":
                     //case "3311":
@@ -777,7 +778,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintFinlay";
                     break;
 
-                case "3101": // Finaly
+                //case "3101": // Finaly
                 case "3370": // cpdl
                     vouprint = "VocherPrintCPDL";
                     break;

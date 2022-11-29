@@ -880,12 +880,12 @@ namespace RealERPWEB.F_14_Pro
                     Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
                     Rpt1.SetParameters(new ReportParameter("mobile" + i.ToString() + "", lsts.contact.ToString()));
                     Rpt1.SetParameters(new ReportParameter("qdate" + i.ToString() + "", lsts.qutdate.ToString("dd-MMM-yyyy")));
-                    Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
-                    Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
-                    Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
+                    //Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
+                    //Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
+                    //Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
                     Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", ""));
-                    Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
-                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
+                    //Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
+                    //Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
                     Rpt1.SetParameters(new ReportParameter("carrying" + i.ToString() + "", lsts.ccharge.ToString()));
 
                     i++;
@@ -909,6 +909,8 @@ namespace RealERPWEB.F_14_Pro
                 //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
                 Rpt1.SetParameters(new ReportParameter("comments", comments));
+                Rpt1.SetParameters(new ReportParameter("RecomSup", " "));
+
                 Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             }
 
@@ -924,12 +926,12 @@ namespace RealERPWEB.F_14_Pro
                     Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
                     Rpt1.SetParameters(new ReportParameter("mobile" + i.ToString() + "", lsts.contact.ToString()));
                     Rpt1.SetParameters(new ReportParameter("qdate" + i.ToString() + "", lsts.qutdate.ToString("dd-MMM-yyyy")));
-                    Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
-                    Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
-                    Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
+                    //Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
+                    //Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
+                    //Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
                     Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", ""));
-                    Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
-                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
+                    //Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
+                    //Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
                     Rpt1.SetParameters(new ReportParameter("carrying" + i.ToString() + "", lsts.ccharge.ToString()));
 
                     i++;
@@ -955,6 +957,7 @@ namespace RealERPWEB.F_14_Pro
                 //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
                 Rpt1.SetParameters(new ReportParameter("comments", comments));
+                Rpt1.SetParameters(new ReportParameter("RecomSup", " "));
                 Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             }
             else
@@ -968,12 +971,12 @@ namespace RealERPWEB.F_14_Pro
                     Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
                     Rpt1.SetParameters(new ReportParameter("mobile" + i.ToString() + "", lsts.contact.ToString()));
                     Rpt1.SetParameters(new ReportParameter("qdate" + i.ToString() + "", lsts.qutdate.ToString("dd-MMM-yyyy")));
-                    Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
-                    Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
-                    Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
+                    //Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
+                    //Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
+                    //Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
                     Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", ""));
-                    Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
-                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
+                    //Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
+                    //Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
                     Rpt1.SetParameters(new ReportParameter("carrying" + i.ToString() + "", lsts.ccharge.ToString()));
 
                     i++;
@@ -1000,6 +1003,7 @@ namespace RealERPWEB.F_14_Pro
                 //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
                 Rpt1.SetParameters(new ReportParameter("comments", comments));
+                Rpt1.SetParameters(new ReportParameter("reconSupplier"," "));
                 //Rpt1.SetParameters(new ReportParameter("surveyNo", surveyNo));
                 Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             }
