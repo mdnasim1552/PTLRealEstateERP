@@ -195,8 +195,10 @@
                                             <asp:DropDownList ID="ddlResList" runat="server" CssClass="ddlPage chzn-select" Style="width: 200px;" AutoPostBack="True" OnSelectedIndexChanged="ddlResList_SelectedIndexChanged" TabIndex="3"></asp:DropDownList>
                                         </div>
                                         <div class="col-md-3 pading5px    asitCol3">
-                                            <a class="btn btn-primary srearchBtn pull-left" data-toggle="modal" data-target="#detialsinfo"><span class="glyphicon glyphicon-plus"></span>
-                                            </a>
+                                            <asp:Panel ID="pnlSpcf" runat="server" Visible="false">
+                                                <a class="btn btn-primary srearchBtn pull-left" data-toggle="modal" data-target="#detialsinfo"><span class="glyphicon glyphicon-plus"></span>
+                                                </a>
+                                            </asp:Panel>
                                             <%--<asp:LinkButton ID="lbtnAddspecifiation" CssClass="btn btn-primary srearchBtn pull-left" runat="server" OnClick="lbtnAddspecifiation_Click" TabIndex="2"><span class="glyphicon   glyphicon-plus"> </span></asp:LinkButton>--%>
 
                                             <asp:Label ID="lblSpecification" runat="server" CssClass=" smLbl_to  pull-left" Text="Specf"></asp:Label>
@@ -211,7 +213,6 @@
                                             </cc1:ListSearchExtender>--%>
                                             <asp:DropDownList ID="ddlResSpcf" runat="server" CssClass=" ddlPage chzn-select" TabIndex="3" Width="100px"></asp:DropDownList>
                                         </div>
-
 
                                         <div class="col-md-1">
                                             <asp:LinkButton ID="lbtnSelectRes" runat="server" OnClick="lbtnSelectRes_Click" CssClass="btn btn-primary primarygrdBtn" Style="line-height: 15px;" Height="25">Select</asp:LinkButton>
@@ -229,7 +230,7 @@
                         </asp:Panel>
                         <asp:Panel ID="Panel2" runat="server" Visible="False">
                             <div class="table-responsive">
-                                <asp:GridView ID="gvReqInfo" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowCancelingEdit="gvReqInfo_RowCancelingEdit" OnRowDeleting="gvReqInfo_RowDeleting" OnRowEditing="gvReqInfo_RowEditing" OnRowUpdating="gvReqInfo_RowUpdating" 
+                                <asp:GridView ID="gvReqInfo" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowCancelingEdit="gvReqInfo_RowCancelingEdit" OnRowDeleting="gvReqInfo_RowDeleting" OnRowEditing="gvReqInfo_RowEditing" OnRowUpdating="gvReqInfo_RowUpdating"
                                     PageSize="15" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvReqInfo_RowDataBound">
                                     <PagerSettings Visible="False" />
                                     <RowStyle />
@@ -459,7 +460,7 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
-                                       
+
                                         <%--  <asp:TemplateField HeaderText="Chk Qty" >
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvchqty" runat="server" style="text-align: right" 
