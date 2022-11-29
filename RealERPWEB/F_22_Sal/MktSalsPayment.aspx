@@ -698,7 +698,8 @@
                                                     <asp:TextBox ID="txthandoverdate" runat="server" CssClass="inputTxt inpPixedWidth"></asp:TextBox>
                                                     <cc1:CalendarExtender ID="txthandoverdate_CalendarExtender" runat="server"
                                                         Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txthandoverdate"></cc1:CalendarExtender>
-                                                    <asp:LinkButton ID="lbtnUpdateCAST" runat="server" CssClass="btn  btn-danger primaryBtn" OnClick="lbtnUpdateCAST_Click">Update</asp:LinkButton>
+                                                    <asp:LinkButton ID="lbtnUpdateCAST" runat="server" CssClass="btn  btn-danger primaryBtn" OnClick="lbtnUpdateCAST_Click">Update</asp:LinkButton>  
+                                                    <asp:LinkButton ID="lbtnPrintsales" runat="server" CssClass="btn  btn-success primaryBtn" OnClick="lbtnPrintsales_Click"> Sales Declaration(Print)</asp:LinkButton>
 
                                                 </div>
                                             </div>

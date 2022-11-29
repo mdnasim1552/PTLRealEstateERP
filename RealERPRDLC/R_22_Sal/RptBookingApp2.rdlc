@@ -4931,7 +4931,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Nominee's Details</Value>
+                    <Value>NOMINEE'S DETAILS</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontWeight>Bold</FontWeight>
@@ -4943,7 +4943,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox566</rd:DefaultName>
             <Top>15.66634in</Top>
-            <Left>0.03928in</Left>
+            <Left>0.02249in</Left>
             <Height>0.25in</Height>
             <Width>7.32032in</Width>
             <ZIndex>9</ZIndex>
@@ -4966,7 +4966,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Emergency Correspondent</Value>
+                    <Value>EMERGENCY CORRESPONDENT</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontWeight>Bold</FontWeight>
@@ -5003,7 +5003,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Applicant's Personal Details</Value>
+                    <Value>APPLICANT'S PERSONAL DETAILS</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontWeight>Bold</FontWeight>
@@ -5037,7 +5037,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Property Info</Value>
+                    <Value>PROPERTY INFO</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -5057,6 +5057,7 @@
                 <Style>None</Style>
               </Border>
               <BackgroundColor>LightGrey</BackgroundColor>
+              <VerticalAlign>Middle</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -5708,7 +5709,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!rate.Value</Value>
+                                  <Value>=FormatNumber(Parameters!rate.Value,2)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                   </Style>
@@ -5782,7 +5783,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!propertyprice.Value</Value>
+                                  <Value>=FormatNumber(Parameters!propertyprice.Value,2)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                   </Style>
@@ -5856,7 +5857,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!carparkingprice.Value</Value>
+                                  <Value>=FormatNumber(Parameters!carparkingprice.Value,2)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                   </Style>
@@ -5930,7 +5931,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!utility.Value</Value>
+                                  <Value>=FormatNumber(Parameters!utility.Value,2)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                   </Style>
@@ -6004,7 +6005,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Parameters!others.Value</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                   </Style>
@@ -6078,7 +6079,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!total.Value</Value>
+                                  <Value>=FormatNumber(Parameters!total.Value,2)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                   </Style>
@@ -6160,7 +6161,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Payment Details</Value>
+                    <Value>PAYMENT DETAILS</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontWeight>Bold</FontWeight>
@@ -6181,6 +6182,7 @@
                 <Style>None</Style>
               </Border>
               <BackgroundColor>LightGrey</BackgroundColor>
+              <VerticalAlign>Middle</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -6278,7 +6280,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!bookingmoney.Value</Value>
+                                  <Value>=FormatNumber(Parameters!bookingmoney.Value,2)+"  %"</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                   </Style>
@@ -6494,7 +6496,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!installmentamtpermonth.Value</Value>
+                                  <Value>=FormatNumber(Parameters!installmentamtpermonth.Value,2)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                   </Style>
@@ -6566,7 +6568,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!nooftotalinstallment.Value</Value>
+                                  <Value>=FormatNumber(Parameters!nooftotalinstallment.Value,2)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                   </Style>
@@ -6824,7 +6826,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Remarks/ Notes (IF ANY)</Value>
+                    <Value>REMARKS/ NOTES(IF ANY)</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontWeight>Bold</FontWeight>
@@ -6845,6 +6847,7 @@
                 <Style>None</Style>
               </Border>
               <BackgroundColor>LightGrey</BackgroundColor>
+              <VerticalAlign>Middle</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>

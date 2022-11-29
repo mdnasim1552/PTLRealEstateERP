@@ -4484,7 +4484,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderEpic.rdlc";
                         break;
                     
-                    case "3370": //Epic                        
+                    case "3370": //Epic cpdl                        
                         Reportpath = "~/Report/RptPurchaseOrderCPDL.rdlc";
                         porderno =ASTUtility.CustomReqFormat(wrkid);
                         break;
