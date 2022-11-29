@@ -1774,6 +1774,9 @@ namespace RealERPWEB.F_09_PImp
                 case "1205": // p2p 
                 case "3351":
                 case "3352":
+                case "3370": //cpdl
+               
+
 
                     this.txtSDAmount.Text = sdamt > 0 ? sdamt.ToString("#,#,#0.00;(#, #,#0.00); ") : Convert.ToDouble(amount * percentage * 0.01).ToString("#,#,#0.00;(#, #,#0.00); ");
                     fpercntage = (sdamt > 0) ? (amount > 0 ? ((Convert.ToDouble(this.txtSDAmount.Text) * 100) / amount) : 0.00) : percentage;
