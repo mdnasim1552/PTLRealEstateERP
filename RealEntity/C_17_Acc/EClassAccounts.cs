@@ -1254,6 +1254,7 @@ namespace RealEntity.C_17_Acc
             public double taxamt { get; set; }
             public string vounum1 { get; set; }
             public string voudat { get; set; }
+            public string billno { get; set; }
             public double vatamt { get; set; }
             public double netbillamt { get; set; }
             public double payamt { get; set; }

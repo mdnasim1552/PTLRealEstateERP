@@ -2145,6 +2145,145 @@ namespace RealERPWEB.F_22_Sal
 
             }
         }
+
+        
+
+        protected void lbtnPrintsales_Click(object sender, EventArgs e)
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            string ddldesc = hst["ddldesc"].ToString();
+
+            //DataTable basicinfo = (DataTable)ViewState["tblData"];
+            DataTable basicinfo = (DataTable)Session["UsirBasicInformation"];
+            string PactCode = this.ddlProjectName.SelectedValue.ToString();
+            string UsirCode = this.lblCode.Text.ToString(); ;
+            string prjName = (ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim().ToString() : this.ddlProjectName.SelectedItem.Text.Substring(13));
+            string aprtno = basicinfo.Rows[0]["udesc"].ToString();
+            string floorno = "";
+            double usize = Convert.ToDouble(basicinfo.Rows[0]["usize"]);
+            double urate = Convert.ToDouble(basicinfo.Rows[0]["urate"]);
+            double uamt = Convert.ToDouble(basicinfo.Rows[0]["uamt"]);
+            double tamt = Convert.ToDouble(basicinfo.Rows[0]["tamt"]);
+
+            string size = usize.ToString("#,##0.00;(#,##0.00); ");
+            string rate = urate.ToString("#,##0.00;(#,##0.00); ");
+            string unit = basicinfo.Rows[0]["munit"].ToString();
+            string aprtsize = size + " " + unit;
+            string appatn = basicinfo.Rows[0]["custname"].ToString();
+            //direct cost
+            string txtdisamt = this.ldiscountt.Text.ToString();
+            // double disamt = Convert.ToDouble(txtdisamt);
+            string ldiscountpP = this.ldiscountp.Text.ToString();
+            string txtunitamt = tamt.ToString("#,##0.00;(#,##0.00); ");
+
+
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "COMBINEDTABLEFORSALES", PactCode, UsirCode, "", "", "", "", "", "", "");
+
+            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+                return;
+
+            string cname = ds1.Tables[1].Rows[0]["cname"].ToString();
+            string cphone = ds1.Tables[1].Rows[0]["cphone"].ToString();
+            string caddress = ds1.Tables[1].Rows[0]["caddress"].ToString();
+            string paddress = ds1.Tables[1].Rows[0]["paddress"].ToString();
+            string salesteam = "" /*this.ddlSalesTeam.SelectedItem.Text.ToString()*/;
+            string bkdate = Convert.ToDateTime(this.txtBookDate.Text).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(this.txtBookDate.Text).ToString("dd-MMM-yyyy");
+            string agdate = Convert.ToDateTime(this.txtAggrementdate.Text).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(this.txtAggrementdate.Text).ToString("dd-MMM-yyyy");
+            string hodate = Convert.ToDateTime(this.txthandoverdate.Text).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(this.txthandoverdate.Text).ToString("dd-MMM-yyyy");
+
+            /*
+                    this.txtBookDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.txtAggrementdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.txthandoverdate.Text = System.DateTime.Today.AddYears(2).ToString("dd-MMM-yyyy");
+             */
+
+
+            //DataView dv1 = dt01.DefaultView;
+            ////dv1.RowFilter = "gp like ('" + gp + "')";
+            //DataTable dt1 = dv1.ToTable();
+
+            // insatllment part
+            DataTable dt01 = ds1.Tables[0].Copy();
+            DataView dv1 = dt01.DefaultView;
+            dv1.RowFilter = "grp like ('gp3')";
+            DataTable dt1 = dv1.ToTable();
+
+
+            // others cost utility 
+            DataTable dt02 = ds1.Tables[0].Copy();
+            DataView dv2 = dt02.DefaultView;
+            dv2.RowFilter = "grp like ('gp2')";
+            DataTable dt2 = dv2.ToTable();
+            //tbl1.Compute("Sum(areqamt)", ""))).ToString("#,##0;(#,##0); ")
+
+            double actuamt = Convert.ToDouble(dt2.Compute("Sum(uamt)", ""));
+            double gccamt = actuamt;
+
+
+            DataTable dt03 = ds1.Tables[0].Copy();
+            DataView dv3 = dt03.DefaultView;
+            dv3.RowFilter = "grp like ('gp1')";
+            DataTable dt3 = dv3.ToTable();
+
+
+            string lbldisamt = "Budgeted Amount's Disc : " + ldiscountpP;
+            string txtTotal = gccamt.ToString("#,##0.00;(#,##0.00); ");
+
+            var list = dt1.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptSalPaySchedules>();
+            var list2 = dt2.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptSalPaySchedules>();
+            var list3 = dt3.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptSalPaySchedules>();
+
+            LocalReport rpt = new LocalReport();
+
+            switch (comcod)
+            {
+                case "3101":
+                case "3370":
+                    rpt = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalDeclarationCPDL", list, list2, list3);
+                    rpt.EnableExternalImages = true;
+                    rpt.SetParameters(new ReportParameter("comadd", comadd));
+                    break;
+
+                default:
+                    rpt.EnableExternalImages = true;
+                    rpt = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalPaySchedule", list, list2, list3);
+
+                    break;
+
+            }
+            
+            rpt.SetParameters(new ReportParameter("ComName", comnam));
+            rpt.SetParameters(new ReportParameter("date1", date1));
+            rpt.SetParameters(new ReportParameter("prjName", prjName));
+            rpt.SetParameters(new ReportParameter("prjAddress", paddress));
+            rpt.SetParameters(new ReportParameter("aprtno", aprtno));
+            rpt.SetParameters(new ReportParameter("floorno", floorno));
+            rpt.SetParameters(new ReportParameter("aprtsize", aprtsize));
+            rpt.SetParameters(new ReportParameter("appatn", appatn));
+            rpt.SetParameters(new ReportParameter("lbldisamt", lbldisamt));
+            // rpt.SetParameters(new ReportParameter("txtdisamt", txtdisamt));
+            rpt.SetParameters(new ReportParameter("lblunitamt", ""));
+            rpt.SetParameters(new ReportParameter("txtunitamt", txtunitamt));
+            rpt.SetParameters(new ReportParameter("txtgntamt", actuamt.ToString("#,##0.00;(#,##0.00); ")));
+            rpt.SetParameters(new ReportParameter("txtTotal", txtTotal));
+            rpt.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            rpt.SetParameters(new ReportParameter("txtcompinfo", ASTUtility.ComInfoWithoutNumber()));
+
+            Session["Report1"] = rpt;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
         protected void lbtnAddJob_Click(object sender, EventArgs e)
         {
 
