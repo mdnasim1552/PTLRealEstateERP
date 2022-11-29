@@ -106,9 +106,6 @@
                             numberlq = i;
                             break;
 
-
-
-
                     }
 
                 }
@@ -1427,20 +1424,19 @@
                                                     <asp:Label ID="lblstatus" runat="server"></asp:Label>
                                                    
                                                 </td>
-                                                 <td id="pnlretrive" runat="server" visible="false">
-                                                        <asp:LinkButton ID="lnkbtnRetreive" runat="server" Font-Bold="True" Height="12px" ToolTip="Retreive Prospect" Style="text-align: right" OnClientClick="javascript:return  confirm('Do You Want to Retreive Prospect?');" Text="" OnClick="lnkbtnRetreive_Click"><span><i class="fa fa-undo" Style="text-align: center"></i></span></asp:LinkButton>
-                                                    </td>
+                                                
 
                                             </tr>
                                             <tr>
                                                 <td>
+                                                    <asp:LinkButton ID="lnkEdit" runat="server" visible="false" Height="22px" class="btn btn-xs  text-center" Font-Bold="True" ToolTip="Edit Client Info" Text="Edit" OnClick="lnkEdit_Click"><span class=" fa   fa-edit"></span></asp:LinkButton>
 
                                                 </td>
 
-                                                <td id="pnledit" runat="server" visible="false">
-
-                                                    <asp:LinkButton ID="lnkEdit" runat="server" Height="22px" class="btn btn-xs  text-center" Font-Bold="True" ToolTip="Edit Client Info" Text="Edit" OnClick="lnkEdit_Click"><span class=" fa   fa-edit"></span></asp:LinkButton>
-                                                </td>
+                                               
+                                                 <td id="pnlretrive" runat="server" visible="false">
+                                                        <asp:LinkButton ID="lnkbtnRetreive" runat="server" Font-Bold="True" Height="12px" ToolTip="Retreive Prospect" Style="text-align: right" OnClientClick="javascript:return  confirm('Do You Want to Retreive Prospect?');" Text="" OnClick="lnkbtnRetreive_Click"><span><i class="fa fa-undo" Style="text-align: center"></i></span></asp:LinkButton>
+                                                    </td>
                                             </tr>
                                             <asp:HiddenField ID="lblproscod" runat="server" />
                                             <asp:HiddenField ID="lbleditempid" runat="server" />
@@ -1550,10 +1546,10 @@
             </div>
             <div class="col-md-10" id="pnlSidebar" runat="server" visible="false">
                 <div class="divPnl">
-                    <div class="card pnlSidebarCl mt-4">
+                    <div class="card pnlSidebarCl mt-3">
                         <div class="modal-content">
-                            <div class="modal-header bg-light pt-2 pb-2 ml-2">
-                                <div class="bg-light"><span class="font-weight-bold text-muted" style="padding: 0px;">Add FollowUp</span></div>
+                            <div class="modal-header bg-light pt-1 pb-1 ml-2">
+                                <div class="bg-light"><span class="font-weight-bold text-muted" style="padding: 0px;">Add Followup</span></div>
 
                                 <asp:LinkButton ID="pnlsidebarClose" OnClick="pnlsidebarClose_Click" ToolTip="Close the Window" CssClass="btn btn-danger  btn-sm pr-2 pl-2" runat="server">&times;</asp:LinkButton>
                             </div>

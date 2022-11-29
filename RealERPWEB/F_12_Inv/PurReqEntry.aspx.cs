@@ -95,9 +95,11 @@ namespace RealERPWEB.F_12_Inv
 
                 //genno
 
-
                 //PurReqEntry.asp
-
+                if(IsSpcfPermitted() && (Request.QueryString["InputType"].ToString() == "Entry"))
+                {
+                    pnlSpcf.Visible = true;
+                }
 
             }
         }
@@ -111,7 +113,7 @@ namespace RealERPWEB.F_12_Inv
 
             switch (comcod)
             {
-               // case "3101":
+                // case "3101":
                 case "3336":
                 case "3337":
                     this.txtCurReqDate_CalendarExtender.StartDate = System.DateTime.Today;
@@ -128,6 +130,16 @@ namespace RealERPWEB.F_12_Inv
             HttpCookie nameCookie = Request.Cookies["MRF"];
             string refno = nameCookie != null ? nameCookie.Value.Split('=')[1] : "Mrf No";
             return refno;
+        }
+
+        private bool IsSpcfPermitted()
+        {
+            bool isPermitted = false;
+            DataSet ds1 = (DataSet)Session["tblusrlog"];
+            DataTable dt = ds1.Tables[1];
+            DataRow[] dr1 = dt.Select("frmname='AccSpecificCodeBook'");
+            isPermitted = dr1.Length > 0 ? true : false;
+            return isPermitted;
         }
 
 
@@ -707,7 +719,7 @@ namespace RealERPWEB.F_12_Inv
             DataTable tbl1 = (DataTable)ViewState["tblReq"];
             string mResCode = this.ddlResList.SelectedValue.ToString();
             string Specification = this.ddlResSpcf.SelectedValue.ToString();
-            string pactcode = ASTUtility.Left(this.ddlProject.SelectedValue.ToString(),4); 
+            string pactcode = ASTUtility.Left(this.ddlProject.SelectedValue.ToString(), 4);
             double dgvBgdQty = 0;
             DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode + "' and spcfcod='" + Specification + "'");
             if (dr2.Length == 0)
@@ -720,7 +732,7 @@ namespace RealERPWEB.F_12_Inv
                 dr1["spcfdesc"] = this.ddlResSpcf.SelectedItem.Text.Trim();
                 DataTable tbl2 = (DataTable)ViewState["tblMat"];
                 DataRow[] dr3 = tbl2.Select("rsircode = '" + mResCode + "'");
-                dgvBgdQty = pactcode=="1102" ? 0.00 : Convert.ToDouble(dr3[0]["bbgdqty"]);
+                dgvBgdQty = pactcode == "1102" ? 0.00 : Convert.ToDouble(dr3[0]["bbgdqty"]);
                 dr1["rsirunit"] = dr3[0]["rsirunit"];
                 dr1["bgdqty"] = dr3[0]["bgdqty"];
                 dr1["bgdrat"] = dr3[0]["bgdrat"];
@@ -1465,6 +1477,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3366": // lanco
                 case "3367": // epic
                 case "3368": // finaly
+                case "3370": // cpdl
                     if (_deptcode == "AAAAAAAAAAAA")
                     {
                         isReq = true;
@@ -1660,7 +1673,7 @@ namespace RealERPWEB.F_12_Inv
                         case "3348": //Credence
                             break;
 
-                    
+
                         case "3367": //EPic
                             //if (pactcode == "11020099" && approval == "")
                             //{
@@ -2704,7 +2717,7 @@ namespace RealERPWEB.F_12_Inv
 
             string Type = Request.QueryString["InputType"].ToString();
 
-            if (Type == "Entry" || Type == "IndentEntry" ||  Type == "FxtAstEntry")
+            if (Type == "Entry" || Type == "IndentEntry" || Type == "FxtAstEntry")
 
             {
                 this.ddlPrevReqList.Items.Clear();
