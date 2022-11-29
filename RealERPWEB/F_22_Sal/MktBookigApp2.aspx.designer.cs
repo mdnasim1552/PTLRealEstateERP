@@ -204,22 +204,22 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.Label lblpayinfo;
 
         /// <summary>
-        /// lblbookamt control.
+        /// lblBookAmt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblbookamt;
+        protected global::System.Web.UI.WebControls.Label lblBookAmt;
 
         /// <summary>
-        /// txtbookamt control.
+        /// TextBookingAmt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbookamt;
+        protected global::System.Web.UI.WebControls.TextBox TextBookingAmt;
 
         /// <summary>
         /// lblCheqNo control.
