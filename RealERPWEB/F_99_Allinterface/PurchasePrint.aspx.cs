@@ -240,7 +240,11 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1.SetParameters(new ReportParameter("mrrno", ASTUtility.CustomReqFormat(mrrno)));
                     Rpt1.SetParameters(new ReportParameter("address", address));
                     Rpt1.SetParameters(new ReportParameter("chlandate",clndate));
-                    Rpt1.SetParameters(new ReportParameter("pordar", ASTUtility.CustomReqFormat(pordar)+ " , "+ orderdat));
+                    Rpt1.SetParameters(new ReportParameter("porno", porno));                    
+                    Rpt1.SetParameters(new ReportParameter("orderdat", orderdat));
+                    Rpt1.SetParameters(new ReportParameter("requeNo", ASTUtility.CustomReqFormat(ds1.Tables[0].Rows[0]["reqno"].ToString())));
+                    Rpt1.SetParameters(new ReportParameter("MrrRef", ds1.Tables[1].Rows[0]["mrrref"].ToString()));
+                    Rpt1.SetParameters(new ReportParameter("pordar", ASTUtility.CustomReqFormat(pordar)));
                     Rpt1.SetParameters(new ReportParameter("Note","MRR must be reached at Head Office within 2 working days of material receiving."));
                     Rpt1.SetParameters(new ReportParameter("txtchalanno",  ds1.Tables[1].Rows[0]["chlnno"].ToString()));
                     break;
