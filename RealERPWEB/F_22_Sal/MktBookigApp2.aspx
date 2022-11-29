@@ -276,12 +276,21 @@
                                             <div class="form-group">
                                                 <div class="col-md-12">
                                                     <div class="row">
-                                                        <div class="col-md-2">
+                                                        <%--<div class="col-md-2">
                                                             <div class"form-group">
                                                                 <asp:Label ID="lblbookamt" runat="server" CssClass="control-label" Text="Payment Amount"></asp:Label>
                                                                 <asp:TextBox ID="txtbookamt" runat="server" TabIndex="5" CssClass="form-control form-control-sm"></asp:TextBox>
                                                             </div>
+                                                        </div>--%>
+
+                                                        <div class="col-md-2">
+                                                            <div class"form-group">
+                                                               <asp:Label ID="lblBookAmt" runat="server" CssClass="control-label" Text="Payment Amount"></asp:Label>
+                                                                <asp:TextBox ID="TextBookingAmt" runat="server" TabIndex="5" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                            </div>
                                                         </div>
+
+
                                                         <div class="col-md-2">
                                                             <div class"form-group">
                                                                <asp:Label ID="lblCheqNo" runat="server" CssClass="control-label" Text="Cash/Cheque/P.O/D.D. No"></asp:Label>
@@ -463,6 +472,23 @@
                                     <div style="background-color: darkcyan; font-weight: bold; color: white;">
                                         <asp:Label ID="lblNomineeDetails" runat="server" CssClass=" inputlblVal inputlblvalstyle" Style="width: 300px;" Text="Nominee Details"></asp:Label>
                                     </div>
+
+                                    <%--<div class="col-md-4">
+                                        <fieldset class="scheduler-border fieldset_A">
+                                            <div class="form-horizontal">
+                                                <div class="form-group">
+                                                    <asp:Label ID="lblNomineeImg" runat="server" CssClass="lblTxt lblName text-warning">Upload Image</asp:Label>
+                                                    <asp:Image ID="Image2" runat="server" Height="100px" Width="100px" />
+                                                    <div>
+                                                        <asp:FileUpload ID="btnUploadNominee" runat="server" Height="26px"
+                                                            ToolTip="Employee Image" onchange="submitform();" Width="216px" />
+                                                        <asp:Button ID="btnUploadNominee" CssClass="btn btn-success" runat="server" Text="Upload" OnClick="btnUploadNominee_Click" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>--%>
+
                                     <asp:GridView ID="GridViewNominee" runat="server" AutoGenerateColumns="False"
                                         ShowFooter="True" Width="720px" CssClass=" table-striped table-hover table-bordered grvContentarea">
                                         <RowStyle Font-Size="11px" />
