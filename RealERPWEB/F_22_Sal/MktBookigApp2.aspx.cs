@@ -228,7 +228,7 @@ namespace RealERPWEB.F_22_Sal
             this.EmpImg.ImageUrl = (dt.Rows.Count) == 0 ? "" : dt.Rows[0]["custimg"].ToString();
             //  appdate, bookamt, bankname, bbranch, paydate, intavail, paymode
             this.txtdate.Text = (dt.Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(dt.Rows[0]["appdate"]).ToString("dd-MMM-yyyy");
-            this.txtbookamt.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["bookamt"]).ToString("#,##0;(#,##0); ");
+            this.TextBookingAmt.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["bookamt"]).ToString("#,##0;(#,##0); ");
             this.txtCheqNo.Text = (dt.Rows.Count == 0) ? "" : dt.Rows[0]["chequeno"].ToString();
             this.txtbankname.Text = (dt.Rows.Count == 0) ? "" : dt.Rows[0]["bankname"].ToString();
             this.txtbankbranch.Text = (dt.Rows.Count == 0) ? "" : dt.Rows[0]["bbranch"].ToString();
@@ -595,7 +595,8 @@ namespace RealERPWEB.F_22_Sal
             string ProjectName = this.ddlProjectName.SelectedItem.Text.Trim().ToString().Substring(13);
             string UnitName = this.ddlCustName.SelectedItem.Text.Trim().ToString();
             string appdate = Convert.ToDateTime(this.txtdate.Text).ToString("ddMMyyyy");
-            //double bookamt = this.txtbookamt.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["bookamt"]).ToString("#,##0;(#,##0); ");
+            //double bookamt = this.TextBookingAmt.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["
+            //"]).ToString("#,##0;(#,##0); ");
             //string chequeno = this.txtCheqNo.Text.Trim();
             string bankname = this.txtbankname.Text.Trim();
             //string branch = this.txtbankbranch.Text.Trim();
@@ -609,7 +610,7 @@ namespace RealERPWEB.F_22_Sal
             //DataTable dt = ds2.Tables[2];
             ////  appdate, bookamt, bankname, bbranch, paydate, intavail, paymode
             //this.txtdate.Text = (dt.Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(dt.Rows[0]["appdate"]).ToString("dd-MMM-yyyy");
-            //this.txtbookamt.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["bookamt"]).ToString("#,##0;(#,##0); ");
+            //this.TextBookingAmt.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["bookamt"]).ToString("#,##0;(#,##0); ");
 
             string inttoavailloan = this.cblintavailloan.SelectedValue.ToString();
             string modeofpay = this.cblpaytype.SelectedValue.ToString();
@@ -711,12 +712,12 @@ namespace RealERPWEB.F_22_Sal
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
             string usircode = this.ddlCustName.SelectedValue.ToString();
             string appdate = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
-            string bookamt = Convert.ToDouble("0" + this.txtbookamt.Text).ToString();
             string chequeno = this.txtCheqNo.Text.Trim();
             string bankname = this.txtbankname.Text.Trim();
             string branch = this.txtbankbranch.Text.Trim();
             string InstallAmtPerMonth = Convert.ToDouble("0" + this.Textinsamt.Text).ToString();
             string NoofTotalInstall = Convert.ToDouble("0" + this.TxtNoTInstall.Text).ToString();
+            string bookingamt = Convert.ToDouble("0" + this.TextBookingAmt.Text.Trim()).ToString();
             string bookdate = Convert.ToDateTime(this.txtbookdate.Text).ToString("dd-MMM-yyyy");
             string inttoavailloan = this.cblintavailloan.SelectedValue.ToString();
             string modeofpay = this.cblpaytype.SelectedValue.ToString();
@@ -790,7 +791,7 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-            bool result = SalData.UpdateXmlTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "INSORUPDATECUSTAPPINF", ds1, null, null, pactcode, usircode, appdate, bookamt, bankname, branch, bookdate, inttoavailloan, modeofpay, chequeno, customerMaxNo, InstallAmtPerMonth, NoofTotalInstall);
+            bool result = SalData.UpdateXmlTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "INSORUPDATECUSTAPPINF", ds1, null, null, pactcode, usircode, appdate, bookingamt, bankname, branch, bookdate, inttoavailloan, modeofpay, chequeno, customerMaxNo, InstallAmtPerMonth, NoofTotalInstall);
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = SalData.ErrorObject["Msg"].ToString();
@@ -851,7 +852,6 @@ namespace RealERPWEB.F_22_Sal
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
                 }
-
             }
             catch (Exception ex)
             {
@@ -948,8 +948,6 @@ namespace RealERPWEB.F_22_Sal
 
             this.Data_BindPriceDetail();
         }
-
-
 
 
         //private void LoadImg()

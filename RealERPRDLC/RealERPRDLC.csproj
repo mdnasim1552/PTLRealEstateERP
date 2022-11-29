@@ -285,6 +285,7 @@
     <EmbeddedResource Include="R_14_Pro\RptSupAdvanceDetails.rdlc" />
     <EmbeddedResource Include="R_16_Bill\RptBillInvoiceAcme.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherEpic.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptChequeUCBCPDL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeIBBLCPDL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeDhakaBankCPDL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeOneBankBti_Old.rdlc" />
@@ -297,9 +298,8 @@
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherIntech.rdlc" />
     <EmbeddedResource Include="R_17_Acc\PrintChqFinlayBRAC.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeIBBL_Old.rdlc" />
-    <EmbeddedResource Include="R_17_Acc\RptChequeAIBLCPDL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeTBLCPDL.rdlc" />
-    <EmbeddedResource Include="R_17_Acc\RptChequeUCBCPDL.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptChequeAIBLCPDL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptIssuedChequeCP.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptIssuedChequeCPALL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptMonSalPerTarWise.rdlc" />
@@ -853,6 +853,7 @@
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalesVsAchivementDPC.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalesVsAchivementLO.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptSalDeclarationCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalPayScheduleCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSampleNotesSheet.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptGrandNotesSheetSummary.rdlc" />
