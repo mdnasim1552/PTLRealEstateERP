@@ -1967,6 +1967,10 @@ namespace RealERPWEB.F_09_PImp
                 case "1205": // p2p 
                 case "3351":
                 case "3352":
+                case "3370": //cpdl
+
+
+
 
 
 

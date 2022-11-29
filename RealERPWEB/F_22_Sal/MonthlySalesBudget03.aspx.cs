@@ -81,16 +81,16 @@ namespace RealERPWEB.F_22_Sal
 
 
             DataTable dtymon = (DataTable)ViewState["tblymon"];
-            int j = 2;
-            for (int i = 0; i < dtymon.Rows.Count; i++)
-            {
-                gvySalbgd.Columns[j++].HeaderText = dtymon.Rows[i]["yearmon"].ToString();
-                if (j == 26)
-                    break;
+            //int j = 2;
+            //for (int i = 0; i < dtymon.Rows.Count; i++)
+            //{
+            //    gvySalbgd.Columns[j++].HeaderText = dtymon.Rows[i]["yearmon"].ToString();
+            //    if (j == 26)
+            //        break;
 
 
 
-            }
+            //}
 
             DataTable tbl1 = (DataTable)ViewState["tblsal"];
             this.gvySalbgd.DataSource = tbl1;
@@ -112,45 +112,76 @@ namespace RealERPWEB.F_22_Sal
 
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty1")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty1)", "")) ? 0.00
             : dt.Compute("Sum(qty1)", ""))).ToString("#,##0;(#,##0);  ");
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFamt1")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt1)", "")) ? 0.00
+              : dt.Compute("Sum(amt1)", ""))).ToString("#,##0;(#,##0);  ");
 
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty2")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty2)", "")) ? 0.00
                : dt.Compute("Sum(qty2)", ""))).ToString("#,##0;(#,##0);  ");
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFamt2")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt2)", "")) ? 0.00
+           : dt.Compute("Sum(amt2)", ""))).ToString("#,##0;(#,##0);  ");
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty3")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty3)", "")) ? 0.00
             : dt.Compute("Sum(qty3)", ""))).ToString("#,##0;(#,##0);  ");
 
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFamt3")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt3)", "")) ? 0.00
+             : dt.Compute("Sum(amt3)", ""))).ToString("#,##0;(#,##0);  ");
 
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty4")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty4)", "")) ? 0.00
             : dt.Compute("Sum(qty4)", ""))).ToString("#,##0;(#,##0);  ");
 
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFamt4")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt4)", "")) ? 0.00
+   : dt.Compute("Sum(amt4)", ""))).ToString("#,##0;(#,##0);  ");
 
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty5")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty5)", "")) ? 0.00
                 : dt.Compute("Sum(qty5)", ""))).ToString("#,##0;(#,##0);  ");
 
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFamt5")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt5)", "")) ? 0.00
+     : dt.Compute("Sum(amt5)", ""))).ToString("#,##0;(#,##0);  ");
+
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty6")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty6)", "")) ? 0.00
            : dt.Compute("Sum(qty6)", ""))).ToString("#,##0;(#,##0);  ");
+
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFamt6")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt6)", "")) ? 0.00
+     : dt.Compute("Sum(amt6)", ""))).ToString("#,##0;(#,##0);  ");
 
 
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty7")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty7)", "")) ? 0.00
       : dt.Compute("Sum(qty7)", ""))).ToString("#,##0;(#,##0);  ");
 
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFamt7")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt7)", "")) ? 0.00
+     : dt.Compute("Sum(amt7)", ""))).ToString("#,##0;(#,##0);  ");
+
 
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty8")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty8)", "")) ? 0.00
       : dt.Compute("Sum(qty8)", ""))).ToString("#,##0;(#,##0);  ");
 
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFamt8")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt8)", "")) ? 0.00
+     : dt.Compute("Sum(amt8)", ""))).ToString("#,##0;(#,##0);  ");
+
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty9")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty9)", "")) ? 0.00
       : dt.Compute("Sum(qty9)", ""))).ToString("#,##0;(#,##0);  ");
+
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFamt9")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt9)", "")) ? 0.00
+     : dt.Compute("Sum(amt9)", ""))).ToString("#,##0;(#,##0);  ");
 
 
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty10")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty10)", "")) ? 0.00
       : dt.Compute("Sum(qty10)", ""))).ToString("#,##0;(#,##0);  ");
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFamt10")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt10)", "")) ? 0.00
+     : dt.Compute("Sum(amt10)", ""))).ToString("#,##0;(#,##0);  ");
 
 
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty11")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty11)", "")) ? 0.00
       : dt.Compute("Sum(qty11)", ""))).ToString("#,##0;(#,##0);  ");
 
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFamt11")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt11)", "")) ? 0.00
+     : dt.Compute("Sum(amt11)", ""))).ToString("#,##0;(#,##0);  ");
+
 
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty12")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty12)", "")) ? 0.00
       : dt.Compute("Sum(qty12)", ""))).ToString("#,##0;(#,##0);  ");
+
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFamt12")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt12)", "")) ? 0.00
+     : dt.Compute("Sum(amt12)", ""))).ToString("#,##0;(#,##0);  ");
 
 
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFtqty")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(tqty)", "")) ? 0.00
@@ -175,20 +206,32 @@ namespace RealERPWEB.F_22_Sal
 
                 rowindex = this.gvySalbgd.PageSize * this.gvySalbgd.PageIndex + i;
                 tbl1.Rows[rowindex]["qty1"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
+                tbl1.Rows[rowindex]["amt1"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvamt1")).Text.Trim()).ToString();
                 tbl1.Rows[rowindex]["qty2"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty2")).Text.Trim()).ToString();
+                tbl1.Rows[rowindex]["amt2"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvamt2")).Text.Trim()).ToString();
                 tbl1.Rows[rowindex]["qty3"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty3")).Text.Trim()).ToString();
+                tbl1.Rows[rowindex]["amt3"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvamt3")).Text.Trim()).ToString();
                 tbl1.Rows[rowindex]["qty4"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty4")).Text.Trim()).ToString();
+                tbl1.Rows[rowindex]["amt4"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvamt4")).Text.Trim()).ToString();
                 tbl1.Rows[rowindex]["qty5"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty5")).Text.Trim()).ToString();
+                tbl1.Rows[rowindex]["amt5"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvamt5")).Text.Trim()).ToString();
                 tbl1.Rows[rowindex]["qty6"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty6")).Text.Trim()).ToString();
+                tbl1.Rows[rowindex]["amt6"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvamt6")).Text.Trim()).ToString();
                 tbl1.Rows[rowindex]["qty7"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty7")).Text.Trim()).ToString();
+                tbl1.Rows[rowindex]["amt7"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvamt7")).Text.Trim()).ToString();
                 tbl1.Rows[rowindex]["qty8"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty8")).Text.Trim()).ToString();
+                tbl1.Rows[rowindex]["amt8"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvamt8")).Text.Trim()).ToString();
                 tbl1.Rows[rowindex]["qty9"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty9")).Text.Trim()).ToString();
+                tbl1.Rows[rowindex]["amt9"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvamt9")).Text.Trim()).ToString();
 
                 tbl1.Rows[rowindex]["qty10"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty10")).Text.Trim()).ToString();
+                tbl1.Rows[rowindex]["amt10"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvamt10")).Text.Trim()).ToString();
 
                 tbl1.Rows[rowindex]["qty11"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty11")).Text.Trim()).ToString();
+                tbl1.Rows[rowindex]["amt11"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvamt11")).Text.Trim()).ToString();
 
                 tbl1.Rows[rowindex]["qty12"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty12")).Text.Trim()).ToString();
+                tbl1.Rows[rowindex]["amt12"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvamt12")).Text.Trim()).ToString();
 
 
 
@@ -197,6 +240,15 @@ namespace RealERPWEB.F_22_Sal
                       + Convert.ToDouble(tbl1.Rows[rowindex]["qty6"]) + Convert.ToDouble(tbl1.Rows[rowindex]["qty7"]) + Convert.ToDouble(tbl1.Rows[rowindex]["qty8"])
                       + Convert.ToDouble(tbl1.Rows[rowindex]["qty9"]) + Convert.ToDouble(tbl1.Rows[rowindex]["qty10"]) + Convert.ToDouble(tbl1.Rows[rowindex]["qty11"])
                       + Convert.ToDouble(tbl1.Rows[rowindex]["qty12"]);
+
+
+
+
+        
+
+
+
+
 
             }
 
@@ -469,7 +521,7 @@ namespace RealERPWEB.F_22_Sal
                     cell.Font.Bold = true;
                     gvrow.Cells.Add(cell);
 
-                    if (j == 26)
+                    if (j == 30)
                         break;
 
 
