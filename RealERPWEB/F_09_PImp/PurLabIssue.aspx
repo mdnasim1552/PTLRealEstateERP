@@ -742,26 +742,34 @@
 
                         </div>
 
-                        <div class="col-md-2">
+                        <div class="col-md-1">
                              <asp:HyperLink ID="lbtnBalance" runat="server" Target="_blank" Style="margin-left: 10px; color: blue; font-weight: bold; font-size: 14px;"></asp:HyperLink>
 
                         </div>
+                          <div class="col-md-1">                            
+                            <a  href="<%=this.ResolveUrl ("~/F_09_PImp/RptConTractorBillAll")%>" target="_blank" class="btn btn-primary btn-sm" Style="margin-left: 10px; font-weight: bold; font-size: 14px;">Details<span class="fa fa-history"></span></a>
+                           
+                        </div>
                     </div>
                     <div class="row" id="PnlNarration" runat="server">
-                        <div class="col-sm-12 col-md-4">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <asp:Label ID="Label7" runat="server" CssClass="form-label">Naration</asp:Label>
                                 <asp:TextBox ID="txtISSNarr" runat="server" CssClass="form-control form-control-sm " Height="100px" TextMode="MultiLine"></asp:TextBox>
 
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-2">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <asp:Label ID="lblTrade" runat="server" CssClass="form-label">Trade</asp:Label>
                                 <asp:DropDownList ID="ddltrade" runat="server" CssClass="form-control chzn-select">
                                 </asp:DropDownList>
                             </div>
                         </div>
+
+
+                       
+
 
                         <div class="form-group">
                             <div class="col-md-12">

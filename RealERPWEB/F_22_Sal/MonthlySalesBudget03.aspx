@@ -92,9 +92,11 @@
 
                         <div class="table-responsive">
 
-                            <asp:GridView ID="gvySalbgd" runat="server" AutoGenerateColumns="False"
+                             <asp:GridView ID="gvySalbgd" runat="server" AutoGenerateColumns="False"
                                 CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                ShowFooter="True" Width="531px"  AllowPaging="True" OnPageIndexChanging="gvySalbgd_PageIndexChanging" PageSize="15">
+                                ShowFooter="True" Width="531px" OnRowCreated="gvySalbgd_RowCreated" AllowPaging="false" OnPageIndexChanging="gvySalbgd_PageIndexChanging" PageSize="15">
+
+              
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl.No.">
@@ -139,6 +141,23 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
+                                      <asp:TemplateField HeaderText="Amount">
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvFamt1" runat="server"  Width="60px"></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvamt1" runat="server" BorderColor="#99CCFF"
+                                                BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt1")).ToString("#,##0;-#,##0; ") %>'
+                                                Width="60px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            VerticalAlign="Middle" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+
 
 
                                    
@@ -155,6 +174,23 @@
                                                 Style="text-align: right; background-color: Transparent"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty2")).ToString("#,##0;-#,##0; ") %>'
                                                 Width="40px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            VerticalAlign="Middle" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Amount">
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvFamt2" runat="server"  Width="60px"></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvamt2" runat="server" BorderColor="#99CCFF"
+                                                BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt2")).ToString("#,##0;-#,##0; ") %>'
+                                                Width="60px"></asp:TextBox>
                                         </ItemTemplate>
                                         <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
                                             VerticalAlign="Middle" />
@@ -183,6 +219,25 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
+                                     <asp:TemplateField HeaderText="Amount">
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvFamt3" runat="server"  Width="60px"></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvamt3" runat="server" BorderColor="#99CCFF"
+                                                BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt3")).ToString("#,##0;-#,##0; ") %>'
+                                                Width="60px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            VerticalAlign="Middle" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+
+                                    
+                                
 
 
 
@@ -203,6 +258,22 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
+                                        <asp:TemplateField HeaderText="Amount">
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvFamt4" runat="server"  Width="60px"></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvamt4" runat="server" BorderColor="#99CCFF"
+                                                BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt4")).ToString("#,##0;-#,##0; ") %>'
+                                                Width="60px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            VerticalAlign="Middle" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
 
 
                                     
@@ -224,7 +295,22 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
-
+                                    <asp:TemplateField HeaderText="Amount">
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvFamt5" runat="server"  Width="60px"></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvamt5" runat="server" BorderColor="#99CCFF"
+                                                BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt5")).ToString("#,##0;-#,##0; ") %>'
+                                                Width="60px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            VerticalAlign="Middle" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
 
                                    
 
@@ -245,7 +331,22 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
-
+                                    <asp:TemplateField HeaderText="Amount">
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvFamt6" runat="server"  Width="60px"></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvamt6" runat="server" BorderColor="#99CCFF"
+                                                BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt6")).ToString("#,##0;-#,##0; ") %>'
+                                                Width="60px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            VerticalAlign="Middle" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
 
                                    
 
@@ -266,7 +367,22 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
-
+                                    <asp:TemplateField HeaderText="Amount">
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvFamt7" runat="server"  Width="60px"></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvamt7" runat="server" BorderColor="#99CCFF"
+                                                BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt7")).ToString("#,##0;-#,##0; ") %>'
+                                                Width="60px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            VerticalAlign="Middle" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
 
                                    
 
@@ -287,7 +403,22 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
-
+                                    <asp:TemplateField HeaderText="Amount">
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvFamt8" runat="server"  Width="60px"></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvamt8" runat="server" BorderColor="#99CCFF"
+                                                BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt8")).ToString("#,##0;-#,##0; ") %>'
+                                                Width="60px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            VerticalAlign="Middle" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
 
                                     
 
@@ -308,7 +439,22 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
-
+                                    <asp:TemplateField HeaderText="Amount">
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvFamt9" runat="server"  Width="60px"></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvamt9" runat="server" BorderColor="#99CCFF"
+                                                BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt9")).ToString("#,##0;-#,##0; ") %>'
+                                                Width="60px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            VerticalAlign="Middle" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
 
                                   
 
@@ -329,7 +475,22 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
-
+                                    <asp:TemplateField HeaderText="Amount">
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvFamt10" runat="server"  Width="60px"></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvamt10" runat="server" BorderColor="#99CCFF"
+                                                BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt10")).ToString("#,##0;-#,##0; ") %>'
+                                                Width="60px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            VerticalAlign="Middle" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
 
 
                                     <asp:TemplateField HeaderText="Qty">
@@ -348,7 +509,22 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
-
+                                    <asp:TemplateField HeaderText="Amount">
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvFamt11" runat="server"  Width="60px"></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvamt11" runat="server" BorderColor="#99CCFF"
+                                                BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt11")).ToString("#,##0;-#,##0; ") %>'
+                                                Width="60px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            VerticalAlign="Middle" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
 
 
                                    
@@ -370,7 +546,22 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
-
+                                    <asp:TemplateField HeaderText="Amount">
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvFamt12" runat="server"  Width="60px"></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvamt12" runat="server" BorderColor="#99CCFF"
+                                                BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt12")).ToString("#,##0;-#,##0; ") %>'
+                                                Width="60px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            VerticalAlign="Middle" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
 
                                     
 
@@ -392,7 +583,22 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
                                     
-
+                                    <asp:TemplateField HeaderText=" Total Amount">
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvFtamt" runat="server"></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvtamt" runat="server" BorderColor="#99CCFF"
+                                                BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tamt")).ToString("#,##0;-#,##0; ") %>'
+                                                Width="70px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            VerticalAlign="Middle" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
 
 
                                 </Columns>

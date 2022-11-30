@@ -559,8 +559,9 @@ namespace RealERPWEB.F_24_CC
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string projectName = this.ddlProjectName.SelectedItem.Text.Substring(13);
-            string unitName = this.ddlUnitName.SelectedItem.Text.Trim();
+            string projectName = this.ddlProjectName.SelectedItem.Text.Substring(16);
+            //string unitName = this.ddlUnitName.SelectedItem.Text.Substring(1,10);
+            string Client = this.ddlUnitName.SelectedItem.Text.Substring(12);
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
             string mAdNo = this.Request.QueryString["Type"].ToString() == "ReqPrint" ? this.Request.QueryString["Genno"].ToString() : this.ddlPrevADNumber.SelectedValue.ToString();
@@ -570,6 +571,13 @@ namespace RealERPWEB.F_24_CC
                 return;
 
             DataTable dt = ds1.Tables[0];
+            DataTable dt1 = ds1.Tables[1];
+            string custid= dt1.Rows[0]["usircode"].ToString();
+            DataTable dt2 = (DataTable)Session["tblunit"];
+           
+            DataRow[] dr = dt2.Select("usircode='" + custid + "'");
+            string unitName =  dr[0]["udesc"].ToString();
+            string ClientName = dr[0]["custname"].ToString(); 
 
             string ftxtcheck = ds1.Tables[2].Rows[0]["chkusr"].ToString();
             string ftxtapp1st = ds1.Tables[2].Rows[0]["fapvusr"].ToString();
@@ -586,7 +594,8 @@ namespace RealERPWEB.F_24_CC
             Rpt1.SetParameters(new ReportParameter("rptTitle", "CLIENT'S MODIFICATION"));
             Rpt1.SetParameters(new ReportParameter("projectName", projectName));
             Rpt1.SetParameters(new ReportParameter("unitName", unitName));
-            Rpt1.SetParameters(new ReportParameter("txtDate", "Date: " + Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("ClientName", ClientName));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "Modification Date: " + Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("txtAddNo", "Modification No: " + txtAddNo));
             Rpt1.SetParameters(new ReportParameter("txtNarration", this.txtNarr.Text));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));

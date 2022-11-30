@@ -70,6 +70,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlapproval.Visible = false;
                     //this.RadioButtonList1.Items[1].Attributes["style"] = "background: #430000; display:block; ";
                     this.RadioButtonList1.Items[1].Attributes["class"] = "lblactive blink_me";
+
                     break;
 
                 // 1st approval
