@@ -3356,7 +3356,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value EvaluationMode="Constant">Ops:-</Value>
+                                  <Value>Ops:-</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>

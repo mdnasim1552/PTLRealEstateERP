@@ -288,6 +288,7 @@ namespace RealEntity.C_14_Pro
             public string comcod { get; set; }
             public string rsircode { get; set; }
             public string rsirdesc1 { get; set; }
+            public string flrdes { get; set; }
             public string rsirunit { get; set; }
             public string spcfcod { get; set; }
             public double qty { get; set; }

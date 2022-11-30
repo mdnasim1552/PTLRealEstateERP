@@ -784,7 +784,7 @@
                                     <ItemTemplate>
                                         <%--<asp:LinkButton ID="lnkremovechk" runat="server" ToolTip="Unchecked"><span style="color:red" class="glyphicon glyphicon-floppy-remove"></span> </asp:LinkButton>--%>
                                         <asp:HyperLink ID="lnkchk" Target="_blank" runat="server" ToolTip="Checked" CssClass="btn btn-default btn-xs"><span style="color:green" class=" fa fa-check"></span> </asp:HyperLink>
-                                        <asp:LinkButton ID="hlnkprintchk" runat="server" ToolTip="Print" ForeColor="Blue" OnClick="hlnkprintchk_Click" CssClass="btn btn-default btn-xs"><span class=" fa fa-print"></span>
+                                        <asp:LinkButton ID="hlnkprintchk" runat="server" ToolTip="Print"  OnClick="hlnkprintchk_Click" CssClass="btn btn-default btn-xs"><span class=" fa fa-print"></span>
                                         </asp:LinkButton>
                                         <asp:LinkButton ID="lbtnDelChk" runat="server" ToolTip="Cancel Check" ForeColor="Blue" CssClass="btn btn-default btn-xs" OnClick="lbtnDelChk_Click"><span style="color:red;" class=" fa fa-trash"></span>
                                         </asp:LinkButton>
