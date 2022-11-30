@@ -58,7 +58,7 @@ namespace RealERPWEB.F_14_Pro
             switch (GetCompCode())
             {
                 case "3370":
-                    this.printCPDL_cs_approval(); 
+                    this.printCPDL_cs_approval();
                     break;
                 case "1205":
                 case "3351":
@@ -69,7 +69,7 @@ namespace RealERPWEB.F_14_Pro
                 default:
                     break;
             }
-            
+
 
         }
 
@@ -410,7 +410,8 @@ namespace RealERPWEB.F_14_Pro
             LocalReport Rpt1 = new LocalReport();
 
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "RPTMARKETSURVEY02P2P", mMSRNo, CurDate1, "", "", "", "", "", "", "");
-
+            if (ds1 == null)
+                return;
 
 
             string Projectname = "";
@@ -467,21 +468,6 @@ namespace RealERPWEB.F_14_Pro
 
                     i++;
                 }
-                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-                // Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
-                Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
-                Rpt1.SetParameters(new ReportParameter("Username", Username));
-                Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
-                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
-                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
-
-                // Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
-                //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
-                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
-                Rpt1.SetParameters(new ReportParameter("comments", comments));
-                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             }
 
 
@@ -503,21 +489,6 @@ namespace RealERPWEB.F_14_Pro
 
                     i++;
                 }
-                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-                // Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
-                Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
-                Rpt1.SetParameters(new ReportParameter("Username", Username));
-                Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
-                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
-                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
-
-                // Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
-                //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
-                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
-                Rpt1.SetParameters(new ReportParameter("comments", comments));
-                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             }
             else
             {
@@ -536,22 +507,22 @@ namespace RealERPWEB.F_14_Pro
                     i++;
 
                 }
-                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-                // Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
-                Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
-                Rpt1.SetParameters(new ReportParameter("Username", Username));
-                Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
-                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
-                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
-                //Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
-                //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
-                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
-                Rpt1.SetParameters(new ReportParameter("comments", comments));
-                //Rpt1.SetParameters(new ReportParameter("surveyNo", surveyNo));
-                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             }
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            // Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
+            Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
+            Rpt1.SetParameters(new ReportParameter("Username", Username));
+            Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
+            Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
+
+            // Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
+            //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+            Rpt1.SetParameters(new ReportParameter("comments", comments));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
@@ -612,6 +583,8 @@ namespace RealERPWEB.F_14_Pro
 
             LocalReport Rpt1 = new LocalReport();
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "RPTMARKETSURVEYP02PCSApproval", mMSRNo, CurDate1, "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
 
             string Projectname = "";
             string Projectlocat = "";
@@ -668,26 +641,6 @@ namespace RealERPWEB.F_14_Pro
 
                     i++;
                 }
-                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-                // Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
-                Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
-                Rpt1.SetParameters(new ReportParameter("Username", Username));
-                Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
-                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
-                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
-                Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
-                Rpt1.SetParameters(new ReportParameter("txtsign2", txtsign2));
-                Rpt1.SetParameters(new ReportParameter("txtsign3", txtsign3));
-                Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
-                Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
-
-                // Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
-                //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
-                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
-                Rpt1.SetParameters(new ReportParameter("comments", comments));
-                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             }
 
 
@@ -712,28 +665,6 @@ namespace RealERPWEB.F_14_Pro
 
                     i++;
                 }
-                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-                // Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
-                Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
-                Rpt1.SetParameters(new ReportParameter("Username", Username));
-                Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
-                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
-                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
-
-                Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
-                Rpt1.SetParameters(new ReportParameter("txtsign2", txtsign2));
-                Rpt1.SetParameters(new ReportParameter("txtsign3", txtsign3));
-
-                Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
-                Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
-
-                // Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
-                //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
-                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
-                Rpt1.SetParameters(new ReportParameter("comments", comments));
-                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             }
             else
             {
@@ -757,31 +688,28 @@ namespace RealERPWEB.F_14_Pro
                     i++;
 
                 }
-                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-                // Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
-                Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
-                Rpt1.SetParameters(new ReportParameter("Username", Username));
-                Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
-                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
-                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
 
-                Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
-                Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
-
-                Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
-                Rpt1.SetParameters(new ReportParameter("txtsign2", txtsign2));
-                Rpt1.SetParameters(new ReportParameter("txtsign3", txtsign3));
-
-                //Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
-                //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
-                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
-                Rpt1.SetParameters(new ReportParameter("comments", comments));
-                //Rpt1.SetParameters(new ReportParameter("surveyNo", surveyNo));
-                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             }
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            // Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
+            Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
+            Rpt1.SetParameters(new ReportParameter("Username", Username));
+            Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
+            Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
+            Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
+            Rpt1.SetParameters(new ReportParameter("txtsign2", txtsign2));
+            Rpt1.SetParameters(new ReportParameter("txtsign3", txtsign3));
+            Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
+            Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
 
+            // Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
+            //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+            Rpt1.SetParameters(new ReportParameter("comments", comments));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
 
 
 
@@ -801,8 +729,8 @@ namespace RealERPWEB.F_14_Pro
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                             ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "',  target='_blank');</script>";
             }
-        }
-       
+        } 
+
         protected void printCPDL_cs_approval()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -816,7 +744,6 @@ namespace RealERPWEB.F_14_Pro
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string CurDate1 = this.GetStdDate(this.txtCurMSRDate.Text.Trim());
             string comments = this.txtMSRNarr.Text.Trim();
-            // string mMSRNo = this.ddlPrevMSRList.SelectedValue.ToString();
             string mMSRNo = "";
             if (Request.QueryString.AllKeys.Contains("msrno"))
             {
@@ -824,8 +751,8 @@ namespace RealERPWEB.F_14_Pro
             }
             else
             {
-                DataTable dt = (DataTable)Session["tblmsr01"];
-                mMSRNo = dt.Rows[0]["maxmsrno"].ToString();
+                DataTable dt2 = (DataTable)Session["tblmsr01"];
+                mMSRNo = dt2.Rows[0]["maxmsrno"].ToString();
             }
 
 
@@ -834,6 +761,8 @@ namespace RealERPWEB.F_14_Pro
 
             LocalReport Rpt1 = new LocalReport();
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "RPTMARKETSURVEYP02PCSApproval", mMSRNo, CurDate1, "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
 
             string Projectname = "";
             string Projectlocat = "";
@@ -841,8 +770,9 @@ namespace RealERPWEB.F_14_Pro
             string userdesig = "";
             string rsirdesc = "";
             string txtsign1 = "";
-            string txtsign2 = "";
+            string txtsign2 = ""; 
             string txtsign3 = "";
+            string recomsup = ds1.Tables[2].Rows[0]["rcmsupdesc"].ToString();
 
             if (ds1.Tables[3].Rows.Count > 0)
             {
@@ -851,7 +781,6 @@ namespace RealERPWEB.F_14_Pro
                 Username = ds1.Tables[3].Rows[0]["usrname"].ToString();
                 userdesig = ds1.Tables[3].Rows[0]["userdesig"].ToString();
                 rsirdesc = ds1.Tables[3].Rows[0]["rsirdesc"].ToString();
-
                 txtsign1 = ds1.Tables[3].Rows[0]["usrname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["userdesig"].ToString() + "\n" + ds1.Tables[3].Rows[0]["reqdat"].ToString();
                 txtsign2 = ds1.Tables[3].Rows[0]["csname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["csdesig"].ToString() + "\n" + ds1.Tables[3].Rows[0]["csdat"].ToString();
                 txtsign3 = ds1.Tables[3].Rows[0]["aprvname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["aprdesig"].ToString() + "\n" + ds1.Tables[3].Rows[0]["appdat"].ToString();
@@ -865,8 +794,8 @@ namespace RealERPWEB.F_14_Pro
             var lst = ds1.Tables[0].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay02>();
             var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay03>();
 
-            string reqinfo =ASTUtility.CustomReqFormat(ds1.Tables[3].Rows[0]["reqno"].ToString());
-            string csinfo =ASTUtility.CustomReqFormat(ds1.Tables[2].Rows[0]["msrno"].ToString()) + ", " + Convert.ToDateTime(ds1.Tables[2].Rows[0]["msrdat"]).ToString("dd-MMM-yyyy");
+            string reqinfo = ASTUtility.CustomReqFormat(ds1.Tables[3].Rows[0]["reqno"].ToString());
+            string csinfo = ASTUtility.CustomReqFormat(ds1.Tables[2].Rows[0]["msrno"].ToString()) + ", " + Convert.ToDateTime(ds1.Tables[2].Rows[0]["msrdat"]).ToString("dd-MMM-yyyy");
 
 
             if (lst1.Count == 5)
@@ -880,39 +809,11 @@ namespace RealERPWEB.F_14_Pro
                     Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
                     Rpt1.SetParameters(new ReportParameter("mobile" + i.ToString() + "", lsts.contact.ToString()));
                     Rpt1.SetParameters(new ReportParameter("qdate" + i.ToString() + "", lsts.qutdate.ToString("dd-MMM-yyyy")));
-                    Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
-                    Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
-                    Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
-                    Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", ""));
-                    Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
-                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
-                    Rpt1.SetParameters(new ReportParameter("carrying" + i.ToString() + "", lsts.ccharge.ToString()));
-
+                    Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", Convert.ToDouble(lsts.ccharge).ToString("#,##0.00;(#,##0.00); ")));
                     i++;
                 }
-                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-                // Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
-                Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
-                Rpt1.SetParameters(new ReportParameter("Username", Username));
-                Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
-                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
-                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
-                Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
-                Rpt1.SetParameters(new ReportParameter("txtsign2", txtsign2));
-                Rpt1.SetParameters(new ReportParameter("txtsign3", txtsign3));
-                Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
-                Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
 
-                // Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
-                //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
-                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
-                Rpt1.SetParameters(new ReportParameter("comments", comments));
-                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             }
-
-
             else if (lst1.Count == 4)
             {
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyCPDL04C", lst, lst1, null);
@@ -924,38 +825,10 @@ namespace RealERPWEB.F_14_Pro
                     Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
                     Rpt1.SetParameters(new ReportParameter("mobile" + i.ToString() + "", lsts.contact.ToString()));
                     Rpt1.SetParameters(new ReportParameter("qdate" + i.ToString() + "", lsts.qutdate.ToString("dd-MMM-yyyy")));
-                    Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
-                    Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
-                    Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
-                    Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", ""));
-                    Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
-                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
-                    Rpt1.SetParameters(new ReportParameter("carrying" + i.ToString() + "", lsts.ccharge.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", Convert.ToDouble(lsts.ccharge).ToString("#,##0.00;(#,##0.00); ")));
 
                     i++;
                 }
-                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-                // Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
-                Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
-                Rpt1.SetParameters(new ReportParameter("Username", Username));
-                Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
-                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
-                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
-
-                Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
-                Rpt1.SetParameters(new ReportParameter("txtsign2", txtsign2));
-                Rpt1.SetParameters(new ReportParameter("txtsign3", txtsign3));
-
-                Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
-                Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
-
-                // Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
-                //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
-                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
-                Rpt1.SetParameters(new ReportParameter("comments", comments));
-                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             }
             else
             {
@@ -968,44 +841,25 @@ namespace RealERPWEB.F_14_Pro
                     Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
                     Rpt1.SetParameters(new ReportParameter("mobile" + i.ToString() + "", lsts.contact.ToString()));
                     Rpt1.SetParameters(new ReportParameter("qdate" + i.ToString() + "", lsts.qutdate.ToString("dd-MMM-yyyy")));
-                    Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
-                    Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
-                    Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
-                    Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", ""));
-                    Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
-                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
-                    Rpt1.SetParameters(new ReportParameter("carrying" + i.ToString() + "", lsts.ccharge.ToString()));
-
+                    Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", Convert.ToDouble(lsts.ccharge).ToString("#,##0.00;(#,##0.00); ")));
                     i++;
 
                 }
-                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-                // Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
-                Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
-                Rpt1.SetParameters(new ReportParameter("Username", Username));
-                Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
-                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
-                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
-
-                Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
-                Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
-
-                Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
-                Rpt1.SetParameters(new ReportParameter("txtsign2", txtsign2));
-                Rpt1.SetParameters(new ReportParameter("txtsign3", txtsign3));
-
-                //Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
-                //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
-                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
-                Rpt1.SetParameters(new ReportParameter("comments", comments));
-                //Rpt1.SetParameters(new ReportParameter("surveyNo", surveyNo));
-                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             }
-
-
-
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
+            Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
+            Rpt1.SetParameters(new ReportParameter("Username", Username));
+            Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
+            Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
+            Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
+            Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+            Rpt1.SetParameters(new ReportParameter("comments", comments));
+            Rpt1.SetParameters(new ReportParameter("recomsup", recomsup));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
 
             if (Request.QueryString.AllKeys.Contains("pType"))
             {
@@ -1561,8 +1415,24 @@ namespace RealERPWEB.F_14_Pro
             this.gvterm.DataSource = (DataTable)Session["tblterm"];
             this.gvterm.DataBind();
 
-
+            switch (GetCompCode())
+            {
+                case "3370":
+                    this.gvterm.Columns[4].Visible = false;
+                    this.gvterm.Columns[6].Visible = false;                    
+                    this.gvterm.Columns[8].Visible = false;
+                    this.gvterm.Columns[9].Visible = false;
+                    this.gvterm.Columns[5].HeaderText = "VAT & TAX";
+                    break;
+                default:
+                    this.gvterm.Columns[4].Visible = true;
+                    this.gvterm.Columns[6].Visible = true;
+                    this.gvterm.Columns[8].Visible = true;
+                    this.gvterm.Columns[9].Visible = true;
+                    break;
+            }
         }
+
         //protected void ddlMSRRes_SelectedIndexChanged(object sender, EventArgs e)
         //{
 

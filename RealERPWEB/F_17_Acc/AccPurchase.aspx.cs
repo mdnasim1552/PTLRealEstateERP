@@ -1238,6 +1238,7 @@ namespace RealERPWEB.F_17_Acc
                 case "3101":
                 case "3355":
                 case "3368":
+                case "3370":
                     this.txtPayto.Text = ddlSupList.SelectedItem.Text.Trim();
                     break;
                 default:
