@@ -21,8 +21,8 @@
 
                 var gridViewScroll = new GridViewScroll({
                     elementID: "gvInfo",
-                    width: 1000,
-                    height: 580,
+                    width: 1135,
+                    height: 648,
                     freezeColumn: true,
                     freezeFooter: true,
                     freezeColumnCssClass: "GridViewScrollItemFreeze",
@@ -71,7 +71,9 @@
                 $('.chosen-continer').css('width', '600px');
 
                 $('.chzn-select').chosen({ search_contains: true });
-
+                $('input.checkbox').on('change', function () {
+                    $('input.checkbox').not(this).prop('checked', false);
+                });
 
                 var comcod =<%=this.GetComeCode()%>;
 
@@ -103,9 +105,6 @@
                         case '810100101014':
                             numberlq = i;
                             break;
-
-
-
 
                     }
 
@@ -445,6 +444,21 @@
 
 
 
+                        case "810100101014"://Lead Quality
+
+                           // console.log(data.gdesc1)
+                            var ddllead = '#ContentPlaceHolder1_gvInfo_ddlVisit_' + number;
+
+
+
+                            $(ddllead + ' > option').each(function (index, item) {
+                                if ($(item).val() == data.gdesc1) {
+                                    $(item).attr("selected", true);
+                                }
+
+
+                            });
+                            break;
 
 
 
@@ -628,15 +642,15 @@
 
 
                     success: function (response) {
-                        
+
                         var data = JSON.parse(response.d);
                         funDataBind(data);
                         console.log(data);
                         //var date=data[0].gdesc1;
                         //alert(date);
-                        
+
                         $('#ContentPlaceHolder1_rpclientinfo_lbtntfollowupf_0').find('a').trigger('click');
-                        alert('nazmul');
+                      
 
 
                     },
@@ -662,9 +676,6 @@
 
 
         }
-
-
-
 
         function funCompanyProject(comcod, company) {
             try {
@@ -735,8 +746,6 @@
 
         }
 
-
-
         function funLeadReason(comcod, leadquality) {
 
             try {
@@ -795,7 +804,6 @@
 
 
         }
-
 
         function funDupAllMobile() {
 
@@ -886,15 +894,6 @@
             }
 
         }
-
-
-
-
-
-
-
-
-        
 
     </script>
     <style>
@@ -1288,6 +1287,7 @@
             width: 100%;
             height: 100vh;
             position: absolute;
+            background-color:whitesmoke;
             right: 0;
         }
 
@@ -1300,15 +1300,12 @@
         .divPnl table tr td, .divPnl table tr th {
             padding: 5px 5px;
         }
+      
     </style>
-
-
-
-
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <asp:UpdatePanel ID="UpdatePanel" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
-                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
+                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel" DisplayAfter="30">
                     <ProgressTemplate>
                         <div id="loader">
                             <div class="dot"></div>
@@ -1324,7 +1321,6 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-
             <div class="card mt-4 pb-4" runat="server" id="pnlsrc" visible="true">
                 <div class="card-body">
                     <div class="row ml-2">
@@ -1352,10 +1348,10 @@
                         </div>
                         <div class="col-md-2">
                             <asp:Label ID="Label2" runat="server" CssClass="form-label">Search </asp:Label>
-                            <asp:TextBox ID="txtVal" runat="server" CssClass="form-control form-control-sm" TextMode="Search" autocomplete="off"></asp:TextBox>
+                            <asp:TextBox ID="txtVal" runat="server" CssClass="form-control form-control-sm" TextMode="Search" autocomplete="on"></asp:TextBox>
 
                         </div>
-
+                        
                         <div class="col-md-1" style="margin-top: 22px">
 
                             <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="btn btn-success btn-sm" OnClick="lnkbtnOk_Click" AutoPostBack="True">Show</asp:LinkButton>
@@ -1364,20 +1360,15 @@
                         <div class="col-md-2">
                         </div>
                         <div class="col-md-2">
-                            <asp:LinkButton ID="btnaddland" runat="server" ToolTip="Add Lead" CssClass="mt-4 btn btn-primary btn-sm  align-self-end" style="margin-top:20px;" OnClick="btnaddland_Click">Add Lead</asp:LinkButton>
+                            <asp:LinkButton ID="btnaddland" runat="server" ToolTip="Add Lead" CssClass="mt-4 btn btn-primary btn-sm  align-self-end" Style="margin-top: 20px;" OnClick="btnaddland_Click">Add Lead</asp:LinkButton>
                         </div>
 
                     </div>
-
                 </div>
-
             </div>
-
             <div class="card pt-2 pb-2" runat="server" id="pnlempinfo" style="background-color: whitesmoke; align-content: center">
                 <div class="card-body">
-
                     <div class="row">
-
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="pt-2 pb-2 pl-4 bg-light"><span class="font-weight-bold text-muted">Employee Information</span></div>
@@ -1431,19 +1422,21 @@
                                                 <td class="font-weight-bold">Status</td>
                                                 <td>
                                                     <asp:Label ID="lblstatus" runat="server"></asp:Label>
-                                                    <td id="pnlretrive" runat="server" visible="false">
-                                                        <asp:LinkButton ID="lnkbtnRetreive" runat="server" Font-Bold="True" Height="12px" ToolTip="Retreive Prospect" Style="text-align: right" OnClientClick="javascript:return  confirm('Do You Want to Retreive Prospect?');" Text="" OnClick="lnkbtnRetreive_Click"><span><i class="fa fa-undo" Style="text-align: center"></i></span></asp:LinkButton>
-                                                    </td>
+                                                   
                                                 </td>
+                                                
 
                                             </tr>
                                             <tr>
-                                                <td></td>
+                                                <td>
+                                                    <asp:LinkButton ID="lnkEdit" runat="server" visible="false" Height="22px" class="btn btn-xs  text-center" Font-Bold="True" ToolTip="Edit Client Info" Text="Edit" OnClick="lnkEdit_Click"><span class=" fa   fa-edit"></span></asp:LinkButton>
 
-                                                <td id="pnledit" runat="server" visible="false">
-
-                                                    <asp:LinkButton ID="lnkEdit" runat="server" Height="22px" class="btn btn-xs  text-center" Font-Bold="True" ToolTip="Edit Client Info" Text="Edit" OnClick="lnkEdit_Click"><span class=" fa   fa-edit"></span></asp:LinkButton>
                                                 </td>
+
+                                               
+                                                 <td id="pnlretrive" runat="server" visible="false">
+                                                        <asp:LinkButton ID="lnkbtnRetreive" runat="server" Font-Bold="True" Height="12px" ToolTip="Retreive Prospect" Style="text-align: right" OnClientClick="javascript:return  confirm('Do You Want to Retreive Prospect?');" Text="" OnClick="lnkbtnRetreive_Click"><span><i class="fa fa-undo" Style="text-align: center"></i></span></asp:LinkButton>
+                                                    </td>
                                             </tr>
                                             <asp:HiddenField ID="lblproscod" runat="server" />
                                             <asp:HiddenField ID="lbleditempid" runat="server" />
@@ -1515,13 +1508,12 @@
 
 
 
-                                                            <asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ID="lbtntfollowupf" data-target="#followup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton>
-                                                       <button type="button" class="btn  btn-success btn-xs" id="lbtnreschedule" onclick="funReschedule('<%# DataBinder.Eval(Container, "DataItem.cdate").ToString()%>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString()%>')">Re-Schdule</button>
+                                                            <asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ToolTip="Add Followup" ID="lbtntfollowupf" data-target="#followup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton>
+                                                            <%--<asp:LinkButton type="button" runat="server" ToolTip="Re-Shedule Followup" class="btn  btn-primary btn-sm" Style="margin-top: 10px;" ID="lbtnreschedule" OnClick="btnqclink_Click">Re-schedule</asp:LinkButton>--%>
+                                                        <button type="button" class="btn  btn-primary btn-sm mt-2" ToolTip="Re-Shedule Followup" id="lbtnreschedule" onclick="funReschedule('<%# DataBinder.Eval(Container, "DataItem.cdate").ToString()%>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString()%>')">Re-Schdule</button>
+
+
                                                             <%--<button type="button" class="btn  btn-success btn-xs" >Re-Schdule</button>--%>
-
-
-
-
                                                         </div>
 
                                                     </div>
@@ -1548,17 +1540,16 @@
                         </div>
 
                     </div>
-
                 </div>
             </div>
             <div class="col-md-2">
             </div>
             <div class="col-md-10" id="pnlSidebar" runat="server" visible="false">
                 <div class="divPnl">
-                    <div class="card pnlSidebarCl mt-4">
+                    <div class="card pnlSidebarCl mt-3">
                         <div class="modal-content">
-                            <div class="modal-header bg-light pt-2 pb-2 ml-2">
-                                <div class="bg-light"><span class="font-weight-bold text-muted" style="padding: 0px;">Add FollowUp</span></div>
+                            <div class="modal-header bg-light pt-1 pb-1 ml-2">
+                                <div class="bg-light"><span class="font-weight-bold text-muted" style="padding: 0px;">Add Followup</span></div>
 
                                 <asp:LinkButton ID="pnlsidebarClose" OnClick="pnlsidebarClose_Click" ToolTip="Close the Window" CssClass="btn btn-danger  btn-sm pr-2 pl-2" runat="server">&times;</asp:LinkButton>
                             </div>
@@ -1779,7 +1770,7 @@
 
 
 
-                                                    <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal"
+                                                    <asp:CheckBoxList ID="ChkBoxLstFollow"  RepeatLayout="Flow" RepeatDirection="Horizontal"
                                                         runat="server" CssClass="form-control checkbox">
                                                     </asp:CheckBoxList>
 

@@ -109,6 +109,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                 double dgvTrnDrAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv3.Rows[j].FindControl("gvtxtDrAmt")).Text.Trim()));
                 double dgvTrnCrAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv3.Rows[j].FindControl("gvtxtCrAmt")).Text.Trim()));
                 double dgvTrnRate = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv3.Rows[j].FindControl("txtgvRate")).Text.Trim()));
+                double dgvcompamt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv3.Rows[j].FindControl("gvtxcompamt")).Text.Trim()));
 
 
                 //if (dgvTrnDrAmt == 0 && dgvTrnCrAmt == 0)
@@ -126,11 +127,13 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                 ((TextBox)this.dgv3.Rows[j].FindControl("txtgvRate")).Text = dgvTrnRate.ToString("#,##0.00;(#,##0.00); ");
                 ((TextBox)this.dgv3.Rows[j].FindControl("gvtxtDrAmt")).Text = dgvTrnDrAmt.ToString("#,##0.00;(#,##0.00); ");
                 ((TextBox)this.dgv3.Rows[j].FindControl("gvtxtCrAmt")).Text = dgvTrnCrAmt.ToString("#,##0.00;(#,##0.00); ");
+                ((TextBox)this.dgv3.Rows[j].FindControl("gvtxcompamt")).Text = dgvcompamt.ToString("#,##0.00;(#,##0.00); ");
                 TblRowIndex2 = (dgv3.PageIndex) * dgv3.PageSize + j;
                 tblt02.Rows[TblRowIndex2]["qty"] = dgvTrnQty;
                 tblt02.Rows[TblRowIndex2]["rate"] = dgvTrnRate;
                 tblt02.Rows[TblRowIndex2]["Dr"] = dgvTrnDrAmt;
                 tblt02.Rows[TblRowIndex2]["Cr"] = dgvTrnCrAmt;
+                tblt02.Rows[TblRowIndex2]["compamt"] = dgvcompamt;
 
             }
             Session["AccTbl02"] = tblt02;
@@ -212,6 +215,9 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                     this.lblacccode1.Visible = false;
                     this.txtFilter.Visible = false;
                     this.ImageButton1.Visible = false;
+                    this.mainDDlPage.Visible = false;
+
+                    
                     this.ShowActCode();
                     gvr.BackColor = System.Drawing.Color.Blue;
 
@@ -235,6 +241,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
             this.lblacccode1.Visible = true;
             this.txtFilter.Visible = true;
             this.ImageButton1.Visible = true;
+            this.mainDDlPage.Visible = true;
 
             //int Rowindex1 = (int)Session["RowIndex"];
             //int Rowindex2 = (dgv2.PageSize * dgv2.PageIndex) + Rowindex1;
@@ -282,11 +289,13 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                 double Cramt = Convert.ToDouble(tblt03.Rows[i]["Cr"]);
                 string trnamt = Convert.ToString(Dramt - Cramt);
                 string trnremark = Convert.ToDouble(Dramt).ToString();
+                double compamt = Convert.ToDouble(tblt03.Rows[i]["compamt"]);
 
+                
                 //if ((Dramt - Cramt) != 0)
                 //{
                 bool resulta = accData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ACCOUNTS_VOUCHER", "PFACVOPNUPDATEA", vounum, actcode,
-                            rescode, cactcode, voudat, trnqty, trnremark, vtcode, trnamt, spcfcod, UserId, EditDate, Terminal, "", "");
+                            rescode, cactcode, voudat, trnqty, trnremark, vtcode, trnamt, spcfcod, UserId, EditDate, Terminal, compamt.ToString(), "");
                 if (!resulta)
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = accData.ErrorObject["Msg"].ToString();
@@ -459,7 +468,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
         protected void dgv2ddlPageNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.SessionUpdate();
-            this.dgv2.PageIndex = ((DropDownList)this.dgv2.FooterRow.FindControl("dgv2ddlPageNo")).SelectedIndex;
+            this.dgv2.PageSize = Convert.ToInt32(this.dgv2ddlPageNo.SelectedValue.ToString());
             this.dgv2_DataBind();
             this.TotalCalculation1();
 
@@ -468,19 +477,21 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
         protected void dgv2_DataBind()
         {
             DataTable tbl1 = (DataTable)Session["AccTbl01"];
+            this.dgv2.PageSize = Convert.ToInt32(this.dgv2ddlPageNo.SelectedValue.ToString());
+
             this.dgv2.DataSource = tbl1;
             this.dgv2.DataBind();
             if (tbl1.Rows.Count == 0)
                 return;
 
-            ((DropDownList)this.dgv2.FooterRow.FindControl("dgv2ddlPageNo")).Visible = false;
-            double TotalPage = Math.Ceiling(tbl1.Rows.Count * 1.00 / this.dgv2.PageSize);
-            ((DropDownList)this.dgv2.FooterRow.FindControl("dgv2ddlPageNo")).Items.Clear();
-            for (int i = 1; i <= TotalPage; i++)
-                ((DropDownList)this.dgv2.FooterRow.FindControl("dgv2ddlPageNo")).Items.Add("Page: " + i.ToString() + " of " + TotalPage.ToString());
-            if (TotalPage > 1)
-                ((DropDownList)this.dgv2.FooterRow.FindControl("dgv2ddlPageNo")).Visible = true;
-            ((DropDownList)this.dgv2.FooterRow.FindControl("dgv2ddlPageNo")).SelectedIndex = this.dgv2.PageIndex;
+            //((DropDownList)this.dgv2.FooterRow.FindControl("dgv2ddlPageNo")).Visible = false;
+            //double TotalPage = Math.Ceiling(tbl1.Rows.Count * 1.00 / this.dgv2.PageSize);
+            //((DropDownList)this.dgv2.FooterRow.FindControl("dgv2ddlPageNo")).Items.Clear();
+            //for (int i = 1; i <= TotalPage; i++)
+            //    ((DropDownList)this.dgv2.FooterRow.FindControl("dgv2ddlPageNo")).Items.Add("Page: " + i.ToString() + " of " + TotalPage.ToString());
+            //if (TotalPage > 1)
+            //    ((DropDownList)this.dgv2.FooterRow.FindControl("dgv2ddlPageNo")).Visible = true;
+            //((DropDownList)this.dgv2.FooterRow.FindControl("dgv2ddlPageNo")).SelectedIndex = this.dgv2.PageIndex;
         }
 
         // protected void dgv3ddlPageNo_SelectedIndexChanged(object sender, EventArgs e)
@@ -505,6 +516,9 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
             0.00 : tblt03.Compute("Sum(Dr)", ""))).ToString("#,##0.00;(#,##0.00);  ");
             ((TextBox)this.dgv3.FooterRow.FindControl("gvtxtftCramt")).Text = Convert.ToDouble((Convert.IsDBNull(tblt03.Compute("Sum(Cr)", "")) ?
             0.00 : tblt03.Compute("Sum(Cr)", ""))).ToString("#,##0.00;(#,##0.00);  ");
+
+            ((TextBox)this.dgv3.FooterRow.FindControl("gvtxtftcompamt")).Text = Convert.ToDouble((Convert.IsDBNull(tblt03.Compute("Sum(compamt)", "")) ?
+           0.00 : tblt03.Compute("Sum(compamt)", ""))).ToString("#,##0.00;(#,##0.00);  ");
 
         }
 

@@ -4856,7 +4856,7 @@
 
             <div id="modalNotes" class="modal fade   animated slideInTop " role="dialog" data-keyboard="false" data-backdrop="static">
                 <div class="modal-dialog modal-dialog-sm-width ">
-                    <div class="modal-content modal-content-sm-width" style="background-color: darksalmon">
+                    <div class="modal-content modal-content-sm-width">
                         <div class="modal-header">
                             <h4 class="modal-title">
                                 <i class="fa fa-hand-point-right"></i>
@@ -4920,7 +4920,7 @@
                                         <tr>
                                             <td>8</td>
                                             <td>Light Cyan</td>
-                                            <td style="color: lightcyan;">Followup To Days</td>
+                                            <td style="color: #F3E7F7;">Followup To Days</td>
 
                                         </tr>
 

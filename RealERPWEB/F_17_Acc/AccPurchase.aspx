@@ -350,7 +350,7 @@
                                        
                                          <asp:Label ID="lblpayto" runat="server" CssClass="lblTxt lblName" Text="Pay To :"></asp:Label>
                                         
-                                         <asp:TextBox ID="txtPayto" runat="server" CssClass="inputtextbox" Width="100px"></asp:TextBox>
+                                         <asp:TextBox ID="txtPayto" runat="server" CssClass="inputtextbox" Width="180px"></asp:TextBox>
 
                                     </div>
                                                                     

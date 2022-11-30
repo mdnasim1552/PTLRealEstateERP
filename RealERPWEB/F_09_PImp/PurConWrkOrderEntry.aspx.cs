@@ -39,7 +39,7 @@ namespace RealERPWEB.F_09_PImp
                 this.GetContractorList();
                 this.GetProjectList();
 
-                string sbody = "Reference to our duccussion and your quotation dated " + System.DateTime.Today.ToString("dd.MM.yyyy") + " , we are pleased to issue works order under the following specifications, terms and conditions and mode of payment.";
+                string sbody = "Reference to our discussion and your quotation dated " + System.DateTime.Today.ToString("dd.MM.yyyy") + " , we are pleased to issue work order under the following specifications, terms and conditions and mode of payment.";
 
 
 
@@ -197,15 +197,20 @@ namespace RealERPWEB.F_09_PImp
             switch (comcod)
             {
                 case "3330":
-                case "3101":
+                //case "3101":
                     this.PrintGeneral();
                     break;
 
                 //case "1205":
                 //case "3351":
-                //case "3352":
-                //    this.PrintP2PWorkOrder();
-                //    break;
+
+                case "3101":
+                case "3370":
+                case "1205":
+                case "3351":
+                case "3352":
+                    this.printWorkOrderFInt();
+                    break;
 
                 default:
                     this.PrintGeneral();
@@ -349,24 +354,31 @@ namespace RealERPWEB.F_09_PImp
         private void printWorkOrderFInt()  
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
+            
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
             string compname = hst["compname"].ToString();
             string comsnam = hst["comsnam"].ToString();
             string comadd = hst["comadd1"].ToString();
+            string comfadd = hst["comadd"].ToString().Replace("<br />", "\n");
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string CurDate = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
             string refNo = "";
             string Supp2 = this.ddlContractorlist.SelectedItem.Text.Trim().Substring(13).ToString();
-            //string mOrdernoO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + this.txtCurISSDate.Text.Trim().Substring(7, 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
+            string morderno = "";
+            if (this.Request.QueryString.AllKeys.Contains("orderno"))
+            {
+                morderno= this.Request.QueryString["orderno"].ToString() == "" ? "" : this.Request.QueryString["orderno"].ToString();
+            }
+            else
+            {
+                morderno = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + this.txtCurISSDate.Text.Trim().Substring(7, 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
 
-            string mOrdernoO = this.Request.QueryString["orderno"].ToString() == "" ? "" : this.Request.QueryString["orderno"].ToString();
-
+            }
             string ordercopy = this.GetCompOrderCopy();
 
-
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "SHOWCONORKORDERINFO", mOrdernoO, ordercopy, "", "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "SHOWCONORKORDERINFO", morderno, ordercopy, "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
 
@@ -411,6 +423,17 @@ namespace RealERPWEB.F_09_PImp
                 Rpt1.SetParameters(new ReportParameter("Suppl1", Suppl));
                 Rpt1.SetParameters(new ReportParameter("Suppl2", Supp2));
 
+            }
+            else if (comcod == "3370")
+            {
+                refNo = ds1.Tables[1].Rows[0]["pordref"].ToString(); 
+                string orderno = ASTUtility.CustomReqFormat(ds1.Tables[1].Rows[0]["orderno"].ToString());               
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrderCPDL", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("workSuppl", Suppl));
+                Rpt1.SetParameters(new ReportParameter("fullComAdd", comfadd));
+                Rpt1.SetParameters(new ReportParameter("refNo1",  refNo));
+                Rpt1.SetParameters(new ReportParameter("orderno", orderno));
             }
             else
             {

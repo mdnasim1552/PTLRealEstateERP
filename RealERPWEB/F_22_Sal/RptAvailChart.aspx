@@ -324,7 +324,7 @@
                                 <ItemStyle HorizontalAlign="Right" />
                                 <FooterStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Co-operative">
+                            <asp:TemplateField HeaderText="Other's">
                                 <ItemTemplate>
                                     <asp:Label ID="lgpCooperative" runat="server" BackColor="Transparent"
                                         BorderStyle="None" Font-Size="11px" Height="18px" Style="text-align: right"

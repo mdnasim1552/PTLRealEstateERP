@@ -1538,7 +1538,7 @@
                                                          <i class=" fa fa-info-circle" aria-hidden="false"></i>
                                                     </asp:HyperLink>
 
-                                                 <%-- <asp:HyperLink ID="lnkbtnEditBilll" ToolTip="Edit" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span style="color:black" class="fas fa-edit"></span>
+                                                    <%-- <asp:HyperLink ID="lnkbtnEditBilll" ToolTip="Edit" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span style="color:black" class="fas fa-edit"></span>
                                                     </asp:HyperLink>--%>
                                                     <asp:LinkButton ID="btnDelbillapp" OnClick="btnDelbillapp_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs" ToolTip="Delete Bill Checked"
                                                         Visible='<%# (Convert.ToBoolean((Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) == "3370")) ? false : true)%>'>
@@ -2183,7 +2183,7 @@
 
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
-                                                    <asp:HyperLink ID="hlnkBillDetailsfin" runat="server" ToolTip="MB Details" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs" visible='<%# (Convert.ToBoolean((Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) == "3370") || (Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) == "3101")) ? true : false)%>'><i class=" fa fa-info-circle" aria-hidden="false"></i>
+                                                    <asp:HyperLink ID="hlnkBillDetailsfin" runat="server" ToolTip="MB Details" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs" Visible='<%# (Convert.ToBoolean((Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) == "3370") || (Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) == "3101")) ? true : false)%>'><i class=" fa fa-info-circle" aria-hidden="false"></i>
                                                     </asp:HyperLink>
                                                 </ItemTemplate>
 
@@ -2426,7 +2426,7 @@
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
                                                     <asp:HyperLink ID="hlnkBillDetailsfinapp" runat="server" ToolTip="MB Details" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"
-                                                        visible='<%# (Convert.ToBoolean((Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) == "3370") || (Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) == "3101")) ? true : false)%>' ><i class=" fa fa-info-circle" aria-hidden="false"></i> 
+                                                        Visible='<%# (Convert.ToBoolean((Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) == "3370") || (Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) == "3101")) ? true : false)%>'><i class=" fa fa-info-circle" aria-hidden="false"></i> 
                                                     </asp:HyperLink>
                                                 </ItemTemplate>
 
@@ -2962,13 +2962,11 @@
                                                 <ItemTemplate>
                                                     <asp:HyperLink ID="lnkWorkOrder" runat="server" ToolTip="MB" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                     </asp:HyperLink>
-
                                                     <asp:LinkButton ID="btnDelWrkodr" OnClick="btnDelWrkodr_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa  fa-recycle"></span> </asp:LinkButton>
 
-
                                                 </ItemTemplate>
-                                                <ItemStyle Width="150px" />
-                                                <HeaderStyle HorizontalAlign="Center" Width="150px" VerticalAlign="Top" />
+                                                <ItemStyle Width="90px" />
+                                                <HeaderStyle HorizontalAlign="Center" Width="90px" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
                                         </Columns>
@@ -3123,15 +3121,15 @@
 
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
+                                                    <asp:HyperLink ID="lbtnPrintWorkOrder" runat="server" Target="_blank" CssClass="btn btn-default btn-xs" ToolTip="Print WorkOrder"><span style="color:green" class="fa fa-print"></span></asp:HyperLink>
+
                                                     <asp:HyperLink ID="hlnklnkmb" runat="server" ToolTip="Bill Generate" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                     </asp:HyperLink>
-
                                                     <asp:LinkButton ID="btnDelmb" OnClick="btnDelmb_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa  fa-recycle"></span> </asp:LinkButton>
 
-
                                                 </ItemTemplate>
-                                                <ItemStyle Width="150px" />
-                                                <HeaderStyle HorizontalAlign="Center" Width="150px" VerticalAlign="Top" />
+                                                <ItemStyle Width="110px" />
+                                                <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
                                         </Columns>
@@ -3294,8 +3292,8 @@
 
 
                                                 </ItemTemplate>
-                                                <ItemStyle Width="150px" />
-                                                <HeaderStyle HorizontalAlign="Center" Width="150px" VerticalAlign="Top" />
+                                                <ItemStyle Width="90px" />
+                                                <HeaderStyle HorizontalAlign="Center" Width="90px" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
                                         </Columns>
@@ -3466,7 +3464,9 @@
 
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
-                                                    <asp:HyperLink ID="lnkbtnPrintWorkOrder" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span></asp:HyperLink>
+                                                    <asp:HyperLink ID="lnkbtnPrintWorkOrder" runat="server" Target="_blank" CssClass="btn btn-default btn-xs" ToolTip="Print Contractor WorkOrder"
+                                                        Visible='<%# Convert.ToBoolean(Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")).ToString()=="3370"?false:true)%>'>
+                                                        <span style="color:green" class="fa fa-print"></span></asp:HyperLink>
 
                                                     <asp:HyperLink ID="lnkWorkOrder" runat="server" ToolTip="CS" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                     </asp:HyperLink>
@@ -3474,8 +3474,8 @@
 
 
                                                 </ItemTemplate>
-                                                <ItemStyle Width="150px" />
-                                                <HeaderStyle HorizontalAlign="Center" Width="150px" VerticalAlign="Top" />
+                                                <ItemStyle Width="110px" />
+                                                <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
                                         </Columns>

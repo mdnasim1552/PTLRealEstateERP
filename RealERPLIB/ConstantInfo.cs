@@ -1132,6 +1132,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2103000", "2103125", "F_21_MKT", "AdvancedSearchFilter", "", "Advanced Search Filter", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2103000", "2103126", "F_21_MKT", "RptDailyWorkStatus?", "Type=EmpWise", "Daily Work Status (Employee Wise)", "CRM", "False", "False", "False", "False" });
 
+            tblObj.Rows.Add(new Object[] { "2103000", "2103127", "F_21_MKT", "FunnelAnalysis?", "Type=Report", "Funnel Analysis - Month Wise", "CRM", "False", "False", "False", "False" });
+             
+
             //tblObj.Rows.Add(new Object[] { "3903000", "3903001", "EmpKpiEntry03?", "Type=Client", "Daily Job Execution", "My Marketing Interface(Marketing)", "False", "False", "False"});
             tblObj.Rows.Add(new Object[] { "2103000", "2102125", "F_39_MyPage", "RptEmpMonthWiseEva03?", "Type=IndEmp", "Month Wise Evaluation", "My Marketing Interface(Marketing)", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2103000", "2102126", "F_39_MyPage", "RptMIS02?", "Type=EvaonProBasis", "Evaluation on Project", "My Marketing Interface(Marketing)", "False", "False", "False" });
@@ -1390,13 +1393,13 @@ namespace RealERPLIB
 
             //24. Customer Care
             #region  CustCare
-            tblObj.Rows.Add(new Object[] { "2402000", "2402001", "F_24_CC", "CustMaintenanceWork?", "Type=Entry", "Client's Modification", "Customer Care", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "2402000", "2402002", "F_24_CC", "CustMaintenanceWork?", "Type=Check", "Client's Modification", "Customer Care", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "2402000", "2402003", "F_24_CC", "CustMaintenanceWork?", "Type=Audit", "Client's Modification", "Customer Care", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "2402000", "2402004", "F_24_CC", "CustMaintenanceWork?", "Type=Approv", "Client's Modification", "Customer Care", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2402000", "2402005", "F_24_CC", "CustMaintenanceWork?", "Type=FirstApproval", "CR First Approval", "Customer Care", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2402000", "2402006", "F_24_CC", "CustMaintenanceWork?", "Type=SecondApproval", "CR Second Approval", "Customer Care", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "2402000", "2402007", "F_24_CC", "CustMaintenanceWork?", "Type=ReqPrint", "CR Modification Print", "Customer Care", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2402000", "2402001", "F_24_CC", "CustMaintenanceWork?", "Type=Entry", "ADW Entry", "Customer Care", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2402000", "2402002", "F_24_CC", "CustMaintenanceWork?", "Type=Check", "ADW Checked", "Customer Care", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2402000", "2402003", "F_24_CC", "CustMaintenanceWork?", "Type=Audit", "ADW Third Approval (Audit)", "Customer Care", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2402000", "2402004", "F_24_CC", "CustMaintenanceWork?", "Type=Approv", "ADW Final Approval", "Customer Care", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2402000", "2402005", "F_24_CC", "CustMaintenanceWork?", "Type=FirstApproval", "ADW First Approval", "Customer Care", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2402000", "2402006", "F_24_CC", "CustMaintenanceWork?", "Type=SecondApproval", "ADW Second Approval", "Customer Care", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2402000", "2402007", "F_24_CC", "CustMaintenanceWork?", "Type=ReqPrint", "ADW Modification Print", "Customer Care", "False", "False", "False", "False" });
 
 
             tblObj.Rows.Add(new Object[] { "2402000", "2402008", "F_24_CC", "CustUtility?", "Type=Entry", "Client's Utilities", "Customer Care", "False", "False", "False", "False" });
@@ -1701,7 +1704,12 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3501000", "3501010", "F_34_Mgt", "CodeLink", "", "Code Link(BS)", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3501000", "3501011", "F_34_Mgt", "CodeLinkCf", "", "Code Link(CF)", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3501000", "3501012", "F_34_Mgt", "CodeLinkWs", "", "Code Link(WS)", "Management", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "3501000", "3501013", "F_34_Mgt", "CodeLinkCoReBa", "", "Code Link(Cost Resource Basis)", "Management", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3501000", "3501013", "F_34_Mgt", "CodeLinkCoReBa", "", "Code Link(Cost Resource Basis)", "Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3501000", "3501300", "F_34_Mgt", "AccProjectCode", "", "Project Code Book", "Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3501000", "3501310", "F_34_Mgt", "AlternativeSupvervisor", "", "Alternative Supervisor", "Management", "False", "False", "False", "False" });
+
+
+
             tblObj.Rows.Add(new Object[] { "3502000", "3502001", "F_04_Bgd", "BgdPrjAna?", "InputType=BgdSub", "Project Budget Approval", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502005", "F_04_Bgd", "BgdLevelRate?", "Type=Level", "Construction Level", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502007", "F_04_Bgd", "BgdLevelRate?", "Type=ItemLock", "Item Lock(Project)", "Management", "False", "False", "False", "False" });
@@ -1801,7 +1809,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3502000", "3502290", "F_02_Fea", "ProjectFeasibility02?", "Type=Management", "Project Feasibility 02", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502291", "F_02_Fea", "ProjectFeasibility03?", "Type=Management", "Feasibility City Development", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502292", "F_01_LPA", "LandDevProposal?", "Type=Management", "Land Development Proposal", "Management", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "3501000", "3501300", "F_34_Mgt", "AccProjectCode", "", "Project Code Book", "Management", "False", "False", "False", "False" }); ;
+           
             tblObj.Rows.Add(new Object[] { "3502000", "3502301", "F_34_Mgt", "DeletePDC", "", "Cancellation Post Dated Cheque", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502310", "F_02_Fea", "ProjFeasibilityLandDev?", "Type=Management", "Feasibility Land Development", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502320", "F_34_Mgt", "Tranlimitdate", "", "Transaction Limit Day", "Management", "False", "False", "False", "False" }); ;
@@ -7346,6 +7354,9 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000005", "18. Source Wise Leads", "F_21_MKT/RptCallCenterLead?Type=SourceWise", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000006", "19. Sales Person Wise Leads", "F_21_MKT/RptCallCenterLead?Type=SalespWise", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000007", "20. Daily Work Status (Employee Wise)", "F_21_MKT/RptDailyWorkStatus?Type=EmpWise", "", true, "" });
+
+            mnuTbl1.Rows.Add(new Object[] { "0401000008", "21. Funnel Analysis - Month Wise", "F_21_MKT/FunnelAnalysis?Type=Report", "", true, "" });
+ 
 
 
 

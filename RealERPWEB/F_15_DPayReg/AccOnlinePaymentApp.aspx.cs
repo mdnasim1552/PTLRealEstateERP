@@ -405,6 +405,7 @@ namespace RealERPWEB.F_15_DPayReg
                     string Approved = "Ok";
                     string remarks = dr["remarks"].ToString().Trim();
                     string chkapp = dr["chkapp"].ToString().Trim();
+                    string narration = this.txtNarration.Text.Trim();
 
                     if (chkapp == "False")
                     {
@@ -416,7 +417,7 @@ namespace RealERPWEB.F_15_DPayReg
                     if (chkapp == "True")
                     {
                         result = accData.UpdateTransInfo2(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "UPDATECHEQUEPTPARTY", slnum, actcode, rescode, amt.ToString(), nochq.ToString(), apppaydate, Approved, remarks, fiappdate, userid, Terminal,
-                            Sessionid, billno, spcfcod, bankcode, "", "", "", "", "", "");
+                            Sessionid, billno, spcfcod, bankcode, narration, "", "", "", "", "");
                     }
 
                     if (result == false)

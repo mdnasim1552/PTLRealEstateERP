@@ -215,16 +215,21 @@ namespace RealERPWEB.F_99_Allinterface
             string prjname = ds1.Tables[1].Rows[0]["pactdesc1"].ToString();
             string suppliername = ds1.Tables[1].Rows[0]["ssirdesc1"].ToString();
             string clndate = Convert.ToDateTime(chlandate).ToString("dd-MMM-yyyy");
+            string mrdate = Convert.ToDateTime(ds1.Tables[1].Rows[0]["mrrdat"]).ToString("dd-MMM-yyyy");
 
             // DataTable dt = ds1.Tables[0];
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_12_Inv.EClassIDCode.EClasPurMrr>();
-
             switch (comcod)
             {
                 case "3368":
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptPurMrrEntryFinlay", lst, null, null);
                     Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("txtchalanno", "Chalan No : " + ds1.Tables[1].Rows[0]["chlnno"]));
+                    mrdate = "MRR Date : " + mrdate;
+                    prjname = "Project Name : " + prjname;
+                    suppliername = "Supplier Name : " + suppliername;
+                    mrrno1 = "MRR No : " + mrrno1;
                     break;
 
                 case "3370"://CPDL
@@ -232,28 +237,34 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1.EnableExternalImages = true;
                     Rpt1.SetParameters(new ReportParameter("comadd", comadd));
                     Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                    Rpt1.SetParameters(new ReportParameter("mrrno", mrrno));
+                    Rpt1.SetParameters(new ReportParameter("mrrno", ASTUtility.CustomReqFormat(mrrno)));
                     Rpt1.SetParameters(new ReportParameter("address", address));
                     Rpt1.SetParameters(new ReportParameter("chlandate",clndate));
-                    Rpt1.SetParameters(new ReportParameter("pordar", pordar+ " , "+ orderdat));
-                    Rpt1.SetParameters(new ReportParameter("CurDate1","Date :"+ CurDate1));
+                    Rpt1.SetParameters(new ReportParameter("porno", porno));                    
+                    Rpt1.SetParameters(new ReportParameter("orderdat", orderdat));
+                    Rpt1.SetParameters(new ReportParameter("requeNo", ASTUtility.CustomReqFormat(ds1.Tables[0].Rows[0]["reqno"].ToString())));
+                    Rpt1.SetParameters(new ReportParameter("MrrRef", ds1.Tables[1].Rows[0]["mrrref"].ToString()));
+                    Rpt1.SetParameters(new ReportParameter("pordar", ASTUtility.CustomReqFormat(pordar)));
                     Rpt1.SetParameters(new ReportParameter("Note","MRR must be reached at Head Office within 2 working days of material receiving."));
-
-                  
+                    Rpt1.SetParameters(new ReportParameter("txtchalanno",  ds1.Tables[1].Rows[0]["chlnno"].ToString()));
                     break;
                 default:
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptPurMrrEntry", lst, null, null);
                     Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("txtchalanno", "Chalan No : " + ds1.Tables[1].Rows[0]["chlnno"]));
+                    mrdate = "MRR Date : " + mrdate;
+                    prjname = "Project Name : " + prjname;
+                    suppliername = "Supplier Name : " + suppliername;
+                    mrrno1 = "MRR No : " + mrrno1;
                     break;
             }
 
             Rpt1.SetParameters(new ReportParameter("companyname", comnam));
-            Rpt1.SetParameters(new ReportParameter("txtprjname", "Project Name : " + prjname));
-            Rpt1.SetParameters(new ReportParameter("txtSubName", "Supplier Name : " + suppliername));
-            Rpt1.SetParameters(new ReportParameter("txtchalanno", "Chalan No : " + ds1.Tables[1].Rows[0]["chlnno"]));
-            Rpt1.SetParameters(new ReportParameter("txtMrrno", "MRR No : " + mrrno1));
+            Rpt1.SetParameters(new ReportParameter("txtprjname", prjname));
+            Rpt1.SetParameters(new ReportParameter("txtSubName", suppliername));
+            Rpt1.SetParameters(new ReportParameter("txtMrrno", mrrno1));
             Rpt1.SetParameters(new ReportParameter("txtMrrRef", "MRR Ref : " + ds1.Tables[1].Rows[0]["mrrref"]));
-            Rpt1.SetParameters(new ReportParameter("txtDate", "MRR Date : " + Convert.ToDateTime(ds1.Tables[1].Rows[0]["mrrdat"]).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("txtDate", mrdate));
             Rpt1.SetParameters(new ReportParameter("txtQc", "Quality Certificate : " + ds1.Tables[1].Rows[0]["qcno"].ToString()));
             Rpt1.SetParameters(new ReportParameter("txtOrder", ds1.Tables[1].Rows[0]["pordref"].ToString()));
             Rpt1.SetParameters(new ReportParameter("txtpostedby", ds1.Tables[1].Rows[0]["usrnam"].ToString()));
@@ -568,23 +579,23 @@ namespace RealERPWEB.F_99_Allinterface
             }
             else
             {
-                string txtfloorno = "";
-                string txtpforused = "";
+                string txtfloorno = "", txtpforused = "", txtReqNo = "";
                 if (comcod == "1205" || comcod == "3351" || comcod == "3352")
                 {
+                    txtReqNo = dt1.Rows[0]["reqno1"].ToString();
                     txtfloorno = dt.Rows[0]["termsdesc"].ToString() + ((dt.Rows[1]["termsdesc"].ToString().Length == 0) ? "" : " , ") + dt.Rows[1]["termsdesc"].ToString(); ;
-                }
-                else
-                {
-                    txtfloorno = dt.Rows[1]["termsdesc"].ToString() + ((dt.Rows[2]["termsdesc"].ToString().Length == 0) ? "" : " , ") + dt.Rows[2]["termsdesc"].ToString(); ;
-                }
-
-                if (comcod == "1205" || comcod == "3351" || comcod == "3352")
-                {
                     txtpforused = dt.Rows[1]["termsdesc"].ToString();
+                }               
+                else if(comcod=="3370")
+                {
+                    txtReqNo = ASTUtility.CustomReqFormat(dt1.Rows[0]["reqno"].ToString());
+                    txtfloorno = dt.Rows[1]["termsdesc"].ToString() + ((dt.Rows[2]["termsdesc"].ToString().Length == 0) ? "" : " , ") + dt.Rows[2]["termsdesc"].ToString(); ;
+                    txtpforused = dt.Rows[3]["termsdesc"].ToString();
                 }
                 else
                 {
+                    txtReqNo = dt1.Rows[0]["reqno1"].ToString();
+                    txtfloorno = dt.Rows[1]["termsdesc"].ToString() + ((dt.Rows[2]["termsdesc"].ToString().Length == 0) ? "" : " , ") + dt.Rows[2]["termsdesc"].ToString(); ;
                     txtpforused = dt.Rows[3]["termsdesc"].ToString();
                 }
 
@@ -598,7 +609,7 @@ namespace RealERPWEB.F_99_Allinterface
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("txtcompanyname", comnam));
                 Rpt1.SetParameters(new ReportParameter("txtRptTitle", "Materials Purchase Requisition"));
-                Rpt1.SetParameters(new ReportParameter("txtReqNo", dt1.Rows[0]["reqno1"].ToString()));
+                Rpt1.SetParameters(new ReportParameter("txtReqNo", txtReqNo));
                 Rpt1.SetParameters(new ReportParameter("txtReqDate", Convert.ToDateTime(dt1.Rows[0]["reqdat"].ToString()).ToString("dd-MMM-yyyy")));
                 Rpt1.SetParameters(new ReportParameter("txtMrfno", dt1.Rows[0]["mrfno"].ToString()));
                 Rpt1.SetParameters(new ReportParameter("txtProjectName", dt1.Rows[0]["pactdesc"].ToString()));
@@ -1484,56 +1495,43 @@ namespace RealERPWEB.F_99_Allinterface
             {
 
                 txtSign1 = "Store In-charge";
-
                 txtSign2 = "Project Incharge";
-
                 txtSign3 = "DPM/PM (Operation)";
-
                 txtSign4 = "Procurement";
-
                 txtSign5 = "Cost & Budget";
-
                 txtSign6 = "Head Of Construction";
-
                 txtSign7 = "Approved By";
             }
 
             else if (comcod == "3332")
             {
-
-
                 txtSign1 = "S.K";
-
                 txtSign2 = "Project Incharge";
-
                 txtSign3 = "Procurement";
-
                 txtSign4 = "Cost & Budget";
-
                 txtSign5 = "Cheif Engineer";
-
                 txtSign6 = "Director";
-
                 txtSign7 = "Managing Director/Chairman";
-
             }
-
-
+            else if(comcod=="3370")
+            {
+                txtSign1 = "S.K";
+                txtSign2 = "Project Incharge";
+                txtSign3 = "DPM/PM/AGM/DGM";
+                txtSign4 = "Procurement";
+                txtSign5 = "Cost & Budget";
+                txtSign6 = "Head Of Construction";
+                txtSign7 = "Managing Director";
+                txtcrno = ASTUtility.CustomReqFormat(dt1.Rows[0]["reqno"].ToString());
+            }
             else
             {
-
                 txtSign1 = "S.K";
-
                 txtSign2 = "Project Incharge";
-
                 txtSign3 = "DPM/PM/AGM/DGM";
-
                 txtSign4 = "Procurement";
-
                 txtSign5 = "Cost & Budget";
-
                 txtSign6 = "Head Of Construction";
-
                 txtSign7 = "Managing Director";
             }
 
@@ -4156,6 +4154,8 @@ namespace RealERPWEB.F_99_Allinterface
 
                 string cperson2 = "";
 
+                string reqdat = _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
+                 
                 // Terms & Conditions Variables//
 
                 string terms1 = "", terms2 = "", terms3 = "", terms4 = "", terms5 = "", terms6 = "", terms7 = "", terms8 = "",
@@ -4484,9 +4484,9 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderEpic.rdlc";
                         break;
                     
-                    case "3370": //Epic                        
+                    case "3370": //Epic cpdl                        
                         Reportpath = "~/Report/RptPurchaseOrderCPDL.rdlc";
-                        porderno = wrkid;
+                        porderno =ASTUtility.CustomReqFormat(wrkid);
                         break;
 
                     default:
@@ -4593,6 +4593,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3370": // cpdl
                         Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
                         Rpt1.SetParameters(new ReportParameter("supemail", supemail));
+                        Rpt1.SetParameters(new ReportParameter("reqdat", reqdat));
                         break;
                     
                     case "1205": // p2p
@@ -6179,6 +6180,9 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3367":
                     PrintReq = "PrintBillEpic";
                     break;
+                case "3370":
+                    PrintReq = "PrintBillCPDL";
+                    break;
 
                 default:
                     PrintReq = "PrintBill01";
@@ -6478,6 +6482,17 @@ namespace RealERPWEB.F_99_Allinterface
                 rptbill.EnableExternalImages = true;
                 rptbill.SetParameters(new ReportParameter("IssueNo", "Issue No: " + dt.Rows[0]["lisuno2"].ToString()));
                 rptbill.SetParameters(new ReportParameter("IssueRefNo", IssueRefNo));
+
+            }
+            else if(pCompanyBill== "PrintBillCPDL")
+            {
+                 
+                rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBillCPDL", lst, null, null);
+
+                rptbill.EnableExternalImages = true;
+                rptbill.SetParameters(new ReportParameter("IssueNo", "Issue No: " + dt.Rows[0]["lisuno2"].ToString()));
+                rptbill.SetParameters(new ReportParameter("IssueRefNo", IssueRefNo));
+
 
             }
             else

@@ -303,6 +303,15 @@ namespace RealERPWEB.F_38_AI
         protected global::System.Web.UI.WebControls.Label lblDoneAnnot;
 
         /// <summary>
+        /// lbltotalassign control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbltotalassign;
+
+        /// <summary>
         /// Assigndataqty control.
         /// </summary>
         /// <remarks>
@@ -553,6 +562,15 @@ namespace RealERPWEB.F_38_AI
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
+        /// perrate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl perrate;
 
         /// <summary>
         /// Label2 control.

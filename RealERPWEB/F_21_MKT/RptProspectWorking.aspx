@@ -173,10 +173,19 @@
                                         <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
                                     </asp:TemplateField>
 
-                                     <asp:TemplateField HeaderText="Date">
+                                      <asp:TemplateField HeaderText="Generate Date">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvCreateDate" runat="server" Height="16px"
-                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "createdate")).ToString("dd-MMM-yyyy") %>'
+                                            <asp:Label ID="lblgvGenerateDate" runat="server" Height="16px"
+                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "generatedate")).ToString("dd-MMM-yyyy") %>'
+                                                Width="90px" ForeColor="Black"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+
+                                     <asp:TemplateField HeaderText="Followup Date">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvFollowupDate" runat="server" Height="16px"
+                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "followupdate")).ToString("dd-MMM-yyyy") %>'
                                                 Width="90px" ForeColor="Black"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />

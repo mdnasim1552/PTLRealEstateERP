@@ -73,7 +73,7 @@ namespace RealERPWEB.F_17_Acc
             if (ds1 == null)
                 return;
 
-            ViewState["tblgenreq"] = HiddenSameData(ds1.Tables[0]); //ds1.Tables[0];    
+            ViewState["tblgenreq"] = ds1.Tables[0]; //ds1.Tables[0];    
             this.Data_Bind();
 
         }
@@ -160,7 +160,7 @@ namespace RealERPWEB.F_17_Acc
             Rpt1.SetParameters(new ReportParameter("companyname", comnam));
             Rpt1.SetParameters(new ReportParameter("print", printFooter));
             Session["Report1"] = Rpt1;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }

@@ -705,7 +705,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Order Type">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblordertype" runat="server" Height="16px"
+                                                    <asp:Label ID="lblordertype" runat="server"  CssClass='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype")) =="Pilot" ? "btn btn-info text-white":" " %>'
                                                         Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype"))%>'
                                                         ForeColor="Black"></asp:Label>
                                                 </ItemTemplate>
@@ -2671,7 +2671,7 @@
 
                                         <asp:Label ID="Label30" runat="server">&nbsp;  Freelancing</asp:Label>
                                     </div>
-                                    <div class=" col-lg-3 col-md-3 col-sm-12">
+                                    <div class=" col-lg-3 col-md-3 col-sm-12" ID="perrate" runat="server" visible="false">
                                         <asp:Label ID="Label29" runat="server">Per Rate</asp:Label>
                                         <asp:TextBox ID="textrate" runat="server"  CssClass="form-control"></asp:TextBox>
                                     </div>

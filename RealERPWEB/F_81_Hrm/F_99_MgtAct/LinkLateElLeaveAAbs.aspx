@@ -222,7 +222,7 @@
                                     </td>
 
                                     <td>
-                                        <asp:Label ID="lrplcomm" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "lcomm"))  %>'
+                                        <asp:Label ID="lrplcomm" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "lcomm")) +" Min"  %>'
                                             Width="60px"></asp:Label>
                                     </td>
 

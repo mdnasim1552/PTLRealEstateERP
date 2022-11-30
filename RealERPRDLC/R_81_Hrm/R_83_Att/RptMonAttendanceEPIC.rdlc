@@ -641,6 +641,10 @@
           <DataField>sectionid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="seq">
+          <DataField>seq</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="siclev">
           <DataField>siclev</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -1029,7 +1033,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>MtL</Value>
+                                                <Value>Late</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
                                                   <FontWeight>Bold</FontWeight>
@@ -1740,7 +1744,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!mtl.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!late.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2055,7 +2059,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!levded.Value</Value>
+                                  <Value>=IIF(Fields!levded.Value&gt;0,"Deduction of "+ Cstr(Fields!levded.Value) +" days basic pay","")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2119,7 +2123,7 @@
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!sectionid.Value</Value>
+                      <Value>=Fields!seq.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                   <TablixMembers>

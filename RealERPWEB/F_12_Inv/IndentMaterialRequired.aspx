@@ -200,7 +200,7 @@ ForeColor="Red"></asp:RequiredFieldValidator>
 
                                             <asp:TemplateField HeaderText="Qty">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtgvissueqty" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "issueqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'></asp:TextBox>
+                                                    <asp:TextBox ID="txtgvissueqty" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "issueqty")).ToString("#,##0;(#,##0); ") %>'></asp:TextBox>
 
                                                 </ItemTemplate>
                                                 

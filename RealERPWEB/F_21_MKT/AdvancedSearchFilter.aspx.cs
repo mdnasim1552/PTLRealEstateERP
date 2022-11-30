@@ -107,12 +107,12 @@ namespace RealERPWEB.F_21_MKT
                     {
 
                         this.pnlflw.Visible = true;
-                        this.pnledit.Visible = false;
+                        this.lnkEdit.Visible = false;
                        
                     }
                     else
                     {
-                        this.pnledit.Visible = true;
+                        this.lnkEdit.Visible = true;
                         this.pnlflw.Visible = false;
                     }
                    
@@ -279,29 +279,7 @@ namespace RealERPWEB.F_21_MKT
            
 
         }
-        protected void btnqclink_Click(object sender, EventArgs e)
-         {
-            try
-            {
-
-
-                this.pnlSidebar.Visible = true; 
-                this.pnlfollowup.Visible = false;
-                this.pnlempinfo.Visible = false;
-                this.pnlflw.Visible = false;
-                this.pnlsrc.Visible = false;
-                ShowDiscussion();
-
-
-
-
-            }
-            catch (Exception exp)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
-
-            }
-        }
+        
         protected void pnlsidebarClose_Click(object sender, EventArgs e)
         {
             this.pnlSidebar.Visible = false;
@@ -426,6 +404,13 @@ namespace RealERPWEB.F_21_MKT
             ViewState["tblproject"] = ds2.Tables[2];
             ViewState["tblcompany"] = ds2.Tables[3];
             ds2.Dispose();
+        }
+        public string GetUserID()
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["usrid"].ToString());
+
         }
         private void Modal_Data_Bind()
         {
@@ -606,7 +591,7 @@ namespace RealERPWEB.F_21_MKT
                         ChkBoxLstFollow.DataSource = dv1.ToTable();
                         ChkBoxLstFollow.DataBind();
                         
-                        //  ChkBoxLstFollow.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+                          ChkBoxLstFollow.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
 
                         break;
 
@@ -775,6 +760,11 @@ namespace RealERPWEB.F_21_MKT
                         ddlVisitor.DataBind();
                         ddlVisitor.Items.Insert(0, new ListItem("None", ""));
                         ddlVisitor.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+                        if(ddlVisitor.SelectedValue == "4201006")
+                        {
+                            ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstStatus")).Enabled = false;
+                            ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
+                        }
                         break;
 
 
@@ -804,7 +794,15 @@ namespace RealERPWEB.F_21_MKT
                         ChkBoxLstStatus.DataSource = dts;
                         ChkBoxLstStatus.DataBind();
                         ChkBoxLstStatus.SelectedValue = (lstleadstatus.Length > 0 ? lstleadstatus : ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim());
+                        if(ChkBoxLstStatus.SelectedValue == "9501001")
+                        {
+                            
+                            ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstStatus")).Enabled = false;
+                            ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow")).Enabled = false;
 
+
+
+                        }
 
                         break;
 
@@ -1296,9 +1294,10 @@ namespace RealERPWEB.F_21_MKT
 
                         if (result)
                         {
-                          
+                            this.pnlsidebarClose_Click(null, null);
                             string Messagesd = "Update Successfully";
                             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
+                           
 
                         }
                         else
@@ -1316,7 +1315,7 @@ namespace RealERPWEB.F_21_MKT
 
 
                 this.clearModalField();
-
+                  
 
                 string events = hst["events"].ToString();
                 if (Convert.ToBoolean(events) == true)
@@ -1327,6 +1326,8 @@ namespace RealERPWEB.F_21_MKT
 
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }
+               
+
             }
             catch (Exception ex)
             {
@@ -4578,7 +4579,7 @@ namespace RealERPWEB.F_21_MKT
             bool result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "UPDATE_CLNTINFO", ds, null, null, clientid, Name, usrid, Phone, email, empid, maddress, active.ToString(), kpidiscu, Posteddat, CCC0);
             if (result == true)
             {
-
+                this.pnlEditProspectClose_Click(null, null);
                 string totmsg = "Updated Successfully";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + totmsg + "');", true);
 
@@ -4703,7 +4704,29 @@ namespace RealERPWEB.F_21_MKT
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
         }
+        protected void btnqclink_Click(object sender, EventArgs e)
+        {
+            try
+            {
 
+
+                this.pnlSidebar.Visible = true;
+                this.pnlfollowup.Visible = false;
+                this.pnlempinfo.Visible = false;
+                this.pnlflw.Visible = false;
+                this.pnlsrc.Visible = false;
+                ShowDiscussion();
+
+
+
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
         protected void lbtnReshedule_Click(object sender, EventArgs e)
         {
 

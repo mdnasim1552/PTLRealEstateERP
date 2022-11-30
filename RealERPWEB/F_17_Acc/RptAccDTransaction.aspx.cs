@@ -425,7 +425,9 @@ namespace RealERPWEB.F_17_Acc
                     Calltype = "RPCOMPANY02_04";
                     break;
                 default:
-                    Calltype = "RP_COMPANY_04";
+
+                    Calltype = (this.rbtnGroupRP.SelectedIndex == 0 || this.rbtnGroupRP.SelectedIndex == 1) ? "RPCOMPANYCORB_04" : "RP_COMPANY_04";
+                   
                     break;
 
             }
@@ -508,6 +510,9 @@ namespace RealERPWEB.F_17_Acc
             string CBorBoth = (this.rbtnGroupRP.SelectedIndex == 0) ? "C" : (this.rbtnGroupRP.SelectedIndex == 1) ? "B" : "";
             string net = this.chknet.Checked ? "Net" : "";
             string Calltype = this.ComReePayCallType();
+
+          
+
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_RP", Calltype, fromdate, todate, rp, CBorBoth, net, "", "", "", "");
             if (ds1 == null)
                 return;

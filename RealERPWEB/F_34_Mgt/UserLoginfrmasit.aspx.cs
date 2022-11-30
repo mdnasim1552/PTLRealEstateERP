@@ -879,26 +879,35 @@ namespace RealERPWEB.F_34_Mgt
         }
         private void ShowData()
         {
-            string comcod = this.GetComeCode();
-            string usrid = this.lblusrid.Text;
-            this.lblusrid.Text = usrid;
-            string modname = (this.ddlModuleName.SelectedValue.Trim() == "AA" ? "" : this.ddlModuleName.SelectedValue.ToString()) + "%";
-            DataSet ds4 = User.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWUSERPERFORMASITUSER", "", "", "", "", "", "", "", "", "");
-            if (ds4 == null)
+            try
             {
-                this.gvPermission.DataSource = null;
-                this.gvPermission.DataBind();
-                return;
+                string comcod = this.GetComeCode();
+                string usrid = this.lblusrid.Text;
+                this.lblusrid.Text = usrid;
+                string modname = (this.ddlModuleName.SelectedValue.Trim() == "AA" ? "" : this.ddlModuleName.SelectedValue.ToString()) + "%";
+                DataSet ds4 = User.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWUSERPERFORMASITUSER", "", "", "", "", "", "", "", "", "");
+                if (ds4 == null)
+                {
+                    this.gvPermission.DataSource = null;
+                    this.gvPermission.DataBind();
+                    return;
+                }
+
+
+                DataView dv = ds4.Tables[0].DefaultView;
+                dv.RowFilter = "frmid like '" + modname + "'";
+                DataTable dt2 = dv.ToTable();
+
+
+                Session["tblusrper"] = this.HiddenSameData(dt2);
+                this.ShowPer();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
+
             }
 
-
-            DataView dv = ds4.Tables[0].DefaultView;
-            dv.RowFilter = "frmid like '" + modname + "'";
-            DataTable dt2 = dv.ToTable();
-
-
-            Session["tblusrper"] = this.HiddenSameData(dt2);
-            this.ShowPer();
 
 
 
