@@ -473,21 +473,36 @@
                                         <asp:Label ID="lblNomineeDetails" runat="server" CssClass=" inputlblVal inputlblvalstyle" Style="width: 300px;" Text="Nominee Details"></asp:Label>
                                     </div>
 
-                                    <%--<div class="col-md-4">
+                                    <div class="col-md-4">
                                         <fieldset class="scheduler-border fieldset_A">
                                             <div class="form-horizontal">
                                                 <div class="form-group">
                                                     <asp:Label ID="lblNomineeImg" runat="server" CssClass="lblTxt lblName text-warning">Upload Image</asp:Label>
-                                                    <asp:Image ID="Image2" runat="server" Height="100px" Width="100px" />
+                                                    <asp:Image ID="ImageNominee" runat="server" Height="100px" Width="100px" />
                                                     <div>
-                                                        <asp:FileUpload ID="btnUploadNominee" runat="server" Height="26px"
-                                                            ToolTip="Employee Image" onchange="submitform();" Width="216px" />
+                                                        <asp:FileUpload ID="imgUploadNominee" runat="server" Height="26px"
+                                                            ToolTip="Nominee Image" onchange="submitform();" Width="216px" />
                                                         <asp:Button ID="btnUploadNominee" CssClass="btn btn-success" runat="server" Text="Upload" OnClick="btnUploadNominee_Click" />
                                                     </div>
                                                 </div>
                                             </div>
                                         </fieldset>
-                                    </div>--%>
+                                    </div>
+                                     <div class="col-md-4">
+                                        <fieldset class="scheduler-border fieldset_A">
+                                            <div class="form-horizontal">
+                                                <div class="form-group">
+                                                    <asp:Label ID="Label6" runat="server" CssClass="lblTxt lblName text-warning">Upload Image</asp:Label>
+                                                    <asp:Image ID="ImageCorrespondent" runat="server" Height="100px" Width="100px" />
+                                                    <div>
+                                                        <asp:FileUpload ID="imgUploadCorrespondent" runat="server" Height="26px"
+                                                            ToolTip="Correspondent Image" onchange="submitform();" Width="216px" />
+                                                        <asp:Button ID="btnUploadCorrespondent" CssClass="btn btn-success" runat="server" Text="Upload" OnClick="btnUploadCorrespondent_Click" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
 
                                     <asp:GridView ID="GridViewNominee" runat="server" AutoGenerateColumns="False"
                                         ShowFooter="True" Width="720px" CssClass=" table-striped table-hover table-bordered grvContentarea">

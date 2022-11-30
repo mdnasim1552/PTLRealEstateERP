@@ -77,7 +77,35 @@ namespace RealERPWEB.F_22_Sal
                 Session["imgUrl2"] = Url;
                 this.SaveValueImage(gcode, Url);
             }
+
+            if (imgUploadNominee.HasFile)
+            {
+                string pactcode = this.ddlProjectName.SelectedValue.ToString();
+                string usircode = this.ddlCustName.SelectedValue.ToString();
+                string extension = Path.GetExtension(imgUploadNominee.PostedFile.FileName);
+                string random = ASTUtility.RandNumber(1, 99999).ToString();
+                imgUploadNominee.SaveAs(Server.MapPath("~/Upload/CUSTOMER/") + pactcode + usircode + random + extension);
+
+                Url = "~/Upload/CUSTOMER/" + pactcode + usircode + random + extension;
+                ImageNominee.ImageUrl = Url;
+                Session["imgNomineeUrl"] = Url;
+            }
+
+            if (imgUploadCorrespondent.HasFile)
+            {
+                string pactcode = this.ddlProjectName.SelectedValue.ToString();
+                string usircode = this.ddlCustName.SelectedValue.ToString();
+                string extension = Path.GetExtension(imgUploadCorrespondent.PostedFile.FileName);
+                string random = ASTUtility.RandNumber(1, 99999).ToString();
+                imgUploadCorrespondent.SaveAs(Server.MapPath("~/Upload/CUSTOMER/") + pactcode + usircode + random + extension);
+
+                Url = "~/Upload/CUSTOMER/" + pactcode + usircode + random + extension;
+                ImageCorrespondent.ImageUrl = Url;
+                Session["imgCorrespondentUrl"] = Url;
+            }
         }
+
+
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -98,7 +126,7 @@ namespace RealERPWEB.F_22_Sal
                DataTable dt1 = (DataTable)Session["tblcustinfo"];
                 string applicationDate = (dt1.Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(dt1.Rows[0]["appdate"]).ToString("dd-MMM-yyyy");
 
-                DataSet ds = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "MAXCUTOMERNUMBER", applicationDate, "", "", "", "", "", "", "", "");
+                DataSet ds = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT_RND", "MAXCUTOMERNUMBER", applicationDate, "", "", "", "", "", "", "", "");
                 DataTable dt = ds.Tables[0];
                 this.txtCustmerNumber.Text = (dt.Rows.Count) == 0 ? "" : dt.Rows[0]["customerno"].ToString();
                 this.txtCustmerNumber.Enabled = false;
@@ -116,7 +144,7 @@ namespace RealERPWEB.F_22_Sal
             {
                 string comcod = this.GetCompCode();
                 string txtSProject = "%" + this.txtSrcProject.Text.Trim() + "%";
-                DataSet ds1 = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "GETPROJECTNAME", txtSProject, "", "", "", "", "", "", "", "");
+                DataSet ds1 = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT_RND", "GETPROJECTNAME", txtSProject, "", "", "", "", "", "", "", "");
                 this.ddlProjectName.DataTextField = "actdesc";
                 this.ddlProjectName.DataValueField = "actcode";
                 this.ddlProjectName.DataSource = ds1.Tables[0];
@@ -139,7 +167,7 @@ namespace RealERPWEB.F_22_Sal
                 string comcod = this.GetCompCode();
                 string pactcode = this.ddlProjectName.SelectedValue.ToString();
                 string txtSProject = "%" + this.txtSrcCustomer.Text.Trim() + "%";
-                DataSet ds2 = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "DETAILSIRINFINFORMATION", pactcode, txtSProject, "", "", "", "", "", "", "");
+                DataSet ds2 = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT_RND", "DETAILSIRINFINFORMATION", pactcode, txtSProject, "", "", "", "", "", "", "");
                 this.ddlCustName.DataTextField = "udesc";
                 this.ddlCustName.DataValueField = "usircode";
                 this.ddlCustName.DataSource = ds2.Tables[0];
@@ -203,7 +231,7 @@ namespace RealERPWEB.F_22_Sal
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
             string custid = this.ddlCustName.SelectedValue.ToString();
 
-            DataSet ds2 = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "GETBOOKINGAPPLICATION", pactcode, custid, "", "", "", "", "", "", "");
+            DataSet ds2 = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT_RND", "GETBOOKINGAPPLICATION", pactcode, custid, "", "", "", "", "", "", "");
             if (ds2 == null)
             {
                 this.gvProjectInfo.DataSource = null;
@@ -226,6 +254,9 @@ namespace RealERPWEB.F_22_Sal
             DataTable dt = ds2.Tables[2];
 
             this.EmpImg.ImageUrl = (dt.Rows.Count) == 0 ? "" : dt.Rows[0]["custimg"].ToString();
+            this.ImageNominee.ImageUrl = (dt.Rows.Count) == 0 ? "" : dt.Rows[0]["nomineeimg"].ToString();
+            this.ImageCorrespondent.ImageUrl = (dt.Rows.Count) == 0 ? "" : dt.Rows[0]["correspondentimg"].ToString();
+
             //  appdate, bookamt, bankname, bbranch, paydate, intavail, paymode
             this.txtdate.Text = (dt.Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(dt.Rows[0]["appdate"]).ToString("dd-MMM-yyyy");
             this.TextBookingAmt.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["bookamt"]).ToString("#,##0;(#,##0); ");
@@ -626,6 +657,8 @@ namespace RealERPWEB.F_22_Sal
 
 
             string custimg = new Uri(Server.MapPath(dt2.Rows[0]["custimg"].ToString())).AbsoluteUri;
+            string nomineeimg = new Uri(Server.MapPath(dt2.Rows[0]["nomineeimg"].ToString())).AbsoluteUri;
+            string correspondentimg = new Uri(Server.MapPath(dt2.Rows[0]["correspondentimg"].ToString())).AbsoluteUri;
 
             double inword = Convert.ToDouble(dt2.Rows[0]["bookamt"]);
 
@@ -666,6 +699,9 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("bookingno", dt2.Rows[0]["bookingno"].ToString()));
             Rpt1.SetParameters(new ReportParameter("projectName", projectName));
             Rpt1.SetParameters(new ReportParameter("custimg", custimg));
+            Rpt1.SetParameters(new ReportParameter("nomineeimg", nomineeimg));
+            Rpt1.SetParameters(new ReportParameter("correspondentimg", correspondentimg));
+
             Rpt1.SetParameters(new ReportParameter("propertyaddress", dt3.Rows[0]["propertyAddress"].ToString()));
             Rpt1.SetParameters(new ReportParameter("dateforapplicant", Convert.ToDateTime(dt2.Rows[0]["dateforapplicant"]).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("datefornominee", Convert.ToDateTime(dt4.Rows[0]["datefornominee"]).ToString("dd-MMM-yyyy")));
@@ -791,7 +827,7 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-            bool result = SalData.UpdateXmlTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "INSORUPDATECUSTAPPINF", ds1, null, null, pactcode, usircode, appdate, bookingamt, bankname, branch, bookdate, inttoavailloan, modeofpay, chequeno, customerMaxNo, InstallAmtPerMonth, NoofTotalInstall);
+            bool result = SalData.UpdateXmlTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT_RND", "INSORUPDATECUSTAPPINF", ds1, null, null, pactcode, usircode, appdate, bookingamt, bankname, branch, bookdate, inttoavailloan, modeofpay, chequeno, customerMaxNo, InstallAmtPerMonth, NoofTotalInstall);
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = SalData.ErrorObject["Msg"].ToString();
@@ -841,14 +877,14 @@ namespace RealERPWEB.F_22_Sal
                 ////Save the Image File in Folder.
                 //imgFileUpload.PostedFile.SaveAs(Server.MapPath(filePath));
                 string imgurl = Session["imgUrl"].ToString();
-                bool result = SalData.UpdateTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "INSORUPDATECUSTIMG", pactcode,
+                bool result = SalData.UpdateTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT_RND", "INSORUPDATECUSTIMG", pactcode,
                     usircode, imgurl);
 
                 if (result == true)
                 {
                     //this.lblMesg.Text = " Successfully Updated ";
                     //this.LoadImg();
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Uploaded Successfully";
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
                 }
@@ -859,6 +895,120 @@ namespace RealERPWEB.F_22_Sal
             }
 
         }
+
+
+        protected void btnUploadNominee_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string comcod = this.GetCompCode();
+                //DataTable dt = (DataTable)ViewState["tblimages"];
+                //string filename = System.IO.Path.GetFileName (imgFileUpload.FileName);
+
+                //string pactcode = "";
+                //string usircode = "";
+                //if (imgFileUpload.HasFile)
+                //{
+                //    pactcode = this.ddlProjectName.SelectedValue.ToString ();
+                //    usircode = this.ddlCustName.SelectedValue.ToString ();
+
+                //    //string holder = this.ddlimgperson.SelectedValue.ToString ();
+
+                //    string extension = Path.GetExtension (imgFileUpload.PostedFile.FileName);
+                //    string random = ASTUtility.RandNumber (1, 99999).ToString ();
+                //    imgFileUpload.SaveAs (Server.MapPath ("~/Upload/CUSTOMER/") + pactcode + usircode + random + extension);
+
+                //    Url = "~/Upload/CUSTOMER/" + pactcode + usircode + random + extension;
+
+                //}
+
+                string pactcode = this.ddlProjectName.SelectedValue.ToString();
+                string usircode = this.ddlCustName.SelectedValue.ToString();
+                //Extract Image File Name.
+                //string fileName = Path.GetFileName(imgFileUpload.PostedFile.FileName);
+
+                ////Set the Image File Path.
+                //string filePath = "~/Upload/CUSTOMER/" + fileName;
+
+                ////Save the Image File in Folder.
+                //imgFileUpload.PostedFile.SaveAs(Server.MapPath(filePath));
+                string imgurl = Session["imgNomineeUrl"].ToString();
+                bool result = SalData.UpdateTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT_RND", "INSORUPDATENOMINEEIMG", pactcode,
+                    usircode, imgurl);
+
+                if (result == true)
+                {
+                    //this.lblMesg.Text = " Successfully Updated ";
+                    //this.LoadImg();
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Uploaded Successfully";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
+
+        protected void btnUploadCorrespondent_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string comcod = this.GetCompCode();
+                //DataTable dt = (DataTable)ViewState["tblimages"];
+                //string filename = System.IO.Path.GetFileName (imgFileUpload.FileName);
+
+                //string pactcode = "";
+                //string usircode = "";
+                //if (imgFileUpload.HasFile)
+                //{
+                //    pactcode = this.ddlProjectName.SelectedValue.ToString ();
+                //    usircode = this.ddlCustName.SelectedValue.ToString ();
+
+                //    //string holder = this.ddlimgperson.SelectedValue.ToString ();
+
+                //    string extension = Path.GetExtension (imgFileUpload.PostedFile.FileName);
+                //    string random = ASTUtility.RandNumber (1, 99999).ToString ();
+                //    imgFileUpload.SaveAs (Server.MapPath ("~/Upload/CUSTOMER/") + pactcode + usircode + random + extension);
+
+                //    Url = "~/Upload/CUSTOMER/" + pactcode + usircode + random + extension;
+
+                //}
+
+                string pactcode = this.ddlProjectName.SelectedValue.ToString();
+                string usircode = this.ddlCustName.SelectedValue.ToString();
+                //Extract Image File Name.
+                //string fileName = Path.GetFileName(imgFileUpload.PostedFile.FileName);
+
+                ////Set the Image File Path.
+                //string filePath = "~/Upload/CUSTOMER/" + fileName;
+
+                ////Save the Image File in Folder.
+                //imgFileUpload.PostedFile.SaveAs(Server.MapPath(filePath));
+                string imgurl = Session["imgCorrespondentUrl"].ToString();
+                bool result = SalData.UpdateTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT_RND", "INSORUPDATECORRESPONDENTIMG", pactcode,
+                    usircode, imgurl);
+
+                if (result == true)
+                {
+                    //this.lblMesg.Text = " Successfully Updated ";
+                    //this.LoadImg();
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Uploaded Successfully";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+
+
+
 
 
         protected void lnkbtnImg_Click(object sender, EventArgs e)
@@ -949,6 +1099,8 @@ namespace RealERPWEB.F_22_Sal
             this.Data_BindPriceDetail();
         }
 
+       
+
 
         //private void LoadImg()
         //{
@@ -956,7 +1108,7 @@ namespace RealERPWEB.F_22_Sal
         //    string pactcode = this.ddlProjectName.SelectedValue.ToString ();
         //    string usircode = this.ddlCustName.SelectedValue.ToString ();
 
-        //    DataSet dt = SalData.GetTransInfo (comcod, "SP_ENTRY_DUMMYSALSMGT", "GETCUSIMG", pactcode, usircode);
+        //    DataSet dt = SalData.GetTransInfo (comcod, "SP_ENTRY_DUMMYSALSMGT_RND", "GETCUSIMG", pactcode, usircode);
         //}
     }
 }
