@@ -103,6 +103,7 @@ namespace RealERPWEB.F_22_Sal
                 ImageCorrespondent.ImageUrl = Url;
                 Session["imgCorrespondentUrl"] = Url;
             }
+
         }
 
 
@@ -613,6 +614,60 @@ namespace RealERPWEB.F_22_Sal
         }
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
+
+            if (this.saleDeclaration.Checked)
+            {
+                this.PrintSaleDeclaration();
+            }
+            else {
+                this.PrintBookingApplication();
+            }
+        }
+
+        private void PrintSaleDeclaration() {
+            this.ShowData();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+
+            string comadd1 = "81 S S Khaled Road, Jamal Khan, Chattogram. Phone: +8802333354442, 02333354443, 02333351443";
+
+            string comcod = this.GetCompCode();
+
+            string modeofpay = this.cblpaytype.SelectedValue.ToString();
+            string projectName = this.ddlProjectName.SelectedItem.Text;
+            DataTable dt2 = (DataTable)Session["tblcustinfo"];
+            DataTable dt3 = (DataTable)Session["tblprice"];
+
+            
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RDLCAccountSetup.GetLocalReport("R_22_Sal.RptBookingApp2", "", "", "");
+
+            Rpt1.SetParameters(new ReportParameter("enrolmentdate", Convert.ToDateTime(dt2.Rows[0]["appdate"]).ToString("ddMMyyyy")));
+            Rpt1.SetParameters(new ReportParameter("customerno", dt2.Rows[0]["customerno"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("bookingno", dt2.Rows[0]["bookingno"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("customername", dt2.Rows[0]["fullname"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("contactno", dt2.Rows[0]["mobilenum"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("address", dt2.Rows[0]["presentaddr"].ToString()));
+
+            Rpt1.SetParameters(new ReportParameter("propertyname", projectName));
+            Rpt1.SetParameters(new ReportParameter("floor", dt2.Rows[0]["floorr"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("unit", dt2.Rows[0]["parkingLevel"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("size", dt2.Rows[0]["size"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("propertyaddress", dt3.Rows[0]["propertyAddress"].ToString()));
+
+
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+        }
+
+
+        private void PrintBookingApplication() {
             this.ShowData();
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comnam = hst["comnam"].ToString();
@@ -730,8 +785,8 @@ namespace RealERPWEB.F_22_Sal
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-        }
 
+        }
         protected void lUpdatInfo_Click(object sender, EventArgs e)
         {
 
