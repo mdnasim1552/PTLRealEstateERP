@@ -123,7 +123,7 @@
                                 <asp:Label ID="lblCurDate" runat="server" Text="Req.Date"></asp:Label>
                                 <asp:TextBox ID="txtCurReqDate" runat="server" CssClass="form-control" AutoPostBack="true" AutoCompleteType="Disabled"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txtCurReqDate_CalendarExtender" runat="server" Enabled="True"
-                                    Format="dd-MMM-yyyy" TargetControlID="txtCurReqDate"></cc1:CalendarExtender>
+                                    Format="dd.MM.yyyy" TargetControlID="txtCurReqDate"></cc1:CalendarExtender>
                             </div>
                         </div>
                         <div class="col-md-2">
