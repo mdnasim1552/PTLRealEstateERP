@@ -255,6 +255,21 @@
                             </ItemTemplate>
                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                         </asp:TemplateField>
+
+
+                        <asp:TemplateField HeaderText="" Visible="false">
+                            <ItemTemplate>
+
+                                <asp:LinkButton ID="btnDelbill" OnClick="btnDelbill_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs" ToolTip="Delete Bill Checked">
+                                    
+                                                        <i style="color:red" class="fa  fa-trash" aria-hidden="true"></i> </asp:LinkButton>
+                            </ItemTemplate>
+                            <ItemStyle Width="25px" />
+                            <HeaderStyle HorizontalAlign="Center" Width="25px" VerticalAlign="Top" />
+                            <ItemStyle HorizontalAlign="Center" />
+                        </asp:TemplateField>
+
+
                         <asp:TemplateField HeaderText="Issue No1" Visible="false">
                             <ItemTemplate>
                                 <asp:Label ID="lgcIsuno1" runat="server"
@@ -346,6 +361,17 @@
                         </asp:TemplateField>
 
 
+                        <asp:TemplateField HeaderText="Budgeted Qty" Visible="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lblgvbgdqty" runat="server"
+                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdqty")).ToString("#,##0.00;-#,##0.00; ") %>'
+                                    Width="60px" Style="text-align: right"></asp:Label>
+                            </ItemTemplate>
+                            <ItemStyle HorizontalAlign="right" />
+                        </asp:TemplateField>
+
+
+
                         <asp:TemplateField HeaderText="Budgeted Rate">
                             <ItemTemplate>
                                 <asp:Label ID="lblschrate" runat="server"
@@ -354,6 +380,17 @@
                             </ItemTemplate>
                             <ItemStyle HorizontalAlign="right" />
                         </asp:TemplateField>
+
+
+                        <asp:TemplateField HeaderText="Bal.Qty" Visible="false">
+                            <ItemTemplate>
+                                <asp:Label ID="lblbalqty" runat="server"
+                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balqty")).ToString("#,##0.00;-#,##0.00; ") %>'
+                                    Width="65px" Style="text-align: right"></asp:Label>
+                            </ItemTemplate>
+                            <ItemStyle HorizontalAlign="right" />
+                        </asp:TemplateField>
+
 
 
                         <asp:TemplateField HeaderText="Issued % on Budget">
@@ -547,8 +584,12 @@
                                         Text="Net Total:" CssClass=" smLbl_to"></asp:Label>
 
                                     <asp:Label ID="lblvalnettotal" runat="server" CssClass="smLbl_to" Style="text-align: right; color: blue;"></asp:Label>
-                                </div>
 
+                                    <a href="<%=this.ResolveUrl ("~/F_09_PImp/RptConTractorBillAll")%>" target="_blank" class="btn btn-info btn-sm" style="margin-left: 10px; font-weight: bold; font-size: 14px;">Details<span class="fa fa-history"></span></a>
+
+
+
+                                </div>
                             </div>
 
                             <div class="form-group">
@@ -567,8 +608,6 @@
                                 </div>
 
                             </div>
-
-
                         </div>
 
 
