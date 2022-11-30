@@ -2434,6 +2434,22 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
+                                        <asp:TemplateField HeaderText="Budgeted Sales </br> Amount ">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvmktbgdsales" runat="server" Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdsalamt")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="95px"></asp:Label>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFbgdsales" runat="server" Font-Bold="True" Font-Size="12px"
+                                                    ForeColor="#000" Style="text-align: right" Width="95px"></asp:Label>
+                                            </FooterTemplate>
+
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Acutual </br>Sales Qty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvmktactualqty" runat="server" Style="text-align: right"
@@ -2452,22 +2468,8 @@
 
                                         
 
-                                        <asp:TemplateField HeaderText="Budgeted Sales ">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lgvmktbgdsales" runat="server" Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdsalamt")).ToString("#,##0;(#,##0); ") %>'
-                                                    Width="95px"></asp:Label>
-                                            </ItemTemplate>
-                                            <FooterTemplate>
-                                                <asp:Label ID="lgvFbgdsales" runat="server" Font-Bold="True" Font-Size="12px"
-                                                    ForeColor="#000" Style="text-align: right" Width="95px"></asp:Label>
-                                            </FooterTemplate>
-
-                                            <ItemStyle HorizontalAlign="Right" />
-                                            <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Acutal Sales ">
+                                        
+                                        <asp:TemplateField HeaderText="Acutal Sales </br> Amount ">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvmktactalsales" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "acsalamt")).ToString("#,##0;(#,##0); ") %>'
@@ -2483,7 +2485,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Acutal Collection  ">
+                                         <asp:TemplateField HeaderText="Acutal Collection">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvmktacoll" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tcollamt")).ToString("#,##0;(#,##0); ") %>'
