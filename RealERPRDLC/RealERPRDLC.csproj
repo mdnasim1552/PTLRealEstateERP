@@ -809,6 +809,7 @@
     <EmbeddedResource Include="R_21_MKT\RptProspectWorking.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptSourceWiseLeads.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptYearlySales.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptSaleDeclaration.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalesOpening.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptAccSumCustPayStatus.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptAccSummaryInflow.rdlc" />
