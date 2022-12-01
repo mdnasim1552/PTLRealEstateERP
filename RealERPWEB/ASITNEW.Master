@@ -35,6 +35,7 @@
         <%: Scripts.Render("~/bundles/Counter") %>
         <%: Scripts.Render("~/bundles/highchart") %>
         <%: Scripts.Render("~/bundles/flatpickr") %>
+        <%: Scripts.Render("~/bundles/autocomplete") %>
         
         
     </asp:PlaceHolder>
@@ -350,6 +351,7 @@
                 <asp:ScriptReference Path="~/tinymce/tinymce.min.js" />   
                <asp:ScriptReference Path="~/Scripts/select2.min.js" />
                <asp:ScriptReference Path="~/Scripts/jquery.keynavigation.js" />
+               <asp:ScriptReference Path="~/Scripts/jquery.autocomplete.js" />
                 --%>
             </Scripts>
 
