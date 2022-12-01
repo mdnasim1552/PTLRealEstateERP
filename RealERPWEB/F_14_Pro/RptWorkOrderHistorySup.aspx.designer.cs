@@ -33,33 +33,6 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// lblAcchead control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAcchead;
-
-        /// <summary>
-        /// imgbtnFindSupplier control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton imgbtnFindSupplier;
-
-        /// <summary>
-        /// ddlSupplierName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSupplierName;
-
-        /// <summary>
         /// project control.
         /// </summary>
         /// <remarks>
@@ -87,13 +60,31 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.DropDownList ddlprojectname;
 
         /// <summary>
-        /// lnkbtnOk control.
+        /// lblAcchead control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnOk;
+        protected global::System.Web.UI.WebControls.Label lblAcchead;
+
+        /// <summary>
+        /// imgbtnFindSupplier control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton imgbtnFindSupplier;
+
+        /// <summary>
+        /// ddlSupplierName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlSupplierName;
 
         /// <summary>
         /// lbldateRange control.
@@ -148,6 +139,15 @@ namespace RealERPWEB.F_14_Pro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender txttodate_CalendarExtender;
+
+        /// <summary>
+        /// lnkbtnOk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnOk;
 
         /// <summary>
         /// lblPage control.
@@ -247,5 +247,23 @@ namespace RealERPWEB.F_14_Pro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvWorkOrdHisRes;
+
+        /// <summary>
+        /// ViewOrderVsSupplier control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View ViewOrderVsSupplier;
+
+        /// <summary>
+        /// gv_OrderVsSupplier control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_OrderVsSupplier;
     }
 }

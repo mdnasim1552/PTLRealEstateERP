@@ -594,7 +594,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1403000", "1403263", "F_14_Pro", "RptMrfDeleteLog", "", "Mrf Delete Log Report", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1403000", "1403264", "F_14_Pro", "RptSupAdvanceDetails", "", "Supplier Advance Details", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1403000", "1403265", "F_14_Pro", "RptDateWiseBill", "", "Supplier Date Wise Bill", "Procurement", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "1403000", "1403266", "F_14_Pro", "PoMrrBillStatus", "", "POMRR&BillStatus", "Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1403000", "1403266", "F_14_Pro", "PoMrrBillStatus", "", "PO MRR & Bill Status", "Procurement", "False", "False", "False", "False" });
 
 
 

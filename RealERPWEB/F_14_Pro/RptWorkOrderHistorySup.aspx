@@ -8,7 +8,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <style>
-        .chzn-drop {
+       /* .chzn-drop {
             width: 100% !important;
         }
 
@@ -20,7 +20,7 @@
         .chzn-container-single .chzn-single {
             height: 28px !important;
             line-height: 28px !important;
-        }
+        }*/
     </style>
 
     <script type="text/javascript" language="javascript">
@@ -102,7 +102,14 @@
             <div class="card mt-3">
                 <div class="card-header well">
                     <div class="row">
-                        <div class="col-md-3 ">
+                        <div class="col-md-2" runat="server" ID="project" visible="false" >
+                            <div class="form-group">
+                                <asp:Label ID="lblproject" runat="server" CssClass="lblTxt lblName" Text="Peoject Name"></asp:Label>
+                                <asp:DropDownList ID="ddlprojectname" runat="server" CssClass="chzn-select form-control  ">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-md-2 ">
                             <div class="form-group">
                                 <asp:Label ID="lblAcchead" runat="server" CssClass="lblTxt lblName" Text="Supplier Name">
                                     <asp:LinkButton ID="imgbtnFindSupplier" runat="server" OnClick="imgbtnFindSupplier_Click"><span class="fa fa-search"> </span></asp:LinkButton>
@@ -111,25 +118,8 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
-
-
-                        <div class="col-md-3" runat="server" id="project" visible="false">
-                            <div class="form-group">
-                                <asp:Label ID="lblproject" runat="server" CssClass="lblTxt lblName" Text="Peoject Name"></asp:Label>
-                                <asp:DropDownList ID="ddlprojectname" runat="server" CssClass="chzn-select form-control  ">
-                                </asp:DropDownList>
-                            </div>
-                        </div>
-
-                        <div class="col-md-3 mt-3">
-                            <div class="form-group">
-                                <asp:LinkButton ID="lnkbtnOk" runat="server" OnClick="lnkbtnOk_Click" CssClass="btn btn-primary btn-sm">Ok</asp:LinkButton>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2 ">
+                                                
+                            <div class="col-md-2 ">
                             <div class="form-group">
                                 <asp:Label ID="lbldateRange" runat="server" CssClass="lblTxt lblName" Text="Date"></asp:Label>
                                 <asp:TextBox ID="txtFDate" runat="server" CssClass="form-control"></asp:TextBox>
@@ -146,6 +136,15 @@
 
                             </div>
                         </div>
+                        <div class="col-md-1 mt-4">
+                            <div class="form-group">
+                                <asp:LinkButton ID="lnkbtnOk" runat="server" OnClick="lnkbtnOk_Click" CssClass="btn btn-primary btn-sm">Ok</asp:LinkButton>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                    
 
                         <div class="col-md-2 ">
                             <div class="form-group">
@@ -411,19 +410,23 @@
                         </asp:View>
                         <asp:View ID="ViewWorkHisRes" runat="server">
                             <div class="row">
-                                <div class="form-group">
+                                
                                     <div class="col-md-3 ">
+                                         <div class="form-group">
                                         <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName" Text="Resource Code">
                                             <asp:LinkButton ID="ImgbtnSrchRes" runat="server" OnClick="ImgbtnSrchRes_Click"><span class=" fa fa-search"> </span></asp:LinkButton>
                                         </asp:Label>
-                                        <asp:TextBox ID="txtResCode" runat="server" AutoCompleteType="Disabled" CssClass="inputtextbox"></asp:TextBox>
+                                        <asp:TextBox ID="txtResCode" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                                     </div>
+                                        </div>
 
-                                    <div class="col-md-4 ">
-                                        <asp:DropDownList ID="ddlResoName" runat="server" CssClass="form-control inputTxt">
+                                    <div class="col-md-3 mt-3 ">
+                                         <div class="form-group">
+                                        <asp:DropDownList ID="ddlResoName" runat="server" CssClass="chzn-select form-control">
                                         </asp:DropDownList>
                                     </div>
-                                </div>
+                                        </div>
+                                
                             </div>
 
 
@@ -680,6 +683,26 @@
                             </asp:GridView>
 
 
+                        </asp:View>
+
+                        <asp:View ID="ViewOrderVsSupplier" runat="server" >
+                            <asp:GridView ID="gv_OrderVsSupplier" runat="server" AllowPaging="True"
+                                AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                ShowFooter="True"
+                                Width="100%"
+                                OnRowDataBound="WorkOrdHisSup_RowDataBound">
+                                 <RowStyle />
+                                <Columns>
+
+
+                                </Columns>
+                                <RowStyle />
+                                 <FooterStyle CssClass="grvFooter" />                              
+                               
+                                <PagerStyle CssClass="gvPagination" />
+                                <HeaderStyle CssClass="grvHeader" />
+
+                            </asp:GridView>
                         </asp:View>
                     </asp:MultiView>
                 </div>
