@@ -44,8 +44,7 @@
                   <TextRun>
                     <Value>The Manager</Value>
                     <Style>
-                      <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontFamily>calibri</FontFamily>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -77,8 +76,7 @@
                   <TextRun>
                     <Value>Jamal Khan Branch</Value>
                     <Style>
-                      <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontFamily>calibri</FontFamily>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -111,8 +109,7 @@
                   <TextRun>
                     <Value>=Parameters!subject.Value</Value>
                     <Style>
-                      <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontFamily>calibri</FontFamily>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -146,8 +143,7 @@
                   <TextRun>
                     <Value>Dear Sir,</Value>
                     <Style>
-                      <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontFamily>calibri</FontFamily>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -180,8 +176,7 @@
                   <TextRun>
                     <Value>=Parameters!Det1.Value</Value>
                     <Style>
-                      <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontFamily>calibri</FontFamily>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -214,8 +209,7 @@
                   <TextRun>
                     <Value>=Parameters!Det2.Value</Value>
                     <Style>
-                      <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontFamily>calibri</FontFamily>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -248,8 +242,7 @@
                   <TextRun>
                     <Value>=Parameters!Date.Value</Value>
                     <Style>
-                      <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontFamily>calibri</FontFamily>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -280,8 +273,7 @@
                   <TextRun>
                     <Value>=Parameters!Attn.Value</Value>
                     <Style>
-                      <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontFamily>calibri</FontFamily>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -313,8 +305,7 @@
                   <TextRun>
                     <Value>=Parameters!Bank.Value</Value>
                     <Style>
-                      <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontFamily>calibri</FontFamily>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -347,8 +338,7 @@
                   <TextRun>
                     <Value>Thanking You,</Value>
                     <Style>
-                      <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontFamily>calibri</FontFamily>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -381,8 +371,7 @@
                   <TextRun>
                     <Value>Your Faithfully</Value>
                     <Style>
-                      <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontFamily>calibri</FontFamily>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -407,18 +396,16 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox40">
+          <Textbox Name="Textbox41">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>(Engr. Iftekhar Hosen)
-Managing Director &amp; CEO</Value>
+                    <Value>Managing Director &amp; CEO</Value>
                     <Style>
-                      <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontFamily>calibri</FontFamily>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -427,13 +414,66 @@ Managing Director &amp; CEO</Value>
                   <TextAlign>Left</TextAlign>
                 </Style>
               </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox28</rd:DefaultName>
+            <Top>4.14097in</Top>
+            <Height>0.23958in</Height>
+            <Width>1.97917in</Width>
+            <ZIndex>11</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox42">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
                     <Value>CA Property Development Ltd.(CPDL)</Value>
                     <Style>
-                      <FontFamily>Times New Roman</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontFamily>calibri</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox28</rd:DefaultName>
+            <Top>4.38055in</Top>
+            <Height>0.23958in</Height>
+            <Width>2.30209in</Width>
+            <ZIndex>12</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox44">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>(Engr. Iftekhar Hosen)</Value>
+                    <Style>
+                      <FontFamily>calibri</FontFamily>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -445,9 +485,9 @@ Managing Director &amp; CEO</Value>
             </Paragraphs>
             <rd:DefaultName>Textbox28</rd:DefaultName>
             <Top>3.90139in</Top>
-            <Height>0.82291in</Height>
-            <Width>3.09375in</Width>
-            <ZIndex>11</ZIndex>
+            <Height>0.23958in</Height>
+            <Width>2.30209in</Width>
+            <ZIndex>13</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -476,7 +516,7 @@ Managing Director &amp; CEO</Value>
         </PageFooter>
         <PageHeight>11.69in</PageHeight>
         <PageWidth>8.27in</PageWidth>
-        <LeftMargin>1in</LeftMargin>
+        <LeftMargin>1.2in</LeftMargin>
         <RightMargin>0.25in</RightMargin>
         <TopMargin>1.52in</TopMargin>
         <BottomMargin>0.25in</BottomMargin>
