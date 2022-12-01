@@ -366,13 +366,13 @@ namespace RealERPWEB.F_99_Allinterface
             {
 
                 HyperLink hlnkchk = (HyperLink)e.Row.FindControl("lnkchk");
+                HyperLink hlnkprintchk = (HyperLink)e.Row.FindControl("hlnkprintchk");
 
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "adno")).ToString();
                 string date = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "addate")).ToString("dd-MMM-yyyy");
 
                 hlnkchk.NavigateUrl = "~/F_24_CC/CustMaintenanceWork?Type=Check&Genno=" + pactcode + "&Date1=" + date;
-
-
+                hlnkprintchk.NavigateUrl = "~/F_24_CC/CustMaintenanceWork?Type=ReqPrint&Genno=" + pactcode + "&Date1=" + date; 
             }
         }
 
@@ -383,13 +383,13 @@ namespace RealERPWEB.F_99_Allinterface
             {
 
                 HyperLink hlnkchk = (HyperLink)e.Row.FindControl("lnkadt");
+                HyperLink hlnkprintadt = (HyperLink)e.Row.FindControl("hlnkprintadt");
 
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "adno")).ToString();
                 string date = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "addate")).ToString("dd-MMM-yyyy");
 
                 hlnkchk.NavigateUrl = "~/F_24_CC/CustMaintenanceWork?Type=Audit&Genno=" + pactcode + "&Date1=" + date;
-
-
+                hlnkprintadt.NavigateUrl = "~/F_24_CC/CustMaintenanceWork?Type=ReqPrint&Genno=" + pactcode + "&Date1=" + date;
             }
         }
         protected void gvCltmodapp_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -609,9 +609,11 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink lnkchk2nd = (HyperLink)e.Row.FindControl("lnkchk2nd");
+                HyperLink hlnkprint2ndApp = (HyperLink)e.Row.FindControl("hlnkprint2ndApp");
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "adno")).ToString();
                 string date = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "addate")).ToString("dd-MMM-yyyy");
                 lnkchk2nd.NavigateUrl = "~/F_24_CC/CustMaintenanceWork?Type=SecondApproval&Genno=" + pactcode + "&Date1=" + date;
+                hlnkprint2ndApp.NavigateUrl = "~/F_24_CC/CustMaintenanceWork?Type=ReqPrint&Genno=" + pactcode + "&Date1=" + date;
             }
 
         }
@@ -621,9 +623,12 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink lnkchk1st = (HyperLink)e.Row.FindControl("lnkchk1st");
+                HyperLink hlnkprint1stpp = (HyperLink)e.Row.FindControl("hlnkprint1stpp");
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "adno")).ToString();
                 string date = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "addate")).ToString("dd-MMM-yyyy");
+
                 lnkchk1st.NavigateUrl = "~/F_24_CC/CustMaintenanceWork?Type=FirstApproval&Genno=" + pactcode + "&Date1=" + date;
+                hlnkprint1stpp.NavigateUrl = "~/F_24_CC/CustMaintenanceWork?Type=ReqPrint&Genno=" + pactcode + "&Date1=" + date;
             }
         }
         protected void hlnkprintchk1st_Click(object sender, EventArgs e)

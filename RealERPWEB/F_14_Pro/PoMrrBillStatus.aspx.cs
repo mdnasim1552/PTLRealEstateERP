@@ -187,5 +187,10 @@ namespace RealERPWEB.F_14_Pro
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
+
+        protected void gvBillStatus_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            HyperLink assignlink = (HyperLink)e.Row.FindControl("lnkbtnPoamt");
+        }
     }
 }
