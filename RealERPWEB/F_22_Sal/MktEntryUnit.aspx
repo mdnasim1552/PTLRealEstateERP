@@ -445,7 +445,7 @@
                                         </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="EMI">
+                                        <asp:TemplateField HeaderText="EMI" Visible="false">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvemi" runat="server" AutoCompleteType="Disabled"
                                                     BackColor="Transparent" BorderStyle="None" Font-Size="11px"
@@ -455,6 +455,24 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
+
+                                        
+                                        <asp:TemplateField HeaderText="Handover Date">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvhoverdate" runat="server" AutoCompleteType="Disabled"
+                                                    BackColor="Transparent" BorderStyle="None" Font-Size="11px"
+                                                   
+                                                    Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "handovdate")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "handovdate")).ToString("dd-MMM-yyyy") %>'
+                                                    Width="70px"></asp:TextBox>
+
+                                                <cc1:CalendarExtender ID="txtgvhoverdate_CalendarExtender" runat="server"
+                                                    Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvhoverdate"></cc1:CalendarExtender>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="Right" />
+
+                                        </asp:TemplateField>
+
 
 
                                         <asp:TemplateField HeaderText="Facing">

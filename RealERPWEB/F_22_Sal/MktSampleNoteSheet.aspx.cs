@@ -18,6 +18,10 @@ using Microsoft.Reporting.WinForms;
 using RealERPRDLC;
 using RealERPEntity;
 using RealERPWEB.Service;
+using System.Web.Script.Serialization;
+using System.Web.Script.Services;
+using System.Web.Services;
+
 namespace RealERPWEB.F_22_Sal
 {
     public partial class MktSampleNoteSheet : System.Web.UI.Page
@@ -99,13 +103,14 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-        private string GetCompCode()
+        public string GetCompCode()
         {
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
 
         }
+       
         private void GetProjectName()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -117,6 +122,110 @@ namespace RealERPWEB.F_22_Sal
             this.ddlProjectName.DataSource = ds1.Tables[0];
             this.ddlProjectName.DataBind();
         }
+        public string GetEmpid()
+        {
+
+         Hashtable hst = (Hashtable) Session["tblLogin"];
+        return(hst["empid"].ToString());
+
+    }
+
+
+
+        [WebMethod(EnableSession = false)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string GetProspective(string comcod, string empid, string type)
+        {
+
+
+
+
+            //string number = "";
+            //number = Phone.Length > 0 ? Phone + "," : "";
+            //number = number + (altphone1.Length > 0 ? altphone1 + "," : "");
+            //number = number + (altphone2.Length > 0 ? altphone2 + "," : "");
+            //number = number.Length > 0 ? number.Substring(0, number.Length - 1) : number;
+
+            //Check Duplicate
+            //DataSet ds2 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_CODEBOOK_NEW", "CHECKEDDUPUCLIENT", number, "", "", "", "", "", "", "", "");
+
+
+            //if (ds2 == null)
+            //{
+            //    return;
+            //}
+
+            ProcessAccess _processAccess = new ProcessAccess();
+            string txtSProject = "%%";
+
+            DataSet ds2 = _processAccess.GetTransInfo(comcod, "SP_ENTRY_SALESNOTESHEET", "GETPROSPECTIVE", txtSProject, empid, type, "", "", "", "", "", "");
+
+
+            var result = ds2.Tables[0].DataTableToList<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassProspective>();
+
+            //if (ds2.Tables[0].Rows.Count == 0 || ds2 == null)
+            //{
+            //  //  var result = new { Message = "Success", result = true };
+            //    var jsonSerialiser = new JavaScriptSerializer();
+            //    var json = jsonSerialiser.Serialize(result);
+            //    return json;
+
+            //}
+
+
+            //else
+            //{
+
+                //DataView dv1 = ds2.Tables[0].DefaultView;
+                //dv1.RowFilter = ("sircode <>'" + sircode + "'");
+                //DataTable dt1 = dv1.ToTable();
+
+
+
+
+
+
+                //if (dt1.Rows.Count == 0)
+                //{
+
+                //    var result = new { Message = "Success", result = true };
+                //    var jsonSerialiser = new JavaScriptSerializer();
+                //    var json = jsonSerialiser.Serialize(result);
+                //    return json;
+
+                //}
+
+
+
+
+                //else
+                //{
+
+
+                  
+
+
+
+
+
+
+                    //var result = new { Message = "success", result = false };
+                    var jsonSerialiser = new JavaScriptSerializer();
+                    var json = jsonSerialiser.Serialize(result);
+
+                    return json;
+
+
+
+                
+          //  }
+
+
+
+
+        }
+
+
         private void GetProspective()
         {
 
@@ -1470,7 +1579,12 @@ namespace RealERPWEB.F_22_Sal
             this.PanelAddIns.Visible = this.chkAddIns.Checked;
         }
 
-    
+
+        protected void lnkgvbaseFcoffTotal_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
 
 
