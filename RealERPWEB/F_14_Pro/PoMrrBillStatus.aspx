@@ -128,7 +128,7 @@
                                             </ItemTemplate>
                                             
                                         <FooterTemplate>
-                                                <asp:Label ID="lgvFPrjName" runat="server" Font-Bold="True" Font-Size="12px"
+                                                <asp:Label ID="fgvsup" runat="server" Font-Bold="True" Font-Size="12px"
                                                     ForeColor="Black" Style="text-align: right">Total :</asp:Label>
                                             </FooterTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -137,13 +137,15 @@
 
                                         <asp:TemplateField HeaderText="PO Amount">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgvPrjName" runat="server" Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ordamt")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                    Width="120px"></asp:Label>
+                                                <asp:HyperLink runat="server" ID="lnkbtnprodlink" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="text-primary pr-2 pl-2">
+                                                        <asp:Label ID="lgvpoamt" runat="server" Height="16px"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ordamt")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                            Width="120px"></asp:Label>
+                                                    </asp:HyperLink>
                                             </ItemTemplate>
-
+                                            
                                         <FooterTemplate>
-                                                <asp:Label ID="lgvPO" runat="server" Font-Bold="True"
+                                                <asp:Label ID="fgvPOamt" runat="server" Font-Bold="True"
                                                     Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
                                             </FooterTemplate>
                                            
@@ -151,27 +153,27 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="MRR Amount">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgvPrjName" runat="server" Style="text-align: right"
+                                                <asp:Label ID="lgvmrramt" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "mrramt")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                     Width="120px"></asp:Label>
                                             </ItemTemplate>
 
                                         
                                            <FooterTemplate>
-                                                <asp:Label ID="lgvMRR" runat="server" Font-Bold="True"
+                                                <asp:Label ID="fgvMRRamt" runat="server" Font-Bold="True"
                                                     Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
                                             </FooterTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
                                          <asp:TemplateField HeaderText="Invoice Amount">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgvPrjName" runat="server" Style="text-align: right"
+                                                <asp:Label ID="lgvinvamt" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "billamt")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                     Width="120px"></asp:Label>
                                             </ItemTemplate>
 
                                         <FooterTemplate>
-                                                <asp:Label ID="lgvInvoice" runat="server" Font-Bold="True"
+                                                <asp:Label ID="fgvInvoice" runat="server" Font-Bold="True"
                                                     Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
                                             </FooterTemplate>
                                            

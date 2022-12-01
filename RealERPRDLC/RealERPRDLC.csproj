@@ -1173,6 +1173,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptEmpBonusAssure.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptEmpLeaveStatus.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptEmpMonthSumm.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterCPDL.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterEdison.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetter.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterBridge.rdlc" />
