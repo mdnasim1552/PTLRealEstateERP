@@ -404,7 +404,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>4.48728in</Height>
+                  <Height>4.40395in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -3033,7 +3033,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Format(Fields!adv.Value , "#,##0.00;(#,##0.00);")</Value>
+                                                    <Value>=Format((Fields!adv.Value + Fields!loanins.Value), "#,##0.00;(#,##0.00);")</Value>
                                                     <Style>
                                                       <FontFamily>Cambria</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -6549,7 +6549,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Format(Fields!adv.Value, "#,##0.00;(#,##0.00);")</Value>
+                                                    <Value>=Format((Fields!adv.Value + Fields!loanins.Value), "#,##0.00;(#,##0.00);")</Value>
                                                     <Style>
                                                       <FontFamily>Cambria</FontFamily>
                                                       <FontSize>8pt</FontSize>
@@ -7422,10 +7422,10 @@
                               <Source>Embedded</Source>
                               <Value>Jamalsign1</Value>
                               <Sizing>FitProportional</Sizing>
-                              <Top>3.60468in</Top>
+                              <Top>3.68801in</Top>
                               <Left>0.73425in</Left>
-                              <Height>0.8826in</Height>
-                              <Width>1.59549in</Width>
+                              <Height>0.58334in</Height>
+                              <Width>1.09549in</Width>
                               <ZIndex>18</ZIndex>
                               <Style>
                                 <Border>
@@ -7450,7 +7450,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.19598in</Height>
+                  <Height>0.1439in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -7519,7 +7519,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.16192in</Top>
             <Left>0.20438in</Left>
-            <Height>4.68326in</Height>
+            <Height>4.54785in</Height>
             <Width>7.26733in</Width>
             <Style>
               <Border>
@@ -7532,7 +7532,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>4.96732in</Height>
+        <Height>4.7694in</Height>
         <Style>
           <Border>
             <Style>None</Style>
@@ -7542,7 +7542,7 @@
           </BottomBorder>
         </Style>
       </Body>
-      <Width>7.50529in</Width>
+      <Width>7.48446in</Width>
       <Page>
         <PageHeight>11.69in</PageHeight>
         <PageWidth>8.27in</PageWidth>
