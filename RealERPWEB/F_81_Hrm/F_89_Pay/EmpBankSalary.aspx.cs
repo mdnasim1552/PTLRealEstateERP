@@ -234,6 +234,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "3333":
                     comBankStatement = "EMPBANKPAYINFOALLI";
                     break;
+
+                case "3101":
+                case "3370":
+                    comBankStatement = "EMPBANKPAYINFOCPDL";
+                    break;
                 case "3347":
                     //case "3101":
                     comBankStatement = "EMPBANKPAYINFOPEB";
@@ -464,13 +469,18 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PrintBankStatementEdison();
                     break;
 
-                case "3101":
+      
                 case "3368":
                     this.PrintBankStatementFinlay();
                     break;
 
                 case "3365":
                     this.PrintBankStatementFinlay();
+                    break;
+
+                case "3101":
+                case "3370":
+                    this.PrintBankStatementCPDL();
                     break;
 
                 default:
@@ -756,6 +766,70 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
+        private void PrintBankStatementCPDL()
+        {
+            DataTable dt = (DataTable)Session["tblover"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string comname = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string bankname = this.ddlBankName.SelectedItem.Text.Trim();
+
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string year = this.txtDate.Text.Substring(0, 4).ToString();
+            string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
+            string month2 = this.txtDate.Text.Substring(4);
+            var lastDayOfMonth = DateTime.DaysInMonth(Convert.ToInt32(year), Convert.ToInt32(month2));
+
+            string totalAmt = dt.Compute("Sum(amt)", string.Empty).ToString();
+            string ttlwrd = ASTUtility.Trans(Convert.ToDouble(totalAmt), 2);
+            string bankAddress = dt.Rows[0]["bankaddr"].ToString();
+            string curdate = DateTime.Now.ToString("MMMM dd,yyyy");
+            string desc = "Salary For The Month Of " + month + "/" + year;
+           
+
+            string valueDate = lastDayOfMonth.ToString()+"/" + month2 +"/"+ year;
+            DataView dv = dt.DefaultView;
+            dv.RowFilter = ("saltrn='True'");
+            dt = dv.ToTable();
+
+
+            ReportDocument rptstk = new ReportDocument();
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.bnkStatement>();
+
+    
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptBankStatementCPDL", lst, null, null);
+
+
+
+            Rpt1.SetParameters(new ReportParameter("rptTitle", (this.chkBonus.Checked) ? "Festival Bonus Transfer Statement  " : "Salary Transfer Statement"));
+            Rpt1.SetParameters(new ReportParameter("date", "For " + month + "- " + year));
+            Rpt1.SetParameters(new ReportParameter("rptBankName", bankname));
+            Rpt1.SetParameters(new ReportParameter("totalAmt", totalAmt));
+            Rpt1.SetParameters(new ReportParameter("ttlwrd", ttlwrd));
+            Rpt1.SetParameters(new ReportParameter("curDate", curdate));
+            Rpt1.SetParameters(new ReportParameter("desc", desc));
+            Rpt1.SetParameters(new ReportParameter("valueDate", valueDate));
+            Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+
+
+            Rpt1.SetParameters(new ReportParameter("bankAddress", bankAddress));
+
+
+
+            //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
+
+
+
         private void PrintForwardingLetter()
         {
 

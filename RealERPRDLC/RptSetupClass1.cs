@@ -493,6 +493,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptProjCostSales": Rpt1a = SetRptProjCostSales(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptBankStatementInfo": Rpt1a = SetRptBankStatementInfo(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
+
                 case "R_17_Acc.RptInterComTransStatu": Rpt1a = SetRptInterComTransStatu(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptSupPayment": Rpt1a = SetRptSupPayment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptSupPayment02": Rpt1a = SetRptSupPayment02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -988,6 +989,8 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptSalStatNagad": Rpt1a = SetrptSalStatementNagad(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSalSumm": Rpt1a = SetrptRptSalSumm(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.rptBankStatement": Rpt1a = SetrptBankStatement(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.rptBankStatementCPDL": Rpt1a = SetrptBankStatementCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
                 case "R_81_Hrm.R_89_Pay.rptBankStatementEdison": Rpt1a = SetrptBankStatement(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBankStatementFinlay": Rpt1a = SetrptBankStatement(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBankStatementFinlayExcel": Rpt1a = SetRptBankStatementFinlayExcel(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -2573,6 +2576,11 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
+        private static LocalReport SetrptBankStatementCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.bnkStatement>)RptDataSet));
+            return Rpt1a;
+        }
 
         private static LocalReport SetRptBankStatementFinlayExcel(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
