@@ -631,6 +631,7 @@ namespace RealERPWEB.F_22_Sal
             string comadd = hst["comadd1"].ToString();
 
             string comadd1 = "81 S S Khaled Road, Jamal Khan, Chattogram. Phone: +8802333354442, 02333354443, 02333351443";
+            string contactCommunication = "Mobile: +8801755663636. E-mail: mail@cpdl.com.bd, Web: www.cpdl.com.bd";
 
             string comcod = this.GetCompCode();
 
@@ -641,7 +642,11 @@ namespace RealERPWEB.F_22_Sal
 
             
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RDLCAccountSetup.GetLocalReport("R_22_Sal.RptBookingApp2", "", "", "");
+            Rpt1 = RDLCAccountSetup.GetLocalReport("R_22_Sal.RptSaleDeclaration", "", "", "");
+
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd1", comadd1));
+            Rpt1.SetParameters(new ReportParameter("contactCommunication", contactCommunication));
 
             Rpt1.SetParameters(new ReportParameter("enrolmentdate", Convert.ToDateTime(dt2.Rows[0]["appdate"]).ToString("ddMMyyyy")));
             Rpt1.SetParameters(new ReportParameter("customerno", dt2.Rows[0]["customerno"].ToString()));
