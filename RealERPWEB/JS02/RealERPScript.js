@@ -346,4 +346,45 @@
 
 
 
+
+
+    this.GetProspective = function (comcod, empid, type) {
+
+        var results = new Array();
+
+
+
+        jQuery.ajax({
+            type: "POST",
+            async: false,
+            url: 'MktSampleNoteSheet.aspx/GetProspective',
+            // url: 'UserService.asmx/GetModule',
+            data: Sys.Serialization.JavaScriptSerializer.serialize({ 'comcod': comcod,'empid': empid, 'type': type }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                if (typeof (response) == 'string')
+                    results = Sys.Serialization.JavaScriptSerializer.deserialize(response).d;
+                else
+                    results = response.d;
+            },
+            failure: function (msg) {
+                alert('Service Error');
+            },
+            error: function (res, status) {
+                if (status == "error") {
+                    alert(res.responseText);
+                }
+            }
+        });
+
+
+
+        return results;
+
+    };
+
+
+
+
  }
