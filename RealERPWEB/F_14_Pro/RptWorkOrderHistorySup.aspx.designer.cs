@@ -42,15 +42,6 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.Label lblAcchead;
 
         /// <summary>
-        /// txtSrcSupplier control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrcSupplier;
-
-        /// <summary>
         /// imgbtnFindSupplier control.
         /// </summary>
         /// <remarks>
@@ -67,6 +58,33 @@ namespace RealERPWEB.F_14_Pro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSupplierName;
+
+        /// <summary>
+        /// project control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl project;
+
+        /// <summary>
+        /// lblproject control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblproject;
+
+        /// <summary>
+        /// ddlprojectname control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlprojectname;
 
         /// <summary>
         /// lnkbtnOk control.
