@@ -808,8 +808,6 @@
                                                         <asp:TemplateField HeaderText="">
                                                             <ItemTemplate>
                                                                 <asp:LinkButton ID="btnDelOrder" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
-
-
                                                             </ItemTemplate>
                                                             <ItemStyle Width="20px" />
                                                             <HeaderStyle HorizontalAlign="Center" Width="20px" VerticalAlign="Top" />
@@ -2066,7 +2064,7 @@
                                                             <ItemTemplate>
                                                                 <asp:HyperLink ID="lnkbtnApp" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                                 </asp:HyperLink>
-                                                                <asp:LinkButton ID="btnDelOrder" runat="server" CssClass="btn btn-default btn-xs" ToolTip="Delete Client's Modification" OnClientClick="javascript:return FunConfirm()"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
+                                                                <asp:LinkButton ID="btnDelOrder" runat="server" CssClass="btn btn-default btn-xs" ToolTip="Delete Client's Modification" OnClientClick="javascript:return FunConfirm()" OnClick="btnDelOrder_Click"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
                                                                 <asp:HyperLink ID="lnkbtnPrintIN" runat="server" CssClass="btn btn-default btn-xs" Target="_blank" ToolTip="Print Client's Modification"><span style="color:green" class="fa fa-print"></span></span></asp:HyperLink>
 
                                                             </ItemTemplate>

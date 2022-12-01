@@ -2487,5 +2487,22 @@ namespace RealERPWEB.F_99_Allinterface
             }
 
         }
+
+        protected void btnDelOrder_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string adno = ((Label)this.gvClientMod.Rows[Rowindex].FindControl("lblgvadno")).Text.Trim(); 
+
+            //UPDATEMODAPPROVAL
+            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT02", "UPDATEMODAPPROVAL", adno, "", "", "", "", "", "", "", "", "", "");
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Cancellation failed..!');", true);
+                return;
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Successfully Deleted');", true);
+            this.lbtnOk_Click(null, null);
+        }
     }
 }
