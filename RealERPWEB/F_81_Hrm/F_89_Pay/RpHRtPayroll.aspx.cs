@@ -2626,7 +2626,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string username = hst["username"].ToString();
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd \\'MMM");\
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd \\'MMM");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd \\'MMM");
             string todate1 = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM, yyyy");
             double netpay = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
