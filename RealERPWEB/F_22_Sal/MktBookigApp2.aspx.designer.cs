@@ -492,6 +492,24 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.Button btnUploadNominee;
 
         /// <summary>
+        /// GridViewNominee control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewNominee;
+
+        /// <summary>
+        /// lblNominated control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNominated;
+
+        /// <summary>
         /// Label6 control.
         /// </summary>
         /// <remarks>
@@ -526,24 +544,6 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUploadCorrespondent;
-
-        /// <summary>
-        /// GridViewNominee control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewNominee;
-
-        /// <summary>
-        /// lblNominated control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNominated;
 
         /// <summary>
         /// GridViewNominated control.
