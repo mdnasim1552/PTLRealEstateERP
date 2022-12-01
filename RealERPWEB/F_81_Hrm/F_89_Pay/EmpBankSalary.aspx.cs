@@ -982,7 +982,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             string Det1 = "";
             
-            Det1 = "Please transfer to TK " + sumamt +"/="+ inwords + " as on " + month + "," + year + " to our followings employees bank account No: "+ bankacc + " in the name of" +
+            Det1 = "Please transfer to TK " + sumamt +"/="+ inwords.ToUpper()  + " as on " + month + "," + year + " to our followings employees bank account No: "+ bankacc + " in the name of" +
                 " CA Property Development Ltd. maintained with you.";
 
 

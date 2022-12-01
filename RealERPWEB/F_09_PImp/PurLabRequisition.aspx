@@ -442,7 +442,6 @@
 
 
                                     <asp:TemplateField HeaderText="Qty">
-
                                         <FooterTemplate>
                                             <asp:LinkButton ID="lnkupdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lnkupdate_Click">Update</asp:LinkButton>
                                         </FooterTemplate>
@@ -456,10 +455,6 @@
                                     </asp:TemplateField>
 
 
-
-
-
-
                                     <asp:TemplateField HeaderText="Rate">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtlabrate" runat="server" Font-Size="11px"
@@ -471,13 +466,7 @@
                                     </asp:TemplateField>
 
 
-
-
-
-
                                     <asp:TemplateField HeaderText="Amount">
-
-
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvamount" runat="server" BackColor="Transparent" BorderStyle="None"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "reqamt")).ToString("#,##0.00;-#,##0.00; ") %>'
@@ -488,10 +477,6 @@
                                             <asp:Label ID="lblgvFamount" runat="server" Style="text-align: right"
                                                 Width="70px" Font-Size="12px" ForeColor="#000"></asp:Label>
                                         </FooterTemplate>
-
-
-
-
                                         <ItemStyle HorizontalAlign="right" />
                                         <FooterStyle HorizontalAlign="right" />
                                     </asp:TemplateField>

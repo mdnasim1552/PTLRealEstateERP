@@ -153,6 +153,30 @@ namespace RealEntity.C_22_Sal
         }
 
 
+        [Serializable]
+        public class EClassProspective
+        {
+
+            public string proscode { get; set; }
+            public string prosdesc { get; set; }
+            public EClassProspective()
+            {
+
+
+            }
+
+            public EClassProspective(string proscode, string prosdesc)
+            {
+                this.proscode = proscode;
+                this.prosdesc = prosdesc;
+
+
+
+            }
+
+        }
+
+
 
     }
 }
