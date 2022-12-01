@@ -640,10 +640,16 @@ namespace RealERPWEB.F_22_Sal
             DataTable dt2 = (DataTable)Session["tblcustinfo"];
             DataTable dt3 = (DataTable)Session["tblprice"];
 
-            
-            LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RDLCAccountSetup.GetLocalReport("R_22_Sal.RptSaleDeclaration", "", "", "");
 
+
+
+            var list = dt2.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptCustBookApp2>();
+            LocalReport Rpt1 = new LocalReport();
+
+
+            Rpt1 = RDLCAccountSetup.GetLocalReport("R_22_Sal.RptSaleDeclaration", list, "", "");
+
+            Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd1", comadd1));
             Rpt1.SetParameters(new ReportParameter("contactCommunication", contactCommunication));
