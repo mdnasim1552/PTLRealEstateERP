@@ -353,6 +353,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.gvLeaveRule.Columns[17].HeaderText = "Leave On Probation";
 
             }
+
+            if (GetComeCode() == "3367")
+            {
+                this.gvLeaveRule.Columns[12].HeaderText = "Special Leave";
+            }
             this.gvLeaveRule.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvLeaveRule.DataSource = dtfilter;
 
