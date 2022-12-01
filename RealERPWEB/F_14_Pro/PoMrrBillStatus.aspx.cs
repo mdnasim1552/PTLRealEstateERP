@@ -137,13 +137,13 @@ namespace RealERPWEB.F_14_Pro
                 return;
 
 
-            ((Label)this.gvBillStatus.FooterRow.FindControl("lgvPO")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(ordamt)", "")) ? 0.00 :
+            ((Label)this.gvBillStatus.FooterRow.FindControl("fgvPOamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(ordamt)", "")) ? 0.00 :
                  dt.Compute("sum(ordamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
 
-            ((Label)this.gvBillStatus.FooterRow.FindControl("lgvMRR")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(mrramt)", "")) ? 0.00 :
+            ((Label)this.gvBillStatus.FooterRow.FindControl("fgvMRRamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(mrramt)", "")) ? 0.00 :
                  dt.Compute("sum(mrramt)", ""))).ToString("#,##0.00;(#,##0.00); ");
 
-            ((Label)this.gvBillStatus.FooterRow.FindControl("lgvInvoice")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(billamt)", "")) ? 0.00 :
+            ((Label)this.gvBillStatus.FooterRow.FindControl("fgvInvoice")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(billamt)", "")) ? 0.00 :
                  dt.Compute("sum(billamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
 
         }
@@ -186,6 +186,11 @@ namespace RealERPWEB.F_14_Pro
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
+        protected void gvBillStatus_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            HyperLink assignlink = (HyperLink)e.Row.FindControl("lnkbtnPoamt");
         }
     }
 }
