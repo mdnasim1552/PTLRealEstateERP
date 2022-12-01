@@ -103,6 +103,11 @@ namespace RealERPWEB
                "~/Scripts/flatpickr-demo.js"
                ));
 
+            bundles.Add(new ScriptBundle("~/bundles/autocomplete").Include(
+
+              "~/Scripts/jquery.autocomplete.js"
+              ));
+
             //bundles.Add(new ScriptBundle("~/bundles/telephoneValidation").Include(
             //  "~/assets/TelephoneValidation/build/js/intlTelInput.js"
             // // "~/assets/TelephoneValidation/js/isValidNumber.js"
