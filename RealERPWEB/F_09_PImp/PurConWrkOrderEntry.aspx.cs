@@ -648,10 +648,7 @@ namespace RealERPWEB.F_09_PImp
                 default:
                     CallType = "GETMETERIALS";
                     break;
-
-
             }
-
             return CallType;
 
         }
@@ -673,7 +670,6 @@ namespace RealERPWEB.F_09_PImp
                 default:
                     conbal = "GETMETERIALS";
                     break;
-
 
             }
 
@@ -703,11 +699,6 @@ namespace RealERPWEB.F_09_PImp
             this.DropCheck1.DataBind();
             ds1.Dispose();
 
-
-
-
-
-
         }
 
 
@@ -723,8 +714,6 @@ namespace RealERPWEB.F_09_PImp
 
         protected void lbtnSelect_Click(object sender, EventArgs e)
         {
-
-
             try
             {
                 this.SaveValue();
@@ -931,22 +920,41 @@ namespace RealERPWEB.F_09_PImp
 
         private void SaveValue()
         {
-
             DataTable dt = (DataTable)ViewState["tblorder"];
+            //bool isFault = false;
             int TblRowIndex;
             for (int i = 0; i < this.grvissue.Rows.Count; i++)
             {
-                double ordrrate = Convert.ToDouble("0" + ((TextBox)this.grvissue.Rows[i].FindControl("txtgvrate")).Text.Trim());
                 string txtisurmk = ((TextBox)this.grvissue.Rows[i].FindControl("txtisurmk")).Text.Trim();
                 string sdetails = ((TextBox)this.grvissue.Rows[i].FindControl("txtwrkdesc")).Text.Trim();
+                string wrkdesc = ((Label)this.grvissue.Rows[i].FindControl("lblwrkdesc")).Text.Trim();
                 //string spec = ((TextBox)this.grvissue.Rows[i].FindControl ("txtspec")).Text.Trim ();
                 TblRowIndex = (grvissue.PageIndex) * grvissue.PageSize + i;
-                dt.Rows[TblRowIndex]["ordrrate"] = ordrrate;
+
+                double gvrate = Convert.ToDouble("0" + ((TextBox)this.grvissue.Rows[i].FindControl("txtgvrate")).Text.Trim());
+                double gvQty = Convert.ToDouble("0" + ((TextBox)this.grvissue.Rows[i].FindControl("txtgvQty")).Text.Trim());
+                double orqty = Convert.ToDouble("0" + dt.Rows[TblRowIndex]["ordqty"].ToString());   
+
+                if(gvQty> orqty)
+                {
+                    string msg = wrkdesc + " Order Qty Can't Excess Requisition Qty .. !! ";
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+ msg + "');", true);
+                    ((Label)this.Master.FindControl("lblmsg")).Text = msg;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+                double amt = gvQty * gvrate;
+                ((TextBox)this.grvissue.Rows[i].FindControl("txtgvAmount")).Text = amt.ToString("#,##0.000;(#,##0.000); ");
+                ((TextBox)this.grvissue.Rows[i].FindControl("txtgvrate")).Text = gvrate.ToString("#,##0.000;(#,##0.000); ");
+                ((TextBox)this.grvissue.Rows[i].FindControl("txtgvQty")).Text = gvQty.ToString("#,##0.000;(#,##0.000); ");
+
+                dt.Rows[TblRowIndex]["ordqty"] = gvQty;
+                dt.Rows[TblRowIndex]["ordrrate"] = gvrate;
+                dt.Rows[TblRowIndex]["ordamt"] = amt;
                 dt.Rows[TblRowIndex]["rmrks"] = txtisurmk;
                 dt.Rows[TblRowIndex]["sdetails"] = sdetails;
-                //dt.Rows[TblRowIndex]["spec"] = spec;
-
             }
+           
             ViewState["tblorder"] = dt;
         }
 
@@ -994,6 +1002,12 @@ namespace RealERPWEB.F_09_PImp
         protected void ddlfloorno_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GetMaterials();
+        }
+
+        protected void lnkTotal_Click(object sender, EventArgs e)
+        {
+            this.SaveValue();
+            this.grvissue_DataBind();
         }
     }
 }
