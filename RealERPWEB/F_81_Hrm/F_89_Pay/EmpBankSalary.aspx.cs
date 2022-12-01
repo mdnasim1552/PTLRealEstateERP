@@ -900,18 +900,18 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
            : dt.Compute("sum(amt)", ""))).ToString("#,##0.00;(#,##0.00); ");
 
 
-            string inwords = ASTUtility.Trans(Convert.ToDouble(sumamt), 2);
+            string inwords = (ASTUtility.Trans(Convert.ToDouble(sumamt), 2)).ToUpper();
 
-           string subject = "Subject: CPDL Salary Disbursement for the month of - " + month + "-" + year + ".";
+           string subject = "Subject: CPDL Salary Disbursement for the month of " + month + "-" + year + ".";
 
 
 
             string Det1 = "";
             
-            Det1 = "Please transfer to TK " + sumamt +"/="+ inwords + " as on " + month + "," + year + " to our followings employees bank account No: "+ bankacc + " in the name of" +
+            Det1 = "Please transfer to TK " + sumamt +"/="+ inwords.ToUpper()  + " as on " + month + "," + year + " to our followings employees bank account No: "+ bankacc + " in the name of" +
                 " CA Property Development Ltd. maintained with you.";
 
-
+            
 
             //string Det2 = "We would like to request you to transfer the amount to the respective accounts of our employees (details list attached) by debiting our C/D account no. "
             //                + banksl + " as per bellow details: ";
@@ -920,8 +920,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 " affirm you that the soft copy of data is true and exact with hard copy of data submitted to you. For any deviation with soft copy & ahard copy we will be held" +
                 " responsible. For any query please contact with Samima Sultana, Mobile No - 01777766099.";
 
-
-
+            string email = "samima@cpdl.com.bd";
+            string name = "Samima Sultana";
+            string phone = "Samima Sultana, Mobile No - 01777766099.";
+            string branch = "Jamal Khan Branch";
 
             ReportDocument rptstk = new ReportDocument();
             LocalReport Rpt1 = new LocalReport();
@@ -935,12 +937,21 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Rpt1.SetParameters(new ReportParameter("Date", Convert.ToDateTime(txtcuDate).ToString("MMMM dd, yyyy")));
             Rpt1.SetParameters(new ReportParameter("Attn", "Ref: CPDL / TM / UCBL/22-10 "));
             Rpt1.SetParameters(new ReportParameter("Bank", bankname));
+            Rpt1.SetParameters(new ReportParameter("sumamt", sumamt));
+            Rpt1.SetParameters(new ReportParameter("inwords", inwords));
+            Rpt1.SetParameters(new ReportParameter("month", month));
+            Rpt1.SetParameters(new ReportParameter("year", year));
+            Rpt1.SetParameters(new ReportParameter("email", email));
+            Rpt1.SetParameters(new ReportParameter("name", name));
+            Rpt1.SetParameters(new ReportParameter("phone", phone));
+            Rpt1.SetParameters(new ReportParameter("bankacc", bankacc));
+            Rpt1.SetParameters(new ReportParameter("branch", branch));
 
             Rpt1.SetParameters(new ReportParameter("subject", subject));
             Rpt1.SetParameters(new ReportParameter("Det1", Det1));
             Rpt1.SetParameters(new ReportParameter("Det2", Det2));
             Rpt1.SetParameters(new ReportParameter("Det3", "Total Amount: BDT " + sumamt));
-            Rpt1.SetParameters(new ReportParameter("inwords", "Amount in Words: " + inwords));
+            
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +

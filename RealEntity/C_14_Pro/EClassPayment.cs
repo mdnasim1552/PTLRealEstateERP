@@ -211,7 +211,26 @@ namespace RealEntity.C_14_Pro
             }
 
         }
+        [Serializable]
+        public class EclassRptPOMRRBillStatus
+        {
 
+            public string comcod { get; set; }
+            public string pactcode { get; set; }
+            public string pactdesc { get; set; }
+            public string sirdesc { get; set; }
+        
+            public string ssircode { get; set; }
+            public double ordamt { get; set; }
+            public double mrramt { get; set; }
+            public double billamt { get; set; }
+
+
+            public EclassRptPOMRRBillStatus()
+            {
+            }
+
+        }
 
     }
 }

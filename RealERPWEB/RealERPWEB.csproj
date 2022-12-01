@@ -2266,6 +2266,7 @@
     <Content Include="F_12_Inv\RptIndentIssueStatusSummary.aspx" />
     <Content Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx" />
     <Content Include="F_14_Pro\RptDateWiseBill.aspx" />
+    <Content Include="F_14_Pro\PoMrrBillStatus.aspx" />
     <Content Include="F_14_Pro\RptPurOrderTopSheet.aspx" />
     <Content Include="F_14_Pro\RptSupAdvanceDetails.aspx" />
     <Content Include="F_17_Acc\AccIssueUpdate.aspx" />
@@ -4151,6 +4152,13 @@
     </Compile>
     <Compile Include="F_14_Pro\RptDateWiseBill.aspx.designer.cs">
       <DependentUpon>RptDateWiseBill.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_14_Pro\PoMrrBillStatus.aspx.cs">
+      <DependentUpon>PoMrrBillStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\PoMrrBillStatus.aspx.designer.cs">
+      <DependentUpon>PoMrrBillStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\RptPurOrderTopSheet.aspx.cs">
       <DependentUpon>RptPurOrderTopSheet.aspx</DependentUpon>

@@ -213,15 +213,6 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// txtResCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtResCode;
-
-        /// <summary>
         /// ImgbtnSrchRes control.
         /// </summary>
         /// <remarks>
@@ -229,6 +220,15 @@ namespace RealERPWEB.F_14_Pro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton ImgbtnSrchRes;
+
+        /// <summary>
+        /// txtResCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtResCode;
 
         /// <summary>
         /// ddlResoName control.

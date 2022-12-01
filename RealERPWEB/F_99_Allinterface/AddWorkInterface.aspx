@@ -782,10 +782,10 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="">
                                     <ItemTemplate>
-                                        <%--<asp:LinkButton ID="lnkremovechk" runat="server" ToolTip="Unchecked"><span style="color:red" class="glyphicon glyphicon-floppy-remove"></span> </asp:LinkButton>--%>
+
                                         <asp:HyperLink ID="lnkchk" Target="_blank" runat="server" ToolTip="Checked" CssClass="btn btn-default btn-xs"><span style="color:green" class=" fa fa-check"></span> </asp:HyperLink>
-                                        <asp:LinkButton ID="hlnkprintchk" runat="server" ToolTip="Print"  OnClick="hlnkprintchk_Click" CssClass="btn btn-default btn-xs"><span class=" fa fa-print"></span>
-                                        </asp:LinkButton>
+                                        <asp:HyperLink ID="hlnkprintchk" runat="server" Target="_blank" ToolTip="Print Additional Work" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span></asp:HyperLink>                             
+                                        
                                         <asp:LinkButton ID="lbtnDelChk" runat="server" ToolTip="Cancel Check" ForeColor="Blue" CssClass="btn btn-default btn-xs" OnClick="lbtnDelChk_Click"><span style="color:red;" class=" fa fa-trash"></span>
                                         </asp:LinkButton>
                                     </ItemTemplate>
@@ -891,10 +891,8 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="">
                                     <ItemTemplate>
-                                        <%--<asp:LinkButton ID="lnkremovechk" runat="server" ToolTip="Unchecked"><span style="color:red" class="glyphicon glyphicon-floppy-remove"></span> </asp:LinkButton>--%>
                                         <asp:HyperLink ID="lnkchk1st" Target="_blank" runat="server" ToolTip="Checked" CssClass="btn btn-default btn-xs"><span style="color:green" class=" fa fa-check"></span> </asp:HyperLink>
-                                        <asp:LinkButton ID="hlnkprintchk1st" runat="server" ToolTip="Print" ForeColor="Blue" OnClick="hlnkprintchk1st_Click" CssClass="btn btn-default btn-xs"><span class=" fa fa-print"></span>
-                                        </asp:LinkButton>
+                                        <asp:HyperLink ID="hlnkprint1stpp" runat="server" Target="_blank" ToolTip="Print Additional Work" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span></asp:HyperLink>                             
                                         <asp:LinkButton ID="lbtnDel1stApp" runat="server" ToolTip="Cancel Check Approval" ForeColor="Blue" CssClass="btn btn-default btn-xs" OnClick="lbtnDel1stApp_Click"><span style="color:red;" class=" fa fa-trash"></span>
                                         </asp:LinkButton>
                                     </ItemTemplate>
@@ -996,10 +994,8 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="">
                                     <ItemTemplate>
-                                        <%--<asp:LinkButton ID="lnkremovechk" runat="server" ToolTip="Unchecked"><span style="color:red" class="glyphicon glyphicon-floppy-remove"></span> </asp:LinkButton>--%>
                                         <asp:HyperLink ID="lnkchk2nd" Target="_blank" runat="server" ToolTip="Checked" CssClass="btn btn-default btn-xs"><span style="color:green" class=" fa fa-check"></span> </asp:HyperLink>
-                                        <asp:LinkButton ID="hlnkprintchk2nd" runat="server" ToolTip="Print" ForeColor="Blue" OnClick="hlnkprintchk2nd_Click" CssClass="btn btn-default btn-xs"><span class=" fa fa-print"></span>
-                                        </asp:LinkButton>
+                                        <asp:HyperLink ID="hlnkprint2ndApp" runat="server" Target="_blank" ToolTip="Print Additional Work" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span></asp:HyperLink>
                                         <asp:LinkButton ID="lbtnDel2ndApp" runat="server" ToolTip="Cancel 1st Approval" ForeColor="Blue" CssClass="btn btn-default btn-xs" OnClick="lbtnDel2ndApp_Click"><span style="color:red;" class=" fa fa-trash"></span>
                                         </asp:LinkButton>
                                     </ItemTemplate>
@@ -1109,8 +1105,8 @@
                                 <asp:TemplateField HeaderText="">
                                     <ItemTemplate>
                                         <asp:HyperLink ID="lnkadt" Target="_blank" runat="server" ToolTip="Audit" CssClass="btn btn-default btn-xs"><span style="color:green" class="fa fa-check"></span> </asp:HyperLink>
-                                        <asp:LinkButton ID="hlnkprintadt" runat="server" ToolTip="Print" OnClick="hlnkprintadt_Click" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
-                                        </asp:LinkButton>
+                                        <asp:HyperLink ID="hlnkprintadt" runat="server" Target="_blank" ToolTip="Print Additional Work" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span></asp:HyperLink>
+
                                         <asp:LinkButton ID="lnkremoveadt" runat="server" OnClick="lnkremoveadt_Click" ToolTip="Remove" CssClass="btn btn-default btn-xs"><span style="color:red" class=" fa fa-trash"></span> </asp:LinkButton>
 
                                     </ItemTemplate>
@@ -1229,8 +1225,8 @@
                                         <asp:HyperLink ID="lnkapp" runat="server" Target="_blank" ToolTip="Approval" CssClass="btn btn-default btn-xs"><span style="color:green" class="fa fa-check"></span> </asp:HyperLink>
                                         <asp:HyperLink ID="hlnkprintapp" runat="server" Target="_blank" ToolTip="Print Additional Work" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span></asp:HyperLink>
                                         <asp:LinkButton ID="lnkremoveap" runat="server" OnClick="lnkremoveap_Click" ToolTip="Cancel" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-trash"></span> </asp:LinkButton>
-                                   
-                                        </ItemTemplate>
+
+                                    </ItemTemplate>
                                     <ItemStyle Width="110px" />
                                     <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
                                 </asp:TemplateField>
