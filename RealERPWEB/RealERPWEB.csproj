@@ -168,7 +168,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Doc\Lib\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2266,6 +2266,7 @@
     <Content Include="F_12_Inv\RptIndentIssueStatusSummary.aspx" />
     <Content Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx" />
     <Content Include="F_14_Pro\RptDateWiseBill.aspx" />
+    <Content Include="F_14_Pro\PoMrrBillStatus.aspx" />
     <Content Include="F_14_Pro\RptPurOrderTopSheet.aspx" />
     <Content Include="F_14_Pro\RptSupAdvanceDetails.aspx" />
     <Content Include="F_17_Acc\AccIssueUpdate.aspx" />
@@ -4151,6 +4152,13 @@
     </Compile>
     <Compile Include="F_14_Pro\RptDateWiseBill.aspx.designer.cs">
       <DependentUpon>RptDateWiseBill.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_14_Pro\PoMrrBillStatus.aspx.cs">
+      <DependentUpon>PoMrrBillStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\PoMrrBillStatus.aspx.designer.cs">
+      <DependentUpon>PoMrrBillStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\RptPurOrderTopSheet.aspx.cs">
       <DependentUpon>RptPurOrderTopSheet.aspx</DependentUpon>

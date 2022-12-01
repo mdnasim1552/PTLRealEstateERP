@@ -111,27 +111,37 @@ namespace RealERPWEB.F_09_PImp
             {
                 case "3336":
                 case "3337":
-                    this.gvSubBill.Columns[9].Visible = false;
-                    this.gvSubBill.Columns[10].Visible = false;
+                    this.gvSubBill.Columns[11].Visible = false;
+                    this.gvSubBill.Columns[13].Visible = false;
                     break;
 
-                case "3339":
-                    this.gvSubBill.Columns[13].Visible = true;
-                    this.gvSubBill.Columns[14].Visible = true;
-                    this.gvSubBill.Columns[15].Visible = true;
+                case "3339"://Tropical
                     this.gvSubBill.Columns[16].Visible = true;
                     this.gvSubBill.Columns[17].Visible = true;
+                    this.gvSubBill.Columns[18].Visible = true;
+                    this.gvSubBill.Columns[19].Visible = true;
+                    this.gvSubBill.Columns[20].Visible = true;
+                    break;
+
+
+                case "3370"://CPDL
+                case "3101"://CPDL
+                    this.gvSubBill.Columns[8].Visible = false;
+                    this.gvSubBill.Columns[9].Visible = false;                    
+                    this.gvSubBill.Columns[10].Visible = true;                    
+                    this.gvSubBill.Columns[12].Visible = true;
+                    this.gvSubBill.Columns[13].Visible = false;
                     break;
 
                 case "3367":
-                case "3101":
-                    this.gvSubBill.Columns[7].Visible = true;
+               // case "3101":
                     this.gvSubBill.Columns[8].Visible = true;
+                    this.gvSubBill.Columns[9].Visible = true;
                     break;
 
                 default:
-                    this.gvSubBill.Columns[7].Visible = false;
                     this.gvSubBill.Columns[8].Visible = false;
+                    this.gvSubBill.Columns[9].Visible = false;
                     break;
             }
 
@@ -1102,21 +1112,21 @@ namespace RealERPWEB.F_09_PImp
                 double billamt = ASTUtility.StrPosOrNagative(((TextBox)this.gvSubBill.Rows[i].FindControl("txtgvamt")).Text.Trim());
                 TblRowIndex = (gvSubBill.PageIndex) * gvSubBill.PageSize + i;
 
-                if (Request.QueryString["status"] != null)
-                {
-                    if (Request.QueryString["status"].ToString() == "S")
-                    {
+                //if (Request.QueryString["status"] != null)
+                //{
+                //    if (Request.QueryString["status"].ToString() == "S")
+                //    {
 
-                        dt.Rows[TblRowIndex]["conrate"] = conrate;
-                        dt.Rows[TblRowIndex]["billamt"] = conrate * conqty;
-                    }
-                }
-                else
-                {
+                //        dt.Rows[TblRowIndex]["conrate"] = conrate;
+                //        dt.Rows[TblRowIndex]["billamt"] = conrate * conqty;
+                //    }
+                //}
+                //else
+                //{
 
                     dt.Rows[TblRowIndex]["billamt"] = billamt;
                     dt.Rows[TblRowIndex]["conrate"] = conqty == 0 ? 0.00 : billamt / conqty;
-                }
+               // }
 
 
             }
@@ -1638,6 +1648,7 @@ namespace RealERPWEB.F_09_PImp
         protected void lbtnConfirmed_Click(object sender, EventArgs e)
         {
 
+            this.lbtnUpdate_Click(null, null);
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetCompCode();
             string usrid = hst["usrid"].ToString();
@@ -1725,6 +1736,8 @@ namespace RealERPWEB.F_09_PImp
                     dr1["billamt"] = dt2.Rows[i]["billamt"].ToString();
                     dr1["peronbgd"] = dt2.Rows[i]["peronbgd"].ToString();
 
+                    dr1["bgdqty"] = dt2.Rows[i]["bgdqty"].ToString();
+                    dr1["balqty"] = dt2.Rows[i]["balqty"].ToString();
                     dr1["bgdrat"] = dt2.Rows[i]["bgdrat"].ToString();
                     dr1["above"] = dt2.Rows[i]["above"].ToString();
                     dr1["amount"] = dt2.Rows[i]["amount"].ToString();
@@ -2001,16 +2014,54 @@ namespace RealERPWEB.F_09_PImp
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 TextBox rate = (TextBox)e.Row.FindControl("lgvSubRate");
-                rate.Enabled = false;
-                if (Request.QueryString["status"] != null)
+                //rate.Enabled = false;
+                string comcod = this.GetCompCode();
+                switch (comcod)
                 {
-                    if (Request.QueryString["status"].ToString() == "S")
-                    {
+                    case "3370":
+                        rate.Enabled = false;
+                        break;
+
+                    default:
                         rate.Enabled = true;
-                    }
+                        break;
+
+
+
+                
+                
                 }
+                
+                //if (Request.QueryString["status"] != null)
+                //{
+                //    if (Request.QueryString["status"].ToString() == "S")
+                //    {
+                //        rate.Enabled = true;
+                //    }
+                //}
 
             }
+        }
+
+        protected void btnDelbill_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)Session["tblbill"];
+            string comcod = this.GetCompCode();
+            int index = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string lisuno = ((Label)this.gvSubBill.Rows[index].FindControl("lgcIsuno1")).Text.Trim();
+           
+            bool result = PurData.UpdateTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "DELETEUPDATEPURLISUUE", lisuno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('"+PurData.ErrorObject["Msg"].ToString()+"');", true);
+                return;
+            }
+            dt.Rows.RemoveAt(index);
+            dt.AcceptChanges();
+            Session["tblbill"] = dt;
+           ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
+            
         }
 
         protected void btnDelall_OnClick(object sender, EventArgs e)

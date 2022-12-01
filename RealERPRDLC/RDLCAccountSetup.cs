@@ -70,6 +70,7 @@ namespace RealERPRDLC
                 case "R_14_Pro.RptBillRegTrack": Rpt1a = RptBillRegTrack (Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptSupPayment": Rpt1a = RptSupPayment (Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptOrderStatus": Rpt1a = RptOrderStatus (Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_14_Pro.RptPOMRRBillStatus": Rpt1a = RptPOMRRBillStatus (Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 case "R_04_Bgd.RptPrjFloorWise": Rpt1a = RptPrjFloorWise (Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -305,6 +306,12 @@ namespace RealERPRDLC
         {
 
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.RptOrderStatus>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport RptPOMRRBillStatus( LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset )
+        {
+
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPayment.EclassRptPOMRRBillStatus>)RptDataSet));
             return Rpt1a;
         }
 
