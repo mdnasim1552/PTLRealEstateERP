@@ -782,6 +782,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "3354": //Edison
                     this.PrintForwardingLetterEdison();
                     break;
+                case "3370": //Edison
+                    this.PrintForwardingLetterCPDL();
+                    break;
 
                 default:
                     this.PrintForwardingLettergen();
@@ -858,6 +861,92 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
+
+
+        private void PrintForwardingLetterCPDL()
+        {
+            DataTable dt = (DataTable)Session["tblover"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string comname = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            //string bankname = this.ddlBankName.SelectedItem.Text.Trim();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string txtcuDate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            string year = this.txtDate.Text.Substring(0, 4).ToString();
+            string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
+
+
+
+            string banksl = dt.Rows[0]["banksl"].ToString();
+            string addr = dt.Rows[0]["bankaddr"].ToString();
+            string bankname = dt.Rows[0]["bankname"].ToString();
+            string bankacc = this.ddlBankName.SelectedValue.ToString();
+
+            // string[] add = addr.Split('^');
+            string[] add = addr.Split(',');
+
+            string Badd = "";
+
+            foreach (string add1 in add)
+                Badd = Badd + add1 + "," + "\n";
+            Badd = Badd.Substring(1, Badd.Length - 1);
+
+
+
+            string sumamt = ((Label)this.gvBankPayment.FooterRow.FindControl("lgvFBamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ? 0.00
+           : dt.Compute("sum(amt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
+
+            string inwords = ASTUtility.Trans(Convert.ToDouble(sumamt), 2);
+
+           string subject = "Subject: CPDL Salary Disbursement for the month of - " + month + "-" + year + ".";
+
+
+
+            string Det1 = "";
+            
+            Det1 = "Please transfer to TK " + sumamt +"/="+ inwords.ToUpper()  + " as on " + month + "," + year + " to our followings employees bank account No: "+ bankacc + " in the name of" +
+                " CA Property Development Ltd. maintained with you.";
+
+
+
+            //string Det2 = "We would like to request you to transfer the amount to the respective accounts of our employees (details list attached) by debiting our C/D account no. "
+            //                + banksl + " as per bellow details: ";
+
+            string Det2 = "For better clarification we have provided you the soft copy of data through e-mail from id number samima@cpdl.com.bd sender name Samima Sultana and" +
+                " affirm you that the soft copy of data is true and exact with hard copy of data submitted to you. For any deviation with soft copy & ahard copy we will be held" +
+                " responsible. For any query please contact with Samima Sultana, Mobile No - 01777766099.";
+
+
+
+
+            ReportDocument rptstk = new ReportDocument();
+            LocalReport Rpt1 = new LocalReport();
+
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptForLetterCPDL", null, null, null);
+            //string concern = "Dear Sir,";
+
+            Rpt1.SetParameters(new ReportParameter("BankAdd", addr));
+
+
+            Rpt1.SetParameters(new ReportParameter("Date", Convert.ToDateTime(txtcuDate).ToString("MMMM dd, yyyy")));
+            Rpt1.SetParameters(new ReportParameter("Attn", "Ref: CPDL / TM / UCBL/22-10 "));
+            Rpt1.SetParameters(new ReportParameter("Bank", bankname));
+
+            Rpt1.SetParameters(new ReportParameter("subject", subject));
+            Rpt1.SetParameters(new ReportParameter("Det1", Det1));
+            Rpt1.SetParameters(new ReportParameter("Det2", Det2));
+            Rpt1.SetParameters(new ReportParameter("Det3", "Total Amount: BDT " + sumamt));
+            Rpt1.SetParameters(new ReportParameter("inwords", "Amount in Words: " + inwords));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+        
 
         private void PrintForwardingLetterTerra()
         {

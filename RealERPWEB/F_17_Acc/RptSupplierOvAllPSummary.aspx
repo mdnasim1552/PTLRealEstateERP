@@ -692,6 +692,22 @@
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
+                                    <asp:TemplateField HeaderText="Bill Ref">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvbillref" runat="server" CssClass="GridLebel"
+                                               Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "billref")) %>'
+                                                Width="90px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvFgvbillref" runat="server" Font-Bold="True" Font-Size="12px"
+                                                Style="text-align: right" Width="90px"></asp:Label>
+                                        </FooterTemplate>
+                                        <FooterStyle HorizontalAlign="Left" />
+                                        <ItemStyle HorizontalAlign="Left" />
+                                        <HeaderStyle VerticalAlign="Middle" />
+                                        <HeaderStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+
 
                                     <asp:TemplateField HeaderText="Bill Amount">
                                         <ItemTemplate>
