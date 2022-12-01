@@ -141,15 +141,7 @@ namespace RealERPWEB.F_17_Acc
                     this.gvSpledger.DataSource = null;
                     this.gvSpledger.DataBind();
                     break;
-
-
-
-
-
-
             }
-
-
 
         }
         protected void IbtnSearchAcc_Click(object sender, EventArgs e)
@@ -256,6 +248,7 @@ namespace RealERPWEB.F_17_Acc
             {
                 this.dgv2.DataSource = null;
                 this.dgv2.DataBind();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found ..');", true);
                 return;
             }
             Session["StoreTable"] = dt;
@@ -490,11 +483,11 @@ namespace RealERPWEB.F_17_Acc
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "RPTACCRESOURCELG", resource, frmdate, todate, withOutOpn, acthead, withOutnarra, consolidate, "", "");
 
             //DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "RPTACCRESOURCELG", resource, frmdate, todate, "", "", "", "", "", "");
-            if (ds1 == null)
+            if (ds1 == null || ds1.Tables[0].Rows.Count==0 )
             {
-
                 this.gvSpledger.DataSource = null;
                 this.gvSpledger.DataBind();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found ..');", true);
                 return;
             }
             DataTable dt = HiddenSameDataSp(ds1.Tables[0]);
@@ -740,6 +733,7 @@ namespace RealERPWEB.F_17_Acc
             //if (voucher.Substring(0,2)=="BC"|| voucher.Substring(0,2)=="BD"|| voucher.Substring(0,2)=="CC"|| voucher.Substring(0,2)=="CD"|| voucher.Substring(0,2)=="JV"|| voucher.Substring(0,2)=="CT")  
             //    hlink1.NavigateUrl = "RptAccVouher.aspx?vounum=" + voucher;
         }
+        
         protected void dgv2_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -764,9 +758,6 @@ namespace RealERPWEB.F_17_Acc
             }
         }
 
-
-
-
         protected void lnkShowsp02_Click(object sender, EventArgs e)
         {
             Session.Remove("tblspledger");
@@ -779,11 +770,12 @@ namespace RealERPWEB.F_17_Acc
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "RPTSUPPLIERLEDGER", resource, frmdate, todate, "", "", "", "", "", "");
 
             //DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "RPTACCRESOURCELG", resource, frmdate, todate, "", "", "", "", "", "");
-            if (ds1 == null)
+           
+            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
             {
-
                 this.gvspleder02.DataSource = null;
                 this.gvspleder02.DataBind();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found ..');", true);
                 return;
             }
             DataTable dt =  HiddenSameDataSp02(ds1.Tables[0]);
@@ -808,8 +800,6 @@ namespace RealERPWEB.F_17_Acc
             }
 
         }
-
-
 
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
@@ -1027,8 +1017,6 @@ namespace RealERPWEB.F_17_Acc
             return comledger;
 
         }
-
-
 
         private void PrintLedger()
         {
@@ -1279,17 +1267,26 @@ namespace RealERPWEB.F_17_Acc
                     {
                         this.gvSpledger.DataSource = null;
                         this.gvSpledger.DataBind();
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found');", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found..');", true);
                         return;
                     }
                     break;
 
 
                 case "DetailLedger02":
-
-                    this.gvspleder02.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                    this.gvspleder02.DataSource = dt;
-                    this.gvspleder02.DataBind();
+                    if (dt.Rows.Count > 0)
+                    {
+                        this.gvspleder02.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                        this.gvspleder02.DataSource = dt;
+                        this.gvspleder02.DataBind();
+                    }
+                    else
+                    {
+                        this.gvspleder02.DataSource = null;
+                        this.gvspleder02.DataBind();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('No Data Found..');", true);
+                        return; 
+                    }
                     break;
             }
         }
@@ -1365,10 +1362,6 @@ namespace RealERPWEB.F_17_Acc
             //this.dgv2.PageIndex = e.NewPageIndex;
             //this.Data_Bind();
         }
-
-
-
-
 
         protected void gvspleder02_RowDataBound(object sender, GridViewRowEventArgs e)
         {
