@@ -475,7 +475,6 @@
         }
     </style>
 
-
     <script src="../Scripts/waypoints.min.js"></script>
     <script src="../Scripts/jquery.counterup.min.js"></script>
     <script type="text/javascript">
@@ -491,13 +490,18 @@
                     var k1 = new KeyPress();
                     k1.textBoxHandler(event);
                 });
-                $('#<%=this.gvConUpdat.ClientID%>').tblScrollable();
                 $('#<%=this.gvexecution.ClientID%>').tblScrollable();
                 $('#<%=this.gvsubbill.ClientID%>').tblScrollable();
                 $('#<%=this.gvfinal.ClientID%>').tblScrollable();
-                $('#<%=this.gvfinalapp.ClientID%>').tblScrollable();
                 $('#<%=this.gvAllReq.ClientID%>').tblScrollable();
                 $('#<%=this.grvImple.ClientID%>').tblScrollable();
+                $('#<%=this.gvlabbillreq.ClientID%>').tblScrollable();
+                $('#<%=this.gvbillapp.ClientID%>').tblScrollable();
+                $('#<%=this.gvsrec.ClientID%>').tblScrollable();
+                $('#<%=this.gvfrec.ClientID%>').tblScrollable();
+                $('#<%=this.gvthrec.ClientID%>').tblScrollable();
+                $('#<%=this.gvfinalapp.ClientID%>').tblScrollable();
+                $('#<%=this.gvConUpdat.ClientID%>').tblScrollable();
             }
             catch (e) {
                 alert(e);
@@ -623,17 +627,47 @@
                     case 'gvAllReq':
                         tblData = document.getElementById("<%=this.gvAllReq.ClientID %>");
                         break;
+                    case 'gvlabbillreq':
+                        tblData = document.getElementById("<%=this.gvlabbillreq.ClientID %>");
+                        break;
                     case 'gvsubbill':
                         tblData = document.getElementById("<%=this.gvsubbill.ClientID %>");
                         break;
+                    case 'gvbillapp':
+                        tblData = document.getElementById("<%=this.gvbillapp.ClientID %>");
+                        break;
                     case 'gvfinal':
                         tblData = document.getElementById("<%=this.gvfinal.ClientID %>");
+                        break;
+                    case 'gvsrec': 
+                        tblData = document.getElementById("<%=this.gvsrec.ClientID %>");
+                        break;
+                    case 'gvfrec':
+                        tblData = document.getElementById("<%=this.gvfrec.ClientID %>");
+                        break;
+                    case 'gvthrec':
+                        tblData = document.getElementById("<%=this.gvthrec.ClientID %>");
                         break;
                     case 'gvfinalapp':
                         tblData = document.getElementById("<%=this.gvfinalapp.ClientID %>");
                         break;
                     case 'gvConUpdat':
                         tblData = document.getElementById("<%=this.gvConUpdat.ClientID %>");
+                        break;
+                    case 'gvbillcs':
+                        tblData = document.getElementById("<%=this.gvbillcs.ClientID %>");
+                        break;
+                    case 'gvWorkOrder':
+                        tblData = document.getElementById("<%=this.gvWorkOrder.ClientID %>");
+                        break;
+                    case 'gvmbookapp':
+                        tblData = document.getElementById("<%=this.gvmbookapp.ClientID %>");
+                        break;
+                    case 'gvmbook':
+                        tblData = document.getElementById("<%=this.gvmbook.ClientID %>");
+                        break;
+                    case 'gvReadyForBill':
+                        tblData = document.getElementById("<%=this.gvReadyForBill.ClientID %>");
                         break;
                     default:
                         tblData = document.getElementById("<%=gvsubbill.ClientID %>");
@@ -671,8 +705,6 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-
-
             <div class="RealProgressbar">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
                     <ProgressTemplate>
@@ -1013,10 +1045,8 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Project Name">
-
                                                 <HeaderTemplate>
-                                                    <asp:TextBox ID="txtSearchproConUpdat" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" placeholder="Project" onkeyup="Search_Gridview(this,1,'gvConUpdat')"></asp:TextBox><br />
-
+                                                    <asp:TextBox ID="txtSearchproConUpdat" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Project" onkeyup="Search_Gridview(this,1,'gvConUpdat')"></asp:TextBox><br />
                                                 </HeaderTemplate>
 
 
@@ -1192,10 +1222,7 @@
 
                                 </asp:Panel>
                                 <asp:Panel ID="PnlExe" Visible="false" runat="server">
-
-
                                     <div class="table-responsive col-lg-12" style="background: #fff;">
-
                                         <asp:GridView ID="gvexecution" runat="server" AutoGenerateColumns="False"
                                             ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvexecution_RowDataBound">
                                             <RowStyle />
@@ -1295,7 +1322,6 @@
 
                                 </asp:Panel>
                                 <asp:Panel ID="pnlSubbill" Visible="false" runat="server">
-
                                     <asp:GridView ID="gvsubbill" runat="server" AutoGenerateColumns="False"
                                         ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvsubbill_RowDataBound">
                                         <RowStyle />
@@ -1443,7 +1469,6 @@
                                 </asp:Panel>
 
                                 <asp:Panel ID="pnlbillapp" Visible="false" runat="server">
-
                                     <asp:GridView ID="gvbillapp" runat="server" AutoGenerateColumns="False"
                                         ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvbillapp_RowDataBound">
                                         <RowStyle />
@@ -1458,6 +1483,9 @@
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Project Name">
+                                                <HeaderTemplate>
+                                                    <asp:TextBox ID="txtSearchproConUpdat" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="150px" placeholder="Project" onkeyup="Search_Gridview(this,1,'gvbillapp')"></asp:TextBox><br />
+                                                </HeaderTemplate>
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvbillappactdesc" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
@@ -1561,14 +1589,11 @@
                                 </asp:Panel>
 
                                 <asp:Panel ID="pnlfrec" Visible="false" runat="server">
-
                                     <div class="table-responsive col-lg-12" style="min-height: 350px;">
                                         <asp:GridView ID="gvfrec" runat="server" AutoGenerateColumns="False"
                                             ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvfrec_RowDataBound">
                                             <RowStyle />
                                             <Columns>
-
-
                                                 <asp:TemplateField HeaderText="Sl.No.">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvSlNo5frec" runat="server" Font-Bold="True"
@@ -1588,6 +1613,9 @@
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Project Name">
+                                                    <HeaderTemplate>
+                                                        <asp:TextBox ID="txtSearchprogvfrec" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="150px" placeholder="Project" onkeyup="Search_Gridview(this,1,'gvfrec')"></asp:TextBox><br />
+                                                    </HeaderTemplate>
                                                     <ItemTemplate>
                                                         <asp:Label ID="txtAPPgvactdescfrec" runat="server" BackColor="Transparent"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
@@ -1732,9 +1760,6 @@
                                                 ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvsrec_RowDataBound">
                                                 <RowStyle />
                                                 <Columns>
-
-
-
                                                     <asp:TemplateField HeaderText="Sl.No.">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvSlNo5srec" runat="server" Font-Bold="True"
@@ -1743,7 +1768,6 @@
                                                         </ItemTemplate>
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                     </asp:TemplateField>
-
 
                                                     <asp:TemplateField HeaderText="Code" Visible="False">
                                                         <ItemTemplate>
@@ -1754,6 +1778,9 @@
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Project Name">
+                                                        <HeaderTemplate>
+                                                            <asp:TextBox ID="txtSearchprogvsrec" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="120px" placeholder="Project" onkeyup="Search_Gridview(this,1,'gvsrec')"></asp:TextBox><br />
+                                                        </HeaderTemplate>
                                                         <ItemTemplate>
                                                             <asp:Label ID="txtAPPgvactdescsrec" runat="server" BackColor="Transparent"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
@@ -1917,6 +1944,9 @@
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Project Name">
+                                                    <HeaderTemplate>
+                                                            <asp:TextBox ID="txtSearchprogvthrec" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="120px" placeholder="Project" onkeyup="Search_Gridview(this,1,'gvthrec')"></asp:TextBox><br />
+                                                        </HeaderTemplate>
                                                     <ItemTemplate>
                                                         <asp:Label ID="txtAPPgvactdescthrec" runat="server" BackColor="Transparent"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
@@ -2051,8 +2081,6 @@
                                 </asp:Panel>
 
                                 <asp:Panel ID="Pnlbillf" Visible="false" runat="server">
-
-
                                     <asp:GridView ID="gvfinal" runat="server" AutoGenerateColumns="False"
                                         ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvfinal_RowDataBound">
                                         <RowStyle />
@@ -2070,7 +2098,6 @@
 
                                                 <HeaderTemplate>
                                                     <asp:TextBox ID="txtSearchprofinal" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Project" onkeyup="Search_Gridview(this,1,'gvfinal')"></asp:TextBox><br />
-
                                                 </HeaderTemplate>
 
 
@@ -2464,13 +2491,9 @@
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Project Name">
-
                                                 <HeaderTemplate>
-                                                    <asp:TextBox ID="txtSearchprofinal" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Project" onkeyup="Search_Gridview(this,1,'PanelBillReq')"></asp:TextBox><br />
-
+                                                    <asp:TextBox ID="txtSearchprofinal" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Project" onkeyup="Search_Gridview(this,1,'gvAllReq')"></asp:TextBox><br />
                                                 </HeaderTemplate>
-
-
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvPactdescsf1" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
@@ -2489,7 +2512,6 @@
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-
                                             <asp:TemplateField HeaderText="Ref No">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvissuerefbill" runat="server"
@@ -2501,7 +2523,6 @@
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Req Date">
-
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcResDescsf" runat="server"
                                                         Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "reqdat")).ToString("dd-MM-yyyy") %>'
@@ -2512,10 +2533,7 @@
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-
-
                                             <asp:TemplateField HeaderText="Amount">
-
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvamount" runat="server"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "reqamt")).ToString("#,##0;(#,##0").ToString() %>'
@@ -2568,7 +2586,7 @@
                                             <asp:TemplateField HeaderText="Project Name">
 
                                                 <HeaderTemplate>
-                                                    <asp:TextBox ID="txtSearchprofinal" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Project" onkeyup="Search_Gridview(this,1,'PanelBillReq')"></asp:TextBox><br />
+                                                    <asp:TextBox ID="txtSearchprofinal" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Project" onkeyup="Search_Gridview(this,1,'gvlabbillreq')"></asp:TextBox><br />
 
                                                 </HeaderTemplate>
 
@@ -2693,7 +2711,7 @@
                                             <asp:TemplateField HeaderText="Project Name">
 
                                                 <HeaderTemplate>
-                                                    <asp:TextBox ID="txtSearchprofinal" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Project" onkeyup="Search_Gridview(this,1,'PanelBillReq')"></asp:TextBox><br />
+                                                    <asp:TextBox ID="txtSearchprogvbillcs" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Project" onkeyup="Search_Gridview(this,1,'gvbillcs')"></asp:TextBox><br />
 
                                                 </HeaderTemplate>
 
@@ -2817,6 +2835,7 @@
                                         <RowStyle CssClass="grvRows" />
                                     </asp:GridView>
                                 </asp:Panel>
+
                                 <asp:Panel ID="PanelWorkOrder" runat="server">
                                     <asp:GridView ID="gvWorkOrder" runat="server" AutoGenerateColumns="False"
                                         ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvWorkOrder_RowDataBound">
@@ -2834,7 +2853,7 @@
                                             <asp:TemplateField HeaderText="Project Name">
 
                                                 <HeaderTemplate>
-                                                    <asp:TextBox ID="txtSearchprofinal" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Project" onkeyup="Search_Gridview(this,1,'PanelBillReq')"></asp:TextBox><br />
+                                                    <asp:TextBox ID="txtSearchprofinal" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Project" onkeyup="Search_Gridview(this,1,'gvWorkOrder')"></asp:TextBox><br />
 
                                                 </HeaderTemplate>
 
@@ -2993,13 +3012,9 @@
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Project Name">
-
                                                 <HeaderTemplate>
-                                                    <asp:TextBox ID="txtSearchprofinalmb" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Project" onkeyup="Search_Gridview(this,1,'PanelBillReq')"></asp:TextBox><br />
-
+                                                    <asp:TextBox ID="txtSearchprogvmbook" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Project" onkeyup="Search_Gridview(this,1,'gvmbook')"></asp:TextBox><br />
                                                 </HeaderTemplate>
-
-
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvPactdescmb" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
@@ -3159,7 +3174,7 @@
                                             <asp:TemplateField HeaderText="Project Name">
 
                                                 <HeaderTemplate>
-                                                    <asp:TextBox ID="txtSearchprofinalmbapp" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Project" onkeyup="Search_Gridview(this,1,'PanelBillReq')"></asp:TextBox><br />
+                                                    <asp:TextBox ID="txtSearchprofinalmbapp" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Project" onkeyup="Search_Gridview(this,1,'gvmbookapp')"></asp:TextBox><br />
 
                                                 </HeaderTemplate>
 
@@ -3306,6 +3321,7 @@
                                     </asp:GridView>
 
                                 </asp:Panel>
+
                                 <asp:Panel ID="PanelReadyForBil" runat="server">
                                     <asp:GridView ID="gvReadyForBill" runat="server" AutoGenerateColumns="False"
                                         ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvReadyForBill_RowDataBound">
@@ -3323,7 +3339,7 @@
                                             <asp:TemplateField HeaderText="Project Name">
 
                                                 <HeaderTemplate>
-                                                    <asp:TextBox ID="txtSearchprofinal" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Project" onkeyup="Search_Gridview(this,1,'PanelBillReq')"></asp:TextBox><br />
+                                                    <asp:TextBox ID="txtSearchprogvReadyForBill" SortExpression="actdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Project" onkeyup="Search_Gridview(this,1,'gvReadyForBill')"></asp:TextBox><br />
 
                                                 </HeaderTemplate>
 
@@ -3493,10 +3509,6 @@
 
                 </div>
             </div>
-
-
-
-
         </ContentTemplate>
 
 
