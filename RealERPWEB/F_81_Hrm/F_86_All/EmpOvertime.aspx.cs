@@ -621,10 +621,10 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             switch (comcod)
             {
                 case "3368"://Finlay
-                case "3101":
+              
                     CallType = "EMPALLOYOVERTIMEFINLAY";
                     break;
-
+               
                 default:
                     CallType = "EMPALLOYOVERTIME";
                     break;
@@ -992,6 +992,33 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     this.gvEmpOverTime.DataBind();
                     this.EnabledOrVissible();
                     this.FooterCalculation();
+
+                    if (comcod == "3370" || comcod == "3101")//For BTI
+                    {
+                        
+                        this.gvEmpOverTime.Columns[4].Visible = true;
+                        this.gvEmpOverTime.Columns[5].Visible = false;
+                        this.gvEmpOverTime.Columns[6].Visible = false;
+                        this.gvEmpOverTime.Columns[7].Visible = false;
+                        this.gvEmpOverTime.Columns[8].Visible = false;
+                        this.gvEmpOverTime.Columns[9].Visible = false;
+                        this.gvEmpOverTime.Columns[10].Visible = false;
+                        this.gvEmpOverTime.Columns[11].Visible = false;
+                        this.gvEmpOverTime.Columns[12].Visible = false;
+                        this.gvEmpOverTime.Columns[13].Visible = false;
+                        this.gvEmpOverTime.Columns[14].Visible = false;
+                        this.gvEmpOverTime.Columns[15].Visible = false;
+                        this.gvEmpOverTime.Columns[16].Visible = true;
+                    }
+                    else
+                    {
+                        this.gvEmpOtherded.Columns[16].Visible = false;
+
+                    }
+
+
+
+
                     break;
 
                 case "BankPayment":
@@ -1406,7 +1433,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     }
                     break;
                 case "3368"://Finlay
-                case "3101":
+                 
 
                     
                     for (int i = 0; i < this.gvEmpOverTime.Rows.Count; i++)
@@ -1417,6 +1444,27 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         double c1rate = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("lblgvc1rate")).Text.Trim());
                         double c2rate = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("lblgvc2rate")).Text.Trim());
                         double c3rate = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("lblgvc3rate")).Text.Trim());
+                        //((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvFixed")).Visible = fixhourrate > 0;
+                        //((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvhourly")).Visible = hourlyrate > 0;
+                        //((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvc1")).Visible = c1rate > 0;
+                        //((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvc2")).Visible = c2rate > 0;
+                        //((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvc3")).Visible = c3rate > 0;
+                    }
+                    break;
+                case "3370":
+                case "3101":
+
+
+                    for (int i = 0; i < this.gvEmpOverTime.Rows.Count; i++)
+                    {
+
+                        //double fixhourrate = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("lblgvFixedrate")).Text.Trim());
+                        //double hourlyrate = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("lblgvhourlyrate")).Text.Trim());
+                        //double c1rate = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("lblgvc1rate")).Text.Trim());
+                        //double c2rate = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("lblgvc2rate")).Text.Trim());
+                        //double c3rate = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("lblgvc3rate")).Text.Trim());
+                        //double fixamt = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("txtgvfixamt")).Text.Trim());
+
                         //((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvFixed")).Visible = fixhourrate > 0;
                         //((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvhourly")).Visible = hourlyrate > 0;
                         //((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvc1")).Visible = c1rate > 0;
@@ -1654,6 +1702,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         double c1hour = Convert.ToDouble("0" + ((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvc1")).Text.Trim());
                         double c2hour = Convert.ToDouble("0" + ((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvc2")).Text.Trim());
                         double c3hour = Convert.ToDouble("0" + ((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvc3")).Text.Trim());
+                        double fixamt = Convert.ToDouble("0" + ((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvfixamt")).Text.Trim());
 
                         double tohour = fixhour + hourly + c1hour + c2hour + c3hour;
                         rowindex = (this.gvEmpOverTime.PageSize) * (this.gvEmpOverTime.PageIndex) + i;
@@ -1663,6 +1712,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         dt.Rows[rowindex]["c2hour"] = c2hour;
                         dt.Rows[rowindex]["c3hour"] = c3hour;
                         dt.Rows[rowindex]["tohour"] = tohour;
+                        dt.Rows[rowindex]["fixamt"] = fixamt;
 
                     }
 
@@ -1939,9 +1989,10 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 double c1rate = Convert.ToDouble(dt.Rows[i]["c1rate"]);
                 double c2rate = Convert.ToDouble(dt.Rows[i]["c2rate"]);
                 double c3rate = Convert.ToDouble(dt.Rows[i]["c3rate"]);
+                double fixamtx = Convert.ToDouble(dt.Rows[i]["fixamt"]);               
 
+                string fixamt = (comcod == "3370" || comcod == "3101")? fixamtx.ToString() : (fixhour * fixrate).ToString();
 
-                string fixamt = (fixhour * fixrate).ToString();
                 string houramt = (hourly * hourrate).ToString();
                 string c1amt = (c1hour * c1rate).ToString();
                 string c2amt = (c2hour * c2rate).ToString();
@@ -1955,6 +2006,21 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     if (!result)
                         return;
                 }
+                switch (comcod)
+                {
+                    case "3101":
+                    case "3370":
+                        if (fixamtx > 0)
+                        {
+                            result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, "");
+                            if (!result)
+                                return;
+                        }
+                        break;
+                        
+                }
+
+
             }
 
             msg = "Updated Successfully";
@@ -3616,6 +3682,69 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                                 dt1.Rows[i]["othearn"] = Others;
                                 dt1.Rows[i]["nfoodal"] = Refund;
                                 dt1.Rows[i]["hardship"] = Dress_Bill;
+                                rowCount++;
+                                dt1.AcceptChanges();
+
+                            }
+                        }
+                    }
+                    break;
+
+                case "Overtime":
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        string fixamt = "0.00";
+                        
+                        switch (comcod)
+                        {
+                            case "3370":
+                                fixamt = dt.Rows[i]["fixamt"].ToString().Length == 0 ? "0" : dt.Rows[i]["fixamt"].ToString();                               
+                                break;
+                           
+                            default:
+                                fixamt = "0.00";                               
+                                break;
+                        }
+                        string Card = dt.Rows[i]["Card"].ToString();
+
+                        if (Card.Length == 0)
+                        {
+                            dt.Rows.RemoveAt(i);
+                            continue;
+                        }
+
+                        if (!IsNuoDecimal(fixamt))
+                        {
+                            dt.Rows[i]["fixamt"] = 0.00;
+                        }
+
+                        dt.AcceptChanges();
+                        isAllValid = true;
+
+                    }
+                    if (isAllValid)
+                    {
+
+                        for (int i = 0; i < dt1.Rows.Count; i++)
+                        {
+                            DataRow[] rows = dt.Select("Card ='" + dt1.Rows[i]["idcardno"] + "'");
+
+                            if (rows.Length > 0)
+                            {
+                                double fixamt = 0.00;
+                                 
+                                switch (comcod)
+                                {
+                                    case "3370":
+                                        fixamt = Convert.ToDouble("0" + rows[0]["fixamt"]);
+                                        break;
+                                    
+                                    default:
+                                        fixamt = 0.00;                                        
+                                        break;
+                                }
+                                dt1.Rows[i]["fixamt"] = fixamt;
+                                
                                 rowCount++;
                                 dt1.AcceptChanges();
 
