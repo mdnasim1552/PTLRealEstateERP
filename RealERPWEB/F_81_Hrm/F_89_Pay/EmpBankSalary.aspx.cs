@@ -781,6 +781,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string year = this.txtDate.Text.Substring(0, 4).ToString();
             string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
             string month2 = this.txtDate.Text.Substring(4);
+            string selMon = this.txtDate.Text.Substring(2,2);
+
             var lastDayOfMonth = DateTime.DaysInMonth(Convert.ToInt32(year), Convert.ToInt32(month2));
 
             string totalAmt = dt.Compute("Sum(amt)", string.Empty).ToString();
@@ -807,11 +809,16 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             Rpt1.SetParameters(new ReportParameter("rptTitle", (this.chkBonus.Checked) ? "Festival Bonus Transfer Statement  " : "Salary Transfer Statement"));
             Rpt1.SetParameters(new ReportParameter("date", "For " + month + "- " + year));
-            Rpt1.SetParameters(new ReportParameter("rptBankName", bankname));
+            //Rpt1.SetParameters(new ReportParameter("rptBankName", bankname));
+            Rpt1.SetParameters(new ReportParameter("rptBankName", "United Commercial Bank Limited"));
+
             Rpt1.SetParameters(new ReportParameter("totalAmt", totalAmt));
             Rpt1.SetParameters(new ReportParameter("ttlwrd", ttlwrd));
             Rpt1.SetParameters(new ReportParameter("curDate", curdate));
             Rpt1.SetParameters(new ReportParameter("desc", desc));
+            Rpt1.SetParameters(new ReportParameter("refMon",month2));
+
+
             Rpt1.SetParameters(new ReportParameter("valueDate", valueDate));
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
 
@@ -856,6 +863,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "3354": //Edison
                     this.PrintForwardingLetterEdison();
                     break;
+                case "3101":
+
                 case "3370": //Edison
                     this.PrintForwardingLetterCPDL();
                     break;
@@ -952,6 +961,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string year = this.txtDate.Text.Substring(0, 4).ToString();
             string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
 
+                  string month2 = this.txtDate.Text.Substring(4);
+            string selYear = this.txtDate.Text.Substring(2,2);
 
 
             string banksl = dt.Rows[0]["banksl"].ToString();
@@ -982,7 +993,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             string Det1 = "";
             
-            Det1 = "Please transfer to TK " + sumamt +"/="+ inwords.ToUpper()  + " as on " + month + "," + year + " to our followings employees bank account No: "+ bankacc + " in the name of" +
+            Det1 = "Please transfer to TK " + sumamt +"/="+ inwords.ToUpper()  + " as on " + Convert.ToDateTime(txtcuDate).ToString("MMMM, yyyy") + "," + year + " to our followings employees bank account No: 1752101000001726 in the name of" +
                 " CA Property Development Ltd. maintained with you.";
 
 
@@ -1007,8 +1018,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
             Rpt1.SetParameters(new ReportParameter("Date", Convert.ToDateTime(txtcuDate).ToString("MMMM dd, yyyy")));
-            Rpt1.SetParameters(new ReportParameter("Attn", "Ref: CPDL / TM / UCBL/22-10 "));
-            Rpt1.SetParameters(new ReportParameter("Bank", bankname));
+            Rpt1.SetParameters(new ReportParameter("Attn", "Ref: CPDL / TM / UCBL/"+ selYear+"-"+ month2));
+            //Rpt1.SetParameters(new ReportParameter("Bank", bankname));
+
+            Rpt1.SetParameters(new ReportParameter("Bank", "United Commercial Bank Limited"));
 
             Rpt1.SetParameters(new ReportParameter("subject", subject));
             Rpt1.SetParameters(new ReportParameter("Det1", Det1));
