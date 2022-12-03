@@ -717,7 +717,8 @@ namespace RealERPWEB.F_09_PImp
 
             string comcod = this.GetCompCode();
             string pactcode = this.ddlprjlist.SelectedValue.ToString();
-            string CurDate1 = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString();
+            string CurDate1 = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy"); 
+
             string mISSNo = "NEWLISS";
             if (this.ddlPrevISSList.Items.Count > 0)
             {
