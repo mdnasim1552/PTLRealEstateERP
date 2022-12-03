@@ -576,6 +576,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1403000", "1403230", "F_14_Pro", "RptSupCreditLimit?", "Type=RptSupCredit", "Supplier Overall Position-2", "Procurement", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1403000", "1403240", "F_14_Pro", "RptWorkOrderHistorySup?", "Type=WorkOrdHisSup", "Purchase Order History Suplier", "Procurement", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1403000", "1403241", "F_14_Pro", "RptWorkOrderHistorySup?", "Type=WorkOrdHisRes", "Purchase Order History Resource", "Procurement", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1403000", "1403243", "F_14_Pro", "RptWorkOrderHistorySup?", "Type=OrderVsSupplier", "Purchase Order Vs  Supplier", "Procurement", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1403000", "1403242", "F_14_Pro", "RptSupplierDueStatus", "", "Supplier Due Status", "Procurement", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1403000", "1403245", "F_14_Pro", "PurInformation?", "Type=Report", "Purchase Dashboard", "Procurement", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1403000", "1403250", "F_14_Pro", "RptDayWiseAdvance", "", " Day  Wise Order Advanced", "Procurement", "False", "False", "False", "False" }); ;
@@ -5739,6 +5740,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000009", "05. Purchase Order-Supplier Wise", "F_14_Pro/RptWorkOrderVsSupply?Type=OrdVsSup&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000010", "06. Purchase Order History Suppliers", "F_14_Pro/RptWorkOrderHistorySup?Type=WorkOrdHisSup", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000011", "07. Purchase Order History Resources", "F_14_Pro/RptWorkOrderHistorySup?Type=WorkOrdHisRes", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000011", "08. Purchase Order Vs  Supplier", "F_14_Pro/RptWorkOrderHistorySup?Type=OrderVsSupplier", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000012", "12. Periodic Purchase Tracking", "F_14_Pro/RptDateWiseReq?Type=PeriodPurchase", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000013", "17. Rate Variance-Materials", "F_14_Pro/RptPurchaseStatus?Type=Purchase&Rpt=MatRateVar&comcod=&Date1=&Date2=", "", true, "" });
 
@@ -15462,6 +15464,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000007", "05. Purchase Order Details", "F_14_Pro/RptWorkOrderStatus?Type=DetailsWorkIOrdStatus", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000008", "06. Purchase Order History Suppliers", "F_14_Pro/RptWorkOrderHistorySup?Type=WorkOrdHisSup", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000009", "07. purchase Order History Resources", "F_14_Pro/RptWorkOrderHistorySup?Type=WorkOrdHisRes", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000029", "08. Purchase Order Vs Supplier", "F_14_Pro/RptWorkOrderHistorySup?Type=OrderVsSupplier", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0401000010", "08. Pending Bill", "F_14_Pro/RptPurchaseStatus?Type=Purchase&Rpt=PenBill&comcod=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000011", "09. Purchase Tracking-01", "F_14_Pro/RptPurchaseStatus?Type=Purchase&Rpt=Purchasetrk&comcod=&Date1=&Date2=", "", true, "" });

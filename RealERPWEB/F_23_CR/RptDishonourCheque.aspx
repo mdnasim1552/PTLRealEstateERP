@@ -159,7 +159,7 @@
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label ID="lgvtotal" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="White" Style="text-align: right" Text="Total: " Width="75px"></asp:Label>
+                                            ForeColor="Black" Style="text-align: right" Text="Total: " Width="75px"></asp:Label>
                                     </FooterTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="right" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -240,7 +240,7 @@
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label ID="lgvCheAmt" runat="server" Font-Bold="True" Font-Size="12px"
-                                            ForeColor="White" Style="text-align: right" Width="70px"></asp:Label>
+                                            ForeColor="Black" Style="text-align: right" Width="70px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle Font-Bold="True" HorizontalAlign="right" />
