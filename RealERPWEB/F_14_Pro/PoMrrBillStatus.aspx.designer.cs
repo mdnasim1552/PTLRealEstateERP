@@ -141,6 +141,15 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.GridView gvBillStatus;
 
         /// <summary>
+        /// Close control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Close;
+
+        /// <summary>
         /// gvpobill control.
         /// </summary>
         /// <remarks>
