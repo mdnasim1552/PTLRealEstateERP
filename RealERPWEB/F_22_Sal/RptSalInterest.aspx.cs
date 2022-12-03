@@ -1839,6 +1839,7 @@ namespace RealERPWEB.F_22_Sal
             string compname = hst["compname"].ToString();
             string comsnam = hst["comsnam"].ToString();
             string comadd = hst["comadd1"].ToString();
+            string comfadd = hst["comadd"].ToString().Replace("<br />", "\n");
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
@@ -1894,15 +1895,11 @@ namespace RealERPWEB.F_22_Sal
                 case "3101":
                 case "3370":
                     Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPayScheduleCPDL", lst, null, null);
-                    Rpt1.EnableExternalImages = true;
+                    Rpt1.EnableExternalImages = true;                
 
-                    Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-                    Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-
-                    Rpt1.SetParameters(new ReportParameter("custnam", ds2.Tables[0].Rows[0]["name"].ToString()));
-                   // Rpt1.SetParameters(new ReportParameter("Address", address));
-                    Rpt1.SetParameters(new ReportParameter("ProjectNam", projectname));
                     Rpt1.SetParameters(new ReportParameter("apttype", ds2.Tables[0].Rows[0]["apttype"].ToString()));
+                    Rpt1.SetParameters(new ReportParameter("comfadd", comfadd));
+
                     Rpt1.SetParameters(new ReportParameter("flrdesc", ds2.Tables[0].Rows[0]["flrdesc"].ToString()));
                     Rpt1.SetParameters(new ReportParameter("bookdate", ds2.Tables[0].Rows[0]["bookdate"].ToString()));
                     Rpt1.SetParameters(new ReportParameter("bookno", ds2.Tables[0].Rows[0]["bookno"].ToString()));
@@ -1910,23 +1907,7 @@ namespace RealERPWEB.F_22_Sal
                     Rpt1.SetParameters(new ReportParameter("prjadd", ds2.Tables[0].Rows[0]["prjadd"].ToString()));
                     Rpt1.SetParameters(new ReportParameter("padrss", ds2.Tables[0].Rows[0]["presentadd"].ToString()));
                     Rpt1.SetParameters(new ReportParameter("custid", ds2.Tables[0].Rows[0]["usircode"].ToString()));
-
-
-                    Rpt1.SetParameters(new ReportParameter("FloorType", ds2.Tables[0].Rows[0]["aptname"].ToString()));
-                    Rpt1.SetParameters(new ReportParameter("Mobile", ds2.Tables[0].Rows[0]["mobile"].ToString()));
-                    Rpt1.SetParameters(new ReportParameter("Size", ds2.Tables[0].Rows[0]["aptsize"].ToString()));
-
-                    Rpt1.SetParameters(new ReportParameter("InWord", "Taka In Word: " + ASTUtility.Trans(directcost, 2)));
-                    Rpt1.SetParameters(new ReportParameter("RptTitle", "Payment Schedule"));
-                    Rpt1.SetParameters(new ReportParameter("AppNo", ds2.Tables[0].Rows[0]["aptname"].ToString()));
-                    Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
-                    Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                    Session["Report1"] = Rpt1;
-                    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
-
+                   
                     break;
                 default:
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPaySchedule", lst, null, null);
@@ -1937,30 +1918,25 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-            if (comcod == "3101")
-            {
+         
 
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-
                 Rpt1.SetParameters(new ReportParameter("custnam", ds2.Tables[0].Rows[0]["name"].ToString()));
-
                 Rpt1.SetParameters(new ReportParameter("Address", address));
                 Rpt1.SetParameters(new ReportParameter("Telephone", ds2.Tables[0].Rows[0]["telephone"].ToString()));
                 Rpt1.SetParameters(new ReportParameter("ProjectNam", projectname));
-
                 Rpt1.SetParameters(new ReportParameter("FloorType", ds2.Tables[0].Rows[0]["aptname"].ToString()));
                 Rpt1.SetParameters(new ReportParameter("Mobile", ds2.Tables[0].Rows[0]["mobile"].ToString()));
                 Rpt1.SetParameters(new ReportParameter("Size", ds2.Tables[0].Rows[0]["aptsize"].ToString()));
-
                 Rpt1.SetParameters(new ReportParameter("InWord", "Taka In Word: " + ASTUtility.Trans(directcost, 2)));
-                Rpt1.SetParameters(new ReportParameter("RptTitle", "Payment Schedule"));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "PAYMENT SCHEDULE"));
                 Rpt1.SetParameters(new ReportParameter("AppNo", ds2.Tables[0].Rows[0]["aptname"].ToString()));
                 Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
                
 
-            }
+         
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
