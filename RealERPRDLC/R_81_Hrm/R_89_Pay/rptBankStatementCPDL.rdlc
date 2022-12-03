@@ -1394,6 +1394,13 @@
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
+                  <TextRun>
+                    <Value> .</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
@@ -1434,7 +1441,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>.</Value>
+                    <Value> .</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
                       <FontWeight>Bold</FontWeight>
@@ -1545,7 +1552,7 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> onward</Value>
+                    <Value> onward :</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
                     </Style>
