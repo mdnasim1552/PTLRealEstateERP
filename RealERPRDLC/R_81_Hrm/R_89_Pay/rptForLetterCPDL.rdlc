@@ -82,6 +82,13 @@
                       <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
+                  <TextRun>
+                    <Value>.</Value>
+                    <Style>
+                      <FontFamily>helvetica</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
                 </TextRuns>
                 <Style>
                   <TextAlign>Left</TextAlign>
@@ -199,7 +206,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox33</rd:DefaultName>
-            <Top>3.20138in</Top>
+            <Top>3.11388in</Top>
             <Left>0.01028in</Left>
             <Height>0.22917in</Height>
             <Width>6.49584in</Width>
@@ -294,6 +301,13 @@
                       <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
+                  <TextRun>
+                    <Value>.</Value>
+                    <Style>
+                      <FontFamily>helvetica</FontFamily>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                  </TextRun>
                 </TextRuns>
                 <Style>
                   <TextAlign>Left</TextAlign>
@@ -336,7 +350,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox28</rd:DefaultName>
-            <Top>4.60138in</Top>
+            <Top>4.51388in</Top>
             <Left>0.00514in</Left>
             <Height>0.20833in</Height>
             <Width>1.81778in</Width>
@@ -372,7 +386,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox28</rd:DefaultName>
-            <Top>5.25208in</Top>
+            <Top>5.16458in</Top>
             <Left>0.00514in</Left>
             <Height>0.20833in</Height>
             <Width>1.81778in</Width>
@@ -408,7 +422,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox28</rd:DefaultName>
-            <Top>6.94653in</Top>
+            <Top>6.85903in</Top>
             <Left>0.00514in</Left>
             <Height>0.23958in</Height>
             <Width>3.66152in</Width>
@@ -430,7 +444,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>CA Property Development Ltd.(CPDL)</Value>
+                    <Value>CA Property Development Ltd. (CPDL)</Value>
                     <Style>
                       <FontFamily>helvetica</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -444,7 +458,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox28</rd:DefaultName>
-            <Top>7.23055in</Top>
+            <Top>7.14305in</Top>
             <Left>0.00514in</Left>
             <Height>0.23958in</Height>
             <Width>3.66152in</Width>
@@ -480,7 +494,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox28</rd:DefaultName>
-            <Top>6.66389in</Top>
+            <Top>6.57639in</Top>
             <Left>0.00514in</Left>
             <Height>0.23958in</Height>
             <Width>3.66152in</Width>
@@ -578,7 +592,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>2.10292in</Top>
+            <Top>2.01542in</Top>
             <Left>0.01028in</Left>
             <Height>0.24499in</Height>
             <Width>6.50098in</Width>
@@ -636,7 +650,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>2.36249in</Top>
+            <Top>2.27499in</Top>
             <Left>0.01028in</Left>
             <Height>0.21374in</Height>
             <Width>6.50098in</Width>
@@ -658,7 +672,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>of A Property Development  Ltd. maintained with you.</Value>
+                    <Value>of CA Property Development  Ltd. maintained with you.</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Helvetica</FontFamily>
@@ -674,7 +688,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>2.58179in</Top>
+            <Top>2.49429in</Top>
             <Left>0.01028in</Left>
             <Height>0.21235in</Height>
             <Width>6.50098in</Width>
@@ -712,7 +726,7 @@
                       <FontFamily>Helvetica</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Normal</FontWeight>
-                      <TextDecoration>None</TextDecoration>
+                      <TextDecoration>Underline</TextDecoration>
                     </Style>
                   </TextRun>
                   <TextRun>
@@ -753,7 +767,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox33</rd:DefaultName>
-            <Top>3.42222in</Top>
+            <Top>3.33472in</Top>
             <Left>0.01028in</Left>
             <Height>0.22917in</Height>
             <Width>6.50098in</Width>
@@ -775,7 +789,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>the soft copy of data is true and exact with hard copy of data submitted to you</Value>
+                    <Value>the soft copy of data is true and exact with hard copy of data submitted to you.</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Helvetica</FontFamily>
@@ -792,7 +806,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox33</rd:DefaultName>
-            <Top>3.66701in</Top>
+            <Top>3.57951in</Top>
             <Left>0.01028in</Left>
             <Height>0.22917in</Height>
             <Width>6.49584in</Width>
@@ -814,7 +828,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>For any deviation with soft copy &amp; ahard copy we will be held responsible. For any </Value>
+                    <Value>For any deviation with soft copy &amp; hard copy we will be held responsible. For any </Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Helvetica</FontFamily>
@@ -831,7 +845,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox33</rd:DefaultName>
-            <Top>3.90868in</Top>
+            <Top>3.82118in</Top>
             <Left>0.01028in</Left>
             <Height>0.22118in</Height>
             <Width>6.49584in</Width>
@@ -872,12 +886,22 @@
                       <TextDecoration>None</TextDecoration>
                     </Style>
                   </TextRun>
+                  <TextRun>
+                    <Value>.</Value>
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Helvetica</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                    </Style>
+                  </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox8</rd:DefaultName>
-            <Top>4.13332in</Top>
+            <Top>4.04582in</Top>
             <Left>0.01028in</Left>
             <Height>0.16667in</Height>
             <Width>6.49584in</Width>
@@ -893,10 +917,10 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>7.50902in</Height>
+        <Height>7.40486in</Height>
         <Style />
       </Body>
-      <Width>6.55821in</Width>
+      <Width>6.52696in</Width>
       <Page>
         <PageFooter>
           <Height>0.01042in</Height>
