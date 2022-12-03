@@ -165,7 +165,7 @@
                                     <asp:LinkButton ID="lbtnOk" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-sm btn-primary okBtn" TabIndex="9"></asp:LinkButton>
                                 </div>
 
-                                <div class="col-md-1" style="margin-top: 30px;">
+                                <div class="col-md-1" style="margin-top: 26px;">
                                     <label class="switch">
                                       <%--<input type="checkbox" id="saleDeclaration">
                                       <span class="slider round"></span>--%>
@@ -562,21 +562,6 @@
                                             </div>
                                         </fieldset>
                                     </div>
-                                     <div class="col-md-4">
-                                        <fieldset class="scheduler-border fieldset_A">
-                                            <div class="form-horizontal">
-                                                <div class="form-group">
-                                                    <asp:Label ID="Label6" runat="server" CssClass="lblTxt lblName text-warning">Upload Image</asp:Label>
-                                                    <asp:Image ID="ImageCorrespondent" runat="server" Height="100px" Width="100px" />
-                                                    <div>
-                                                        <asp:FileUpload ID="imgUploadCorrespondent" runat="server" Height="26px"
-                                                            ToolTip="Correspondent Image" onchange="submitform();" Width="216px" />
-                                                        <asp:Button ID="btnUploadCorrespondent" CssClass="btn btn-success" runat="server" Text="Upload" OnClick="btnUploadCorrespondent_Click" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </fieldset>
-                                    </div>
 
                                     <asp:GridView ID="GridViewNominee" runat="server" AutoGenerateColumns="False"
                                         ShowFooter="True" Width="720px" CssClass=" table-striped table-hover table-bordered grvContentarea">
@@ -656,6 +641,21 @@
                                     </asp:GridView>
                                     <div style="background-color: darkcyan; font-weight: bold; color: white;">
                                         <asp:Label ID="lblNominated" runat="server" CssClass=" inputlblVal inputlblvalstyle" Style="width: 300px;" Text="Nominated Correspondents"></asp:Label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <fieldset class="scheduler-border fieldset_A">
+                                            <div class="form-horizontal">
+                                                <div class="form-group">
+                                                    <asp:Label ID="Label6" runat="server" CssClass="lblTxt lblName text-warning">Upload Image</asp:Label>
+                                                    <asp:Image ID="ImageCorrespondent" runat="server" Height="100px" Width="100px" />
+                                                    <div>
+                                                        <asp:FileUpload ID="imgUploadCorrespondent" runat="server" Height="26px"
+                                                            ToolTip="Correspondent Image" onchange="submitform();" Width="216px" />
+                                                        <asp:Button ID="btnUploadCorrespondent" CssClass="btn btn-success" runat="server" Text="Upload" OnClick="btnUploadCorrespondent_Click" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
                                     </div>
                                     <asp:GridView ID="GridViewNominated" runat="server" AutoGenerateColumns="False"
                                         ShowFooter="True" Width="720px" CssClass=" table-striped table-hover table-bordered grvContentarea">

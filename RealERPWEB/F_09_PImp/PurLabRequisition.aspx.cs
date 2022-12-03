@@ -794,9 +794,8 @@ namespace RealERPWEB.F_09_PImp
 
             this.grvissue.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.grvissue.DataSource = (DataTable)ViewState["tblbillreq"];
+
             this.grvissue.DataBind();
-
-
             this.FooterCalculaton();
 
         }
@@ -807,13 +806,7 @@ namespace RealERPWEB.F_09_PImp
             DataTable dt = (DataTable)ViewState["tblbillreq"];
             if (dt.Rows.Count == 0)
                 return;
-
-
-
-
             ((Label)this.grvissue.FooterRow.FindControl("lblgvFamount")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amount)", "")) ? 0.00 : dt.Compute("Sum(amount)", ""))).ToString("#,##0;(#,##0); ");
-
-
 
         }
 
@@ -889,6 +882,7 @@ namespace RealERPWEB.F_09_PImp
 
         protected void lnkTotal_Click(object sender, EventArgs e)
         {
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             this.SaveValue();
             this.grvissue_DataBind();
 
@@ -922,15 +916,10 @@ namespace RealERPWEB.F_09_PImp
         protected void lnkupdate_Click(object sender, EventArgs e)      // Update Button
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-
-
             this.lnkTotal_Click(null, null);
-
 
             int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-
-
 
 
             if (!Convert.ToBoolean(dr1[0]["entry"]))
@@ -964,11 +953,6 @@ namespace RealERPWEB.F_09_PImp
 
             string trade = this.ddltrade.SelectedValue.ToString();
 
-
-
-
-
-
             if (Refno.Length == 0)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Please Fill Ref No";
@@ -985,8 +969,6 @@ namespace RealERPWEB.F_09_PImp
                     return;
                 }
             }
-
-
 
             //string appxml = tbl2.Rows[0]["approval"].ToString();
 
@@ -1069,6 +1051,7 @@ namespace RealERPWEB.F_09_PImp
 
         private void SaveValue()
         {
+
             ((Label)this.Master.FindControl("lblmsg")).Text = "";
             DataTable dt = (DataTable)ViewState["tblbillreq"];
             int TblRowIndex;
@@ -1076,9 +1059,6 @@ namespace RealERPWEB.F_09_PImp
             double adedamt = 0.00;
             for (int i = 0; i < this.grvissue.Rows.Count; i++)
             {
-
-
-
                 string rsircode = ((Label)this.grvissue.Rows[i].FindControl("lblitemcode")).Text.Trim();
                 double balqty = Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.grvissue.Rows[i].FindControl("lblbalqty")).Text.Trim()));
                 double dgvQty = ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtisuqty")).Text.Trim());
@@ -1087,8 +1067,28 @@ namespace RealERPWEB.F_09_PImp
 
                 double amount = ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtgvamount")).Text.Trim());
                 string csircode = ((DropDownList)this.grvissue.Rows[i].FindControl("DdlContractor")).SelectedValue.ToString();
-                CheckBox approve = (CheckBox)this.grvissue.Rows[i].FindControl("chkapproved");
+               
+                TblRowIndex = (grvissue.PageIndex) * grvissue.PageSize + i;
+                string rsirdesc = dt.Rows[TblRowIndex]["rsirdesc"].ToString();
 
+
+                string comcod = this.GetCompCode();
+                switch (comcod)
+                {
+                    case "3370":
+                        if (dgvQty > balqty) 
+                        {
+                            string msg = rsirdesc + " Requisition Qty Can't Excess Balance Qty .. !! ";
+                            ((Label)this.Master.FindControl("lblmsg")).Text = msg;
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                            return;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+                CheckBox approve = (CheckBox)this.grvissue.Rows[i].FindControl("chkapproved");
                 bool aprvstatus = false;
                 if (approve.Checked)
                 {
@@ -1097,11 +1097,7 @@ namespace RealERPWEB.F_09_PImp
                 else
                 {
                     aprvstatus = false;
-                }
-
-                string comcod = this.GetCompCode();
-                TblRowIndex = (grvissue.PageIndex) * grvissue.PageSize + i;
-
+                }               
 
                 amount = amount > 0 ? amount : dgvQty * labrate;
                 labrate = amount > 0 ? amount / dgvQty : labrate;
