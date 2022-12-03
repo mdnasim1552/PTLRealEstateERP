@@ -234,6 +234,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "3333":
                     comBankStatement = "EMPBANKPAYINFOALLI";
                     break;
+
+                case "3101":
+                case "3370":
+                    comBankStatement = "EMPBANKPAYINFOCPDL";
+                    break;
                 case "3347":
                     //case "3101":
                     comBankStatement = "EMPBANKPAYINFOPEB";
@@ -464,13 +469,18 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PrintBankStatementEdison();
                     break;
 
-                case "3101":
+      
                 case "3368":
                     this.PrintBankStatementFinlay();
                     break;
 
                 case "3365":
                     this.PrintBankStatementFinlay();
+                    break;
+
+                case "3101":
+                case "3370":
+                    this.PrintBankStatementCPDL();
                     break;
 
                 default:
@@ -756,6 +766,70 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
+        private void PrintBankStatementCPDL()
+        {
+            DataTable dt = (DataTable)Session["tblover"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string comname = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string bankname = this.ddlBankName.SelectedItem.Text.Trim();
+
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string year = this.txtDate.Text.Substring(0, 4).ToString();
+            string month = ASITUtility03.GetFullMonthName(this.txtDate.Text.Substring(4));
+            string month2 = this.txtDate.Text.Substring(4);
+            var lastDayOfMonth = DateTime.DaysInMonth(Convert.ToInt32(year), Convert.ToInt32(month2));
+
+            string totalAmt = dt.Compute("Sum(amt)", string.Empty).ToString();
+            string ttlwrd = ASTUtility.Trans(Convert.ToDouble(totalAmt), 2);
+            string bankAddress = dt.Rows[0]["bankaddr"].ToString();
+            string curdate = DateTime.Now.ToString("MMMM dd,yyyy");
+            string desc = "Salary For The Month Of " + month + "/" + year;
+           
+
+            string valueDate = lastDayOfMonth.ToString()+"/" + month2 +"/"+ year;
+            DataView dv = dt.DefaultView;
+            dv.RowFilter = ("saltrn='True'");
+            dt = dv.ToTable();
+
+
+            ReportDocument rptstk = new ReportDocument();
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.bnkStatement>();
+
+    
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptBankStatementCPDL", lst, null, null);
+
+
+
+            Rpt1.SetParameters(new ReportParameter("rptTitle", (this.chkBonus.Checked) ? "Festival Bonus Transfer Statement  " : "Salary Transfer Statement"));
+            Rpt1.SetParameters(new ReportParameter("date", "For " + month + "- " + year));
+            Rpt1.SetParameters(new ReportParameter("rptBankName", bankname));
+            Rpt1.SetParameters(new ReportParameter("totalAmt", totalAmt));
+            Rpt1.SetParameters(new ReportParameter("ttlwrd", ttlwrd));
+            Rpt1.SetParameters(new ReportParameter("curDate", curdate));
+            Rpt1.SetParameters(new ReportParameter("desc", desc));
+            Rpt1.SetParameters(new ReportParameter("valueDate", valueDate));
+            Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+
+
+            Rpt1.SetParameters(new ReportParameter("bankAddress", bankAddress));
+
+
+
+            //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
+
+
+
         private void PrintForwardingLetter()
         {
 
@@ -900,9 +974,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
            : dt.Compute("sum(amt)", ""))).ToString("#,##0.00;(#,##0.00); ");
 
 
-            string inwords = ASTUtility.Trans(Convert.ToDouble(sumamt), 2);
+            string inwords = (ASTUtility.Trans(Convert.ToDouble(sumamt), 2)).ToUpper();
 
-           string subject = "Subject: CPDL Salary Disbursement for the month of - " + month + "-" + year + ".";
+           string subject = "Subject: CPDL Salary Disbursement for the month of " + month + "-" + year + ".";
 
 
 
@@ -911,7 +985,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Det1 = "Please transfer to TK " + sumamt +"/="+ inwords.ToUpper()  + " as on " + month + "," + year + " to our followings employees bank account No: "+ bankacc + " in the name of" +
                 " CA Property Development Ltd. maintained with you.";
 
-
+            
 
             //string Det2 = "We would like to request you to transfer the amount to the respective accounts of our employees (details list attached) by debiting our C/D account no. "
             //                + banksl + " as per bellow details: ";
@@ -920,8 +994,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 " affirm you that the soft copy of data is true and exact with hard copy of data submitted to you. For any deviation with soft copy & ahard copy we will be held" +
                 " responsible. For any query please contact with Samima Sultana, Mobile No - 01777766099.";
 
-
-
+            string email = "samima@cpdl.com.bd";
+            string name = "Samima Sultana";
+            string phone = "Samima Sultana, Mobile No - 01777766099.";
+            string branch = "Jamal Khan Branch";
 
             ReportDocument rptstk = new ReportDocument();
             LocalReport Rpt1 = new LocalReport();
@@ -935,12 +1011,21 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Rpt1.SetParameters(new ReportParameter("Date", Convert.ToDateTime(txtcuDate).ToString("MMMM dd, yyyy")));
             Rpt1.SetParameters(new ReportParameter("Attn", "Ref: CPDL / TM / UCBL/22-10 "));
             Rpt1.SetParameters(new ReportParameter("Bank", bankname));
+            Rpt1.SetParameters(new ReportParameter("sumamt", sumamt));
+            Rpt1.SetParameters(new ReportParameter("inwords", inwords));
+            Rpt1.SetParameters(new ReportParameter("month", month));
+            Rpt1.SetParameters(new ReportParameter("year", year));
+            Rpt1.SetParameters(new ReportParameter("email", email));
+            Rpt1.SetParameters(new ReportParameter("name", name));
+            Rpt1.SetParameters(new ReportParameter("phone", phone));
+            Rpt1.SetParameters(new ReportParameter("bankacc", bankacc));
+            Rpt1.SetParameters(new ReportParameter("branch", branch));
 
             Rpt1.SetParameters(new ReportParameter("subject", subject));
             Rpt1.SetParameters(new ReportParameter("Det1", Det1));
             Rpt1.SetParameters(new ReportParameter("Det2", Det2));
             Rpt1.SetParameters(new ReportParameter("Det3", "Total Amount: BDT " + sumamt));
-            Rpt1.SetParameters(new ReportParameter("inwords", "Amount in Words: " + inwords));
+            
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +

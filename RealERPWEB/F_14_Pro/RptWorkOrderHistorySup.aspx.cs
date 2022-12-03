@@ -30,7 +30,7 @@ namespace RealERPWEB.F_14_Pro
                 //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"] == "WorkOrdHisSup") ? "Work Order History Supplier"
-                    : (this.Request.QueryString["Type"] == "WorkOrdHisRes") ? "Work Order History Resource" : "";
+                    : (this.Request.QueryString["Type"] == "WorkOrdHisRes") ? "Work Order History Resource" : (this.Request.QueryString["Type"] == "OrderVsSupplier") ? "Purchase Order Vs Supplier" : "";
                 this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtFDate.Text = System.DateTime.Today.AddDays(-30).ToString("dd-MMM-yyyy");
 
@@ -69,6 +69,11 @@ namespace RealERPWEB.F_14_Pro
                 case "WorkOrdHisRes":
                     this.GetResource();
                     this.MultiView1.ActiveViewIndex = 1;
+                    break;
+
+                case "OrderVsSupplier":
+                    this.project.Visible = true;
+                    this.MultiView1.ActiveViewIndex = 2;
                     break;
 
             }
@@ -132,6 +137,10 @@ namespace RealERPWEB.F_14_Pro
                     this.ShowWorkHisRes();
                     break;
 
+                case "OrderVsSupplier":
+                    this.ShowOrderVsSupplier();
+                    break;
+
             }
 
         }
@@ -188,7 +197,18 @@ namespace RealERPWEB.F_14_Pro
         }
 
 
+        private void ShowOrderVsSupplier()
+        {
+            try
+            {
 
+            }
+            catch (Exception Exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Exp.Message.ToString() + "');", true);
+
+            }
+        }
         private void Data_Bind()
         {
             DataTable dt = (DataTable)Session["tblstatus"];
