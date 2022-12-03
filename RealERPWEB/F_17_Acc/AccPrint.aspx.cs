@@ -2550,6 +2550,7 @@ namespace RealERPWEB.F_17_Acc
                 string[] amtWrd1 = ASTUtility.Trans(Math.Round(amt, 0), 2).Split('(', ')');
                 string[] amtdivide = amtWrd1[1].Split(' ');
 
+
                 string value = (this.Request.QueryString["paytype"] == "0") ? "A/C Payee" : "";
 
 

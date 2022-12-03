@@ -432,6 +432,9 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
+                                       
+
+
                                         <asp:TemplateField HeaderText="Total">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvAmt" runat="server" BackColor="Transparent"
@@ -450,6 +453,24 @@
                                             <ItemStyle HorizontalAlign="right" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
+
+                                         <asp:TemplateField HeaderText="Fixed Amount" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvfixamt" runat="server" BackColor="Transparent"
+                                                    BorderStyle="None"
+                                                    Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fixamt")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="80px"></asp:TextBox>
+
+                                                
+                                            </ItemTemplate>
+
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
 
                                     </Columns>
                                     <FooterStyle CssClass="grvFooter" />
