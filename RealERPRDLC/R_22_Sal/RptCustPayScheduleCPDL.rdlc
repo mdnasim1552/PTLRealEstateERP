@@ -603,7 +603,7 @@
             </TablixRowHierarchy>
             <Top>0.12375in</Top>
             <Height>1.10417in</Height>
-            <Width>7.48958in</Width>
+            <Width>7.48959in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1330,7 +1330,7 @@
             </TablixRowHierarchy>
             <Top>1.48833in</Top>
             <Height>1.52083in</Height>
-            <Width>7.48958in</Width>
+            <Width>7.48959in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -1607,7 +1607,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>urate</rd:DefaultName>
@@ -1697,7 +1699,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>amt</rd:DefaultName>
@@ -1870,14 +1874,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox83">
+                        <Textbox Name="unit1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!unit.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -1887,7 +1891,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox83</rd:DefaultName>
+                          <rd:DefaultName>unit1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -1922,7 +1926,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>@BDT</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -1974,7 +1978,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox85</rd:DefaultName>
@@ -2066,7 +2072,9 @@
                                   </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox87</rd:DefaultName>
@@ -2133,7 +2141,7 @@
             </Filters>
             <Top>3.32167in</Top>
             <Height>0.5in</Height>
-            <Width>7.48958in</Width>
+            <Width>7.48957in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -2624,7 +2632,7 @@
             </Filters>
             <Top>4.05083in</Top>
             <Height>0.75in</Height>
-            <Width>7.48958in</Width>
+            <Width>7.48959in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>

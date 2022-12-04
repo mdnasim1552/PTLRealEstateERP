@@ -1908,7 +1908,7 @@ namespace RealERPWEB.F_22_Sal
                     Rpt1.SetParameters(new ReportParameter("prjadd", ds2.Tables[0].Rows[0]["prjadd"].ToString()));
                     Rpt1.SetParameters(new ReportParameter("padrss", ds2.Tables[0].Rows[0]["presentadd"].ToString()));
                     Rpt1.SetParameters(new ReportParameter("custid", ds2.Tables[0].Rows[0]["usircode"].ToString()));
-                   
+
                     break;
                 default:
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPaySchedule", lst, null, null);
