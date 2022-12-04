@@ -35,36 +35,28 @@
 
     <script language="javascript" type="text/javascript">
 
-        var src = {
-
-            "jQuery": 1,
-
-            "Script": 2,
-
-            "HTML5": 3,
-
-            "CSS3": 4,
-
-            "Angular": 5,
-
-            "React": 6,
-
-            "VueJS": 7
-
-        };
-
+       
 
        
 
 
 
         $(document).ready(function () {
+           
+           
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+            //$("#txtprospective").autocomplete({
+            //    source: prospective
+            //});
+
 
         });
         function pageLoaded() {
 
             try {
+
+
 
 
               
@@ -75,8 +67,12 @@
                 });
 
 
+                var gvbcase = $('#<%=this.gvbcasesch.ClientID%>');
+                gvbcase.Scrollable();
                 var gvcoff = $('#<%=this.gvcoffsch.ClientID %>');
                 gvcoff.Scrollable();
+
+                
 
                 $('.chzn-select').chosen({ search_contains: true });
 
@@ -99,13 +95,12 @@
 
                 });
 
+              
+
+
                 $("#txtprospective").autocomplete({
                     source: prospective
                 });
-               
-
-
-
 
 
 
@@ -119,6 +114,7 @@
 
 
         }
+
 
 
 
@@ -210,9 +206,7 @@
                             <div class="form-group">
                                 <label id="Label1" runat="server">Prospective</label>
                                 <asp:LinkButton ID="lbtnProspective" runat="server" OnClick="lbtnProspective_Click"> <i class="fa fa-search" aria-hidden="true"></i>
-                                </asp:LinkButton>
-                                <asp:DropDownList ID="ddlprospective" runat="server" CssClass="form-control chzn-select" TabIndex="12">
-                                </asp:DropDownList>
+                                </asp:LinkButton>                             
 
                                  <asp:TextBox ID="txtprospective" runat="server" ClientIDMode="Static" CssClass="form-control"></asp:TextBox>
                                 
@@ -228,6 +222,16 @@
                                 <asp:DropDownList ID="ddlPrevious" runat="server" CssClass="form-control chzn-select" TabIndex="12">
                                 </asp:DropDownList>
                             </div>
+
+                        </div>
+
+                          <div class="col-md-2">
+                             <label class="control-label" for="ddlUserName" id="Label3" runat="server">Type</label>
+                               <asp:DropDownList ID="ddlPrintType" runat="server" CssClass="form-control chzn-select" TabIndex="12">
+                                   <asp:ListItem Value="samnotesheet" Enabled="true">Sample Note Sheet</asp:ListItem>
+                                   <asp:ListItem Value="grandnotesheet">Grand Note Sheet(Summary)</asp:ListItem>
+                                   <asp:ListItem Value="grandnotesheetdet">Grand Note Sheet(Details)</asp:ListItem>
+                                </asp:DropDownList>
 
                         </div>
 
@@ -441,7 +445,7 @@
                         <div class="card-body">
                             <div class="row">
 
-                                 <div class="col-md-2">
+                                 <div class="col-md-3">
 
                                     <div class="card card-fluid">
                                         <div class="card-body">
@@ -567,7 +571,8 @@
 
                                                 <div class="col-md-4">
                                                     <div class="form-group lblmargin textalignright">
-                                                        <asp:TextBox ID="txtdownpayper" runat="server" CssClass="form-control form-control-sm textalignright"></asp:TextBox>
+                                                        <label id="lblvaldownpayper" runat="server" clss="form-control form-control-sm ">2500</label>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -667,50 +672,33 @@
                                                 </div>
                                             </div>
                                         
-                                            <div class="row">
+                                           
+                                          
+
+
+                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <div class="form-group lblmargin">
-                                                        <label id="Label3" runat="server">Installment  Date</label>
+                                                        <label id="lbltxthandovdate" runat="server">Handover  Date</label>
                                                     </div>
 
                                                 </div>
+
+                                                 
                                                 <div class="col-md-4">
-                                                    <div class="form-group lblmargin textalignright ">
+                                                    <div class="form-group lblmargin  font-weight-bold">
 
-                                                        <asp:TextBox ID="txtfirstinsdate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                                        <cc1:CalendarExtender ID="txtfirstinsdate_CalendarExtender" runat="server"
-                                                            Format="dd-MMM-yyyy" TargetControlID="txtfirstinsdate"></cc1:CalendarExtender>
+                                                        <label id="lblvalhandovdate" runat="server" clss="form-control form-control-sm ">2500</label>
                                                     </div>
                                                 </div>
+
+                                                
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <div class="form-group lblmargin">
-                                                        <label id="Label4" runat="server">Duration</label>
-                                                    </div>
 
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group lblmargin">
 
-                                                        <asp:DropDownList ID="ddlduration" runat="server"
-                                                            CssClass="form-control form-control-sm chzn-select">
-                                                            <asp:ListItem Value="1">1 Month</asp:ListItem>
-                                                            <asp:ListItem Value="2">2 Month</asp:ListItem>
-                                                            <asp:ListItem Value="3 ">3 Month</asp:ListItem>
-                                                            <asp:ListItem Value="4">4 Month</asp:ListItem>
-                                                            <asp:ListItem Value="5 ">5 Month</asp:ListItem>
-                                                            <asp:ListItem Value="6">6 Month</asp:ListItem>
-                                                            <asp:ListItem Value="7">7 Month</asp:ListItem>
-                                                            <asp:ListItem Value="8">8 Month</asp:ListItem>
-                                                            <asp:ListItem Value="9">9 Month</asp:ListItem>
-                                                            <asp:ListItem Value="10">10 Month</asp:ListItem>
-                                                            <asp:ListItem Value="11">11 Month</asp:ListItem>
-                                                        </asp:DropDownList>
 
-                                                    </div>
-                                                </div>
-                                            </div>
+
+
 
                                             <div class="row">
                                                 <div class="col-md-8">
@@ -733,7 +721,7 @@
                                     </div>
 
                                 </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
 
                                     <div class="card card-fluid">
                                         <div class="card-body">
@@ -1309,7 +1297,7 @@
                                                         <asp:TemplateField HeaderText="Sl">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblgvslnodumpay" runat="server"
-                                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="40px"></asp:Label>
+                                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                                             </ItemTemplate>
                                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                         </asp:TemplateField>
@@ -1351,7 +1339,7 @@
                                                                 <asp:Label ID="lblschdesc" runat="server" ForeColor="Black" BackColor="Transparent" BorderStyle="none"
                                                                     Height="16px"
                                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc"))%>'
-                                                                    Width="160px"></asp:Label>
+                                                                    Width="120px"></asp:Label>
 
 
 
@@ -1394,7 +1382,7 @@
                                                             <ItemTemplate>
                                                                 <asp:TextBox ID="txtgvdumschamt" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="none"
                                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pv")).ToString("#,##0;(#,##0); ") %>'
-                                                                    Width="90px"></asp:TextBox>
+                                                                    Width="80px"></asp:TextBox>
                                                             </ItemTemplate>
 
                                                             <FooterTemplate>
@@ -1413,7 +1401,7 @@
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblgvcofffvschamt" runat="server" Style="text-align: right" BackColor="Transparent" BorderStyle="none"
                                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fv")).ToString("#,##0;(#,##0); ") %>'
-                                                                    Width="80px"></asp:Label>
+                                                                    Width="70px"></asp:Label>
                                                             </ItemTemplate>
 
                                                             <FooterTemplate>
@@ -1439,7 +1427,7 @@
                                                     <EditRowStyle />
                                                     <AlternatingRowStyle />
                                                     <PagerStyle CssClass="" />
-                                                    <HeaderStyle CssClass="grvHeaderNew" />
+                                                    <HeaderStyle CssClass="" />
                                                 </asp:GridView>
 
 
