@@ -1894,6 +1894,7 @@ namespace RealERPWEB.F_22_Sal
 
                 case "3101":
                 case "3370":
+
                     Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPayScheduleCPDL", lst, null, null);
                     Rpt1.EnableExternalImages = true;                
 
