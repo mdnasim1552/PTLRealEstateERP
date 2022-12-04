@@ -190,6 +190,7 @@ namespace RealERPWEB.F_14_Pro
 
         protected void lgvpoamt_Click(object sender, EventArgs e)
         {
+            this.MultiView1.ActiveViewIndex = 0;
             string comcod = this.GetCompCode();
             string frmdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
@@ -210,12 +211,23 @@ namespace RealERPWEB.F_14_Pro
         }
         protected void lgvmrramt_Click(object sender, EventArgs e)
         {
-
+            this.MultiView1.ActiveViewIndex = 1;
+            string comcod = this.GetCompCode();
+            string frmdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string projectcode = ((Label)this.gvBillStatus.Rows[index].FindControl("lblprjcode")).Text.ToString();
+            string suppliercode = ((Label)this.gvBillStatus.Rows[index].FindControl("lblsupcode")).Text.ToString();
+            DataSet ds1 = BgdData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS02", "GETWRKORDERRECEIVEDETAILS", frmdate, todate, projectcode, suppliercode, "", "", "");
+            if (ds1 == null)
+                return;
+            Session["tblReceive"] = ds1.Tables[0];
         }
 
         protected void lgvbillamt_Click(object sender, EventArgs e)
         {
-
+            this.MultiView1.ActiveViewIndex = 2;
         }
 
         protected void Close_Click(object sender, EventArgs e)

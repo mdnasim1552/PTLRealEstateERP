@@ -831,7 +831,6 @@
     <EmbeddedResource Include="R_22_Sal\RptCustApp.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustomerBillInfo.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustomerinf.rdlc" />
-    <EmbeddedResource Include="R_22_Sal\RptCustPayScheduleCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustPayScheduleEpic.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustPaySchedule.rdlc" />
     <EmbeddedResource Include="R_22_Sal\rptDailySaleVsCollTarget.rdlc" />
