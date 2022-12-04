@@ -348,10 +348,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0902000", "0902092", "F_09_PImp", "PurConWrkOrderEntry02?", "Type=Entry", "Contractor Work Order(Standard)", "Project Implementation", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "0902000", "0902095", "F_09_PImp", "BillingMBEntry?", "Type=Entry", "MB Entry", "Project Implementation", "False", "False", "False", "False" });
-
-            tblObj.Rows.Add(new Object[] { "0902000", "0902096", "F_09_PImp", "BillingMBEntry?", "Type=Approved", "MB Entry(Approvaed)", "Project Implementation", "False", "False", "False", "False" });
-
-
+            tblObj.Rows.Add(new Object[] { "0902000", "0902096", "F_09_PImp", "BillingMBEntry?", "Type=Approved", "MB Entry (Approved)", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0902000", "0902097", "F_09_PImp", "BillingMBEntry?", "Type=Edit", "MB Entry (Edit)", "Project Implementation", "False", "False", "False", "False" });
 
 
             tblObj.Rows.Add(new Object[] { "0903000", "0903110", "F_09_PImp", "RptImpExeStatus?", "Type=ImpPlan", "Monthly Implementation Plan", "Project Implementation", "False", "False", "False", "False" }); ;
