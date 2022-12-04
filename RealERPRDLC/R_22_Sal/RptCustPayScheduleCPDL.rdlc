@@ -557,7 +557,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!prjadd.Value</Value>
+                                  <Value>=Parameters!padrss.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                   </Style>
@@ -1283,7 +1283,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!padrss.Value</Value>
+                                  <Value>=Parameters!prjadd.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                   </Style>
