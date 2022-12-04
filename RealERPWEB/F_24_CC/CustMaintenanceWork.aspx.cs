@@ -572,12 +572,9 @@ namespace RealERPWEB.F_24_CC
 
             DataTable dt = ds1.Tables[0];
             DataTable dt1 = ds1.Tables[1];
-            string custid= dt1.Rows[0]["usircode"].ToString();
-            DataTable dt2 = (DataTable)Session["tblunit"];
            
-            DataRow[] dr = dt2.Select("usircode='" + custid + "'");
-            string unitName =  dr[0]["udesc"].ToString();
-            string ClientName = dr[0]["custname"].ToString(); 
+            string unitName = dt1.Rows[0]["udesc"].ToString(); 
+            string ClientName = dt1.Rows[0]["custname"].ToString(); 
 
             string ftxtcheck = ds1.Tables[2].Rows[0]["chkusr"].ToString();
             string ftxtapp1st = ds1.Tables[2].Rows[0]["fapvusr"].ToString();
