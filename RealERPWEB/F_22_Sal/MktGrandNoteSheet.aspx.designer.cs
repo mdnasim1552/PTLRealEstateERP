@@ -114,13 +114,13 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.LinkButton lbtnProspective;
 
         /// <summary>
-        /// ddlprospective control.
+        /// txtprospective control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlprospective;
+        protected global::System.Web.UI.WebControls.TextBox txtprospective;
 
         /// <summary>
         /// lblprevious control.
@@ -150,22 +150,22 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.DropDownList ddlPrevious;
 
         /// <summary>
-        /// Label7 control.
+        /// Label4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label7;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label4;
 
         /// <summary>
-        /// rbtnnoteType control.
+        /// ddlPrintType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rbtnnoteType;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPrintType;
 
         /// <summary>
         /// lbtnOk control.
@@ -366,13 +366,13 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbltxtdownpayper;
 
         /// <summary>
-        /// txtdownpayper control.
+        /// lblvaldownpayper control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtdownpayper;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvaldownpayper;
 
         /// <summary>
         /// lbltxtdownpayam control.
@@ -492,49 +492,22 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvalpvpersft;
 
         /// <summary>
-        /// Label2 control.
+        /// lbltxthandovdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbltxthandovdate;
 
         /// <summary>
-        /// txtfirstinsdate control.
+        /// lblvalhandovdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtfirstinsdate;
-
-        /// <summary>
-        /// txtfirstinsdate_CalendarExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtfirstinsdate_CalendarExtender;
-
-        /// <summary>
-        /// Label3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label3;
-
-        /// <summary>
-        /// ddlduration control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlduration;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvalhandovdate;
 
         /// <summary>
         /// Label6 control.
@@ -553,6 +526,24 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox1;
+
+        /// <summary>
+        /// Label7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label7;
+
+        /// <summary>
+        /// gvbcasesch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvbcasesch;
 
         /// <summary>
         /// lblheadercoffer control.
@@ -996,22 +987,22 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.TextBox txtinterestrate;
 
         /// <summary>
-        /// Label4 control.
+        /// lbtnCalCulation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label4;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnCalCulation;
 
         /// <summary>
-        /// gvbcasesch control.
+        /// lbtnUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvbcasesch;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnUpdate;
 
         /// <summary>
         /// Label5 control.
@@ -1023,6 +1014,24 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label5;
 
         /// <summary>
+        /// chkSegment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkSegment;
+
+        /// <summary>
+        /// chkAddIns control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkAddIns;
+
+        /// <summary>
         /// gvcoffsch control.
         /// </summary>
         /// <remarks>
@@ -1030,6 +1039,114 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvcoffsch;
+
+        /// <summary>
+        /// pnlSlab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlSlab;
+
+        /// <summary>
+        /// lblfrmslab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblfrmslab;
+
+        /// <summary>
+        /// txtfrmslab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtfrmslab;
+
+        /// <summary>
+        /// lbltoslab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbltoslab;
+
+        /// <summary>
+        /// txttoslab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txttoslab;
+
+        /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label2;
+
+        /// <summary>
+        /// txtperslabamt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtperslabamt;
+
+        /// <summary>
+        /// lbtnSlab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnSlab;
+
+        /// <summary>
+        /// PanelAddIns control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelAddIns;
+
+        /// <summary>
+        /// lblAddinstallment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblAddinstallment;
+
+        /// <summary>
+        /// ddlInstallment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlInstallment;
+
+        /// <summary>
+        /// lbtnAddInstallment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnAddInstallment;
 
         /// <summary>
         /// lblhiddenbutility control.
@@ -1066,5 +1183,32 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField lblhiddenbnoemi;
+
+        /// <summary>
+        /// lblhiddenfvpersft control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField lblhiddenfvpersft;
+
+        /// <summary>
+        /// lblhiddenpvpersft control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField lblhiddenpvpersft;
+
+        /// <summary>
+        /// lblminunitrate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField lblminunitrate;
     }
 }
