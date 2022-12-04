@@ -1028,7 +1028,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Rpt1.SetParameters(new ReportParameter("inwords", inwords));
             Rpt1.SetParameters(new ReportParameter("month", month));
             //Rpt1.SetParameters(new ReportParameter("year", year));
-            Rpt1.SetParameters(new ReportParameter("year", Convert.ToDateTime(txtcuDate).ToString("MMMM, yyyy") ));
+            Rpt1.SetParameters(new ReportParameter("year", Convert.ToDateTime(txtcuDate).ToString("dd MMMM, yyyy") ));
 
             Rpt1.SetParameters(new ReportParameter("email", email));
             Rpt1.SetParameters(new ReportParameter("name", name));
