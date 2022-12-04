@@ -812,6 +812,7 @@
     <EmbeddedResource Include="R_21_MKT\RptProspectWorking.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptSourceWiseLeads.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptYearlySales.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptCustPayScheduleCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSaleDeclaration.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalesOpening.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptAccSumCustPayStatus.rdlc" />
@@ -831,7 +832,6 @@
     <EmbeddedResource Include="R_22_Sal\RptCustApp.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustomerBillInfo.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustomerinf.rdlc" />
-    <EmbeddedResource Include="R_22_Sal\RptCustPayScheduleCPDL.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustPayScheduleEpic.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptCustPaySchedule.rdlc" />
     <EmbeddedResource Include="R_22_Sal\rptDailySaleVsCollTarget.rdlc" />

@@ -200,7 +200,11 @@ namespace RealERPWEB.F_14_Pro
             DataSet ds1 = BgdData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS02", "GETWRKORDERDETAILS", frmdate, todate, projectcode, suppliercode, "", "", "");
             if (ds1 == null)
                 return;
-
+            Session["tblPO"]  = ds1.Tables[0];
+            DataTable dt = (DataTable)Session["tblPO"];
+            this.gvpobill.DataSource = dt;
+            this.gvpobill.DataBind();
+          
 
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenPOamt();", true);
         }
@@ -214,7 +218,10 @@ namespace RealERPWEB.F_14_Pro
 
         }
 
-       
-       
+        protected void Close_Click(object sender, EventArgs e)
+        {
+            this.lbtnOk_OnClick(null,null);
+
+        }
     }
 }

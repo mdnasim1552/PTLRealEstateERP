@@ -1270,7 +1270,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Arrer</Value>
+                                                <Value>Arrear</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
                                                   <FontSize>8pt</FontSize>
@@ -1677,7 +1677,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Absent/LWP</Value>
+                                                <Value>Absent/LWP/LJ</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
                                                   <FontSize>8pt</FontSize>
@@ -3640,7 +3640,7 @@ Amount</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!otall.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!otall.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3675,7 +3675,7 @@ Amount</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!oallow.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!oallow.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -3711,7 +3711,7 @@ Amount</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!arsal.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!arsal.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -3783,7 +3783,7 @@ Amount</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!oth.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!oth.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4662,7 +4662,7 @@ Amount</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!otall.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!otall.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -4704,7 +4704,7 @@ Amount</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!oallow.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!oallow.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4747,7 +4747,7 @@ Amount</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!arsal.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!arsal.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4833,7 +4833,7 @@ Amount</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!oth.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!oth.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -5973,7 +5973,7 @@ Amount</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Recomended By</Value>
+                      <Value>Recommended By</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
                         <FontWeight>Bold</FontWeight>
