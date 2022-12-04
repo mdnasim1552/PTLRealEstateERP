@@ -187,10 +187,12 @@ namespace RealERPWEB.F_14_Pro
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
-
+        
         protected void lgvpoamt_Click(object sender, EventArgs e)
         {
+        
             this.MultiView1.ActiveViewIndex = 0;
+            this.lblstatus.Text = "PO Amount Details";
             string comcod = this.GetCompCode();
             string frmdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
@@ -205,13 +207,15 @@ namespace RealERPWEB.F_14_Pro
             DataTable dt = (DataTable)Session["tblPO"];
             this.gvpobill.DataSource = dt;
             this.gvpobill.DataBind();
-          
+            this.FooterModalPOCalculation(dt);
 
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenPOamt();", true);
         }
         protected void lgvmrramt_Click(object sender, EventArgs e)
         {
+        
             this.MultiView1.ActiveViewIndex = 1;
+            this.lblstatus.Text = "MRR Amount Details";
             string comcod = this.GetCompCode();
             string frmdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
@@ -223,16 +227,78 @@ namespace RealERPWEB.F_14_Pro
             if (ds1 == null)
                 return;
             Session["tblReceive"] = ds1.Tables[0];
+            DataTable dt = (DataTable)Session["tblReceive"];
+            this.gvReceive.DataSource = dt;
+            this.gvReceive.DataBind();
+            this.FooterModalMRRCalculation(dt);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenPOamt();", true);
         }
 
         protected void lgvbillamt_Click(object sender, EventArgs e)
         {
+       
             this.MultiView1.ActiveViewIndex = 2;
+            this.lblstatus.Text = "Bill Amount Details";
+            string comcod = this.GetCompCode();
+            string frmdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string projectcode = ((Label)this.gvBillStatus.Rows[index].FindControl("lblprjcode")).Text.ToString();
+            string suppliercode = ((Label)this.gvBillStatus.Rows[index].FindControl("lblsupcode")).Text.ToString();
+            DataSet ds1 = BgdData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS02", "GETWRKORDERBILLDETAILS", frmdate, todate, projectcode, suppliercode, "", "", "");
+            if (ds1 == null)
+                return;
+            Session["tblBill"] = ds1.Tables[0];
+            DataTable dt = (DataTable)Session["tblBill"];
+            this.gvbill.DataSource = dt;
+            this.gvbill.DataBind();
+            this.FooterModalBillCalculation(dt);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenPOamt();", true);
         }
 
         protected void Close_Click(object sender, EventArgs e)
         {
-            this.lbtnOk_OnClick(null,null);
+
+            Response.Redirect(Request.UrlReferrer.ToString());
+        }
+
+        protected void gvBillStatus_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+
+            this.gvBillStatus.PageIndex = e.NewPageIndex;
+            this.Data_Bind();
+
+        }
+        private void FooterModalPOCalculation(DataTable dt)
+        {
+            if (dt.Rows.Count == 0)
+                return;
+
+
+            ((Label)this.gvpobill.FooterRow.FindControl("fgvordamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(ordamt)", "")) ? 0.00 :
+                 dt.Compute("sum(ordamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
+        }
+        private void FooterModalMRRCalculation(DataTable dt)
+        {
+            if (dt.Rows.Count == 0)
+                return;
+
+
+            ((Label)this.gvReceive.FooterRow.FindControl("fgvmrramt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(mrramt)", "")) ? 0.00 :
+                 dt.Compute("sum(mrramt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
+        }
+        private void FooterModalBillCalculation(DataTable dt)
+        {
+            if (dt.Rows.Count == 0)
+                return;
+
+
+            ((Label)this.gvbill.FooterRow.FindControl("fgvbillamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(billamt)", "")) ? 0.00 :
+                 dt.Compute("sum(billamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
 
         }
     }
