@@ -993,7 +993,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     this.EnabledOrVissible();
                     this.FooterCalculation();
 
-                    if (comcod == "3370" || comcod == "3101")//For BTI
+                    if (comcod == "3370" || comcod == "3101")//For cpdl
                     {
                         
                         this.gvEmpOverTime.Columns[4].Visible = true;
@@ -1012,7 +1012,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     }
                     else
                     {
-                        this.gvEmpOtherded.Columns[16].Visible = false;
+                        this.gvEmpOverTime.Columns[16].Visible = false;
 
                     }
 
@@ -1104,7 +1104,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         this.gvEmpOtherded.Columns[9].Visible = true;
                         this.gvEmpOtherded.Columns[10].Visible = true;
                         this.gvEmpOtherded.Columns[11].Visible = false;
-                        this.gvEmpOtherded.Columns[12].Visible = false;
+                        this.gvEmpOtherded.Columns[12].Visible = true;//otherded
                         this.gvEmpOtherded.Columns[13].Visible = false;
                         this.gvEmpOtherded.Columns[14].Visible = false;
                         this.gvEmpOtherded.Columns[15].Visible = false;
@@ -3430,8 +3430,11 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         switch (comcod)
                         {
                             case "3370":
+
                                 Mobile_Bill = dt.Rows[i]["Mobile_Bill"].ToString().Length == 0 ? "0" : dt.Rows[i]["Mobile_Bill"].ToString();
                                 Meal = dt.Rows[i]["Meal"].ToString().Length == 0 ? "0" : dt.Rows[i]["Meal"].ToString() ;
+                                Other_Deduction = dt.Rows[i]["Other_Deduction"].ToString().Length == 0 ? "0" : dt.Rows[i]["Other_Deduction"].ToString();
+
                                 break;
                             default:
                                 Mobile_Bill = dt.Rows[i]["Mobile_Bill"].ToString().Length == 0 ? "0" : dt.Rows[i]["Mobile_Bill"].ToString();
@@ -3499,6 +3502,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                                     case "3370":
                                         Mobile_Bill = Convert.ToDouble("0" + (rows[0]["Mobile_Bill"]));
                                         Meal = Convert.ToDouble("0" + (rows[0]["Meal"]));
+                                        otherded = Convert.ToDouble("0" + (rows[0]["Other_Deduction"]));
 
                                         break;
                                     default:

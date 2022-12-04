@@ -1915,12 +1915,18 @@ namespace RealERPWEB.F_22_Sal
                     Rpt1.SetParameters(new ReportParameter("flrdesc", ds2.Tables[0].Rows[0]["flrdesc"].ToString()));
                     Rpt1.SetParameters(new ReportParameter("bookdate", ds2.Tables[0].Rows[0]["bookdate"].ToString()));
                     Rpt1.SetParameters(new ReportParameter("bookno", ds2.Tables[0].Rows[0]["bookno"].ToString()));
+<<<<<<< HEAD
+=======
 
+>>>>>>> 9cd970a23f391a1dec9a00f988ee87fe96a89f33
                     //Rpt1.SetParameters(new ReportParameter("projectname", ds2.Tables[0].Rows[0]["projectname"].ToString()));
                     Rpt1.SetParameters(new ReportParameter("prjadd", ds2.Tables[0].Rows[0]["prjadd"].ToString()));
                     Rpt1.SetParameters(new ReportParameter("padrss", ds2.Tables[0].Rows[0]["presentadd"].ToString()));
                     Rpt1.SetParameters(new ReportParameter("custid", ds2.Tables[0].Rows[0]["usircode"].ToString()));
->>>>>>> 1bd6f791ecb3ed4bdb2469fc4fee098970feebe5
+<<<<<<< HEAD
+                   
+=======
+>>>>>>> 9cd970a23f391a1dec9a00f988ee87fe96a89f33
 
                     break;
                 default:
