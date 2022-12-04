@@ -88,7 +88,7 @@ namespace RealERPWEB.F_17_Acc
                     // case "3101":
                     mrprint = "MRPrintIntech";
                     break;
-                case "3101":
+               // case "3101":
                 case "3370":
                     // case "3101":
                     mrprint = "MRPrintCPDL";
@@ -166,7 +166,7 @@ namespace RealERPWEB.F_17_Acc
 
             switch (comcod)
             {
-                case "3101":
+               // case "3101":
                 case "1205":
                 case "3351":
                 case "3352":
@@ -870,6 +870,7 @@ namespace RealERPWEB.F_17_Acc
                     ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "&Title=Acknowledgement Slip', target='_self');</script>";
                 }
+
                 else
                 {
 
@@ -1022,7 +1023,9 @@ namespace RealERPWEB.F_17_Acc
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                             ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
 
-            }else
+            }
+            
+            else
             {
 
                 var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
