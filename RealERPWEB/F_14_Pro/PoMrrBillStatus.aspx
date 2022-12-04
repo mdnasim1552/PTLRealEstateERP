@@ -114,7 +114,7 @@
                                     <asp:TemplateField HeaderText="Sl #">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
-                                                Style="text-align: right"
+                                                Style="text-align: center"
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
