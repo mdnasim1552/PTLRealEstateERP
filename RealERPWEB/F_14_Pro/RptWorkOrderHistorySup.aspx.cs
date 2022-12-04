@@ -36,6 +36,11 @@ namespace RealERPWEB.F_14_Pro
 
                 this.ViewSection();
                 this.GetSupliersName();
+                string type = Request.QueryString["Type"];
+                if(type== "OrderVsSupplier")
+                {
+                    this.GetProjectList();
+                }
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -197,22 +202,11 @@ namespace RealERPWEB.F_14_Pro
         }
 
 
-        private void ShowOrderVsSupplier()
-        {
-            try
-            {
-
-            }
-            catch (Exception Exp)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Exp.Message.ToString() + "');", true);
-
-            }
-        }
+       
         private void Data_Bind()
         {
             DataTable dt = (DataTable)Session["tblstatus"];
-
+            DataTable dt1 =(DataTable)Session["tblordersupllier"];
             string rpt = this.Request.QueryString["Type"].ToString().Trim();
             switch (rpt)
             {
@@ -227,6 +221,12 @@ namespace RealERPWEB.F_14_Pro
                     this.gvWorkOrdHisRes.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvWorkOrdHisRes.DataSource = dt;
                     this.gvWorkOrdHisRes.DataBind();
+                    break;
+                case "OrderVsSupplier":
+                    this.gv_OrderVsSupplier.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.gv_OrderVsSupplier.DataSource = dt1;
+                    this.gv_OrderVsSupplier.DataBind();
+
                     break;
 
             }
@@ -280,6 +280,59 @@ namespace RealERPWEB.F_14_Pro
 
 
 
+        }
+        private void ShowOrderVsSupplier()
+        {
+            try
+            {
+                string comcod = this.GetCompCode();
+                string prjname = ((this.ddlprojectname.SelectedValue.ToString() == "000000000000") ? "16" : this.ddlprojectname.SelectedValue.ToString())+"%";
+                string supplier = ((this.ddlSupplierName.SelectedValue.ToString()== "000000000000")?"99": this.ddlSupplierName.SelectedValue.ToString())+"%";
+                string fromdate = this.txtFDate.Text;
+                string todate = this.txttodate.Text;
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GET_MTRRECV_HISTORY", prjname, fromdate, todate, supplier, "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+
+                Session["tblordersupllier"] = this.HiddenSameData(ds1.Tables[0]); ;
+                this.OrderSupplierDataBound();
+               
+
+            }
+            catch(Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
+
+        private void OrderSupplierDataBound()
+        {
+            DataTable dt = (DataTable)Session["tblordersupllier"];
+            this.gv_OrderVsSupplier.DataSource = dt;
+            this.gv_OrderVsSupplier.DataBind();
+        }
+
+        private void GetProjectList()
+        {
+            try
+            {
+
+
+                string comcod = this.GetCompCode();
+                string txtSProject = "%16%";
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETPROJECTNAME", txtSProject, "", "", "", "", "", "", "", "");
+                this.ddlprojectname.DataTextField = "pactdesc";
+                this.ddlprojectname.DataValueField = "pactcode";
+                this.ddlprojectname.DataSource = ds1.Tables[0];
+                this.ddlprojectname.DataBind();
+
+            }
+            catch(Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
         }
 
         private DataTable HiddenSameData(DataTable dt1)
@@ -378,6 +431,34 @@ namespace RealERPWEB.F_14_Pro
 
                     }
 
+
+                    break;
+                case "OrderVsSupplier":
+
+                    string projname = dt1.Rows[0]["pactdesc"].ToString();
+                    int k = 0;
+                    foreach (DataRow dr1 in dt1.Rows)
+                    {
+                        if ( k == 0)
+                        {
+
+
+                            projname = dr1["pactdesc"].ToString();
+                            k++;
+                            continue;
+                        }
+
+                        if (dr1["pactdesc"].ToString() == projname)
+                        {
+
+                            dr1["pactdesc"] = "";
+
+
+                        }
+
+
+                        projname = dr1["pactdesc"].ToString();
+                    }
 
                     break;
 
@@ -551,6 +632,11 @@ namespace RealERPWEB.F_14_Pro
         protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.Data_Bind();
+           
+           
+           
+                this.OrderSupplierDataBound();
+           
         }
 
 
@@ -733,6 +819,12 @@ namespace RealERPWEB.F_14_Pro
 
             }
 
+        }
+
+        protected void gv_OrderVsSupplier_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gv_OrderVsSupplier.PageIndex = e.NewPageIndex;
+            OrderSupplierDataBound();
         }
     }
 }
