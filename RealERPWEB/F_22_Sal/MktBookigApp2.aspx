@@ -25,8 +25,6 @@
 
             $('.chzn-select').chosen({ search_contains: true });
 
-
-
         }
 
         function openModal() {
@@ -724,6 +722,89 @@
                                                         <asp:LinkButton ID="lnkbtnImg" runat="server" CssClass="btn btn-xs btn-default" ToolTip="Nominee Image Upload.. " BackColor="Transparent" OnClick="lnkbtnImg_Click" Width="30px" Style="float: right"><span class="fa fa-plus" aria-hidden="true"></span></asp:LinkButton>
                                                     </asp:Panel>
                                                 </ItemTemplate>
+
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <ItemStyle VerticalAlign="Middle" />
+                                            </asp:TemplateField>
+                                        </Columns>
+                                        <FooterStyle CssClass="grvFooter" />
+                                        <EditRowStyle />
+                                        <AlternatingRowStyle />
+                                        <PagerStyle CssClass="gvPagination" />
+                                        <HeaderStyle CssClass="grvHeader" />
+                                    </asp:GridView>
+                                    
+
+
+
+
+
+                                    <div style="background-color: darkcyan; font-weight: bold; color: white;">
+                                        <asp:Label ID="Label7" runat="server" CssClass=" inputlblVal inputlblvalstyle" Style="width: 300px;" Text="Remarks"></asp:Label>
+                                    </div>
+
+                                    <asp:GridView ID="GridViewRemarks" runat="server" AutoGenerateColumns="False"
+                                        ShowFooter="True" Width="720px" CssClass=" table-striped table-hover table-bordered grvContentarea">
+                                        <RowStyle Font-Size="11px" />
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Sl.No.">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvSlNoper"
+                                                        runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
+                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle
+                                                    HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Code">
+                                                <ItemTemplate>
+                                                    <asp:Label
+                                                        ID="lblgvItmCodeper" runat="server" Height="16px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'
+                                                        Width="49px"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle
+                                                    HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Description">
+                                                <ItemTemplate>
+                                                    <asp:Label
+                                                        ID="lgNominatedDescription" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'
+                                                        Width="200px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterStyle Font-Bold="True"
+                                                    HorizontalAlign="Left" />
+                                                <HeaderStyle HorizontalAlign="Center"
+                                                    VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Type" Visible="False">
+                                                <ItemTemplate>
+                                                    <asp:Label
+                                                        ID="lgvgvalRmrk" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                    <asp:TextBox
+                                                        ID="txtgvValRmrk" runat="server" BackColor="Transparent"  mode="multiline" BorderStyle="None"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'
+                                                        Width="300px"></asp:TextBox>
+
+                                                    <asp:TextBox
+                                                        ID="txtgvdValNominated" runat="server" Visible="false" BackColor="Transparent" mode="multiline" BorderStyle="None"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'
+                                                        Width="300px"></asp:TextBox>
+
+
+                                                    <asp:Panel runat="server" Visible="false">
+                                                        <asp:Image ID="Image1" runat="server" Height="50px" Width="50px" Visible='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod"))=="01290" || Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod"))=="01291") ? true: false%>' ImageUrl='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>' />
+                                                        <asp:LinkButton ID="lnkbtnImg" runat="server" CssClass="btn btn-xs btn-default" ToolTip="Nominee Image Upload.. " BackColor="Transparent" OnClick="lnkbtnImg_Click" Width="30px" Style="float: right"><span class="fa fa-plus" aria-hidden="true"></span></asp:LinkButton>
+                                                    </asp:Panel>
+                                                </ItemTemplate>
+
                                                 <FooterTemplate>
                                                     <asp:LinkButton ID="lUpdatInfo" runat="server" OnClick="lUpdatInfo_Click" CssClass="btn btn-danger primarygrdBtn">Update Information</asp:LinkButton>
                                                 </FooterTemplate>

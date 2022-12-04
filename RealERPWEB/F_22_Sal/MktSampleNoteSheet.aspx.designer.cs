@@ -114,15 +114,6 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.LinkButton lbtnProspective;
 
         /// <summary>
-        /// ddlprospective control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlprospective;
-
-        /// <summary>
         /// txtprospective control.
         /// </summary>
         /// <remarks>
@@ -157,6 +148,24 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlPrevious;
+
+        /// <summary>
+        /// Label3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label3;
+
+        /// <summary>
+        /// ddlPrintType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPrintType;
 
         /// <summary>
         /// lbtnOk control.
@@ -357,13 +366,13 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbltxtdownpayper;
 
         /// <summary>
-        /// txtdownpayper control.
+        /// lblvaldownpayper control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtdownpayper;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvaldownpayper;
 
         /// <summary>
         /// lbltxtdownpayam control.
@@ -483,49 +492,22 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvalpvpersft;
 
         /// <summary>
-        /// Label3 control.
+        /// lbltxthandovdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label3;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbltxthandovdate;
 
         /// <summary>
-        /// txtfirstinsdate control.
+        /// lblvalhandovdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtfirstinsdate;
-
-        /// <summary>
-        /// txtfirstinsdate_CalendarExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtfirstinsdate_CalendarExtender;
-
-        /// <summary>
-        /// Label4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Label4;
-
-        /// <summary>
-        /// ddlduration control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlduration;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvalhandovdate;
 
         /// <summary>
         /// Label6 control.

@@ -851,7 +851,16 @@ namespace RealERPWEB.F_09_PImp
 
             if (this.Request.QueryString["Type"] == "BillApproval")
             {
-                ((LinkButton)this.grvissue.FooterRow.FindControl("lnkTotal")).Visible = false;
+                switch (comcod)
+                {
+                    case "3370":
+                        ((LinkButton)this.grvissue.FooterRow.FindControl("lnkTotal")).Visible = true;
+                        break;
+                    default:
+                        ((LinkButton)this.grvissue.FooterRow.FindControl("lnkTotal")).Visible = false;
+                        break;
+                }
+               
                 ((LinkButton)this.grvissue.FooterRow.FindControl("lnkupdate")).Visible = false;
                 ((LinkButton)this.grvissue.FooterRow.FindControl("lnkApproved")).Visible = true;
             }
@@ -1596,7 +1605,6 @@ namespace RealERPWEB.F_09_PImp
                         break;
 
                     default:
-
                         dt.Rows[TblRowIndex]["wrkqty"] = wrkqty;
                         dt.Rows[TblRowIndex]["prcent"] = percent;
                         isuqty = (percent > 0) ? (wrkqty > 0 ? wrkqty * percent * 0.01 : balqty * percent * 0.01) : dgvQty;
@@ -1610,7 +1618,6 @@ namespace RealERPWEB.F_09_PImp
                         dt.Rows[TblRowIndex]["isuamt"] = issueamt;
                         dt.Rows[TblRowIndex]["mbbook"] = mbbook;
 
-
                         break;
 
 
@@ -1622,10 +1629,6 @@ namespace RealERPWEB.F_09_PImp
                 //dt.Rows[TblRowIndex]["isuqty"] = isuqty;
                 //dt.Rows[TblRowIndex]["isurat"] = labrate;
                 //dt.Rows[TblRowIndex]["isuamt"] =isuqty* labrate;
-
-
-
-
             }
             ViewState["tblmatissue"] = dt;
         }

@@ -184,7 +184,7 @@ namespace RealERPWEB.F_22_Sal
         {
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
             this.GetCustomerName();
-            this.lbtnOk_Click(null, null);
+            //this.lbtnOk_Click(null, null);
         }
         protected void imgbtnFindProject_Click(object sender, EventArgs e)
         {
@@ -249,6 +249,8 @@ namespace RealERPWEB.F_22_Sal
             Session["tblnominated"] = ds2.Tables[6];
             Session["tblpricedetail"] = ds2.Tables[7];
             Session["tblprice"] = ds2.Tables[8];
+            Session["tblrmrkdetail"] = ds2.Tables[9];
+            Session["tblrmrk"] = ds2.Tables[10];
 
 
             Session["tblcustinfo"] = ds2.Tables[2];
@@ -277,6 +279,7 @@ namespace RealERPWEB.F_22_Sal
             this.Data_BindNominee();
             this.Data_BindNominated();
             this.Data_BindPriceDetail();
+            this.Data_BindRmrkDetail();
         }
 
         private void Data_BindPrj()
@@ -316,6 +319,14 @@ namespace RealERPWEB.F_22_Sal
             DataTable dt = (DataTable)Session["tblpricedetail"];
             this.GridViewPriceDetail.DataSource = dt;
             this.GridViewPriceDetail.DataBind();
+        }
+
+        private void Data_BindRmrkDetail()
+        {
+            DataTable dt = (DataTable)Session["tblrmrkdetail"];
+            this.GridViewRemarks.DataSource = dt;
+            this.GridViewRemarks.DataBind();
+            //this.GridTextDDLVisibleRmrk();
         }
 
         private void GridTextDDLVisible()
@@ -443,6 +454,7 @@ namespace RealERPWEB.F_22_Sal
             DataTable dtn = (DataTable)Session["tblnomineeinfo"];
             DataTable dtntd = (DataTable)Session["tblnominatedinfo"];
             DataTable dtpdt = (DataTable)Session["tblpricedetail"];
+            DataTable dtRMRK = (DataTable)Session["tblrmrkdetail"];
 
 
 
@@ -589,6 +601,33 @@ namespace RealERPWEB.F_22_Sal
 
             Session["tblpricedetail"] = dtpdt;
 
+
+
+
+
+            for (int i = 0; i < this.GridViewRemarks.Rows.Count; i++)
+            {
+                //string Gcode = ((Label)this.GridViewNominated.Rows[i].FindControl("lblgvItmCodeper")).Text.Trim();
+                //string Gvalue = ((TextBox)this.GridViewNominated.Rows[i].FindControl("txtgvValNominated")).Text.Trim();
+
+
+
+                string Gcode = ((Label)this.GridViewRemarks.Rows[i].FindControl("lblgvItmCodeper")).Text.Trim();
+                string gtype = ((Label)this.GridViewRemarks.Rows[i].FindControl("lgvgvalRmrk")).Text.Trim();
+                string Gvalue = ((TextBox)this.GridViewRemarks.Rows[i].FindControl("txtgvValRmrk")).Text.Trim();
+
+
+                //if (Gcode == "01307")
+                //{
+
+                //    Gvalue = (((TextBox)this.GridViewNominated.Rows[i].FindControl("txtgvdValNominated")).Text.Trim() == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.GridViewNominated.Rows[i].FindControl("txtgvdValNominated")).Text.Trim();
+                //}
+                Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : (gtype == "N") ? Convert.ToDouble("0" + Gvalue).ToString() : Gvalue;
+
+                dtRMRK.Rows[i]["gdesc1"] = Gvalue;
+            }
+            Session["tblrmrkdetail"] = dtRMRK;
+
         }
 
         private void SaveValueImage(string _gcode, string _url)
@@ -639,6 +678,7 @@ namespace RealERPWEB.F_22_Sal
             string projectName = this.ddlProjectName.SelectedItem.Text;
             DataTable dt2 = (DataTable)Session["tblcustinfo"];
             DataTable dt3 = (DataTable)Session["tblprice"];
+            DataTable dt10 = (DataTable)Session["tblrmrk"];
 
 
 
@@ -666,7 +706,7 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("unit", dt2.Rows[0]["parkingLevel"].ToString()));
             Rpt1.SetParameters(new ReportParameter("size", dt2.Rows[0]["size"].ToString()));
             Rpt1.SetParameters(new ReportParameter("propertyaddress", dt3.Rows[0]["propertyAddress"].ToString()));
-
+            Rpt1.SetParameters(new ReportParameter("remarks", dt10.Rows[0]["remarks"].ToString()));
 
 
 
@@ -716,6 +756,7 @@ namespace RealERPWEB.F_22_Sal
             DataTable dt3 = (DataTable)Session["tblprice"];
             DataTable dt4 = (DataTable)Session["tblnominee"];
             DataTable dt5 = (DataTable)Session["tblnominated"];
+            DataTable dt10 = (DataTable)Session["tblrmrk"];
 
 
 
@@ -772,6 +813,7 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("dateforapplicant", Convert.ToDateTime(dt2.Rows[0]["dateforapplicant"]).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("datefornominee", Convert.ToDateTime(dt4.Rows[0]["datefornominee"]).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("datefornominated", Convert.ToDateTime(dt5.Rows[0]["datefornominated"]).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("remarks", dt10.Rows[0]["remarks"].ToString()));
 
 
             string bookingmoney = (dt2.Rows.Count == 0) ? "" : Convert.ToDouble(dt2.Rows[0]["bookamt"]).ToString("#,##0;(#,##0); ");
@@ -808,8 +850,9 @@ namespace RealERPWEB.F_22_Sal
             DataTable dtn = (DataTable)Session["tblnomineeinfo"];
             DataTable dtntd = (DataTable)Session["tblnominatedinfo"];
             DataTable dtpdt = (DataTable)Session["tblpricedetail"];
+            DataTable dtrmrk = (DataTable)Session["tblrmrkdetail"];
 
-            
+
 
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
             string usircode = this.ddlCustName.SelectedValue.ToString();
@@ -850,11 +893,16 @@ namespace RealERPWEB.F_22_Sal
             ds1.Merge(dtn);
             ds1.Merge(dtntd);
             ds1.Merge(dtpdt);
+            ds1.Merge(dtrmrk);
+            
+
             ds1.Tables[0].TableName = "tbl1";            
             ds1.Tables[0].TableName = "tbl2";
             ds1.Tables[0].TableName = "tbl3";
             ds1.Tables[0].TableName = "tbl4";
             ds1.Tables[0].TableName = "tbl5";
+            ds1.Tables[0].TableName = "tbl6";
+
 
 
 
@@ -943,6 +991,7 @@ namespace RealERPWEB.F_22_Sal
                 ////Save the Image File in Folder.
                 //imgFileUpload.PostedFile.SaveAs(Server.MapPath(filePath));
                 string imgurl = Session["imgUrl"].ToString();
+
                 bool result = SalData.UpdateTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "INSORUPDATECUSTIMG", pactcode,
                     usircode, imgurl);
 
