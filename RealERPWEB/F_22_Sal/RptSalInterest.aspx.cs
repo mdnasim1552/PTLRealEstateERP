@@ -1894,6 +1894,7 @@ namespace RealERPWEB.F_22_Sal
 
                 case "3101":
                 case "3370":
+<<<<<<< HEAD
                     //Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPayScheduleCPDL", lst, null, null);
                     //Rpt1.EnableExternalImages = true;              
                     //Rpt1.SetParameters(new ReportParameter("apttype", ds2.Tables[0].Rows[0]["apttype"].ToString()));
@@ -1904,6 +1905,22 @@ namespace RealERPWEB.F_22_Sal
                     //Rpt1.SetParameters(new ReportParameter("prjadd", ds2.Tables[0].Rows[0]["prjadd"].ToString()));
                     //Rpt1.SetParameters(new ReportParameter("padrss", ds2.Tables[0].Rows[0]["presentadd"].ToString()));
                     //Rpt1.SetParameters(new ReportParameter("custid", ds2.Tables[0].Rows[0]["usircode"].ToString()));                 
+=======
+                    Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPayScheduleCPDL", lst, null, null);
+                    Rpt1.EnableExternalImages = true;                
+
+                    Rpt1.SetParameters(new ReportParameter("apttype", ds2.Tables[0].Rows[0]["apttype"].ToString()));
+                    Rpt1.SetParameters(new ReportParameter("comfadd", comfadd));
+
+                    Rpt1.SetParameters(new ReportParameter("flrdesc", ds2.Tables[0].Rows[0]["flrdesc"].ToString()));
+                    Rpt1.SetParameters(new ReportParameter("bookdate", ds2.Tables[0].Rows[0]["bookdate"].ToString()));
+                    Rpt1.SetParameters(new ReportParameter("bookno", ds2.Tables[0].Rows[0]["bookno"].ToString()));
+
+                    //Rpt1.SetParameters(new ReportParameter("projectname", ds2.Tables[0].Rows[0]["projectname"].ToString()));
+                    Rpt1.SetParameters(new ReportParameter("prjadd", ds2.Tables[0].Rows[0]["prjadd"].ToString()));
+                    Rpt1.SetParameters(new ReportParameter("padrss", ds2.Tables[0].Rows[0]["presentadd"].ToString()));
+                    Rpt1.SetParameters(new ReportParameter("custid", ds2.Tables[0].Rows[0]["usircode"].ToString()));
+>>>>>>> 1bd6f791ecb3ed4bdb2469fc4fee098970feebe5
 
                     break;
                 default:
