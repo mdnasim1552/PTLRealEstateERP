@@ -1568,8 +1568,7 @@
 
                                                     <%-- <asp:HyperLink ID="lnkbtnEditBilll" ToolTip="Edit" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span style="color:black" class="fas fa-edit"></span>
                                                     </asp:HyperLink>--%>
-                                                    <asp:LinkButton ID="btnDelbillapp" OnClick="btnDelbillapp_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs" ToolTip="Delete Bill Checked"
-                                                        Visible='<%# (Convert.ToBoolean((Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) == "3370")) ? false : true)%>'>
+                                                    <asp:LinkButton ID="btnDelbillapp" OnClick="btnDelbillapp_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs" ToolTip="Delete Bill Checked">
                                                         <span style="color:red" class="fa  fa-recycle"></span> </asp:LinkButton>
                                                 </ItemTemplate>
                                                 <ItemStyle Width="150px" />
