@@ -586,7 +586,7 @@
                                                             <Paragraph>
                                                               <TextRuns>
                                                                 <TextRun>
-                                                                  <Value>Pay Scale</Value>
+                                                                  <Value />
                                                                   <Style>
                                                                     <FontFamily>cambria</FontFamily>
                                                                     <FontSize>9pt</FontSize>
@@ -626,7 +626,7 @@
                                                             <Paragraph>
                                                               <TextRuns>
                                                                 <TextRun>
-                                                                  <Value>:</Value>
+                                                                  <Value />
                                                                   <Style>
                                                                     <FontFamily>cambria</FontFamily>
                                                                     <FontSize>9pt</FontSize>
@@ -1372,7 +1372,7 @@
                                                             <Paragraph>
                                                               <TextRuns>
                                                                 <TextRun>
-                                                                  <Value>Pay Scale</Value>
+                                                                  <Value />
                                                                   <Style>
                                                                     <FontFamily>cambria</FontFamily>
                                                                     <FontSize>9pt</FontSize>
@@ -1411,7 +1411,7 @@
                                                             <Paragraph>
                                                               <TextRuns>
                                                                 <TextRun>
-                                                                  <Value>:</Value>
+                                                                  <Value />
                                                                   <Style>
                                                                     <FontFamily>cambria</FontFamily>
                                                                     <FontWeight>Bold</FontWeight>
