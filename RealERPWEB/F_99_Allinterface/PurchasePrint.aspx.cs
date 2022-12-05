@@ -1269,7 +1269,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3364":
                     PrintReq = "PrintReqJBS";
                     break;
-
+                case "3101":
                 case "3367":
                     PrintReq = "PrintReqEpic";
                     break;
