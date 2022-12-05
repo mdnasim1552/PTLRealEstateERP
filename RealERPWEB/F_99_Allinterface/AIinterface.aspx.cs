@@ -132,13 +132,18 @@ namespace RealERPWEB.F_99_Allinterface
         private void data_Bind()
         {
             DataTable tbl1 = (DataTable)Session["tblprojectlist"];
-            DataTable tblasing = (DataTable)Session["tblassinglist"];
+          
 
             this.gvInterface.DataSource = tbl1;
             this.gvInterface.DataBind();
+           
+
+        }
+        private void GetAssignTask()
+        {
+            DataTable tblasing = (DataTable)Session["tblassinglist"];
             this.gvAssingJob.DataSource = tblasing;
             this.gvAssingJob.DataBind();
-
         }
 
         protected void TasktState_SelectedIndexChanged(object sender, EventArgs e)
@@ -187,6 +192,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQA.Visible = false;
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
+                    this.GetAssignTask();
                     break;
                 case "3":
                     this.pnlAllProject.Visible = false;
@@ -200,7 +206,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQA.Visible = false;
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
-                    this.GetProductionInfo();
+                    this.Getproducttion();
                     break;
                 case "4":
                     this.pnlAllProject.Visible = false;
@@ -214,7 +220,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQA.Visible = false;
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
-                    this.GetProductionInfo();
+                    this.GetQcList();
                     break;
                 case "5":
                     this.pnlAllProject.Visible = false;
@@ -243,7 +249,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQA.Visible = true;
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
-                    this.GetProductionInfo();
+                    this.GetAssignQa();
                     break;
                 case "8":
                     this.pnlAllProject.Visible = false;
@@ -319,6 +325,53 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
+        private void  Getproducttion()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", "", "", "", "", "", "", "");
+            if (ds == null)
+                return;
+            DataTable dt1 = new DataTable();
+            DataView view = new DataView();
+            view.Table = ds.Tables[0];
+            view.RowFilter = " roletype='95001'";
+            dt1 = view.ToTable();
+            this.gv_Production.DataSource = dt1;
+            this.gv_Production.DataBind();
+        }
+
+       private void GetQcList()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", "", "", "", "", "", "", "");
+            if (ds == null)
+                return;
+            DataTable dt1 = new DataTable();
+            DataView view1 = new DataView();
+
+            view1.Table = ds.Tables[0];
+            view1.RowFilter = "roletype='95002'";
+            dt1 = view1.ToTable();
+            this.gv_QCQA.DataSource = dt1;
+            this.gv_QCQA.DataBind();
+
+        }
+
+        private void GetAssignQa()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", "", "", "", "", "", "", "");
+            if (ds == null)
+                return;
+            Session["tblproductioninfo"] = ds.Tables[0];
+            DataTable dt1 = new DataTable();
+            DataView view2 = new DataView();
+            view2.Table = ds.Tables[0];
+            view2.RowFilter = "roletype='95003'";
+            dt1 = view2.ToTable();
+            this.gv_AssignQA.DataSource = dt1;
+            this.gv_AssignQA.DataBind();
+        }
 
         private void GetProductionInfo()
         {
@@ -330,33 +383,8 @@ namespace RealERPWEB.F_99_Allinterface
                 if (ds == null)
                     return;
                 Session["tblproductioninfo"] = ds.Tables[0];
+               
                 DataTable dt1 = new DataTable();
-                DataView view = new DataView();
-                DataView view1 = new DataView();
-                DataView view2 = new DataView();
-                view.Table = ds.Tables[0];
-                view.RowFilter = " roletype='95001'";
-                dt1 = view.ToTable();
-                this.gv_Production.DataSource = dt1;
-                this.gv_Production.DataBind();
-
-
-
-                view1.Table = ds.Tables[0];
-                view1.RowFilter = "roletype='95002'";
-                dt1 = view1.ToTable();
-                this.gv_QCQA.DataSource = dt1;
-                this.gv_QCQA.DataBind();
-
-
-
-                view2.Table = ds.Tables[0];
-                view2.RowFilter = "roletype='95003'";
-                dt1 = view2.ToTable();
-                this.gv_AssignQA.DataSource = dt1;
-                this.gv_AssignQA.DataBind();
-
-                DataTable dt2 = new DataTable();
                 DataView view3 = new DataView();
                 view3.Table = ds.Tables[0];
                 view3.RowFilter = "roletype='95002' and doneqty >'0' ";
@@ -759,15 +787,15 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
             Session["tblprojectdetails"] = dt3.Tables[0];
         }
-        private string GetLastid()
+        private string GetLastid(string gvalue="")
         {
             string sircode = "";
 
             string comcod = this.GetCompCode();           
 
 
-            //string calltype =(orderType == "80101" ?  : "GETLASTPRJCODESOWID");// (code == "" ? "GETLASTPRJCODEID" : "GETLASTPRJCODESOWID"  );
-            DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI","GETLASTPRJCODEID", "", "", "", "", "", "");
+            string calltype =(gvalue== "80101") ? "GETLASTPRJCODEID":"GETLASTPRJCODESOWID";// (code == "" ? "GETLASTPRJCODEID" : "GETLASTPRJCODESOWID"  );
+            DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", calltype, "", "", "", "", "", "");
             if (ds1 == null)
                 return sircode;
             sircode = ds1.Tables[0].Rows[0]["sircode"].ToString();
@@ -1156,17 +1184,28 @@ namespace RealERPWEB.F_99_Allinterface
 
                 //}
                 //    string ordertype = "";
-                string sircode = "";
-                sircode = this.GetLastid();
-                 //sircode = prjcode.Length > 0 ? prjcode :"";
-
+                string sircode = "";                
+                //sircode = prjcode.Length > 0 ? prjcode :"";
                 for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
                 {
 
                     string Gcode = ((Label)this.gvProjectInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
                     string gtype = ((Label)this.gvProjectInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
+                    string Gvalue = (((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
+                    if(Gcode== "03018")// order type
+                    {
+                        sircode = this.GetLastid(Gvalue);
+
+                        break;
+                    }
+                }
 
 
+                    for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
+                {
+
+                    string Gcode = ((Label)this.gvProjectInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
+                    string gtype = ((Label)this.gvProjectInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
                     string Gvalue = (((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
                
                    
@@ -1306,7 +1345,7 @@ namespace RealERPWEB.F_99_Allinterface
         protected void gvAssingJob_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvAssingJob.PageIndex = e.NewPageIndex;
-            this.data_Bind();
+            this.GetAssignTask();
 
         }
         private void GetAIDelivery()
@@ -2180,6 +2219,24 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
             }
+        }
+
+        protected void gv_QCQA_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gv_QCQA.PageIndex = e.NewPageIndex;
+            this.GetQcList();
+        }
+
+        protected void gv_Production_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gv_Production.PageIndex = e.NewPageIndex;
+            this.Getproducttion();
+        }
+
+        protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.gvInterface.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+            this.data_Bind();
         }
     }
 }

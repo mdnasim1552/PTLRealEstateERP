@@ -215,16 +215,102 @@ namespace RealERPWEB.F_09_PImp
                 case "3351":
                 case "3352":
                 case "1205":
-                case "3101":
+               
                     this.PrintOrderP2P();
                     break;
+
+                case "1206":
+                case "3101":
+                    this.PrintOrderAcmeCon();
+                    break;
+
                 default:
                     this.PrintGeneral();
                     break;
 
             }
         }
+        private void PrintOrderAcmeCon()
+        {
+            try
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string comnam = hst["comnam"].ToString();
+                string compname = hst["compname"].ToString();
+                string comsnam = hst["comsnam"].ToString();
+                string comadd = hst["comadd1"].ToString();
+                string session = hst["session"].ToString();
+                string username = hst["username"].ToString();
+                string CurDate = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
+                string refNo = this.txtOrderRef.Text.ToString();
+                string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
+                string mOrdernoO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + this.txtCurISSDate.Text.Trim().Substring(7, 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
+                string ordercopy = this.GetCompOrderCopy();
+                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "SHOWCONORKORDERINFO", mOrdernoO, ordercopy, "", "", "", "", "", "", "");
+
+
+                string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+                string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+
+                LocalReport Rpt1 = new LocalReport();
+
+                //  DataTable dt1 = (DataTable)ViewState["UserLog"];GetWorkOrder1
+
+
+                var lst = ds1.Tables[0].DataTableToList<RealEntity.C_09_PIMP.EClassOrder.GetWorkOrder>();
+                var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_09_PIMP.EClassOrder.GetWorkOrder1>();
+
+
+
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrderAcmeConst", lst, null, null);
+
+                string txtSign1 = ds1.Tables[2].Rows[0]["usrname"].ToString() + " ," + ds1.Tables[2].Rows[0]["usrdesig"].ToString() + " \n" + Convert.ToDateTime(ds1.Tables[2].Rows[0]["POSTEDDAT"]).ToString("dd-MMM-yyyy");
+                string txtSign2 = "";
+                string txtSign3 = "";
+                string txtSign4 = "";
+
+                string Address = lst[0].conadd.ToString();
+                string Attn = lst[0].atten.ToString();
+                string body = lst1[0].leterdes.ToString();
+                string subject = lst1[0].subject.ToString();
+                string Term = lst1[0].term.ToString();
+                string Suppl = lst1[0].csirdesc.ToString();
+                string GDesc = lst[0].grpdesc;
+
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("CurDate", "Date: " + CurDate));
+                Rpt1.SetParameters(new ReportParameter("refNo", "Ref:" + refNo));
+                Rpt1.SetParameters(new ReportParameter("Address", Address));
+                Rpt1.SetParameters(new ReportParameter("Attn", "Attn: " + Attn));
+                Rpt1.SetParameters(new ReportParameter("body", body));
+                Rpt1.SetParameters(new ReportParameter("subject", "Subject: " + subject));
+                Rpt1.SetParameters(new ReportParameter("Term", Term));
+                Rpt1.SetParameters(new ReportParameter("Suppl", Suppl));
+                Rpt1.SetParameters(new ReportParameter("GDesc", GDesc));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Work Order"));
+                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+                Rpt1.SetParameters(new ReportParameter("txtSign1", txtSign1));
+                Rpt1.SetParameters(new ReportParameter("txtSign2", txtSign2));
+                Rpt1.SetParameters(new ReportParameter("txtSign3", txtSign3));
+                Rpt1.SetParameters(new ReportParameter("txtSign4", txtSign4));
+                //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+
+
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+            }
+            catch(Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
         private void PrintOrderP2P()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -675,6 +761,8 @@ namespace RealERPWEB.F_09_PImp
                 return;
             }
 
+           
+
             this.lblCurISSNo1.Text = ds1.Tables[1].Rows[0]["orderno1"].ToString().Substring(0, 6);
             this.txtCurISSNo2.Text = ds1.Tables[1].Rows[0]["orderno1"].ToString().Substring(6, 5);
             this.txtCurISSDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["orderdat"]).ToString("dd-MMM-yyyy");
@@ -683,12 +771,19 @@ namespace RealERPWEB.F_09_PImp
 
             this.ddlprjlist.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
             this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
-            this.txtTerm.Text = ds1.Tables[1].Rows[0]["pordnar"].ToString();
+            this.txtTerm.Text =(comcod=="3101")? ds1.Tables[2].Rows[0]["term"].ToString() : ds1.Tables[1].Rows[0]["pordnar"].ToString();
             this.txtOrderRef.Text = ds1.Tables[1].Rows[0]["pordref"].ToString();
             this.txtduration.Text = ds1.Tables[1].Rows[0]["duration"].ToString();
             this.ddlbilltype.SelectedValue = ds1.Tables[1].Rows[0]["billtype"].ToString();
             this.Data_Bind();
         }
+
+
+       
+
+
+
+
 
         private string CompReceived()
         {
