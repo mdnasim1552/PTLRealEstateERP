@@ -204,11 +204,11 @@ namespace RealERPWEB.F_09_PImp
                 //case "1205":
                 //case "3351":
 
-                case "3101":
-                case "3370":
-                case "1205":
-                case "3351":
-                case "3352":
+                case "3101": // pintech
+                case "3370": // cpdl
+                case "1205": // p2p
+                case "3351": // p2p
+                case "3352": // p2p
                     this.printWorkOrderFInt();
                     break;
 
@@ -367,14 +367,16 @@ namespace RealERPWEB.F_09_PImp
             string refNo = "";
             string Supp2 = this.ddlContractorlist.SelectedItem.Text.Trim().Substring(13).ToString();
             string morderno = "";
+            bool isself = false;
             if (this.Request.QueryString.AllKeys.Contains("orderno"))
             {
                 morderno= this.Request.QueryString["orderno"].ToString() == "" ? "" : this.Request.QueryString["orderno"].ToString();
+                isself = true;
             }
             else
             {
                 morderno = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + this.txtCurISSDate.Text.Trim().Substring(7, 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
-
+                isself = false;
             }
             string ordercopy = this.GetCompOrderCopy();
 
@@ -403,6 +405,7 @@ namespace RealERPWEB.F_09_PImp
             string Suppl = lst1[0].csirdesc.ToString();
             string GDesc = lst[0].grpdesc;
             string prjname = lst1[0].pactdesc.ToString();
+            string lang = ds1.Tables[1].Rows[0]["lang"].ToString();
 
             if (comcod == "1205" || comcod == "3351" || comcod == "3352")
             {
@@ -411,7 +414,7 @@ namespace RealERPWEB.F_09_PImp
                 string txtSign2 = "";
                 string txtSign3 = "";
                 string txtSign4 = "";
-                string lang = ds1.Tables[1].Rows[0]["lang"].ToString();
+                
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrderP2PBN", lst, null, null);
                 //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrder2", lst, null, null);
                 Rpt1.EnableExternalImages = true;
@@ -434,6 +437,7 @@ namespace RealERPWEB.F_09_PImp
                 Rpt1.SetParameters(new ReportParameter("fullComAdd", comfadd));
                 Rpt1.SetParameters(new ReportParameter("refNo1",  refNo));
                 Rpt1.SetParameters(new ReportParameter("orderno", orderno));
+                Rpt1.SetParameters(new ReportParameter("lang", lang));
             }
             else
             {
@@ -459,10 +463,19 @@ namespace RealERPWEB.F_09_PImp
             Rpt1.SetParameters(new ReportParameter("RptTitle", "Work Order"));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
 
+            if (isself)
+            {
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+            }
+            else
+            {
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            }
 
-            Session["Report1"] = Rpt1;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
         }
 
 
@@ -545,9 +558,10 @@ namespace RealERPWEB.F_09_PImp
             switch (comcod)
             {
                 //case "3101":
-                case "1205":
-                case "3351":
-                case "3352":
+                case "3370": // cpdl
+                case "1205": // p2p 
+                case "3351":  // p2p 
+                case "3352":  // p2p 
                     this.ChkLanguage.Visible = true;
                     break;
                 default:

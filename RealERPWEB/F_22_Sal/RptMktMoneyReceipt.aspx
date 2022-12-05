@@ -6,7 +6,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript">
+        
         $(document).ready(function () {
+            $('.chzn-select').chosen({ search_contains: true });
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
 
@@ -18,15 +20,20 @@
                 k1.textBoxHandler(event);
             });
 
-
-            $('.chzn-select').chosen({ search_contains: true });
-
-
+           // $('.chzn-select').chosen({ search_contains: true });
         }
 
     </script>
 
-
+    <style>
+        .chkBoxControl label{
+            margin:0;
+        }
+        .chzn-container{
+            width: 100% !important;
+            height:34px;
+        }
+    </style>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -65,10 +72,22 @@
                                     Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-3">
+                        <div class="col-sm-12 col-md-2">
                             <div class="form-group">
-                                <asp:LinkButton ID="ibtnFindProject" runat="server" CssClass="form-label" OnClick="ibtnFindProject_Click">MR No</asp:LinkButton>
-                                <asp:DropDownList ID="ddlMRNO" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlMRNO_SelectedIndexChanged" AutoPostBack="true" TabIndex="1">
+                                <asp:Label ID="Label2" runat="server" CssClass="form-label">MRR No.
+
+                                <asp:LinkButton ID="ibtnFindProject" runat="server" CssClass="form-label" OnClick="ibtnFindProject_Click"><i class="fas fa-search "></i></asp:LinkButton>                                
+
+                                </asp:Label>
+
+                                <asp:TextBox ID="txtSrcPro" runat="server" CssClass="form-control form-control-sm "></asp:TextBox>
+                                </div>
+                            </div>
+
+                        <div class="col-sm-12 col-md-4">
+                            <div class="form-group" style="margin-top:20px;">   
+                                
+                                <asp:DropDownList ID="ddlMRNO" runat="server" CssClass="form-control form-control-sm chzn-select" OnSelectedIndexChanged="ddlMRNO_SelectedIndexChanged" AutoPostBack="true" TabIndex="1">
                                 </asp:DropDownList>
 
                                 <asp:CheckBox ID="chkOrginal" runat="server" CssClass="chkBoxControl pading5px" Text="Orginal " Visible="False" />
@@ -77,11 +96,11 @@
                                 <asp:Label ID="lusircode" runat="server" CssClass="lblName lblTxt" Visible="False"></asp:Label>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-2 ">
+                        <div class="col-sm-12 col-md-4">
                             <div class="form-group">
-                               <asp:CheckBox ID="chkAllSchedul" runat="server" CssClass="form-label chkBoxControl pading5px"
+                               <asp:CheckBox ID="chkAllSchedul" runat="server" CssClass="form-label chkBoxControl pading5px m-0"
                                     Text="Multiple Cheque No" /> </br>
-                                <asp:LinkButton ID="lbShow0" runat="server" CssClass="btn btn-primary btn-xs mt20" OnClick="lblShow_Click">Ok</asp:LinkButton>
+                                <asp:LinkButton ID="lbShow0" runat="server" CssClass="btn btn-primary btn-xs" OnClick="lblShow_Click">Ok</asp:LinkButton>
                             </div>
                         </div>
                         
