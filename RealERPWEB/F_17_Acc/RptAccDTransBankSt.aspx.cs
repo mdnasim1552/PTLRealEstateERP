@@ -40,7 +40,6 @@ namespace RealERPWEB.F_17_Acc
                 this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.LoadAcccombo();
 
-                //Test
             }
 
 
