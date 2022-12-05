@@ -1288,7 +1288,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2202271", "F_22_Sal", "RptPeriodicSalesWithCollection", "", "Periodic Sales With Collection ", "Sales", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202275", "F_22_Sal", "RptSalesVsAchievement?", "Type=MonsalVsAchieve", "Month Wise Sales (Reconcilation)", "Sales", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202276", "F_22_Sal", "RptSalesVsAchievement?", "Type=DownpayClearnce", "Down Payment Status (Prev.Sales)", "Sales", "False", "False", "False", "False" });
-
+            tblObj.Rows.Add(new Object[] { "2203000", "2202277", "F_22_Sal", "RptSalesVsAchievement?", "Type=CollectionStatus", "Month Wise Sales ( Collection Status ) ", "Sales", "False", "False", "False", "False" });
 
 
 
@@ -7616,6 +7616,7 @@ namespace RealERPLIB
             //mnuTbl1.Rows.Add(new Object[] { "0401000003", "15. Customer Bill Info", "F_22_Sal/RptCustomerBill?Type=CustBill", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000004", "16. Month Wise Sales (Reconcilation)", "F_22_Sal/RptSalesVsAchievement?Type=MonsalVsAchieve", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000005", "17. Down Payment Status (Prev.Sales)", "F_22_Sal/RptSalesVsAchievement?Type=DownpayClearnce", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000099", "18. Month Wise Sales (Collection Status)", "F_22_Sal/RptSalesVsAchievement?Type=CollectionStatus", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0401000006", "18. Periodic Sales With Collection ", "F_22_Sal/RptPeriodicSalesWithCollection", "", true, "" });
 
