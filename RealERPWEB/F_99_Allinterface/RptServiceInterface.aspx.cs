@@ -678,10 +678,11 @@ namespace RealERPWEB.F_99_Allinterface
 
                 result = _process.UpdateTransInfo(comcod, "[dbo_Services].[SP_ENTRY_QUOTATION]", "UPDATEPURLISSUEB", mISUNO, "S");
 
+                // todo for auto approval 
+                result = this.BillApprovalCompwise(mISUNO);
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
-
                 }
                 else
                 {
@@ -721,11 +722,35 @@ namespace RealERPWEB.F_99_Allinterface
                         getProcess();
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Sub COntractor Bill Generated" + "');", true);
                     }
+
                 }
 
             }
 
 
+        }
+        // todo for auto bill approval 
+        private bool BillApprovalCompwise(string _issuno)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string usrid = hst["usrid"].ToString();
+            string session = hst["session"].ToString();
+            string trmnid = hst["compname"].ToString();
+            string comcod = hst["comcod"].ToString();
+            string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+            bool isSuccess = false; 
+            switch (comcod)
+            {
+                case "3368": // finlay
+                case "3367": // epic
+                case "3370": // cpdl
+                case "3366": // lanco
+                    break;
+                default:
+                    isSuccess = _process.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "ISSUEAPPROVEDAUTO", _issuno, usrid, Date, trmnid, session, "", "", "", "", "", "", "", "", "", "");
+                    break;
+            }
+            return isSuccess;
         }
         #endregion
 
