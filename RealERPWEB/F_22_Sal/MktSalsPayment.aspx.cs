@@ -259,7 +259,6 @@ namespace RealERPWEB.F_22_Sal
             this.gvSpayment.DataSource = null;
             this.gvSpayment.DataBind();
             ((Label)this.Master.FindControl("lblmsg")).Text = "";
-
         }
 
 
