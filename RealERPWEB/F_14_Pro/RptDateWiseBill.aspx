@@ -51,7 +51,11 @@
             <div class="card mt-4 pb-4">
                 <div class="card-body">
                     <div class="row">
-                        
+                        <div class="col-md-2">
+                            <label class="control-label" for="Supplier">Supplier Name</label>
+                            <asp:DropDownList ID="ddlsuplier" runat="server"  CssClass="form-control form-control-sm chzn-select"></asp:DropDownList>
+                                    
+                        </div>
                         <div class="col-md-2">
 
                             <label class="control-label" for="FromDate">From Date</label>

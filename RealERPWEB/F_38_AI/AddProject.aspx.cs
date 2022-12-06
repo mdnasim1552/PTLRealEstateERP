@@ -280,13 +280,15 @@ namespace RealERPWEB.F_38_AI
             Session["tblCunt"] = ds1.Tables[0];
         }
 
-        private string GetLastid()
+        private string GetLastid( string gvalue= "")
         {
             string sircode = "";
 
             string comcod = this.GetComdCode();
 
-            DataSet ds1 = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", "GETLASTPRJCODEID", "", "", "", "", "", "");
+
+            string calltype = (gvalue == "80101") ? "GETLASTPRJCODEID" : "GETLASTPRJCODESOWID";// (code == "" ? "GETLASTPRJCODEID" : "GETLASTPRJCODESOWID"  );
+            DataSet ds1 = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_AI", calltype, "", "", "", "", "", "");
             if (ds1 == null)
                 return sircode;
             sircode = ds1.Tables[0].Rows[0]["sircode"].ToString();
@@ -320,7 +322,22 @@ namespace RealERPWEB.F_38_AI
             {
                 string prjcode = this.lblproj.Text.Trim().ToString();
                 string comcod = this.GetComdCode();
-                string sircode = prjcode.Length > 0 ? prjcode : this.GetLastid();
+                string sircode = "";
+                for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
+                {
+                   
+
+                    string Gcode = ((Label)this.gvProjectInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
+                    string gtype = ((Label)this.gvProjectInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
+                    string Gvalue = (((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
+                    if (Gcode == "03018")// order type
+                    {
+                        sircode = this.GetLastid(Gvalue);
+
+                        break;
+                    }
+                }
+
 
                 for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
                 {

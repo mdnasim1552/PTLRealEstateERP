@@ -13,6 +13,7 @@
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
         });
+       
         function pageLoaded() {
             var gv = $('#<%=this.gvUnit.ClientID %>');
            gv.Scrollable();
@@ -24,7 +25,16 @@
 
            });
            var gridview = $('#<%=this.gvUnit.ClientID %>');
-           $.keynavigation(gridview);
+            $.keynavigation(gridview);
+
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+
+            $('.chzn-select').chosen({ search_contains: true });
+
+
        }
     </script>
 
@@ -73,7 +83,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3 pading5px ">
-                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control inputTxt" TabIndex="3" >
+                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control" TabIndex="3" >
                                         </asp:DropDownList>
                                         <asp:Label ID="lblProjectdesc" runat="server" Visible="false" CssClass="form-control inputTxt"></asp:Label>
 

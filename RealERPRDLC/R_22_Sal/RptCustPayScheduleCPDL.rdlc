@@ -225,7 +225,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=CDate(Parameters!bookdate.Value).ToString("dd-MMM-yyyy")</Value>
+                                  <Value>=Parameters!bookdate.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                   </Style>

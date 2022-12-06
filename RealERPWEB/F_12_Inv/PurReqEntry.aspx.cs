@@ -482,8 +482,8 @@ namespace RealERPWEB.F_12_Inv
                 case "3351":
                 case "3352":
                 case "3368":
-                case "3367":
                 case "3101":
+               
                     if (Request.QueryString["InputType"].ToString() == "IndentEntry" || ASTUtility.Left(this.ddlProject.SelectedValue.ToString(), 2) == "11")
                     {
 
@@ -494,6 +494,20 @@ namespace RealERPWEB.F_12_Inv
                     {
                         this.PnlDesc.Visible = true;
                     }
+
+                    break;
+
+
+               
+                case "3367":
+                    this.PnlDesc.Visible = true;
+                    if (Request.QueryString["InputType"].ToString() == "IndentEntry" || ASTUtility.Left(this.ddlProject.SelectedValue.ToString(), 2) == "11")
+                    {
+
+                       
+                        this.uPrj.Visible = false;
+                    }
+                    
 
                     break;
 
