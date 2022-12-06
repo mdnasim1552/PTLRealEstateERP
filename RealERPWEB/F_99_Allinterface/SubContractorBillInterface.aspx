@@ -529,7 +529,7 @@
                         $('#<%=this.txtrefno.ClientID%>').prop('readonly', false);
                         break;
 
-                    //case 3101://ASIT
+                    case 3101://ASIT
                     case 3370:   //cpdl
                         $(".tbMenuWrp table tr td:nth-child(1)").hide();
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();
@@ -581,7 +581,7 @@
                         $(".tbMenuWrp table tr td:nth-child(15)").hide();
                         break;
 
-                    case 3101:
+                    //case 3101:
                     case 3366:
                         $(".tbMenuWrp table tr td:nth-child(1)").hide();
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();

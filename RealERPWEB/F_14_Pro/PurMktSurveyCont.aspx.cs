@@ -57,6 +57,7 @@ namespace RealERPWEB.F_14_Pro
         {
             switch (GetCompCode())
             {
+                case "3101":
                 case "3370":
                     this.printCPDL_cs_approval();
                     break;
@@ -539,9 +540,10 @@ namespace RealERPWEB.F_14_Pro
                 case "3351":
                 case "3352":
                 case "1205":
-                case "3101":
+                //case "3101":
                     this.printP2P_cs_approval();
                     break;
+                case "3101": // cpdl
                 case "3370": // cpdl
                     this.printCPDL_cs_approval();
                     break;
@@ -1419,6 +1421,7 @@ namespace RealERPWEB.F_14_Pro
 
             switch (GetCompCode())
             {
+                case "3101":
                 case "3370":
                     this.gvterm.Columns[4].Visible = false;
                     this.gvterm.Columns[6].Visible = false;                    
