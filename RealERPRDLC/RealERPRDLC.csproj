@@ -106,6 +106,7 @@
     <Folder Include="R_98_Purchase\" />
   </ItemGroup>
   <ItemGroup>
+    <Fakes Include="Fakes\Microsoft.ReportViewer.WinForms.fakes" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\RealEntity.C_02_Fea.EClasFeasibility+AgeingDays.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_02_Fea.EClasFeasibility+ProdCostAnalysis.datasource" />
