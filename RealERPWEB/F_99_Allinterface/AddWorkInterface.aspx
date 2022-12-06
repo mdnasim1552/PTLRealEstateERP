@@ -496,7 +496,7 @@
             try {
                 var comcod = <%=this.GetCompCode()%>;
                 switch (comcod) {
-                    case 3101:   // ptl 
+                    //case 3101:   // ptl 
                     case 3367:   // Epic Properties
                         //$(".tbMenuWrp table tr td:nth-child(3)").hide();// 1st approval
                         //$(".tbMenuWrp table tr td:nth-child(4)").hide();// 2nd approval
