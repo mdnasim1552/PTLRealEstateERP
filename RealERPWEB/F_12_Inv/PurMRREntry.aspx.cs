@@ -665,7 +665,6 @@ namespace RealERPWEB.F_12_Inv
             string comcod = GetCompCode();
             switch (comcod)
             {
-                case "3101":
                 case "3353":
                     this.gvMRRInfo.Columns[1].Visible = true;
                     break; 

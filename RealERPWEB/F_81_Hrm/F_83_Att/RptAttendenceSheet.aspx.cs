@@ -676,7 +676,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             ((HyperLink)this.gvMonthlyattSummary.HeaderRow.FindControl("hlbtntbCdataExelSP2")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";                     
                     }
                     else
-                    {                       
+                    {
                         if (comcod == "3365")
                         {
                             int i;
@@ -688,6 +688,36 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             for (i = 2; i < tcount; i++)
                                 this.gvMonthlyAtt.Columns[i].Visible = false;
                             int j = 2;
+                            for (i = 0; i < tcount; i++)
+                            {
+                                //if (datefrm > dateto)
+                                //    break;
+
+                                this.gvMonthlyAtt.Columns[j].Visible = true;
+                                this.gvMonthlyAtt.Columns[j].HeaderText = datefrm.ToString("dd") + "<br/>" + datefrm.ToString("dddd").Substring(0, 1);
+                                //this.gvMonthlyattSummary.Columns[j].HeaderText = datefrm.ToString("dddd").Substring(0,1);
+                                datefrm = datefrm.AddDays(1);
+                                j++;
+
+                                this.StatusReport.Visible = true;
+                            }
+                            this.DelaisAttinfo.Visible = true;
+                            this.SummaryAttinfo.Visible = false;
+                            this.gvMonthlyAtt.DataSource = dt;
+                            this.gvMonthlyAtt.DataBind();
+                        }
+
+                        else if ( comcod == "3369")
+                        {
+                            int i;
+                            DateTime datefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim());
+                            DateTime dateto = Convert.ToDateTime(this.txttodate.Text.Trim());
+
+                            int tcount;
+                            tcount = ASTUtility.DatediffTotalDays(dateto, datefrm);
+                            for (i = 4; i < tcount; i++)
+                                this.gvMonthlyAtt.Columns[i].Visible = false;
+                            int j = 4;
                             for (i = 0; i < tcount; i++)
                             {
                                 //if (datefrm > dateto)
@@ -1286,7 +1316,16 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             //string frmdesig = this.ddlfrmDesig.SelectedValue.ToString();
             //string todesig = this.ddlToDesig.SelectedValue.ToString();
             //string acclate = this.GetComLateAccTime();
-            var rptMonth = comcod == "3330" ? "For The Month of " + Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("MMMM, yyyy") : "For The Month of " + Convert.ToDateTime(this.txtfromdate.Text.Trim()).ToString("MMMM, yyyy");
+            var rptMonth = "";
+            if (comcod == "3330" && comcod =="3369")
+            {
+                rptMonth = "For The Month of " + Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("MMMM, yyyy");
+            }
+            else
+            {
+                rptMonth= "For The Month of " + Convert.ToDateTime(this.txtfromdate.Text.Trim()).ToString("MMMM, yyyy");
+            }
+            //rptMonth = comcod == "3330" ? "For The Month of " + Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("MMMM, yyyy") : "For The Month of " + Convert.ToDateTime(this.txtfromdate.Text.Trim()).ToString("MMMM, yyyy");
 
             DataTable dt1 = (DataTable)Session["tblallData"];
 

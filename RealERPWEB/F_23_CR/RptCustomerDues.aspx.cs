@@ -50,7 +50,7 @@ namespace RealERPWEB.F_23_CR
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
-            switch(comcod)
+            switch (comcod)
             {
                 case "3366":
                 case "3101":
@@ -58,8 +58,8 @@ namespace RealERPWEB.F_23_CR
                     break;
 
             }
-           
-            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Text = "SMS";
+
+            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Text = "Send SMS";
             ((LinkButton)this.Master.FindControl("lnkbtnNew")).Click += new EventHandler(lnkSendSMS_Click);
             //((LinkButton)this.Master.FindControl("lnkbtnAdd")).Click += new EventHandler(lnkbtnUpdate_Click);
 
@@ -78,7 +78,7 @@ namespace RealERPWEB.F_23_CR
         private void GetProjectName()
         {
             string comcod = this.GetCompCode();
-            string txtSProject =  "%";
+            string txtSProject = "%";
             DataSet ds1 = CustData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETPROJECTNAME", txtSProject, "", "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "pactdesc";
             this.ddlProjectName.DataValueField = "pactcode";
@@ -118,7 +118,7 @@ namespace RealERPWEB.F_23_CR
 
                 case "3325":
                 case "2325":
-               /// case "3101":
+                    /// case "3101":
                     chequeprint = "PrintDues2";
                     break;
                 default:
@@ -392,7 +392,8 @@ namespace RealERPWEB.F_23_CR
                 string comcod = this.GetCompCode();
 
                 SendSmsProcess sms = new SendSmsProcess();
-
+                int smsFailCount = 0;
+                int totalSMS = dt.Rows.Count;
                 if (compsms == "True")
                 {
                     for (int j = 0; j < dt.Rows.Count; j++)
@@ -401,18 +402,25 @@ namespace RealERPWEB.F_23_CR
                         {
                             string supphone = dt.Rows[j]["custmob"].ToString();
                             string SMSText = dt.Rows[j]["smstxt"].ToString();
-                            bool resultsms = sms.SendSmmsPwd(comcod, SMSText, supphone);
+                            bool resultsms = sms.SendSms_SSL_Single(comcod, SMSText, supphone);
+                            if (resultsms == false)
+                            {
+                                smsFailCount += 1;
+                            }
                         }
-
                     }
                 }
+
+                string Messagesd = "SMS has been sent Total (" + (totalSMS- smsFailCount)+ ") Fail SMS: " + smsFailCount;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
+
             }
             catch (Exception ex)
             {
                 string Messagesd = "SMS has not been sent " + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
             }
-            
+
         }
     }
 }
