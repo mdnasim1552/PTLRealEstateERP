@@ -394,6 +394,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0903000", "0903311", "F_09_PImp", "PurLabRequisition?", "Type=Entry", "Sub-Contractor Bill Requisition", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0903000", "0903312", "F_09_PImp", "PurLabRequisition?", "Type=Edit", "Sub-Contractor Bill Requisition Edit", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0903000", "0903313", "F_09_PImp", "PurLabRequisition?", "Type=CSApproval", "Sub-Contractor Bill CS Approval", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0903000", "0903316", "F_09_PImp", "PurLabRequisition?", "Type=ApprovalEdit", "Sub-Contractor CS Approval Edit", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0903000", "0903314", "F_09_PImp", "SubContracBillTracking?", "Type=billtrack", "Sub-Contractor Bill Tracking -01", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0903000", "0903315", "F_09_PImp", "RptSubConTopsheetTypeWise?", "Type=TypeWise", "Sub-Contractor Top Sheet (Type Wise)", "Project Implementation", "False", "False", "False", "False" });
 

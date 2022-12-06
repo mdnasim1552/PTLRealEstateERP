@@ -1127,7 +1127,6 @@ namespace RealERPWEB.F_12_Inv
                         {
 
                             case "3348": // Credence
-                            case "3101": // Credence
                             case "3368": // Finlay
                                 break;
 

@@ -721,7 +721,6 @@
 
 
                     case 3367:  //Epic  
-                    case 3101:  //ptl
 
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check      
                         //$(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval

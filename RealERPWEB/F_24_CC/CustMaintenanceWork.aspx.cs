@@ -886,7 +886,6 @@ namespace RealERPWEB.F_24_CC
             bool isChk = false;
             switch (GetCompCode())
             {
-                case "3101":
                 case "3367":
                     isChk = true;
                     break;
@@ -1097,7 +1096,7 @@ namespace RealERPWEB.F_24_CC
                     {
                         this.CreateDataTable();
                         DataTable dt = (DataTable)ViewState["tblapproval"];
-                        if (comcod == "3315" || comcod == "3316" || comcod == "3364")
+                        if (comcod == "3315" || comcod == "3316" || comcod == "3364"|| comcod == "3101")
                         {
                             DataRow dr1 = dt.NewRow();
                             dr1["chkbyid"] = usrid;
@@ -1218,7 +1217,7 @@ namespace RealERPWEB.F_24_CC
                 case "Check":
                     switch (comcod)
                     {
-                        //case "3101":
+                        case "3101":
                         case "3315"://Assure 
                         case "3316":
                         case "3317":
@@ -1230,7 +1229,7 @@ namespace RealERPWEB.F_24_CC
                 case "Audit":
                     switch (comcod)
                     {
-                        //case "3101":
+                        case "3101":
                         case "3315"://Assure 
                         case "3316":
                         case "3317":
@@ -1243,7 +1242,7 @@ namespace RealERPWEB.F_24_CC
                 case "Approv":
                     switch (comcod)
                     {
-                        //case "3101":
+                        case "3101":
                         case "3315"://Assure 
                         case "3316":
                         case "3317":
@@ -1275,7 +1274,7 @@ namespace RealERPWEB.F_24_CC
             string curdate = Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy");
 
             string paysch = "";
-            if (comcod == "3315" || comcod == "3316" || comcod == "3317" || comcod == "3364")
+            if (comcod == "3315" || comcod == "3316" || comcod == "3317" || comcod == "3364" ||comcod == "3101")
             {
                 paysch = this.GetSchCode();
             }
