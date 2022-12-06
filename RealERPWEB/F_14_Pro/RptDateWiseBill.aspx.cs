@@ -34,6 +34,7 @@ namespace RealERPWEB.F_14_Pro
                 this.txtfrmdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtfrmdate.Text = "01" + this.txtfrmdate.Text.Trim().Substring(2);
                 this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                this.GetSupliersName();
 
             }
         }
@@ -44,10 +45,10 @@ namespace RealERPWEB.F_14_Pro
            
             string frmdate = this.txtfrmdate.Text.Trim();
             string todate = this.txttodate.Text.Trim();
-           
+            string supplier = (this.ddlsuplier.SelectedValue== "000000000000") ? "99%":this.ddlsuplier.SelectedValue.ToString();
 
 
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_REPORT_PURCHASE_04", "GETDATWISESUPPLIERBILL", frmdate, todate, "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_REPORT_PURCHASE_04", "GETDATWISESUPPLIERBILL", frmdate, todate, supplier, "", "", "");
             if (ds1 == null)
             {
                 this.gvDWBill.DataSource = null;
@@ -166,7 +167,18 @@ namespace RealERPWEB.F_14_Pro
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
+        private void GetSupliersName()
+        {
 
+            string comcod = this.GetComeCode();
+            string txtSProject = "%%";
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS02", "GETSUPPLIERlIST", txtSProject, "", "", "", "", "", "", "", "");
+            this.ddlsuplier.DataTextField = "ssirdesc";
+            this.ddlsuplier.DataValueField = "ssircode";
+            this.ddlsuplier.DataSource = ds1.Tables[0];
+            this.ddlsuplier.DataBind();
+
+        }
         protected void chkAllfrm_CheckedChanged(object sender, EventArgs e)
         {
 

@@ -83,5 +83,41 @@ namespace RealERPWEB.Notices
 
             }
         }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+      
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+
+            string id= ((Label)this.grvNotice.Rows[index].FindControl("lblcompid")).Text.ToString();
+            string msg = "";
+            bool result = accData.UpdateTransInfo(GetcompCode(), "SP_REPORT_NOTICE", "DELNOTICE", id, "", "", "", "", "", "");
+            if (result)
+            {
+                
+                msg = "Deleted Successfully!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+                this.NoticeDetails();
+                return;
+            }
+            else
+            {
+                msg = "Unable to delete !";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                return;
+            }
+
+        }
+
+        protected void lbtnDetails_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+
+            string Ndetails = ((Label)this.grvNotice.Rows[index].FindControl("lbltaskdesc")).Text.ToString();
+            this.txtNdetails.InnerText = Ndetails;
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenNoticeDetailsModal();", true);
+        }
     }
 }

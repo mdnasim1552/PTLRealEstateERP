@@ -670,7 +670,23 @@
                         <hr />
                         <div class="divPnl">
                             <asp:Panel ID="pnlAllProject" runat="server" Visible="false">
-                                <div class="table-responsive">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                    <asp:Label ID="lblPage" runat="server">Page Size</asp:Label>
+                                    <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True"  OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" CssClass="form-control form-control-sm">
+                                        <asp:ListItem>10</asp:ListItem>
+                                        <asp:ListItem>15</asp:ListItem>
+                                        <asp:ListItem>20</asp:ListItem>
+                                        <asp:ListItem>30</asp:ListItem>
+                                        <asp:ListItem>50</asp:ListItem>
+                                        <asp:ListItem>100</asp:ListItem>
+                                        <asp:ListItem>150</asp:ListItem>
+                                        <asp:ListItem>200</asp:ListItem>
+                                        <asp:ListItem>300</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                                </div>
+                                <div class="table-responsive mt-2">
                                     <asp:GridView ID="gvInterface" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                         ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnPageIndexChanging="gvInterface_PageIndexChanging" OnRowDataBound="gvInterface_RowDataBound">
 
@@ -839,17 +855,17 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblbatchprojname" runat="server" Height="16px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projname")) %>'
-                                                        Width="200px"></asp:Label>
+                                                        Width="150px"></asp:Label>
 
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Batch Name">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblbatchbatchid" runat="server" Height="16px"
+                                                    <asp:Label ID="lblbatchbatchid" runat="server" Height="16px"  Width="200px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "batchid")) %>'></asp:Label>
                                                 </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Data <br> Type">
@@ -997,7 +1013,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Project Name">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblprjname" runat="server"
+                                                    <asp:Label ID="lblprjname" runat="server" Width="100px"
                                                         Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "projname"))%>'
                                                         ForeColor="Black"></asp:Label>
                                                 </ItemTemplate>
@@ -1015,7 +1031,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Task Title">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblprojectName" runat="server"
+                                                    <asp:Label ID="lblprojectName" runat="server" Width="150px"
                                                         Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "tasktitle"))%>'
                                                         ForeColor="Black"></asp:Label>
                                                 </ItemTemplate>
@@ -1025,7 +1041,7 @@
 
                                             <asp:TemplateField HeaderText="Batch Name">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="tblproj" runat="server"
+                                                    <asp:Label ID="tblproj" runat="server" Width="150px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "batchname")) %>'></asp:Label>
                                                 </ItemTemplate>
 
@@ -1101,7 +1117,7 @@
                             <asp:Panel ID="pnlProduction" runat="server" Visible="false">
                                 <div class="table-responsive">
                                     <asp:GridView ID="gv_Production" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnRowDataBound="gv_Production_RowDataBound">
+                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnRowDataBound="gv_Production_RowDataBound" OnPageIndexChanging="gv_Production_PageIndexChanging" >
                                         <Columns>
                                             <asp:TemplateField HeaderText="SL # ">
                                                 <ItemTemplate>
@@ -1322,7 +1338,7 @@
                             <asp:Panel ID="pnelQC" runat="server" Visible="false">
                                 <div class="table-responsive">
                                     <asp:GridView ID="gv_QCQA" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnRowDataBound="gv_QCQA_RowDataBound">
+                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnRowDataBound="gv_QCQA_RowDataBound" OnPageIndexChanging="gv_QCQA_PageIndexChanging" >
                                         <Columns>
                                             <asp:TemplateField HeaderText="SL # ">
                                                 <ItemTemplate>
