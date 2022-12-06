@@ -240,13 +240,45 @@ namespace RealERPWEB.F_23_CR
             return (hst["comcod"].ToString());
         }
 
-        private void GetProjectName()
+
+      
+
+
+
+        private string PrjCalltype()
         {
             string comcod = this.GetComeCode();
+            string prjtype = "";
+            switch (comcod)
+            {
+                case "3370":
+                case "3101":
+
+                    prjtype = "GETPROJECTNAME02";
+                    break;
+
+                default:
+                    prjtype = "GETPROJECTNAME";
+                    break;
 
 
+            }
+
+
+            return prjtype;
+
+        }
+
+
+        private void GetProjectName()
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string userid = hst["usrid"].ToString();            
             string txtSProject = "%" + this.txtSrcProject.Text.Trim() + "%";
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETPROJECTNAME", txtSProject, "", "", "", "", "", "", "", "");
+            string prjcolltype = this.PrjCalltype();
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", prjcolltype, txtSProject, userid, "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "pactdesc";
             this.ddlProjectName.DataValueField = "pactcode";
             this.ddlProjectName.DataSource = ds1.Tables[0];

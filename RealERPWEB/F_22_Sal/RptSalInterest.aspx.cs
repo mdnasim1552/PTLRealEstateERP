@@ -1862,7 +1862,8 @@ namespace RealERPWEB.F_22_Sal
             string sign1 = "", sign2 = "", sign3 = "", sign4 = "";
             //Land Owner
             string projectname = this.Request.QueryString["Type"].ToString() == "LO" ? ds2.Tables[0].Rows[0]["projectname"].ToString().Substring(3) + " (L/O PART)" : ds2.Tables[0].Rows[0]["projectname"].ToString().Substring(3);
-
+            string bookno = Convert.ToDateTime(ds2.Tables[0].Rows[0]["bookdate"].ToString()).ToString("dd-MMM-yyyy");
+            string enrolno = (bookno == "01-Jan-1900") ? " " : bookno;
 
             switch (comcod)
             {
@@ -1902,17 +1903,12 @@ namespace RealERPWEB.F_22_Sal
                     Rpt1.SetParameters(new ReportParameter("comfadd", comfadd));
 
                     Rpt1.SetParameters(new ReportParameter("flrdesc", ds2.Tables[0].Rows[0]["flrdesc"].ToString()));
-                    Rpt1.SetParameters(new ReportParameter("bookdate", ds2.Tables[0].Rows[0]["bookdate"].ToString()));
+                    Rpt1.SetParameters(new ReportParameter("bookdate", enrolno));
                     Rpt1.SetParameters(new ReportParameter("bookno", ds2.Tables[0].Rows[0]["bookno"].ToString()));
                     Rpt1.SetParameters(new ReportParameter("prjadd", ds2.Tables[0].Rows[0]["prjadd"].ToString()));
                     Rpt1.SetParameters(new ReportParameter("padrss", ds2.Tables[0].Rows[0]["presentadd"].ToString()));
                     Rpt1.SetParameters(new ReportParameter("custid", ds2.Tables[0].Rows[0]["usircode"].ToString()));
                    
-
-                //    Rpt1.SetParameters(new ReportParameter("projectname", ds2.Tables[0].Rows[0]["projectname"].ToString()));
-                    Rpt1.SetParameters(new ReportParameter("padrss", ds2.Tables[0].Rows[0]["paddress"].ToString()));
-                    Rpt1.SetParameters(new ReportParameter("custnum", ds2.Tables[0].Rows[0]["usircode"].ToString()));
-
 
 
                     break;

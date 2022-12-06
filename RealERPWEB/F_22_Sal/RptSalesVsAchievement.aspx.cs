@@ -30,8 +30,24 @@ namespace RealERPWEB.F_22_Sal
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = this.Request.QueryString["Type"]== "MonsalVsAchieve" ? "Month Wise Sales (Reconcilation)":
-                    this.Request.QueryString["Type"] == "MonsalVsAchieveLO" ?  "Month Wise Sales (Reconcilation L/O)": "Down Payment Status (Prev.Sales)";
+
+                if(this.Request.QueryString["Type"] == "MonsalVsAchieve")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Month Wise Sales (Reconcilation)";
+                }
+                else if(this.Request.QueryString["Type"] == "DownpayClearnce")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Down Payment Status (Prev.Sales)";
+                }
+                else if(this.Request.QueryString["Type"] == "MonsalVsAchieveLO")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Month Wise Sales (Reconcilation L/O)";
+                }
+                else
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Month Wise Sales (Collection Status)";
+                }
+          
                 string Date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtfrmdate.Text = "01-" + ASTUtility.Right(Date, 8);
                 this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
@@ -126,6 +142,9 @@ namespace RealERPWEB.F_22_Sal
                 case "DownpayClearnce":
                     this.MultiView1.ActiveViewIndex = 1;
                     break;
+                case "CollectionStatus":
+                    this.MultiView1.ActiveViewIndex = 2;
+                    break;
 
             }
 
@@ -179,12 +198,15 @@ namespace RealERPWEB.F_22_Sal
                 case "DownpayClearnce":
                     this.ShowDownPayment();
                     break;
+                case"CollectionStatus":
+                    this.ShowCollectionStatus();
+                        break;
 
             }
 
 
         }
-
+     
         private void ShowDownPayment()
         {
             Session.Remove("tblsalesvscoll02");
@@ -199,6 +221,7 @@ namespace RealERPWEB.F_22_Sal
             {
                 this.gvDownpayment.DataSource = null;
                 this.gvDownpayment.DataBind();
+              
 
                 return;
             }
@@ -242,7 +265,32 @@ namespace RealERPWEB.F_22_Sal
 
 
         }
+        private void ShowCollectionStatus()
+        {
+            Session.Remove("tblsalesvscoll02");
+            string comcod = this.GetComeCode();
+            string prjcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18%" : this.ddlPrjName.SelectedValue.ToString() + "%";
+            string frmdate = this.txtfrmdate.Text.Trim();
+            string todate = this.txttodate.Text.Trim();
+            string lotype = "";   //this.GetLOType();
+            string grpcode = this.ddlgrp.SelectedValue.ToString() == "000000000000" ? "51%" : this.ddlgrp.SelectedValue.ToString() + "%";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_COLLECTIONMGT", "GETCOLLECTIONWITHDANDINSTALLMENT", prjcode, frmdate, todate, grpcode, lotype, "", "", "", "");
+            if (ds1 == null)
+            {
+                this.gvcolcnst.DataSource = null;
+                this.gvcolcnst.DataBind();
 
+                return;
+            }
+           
+
+            Session["tblcltnst"] = ds1.Tables[0];
+
+           
+
+            this.Data_Bind();
+
+        }
         private DataTable HiddenSameData(DataTable dt1)
         {
             if (dt1.Rows.Count == 0)
@@ -275,6 +323,8 @@ namespace RealERPWEB.F_22_Sal
 
             string Type = this.Request.QueryString["Type"].ToString().Trim();
             DataTable dt = (DataTable)Session["tblsalesvscoll"];
+            DataTable dt1 = (DataTable)Session["tblcltnst"];
+             
             switch (Type)
             {
                 case "MonsalVsAchieveLO":
@@ -290,7 +340,11 @@ namespace RealERPWEB.F_22_Sal
                     this.gvDownpayment.DataBind();
                     //this.FooterCalculation(dt);
                     break;
-
+                case "CollectionStatus":
+                    this.gvcolcnst.DataSource = dt1;
+                    this.gvcolcnst.DataBind();
+                    //this.FooterCalculation(dt);
+                    break;
             }
 
 
