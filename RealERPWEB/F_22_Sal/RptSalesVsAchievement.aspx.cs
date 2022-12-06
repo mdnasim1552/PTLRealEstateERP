@@ -343,6 +343,7 @@ namespace RealERPWEB.F_22_Sal
                 case "CollectionStatus":
                     this.gvcolcnst.DataSource = dt1;
                     this.gvcolcnst.DataBind();
+                    this.FooterCalculation(dt1);
                     //this.FooterCalculation(dt);
                     break;
             }
@@ -357,7 +358,24 @@ namespace RealERPWEB.F_22_Sal
             //((HyperLink)this.gvothcoll.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
         }
+        private void FooterCalculation(DataTable dt1)
+        {
+            if (dt1.Rows.Count == 0)
+                return;
 
+
+            ((Label)this.gvcolcnst.FooterRow.FindControl("fgvopamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(opnam)", "")) ? 0.00 :
+                 dt1.Compute("sum(opnam)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
+            ((Label)this.gvcolcnst.FooterRow.FindControl("fgvmrramt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(curbkam)", "")) ? 0.00 :
+                 dt1.Compute("sum(curbkam)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
+            ((Label)this.gvcolcnst.FooterRow.FindControl("fgvdpamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(curinsam)", "")) ? 0.00 :
+                 dt1.Compute("sum(curinsam)", ""))).ToString("#,##0.00;(#,##0.00); ");
+            ((Label)this.gvcolcnst.FooterRow.FindControl("fgvtotalam")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(totalam)", "")) ? 0.00 :
+                 dt1.Compute("sum(totalam)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
+        }
         private void FooterCal()
         {
             DataTable dt = (DataTable)Session["tblgrpsoldunsold"];
@@ -541,7 +559,11 @@ namespace RealERPWEB.F_22_Sal
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
-
+        protected void gvcolcnst_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvcolcnst.PageIndex = e.NewPageIndex;
+            this.Data_Bind();
+        }
     }
 
 }
