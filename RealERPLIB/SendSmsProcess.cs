@@ -16,6 +16,7 @@ using System.IO;
 using RestSharp;
 
 
+
 namespace RealERPLIB
 {
 
@@ -181,28 +182,37 @@ namespace RealERPLIB
         // Nahid 20221205
         public bool SendSms_SSL_Single(string comcode, string text, string mobilenum)
         {
-            //string comcod = comcode;
-            //DataSet ds3 = purData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWAPIINFOFORFORGOTPASS", "", "", "", "", "");
-            //string Single_Sms_Url = ds3.Tables[0].Rows[0]["apiurl"].ToString().Trim();
-            //string Single_Sms_Sid = ds3.Tables[0].Rows[0]["apisender"].ToString().Trim(); //"ASITNAHID";  //Sender
-            //string Single_Sms_api_token = ds3.Tables[0].Rows[0]["apipass"].ToString().Trim(); //"ASITNAHID";  //Sender
-            //string mobile = "88" + mobilenum; //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
+            string comcod = comcode;
+            DataSet ds3 = purData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWAPIINFOFORFORGOTPASS", "", "", "", "", "");
+            string Single_Sms_Url = ds3.Tables[0].Rows[0]["apiurl"].ToString().Trim();
+            string Single_Sms_Sid = ds3.Tables[0].Rows[0]["apisender"].ToString().Trim(); //"ASITNAHID";  //Sender
+            string Single_Sms_api_token = ds3.Tables[0].Rows[0]["apipass"].ToString().Trim(); //"ASITNAHID";  //Sender
+            string mobile = "88" + mobilenum; //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
+            Random rnd1 = new Random(9); //seed value 10
+            string cmsid = rnd1.Next().ToString();
+            var options = new RestClientOptions(Single_Sms_Url)
+            {
+                ThrowOnAnyError = true,
+                Timeout = 1000  // 1 second
+            };             
+            var client = new RestClient(Single_Sms_Url);
+            var request = new RestRequest();
 
-            //var client = new RestClient(Single_Sms_Url);
-            ////client.Timeout = -1;
-            //var request = new RestRequest();
-            //request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-            //request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-            //request.AddParameter("api_token", Single_Sms_api_token);
-            //request.AddParameter("sid", Single_Sms_Sid);
-            //request.AddParameter("msisdn", mobile);
-            //request.AddParameter("sms", text);
-            //request.AddParameter("csms_id", "1234569");
-
-            //IRestResponse response = client.Execute(request);
-            //return response.Content;
-            return false;
+            request.Method = Method.Post;
+            request.AddHeader("Accept", "application/json");             
+            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+            request.AddParameter("api_token", Single_Sms_api_token);
+            request.AddParameter("sid", Single_Sms_Sid);
+            request.AddParameter("msisdn", mobile);
+            request.AddParameter("sms", text);
+            request.AddParameter("csms_id", cmsid);
+            var response = client.Execute(request); 
+            return response.IsSuccessful;
         }
+
+
+
         // Create by Md Ibrahim Khalil 
 
         public bool SendSMSClient(string comcode, string text, string mobilenum)
@@ -328,8 +338,6 @@ namespace RealERPLIB
             this._errObj["Location"] = exp.StackTrace;
         }
 
-        private interface IRestResponse
-        {
-        }
+      
     }
 }
