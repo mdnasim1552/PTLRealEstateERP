@@ -112,6 +112,7 @@ namespace RealERPRDLC
                 case "R_09_PIMP.RptWorkOrderSuvastu": Rpt1a = SetRptWorkOrderSuvastu(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptWorkOrderAcme": Rpt1a = SetRptWorkOrderAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptWorkOrderAcmeConst": Rpt1a = SetRptWorkOrderAcmeConst(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_09_PIMP.RptProposalFromAcmeConst": Rpt1a = SetRptProposalFromAcmeConst(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_81_Hrm.R_90_PF.RptIndvPfAlli": Rpt1a = SetRptIndvPf(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptLabIssueSubCon": Rpt1a = SetRptLabIssueSubCon(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -2273,7 +2274,12 @@ namespace RealERPRDLC
         
        private static LocalReport SetRptWorkOrderAcmeConst(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.EClassOrder.GetWorkOrder>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.EClassOrder.Workorder03>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptProposalFromAcmeConst(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.EClassOrder.Workorder03>)RptDataSet));
             return Rpt1a;
         }
         private static LocalReport SetRptSubconbillreqP2p(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
