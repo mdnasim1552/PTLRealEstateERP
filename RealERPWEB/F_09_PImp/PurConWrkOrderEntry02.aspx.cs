@@ -248,56 +248,86 @@ namespace RealERPWEB.F_09_PImp
 
                 string mOrdernoO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + this.txtCurISSDate.Text.Trim().Substring(7, 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
                 string ordercopy = this.GetCompOrderCopy();
-                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "SHOWCONORKORDERINFO", mOrdernoO, ordercopy, "", "", "", "", "", "", "");
+                //DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "SHOWCONORKORDERINFO", mOrdernoO, ordercopy, "", "", "", "", "", "", "");
+                //ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETCONORDERINFO", orderno, "",
+                //        "", "", "", "", "", "", "");
+                string csircode = this.ddlContractorlist.SelectedValue.ToString();
+                string CurDate1 = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
+                string mNEWORDNo = "NEWORDER";
+                //DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETCONORDERINFO", mNEWORDNo, CurDate1,
+                //          csircode, "", "", "", "", "", "");
+                //string orderno = this.ddlcopyorder.SelectedValue.ToString();
 
 
+                DataSet ds1 = new DataSet();
+                if (this.ddlPrevList.Items.Count > 0)
+                {
+                    this.txtCurISSDate.Enabled = false;
+                    mNEWORDNo = this.ddlPrevList.SelectedValue.ToString();
+                }
+                ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETCONORDERINFO", mNEWORDNo, CurDate1,
+                             csircode, "", "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+
+                string orderno= ds1.Tables[1].Rows[0]["orderno"].ToString();
+                string refNo1 = ds1.Tables[1].Rows[0]["pordref"].ToString();
                 string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
                 string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
-                LocalReport Rpt1 = new LocalReport();
+                string subject = ds1.Tables[1].Rows[0]["subject"].ToString(); 
+                string supaddress = ds1.Tables[1].Rows[0]["supaddress"].ToString(); 
+                string prjaddress = ds1.Tables[1].Rows[0]["prjaddress"].ToString(); 
+                string typeofcont = ds1.Tables[1].Rows[0]["typeofcont"].ToString(); 
+                string contactno = ds1.Tables[1].Rows[0]["contactno"].ToString(); 
+                string projname = ds1.Tables[1].Rows[0]["projname"].ToString();
+                string nameofContrator = " ";
+                string nameofCompany = " ";
+                string comncdat = Convert.ToDateTime(ds1.Tables[1].Rows[0]["comncdat"].ToString()).ToString("dd-MMM-yyyy"); 
+                string compltdat = Convert.ToDateTime(ds1.Tables[1].Rows[0]["compltdat"].ToString()).ToString("dd-MMM-yyyy");
+                string term = this.txtTerm.Text.ToString();
 
-                //  DataTable dt1 = (DataTable)ViewState["UserLog"];GetWorkOrder1
+                LocalReport Rpt1 = new LocalReport();     
 
 
-                var lst = ds1.Tables[0].DataTableToList<RealEntity.C_09_PIMP.EClassOrder.GetWorkOrder>();
-                var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_09_PIMP.EClassOrder.GetWorkOrder1>();
+                var lst = ds1.Tables[0].DataTableToList<RealEntity.C_09_PIMP.EClassOrder.Workorder03>();
+               
 
+                bool check = this.checkletter.Checked;
+                if (check)
+                {
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptProposalFromAcmeConst", lst, null, null);
 
+                }
+                else
+                {
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrderAcmeConst", lst, null, null);
 
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrderAcmeConst", lst, null, null);
+                }
+              
 
-                string txtSign1 = ds1.Tables[2].Rows[0]["usrname"].ToString() + " ," + ds1.Tables[2].Rows[0]["usrdesig"].ToString() + " \n" + Convert.ToDateTime(ds1.Tables[2].Rows[0]["POSTEDDAT"]).ToString("dd-MMM-yyyy");
-                string txtSign2 = "";
-                string txtSign3 = "";
-                string txtSign4 = "";
-
-                string Address = lst[0].conadd.ToString();
-                string Attn = lst[0].atten.ToString();
-                string body = lst1[0].leterdes.ToString();
-                string subject = lst1[0].subject.ToString();
-                string Term = lst1[0].term.ToString();
-                string Suppl = lst1[0].csirdesc.ToString();
-                string GDesc = lst[0].grpdesc;
 
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("orderno", orderno));
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                Rpt1.SetParameters(new ReportParameter("CurDate", "Date: " + CurDate));
-                Rpt1.SetParameters(new ReportParameter("refNo", "Ref:" + refNo));
-                Rpt1.SetParameters(new ReportParameter("Address", Address));
-                Rpt1.SetParameters(new ReportParameter("Attn", "Attn: " + Attn));
-                Rpt1.SetParameters(new ReportParameter("body", body));
-                Rpt1.SetParameters(new ReportParameter("subject", "Subject: " + subject));
-                Rpt1.SetParameters(new ReportParameter("Term", Term));
-                Rpt1.SetParameters(new ReportParameter("Suppl", Suppl));
-                Rpt1.SetParameters(new ReportParameter("GDesc", GDesc));
+                Rpt1.SetParameters(new ReportParameter("CurDate",CurDate1));
+                Rpt1.SetParameters(new ReportParameter("refNo", refNo1));
+                Rpt1.SetParameters(new ReportParameter("projname", projname));
+                Rpt1.SetParameters(new ReportParameter("prjaddress", prjaddress));
+                Rpt1.SetParameters(new ReportParameter("typeofcont", typeofcont));
+                Rpt1.SetParameters(new ReportParameter("contactno", contactno));
+                Rpt1.SetParameters(new ReportParameter("comncdat", comncdat));
+                Rpt1.SetParameters(new ReportParameter("compltdat", compltdat));
+                Rpt1.SetParameters(new ReportParameter("supaddress", supaddress));                              
+                Rpt1.SetParameters(new ReportParameter("subject", subject));                
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "Work Order"));
                 Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
-                Rpt1.SetParameters(new ReportParameter("txtSign1", txtSign1));
-                Rpt1.SetParameters(new ReportParameter("txtSign2", txtSign2));
-                Rpt1.SetParameters(new ReportParameter("txtSign3", txtSign3));
-                Rpt1.SetParameters(new ReportParameter("txtSign4", txtSign4));
-                //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("nameofContrator", nameofContrator));
+                Rpt1.SetParameters(new ReportParameter("nameofCompany", nameofCompany));
+                Rpt1.SetParameters(new ReportParameter("term", term));
+               
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
 
 
                 Session["Report1"] = Rpt1;
@@ -336,9 +366,9 @@ namespace RealERPWEB.F_09_PImp
             LocalReport Rpt1 = new LocalReport();
 
             //  DataTable dt1 = (DataTable)ViewState["UserLog"];GetWorkOrder1
+           
 
-
-            var lst = ds1.Tables[0].DataTableToList<RealEntity.C_09_PIMP.EClassOrder.GetWorkOrder>();
+             var lst = ds1.Tables[0].DataTableToList<RealEntity.C_09_PIMP.EClassOrder.GetWorkOrder>();
             var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_09_PIMP.EClassOrder.GetWorkOrder1>();
 
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrderP2P", lst, null, null);
@@ -358,6 +388,8 @@ namespace RealERPWEB.F_09_PImp
 
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+           
+
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("CurDate", "Date: " + CurDate));
             Rpt1.SetParameters(new ReportParameter("refNo", "Ref:" + refNo));
@@ -725,7 +757,7 @@ namespace RealERPWEB.F_09_PImp
         }
 
 
-
+         
         private void Get_Work_Info()
         {
 
@@ -880,7 +912,7 @@ namespace RealERPWEB.F_09_PImp
         protected void Data_Bind()
         {
             this.gvorder.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue);
-            this.gvorder.DataSource = (DataTable)ViewState["tblorder"]; ;
+            this.gvorder.DataSource = (DataTable)ViewState["tblorder"]; 
             this.gvorder.DataBind();
             string comcod = this.GetCompCode();
             if (comcod == "3336" || comcod == "3337")
@@ -1305,16 +1337,6 @@ namespace RealERPWEB.F_09_PImp
             ViewState["tblorder"] = ds1.Tables[0];
             ViewState["UserLog"] = ds1.Tables[1].Clone();
             this.txtTerm.Text = ds1.Tables[2].Rows[0]["term"].ToString();
-
-
-
-
-
-
-
-
-
-
 
 
             this.chkCopy.Checked = false;

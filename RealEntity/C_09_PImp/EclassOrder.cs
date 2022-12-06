@@ -170,6 +170,34 @@ namespace RealEntity.C_09_PIMP
         //comcod, billno,  lisuno, pactcode, csircode, billdate,  rmrks, lisurefno, cbillref, percntge, sdamt, 
         //   flrcod, rsircode, billqty, billamt, conqty, conrate,  pactdesc,  csirdesc,  flrdes, rsirdesc, rsirunit, peronbgd, bgdrat, grp, grpdesc 
 
+
+        [Serializable]
+        public class Workorder03
+        {
+            public string rsircode { get; set; }
+            public int serial { get; set; }
+            public string rsirdesc { get; set; }
+            public string sdetails { get; set; }
+            public string spec { get; set; }
+            public string rsirunit { get; set; }
+            public double bgdqty { get; set; }
+            public double ordqty { get; set; }
+            public double ordrrate { get; set; }
+            public double ordamt { get; set; }
+            public string rmrks { get; set; }
+
+            public Workorder03()
+            {
+
+            }
+
+        }
+
+
+
+
+
+
         [Serializable]
         public class BillFinalization
         {
