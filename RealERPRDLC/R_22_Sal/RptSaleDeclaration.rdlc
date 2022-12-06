@@ -263,7 +263,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>0.06944in</Top>
+            <Top>0.18402in</Top>
             <Left>0.07811in</Left>
             <Height>0.25in</Height>
             <Width>6.7292in</Width>
@@ -310,6 +310,7 @@
                                   <Value>Property Name       </Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -412,6 +413,7 @@
                                   <Value>Floor  </Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -514,6 +516,7 @@
                                   <Value>Unit</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -616,6 +619,7 @@
                                   <Value>Unit Size</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -678,7 +682,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!size.Value+" SFT"</Value>
+                                  <Value>=Format(CDec(Parameters!size.Value),"#.####")+" SFT"</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                   </Style>
@@ -718,6 +722,7 @@
                                   <Value>Property Address</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -824,8 +829,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>2.53819in</Top>
-            <Left>0.00008in</Left>
+            <Top>2.54861in</Top>
+            <Left>0.00025in</Left>
             <Height>1.25in</Height>
             <Width>6.80723in</Width>
             <ZIndex>1</ZIndex>
@@ -854,7 +859,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>2.15625in</Top>
+            <Top>2.16667in</Top>
+            <Left>0.00017in</Left>
             <Height>0.25in</Height>
             <Width>6.80731in</Width>
             <ZIndex>2</ZIndex>
@@ -890,8 +896,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>4.46528in</Top>
-            <Left>0.03124in</Left>
+            <Top>4.4757in</Top>
+            <Left>0.03141in</Left>
             <Height>0.25in</Height>
             <Width>6.77608in</Width>
             <ZIndex>3</ZIndex>
@@ -919,6 +925,7 @@
                     <Value>Dealing Official</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -932,6 +939,7 @@
                     <Value>Md. Shafiul Alom Munna</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -968,6 +976,7 @@
                     <Value>Checked by</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -981,6 +990,7 @@
                     <Value>Team, The Hunting Eagles</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1018,6 +1028,7 @@
                     <Value>Checked by</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1031,6 +1042,7 @@
                     <Value>Team, The Fighting Falcons</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1068,6 +1080,7 @@
                     <Value>Approved by</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1081,6 +1094,7 @@
                     <Value>Chief Business Officer</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1137,6 +1151,7 @@
                                   <Value>Enrolled on</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1239,6 +1254,7 @@
                                   <Value>Customer Number</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1331,108 +1347,6 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox76">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Booking No</Value>
-                                  <Style>
-                                    <FontFamily>Cambria</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox76</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>None</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox86">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>:</Value>
-                                  <Style>
-                                    <FontFamily>Cambria</FontFamily>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox86</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>None</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox77">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=Parameters!bookingno.Value</Value>
-                                  <Style>
-                                    <FontFamily>Cambria</FontFamily>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox77</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>None</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
-                  <Height>0.2125in</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
                         <Textbox Name="Textbox78">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -1443,6 +1357,7 @@
                                   <Value>Customer Name</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1545,6 +1460,7 @@
                                   <Value>Contact No</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1664,6 +1580,7 @@
                                                 <Value>E-mail</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
+                                                  <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -1790,6 +1707,7 @@
                                   <Value>Address</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1893,13 +1811,12 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
-                <TablixMember />
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>0.41194in</Top>
+            <Top>0.52652in</Top>
             <Left>0.07812in</Left>
-            <Height>1.275in</Height>
+            <Height>1.0625in</Height>
             <Width>6.7292in</Width>
             <ZIndex>8</ZIndex>
             <Style>
@@ -1916,15 +1833,17 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Parameters!remarks.Value</Value>
-                    <Style />
+                    <Style>
+                      <FontFamily>Cambria</FontFamily>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>4.78472in</Top>
-            <Left>0.00017in</Left>
+            <Top>4.79514in</Top>
+            <Left>0.00034in</Left>
             <Height>1.83208in</Height>
             <Width>6.80715in</Width>
             <ZIndex>9</ZIndex>
@@ -1942,7 +1861,7 @@
         <Height>8.26042in</Height>
         <Style />
       </Body>
-      <Width>6.80732in</Width>
+      <Width>6.80749in</Width>
       <Page>
         <PageHeader>
           <Height>1.22222in</Height>
@@ -2074,9 +1993,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.83681in</Top>
-              <Left>0.07808in</Left>
-              <Height>0.31597in</Height>
+              <Top>0.89237in</Top>
+              <Left>0.07829in</Left>
+              <Height>0.30208in</Height>
               <Width>6.7292in</Width>
               <ZIndex>3</ZIndex>
               <Style>

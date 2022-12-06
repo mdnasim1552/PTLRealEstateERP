@@ -853,6 +853,7 @@ namespace RealERPWEB.F_09_PImp
             {
                 switch (comcod)
                 {
+                    case "3101":
                     case "3370":
                         ((LinkButton)this.grvissue.FooterRow.FindControl("lnkTotal")).Visible = true;
                         break;
@@ -1779,6 +1780,7 @@ namespace RealERPWEB.F_09_PImp
                 case "3351":
                 case "3352":
                 case "3370": //cpdl
+                case "3101": //ptl
                
 
 

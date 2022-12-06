@@ -656,7 +656,7 @@ namespace RealERPWEB.F_17_Acc
                 case "3357"://  Cube Holding
                 case "3364"://  JBS 
 
-                //case "3101"://  Pintech 
+                case "3101"://  Pintech 
                 case "1102"://  Islam Brothers 
                 case "3368"://  Finlay  Properties
                 case "3367"://  Epic  Properties
@@ -689,8 +689,6 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint1";
                     break;
 
-
-                case "3101":
                 case "3305":
                 case "3310":
                     //case "3311":
@@ -778,7 +776,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintFinlay";
                     break;
 
-                //case "3101": // Finaly
+                case "3101": // Finaly
                 case "3370": // cpdl
                     vouprint = "VocherPrintCPDL";
                     break;

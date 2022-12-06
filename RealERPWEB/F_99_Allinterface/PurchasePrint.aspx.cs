@@ -4116,7 +4116,6 @@ namespace RealERPWEB.F_99_Allinterface
                         sign6 = "Approved By";
                         break;
 
-                    case "3101":
                     case "3367":
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
@@ -4230,6 +4229,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "1205": //P2P
                     case "3351": //P2P
                     case "3352": //P2P 
+                    case "3101": //ptl 
                         terms1 = terms.ToString();
                         break;
 
@@ -4478,12 +4478,12 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3361": //Entrust Ltd                        
                         Reportpath = "~/Report/RptPurchaseOrderEntrust.rdlc";
                         break;
-
-                    case "3101": //Pintech                        
+                        
                     case "3367": //Epic                        
                         Reportpath = "~/Report/RptPurchaseOrderEpic.rdlc";
                         break;
                     
+                    case "3101": //ptl                       
                     case "3370": //Epic cpdl                        
                         Reportpath = "~/Report/RptPurchaseOrderCPDL.rdlc";
                         porderno =ASTUtility.CustomReqFormat(wrkid);
@@ -4590,6 +4590,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Rpt1.SetParameters(new ReportParameter("sign7", sign7));
                         break;
                     
+                    case "3101": // ptl
                     case "3370": // cpdl
                         Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
                         Rpt1.SetParameters(new ReportParameter("supemail", supemail));
@@ -4636,7 +4637,6 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3359":  // entrust
                     case "3360":  // entrust
                     case "3361":  // entrust
-                    case "3101": // pintech
                     case "3366": // lanco
                     case "3367": // epic
    
