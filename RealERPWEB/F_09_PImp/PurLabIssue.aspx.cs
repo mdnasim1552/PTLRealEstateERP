@@ -1779,6 +1779,7 @@ namespace RealERPWEB.F_09_PImp
                         //    break;
 
 
+                        case"3101":
                         case"3370":
                             if(dgvQty > balqty)
                             {
@@ -1999,6 +2000,7 @@ namespace RealERPWEB.F_09_PImp
                 case "3351":
                 case "3352":
                 case "3370": //cpdl
+                case "3101": //cpdl
 
 
 
