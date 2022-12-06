@@ -597,6 +597,7 @@ namespace RealERPWEB.F_22_Sal
 
                 this.CustInf();
                 this.BtnEnabled();
+                //this.BookingNo();
             }
 
             catch (Exception ex)
@@ -606,6 +607,45 @@ namespace RealERPWEB.F_22_Sal
 
             }
         }
+
+
+
+
+        //protected void imgbtnBookingNo_Click(object sender, EventArgs e)
+        //{
+        //    this.BookingNo();
+        //}
+
+
+        //private void BookingNo()
+        //{
+        //    try
+        //    {
+        //        ViewState.Remove("tblData");
+        //        Hashtable hst = (Hashtable)Session["tblLogin"];
+        //        string comcod = hst["comcod"].ToString();
+        //        string PactCode = this.ddlProjectName.SelectedValue.ToString();
+
+        //        DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT_RND", "GETBOOKINGNO", PactCode, "", "", "", "", "", "", "", "");
+        //        if (ds1 == null)
+        //            return;
+        //        //this.gvSpayment.DataSource = ds1.Tables[0];
+        //        //this.gvSpayment.DataBind();
+        //        ViewState["tblbookingNo"] = ds1.Tables[0];
+
+        //        this.ddlBookingNo.DataTextField = "bookingno";
+        //        this.ddlBookingNo.DataValueField = "bookingno";
+        //        this.ddlBookingNo.DataSource = ds1.Tables[0];
+        //        this.ddlBookingNo.DataBind();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+        //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+        //    }
+        //}
+
+
 
         private void BtnEnabled()
         {
