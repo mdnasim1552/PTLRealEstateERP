@@ -348,6 +348,24 @@ namespace RealERPWEB.F_22_Sal
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender_txtbookdate;
 
         /// <summary>
+        /// Lblrcvbookingam control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lblrcvbookingam;
+
+        /// <summary>
+        /// txtrcvbookingam control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtrcvbookingam;
+
+        /// <summary>
         /// lblInstype control.
         /// </summary>
         /// <remarks>

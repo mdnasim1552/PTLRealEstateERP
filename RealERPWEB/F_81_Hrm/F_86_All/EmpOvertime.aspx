@@ -435,7 +435,7 @@
                                        
 
 
-                                        <asp:TemplateField HeaderText="Total">
+                                        <asp:TemplateField HeaderText="System Hour">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvAmt" runat="server" BackColor="Transparent"
                                                     BorderStyle="None"
@@ -463,6 +463,27 @@
                                                     Width="80px"></asp:TextBox>
 
                                                 
+                                            </ItemTemplate>
+
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+
+
+
+                                        
+                                         <asp:TemplateField HeaderText="System Day" >
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblsysday" runat="server" BackColor="Transparent"
+                                                    BorderStyle="None"
+                                                    Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "daycount")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="80px"></asp:Label>
+
+                                      
                                             </ItemTemplate>
 
                                             <FooterStyle HorizontalAlign="Right" />
