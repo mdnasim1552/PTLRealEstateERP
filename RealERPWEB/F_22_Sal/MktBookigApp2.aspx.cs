@@ -751,11 +751,14 @@ namespace RealERPWEB.F_22_Sal
             string inttoavailloan = this.cblintavailloan.SelectedValue.ToString();
             string modeofpay = this.cblpaytype.SelectedValue.ToString();
             string projectName = this.ddlProjectName.SelectedItem.Text;
+            DataTable dt1 = (DataTable)Session["tblpricedetail"];
             DataTable dt2 = (DataTable)Session["tblcustinfo"];
             DataTable dt3 = (DataTable)Session["tblprice"];
             DataTable dt4 = (DataTable)Session["tblnominee"];
             DataTable dt5 = (DataTable)Session["tblnominated"];
             DataTable dt10 = (DataTable)Session["tblrmrk"];
+            
+            
 
 
 
@@ -767,6 +770,7 @@ namespace RealERPWEB.F_22_Sal
             string correspondentimg = new Uri(Server.MapPath(dt2.Rows[0]["correspondentimg"].ToString())).AbsoluteUri;
 
             double inword = Convert.ToDouble(dt2.Rows[0]["bookamt"]);
+            double percntamt = Convert.ToDouble(dt1.Select("Code='07'")[0]["amount"]);
 
             //DataTable dt = ds2.Tables[0];
             //DataTable dt = (DataTable)Session["tblcustinfo"];
@@ -797,6 +801,7 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("utility", dt3.Rows[0]["utility"].ToString()));
             Rpt1.SetParameters(new ReportParameter("others", dt3.Rows[0]["others"].ToString()));
             Rpt1.SetParameters(new ReportParameter("total", dt3.Rows[0]["total"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("unitdescriptio", dt3.Rows[0]["unitdescriptio"].ToString()));
             Rpt1.SetParameters(new ReportParameter("nomineenationalid", dt4.Rows[0]["nationalid"].ToString()));
             Rpt1.SetParameters(new ReportParameter("enrolmentdate", Convert.ToDateTime(dt2.Rows[0]["appdate"]).ToString("ddMMyyyy")));
             Rpt1.SetParameters(new ReportParameter("customerno", dt2.Rows[0]["customerno"].ToString()));
@@ -812,6 +817,7 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("dateforapplicant", Convert.ToDateTime(dt2.Rows[0]["dateforapplicant"]).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("datefornominee", Convert.ToDateTime(dt4.Rows[0]["datefornominee"]).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("datefornominated", Convert.ToDateTime(dt5.Rows[0]["datefornominated"]).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("percntamt", percntamt.ToString()));
             Rpt1.SetParameters(new ReportParameter("remarks", dt10.Rows[0]["remarks"].ToString()));
 
 
@@ -859,8 +865,8 @@ namespace RealERPWEB.F_22_Sal
             string chequeno = this.txtCheqNo.Text.Trim();
             string bankname = this.txtbankname.Text.Trim();
             string branch = this.txtbankbranch.Text.Trim();
-            string InstallAmtPerMonth = Convert.ToDouble("0" + this.Textinsamt.Text).ToString();
-            string NoofTotalInstall = Convert.ToDouble("0" + this.TxtNoTInstall.Text).ToString();
+            string InstallAmtPerMonth = Convert.ToDouble("0" + this.Textinsamt.Text.Trim()).ToString();
+            string NoofTotalInstall = Convert.ToDouble("0" + this.TxtNoTInstall.Text.Trim()).ToString();
             string Rcvbookingam = Convert.ToDouble("0" + this.txtrcvbookingam.Text.Trim()).ToString();
 
             string bookingamt = Convert.ToDouble("0" + this.TextBookingAmt.Text.Trim()).ToString();
@@ -1178,8 +1184,6 @@ namespace RealERPWEB.F_22_Sal
        
         protected void llbtnCalculation_Click(object sender, EventArgs e)
         {
-
-
             int i = 0;
             DataTable dt2 = (DataTable)Session["tblpricedetail"];
             foreach (GridViewRow gv1 in  GridViewPriceDetail.Rows)
@@ -1213,6 +1217,10 @@ namespace RealERPWEB.F_22_Sal
             Session["tblpricedetail"] = dt2;
 
             this.Data_BindPriceDetail();
+
+            double amtpercnt = Convert.ToDouble(dt2.Select("Code='07'")[0]["amount"]);
+            double payAmount = toamt - (amtpercnt / 100) * toamt;
+            this.TextBookingAmt.Text = payAmount.ToString("#,##0;(#,##0); ");
         }
 
        
