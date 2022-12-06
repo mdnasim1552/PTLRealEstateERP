@@ -199,6 +199,7 @@ namespace RealEntity.C_22_Sal
 
 
         }
+        [Serializable]
         public class TransactionSt
         {
             public string comcod { get; set; }
@@ -223,6 +224,7 @@ namespace RealEntity.C_22_Sal
 
 
         }
+        [Serializable]
         public class SalesOpening
         {
             public string comcod { get; set; }
@@ -239,6 +241,32 @@ namespace RealEntity.C_22_Sal
            
 
             public SalesOpening()
+            {
+
+            }
+
+
+        }
+        [Serializable]
+        public class CollectionStatement
+        {
+            public string comcod { get; set; }
+
+            
+            public string pactcode { get; set; }
+            public string pactdesc { get; set; }
+            public string usircode { get; set; }
+           
+            public string udesc { get; set; }
+            public string custname { get; set; }
+            public double opnam { get; set; }
+            public double curinsam { get; set; }
+            public double curbkam { get; set; }
+            public double totalam { get; set; }
+         
+
+
+            public CollectionStatement()
             {
 
             }

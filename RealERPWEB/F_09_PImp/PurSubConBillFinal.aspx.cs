@@ -510,8 +510,9 @@ namespace RealERPWEB.F_09_PImp
 
                     PrintReq = "PrintBill08";
                     break;
-                case "3370":// Chittagong
-
+                
+                case "3101":// ptl
+                case "3370":// cpdl
                     PrintReq = "PrintBill09";
                     break;
 
@@ -1578,7 +1579,6 @@ namespace RealERPWEB.F_09_PImp
                         case "1207": //ACME
                         case "3369": //ACME
                         case "3340": //Urban
-                        case "3101": //ASIT
                         case "1103": //Tanvir
                         case "2305":
 
@@ -1597,6 +1597,7 @@ namespace RealERPWEB.F_09_PImp
                         case "3368"://Finlay
                         case "3367"://epic
                         case "3366": //Lanco
+                        case "3101": //ptl
 
                             break;
 

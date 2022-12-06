@@ -252,7 +252,7 @@
 
                                         <asp:TemplateField HeaderText="">
                                             <HeaderTemplate>
-                                                <asp:TextBox ID="txtSearchunit" BackColor="Transparent" BorderStyle="None" runat="server" Width="140px" placeholder="Unit Name" onkeyup="Search_Gridview(this,5)"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtSearchunit" BackColor="Transparent" BorderStyle="None" runat="server" Width="140px" placeholder="Unit Name" onkeyup="Search_Gridview(this,6)"></asp:TextBox><br />
                                             </HeaderTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvunitdesc" runat="server" BackColor="Transparent"
@@ -264,7 +264,7 @@
 
                                         <asp:TemplateField HeaderText="">
                                             <HeaderTemplate>
-                                                <asp:TextBox ID="txtSearchcust" BackColor="Transparent" BorderStyle="None" runat="server" Width="160px" placeholder="Customer Name" onkeyup="Search_Gridview(this,5)"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtSearchcust" BackColor="Transparent" BorderStyle="None" runat="server" Width="160px" placeholder="Customer Name" onkeyup="Search_Gridview(this,7)"></asp:TextBox><br />
                                             </HeaderTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvcustdesc" runat="server" BackColor="Transparent"
@@ -313,7 +313,7 @@
 
                                         <asp:TemplateField HeaderText="">
                                             <HeaderTemplate>
-                                                <asp:TextBox ID="txtSearusrname" BackColor="Transparent" BorderStyle="None" runat="server" Width="80px" placeholder="User Name" onkeyup="Search_Gridview(this,12)"></asp:TextBox><br />
+                                                <asp:TextBox ID="txtSearusrname" BackColor="Transparent" BorderStyle="None" runat="server" Width="80px" placeholder="User Name" onkeyup="Search_Gridview(this,11)"></asp:TextBox><br />
                                             </HeaderTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblogvusrname" runat="server" BackColor="Transparent"

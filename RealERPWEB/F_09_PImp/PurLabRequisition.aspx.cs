@@ -628,6 +628,7 @@ namespace RealERPWEB.F_09_PImp
                 case "3352": //p2p
                 case "8306": //p2p
                 case "3370": //cpdl
+                case "3101": //pintech
 
                     if (this.Request.QueryString["Type"] == "CSApproval")
                     {
@@ -851,7 +852,7 @@ namespace RealERPWEB.F_09_PImp
                             dr1["balqty"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["balqty"]).ToString();
                             balqty = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["balqty"].ToString());
                             dr1["balamt"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["balamt"]).ToString();
-                            dr1["reqqty"] = comcod == "3370" ? balqty : 0.00;  
+                            dr1["reqqty"] = (comcod == "3370" || comcod == "3101" )? balqty : 0.00;  
                             dr1["bgdrat"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["bgdrat"]).ToString();
                             dr1["reqrat"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["isurat"]).ToString();
                             dr1["amount"] = 0.00;
@@ -1075,6 +1076,7 @@ namespace RealERPWEB.F_09_PImp
                 string comcod = this.GetCompCode();
                 switch (comcod)
                 {
+                    case "3101":
                     case "3370":
                         if (dgvQty > balqty) 
                         {
@@ -1255,6 +1257,7 @@ namespace RealERPWEB.F_09_PImp
                 string comcod = this.GetCompCode();
                 switch (comcod)
                 {
+                    case "3101": // pintech
                     case "3370": // cpdl
                     case "1205": // p2p
                     case "3351": // p2p
