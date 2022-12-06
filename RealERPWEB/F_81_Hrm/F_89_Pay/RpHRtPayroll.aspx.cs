@@ -2640,7 +2640,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", this.ddlCompany.SelectedItem.Text.Trim()));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "Statement of Salary : " + "Month of " + todate1 + "(" + frmdate + "- " + todate + ")"));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Statement of Salary : Month of " + todate1 ));
             Rpt1.SetParameters(new ReportParameter("TkInWord", "In Word: " + ASTUtility.Trans(netpayatax, 2)));
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
