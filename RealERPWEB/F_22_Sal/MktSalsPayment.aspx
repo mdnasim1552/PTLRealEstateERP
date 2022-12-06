@@ -373,7 +373,7 @@
                                 </asp:TemplateField>
 
 
-                                <asp:TemplateField HeaderText="Booking No">
+                                <%--<asp:TemplateField HeaderText="Booking No">
                                     <EditItemTemplate>
                                     </EditItemTemplate>
                                     <ItemTemplate>
@@ -383,7 +383,7 @@
                                     </ItemTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                </asp:TemplateField>
+                                </asp:TemplateField>--%>
 
 
                                 <asp:TemplateField HeaderText="Customer Id">
