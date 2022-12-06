@@ -369,15 +369,17 @@
                                                                          Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")).Trim(): "")   %>'
                                             Width="250px"></asp:Label>
                                     </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:LinkButton ID="lnkTotal" runat="server" Font-Bold="True" Font-Size="14px" Width="50px"
+                                            ForeColor="#000" OnClick="lnkTotal_Click" CssClass="btn btn-primary btn-sm">Total</asp:LinkButton>
+                                    </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Left" />
                                     <ItemStyle HorizontalAlign="Left" />
+                                    <FooterStyle HorizontalAlign="right" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Unit">
-                                    <FooterTemplate>
-                                        <asp:LinkButton ID="lnkTotal" runat="server" Font-Bold="True" Font-Size="14px" Width="40px"
-                                            ForeColor="#000" OnClick="lnkTotal_Click" CssClass="btn btn-primary btn-sm">Total</asp:LinkButton>
-                                    </FooterTemplate>
+                                    
                                     <ItemTemplate>
                                         <asp:Label ID="Label14" runat="server"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirunit")) %>'

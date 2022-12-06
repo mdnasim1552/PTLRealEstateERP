@@ -269,6 +269,7 @@ namespace RealERPWEB.F_22_Sal
             this.txtbookdate.Text = (dt.Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(dt.Rows[0]["paydate"]).ToString("dd-MMM-yyyy");
             this.Textinsamt.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["insamptpermonth"]).ToString("#,##0;(#,##0); ");
             this.TxtNoTInstall.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["totalinstallment"]).ToString("#,##0;(#,##0); ");
+            this.txtrcvbookingam.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["rcvbookingamt"]).ToString("#,##0;(#,##0); ");
 
             this.cblintavailloan.SelectedValue = (dt.Rows.Count == 0) ? "No" : dt.Rows[0]["intavail"].ToString();
             this.cblpaytype.SelectedValue = (dt.Rows.Count == 0) ? "OneTime" : dt.Rows[0]["paymode"].ToString();
@@ -669,7 +670,7 @@ namespace RealERPWEB.F_22_Sal
             string comnam = hst["comnam"].ToString();
             string comadd = hst["comadd1"].ToString();
 
-            string comadd1 = "81 S S Khaled Road, Jamal Khan, Chattogram. Phone: +8802333354442, 02333354443, 02333351443";
+            string comadd1 = "81, S. S. Khaled Road, Jamal Khan, Chattogram. Phone: +8802333354442, 02333354443, 02333351443";
             string contactCommunication = "Mobile: +8801755663636. E-mail: mail@cpdl.com.bd, Web: www.cpdl.com.bd";
 
             string comcod = this.GetCompCode();
@@ -709,11 +710,9 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("remarks", dt10.Rows[0]["remarks"].ToString()));
 
 
-
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
 
         }
 
@@ -803,12 +802,12 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("customerno", dt2.Rows[0]["customerno"].ToString()));
             Rpt1.SetParameters(new ReportParameter("installmentamtpermonth", dt2.Rows[0]["insamptpermonth"].ToString()));
             Rpt1.SetParameters(new ReportParameter("nooftotalinstallment", dt2.Rows[0]["totalinstallment"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("rcvbookingamt", dt2.Rows[0]["rcvbookingamt"].ToString()));
             Rpt1.SetParameters(new ReportParameter("bookingno", dt2.Rows[0]["bookingno"].ToString()));
             Rpt1.SetParameters(new ReportParameter("projectName", projectName));
             Rpt1.SetParameters(new ReportParameter("custimg", custimg));
             Rpt1.SetParameters(new ReportParameter("nomineeimg", nomineeimg));
             Rpt1.SetParameters(new ReportParameter("correspondentimg", correspondentimg));
-
             Rpt1.SetParameters(new ReportParameter("propertyaddress", dt3.Rows[0]["propertyAddress"].ToString()));
             Rpt1.SetParameters(new ReportParameter("dateforapplicant", Convert.ToDateTime(dt2.Rows[0]["dateforapplicant"]).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("datefornominee", Convert.ToDateTime(dt4.Rows[0]["datefornominee"]).ToString("dd-MMM-yyyy")));
@@ -862,6 +861,8 @@ namespace RealERPWEB.F_22_Sal
             string branch = this.txtbankbranch.Text.Trim();
             string InstallAmtPerMonth = Convert.ToDouble("0" + this.Textinsamt.Text).ToString();
             string NoofTotalInstall = Convert.ToDouble("0" + this.TxtNoTInstall.Text).ToString();
+            string Rcvbookingam = Convert.ToDouble("0" + this.txtrcvbookingam.Text.Trim()).ToString();
+
             string bookingamt = Convert.ToDouble("0" + this.TextBookingAmt.Text.Trim()).ToString();
             string bookdate = Convert.ToDateTime(this.txtbookdate.Text).ToString("dd-MMM-yyyy");
             string inttoavailloan = this.cblintavailloan.SelectedValue.ToString();
@@ -941,7 +942,7 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-            bool result = SalData.UpdateXmlTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "INSORUPDATECUSTAPPINF", ds1, null, null, pactcode, usircode, appdate, bookingamt, bankname, branch, bookdate, inttoavailloan, modeofpay, chequeno, customerMaxNo, InstallAmtPerMonth, NoofTotalInstall);
+            bool result = SalData.UpdateXmlTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "INSORUPDATECUSTAPPINF", ds1, null, null, pactcode, usircode, appdate, bookingamt, bankname, branch, bookdate, inttoavailloan, modeofpay, chequeno, customerMaxNo, InstallAmtPerMonth, NoofTotalInstall, Rcvbookingam);
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = SalData.ErrorObject["Msg"].ToString();

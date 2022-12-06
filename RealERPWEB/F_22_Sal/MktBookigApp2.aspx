@@ -404,6 +404,15 @@
                                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtbookdate" CssClass="form-control form-control-sm"></cc1:CalendarExtender>
                                                             </div>
                                                         </div>
+
+                                                        <div class="col-md-3">
+                                                            <div class"form-group">
+                                                                <asp:Label ID="Lblrcvbookingam" runat="server" CssClass="control-label" Text="Received Amount During Booking"></asp:Label>
+                                                                <asp:TextBox ID="txtrcvbookingam" runat="server" TabIndex="5" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                            </div>
+                                                        </div>
+
+
                                                     </div>
 
                                                 </div>
