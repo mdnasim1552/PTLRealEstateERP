@@ -2508,11 +2508,11 @@
 
                                                 <asp:TemplateField HeaderText="Voucher Amount">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblgvvouamt" runat="server" Style="text-align: right"
-                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="90px"></asp:Label>
+                                                        <asp:Label ID="lblgvvouamt" runat="server" Style="text-align: right;font-size:12px;"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="140px"></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
-                                                        <asp:Label ID="lblgvFvouamt" runat="server" Style="text-align: right" Width="90px"></asp:Label>
+                                                        <asp:Label ID="lblgvFvouamt" runat="server" Style="text-align: right; font-size:12px;" Width="140px"></asp:Label>
                                                     </FooterTemplate>
                                                     <ItemStyle HorizontalAlign="Right" />
                                                     <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
@@ -2524,6 +2524,7 @@
                                                             Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chkmv"))=="True" %>'
                                                             Width="20px" />
                                                     </ItemTemplate>
+                                                    <ItemStyle  HorizontalAlign="Center" />
                                                 </asp:TemplateField>
 
 
@@ -2534,11 +2535,11 @@
                                                         <asp:HyperLink ID="hlnkVoucherPrint" runat="server" Target="_blank" ToolTip="Voucher Print" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span></asp:HyperLink>
 
 
-                                                        <asp:LinkButton ID="lbtnVoucherApp" ToolTip="Approved" runat="server" OnClick="lbtnVoucherApp_Click" Enabled='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chkmv")) == "True" ? false : true %>'><i class=" fa fa-check" aria-hidden="true"></i> </asp:LinkButton>
+                                                        <asp:LinkButton ID="lbtnVoucherApp" ToolTip="Approved" runat="server" OnClick="lbtnVoucherApp_Click" OnClientClick="javascript:return FunAppConfirm();" Enabled='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chkmv")) == "True" ? false : true %>'><i class=" fa fa-check" aria-hidden="true"></i> </asp:LinkButton>
 
                                                     </ItemTemplate>
-                                                    <ItemStyle Width="300px" />
-                                                    <HeaderStyle HorizontalAlign="Center" Width="80px" VerticalAlign="Top" />
+                                                    <ItemStyle Width="90px" />
+                                                    <HeaderStyle HorizontalAlign="Center" Width="90px" VerticalAlign="Top" />
                                                 </asp:TemplateField>
                                             </Columns>
                                             <FooterStyle CssClass="grvFooter" />
