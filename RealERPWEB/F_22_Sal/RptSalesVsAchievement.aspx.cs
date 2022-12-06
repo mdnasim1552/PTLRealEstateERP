@@ -31,15 +31,15 @@ namespace RealERPWEB.F_22_Sal
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
-                if(this.Request.QueryString["Type"] == "MonsalVsAchieve")
+                if (this.Request.QueryString["Type"] == "MonsalVsAchieve")
                 {
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Month Wise Sales (Reconcilation)";
                 }
-                else if(this.Request.QueryString["Type"] == "DownpayClearnce")
+                else if (this.Request.QueryString["Type"] == "DownpayClearnce")
                 {
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Down Payment Status (Prev.Sales)";
                 }
-                else if(this.Request.QueryString["Type"] == "MonsalVsAchieveLO")
+                else if (this.Request.QueryString["Type"] == "MonsalVsAchieveLO")
                 {
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Month Wise Sales (Reconcilation L/O)";
                 }
@@ -47,15 +47,15 @@ namespace RealERPWEB.F_22_Sal
                 {
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Month Wise Sales (Collection Status)";
                 }
-          
+
                 string Date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtfrmdate.Text = "01-" + ASTUtility.Right(Date, 8);
                 this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 this.ProjectName();
                 this.GetGroup();
                 this.SelectView();
-               
-               
+
+
 
 
             }
@@ -133,7 +133,7 @@ namespace RealERPWEB.F_22_Sal
             switch (Type)
             {
                 case "MonsalVsAchieveLO":
-                case "MonsalVsAchieve":                  
+                case "MonsalVsAchieve":
                     this.MultiView1.ActiveViewIndex = 0;
                     this.Visibility();
                     break;
@@ -186,7 +186,7 @@ namespace RealERPWEB.F_22_Sal
         protected void lnkbtnOk_Click(object sender, EventArgs e)
         {
             string Type = this.Request.QueryString["Type"].ToString().Trim();
-           
+
             switch (Type)
             {
                 case "MonsalVsAchieveLO":
@@ -198,15 +198,15 @@ namespace RealERPWEB.F_22_Sal
                 case "DownpayClearnce":
                     this.ShowDownPayment();
                     break;
-                case"CollectionStatus":
+                case "CollectionStatus":
                     this.ShowCollectionStatus();
-                        break;
+                    break;
 
             }
 
 
         }
-     
+
         private void ShowDownPayment()
         {
             Session.Remove("tblsalesvscoll02");
@@ -221,7 +221,7 @@ namespace RealERPWEB.F_22_Sal
             {
                 this.gvDownpayment.DataSource = null;
                 this.gvDownpayment.DataBind();
-              
+
 
                 return;
             }
@@ -267,14 +267,14 @@ namespace RealERPWEB.F_22_Sal
         }
         private void ShowCollectionStatus()
         {
-            Session.Remove("tblsalesvscoll02");
+
             string comcod = this.GetComeCode();
             string prjcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18%" : this.ddlPrjName.SelectedValue.ToString() + "%";
             string frmdate = this.txtfrmdate.Text.Trim();
             string todate = this.txttodate.Text.Trim();
             string lotype = "";   //this.GetLOType();
-            string grpcode = this.ddlgrp.SelectedValue.ToString() == "000000000000" ? "51%" : this.ddlgrp.SelectedValue.ToString() + "%";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_COLLECTIONMGT", "GETCOLLECTIONWITHDANDINSTALLMENT", prjcode, frmdate, todate, grpcode, lotype, "", "", "", "");
+            string grpcode = this.ddlgrp.SelectedValue.ToString() == "000000000000" ? "51%" : ASTUtility.Left(this.ddlgrp.SelectedValue.ToString(), 7) + "%";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_COLLECTIONMGT", "GETCOLLECTIONWITHDANDINSTALLMENT", prjcode, frmdate, todate, grpcode, "", "", "", "", "");
             if (ds1 == null)
             {
                 this.gvcolcnst.DataSource = null;
@@ -282,11 +282,9 @@ namespace RealERPWEB.F_22_Sal
 
                 return;
             }
-           
 
-            Session["tblcltnst"] = ds1.Tables[0];
 
-           
+            Session["tblcltnst"] = this.HiddenSame(ds1.Tables[0]);
 
             this.Data_Bind();
 
@@ -314,24 +312,46 @@ namespace RealERPWEB.F_22_Sal
 
             return dt1;
         }
+        private DataTable HiddenSame(DataTable dt1)
+        {
+            if (dt1.Rows.Count == 0)
+                return dt1;
+            string pactcode = dt1.Rows[0]["pactcode"].ToString();
+            for (int j = 1; j < dt1.Rows.Count; j++)
+            {
+                if (dt1.Rows[j]["pactcode"].ToString() == pactcode)
+                {
+                    pactcode = dt1.Rows[j]["pactcode"].ToString();
+                    dt1.Rows[j]["pactdesc"] = "";
+                }
 
+                else
+                {
+                    pactcode = dt1.Rows[j]["pactcode"].ToString();
+
+                }
+
+            }
+
+            return dt1;
+        }
         private void Data_Bind()
         {
-           
+
             //this.gvsalesvscoll.DataSource = (DataTable)Session["tblsalesvscoll"];
             //this.gvsalesvscoll.DataBind();
 
             string Type = this.Request.QueryString["Type"].ToString().Trim();
             DataTable dt = (DataTable)Session["tblsalesvscoll"];
             DataTable dt1 = (DataTable)Session["tblcltnst"];
-             
+
             switch (Type)
             {
                 case "MonsalVsAchieveLO":
                 case "MonsalVsAchieve":
                     this.gvsalesvscoll.DataSource = dt;
                     this.gvsalesvscoll.DataBind();
-                   // this.FooterCalculation(dt);
+                    // this.FooterCalculation(dt);
                     break;
 
 
@@ -367,10 +387,10 @@ namespace RealERPWEB.F_22_Sal
             ((Label)this.gvcolcnst.FooterRow.FindControl("fgvopamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(opnam)", "")) ? 0.00 :
                  dt1.Compute("sum(opnam)", ""))).ToString("#,##0.00;(#,##0.00); ");
 
-            ((Label)this.gvcolcnst.FooterRow.FindControl("fgvmrramt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(curbkam)", "")) ? 0.00 :
+            ((Label)this.gvcolcnst.FooterRow.FindControl("fgvdpamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(curbkam)", "")) ? 0.00 :
                  dt1.Compute("sum(curbkam)", ""))).ToString("#,##0.00;(#,##0.00); ");
 
-            ((Label)this.gvcolcnst.FooterRow.FindControl("fgvdpamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(curinsam)", "")) ? 0.00 :
+            ((Label)this.gvcolcnst.FooterRow.FindControl("fgvinamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(curinsam)", "")) ? 0.00 :
                  dt1.Compute("sum(curinsam)", ""))).ToString("#,##0.00;(#,##0.00); ");
             ((Label)this.gvcolcnst.FooterRow.FindControl("fgvtotalam")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(totalam)", "")) ? 0.00 :
                  dt1.Compute("sum(totalam)", ""))).ToString("#,##0.00;(#,##0.00); ");
@@ -431,10 +451,12 @@ namespace RealERPWEB.F_22_Sal
                     this.PrintSaleReconcilation();
                     break;
 
-
-                //case "DownpayClearnce":
-                //    this.ShowDownPayment();
-                //    break;
+                case "CollectionStatus":
+                    this.PrintCollectionStatus();
+                    break;
+                    //case "DownpayClearnce":
+                    //    this.ShowDownPayment();
+                    //    break;
 
             }
 
@@ -557,6 +579,44 @@ namespace RealERPWEB.F_22_Sal
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
+        private void PrintCollectionStatus()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetComeCode();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            string frmdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMMM-yyyy");
+            string ProjectName = this.ddlPrjName.SelectedItem.Text.Trim();
+
+            DataTable dt = (DataTable)Session["tblcltnst"];
+            var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.CollectionStatement>();
+
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSalesCollectionStatement", lst, null, null);
+
+
+            Rpt1.EnableExternalImages = true;
+
+
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("date", printdate));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Collection Statement"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("printdate", "( From " + this.txtfrmdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
         }
 
         protected void gvcolcnst_PageIndexChanging(object sender, GridViewPageEventArgs e)

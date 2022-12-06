@@ -18,7 +18,7 @@
         }
         function bill() {
             OpenPOamt();
-
+            ClosePOamt();
         }
 
         function OpenPOamt() {
@@ -107,7 +107,10 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="table table-responsive">
-                            <asp:GridView ID="gvBillStatus" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea" ShowFooter="True" AllowPaging="True"  PageSize="30" OnPageIndexChanging="gvBillStatus_PageIndexChanging">
+                            <asp:GridView ID="gvBillStatus" runat="server" AutoGenerateColumns="False" 
+                                CssClass=" table-striped table-hover table-bordered grvContentarea" 
+                                ShowFooter="True" AllowPaging="True"  PageSize="30" 
+                                OnPageIndexChanging="gvBillStatus_PageIndexChanging">
                                 <PagerSettings Position="Bottom" />
                                 <RowStyle />
                                 <Columns>
