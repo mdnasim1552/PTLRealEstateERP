@@ -289,9 +289,9 @@ namespace RealERPWEB.F_22_Sal
                     if (lbtn1.Text.Trim().Length > 0)
                         lbtn1.CommandArgument = usircode;
             }
-
-
         }
+
+
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
             string comcod = this.GetCompCode();
