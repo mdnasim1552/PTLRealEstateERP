@@ -1393,13 +1393,6 @@
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
-                  <TextRun>
-                    <Value> .</Value>
-                    <Style>
-                      <FontFamily>cambria</FontFamily>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
