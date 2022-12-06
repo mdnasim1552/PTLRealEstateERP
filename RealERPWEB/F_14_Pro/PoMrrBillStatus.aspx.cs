@@ -259,8 +259,8 @@ namespace RealERPWEB.F_14_Pro
 
         protected void Close_Click(object sender, EventArgs e)
         {
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ClosePOamt();", true);
 
-            Response.Redirect(Request.UrlReferrer.ToString());
         }
 
         protected void gvBillStatus_PageIndexChanging(object sender, GridViewPageEventArgs e)
