@@ -77,7 +77,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             switch (comcod)
             {
-                //case "3101": //own 
+                case "3101": //own 
                 case "3333"://Alliance
                 case "3354": // Edison
                 case "3353"://Manama
