@@ -399,9 +399,9 @@ namespace RealERPWEB.F_23_CR
                     {
                         if (dt.Rows[j]["custmob"].ToString().Length > 0)
                         {
-                            string supphone = dt.Rows[j]["custmob"].ToString();
-                            string SMSText = dt.Rows[j]["smstxt"].ToString();
-                            bool resultsms = sms.SendSmmsPwd(comcod, SMSText, supphone);
+                            string supphone = "01799341634";// dt.Rows[j]["custmob"].ToString();
+                            string SMSText = "Assalamualikum, Hi this is OTP 12";// dt.Rows[j]["smstxt"].ToString();
+                            bool resultsms = sms.SendSms_SSL_Single(comcod, SMSText, supphone);
                         }
 
                     }

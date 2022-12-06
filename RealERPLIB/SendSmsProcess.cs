@@ -13,6 +13,8 @@ using System.Web.UI.WebControls.WebParts;
 using RealERPLIB;
 using System.Net;
 using System.IO;
+using RestSharp;
+
 
 namespace RealERPLIB
 {
@@ -21,7 +23,7 @@ namespace RealERPLIB
     {
         ProcessAccess purData = new ProcessAccess();
         private Hashtable _errObj;
-
+       
         public string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -176,7 +178,31 @@ namespace RealERPLIB
 
 
         }
+        // Nahid 20221205
+        public bool SendSms_SSL_Single(string comcode, string text, string mobilenum)
+        {
+            //string comcod = comcode;
+            //DataSet ds3 = purData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWAPIINFOFORFORGOTPASS", "", "", "", "", "");
+            //string Single_Sms_Url = ds3.Tables[0].Rows[0]["apiurl"].ToString().Trim();
+            //string Single_Sms_Sid = ds3.Tables[0].Rows[0]["apisender"].ToString().Trim(); //"ASITNAHID";  //Sender
+            //string Single_Sms_api_token = ds3.Tables[0].Rows[0]["apipass"].ToString().Trim(); //"ASITNAHID";  //Sender
+            //string mobile = "88" + mobilenum; //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
 
+            //var client = new RestClient(Single_Sms_Url);
+            ////client.Timeout = -1;
+            //var request = new RestRequest();
+            //request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+            //request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+            //request.AddParameter("api_token", Single_Sms_api_token);
+            //request.AddParameter("sid", Single_Sms_Sid);
+            //request.AddParameter("msisdn", mobile);
+            //request.AddParameter("sms", text);
+            //request.AddParameter("csms_id", "1234569");
+
+            //IRestResponse response = client.Execute(request);
+            //return response.Content;
+            return false;
+        }
         // Create by Md Ibrahim Khalil 
 
         public bool SendSMSClient(string comcode, string text, string mobilenum)
@@ -300,6 +326,10 @@ namespace RealERPLIB
             this._errObj["Src"] = exp.Source;
             this._errObj["Msg"] = exp.Message;
             this._errObj["Location"] = exp.StackTrace;
+        }
+
+        private interface IRestResponse
+        {
         }
     }
 }
