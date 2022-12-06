@@ -665,7 +665,6 @@ namespace RealERPWEB.F_12_Inv
             string comcod = GetCompCode();
             switch (comcod)
             {
-                case "3101":
                 case "3353":
                     this.gvMRRInfo.Columns[1].Visible = true;
                     break; 
@@ -1127,7 +1126,6 @@ namespace RealERPWEB.F_12_Inv
                         {
 
                             case "3348": // Credence
-                            case "3101": // Credence
                             case "3368": // Finlay
                                 break;
 
