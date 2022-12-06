@@ -2324,7 +2324,7 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
 
             }
-
+            string ptype = GetCompUnpostApproval();
 
             bool resultb = accData.UpdateTransInfo2(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "UPUNPOSTEDVOUCHER", vounum, ApprovedByid, Approvedtrmid, ApprovedSession, Approvedddat,
                                "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
@@ -2340,6 +2340,21 @@ namespace RealERPWEB.F_99_Allinterface
             this.SaleRequRpt();
             this.RadioButtonList1_SelectedIndexChanged(null, null);
 
+        }
+
+        private string GetCompUnpostApproval()
+        {
+            string type = "";
+            switch (GetCompCode())
+            {
+                case "3368":
+                    type = "UPUNPOSTEDVOUCHERFINLAY";
+                    break;
+                default:
+                    type = "UPUNPOSTEDVOUCHER";
+                    break;
+            }
+            return type;
         }
 
 
