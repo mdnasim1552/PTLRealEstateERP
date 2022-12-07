@@ -373,16 +373,13 @@
                                 </asp:TemplateField>
 
 
-                                <%--<asp:TemplateField HeaderText="Booking No">
+<%--                                <asp:TemplateField HeaderText="">
                                     <EditItemTemplate>
                                     </EditItemTemplate>
-                                    <ItemTemplate>
-                                        <asp:Label ID="lgfilecode22" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "bookingno")) %>'
-                                            Width="70px"></asp:Label>
-                                    </ItemTemplate>
-                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    <asp:LinkButton ID="imgbtnFindBookingNo" runat="server" OnClick="imgbtnFindCustomer_Click" TabIndex="4" CssClass="btn btn-sm">Booking No</asp:LinkButton>
+                                        <asp:DropDownList ID="ddlBookingNo" runat="server" CssClass="form-control form-control-sm chzn-select"
+                                            TabIndex="5">
+                                        </asp:DropDownList>
                                 </asp:TemplateField>--%>
 
 
@@ -418,6 +415,25 @@
                         <asp:LinkButton ID="lbtnBack" runat="server" OnClick="lbtnBack_Click" Visible="false" CssClass="btn btn-danger primaryBtn pull-right">Back</asp:LinkButton>
 
                     </div>
+
+
+                    <%--<div class="col-md-2">
+                        <div class="form-group">
+                            <asp:LinkButton ID="imgbtnBookingNo" runat="server" OnClick="imgbtnBookingNo_Click" TabIndex="4" CssClass="btn btn-sm">Booking No</asp:LinkButton>
+                            <asp:DropDownList ID="ddlBookingNo" runat="server" CssClass="form-control form-control-sm chzn-select"
+                                TabIndex="5">
+                            </asp:DropDownList>
+                        </div>
+                    </div>--%>
+
+
+
+
+
+
+
+
+
                     <asp:MultiView ID="MultiView1" runat="server">
 
                         <asp:View ID="ViewPersonal" runat="server">

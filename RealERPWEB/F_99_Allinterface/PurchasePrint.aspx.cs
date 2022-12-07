@@ -801,7 +801,7 @@ namespace RealERPWEB.F_99_Allinterface
                 txtSign7 = "Approved By";
             }
 
-            else if (comcod == "3332" || comcod == "3101")
+            else if (comcod == "3332")
             {
 
 
@@ -4052,6 +4052,7 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
 
+                    case "3101": //bridge
                     case "3330": //bridge
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
@@ -4164,6 +4165,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 switch (comcod)
                 {
+                    case "3101": //ptl
                     case "3330": // Bridge Holdings
                         //terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         //terms2 = "2. " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
@@ -4229,7 +4231,6 @@ namespace RealERPWEB.F_99_Allinterface
                     case "1205": //P2P
                     case "3351": //P2P
                     case "3352": //P2P 
-                    case "3101": //ptl 
                         terms1 = terms.ToString();
                         break;
 
@@ -4431,6 +4432,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderManama.rdlc";
                         break;
 
+                    case "3101": // ptl  
                     case "3330": //bridge 
                         if (pactcode == "160100010025" || pactcode == "160100010027")
                         {
@@ -4482,8 +4484,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3367": //Epic                        
                         Reportpath = "~/Report/RptPurchaseOrderEpic.rdlc";
                         break;
-                    
-                    case "3101": //ptl                       
+                                          
                     case "3370": //Epic cpdl                        
                         Reportpath = "~/Report/RptPurchaseOrderCPDL.rdlc";
                         porderno =ASTUtility.CustomReqFormat(wrkid);
@@ -4589,8 +4590,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3354": // edison
                         Rpt1.SetParameters(new ReportParameter("sign7", sign7));
                         break;
-                    
-                    case "3101": // ptl
+                        
                     case "3370": // cpdl
                         Rpt1.SetParameters(new ReportParameter("pcperson", pcperson));
                         Rpt1.SetParameters(new ReportParameter("supemail", supemail));
@@ -4624,6 +4624,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Rpt1.SubreportProcessing += new SubreportProcessingEventHandler(LoadSubReport);
                         break;
 
+                    case"3101":
                     case"3330":
                         double balamt = 0.00;
                         double ntotal = (amtmat + amtcar - amtdis);
@@ -4738,7 +4739,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3354": // eidson
                 case "3366": // lanco
                 case "3367": // epic
-                case "3101":
+                //case "3101":
                 case "3370": // cpdl
                     isDynamic = true;
                     break;

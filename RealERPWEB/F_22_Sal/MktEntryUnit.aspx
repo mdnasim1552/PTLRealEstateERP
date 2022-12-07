@@ -475,6 +475,21 @@
 
 
 
+                                        <asp:TemplateField HeaderText="Handover %">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvhoverper" runat="server" AutoCompleteType="Disabled"
+                                                    BackColor="Transparent" BorderStyle="None" Font-Size="11px" style="text-align:right;"
+                                                   
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "handovper")).ToString("#,##0;(#,##0); ")%>'
+                                                    Width="60px"></asp:TextBox>
+
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="Right" />
+
+                                        </asp:TemplateField>
+
+
                                         <asp:TemplateField HeaderText="Facing">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvUFacing" runat="server" BackColor="Transparent"

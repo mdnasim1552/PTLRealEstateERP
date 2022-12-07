@@ -236,7 +236,7 @@ namespace RealERPWEB.F_99_Allinterface
                     approval = "Received By";
                     break;
 
-                //case "3101":
+                case "3101":
                 case "3367":
                     gatePass = "Gate Pass";
                     approval = "Received";
