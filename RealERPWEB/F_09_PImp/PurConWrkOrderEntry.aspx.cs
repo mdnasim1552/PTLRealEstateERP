@@ -75,18 +75,11 @@ namespace RealERPWEB.F_09_PImp
                         this.lbtnOk_Click(null, null);
                     }
                 }
-
-
-                if (Request.QueryString.AllKeys.Contains("orderno"))
+                if (Request.QueryString.AllKeys.Contains("orderno") && (Request.QueryString["Type"].ToString() =="Entry"))
                 {
                     this.printWorkOrderFInt();
                 }
-
-
             }
-
-
-
 
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -197,7 +190,7 @@ namespace RealERPWEB.F_09_PImp
             switch (comcod)
             {
                 case "3330":
-                //case "3101":
+                    //case "3101":
                     this.PrintGeneral();
                     break;
 
@@ -351,10 +344,10 @@ namespace RealERPWEB.F_09_PImp
         }
 
 
-        private void printWorkOrderFInt()  
+        private void printWorkOrderFInt()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            
+
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
             string compname = hst["compname"].ToString();
@@ -370,7 +363,7 @@ namespace RealERPWEB.F_09_PImp
             bool isself = false;
             if (this.Request.QueryString.AllKeys.Contains("orderno"))
             {
-                morderno= this.Request.QueryString["orderno"].ToString() == "" ? "" : this.Request.QueryString["orderno"].ToString();
+                morderno = this.Request.QueryString["orderno"].ToString() == "" ? "" : this.Request.QueryString["orderno"].ToString();
                 isself = true;
             }
             else
@@ -414,7 +407,7 @@ namespace RealERPWEB.F_09_PImp
                 string txtSign2 = "";
                 string txtSign3 = "";
                 string txtSign4 = "";
-                
+
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrderP2PBN", lst, null, null);
                 //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrder2", lst, null, null);
                 Rpt1.EnableExternalImages = true;
@@ -429,13 +422,13 @@ namespace RealERPWEB.F_09_PImp
             }
             else if (comcod == "3370" || comcod == "3101")
             {
-                refNo = ds1.Tables[1].Rows[0]["pordref"].ToString(); 
-                string orderno = ASTUtility.CustomReqFormat(ds1.Tables[1].Rows[0]["orderno"].ToString());               
+                refNo = ds1.Tables[1].Rows[0]["pordref"].ToString();
+                string orderno = ASTUtility.CustomReqFormat(ds1.Tables[1].Rows[0]["orderno"].ToString());
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrderCPDL", lst, null, null);
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("workSuppl", Suppl));
                 Rpt1.SetParameters(new ReportParameter("fullComAdd", comfadd));
-                Rpt1.SetParameters(new ReportParameter("refNo1",  refNo));
+                Rpt1.SetParameters(new ReportParameter("refNo1", refNo));
                 Rpt1.SetParameters(new ReportParameter("orderno", orderno));
                 Rpt1.SetParameters(new ReportParameter("lang", lang));
             }
@@ -719,13 +712,23 @@ namespace RealERPWEB.F_09_PImp
         protected void grvissue_DataBind()
         {
             this.grvissue.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue);
-            this.grvissue.DataSource = (DataTable)ViewState["tblorder"]; ;
+            this.grvissue.DataSource = (DataTable)ViewState["tblorder"];
             this.grvissue.DataBind();
+            this.FooterCalculation();
         }
+        private void FooterCalculation()
+        {
+            DataTable dt = (DataTable)ViewState["tblorder"];
+            if (dt.Rows.Count == 0)
+                return;
 
+            ((Label)this.grvissue.FooterRow.FindControl("lblgvFQty")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(ordqty)", "")) ? 0.00
+                : dt.Compute("Sum(ordqty)", ""))).ToString("#,##0.00;(#,##0.00);  ");
 
+            ((Label)this.grvissue.FooterRow.FindControl("lblgvFamount")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(ordamt)", "")) ? 0.00
+                : dt.Compute("Sum(ordamt)", ""))).ToString("#,##0.00;(#,##0.00);  ");
 
-
+        }
         protected void lbtnSelect_Click(object sender, EventArgs e)
         {
             try
@@ -806,8 +809,6 @@ namespace RealERPWEB.F_09_PImp
 
         protected void lnkupdate_Click(object sender, EventArgs e)
         {
-
-
             int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
             if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                 Response.Redirect("~/AcceessError.aspx");
@@ -815,9 +816,7 @@ namespace RealERPWEB.F_09_PImp
 
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
-
                 return;
             }
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -862,11 +861,11 @@ namespace RealERPWEB.F_09_PImp
                 this.GetPreOrderNo();
             }
 
-
-
             string mRef = this.txtOrderRef.Text;
 
-            string mOrdernoO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + this.txtCurISSDate.Text.Trim().Substring(7, 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
+            string order1= this.lblCurISSNo1.Text.Trim().Substring(0, 3) + this.txtCurISSDate.Text.Trim().Substring(7, 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
+            string mOrdernoO = this.Request.QueryString["Type"].ToString() == "Edit" ? this.Request.QueryString["orderno"].ToString() : order1;
+           
             string mDATE = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString();
 
             //////////
@@ -927,10 +926,7 @@ namespace RealERPWEB.F_09_PImp
                 string eventdesc2 = "Issue No: " + this.lblCurISSNo1.Text.Trim() + this.txtCurISSNo2.Text.Trim();
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
-
         }
-
-
 
         private void SaveValue()
         {
@@ -947,9 +943,9 @@ namespace RealERPWEB.F_09_PImp
 
                 double gvrate = Convert.ToDouble("0" + ((TextBox)this.grvissue.Rows[i].FindControl("txtgvrate")).Text.Trim());
                 double gvQty = Convert.ToDouble("0" + ((TextBox)this.grvissue.Rows[i].FindControl("txtgvQty")).Text.Trim());
-                double orqty = Convert.ToDouble("0" + dt.Rows[TblRowIndex]["ordqty"].ToString());   
+                double orqty = Convert.ToDouble("0" + dt.Rows[TblRowIndex]["ordqty"].ToString());
 
-                if(gvQty> orqty)
+                if (gvQty > orqty)
                 {
                     string msg = wrkdesc + " Order Qty Can't Excess Requisition Qty .. !! ";
                     //ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+ msg + "');", true);
@@ -968,7 +964,7 @@ namespace RealERPWEB.F_09_PImp
                 dt.Rows[TblRowIndex]["rmrks"] = txtisurmk;
                 dt.Rows[TblRowIndex]["sdetails"] = sdetails;
             }
-           
+
             ViewState["tblorder"] = dt;
         }
 

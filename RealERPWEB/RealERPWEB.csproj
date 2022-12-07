@@ -2275,6 +2275,7 @@
     <Content Include="F_17_Acc\AccIssueUpdate.aspx" />
     <Content Include="F_17_Acc\AccIndentUpdate.aspx" />
     <Content Include="F_17_Acc\AccInterComVoucherDel.aspx" />
+    <Content Include="F_17_Acc\RptLetterOfAlotment.aspx" />
     <Content Include="F_17_Acc\RptOPPaymentTopSheet.aspx" />
     <Content Include="F_17_Acc\RptSupplierOvAllPSummary.aspx" />
     <Content Include="F_21_MKT\AdvancedSearchFilter.aspx" />
@@ -4198,6 +4199,13 @@
     </Compile>
     <Compile Include="F_17_Acc\AccInterComVoucherDel.aspx.designer.cs">
       <DependentUpon>AccInterComVoucherDel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_17_Acc\RptLetterOfAlotment.aspx.cs">
+      <DependentUpon>RptLetterOfAlotment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_17_Acc\RptLetterOfAlotment.aspx.designer.cs">
+      <DependentUpon>RptLetterOfAlotment.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_17_Acc\RptOPPaymentTopSheet.aspx.cs">
       <DependentUpon>RptOPPaymentTopSheet.aspx</DependentUpon>
