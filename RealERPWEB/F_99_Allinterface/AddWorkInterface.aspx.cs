@@ -140,7 +140,6 @@ namespace RealERPWEB.F_99_Allinterface
             string comcod = this.GetCompCode();
             switch (comcod)
             {
-                case "3101":
                 case "3367":
                     GetAddWrkDataEpic();
                     //ctype = "PRINTCLIENTMODDASHEP"; // todo only epic 

@@ -605,7 +605,7 @@
 
 
                     case 3370://CPDL
-                    case 3101://
+         
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
@@ -626,6 +626,7 @@
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
                         $(".tbMenuWrp table tr td:nth-child(6)").hide();
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(10)").hide();
 
                         //    $("table[id*=RadioButtonList1] input:first").next().next().hide();
 
