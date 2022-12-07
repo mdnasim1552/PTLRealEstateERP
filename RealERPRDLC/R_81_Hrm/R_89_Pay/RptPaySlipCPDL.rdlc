@@ -3984,7 +3984,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Format(Fields!bsal.Value, "#,##0;(#,##0); ")</Value>
+                                                    <Value>=Format(Fields!perbon.Value, "#,##0;(#,##0); ")</Value>
                                                     <Style>
                                                       <FontFamily>cambria</FontFamily>
                                                       <FontSize>9pt</FontSize>
@@ -4588,7 +4588,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Format(Fields!elallow.Value, "#,##0;(#,##0); ")</Value>
+                                                    <Value>=Format(Fields!tptallow.Value, "#,##0;(#,##0); ")</Value>
                                                     <Style>
                                                       <FontFamily>cambria</FontFamily>
                                                       <FontSize>9pt</FontSize>
@@ -4889,7 +4889,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value>=Format(Fields!oallow.Value, "#,##0;(#,##0); ")</Value>
                                                     <Style>
                                                       <FontFamily>cambria</FontFamily>
                                                     </Style>
@@ -8353,7 +8353,7 @@
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value>=Format(Fields!elallow.Value, "#,##0;(#,##0); ")</Value>
+                                                        <Value>=Format(Fields!tptallow.Value, "#,##0;(#,##0); ")</Value>
                                                         <Style>
                                                           <FontFamily>cambria</FontFamily>
                                                           <FontSize>9pt</FontSize>
@@ -8654,9 +8654,10 @@
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value />
+                                                        <Value>=Format(Fields!oallow.Value, "#,##0;(#,##0); ")</Value>
                                                         <Style>
                                                           <FontFamily>cambria</FontFamily>
+                                                          <FontSize>9pt</FontSize>
                                                         </Style>
                                                       </TextRun>
                                                     </TextRuns>
