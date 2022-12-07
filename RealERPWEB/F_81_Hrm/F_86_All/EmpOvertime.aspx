@@ -474,7 +474,7 @@
 
 
 
-                                        
+                             <%--           
                                          <asp:TemplateField HeaderText="System Day" >
                                             <ItemTemplate>
                                                 <asp:Label ID="lblsysday" runat="server" BackColor="Transparent"
@@ -490,7 +490,7 @@
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="right" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
 
 
                                     </Columns>
