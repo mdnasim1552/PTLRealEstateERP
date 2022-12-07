@@ -311,7 +311,7 @@ namespace RealERPWEB.F_34_Mgt
 
                     break;
             }
-
+            
             Session["tblreqadj"] = dt;
 
 
@@ -351,6 +351,20 @@ namespace RealERPWEB.F_34_Mgt
             string adjno = this.lbladjstmentno.Text.Trim().Substring(0, 3) + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy").Substring(7, 4) + this.lbladjstmentno.Text.Trim().Substring(3, 2) + ASTUtility.Right(this.lbladjstmentno.Text.Trim(), 5);
             this.SaveValue();
             DataTable dt = (DataTable)Session["tblreqadj"];
+
+
+            //DataRow[]   dr2 = dt.Select("rqty<adjstqty");
+
+           
+            //    if (dr2.Length > 0)
+            //    {
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Adjusted quantity must be equal or less balance quantity');", true);
+            //    return;
+            //    }
+
+           
+
+
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 string reqno = dt.Rows[i]["reqno"].ToString();
@@ -571,18 +585,19 @@ namespace RealERPWEB.F_34_Mgt
 
         }
 
-        protected void txtgvadjqty_TextChanged(object sender, EventArgs e)
-        {
-            int index = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;                             
-            double balqty = Convert.ToDouble("0" + ((Label)this.gvReqStatus.Rows[index].FindControl("lblgvBalqty")).Text.Trim());
-            double adjqty = Convert.ToDouble("0" + ((TextBox)this.gvReqStatus.Rows[index].FindControl("txtgvadjqty")).Text.Trim());
+        //protected void txtgvadjqty_TextChanged(object sender, EventArgs e)
+        //{
+        //    int index = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;                             
+        //    double balqty = Convert.ToDouble("0" + ((Label)this.gvReqStatus.Rows[index].FindControl("lblgvBalqty")).Text.Trim());
+        //    double adjqty = Convert.ToDouble("0" + ((TextBox)this.gvReqStatus.Rows[index].FindControl("txtgvadjqty")).Text.Trim());
 
-            if (balqty<adjqty)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Adjusted quantity must be equal or less balance quantity');", true);
-                return;
-            }
-        }
+        //    if (balqty<adjqty)
+        //    {
+        //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Adjusted quantity must be equal or less balance quantity');", true);
+        //        return;
+        //    }
+           
+        //}
 
        
     }
