@@ -125,6 +125,8 @@ namespace RealERPWEB.F_22_Sal
             {
                 string comcod = this.GetCompCode();
                DataTable dt1 = (DataTable)Session["tblcustinfo"];
+                if (dt1 == null)
+                    return;
                 string applicationDate = (dt1.Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(dt1.Rows[0]["appdate"]).ToString("dd-MMM-yyyy");
 
                 DataSet ds = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "MAXCUTOMERNUMBER", applicationDate, "", "", "", "", "", "", "", "");
@@ -286,6 +288,8 @@ namespace RealERPWEB.F_22_Sal
         private void Data_BindPrj()
         {
             DataTable dt = (DataTable)Session["tblprjinfo"];
+            if (dt.Rows.Count==0)
+                return;
             this.gvProjectInfo.DataSource = dt;
             this.gvProjectInfo.DataBind();
             this.GridTextDDLVisible();
@@ -293,6 +297,8 @@ namespace RealERPWEB.F_22_Sal
         private void Data_BindPer()
         {
             DataTable dt = (DataTable)Session["tblperinfo"];
+            if (dt.Rows.Count == 0)
+                return;
             this.gvperinfo.DataSource = dt;
             this.gvperinfo.DataBind();
             this.GridTextDDLVisiblePer();
@@ -301,6 +307,8 @@ namespace RealERPWEB.F_22_Sal
         private void Data_BindNominee()
         {
             DataTable dt = (DataTable)Session["tblnomineeinfo"];
+            if (dt.Rows.Count == 0)
+                return;
             this.GridViewNominee.DataSource = dt;
             this.GridViewNominee.DataBind();
             this.GridTextDDLVisibleNominee();
@@ -308,7 +316,10 @@ namespace RealERPWEB.F_22_Sal
 
         private void Data_BindNominated()
         {
+            
             DataTable dt = (DataTable)Session["tblnominatedinfo"];
+            if (dt.Rows.Count == 0)
+                return;
             this.GridViewNominated.DataSource = dt;
             this.GridViewNominated.DataBind();
             this.GridTextDDLVisibleNominated();
@@ -318,6 +329,8 @@ namespace RealERPWEB.F_22_Sal
         {
 
             DataTable dt = (DataTable)Session["tblpricedetail"];
+            if (dt.Rows.Count == 0)
+                return;
             this.GridViewPriceDetail.DataSource = dt;
             this.GridViewPriceDetail.DataBind();
         }
@@ -325,6 +338,8 @@ namespace RealERPWEB.F_22_Sal
         private void Data_BindRmrkDetail()
         {
             DataTable dt = (DataTable)Session["tblrmrkdetail"];
+            if (dt.Rows.Count == 0)
+                return;
             this.GridViewRemarks.DataSource = dt;
             this.GridViewRemarks.DataBind();
             //this.GridTextDDLVisibleRmrk();
@@ -664,17 +679,19 @@ namespace RealERPWEB.F_22_Sal
             }
         }
 
-        private void PrintSaleDeclaration() {
+        private void PrintSaleDeclaration() 
+        {
             this.ShowData();
+            string comcod = this.GetCompCode();
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comnam = hst["comnam"].ToString();
             string comadd = hst["comadd1"].ToString();
-
+            string comfadd = hst["comadd"].ToString().Replace("<br />", "\n");
             string comadd1 = "81, S. S. Khaled Road, Jamal Khan, Chattogram. Phone: +8802333354442, 02333354443, 02333351443";
             string contactCommunication = "Mobile: +8801755663636. E-mail: mail@cpdl.com.bd, Web: www.cpdl.com.bd";
 
-            string comcod = this.GetCompCode();
-
+           
+            string comlogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string modeofpay = this.cblpaytype.SelectedValue.ToString();
             string projectName = this.ddlProjectName.SelectedItem.Text;
             DataTable dt2 = (DataTable)Session["tblcustinfo"];
@@ -693,6 +710,9 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd1", comadd1));
+            Rpt1.SetParameters(new ReportParameter("comlogo", comlogo));
+            Rpt1.SetParameters(new ReportParameter("comfadd", comfadd));
+
             Rpt1.SetParameters(new ReportParameter("contactCommunication", contactCommunication));
 
             Rpt1.SetParameters(new ReportParameter("enrolmentdate", Convert.ToDateTime(dt2.Rows[0]["appdate"]).ToString("ddMMyyyy")));
@@ -757,8 +777,8 @@ namespace RealERPWEB.F_22_Sal
             DataTable dt4 = (DataTable)Session["tblnominee"];
             DataTable dt5 = (DataTable)Session["tblnominated"];
             DataTable dt10 = (DataTable)Session["tblrmrk"];
-            
-            
+
+
 
 
 
