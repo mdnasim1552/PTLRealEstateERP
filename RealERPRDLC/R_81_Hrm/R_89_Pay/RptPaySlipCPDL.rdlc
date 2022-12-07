@@ -2624,7 +2624,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Format(Fields!itax.Value, "#,##0;(#,##0); ")</Value>
+                                                    <Value>=Format(Fields!pfund.Value, "#,##0;(#,##0); ")</Value>
                                                     <Style>
                                                       <FontFamily>cambria</FontFamily>
                                                       <FontSize>9pt</FontSize>
