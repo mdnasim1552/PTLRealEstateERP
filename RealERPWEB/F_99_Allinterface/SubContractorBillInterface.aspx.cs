@@ -1936,13 +1936,16 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkWorkOrder");
+                HyperLink csAppEdit = (HyperLink)e.Row.FindControl("hlnkCsAppEdit");
 
                 string lreqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lreqno")).ToString();
                 string csircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "csircode")).ToString();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                string msrno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "msrno")).ToString(); 
 
                 hlink1.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Entry&genno=" + lreqno + "&sircode=" + csircode + "&actcode=" + pactcode;
-
+                //csAppEdit.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Entry&genno=" + lreqno + "&sircode=" + csircode + "&actcode=" + pactcode;
+                csAppEdit.NavigateUrl = "~/F_09_PImp/PurLabRequisition?Type=CSAppEdit&prjcode=" + pactcode + "&genno=" + lreqno + "&sircode=" + "" + "&recomsup=" + csircode + "&msrno=" + msrno;
             }
         }
 
@@ -2058,6 +2061,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 HyperLink hlnbillapp = (HyperLink)e.Row.FindControl("hlnklnkmb");
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lbtnPrintWorkOrder");
+                HyperLink hlnkEdit = (HyperLink)e.Row.FindControl("hlnkOrderEdit");
 
                 string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
                 string lreqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lreqno")).ToString();
@@ -2067,6 +2071,7 @@ namespace RealERPWEB.F_99_Allinterface
                 hlnbillapp.NavigateUrl = "~/F_09_PImp/BillingMBEntry?Type=Entry&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + sircode;
                 //F_09_PImp/PurLabIssue2?Type=Current&prjcode=&genno=&sircode=
                 hlink2.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Entry&genno=" + lreqno + "&sircode=" + sircode + "&actcode=" + pactcode + "&orderno=" + orderno;
+                hlnkEdit.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Edit&genno=" + lreqno + "&sircode=" + sircode + "&actcode=" + pactcode + "&orderno=" + orderno;
 
             } 
         }
