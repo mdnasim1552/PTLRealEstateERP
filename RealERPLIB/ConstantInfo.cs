@@ -776,6 +776,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1702000", "1702430", "F_17_Acc", "RptAccCollVsClearance?", "Type=CollVsClearance", "Cheque Received Vs. Clearance", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702431", "F_17_Acc", "RptAccCollVsClearance?", "Type=DailyPayment", "Payment Status(All)", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702432", "F_17_Acc", "RptAccCollVsClearance?", "Type=DetRealColl", "Real Collection - Details", "Accounts", "False", "False", "False", "False" }); ;
+            
 
             tblObj.Rows.Add(new Object[] { "1702000", "1702434", "F_17_Acc", "AccPettyCashApp?", "Type=Entry", "Petty Cash Bill Entry", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702435", "F_17_Acc", "AccTopPage?", "Type=pttycash", "Petty Cash Bill List", "Accounts", "False", "False", "False", "False" }); ;
@@ -1280,6 +1281,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2202264", "F_17_Acc", "RptAccCollVsClearance?", "Type=MonSales", "Month Wise Sales", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202265", "F_17_Acc", "RptAccCollVsClearance?", "Type=MonSalPerWise", "Month Wise Sales (Marketing Person)", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202274", "F_17_Acc", "RptAccCollVsClearance?", "Type=MonSalPerTarWise", "Month Report (Monthly Sales Target)", "Sales & Recovery", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2203000", "2202278", "F_17_Acc", "RptLetterOfAlotment?", "Type=Allotment", "Customer Sales Report", "Sales", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "2203000", "2202266", "F_22_Sal", "ProjectGroup", "", "Project Group", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202267", "F_22_Sal", "RptSalesRegister2", "", "Sales Register 2", "Sales & Recovery", "False", "False", "False", "False" });
@@ -7629,6 +7631,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0402000002", "14. Price List 02", "F_02_Fea/RptPrjFeasibility04?Type=PriceList02", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000003", "16. Month Wise Sales (Marketing Person)", "F_17_Acc/RptAccCollVsClearance?Type=MonSalPerWise&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000003", "17. Month Report (Monthly Sales Target)", "F_17_Acc/RptAccCollVsClearance?Type=MonSalPerTarWise&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0402000004", "18. Customer Sales Report", "F_17_Acc/RptLetterOfAlotment?Type=Allotment", "", true, "" });
 
 
             mnuTbl1.Rows.Add(new Object[] { "0426000000", "", "", "", true, "" });
