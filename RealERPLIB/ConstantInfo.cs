@@ -344,7 +344,8 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "0902000", "0902076", "F_09_PImp", "ConAssessment?", "Type=ConcAss", "Contractor Assessment", "Project Implementation", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0902000", "0902077", "F_09_PImp", "RptMonthConAss?", "Type=MnthAss", "Contractor Monthly Assessment", "Project Implementation", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0902000", "0902090", "F_09_PImp", "PurConWrkOrderEntry?", "Type=Entry", "Contractor Work Order(Acme)", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0902000", "0902090", "F_09_PImp", "PurConWrkOrderEntry?", "Type=Entry", "Contractor Work Order", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0902000", "0902091", "F_09_PImp", "PurConWrkOrderEntry?", "Type=Edit", "Contractor Work Order Edit", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0902000", "0902092", "F_09_PImp", "PurConWrkOrderEntry02?", "Type=Entry", "Contractor Work Order(Standard)", "Project Implementation", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "0902000", "0902095", "F_09_PImp", "BillingMBEntry?", "Type=Entry", "MB Entry", "Project Implementation", "False", "False", "False", "False" });
@@ -394,7 +395,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0903000", "0903311", "F_09_PImp", "PurLabRequisition?", "Type=Entry", "Sub-Contractor Bill Requisition", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0903000", "0903312", "F_09_PImp", "PurLabRequisition?", "Type=Edit", "Sub-Contractor Bill Requisition Edit", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0903000", "0903313", "F_09_PImp", "PurLabRequisition?", "Type=CSApproval", "Sub-Contractor Bill CS Approval", "Project Implementation", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0903000", "0903316", "F_09_PImp", "PurLabRequisition?", "Type=ApprovalEdit", "Sub-Contractor CS Approval Edit", "Project Implementation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0903000", "0903316", "F_09_PImp", "PurLabRequisition?", "Type=CSAppEdit", "Sub-Contractor CS Approval Edit", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0903000", "0903314", "F_09_PImp", "SubContracBillTracking?", "Type=billtrack", "Sub-Contractor Bill Tracking -01", "Project Implementation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0903000", "0903315", "F_09_PImp", "RptSubConTopsheetTypeWise?", "Type=TypeWise", "Sub-Contractor Top Sheet (Type Wise)", "Project Implementation", "False", "False", "False", "False" });
 
@@ -776,6 +777,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1702000", "1702430", "F_17_Acc", "RptAccCollVsClearance?", "Type=CollVsClearance", "Cheque Received Vs. Clearance", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702431", "F_17_Acc", "RptAccCollVsClearance?", "Type=DailyPayment", "Payment Status(All)", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702432", "F_17_Acc", "RptAccCollVsClearance?", "Type=DetRealColl", "Real Collection - Details", "Accounts", "False", "False", "False", "False" }); ;
+            
 
             tblObj.Rows.Add(new Object[] { "1702000", "1702434", "F_17_Acc", "AccPettyCashApp?", "Type=Entry", "Petty Cash Bill Entry", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702435", "F_17_Acc", "AccTopPage?", "Type=pttycash", "Petty Cash Bill List", "Accounts", "False", "False", "False", "False" }); ;
@@ -1280,6 +1282,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2202264", "F_17_Acc", "RptAccCollVsClearance?", "Type=MonSales", "Month Wise Sales", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202265", "F_17_Acc", "RptAccCollVsClearance?", "Type=MonSalPerWise", "Month Wise Sales (Marketing Person)", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202274", "F_17_Acc", "RptAccCollVsClearance?", "Type=MonSalPerTarWise", "Month Report (Monthly Sales Target)", "Sales & Recovery", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2203000", "2202278", "F_17_Acc", "RptLetterOfAlotment?", "Type=Allotment", "Customer Sales Report", "Sales", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "2203000", "2202266", "F_22_Sal", "ProjectGroup", "", "Project Group", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202267", "F_22_Sal", "RptSalesRegister2", "", "Sales Register 2", "Sales & Recovery", "False", "False", "False", "False" });
@@ -7629,6 +7632,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0402000002", "14. Price List 02", "F_02_Fea/RptPrjFeasibility04?Type=PriceList02", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000003", "16. Month Wise Sales (Marketing Person)", "F_17_Acc/RptAccCollVsClearance?Type=MonSalPerWise&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000003", "17. Month Report (Monthly Sales Target)", "F_17_Acc/RptAccCollVsClearance?Type=MonSalPerTarWise&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0402000004", "18. Customer Sales Report", "F_17_Acc/RptLetterOfAlotment?Type=Allotment", "", true, "" });
 
 
             mnuTbl1.Rows.Add(new Object[] { "0426000000", "", "", "", true, "" });
