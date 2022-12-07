@@ -1102,6 +1102,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptMonthPre.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\rptMonthyEarlyLeaveEmp.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\rptMonthyLateAttnEmp.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptNewEmpStatusCPDL.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptNewEmpStatusEdi.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptNewEmpStatus.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptRetiredEmployee.rdlc" />
