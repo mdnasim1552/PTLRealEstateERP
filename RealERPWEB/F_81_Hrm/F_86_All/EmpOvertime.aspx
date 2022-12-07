@@ -435,7 +435,7 @@
                                        
 
 
-                                        <asp:TemplateField HeaderText="System Hour">
+                                        <asp:TemplateField HeaderText="Total Hour">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvAmt" runat="server" BackColor="Transparent"
                                                     BorderStyle="None"
@@ -472,9 +472,25 @@
                                         </asp:TemplateField>
 
 
+                                                      
+                                         <asp:TemplateField HeaderText="System Hour" >
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblsyshour" runat="server" BackColor="Transparent"
+                                                    BorderStyle="None"
+                                                    Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "syshour")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="80px"></asp:Label>
 
+                                      
+                                            </ItemTemplate>
 
-                             <%--           
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+                               
                                          <asp:TemplateField HeaderText="System Day" >
                                             <ItemTemplate>
                                                 <asp:Label ID="lblsysday" runat="server" BackColor="Transparent"
@@ -490,7 +506,7 @@
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="right" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                        </asp:TemplateField>--%>
+                                        </asp:TemplateField>
 
 
                                     </Columns>
