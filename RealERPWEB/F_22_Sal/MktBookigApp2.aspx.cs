@@ -103,7 +103,6 @@ namespace RealERPWEB.F_22_Sal
                 ImageCorrespondent.ImageUrl = Url;
                 Session["imgCorrespondentUrl"] = Url;
             }
-
         }
 
 
