@@ -639,7 +639,7 @@
                     case 'gvfinal':
                         tblData = document.getElementById("<%=this.gvfinal.ClientID %>");
                         break;
-                    case 'gvsrec': 
+                    case 'gvsrec':
                         tblData = document.getElementById("<%=this.gvsrec.ClientID %>");
                         break;
                     case 'gvfrec':
@@ -2978,13 +2978,14 @@
 
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
-                                                    <asp:HyperLink ID="lnkWorkOrder" runat="server" ToolTip="MB" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
+                                                    <asp:HyperLink ID="lnkWorkOrder" runat="server" ToolTip='<%# (this.GetCompCode()=="3370" || this.GetCompCode()=="3101") ? "MB Info" : "Work Order"%>' Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                     </asp:HyperLink>
                                                     <asp:LinkButton ID="btnDelWrkodr" OnClick="btnDelWrkodr_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa  fa-recycle"></span> </asp:LinkButton>
-
+                                                    <asp:HyperLink ID="hlnkCsAppEdit" runat="server" ToolTip="Bill CS Approval Edit" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span style="color:blue" class="fa fa-edit"></span>
+                                                    </asp:HyperLink>
                                                 </ItemTemplate>
-                                                <ItemStyle Width="90px" />
-                                                <HeaderStyle HorizontalAlign="Center" Width="90px" VerticalAlign="Top" />
+                                                <ItemStyle Width="110px" />
+                                                <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
                                         </Columns>
@@ -3136,14 +3137,14 @@
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
                                                     <asp:HyperLink ID="lbtnPrintWorkOrder" runat="server" Target="_blank" CssClass="btn btn-default btn-xs" ToolTip="Print WorkOrder"><span style="color:green" class="fa fa-print"></span></asp:HyperLink>
-
                                                     <asp:HyperLink ID="hlnklnkmb" runat="server" ToolTip="Bill Generate" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                     </asp:HyperLink>
-                                                    <asp:LinkButton ID="btnDelmb" OnClick="btnDelmb_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa  fa-recycle"></span> </asp:LinkButton>
+                                                    <asp:LinkButton ID="btnDelmb" OnClick="btnDelmb_Click" ToolTip="Work Order Delete" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa  fa-recycle"></span> </asp:LinkButton>
+                                                    <asp:HyperLink ID="hlnkOrderEdit" runat="server" Target="_blank" CssClass="btn btn-default btn-xs" ToolTip="Work Order Edit"><span style="color:blue" class="fa fa-edit"></span></asp:HyperLink>
 
                                                 </ItemTemplate>
-                                                <ItemStyle Width="110px" />
-                                                <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
+                                                <ItemStyle Width="140px" />
+                                                <HeaderStyle HorizontalAlign="Center" Width="140px" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
                                         </Columns>
