@@ -1778,10 +1778,12 @@
                                 $('' + ChkBoxLstStatus + '> input').each(function (index, item) {
                                     if ($(item).val() == status) {
                                         $(item).attr('checked', true);
+                                        $(item).attr('disabled', '');
 
                                     }
                                     else {
                                         $(item).attr('checked', false);
+                                        $(item).attr('disabled', true);
 
 
                                     }
