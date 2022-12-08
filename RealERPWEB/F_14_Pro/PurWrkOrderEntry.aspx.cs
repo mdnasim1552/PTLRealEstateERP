@@ -3693,7 +3693,9 @@ namespace RealERPWEB.F_14_Pro
                 string Cperson = _ReportDataSet.Tables[1].Rows[0]["cperson"].ToString();
                 string Phone = _ReportDataSet.Tables[1].Rows[0]["phone"].ToString();
                 string mobile = _ReportDataSet.Tables[1].Rows[0]["mobile"].ToString();
+                string pcontact = _ReportDataSet.Tables[1].Rows[0]["pcontact"].ToString();
                 string supemail = _ReportDataSet.Tables[1].Rows[0]["supemail"].ToString();
+
 
 
                 DataTable dtterm = _ReportDataSet.Tables[2];
@@ -3945,12 +3947,12 @@ namespace RealERPWEB.F_14_Pro
                         txtAdvanced.Text = Convert.ToDouble("0" + this.txtadvAmt.Text).ToString("#,##0.00;(#,##0.00); ");
                         TextObject txtappby = rptwork.ReportDefinition.ReportObjects["txtappby"] as TextObject;
                         txtappby.Text = (comcod == "3335") ? "Head of Procurement" : "Approved By";
-                        TextObject txtPhoneNumber2 = rptwork.ReportDefinition.ReportObjects["txtPhoneNumber"] as TextObject;
-                        txtPhoneNumber2.Text = Phone;
-                        TextObject txtperson = rptwork.ReportDefinition.ReportObjects["txtperson"] as TextObject;
-                        txtperson.Text = Cperson;
+                        TextObject txtPhoneNumber2e = rptwork.ReportDefinition.ReportObjects["txtPhoneNumber"] as TextObject;
+                        txtPhoneNumber2e.Text = Phone;
                         TextObject txtsupemail = rptwork.ReportDefinition.ReportObjects["txtsupemail"] as TextObject;
                         txtsupemail.Text = supemail;
+                        TextObject txtcontact = rptwork.ReportDefinition.ReportObjects["txtcontact"] as TextObject;
+                        txtcontact.Text = pcontact;
                         // sign end 
                         break;
 
@@ -4013,9 +4015,9 @@ namespace RealERPWEB.F_14_Pro
 
 
 
-                TextObject txtconcernperson = rptwork.ReportDefinition.ReportObjects["txtconcernperson"] as TextObject;
-                txtconcernperson.Text = (cperson.Length > 0) ? cperson : "";
-                rptwork.ReportDefinition.Sections["GroupFooterSection3"].SectionFormat.EnableSuppress = (cperson.Length > 0) ? false : true;
+                //TextObject txtconcernperson = rptwork.ReportDefinition.ReportObjects["txtconcernperson"] as TextObject;
+                //txtconcernperson.Text = (cperson.Length > 0) ? cperson : "";
+                //rptwork.ReportDefinition.Sections["GroupFooterSection3"].SectionFormat.EnableSuppress = (cperson.Length > 0) ? false : true;
 
 
 

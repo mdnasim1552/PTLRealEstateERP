@@ -5701,7 +5701,7 @@ namespace RealERPWEB.F_21_MKT
                         ChkBoxLstStatus.DataSource = dts;
                         ChkBoxLstStatus.DataBind();
                         ChkBoxLstStatus.SelectedValue = (lstleadstatus.Length > 0 ? lstleadstatus : ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim());
-
+                        ChkBoxLstStatus.Enabled = false;
 
                         int index = 0;
                         DataRow[] rows = dts.Select("gcod='" + lstleadstatus + "'");
@@ -5711,8 +5711,8 @@ namespace RealERPWEB.F_21_MKT
 
                         }
                         for (int m = index; m < dts.Rows.Count; m++)
-                        { 
-                            ChkBoxLstStatus.Items[m].Enabled = false;
+                        {
+                            ChkBoxLstStatus.Items[m].Enabled = true;                             
                         }
 
                         break;
