@@ -37,7 +37,36 @@ namespace RealEntity.C_81_Hrm.C_92_mgt
           public EmployeeInfo() { }
 
       }
+        [Serializable]
+        public class EmployeeIDCardInfo
+        {
+            //a.comcod,  a.rowid,  a.company, a.secid, a.desigid,  a.empid, a.idcardno, a.companyname, a.section, a.desig, a.empname, joindate=format(a.joindate,'dd-MMM-yyy'), a.birthdate, a.slength,resdat
+            public string comcod { get; set; }
+            public string rowid { get; set; }
+            public string company { get; set; }
+            public string secid { get; set; }
+            public string desigid { get; set; }
+            public string empid { get; set; }
+            public string idcardno { get; set; }
+            public string companyname { get; set; }
+            public string section { get; set; }
+            public string desig { get; set; }
+            public string empname { get; set; }
+            public string empimg { get; set; }
+            public string joindate { get; set; }
+            public string birthdate { get; set; }
+            public string slength { get; set; }
+            public string blood { get; set; }
+            public decimal salary { get; set; }
+            public DateTime resdat { get; set; }
+            public string mobile { get; set; }
+            public string email { get; set; }
+            public string extention { get; set; }
 
+
+            public EmployeeIDCardInfo() { }
+
+        }
         [Serializable]
         public class EmpTransList
         {

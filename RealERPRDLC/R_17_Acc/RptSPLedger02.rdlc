@@ -860,7 +860,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>0.02778in</Top>
+            <Left>0.01042in</Left>
             <Height>0.625in</Height>
             <Width>7.73957in</Width>
             <Style>
@@ -870,13 +870,13 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>0.78125in</Height>
+        <Height>0.625in</Height>
         <Style />
       </Body>
-      <Width>7.73958in</Width>
+      <Width>7.74999in</Width>
       <Page>
         <PageHeader>
-          <Height>0.9675in</Height>
+          <Height>0.99736in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -902,7 +902,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.01736in</Top>
-              <Left>1.26389in</Left>
+              <Left>1.25347in</Left>
               <Height>0.15625in</Height>
               <Width>5.22444in</Width>
               <Style>
@@ -911,8 +911,6 @@
                 </Border>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
             <Textbox Name="Textbox2">
@@ -935,8 +933,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.1875in</Top>
-              <Left>1.26389in</Left>
+              <Top>0.19444in</Top>
+              <Left>1.25347in</Left>
               <Height>0.15625in</Height>
               <Width>5.22444in</Width>
               <ZIndex>1</ZIndex>
@@ -946,8 +944,6 @@
                 </Border>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
             <Textbox Name="Textbox3">
@@ -970,9 +966,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.34375in</Top>
-              <Left>1.26389in</Left>
-              <Height>0.15625in</Height>
+              <Top>0.37847in</Top>
+              <Left>1.25347in</Left>
+              <Height>0.20833in</Height>
               <Width>5.22444in</Width>
               <ZIndex>2</ZIndex>
               <Style>
@@ -981,8 +977,6 @@
                 </Border>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
             <Textbox Name="Textbox5">
@@ -999,15 +993,15 @@
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Center</TextAlign>
+                    <TextAlign>Right</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.51389in</Top>
-              <Left>1.26389in</Left>
-              <Height>0.15625in</Height>
-              <Width>5.22444in</Width>
+              <Top>0.65972in</Top>
+              <Left>4.91569in</Left>
+              <Height>0.21055in</Height>
+              <Width>2.8343in</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border>
@@ -1042,6 +1036,7 @@
                       <Value>=Parameters!suppName.Value</Value>
                       <Style>
                         <FontFamily>Century Gothic</FontFamily>
+                        <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -1049,9 +1044,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>suppName</rd:DefaultName>
-              <Top>0.72375in</Top>
-              <Height>0.19444in</Height>
-              <Width>7.73957in</Width>
+              <Top>0.65972in</Top>
+              <Left>0.01042in</Left>
+              <Height>0.21055in</Height>
+              <Width>4.83583in</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border>

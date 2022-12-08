@@ -2245,6 +2245,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102065", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=joiningRpt", "Joining Report Summary", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102066", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=JoinigdWise", "New Joiners List", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102067", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=EmpList", "Employee List", "HR Management", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102267", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=EmpIDCard", "Employee ID Card", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102068", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=InActiveEmpList", "Inactive Employee List", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102069", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=TotalEmplist", "Total Employee List", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102110", "F_81_Hrm/F_83_Att", "RptEmpAbsCount?", "Type=", "Employee Absent Count List", "HR Management", "False", "False", "False", "False" }); ;
@@ -3244,6 +3245,7 @@ namespace RealERPLIB
             //tblObj.Rows.Add(new Object[] { "92070", "EmpStatus02?", "Type=joiningRpt", "Joining Report Summary", "Management", "False", "False", "False", "False" });;
             //tblObj.Rows.Add(new Object[] { "92071", "EmpStatus02?", "Type=JoinigdWise", "New Joiners List", "Management", "False", "False", "False", "False" });;
             //tblObj.Rows.Add(new Object[] { "92072", "EmpStatus02?", "Type=EmpList", "Employee List", "Management", "False", "False", "False", "False" });;
+            //tblObj.Rows.Add(new Object[] { "92272", "EmpStatus02?", "Type=EmpIdCard", "Employee ID Card", "Management", "False", "False", "False", "False" });;
             //tblObj.Rows.Add(new Object[] { "92073", "EmpStatus02?", "Type=TransList", "Employee Transfer List", "Management", "False", "False", "False", "False" });;
             //tblObj.Rows.Add(new Object[] { "92074", "EmpStatus02?", "Type=PenEmpCon", "Pending Employee Confirmation", "Management", "False", "False", "False", "False" });;
             //tblObj.Rows.Add(new Object[] { "92075", "EmpStatus02?", "Type=EmpCon", "Employee Confirmation", "Management", "False", "False", "False", "False" });;
@@ -15804,6 +15806,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0206000004", "01. Department Permission Access", "F_81_Hrm/F_92_Mgt/PayrollLink", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000004", "01.Section Wise Permission", "F_81_Hrm/F_92_Mgt/EntrySectionWisePermission", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000005", "06. Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=EmpList&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000026", "06. Employee ID Card", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=EmpIDCard&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000006", "06. Inactive Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=InActiveEmpList&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000007", "06. Total Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=TotalEmplist&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000008", "08. Pending Employee Confirmation", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=PenEmpCon&comcod=", "", true, "" });

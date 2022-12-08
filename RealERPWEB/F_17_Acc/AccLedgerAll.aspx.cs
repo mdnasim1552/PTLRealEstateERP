@@ -939,9 +939,9 @@ namespace RealERPWEB.F_17_Acc
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
             Rpt1.SetParameters(new ReportParameter("compLogo", ComLogo));
-            Rpt1.SetParameters(new ReportParameter("txtDate", "(From " + fdate + " To " + tdate + ")"));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "SPECIAL LEDGER " + txthead));
-            Rpt1.SetParameters(new ReportParameter("suppName", "Resource Name: " + suppName));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "From " + fdate + " To " + tdate ));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "SPECIAL LEDGER "));
+            Rpt1.SetParameters(new ReportParameter("suppName", "Name: " + suppName));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", txtuserinfo));
 
 
