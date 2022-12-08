@@ -53,6 +53,11 @@
             $('.chzn-select').chosen({ search_contains: true });
         }
 
+
+        function otdetails() {
+            $('#otdetails').modal('toggle');
+        }
+
     </script>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -236,7 +241,7 @@
 
                                 <asp:GridView ID="gvEmpOverTime" runat="server" AllowPaging="True"
                                     AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                    OnPageIndexChanging="gvEmpOverTime_PageIndexChanging" ShowFooter="True"
+                                    OnPageIndexChanging="gvEmpOverTime_PageIndexChanging" ShowFooter="True" OnRowCommand="gvEmpOverTime_RowCommand"
                                     OnRowDeleting="gvEmpOverTime_RowDeleting">
                                     <RowStyle />
                                     <Columns>
@@ -478,14 +483,14 @@
                                                       
                                          <asp:TemplateField HeaderText="System Hour" >
                                             <ItemTemplate>
-                                                <asp:Label ID="lblsyshour" runat="server" BackColor="Transparent"
+     <%--                                           <asp:Label ID="lblsyshour" runat="server" BackColor="Transparent"
                                                     BorderStyle="None"
                                                     Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "syshour")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="80px"></asp:Label>
-                                               <asp:LinkButton runat="server" ID="lnksyshour" OnClick="lnksyshour_Click"></asp:LinkButton>
+                                               <asp:LinkButton runat="server" ID="lnksyshour" OnClick="lnksyshour_Click"></asp:LinkButton>--%>
 
-                                      
+                                          <asp:Button runat="server" ID="lblsyshour" Width="40px" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "syshour")).ToString("#,##0;(#,##0); ") %>' CommandArgument="H" />
                                             </ItemTemplate>
 
                                             <FooterStyle HorizontalAlign="Right" />
@@ -497,13 +502,14 @@
                                
                                          <asp:TemplateField HeaderText="System Day" >
                                             <ItemTemplate>
-                                                <asp:Label ID="lblsysday" runat="server" BackColor="Transparent"
+               <%--                                 <asp:Label ID="lblsysday" runat="server" BackColor="Transparent"
                                                     BorderStyle="None"
                                                     Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "daycount")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="80px"></asp:Label>
-                                               <asp:LinkButton runat="server" ID="lnksysdaycount" OnClick="lnksysdaycount_Click"></asp:LinkButton>
+                                               <asp:LinkButton runat="server" ID="lnksysdaycount" OnClick="lnksysdaycount_Click"></asp:LinkButton>--%>
 
+                                          <asp:Button runat="server" ID="lblsysday" Width="40px"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "daycount")).ToString("#,##0;(#,##0); ") %>' CommandArgument="D" />
                                       
                                             </ItemTemplate>
 
@@ -2337,11 +2343,11 @@
             </div>
 
 
-<%--        <div class="modal fade" id="otdetails" tabindex="-1" role="dialog" aria-labelledby="NoticeModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+        <div class="modal fade" id="otdetails" tabindex="-1" role="dialog" aria-labelledby="NoticeModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document" >
                 <div class="modal-content">
                     <div class="modal-header order-bottom">
-                        <h6 class="modal-title font-weight-bold" id="">Notice</h6>
+                        <h6 class="modal-title font-weight-bold" id="">Overtime Details</h6>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -2365,10 +2371,43 @@
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="ID Card">
+                                                <asp:TemplateField HeaderText="ID Card" Visible="false">
                                                 <ItemTemplate>
-                                                    <asp:Label runat="server" Style="text-align: center" ID="lblidcard"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcard")) %>'></asp:Label>
+                                                    <asp:Label runat="server" Style="text-align: center" ID="lblempid"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            </asp:TemplateField>
+
+                                                  <asp:TemplateField HeaderText="Date">
+                                                <ItemTemplate>
+                                                    <asp:Label runat="server" Style="text-align: center" ID="lbldate"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "dayid")) %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="In Time">
+                                                <ItemTemplate>
+                                                    <asp:Label runat="server" Style="text-align: center" ID="lblintime"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "intime")) %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            </asp:TemplateField>
+
+                                                 <asp:TemplateField HeaderText="Out Time">
+                                                <ItemTemplate>
+                                                    <asp:Label runat="server" Style="text-align: center" ID="lblintime"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "outtime")) %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            </asp:TemplateField>
+
+                                            
+                                                 <asp:TemplateField HeaderText="Total Hour">
+                                                <ItemTemplate>
+                                                    <asp:Label runat="server" Style="text-align: center" ID="lblttlhour"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ttlhour")) %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
@@ -2387,7 +2426,7 @@
                     </div>
                 </div>
             </div>
-        </div>--%>
+        </div>
 
         </ContentTemplate>
     </asp:UpdatePanel>

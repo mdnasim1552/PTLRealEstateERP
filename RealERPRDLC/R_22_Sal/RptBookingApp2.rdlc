@@ -6175,7 +6175,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>=FormatNumber(Parameters!bookingmoney.Value,2)+" Amount"</Value>
+                                                <Value>=FormatNumber(Parameters!bookingmoney.Value,2)</Value>
                                                 <Style />
                                               </TextRun>
                                             </TextRuns>
