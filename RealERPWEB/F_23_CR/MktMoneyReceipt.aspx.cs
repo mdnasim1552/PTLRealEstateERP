@@ -1294,7 +1294,10 @@ namespace RealERPWEB.F_23_CR
                         break;
                 }
 
-
+                if (comcod == "3370")
+                {
+                    this.lbtRefreshMrr_Click(null, null);
+                }
             }
             catch (Exception ex)
             {

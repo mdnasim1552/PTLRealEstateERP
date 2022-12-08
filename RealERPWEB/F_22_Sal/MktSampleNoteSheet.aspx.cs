@@ -986,6 +986,8 @@ namespace RealERPWEB.F_22_Sal
             this.lblvalnoofemi.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["noofemi"]).ToString("#,##0;(#,##0);");
             this.lblvalemi.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["emi"]).ToString("#,##0;(#,##0);");
             this.lblvalhandovdate.InnerText = Convert.ToDateTime(ds1.Tables[0].Rows[0]["handovdate"]).ToString("dd-MMM-yyyy");
+            this.lblfvalinstallmentper.InnerText = Convert.ToDateTime(ds1.Tables[0].Rows[0]["handovper"]).ToString("#,##0;(#,##0);");
+
             this.lblvalfvpsft.InnerText = bfvpsft.ToString("#,##0;(#,##0);");
             this.lblvalpvpersft.InnerText = bpvpsft.ToString("#,##0;(#,##0);");
 

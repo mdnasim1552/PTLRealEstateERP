@@ -741,7 +741,7 @@ namespace RealERPWEB.F_14_Pro
             string comnam = hst["comnam"].ToString();
             string compname = hst["compname"].ToString();
             string comsnam = hst["comsnam"].ToString();
-            string comadd = hst["comadd1"].ToString();
+            string comadd = hst["comadd"].ToString().Replace("<br />", "\n");
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
@@ -851,6 +851,7 @@ namespace RealERPWEB.F_14_Pro
                 }
             }
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
             Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
             Rpt1.SetParameters(new ReportParameter("Username", Username));
