@@ -265,6 +265,10 @@
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ordqty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="70px" BackColor="Transparent" Style="text-align: right" BorderStyle="None"></asp:TextBox>
                                         </ItemTemplate>
+                                         <FooterTemplate>
+                                            <asp:Label ID="lblgvFQty" runat="server" Style="text-align: right"
+                                                Width="70px" Font-Size="12px" ForeColor="#000"></asp:Label>
+                                        </FooterTemplate>
                                         <ItemStyle Font-Size="10pt" HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
@@ -280,8 +284,12 @@
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvAmount" runat="server"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ordamt")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                Width="70px" BackColor="Transparent" Style="text-align: right" BorderStyle="None"></asp:TextBox>
+                                                Width="80px" BackColor="Transparent" Style="text-align: right" BorderStyle="None"></asp:TextBox>
                                         </ItemTemplate>
+                                         <FooterTemplate>
+                                            <asp:Label ID="lblgvFamount" runat="server" Style="text-align: right"
+                                                Width="80px" Font-Size="12px" ForeColor="#000"></asp:Label>
+                                        </FooterTemplate>
                                         <ItemStyle Font-Size="10pt" HorizontalAlign="Center" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Remarks">

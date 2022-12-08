@@ -36,7 +36,10 @@ namespace RealERPWEB.F_09_PImp
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "Entry") ? "Sub-Contractor Bill Requisition"
-                    : (this.Request.QueryString["Type"].ToString() == "Edit") ? " Sub-Contractor Bill Requisition Edit" : "Labour Issue Information";
+                    : (this.Request.QueryString["Type"].ToString() == "Edit") ? " Sub-Contractor Bill Requisition Edit"
+                    : (this.Request.QueryString["Type"].ToString() == "CSApproval") ? " Sub-Contractor Bill CS Approval"
+                    : (this.Request.QueryString["Type"].ToString() == "CSAppEdit") ? " Sub-Contractor Bill CS Approval Edit"
+                    : "Labour Issue Information";
 
 
 
@@ -630,7 +633,7 @@ namespace RealERPWEB.F_09_PImp
                 case "3370": //cpdl
                 case "3101": //pintech
 
-                    if (this.Request.QueryString["Type"] == "CSApproval")
+                    if (this.Request.QueryString["Type"] == "CSApproval" || this.Request.QueryString["Type"] == "CSAppEdit")
                     {
                         recom = this.Request.QueryString["recomsup"].ToString();
                     }
@@ -787,7 +790,7 @@ namespace RealERPWEB.F_09_PImp
         protected void grvissue_DataBind()
         {
             string comcod = this.GetCompCode();
-            if (this.Request.QueryString["Type"] == "CSApproval")
+            if (this.Request.QueryString["Type"] == "CSApproval" || this.Request.QueryString["Type"] == "CSAppEdit")
             {
                 this.grvissue.Columns[14].Visible = true;
                 this.grvissue.Columns[15].Visible = true;
@@ -852,7 +855,7 @@ namespace RealERPWEB.F_09_PImp
                             dr1["balqty"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["balqty"]).ToString();
                             balqty = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["balqty"].ToString());
                             dr1["balamt"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["balamt"]).ToString();
-                            dr1["reqqty"] = (comcod == "3370" || comcod == "3101" )? balqty : 0.00;  
+                            dr1["reqqty"] = (comcod == "3370" || comcod == "3101") ? balqty : 0.00;
                             dr1["bgdrat"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["bgdrat"]).ToString();
                             dr1["reqrat"] = Convert.ToDouble(((DataTable)ViewState["itemlist"]).Select("rsircode='" + rsircode + "'")[0]["isurat"]).ToString();
                             dr1["amount"] = 0.00;
@@ -1068,30 +1071,40 @@ namespace RealERPWEB.F_09_PImp
 
                 double amount = ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtgvamount")).Text.Trim());
                 string csircode = ((DropDownList)this.grvissue.Rows[i].FindControl("DdlContractor")).SelectedValue.ToString();
-               
+                CheckBox approve = (CheckBox)this.grvissue.Rows[i].FindControl("chkapproved");
+
+
                 TblRowIndex = (grvissue.PageIndex) * grvissue.PageSize + i;
                 string rsirdesc = dt.Rows[TblRowIndex]["rsirdesc"].ToString();
 
-
                 string comcod = this.GetCompCode();
+                bool aprvstatus = false;
                 switch (comcod)
                 {
                     case "3101":
                     case "3370":
-                        if (dgvQty > balqty) 
+                        if (dgvQty > balqty)
                         {
                             string msg = rsirdesc + " Requisition Qty Can't Excess Balance Qty .. !! ";
                             ((Label)this.Master.FindControl("lblmsg")).Text = msg;
                             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                             return;
                         }
+                        amount = dgvQty * labrate;
                         break;
+
+                    case "1205": // p2p part
+                    case "3351": // p2p part
+                    case "3352": // p2p part
+                        amount = amount > 0 ? amount : dgvQty * labrate;
+                        labrate = amount > 0 ? amount / dgvQty : labrate;
+                        break;
+
                     default:
+                        amount = dgvQty * labrate;
                         break;
                 }
 
-                CheckBox approve = (CheckBox)this.grvissue.Rows[i].FindControl("chkapproved");
-                bool aprvstatus = false;
                 if (approve.Checked)
                 {
                     aprvstatus = true;
@@ -1099,11 +1112,7 @@ namespace RealERPWEB.F_09_PImp
                 else
                 {
                     aprvstatus = false;
-                }               
-
-                amount = amount > 0 ? amount : dgvQty * labrate;
-                labrate = amount > 0 ? amount / dgvQty : labrate;
-
+                }
                 dt.Rows[TblRowIndex]["reqqty"] = dgvQty;
                 dt.Rows[TblRowIndex]["reqrat"] = labrate;
                 dt.Rows[TblRowIndex]["reqamt"] = amount;
@@ -1257,13 +1266,17 @@ namespace RealERPWEB.F_09_PImp
                 string comcod = this.GetCompCode();
                 switch (comcod)
                 {
-                    case "3101": // pintech
-                    case "3370": // cpdl
                     case "1205": // p2p
                     case "3351": // p2p
                     case "3352": // p2p
                     case "8306": // p2p
                         txtlabrate.ReadOnly = true;
+                        txtgvamount.ReadOnly = true;
+                        break;
+
+                    case "3101": // ptl
+                    case "3370": // cpdl
+                        txtlabrate.ReadOnly = false;
                         txtgvamount.ReadOnly = true;
                         break;
 
@@ -1495,7 +1508,7 @@ namespace RealERPWEB.F_09_PImp
 
         }
 
-        protected void chkAllapproved_CheckedChanged(object sender, EventArgs e) 
+        protected void chkAllapproved_CheckedChanged(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)ViewState["tblbillreq"];
             int i, index;

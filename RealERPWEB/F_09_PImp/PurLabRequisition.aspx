@@ -210,9 +210,9 @@
                                             <asp:Label ID="lblLabour" runat="server" CssClass=" lblTxt lblName" Text="Labour"></asp:Label>
                                             <asp:TextBox ID="txtSearchLabour" runat="server" CssClass="inputTxt inputDateBox" Visible="false"></asp:TextBox>
                                             <asp:LinkButton ID="ibtnSearchMaterisl" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnSearchMaterisl_Click" TabIndex="2" Visible="false"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                            <div class="col-md-3">
+                                            <div class="col-md-4">
 
-                                                <asp:ListBox ID="DropCheck1" runat="server" CssClass="form-control" Style="min-width: 100px !important;" SelectionMode="Multiple"></asp:ListBox>
+                                                <asp:ListBox ID="DropCheck1" runat="server" CssClass="form-control" Style="min-width: 140px !important;" SelectionMode="Multiple"></asp:ListBox>
 
                                             </div>
                                             <div class="col-md-2">
