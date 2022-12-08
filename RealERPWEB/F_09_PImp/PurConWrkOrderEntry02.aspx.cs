@@ -286,7 +286,10 @@ namespace RealERPWEB.F_09_PImp
                 string comncdat = Convert.ToDateTime(ds1.Tables[1].Rows[0]["comncdat"].ToString()).ToString("dd-MMM-yyyy"); 
                 string compltdat = Convert.ToDateTime(ds1.Tables[1].Rows[0]["compltdat"].ToString()).ToString("dd-MMM-yyyy");
                 string term = this.txtTerm.Text.ToString();
-
+                string proposalform = ds1.Tables[3].Rows[0]["froms"].ToString();
+                string companyname = " ";
+                string companyAddress = " ";
+                string signature = " ";
                 LocalReport Rpt1 = new LocalReport();     
 
 
@@ -297,36 +300,39 @@ namespace RealERPWEB.F_09_PImp
                 if (check)
                 {
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptProposalFromAcmeConst", lst, null, null);
-
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("RptTitle", "Proposal Form"));
+                    Rpt1.SetParameters(new ReportParameter("proposalform", proposalform));
+                    Rpt1.SetParameters(new ReportParameter("companyname", companyname));
+                    Rpt1.SetParameters(new ReportParameter("companyAddress", companyAddress));
+                    Rpt1.SetParameters(new ReportParameter("signature", signature));
                 }
                 else
                 {
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrderAcmeConst", lst, null, null);
-
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("term", term));
+                    Rpt1.SetParameters(new ReportParameter("RptTitle", "Work Order"));
+                    Rpt1.SetParameters(new ReportParameter("typeofcont", typeofcont));
+                    Rpt1.SetParameters(new ReportParameter("contactno", contactno));
+                    Rpt1.SetParameters(new ReportParameter("comncdat", comncdat));
+                    Rpt1.SetParameters(new ReportParameter("compltdat", compltdat));
+                    Rpt1.SetParameters(new ReportParameter("supaddress", supaddress));
+                    Rpt1.SetParameters(new ReportParameter("nameofContrator", nameofContrator));
+                    Rpt1.SetParameters(new ReportParameter("nameofCompany", nameofCompany));
                 }
               
 
 
-                Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
                 Rpt1.SetParameters(new ReportParameter("orderno", orderno));
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
                 Rpt1.SetParameters(new ReportParameter("CurDate",CurDate1));
                 Rpt1.SetParameters(new ReportParameter("refNo", refNo1));
                 Rpt1.SetParameters(new ReportParameter("projname", projname));
-                Rpt1.SetParameters(new ReportParameter("prjaddress", prjaddress));
-                Rpt1.SetParameters(new ReportParameter("typeofcont", typeofcont));
-                Rpt1.SetParameters(new ReportParameter("contactno", contactno));
-                Rpt1.SetParameters(new ReportParameter("comncdat", comncdat));
-                Rpt1.SetParameters(new ReportParameter("compltdat", compltdat));
-                Rpt1.SetParameters(new ReportParameter("supaddress", supaddress));                              
-                Rpt1.SetParameters(new ReportParameter("subject", subject));                
-                Rpt1.SetParameters(new ReportParameter("RptTitle", "Work Order"));
-                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
-                Rpt1.SetParameters(new ReportParameter("nameofContrator", nameofContrator));
-                Rpt1.SetParameters(new ReportParameter("nameofCompany", nameofCompany));
-                Rpt1.SetParameters(new ReportParameter("term", term));
-               
+                Rpt1.SetParameters(new ReportParameter("prjaddress", prjaddress));                                             
+                Rpt1.SetParameters(new ReportParameter("subject", subject));                  
+                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));               
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
 
 

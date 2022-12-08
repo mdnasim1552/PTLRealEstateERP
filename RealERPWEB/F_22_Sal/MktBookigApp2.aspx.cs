@@ -103,7 +103,6 @@ namespace RealERPWEB.F_22_Sal
                 ImageCorrespondent.ImageUrl = Url;
                 Session["imgCorrespondentUrl"] = Url;
             }
-
         }
 
 
@@ -124,7 +123,7 @@ namespace RealERPWEB.F_22_Sal
             try
             {
                 string comcod = this.GetCompCode();
-               DataTable dt1 = (DataTable)Session["tblcustinfo"];
+                DataTable dt1 = (DataTable)Session["tblcustinfo"];
                 if (dt1 == null)
                     return;
                 string applicationDate = (dt1.Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(dt1.Rows[0]["appdate"]).ToString("dd-MMM-yyyy");
@@ -200,7 +199,7 @@ namespace RealERPWEB.F_22_Sal
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
             try
-             {
+            {
                 if (this.lbtnOk.Text == "Ok")
                 {
                     this.lbtnOk.Text = "New";
@@ -275,7 +274,7 @@ namespace RealERPWEB.F_22_Sal
 
             this.cblintavailloan.SelectedValue = (dt.Rows.Count == 0) ? "No" : dt.Rows[0]["intavail"].ToString();
             this.cblpaytype.SelectedValue = (dt.Rows.Count == 0) ? "OneTime" : dt.Rows[0]["paymode"].ToString();
-                       
+
             ds2.Dispose();
             this.Data_BindPrj();
             this.Data_BindPer();
@@ -288,7 +287,7 @@ namespace RealERPWEB.F_22_Sal
         private void Data_BindPrj()
         {
             DataTable dt = (DataTable)Session["tblprjinfo"];
-            if (dt.Rows.Count==0)
+            if (dt.Rows.Count == 0)
                 return;
             this.gvProjectInfo.DataSource = dt;
             this.gvProjectInfo.DataBind();
@@ -316,7 +315,7 @@ namespace RealERPWEB.F_22_Sal
 
         private void Data_BindNominated()
         {
-            
+
             DataTable dt = (DataTable)Session["tblnominatedinfo"];
             if (dt.Rows.Count == 0)
                 return;
@@ -418,13 +417,13 @@ namespace RealERPWEB.F_22_Sal
                 switch (Gcode)
                 {
 
-                    case "01307":                
+                    case "01307":
                         ((TextBox)this.GridViewNominated.Rows[i].FindControl("txtgvValNominated")).Visible = false;
                         ((TextBox)this.GridViewNominated.Rows[i].FindControl("txtgvdValNominated")).Visible = true;
                         break;
 
                     default:
-                        
+
                         break;
                 }
             }
@@ -574,7 +573,7 @@ namespace RealERPWEB.F_22_Sal
                 string Gcode = ((Label)this.GridViewNominated.Rows[i].FindControl("lblgvItmCodeper")).Text.Trim();
                 string gtype = ((Label)this.GridViewNominated.Rows[i].FindControl("lgvgvalNominated")).Text.Trim();
                 string Gvalue = ((TextBox)this.GridViewNominated.Rows[i].FindControl("txtgvValNominated")).Text.Trim();
-                
+
 
                 if (Gcode == "01307")
                 {
@@ -582,7 +581,7 @@ namespace RealERPWEB.F_22_Sal
                     Gvalue = (((TextBox)this.GridViewNominated.Rows[i].FindControl("txtgvdValNominated")).Text.Trim() == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.GridViewNominated.Rows[i].FindControl("txtgvdValNominated")).Text.Trim();
                 }
                 Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : (gtype == "N") ? Convert.ToDouble("0" + Gvalue).ToString() : Gvalue;
-                
+
                 dtntd.Rows[i]["gdesc1"] = Gvalue;
             }
             Session["tblnominatedinfo"] = dtntd;
@@ -674,12 +673,13 @@ namespace RealERPWEB.F_22_Sal
             {
                 this.PrintSaleDeclaration();
             }
-            else {
+            else
+            {
                 this.PrintBookingApplication();
             }
         }
 
-        private void PrintSaleDeclaration() 
+        private void PrintSaleDeclaration()
         {
             this.ShowData();
             string comcod = this.GetCompCode();
@@ -690,7 +690,7 @@ namespace RealERPWEB.F_22_Sal
             string comadd1 = "81, S. S. Khaled Road, Jamal Khan, Chattogram. Phone: +8802333354442, 02333354443, 02333351443";
             string contactCommunication = "Mobile: +8801755663636. E-mail: mail@cpdl.com.bd, Web: www.cpdl.com.bd";
 
-           
+
             string comlogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string modeofpay = this.cblpaytype.SelectedValue.ToString();
             string projectName = this.ddlProjectName.SelectedItem.Text;
@@ -737,7 +737,8 @@ namespace RealERPWEB.F_22_Sal
         }
 
 
-        private void PrintBookingApplication() {
+        private void PrintBookingApplication()
+        {
             this.ShowData();
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comnam = hst["comnam"].ToString();
@@ -921,9 +922,9 @@ namespace RealERPWEB.F_22_Sal
             ds1.Merge(dtntd);
             ds1.Merge(dtpdt);
             ds1.Merge(dtrmrk);
-            
 
-            ds1.Tables[0].TableName = "tbl1";            
+
+            ds1.Tables[0].TableName = "tbl1";
             ds1.Tables[0].TableName = "tbl2";
             ds1.Tables[0].TableName = "tbl3";
             ds1.Tables[0].TableName = "tbl4";
@@ -1151,8 +1152,6 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-
-
         protected void lnkbtnImg_Click(object sender, EventArgs e)
         {
             try
@@ -1201,22 +1200,20 @@ namespace RealERPWEB.F_22_Sal
         //    this.Data_BindPriceDetail();
         //}
 
-       
+
         protected void llbtnCalculation_Click(object sender, EventArgs e)
         {
             int i = 0;
             DataTable dt2 = (DataTable)Session["tblpricedetail"];
-            foreach (GridViewRow gv1 in  GridViewPriceDetail.Rows)
+            foreach (GridViewRow gv1 in GridViewPriceDetail.Rows)
             {
-                
-                double amount =Convert.ToDouble("0"+ ((TextBox)gv1.FindControl("txtgvValAmount")).Text.Trim());
+
+                double amount = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvValAmount")).Text.Trim());
                 dt2.Rows[i]["amount"] = amount;
                 i++;
             }
 
-
             DataTable dt1 = (DataTable)Session["tblprjinfo"];
-           
             double usize = Convert.ToDouble(dt1.Select("gcod='65021'")[0]["gdesc1"]);
             double rate = Convert.ToDouble(dt2.Select("Code='01'")[0]["amount"]);
 
@@ -1243,7 +1240,7 @@ namespace RealERPWEB.F_22_Sal
             this.TextBookingAmt.Text = payAmount.ToString("#,##0;(#,##0); ");
         }
 
-       
+
 
 
         //private void LoadImg()
@@ -1254,5 +1251,7 @@ namespace RealERPWEB.F_22_Sal
 
         //    DataSet dt = SalData.GetTransInfo (comcod, "SP_ENTRY_DUMMYSALSMGT", "GETCUSIMG", pactcode, usircode);
         //}
+
+
     }
 }
