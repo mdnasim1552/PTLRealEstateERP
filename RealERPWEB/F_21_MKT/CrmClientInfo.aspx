@@ -1778,10 +1778,12 @@
                                 $('' + ChkBoxLstStatus + '> input').each(function (index, item) {
                                     if ($(item).val() == status) {
                                         $(item).attr('checked', true);
+                                        $(item).attr('disabled', '');
 
                                     }
                                     else {
                                         $(item).attr('checked', false);
+                                        $(item).attr('disabled', true);
 
 
                                     }
@@ -4460,7 +4462,7 @@
                                                         <asp:Panel ID="pnlStatus" runat="server" Visible="false">
 
 
-                                                            <asp:CheckBoxList ID="ChkBoxLstStatus" RepeatLayout="Flow" RepeatDirection="Horizontal"
+                                                            <asp:CheckBoxList ID="ChkBoxLstStatus" RepeatLayout="Flow" Enabled="false" RepeatDirection="Horizontal"
                                                                 runat="server" CssClass="form-control checkbox">
                                                             </asp:CheckBoxList>
 

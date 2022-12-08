@@ -358,6 +358,7 @@ namespace RealERPRDLC
                 case "R_22_Sal.RptMonthlyProbCollection": Rpt1a = SetRptMonthlyProbCollection(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptDuesAllReports": Rpt1a = SetRptDuesAllReports(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_92_Mgt.RptEmpOfferLetter": Rpt1a = SetRptEmpOfferLetter(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_92_Mgt.RptEmpIdCard": Rpt1a = SetRptEmpIdCard(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_92_Mgt.RptEmpApointmentLetter": Rpt1a = SetRptEmpApointmentLetter(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_94_Task.RptTaskInfoDet": Rpt1a = SetRptTaskInfoDet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_99_AllInterface.RptAllDuesInfo": Rpt1a = SetRptAllDuesInfo(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -6881,6 +6882,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptEmpOfferLetter(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EmpOfferLetter>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptEmpIdCard(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_92_mgt.BO_ClassEmployee.EmployeeIDCardInfo>)RptDataSet));
             return Rpt1a;
         }
         private static LocalReport SetRptEmpApointmentLetter(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
