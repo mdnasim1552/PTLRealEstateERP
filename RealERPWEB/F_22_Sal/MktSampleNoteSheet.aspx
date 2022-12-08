@@ -673,6 +673,26 @@
                                             </div>
                                         
                                            
+
+
+                                             <div class="row">
+                                                <div class="col-md-8">
+                                                    <div class="form-group lblmargin">
+                                                        <label id="lblfinstallmentper" runat="server">Final Installment %</label>
+                                                    </div>
+
+                                                </div>
+
+                                                 
+                                                <div class="col-md-4">
+                                                    <div class="form-group lblmargin  font-weight-bold">
+
+                                                        <label id="lblfvalinstallmentper" runat="server" clss="form-control form-control-sm "></label>
+                                                    </div>
+                                                </div>
+
+                                                
+                                            </div>
                                           
 
 
@@ -694,6 +714,11 @@
 
                                                 
                                             </div>
+
+
+
+                                            
+
 
 
 
