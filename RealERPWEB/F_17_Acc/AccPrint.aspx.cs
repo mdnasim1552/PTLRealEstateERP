@@ -3211,31 +3211,30 @@ namespace RealERPWEB.F_17_Acc
 
                 LocalReport rpt1 = new LocalReport();
 
-                if (bankcode == "DBL")
-                {
+                //if (bankcode == "DBL")
+                //{
                     rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeDhakaBankCPDL", hshtbl, null, null);
-                }
-                else if (bankcode == "UCB")
-                {
-                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeUCBCPDL", hshtbl, null, null);
-                }
-                else if (bankcode == "IBBL")
-                {
-                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeIBBLCPDL", hshtbl, null, null);
-                }
-                else if (bankcode == "AIBL")
-                {
-                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeAIBLCPDL", hshtbl, null, null);
-                }
-                else if (bankcode == "TBL")
-                {
-                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeTBLCPDL", hshtbl, null, null);
-                }
-
-                else
-                {
-                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeDhakaBankCPDL", hshtbl, null, null);
-                }
+                //}
+                //else if (bankcode == "UCB")
+                //{
+                //    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeUCBCPDL", hshtbl, null, null);
+                //}
+                //else if (bankcode == "IBBL")
+                //{
+                //    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeIBBLCPDL", hshtbl, null, null);
+                //}
+                //else if (bankcode == "AIBL")
+                //{
+                //    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeAIBLCPDL", hshtbl, null, null);
+                //}
+                //else if (bankcode == "TBL")
+                //{
+                    //rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeTBLCPDL", hshtbl, null, null);
+                //}
+                //else
+                //{
+                //    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeDhakaBankCPDL", hshtbl, null, null);
+                //}
 
                 Session["Report1"] = rpt1;
 

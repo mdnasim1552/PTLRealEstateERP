@@ -24,8 +24,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>payTo</rd:DefaultName>
-            <Top>4.01216in</Top>
-            <Left>4.4936in</Left>
+            <Top>3.29181in</Top>
+            <Left>4.48262in</Left>
             <Height>4.25869in</Height>
             <Width>0.27291in</Width>
             <Style>
@@ -56,8 +56,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox8</rd:DefaultName>
-            <Top>4.41008in</Top>
-            <Left>4.11443in</Left>
+            <Top>3.68973in</Top>
+            <Left>4.10345in</Left>
             <Height>3.3191in</Height>
             <Width>0.29875in</Width>
             <ZIndex>1</ZIndex>
@@ -387,8 +387,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>amtWord1</rd:DefaultName>
-            <Top>3.51341in</Top>
-            <Left>3.72029in</Left>
+            <Top>2.79306in</Top>
+            <Left>3.70931in</Left>
             <Height>3.80952in</Height>
             <Width>0.29528in</Width>
             <ZIndex>4</ZIndex>
