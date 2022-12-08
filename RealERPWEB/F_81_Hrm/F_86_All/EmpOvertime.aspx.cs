@@ -3895,6 +3895,57 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 ddlPaystatus.SelectedValue = "0";
             }
         }
+        private string GetCompCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
+        }
+
+
+        protected void lnksyshour_Click(object sender, EventArgs e)
+        {
+           //GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+           //int index = row.RowIndex;
+           //string empid= ((Label)this.gvEmpOverTime.Rows[index].FindControl("lblempid")).Text.ToString();
+
+           // DataSet ds1 = HRData.GetTransInfo(GetCompCode(), "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETOTDETAILS", empid, "H", "", "", "", "", "", "", "");
+           // if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+           // {
+
+           // ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenPayslipModal();", true);
+           //     this.gvotDetails.DataSource = null;
+           //     this.gvotDetails.DataBind();
+           //     return;
+           // }
+
+           // DataTable dt = ds1.Tables[0];
+
+           // this.gvotDetails.DataSource = dt;
+           // this.gvotDetails.DataBind();
+
+        }
+
+        protected void lnksysdaycount_Click(object sender, EventArgs e)
+        {
+            //GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            //int index = row.RowIndex;
+            //string empid = ((Label)this.gvEmpOverTime.Rows[index].FindControl("lblempid")).Text.ToString();
+
+            //DataSet ds1 = HRData.GetTransInfo(GetCompCode(), "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETOTDETAILS", empid, "D", "", "", "", "", "", "", "");
+            //if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+            //{
+
+            //    this.gvotDetails.DataSource = null;
+            //    this.gvotDetails.DataBind();
+            //    return;
+            //}
+
+            //DataTable dt = ds1.Tables[0];
+
+            //this.gvotDetails.DataSource = dt;
+            //this.gvotDetails.DataBind();
+            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenPayslipModal();", true);
+        }
     }
 
 

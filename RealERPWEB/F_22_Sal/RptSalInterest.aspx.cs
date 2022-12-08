@@ -1864,6 +1864,8 @@ namespace RealERPWEB.F_22_Sal
             string projectname = this.Request.QueryString["Type"].ToString() == "LO" ? ds2.Tables[0].Rows[0]["projectname"].ToString().Substring(3) + " (L/O PART)" : ds2.Tables[0].Rows[0]["projectname"].ToString().Substring(3);
             string bookno = Convert.ToDateTime(ds2.Tables[0].Rows[0]["bookdate"].ToString()).ToString("dd-MMM-yyyy");
             string enrolno = (bookno == "01-Jan-1900") ? " " : bookno;
+            string leader = ds2.Tables[0].Rows[0]["temleadname"].ToString();
+
 
             switch (comcod)
             {
@@ -1901,6 +1903,7 @@ namespace RealERPWEB.F_22_Sal
 
                     Rpt1.SetParameters(new ReportParameter("apttype", ds2.Tables[0].Rows[0]["apttype"].ToString()));
                     Rpt1.SetParameters(new ReportParameter("comfadd", comfadd));
+                    Rpt1.SetParameters(new ReportParameter("leader", leader));
 
                     Rpt1.SetParameters(new ReportParameter("flrdesc", ds2.Tables[0].Rows[0]["flrdesc"].ToString()));
                     Rpt1.SetParameters(new ReportParameter("bookdate", enrolno));

@@ -207,6 +207,18 @@
                                         </asp:Panel>
                                     </EditItemTemplate>
 
+                                    <EditItemTemplate>
+                                        <asp:Panel ID="Panel10" runat="server">
+
+                                            <asp:DropDownList ID="ddlcustomerNo" runat="server" Width="250px" AutoPostBack="true" OnSelectedIndexChanged="ddlClientName_SelectedIndexChanged" CssClass="chzn-select form-control inputTxt" TabIndex="12">
+                                            </asp:DropDownList>
+
+                                        </asp:Panel>
+                                    </EditItemTemplate>
+
+
+
+
                                     <HeaderStyle HorizontalAlign="Center" Width="250px" VerticalAlign="Top" />
                                 </asp:TemplateField>
 
@@ -373,7 +385,7 @@
                                 </asp:TemplateField>
 
 
-<%--                                <asp:TemplateField HeaderText="">
+                                <%--<asp:TemplateField HeaderText="">
                                     <EditItemTemplate>
                                     </EditItemTemplate>
                                     <asp:LinkButton ID="imgbtnFindBookingNo" runat="server" OnClick="imgbtnFindCustomer_Click" TabIndex="4" CssClass="btn btn-sm">Booking No</asp:LinkButton>
@@ -413,32 +425,13 @@
                             <HeaderStyle CssClass="grvHeader" />
                         </asp:GridView>
                         <asp:LinkButton ID="lbtnBack" runat="server" OnClick="lbtnBack_Click" Visible="false" CssClass="btn btn-danger primaryBtn pull-right">Back</asp:LinkButton>
-
                     </div>
-
-
-                    <%--<div class="col-md-2">
-                        <div class="form-group">
-                            <asp:LinkButton ID="imgbtnBookingNo" runat="server" OnClick="imgbtnBookingNo_Click" TabIndex="4" CssClass="btn btn-sm">Booking No</asp:LinkButton>
-                            <asp:DropDownList ID="ddlBookingNo" runat="server" CssClass="form-control form-control-sm chzn-select"
-                                TabIndex="5">
-                            </asp:DropDownList>
-                        </div>
-                    </div>--%>
-
-
-
-
-
-
-
 
 
                     <asp:MultiView ID="MultiView1" runat="server">
 
                         <asp:View ID="ViewPersonal" runat="server">
                             <fieldset class="scheduler-border fieldset_B" runat="server" visible="false">
-
                                 <div class="form-horizontal">
                                     <div class="form-group">
                                         <asp:Label ID="lperInfo" runat="server" CssClass="btn btn-success primaryBtn" Text="Personal Information"></asp:Label>
@@ -454,6 +447,7 @@
                             <asp:GridView ID="gvPersonalInfo" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                 ShowFooter="True" Width="831px" Visible="false">
                                 <RowStyle />
+
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl.No.">
                                         <ItemTemplate>
@@ -501,7 +495,6 @@
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
                                 </Columns>
-
 
                                 <FooterStyle CssClass="grvFooter" />
                                 <EditRowStyle />
