@@ -58,7 +58,7 @@ namespace RealERPWEB
 
 
                     string type1 = this.Request.QueryString["Type"].ToString().Trim();
-                    if (type1 == "10003" || type1 == "10024" || type1 == "10025" || type1 == "10026" || type1 == "10027" || type1 == "10028" || type1 == "10029" || type1 == "10020" || type1 == "10002" || type1 == "10013" || type1 == "10021" || type1 == "10022" || type1 == "10023")
+                    if (type1 == "10003" || type1 == "10024" || type1 == "10025" || type1 == "10026" || type1 == "10027" || type1 == "10028" || type1 == "10029" || type1 == "10020" || type1 == "10002" || type1 == "10013" || type1 == "10021" || type1 == "10022" || type1 == "10023" || type1== "10008")
                     {
                         this.GetSelected();
                         this.GetCompany();
@@ -1445,7 +1445,58 @@ namespace RealERPWEB
                     break;
                 //increment letter
                 case "10008":
+                    if (comcod == "3370")
+                    {
+                        lbody =
+                       "<pstyle='margin-bottom:-11px''> Date: <strong>" + date + "</strong></p>" +
+                       "<p style='margin-bottom:-11px'><strong>Name" + name + "</strong></p>" +
+                       "<p style='margin-bottom:-11px'><strong>Personnel ID" + idcard + "</strong></p>" +
+                       "<p style='margin-bottom:-11px'><strong>Designation" + Desig + "</strong></p>" +
+                       "<p style='margin-bottom:-11px'><strong>Department" + dptdesc + "</strong></p>" +
+                       "<h2 style='border-bottom: 1px solid #0000;display: inline-block'><strong>SUB:ANNUAL INCREMENT.</strong></h2>" +
+
+
+
+
+
+                       "<p style='margin-bottom:-11px'>In respect of the above, company management has reviewed your overall performances in terms of Individual KPI Score, Development Team Recommended Score, Head of the Department " +
+                       "Recommendation as well as in the eye of Top Management and in respect of all those, President of CPDL is satisfied to increase your gross salary from Tk. Present Salary " + total + " /- to Tk. Increase Salary /-," +
+                       " (Mobile Allowance & Fooding allowance as per company policy) Now your pay as below: </p>" +
+
+
+                     //salary break down table
+                     "<table style='width:70%;margin-left:20px;border:0'>" +
+
+                       "<tr style='border:0;'><td style='border:0;>Basic</td><td style='text-align:center;border:0;'>:" + bsal + "</td></tr>" +
+                       "<tr style='border:0;'><td style='border:0;>House Rent</td><td style='text-align:center;border:0;'>:" + hrent + "</td></tr>" +
+                       "<tr style='border:0;'><td style='border:0;>Medical Allowance (20% of Gross)</td><td style='text-align:center;border:0;'>:" + mallow + "</td></tr>" +
+                       "<tr style='border:0;'><td style='border:0;>Others Pay</td><td style='text-align:center;border:0;'>:" + cven + "</td></tr>" +
+                       "<tr style='border:0;'><td style='border:0;>Special Allowance</td><td style='text-align:center;border:0;'>:" + cven + "</td></tr>" +
+                       "<tr style='border:0;'><td style='border:0;>All pay with effect from <strong>Increment Effect Date.</strong></td></tr>" +
+
+
+                           //"<tr style='border-top:1px solid!important;'><td style='text-align:center;'><strong>Total Gross Salary</strong></td><td style='text-align: center;'><strong>:" + total + "</strong></td></tr></table>" +
+
+                           "<p>We hope this increment will encourage your working efficiency and devotion to your responsibilities. </p>" +
+
+                           "<p style='margin-bottom:-5px;display:inline;'><span style='border-top:2px dotted; display:inline-block;margin-bottom:-11px;float:right'><strong>Md. Khairuzzaman Joarder </strong></p></span></p>" +
+
+                           "<p style='margin-bottom:-5px;display:inline'><span style='display:inline-block;margin-bottom:-11px;float:right;'><strong>Chief Operating  Officer</strong></p></span></p>" +
+
+
+                           "<p style='margin-bottom:-5px;display:inline;'><strong>CC: </strong></p></span></p>" +
+
+                           "<p style='margin-bottom:-5px;display:inline'><strong>President-CPDL</strong></p></p>" +
+
+
+                           "<p style='margin-bottom:-5px;display:inline'><strong>Personal file</strong></p></p>";
+
+
+
+                    }
+                    else { 
                     lbody = "<p style='text-align: center;'>&nbsp;</p><p style='padding-left: 360px;'>&nbsp;</p><h3 style='text-align: center;'><span style='text-decoration: underline;'><strong>&nbsp;</strong><strong>Private &amp; Confidential</strong></span></h3><p>&nbsp;</p><p><strong>REF: SPL/HR/INCREMENT/16</strong></p><p><strong>Date: July 12, 2016</strong></p><p>&nbsp;<strong>" + name + ", ID: 101</strong></p><p><strong>" + Desig + ",</strong></p><p>" + depart + "</p><p><strong>Factory.</strong></p><p>&nbsp;</p><p><strong>Subject: Increment of Salary</strong></p><p>&nbsp;</p><p><strong>Dear " + name + ",</strong></p><p>&nbsp;We are pleased to inform you that the management has decided to review your monthly gross salary in recognition of your performance during the year 2015-2016, effective from <strong>July 01, 2016</strong>.</p><p>&nbsp;In view of the decision the breakdown of your revised monthly salary stands as follows:</p><p style='padding-left: 330px;'>Basic Salary &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;7,2000.00&nbsp; &nbsp; &nbsp;</p><p style='padding-left: 330px;'>House Rent Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;3,600.00</p><p style='padding-left: 330px;'>Transport Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 660.00</p><p style='padding-left: 330px;'>Medical Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 540.00</p><p style='padding-left: 330px;'><strong>Total: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;TK &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;12,000.00</strong></p><p>&nbsp;</p><p>&nbsp;We acknowledge your good performance and hope that you will continue to contribute to the growth and success of the organization in future.</p><p>&nbsp;We wish you all the best and look forward to better performance in future.</p><p>&nbsp;</p><p>With best regards</p>";//<p>&nbsp;<strong>Moshiur Hossain Uday</strong></p><p>Managing Director</p><p>&nbsp;CC: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>Personal File</p><p>HRIS</p><p>&nbsp;</p>";
+                    }
                     break;
                
                 //transfer lettre
