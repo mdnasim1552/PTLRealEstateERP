@@ -241,9 +241,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 string empType = this.ddlCompany.SelectedItem.ToString();
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comnam = hst["comnam"].ToString();
-                string comadd = hst["comadd1"].ToString();
+                string comadd = hst["comadd"].ToString().Replace("<br />", "\n");
                 string compname = hst["compname"].ToString();
                 string username = hst["username"].ToString();
+                string monthof = Convert.ToDateTime(this.txttodate.Text).ToString("MMM-yyyy");
                 string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
                 string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
                 var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_83_Att.EClassAttendance.RptMonAttnSumEmpWise>().ToList();
@@ -256,6 +257,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 rpt1.SetParameters(new ReportParameter("comadd", comadd));
                 rpt1.SetParameters(new ReportParameter("rptTitle", rptTitle));
                 rpt1.SetParameters(new ReportParameter("date", date));
+                rpt1.SetParameters(new ReportParameter("monthof", "Month of "+monthof));
                 rpt1.SetParameters(new ReportParameter("footer", ASTUtility.Concat(compname, username, printdate)));
                 rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
 

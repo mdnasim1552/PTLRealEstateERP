@@ -237,7 +237,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>1.075in</Height>
+                  <Height>1.01461in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -316,7 +316,7 @@
                             </TablixColumns>
                             <TablixRows>
                               <TablixRow>
-                                <Height>0.37292in</Height>
+                                <Height>0.35782in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -372,7 +372,7 @@
                                           </TablixColumns>
                                           <TablixRows>
                                             <TablixRow>
-                                              <Height>0.19688in</Height>
+                                              <Height>0.18933in</Height>
                                               <TablixCells>
                                                 <TablixCell>
                                                   <CellContents>
@@ -451,7 +451,7 @@
                                               </TablixCells>
                                             </TablixRow>
                                             <TablixRow>
-                                              <Height>0.17605in</Height>
+                                              <Height>0.1685in</Height>
                                               <TablixCells>
                                                 <TablixCell>
                                                   <CellContents>
@@ -519,7 +519,7 @@
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.34166in</Height>
+                                <Height>0.32052in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -572,7 +572,7 @@
                                           </TablixColumns>
                                           <TablixRows>
                                             <TablixRow>
-                                              <Height>0.17083in</Height>
+                                              <Height>0.16026in</Height>
                                               <TablixCells>
                                                 <TablixCell>
                                                   <CellContents>
@@ -613,7 +613,7 @@
                                               </TablixCells>
                                             </TablixRow>
                                             <TablixRow>
-                                              <Height>0.17083in</Height>
+                                              <Height>0.16026in</Height>
                                               <TablixCells>
                                                 <TablixCell>
                                                   <CellContents>
@@ -679,7 +679,7 @@
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.18542in</Height>
+                                <Height>0.1824in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -751,7 +751,7 @@
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.175in</Height>
+                                <Height>0.15386in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -863,9 +863,9 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>0.01944in</Top>
-            <Left>0.0375in</Left>
-            <Height>1.075in</Height>
+            <Top>0.0134in</Top>
+            <Left>0.02499in</Left>
+            <Height>1.01461in</Height>
             <Width>11.26741in</Width>
             <Style>
               <Border>
@@ -1549,10 +1549,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet2</DataSetName>
-            <Top>1.13278in</Top>
+            <Top>1.05778in</Top>
             <Left>0.025in</Left>
             <Height>0.54925in</Height>
-            <Width>11.28144in</Width>
+            <Width>11.28143in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -1614,7 +1614,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.2427in</Height>
+                  <Height>0.22603in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -2211,7 +2211,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.19271in</Height>
+                  <Height>0.17604in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -2776,7 +2776,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.1875in</Height>
+                  <Height>0.17083in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -3203,6 +3203,7 @@
               <TablixMembers>
                 <TablixMember>
                   <KeepWithGroup>After</KeepWithGroup>
+                  <RepeatOnNewPage>true</RepeatOnNewPage>
                 </TablixMember>
                 <TablixMember>
                   <Group Name="Details" />
@@ -3213,9 +3214,9 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>1.70313in</Top>
+            <Top>1.62813in</Top>
             <Left>0.02501in</Left>
-            <Height>0.62291in</Height>
+            <Height>0.57291in</Height>
             <Width>11.2799in</Width>
             <ZIndex>2</ZIndex>
             <Style>
@@ -3248,7 +3249,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.20505in</Height>
+                  <Height>0.18005in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -3474,7 +3475,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.19728in</Height>
+                  <Height>0.17228in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -3687,7 +3688,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.22673in</Height>
+                  <Height>0.20173in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -3818,10 +3819,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>2.35153in</Top>
+            <Top>2.21403in</Top>
             <Left>0.025in</Left>
-            <Height>0.62907in</Height>
-            <Width>11.28144in</Width>
+            <Height>0.55406in</Height>
+            <Width>11.28143in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -3830,13 +3831,13 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>2.99558in</Height>
+        <Height>2.79526in</Height>
         <Style />
       </Body>
-      <Width>11.30644in</Width>
+      <Width>11.3196in</Width>
       <Page>
         <PageHeader>
-          <Height>0.61144in</Height>
+          <Height>0.83644in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -3861,9 +3862,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0.0125in</Top>
+              <Top>0in</Top>
               <Left>1.62132in</Left>
-              <Height>0.2875in</Height>
+              <Height>0.2625in</Height>
               <Width>7.78524in</Width>
               <Style>
                 <Border>
@@ -3896,9 +3897,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox3</rd:DefaultName>
-              <Top>0.31604in</Top>
+              <Top>0.57854in</Top>
               <Left>1.62132in</Left>
-              <Height>0.25in</Height>
+              <Height>0.2375in</Height>
               <Width>7.78524in</Width>
               <ZIndex>1</ZIndex>
               <Style>
@@ -3917,8 +3918,8 @@
               <Sizing>FitProportional</Sizing>
               <Top>0.00562in</Top>
               <Left>0.05385in</Left>
-              <Height>0.59792in</Height>
-              <Width>1.37135in</Width>
+              <Height>0.68125in</Height>
+              <Width>1.22135in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -3926,6 +3927,45 @@
                 </Border>
               </Style>
             </Image>
+            <Textbox Name="Textbox7">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!comadd.Value</Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontFamily>Cambria</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <FontWeight>Normal</FontWeight>
+                        <TextDecoration>None</TextDecoration>
+                        <Color>#000000</Color>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox7</rd:DefaultName>
+              <Top>0.275in</Top>
+              <Left>1.62132in</Left>
+              <Height>0.3216in</Height>
+              <Width>7.78524in</Width>
+              <ZIndex>3</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
           </ReportItems>
           <Style>
             <Border>
@@ -3934,7 +3974,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>1.35227in</Height>
+          <Height>1.16068in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -3958,10 +3998,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox350</rd:DefaultName>
-              <Top>1.09282in</Top>
-              <Left>0.071in</Left>
+              <Top>0.96089in</Top>
+              <Left>0.02567in</Left>
               <Height>0.16875in</Height>
-              <Width>11.05334in</Width>
+              <Width>9.0787in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -3981,7 +4021,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Sr. AM</Value>
+                          <Value>BOQ &amp; Contracting</Value>
                           <Style>
                             <FontFamily>cambria</FontFamily>
                             <FontSize>9pt</FontSize>
@@ -3995,7 +4035,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox1</rd:DefaultName>
-                  <Top>0.58334in</Top>
+                  <Top>0.55315in</Top>
                   <Left>0.0585in</Left>
                   <Height>0.36667in</Height>
                   <Width>1.48333in</Width>
@@ -4034,7 +4074,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>/AGM/DGM/Sr.GM</Value>
+                          <Value>/AGM/DGM/Sr. DGM</Value>
                           <Style>
                             <FontFamily>cambria</FontFamily>
                             <FontSize>9pt</FontSize>
@@ -4048,7 +4088,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox1</rd:DefaultName>
-                  <Top>0.58334in</Top>
+                  <Top>0.55315in</Top>
                   <Left>1.92569in</Left>
                   <Height>0.36667in</Height>
                   <Width>1.48333in</Width>
@@ -4087,7 +4127,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox1</rd:DefaultName>
-                  <Top>0.58334in</Top>
+                  <Top>0.55315in</Top>
                   <Left>3.80017in</Left>
                   <Height>0.36667in</Height>
                   <Width>1.47083in</Width>
@@ -4126,7 +4166,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox4</rd:DefaultName>
-                  <Top>0.58334in</Top>
+                  <Top>0.55315in</Top>
                   <Left>5.62268in</Left>
                   <Height>0.36667in</Height>
                   <Width>1.6375in</Width>
@@ -4165,7 +4205,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox13</rd:DefaultName>
-                  <Top>0.58334in</Top>
+                  <Top>0.55315in</Top>
                   <Left>7.59351in</Left>
                   <Height>0.36667in</Height>
                   <Width>1.57083in</Width>
@@ -4204,7 +4244,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox14</rd:DefaultName>
-                  <Top>0.58334in</Top>
+                  <Top>0.55315in</Top>
                   <Left>9.49768in</Left>
                   <Height>0.36667in</Height>
                   <Width>1.57083in</Width>
@@ -4224,9 +4264,8 @@
                 </Textbox>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
-              <Top>0.02965in</Top>
-              <Left>0.0125in</Left>
-              <Height>0.9941in</Height>
+              <Left>0.02567in</Left>
+              <Height>0.947in</Height>
               <Width>11.29393in</Width>
               <ZIndex>1</ZIndex>
               <Style>
@@ -4235,6 +4274,41 @@
                 </Border>
               </Style>
             </Rectangle>
+            <Textbox Name="Textbox44">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="Page "&amp;Globals!PageNumber &amp;" of " &amp; Globals!TotalPages</Value>
+                      <Style>
+                        <FontFamily>Cambria</FontFamily>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox10</rd:DefaultName>
+              <Top>0.97478in</Top>
+              <Left>9.11687in</Left>
+              <Height>0.16667in</Height>
+              <Width>2.20273in</Width>
+              <ZIndex>2</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
           </ReportItems>
           <Style>
             <Border>
@@ -4481,6 +4555,12 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="comadd">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -4681,6 +4761,11 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>29</RowIndex>
           <ParameterName>recomsup</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>29</RowIndex>
+          <ParameterName>comadd</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

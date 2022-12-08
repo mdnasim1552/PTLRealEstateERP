@@ -597,7 +597,6 @@ namespace RealERPWEB.F_22_Sal
 
                 this.CustInf();
                 this.BtnEnabled();
-                //this.BookingNo();
             }
 
             catch (Exception ex)
@@ -611,39 +610,8 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-        //protected void imgbtnBookingNo_Click(object sender, EventArgs e)
-        //{
-        //    this.BookingNo();
-        //}
 
-
-        //private void BookingNo()
-        //{
-        //    try
-        //    {
-        //        ViewState.Remove("tblData");
-        //        Hashtable hst = (Hashtable)Session["tblLogin"];
-        //        string comcod = hst["comcod"].ToString();
-        //        string PactCode = this.ddlProjectName.SelectedValue.ToString();
-
-        //        DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT_RND", "GETBOOKINGNO", PactCode, "", "", "", "", "", "", "", "");
-        //        if (ds1 == null)
-        //            return;
-        //        //this.gvSpayment.DataSource = ds1.Tables[0];
-        //        //this.gvSpayment.DataBind();
-        //        ViewState["tblbookingNo"] = ds1.Tables[0];
-
-        //        this.ddlBookingNo.DataTextField = "bookingno";
-        //        this.ddlBookingNo.DataValueField = "bookingno";
-        //        this.ddlBookingNo.DataSource = ds1.Tables[0];
-        //        this.ddlBookingNo.DataBind();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-        //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-        //    }
-        //}
+       
 
 
 
@@ -1736,9 +1704,9 @@ namespace RealERPWEB.F_22_Sal
             this.gvSpayment.DataSource = (DataTable)ViewState["tblData"];
             this.gvSpayment.DataBind();
         }
+
         protected void gvSpayment_RowEditing(object sender, GridViewEditEventArgs e)
         {
-
             var indx = e.NewEditIndex;
             string usircode = ((Label)this.gvSpayment.Rows[e.NewEditIndex].FindControl("lblgvItmCod")).Text.Trim();
 
@@ -1747,17 +1715,16 @@ namespace RealERPWEB.F_22_Sal
             dv1.RowFilter = "usircode='" + usircode + "'";
             dtOrder = dv1.ToTable();
 
-
-
-
             this.gvSpayment.EditIndex = e.NewEditIndex;
             this.gvSpayment.DataSource = dtOrder;
             this.gvSpayment.DataBind();
 
             int rowindex = (gvSpayment.PageSize) * (this.gvSpayment.PageIndex) + e.NewEditIndex;
+
             //string pactcode = this.ddlProjectName.SelectedValue.ToString();
-            ////string usircode = ((DataTable)ViewState["tblData"]).Rows[rowindex]["usircode"].ToString();
+            //string usircode = ((DataTable)ViewState["tblData"]).Rows[rowindex]["usircode"].ToString();
             //string proscod = (dtOrder.Rows[rowindex]["proscod"].ToString());
+
             DropDownList ddl2 = (DropDownList)this.gvSpayment.Rows[e.NewEditIndex].FindControl("ddlClientName");
             //ViewState["gindex"] = e.NewEditIndex;
             string comcod = objcom.GetCompCode();
@@ -1783,8 +1750,6 @@ namespace RealERPWEB.F_22_Sal
 
             }
 
-
-
             string workcode = dtOrder.Rows[0]["design"].ToString();
             DropDownList ddldesign = (DropDownList)this.gvSpayment.Rows[e.NewEditIndex].FindControl("ddldesign");
             ddldesign.DataTextField = "workdesc";
@@ -1792,15 +1757,11 @@ namespace RealERPWEB.F_22_Sal
             ddldesign.DataSource = (DataTable)ViewState["tblwork"];
             ddldesign.DataBind();
             ddldesign.SelectedValue = workcode;
-
-
-
-
-
-
-
-
         }
+
+       
+
+
         protected void ibtnSrchClient_Click(object sender, EventArgs e)
         {
 
@@ -1819,9 +1780,7 @@ namespace RealERPWEB.F_22_Sal
         protected void gvSpayment_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
 
-
             string Proscode = "";
-
             string comcod = objcom.GetCompCode();
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
             string usircode = ((Label)this.gvSpayment.Rows[e.RowIndex].FindControl("lblgvItmCod")).Text.Trim();//.ToUpper();
@@ -1844,7 +1803,6 @@ namespace RealERPWEB.F_22_Sal
             }
 
 
-
             result = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "UPDATEDESIGNCODE", pactcode, usircode, design, "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (!result)
@@ -1852,7 +1810,6 @@ namespace RealERPWEB.F_22_Sal
                 ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Updated Fail');", true);
                 return;
             }
-
 
 
 
@@ -1877,20 +1834,12 @@ namespace RealERPWEB.F_22_Sal
                     if (lbtn1.Text.Trim().Length > 0)
                         lbtn1.CommandArgument = usircode1;
             }
-
-
-
-
-
-            // }
-
         }
 
         protected void ibtnFindSalesteam_Click(object sender, EventArgs e)
         {
 
         }
-
 
         protected void lbtnsrchunit_Click(object sender, EventArgs e)
         {

@@ -1525,12 +1525,16 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string comcod = this.GetComCode();
+            string comadd = hst["comadd"].ToString().Replace("<br />", "\n");
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2);
             string PCompany = this.ddlCompany.SelectedItem.Text.Trim();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string empid = this.ddlEmpName.SelectedValue.ToString();
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string monthof = Convert.ToDateTime(this.txttodate.Text).ToString("MMM-yyyy");
 
             string Actime = this.GetComLateAccTime();
 
@@ -1604,14 +1608,25 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             var empName = ds4.Tables[0].Rows[0]["empnam"].ToString();
             var empDsg = ds4.Tables[0].Rows[0]["empdsg"].ToString();
             var empDept = ds4.Tables[0].Rows[0]["empdept"].ToString();
+            var joindate = Convert.ToDateTime(ds4.Tables[0].Rows[0]["joindate"]).ToString("dd-MMM-yyyy");
             var StdIn = ds4.Tables[0].Rows[0]["stdtimein"].ToString();
             var StdOut = ds4.Tables[0].Rows[0]["stdtimeout"].ToString();
             var list = ds4.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpAttnIdWise>();
             LocalReport rpt1 = new LocalReport();
 
-            if (comcod == "3354" || comcod=="3101")
+            if (comcod == "3354" )
             {
                 rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptNewEmpStatusEdi", list, null, null);
+            }
+            else if (comcod == "3370" || comcod == "3101")
+            {
+                rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptNewEmpStatusCPDL", list, null, null);
+                rpt1.EnableExternalImages = true;
+                rpt1.SetParameters(new ReportParameter("attm", "( Month Of " + monthof +" )"));
+                rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                rpt1.SetParameters(new ReportParameter("joindate", joindate));
+                rpt1.SetParameters(new ReportParameter("empdept", empDept));
             }
             else
             {
@@ -1642,7 +1657,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
 
             string wday = Convert.ToDouble(ds4.Tables[1].Rows[0]["twrkday"]).ToString("#,##0;(#,##0); ");
-            string laday = Convert.ToDouble(ds4.Tables[1].Rows[0]["tLday"]).ToString("#,##0;(#,##0); ");
+            string laday = Convert.ToDouble(ds4.Tables[1].Rows[0]["tlday"]).ToString("#,##0;(#,##0); ");
             string leday = Convert.ToDouble(ds4.Tables[1].Rows[0]["tlvday"]).ToString("#,##0;(#,##0); ");
             string abday = Convert.ToDouble(ds4.Tables[1].Rows[0]["tabsday"]).ToString("#,##0;(#,##0); ");
             string hday = Convert.ToDouble(ds4.Tables[1].Rows[0]["thday"]).ToString("#,##0;(#,##0); ");

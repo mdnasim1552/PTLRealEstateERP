@@ -1333,7 +1333,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet2</DataSetName>
-            <Top>1.13278in</Top>
+            <Top>1.10778in</Top>
             <Left>0.025in</Left>
             <Height>0.54925in</Height>
             <Width>11.27991in</Width>
@@ -1386,7 +1386,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.2427in</Height>
+                  <Height>0.23853in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -1835,7 +1835,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.19271in</Height>
+                  <Height>0.18854in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -2260,7 +2260,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.1875in</Height>
+                  <Height>0.18333in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -2540,6 +2540,7 @@
               <TablixMembers>
                 <TablixMember>
                   <KeepWithGroup>After</KeepWithGroup>
+                  <RepeatOnNewPage>true</RepeatOnNewPage>
                 </TablixMember>
                 <TablixMember>
                   <Group Name="Details" />
@@ -2550,10 +2551,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>1.70313in</Top>
-            <Left>0.02501in</Left>
-            <Height>0.62291in</Height>
-            <Width>11.28142in</Width>
+            <Top>1.66334in</Top>
+            <Left>0.02577in</Left>
+            <Height>0.61041in</Height>
+            <Width>11.28143in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -2579,7 +2580,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.20505in</Height>
+                  <Height>0.18422in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -2731,7 +2732,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.19728in</Height>
+                  <Height>0.17645in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -2874,7 +2875,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.22673in</Height>
+                  <Height>0.2059in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -2967,10 +2968,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>2.35153in</Top>
+            <Top>2.28903in</Top>
             <Left>0.025in</Left>
-            <Height>0.62906in</Height>
-            <Width>11.28219in</Width>
+            <Height>0.56656in</Height>
+            <Width>11.2822in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -2979,13 +2980,13 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>2.99558in</Height>
+        <Height>2.87058in</Height>
         <Style />
       </Body>
-      <Width>11.30719in</Width>
+      <Width>11.3072in</Width>
       <Page>
         <PageHeader>
-          <Height>0.61144in</Height>
+          <Height>0.86144in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -3010,9 +3011,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0.0125in</Top>
-              <Left>1.62132in</Left>
-              <Height>0.2875in</Height>
+              <Top>0.01645in</Top>
+              <Left>1.54471in</Left>
+              <Height>0.2625in</Height>
               <Width>7.78524in</Width>
               <Style>
                 <Border>
@@ -3045,9 +3046,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox3</rd:DefaultName>
-              <Top>0.31604in</Top>
-              <Left>1.62132in</Left>
-              <Height>0.25in</Height>
+              <Top>0.60749in</Top>
+              <Left>1.54471in</Left>
+              <Height>0.2375in</Height>
               <Width>7.78524in</Width>
               <ZIndex>1</ZIndex>
               <Style>
@@ -3064,10 +3065,9 @@
               <Source>External</Source>
               <Value>=Parameters!ComLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
-              <Top>0.00562in</Top>
-              <Left>0.05385in</Left>
-              <Height>0.59792in</Height>
-              <Width>1.37135in</Width>
+              <Top>0.02207in</Top>
+              <Height>0.68125in</Height>
+              <Width>1.22135in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -3075,6 +3075,45 @@
                 </Border>
               </Style>
             </Image>
+            <Textbox Name="Textbox7">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!comadd.Value</Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontFamily>Cambria</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <FontWeight>Normal</FontWeight>
+                        <TextDecoration>None</TextDecoration>
+                        <Color>#000000</Color>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox7</rd:DefaultName>
+              <Top>0.29145in</Top>
+              <Left>1.54471in</Left>
+              <Height>0.3216in</Height>
+              <Width>7.78524in</Width>
+              <ZIndex>3</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
           </ReportItems>
           <Style>
             <Border>
@@ -3110,7 +3149,7 @@
               <Top>1.09282in</Top>
               <Left>0.071in</Left>
               <Height>0.16875in</Height>
-              <Width>11.05334in</Width>
+              <Width>8.99319in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -3130,7 +3169,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Sr. AM</Value>
+                          <Value>BOQ &amp; Contracting</Value>
                           <Style>
                             <FontFamily>cambria</FontFamily>
                             <FontSize>9pt</FontSize>
@@ -3183,7 +3222,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>/AGM/DGM/Sr.GM</Value>
+                          <Value>/AGM/DGM/Sr. DGM</Value>
                           <Style>
                             <FontFamily>cambria</FontFamily>
                             <FontSize>9pt</FontSize>
@@ -3384,6 +3423,41 @@
                 </Border>
               </Style>
             </Rectangle>
+            <Textbox Name="Textbox44">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="Page "&amp;Globals!PageNumber &amp;" of " &amp; Globals!TotalPages</Value>
+                      <Style>
+                        <FontFamily>Cambria</FontFamily>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox10</rd:DefaultName>
+              <Top>1.0949in</Top>
+              <Left>9.06419in</Left>
+              <Height>0.16667in</Height>
+              <Width>2.12882in</Width>
+              <ZIndex>2</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
           </ReportItems>
           <Style>
             <Border>
@@ -3630,6 +3704,12 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="comadd">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -3830,6 +3910,11 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>29</RowIndex>
           <ParameterName>recomsup</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>29</RowIndex>
+          <ParameterName>comadd</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
