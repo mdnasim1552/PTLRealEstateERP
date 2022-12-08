@@ -4462,7 +4462,7 @@
                                                         <asp:Panel ID="pnlStatus" runat="server" Visible="false">
 
 
-                                                            <asp:CheckBoxList ID="ChkBoxLstStatus" RepeatLayout="Flow" RepeatDirection="Horizontal"
+                                                            <asp:CheckBoxList ID="ChkBoxLstStatus" RepeatLayout="Flow" Enabled="false" RepeatDirection="Horizontal"
                                                                 runat="server" CssClass="form-control checkbox">
                                                             </asp:CheckBoxList>
 
