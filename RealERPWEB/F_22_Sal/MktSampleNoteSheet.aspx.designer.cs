@@ -492,6 +492,24 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvalpvpersft;
 
         /// <summary>
+        /// lblfinstallmentper control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblfinstallmentper;
+
+        /// <summary>
+        /// lblfvalinstallmentper control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblfvalinstallmentper;
+
+        /// <summary>
         /// lbltxthandovdate control.
         /// </summary>
         /// <remarks>
