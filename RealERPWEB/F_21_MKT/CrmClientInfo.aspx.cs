@@ -5354,6 +5354,7 @@ namespace RealERPWEB.F_21_MKT
             DataTable dt6 = (DataTable)ViewState["tblparti"];
 
             DataView dv;
+            DataView dvLeadStatus;
             DataTable dtvs = ((DataTable)ViewState["tblFollow"]).Copy();
             dv = dtvs.DefaultView;
             dv.RowFilter = ("gcod like '95%'");
@@ -5700,7 +5701,18 @@ namespace RealERPWEB.F_21_MKT
                         ChkBoxLstStatus.DataSource = dts;
                         ChkBoxLstStatus.DataBind();
                         ChkBoxLstStatus.SelectedValue = (lstleadstatus.Length > 0 ? lstleadstatus : ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim());
+                        
 
+                        //int index = 0;
+                        //DataRow[] rows = dts.Select("gcod='" + lstleadstatus + "'");
+                        //if (rows.Length > 0)
+                        //{
+                        //    index = Convert.ToInt32(rows[0]["rowid"]);
+                        //}
+                        //for (int m = index; m < dts.Rows.Count; m++)
+                        //{                            
+                        //    ChkBoxLstStatus.Items[m].Enabled = true;                             
+                        //}
 
                         break;
 

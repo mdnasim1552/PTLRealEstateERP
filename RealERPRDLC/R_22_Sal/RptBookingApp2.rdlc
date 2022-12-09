@@ -6175,7 +6175,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>=FormatNumber(Parameters!bookingmoney.Value,2)+" Amount"</Value>
+                                                <Value>=FormatNumber(Parameters!bookingmoney.Value,2)</Value>
                                                 <Style />
                                               </TextRun>
                                             </TextRuns>
@@ -7553,11 +7553,10 @@ The information and particulars furnished by me/us in this enrollment from are t
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Image Name="Image1">
+                        <Image Name="Image5">
                           <Source>External</Source>
                           <Value>=Parameters!custimg.Value</Value>
                           <Sizing>FitProportional</Sizing>
-                          <ZIndex>3</ZIndex>
                           <ToolTip>=Parameters!custimg.Value</ToolTip>
                           <Style>
                             <Border>
@@ -7753,18 +7752,29 @@ The information and particulars furnished by me/us in this enrollment from are t
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Image Name="Image3">
-                          <Source>External</Source>
-                          <Value>=Parameters!correspondentimg.Value</Value>
-                          <Sizing>FitProportional</Sizing>
-                          <ZIndex>3</ZIndex>
-                          <ToolTip>=Parameters!correspondentimg.Value</ToolTip>
+                        <Rectangle Name="Rectangle1">
+                          <ReportItems>
+                            <Image Name="Image7">
+                              <Source>External</Source>
+                              <Value>=Parameters!correspondentimg.Value</Value>
+                              <Sizing>FitProportional</Sizing>
+                              <Top>0.06944in</Top>
+                              <Height>1.09114in</Height>
+                              <Width>1.38478in</Width>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                              </Style>
+                            </Image>
+                          </ReportItems>
+                          <KeepTogether>true</KeepTogether>
                           <Style>
                             <Border>
                               <Style>None</Style>
                             </Border>
                           </Style>
-                        </Image>
+                        </Rectangle>
                         <ColSpan>3</ColSpan>
                       </CellContents>
                     </TablixCell>
@@ -7817,11 +7827,10 @@ The information and particulars furnished by me/us in this enrollment from are t
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Image Name="Image4">
+                        <Image Name="Image6">
                           <Source>External</Source>
                           <Value>=Parameters!nomineeimg.Value</Value>
                           <Sizing>FitProportional</Sizing>
-                          <ZIndex>3</ZIndex>
                           <ToolTip>=Parameters!nomineeimg.Value</ToolTip>
                           <Style>
                             <Border>
@@ -8225,12 +8234,6 @@ The information and particulars furnished by me/us in this enrollment from are t
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="custimg">
-      <DataType>String</DataType>
-      <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
     <ReportParameter Name="customerno">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
@@ -8321,18 +8324,6 @@ The information and particulars furnished by me/us in this enrollment from are t
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="correspondentimg">
-      <DataType>String</DataType>
-      <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="nomineeimg">
-      <DataType>String</DataType>
-      <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
     <ReportParameter Name="remarks">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
@@ -8357,11 +8348,29 @@ The information and particulars furnished by me/us in this enrollment from are t
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="custimg">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="nomineeimg">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="correspondentimg">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>8</NumberOfRows>
+      <NumberOfRows>9</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -8407,11 +8416,6 @@ The information and particulars furnished by me/us in this enrollment from are t
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>2</RowIndex>
           <ParameterName>projectName</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
-          <RowIndex>2</RowIndex>
-          <ParameterName>custimg</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>2</ColumnIndex>
@@ -8489,16 +8493,6 @@ The information and particulars furnished by me/us in this enrollment from are t
           <ParameterName>datefornominated</ParameterName>
         </CellDefinition>
         <CellDefinition>
-          <ColumnIndex>2</ColumnIndex>
-          <RowIndex>6</RowIndex>
-          <ParameterName>correspondentimg</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>3</ColumnIndex>
-          <RowIndex>6</RowIndex>
-          <ParameterName>nomineeimg</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>7</RowIndex>
           <ParameterName>remarks</ParameterName>
@@ -8517,6 +8511,21 @@ The information and particulars furnished by me/us in this enrollment from are t
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>7</RowIndex>
           <ParameterName>unitdescriptio</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>8</RowIndex>
+          <ParameterName>custimg</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>8</RowIndex>
+          <ParameterName>nomineeimg</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>8</RowIndex>
+          <ParameterName>correspondentimg</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

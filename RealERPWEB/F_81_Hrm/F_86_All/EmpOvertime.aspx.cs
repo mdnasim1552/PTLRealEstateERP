@@ -621,7 +621,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             switch (comcod)
             {
                 case "3368"://Finlay
-              
+                case "3369"://acme ai
+
                     CallType = "EMPALLOYOVERTIMEFINLAY";
                     break;
                
@@ -3894,6 +3895,99 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             {
                 ddlPaystatus.SelectedValue = "0";
             }
+        }
+        private string GetCompCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
+        }
+
+
+        protected void lnksyshour_Click(object sender, EventArgs e)
+        {
+           GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+           int index = row.RowIndex;
+           string empid= ((Label)this.gvEmpOverTime.Rows[index].FindControl("lblempid")).Text.ToString();
+            string ymon = this.ddlyearmon.SelectedValue.ToString();
+            string dayid = ymon + "01";
+            string txtdate = ASTUtility.DateFormat("01." + ymon.Substring(4, 2) + "." + ymon.Substring(0, 4));
+
+            txtdate = Convert.ToDateTime(txtdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+
+            DataSet ds1 = HRData.GetTransInfo(GetCompCode(), "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETOTDETAILS", empid, dayid, txtdate, "", "", "", "", "", "");
+            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+            {
+
+                this.gvotDetails.DataSource = null;
+                this.gvotDetails.DataBind();
+                return;
+            }
+
+            DataTable dt = ds1.Tables[0];
+
+            this.gvotDetails.DataSource = dt;
+            this.gvotDetails.DataBind();
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenPayslipModal();", true);
+
+        }
+
+        protected void lnksysdaycount_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string empid = ((Label)this.gvEmpOverTime.Rows[index].FindControl("lblempid")).Text.ToString();
+
+            string ymon = this.ddlyearmon.SelectedValue.ToString();
+            string dayid = ymon + "01";
+            string txtdate = ASTUtility.DateFormat("01." + ymon.Substring(4, 2) + "." + ymon.Substring(0, 4));
+
+            txtdate = Convert.ToDateTime(txtdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+            DataSet ds1 = HRData.GetTransInfo(GetCompCode(), "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETOTDETAILS", empid, dayid, txtdate, "", "", "", "", "", "");
+            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+            {
+
+                this.gvotDetails.DataSource = null;
+                this.gvotDetails.DataBind();
+                return;
+            }
+
+            DataTable dt = ds1.Tables[0];
+
+            this.gvotDetails.DataSource = dt;
+            this.gvotDetails.DataBind();
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "otdetails();", true);
+        }
+
+        protected void gvEmpOverTime_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            string type = e.CommandArgument.ToString();
+            GridViewRow gvr = (GridViewRow)((Button)e.CommandSource).NamingContainer;
+
+            int index = gvr.RowIndex;
+            string empid = ((Label)this.gvEmpOverTime.Rows[index].FindControl("lblempid")).Text.ToString();
+
+            string ymon = this.ddlyearmon.SelectedValue.ToString();
+            string dayid = ymon + "01";
+            string txtdate = ASTUtility.DateFormat("01." + ymon.Substring(4, 2) + "." + ymon.Substring(0, 4));
+
+            txtdate = Convert.ToDateTime(txtdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+            DataSet ds1 = HRData.GetTransInfo(GetCompCode(), "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETOTDETAILS", empid,type, dayid, txtdate, "", "", "", "", "", "");
+            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+            {
+
+                this.gvotDetails.DataSource = null;
+                this.gvotDetails.DataBind();
+                return;
+            }
+
+            DataTable dt = ds1.Tables[0];
+
+            this.gvotDetails.DataSource = dt;
+            this.gvotDetails.DataBind();
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "otdetails();", true);
         }
     }
 

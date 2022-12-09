@@ -226,8 +226,9 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="RealERPRPT">
-      <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\RealERPRPT.dll</HintPath>
+    <Reference Include="RealERPRPT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_rnd\PTLRealEstateERP\RealERPWEB\bin\RealERPRPT.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=108.0.3.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.108.0.3\lib\netstandard2.0\RestSharp.dll</HintPath>
@@ -2275,6 +2276,7 @@
     <Content Include="F_17_Acc\AccIssueUpdate.aspx" />
     <Content Include="F_17_Acc\AccIndentUpdate.aspx" />
     <Content Include="F_17_Acc\AccInterComVoucherDel.aspx" />
+    <Content Include="F_17_Acc\RptLetterOfAlotment.aspx" />
     <Content Include="F_17_Acc\RptOPPaymentTopSheet.aspx" />
     <Content Include="F_17_Acc\RptSupplierOvAllPSummary.aspx" />
     <Content Include="F_21_MKT\AdvancedSearchFilter.aspx" />
@@ -4198,6 +4200,13 @@
     </Compile>
     <Compile Include="F_17_Acc\AccInterComVoucherDel.aspx.designer.cs">
       <DependentUpon>AccInterComVoucherDel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_17_Acc\RptLetterOfAlotment.aspx.cs">
+      <DependentUpon>RptLetterOfAlotment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_17_Acc\RptLetterOfAlotment.aspx.designer.cs">
+      <DependentUpon>RptLetterOfAlotment.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_17_Acc\RptOPPaymentTopSheet.aspx.cs">
       <DependentUpon>RptOPPaymentTopSheet.aspx</DependentUpon>

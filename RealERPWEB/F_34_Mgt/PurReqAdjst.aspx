@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="PurReqAdjst.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.PurReqAdjst" %>
+﻿ <%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="PurReqAdjst.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.PurReqAdjst" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -133,7 +133,7 @@
 
                             <div class="row">
                                 <div class="table table-responsive">
-                                    <asp:GridView ID="gvReqStatus" runat="server"  CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                    <asp:GridView ID="gvReqStatus" runat="server"  CssClass=" table-striped table-hover table-bordered grvContentarea" 
                                         AutoGenerateColumns="False" Width="901px" Style="margin-right: 0px" ShowFooter="True">                                       
                                         <RowStyle />
                                         <Columns>
@@ -218,10 +218,11 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Adjustment">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtgvadjqty" runat="server" Font-Size="11px" OnTextChanged="txtgvadjqty_TextChanged"  
+                                                    <asp:TextBox ID="txtgvadjqty" runat="server" Font-Size="11px"
+                                                        
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "adjstqty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                         Width="65px" BackColor="White"
-                                                        BorderStyle="None" Style="text-align: right" AutoPostBack="true"></asp:TextBox>
+                                                        BorderStyle="None" Style="text-align: right"></asp:TextBox>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Right" Width="65px" />
                                             </asp:TemplateField>
