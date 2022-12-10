@@ -236,8 +236,6 @@ namespace RealERPWEB.F_14_Pro
 
         protected void gvMSRInfo_DataBind()
         {
-
-
             this.gvMSRInfo2.DataSource = (DataTable)Session["tblt02"];
             this.gvMSRInfo2.DataBind();
             this.FooterCalculation();
@@ -540,7 +538,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3351":
                 case "3352":
                 case "1205":
-                //case "3101":
+                    //case "3101":
                     this.printP2P_cs_approval();
                     break;
                 case "3101": // cpdl
@@ -573,11 +571,15 @@ namespace RealERPWEB.F_14_Pro
             {
                 mMSRNo = Request.QueryString["msrno"].ToString() == "" ? "NEWMSR" : Request.QueryString["msrno"].ToString();
             }
+            else if (this.ddlPrevMSRList.Items.Count > 0)
+            {
+                mMSRNo = this.ddlPrevMSRList.SelectedValue.ToString();
+            }
             else
             {
-                mMSRNo = Request.QueryString["msrno"].ToString() == "" ? "NEWMSR" : Request.QueryString["msrno"].ToString();
-                //DataTable dt = (DataTable)Session["tblmsr01"];
-                //mMSRNo = dt.Rows[0]["maxmsrno"].ToString();
+                //mMSRNo = Request.QueryString["msrno"].ToString() == "" ? "NEWMSR" : Request.QueryString["msrno"].ToString();
+                DataTable dt2 = (DataTable)Session["tblmsr01"];
+                mMSRNo = dt2.Rows[0]["maxmsrno"].ToString();
             }
 
 
@@ -732,7 +734,7 @@ namespace RealERPWEB.F_14_Pro
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                             ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "',  target='_blank');</script>";
             }
-        } 
+        }
 
         protected void printCPDL_cs_approval()
         {
@@ -752,11 +754,15 @@ namespace RealERPWEB.F_14_Pro
             {
                 mMSRNo = Request.QueryString["msrno"].ToString() == "" ? "NEWMSR" : Request.QueryString["msrno"].ToString();
             }
+            else if (this.ddlPrevMSRList.Items.Count > 0)
+            {
+                mMSRNo = this.ddlPrevMSRList.SelectedValue.ToString();
+            }
             else
             {
-                mMSRNo = Request.QueryString["msrno"].ToString() == "" ? "NEWMSR" : Request.QueryString["msrno"].ToString();
-                //DataTable dt2 = (DataTable)Session["tblmsr01"];
-                //mMSRNo = dt2.Rows[0]["maxmsrno"].ToString();
+                //mMSRNo = Request.QueryString["msrno"].ToString() == "" ? "NEWMSR" : Request.QueryString["msrno"].ToString();
+                DataTable dt2 = (DataTable)Session["tblmsr01"];
+                mMSRNo = dt2.Rows[0]["maxmsrno"].ToString();
             }
 
 
@@ -774,7 +780,7 @@ namespace RealERPWEB.F_14_Pro
             string userdesig = "";
             string rsirdesc = "";
             string txtsign1 = "";
-            string txtsign2 = ""; 
+            string txtsign2 = "";
             string txtsign3 = "";
             string recomsup = ds1.Tables[2].Rows[0]["rcmsupdesc"].ToString();
 
@@ -903,7 +909,7 @@ namespace RealERPWEB.F_14_Pro
             string mMSRNO = "NEWMSR";
             if (this.ddlPrevMSRList.Items.Count > 0)
                 mMSRNO = this.ddlPrevMSRList.SelectedValue.ToString();
-            string mMSRDAT =this.txtCurMSRDate.Text.Trim();
+            string mMSRDAT = this.txtCurMSRDate.Text.Trim();
             if (mMSRNO == "NEWMSR")
             {
                 DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETLASTMSRINFO1_CON", mMSRDAT,
@@ -1425,7 +1431,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3101":
                 case "3370":
                     this.gvterm.Columns[4].Visible = false;
-                    this.gvterm.Columns[6].Visible = false;                    
+                    this.gvterm.Columns[6].Visible = false;
                     this.gvterm.Columns[8].Visible = false;
                     this.gvterm.Columns[9].Visible = false;
                     this.gvterm.Columns[5].HeaderText = "VAT & TAX";
