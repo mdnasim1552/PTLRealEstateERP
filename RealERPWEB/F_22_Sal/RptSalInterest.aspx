@@ -71,7 +71,6 @@
                             </div>
 
                             <div class="col-md-3 pading5px asitCol3">
-
                                 <asp:DropDownList ID="ddlProjectName" runat="server" AutoPostBack="True" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged"
                                     TabIndex="5">
                                 </asp:DropDownList>

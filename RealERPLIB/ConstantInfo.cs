@@ -556,6 +556,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1403000", "1403090", "F_14_Pro", "RptWorkOrderVsSupply?", "Type=OrdVsSup&comcod=", "Purchase Order-Supplier Wise", "Procurement", "False", "False", "False", "False" }); 
             tblObj.Rows.Add(new Object[] { "1403000", "1403091", "F_14_Pro", "RptWorkOrderVsSupply?", "Type=OrderTk&comcod=", "Order Tracking", "Procurement", "False", "False", "False", "False" }); 
             tblObj.Rows.Add(new Object[] { "1403000", "1403094", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=Ordertrk", "Order Tracking-01", "Procurement", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "1403000", "1403095", "F_14_Pro", "RptPurchaseStatus02?", "Type=DaywPur", "Day Wise Purchase History (Project & Supplier) Wise", "Procurement", "False", "False", "False", "False" });
+
             //tblObj.Rows.Add(new Object[] { "14275", "RptPurchaseStatus?", "Type=Purchase&Rpt=Ordertrk", "Order Tracking", "Procurement", "False", "False", "False", "False" });
 
 
@@ -5749,6 +5751,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000013", "17. Rate Variance-Materials", "F_14_Pro/RptPurchaseStatus?Type=Purchase&Rpt=MatRateVar&comcod=&Date1=&Date2=", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0302000014", "18. Purchase Order Top Sheet", "F_14_Pro/RptPurOrderTopSheet", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000015", "19. Purchase History (Project & Supplier) Wise", "F_14_Pro/RptPurchaseStatus02?Type=DaywPur&comcod=", "", true, "" });
 
 
 
