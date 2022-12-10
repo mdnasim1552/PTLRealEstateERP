@@ -1258,6 +1258,31 @@ namespace RealEntity.C_22_Sal
             public double trecvam { get; set; }
             public SalasSumaryA() { }
         }
+  
+
+        [Serializable]
+        public class AllotmentInfo
+        {
+            public string pactcode { get; set; }
+            public string usircode { get; set; }
+            public string udesc { get; set; }
+            public string custname { get; set; }
+            public string fathername { get; set; }
+            public string mothername { get; set; }
+            public string presentadd { get; set; }
+            public string permanentadd { get; set; }
+            public string nationality { get; set; }
+           
+            public string phonenumber { get; set; }
+            public string email { get; set; }
+           
+        }
+
+
+
+
+
+
 
         [Serializable]
         public class SoldUnsold
