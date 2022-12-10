@@ -1470,8 +1470,6 @@ namespace RealERPWEB
                              "<strong style='text-align: center'>We Wish You All the Best</strong></p><p>&nbsp;" +
                             "</p><p>Thanking you</p>"+
 
-
-
                             "</strong>------------------------------------------<strong> </p><p>&nbsp;" +
                             "</strong> Md.Khairuzzaman Joarder<strong> </p><p>&nbsp;" +
                             "</strong> Chief Operating Officer-CPDL<strong> </p><p>&nbsp;" +
@@ -1480,9 +1478,6 @@ namespace RealERPWEB
                             "</p><p>Personal File: </p>"
                             ;
 
-
-                       
-                  
 
                     }
                     else
