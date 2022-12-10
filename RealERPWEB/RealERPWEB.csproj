@@ -228,7 +228,7 @@
     </Reference>
     <Reference Include="RealERPRPT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\_rnd\PTLRealEstateERP\RealERPWEB\bin\RealERPRPT.dll</HintPath>
+      <HintPath>..\..\..\RealERPRPT.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=108.0.3.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.108.0.3\lib\netstandard2.0\RestSharp.dll</HintPath>

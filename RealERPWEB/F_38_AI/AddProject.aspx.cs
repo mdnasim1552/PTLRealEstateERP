@@ -310,8 +310,9 @@ namespace RealERPWEB.F_38_AI
 
                 }
             }
-            catch (Exception ex)
+            catch (Exception exp)
             {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
             }
         }
