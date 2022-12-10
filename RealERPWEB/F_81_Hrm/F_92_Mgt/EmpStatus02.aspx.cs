@@ -1507,23 +1507,20 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             }
           
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_92_mgt.BO_ClassEmployee.EmployeeIDCardInfo>();
+           // new Uri(Server.MapPath("~/images/Mudassar.jpg")).AbsoluteUri;
+            list.Where(w => w.empimg != "").ToList().ForEach(s => s.empimg = new Uri(Server.MapPath(s.empimg)).AbsoluteUri);
+
 
            
-
-         
                 Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_92_Mgt.RptEmpIdCard", list, null, null);
-          
-               
-               
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                string EmpLogo = new Uri(Server.MapPath(@""+dt.Rows[i]["empimg"])).AbsoluteUri;
                 Rpt1.EnableExternalImages = true;
-                Rpt1.SetParameters(new ReportParameter("EmpLogo", EmpLogo));
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                //string EmpLogo = new Uri(Server.MapPath(@""+dt.Rows[i]["empimg"])).AbsoluteUri;
+               
+               // Rpt1.SetParameters(new ReportParameter("EmpLogo", EmpLogo));
 
-            }
+            
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +

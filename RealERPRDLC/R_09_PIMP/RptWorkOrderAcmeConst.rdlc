@@ -1481,7 +1481,7 @@
                   <Width>0.14583in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>5.98611in</Width>
+                  <Width>6.02779in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -1609,7 +1609,7 @@
             </TablixRowHierarchy>
             <Top>2.38417in</Top>
             <Height>0.25in</Height>
-            <Width>7.40278in</Width>
+            <Width>7.44445in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -1665,7 +1665,7 @@
                   <Width>1.125in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.92361in</Width>
+                  <Width>1.96528in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -2070,7 +2070,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>3.29042in</Top>
             <Height>0.5in</Height>
-            <Width>7.40278in</Width>
+            <Width>7.44445in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -2129,7 +2129,7 @@
             <rd:DefaultName>Textbox67</rd:DefaultName>
             <Top>4.35639in</Top>
             <Height>0.57292in</Height>
-            <Width>7.40278in</Width>
+            <Width>7.44445in</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -2405,7 +2405,7 @@
         <Height>6.625in</Height>
         <Style />
       </Body>
-      <Width>7.40278in</Width>
+      <Width>7.44445in</Width>
       <Page>
         <PageHeader>
           <Height>1in</Height>
