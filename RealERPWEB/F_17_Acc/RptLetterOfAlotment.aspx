@@ -5,6 +5,33 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <style>
+        .chzn-select {
+            width: 100%;
+        }
+
+        .chzn-container {
+            width: 100% !important;
+        }
+
+        .gview tr td {
+            border: 0;
+        }
+
+        .gview .form-control {
+            height: 25px;
+            line-height: 25px;
+            padding: 0 12px;
+            border-style: solid !important;
+            border-color: #c6c9d5 !important;
+        }
+
+        #cardstyle {
+            background-color: #E8E3E3;
+            padding: 0 !important;
+        }
+    </style>
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -52,18 +79,18 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <asp:Label runat="server" ID="lblprjname">Project Name</asp:Label>
-                                <asp:DropDownList runat="server" ID="ddlprjname" CssClass="chzn-select form-control"></asp:DropDownList>
+                                <asp:DropDownList runat="server" ID="ddlprjname" AutoPostBack="True" CssClass="chzn-select form-control" OnSelectedIndexChanged="ddlprjname_SelectedIndexChanged" ></asp:DropDownList>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
                                 <asp:Label runat="server" ID="Label1">Customer Name</asp:Label>
-                                <asp:DropDownList runat="server" ID="ddlcustomerName" CssClass="chzn-select form-control"></asp:DropDownList>
+                                <asp:DropDownList runat="server" ID="ddlcustomerName" AutoPostBack="True" CssClass="chzn-select form-control"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="col-md-1 mt-4">
                             <div class="form-group">
-                                <asp:LinkButton ID="btnok" runat="server" CssClass="btn btn-primary btn-sm ">OK</asp:LinkButton>
+                                <asp:LinkButton ID="btnok" OnClick="btnok_Click" runat="server" CssClass="btn btn-primary btn-sm ">OK</asp:LinkButton>
                             </div>
                         </div>
                     </div>

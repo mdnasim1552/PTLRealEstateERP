@@ -377,6 +377,7 @@ namespace RealERPRDLC
                 case "R_22_Sal.RptTransactionSt": Rpt1a = SetRptTransactionSt(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptSalesOpening": Rpt1a = SetRptSalesOpening(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptTopSheetFactory": Rpt1a = SetRptTopSheetFactory(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptLetterOfAllotmentCPDL": Rpt1a = SetRptLetterOfAllotmentCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 
 
                 #region General Accounts 17
@@ -1431,6 +1432,12 @@ namespace RealERPRDLC
         private static LocalReport SetRptTopSheetFactory(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalSummaryInfo>)RptDataSet));
+
+            return Rpt1a;
+        }
+        private static LocalReport SetRptLetterOfAllotmentCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.Sales_BO.AllotmentInfo>)RptDataSet));
 
             return Rpt1a;
         }
