@@ -1799,7 +1799,13 @@ namespace RealERPWEB.F_22_Sal
 
             List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet> lstb = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>)Session["lstbaseschdule"];
             List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet> lstcoff = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>)Session["lstcoffschedule"];
-           
+
+          
+            
+
+
+
+
 
             int noofemi;
             DateTime coffbookingdate, benddate, finalinsdate;
@@ -1815,7 +1821,7 @@ namespace RealERPWEB.F_22_Sal
             benddate = Convert.ToDateTime(lstb[lstb.Count-1].schdate);           
             benddate = finalinsdate > benddate ? finalinsdate : benddate;
 
-            uzize= Convert.ToDouble("0" + this.lblvalcoffarea.InnerText.ToString());
+       
             coffpamt = Convert.ToDouble("0" + this.txtcofffparking.Text.ToString());
             coffutility = Convert.ToDouble("0" + this.txtcoffutility.Text.ToString());
             coffothers = Convert.ToDouble("0" + this.txtcoffothers.Text.ToString());            
@@ -1827,7 +1833,7 @@ namespace RealERPWEB.F_22_Sal
             pamt = Convert.ToDouble(this.lblhiddenbpamt.Value);
             utility = Convert.ToDouble(this.lblhiddenbutility.Value);
             others = Convert.ToDouble(this.lblhiddenothers.Value); 
-            bfvpsft =Math.Round( ((uzize > 0) ? ((bfv - pamt - utility - others) / uzize) : 0.00),0);
+            bfvpsft =Math.Round( ((usize > 0) ? ((bfv - pamt - utility - others) / usize) : 0.00),0);
             bpowbpart = (12 + intratio) / 12;
             bpvpsft = Math.Round(bfvpsft / (Math.Pow(bpowbpart, noofemi)), 0);
 
@@ -1860,6 +1866,22 @@ namespace RealERPWEB.F_22_Sal
                 result = true;
             }
 
+
+
+
+            //double baseinterest, coffinterest, interestdiff, unitamt, newcofftotalam, newcoffunitamt, newcoffunitrate;
+
+            //baseinterest = lstb.Sum(l => l.fv) - lstb.Sum(l => l.pv);
+            //coffinterest = lstcoff.Sum(l => l.fv) - lstcoff.Sum(l => l.pv);
+            //interestdiff = coffinterest - baseinterest;
+            //unitamt= Convert.ToDouble("0" + this.lblvalunitprice.InnerText);
+            //newcofftotalam = unitamt + coffpamt + coffutility + coffothers+ interestdiff;
+            //newcoffunitamt = newcofftotalam - coffpamt - coffutility - coffothers;
+            //newcoffunitrate = Math.Round(((usize > 0) ? (newcoffunitamt / usize) : 0.00), 0);
+            //this.lblhiddenncoffurate.Value = newcoffunitrate.ToString("#,##0;(#,##0); ");
+
+
+
             //cofffv = bfvpsft * usize + (coffpamt + coffutility + coffothers);
             //coffpv = cofffv / (Math.Pow(coffpowbpart, noofemi));
             //upsftwiopuaoth = ((usize > 0) ? ((coffpv - (coffpamt + coffutility + coffothers)) / usize) : 0.00);
@@ -1887,12 +1909,15 @@ namespace RealERPWEB.F_22_Sal
                 {
                     //"<span style='color:red'>Minimum FV Per SFT:" + this.lblhiddenfvpersft.Value + "Minimum PV Per SFT:" + this.lblhiddenpvpersft.Value + "</span>";
 
-
-                    string mfvpsftapvpsft = "Minimum FV Per SFT:" + this.lblhiddenfvpersft.Value + " Minimum PV Per SFT:" + this.lblhiddenpvpersft.Value;
+                    string mfvpsftapvpsft = "Minimum Rate Per SFT:" + this.lblhiddenncoffurate.Value;
+                    
+                   // string mfvpsftapvpsft = "Minimum FV Per SFT:" + this.lblhiddenfvpersft.Value + " Minimum PV Per SFT:" + this.lblhiddenpvpersft.Value;
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+ mfvpsftapvpsft + "');", true);
                     return;
 
                 }
+
+              //  return;
 
                 if (this.ddlPrevious.Items.Count == 0)
                     this.LastGrandNoteSheet();

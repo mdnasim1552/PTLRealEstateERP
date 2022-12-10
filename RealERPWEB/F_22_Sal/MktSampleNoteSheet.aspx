@@ -1585,8 +1585,9 @@
                                         <asp:HiddenField ID="lblhiddenothers" runat="server" />
                                         <asp:HiddenField ID="lblhiddenbnoemi" runat="server" />
                                         <asp:HiddenField ID="lblhiddenfvpersft" runat="server" />                                        
-                                        <asp:HiddenField ID="lblhiddenpvpersft" runat="server" />
+                                        <asp:HiddenField ID="lblhiddenpvpersft" runat="server" />                                        
                                         <asp:HiddenField ID="lblminunitrate" runat="server" />
+                                        <asp:HiddenField ID="lblhiddenncoffurate" runat="server" />
 
                                     </div>
 
