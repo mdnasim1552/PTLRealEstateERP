@@ -298,6 +298,11 @@
                                                                 NavigateUrl='<%# "~/LetterDefault?Type=10008&Entry= increment Letter &empid="+Eval("empid") %>'
                                                                 CssClass="dropdown-item" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? false:true %>' runat="server"> Increment Letter</asp:HyperLink>
                                                         </li>
+                                                        <li class="mt-2">
+                                                            <asp:HyperLink ID="hyplnkprmtn" Target="_blank"
+                                                                NavigateUrl='<%# "~/LetterDefault?Type=10007&Entry= Promotion Letter &empid="+Eval("empid") %>'
+                                                                CssClass="dropdown-item" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? false:true %>' runat="server"> Promotion Letter</asp:HyperLink>
+                                                        </li>
 
                                                         <li class="mt-2">
                                                             <asp:HyperLink ID="HyperLink4" Target="_blank"
