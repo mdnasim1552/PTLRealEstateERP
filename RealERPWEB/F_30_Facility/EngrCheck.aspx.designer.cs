@@ -285,6 +285,15 @@ namespace RealERPWEB.F_30_Facility
         protected global::System.Web.UI.WebControls.LinkButton lnkSave;
 
         /// <summary>
+        /// lnkProceed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkProceed;
+
+        /// <summary>
         /// pnlWorkDone control.
         /// </summary>
         /// <remarks>
@@ -301,15 +310,6 @@ namespace RealERPWEB.F_30_Facility
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkWorkDone;
-
-        /// <summary>
-        /// lnkProceed control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkProceed;
 
         /// <summary>
         /// txtheader control.
