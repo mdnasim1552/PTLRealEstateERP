@@ -341,6 +341,21 @@ namespace RealERPWEB
                     this.modalPayslipBti.Visible = true;
 
                     break;
+                   
+                case "3370":
+                    this.lnkOrintation.Visible = false;
+                    this.HyperCodeofConduct.Visible = false;
+                    this.HypOrganogram.Visible = false;
+                    this.pnlServHis.Visible = false;
+                    this.winsList.Visible = false;
+                    this.hrpolicy.Visible = false;
+                    this.PaySlipPart.Visible = true;
+                    this.List_EmpDirectory.Visible = false;
+
+                    this.pnlUpcmEdison.Visible = false;
+                    this.pnlUpcmBti.Visible = true;
+                    this.modalPayslipBti.Visible = true;
+                    break;
                 default:
 
                     this.lnkOrintation.Visible = false;
