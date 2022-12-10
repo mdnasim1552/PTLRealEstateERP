@@ -172,7 +172,6 @@
                                       <Value>=Fields!empname.Value</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>11pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -370,6 +369,7 @@
                             <Image Name="ComLogo2">
                               <Source>External</Source>
                               <Value>=Parameters!EmpLogo.Value</Value>
+                              <MIMEType>image/jpeg</MIMEType>
                               <Sizing>FitProportional</Sizing>
                               <Top>1.01955in</Top>
                               <Left>0.68541in</Left>
@@ -420,6 +420,9 @@
                               <Style>Solid</Style>
                               <Width>2pt</Width>
                             </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
                             <BottomBorder>
                               <Style>None</Style>
                             </BottomBorder>

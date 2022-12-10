@@ -1483,9 +1483,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             LocalReport Rpt1 = new LocalReport();
             DataTable dt = (DataTable)Session["tblEmpstatus"];
 
-            String empimg = dt.Rows[0]["empimg"].ToString();
-
-        
+            
+           
             
             int index;
             for (int i = 0; i < this.gvEmpCard.Rows.Count; i++)
@@ -1513,25 +1512,18 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
          
                 Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_92_Mgt.RptEmpIdCard", list, null, null);
-            if (empimg == null)
+          
+               
+               
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
-                string EmpLogo = new Uri(Server.MapPath(@"~\Upload\UserImages\3101001.png")).AbsoluteUri;
+                string EmpLogo = new Uri(Server.MapPath(@""+dt.Rows[i]["empimg"])).AbsoluteUri;
                 Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("EmpLogo", EmpLogo));
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("EmpLogo", EmpLogo));
-            }
-            else
-            {
-                string EmpLogo = new Uri(Server.MapPath(@"" + empimg)).AbsoluteUri;
-                Rpt1.EnableExternalImages = true;
-                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("EmpLogo", EmpLogo));
-            }
 
-           
-         
+            }
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
