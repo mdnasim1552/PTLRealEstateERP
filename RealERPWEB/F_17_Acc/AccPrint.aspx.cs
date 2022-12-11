@@ -3236,6 +3236,11 @@ namespace RealERPWEB.F_17_Acc
                     rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeDhakaBankCPDL", hshtbl, null, null);
                 }
 
+
+                //rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeOneBankCPDL", hshtbl, null, null);
+                //rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeCityBankCPDL", hshtbl, null, null);
+
+
                 Session["Report1"] = rpt1;
 
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
