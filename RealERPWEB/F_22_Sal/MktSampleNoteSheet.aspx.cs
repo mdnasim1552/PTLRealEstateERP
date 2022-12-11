@@ -1878,7 +1878,7 @@ namespace RealERPWEB.F_22_Sal
             unitamt = Convert.ToDouble("0" + this.lblvalunitprice.InnerText);
             newcofftotalam = unitamt + coffpamt + coffutility + coffothers + interestdiff;
             newcoffunitamt = newcofftotalam - coffpamt - coffutility - coffothers;
-            newcoffunitrate = Math.Round(((usize > 0) ? (newcoffunitamt / usize) : 0.00), 0);
+            newcoffunitrate = Math.Round(((usize > 0) ? (newcoffunitamt / usize) : 0.00), 0); 
             this.lblhiddenncoffurate.Value = newcoffunitrate.ToString("#,##0;(#,##0); ");
 
 
