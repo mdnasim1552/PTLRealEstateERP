@@ -134,7 +134,7 @@ namespace RealERPWEB.F_23_CR
             string PrintOpt = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
 
             int index = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            //LinkButton rcptPrint = ((LinkButton)this.gvAccMR.Rows[index].FindControl("lnkMoneyRcptPrint"));
+            LinkButton rcptPrint = ((LinkButton)this.gvAccMR.Rows[index].FindControl("lnkMoneyRcptPrint"));
 
             string pactcode = ((Label)this.gvAccMR.Rows[index].FindControl("lgvpactcode")).Text.Trim().ToString();
             string usircode = ((Label)this.gvAccMR.Rows[index].FindControl("lgvusircode")).Text.Trim().ToString();

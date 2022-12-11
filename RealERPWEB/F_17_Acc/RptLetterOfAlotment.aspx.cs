@@ -135,7 +135,7 @@ namespace RealERPWEB.F_17_Acc
                 string OptionalCost = "Optional Up Gradation Cost : ";
                 string optionalDetails = "On acceptance of customers request";
                 string type = "Flat";
-                string condition = "GENERAL TERMS & CONDITIONS OF ALLOTMENT FOR" + "<strong>" + type + "<strong>";
+                string condition = "GENERAL TERMS & CONDITIONS OF ALLOTMENT FOR " + "<strong>" + type + "<strong>";
                 string companyname = "CPDL";
                 string body = "1. All payment should be made to " + "<strong>" + companyname + "</strong>" + " by Account Payee Cheque or Bank Draft or Pay Order or DD or TT in locally against" + "<br>" +
                           "which respective receipts will be issued. All payments of the applicant / allottee from outside of Chittagong City should " + "<strong>" + companyname + "</strong>" + " <br>" +
@@ -151,36 +151,34 @@ namespace RealERPWEB.F_17_Acc
                           "3. The allotee should not have right to transfer the allotment to a third party until full payment of installments and other charges, if any. " + "<br><br>" +
                           "4. Connection fees/charges, security deposits and other incidental expenses relating to gas, water,sewerage and electric" + "<br>" +
                           "connections  as Utility Charges  are not included in the price of " + type + " space. These payments will be made by the" + "<br>" +
-                          "company directly to the authorities concerned, on the allottees account." + "<br><br>";
+                          "company directly to the authorities concerned, on the allottees account." + "<br><br>"+
+                          "5. Limited changes in the " + type + " and other facilities may be made by the " + "<b>" + companyname + "</b>" + " for greater and overall interest of the project.  ";
 
-
-           string body02 = "5. Limited changes in the " + type + " and other facilities may be made by the " + "<b>" + companyname + "</b>" + " for greater " + "<br>" +
-                          "and overall interest of the project. " + "<br><br>" +
+            string body02 = 
                           " 6. No modification from customer's end will be allowed on elevation or which seen from outside of the complex, sanitary line etc." + "<br><br>" +
-                          "7. If the allottee intends to have any modification of the civil or electrical work of his" + type + " compared to the " + "<br><br>" +
-                          "standard set by" + "<strong>" + companyname + "</strong>" + " any such modification request shall first be assessed" + "<br>" +
-                          " by the " + "<strong>" + companyname + "</strong>" + " management.Implementation of any such modification work whether in part" + "<br>" +
-                          "\n" +
-                          "\n   or full, is strictly subject to prior approval of" + "<strong>" + companyname + "</strong>" + " management. In the event, that an additional cost" +
-                          "\n is involved in implementing any such modification request; the concerned allottee must bear such cost. The allottee is at liberty to select" +
-                          "\n fittings & fixtures of his/her own choice other than those specified in the" + "<strong>" + companyname + "</strong>" + "s standard materials specification sheet." +
-                          "\n\n 8. However, if additional cost is involved for use of any such fittings and / or fixtures, the allottee must bear such extra cost. " +
-                          "\n\n 9. Civil layout, electrical layout, modification, finishing material confirmation should be completed within 30 days after dispatch of request letter for  " +
-                          "\n the mentioned purpose,the mentioned purpose,if it doesn't; civil layout and electrical layout will be made as per " + "<strong>" + companyname + "</strong>" + " standard." +
-                          "\n However, no modification will be done after official handover of the project. If there is any modification it has to be done by " + type + " owner with his/her own cost and arrangement" +
-                          "\n\n10. The possession of each" + type + " shall duly be handed over to the allottee on completion and on full paymentof installments and other charges and dues." +
-                          "\n  Until then the possession will be held by the" + "<strong>" + companyname + "</strong>" + ". If the construction and finishing work of each building is completed on " +
-                          "\n before declared handover tenure due to smoothness of allover activities, the monthly installment schedule of the allottee will be restructured " +
-                          "\n and he/she must liable to pay as per rescheduled amount as well as bound to take the possession of respective" + type + "(s)" +
-                          "\n\n11. Upon registration, the" + type + "owner, irrespective of the floor, will become the proportionate owner of the un-divided and un-demarcated land on  " +
-                          "\n which the building is constructed. After having possession of the" + type + " , the allottee must consult with the " + "<strong>" + companyname + "</strong>" + " before undertaking any " +
-                          "\n structural or layout change within the Apartment complex. Failure to do so will be at the sole risk of allottee." +
-                          "\n\n12. The completion period may be affected and delayed by the unavoidable circumstances beyond the control of the company, like Force Majeure, Natural Calamities," +
-                          "\n Political Disturbances, Act of God, Strike Non Availability of Materials, Change in the Policy of the Government etc." +
-                          "\n\n13. " + "<strong>" + companyname + "</strong>" + " will not take any responsibility for providing finishing materials beyond" + "<strong>" + companyname + "</strong>" + " standards" +
-                          "\n\n14. Upon registration, the " + type + " owner, irrespective of the floor, will become the proportionate owner of the un-divided and un-demarcated land" +
-                          "\n on which the building is constructed. After having possession of the" + type + " , the allottee must consult with the " + "<strong>" + companyname + "</strong>" + " before "+
-                          "\n   undertaking any structural or layout change within the" + type + "complex. Failure to do so will be at the sole risk of allottee.";
+                          "7. If the allottee intends to have any modification of the civil or electrical work of his " + type + " compared to the standard set by " +
+                          "<strong>" + companyname + "</strong>" + " any such modification request shall first be assessed  by the " + "<strong>" + companyname + "</strong>" + " management." +
+                          "Implementation of any such modification work whether in part or full, is strictly subject to prior approval of " + "<strong>" + companyname + "</strong>" + " management. "  +
+                          "In the event, that an additional cost is involved in implementing any such modification request the concerned allottee must bear such cost. "  +
+                          "The allottee is at liberty to select fittings & fixtures of his/her own choice other than those specified in the " + "<strong>" + companyname + "</strong>" + "s" +
+                          "standard materials specification sheet." + "<br><br>" +
+                          "8. However, if additional cost is involved for use of any such fittings and / or fixtures, the allottee must bear such extra cost. " + "<br><br>" +
+                          "9. Civil layout, electrical layout, modification, finishing material confirmation should be completed within 30 days after dispatch of request letter for " +
+                          "the mentioned purpose,the mentioned purpose,if it doesn't; civil layout and electrical layout will be made as per  " + "<strong>" + companyname + "</strong>" + " standard. " +                        
+                          "However, no modification will be done after official handover of the project. If there is any modification it has to be done by " + type + " owner with his/her own cost and arrangement" + "<br><br>" +
+                          "10. The possession of each " + type + " shall duly be handed over to the allottee on completion and on full paymentof installments and other charges and dues." +
+                          "Until then the possession will be held by the " + "<strong>" + companyname + "</strong>" + " . If the construction and finishing work of each building is completed on " +
+                          "before declared handover tenure due to smoothness of allover activities, the monthly installment schedule of the allottee will be restructured " +
+                          "and he/she must liable to pay as per rescheduled amount as well as bound to take the possession of respective " + type + "(s)" + "<br><br>" +
+                          "11. Upon registration, the " + type + " owner, irrespective of the floor, will become the proportionate owner of the un-divided and un-demarcated land on  " +
+                          "which the building is constructed. After having possession of the" + type + " , the allottee must consult with the " + "<strong>" + companyname + "</strong>" + " before undertaking any " +
+                          "structural or layout change within the Apartment complex. Failure to do so will be at the sole risk of allottee." + "<br><br>" +
+                          "12. The completion period may be affected and delayed by the unavoidable circumstances beyond the control of the company, like Force Majeure, Natural Calamities,"  +
+                          "Political Disturbances, Act of God, Strike Non Availability of Materials, Change in the Policy of the Government etc." + "<br><br>" +
+                          "13. " + "<strong>" + companyname + "</strong>" + " will not take any responsibility for providing finishing materials beyond " + "<strong>" + companyname + "</strong>" + " standards" + "<br><br>" +
+                          "14. Upon registration, the " + type + " owner, irrespective of the floor, will become the proportionate owner of the un-divided and un-demarcated land"  +
+                          "on which the building is constructed. After having possession of the" + type + " , the allottee must consult with the " + "<strong>" + companyname + "</strong>" + " before " +
+                          "undertaking any structural or layout change within the " + type + " complex. Failure to do so will be at the sole risk of allottee.";
                 string generalTitle = "GENERAL AGREEMENT";
                 string generalbody = "The enrollment Form, Materials Specification, Acknowledgement of Booking Amount, Money Receipt" +
                                    "\n and Payment Schedule will be an integral part of this Allotment Letter. On acceptance of this" +
@@ -203,6 +201,7 @@ namespace RealERPWEB.F_17_Acc
 
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "LETTER OF ALLOTMENT"));                
                 Rpt1.SetParameters(new ReportParameter("dateofbirth", dateofbirth));                
+                Rpt1.SetParameters(new ReportParameter("body02", body02));                
                 Rpt1.SetParameters(new ReportParameter("custid", custid));                
                 Rpt1.SetParameters(new ReportParameter("heading", heading));                
                 Rpt1.SetParameters(new ReportParameter("method", method));                
