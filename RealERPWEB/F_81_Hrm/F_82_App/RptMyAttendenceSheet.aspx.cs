@@ -260,10 +260,34 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string comcod = this.GetComeCode();
             //string Company = "";
             // string PCompany = "";
+            string type = this.Request.QueryString["Type"].ToString();
+            string frmdate = "";
+            string todate = "";
+            string empid = "";
+
+            if (type == "MGT")
+            {
+                frmdate = this.txtgvenjoydt1.Text.ToString();
+                todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                empid = this.ddlEmpName.SelectedValue.ToString(); ;
+            }
+            else
+            {
+                frmdate = this.Request.QueryString["frmdate"].ToString();
+                todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                empid = this.Request.QueryString["empid"].ToString();
+            }
+
+
+
+
+
+
+
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string empid = this.Request.QueryString["empid"].ToString();
-            string frmdate = this.Request.QueryString["frmdate"].ToString();
-            string todate = this.Request.QueryString["todate"].ToString();
+            //string empid = this.Request.QueryString["empid"].ToString();
+            //string frmdate = this.Request.QueryString["frmdate"].ToString();
+            //string todate = this.Request.QueryString["todate"].ToString();
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "EMPATTNIDWISE", frmdate, todate, empid, "", "", "", "", "", "");
 
 

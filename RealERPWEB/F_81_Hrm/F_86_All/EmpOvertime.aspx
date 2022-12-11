@@ -936,6 +936,32 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
+                                         <asp:TemplateField HeaderText="Leave">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvleave" runat="server" BackColor="Transparent"
+                                                    BorderStyle="None" Font-Size="11px" Style="text-align: right"
+                                                    Text='<%# Convert.ToInt32(DataBinder.Eval(Container.DataItem, "leave")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="60px"></asp:Label>
+                                            </ItemTemplate>
+
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Leave Enjoyed">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvenjoyday" runat="server" BackColor="Transparent"
+                                                    BorderStyle="None" Font-Size="11px" Style="text-align: right"
+                                                    Text='<%# Convert.ToInt32(DataBinder.Eval(Container.DataItem, "enjoyday")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="60px"></asp:Label>
+                                            </ItemTemplate>
+
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
+
+
                                         <asp:TemplateField HeaderText="Balance Leave">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvElave" runat="server" BackColor="Transparent"

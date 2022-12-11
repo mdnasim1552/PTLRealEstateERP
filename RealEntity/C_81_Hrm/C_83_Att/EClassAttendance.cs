@@ -86,7 +86,6 @@ namespace RealEntity.C_81_Hrm.C_83_Att
             public string desig { get; set; }
             public string empname { get; set; }
             public string companyname { get; set; }
-            public string sectionname { get; set; }
             public string deptname { get; set; }
             public string grade { get; set; }
             public int paydays { get; set; }
@@ -94,6 +93,8 @@ namespace RealEntity.C_81_Hrm.C_83_Att
             public int wrkday { get; set; }
             public int holiday { get; set; }
             public int leave { get; set; }
+            public string rmrks { get; set; }
+
 
             public RptMonAttnSumEmpWise()
             {

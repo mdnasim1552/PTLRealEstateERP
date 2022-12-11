@@ -88,7 +88,7 @@ namespace RealERPWEB.F_17_Acc
                     // case "3101":
                     mrprint = "MRPrintIntech";
                     break;
-               // case "3101":
+              //case "3101":
                 case "3370":
                     // case "3101":
                     mrprint = "MRPrintCPDL";
@@ -104,8 +104,10 @@ namespace RealERPWEB.F_17_Acc
                 case "3338":
                     mrprint = "MRPrintAcme";
                     break;
-
-
+                case "3367":
+                case "3101":
+                    mrprint = "MRPrintEPIC";
+                    break;
                 default:
                     mrprint = "MRPrint";
                     break;
@@ -972,6 +974,29 @@ namespace RealERPWEB.F_17_Acc
                 //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" + PrintOpt + "', target='_self');</script>";
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" + PrintOpt + "', target='_self');</script>";
             }
+            else if (Type == "MRPrintEPIC")
+            {
+                try
+                {
+                    var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
+                    string currentdate = DateTime.Now.ToString("MMM dd, yyyy hh:mm tt");
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptEPIC", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("CompName", comnam));
+                    Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
+                    Rpt1.SetParameters(new ReportParameter("CompAdd", comadd));
+
+                    Session["Report1"] = Rpt1;
+                    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+                }
+                catch(Exception exp)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+                }
+            }
+
 
             else if (Type== "MRPrintAcme")
             {
