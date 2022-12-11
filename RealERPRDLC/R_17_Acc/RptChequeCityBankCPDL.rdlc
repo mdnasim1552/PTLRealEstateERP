@@ -33,8 +33,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>payTo</rd:DefaultName>
-            <Top>3.31437in</Top>
-            <Left>4.45645in</Left>
+            <Top>3.17774in</Top>
+            <Left>4.4505in</Left>
             <Height>5.54062in</Height>
             <Width>0.26041in</Width>
             <Style>
@@ -65,10 +65,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox8</rd:DefaultName>
-            <Top>3.82479in</Top>
-            <Left>4.0437in</Left>
-            <Height>3.90568in</Height>
-            <Width>0.27524in</Width>
+            <Top>3.68816in</Top>
+            <Left>4.06508in</Left>
+            <Height>4.04479in</Height>
+            <Width>0.26041in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -101,10 +101,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
-            <Top>7.76763in</Top>
-            <Left>3.92981in</Left>
+            <Top>7.75378in</Top>
+            <Left>4.02202in</Left>
             <Height>1.99375in</Height>
-            <Width>0.32638in</Width>
+            <Width>0.29305in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -136,7 +136,6 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>date</rd:DefaultName>
-                <Top>0.025in</Top>
                 <Height>0.25in</Height>
                 <Width>0.259in</Width>
                 <Style>
@@ -166,7 +165,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox22</rd:DefaultName>
-                <Top>0.27638in</Top>
+                <Top>0.24687in</Top>
                 <Height>0.25in</Height>
                 <Width>0.259in</Width>
                 <ZIndex>1</ZIndex>
@@ -197,7 +196,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>date</rd:DefaultName>
-                <Top>0.52638in</Top>
+                <Top>0.51076in</Top>
                 <Height>0.25in</Height>
                 <Width>0.259in</Width>
                 <ZIndex>2</ZIndex>
@@ -228,7 +227,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>date</rd:DefaultName>
-                <Top>0.78888in</Top>
+                <Top>0.76076in</Top>
                 <Height>0.25in</Height>
                 <Width>0.259in</Width>
                 <ZIndex>3</ZIndex>
@@ -259,7 +258,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>date</rd:DefaultName>
-                <Top>1.05416in</Top>
+                <Top>1.01076in</Top>
                 <Height>0.25in</Height>
                 <Width>0.259in</Width>
                 <ZIndex>4</ZIndex>
@@ -290,7 +289,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>date</rd:DefaultName>
-                <Top>1.30972in</Top>
+                <Top>1.26633in</Top>
                 <Height>0.25in</Height>
                 <Width>0.259in</Width>
                 <ZIndex>5</ZIndex>
@@ -321,7 +320,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>date</rd:DefaultName>
-                <Top>1.8375in</Top>
+                <Top>1.7941in</Top>
                 <Height>0.25in</Height>
                 <Width>0.259in</Width>
                 <ZIndex>6</ZIndex>
@@ -352,7 +351,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>date</rd:DefaultName>
-                <Top>1.57361in</Top>
+                <Top>1.53021in</Top>
                 <Height>0.25in</Height>
                 <Width>0.259in</Width>
                 <ZIndex>7</ZIndex>
@@ -369,9 +368,9 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>7.74714in</Top>
-            <Left>4.96784in</Left>
-            <Height>2.1125in</Height>
+            <Top>7.74752in</Top>
+            <Left>5.05172in</Left>
+            <Height>2.0441in</Height>
             <Width>0.26389in</Width>
             <ZIndex>3</ZIndex>
             <Style>
@@ -398,10 +397,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>amtWord1</rd:DefaultName>
-            <Top>2.81562in</Top>
-            <Left>3.61831in</Left>
-            <Height>4.91485in</Height>
-            <Width>0.29761in</Width>
+            <Top>2.67899in</Top>
+            <Left>3.65219in</Left>
+            <Height>5.11229in</Height>
+            <Width>0.28278in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -418,8 +417,8 @@
             <Source>Embedded</Source>
             <Value>ckprint</Value>
             <Sizing>FitProportional</Sizing>
-            <Top>2.44284in</Top>
-            <Left>4.57545in</Left>
+            <Top>2.44149in</Top>
+            <Left>4.58433in</Left>
             <Height>1.35417in</Height>
             <Width>1.20833in</Width>
             <ZIndex>5</ZIndex>
@@ -455,7 +454,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox16</rd:DefaultName>
                 <Top>0.6292in</Top>
-                <Left>2.19268in</Left>
+                <Left>1.8209in</Left>
                 <Height>1.47544in</Height>
                 <Width>0.32594in</Width>
                 <Style>
@@ -491,7 +490,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox3</rd:DefaultName>
                 <Top>0.53545in</Top>
-                <Left>1.85146in</Left>
+                <Left>1.47968in</Left>
                 <Height>1.56919in</Height>
                 <Width>0.30303in</Width>
                 <ZIndex>1</ZIndex>
@@ -513,7 +512,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Parameters!amtWord.Value</Value>
+                        <Value>="  "+Parameters!amtWord.Value</Value>
                         <Style>
                           <FontFamily>Cambria</FontFamily>
                           <FontSize>=iif(Len(Trim(Parameters!amtWord.Value)) &gt; 50, "7pt", "8pt")</FontSize>
@@ -527,9 +526,9 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox16</rd:DefaultName>
-                <Top>0.53545in</Top>
-                <Left>0.99759in</Left>
-                <Height>1.56919in</Height>
+                <Top>0.4417in</Top>
+                <Left>0.65081in</Left>
+                <Height>1.66294in</Height>
                 <Width>0.46107in</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
@@ -565,7 +564,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox25</rd:DefaultName>
                 <Top>0.4417in</Top>
-                <Left>0.41941in</Left>
+                <Left>0.07263in</Left>
                 <Height>1.66294in</Height>
                 <Width>0.29834in</Width>
                 <ZIndex>3</ZIndex>
@@ -583,8 +582,8 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>0.3007in</Top>
-            <Left>2.65822in</Left>
+            <Top>0.26741in</Top>
+            <Left>2.6296in</Left>
             <Height>2.125in</Height>
             <Width>3.23223in</Width>
             <ZIndex>6</ZIndex>
@@ -609,9 +608,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>3.82479in</Top>
-            <Left>5.00534in</Left>
-            <Height>3.90568in</Height>
+            <Top>3.82344in</Top>
+            <Left>5.01422in</Left>
+            <Height>3.91019in</Height>
             <Width>0.27639in</Width>
             <ZIndex>7</ZIndex>
             <Style>

@@ -1121,7 +1121,7 @@ namespace RealERPWEB.F_99_Allinterface
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkbtnPrintIN");
+                HyperLink hlnkprint = (HyperLink)e.Row.FindControl("lnkbtnPrintIN"); 
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnApp");
                 LinkButton btnDelReqCheck = (LinkButton)e.Row.FindControl("btnDelReqCheck");
                 HyperLink lnkbtnEditBilll = (HyperLink)e.Row.FindControl("lnkbtnEditBilll");
@@ -1142,38 +1142,37 @@ namespace RealERPWEB.F_99_Allinterface
                 hlnkBillDetails.Enabled = mbno.Length > 0;
                 hlnkBillDetails.NavigateUrl = "~/F_09_PImp/BillingMBEntry?Type=Entry&prjcode=" + pactcode + "&genno=" + mbno + "&sircode=" + sircode;
 
+                hlnkprint.NavigateUrl = "~/F_99_Allinterface/PurchasePrint.aspx?Type=ConBillPrint&lisuno=" + lisuno + "&pactcode=" + pactcode;
+
                 if (issustatus == "S")
                 {
                     hlink2.NavigateUrl = "~/F_09_PImp/PurSubConBillFinal?Type=BillServiceEntry&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode + "&status=" + issustatus;
-
                 }
                 else
                 {
                     hlink2.NavigateUrl = "~/F_09_PImp/PurSubConBillFinal?Type=BillEntry&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
-
                 }
-
-                if (comcod == "3340")
-                {
-                    lnkbtnEditBilll.NavigateUrl = "~/F_09_PImp/PurLabIssue2?Type=Edit&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
-
-                }
-                else
-                {
-                    lnkbtnEditBilll.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Edit&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
-
-                }
+                
                 switch (comcod)
                 {
                     case "3336":
                     case "3337":
                         btnDelReqCheck.Visible = false;
+                        lnkbtnEditBilll.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Edit&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
+                        break;
+
+                    case "3340":
+                        btnDelReqCheck.Visible = true;
+                        lnkbtnEditBilll.NavigateUrl = "~/F_09_PImp/PurLabIssue2?Type=Edit&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
                         break;
 
                     default:
                         btnDelReqCheck.Visible = true;
+                        lnkbtnEditBilll.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Edit&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
+
                         break;
                 }
+
             }
         }
         protected void gvsubbill_RowDataBound(object sender, GridViewRowEventArgs e)
