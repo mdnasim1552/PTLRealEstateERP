@@ -12736,6 +12736,7 @@
     <Folder Include="Upload\Attndancefiles\" />
     <Folder Include="Upload\attreport\" />
     <Folder Include="Upload\NewFolder1\" />
+    <Folder Include="Upload\NewFolder2\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ASITMaster.Master" />
