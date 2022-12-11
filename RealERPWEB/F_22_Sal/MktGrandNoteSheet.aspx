@@ -225,8 +225,8 @@
 
                         </div>
 
-                         <div class="col-md-2">
-                             <label class="control-label" for="ddlUserName" id="Label4" runat="server">Type</label>
+                          <div class="col-md-2">
+                             <label class="control-label" for="ddlUserName" id="Label3" runat="server">Type</label>
                                <asp:DropDownList ID="ddlPrintType" runat="server" CssClass="form-control chzn-select" TabIndex="12">
                                    <asp:ListItem Value="samnotesheet" Enabled="true">Sample Note Sheet</asp:ListItem>
                                    <asp:ListItem Value="grandnotesheet">Grand Note Sheet(Summary)</asp:ListItem>
@@ -235,9 +235,6 @@
 
                         </div>
 
-
-                        
-                       
                         <div class="col-md-1">
                             <div class="form-group">
 
@@ -676,6 +673,26 @@
                                             </div>
                                         
                                            
+
+
+                                             <div class="row">
+                                                <div class="col-md-8">
+                                                    <div class="form-group lblmargin">
+                                                        <label id="lblfinstallmentper" runat="server">Final Installment %</label>
+                                                    </div>
+
+                                                </div>
+
+                                                 
+                                                <div class="col-md-4">
+                                                    <div class="form-group lblmargin  font-weight-bold">
+
+                                                        <label id="lblfvalinstallmentper" runat="server" clss="form-control form-control-sm "></label>
+                                                    </div>
+                                                </div>
+
+                                                
+                                            </div>
                                           
 
 
@@ -697,6 +714,11 @@
 
                                                 
                                             </div>
+
+
+
+                                            
+
 
 
 
@@ -1071,7 +1093,7 @@
 
                                                 <div class="col-md-4">
                                                     <div class="form-group lblmargin textalignright">
-                                                        <asp:TextBox ID="txtcoffnooffemi" runat="server" CssClass="form-control form-control-sm textalignright"></asp:TextBox>
+                                                        <asp:TextBox ID="txtcoffnooffemi" runat="server" CssClass="form-control form-control-sm textalignright" AutoPostBack="true" OnTextChanged="txtcoffnooffemi_TextChanged"></asp:TextBox>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1133,7 +1155,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group lblmargin textalignright ">
 
-                                                        <asp:TextBox ID="txtcoffinsdate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        <asp:TextBox ID="txtcoffinsdate" runat="server" CssClass="form-control form-control-sm" AutoPostBack="true" OnTextChanged="txtcoffinsdate_TextChanged"></asp:TextBox>
                                                         <cc1:CalendarExtender ID="txtcoffinsdate_CalendarExtender" runat="server"
                                                             Format="dd-MMM-yyyy" TargetControlID="txtcoffinsdate"></cc1:CalendarExtender>
                                                     </div>

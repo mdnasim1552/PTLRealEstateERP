@@ -312,18 +312,19 @@
                                 <span class="fa fa-redo " style="color:black;" aria-hidden="true"></span> Refresh</asp:LinkButton>
                             <asp:LinkButton ID="lnkSave" runat="server" CssClass="btn btn-sm btn-primary mx-2 my-2" OnClick="lnkSave_Click" Width="100px"
                                 OnClientClick="return confirm('Are You Sure?')"><span class="fa fa-save " style="color:white;" aria-hidden="true"  ></span> Save</asp:LinkButton>
-                            
-                            <asp:Panel runat="server" ID="pnlWorkDone">
-                                <asp:LinkButton ID="lnkWorkDone" runat="server" CssClass="btn btn-sm btn-primary mx-2 my-2" OnClick="lnkWorkDone_Click" Width="100px"
-                                OnClientClick="return confirm('Are You Sure?')"><span class="fa fa-check-circle" style="color:white;" aria-hidden="true"  ></span>Work Done</asp:LinkButton>
-                            
-                            </asp:Panel>
+                           
                             
                             
                             <asp:LinkButton ID="lnkProceed" runat="server" CssClass="btn btn-sm btn-info mx-2 my-2" OnClick="lnkProceed_Click" Width="150px">
                                 <span class="fa fa-arrow-circle-right " style="color:white;" aria-hidden="true"></span>
                                 Proceed to Next Step
                             </asp:LinkButton>
+                             
+                            <asp:Panel runat="server" ID="pnlWorkDone">
+                                <asp:LinkButton ID="lnkWorkDone" runat="server" CssClass="btn btn-sm btn-primary mx-2 my-2" OnClick="lnkWorkDone_Click"
+                                OnClientClick="return confirm('Are You Sure?')"><span class="fa fa-check-circle" style="color:white;" aria-hidden="true"  ></span>Customer Care</asp:LinkButton>
+                            
+                            </asp:Panel>
                         </div>
 
                     </asp:Panel>
