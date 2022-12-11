@@ -1093,7 +1093,7 @@
 
                                                 <div class="col-md-4">
                                                     <div class="form-group lblmargin textalignright">
-                                                        <asp:TextBox ID="txtcoffnooffemi" runat="server" CssClass="form-control form-control-sm textalignright"></asp:TextBox>
+                                                        <asp:TextBox ID="txtcoffnooffemi" runat="server" CssClass="form-control form-control-sm textalignright" AutoPostBack="true" OnTextChanged="txtcoffnooffemi_TextChanged"></asp:TextBox>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1155,7 +1155,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group lblmargin textalignright ">
 
-                                                        <asp:TextBox ID="txtcoffinsdate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                        <asp:TextBox ID="txtcoffinsdate" runat="server" CssClass="form-control form-control-sm" AutoPostBack="true" OnTextChanged="txtcoffinsdate_TextChanged"></asp:TextBox>
                                                         <cc1:CalendarExtender ID="txtcoffinsdate_CalendarExtender" runat="server"
                                                             Format="dd-MMM-yyyy" TargetControlID="txtcoffinsdate"></cc1:CalendarExtender>
                                                     </div>
@@ -1585,8 +1585,9 @@
                                         <asp:HiddenField ID="lblhiddenothers" runat="server" />
                                         <asp:HiddenField ID="lblhiddenbnoemi" runat="server" />
                                         <asp:HiddenField ID="lblhiddenfvpersft" runat="server" />                                        
-                                        <asp:HiddenField ID="lblhiddenpvpersft" runat="server" />
+                                        <asp:HiddenField ID="lblhiddenpvpersft" runat="server" />                                        
                                         <asp:HiddenField ID="lblminunitrate" runat="server" />
+                                        <asp:HiddenField ID="lblhiddenncoffurate" runat="server" />
 
                                     </div>
 
