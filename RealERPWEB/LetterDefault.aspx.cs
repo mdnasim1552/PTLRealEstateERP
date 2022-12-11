@@ -1454,23 +1454,27 @@ namespace RealERPWEB
                     {
                         lbody = "<p style='text-align: left'>&nbsp;" +
                             "<strong>Ref: CPDL/TM/PROMOTION/23-" +
-                            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
-                            "<strong style='text-align: right'>" + date + "</strong>" + "</strong></p><p><strong>&nbsp;" +
+                            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                            "<strong style='text-align: right'>" + date + "</strong>" + "</strong></p><p>" +
                             "Name         :" + name + "" + "</p><p>" +
                             "Designation  :" + Desig + "" + "</p><p>" +
-                            "Department   :" + depart + "" + "</p><p>" +
+                            "Department   :" + depart + "" + "</p><p>&nbsp;&nbsp;&nbsp;&nbsp;" +
+                            "<br> &nbsp; " +
+                            "<br>&nbsp; " +
                             "<strong>Subject: Promotion in Service</strong></p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
-                            "<strong style='text-align: center'>Congratulations</strong></p><p>&nbsp;" +
-                            "It is the immense pleasure to inform you that, on reviewing of your performance and progress of your responsibilities, the management is pleased to promote you as  <strong>" + Desig + "</strong> in </p><p><strong>" + depart + "</strong> with effect from<strong> 1st January 2022</strong></p>" +
-                            "We are delighted towards your commitment and integrity shown towards your responsibilities in </p>&nbsp;" +
-                            "the past. We believe that you will continue to deliver your best performance and add on to the </p>&nbsp;" +
-                            " growth of the company.</p><p>&nbsp;" +
-                            "Promotion to higher level is recognitions to your performance which includes expectation of </p>&nbsp;" +
-                            "greater skills and higher responsibilities for you. </p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
-                             "<strong style='text-align: center'>We Wish You All the Best</strong></p><p>&nbsp;" +
-                            "</p><p>Thanking you</strong></p><p>&nbsp;" +
+                            
+                            "<strong style='text-align: center'>Congratulations</strong></p>&nbsp;" +
+                            "<p>It is the immense pleasure to inform you that, on reviewing of your performance and progress of your responsibilities, the management is pleased to promote you as  <strong>" + Desig + "</strong> in <strong>" + depart + "</strong> with effect from<strong> 1st January 2022.</strong></p>" +
+                            "<p>We are delighted towards your commitment and integrity shown towards your responsibilities in" +
+                            "the past. We believe that you will continue to deliver your best performance and add on to the " +
+                            "growth of the company.</p>" +
+                           
+                            "<p>Promotion to higher level is recognitions to your performance which includes expectation of" +
+                            "greater skills and higher responsibilities for you. </p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                             "<p><strong style='text-align: center'>We Wish You All the Best</strong></p>&nbsp;" +
+                            "<p>Thanking you</strong></p>&nbsp;" +
 
-                            "</p><p></strong></p><p>&nbsp;"+
+                            "</p><p></strong></p><p>" +
 
                             "</strong>------------------------------------------<strong> </p><p>" +
                             "<strong> Md.Khairuzzaman Joarder</strong> </p><p>" +
