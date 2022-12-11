@@ -1499,50 +1499,43 @@ namespace RealERPWEB
                     if (comcod == "3370")
                     {
                         lbody =
-                       "<pstyle='margin-bottom:-11px''> Date: <strong>" + date + "</strong></p>" +
-                       "<p style='margin-bottom:-11px'><strong>Name" + name + "</strong></p>" +
-                       "<p style='margin-bottom:-11px'><strong>Personnel ID" + idcard + "</strong></p>" +
-                       "<p style='margin-bottom:-11px'><strong>Designation" + Desig + "</strong></p>" +
-                       "<p style='margin-bottom:-11px'><strong>Department" + dptdesc + "</strong></p>" +
+
+
+                         "<p style='text-align:left;style='margin-bottom:-11px''><strong>" + date + "</strong>" +
+                        "<p style='text-align:right;style='margin-bottom:-11px''><strong>Ref:EREL/AL2022/027</strong></p>" +
+                        "<p style='margin-bottom:-11px'><strong>Name :" + name + "</strong></p>" +
+                         "<p style='margin-bottom:-11px'><strong>Personnel ID :" + idcard + "</strong></p>" +
+                       "<p style='margin-bottom:-11px'><strong>Designation :" + Desig + "</strong></p>" +
+                       "<p style='margin-bottom:-11px'><strong>Department :" + dptdesc + "</strong></p>" +
                        "<h2 style='border-bottom: 1px solid #0000;display: inline-block'><strong>SUB:ANNUAL INCREMENT.</strong></h2>" +
 
 
 
+                        "<p> In respect of the above, company management has reviewed your overall performances in " +
+                        "terms of Individual KPI Score, Development Team Recommended Score, Head of the " +
+                        "Department Recommendation as well as in the eye of Top Management and in respect of all " +
+                        "those, President of CPDL is satisfied to increase your gross salary from Tk. </p>" +
+                        "<p >those, President of CPDL is satisfied to increase your gross salary from Tk. Present Salary" +
+                        " /- to Tk. Increase Salary /-, (Mobile Allowance & Fooding allowance as per company policy)" +
+                        " Now your pay as below:</p>" +
 
 
-                       "<p style='margin-bottom:-11px'>In respect of the above, company management has reviewed your overall performances in terms of Individual KPI Score, Development Team Recommended Score, Head of the Department " +
-                       "Recommendation as well as in the eye of Top Management and in respect of all those, President of CPDL is satisfied to increase your gross salary from Tk. Present Salary " + total + " /- to Tk. Increase Salary /-," +
-                       " (Mobile Allowance & Fooding allowance as per company policy) Now your pay as below: </p>" +
 
+                        //salary break down table
 
-                     //salary break down table
-                     "<table style='width:70%;margin-left:20px;border:0'>" +
+                        "<table style='width:70%;margin-left:20px;border-style:solid; border: 1px solid black;'><tr style='border-style:solid;border: 1px solid black;'><th style='width:50px;text-align:center;border-style:solid;border:1px solid black;'>SL</th><th>Particulars</th><th style='border-style:solid;border: 1px solid black;'>Amount in BDT</th></tr>" +
+                        "<tr ><td style='text-align:center;border-style:solid;border: 1px solid black;'>1</td><td style='border-style:solid;border: 1px solid black;'>Basic (60% of Gross)</td><td style='text-align:center'>" + bsal + "</td></tr>" +
+                        "<tr ><td style='text-align:center;border-style:solid;border: 1px solid black;'>2</td><td style='border-style:solid;border: 1px solid black;'>House Rent (30% of Gross)</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>" + hrent + "</td></tr>" +
+                        "<tr ><td style='text-align:center;border-style:solid;border: 1px solid black;'>3</td><td style='border-style:solid;border: 1px solid black;'>Medical Allowance (6% of Gross)</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>" + mallow + "</td></tr>" +
+                        "<tr ><td style='text-align:center;border-style:solid;border: 1px solid black;'>4</td><td style='border-style:solid;border: 1px solid black;'>Conveyance Allowance (4% of Gross)</td><td style='text-align:center'>" + cven + "</td></tr>" +
+                        "<tr ><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Total</strong></td><td style='text-align: center;border-style:solid;border:1px solid black;'><strong>" + total + "</strong></td></tr></table>" +
+                        "<tr ><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Total</strong></td><td style='text-align: center;border-style:solid;border:1px solid black;'><span> All pay with effect from <strong>Increment Effect Date.</span></td></tr></table>" +
+                          "<p style='margin-bottom:-11px'><span> All pay with effect from <strong>Increment Effect Date.</strong></span></p>" +
+                        "<p style='margin-bottom:-11px'>We hope this increment will encourage your working efficiency and devotion to your responsibilities</p>";
+                      
 
-                       "<tr style='border:0;'><td style='border:0;>Basic</td><td style='text-align:center;border:0;'>:" + bsal + "</td></tr>" +
-                       "<tr style='border:0;'><td style='border:0;>House Rent</td><td style='text-align:center;border:0;'>:" + hrent + "</td></tr>" +
-                       "<tr style='border:0;'><td style='border:0;>Medical Allowance (20% of Gross)</td><td style='text-align:center;border:0;'>:" + mallow + "</td></tr>" +
-                       "<tr style='border:0;'><td style='border:0;>Others Pay</td><td style='text-align:center;border:0;'>:" + cven + "</td></tr>" +
-                       "<tr style='border:0;'><td style='border:0;>Special Allowance</td><td style='text-align:center;border:0;'>:" + cven + "</td></tr>" +
-                       "<tr style='border:0;'><td style='border:0;>All pay with effect from <strong>Increment Effect Date.</strong></td></tr>" +
-
-
-                           //"<tr style='border-top:1px solid!important;'><td style='text-align:center;'><strong>Total Gross Salary</strong></td><td style='text-align: center;'><strong>:" + total + "</strong></td></tr></table>" +
-
-                           "<p>We hope this increment will encourage your working efficiency and devotion to your responsibilities. </p>" +
-
-                           "<p style='margin-bottom:-5px;display:inline;'><span style='border-top:2px dotted; display:inline-block;margin-bottom:-11px;float:right'><strong>Md. Khairuzzaman Joarder </strong></p></span></p>" +
-
-                           "<p style='margin-bottom:-5px;display:inline'><span style='display:inline-block;margin-bottom:-11px;float:right;'><strong>Chief Operating  Officer</strong></p></span></p>" +
-
-
-                           "<p style='margin-bottom:-5px;display:inline;'><strong>CC: </strong></p></span></p>" +
-
-                           "<p style='margin-bottom:-5px;display:inline'><strong>President-CPDL</strong></p></p>" +
-
-
-                           "<p style='margin-bottom:-5px;display:inline'><strong>Personal file</strong></p></p>";
-
-
+                        
+                        
 
                     }
                     else { 
