@@ -794,7 +794,10 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             string dayid = ymon + "01";
             string txtdate = ASTUtility.DateFormat("01." + ymon.Substring(4, 2) + "." + ymon.Substring(0, 4));
             string Empcode = this.txtSrcEmployee.Text.Trim() + "%";
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "LEAVEENCASHMENT", deptname, dayid, txtdate, comnam, Empcode, "", "", "", "");
+
+            string calltype = comcod == "3365" ? "LEAVEENCASHMENTBTI" : "LEAVEENCASHMENT";
+
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", calltype, deptname, dayid, txtdate, comnam, Empcode, "", "", "", "");
             if (ds2 == null)
             {
                 this.gvEmpELeave.DataSource = null;
@@ -2179,7 +2182,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 string empid = dt.Rows[i]["empid"].ToString();
                 string gcod = dt.Rows[i]["gcod"].ToString();
                 string eleave = dt.Rows[i]["eleave"].ToString();
-                int ecleave = Convert.ToInt32(dt.Rows[i]["ecleave"]);
+                double ecleave = Convert.ToDouble(dt.Rows[i]["ecleave"]);
                 if (ecleave > 0)
                 {
 
