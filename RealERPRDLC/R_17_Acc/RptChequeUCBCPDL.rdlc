@@ -66,7 +66,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox8</rd:DefaultName>
             <Top>3.68816in</Top>
-            <Left>4.05258in</Left>
+            <Left>4.06508in</Left>
             <Height>4.04479in</Height>
             <Width>0.26041in</Width>
             <ZIndex>1</ZIndex>
@@ -102,7 +102,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
             <Top>7.75378in</Top>
-            <Left>3.95952in</Left>
+            <Left>4.02202in</Left>
             <Height>1.99375in</Height>
             <Width>0.29305in</Width>
             <ZIndex>2</ZIndex>
@@ -369,7 +369,7 @@
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>7.74752in</Top>
-            <Left>4.98922in</Left>
+            <Left>5.05172in</Left>
             <Height>2.0441in</Height>
             <Width>0.26389in</Width>
             <ZIndex>3</ZIndex>
@@ -398,7 +398,7 @@
             </Paragraphs>
             <rd:DefaultName>amtWord1</rd:DefaultName>
             <Top>2.67899in</Top>
-            <Left>3.62719in</Left>
+            <Left>3.65219in</Left>
             <Height>5.11229in</Height>
             <Width>0.28278in</Width>
             <ZIndex>4</ZIndex>

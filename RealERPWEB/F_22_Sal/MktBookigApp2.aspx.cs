@@ -979,7 +979,6 @@ namespace RealERPWEB.F_22_Sal
 
             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-
         }
 
 
