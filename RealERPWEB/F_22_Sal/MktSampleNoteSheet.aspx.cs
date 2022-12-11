@@ -1807,7 +1807,7 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-            int noofemi;
+            int bcasenofemi, noofemi;
             DateTime coffbookingdate, benddate, finalinsdate;
             double uzize, bfv, bpv, pamt, utility, others,bpowbpart, bfvpsft, bpvpsft, intratio, usize, coffpamt, coffutility, coffothers, cofffvpsft, coffpvpsft, coffpowbpart, cofffv, coffpv, upsftwiopuaoth;
 
@@ -1831,11 +1831,12 @@ namespace RealERPWEB.F_22_Sal
             bfv = lstb.Sum(l => l.fv);
             bpv = lstb.Sum(l => l.pv);
             pamt = Convert.ToDouble(this.lblhiddenbpamt.Value);
+            bcasenofemi = Convert.ToInt32(this.lblvalnoofemi.InnerText);
             utility = Convert.ToDouble(this.lblhiddenbutility.Value);
             others = Convert.ToDouble(this.lblhiddenothers.Value); 
             bfvpsft =Math.Round( ((usize > 0) ? ((bfv - pamt - utility - others) / usize) : 0.00),0);
             bpowbpart = (12 + intratio) / 12;
-            bpvpsft = Math.Round(bfvpsft / (Math.Pow(bpowbpart, noofemi)), 0);
+            bpvpsft = Math.Round(bfvpsft / (Math.Pow(bpowbpart, bcasenofemi)), 0);
 
 
             // Customer Offer  Case
@@ -1869,16 +1870,16 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-            //double baseinterest, coffinterest, interestdiff, unitamt, newcofftotalam, newcoffunitamt, newcoffunitrate;
-
-            //baseinterest = lstb.Sum(l => l.fv) - lstb.Sum(l => l.pv);
-            //coffinterest = lstcoff.Sum(l => l.fv) - lstcoff.Sum(l => l.pv);
-            //interestdiff = coffinterest - baseinterest;
-            //unitamt= Convert.ToDouble("0" + this.lblvalunitprice.InnerText);
-            //newcofftotalam = unitamt + coffpamt + coffutility + coffothers+ interestdiff;
-            //newcoffunitamt = newcofftotalam - coffpamt - coffutility - coffothers;
-            //newcoffunitrate = Math.Round(((usize > 0) ? (newcoffunitamt / usize) : 0.00), 0);
-            //this.lblhiddenncoffurate.Value = newcoffunitrate.ToString("#,##0;(#,##0); ");
+            double baseinterest, coffinterest, interestdiff, unitamt, newcofftotalam, newcoffunitamt, newcoffunitrate;
+            benddate = Convert.ToDateTime(lstb[lstb.Count - 1].schdate);
+            baseinterest = lstb.Sum(l => l.fv) - lstb.Sum(l => l.pv);
+            coffinterest = lstcoff.Sum(l => l.fv) - lstcoff.Sum(l => l.pv);
+            interestdiff = finalinsdate > benddate ?  ((baseinterest - coffinterest)*-1): (baseinterest - coffinterest);
+            unitamt = Convert.ToDouble("0" + this.lblvalunitprice.InnerText);
+            newcofftotalam = unitamt + coffpamt + coffutility + coffothers + interestdiff;
+            newcoffunitamt = newcofftotalam - coffpamt - coffutility - coffothers;
+            newcoffunitrate = Math.Round(((usize > 0) ? (newcoffunitamt / usize) : 0.00), 0);
+            this.lblhiddenncoffurate.Value = newcoffunitrate.ToString("#,##0;(#,##0); ");
 
 
 
@@ -1917,7 +1918,8 @@ namespace RealERPWEB.F_22_Sal
 
                 }
 
-              //  return;
+              //
+              //return;
 
                 if (this.ddlPrevious.Items.Count == 0)
                     this.LastGrandNoteSheet();
@@ -2113,8 +2115,8 @@ namespace RealERPWEB.F_22_Sal
         {
 
             int coffemi = Convert.ToInt32("0" + this.txtcoffnooffemi.Text.Trim());
-            DateTime firsinsdate = Convert.ToDateTime(this.txtcoffinsdate.Text);
-            DateTime fininsdate = firsinsdate.AddMonths(coffemi);
+            DateTime firstinsdate = Convert.ToDateTime(this.txtcoffinsdate.Text);
+            DateTime fininsdate = firstinsdate.AddMonths(coffemi-1);
             this.txtcofffininsdate.Text = fininsdate.ToString("dd-MMM-yyyy");
 
            // TextBox txtevenname = (TextBox)send;
