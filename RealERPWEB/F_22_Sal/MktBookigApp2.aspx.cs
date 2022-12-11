@@ -206,8 +206,9 @@ namespace RealERPWEB.F_22_Sal
                     this.ddlProjectName.Enabled = false;
                     this.ddlCustName.Enabled = false;
                     this.MultiView1.ActiveViewIndex = 0;
-                    this.ShowData();
+                
                     this.GetMaxCustNumber();
+                    this.ShowData();
                     return;
                 }
                 this.lbtnOk.Text = "Ok";
@@ -274,7 +275,11 @@ namespace RealERPWEB.F_22_Sal
 
             this.cblintavailloan.SelectedValue = (dt.Rows.Count == 0) ? "No" : dt.Rows[0]["intavail"].ToString();
             this.cblpaytype.SelectedValue = (dt.Rows.Count == 0) ? "OneTime" : dt.Rows[0]["paymode"].ToString();
+            
+            if (dt.Rows[0]["customerno"].ToString().Length>0)
+            this.txtCustmerNumber.Text =  dt.Rows[0]["customerno"].ToString();
 
+            
             ds2.Dispose();
             this.Data_BindPrj();
             this.Data_BindPer();

@@ -207,14 +207,14 @@
                                         </asp:Panel>
                                     </EditItemTemplate>
 
-                                    <EditItemTemplate>
+                                 <%--   <EditItemTemplate>
                                         <asp:Panel ID="Panel10" runat="server">
 
-                                            <asp:DropDownList ID="ddlcustomerNo" runat="server" Width="250px" AutoPostBack="true" OnSelectedIndexChanged="ddlClientName_SelectedIndexChanged" CssClass="chzn-select form-control inputTxt" TabIndex="12">
+                                            <asp:DropDownList ID="ddlcustomerNo" runat="server" Width="250px"  CssClass="chzn-select form-control inputTxt" TabIndex="12">
                                             </asp:DropDownList>
 
                                         </asp:Panel>
-                                    </EditItemTemplate>
+                                    </EditItemTemplate>--%>
 
 
 
@@ -415,6 +415,24 @@
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
+
+
+                                <asp:TemplateField HeaderText="Customer Number" Visible="false">
+                                    <ItemTemplate>
+                                          <asp:Label ID="lblgvcustomernumber" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "customerno")) %>' Width="70px"></asp:Label>
+
+                                       
+                                    </ItemTemplate>
+
+
+
+                                    
+                                    <HeaderStyle HorizontalAlign="Center" Width="250px" VerticalAlign="Top" />
+                                </asp:TemplateField>
+
+
+
+
 
 
                             </Columns>
@@ -720,7 +738,7 @@
                                                     <cc1:CalendarExtender ID="txthandoverdate_CalendarExtender" runat="server"
                                                         Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txthandoverdate"></cc1:CalendarExtender>
                                                     <asp:LinkButton ID="lbtnUpdateCAST" runat="server" CssClass="btn  btn-danger primaryBtn" OnClick="lbtnUpdateCAST_Click">Update</asp:LinkButton>  
-                                                    <asp:LinkButton ID="lbtnPrintsales" runat="server" CssClass="btn  btn-success primaryBtn" OnClick="lbtnPrintsales_Click"> Sales Declaration(Print)</asp:LinkButton>
+                                                   
 
                                                 </div>
                                             </div>
