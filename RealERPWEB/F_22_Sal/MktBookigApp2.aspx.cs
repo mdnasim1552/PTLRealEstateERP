@@ -717,6 +717,7 @@ namespace RealERPWEB.F_22_Sal
 
             Rpt1.SetParameters(new ReportParameter("enrolmentdate", Convert.ToDateTime(dt2.Rows[0]["appdate"]).ToString("ddMMyyyy")));
             Rpt1.SetParameters(new ReportParameter("customerno", dt2.Rows[0]["customerno"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("usircode", dt2.Rows[0]["usircode"].ToString()));
             Rpt1.SetParameters(new ReportParameter("bookingno", dt2.Rows[0]["bookingno"].ToString()));
             Rpt1.SetParameters(new ReportParameter("customername", dt2.Rows[0]["fullname"].ToString()));
             Rpt1.SetParameters(new ReportParameter("contactno", dt2.Rows[0]["mobilenum"].ToString()));
