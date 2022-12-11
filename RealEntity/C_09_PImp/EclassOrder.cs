@@ -231,7 +231,7 @@ namespace RealEntity.C_09_PIMP
             public double bgdqty { get; set; }
             public double balqty { get; set; }
             public double wrkqty { get; set; }
-            public double prcent { get; set; }
+            public double prcent { get; set; } 
             public BillFinalization() { }
         }
 
