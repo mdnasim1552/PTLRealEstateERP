@@ -451,9 +451,9 @@ namespace RealERPWEB.F_30_Facility
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
                 DataTable dt = ds.Tables[0];
 
-                bool result = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTCCB", dt.Rows[0]["dgno"].ToString(), dgdate, addremarks, "", "", "", "", "", "", "", "", "", "",
-                  "", "", "", "", "", "", "", "", "", userId);
-                result = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTQCB", dt.Rows[0]["dgno"].ToString(), dgdate, addremarks, "", "", "", "", "", "", "", "", "", "",
+                //bool result = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTCCB", dt.Rows[0]["dgno"].ToString(), dgdate, addremarks, "", "", "", "", "", "", "", "", "", "",
+                //  "", "", "", "", "", "", "", "", "", userId);
+                bool result = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTQCB", dt.Rows[0]["dgno"].ToString(), dgdate, addremarks, "", "", "", "", "", "", "", "", "", "",
                        "", "", "", "", "", "", "", "", "", userId);
                 if (result)
                 {
