@@ -125,7 +125,6 @@ namespace RealERPWEB.F_09_PImp
 
 
                 case "3370"://CPDL
-                case "3101"://CPDL
                     this.gvSubBill.Columns[8].Visible = false;
                     this.gvSubBill.Columns[9].Visible = false;                    
                     this.gvSubBill.Columns[10].Visible = true;                    
@@ -134,7 +133,7 @@ namespace RealERPWEB.F_09_PImp
                     break;
 
                 case "3367":
-               // case "3101":
+                case "3101":
                     this.gvSubBill.Columns[8].Visible = true;
                     this.gvSubBill.Columns[9].Visible = true;
                     break;

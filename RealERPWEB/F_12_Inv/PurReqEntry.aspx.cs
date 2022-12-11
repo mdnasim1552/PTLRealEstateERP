@@ -435,7 +435,7 @@ namespace RealERPWEB.F_12_Inv
             {
                 if (IscheckDuplicateMPR())
                 {
-                    this.lbtnOk.Text = "OK";
+                    this.lbtnOk.Text = "Ok";
                     return;
                 }
             }
