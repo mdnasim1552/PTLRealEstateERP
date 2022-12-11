@@ -933,110 +933,124 @@ namespace RealERPWEB.F_22_Sal
         private void CalCulationSummation(DataSet ds1)
         {
 
-            DateTime sysdate=System.DateTime.Today;
-            List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet> lstb = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>)Session["lstbaseschdule"];
-            List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet> lstcoff = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>)Session["lstcoffschedule"];
+            try
+
+
+            {
+                DateTime sysdate = System.DateTime.Today;
+                List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet> lstb = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>)Session["lstbaseschdule"];
+                List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet> lstcoff = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>)Session["lstcoffschedule"];
 
 
 
-            DateTime coffbookingdate, benddate, finalinsdate;
-            double usize, bfv, bpv, pamt, utility, others, intratio, noofemi, bfvpsft, bpowbpart, bpvpsft,
-                cofffv, coffpv, coffpamt, coffutility, coffothers, cofffvpsft, coffpvpsft, coffpowbpart, coffnoofemi;
+                DateTime coffbookingdate, benddate, finalinsdate;
+                double usize, bfv, bpv, pamt, utility, others, intratio, noofemi, bfvpsft, bpowbpart, bpvpsft,
+                    cofffv, coffpv, coffpamt, coffutility, coffothers, cofffvpsft, coffpvpsft, coffpowbpart, coffnoofemi;
 
 
-            //uzize =
-            bfv = lstb.Sum(l => l.fv);
-            bpv = lstb.Sum(l => l.pv);
-            usize = Convert.ToDouble(ds1.Tables[0].Rows[0]["usize"]);
-            pamt = Convert.ToDouble(ds1.Tables[0].Rows[0]["pamt"]);
-            utility = Convert.ToDouble(ds1.Tables[0].Rows[0]["utility"]);
-            others = Convert.ToDouble(ds1.Tables[0].Rows[0]["others"]);
-            intratio = Convert.ToDouble(ds1.Tables[0].Rows[0]["intratio"]);
-            noofemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["noofemi"]);
-           
-            bfvpsft = ((usize > 0) ? ((bfv - pamt - utility - others) / usize) : 0.00);
-            bpowbpart = (12 + intratio) / 12;
-            bpvpsft = Math.Round(bfvpsft / (Math.Pow(bpowbpart, noofemi)), 0);
+                //uzize =
+                bfv = lstb.Sum(l => l.fv);
+                bpv = lstb.Sum(l => l.pv);
+                usize = Convert.ToDouble(ds1.Tables[0].Rows[0]["usize"]);
+                pamt = Convert.ToDouble(ds1.Tables[0].Rows[0]["pamt"]);
+                utility = Convert.ToDouble(ds1.Tables[0].Rows[0]["utility"]);
+                others = Convert.ToDouble(ds1.Tables[0].Rows[0]["others"]);
+                intratio = Convert.ToDouble(ds1.Tables[0].Rows[0]["intratio"]);
+                noofemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["noofemi"]);
 
-            this.lblhiddenbpamt.Value = pamt.ToString("#,##0;(#,##0);");
-            this.lblhiddenbutility.Value = utility.ToString("#,##0;(#,##0);");
-            this.lblhiddenothers.Value = others.ToString("#,##0;(#,##0);");
-            this.lblhiddenbnoemi.Value = noofemi.ToString();
-            cofffv = lstcoff.Sum(l => l.fv);
-            coffpv = lstcoff.Sum(l => l.pv);
-            coffpamt = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffpamt"]);
-            coffutility = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffutility"]);
-            coffothers = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffothers"]);
-            coffnoofemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffnoofemi"]);
+                bfvpsft = ((usize > 0) ? ((bfv - pamt - utility - others) / usize) : 0.00);
+                bpowbpart = (12 + intratio) / 12;
+                bpvpsft = Math.Round(bfvpsft / (Math.Pow(bpowbpart, noofemi)), 0);
 
-
-
-
-
-            this.lblvalarea.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["usize"]).ToString("#,##0;(#,##0);");
-            this.lblvalrate.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["urate"]).ToString("#,##0;(#,##0);");
-            this.lblvalunitprice.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["uamt"]).ToString("#,##0;(#,##0);");
-            this.lblvalparking.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["pamt"]).ToString("#,##0;(#,##0);");
-            this.lblvalutility.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["utility"]).ToString("#,##0;(#,##0);");
-            this.lblvalother.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["others"]).ToString("#,##0;(#,##0);");
-            this.lblvalTotal.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["tunitamt"]).ToString("#,##0;(#,##0);");
-            this.lblvaldownpayper.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["dpaymntper"]).ToString("#,##0;(#,##0);");
-            this.lblvaldownpayam.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["dpaymntam"]).ToString("#,##0;(#,##0);");
-            this.txtdownpaydate.Text = Convert.ToDateTime(lstb[0].schdate).ToString("dd-MMM-yyyy");
-            this.lblvalnoofemi.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["noofemi"]).ToString("#,##0;(#,##0);");
-            this.lblvalemi.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["emi"]).ToString("#,##0;(#,##0);");
-            this.lblvalhandovdate.InnerText = Convert.ToDateTime(ds1.Tables[0].Rows[0]["handovdate"]).ToString("dd-MMM-yyyy");
-            this.lblfvalinstallmentper.InnerText = Convert.ToDateTime(ds1.Tables[0].Rows[0]["handovper"]).ToString("#,##0;(#,##0);");
-
-            this.lblvalfvpsft.InnerText = bfvpsft.ToString("#,##0;(#,##0);");
-            this.lblvalpvpersft.InnerText = bpvpsft.ToString("#,##0;(#,##0);");
+                this.lblhiddenbpamt.Value = pamt.ToString("#,##0;(#,##0);");
+                this.lblhiddenbutility.Value = utility.ToString("#,##0;(#,##0);");
+                this.lblhiddenothers.Value = others.ToString("#,##0;(#,##0);");
+                this.lblhiddenbnoemi.Value = noofemi.ToString();
+                cofffv = lstcoff.Sum(l => l.fv);
+                coffpv = lstcoff.Sum(l => l.pv);
+                coffpamt = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffpamt"]);
+                coffutility = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffutility"]);
+                coffothers = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffothers"]);
+                coffnoofemi = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffnoofemi"]);
 
 
 
 
 
+                this.lblvalarea.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["usize"]).ToString("#,##0;(#,##0);");
+                this.lblvalrate.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["urate"]).ToString("#,##0;(#,##0);");
+                this.lblvalunitprice.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["uamt"]).ToString("#,##0;(#,##0);");
+                this.lblvalparking.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["pamt"]).ToString("#,##0;(#,##0);");
+                this.lblvalutility.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["utility"]).ToString("#,##0;(#,##0);");
+                this.lblvalother.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["others"]).ToString("#,##0;(#,##0);");
+                this.lblvalTotal.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["tunitamt"]).ToString("#,##0;(#,##0);");
+                this.lblvaldownpayper.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["dpaymntper"]).ToString("#,##0;(#,##0);");
+                this.lblvaldownpayam.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["dpaymntam"]).ToString("#,##0;(#,##0);");
+                this.txtdownpaydate.Text = Convert.ToDateTime(lstb[0].schdate).ToString("dd-MMM-yyyy");
+                this.lblvalnoofemi.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["noofemi"]).ToString("#,##0;(#,##0);");
+                this.lblvalemi.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["emi"]).ToString("#,##0;(#,##0);");
+                this.lblvalhandovdate.InnerText = Convert.ToDateTime(ds1.Tables[0].Rows[0]["handovdate"]).ToString("dd-MMM-yyyy");
+                this.lblfvalinstallmentper.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["handovper"]).ToString("#,##0;(#,##0);");
 
-            this.lblvalcoffarea.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["usize"]).ToString("#,##0;(#,##0);");
-            this.txtcoffrate.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffurate"]).ToString("#,##0;(#,##0);");
-            this.lblcoffunitprice.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffuamt"]).ToString("#,##0;(#,##0);");
-            this.txtcofffparking.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffpamt"]).ToString("#,##0;(#,##0);");
-            this.txtcoffutility.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffutility"]).ToString("#,##0;(#,##0);");
-            this.txtcoffothers.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffothers"]).ToString("#,##0;(#,##0);");
-            this.lblcoffTotal.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["cofftunitamt"]).ToString("#,##0;(#,##0);");
-            
-            this.txtcoffbookingam.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffbookingam"]).ToString("#,##0;(#,##0);");
-            this.txtcoffBookingdate.Text = (Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("dd-MMM-yyyy")=="01-Jan-1900")?"": Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("dd-MMM-yyyy");
-            this.txtcoffdownpayper.Text = (Convert.ToDouble(ds1.Tables[0].Rows[0]["coffdpaymntper"])== 0) ? "" : Convert.ToDouble(ds1.Tables[0].Rows[0]["coffdpaymntper"]).ToString("#,##0;(#,##0);");
-            this.lblvalcoffdownpayam.InnerText = (Convert.ToDouble(ds1.Tables[0].Rows[0]["coffdpaymntam"])== 0) ? "" : Convert.ToDouble(ds1.Tables[0].Rows[0]["coffdpaymntam"]).ToString("#,##0;(#,##0);");
-            this.txtcoffdownpaydate.Text = (Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffdpaymntdat"]).ToString("dd-MMM-yyyy") == "01-Jan-1900") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffdpaymntdat"]).ToString("dd-MMM-yyyy");
-
-
-            this.txtcofffininsper.Text = (Convert.ToDouble(ds1.Tables[0].Rows[0]["cofffinsper"]) == 0) ? "" : Convert.ToDouble(ds1.Tables[0].Rows[0]["cofffinsper"]).ToString("#,##0;(#,##0);");
-            this.lblvalcofffininsam.InnerText = (Convert.ToDouble(ds1.Tables[0].Rows[0]["cofffinsam"]) == 0) ? "" : Convert.ToDouble(ds1.Tables[0].Rows[0]["cofffinsam"]).ToString("#,##0;(#,##0);");
-            this.txtcofffininsdate.Text = (Convert.ToDateTime(ds1.Tables[0].Rows[0]["cofffinsdat"]).ToString("dd-MMM-yyyy") == "01-Jan-1900") ? sysdate.AddMonths((int)coffnoofemi).ToString("dd-MMM-yyyy") : Convert.ToDateTime(ds1.Tables[0].Rows[0]["cofffinsdat"]).ToString("dd-MMM-yyyy");
+                this.lblvalfvpsft.InnerText = bfvpsft.ToString("#,##0;(#,##0);");
+                this.lblvalpvpersft.InnerText = bpvpsft.ToString("#,##0;(#,##0);");
 
 
 
 
 
-            coffbookingdate = Convert.ToDateTime(this.txtcoffBookingdate.Text);            
-            benddate = Convert.ToDateTime(lstb[lstb.Count - 1].schdate);
-            finalinsdate = Convert.ToDateTime(this.txtcofffininsdate.Text); ;
-            benddate = finalinsdate > benddate ? finalinsdate : benddate;
-            noofemi = ASTUtility.Datediff(benddate, coffbookingdate);
+
+                this.lblvalcoffarea.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["usize"]).ToString("#,##0;(#,##0);");
+                this.txtcoffrate.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffurate"]).ToString("#,##0;(#,##0);");
+                this.lblcoffunitprice.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffuamt"]).ToString("#,##0;(#,##0);");
+                this.txtcofffparking.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffpamt"]).ToString("#,##0;(#,##0);");
+                this.txtcoffutility.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffutility"]).ToString("#,##0;(#,##0);");
+                this.txtcoffothers.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffothers"]).ToString("#,##0;(#,##0);");
+                this.lblcoffTotal.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["cofftunitamt"]).ToString("#,##0;(#,##0);");
+
+                this.txtcoffbookingam.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffbookingam"]).ToString("#,##0;(#,##0);");
+                this.txtcoffBookingdate.Text = (Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("dd-MMM-yyyy") == "01-Jan-1900") ? "" : Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffbookingdat"]).ToString("dd-MMM-yyyy");
+                this.txtcoffdownpayper.Text = (Convert.ToDouble(ds1.Tables[0].Rows[0]["coffdpaymntper"]) == 0) ? "" : Convert.ToDouble(ds1.Tables[0].Rows[0]["coffdpaymntper"]).ToString("#,##0;(#,##0);");
+                this.lblvalcoffdownpayam.InnerText = (Convert.ToDouble(ds1.Tables[0].Rows[0]["coffdpaymntam"]) == 0) ? "" : Convert.ToDouble(ds1.Tables[0].Rows[0]["coffdpaymntam"]).ToString("#,##0;(#,##0);");
+                this.txtcoffdownpaydate.Text = (Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffdpaymntdat"]).ToString("dd-MMM-yyyy") == "01-Jan-1900") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(ds1.Tables[0].Rows[0]["coffdpaymntdat"]).ToString("dd-MMM-yyyy");
 
 
-            cofffvpsft = ((usize > 0) ? (cofffv == 0 ? 0.00 : (cofffv - coffpamt - coffutility - coffothers) / usize) : 0.00);
-            coffpowbpart = (12 + intratio) / 12;
-            coffpvpsft = Math.Round(cofffvpsft / (Math.Pow(coffpowbpart, noofemi)), 0);
-
-            this.txtcoffnooffemi.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffnoofemi"]).ToString("#,##0;(#,##0);");
-            this.lblvalcoffemi.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffemi"]).ToString("#,##0;(#,##0);");
-            this.lblvalcofffvpersft.InnerText = cofffvpsft.ToString("#,##0;(#,##0);");
-            this.lblvalcoffpvpersft.InnerText = coffpvpsft.ToString("#,##0;(#,##0);");
+                this.txtcofffininsper.Text = (Convert.ToDouble(ds1.Tables[0].Rows[0]["cofffinsper"]) == 0) ? "" : Convert.ToDouble(ds1.Tables[0].Rows[0]["cofffinsper"]).ToString("#,##0;(#,##0);");
+                this.lblvalcofffininsam.InnerText = (Convert.ToDouble(ds1.Tables[0].Rows[0]["cofffinsam"]) == 0) ? "" : Convert.ToDouble(ds1.Tables[0].Rows[0]["cofffinsam"]).ToString("#,##0;(#,##0);");
+                this.txtcofffininsdate.Text = (Convert.ToDateTime(ds1.Tables[0].Rows[0]["cofffinsdat"]).ToString("dd-MMM-yyyy") == "01-Jan-1900") ? sysdate.AddMonths((int)coffnoofemi).ToString("dd-MMM-yyyy") : Convert.ToDateTime(ds1.Tables[0].Rows[0]["cofffinsdat"]).ToString("dd-MMM-yyyy");
 
 
-          
+
+
+
+                coffbookingdate = Convert.ToDateTime(this.txtcoffBookingdate.Text);
+                benddate = Convert.ToDateTime(lstb[lstb.Count - 1].schdate);
+                finalinsdate = Convert.ToDateTime(this.txtcofffininsdate.Text); ;
+                benddate = finalinsdate > benddate ? finalinsdate : benddate;
+                noofemi = ASTUtility.Datediff(benddate, coffbookingdate);
+
+
+                cofffvpsft = ((usize > 0) ? (cofffv == 0 ? 0.00 : (cofffv - coffpamt - coffutility - coffothers) / usize) : 0.00);
+                coffpowbpart = (12 + intratio) / 12;
+                coffpvpsft = Math.Round(cofffvpsft / (Math.Pow(coffpowbpart, noofemi)), 0);
+
+                this.txtcoffnooffemi.Text = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffnoofemi"]).ToString("#,##0;(#,##0);");
+                this.lblvalcoffemi.InnerText = Convert.ToDouble(ds1.Tables[0].Rows[0]["coffemi"]).ToString("#,##0;(#,##0);");
+                this.lblvalcofffvpersft.InnerText = cofffvpsft.ToString("#,##0;(#,##0);");
+                this.lblvalcoffpvpersft.InnerText = coffpvpsft.ToString("#,##0;(#,##0);");
+
+            }
+
+
+            catch (Exception ex)
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
+
+
+            }
+
+
 
 
 
@@ -1175,12 +1189,22 @@ namespace RealERPWEB.F_22_Sal
                 lstcoff[i].fv = Math.Round(pv * Math.Pow(coffpowbpart, mondiff), 0); 
                 lstcoff[i].monthid = monthid;
                 lstcoff[i].ymon = ymon;
+                lstcoff[i].schdate = schdate;
                 i++;
             }
-
+            
+            
             DateTime coffbookingdate;
             double usize, coffurate, noofemi, coffuamt, coffpamt, coffutility, coffothers, cofftunitamt, coffbookingper, coffbookingam, cofffv, coffpv, cofffvpsft, coffpvpsft;
 
+            int tolistitem = lstcoff.Count;
+            double cofftotal = Convert.ToDouble(this.lblcoffTotal.InnerText);
+           coffpv = lstcoff.Sum(l => l.pv);
+            double adwfinalins = cofftotal - coffpv;
+            lstcoff[tolistitem - 1].pv += adwfinalins;
+
+
+            
             usize = Convert.ToDouble(this.lblvalcoffarea.InnerText.ToString());
             coffurate = Convert.ToDouble("0" + this.txtcoffrate.Text.ToString());
             coffuamt = usize * coffurate;
@@ -1223,7 +1247,7 @@ namespace RealERPWEB.F_22_Sal
                 string monthid, gcod, gdesc, ymon, grp;
                 double pv, fv;
 
-                List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet> lstb = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>)Session["lstbaseschdule"];
+                //List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet> lstb = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>)Session["lstbaseschdule"];
                 List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassInsCode> lstcode = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassInsCode>)Session["tblinstallment"];
                
                 List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet> lstcoff = new List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>();
@@ -1254,23 +1278,23 @@ namespace RealERPWEB.F_22_Sal
 
 
                 // Base Case 
-                foreach (RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet blstitem in lstb)
-                {
+                //foreach (RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet blstitem in lstb)
+                //{
 
                    
 
-                    pv = blstitem.pv;
-                    mondiff = ASTUtility.Datediff(benddate, bcasebookingdate);
-                    monthid = bcasebookingdate.ToString("yyyyMM");
-                    ymon = bcasebookingdate.ToString("MMM-yy");
-                    blstitem.monthid = monthid;
-                    blstitem.ymon = ymon;
-                    blstitem.schdate = bcasebookingdate;
-                    blstitem.fv = Math.Round(pv * Math.Pow(coffpowbpart, mondiff), 0);
-                    bcasebookingdate = bcasebookingdate.AddMonths(1);
-                }
+                //    pv = blstitem.pv;
+                //    mondiff = ASTUtility.Datediff(benddate, bcasebookingdate);
+                //    monthid = bcasebookingdate.ToString("yyyyMM");
+                //    ymon = bcasebookingdate.ToString("MMM-yy");
+                //    blstitem.monthid = monthid;
+                //    blstitem.ymon = ymon;
+                //    blstitem.schdate = bcasebookingdate;
+                //    blstitem.fv = Math.Round(pv * Math.Pow(coffpowbpart, mondiff), 0);
+                //    bcasebookingdate = bcasebookingdate.AddMonths(1);
+                //}
 
-                Session["lstbaseschdule"] = lstb;
+                //Session["lstbaseschdule"] = lstb;
 
 
 
@@ -1330,33 +1354,7 @@ namespace RealERPWEB.F_22_Sal
                 }
 
 
-                //Final Installment
-
-                if (finalinsam > 0)
-                {
-                    var lstfin = lstcode.FindAll(l => l.gcod.Substring(0, 5) == "81985");
-
-                    monthid = finalinsdate.ToString("yyyyMM");
-                    ymon = finalinsdate.ToString("MMM-yy");
-                    gcod = lstfin[0].gcod;
-                    gdesc = lstfin[0].gdesc;
-                    grp = "02";
-                    //  mondiff = ASTUtility.Datediff(benddate, finalinsdate)>0? (ASTUtility.Datediff(benddate, finalinsdate)-1):0;
-                      mondiff = ASTUtility.Datediff(benddate, finalinsdate);
-
-                    RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet obj = new RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet
-                    {
-                        monthid = monthid,
-                        ymon = ymon,
-                        gcod = gcod,
-                        gdesc = gdesc,
-                        schdate = finalinsdate,
-                        grp = grp,
-                        pv = finalinsam,
-                        fv = Math.Round(finalinsam * Math.Pow(coffpowbpart, mondiff), 0)
-                    };
-                    lstcoff.Add(obj);
-                }
+               
 
 
                 //Booking, Downpayment, Final Installment
@@ -1391,30 +1389,54 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-                    if (initial == coffnoofemi+k-1) // Last Installment
-                    {
+                    //if (initial == coffnoofemi+k-1) // Last Installment
+                    //{
 
-                        cofftunitamt = Convert.ToDouble("0" + this.lblcoffTotal.InnerText);
-                        coffresamt = cofftunitamt - lstcoff.Sum(l => l.pv);
+                    //    cofftunitamt = Convert.ToDouble("0" + this.lblcoffTotal.InnerText);
+                    //    coffresamt = cofftunitamt - lstcoff.Sum(l => l.pv);
 
-                        RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet obj = new RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet
-                        {
-                            monthid = monthid,
-                            ymon = ymon,
-                            gcod = gcod,
-                            gdesc = gdesc,
-                            schdate = firstinsdate,
-                            grp = grp,
-                            pv = coffresamt,
-                            fv = Math.Round(coffresamt * Math.Pow(coffpowbpart, mondiff), 0)
-                        };
-                        lstcoff.Add(obj);
-                    }
+                    //    RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet obj = new RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet
+                    //    {
+                    //        monthid = monthid,
+                    //        ymon = ymon,
+                    //        gcod = gcod,
+                    //        gdesc = gdesc,
+                    //        schdate = firstinsdate,
+                    //        grp = grp,
+                    //        pv = coffresamt,
+                    //        fv = Math.Round(coffresamt * Math.Pow(coffpowbpart, mondiff), 0)
+                    //    };
+                    //    lstcoff.Add(obj);
+                    //}
 
 
 
-                    else
-                    {
+                    //if (initial == coffnoofemi + k) // Last Installment
+                    //{
+                    //    if (finalinsam > 0)
+                    //    {
+
+                    //        cofftunitamt = Convert.ToDouble("0" + this.lblcoffTotal.InnerText);
+                    //        coffresamt = cofftunitamt - lstcoff.Sum(l => l.pv);
+
+                    //        RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet obj = new RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet
+                    //        {
+                    //            monthid = monthid,
+                    //            ymon = ymon,
+                    //            gcod = gcod,
+                    //            gdesc = gdesc,
+                    //            schdate = firstinsdate,
+                    //            grp = grp,
+                    //            pv = coffresamt,
+                    //            fv = Math.Round(coffresamt * Math.Pow(coffpowbpart, mondiff), 0)
+                    //        };
+                    //        lstcoff.Add(obj);
+                    //    }
+                    //}
+
+
+                    //else
+                    //{
 
                         RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet obj = new RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet
                         {
@@ -1428,13 +1450,52 @@ namespace RealERPWEB.F_22_Sal
                             fv = Math.Round(coffemi * Math.Pow(coffpowbpart, mondiff), 0)
                         };
                         lstcoff.Add(obj);
-                    }
+                   // }
                     initial++;
                     ins++;
                     firstinsdate = firstinsdate.AddMonths(coffdur);
 
 
                 }
+
+
+
+                //Final Installment
+
+                if (finalinsam > 0)
+                {
+
+
+                    cofftunitamt = Convert.ToDouble("0" + this.lblcoffTotal.InnerText);
+                    finalinsam= cofftunitamt - lstcoff.Sum(l => l.pv);
+                    var lstfin = lstcode.FindAll(l => l.gcod.Substring(0, 5) == "81985");
+                    monthid = finalinsdate.ToString("yyyyMM");
+                    ymon = finalinsdate.ToString("MMM-yy");
+                    gcod = lstfin[0].gcod;
+                    gdesc = lstfin[0].gdesc;
+                    grp = "02";
+                    //  mondiff = ASTUtility.Datediff(benddate, finalinsdate)>0? (ASTUtility.Datediff(benddate, finalinsdate)-1):0;
+                    mondiff = ASTUtility.Datediff(benddate, finalinsdate);
+
+                    RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet obj = new RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet
+                    {
+                        monthid = monthid,
+                        ymon = ymon,
+                        gcod = gcod,
+                        gdesc = gdesc,
+                        schdate = finalinsdate,
+                        grp = grp,
+                        pv = finalinsam,
+                        fv = Math.Round(finalinsam * Math.Pow(coffpowbpart, mondiff), 0)
+                    };
+                    lstcoff.Add(obj);
+                }
+
+
+             
+
+
+
                 var lst1 = lstcoff.OrderBy(l => l.gcod).ToList();
                 Session["lstcoffschedule"] = lst1;                
                 this.Data_Bind();
@@ -1564,12 +1625,42 @@ namespace RealERPWEB.F_22_Sal
                 lstcoff[i].pv = insamt;
 
             }
-            Session["lstcoff"] = lstcoff;
+
+            int tolistitem = lstcoff.Count;
+
+            double cofftotal = Convert.ToDouble(this.lblcoffTotal.InnerText);
+            double coffpv = lstcoff.Sum(l => l.pv);
+            double adwfinalins = cofftotal - coffpv;
+            lstcoff[tolistitem - 1].pv += adwfinalins;
+
+
+            Session["lstcoff"] = lstcoff; 
+            this.gvcoffsch.DataSource = lstcoff;
+            this.gvcoffsch.DataBind();
+           // this.FooterCalculation();
+
+            this.SaveValue();
+
+
+            //After Saving Future Value
             this.Data_Bind();
 
 
-        }
+           
 
+
+        }
+        private void AdjustWithFinalInstallment()
+        {
+
+            List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet> lstcoff = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>)Session["lstcoffschedule"];
+
+
+        
+
+
+
+        }
 
 
         private void Data_Bind()
@@ -1617,9 +1708,11 @@ namespace RealERPWEB.F_22_Sal
                 List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet> lstcoff = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>)Session["lstcoffschedule"];
 
 
+               // double coffpv = lstcoff.Sum(l => l.pv);
 
                 ((Label)this.gvbcasesch.FooterRow.FindControl("lgvFpvschamt")).Text = lstb.Sum(l => l.pv).ToString("#,##0;(#,##0);");
                 ((Label)this.gvbcasesch.FooterRow.FindControl("lgvFfvscham")).Text = lstb.Sum(l => l.fv).ToString("#,##0;(#,##0);");
+
 
 
                 if (lstcoff.Count > 0)
@@ -1706,9 +1799,15 @@ namespace RealERPWEB.F_22_Sal
 
             List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet> lstb = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassBaseGrandNoteSheet>)Session["lstbaseschdule"];
             List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet> lstcoff = (List<RealEntity.C_22_Sal.EClassGrandNoteSheet.EClassCoffGrandNoteSheet>)Session["lstcoffschedule"];
-           
 
-            int noofemi;
+          
+            
+
+
+
+
+
+            int bcasenofemi, noofemi;
             DateTime coffbookingdate, benddate, finalinsdate;
             double uzize, bfv, bpv, pamt, utility, others,bpowbpart, bfvpsft, bpvpsft, intratio, usize, coffpamt, coffutility, coffothers, cofffvpsft, coffpvpsft, coffpowbpart, cofffv, coffpv, upsftwiopuaoth;
 
@@ -1722,7 +1821,7 @@ namespace RealERPWEB.F_22_Sal
             benddate = Convert.ToDateTime(lstb[lstb.Count-1].schdate);           
             benddate = finalinsdate > benddate ? finalinsdate : benddate;
 
-            uzize= Convert.ToDouble("0" + this.lblvalcoffarea.InnerText.ToString());
+       
             coffpamt = Convert.ToDouble("0" + this.txtcofffparking.Text.ToString());
             coffutility = Convert.ToDouble("0" + this.txtcoffutility.Text.ToString());
             coffothers = Convert.ToDouble("0" + this.txtcoffothers.Text.ToString());            
@@ -1732,11 +1831,12 @@ namespace RealERPWEB.F_22_Sal
             bfv = lstb.Sum(l => l.fv);
             bpv = lstb.Sum(l => l.pv);
             pamt = Convert.ToDouble(this.lblhiddenbpamt.Value);
+            bcasenofemi = Convert.ToInt32(this.lblvalnoofemi.InnerText);
             utility = Convert.ToDouble(this.lblhiddenbutility.Value);
             others = Convert.ToDouble(this.lblhiddenothers.Value); 
-            bfvpsft =Math.Round( ((uzize > 0) ? ((bfv - pamt - utility - others) / uzize) : 0.00),0);
+            bfvpsft =Math.Round( ((usize > 0) ? ((bfv - pamt - utility - others) / usize) : 0.00),0);
             bpowbpart = (12 + intratio) / 12;
-            bpvpsft = Math.Round(bfvpsft / (Math.Pow(bpowbpart, noofemi)), 0);
+            bpvpsft = Math.Round(bfvpsft / (Math.Pow(bpowbpart, bcasenofemi)), 0);
 
 
             // Customer Offer  Case
@@ -1767,6 +1867,22 @@ namespace RealERPWEB.F_22_Sal
                 result = true;
             }
 
+
+
+
+            double baseinterest, coffinterest, interestdiff, unitamt, newcofftotalam, newcoffunitamt, newcoffunitrate;
+            benddate = Convert.ToDateTime(lstb[lstb.Count - 1].schdate);
+            baseinterest = lstb.Sum(l => l.fv) - lstb.Sum(l => l.pv);
+            coffinterest = lstcoff.Sum(l => l.fv) - lstcoff.Sum(l => l.pv);
+            interestdiff = finalinsdate > benddate ?  ((baseinterest - coffinterest)*-1): (baseinterest - coffinterest);
+            unitamt = Convert.ToDouble("0" + this.lblvalunitprice.InnerText);
+            newcofftotalam = unitamt + coffpamt + coffutility + coffothers + interestdiff;
+            newcoffunitamt = newcofftotalam - coffpamt - coffutility - coffothers;
+            newcoffunitrate = Math.Round(((usize > 0) ? (newcoffunitamt / usize) : 0.00), 0);
+            this.lblhiddenncoffurate.Value = newcoffunitrate.ToString("#,##0;(#,##0); ");
+
+
+
             //cofffv = bfvpsft * usize + (coffpamt + coffutility + coffothers);
             //coffpv = cofffv / (Math.Pow(coffpowbpart, noofemi));
             //upsftwiopuaoth = ((usize > 0) ? ((coffpv - (coffpamt + coffutility + coffothers)) / usize) : 0.00);
@@ -1794,12 +1910,16 @@ namespace RealERPWEB.F_22_Sal
                 {
                     //"<span style='color:red'>Minimum FV Per SFT:" + this.lblhiddenfvpersft.Value + "Minimum PV Per SFT:" + this.lblhiddenpvpersft.Value + "</span>";
 
-
-                    string mfvpsftapvpsft = "Minimum FV Per SFT:" + this.lblhiddenfvpersft.Value + " Minimum PV Per SFT:" + this.lblhiddenpvpersft.Value;
+                    string mfvpsftapvpsft = "Minimum Rate Per SFT:" + this.lblhiddenncoffurate.Value;
+                    
+                   // string mfvpsftapvpsft = "Minimum FV Per SFT:" + this.lblhiddenfvpersft.Value + " Minimum PV Per SFT:" + this.lblhiddenpvpersft.Value;
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+ mfvpsftapvpsft + "');", true);
                     return;
 
                 }
+
+              //
+              //return;
 
                 if (this.ddlPrevious.Items.Count == 0)
                     this.LastGrandNoteSheet();
@@ -1991,6 +2111,28 @@ namespace RealERPWEB.F_22_Sal
             this.PanelAddIns.Visible = this.chkAddIns.Checked;
         }
 
+        private void GetFinalInstallment()
+        {
+
+            int coffemi = Convert.ToInt32("0" + this.txtcoffnooffemi.Text.Trim());
+            DateTime firstinsdate = Convert.ToDateTime(this.txtcoffinsdate.Text);
+            DateTime fininsdate = firstinsdate.AddMonths(coffemi-1);
+            this.txtcofffininsdate.Text = fininsdate.ToString("dd-MMM-yyyy");
+
+           // TextBox txtevenname = (TextBox)send;
+
+        }
+
+        protected void txtcoffnooffemi_TextChanged(object sender, EventArgs e)
+        {
+            this.GetFinalInstallment();
+
+        }
+
+        protected void txtcoffinsdate_TextChanged(object sender, EventArgs e)
+        {
+            this.GetFinalInstallment();
+        }
 
         protected void lnkgvbaseFcoffTotal_Click(object sender, EventArgs e)
         {
