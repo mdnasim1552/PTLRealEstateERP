@@ -147,7 +147,6 @@
                     <Value>=Parameters!currentyear.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -158,7 +157,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
             <Top>0.20556in</Top>
-            <Left>7.03125in</Left>
+            <Left>7.05062in</Left>
             <Height>0.25in</Height>
             <Width>0.44792in</Width>
             <Style>
@@ -182,7 +181,6 @@
                     <Value>=Parameters!currentmonth.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -193,7 +191,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox12</rd:DefaultName>
             <Top>0.20556in</Top>
-            <Left>6.55556in</Left>
+            <Left>6.57494in</Left>
             <Height>0.25in</Height>
             <Width>0.40625in</Width>
             <ZIndex>1</ZIndex>
@@ -218,7 +216,6 @@
                     <Value>=Parameters!currentday.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -229,7 +226,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox13</rd:DefaultName>
             <Top>0.20556in</Top>
-            <Left>6.01736in</Left>
+            <Left>6.03673in</Left>
             <Height>0.25in</Height>
             <Width>0.4375in</Width>
             <ZIndex>2</ZIndex>
@@ -254,7 +251,6 @@
                     <Value>Date</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -265,7 +261,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox14</rd:DefaultName>
             <Top>0.20417in</Top>
-            <Left>5.3257in</Left>
+            <Left>5.34508in</Left>
             <Height>0.25139in</Height>
             <Width>0.63542in</Width>
             <ZIndex>3</ZIndex>
@@ -289,7 +285,6 @@
                     <Value>Project</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -297,9 +292,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox15</rd:DefaultName>
-            <Top>1.55083in</Top>
+            <Top>0.67583in</Top>
+            <Left>0.01937in</Left>
             <Height>0.17708in</Height>
-            <Width>0.83903in</Width>
+            <Width>0.73486in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -321,7 +317,6 @@
                     <Value>=Fields!pactdesc.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -329,10 +324,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox16</rd:DefaultName>
-            <Top>1.53in</Top>
-            <Left>0.64806in</Left>
+            <Top>0.66541in</Top>
+            <Left>0.60146in</Left>
             <Height>0.17708in</Height>
-            <Width>3.22917in</Width>
+            <Width>3.29514in</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -357,7 +352,6 @@
                     <Value />
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -365,8 +359,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox17</rd:DefaultName>
-            <Top>1.54041in</Top>
-            <Left>4.58486in</Left>
+            <Top>0.66541in</Top>
+            <Left>4.60423in</Left>
             <Height>0.17708in</Height>
             <Width>2.93181in</Width>
             <ZIndex>6</ZIndex>
@@ -392,7 +386,7 @@
                   <TextRun>
                     <Value>Client ID</Value>
                     <Style>
-                      <FontSize>12pt</FontSize>
+                      <FontFamily>cambria</FontFamily>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -400,10 +394,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox18</rd:DefaultName>
-            <Top>1.54041in</Top>
-            <Left>3.91889in</Left>
+            <Top>0.66541in</Top>
+            <Left>3.93826in</Left>
             <Height>0.1875in</Height>
-            <Width>1in</Width>
+            <Width>0.82917in</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -422,10 +416,9 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Received with thanks a sum of TK</Value>
+                    <Value>Received with thanks a sum of </Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -433,9 +426,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox19</rd:DefaultName>
-            <Top>1.91958in</Top>
+            <Top>0.94458in</Top>
+            <Left>0.01937in</Left>
             <Height>0.1875in</Height>
-            <Width>2.60222in</Width>
+            <Width>2.33487in</Width>
             <ZIndex>8</ZIndex>
             <Style>
               <Border>
@@ -454,10 +448,9 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!paidamt.Value</Value>
+                    <Value>=Parameters!amount.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -467,10 +460,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox20</rd:DefaultName>
-            <Top>1.90916in</Top>
-            <Left>2.60222in</Left>
+            <Top>0.93416in</Top>
+            <Left>2.17514in</Left>
             <Height>0.19792in</Height>
-            <Width>4.91445in</Width>
+            <Width>5.36091in</Width>
             <ZIndex>9</ZIndex>
             <Style>
               <Border>
@@ -495,7 +488,6 @@
                     <Value>In Words</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -503,9 +495,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox21</rd:DefaultName>
-            <Top>2.28416in</Top>
+            <Top>1.22166in</Top>
+            <Left>0.01937in</Left>
             <Height>0.1875in</Height>
-            <Width>1.06125in</Width>
+            <Width>0.8125in</Width>
             <ZIndex>10</ZIndex>
             <Style>
               <Border>
@@ -527,7 +520,6 @@
                     <Value>=Parameters!takainword.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -535,10 +527,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox22</rd:DefaultName>
-            <Top>2.28416in</Top>
-            <Left>0.79042in</Left>
+            <Top>1.22166in</Top>
+            <Left>0.72424in</Left>
             <Height>0.1875in</Height>
-            <Width>6.72625in</Width>
+            <Width>6.81181in</Width>
             <ZIndex>11</ZIndex>
             <Style>
               <Border>
@@ -563,7 +555,6 @@
                     <Value>Visw Cash/ Cheque/Pay Order/D.D No.</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -571,9 +562,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox23</rd:DefaultName>
-            <Top>2.64875in</Top>
-            <Height>0.19792in</Height>
-            <Width>2.88889in</Width>
+            <Top>1.50917in</Top>
+            <Left>0.01937in</Left>
+            <Height>0.1875in</Height>
+            <Width>2.65972in</Width>
             <ZIndex>12</ZIndex>
             <Style>
               <Border>
@@ -595,7 +587,6 @@
                     <Value>=Parameters!paytype.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -603,10 +594,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox24</rd:DefaultName>
-            <Top>2.64875in</Top>
-            <Left>2.93056in</Left>
+            <Top>1.48625in</Top>
+            <Left>2.39785in</Left>
             <Height>0.19792in</Height>
-            <Width>2.20486in</Width>
+            <Width>2.75694in</Width>
             <ZIndex>13</ZIndex>
             <Style>
               <Border>
@@ -631,7 +622,6 @@
                     <Value>Dated</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -639,9 +629,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox25</rd:DefaultName>
-            <Top>2.64875in</Top>
-            <Left>5.20486in</Left>
-            <Height>0.19792in</Height>
+            <Top>1.49667in</Top>
+            <Left>5.18257in</Left>
+            <Height>0.1875in</Height>
             <Width>0.70014in</Width>
             <ZIndex>14</ZIndex>
             <Style>
@@ -664,7 +654,6 @@
                     <Value>=Parameters!paydate.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -672,10 +661,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox26</rd:DefaultName>
-            <Top>2.63833in</Top>
-            <Left>5.905in</Left>
-            <Height>0.20833in</Height>
-            <Width>1.61167in</Width>
+            <Top>1.48625in</Top>
+            <Left>5.73688in</Left>
+            <Height>0.19791in</Height>
+            <Width>1.79917in</Width>
             <ZIndex>15</ZIndex>
             <Style>
               <Border>
@@ -700,7 +689,6 @@
                     <Value>Bank</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -708,9 +696,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox27</rd:DefaultName>
-            <Top>3.03277in</Top>
+            <Top>1.78277in</Top>
+            <Left>0.01937in</Left>
             <Height>0.1875in</Height>
-            <Width>1in</Width>
+            <Width>0.73486in</Width>
             <ZIndex>16</ZIndex>
             <Style>
               <Border>
@@ -732,7 +721,6 @@
                     <Value>=Fields!bankname.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -740,10 +728,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox28</rd:DefaultName>
-            <Top>2.99111in</Top>
-            <Left>0.64806in</Left>
-            <Height>0.22917in</Height>
-            <Width>3.58333in</Width>
+            <Top>1.78277in</Top>
+            <Left>0.63965in</Left>
+            <Height>0.18751in</Height>
+            <Width>3.61111in</Width>
             <ZIndex>17</ZIndex>
             <Style>
               <Border>
@@ -768,7 +756,6 @@
                     <Value>Branch</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -776,10 +763,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox29</rd:DefaultName>
-            <Top>3.04319in</Top>
-            <Left>4.25916in</Left>
+            <Top>1.79319in</Top>
+            <Left>4.27854in</Left>
             <Height>0.17708in</Height>
-            <Width>0.90403in</Width>
+            <Width>0.66445in</Width>
             <ZIndex>18</ZIndex>
             <Style>
               <Border>
@@ -801,7 +788,6 @@
                     <Value>=Fields!bbranch.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -809,10 +795,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox30</rd:DefaultName>
-            <Top>2.99111in</Top>
-            <Left>5.0382in</Left>
-            <Height>0.22917in</Height>
-            <Width>2.47847in</Width>
+            <Top>1.78277in</Top>
+            <Left>4.90479in</Left>
+            <Height>0.18751in</Height>
+            <Width>2.63126in</Width>
             <ZIndex>19</ZIndex>
             <Style>
               <Border>
@@ -837,7 +823,6 @@
                     <Value>Installment No</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -845,8 +830,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox31</rd:DefaultName>
-            <Top>3.41541in</Top>
-            <Height>0.20833in</Height>
+            <Top>2.07583in</Top>
+            <Left>0.01937in</Left>
+            <Height>0.19791in</Height>
             <Width>1.11333in</Width>
             <ZIndex>20</ZIndex>
             <Style>
@@ -869,7 +855,6 @@
                     <Value>Against Floor</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -877,10 +862,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox32</rd:DefaultName>
-            <Top>3.43625in</Top>
-            <Left>2.43208in</Left>
+            <Top>2.08625in</Top>
+            <Left>2.72229in</Left>
             <Height>0.1875in</Height>
-            <Width>1.11458in</Width>
+            <Width>1.03125in</Width>
             <ZIndex>21</ZIndex>
             <Style>
               <Border>
@@ -902,7 +887,6 @@
                     <Value>Flat/Shop/Space No</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -910,10 +894,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox33</rd:DefaultName>
-            <Top>3.42583in</Top>
-            <Left>4.78417in</Left>
+            <Top>2.07583in</Top>
+            <Left>5.00146in</Left>
             <Height>0.19792in</Height>
-            <Width>1.57917in</Width>
+            <Width>1.38125in</Width>
             <ZIndex>22</ZIndex>
             <Style>
               <Border>
@@ -935,7 +919,6 @@
                     <Value>=Parameters!aptno.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>11pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -943,10 +926,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox34</rd:DefaultName>
-            <Top>3.405in</Top>
-            <Left>6.405in</Left>
+            <Top>2.055in</Top>
+            <Left>6.38272in</Left>
             <Height>0.21875in</Height>
-            <Width>1.11167in</Width>
+            <Width>1.15333in</Width>
             <ZIndex>23</ZIndex>
             <Style>
               <Border>
@@ -971,7 +954,6 @@
                     <Value>=Parameters!As.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>11pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -979,10 +961,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox35</rd:DefaultName>
-            <Top>3.405in</Top>
-            <Left>1.07514in</Left>
+            <Top>2.055in</Top>
+            <Left>1.09451in</Left>
             <Height>0.21875in</Height>
-            <Width>1.34306in</Width>
+            <Width>1.6in</Width>
             <ZIndex>24</ZIndex>
             <Style>
               <Border>
@@ -1007,7 +989,6 @@
                     <Value>=Parameters!flr.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>11pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1015,10 +996,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox36</rd:DefaultName>
-            <Top>3.41541in</Top>
-            <Left>3.55014in</Left>
-            <Height>0.20833in</Height>
-            <Width>1.19792in</Width>
+            <Top>2.08624in</Top>
+            <Left>3.70493in</Left>
+            <Height>0.1875in</Height>
+            <Width>1.25in</Width>
             <ZIndex>25</ZIndex>
             <Style>
               <Border>
@@ -1043,7 +1024,6 @@
                     <Value>Car Park No.</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1051,8 +1031,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox37</rd:DefaultName>
-            <Top>3.81541in</Top>
-            <Height>0.19792in</Height>
+            <Top>2.39874in</Top>
+            <Left>0.01042in</Left>
+            <Height>0.17709in</Height>
             <Width>1.02653in</Width>
             <ZIndex>26</ZIndex>
             <Style>
@@ -1075,7 +1056,6 @@
                     <Value>=Fields!parking.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1083,10 +1063,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox38</rd:DefaultName>
-            <Top>3.81541in</Top>
-            <Left>0.99875in</Left>
+            <Top>2.37791in</Top>
+            <Left>0.93479in</Left>
             <Height>0.19792in</Height>
-            <Width>1.70958in</Width>
+            <Width>1.93875in</Width>
             <ZIndex>27</ZIndex>
             <Style>
               <Border>
@@ -1111,7 +1091,6 @@
                     <Value>From Mr./Ms.Mrs.</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1119,10 +1098,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox39</rd:DefaultName>
-            <Top>3.805in</Top>
-            <Left>2.73611in</Left>
-            <Height>0.20833in</Height>
-            <Width>1.67236in</Width>
+            <Top>2.39875in</Top>
+            <Left>2.91174in</Left>
+            <Height>0.17708in</Height>
+            <Width>1.45361in</Width>
             <ZIndex>28</ZIndex>
             <Style>
               <Border>
@@ -1144,7 +1123,6 @@
                     <Value>=Fields!custname.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1152,10 +1130,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox40</rd:DefaultName>
-            <Top>3.805in</Top>
-            <Left>4.43972in</Left>
-            <Height>0.20833in</Height>
-            <Width>3.07695in</Width>
+            <Top>2.37792in</Top>
+            <Left>4.18826in</Left>
+            <Height>0.19791in</Height>
+            <Width>3.34778in</Width>
             <ZIndex>29</ZIndex>
             <Style>
               <Border>
@@ -1180,7 +1158,6 @@
                     <Value>S/O. W/O. / D/O</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1188,8 +1165,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox41</rd:DefaultName>
-            <Top>4.2175in</Top>
-            <Height>0.21875in</Height>
+            <Top>2.66958in</Top>
+            <Left>0.01937in</Left>
+            <Height>0.16667in</Height>
             <Width>1.23958in</Width>
             <ZIndex>30</ZIndex>
             <Style>
@@ -1212,7 +1190,6 @@
                     <Value />
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1220,9 +1197,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox42</rd:DefaultName>
-            <Top>4.18625in</Top>
-            <Left>1.13069in</Left>
-            <Height>0.25in</Height>
+            <Top>2.65917in</Top>
+            <Left>1.15006in</Left>
+            <Height>0.17708in</Height>
             <Width>6.38598in</Width>
             <ZIndex>31</ZIndex>
             <Style>
@@ -1258,8 +1235,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox43</rd:DefaultName>
-            <Top>6.95708in</Top>
-            <Left>5.1632in</Left>
+            <Top>3.16541in</Top>
+            <Left>5.22423in</Left>
             <Height>0.25in</Height>
             <Width>2.09375in</Width>
             <ZIndex>32</ZIndex>
@@ -1276,14 +1253,1321 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="Textbox4">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox4</rd:DefaultName>
+            <Top>3.85083in</Top>
+            <Left>0.01937in</Left>
+            <Height>0.04167in</Height>
+            <Width>7.51667in</Width>
+            <ZIndex>33</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <TopBorder>
+                <Style>Dotted</Style>
+              </TopBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox5">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!CompName.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                      <FontSize>16pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>4.31111in</Top>
+            <Left>3.6952in</Left>
+            <Height>0.25in</Height>
+            <Width>3.84084in</Width>
+            <ZIndex>34</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox6">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!CompAdd.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox2</rd:DefaultName>
+            <Top>4.58889in</Top>
+            <Left>3.6952in</Left>
+            <Height>0.19792in</Height>
+            <Width>3.84125in</Width>
+            <ZIndex>35</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox7">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!rptTitle.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                      <FontSize>14pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox3</rd:DefaultName>
+            <Top>4.53681in</Top>
+            <Left>1.43187in</Left>
+            <Height>0.25in</Height>
+            <Width>2.13416in</Width>
+            <ZIndex>36</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>WhiteSmoke</BackgroundColor>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Image Name="Image2">
+            <Source>External</Source>
+            <Value>=Parameters!comLogo.Value</Value>
+            <Sizing>FitProportional</Sizing>
+            <Top>4.31111in</Top>
+            <Left>0.06125in</Left>
+            <Height>0.82292in</Height>
+            <Width>1.0625in</Width>
+            <ZIndex>37</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Image>
+          <Textbox Name="Textbox44">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!currentyear.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox11</rd:DefaultName>
+            <Top>5.34056in</Top>
+            <Left>7.04167in</Left>
+            <Height>0.25in</Height>
+            <Width>0.44792in</Width>
+            <ZIndex>38</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox45">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!currentmonth.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox12</rd:DefaultName>
+            <Top>5.34056in</Top>
+            <Left>6.56598in</Left>
+            <Height>0.25in</Height>
+            <Width>0.40625in</Width>
+            <ZIndex>39</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox46">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!currentday.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox13</rd:DefaultName>
+            <Top>5.34056in</Top>
+            <Left>6.02778in</Left>
+            <Height>0.25in</Height>
+            <Width>0.4375in</Width>
+            <ZIndex>40</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+                <Width>0.25pt</Width>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox47">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Date</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox14</rd:DefaultName>
+            <Top>5.33917in</Top>
+            <Left>5.33612in</Left>
+            <Height>0.25139in</Height>
+            <Width>0.63542in</Width>
+            <ZIndex>41</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox48">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Project</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox15</rd:DefaultName>
+            <Top>5.81083in</Top>
+            <Left>0.01042in</Left>
+            <Height>0.17708in</Height>
+            <Width>0.73486in</Width>
+            <ZIndex>42</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox49">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!pactdesc.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox16</rd:DefaultName>
+            <Top>5.80041in</Top>
+            <Left>0.63417in</Left>
+            <Height>0.17708in</Height>
+            <Width>3.25347in</Width>
+            <ZIndex>43</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox50">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox17</rd:DefaultName>
+            <Top>5.80041in</Top>
+            <Left>4.59528in</Left>
+            <Height>0.17708in</Height>
+            <Width>2.93181in</Width>
+            <ZIndex>44</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox51">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Client ID</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox18</rd:DefaultName>
+            <Top>5.80041in</Top>
+            <Left>3.92931in</Left>
+            <Height>0.1875in</Height>
+            <Width>0.82917in</Width>
+            <ZIndex>45</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox52">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Received with thanks a sum of </Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox19</rd:DefaultName>
+            <Top>6.06916in</Top>
+            <Left>0.01937in</Left>
+            <Height>0.1875in</Height>
+            <Width>2.33487in</Width>
+            <ZIndex>46</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox53">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!amount.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox20</rd:DefaultName>
+            <Top>6.06916in</Top>
+            <Left>2.19597in</Left>
+            <Height>0.19792in</Height>
+            <Width>5.33111in</Width>
+            <ZIndex>47</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox54">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>In Words</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox21</rd:DefaultName>
+            <Top>6.35666in</Top>
+            <Left>0.01042in</Left>
+            <Height>0.1875in</Height>
+            <Width>0.8125in</Width>
+            <ZIndex>48</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox55">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!takainword.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox22</rd:DefaultName>
+            <Top>6.35666in</Top>
+            <Left>0.80903in</Left>
+            <Height>0.1875in</Height>
+            <Width>6.71806in</Width>
+            <ZIndex>49</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox56">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Visw Cash/ Cheque/Pay Order/D.D No.</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox23</rd:DefaultName>
+            <Top>6.63167in</Top>
+            <Height>0.1875in</Height>
+            <Width>2.57639in</Width>
+            <ZIndex>50</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox57">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!paytype.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox24</rd:DefaultName>
+            <Top>6.62125in</Top>
+            <Left>2.39785in</Left>
+            <Height>0.19792in</Height>
+            <Width>2.74799in</Width>
+            <ZIndex>51</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox58">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Dated</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox25</rd:DefaultName>
+            <Top>6.61083in</Top>
+            <Left>5.15973in</Left>
+            <Height>0.19792in</Height>
+            <Width>0.63764in</Width>
+            <ZIndex>52</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox59">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!paydate.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox26</rd:DefaultName>
+            <Top>6.61083in</Top>
+            <Left>5.66542in</Left>
+            <Height>0.20833in</Height>
+            <Width>1.86167in</Width>
+            <ZIndex>53</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox60">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Bank</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox27</rd:DefaultName>
+            <Top>6.92819in</Top>
+            <Left>0.01042in</Left>
+            <Height>0.17708in</Height>
+            <Width>0.73486in</Width>
+            <ZIndex>54</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox61">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!bankname.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox28</rd:DefaultName>
+            <Top>6.91777in</Top>
+            <Left>0.5682in</Left>
+            <Height>0.18751in</Height>
+            <Width>3.67361in</Width>
+            <ZIndex>55</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox62">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Branch</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox29</rd:DefaultName>
+            <Top>6.91777in</Top>
+            <Left>4.26958in</Left>
+            <Height>0.17708in</Height>
+            <Width>0.66445in</Width>
+            <ZIndex>56</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox63">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!bbranch.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox30</rd:DefaultName>
+            <Top>6.91777in</Top>
+            <Left>4.94792in</Left>
+            <Height>0.18751in</Height>
+            <Width>2.57917in</Width>
+            <ZIndex>57</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox64">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Installment No</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox31</rd:DefaultName>
+            <Top>7.20041in</Top>
+            <Left>0.01042in</Left>
+            <Height>0.20833in</Height>
+            <Width>1.11333in</Width>
+            <ZIndex>58</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox65">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Against Floor</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox32</rd:DefaultName>
+            <Top>7.22125in</Top>
+            <Left>2.71333in</Left>
+            <Height>0.1875in</Height>
+            <Width>1.03125in</Width>
+            <ZIndex>59</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox66">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Flat/Shop/Space No</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox33</rd:DefaultName>
+            <Top>7.21083in</Top>
+            <Left>4.99251in</Left>
+            <Height>0.19792in</Height>
+            <Width>1.38125in</Width>
+            <ZIndex>60</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox67">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!aptno.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox34</rd:DefaultName>
+            <Top>7.19in</Top>
+            <Left>6.37376in</Left>
+            <Height>0.21875in</Height>
+            <Width>1.15333in</Width>
+            <ZIndex>61</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox68">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!As.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox35</rd:DefaultName>
+            <Top>7.19in</Top>
+            <Left>1.08556in</Left>
+            <Height>0.21875in</Height>
+            <Width>1.6in</Width>
+            <ZIndex>62</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox69">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!flr.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox36</rd:DefaultName>
+            <Top>7.20041in</Top>
+            <Left>3.68556in</Left>
+            <Height>0.20833in</Height>
+            <Width>1.26042in</Width>
+            <ZIndex>63</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox70">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Car Park No.</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox37</rd:DefaultName>
+            <Top>7.53375in</Top>
+            <Left>0.01042in</Left>
+            <Height>0.17709in</Height>
+            <Width>1.02653in</Width>
+            <ZIndex>64</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox71">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!parking.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox38</rd:DefaultName>
+            <Top>7.51291in</Top>
+            <Left>0.93625in</Left>
+            <Height>0.19792in</Height>
+            <Width>1.92833in</Width>
+            <ZIndex>65</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox72">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>From Mr./Ms.Mrs.</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox39</rd:DefaultName>
+            <Top>7.53375in</Top>
+            <Left>2.90278in</Left>
+            <Height>0.17708in</Height>
+            <Width>1.51611in</Width>
+            <ZIndex>66</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox73">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Fields!custname.Value</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox40</rd:DefaultName>
+            <Top>7.5025in</Top>
+            <Left>4.1793in</Left>
+            <Height>0.20833in</Height>
+            <Width>3.34778in</Width>
+            <ZIndex>67</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox74">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>S/O. W/O. / D/O</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox41</rd:DefaultName>
+            <Top>7.815in</Top>
+            <Left>0.01042in</Left>
+            <Height>0.15625in</Height>
+            <Width>1.23958in</Width>
+            <ZIndex>68</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox75">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox42</rd:DefaultName>
+            <Top>7.79417in</Top>
+            <Left>1.14111in</Left>
+            <Height>0.17708in</Height>
+            <Width>6.38598in</Width>
+            <ZIndex>69</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox76">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Authorised Signature</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox43</rd:DefaultName>
+            <Top>8.30041in</Top>
+            <Left>5.21528in</Left>
+            <Height>0.25in</Height>
+            <Width>2.09375in</Width>
+            <ZIndex>70</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <TopBorder>
+                <Style>Solid</Style>
+              </TopBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox78">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Customer Copy</Value>
+                    <Style>
+                      <FontFamily>cambria</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox78</rd:DefaultName>
+            <Top>4.02166in</Top>
+            <Left>6.26938in</Left>
+            <Height>0.19792in</Height>
+            <Width>1.28125in</Width>
+            <ZIndex>71</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>HotPink</BackgroundColor>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>7.82292in</Height>
+        <Height>8.78791in</Height>
         <Style />
       </Body>
-      <Width>7.54042in</Width>
+      <Width>7.5598in</Width>
       <Page>
         <PageHeader>
-          <Height>1.14584in</Height>
+          <Height>1.02084in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1308,10 +2592,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.0175in</Top>
-              <Left>1.36333in</Left>
+              <Top>0.205in</Top>
+              <Left>3.6952in</Left>
               <Height>0.25in</Height>
-              <Width>6.15334in</Width>
+              <Width>3.84084in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1342,10 +2626,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0.30917in</Top>
-              <Left>1.36333in</Left>
-              <Height>0.19792in</Height>
-              <Width>6.16792in</Width>
+              <Top>0.49944in</Top>
+              <Left>3.6952in</Left>
+              <Height>0.18959in</Height>
+              <Width>3.85542in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -1361,9 +2645,10 @@
               <Source>External</Source>
               <Value>=Parameters!comLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
-              <Top>0.02083in</Top>
-              <Height>0.62375in</Height>
-              <Width>1.06125in</Width>
+              <Top>0.04848in</Top>
+              <Left>0.01937in</Left>
+              <Height>0.73625in</Height>
+              <Width>1.11333in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -1392,15 +2677,50 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox3</rd:DefaultName>
-              <Top>0.64458in</Top>
-              <Left>1.36333in</Left>
+              <Top>0.4057in</Top>
+              <Left>1.43187in</Left>
               <Height>0.25in</Height>
-              <Width>4.32639in</Width>
+              <Width>2.13416in</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
+                <BackgroundColor>WhiteSmoke</BackgroundColor>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox77">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Office Copy</Value>
+                      <Style>
+                        <FontFamily>cambria</FontFamily>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox77</rd:DefaultName>
+              <Left>6.57494in</Left>
+              <Height>0.19792in</Height>
+              <Width>0.97569in</Width>
+              <ZIndex>4</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <BackgroundColor>LightSteelBlue</BackgroundColor>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
