@@ -978,13 +978,33 @@ namespace RealERPWEB.F_17_Acc
             {
                 try
                 {
+                    string paydate = Convert.ToDateTime(dtrpt.Rows[0]["paydate"].ToString()).ToString("dd-MMM-yyyy");
+                    string amt22 = amt1t.Replace("(", "").Replace(")", "").Trim();
                     var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
-                    string currentdate = DateTime.Now.ToString("MMM dd, yyyy hh:mm tt");
+                    string currentday = DateTime.Now.ToString("dd");
+                    string currentmonth = DateTime.Now.ToString("MM");
+                    string currentyear = DateTime.Now.ToString("yyyy");
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptEPIC", list, null, null);
                     Rpt1.EnableExternalImages = true;
-                    Rpt1.SetParameters(new ReportParameter("CompName", comnam));
-                    Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
+                    Rpt1.SetParameters(new ReportParameter("CompName", comnam));                    
                     Rpt1.SetParameters(new ReportParameter("CompAdd", comadd));
+                    Rpt1.SetParameters(new ReportParameter("aptno", udesc));
+                    Rpt1.SetParameters(new ReportParameter("usize", usize));
+                    Rpt1.SetParameters(new ReportParameter("paydate", paydate));
+                    Rpt1.SetParameters(new ReportParameter("rptTitle", "MONEY RECEIPT"));
+                    Rpt1.SetParameters(new ReportParameter("flr", flr));
+                    Rpt1.SetParameters(new ReportParameter("As", ((Installment == "") ? rectype : Installment)));
+                    Rpt1.SetParameters(new ReportParameter("amount", Convert.ToDouble(paidamt).ToString("#,##0.00;(#,##0.00)")));
+                    Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(paidamt).ToString("#,##0;(#,##0)")));
+                    Rpt1.SetParameters(new ReportParameter("takainword", amt22.Replace("Taka", "").Replace("Only", "Taka Only")));
+                    Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+                    Rpt1.SetParameters(new ReportParameter("paytype", (Paydesc == "CHEQUE") ? chqno : Paydesc));
+                    Rpt1.SetParameters(new ReportParameter("currentday", currentday));
+                    Rpt1.SetParameters(new ReportParameter("currentmonth", currentmonth));
+                    Rpt1.SetParameters(new ReportParameter("currentyear", currentyear));
+                    
+
+
 
                     Session["Report1"] = Rpt1;
                     ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
