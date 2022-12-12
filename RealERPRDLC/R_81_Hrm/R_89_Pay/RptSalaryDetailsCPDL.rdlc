@@ -5987,7 +5987,7 @@ Amount</Value>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
               <Top>0.47792in</Top>
-              <Left>8.7793in</Left>
+              <Left>11.58347in</Left>
               <Height>0.25in</Height>
               <Width>1.97916in</Width>
               <ZIndex>6</ZIndex>
@@ -6038,7 +6038,7 @@ Amount</Value>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
               <Top>0.47792in</Top>
-              <Left>11.43346in</Left>
+              <Left>8.7793in</Left>
               <Height>0.25in</Height>
               <Width>2.03125in</Width>
               <ZIndex>8</ZIndex>
