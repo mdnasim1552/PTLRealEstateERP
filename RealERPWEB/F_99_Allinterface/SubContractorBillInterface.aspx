@@ -513,15 +513,15 @@
                 comcod = <%=this.GetCompCode()%>;
                 switch (comcod) {
 
-
+                    case 3101://ASIT
                     case 1205:   //p2p
                     case 3351:   //p2p
                     case 3352:   //p2p
                         //case 3101:   //p2p
                         //case 3355:   //greenwood
                         $(".tbMenuWrp table tr td:nth-child(3)").show();
-                        $(".tbMenuWrp table tr td:nth-child(6)").hide();
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(8)").hide();
                         $(".tbMenuWrp table tr td:nth-child(10)").hide(); // 9 - for billApproval
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
@@ -529,7 +529,7 @@
                         $('#<%=this.txtrefno.ClientID%>').prop('readonly', false);
                         break;
 
-                    case 3101://ASIT
+                 
                     case 3370:   //cpdl
                         $(".tbMenuWrp table tr td:nth-child(1)").hide();
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();
