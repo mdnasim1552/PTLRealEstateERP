@@ -1207,15 +1207,7 @@
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Project Name" Visible="false">
-                                                <ItemTemplate>
-                                                    
-                                                    
-                                                </ItemTemplate>
-
-                                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                            </asp:TemplateField>
+                                           
                                             
                                             <asp:TemplateField HeaderText="Batch <br> Name">
                                                 <ItemTemplate>

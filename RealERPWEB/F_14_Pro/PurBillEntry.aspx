@@ -537,6 +537,14 @@
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
+                                <asp:TemplateField HeaderText="BOQ Rate">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvBoqrate" runat="server"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "boqrate")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                            Width="60px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Bill Amount (Mgt)">
                                     <ItemTemplate>
