@@ -783,6 +783,9 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "1702000", "1702434", "F_17_Acc", "AccPettyCashApp?", "Type=Entry", "Petty Cash Bill Entry", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702435", "F_17_Acc", "AccTopPage?", "Type=pttycash", "Petty Cash Bill List", "Accounts", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1702000", "1702436", "F_17_Acc", "RptAdvancedAgainstLoan?", "Type=Advagaintsloan", "Advance Againts Loan", "Accounts", "False", "False", "False", "False" }); ;
+
+
             tblObj.Rows.Add(new Object[] { "1702000", "1702520", "F_17_Acc", "AccPayLandOwner", "", "Payment Schedule ", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702530", "F_17_Acc", "AccSubconBillPay?", "tcode=99&tname=Payment Voucher&Mod=Accounts", "Sub Contractor Payment Bill", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702531", "F_17_Acc", "AccSubconBillPayPost?", "tcode=99&tname=Payment Voucher&Mod=Accounts", "Sub Conductor Payment(Post)", "Accounts", "False", "False", "False" });
@@ -6430,6 +6433,8 @@ namespace RealERPLIB
 
             mnuTbl1.Rows.Add(new Object[] { "0303000015", "13. TDS VDS SD Deduction Individual Project Wise", "F_17_Acc/RptATITaxIndProj01", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000016", "15. Petty Cash Bill List", "F_17_Acc/AccTopPage?Type=pttycash", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000016", "15. Advance Againts Loan", "F_17_Acc/RptAdvancedAgainstLoan?Type=Advagaintsloan", "", true, "" });
+
 
             mnuTbl1.Rows.Add(new Object[] { "0304000000", "Working Budget", "", "", false, "b" });
             mnuTbl1.Rows.Add(new Object[] { "0304000001", "01. Working Budget Vs. Achievement", "F_17_Acc/RptAccBudget?Type=WbgdVsAc", "", true, "" });
