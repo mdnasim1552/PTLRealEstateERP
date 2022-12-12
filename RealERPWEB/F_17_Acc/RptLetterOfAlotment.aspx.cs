@@ -63,7 +63,7 @@ namespace RealERPWEB.F_17_Acc
             this.ddlprjname.DataValueField = "pactcode";
             this.ddlprjname.DataSource = dt;
             this.ddlprjname.DataBind();
-            this.ddlprjname_SelectedIndexChanged(null, null);
+            //this.ddlprjname_SelectedIndexChanged(null, null);
 
 
 
@@ -74,12 +74,11 @@ namespace RealERPWEB.F_17_Acc
             string custotype = this.Request.QueryString["Type"].ToString();
             //string calltype = custotype=="LO"? "GETCUSTOMERNAMELANDOWNER" : "GETCUSTOMERNAME";          
             string comcod = this.GetCompCode();
-            string pactcode = this.ddlprjname.SelectedValue.ToString()==""?"51%": this.ddlprjname.SelectedValue.ToString();
-            string txtSProject = "%%";
+            
             string islandowner = this.Request.QueryString["Type"] == "Allotment" ? "0" : "1";
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTOMERNAME", pactcode, txtSProject, islandowner, "", "", "", "", "", "");
-            this.ddlcustomerName.DataTextField = "custnam";
-            this.ddlcustomerName.DataValueField = "custid";
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTLIST", "", "", "", "", "", "", "", "", "");
+            this.ddlcustomerName.DataTextField = "gdatat";
+            this.ddlcustomerName.DataValueField = "usircode";
             this.ddlcustomerName.DataSource = ds2.Tables[0];
             this.ddlcustomerName.DataBind();
 
@@ -88,7 +87,7 @@ namespace RealERPWEB.F_17_Acc
 
         protected void ddlprjname_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.GetCustomerName();
+            //this.GetCustomerName();
         }
 
         private void lbtnPrint_Click(object sender, EventArgs e)

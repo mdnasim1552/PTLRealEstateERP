@@ -275,9 +275,12 @@ namespace RealERPWEB.F_22_Sal
 
             this.cblintavailloan.SelectedValue = (dt.Rows.Count == 0) ? "No" : dt.Rows[0]["intavail"].ToString();
             this.cblpaytype.SelectedValue = (dt.Rows.Count == 0) ? "OneTime" : dt.Rows[0]["paymode"].ToString();
-            
-            if (dt.Rows[0]["customerno"].ToString().Length>0)
-            this.txtCustmerNumber.Text =  dt.Rows[0]["customerno"].ToString();
+
+            if (dt.Rows.Count > 0)
+            {
+                if (dt.Rows[0]["customerno"].ToString().Length > 0)
+                    this.txtCustmerNumber.Text = dt.Rows[0]["customerno"].ToString();
+            }
 
             
             ds2.Dispose();
