@@ -2369,13 +2369,9 @@ namespace RealERPWEB.F_14_Pro
                 dr1["mmrramt"] = dr3[0]["mrramt"];
                 dr1["remrks"] = dr3[0]["mrrnote"];
                 dr1["rowid"] = dr3[0]["rowid"];
+                dr1["boqrate"] = dr3[0]["boqrate"];
                 tbl1.Rows.Add(dr1);
-
-
-
             }
-
-
 
 
             //Carring FirstTime
@@ -2442,10 +2438,6 @@ namespace RealERPWEB.F_14_Pro
                         advamt = advamt + Convert.ToDouble(drodet[0]["advamt"]);
                         this.txtAdvanced.Text = advamt.ToString("#,##0;(#,##0); ");
 
-
-
-
-
                     }
 
                     DataRow dr1 = tbl1.NewRow();
@@ -2475,6 +2467,7 @@ namespace RealERPWEB.F_14_Pro
                     dr1["mmrramt"] = tbl2.Rows[i]["mrramt"].ToString();
                     dr1["remrks"] = tbl2.Rows[i]["mrrnote"].ToString();
                     dr1["rowid"] = tbl2.Rows[i]["rowid"].ToString();
+                    dr1["boqrate"] = tbl2.Rows[i]["boqrate"].ToString();
                     tbl1.Rows.Add(dr1);
                 }
             }
@@ -2593,6 +2586,7 @@ namespace RealERPWEB.F_14_Pro
                     dr1["mmrramt"] = dr3[0]["mrramt"];
                     dr1["remrks"] = dr3[0]["mrrnote"];
                     dr1["rowid"] = dr3[0]["rowid"];
+                    dr1["boqrate"] = dr3[0]["boqrate"];
                     tbl1.Rows.Add(dr1);
 
 
@@ -2626,6 +2620,7 @@ namespace RealERPWEB.F_14_Pro
                         dr1["mrramt"] = drc["orderamt"];
                         dr1["mmrramt"] = 0.00;
                         dr1["remrks"] = "";
+                        dr1["boqrate"] = 0.00;
                         tbl1.Rows.Add(dr1);
 
                     }
@@ -2847,6 +2842,7 @@ namespace RealERPWEB.F_14_Pro
                 dr1["mrramt"] = 0.00;
                 dr1["mmrramt"] = 0.00;
                 dr1["remrks"] = "";
+                dr1["boqrate"] = 0.00;
                 tbl1.Rows.Add(dr1);
             }
 
