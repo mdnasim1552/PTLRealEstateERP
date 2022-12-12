@@ -1738,25 +1738,7 @@
                                         </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="Company Name">
-
-                                            <HeaderTemplate>
-                                                <asp:Label ID="lblcmpnmid" runat="server" Font-Bold="True"
-                                                    Text="Company Name" Width="140px"></asp:Label>
-                                                <asp:HyperLink ID="hlbtntbCdataExcelempID" runat="server"
-                                                    CssClass="btn  btn-success btn-sm" ToolTip="Export Excel"><i class="fa fa-file-excel"></i></asp:HyperLink>
-                                            </HeaderTemplate>
-                                            <ItemTemplate>
-                                                <asp:Label ID="lgvidcustname" runat="server"
-                                                    Text='<%# "<B>" +Convert.ToString(DataBinder.Eval(Container.DataItem, "companyname"))+"<B>" %>'
-                                                    Width="180px"></asp:Label>
-                                            </ItemTemplate>
-
-
-
-                                            <ItemStyle HorizontalAlign="left" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" Font-Bold="true" />
-                                        </asp:TemplateField>
+                                
                                         <%--<asp:TemplateField HeaderText="Company Name">
 
 
@@ -1798,7 +1780,9 @@
                                         <asp:TemplateField HeaderText="Image">
                                                     <ItemTemplate>
                                                         <%--<asp:Image ID="userimg" runat="server" style="width:50px;" ImageUrl="~/image/profile_img.png" />--%> 
-                                                        <asp:Image ID="userimg" runat="server" style="width:30px;" ImageUrl="~/Upload/UserImages/3101001.png" />
+                                                        <%--<asp:Image ID="userimg" runat="server" style="width:30px;" ImageUrl="~/Upload/UserImages/3101001.png" />--%>
+                                                         
+                                                        <asp:Image ID="userimg" runat="server" ImageUrl='<%# ((string)Eval("empimg")) %>' Height="50" />
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                     <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle" Font-Size="16px" Font-Bold="true" />
@@ -1867,46 +1851,7 @@
                                         </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="Extention">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblidExtion" runat="server" BackColor="Transparent"
-                                                    BorderStyle="None"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "extention")) %>'
-                                                    Width="80px"></asp:Label>
-                                            </ItemTemplate>
-                                            <FooterTemplate>
-                                                <asp:Label ID="lgvidTotalnagad" runat="server" Font-Bold="True" Font-Size="12px"
-                                                    ForeColor="#000" Style="text-align: left" Text="Total"></asp:Label>
-                                            </FooterTemplate>
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" Font-Bold="true" />
-                                            <ItemStyle HorizontalAlign="left" VerticalAlign="Middle" />
-                                        </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="Service Length">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblgvidserlength" runat="server"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "slength")) %>'
-                                                    Width="140px"></asp:Label>
-                                            </ItemTemplate>
-                                            <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" Font-Bold="true" />
-                                        </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="Gross Salary">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblgvidemplist2" runat="server" BackColor="Transparent"
-                                                    BorderStyle="None"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "salary")).ToString("#,##0;(#,##0); ") %>'
-                                                    Width="80px"></asp:Label>
-                                            </ItemTemplate>
-
-                                            <FooterTemplate>
-                                                <asp:Label ID="lgvFlblgvempID2" runat="server" Font-Bold="True" Font-Size="12px"
-                                                    ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
-                                            </FooterTemplate>
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" Font-Bold="true" />
-                                            <ItemStyle HorizontalAlign="Right" />
-                                        </asp:TemplateField>
+                                        
                                         <asp:TemplateField HeaderText="Action">
                                             <HeaderTemplate>
                                                 <asp:CheckBox ID="chkAllfrm" runat="server" AutoPostBack="True"

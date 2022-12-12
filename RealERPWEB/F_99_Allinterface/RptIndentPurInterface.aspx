@@ -1427,7 +1427,7 @@
 
                                                             <asp:TemplateField HeaderText="reqno#" Visible="false">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="Label9" runat="server" Font-Bold="True" Style="text-align: right"
+                                                                    <asp:Label ID="lblgvreqnochk" runat="server" Font-Bold="True" Style="text-align: right"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno"))%>' Width="15px"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -2813,7 +2813,7 @@
 
                                                             <asp:TemplateField HeaderText="reqno#" Visible="false">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="Label42" runat="server" Font-Bold="True" Style="text-align: right"
+                                                                    <asp:Label ID="lblgvOrdeProcreqno" runat="server" Font-Bold="True" Style="text-align: right"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno"))%>' Width="15px"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -3447,7 +3447,6 @@
                                                             </asp:TemplateField>--%>
 
 
-
                                                             <asp:TemplateField HeaderText="pactcode" Visible="false">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvpactcodeosapp" runat="server"
@@ -3491,8 +3490,6 @@
 
                                                                     <asp:HyperLink ID="HyInprPrintosapp" runat="server" Target="_blank" ToolTip="Print Order Approval" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span>
                                                                     </asp:HyperLink>
-
-
 
                                                                     <asp:HyperLink ID="lnkbtnEntryosapp" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
 
@@ -3715,9 +3712,7 @@
                                                                      <asp:HyperLink ID="lnkbtnPOEdit" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-edit"></span>
 
                                                                     </asp:HyperLink>
-                                                                    <asp:HyperLink ID="HyInprPrint" runat="server" ToolTip="Print Crystal" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
-
-                                                                    </asp:HyperLink>
+                                                                
                                                                     <asp:HyperLink ID="HyperLink2" runat="server" ToolTip="Print RDLC" Target="_blank" CssClass="btn btn-default btn-xs" Visible="true"><span class="fa fa-print"></span>
 
                                                                     </asp:HyperLink>

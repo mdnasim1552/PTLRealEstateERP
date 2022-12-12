@@ -1112,15 +1112,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.gvEmpCard.DataSource = dt;
                     this.gvEmpCard.DataBind();
                    
-                    if (dt.Rows.Count > 0)
-                    {
-
-                        ((Label)this.gvEmpCard.FooterRow.FindControl("lgvFlblgvempID2")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(salary)", "")) ? 0.00 : dt.Compute("Sum(salary)", ""))).ToString("#,##0;(#,##0); ");
-
-                        Session["Report1"] = gvEmpCard;
-                        ((HyperLink)this.gvEmpCard.HeaderRow.FindControl("hlbtntbCdataExcelempID")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-                    }
-
+                    
                     break;
                 case "TransList":
                     this.grvTransList.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
