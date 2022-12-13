@@ -76,7 +76,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-                case "3101": // ptl
+               // case "3101": // ptl
                 case "3370": // cpdl
                 case "1205":
                 case "3351":
@@ -384,11 +384,19 @@ namespace RealERPWEB.F_99_Allinterface
                     /// Measurement Book  
                     dt = (DataTable)ds1.Tables[11];
                     this.Data_Bind("gvmbook", dt);
+
+
                     /// Measurement Book Approval
                     //dt = ((DataTable)ds1.Tables[11]).Copy();
                     //dv = dt.DefaultView;
                     //dv.RowFilter = ("orderno <>'' and mbno <>'' and mbnoapp=''");
                     //this.Data_Bind("gvmbookapp", dv.ToTable());
+
+
+                    // Ready For Bill
+                    dt = (DataTable)ds1.Tables[12];
+                    this.Data_Bind("gvReadyForBill", dt);
+
                     break;
 
             }       

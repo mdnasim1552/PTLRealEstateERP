@@ -886,6 +886,7 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
 
             public DeptWiseSal() { }
         }
+        [Serializable]
         public class SalSummaryInfo
         {
             public string comcod { get; set; }
@@ -895,6 +896,31 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double bankamt { get; set; }
       
             public SalSummaryInfo() { 
+            }
+        }
+        [Serializable]
+        public class SalEncashment
+        {
+            public string comcod { get; set; }
+            public string grp { get; set; }
+            public string id { get; set; }
+            public string desig { get; set; }
+            public string doj { get; set; }
+            public DateTime from { get; set; }
+            public DateTime to { get; set; }
+            public string serviceperiod { get; set; }
+            public string dueel { get; set; }
+            public string foragm { get; set; }
+            public string availe { get; set; }
+            public string elencashment { get; set; }
+            public double presal { get; set; }
+            public double elamt { get; set; }
+            public double totamt { get; set; }
+            public string rmks { get; set; }
+            
+
+            public SalEncashment()
+            {
             }
         }
     }

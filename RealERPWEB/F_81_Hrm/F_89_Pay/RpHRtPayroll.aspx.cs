@@ -222,7 +222,21 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                             break;
                     }
                     break;
-
+                case "salaryencashment":
+                case "3101":
+                case "3365"://bti
+                    this.divEMplist.Visible = true;
+                    this.txtfromdate.Text = System.DateTime.Today.AddMonths(-2).ToString("dd-MMM-yyyy");
+                    this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
+                    this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                    break;
+                default:
+                    this.divEMplist.Visible = true;
+                    this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
+                    this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                    break;
+                    break;
                 case "Signature":
                     this.MultiView1.ActiveViewIndex = 3;
                     this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
@@ -738,6 +752,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "Payslip":
                     this.ShowPaySlip();
                     break;
+                case "salaryencashment":
+                    this.ShowSalaryEncashment();
+                    break;
                 case "Signature":
                     this.ShowSignature();
                     break;
@@ -1056,6 +1073,33 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Session["tblpay"] = dt;
             this.TakaInWord();
         }
+        private void ShowSalaryEncashment()
+        {
+            Session.Remove("tblpay");
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string result = "";
+            string comcod = this.GetCompCode();
+            string userid = hst["usrid"].ToString();
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string projectcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%";
+            string section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
+            // string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, 2);
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
+            string empid = ddlEmpNameAllInfo.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlEmpNameAllInfo.SelectedValue.ToString() + "%";
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_PAYSLIP", "RPTPAYSLIP", frmdate, todate, projectcode, section, CompanyName, empid, userid, "", "");
+            //if (ds3 == null)
+            //{
+            //    this.gvBonus.DataSource = null;
+            //    this.gvBonus.DataBind();
+            //    return;
+            //}
+
+            DataTable dt = ds3.Tables[0];
+            Session["tblpay"] = dt;
+            this.TakaInWord();
+        }
         private void ShowSignature()
         {
             Session.Remove("tblpay");
@@ -1204,6 +1248,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "Bonus":
                 case "SpecialBonus":
                 case "Payslip":
+                case "salaryencashment":
                 case "Signature":
                 case "CashPay":
                     string refno = dt1.Rows[0]["refno"].ToString();
@@ -1510,6 +1555,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
                 case "Payslip":
                     this.PrintPaySlip();
+                    break;
+                case "salaryencashment":
+                    this.PrintSalaryEncashment();
                     break;
 
                 case "Signature":
@@ -4509,7 +4557,61 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
 
 
+        private void PrintSalaryEncashment()
+        {
 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string Inwords = "";
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MMM.yyyy hh:mm:ss tt");
+            string month = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMM-yyyy");
+            string txtDate = Convert.ToDateTime(this.txtfromdate.Text).ToString("MMMM-yyyy");
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string todate1 = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM-yyyy");
+            DataTable dt = (DataTable)Session["tblpay"];
+            LocalReport Rpt1 = new LocalReport();
+
+          
+
+            if (comcod == "3365")
+            {
+
+              
+                var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalEncashment>();
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipBTI", list, null, null);
+                Rpt1.EnableExternalImages = true;
+
+                Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+                Rpt1.SetParameters(new ReportParameter("compName", comnam));
+                Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+                Rpt1.SetParameters(new ReportParameter("txtHeader2", "Pay Slip" + todate1 + " (Month of salary disbursement)"));
+             
+                Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            }
+           
+           
+            else
+            {
+                // All Pay Slip Except Tropical, Peb Steel
+                var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlip", list, null, null);
+
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+            }
+
+
+        }
 
 
 
