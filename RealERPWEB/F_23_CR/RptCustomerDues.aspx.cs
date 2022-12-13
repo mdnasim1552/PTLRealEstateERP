@@ -247,10 +247,7 @@ namespace RealERPWEB.F_23_CR
                 this.gvcustdues.DataBind();
                 return;
             }
-
             Session["tblCustDues"] = this.HiddenSameData(ds2.Tables[0]);
-
-
             this.Data_Bind();
         }
 
@@ -303,10 +300,6 @@ namespace RealERPWEB.F_23_CR
             this.gvcustdues.DataSource = dt;
             this.gvcustdues.DataBind();
             this.FooterCalculation(dt);
-
-
-
-
         }
 
         private void FooterCalculation(DataTable dt)
