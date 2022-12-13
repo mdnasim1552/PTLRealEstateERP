@@ -1318,7 +1318,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Parameters!customerno.Value).Substring(2,4)+Format(Parameters!customerno.Value).Substring(8,4)</Value>
+                                  <Value>=Parameters!customerno.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                   </Style>
