@@ -3976,6 +3976,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             string txtdate = ASTUtility.DateFormat("01." + ymon.Substring(4, 2) + "." + ymon.Substring(0, 4));
 
             txtdate = Convert.ToDateTime(txtdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+            //string calltype = (GetComeCode() == "3368" ? "GETOTDETAILSFINLAY" : GetComeCode() == "3369" ? "GETOTDETAILSACMEAI" : "GETOTDETAILSACMEAI");
 
             DataSet ds1 = HRData.GetTransInfo(GetCompCode(), "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETOTDETAILS", empid,type, dayid, txtdate, "", "", "", "", "", "");
             if (ds1 == null || ds1.Tables[0].Rows.Count == 0)

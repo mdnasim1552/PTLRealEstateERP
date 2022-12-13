@@ -36,8 +36,9 @@ namespace RealERPWEB
 
                     }
                 }
-                else { 
-                
+                else
+                {
+
 
                     // this.CommonButton();
                     var type = this.Request.QueryString["Entry"].ToString().Trim();
@@ -58,7 +59,7 @@ namespace RealERPWEB
 
 
                     string type1 = this.Request.QueryString["Type"].ToString().Trim();
-                    if (type1 == "10003" || type1 == "10024" || type1 == "10025" || type1 == "10026" || type1 == "10027" || type1 == "10028" || type1 == "10029" || type1 == "10020" || type1 == "10002" || type1 == "10013" || type1 == "10021" || type1 == "10022" || type1 == "10023" || type1== "10008" || type1 == "10007")
+                    if (type1 == "10003" || type1 == "10024" || type1 == "10025" || type1 == "10026" || type1 == "10027" || type1 == "10028" || type1 == "10029" || type1 == "10020" || type1 == "10002" || type1 == "10013" || type1 == "10021" || type1 == "10022" || type1 == "10023" || type1 == "10008" || type1 == "10007")
                     {
                         this.GetSelected();
                         this.GetCompany();
@@ -99,7 +100,7 @@ namespace RealERPWEB
                             {
                                 ((Label)this.Master.FindControl("lblTitle")).Text = "Confirmation Without Increment Letter";
                             }
-                            
+
                             break;
                         case "10008":
                             ((Label)this.Master.FindControl("lblTitle")).Text = "Salary Certificate Letter";
@@ -137,7 +138,7 @@ namespace RealERPWEB
             }
         }
 
-        
+
         private void getLetter()
         {
             string comcod = this.GetCompCode();
@@ -147,9 +148,9 @@ namespace RealERPWEB
             if (ds == null || ds.Tables[0].Rows.Count == 0)
                 return;
 
-            string gendercode = ds.Tables[0].Rows[0]["gendercode"].ToString()??"";
+            string gendercode = ds.Tables[0].Rows[0]["gendercode"].ToString() ?? "";
             string surname = "";
-            if(gendercode== "99001")
+            if (gendercode == "99001")
             {
                 surname = "Mr.";
             }
@@ -157,12 +158,12 @@ namespace RealERPWEB
             {
                 surname = "Ms.";
             }
-            string grdcde = ds.Tables[0].Rows[0]["gradecode"].ToString()== "" ?"0":ds.Tables[0].Rows[0]["gradecode"].ToString();
+            string grdcde = ds.Tables[0].Rows[0]["gradecode"].ToString() == "" ? "0" : ds.Tables[0].Rows[0]["gradecode"].ToString();
             int gradecode = 0;
             gradecode = Convert.ToInt32(grdcde);
             string probduration = ds.Tables[0].Rows[0]["probation"].ToString();
             string termiduration = "";
-         
+
             string adv = ds.Tables[0].Rows[0]["advno"].ToString() ?? "";
             string name = ds.Tables[0].Rows[0]["name"].ToString() ?? "";
             string desig = ds.Tables[0].Rows[0]["desig"].ToString();
@@ -198,7 +199,7 @@ namespace RealERPWEB
             {
                 termiduration = "2 (Two) months";
             }
-             //double netamt = Convert.ToDouble(dt.Rows[0]["netpay"]);
+            //double netamt = Convert.ToDouble(dt.Rows[0]["netpay"]);
             //string Inword =  ASTUtility.Trans(netamt, 2);
             if (ds.Tables[1].Rows.Count != 0)
             {
@@ -228,11 +229,11 @@ namespace RealERPWEB
                 //confirmation letter
                 case "10025":
 
-                    if ( this.GetCompCode() == "3354" || this.GetCompCode() == "3101")
+                    if (this.GetCompCode() == "3354" || this.GetCompCode() == "3101")
                     {
                         lbody =
                            "<p style='text-align:right;style='margin-bottom:-11px''> " + date + "</p>" +
-                           "<p style='margin-bottom:-11px'><strong>Ref:"+refno+"</strong></p>" +
+                           "<p style='margin-bottom:-11px'><strong>Ref:" + refno + "</strong></p>" +
                            "<p style='margin-bottom:-11px'><strong>Mr " + name + "</strong></p>" +
                             "<p style='margin-bottom:-11px'>" + desig + "</p>" +
                             "<p style='margin-bottom:-11px'>" + dept + "</p>" +
@@ -242,7 +243,7 @@ namespace RealERPWEB
                             "<p><strong>Congratulations!</strong></p>" +
                             "<p>We would like to congratulate you on your successful completion of the probation period in our organization. We are glad to have received satisfactory reports from your superior regarding your performance during the said period. </p>" +
                             "<p>You have good product knowledge & inventory accuracy; are good at execution of tasks; able to maintain transparency in documentation; are punctual and disciplined at work; respond positively to other assigned tasks and we appreciate you for that. We are expecting an increase in work knowledge and an improvement in warehouse capacity management from you which will foster your performance in the future.</p>" +
-                            "<p>The management wishes to confirm your employment with us as a " + desig + " of the " + dept + " department under the " + sec + " with an effective date from May 10, 2022. Your salary has been revised as well and your new salary is BDT "+total+".     </p>" +
+                            "<p>The management wishes to confirm your employment with us as a " + desig + " of the " + dept + " department under the " + sec + " with an effective date from May 10, 2022. Your salary has been revised as well and your new salary is BDT " + total + ".     </p>" +
                             "<p>Now that you are going to be even an integral part of the organization, we would expect greater efforts from you to strive to do better at work for ultimately setting the organization on the growth path.  We have complete faith in you. </p>" +
                                   "<p></p>" +
                             "<p>Wishing you all the very best</p>" +
@@ -297,17 +298,17 @@ namespace RealERPWEB
 
                     break;
 
-                    //appoinment letter
+                //appoinment letter
                 case "10002":
                     if (this.GetCompCode() == "3354")
                     {
 
                         lbody =
-                        "<p style='text-align:right;style='margin-bottom:-11px''><strong>Ref:"+refno+"</strong></p>" +
-                        "<p style='margin-bottom:-11px'><strong> "+surname+" " + name + "</strong></p>" +
-                        "<p style='margin-bottom:-11px'><strong>Present Address:</strong> "+preadd+"</p>" +
+                        "<p style='text-align:right;style='margin-bottom:-11px''><strong>Ref:" + refno + "</strong></p>" +
+                        "<p style='margin-bottom:-11px'><strong> " + surname + " " + name + "</strong></p>" +
+                        "<p style='margin-bottom:-11px'><strong>Present Address:</strong> " + preadd + "</p>" +
                         "<p><strong>Subject:</strong> Appointment Letter - <strong>" + desig + "</strong></p>" +
-                        "<p>Dear "+ surname + " " + name + ",</p>" +
+                        "<p>Dear " + surname + " " + name + ",</p>" +
                         //body
                         "<p>We are delighted to appoint you as a  <strong>" + desig + "</strong> of the <strong>" + dept + "</strong> department under <strong>" + sec + "</strong> with our organization. If you join our organization, you will become a part of a fast-paced and dedicated team that works together to perform the highest possible level to achieve organizational goal.  </p>" +
                         "<p> As a member of our team, we would ask for your commitment to deliver outstanding quality of results.In addition, we expect your personal accountability in all the service, solutions, actions, communications, advice and results.In return, we are committed to providing you with every opportunity to learn, grow and stretch to the highest level of your ability and potentiality. </p>" +
@@ -321,14 +322,14 @@ namespace RealERPWEB
 
 
                         //salary break down table
-         
+
                         "<table style='width:70%;margin-left:20px;border-style:solid; border: 1px solid black;margin-top:7px'><tr style='border-style:solid;border: 1px solid black;'><th style='width:50px;text-align:center;border-style:solid;border:1px solid black;'>SL</th><th>Particulars</th><th style='border-style:solid;border: 1px solid black;'>Amount in BDT</th></tr>" +
                         "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>1</td><td style='border-style:solid;border: 1px solid black;'>Basic (60% of Gross)</td><td style='text-align:center'>" + bsal + "</td></tr>" +
                         "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>2</td><td style='border-style:solid;border: 1px solid black;'>House Rent (30% of Gross)</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>" + hrent + "</td></tr>" +
                         "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>3</td><td style='border-style:solid;border: 1px solid black;'>Medical Allowance (6% of Gross)</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>" + mallow + "</td></tr>" +
                         "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>4</td><td style='border-style:solid;border: 1px solid black;'>Conveyance Allowance (4% of Gross)</td><td style='text-align:center'>" + cven + "</td></tr>" +
                         "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Total</strong></td><td style='text-align: center;border-style:solid;border:1px solid black;'><strong>" + total + "</strong></td></tr></table>" +
-                         "<p style='margin-left:30px;'>In words : " + inwords+"</p>" +
+                         "<p style='margin-left:30px;'>In words : " + inwords + "</p>" +
 
                         "<p></p>" +
                         //"<p style='margin-bottom:-11px'><strong>Mobile Allowance</strong><span>: As per company policy.</span></p>" +
@@ -348,11 +349,11 @@ namespace RealERPWEB
                         "<li style='margin-top:10px;'>During probation period, you will be able to avail maximum 2 (two) days leave in a month from your casual/sick leave. Any other absent will be counted as leave without pay.</li></ul>" +
 
                         //probation
-                        "<p style='margin-bottom:-11px'><strong>Probation Period :</strong> Your employment is subject to a "+probduration+" probation period. After successful completion of the probation period, your job will be confirmed based on your satisfactory performance and necessary revision will be done accordingly.</p>" +
+                        "<p style='margin-bottom:-11px'><strong>Probation Period :</strong> Your employment is subject to a " + probduration + " probation period. After successful completion of the probation period, your job will be confirmed based on your satisfactory performance and necessary revision will be done accordingly.</p>" +
                         "<p>Following the initial probation period, a progression and performance review will be conducted on a quarterly basis to assess performance to-date and to clarify the arrangement, as the need may arise.</p>" +
 
                         //termination
-                        "<p style='margin-bottom:-11px'><strong>Termination of Employeement:</strong> : During the probation period, the company can terminate this contract without any prior notice based on management decisions. After the completion of the probation period, any time company can terminate this contract with/without a notice period of "+termiduration+". If an employee wants to leave the organization, must have to provide a notice to the company " +termiduration+ " prior. For any type of violation of the company code of conduct, the employee might be terminated immediately.     </p>" +
+                        "<p style='margin-bottom:-11px'><strong>Termination of Employeement:</strong> : During the probation period, the company can terminate this contract without any prior notice based on management decisions. After the completion of the probation period, any time company can terminate this contract with/without a notice period of " + termiduration + ". If an employee wants to leave the organization, must have to provide a notice to the company " + termiduration + " prior. For any type of violation of the company code of conduct, the employee might be terminated immediately.     </p>" +
                                "<p></p>" +
                             "<p></p>" +
 
@@ -380,23 +381,23 @@ namespace RealERPWEB
                     else if (this.GetCompCode() == "3365")
                     {
 
-                        lbody = "<div style='font-size:13px; font-family: TimesNewRoman, 'Times New Roman', Times, Baskerville, Georgia, serif'><p style='margin-bottom:-11px'>Ref: "+refno+"</p><p >" + System.DateTime.Now.ToString("dd MMM yyyy")
-                            + "</p><p style='margin-bottom:-11px'> To </p><p style='margin-bottom:-11px'><strong>"+surname+" " + name + "</strong></p>" +
-                            "<p style='margin-bottom:-11px'>Address: "+preadd+"</p>" +
+                        lbody = "<div style='font-size:13px; font-family: TimesNewRoman, 'Times New Roman', Times, Baskerville, Georgia, serif'><p style='margin-bottom:-11px'>Ref: " + refno + "</p><p >" + System.DateTime.Now.ToString("dd MMM yyyy")
+                            + "</p><p style='margin-bottom:-11px'> To </p><p style='margin-bottom:-11px'><strong>" + surname + " " + name + "</strong></p>" +
+                            "<p style='margin-bottom:-11px'>Address: " + preadd + "</p>" +
                             "<p style='margin:5px 0'><br>Mobile : " + mobile + "</p><p></p><p><strong> <u> Appointment Letter" +
-                            "</u></strong></p><p>Dear <strong> "+surname+" "  + name + "," + "</strong></p>" +
+                            "</u></strong></p><p>Dear <strong> " + surname + " " + name + "," + "</strong></p>" +
                             "<p>Reference is made herewith to your application for the position of <strong>  “" + desig + ", " + sec + "” </strong>  and subsequent interview with us, the Management is pleased to give you a career" +
                             " opportunity with “" + comnam + "” as per the following terms and conditions.<br></p>" +
                             "<p><strong>1.</strong> Postion: <strong> " + desig + ", " + sec + "</strong></p>" +
-                            "<p><strong>2.</strong> Job Location: <strong>"+comadd+"</strong></p>" +
-                            "<p style='text-align: justify;'><strong>3.</strong> <strong>Date of Commencement: </strong>Your employment shall commence on <strong> " + doj+ " </strong> and shall continue until separated/terminated as per the provision " +
+                            "<p><strong>2.</strong> Job Location: <strong>" + comadd + "</strong></p>" +
+                            "<p style='text-align: justify;'><strong>3.</strong> <strong>Date of Commencement: </strong>Your employment shall commence on <strong> " + doj + " </strong> and shall continue until separated/terminated as per the provision " +
                             "of company rules or resigned in accordance with terms of this letter of Appointment or rules of the company.<br> </p>" +
                             "<p style='text-align: justify;'><strong>4.</strong> <strong>Probation:</strong>" +
-                            "<p style='text-align: justify;'>4.1  On appointment, you shall be on probation for a period of "+probduration+" from the date of joining. Upon satisfactory completion of probation, you will be confirmed in the regular service of the company according to the Management decision.</p> " +
+                            "<p style='text-align: justify;'>4.1  On appointment, you shall be on probation for a period of " + probduration + " from the date of joining. Upon satisfactory completion of probation, you will be confirmed in the regular service of the company according to the Management decision.</p> " +
                             "<p style='text-align: justify;'>4.2  During the probationary period, your service may be terminated at any time without assigning any reason whatsoever or issuing any notice or payment of salary in lieu thereof.  </p> " +
                             "<p style='text-align: justify;'>4.3  If no letter is issued for extension of probation period or for confirmation of service it will be deemed by default that probation has been extended and will continue indefinitely until the letter of confirmation is issued.</p> " +
 
-                             "<p style='text-align: justify;'><strong>5.</strong> <strong>Compensation /Pay Scale: </strong> Gross Salary/Month: <strong> Taka "+bsal+"/- (In word: "+ ASTUtility.Trans(Convert.ToDouble(bsal), 2) + ").</strong></p>" +
+                             "<p style='text-align: justify;'><strong>5.</strong> <strong>Compensation /Pay Scale: </strong> Gross Salary/Month: <strong> Taka " + bsal + "/- (In word: " + ASTUtility.Trans(Convert.ToDouble(bsal), 2) + ").</strong></p>" +
                              "<p style='text-align: justify;'><strong>6. </strong><strong>Salary Review: </strong> Salary will be reviewed after completion of 01 (one) year or at the discretion of Management. </p>" +
                              "<p style='text-align: justify;'><strong>7. </strong><strong>Festival Bonus: </strong>You are entitled to two festival bonuses in Eid-Ul-Fitr & Eid-Ul-Adha as per company policy. </p>" +
                              "<p style='text-align: justify;'><strong>8. </strong><strong>Income Taxes: </strong>All taxes on salaries and allowances shall be borne by you in accordance with laws of the land. Income Tax at source will be deducted monthly or by other manner as deemed fit by the management.</p>" +
@@ -460,8 +461,8 @@ namespace RealERPWEB
                             "</div>";
 
                     }
-                   else if (this.GetCompCode() == "3369" || this.GetCompCode() == "3101")
-                   {
+                    else if (this.GetCompCode() == "3369" || this.GetCompCode() == "3101")
+                    {
                         lbody =
                        "<p style='text-align:right;style='margin-bottom:-11px''><strong>ID:" + idcard + "</strong></p>" +
                         "<p>" + date + "</p>" +
@@ -496,7 +497,7 @@ namespace RealERPWEB
                               "<li style='margin-top:10px!important'>Duties: Your duties will be as per the job description. </li>" +
                               "<li style='margin-top:10px!important'> Leave Entitlement: For leave eligibility, refer to section 24.2 Salient Points of ACME Technologies HR Manual (2015) and its amendments from time to time. During the probationary period there is no paid leave except emergency sick leave and government holidays. After the probationary period the total allotted paid leaves per calendar year is 34 days (excluding industrial government holidays) for permanent staff. Specific breakdown of leaves is as followed:</li>" +
                        "<table style='width:70%;margin-left:20px;border-style:solid; border: 1px solid black;margin-top:7px'>" +
-             
+
                        "<tr style='border-style:solid;border: 1px solid black;'>" +
                             "<td style='text-align:center;border-style:solid;border: 1px solid black'>Annual Leave</td>" +
                             "<td style='text-align:center;border-style:solid;border: 1px solid black'>10 days</td>" +
@@ -556,16 +557,16 @@ namespace RealERPWEB
                     }
                     break;
 
-                    //offer letter
+                //offer letter
                 case "10003":
-                    if ( this.GetCompCode() == "3354")
+                    if (this.GetCompCode() == "3354")
                     {
                         lbody =
                        "<p style='text-align:right;style='margin-bottom:-11px''> " + date + "</p>" +
-                       "<p style='margin-bottom:-11px'><strong>"+surname+" " + name + "</strong></p>" +
-                       "<p style='margin-bottom:-11px'><strong>Present Address:</strong> "+preadd+"</p>" +
+                       "<p style='margin-bottom:-11px'><strong>" + surname + " " + name + "</strong></p>" +
+                       "<p style='margin-bottom:-11px'><strong>Present Address:</strong> " + preadd + "</p>" +
                        "<p><strong>Subject:</strong> Offer Letter-<strong>" + desig + "</strong></p>" +
-                       "<p>Dear "+surname+" " + name + ",</p>" +
+                       "<p>Dear " + surname + " " + name + ",</p>" +
 
                        "<p style='margin-bottom:-11px'>We are delighted to offer you the position of <strong>" + desig + "</strong> of the <strong>" + sec + "</strong> department under <strong>" + sec + "</strong> with our organization. If you join our organization, you will become a part of a fast-paced and dedicated team that works together to perform the highest possible level to achieve organizational goal.  </p>" +
                        "<p style='margin-bottom:-11px'> As a member of our team, we would ask for your commitment to deliver outstanding quality of results.In addition, we expect your personal accountability in all the service, solutions, actions, communications, advice and results.In return, we are committed to providing you with every opportunity to learn, grow and stretch to the highest level of your ability and potentiality. </p>" +
@@ -577,16 +578,16 @@ namespace RealERPWEB
                        //"<p style='margin-bottom:-11px'><strong>Salary</strong><span>: As negotiated and agreed upon by both parties</span></p>" +
                        //"<p><strong>Mobile Allowance</strong><span>: As per company policy</span></p>" +
 
-                       "<p style='margin-bottom:-11px'><strong>Probation Period :</strong> Your employment is subject to a "+probduration+" probation period. After successful completion of the probation period, your job will be confirmed based on your satisfactory performance and necessary revision will be done accordingly.</p>" +
+                       "<p style='margin-bottom:-11px'><strong>Probation Period :</strong> Your employment is subject to a " + probduration + " probation period. After successful completion of the probation period, your job will be confirmed based on your satisfactory performance and necessary revision will be done accordingly.</p>" +
                        "<p>Following the initial probation period, a progression and performance review will be conducted on a quarterly basis to assess performance to-date and to clarify the arrangement, as the need may arise.</p>" +
-                       "<p style='margin-bottom:-11px'><strong>Termination of Employment:</strong> : During the probation period, the company can terminate this contract without any prior notice based on management decisions. After the completion of the probation period, any time company can terminate this contract with/without a notice period of "+termiduration+". If an employee wants to leave the organization, must have to provide a notice to the company "+termiduration+" prior. For any type of violation of the company code of conduct, the employee might be terminated immediately.     </p>" +
+                       "<p style='margin-bottom:-11px'><strong>Termination of Employment:</strong> : During the probation period, the company can terminate this contract without any prior notice based on management decisions. After the completion of the probation period, any time company can terminate this contract with/without a notice period of " + termiduration + ". If an employee wants to leave the organization, must have to provide a notice to the company " + termiduration + " prior. For any type of violation of the company code of conduct, the employee might be terminated immediately.     </p>" +
                        "<p style='margin-bottom:-11px'>We look forward to the opportunity to work with you in an atmosphere that is successful and mutually challenging and rewarding.If you don’t accept this letter, please let us know within " + date + ".</p>" +
 
                            "<p></p>" +
                             "<p></p>" +
 
                             "<div style='float:left;width:50%;'>" +
-                            "<p style='border-top:1px solid; display:inline-block;margin:0;min-width:190px'><strong>Md. Mizanur Rahman Khan</strong></p>"+
+                            "<p style='border-top:1px solid; display:inline-block;margin:0;min-width:190px'><strong>Md. Mizanur Rahman Khan</strong></p>" +
                            "<p style='margin:0px;'><strong>Senior Manager – HR</strong></p>" +
                              "</div>" +
 
@@ -595,10 +596,10 @@ namespace RealERPWEB
                            "<p style='margin:0px;'><strong>Chief Business Officer</strong></p>" +
                              "</div>" +
 
-                         
-                  //         "<p style='margin-bottom:-5px;display:inline;'><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float-left;margin-right:200px;'><strong>Md. Mizanur Rahman Khan</strong></span>  <span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;text-align:left;'><strong>Ahmed Pasha</strong></p></span></p>" +
-                  //"<br>" +
-                  //         "<p style='margin-bottom:-5px;display:inline'><span style=' display:inline-block;margin-bottom:-11px;float-left;margin-right:200px;'><strong>Senior Manager – HR</strong></span>                           <span style='display:inline-block;margin-bottom:-11px;margin-left:250px;text-align:left;'><strong>Chief Business Officer</strong></p></span></p>" +
+
+                       //         "<p style='margin-bottom:-5px;display:inline;'><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float-left;margin-right:200px;'><strong>Md. Mizanur Rahman Khan</strong></span>  <span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;text-align:left;'><strong>Ahmed Pasha</strong></p></span></p>" +
+                       //"<br>" +
+                       //         "<p style='margin-bottom:-5px;display:inline'><span style=' display:inline-block;margin-bottom:-11px;float-left;margin-right:200px;'><strong>Senior Manager – HR</strong></span>                           <span style='display:inline-block;margin-bottom:-11px;margin-left:250px;text-align:left;'><strong>Chief Business Officer</strong></p></span></p>" +
 
 
                        "<div style='margin-top:45px'><p style='text-align:left'>I, <strong>" + name + "</strong>, confirm that I have read the terms of employment set out in this letter and I fully understood them and their implications and I now accept the offer of employment.</p></div>" +
@@ -609,16 +610,16 @@ namespace RealERPWEB
                     }
                     else if (this.GetCompCode() == "3365")
                     {
-                        lbody = "<p style='margin-bottom:0'><br/><br/>Ref: "+refno+"</p>" + date + "<p style='margin-bottom:-11px'>To</p><p style='margin-bottom:-11px'><strong>Mr " + name + "</strong></p>" +
-       "<p style='margin-bottom:-11px'>Address: "+peradd+" </p>" +
-       "<p style='margin-bottom:0'><br>Mobile : "+ mobile + "</p><p><strong>Subject: Offer for Employment</strong></p><p><br>Dear <strong>Mr " + name + "," + "</strong></p>" +
+                        lbody = "<p style='margin-bottom:0'><br/><br/>Ref: " + refno + "</p>" + date + "<p style='margin-bottom:-11px'>To</p><p style='margin-bottom:-11px'><strong>Mr " + name + "</strong></p>" +
+       "<p style='margin-bottom:-11px'>Address: " + peradd + " </p>" +
+       "<p style='margin-bottom:0'><br>Mobile : " + mobile + "</p><p><strong>Subject: Offer for Employment</strong></p><p><br>Dear <strong>Mr " + name + "," + "</strong></p>" +
        "<p>With reference to discussions with you and your willingness to join our company, we are pleased to offer you appointment as <strong> " + desig + ", " + sec + ",</strong> in " + dept + ", which shall commence on or before <strong> " + doj + " </strong>." +
        "<p>Before that you are requested to submit a copy of your resignation letter, which has been duly received by your present employer within 3 (Three) days from the date of receipt of this offer letter and a clearance letter at the time of joining.</p></p><p>&nbsp;The Letter of Appointment will be issued soon.</p><p>&nbsp; Please bring the following papers on the date of joining:</p><ol>" +
        "<li style='margin-top:5px'>Release letter / Letter of acceptance of resignation in the Company Letter Head from the previous employer.</li><li style='margin-top:5px'>Original & photocopies of all certificates (experience, academic, professional courses etc).</li><li style='margin-top:5px'>Photocopy of National ID card/ Passport (employee and nominee).</li><li style='margin-top:5px'>Passport size photograph (employee 7 copies and Nominee 3 copies)." +
        "</li><li style='margin-top:5px'>Pay Slip/ Proof of Salary and ETIN.</li></ol><p>&nbsp;</p><p>Yours Sincerely,</p><p class='pImage'><strong></p>  <p class='pUname'><span style='border-top:1px solid black'><strong>" + "Brig Gen Mohammad Ayub Ansary, psc (Retd)" + "</span></strong></p> <p>" + "Additional Managing Director" + "</p><p>" + "Head of HR,Admin,Security and Fire Safety Department" + "</p>";
 
                     }
-                    else if(this.GetCompCode() == "3369" || this.GetCompCode() == "3101")
+                    else if (this.GetCompCode() == "3369" || this.GetCompCode() == "3101")
                     {
                         lbody =
                               "<p></p>" +
@@ -660,7 +661,7 @@ namespace RealERPWEB
                        "<p></p>" +
                        "<p></p>" +
                        "<p></p>" +
-           
+
 
                        //salary break down table
 
@@ -685,9 +686,9 @@ namespace RealERPWEB
                             "<td style='text-align:center;border-style:solid;border: 1px solid black'>" + cven + "</td></tr>" +
 
                        "</table>" +
-        
+
                        "<p></p>" +
-        
+
                        "<p>You will be entitled to festival bonuses as per the Acme Technology HR manual and Policies.</p>" +
                        "<p></p>" +
 
@@ -715,7 +716,7 @@ namespace RealERPWEB
                     }
                     break;
 
-            
+
             }
             this.txtml.Text = lbody;
 
@@ -994,9 +995,9 @@ namespace RealERPWEB
             {
                 callType = "GETCANDIDATELIST";
             }
-            else if (qtype == "10013" || qtype == "10020" || qtype == "10021" || qtype == "10022" || qtype == "10023" || qtype=="10028")
+            else if (qtype == "10013" || qtype == "10020" || qtype == "10021" || qtype == "10022" || qtype == "10023" || qtype == "10028")
             {
-               // callType = "GETCONFIRMEMP";
+                // callType = "GETCONFIRMEMP";
                 callType = "CONFIRMEMPINFO";
             }
 
@@ -1010,7 +1011,7 @@ namespace RealERPWEB
             }
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LETTER", callType, qtype, empid, "", "", "", "", "", "", "");
-            if (ds1 == null || ds1.Tables[0].Rows.Count==0)
+            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
                 return;
 
             this.ddlEmployee.Items.Clear();
@@ -1102,14 +1103,14 @@ namespace RealERPWEB
             string incmtax = "";
             string payablesal = "";
             string idcard = "";
-            string  inwords2 = "";
+            string inwords2 = "";
             double inwrd = 0;
 
 
 
             if (ds5.Tables[3].Rows.Count > 0)
             {
-                 idcard = ds5.Tables[3].Rows[0]["idcard"].ToString();
+                idcard = ds5.Tables[3].Rows[0]["idcard"].ToString();
             }
             DataTable dtempsal = ds5.Tables[2];
 
@@ -1162,6 +1163,8 @@ namespace RealERPWEB
 
             string section = this.ddlProjectName.SelectedItem.ToString();
             string companme = this.ddlCompany.SelectedItem.Text.ToString();
+
+            string congimg = Server.MapPath("~/Upload/UserImages/congratulations.jpeg");
             string name = this.ddlEmployee.SelectedItem.Text.ToString();
             string Desig = (dtempinf_.Rows.Count == 0) ? "" : dtempinf_.Rows[0]["desig"].ToString();//(string)ViewState["desig"];
             string depart = (dtempinf_.Rows.Count == 0) ? "" : dtempinf_.Rows[0]["dptdesc"].ToString();//(string)ViewState["section"];
@@ -1450,7 +1453,7 @@ namespace RealERPWEB
                 //promotion letter
                 case "10007":
 
-                    if (comcod == "3370" || comcod=="3101")
+                    if (comcod == "3370" || comcod == "3101")
                     {
                         lbody = "<p style='text-align: left'>&nbsp;" +
                             "<strong>Ref: CPDL/TM/PROMOTION/23-" +
@@ -1461,27 +1464,28 @@ namespace RealERPWEB
                             "Department   :" + depart + "" + "</p><p>&nbsp;&nbsp;&nbsp;&nbsp;" +
                             "<br> &nbsp; " +
                             "<br>&nbsp; " +
-                            "<strong>Subject: Promotion in Service</strong></p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
-                            
-                            "<strong style='text-align: center'>Congratulations</strong></p>&nbsp;" +
+                            "<strong>Subject: Promotion in Service</strong></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+
+                            "<img style='margin-bottom:-11px;text-align: center;' src = '" + congimg + "' Height = '80' Width = '300' CssClass = 'rounded-circle img-responsive' />" +
                             "<p>It is the immense pleasure to inform you that, on reviewing of your performance and progress of your responsibilities, the management is pleased to promote you as  <strong>" + Desig + "</strong> in <strong>" + depart + "</strong> with effect from<strong> 1st January 2022.</strong></p>" +
                             "<p>We are delighted towards your commitment and integrity shown towards your responsibilities in" +
                             "the past. We believe that you will continue to deliver your best performance and add on to the " +
                             "growth of the company.</p>" +
-                           
+
                             "<p>Promotion to higher level is recognitions to your performance which includes expectation of" +
-                            "greater skills and higher responsibilities for you. </p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
-                             "<p><strong style='text-align: center'>We Wish You All the Best</strong></p>&nbsp;" +
-                            "<p>Thanking you</strong></p>&nbsp;" +
+                            "greater skills and higher responsibilities for you. </p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                             "<h2 style='margin-bottom:-11px;text-align: center;'>We Wish You All the Best</h2>&nbsp;" +
+                            "<p>Thanking you</p>&nbsp;" +
+                             "<br> &nbsp; " +
+                            "<br>&nbsp; " +
+                            "</p><p><strong></strong></p><p>" +
 
-                            "</p><p></strong></p><p>" +
-
-                            "</strong>------------------------------------------<strong> </p><p>" +
-                            "<strong> Md.Khairuzzaman Joarder</strong> </p><p>" +
-                            "<strong> Chief Operating Officer-CPDL</strong> </p><p>" +
-                            "</p><p>CC: </p>" +
-                            "</p><p>President-CPDL: </p>"+
-                            "</p><p>Personal File: </p>"
+                            "<strong>------------------------------------------</strong> </p><p>" +
+                            "<p style='margin-bottom:-11px;'><strong> Md.Khairuzzaman Joarder</strong> </p><p>" +
+                            "<p style='margin-bottom:-11px;'><strong> Chief Operating Officer-CPDL</strong> </p><p>" +
+                            "</p><p style='margin-bottom:-11px;'>CC: </p>" +
+                            "</p><p style='margin-bottom:-11px;'>President-CPDL </p>" +
+                            "</p><p style='margin-bottom:-11px;'>Personal File </p>"
                             ;
 
 
@@ -1496,60 +1500,61 @@ namespace RealERPWEB
                     break;
                 //increment letter
                 case "10008":
-                    if (comcod == "3370")
+                    if (comcod == "3370" || comcod == "3101")
                     {
                         lbody =
-                       "<pstyle='margin-bottom:-11px''> Date: <strong>" + date + "</strong></p>" +
-                       "<p style='margin-bottom:-11px'><strong>Name" + name + "</strong></p>" +
-                       "<p style='margin-bottom:-11px'><strong>Personnel ID" + idcard + "</strong></p>" +
-                       "<p style='margin-bottom:-11px'><strong>Designation" + Desig + "</strong></p>" +
-                       "<p style='margin-bottom:-11px'><strong>Department" + dptdesc + "</strong></p>" +
-                       "<h2 style='border-bottom: 1px solid #0000;display: inline-block'><strong>SUB:ANNUAL INCREMENT.</strong></h2>" +
+                      "<p style='text-align: left'>" +
+                      "<strong >" + date + "</strong>" + "</strong>" +
+                            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                            "<strong>Ref: CPDL/TM/Increment / 22- " + "</strong></p>" +
+                        "<strong>Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:" + name + "</strong></p><p>" +
+                       "<strong>Personnel ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:" + idcard + "</strong></p><p>" +
+                       "<strong>Designation &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:" + Desig + "</strong></p><p>" +
+                       "<strong>Department   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:" + dptdesc + "</strong></p><p>" +
+                       "<h2 style='border-bottom: 1px solid #0000;display: inline-block'><strong><u>SUB:ANNUAL INCREMENT.</u></strong></h2>" +
 
 
 
+                        "<p> In respect of the above, company management has reviewed your overall performances in <br>" +
+                        "terms of Individual KPI Score, Development Team Recommended Score, Head of the <br>" +
+                        "Department Recommendation as well as in the eye of Top Management and in respect of al <br>" +
+                        "those, President of CPDL is satisfied to increase your gross salary from Tk. <strong>Present Salary</strong> <br>" +
+                        "/- to Tk. <strong>Increase Salary /-</strong>, (Mobile Allowance & Fooding allowance as per company policy) <br>" +
+                        " Now your pay as below:</p>" +
+                                                "<table style='width:60%;margin-left:80px;jalign-content: center;border-style:solid; border: 1px solid white;'><tr style='border-style:solid;border: 0px solid white;'></tr>" +
+                        "<tr style='border-style:solid;border: 1px solid white;'><td style='border-style:solid;border: 1px solid white;'>1.&nbsp;&nbsp;Basic             </td><td style='text-align:left;'>:&nbsp;&nbsp;12000</td></tr>" +
+                        "<tr style='border-style:solid;border: 1px solid white;'><td style='border-style:solid;border: 1px solid white;'>2.&nbsp;House rent        </td><td style='text-align:left;'>:&nbsp;&nbsp;20000</td></tr>" +
+                        "<tr style='border-style:solid;border: 1px solid white;'><td style='border-style:solid;border: 1px solid white;'>3.&nbsp;Medical Allowance </td><td style='text-align:left;'>:&nbsp;&nbsp;4500</td></tr>" +
+                        "<tr style='border-style:solid;border: 1px solid white;'><td style='border-style:solid;border: 1px solid white;'>4.&nbsp;Others pay        </td><td style='text-align:left;'>:&nbsp;&nbsp;6945</td></tr>" +
+                        "<tr style='border-style:solid;border: 1px solid white;'><td style='border-style:solid;border: 1px solid white;'>5.&nbsp;Special allowance </td><td style='text-align:left;'>:&nbsp;&nbsp;5678</td></tr></table>" +
+
+          
 
 
-                       "<p style='margin-bottom:-11px'>In respect of the above, company management has reviewed your overall performances in terms of Individual KPI Score, Development Team Recommended Score, Head of the Department " +
-                       "Recommendation as well as in the eye of Top Management and in respect of all those, President of CPDL is satisfied to increase your gross salary from Tk. Present Salary " + total + " /- to Tk. Increase Salary /-," +
-                       " (Mobile Allowance & Fooding allowance as per company policy) Now your pay as below: </p>" +
+                          "<p style='margin-bottom:-11px;text-align: center;'><span> All pay with effect from <strong>Increment Effect Date.</strong></span></p>" +
+                        "<p style='margin-bottom:-11px'>We hope this increment will encourage your working efficiency and devotion to your<br> responsibilities.</p>" +
 
 
-                     //salary break down table
-                     "<table style='width:70%;margin-left:20px;border:0'>" +
-
-                       "<tr style='border:0;'><td style='border:0;>Basic</td><td style='text-align:center;border:0;'>:" + bsal + "</td></tr>" +
-                       "<tr style='border:0;'><td style='border:0;>House Rent</td><td style='text-align:center;border:0;'>:" + hrent + "</td></tr>" +
-                       "<tr style='border:0;'><td style='border:0;>Medical Allowance (20% of Gross)</td><td style='text-align:center;border:0;'>:" + mallow + "</td></tr>" +
-                       "<tr style='border:0;'><td style='border:0;>Others Pay</td><td style='text-align:center;border:0;'>:" + cven + "</td></tr>" +
-                       "<tr style='border:0;'><td style='border:0;>Special Allowance</td><td style='text-align:center;border:0;'>:" + cven + "</td></tr>" +
-                       "<tr style='border:0;'><td style='border:0;>All pay with effect from <strong>Increment Effect Date.</strong></td></tr>" +
+                        "</p><p></strong></p><p>" +
+                             "<p style='margin-bottom:-11px;text-align: right;'></strong>------------------------------------------<strong> </p><p>" +
+                             "<p style='margin-bottom:-11px;text-align: right;'><strong> Md.Khairuzzaman Joarder</strong> </p><p>" +
+                              "<p style='margin-bottom:-11px;text-align: right; margin-right:10px;'><strong> Chief Operating Officer</strong> </p><p>" +
+                              "</p><p style='margin-bottom:-11px;'>CC: </p>" +
+                               "</p><p style='margin-bottom:-11px;'>President-CPDL </p>" +
+                               "</p><p style='margin-bottom:-11px;'>Personal File </p>";
 
 
-                           //"<tr style='border-top:1px solid!important;'><td style='text-align:center;'><strong>Total Gross Salary</strong></td><td style='text-align: center;'><strong>:" + total + "</strong></td></tr></table>" +
 
-                           "<p>We hope this increment will encourage your working efficiency and devotion to your responsibilities. </p>" +
-
-                           "<p style='margin-bottom:-5px;display:inline;'><span style='border-top:2px dotted; display:inline-block;margin-bottom:-11px;float:right'><strong>Md. Khairuzzaman Joarder </strong></p></span></p>" +
-
-                           "<p style='margin-bottom:-5px;display:inline'><span style='display:inline-block;margin-bottom:-11px;float:right;'><strong>Chief Operating  Officer</strong></p></span></p>" +
-
-
-                           "<p style='margin-bottom:-5px;display:inline;'><strong>CC: </strong></p></span></p>" +
-
-                           "<p style='margin-bottom:-5px;display:inline'><strong>President-CPDL</strong></p></p>" +
-
-
-                           "<p style='margin-bottom:-5px;display:inline'><strong>Personal file</strong></p></p>";
 
 
 
                     }
-                    else { 
-                    lbody = "<p style='text-align: center;'>&nbsp;</p><p style='padding-left: 360px;'>&nbsp;</p><h3 style='text-align: center;'><span style='text-decoration: underline;'><strong>&nbsp;</strong><strong>Private &amp; Confidential</strong></span></h3><p>&nbsp;</p><p><strong>REF: SPL/HR/INCREMENT/16</strong></p><p><strong>Date: July 12, 2016</strong></p><p>&nbsp;<strong>" + name + ", ID: 101</strong></p><p><strong>" + Desig + ",</strong></p><p>" + depart + "</p><p><strong>Factory.</strong></p><p>&nbsp;</p><p><strong>Subject: Increment of Salary</strong></p><p>&nbsp;</p><p><strong>Dear " + name + ",</strong></p><p>&nbsp;We are pleased to inform you that the management has decided to review your monthly gross salary in recognition of your performance during the year 2015-2016, effective from <strong>July 01, 2016</strong>.</p><p>&nbsp;In view of the decision the breakdown of your revised monthly salary stands as follows:</p><p style='padding-left: 330px;'>Basic Salary &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;7,2000.00&nbsp; &nbsp; &nbsp;</p><p style='padding-left: 330px;'>House Rent Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;3,600.00</p><p style='padding-left: 330px;'>Transport Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 660.00</p><p style='padding-left: 330px;'>Medical Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 540.00</p><p style='padding-left: 330px;'><strong>Total: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;TK &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;12,000.00</strong></p><p>&nbsp;</p><p>&nbsp;We acknowledge your good performance and hope that you will continue to contribute to the growth and success of the organization in future.</p><p>&nbsp;We wish you all the best and look forward to better performance in future.</p><p>&nbsp;</p><p>With best regards</p>";//<p>&nbsp;<strong>Moshiur Hossain Uday</strong></p><p>Managing Director</p><p>&nbsp;CC: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>Personal File</p><p>HRIS</p><p>&nbsp;</p>";
+                    else
+                    {
+                        lbody = "<p style='text-align: center;'>&nbsp;</p><p style='padding-left: 360px;'>&nbsp;</p><h3 style='text-align: center;'><span style='text-decoration: underline;'><strong>&nbsp;</strong><strong>Private &amp; Confidential</strong></span></h3><p>&nbsp;</p><p><strong>REF: SPL/HR/INCREMENT/16</strong></p><p><strong>Date: July 12, 2016</strong></p><p>&nbsp;<strong>" + name + ", ID: 101</strong></p><p><strong>" + Desig + ",</strong></p><p>" + depart + "</p><p><strong>Factory.</strong></p><p>&nbsp;</p><p><strong>Subject: Increment of Salary</strong></p><p>&nbsp;</p><p><strong>Dear " + name + ",</strong></p><p>&nbsp;We are pleased to inform you that the management has decided to review your monthly gross salary in recognition of your performance during the year 2015-2016, effective from <strong>July 01, 2016</strong>.</p><p>&nbsp;In view of the decision the breakdown of your revised monthly salary stands as follows:</p><p style='padding-left: 330px;'>Basic Salary &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;7,2000.00&nbsp; &nbsp; &nbsp;</p><p style='padding-left: 330px;'>House Rent Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;3,600.00</p><p style='padding-left: 330px;'>Transport Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 660.00</p><p style='padding-left: 330px;'>Medical Allowance &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 540.00</p><p style='padding-left: 330px;'><strong>Total: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;TK &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;12,000.00</strong></p><p>&nbsp;</p><p>&nbsp;We acknowledge your good performance and hope that you will continue to contribute to the growth and success of the organization in future.</p><p>&nbsp;We wish you all the best and look forward to better performance in future.</p><p>&nbsp;</p><p>With best regards</p>";//<p>&nbsp;<strong>Moshiur Hossain Uday</strong></p><p>Managing Director</p><p>&nbsp;CC: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p><p>Personal File</p><p>HRIS</p><p>&nbsp;</p>";
                     }
                     break;
-               
+
                 //transfer lettre
                 case "10009":
                     lbody = "<p>&nbsp;<strong>Ref: SPL/HR/TL/558/16</strong></p><p><strong>December 10, 2016</strong></p><p><strong>Mr.</strong> <strong>" + name + "</strong> <strong>(ID # 202)</strong></p><p><strong>TSM,</strong><strong>Dhaka South</strong></p><p>&nbsp;</p><p>&nbsp;Subject: <strong><u>Transfer of Service </u></strong></p><p><br /> <strong>Dear Mr. </strong><strong>" + name + "</strong>,</p><p>&nbsp;In consideration of the exigencies of the Company, it has been decided to transfer you from <strong>Dhaka South (Munshigonj) to Faridpur (Barishal) </strong>effective from <strong>20 Dec, 2016</strong>.</p><p>&nbsp;Please note that the terms and conditions of your service shall not be changed due to this transfer.</p><p>&nbsp;It is expected that you will continue to provide your best services in achieving business goals and objectives of the Company in the days to come.</p><p>&nbsp;Wish you a happy career in Star Paradise Limited.</p><p>&nbsp;</p><p>Yours sincerely<br /> &nbsp;</p>"; //<p>&nbsp;_______________________</p><p><strong>Ridwan Rouf Khan</strong></p><p>Assistant Manager-Human Resources</p><p>&nbsp;&nbsp; C.C</p><ul><li>HRIS</li><li>Personal File</li></ul><p>&nbsp;</p>";
@@ -1904,7 +1909,7 @@ namespace RealERPWEB
 
                             "<div style='display:flex;justify-content:center'><h3 style='display:inline-block;border-bottom:1px solid;font-size:16px'>TO WHOM IT MAY CONCERN</h3></div>" +
                             "<p>This is to certify that " + name + " is a permanent employee of " + companme + ". His employee ID is " + idcard + " and serving as a " + Desig + ". <p/>" +
-                                      
+
                                  //salary break down table
                                  "<p>His salary break down is as follows:</p>" +
                                  "<table style='width:70%;border-style:solid; border: 1px solid black;'><tr style='border-style:solid;border: 1px solid black;background:#B4C6E7;'><th style='width:50px;text-align:center;border-style:solid;border:1px solid black;'>SL</th><th>Particulars</th><th style='border-style:solid;border: 1px solid black;'>Amount in BDT</th></tr>" +
@@ -1948,7 +1953,7 @@ namespace RealERPWEB
 
                 "<div style='display:flex;justify-content:center'><h3 style='display:inline-block;border-bottom:1px solid;font-size:16px'>TO WHOM IT MAY CONCERN</h3></div>" +
                 "<p>This is to certify that " + name + " is a permanent employee of " + companme + ". His employee ID is " + idcard + " and serving as a " + Desig + ". <p/>" +
-                           //salary break down table
+                     //salary break down table
 
 
                      "<p>His salary break down is as follows:</p>" +
@@ -1993,17 +1998,17 @@ namespace RealERPWEB
                     {
 
                         lbody = "<p style='text-align:right;margin-bottom:-11px'><strong> " + date + "</strong></p>" +
-                            "<p></p>"+
+                            "<p></p>" +
 "<div style='display:flex;justify-content:center'><h3 style='display:inline-block;border-bottom:1px solid;font-size:16px'>TO WHOM IT MAY CONCERN</h3></div>" +
                              "<p>This is to certify that <strong> " + name + "</strong> Employee ID: " + idcard + ", worked as an “" + Desig + "” (July 1, 2021 up to May 10, 2022) at " + comnam + ". He is hereby released from the services of the company with an effective date of May 11, 2022. </p>" +
                              "<p></p>" +
-                      
+
                               "<p>We wish him all the best in his future endeavors.</p>" +
-                               "<p></p>" +   
+                               "<p></p>" +
                                "<p>Your Sincerely</p>" +
                                "<p></p>" +
                                "<p></p>" +
-              
+
                   "<p style='margin-bottom:-11px;border-top:1px solid;display:inline-block'><strong>Md. Mizanur Rahman Khan</strong></p>" +
                  "<p style='margin-bottom:-11px;'>Senior Manager</p>" +
                  "<p style='margin-bottom:-11px;'>Human Resources </p>" +
@@ -2028,7 +2033,7 @@ namespace RealERPWEB
                  "<p style='margin-bottom:-11px;'>Human Resources </p>" +
                  "<p style='margin-bottom:-11px;'>" + comnam + "</p>";
                     }
-                        
+
                     break;
 
                 default:
