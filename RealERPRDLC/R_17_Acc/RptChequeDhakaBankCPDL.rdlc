@@ -585,11 +585,7 @@
             <KeepTogether>true</KeepTogether>
             <Top>0.3007in</Top>
             <Left>2.65822in</Left>
-<<<<<<< HEAD
             <Height>2.14214in</Height>
-=======
-            <Height>2.12825in</Height>
->>>>>>> 208a907f7080ebb49456a7a03fbc3aa295fc875e
             <Width>3.23223in</Width>
             <ZIndex>6</ZIndex>
             <Style>
