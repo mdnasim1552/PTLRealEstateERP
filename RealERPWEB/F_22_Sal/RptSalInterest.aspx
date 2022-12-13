@@ -14,11 +14,13 @@
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
             //<a href="RptSalInterest.aspx">RptSalInterest.aspx</a>
 
-
         });
 
+
+
+
         function pageLoaded() {
-            $("input, select").bind("keydown", function (event) {
+            $("input, select").bind("keydown", function (event) {      
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
 
