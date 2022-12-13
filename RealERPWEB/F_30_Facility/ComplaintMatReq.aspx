@@ -353,7 +353,8 @@
                             <div class="col-lg-3">
                                 <div class="form-group">
                                     <asp:Label runat="server" ID="Label14" class="form-label">From</asp:Label>
-                                    <asp:DropDownList ID="ddlFromInventory" CssClass="chzn-select form-control" runat="server">
+                                    <asp:DropDownList ID="ddlFromInventory" CssClass="chzn-select form-control" runat="server" AutoPostBack="true" 
+                                        OnSelectedIndexChanged="ddlFromInventory_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </div>
 
@@ -381,8 +382,20 @@
                                     <asp:LinkButton ID="lnkTransferSelect" runat="server" CssClass="btn btn-warning align-self-end" OnClick="lnkTransferSelect_Click">
                                         Select
                                     </asp:LinkButton>
+                                    <asp:HyperLink ID="HyperLink1" runat="server" CssClass="btn btn-primary align-self-end" Target="_blank" NavigateUrl="~/F_12_Inv/RptMaterialStock.aspx?Type=inv&prjcode=&sircode=">
+                                        Mat. Stock
+                                    </asp:HyperLink>
                                 </div>
                             </div>
+                            <%--<div class="col-lg-2">
+                                <div class="form-group">
+                                    <br />
+                                    <asp:HyperLink ID="LinkButton1" runat="server" CssClass="btn btn-warning align-self-end" NavigateUrl="~/F_12_Inv/RptMaterialStock.aspx?Type=inv&prjcode=&sircode=">
+                                        Mat. Stock
+                                    </asp:HyperLink>
+                                </div>
+                            </div>--%>
+                            
                         </div>
                         <div class="row mt-1">
                             <asp:GridView ID="grvacc" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"

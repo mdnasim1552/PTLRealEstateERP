@@ -213,22 +213,22 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.Label lblpayinfo;
 
         /// <summary>
-        /// lblBookAmt control.
+        /// Lblrcvbookingam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblBookAmt;
+        protected global::System.Web.UI.WebControls.Label Lblrcvbookingam;
 
         /// <summary>
-        /// TextBookingAmt control.
+        /// txtrcvbookingam control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBookingAmt;
+        protected global::System.Web.UI.WebControls.TextBox txtrcvbookingam;
 
         /// <summary>
         /// lblCheqNo control.
@@ -348,22 +348,22 @@ namespace RealERPWEB.F_22_Sal
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender_txtbookdate;
 
         /// <summary>
-        /// Lblrcvbookingam control.
+        /// lblBookAmt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lblrcvbookingam;
+        protected global::System.Web.UI.WebControls.Label lblBookAmt;
 
         /// <summary>
-        /// txtrcvbookingam control.
+        /// TextBookingAmt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtrcvbookingam;
+        protected global::System.Web.UI.WebControls.TextBox TextBookingAmt;
 
         /// <summary>
         /// lblInstype control.

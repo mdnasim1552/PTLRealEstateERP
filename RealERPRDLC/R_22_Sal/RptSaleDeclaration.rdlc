@@ -1317,7 +1317,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!usircode.Value</Value>
+                                  <Value>=Parameters!customerno.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                   </Style>
@@ -1959,7 +1959,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.89237in</Top>
+              <Top>0.73834in</Top>
               <Left>0.07829in</Left>
               <Height>0.30208in</Height>
               <Width>6.7292in</Width>
