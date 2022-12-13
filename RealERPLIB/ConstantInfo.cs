@@ -2218,6 +2218,7 @@ namespace RealERPLIB
             // tblObj.Rows.Add(new Object[] { "8102000", "8102043", "EmpOvertime?", "Type=Holiday", "Holiday Allowance 01", "Allowances", "False", "False", "False", "False" });;
             tblObj.Rows.Add(new Object[] { "8102000", "8102044", "F_81_Hrm/F_86_All", "EmpOvertime?", "Type=Mobile", "Mobile Bill", "Allowances", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102045", "F_81_Hrm/F_86_All", "EmpOvertime?", "Type=Lencashment", "Leave Encashment", "Allowances", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102195", "F_81_Hrm/F_89_Pay", "RpHRtPayroll?", "Type=salaryencashment", "Salary Encashment", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102046", "F_81_Hrm/F_86_All", "EmpFoodAllow", "", "Food Allowance", "Allowances", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102047", "F_81_Hrm/F_87_Tra", "HREmpTransfer", "", "Employee Transfer", "Transfer", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102048", "F_81_Hrm/F_89_Pay", "RpHRtPayroll?", "Type=Salary&Entry=Payroll", "Actual Salary Sheet", "PayRoll", "False", "False", "False", "False" });
@@ -2229,6 +2230,7 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "8102000", "8102050", "F_81_Hrm/F_89_Pay", "RpHRtPayroll?", "Type=Payslip", "Pay Slip", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102051", "F_81_Hrm/F_89_Pay", "RpHRtPayroll?", "Type=Signature", "Signature Sheet", "PayRoll", "False", "False", "False", "False" }); ;
+            //tblObj.Rows.Add(new Object[] { "8102000", "8102151", "F_81_Hrm/F_89_Pay", "RptSalaryEncashment", "", "Rpt Salary Encashment", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102052", "F_81_Hrm/F_89_Pay", "EmpOverTimeSalary?", "Type=OvertimeSalary", "Overtime Allowance ", "PayRoll", "False", "False", "False", "False" }); ;
            
             tblObj.Rows.Add(new Object[] { "8102000", "8102053", "F_81_Hrm/F_89_Pay", "EmpOverTimeSalary?", "Type=OvertimeSalary02", "Overtime Allowance 02 ", "PayRoll", "False", "False", "False", "False" }); ;
@@ -16090,6 +16092,8 @@ namespace RealERPLIB
 
             mnuTbl1.Rows.Add(new Object[] { "0408000004", "03. Employee Status", "F_81_Hrm/F_83_Att/RptHREmpStatus?Type=Payroll", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0408000005", "04. Pay Slip", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Payslip", "", true, "" });
+            //mnuTbl1.Rows.Add(new Object[] { "0408000006", "04. Salary Encashment", "F_81_Hrm/F_89_Pay/RptSalaryEncashment", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000088", "08. Salary Encashment", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=salaryencashment", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0408000006", "05. Envelop Print", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=RPTENVELOP", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0408000007", "06. Signature Sheet", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Signature", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0408000008", "07. Salary Statement (Cash)", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=CashSalary", "", true, "" });
