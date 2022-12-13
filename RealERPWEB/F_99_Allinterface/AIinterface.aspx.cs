@@ -57,8 +57,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.GetAnnotationList();
                 this.GetProjectInformation();
                 this.CreateTableAssign();
-
-
+                this.prjSearch_Click(null, null);
 
             }
         }
@@ -89,10 +88,29 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
+
+        private void GetSearchProject()
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETSERCHPRJNAME", "", "", "", "", "", "");
+            if (ds == null)
+                return;
+            this.ddlprjsearch.DataTextField ="infdesc";
+            this.ddlprjsearch.DataValueField ="infcod";
+            this.ddlprjsearch.DataSource =ds.Tables[0];
+            this.ddlprjsearch.DataBind();
+
+
+
+        }
+
+
+
         private void GetAIInterface()
         {
             string comcod = this.GetCompCode();
-            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETINTERFACE", "", "", "", "", "", "");
+            string pactcode = this.ddlprjsearch.SelectedValue.ToString()=="000000000000" ? "16%": this.ddlprjsearch.SelectedValue.ToString()+"%";
+            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETINTERFACE", pactcode, "", "", "", "", "");
             if (ds == null)
                 return;
 
@@ -128,6 +146,12 @@ namespace RealERPWEB.F_99_Allinterface
             DataTable tbl1 = (DataTable)Session["tblstatuscount"];
 
 
+        }
+
+        protected void prjSearch_Click(object sender, EventArgs e)
+        {
+            this.GetAIInterface();
+           
         }
         private void data_Bind()
         {
@@ -165,6 +189,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
                     this.GetAIInterface();
+                    this.GetSearchProject();
                     this.TasktState.Items[0].Attributes["class"] = "lblactive blink_me";
                     //((TextBox)this.gvInterface.HeaderRow.FindControl("txtSearchprj")).Attributes.Add("placeholder", ReadCookie());
 
@@ -2254,6 +2279,11 @@ namespace RealERPWEB.F_99_Allinterface
         {
             this.gvInterface.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.data_Bind();
+        }
+
+        protected void lnkbtnok_Click(object sender, EventArgs e)
+        {
+            this.prjSearch_Click(null,null);
         }
     }
 }
