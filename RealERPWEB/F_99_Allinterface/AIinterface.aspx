@@ -607,7 +607,7 @@
 
                             <div class="col-md-2">
                                 <div class="form-group-">
-                                    <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-primary btn-sm mt20">Ok</asp:LinkButton></li>
+                                    <asp:LinkButton ID="lnkbtnok" runat="server" OnClick="lnkbtnok_Click" CssClass=" btn btn-primary btn-sm mt20">Ok</asp:LinkButton></li>
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -685,6 +685,13 @@
                                             <asp:ListItem>300</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
+                                    <div class="col-md-2">
+                                        <asp:Label runat="server" ID="lblprjserchname">Project </asp:Label>
+                                        <asp:DropDownList ID="ddlprjsearch" runat="server" CssClass="chzn-select form-control form-control-sm" ></asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-2 mt-4">
+                                        <asp:LinkButton runat="server" ID="prjSearch" OnClick="prjSearch_Click" CssClass="btn btn-primary btn-sm">Search</asp:LinkButton>
+                                    </div>
                                 </div>
                                 <div class="table-responsive mt-2">
                                     <asp:GridView ID="gvInterface" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
@@ -727,10 +734,8 @@
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText=" ">
-                                                <HeaderTemplate>
-                                                    <asp:TextBox ID="txtSearchprj" SortExpression="ProjectName" BackColor="Transparent" BorderStyle="None" runat="server" Width="180px" onkeyup="Search_Gridview(this,5,'gvInterface')"></asp:TextBox><br />
-                                                </HeaderTemplate>
+                                            <asp:TemplateField HeaderText="ProjectName">
+                                                
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblprojectName" runat="server"  Width="200px"
                                                         Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "projectName"))%>'

@@ -142,7 +142,7 @@ namespace RealERPWEB.F_38_AI
             {
 
                 string comcod = this.GetComdCode();
-                string sircode = this.GetLastid();
+                string sircode = this.lblinfocode.Text.Trim().ToString() == "" ? this.GetLastid() : lblinfocode.Text.Trim().ToString(); 
                 string srcode = this.lblinfocode.Text;
 
                 for (int i = 0; i < this.gvPersonalInfo.Rows.Count; i++)
@@ -182,14 +182,12 @@ namespace RealERPWEB.F_38_AI
         private string GetLastid()
         {
             string sircode = "";
-
             string comcod = this.GetComdCode();
 
             DataSet ds1 = MktData.GetTransInfo(comcod, "dbo_ai.SP_ENTRY_CODEBOOK_AI", "GETSIRCODEID", "", "", "", "", "", "");
             if (ds1 == null)
                 return sircode;
             sircode = ds1.Tables[0].Rows[0]["sircode"].ToString();
-
             return sircode;
 
         }
@@ -200,9 +198,8 @@ namespace RealERPWEB.F_38_AI
             {
                 ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text = "";
                 ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text = "";
-
             }
-
+            this.lblinfocode.Text = "";
         }
 
         protected void GridcusDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)
