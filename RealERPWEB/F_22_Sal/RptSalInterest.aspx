@@ -14,7 +14,6 @@
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
             //<a href="RptSalInterest.aspx">RptSalInterest.aspx</a>
 
-
         });
 
         function pageLoaded() {
