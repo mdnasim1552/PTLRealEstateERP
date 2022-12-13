@@ -198,6 +198,7 @@ namespace RealERPWEB.F_16_Bill
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
+            string usrid = hst["usrid"].ToString();
             string srchTxt = this.Request.QueryString["prjcode"].ToString().Length > 0 ? (this.Request.QueryString["prjcode"].ToString() + "%") : ("%" + this.txtProjectSearch.Text.Trim() + "%");
             string calltype;
             if (this.Request.QueryString["Type"] == "Entry")
@@ -210,7 +211,7 @@ namespace RealERPWEB.F_16_Bill
 
             }
 
-            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_ENTRY_PRJ_BUDGET", calltype, srchTxt, "", "", "", "", "", "", "", "");
+            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_ENTRY_PRJ_BUDGET", calltype, srchTxt, "",usrid, "", "", "", "", "", "", "");
             this.ddlProject.DataTextField = "prjdesc1";
             this.ddlProject.DataValueField = "prjcod";
             this.ddlProject.DataSource = ds1.Tables[0];
