@@ -88,7 +88,7 @@ namespace RealERPWEB.F_17_Acc
                     // case "3101":
                     mrprint = "MRPrintIntech";
                     break;
-               // case "3101":
+              //case "3101":
                 case "3370":
                     // case "3101":
                     mrprint = "MRPrintCPDL";
@@ -104,8 +104,10 @@ namespace RealERPWEB.F_17_Acc
                 case "3338":
                     mrprint = "MRPrintAcme";
                     break;
-
-
+                case "3367":
+                case "3101":
+                    mrprint = "MRPrintEPIC";
+                    break;
                 default:
                     mrprint = "MRPrint";
                     break;
@@ -972,6 +974,51 @@ namespace RealERPWEB.F_17_Acc
                 //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" + PrintOpt + "', target='_self');</script>";
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" + PrintOpt + "', target='_self');</script>";
             }
+            else if (Type == "MRPrintEPIC")
+            {
+                try
+                {
+                    string floor = dtrpt.Rows[0]["flr"].ToString().Substring(0,3);
+                    string aptdesc = dtrpt.Rows[0]["udesc"].ToString().Substring(8);
+                    string paydate = Convert.ToDateTime(dtrpt.Rows[0]["paydate"].ToString()).ToString("dd-MMM-yyyy");
+                    string amt22 = amt1t.Replace("(", "").Replace(")", "").Trim();
+                    var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
+                    string currentday = DateTime.Now.ToString("dd");
+                    string currentmonth = DateTime.Now.ToString("MM");
+                    string currentyear = DateTime.Now.ToString("yyyy");
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptEPIC", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("CompName", comnam));                    
+                    Rpt1.SetParameters(new ReportParameter("CompAdd", comadd));
+                    Rpt1.SetParameters(new ReportParameter("aptno", aptdesc));
+                    Rpt1.SetParameters(new ReportParameter("usize", usize));
+                    Rpt1.SetParameters(new ReportParameter("paydate", paydate));
+                    Rpt1.SetParameters(new ReportParameter("rptTitle", "MONEY RECEIPT"));
+                    Rpt1.SetParameters(new ReportParameter("flr", floor));
+                    Rpt1.SetParameters(new ReportParameter("As", ((Installment == "") ? rectype : Installment)));
+                    Rpt1.SetParameters(new ReportParameter("amount", Convert.ToDouble(paidamt).ToString("#,##0.00;(#,##0.00)")+"TK."));
+                    Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(paidamt).ToString("#,##0;(#,##0)")));
+                    Rpt1.SetParameters(new ReportParameter("takainword", amt22.Replace("Taka", "").Replace("Only", "Taka Only")));
+                    Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+                    Rpt1.SetParameters(new ReportParameter("paytype", (Paydesc == "CHEQUE") ? chqno : Paydesc));
+                    Rpt1.SetParameters(new ReportParameter("currentday", currentday));
+                    Rpt1.SetParameters(new ReportParameter("currentmonth", currentmonth));
+                    Rpt1.SetParameters(new ReportParameter("currentyear", currentyear));
+                    
+
+
+
+                    Session["Report1"] = Rpt1;
+                    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+                }
+                catch(Exception exp)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+                }
+            }
+
 
             else if (Type== "MRPrintAcme")
             {

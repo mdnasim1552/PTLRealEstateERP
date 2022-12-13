@@ -206,8 +206,9 @@ namespace RealERPWEB.F_22_Sal
                     this.ddlProjectName.Enabled = false;
                     this.ddlCustName.Enabled = false;
                     this.MultiView1.ActiveViewIndex = 0;
-                    this.ShowData();
+                
                     this.GetMaxCustNumber();
+                    this.ShowData();
                     return;
                 }
                 this.lbtnOk.Text = "Ok";
@@ -275,6 +276,13 @@ namespace RealERPWEB.F_22_Sal
             this.cblintavailloan.SelectedValue = (dt.Rows.Count == 0) ? "No" : dt.Rows[0]["intavail"].ToString();
             this.cblpaytype.SelectedValue = (dt.Rows.Count == 0) ? "OneTime" : dt.Rows[0]["paymode"].ToString();
 
+            if (dt.Rows.Count > 0)
+            {
+                if (dt.Rows[0]["customerno"].ToString().Length > 0)
+                    this.txtCustmerNumber.Text = dt.Rows[0]["customerno"].ToString();
+            }
+
+            
             ds2.Dispose();
             this.Data_BindPrj();
             this.Data_BindPer();
@@ -717,6 +725,7 @@ namespace RealERPWEB.F_22_Sal
 
             Rpt1.SetParameters(new ReportParameter("enrolmentdate", Convert.ToDateTime(dt2.Rows[0]["appdate"]).ToString("ddMMyyyy")));
             Rpt1.SetParameters(new ReportParameter("customerno", dt2.Rows[0]["customerno"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("usircode", dt2.Rows[0]["usircode"].ToString()));
             Rpt1.SetParameters(new ReportParameter("bookingno", dt2.Rows[0]["bookingno"].ToString()));
             Rpt1.SetParameters(new ReportParameter("customername", dt2.Rows[0]["fullname"].ToString()));
             Rpt1.SetParameters(new ReportParameter("contactno", dt2.Rows[0]["mobilenum"].ToString()));
@@ -979,7 +988,6 @@ namespace RealERPWEB.F_22_Sal
 
             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-
         }
 
 

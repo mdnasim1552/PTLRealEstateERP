@@ -1841,7 +1841,7 @@ namespace RealERPWEB.F_22_Sal
 
             // Customer Offer  Case
             cofffv = lstcoff.Sum(l => l.fv);
-         //   coffpv = lstcoff.Sum(l => l.pv);
+            coffpv = lstcoff.Sum(l => l.pv);
             cofffvpsft =Math.Round(((usize > 0) ? ((cofffv - coffpamt - coffutility - coffothers) / usize) : 0.00),0);
             coffpowbpart = (12 + intratio) / 12;
             coffpvpsft = Math.Round(cofffvpsft / (Math.Pow(coffpowbpart, noofemi)), 0);
@@ -1870,7 +1870,12 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-            double baseinterest, coffinterest, interestdiff, unitamt, newcofftotalam, newcoffunitamt, newcoffunitrate;
+            double baseinterest, coffinterest, interestdiff, unitamt, newcofftotalam, newcoffunitamt, newcoffunitrate,baseurate, minratepv,minratefb;
+            baseurate = Convert.ToDouble("0" + this.lblvalrate.InnerText);
+
+            minratepv =Math.Round((coffpv * baseurate) / bpv,0);
+            minratefb = Math.Round((cofffv * baseurate) / bfv,0);
+
             benddate = Convert.ToDateTime(lstb[lstb.Count - 1].schdate);
             baseinterest = lstb.Sum(l => l.fv) - lstb.Sum(l => l.pv);
             coffinterest = lstcoff.Sum(l => l.fv) - lstcoff.Sum(l => l.pv);
@@ -1878,7 +1883,7 @@ namespace RealERPWEB.F_22_Sal
             unitamt = Convert.ToDouble("0" + this.lblvalunitprice.InnerText);
             newcofftotalam = unitamt + coffpamt + coffutility + coffothers + interestdiff;
             newcoffunitamt = newcofftotalam - coffpamt - coffutility - coffothers;
-            newcoffunitrate = Math.Round(((usize > 0) ? (newcoffunitamt / usize) : 0.00), 0);
+            newcoffunitrate = Math.Round(((usize > 0) ? (newcoffunitamt / usize) : 0.00), 0); 
             this.lblhiddenncoffurate.Value = newcoffunitrate.ToString("#,##0;(#,##0); ");
 
 
@@ -1910,9 +1915,9 @@ namespace RealERPWEB.F_22_Sal
                 {
                     //"<span style='color:red'>Minimum FV Per SFT:" + this.lblhiddenfvpersft.Value + "Minimum PV Per SFT:" + this.lblhiddenpvpersft.Value + "</span>";
 
-                    string mfvpsftapvpsft = "Minimum Rate Per SFT:" + this.lblhiddenncoffurate.Value;
+                   // string mfvpsftapvpsft = "Minimum Rate Per SFT:" + this.lblhiddenncoffurate.Value;
                     
-                   // string mfvpsftapvpsft = "Minimum FV Per SFT:" + this.lblhiddenfvpersft.Value + " Minimum PV Per SFT:" + this.lblhiddenpvpersft.Value;
+                    string mfvpsftapvpsft = "Minimum FV Per SFT:" + this.lblhiddenfvpersft.Value + " Minimum PV Per SFT:" + this.lblhiddenpvpersft.Value;
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+ mfvpsftapvpsft + "');", true);
                     return;
 

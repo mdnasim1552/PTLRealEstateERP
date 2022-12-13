@@ -168,7 +168,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2276,6 +2276,7 @@
     <Content Include="F_17_Acc\AccIssueUpdate.aspx" />
     <Content Include="F_17_Acc\AccIndentUpdate.aspx" />
     <Content Include="F_17_Acc\AccInterComVoucherDel.aspx" />
+    <Content Include="F_17_Acc\RptAdvancedAgainstLoan.aspx" />
     <Content Include="F_17_Acc\RptLetterOfAlotment.aspx" />
     <Content Include="F_17_Acc\RptOPPaymentTopSheet.aspx" />
     <Content Include="F_17_Acc\RptSupplierOvAllPSummary.aspx" />
@@ -4200,6 +4201,13 @@
     </Compile>
     <Compile Include="F_17_Acc\AccInterComVoucherDel.aspx.designer.cs">
       <DependentUpon>AccInterComVoucherDel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_17_Acc\RptAdvancedAgainstLoan.aspx.cs">
+      <DependentUpon>RptAdvancedAgainstLoan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_17_Acc\RptAdvancedAgainstLoan.aspx.designer.cs">
+      <DependentUpon>RptAdvancedAgainstLoan.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_17_Acc\RptLetterOfAlotment.aspx.cs">
       <DependentUpon>RptLetterOfAlotment.aspx</DependentUpon>
@@ -12736,6 +12744,7 @@
     <Folder Include="Upload\Attndancefiles\" />
     <Folder Include="Upload\attreport\" />
     <Folder Include="Upload\NewFolder1\" />
+    <Folder Include="Upload\NewFolder2\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ASITMaster.Master" />

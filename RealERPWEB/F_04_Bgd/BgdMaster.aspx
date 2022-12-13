@@ -115,7 +115,7 @@
                     <asp:MultiView ID="MultiView1" runat="server">
                         <asp:View ID="View1" runat="server">
                             <div class="row">
-                                <div class="col-md-2 pading5px">
+                                <div class="col-md-3 pading5px">
                                     <div class="form-group">
                                         <div class="input-group input-group-alt">
                                             <div class="input-group-prepend ">
@@ -282,7 +282,7 @@
                             </div>
                             <asp:Panel ID="Panel2" runat="server">
                                 <div class="row">
-                                    <div class="col-md-2 pading5px">
+                                    <div class="col-md-3 pading5px">
                                         <div class="form-group">
                                             <div class="input-group input-group-alt">
                                                 <div class="input-group-prepend ">
