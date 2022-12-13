@@ -621,11 +621,14 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             switch (comcod)
             {
                 case "3368"://Finlay
-                case "3369"://acme ai
-
                     CallType = "EMPALLOYOVERTIMEFINLAY";
                     break;
-               
+
+                case "3369"://acme ai
+                    CallType = "EMPALLOYOVERTIMEACMEAI";
+
+                    break;
+
                 default:
                     CallType = "EMPALLOYOVERTIME";
                     break;
@@ -3976,9 +3979,9 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             string txtdate = ASTUtility.DateFormat("01." + ymon.Substring(4, 2) + "." + ymon.Substring(0, 4));
 
             txtdate = Convert.ToDateTime(txtdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-            //string calltype = (GetComeCode() == "3368" ? "GETOTDETAILSFINLAY" : GetComeCode() == "3369" ? "GETOTDETAILSACMEAI" : "GETOTDETAILSACMEAI");
+            string calltype = callType();
 
-            DataSet ds1 = HRData.GetTransInfo(GetCompCode(), "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETOTDETAILS", empid,type, dayid, txtdate, "", "", "", "", "", "");
+            DataSet ds1 = HRData.GetTransInfo(GetCompCode(), "dbo_hrm.SP_ENTRY_EMPLOYEE01", calltype, empid,type, dayid, txtdate, "", "", "", "", "", "");
             if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
             {
 
@@ -3988,10 +3991,32 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             }
 
             DataTable dt = ds1.Tables[0];
-
             this.gvotDetails.DataSource = dt;
             this.gvotDetails.DataBind();
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "otdetails();", true);
+        }
+
+        public string callType()
+        {
+            string comcod = GetComeCode();
+            string calltype = "";
+            switch (comcod)
+            {
+                //finalay
+                case "3368":
+                    calltype= "GETOTDETAILSFINLAY";
+                    break;
+
+                    //acmeai
+                case "3369":
+                    calltype = "GETOTDETAILSACMEAI";
+                    break;
+
+                default:
+                    calltype = "GETOTDETAILSFINLAY";
+                    break;
+            }
+            return calltype;
         }
     }
 
