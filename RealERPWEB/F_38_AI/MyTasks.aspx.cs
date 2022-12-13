@@ -288,7 +288,9 @@ namespace RealERPWEB.F_38_AI
             
             try
             {
-                string postdate = System.DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+                
+
+                string postdate = System.DateTime.Now.ToString("yyyy-MM-dd h:mm:ss tt");
                 string timeTkerID = this.notetaskid.Text;
                 string assignuser = this.Mdl_lblempid.Text;
                 string jobid = this.Mdl_jobid.Text;
@@ -361,7 +363,7 @@ namespace RealERPWEB.F_38_AI
             string taskDesc = ((Label)this.gvTodayList.Rows[index].FindControl("Lbltasktitle")).Text.Trim();
             string comcod = this.GetCompCode();
             string trackertype = "99217";
-            string postdate = System.DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+            string postdate = System.DateTime.Now.ToString("yyyy-MM-dd h:mm:ss tt");
 
 
 
