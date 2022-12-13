@@ -264,7 +264,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
             <Top>0.18402in</Top>
-            <Left>0.07811in</Left>
+            <Left>0.10918in</Left>
             <Height>0.25in</Height>
             <Width>6.7292in</Width>
             <Style>
@@ -830,7 +830,7 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>2.54861in</Top>
-            <Left>0.00025in</Left>
+            <Left>0.03132in</Left>
             <Height>1.25in</Height>
             <Width>6.80723in</Width>
             <ZIndex>1</ZIndex>
@@ -860,7 +860,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
             <Top>2.16667in</Top>
-            <Left>0.00017in</Left>
+            <Left>0.03124in</Left>
             <Height>0.25in</Height>
             <Width>6.80731in</Width>
             <ZIndex>2</ZIndex>
@@ -897,7 +897,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
             <Top>4.4757in</Top>
-            <Left>0.03141in</Left>
+            <Left>0.06248in</Left>
             <Height>0.25in</Height>
             <Width>6.77608in</Width>
             <ZIndex>3</ZIndex>
@@ -949,9 +949,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox42</rd:DefaultName>
-            <Top>7.69792in</Top>
+            <Top>8.04167in</Top>
+            <Left>1.34674in</Left>
             <Height>0.5625in</Height>
-            <Width>1.64051in</Width>
+            <Width>1.31759in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -1000,10 +1001,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox42</rd:DefaultName>
-            <Top>7.69792in</Top>
-            <Left>1.73612in</Left>
+            <Top>8.04167in</Top>
+            <Left>2.71989in</Left>
             <Height>0.5625in</Height>
-            <Width>1.60402in</Width>
+            <Width>1.26027in</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -1052,10 +1053,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox42</rd:DefaultName>
-            <Top>7.69792in</Top>
-            <Left>3.4132in</Left>
+            <Top>8.04167in</Top>
+            <Left>4.03572in</Left>
             <Height>0.5625in</Height>
-            <Width>1.71263in</Width>
+            <Width>1.35846in</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -1104,10 +1105,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox42</rd:DefaultName>
-            <Top>7.69792in</Top>
-            <Left>5.20321in</Left>
+            <Top>8.04167in</Top>
+            <Left>5.46363in</Left>
             <Height>0.5625in</Height>
-            <Width>1.60402in</Width>
+            <Width>1.3436in</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -1317,7 +1318,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!customerno.Value</Value>
+                                  <Value>=Format(Parameters!customerno.Value).Substring(2,4)+Format(Parameters!customerno.Value).Substring(8,4)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                   </Style>
@@ -1815,7 +1816,7 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.52652in</Top>
-            <Left>0.07812in</Left>
+            <Left>0.10919in</Left>
             <Height>1.0625in</Height>
             <Width>6.7292in</Width>
             <ZIndex>8</ZIndex>
@@ -1843,7 +1844,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
             <Top>4.79514in</Top>
-            <Left>0.00034in</Left>
+            <Left>0.03141in</Left>
             <Height>1.83208in</Height>
             <Width>6.80715in</Width>
             <ZIndex>9</ZIndex>
@@ -1857,11 +1858,63 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="Textbox46">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!salesname.Value</Value>
+                    <Style>
+                      <FontFamily>Cambria</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Prperty Consultant</Value>
+                    <Style>
+                      <FontFamily>Cambria</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox42</rd:DefaultName>
+            <Top>8.04167in</Top>
+            <Left>0.03124in</Left>
+            <Height>0.5625in</Height>
+            <Width>1.25995in</Width>
+            <ZIndex>10</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <TopBorder>
+                <Style>Solid</Style>
+              </TopBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>8.26042in</Height>
+        <Height>8.625in</Height>
         <Style />
       </Body>
-      <Width>6.80749in</Width>
+      <Width>6.83856in</Width>
       <Page>
         <PageHeader>
           <Height>1.22222in</Height>
@@ -1889,7 +1942,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Left>1.37347in</Left>
+              <Left>1.40454in</Left>
               <Height>0.25347in</Height>
               <Width>4.5901in</Width>
               <Style>
@@ -1912,7 +1965,6 @@
                       <Value>=Parameters!comfadd.Value</Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
-                        <FontSize>9pt</FontSize>
                         <FontWeight>Normal</FontWeight>
                       </Style>
                     </TextRun>
@@ -1924,7 +1976,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.28542in</Top>
-              <Left>1.37347in</Left>
+              <Left>1.40454in</Left>
               <Height>0.25in</Height>
               <Width>4.5901in</Width>
               <ZIndex>1</ZIndex>
@@ -1960,7 +2012,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.73834in</Top>
-              <Left>0.07829in</Left>
+              <Left>0.10936in</Left>
               <Height>0.30208in</Height>
               <Width>6.7292in</Width>
               <ZIndex>2</ZIndex>
@@ -1978,7 +2030,7 @@
               <Source>External</Source>
               <Value>=Parameters!comlogo.Value</Value>
               <Sizing>FitProportional</Sizing>
-              <Left>0.03141in</Left>
+              <Left>0.06248in</Left>
               <Height>0.69667in</Height>
               <Width>1.24141in</Width>
               <ZIndex>3</ZIndex>
@@ -2114,6 +2166,12 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="salesname">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -2209,6 +2267,11 @@
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>4</RowIndex>
           <ParameterName>usircode</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>4</RowIndex>
+          <ParameterName>salesname</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
