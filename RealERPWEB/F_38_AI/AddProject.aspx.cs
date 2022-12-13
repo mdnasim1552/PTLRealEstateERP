@@ -122,6 +122,7 @@ namespace RealERPWEB.F_38_AI
                 {
                     case "03002": //project type
                         //gvalue = dt.Rows[i]["value"].ToString();
+                        string prjtype = ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.ToString();
                         dv2 = dt3.DefaultView;
                         dv2.RowFilter = ("gcod like '60%' and gcod like'%00'");
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
@@ -134,10 +135,11 @@ namespace RealERPWEB.F_38_AI
                         ddlgval.DataValueField = "gcod";
                         ddlgval.DataSource = dv2.ToTable();
                         ddlgval.DataBind();
-                        ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
+                        ddlgval.SelectedValue = prjtype;
                         break;
                     case "03003"://Dataset type
                                  // gvalue = dt.Rows[i]["value"].ToString();
+                        string dataset = ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.ToString();
                         dv2 = dt3.DefaultView;
                         dv2.RowFilter = ("gcod like '60%' and gcod not like'%00'");
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
@@ -150,10 +152,12 @@ namespace RealERPWEB.F_38_AI
                         ddlgval.DataValueField = "gcod";
                         ddlgval.DataSource = dv2.ToTable();
                         ddlgval.DataBind();
-                        ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
+                        ddlgval.SelectedValue = dataset;
                         break;
                     case "03004"://work type
                                  // gvalue = dt.Rows[i]["value"].ToString();
+                        string worktype = ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.ToString();
+
                         dv2 = dt3.DefaultView;
                         dv2.RowFilter = ("gcod like '70%' and gcod not like'%00'");
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
@@ -166,10 +170,12 @@ namespace RealERPWEB.F_38_AI
                         ddlgval.DataValueField = "gcod";
                         ddlgval.DataSource = dv2.ToTable();
                         ddlgval.DataBind();
-                        ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
+                        ddlgval.SelectedValue = worktype;
                         break;
                     case "03007"://customer
-                        //gvalue = dt.Rows[i]["value"].ToString();
+                                 //gvalue = dt.Rows[i]["value"].ToString();
+                        string customer = ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.ToString();
+
                         dv3 = dt4.DefaultView;
                         dv3.RowFilter = ("infcod like '51%' and infcod not like'%00'");
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
@@ -182,12 +188,14 @@ namespace RealERPWEB.F_38_AI
                         ddlgval.DataValueField = "infcod";
                         ddlgval.DataSource = dv3.ToTable();
                         ddlgval.DataBind();
-                        ddlgval.SelectedValue = (custid=="")? ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString()
-                            : custid;
+                        ddlgval.SelectedValue = (custid=="")? customer : custid;
+
                         break;
 
                     case "03025"://get team leader
                                  // gvalue = dt.Rows[i]["value"].ToString();
+                        string teamleader = ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.ToString();
+
                         dv4 = dt5.DefaultView;
                         //dv3.RowFilter = ("infcod like '51%' and infcod not like'%00'");
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
@@ -195,14 +203,16 @@ namespace RealERPWEB.F_38_AI
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                         
                         ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
                         ddlgval.DataTextField = "empname";
                         ddlgval.DataValueField = "empid";
                         ddlgval.DataSource = dv4.ToTable();
                         ddlgval.DataBind();
-                        ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
+                        ddlgval.SelectedValue = teamleader;
                         break;
                     case "03011": //country
+                        string currency = ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.ToString();
 
                         DataTable dtc = (DataTable)Session["tblCunt"];
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
@@ -210,12 +220,13 @@ namespace RealERPWEB.F_38_AI
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Visible = true;
                         ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Clear();
+                        
                         ddlgval = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval"));
                         ddlgval.DataTextField = "codedesc";
                         ddlgval.DataValueField = "code";
                         ddlgval.DataSource = dtc;
                         ddlgval.DataBind();
-                        ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
+                        ddlgval.SelectedValue = currency;
                         break;
                     case "03008"://date time 
                     case "03009"://date time 
@@ -227,8 +238,8 @@ namespace RealERPWEB.F_38_AI
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("lgvgdatan")).Visible = false;
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text = gdatat;
                         break;
-                    case "03018":
-
+                    case "03018"://order type
+                        string ordtype = ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.ToString();
                         dv2 = dt3.DefaultView;
                         dv2.RowFilter = ("gcod like '80%' and gcod not like'%00'");
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
@@ -241,7 +252,7 @@ namespace RealERPWEB.F_38_AI
                         ddlgval.DataValueField = "gcod";
                         ddlgval.DataSource = dv2.ToTable();
                         ddlgval.DataBind();
-                        ddlgval.SelectedValue = ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).ToString();
+                        ddlgval.SelectedValue = ordtype;
                         break;
                     case "03015":
                     case "03017":
