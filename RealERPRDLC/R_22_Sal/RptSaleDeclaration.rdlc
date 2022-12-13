@@ -1318,7 +1318,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Parameters!customerno.Value).Substring(2,4)+Format(Parameters!customerno.Value).Substring(8,4)</Value>
+                                  <Value>=Parameters!customerno.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                   </Style>
@@ -1997,7 +1997,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>SALES DECLARATION</Value>
+                      <Value>    SALES DECLARATION</Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
                         <FontSize>12pt</FontSize>
