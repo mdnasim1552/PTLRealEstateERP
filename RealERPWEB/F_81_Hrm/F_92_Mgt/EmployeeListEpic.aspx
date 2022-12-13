@@ -241,7 +241,8 @@
                                                 <asp:TemplateField HeaderText="Image">
                                                     <ItemTemplate>
                                                         <%--<asp:Image ID="userimg" runat="server" style="width:50px;" ImageUrl="~/image/profile_img.png" />--%> 
-                                                        <asp:Image ID="userimg" runat="server" style="width:30px;" ImageUrl="~/Upload/UserImages/3101001.png" />
+                                                        <%--<asp:Image ID="userimg" runat="server" style="width:30px;" ImageUrl="~/Upload/UserImages/3101001.png" />--%>
+                                                        <asp:Image ID="userimg" runat="server" ImageUrl='<%# ((string)Eval("empimg")) %>' Height="50" />
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                     <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle" Font-Size="16px" Font-Bold="true" />
