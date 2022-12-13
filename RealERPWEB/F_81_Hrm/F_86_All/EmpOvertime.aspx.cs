@@ -621,11 +621,14 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             switch (comcod)
             {
                 case "3368"://Finlay
-                case "3369"://acme ai
-
                     CallType = "EMPALLOYOVERTIMEFINLAY";
                     break;
-               
+
+                case "3369"://acme ai
+                    CallType = "EMPALLOYOVERTIMEACMEAI";
+
+                    break;
+
                 default:
                     CallType = "EMPALLOYOVERTIME";
                     break;
@@ -4006,7 +4009,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                     //acmeai
                 case "3369":
-                    calltype = "GETOTDETAILSFINLAY";
+                    calltype = "GETOTDETAILSACMEAI";
                     break;
 
                 default:
