@@ -1907,10 +1907,8 @@ namespace RealERPWEB.F_99_Allinterface
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrint"); // crystal print link
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntry");
                 HyperLink hlinkPO = (HyperLink)e.Row.FindControl("lnkbtnPOEdit");
-
                 HyperLink hlink3 = (HyperLink)e.Row.FindControl("HyperLink2");
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -1920,45 +1918,6 @@ namespace RealERPWEB.F_99_Allinterface
                 string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ssircode")).ToString();
                 //string imesimeno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mimei")).ToString();
 
-                switch (comcod)
-                {
-                    // hide crystal print options
-                    case "3101":
-                    case "3355":
-                    case "3353":
-                    case "1205":
-                    case "3351":
-                    case "3352":
-                    case "3330":
-                    case "3336":// shuvastu
-                    case "3337":
-                    case "3364": // JBS
-                    case "3339": // Tropical
-                    case "3354": // Edison
-                    case "3366": // Lanco
-
-                    case "1108": // assure
-                    case "1109": // assure
-                    case "3315": // assure
-                    case "3316": // assure
-
-                    case "3357": // Cube
-                    case "3367": // Epic
-                    case "3368": // Finlay
-
-                    case "3358": // Entrust
-                    case "3359": // Entrust
-                    case "3360": // Entrust
-                    case "3361": // Entrust 
-
-                        hlink1.Visible = false;
-                        break;
-                    default:
-                        hlink1.Visible = true;
-                        break;
-                }
-
-                hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrint&orderno=" + orderno;
                 hlink3.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno;
                 hlinkPO.NavigateUrl = "~/F_14_Pro/PurWrkOrderEntry?InputType=OrderEdit&genno=" + orderno;
 
@@ -2824,7 +2783,7 @@ namespace RealERPWEB.F_99_Allinterface
             }
 
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            string genno = ((Label)this.gvReqChk.Rows[RowIndex].FindControl("lblgvreqnorq")).Text.Trim();
+            string genno = ((Label)this.gvReqChk.Rows[RowIndex].FindControl("lblgvreqnochk")).Text.Trim();
 
 
             //accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "RPTACCOUNTDASHBOARD", "%", Date, "%", "", "", "", "", "", "");
@@ -3135,7 +3094,7 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
             }
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            string genno = ((Label)this.gvOrdeProc.Rows[RowIndex].FindControl("lblgvreqno")).Text.Trim();
+            string genno = ((Label)this.gvOrdeProc.Rows[RowIndex].FindControl("lblgvOrdeProcreqno")).Text.Trim();
 
 
             //accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "RPTACCOUNTDASHBOARD", "%", Date, "%", "", "", "", "", "", "");
@@ -3281,8 +3240,12 @@ namespace RealERPWEB.F_99_Allinterface
                 case "1205":  //P2P Construction
                 case "3351":  //wecon Properties
                 case "3352":  //p2p360
-                case "3101":  // Green Wood
+                //case "3101":  // Green Wood
                     delorder = "delsapp";
+                    break;
+                
+                case "3370":  // CPDL
+                    delorder = "delsappind";
                     break;
 
                 default:
@@ -3317,7 +3280,7 @@ namespace RealERPWEB.F_99_Allinterface
             }
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string genno = ((Label)this.grvMRec.Rows[RowIndex].FindControl("lblgvorderno")).Text.Trim();
-            string toorder = Convert.ToDouble(((Label)this.grvMRec.Rows[RowIndex].FindControl("lblgvWoamt")).Text.Trim()).ToString();
+            //string toorder = Convert.ToDouble(((Label)this.grvMRec.Rows[RowIndex].FindControl("lblgvWoamt")).Text.Trim()).ToString();
 
 
             //accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "RPTACCOUNTDASHBOARD", "%", Date, "%", "", "", "", "", "", "");
@@ -3340,9 +3303,7 @@ namespace RealERPWEB.F_99_Allinterface
             }
 
             string delorder = this.GetDelOrder();
-            bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEORDERNOAAPPROVED", genno, delorder, toorder, "", "", "", "", "", "", "", "", "", "", "", "");
-
-
+            bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEORDERNOAAPPROVED", genno, delorder, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
 
             if (!resulbill)

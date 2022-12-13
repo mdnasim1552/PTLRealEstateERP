@@ -362,32 +362,50 @@ namespace RealERPWEB.F_99_Allinterface
             dv.RowFilter = ("orderno =''");
             this.Data_Bind("gvWorkOrder", dv.ToTable());
 
+            switch (comcod)
+            {
+                
 
-            /// Measurement Book  
-            dt = (DataTable)ds1.Tables[11];
-            this.Data_Bind("gvmbook", dt);
-
-
-            /// Measurement Book Approval
-            //dt = ((DataTable)ds1.Tables[11]).Copy();
-            //dv = dt.DefaultView;
-            //dv.RowFilter = ("orderno <>'' and mbno <>'' and mbnoapp=''");
-            //this.Data_Bind("gvmbookapp", dv.ToTable());
-
-
-
-
-            // Ready For Bill
-            dt = (DataTable)ds1.Tables[12];
-            this.Data_Bind("gvReadyForBill", dt);
+                case "3351":
+                case "1205":
+                case "3352":
+                case "3101":
+                    /// Ready For Bill
+                    dt = ((DataTable)ds1.Tables[7]).Copy();
+                    dv = dt.DefaultView;
+                    dv.RowFilter = ("orderno <>''  and lisueno=''");
+                    this.Data_Bind("gvReadyForBill", dv.ToTable());
 
 
+                    break;
 
-            /// Ready For Bill
-            //dt = ((DataTable)ds1.Tables[7]).Copy();
-            //dv = dt.DefaultView;
-            //dv.RowFilter = ("orderno <>''  and lisueno=''");
-            //this.Data_Bind("gvReadyForBill", dv.ToTable());
+                default:
+
+                    /// Measurement Book  
+                    dt = (DataTable)ds1.Tables[11];
+                    this.Data_Bind("gvmbook", dt);
+                    /// Measurement Book Approval
+                    //dt = ((DataTable)ds1.Tables[11]).Copy();
+                    //dv = dt.DefaultView;
+                    //dv.RowFilter = ("orderno <>'' and mbno <>'' and mbnoapp=''");
+                    //this.Data_Bind("gvmbookapp", dv.ToTable());
+                    break;
+
+            }       
+
+           
+
+
+
+
+
+
+
+           
+
+
+
+
 
 
             dtb = ((DataTable)ds1.Tables[2]).Copy();
@@ -422,6 +440,7 @@ namespace RealERPWEB.F_99_Allinterface
             dv = dtb.DefaultView;
             dv.RowFilter = (" frecid <>'' and secrecid<>'' and threcid=''");
             this.Data_Bind("gvthrec", dv.ToTable());
+
 
 
             //dv = dtb.DefaultView;

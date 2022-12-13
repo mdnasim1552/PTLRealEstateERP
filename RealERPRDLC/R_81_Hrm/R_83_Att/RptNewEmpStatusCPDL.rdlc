@@ -2263,7 +2263,7 @@ len(Fields!actTimehour.Value)=0, True)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!overtime.Value,"hh:mm tt")</Value>
+                                  <Value>=Format(Fields!overtime.Value)</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
