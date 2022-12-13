@@ -672,8 +672,9 @@ namespace RealERPWEB.F_22_Sal
             Session["tblperinfo"] = dtp;
             this.Data_BindPer();
 
-
         }
+
+
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
 
@@ -1225,9 +1226,37 @@ namespace RealERPWEB.F_22_Sal
             double usize = Convert.ToDouble(dt1.Select("gcod='65021'")[0]["gdesc1"]);
             double rate = Convert.ToDouble(dt2.Select("Code='01'")[0]["amount"]);
 
+
+
+            
+
+
+
+
+
+
+
             double upirce = usize * rate;
             DataRow[] drp = dt2.Select("Code='02'");
+
+
+
+            double discount = Convert.ToDouble(dt2.Select("Code='08'")[0]["amount"]);
+            //double propertyprice = Convert.ToDouble(dt2.Select("Code='02'")[0]["amount"]);
+           
+            if (discount > 0)
+            {
+                //DataRow[] drd = dt2.Select("Code='02'");
+                //drd[0]["amount"] = ppamtafterdiscount;
+                upirce = upirce - discount;
+
+                DataRow[] drpp = dt2.Select("Code='02'");
+                drpp[0]["amount"] = upirce;
+            }
+
+
             drp[0]["amount"] = upirce;
+
             double carParkingPrice = Convert.ToDouble(dt2.Select("Code='03'")[0]["amount"]);
             double utility = Convert.ToDouble(dt2.Select("Code='04'")[0]["amount"]);
             double others = Convert.ToDouble(dt2.Select("Code='05'")[0]["amount"]);
@@ -1238,17 +1267,36 @@ namespace RealERPWEB.F_22_Sal
             drt[0]["amount"] = toamt;
             //dt2.Rows[0]["amount"] = toamt;
 
+
+
             Session["tblprjinfo"] = dt1;
             Session["tblpricedetail"] = dt2;
-
             this.Data_BindPriceDetail();
 
+
             double amtpercnt = Convert.ToDouble(dt2.Select("Code='07'")[0]["amount"]);
-            double payAmount = toamt - (amtpercnt / 100) * toamt;
+            double payAmount = ((toamt * amtpercnt) / 100);
             this.TextBookingAmt.Text = payAmount.ToString("#,##0;(#,##0); ");
+
+
+
+
+
+            //double discount = Convert.ToDouble(dt2.Select("Code='08'")[0]["amount"]);
+
+            //double toamtafterdiscount = toamt - discount;
+            //if (discount > 0)
+            //{
+            //    DataRow[] drd = dt2.Select("Code='06'");
+            //    drd[0]["amount"] = toamtafterdiscount;
+
+            //    //DataRow[] drpp = dt2.Select("Code='02'");
+            //    //drpp[0]["amount"] = toamtafterdiscount;
+            //}
+            //double amtpercnt = Convert.ToDouble(dt2.Select("Code='07'")[0]["amount"]);
+            //double payAmount = ((toamtafterdiscount * amtpercnt) / 100);
+            //this.TextBookingAmt.Text = payAmount.ToString("#,##0;(#,##0); ");
         }
-
-
 
 
         //private void LoadImg()
@@ -1259,7 +1307,5 @@ namespace RealERPWEB.F_22_Sal
 
         //    DataSet dt = SalData.GetTransInfo (comcod, "SP_ENTRY_DUMMYSALSMGT", "GETCUSIMG", pactcode, usircode);
         //}
-
-
     }
 }

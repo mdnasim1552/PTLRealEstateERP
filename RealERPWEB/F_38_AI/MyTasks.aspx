@@ -103,9 +103,9 @@
 
                                                     <asp:TemplateField HeaderText="Order Type" Visible="false">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblordertype" runat="server" Height="16px"
+                                                           <%-- <asp:Label ID="lblordertype" runat="server" Height="16px"
                                                                 Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype"))%>'
-                                                                ForeColor="Black"></asp:Label>
+                                                                ForeColor="Black"></asp:Label>--%>
                                                             <asp:Label ID="lbljobid" runat="server" Height="16px" Visible="false"
                                                                 Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "jobid"))%>'
                                                                 ForeColor="Black"></asp:Label>
@@ -118,7 +118,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Job Name">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="tblbatchname" runat="server" Font-Bold="true"
+                                                           <asp:Label ID="tblbatchname" runat="server" Font-Bold="true"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "batchname")) %>'></asp:Label>
                                                             <br />
                                                             <asp:Label ID="Lbltasktitle" runat="server"

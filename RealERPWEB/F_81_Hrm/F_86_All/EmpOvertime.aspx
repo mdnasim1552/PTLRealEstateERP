@@ -490,7 +490,7 @@
                                                     Width="80px"></asp:Label>
                                                <asp:LinkButton runat="server" ID="lnksyshour" OnClick="lnksyshour_Click"></asp:LinkButton>--%>
 
-                                          <asp:Button runat="server" ID="lblsyshour" Width="40px" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "syshour")).ToString("#,##0;(#,##0); ") %>' CommandArgument="H" />
+                                          <asp:Button runat="server" ID="lblsyshour" Width="40px" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "syshour")).ToString("#,##0.0;(#,##0.0); ") %>' CommandArgument="H" />
                                             </ItemTemplate>
 
                                             <FooterStyle HorizontalAlign="Right" />
