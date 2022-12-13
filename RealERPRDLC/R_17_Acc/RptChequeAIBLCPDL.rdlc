@@ -56,7 +56,7 @@
                   <TextRun>
                     <Value>=Parameters!amtWord.Value</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
+                      <FontFamily>Cambria</FontFamily>
                       <FontSize>11pt</FontSize>
                     </Style>
                   </TextRun>
@@ -388,7 +388,7 @@
                   <TextRun>
                     <Value>=Parameters!amtWord1.Value</Value>
                     <Style>
-                      <FontFamily>Calibri</FontFamily>
+                      <FontFamily>Cambria</FontFamily>
                       <FontSize>11pt</FontSize>
                     </Style>
                   </TextRun>
