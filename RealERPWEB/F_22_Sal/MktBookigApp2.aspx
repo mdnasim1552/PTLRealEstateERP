@@ -102,6 +102,14 @@
           border-radius: 50%;
         }
 
+
+        /*#ContentPlaceHolder1_ddlProjectName_chzn {
+            width: 300px;
+        }
+
+        #ContentPlaceHolder1_ddlProjectName_chzn .chzn-drop {
+            width: 300px!important;
+        }  */      
     </style>
 
 
@@ -131,7 +139,7 @@
                         <div class="card-body">
                             <div class="row">
 
-                                <div class="col-md-2">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <asp:TextBox ID="txtSrcProject" runat="server" TabIndex="3" CssClass="form-control form-control-sm" Visible="false"></asp:TextBox>
                                         <asp:LinkButton ID="imgbtnFindProject" runat="server" OnClick="imgbtnFindProject_Click" TabIndex="4" CssClass="btn btn-sm">Project Name</asp:LinkButton>
@@ -352,13 +360,15 @@
                                                             </div>
                                                         </div>--%>
 
-                                                        <div class="col-md-2">
+                                                        
+
+
+                                                        <div class="col-md-3">
                                                             <div class"form-group">
-                                                               <asp:Label ID="lblBookAmt" runat="server" CssClass="control-label" Text="Payment Amount"></asp:Label>
-                                                                <asp:TextBox ID="TextBookingAmt" runat="server" TabIndex="5" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                                <asp:Label ID="Lblrcvbookingam" runat="server" CssClass="control-label" Text="Received Amount During Booking"></asp:Label>
+                                                                <asp:TextBox ID="txtrcvbookingam" runat="server" TabIndex="5" CssClass="form-control form-control-sm"></asp:TextBox>
                                                             </div>
                                                         </div>
-
 
                                                         <div class="col-md-2">
                                                             <div class"form-group">
@@ -402,10 +412,10 @@
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-2">
                                                             <div class"form-group">
-                                                                <asp:Label ID="Lblrcvbookingam" runat="server" CssClass="control-label" Text="Received Amount During Booking"></asp:Label>
-                                                                <asp:TextBox ID="txtrcvbookingam" runat="server" TabIndex="5" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                               <asp:Label ID="lblBookAmt" runat="server" CssClass="control-label" Text="Booking Amount"></asp:Label>
+                                                                <asp:TextBox ID="TextBookingAmt" runat="server" TabIndex="5" CssClass="form-control form-control-sm"></asp:TextBox>
                                                             </div>
                                                         </div>
 

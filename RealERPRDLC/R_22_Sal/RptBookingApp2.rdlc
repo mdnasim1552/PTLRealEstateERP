@@ -405,13 +405,13 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1.41161in</Width>
+                  <Width>1.43167in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.41161in</Width>
+                  <Width>1.43167in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5887in</Width>
+                  <Width>2.60876in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -637,13 +637,13 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>1.43519in</Width>
+                                <Width>1.45525in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.81237in</Width>
+                                <Width>0.83243in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>3.16436in</Width>
+                                <Width>3.18442in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -762,13 +762,13 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>2.07828in</Width>
+                                <Width>2.09834in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.32828in</Width>
+                                <Width>0.34834in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>3.00536in</Width>
+                                <Width>3.02542in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -965,10 +965,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>3.82913in</Top>
-            <Left>1.25733in</Left>
+            <Top>3.94198in</Top>
+            <Left>1.21064in</Left>
             <Height>2.32292in</Height>
-            <Width>5.41192in</Width>
+            <Width>5.4721in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -982,7 +982,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>APPLICANT ID :     CUS</Value>
+                    <Value>APPLICANT ID :  CUS</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontSize>16pt</FontSize>
@@ -994,10 +994,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox196</rd:DefaultName>
-            <Top>6.51959in</Top>
-            <Left>1.25733in</Left>
+            <Top>6.63244in</Top>
+            <Left>1.21064in</Left>
             <Height>0.36458in</Height>
-            <Width>2.49459in</Width>
+            <Width>2.14339in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -1018,7 +1018,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Format(Parameters!customerno.Value).Substring(6,1)</Value>
+                    <Value>=Format(Parameters!customerno.Value).Substring(2,1)</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontSize>16pt</FontSize>
@@ -1031,10 +1031,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox182</rd:DefaultName>
-            <Top>6.51959in</Top>
-            <Left>3.82136in</Left>
-            <Height>0.37673in</Height>
-            <Width>0.46865in</Width>
+            <Top>6.63243in</Top>
+            <Left>3.35641in</Left>
+            <Height>0.36631in</Height>
+            <Width>0.40628in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -1055,7 +1055,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Format(Parameters!customerno.Value).Substring(7,1)</Value>
+                    <Value>=Format(Parameters!customerno.Value).Substring(3,1)</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontSize>16pt</FontSize>
@@ -1068,10 +1068,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox182</rd:DefaultName>
-            <Top>6.51959in</Top>
-            <Left>4.29001in</Left>
-            <Height>0.37673in</Height>
-            <Width>0.46865in</Width>
+            <Top>6.63243in</Top>
+            <Left>3.7488in</Left>
+            <Height>0.36631in</Height>
+            <Width>0.42017in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -1092,7 +1092,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Format(Parameters!customerno.Value).Substring(8,1)</Value>
+                    <Value>=Format(Parameters!customerno.Value).Substring(4,1)</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontSize>16pt</FontSize>
@@ -1105,10 +1105,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox182</rd:DefaultName>
-            <Top>6.51959in</Top>
-            <Left>4.75504in</Left>
-            <Height>0.37673in</Height>
-            <Width>0.46865in</Width>
+            <Top>6.63243in</Top>
+            <Left>4.16897in</Left>
+            <Height>0.36631in</Height>
+            <Width>0.42017in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -1129,7 +1129,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Format(Parameters!customerno.Value).Substring(9,1)</Value>
+                    <Value>=Format(Parameters!customerno.Value).Substring(5,1)</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontSize>16pt</FontSize>
@@ -1142,10 +1142,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox182</rd:DefaultName>
-            <Top>6.51959in</Top>
-            <Left>5.22369in</Left>
-            <Height>0.37673in</Height>
-            <Width>0.46865in</Width>
+            <Top>6.63243in</Top>
+            <Left>4.58775in</Left>
+            <Height>0.36631in</Height>
+            <Width>0.42017in</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -7009,7 +7009,7 @@ The information and particulars furnished by me/us in this enrollment from are t
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Format(Parameters!customerno.Value).Substring(10,1)</Value>
+                    <Value>=Format(Parameters!customerno.Value).Substring(8,1)</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontSize>16pt</FontSize>
@@ -7022,10 +7022,10 @@ The information and particulars furnished by me/us in this enrollment from are t
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox182</rd:DefaultName>
-            <Top>6.51959in</Top>
-            <Left>5.70261in</Left>
-            <Height>0.37673in</Height>
-            <Width>0.4841in</Width>
+            <Top>6.63243in</Top>
+            <Left>5.00792in</Left>
+            <Height>0.36631in</Height>
+            <Width>0.43562in</Width>
             <ZIndex>24</ZIndex>
             <Style>
               <Border>
@@ -7046,7 +7046,7 @@ The information and particulars furnished by me/us in this enrollment from are t
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Format(Parameters!customerno.Value).Substring(11,1)</Value>
+                    <Value>=Format(Parameters!customerno.Value).Substring(9,1)</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontSize>16pt</FontSize>
@@ -7059,10 +7059,10 @@ The information and particulars furnished by me/us in this enrollment from are t
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox182</rd:DefaultName>
-            <Top>6.51959in</Top>
-            <Left>6.2006in</Left>
-            <Height>0.37673in</Height>
-            <Width>0.46865in</Width>
+            <Top>6.63243in</Top>
+            <Left>5.42224in</Left>
+            <Height>0.36631in</Height>
+            <Width>0.42017in</Width>
             <ZIndex>25</ZIndex>
             <Style>
               <Border>
@@ -7522,10 +7522,10 @@ The information and particulars furnished by me/us in this enrollment from are t
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>6.16368in</Top>
-            <Left>1.25733in</Left>
+            <Top>6.27653in</Top>
+            <Left>1.21064in</Left>
             <Height>0.31424in</Height>
-            <Width>5.39879in</Width>
+            <Width>5.47211in</Width>
             <ZIndex>31</ZIndex>
             <Style>
               <Border>
@@ -7871,36 +7871,6 @@ The information and particulars furnished by me/us in this enrollment from are t
               </Border>
             </Style>
           </Tablix>
-          <Textbox Name="Textbox3">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value />
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>3.71923in</Top>
-            <Left>1.155in</Left>
-            <Height>3.28125in</Height>
-            <Width>5.625in</Width>
-            <ZIndex>39</ZIndex>
-            <Style>
-              <Border>
-                <Style>Solid</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Tablix Name="Tablix8">
             <TablixBody>
               <TablixColumns>
@@ -8137,13 +8107,117 @@ The information and particulars furnished by me/us in this enrollment from are t
             <Left>0.03353in</Left>
             <Height>0.5in</Height>
             <Width>7.82541in</Width>
-            <ZIndex>40</ZIndex>
+            <ZIndex>39</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
             </Style>
           </Tablix>
+          <Textbox Name="Textbox197">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Format(Parameters!customerno.Value).Substring(11,1)</Value>
+                    <Style>
+                      <FontFamily>Cambria</FontFamily>
+                      <FontSize>16pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox182</rd:DefaultName>
+            <Top>6.63243in</Top>
+            <Left>6.26258in</Left>
+            <Height>0.36631in</Height>
+            <Width>0.42017in</Width>
+            <ZIndex>40</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <BackgroundColor>White</BackgroundColor>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox198">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Format(Parameters!customerno.Value).Substring(10,1)</Value>
+                    <Style>
+                      <FontFamily>Cambria</FontFamily>
+                      <FontSize>16pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox182</rd:DefaultName>
+            <Top>6.63243in</Top>
+            <Left>5.84241in</Left>
+            <Height>0.36631in</Height>
+            <Width>0.42017in</Width>
+            <ZIndex>41</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <BackgroundColor>White</BackgroundColor>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox7">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox7</rd:DefaultName>
+            <Top>3.83034in</Top>
+            <Left>1.11333in</Left>
+            <Height>3.28125in</Height>
+            <Width>5.67708in</Width>
+            <ZIndex>42</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>40.51285in</Height>
         <Style />

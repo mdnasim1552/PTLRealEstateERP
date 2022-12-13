@@ -49,6 +49,7 @@ namespace RealERPWEB.F_22_Sal
 
                 this.GetProjectName();
                 this.GetMaxCustNumber();
+                this.GetSalesName();
             }
 
 
@@ -117,6 +118,32 @@ namespace RealERPWEB.F_22_Sal
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
         }
+
+
+
+        private void GetSalesName()
+        {
+            try
+            {
+                string comcod = this.GetCompCode();
+
+                string pactcode = this.ddlProjectName.SelectedValue.ToString();
+                string custid = this.ddlCustName.SelectedValue.ToString();
+
+                DataSet ds = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "GETSALESNAME", pactcode, custid, "", "", "", "", "", "", "");
+                if (ds == null)
+                {
+                    return;
+                }
+                Session["salesname"] = ds.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+        }
+
 
         private void GetMaxCustNumber()
         {
@@ -206,7 +233,7 @@ namespace RealERPWEB.F_22_Sal
                     this.ddlProjectName.Enabled = false;
                     this.ddlCustName.Enabled = false;
                     this.MultiView1.ActiveViewIndex = 0;
-                
+
                     this.GetMaxCustNumber();
                     this.ShowData();
                     return;
@@ -282,7 +309,7 @@ namespace RealERPWEB.F_22_Sal
                     this.txtCustmerNumber.Text = dt.Rows[0]["customerno"].ToString();
             }
 
-            
+
             ds2.Dispose();
             this.Data_BindPrj();
             this.Data_BindPer();
@@ -672,8 +699,9 @@ namespace RealERPWEB.F_22_Sal
             Session["tblperinfo"] = dtp;
             this.Data_BindPer();
 
-
         }
+
+
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
 
@@ -705,6 +733,8 @@ namespace RealERPWEB.F_22_Sal
             DataTable dt2 = (DataTable)Session["tblcustinfo"];
             DataTable dt3 = (DataTable)Session["tblprice"];
             DataTable dt10 = (DataTable)Session["tblrmrk"];
+            DataTable dtSalname = (DataTable)Session["salesname"];
+            
 
 
 
@@ -725,6 +755,10 @@ namespace RealERPWEB.F_22_Sal
 
             Rpt1.SetParameters(new ReportParameter("enrolmentdate", Convert.ToDateTime(dt2.Rows[0]["appdate"]).ToString("ddMMyyyy")));
             Rpt1.SetParameters(new ReportParameter("customerno", dt2.Rows[0]["customerno"].ToString()));
+            if (dt2.Rows[0]["customerno"].ToString() == "") {
+                Rpt1.SetParameters(new ReportParameter("customerno", dt2.Rows[0]["usircode"].ToString()));
+            }
+
             Rpt1.SetParameters(new ReportParameter("usircode", dt2.Rows[0]["usircode"].ToString()));
             Rpt1.SetParameters(new ReportParameter("bookingno", dt2.Rows[0]["bookingno"].ToString()));
             Rpt1.SetParameters(new ReportParameter("customername", dt2.Rows[0]["fullname"].ToString()));
@@ -737,8 +771,12 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("size", dt2.Rows[0]["size"].ToString()));
             Rpt1.SetParameters(new ReportParameter("propertyaddress", dt3.Rows[0]["propertyAddress"].ToString()));
             Rpt1.SetParameters(new ReportParameter("remarks", dt10.Rows[0]["remarks"].ToString()));
+            if (dtSalname.Rows.Count > 0) {
+                Rpt1.SetParameters(new ReportParameter("salesname", dtSalname.Rows[0]["salesname"].ToString()));
+            }
 
 
+            Session["Report1"] = Rpt1;
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
@@ -1225,9 +1263,37 @@ namespace RealERPWEB.F_22_Sal
             double usize = Convert.ToDouble(dt1.Select("gcod='65021'")[0]["gdesc1"]);
             double rate = Convert.ToDouble(dt2.Select("Code='01'")[0]["amount"]);
 
+
+
+
+
+
+
+
+
+
+
             double upirce = usize * rate;
             DataRow[] drp = dt2.Select("Code='02'");
+
+
+
+            double discount = Convert.ToDouble(dt2.Select("Code='08'")[0]["amount"]);
+            //double propertyprice = Convert.ToDouble(dt2.Select("Code='02'")[0]["amount"]);
+
+            if (discount > 0)
+            {
+                //DataRow[] drd = dt2.Select("Code='02'");
+                //drd[0]["amount"] = ppamtafterdiscount;
+                upirce = upirce - discount;
+
+                DataRow[] drpp = dt2.Select("Code='02'");
+                drpp[0]["amount"] = upirce;
+            }
+
+
             drp[0]["amount"] = upirce;
+
             double carParkingPrice = Convert.ToDouble(dt2.Select("Code='03'")[0]["amount"]);
             double utility = Convert.ToDouble(dt2.Select("Code='04'")[0]["amount"]);
             double others = Convert.ToDouble(dt2.Select("Code='05'")[0]["amount"]);
@@ -1238,17 +1304,36 @@ namespace RealERPWEB.F_22_Sal
             drt[0]["amount"] = toamt;
             //dt2.Rows[0]["amount"] = toamt;
 
+
+
             Session["tblprjinfo"] = dt1;
             Session["tblpricedetail"] = dt2;
-
             this.Data_BindPriceDetail();
 
+
             double amtpercnt = Convert.ToDouble(dt2.Select("Code='07'")[0]["amount"]);
-            double payAmount = toamt - (amtpercnt / 100) * toamt;
+            double payAmount = ((toamt * amtpercnt) / 100);
             this.TextBookingAmt.Text = payAmount.ToString("#,##0;(#,##0); ");
+
+
+
+
+
+            //double discount = Convert.ToDouble(dt2.Select("Code='08'")[0]["amount"]);
+
+            //double toamtafterdiscount = toamt - discount;
+            //if (discount > 0)
+            //{
+            //    DataRow[] drd = dt2.Select("Code='06'");
+            //    drd[0]["amount"] = toamtafterdiscount;
+
+            //    //DataRow[] drpp = dt2.Select("Code='02'");
+            //    //drpp[0]["amount"] = toamtafterdiscount;
+            //}
+            //double amtpercnt = Convert.ToDouble(dt2.Select("Code='07'")[0]["amount"]);
+            //double payAmount = ((toamtafterdiscount * amtpercnt) / 100);
+            //this.TextBookingAmt.Text = payAmount.ToString("#,##0;(#,##0); ");
         }
-
-
 
 
         //private void LoadImg()
@@ -1259,7 +1344,5 @@ namespace RealERPWEB.F_22_Sal
 
         //    DataSet dt = SalData.GetTransInfo (comcod, "SP_ENTRY_DUMMYSALSMGT", "GETCUSIMG", pactcode, usircode);
         //}
-
-
     }
 }

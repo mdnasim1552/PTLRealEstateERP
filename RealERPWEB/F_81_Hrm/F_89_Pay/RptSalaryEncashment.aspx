@@ -1,65 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNew.Master" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="EmpOvertime.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_86_All.EmpOvertime" %>
-
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptSalaryEncashment.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_89_Pay.RptSalaryEncashment" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
-
-
-    <script type="text/javascript" language="javascript">
-        $(document).ready(function () {
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-
-        });
-        function pageLoaded() {
-            var gvOvertime = $('#<%=this.gvEmpOverTime.ClientID %>');
-            var gvBankPay = $('#<%=this.gvBankPay.ClientID %>');
-            var gvEmpHoliday = $('#<%=this.gvEmpHoliday.ClientID %>');
-            var gvEmpMbill = $('#<%=this.gvEmpMbill.ClientID %>');
-            var gvEmpELeave = $('#<%=this.gvEmpELeave.ClientID %>');
-            var gvEmpOtherded = $('#<%=this.gvEmpOtherded.ClientID %>');
-            var gvEmploan = $('#<%=this.gvEmploan.ClientID %>');
-            var gvarrear = $('#<%=this.gvarrear.ClientID %>');
-            var gvothearn = $('#<%=this.gvothearn.ClientID %>');
-
-
-            gvarrear.Scrollable();
-
-            $("input, select").bind("keydown", function (event) {
-                var k1 = new KeyPress();
-                k1.textBoxHandler(event);
-
-
-                // $.keynavigation(gvOvertime);
-                $.keynavigation(gvBankPay);
-                $.keynavigation(gvEmpHoliday);
-                $.keynavigation(gvEmpMbill);
-                $.keynavigation(gvEmpELeave);
-                $.keynavigation(gvEmpOtherded);
-                $.keynavigation(gvEmploan);
-                $.keynavigation(gvarrear);
-                $.keynavigation(gvothearn);
-
-            });
-
-
-            gvothearn.Scrollable();
-            gvOvertime.Scrollable();
-            gvEmpOtherded.Scrollable();
-            //  gvEmpMbill.Scrollable();
-            $('.chzn-select').chosen({ search_contains: true });
-        }
-
-
-        function otdetails() {
-            $('#otdetails').modal('toggle');
-        }
-
-    </script>
-
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -86,7 +28,7 @@
                         <fieldset class="scheduler-border fieldset_A">
                             <div class="form-horizontal">
                                 <div class="row">
-                                    <div class="col-lg-1 col-md-2 col-sm-3">
+                                    <div class="col-lg-2 col-md-2 col-sm-3">
                                         <div class="form-group">
 
                                             <asp:Label ID="lbldate" runat="server" CssClass="lblTxt lblName">Date</asp:Label>
@@ -490,7 +432,7 @@
                                                     Width="80px"></asp:Label>
                                                <asp:LinkButton runat="server" ID="lnksyshour" OnClick="lnksyshour_Click"></asp:LinkButton>--%>
 
-                                          <asp:Button runat="server" ID="lblsyshour" Width="40px" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "syshour")).ToString("#,##0.0;(#,##0.0); ") %>' CommandArgument="H" />
+                                          <asp:Button runat="server" ID="lblsyshour" Width="40px" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "syshour")).ToString("#,##0;(#,##0); ") %>' CommandArgument="H" />
                                             </ItemTemplate>
 
                                             <FooterStyle HorizontalAlign="Right" />
@@ -2369,92 +2311,8 @@
             </div>
 
 
-        <div class="modal fade" id="otdetails" tabindex="-1" role="dialog" aria-labelledby="NoticeModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document" >
-                <div class="modal-content">
-                    <div class="modal-header order-bottom">
-                        <h6 class="modal-title font-weight-bold" id="">Overtime Details</h6>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="card">
-                            <div class="card-header bg-info ">
-                                <h6 class="font-weight-bold text-white" id="modalNoticeTitle" runat="server"></h6>
-                            </div>
-                            <div class="card-body bg-light">
-                                <div class="card-body bg-light">
-                                <div class="table-responsive pb-3">
-                                    <asp:GridView ID="gvotDetails" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-hover table-bordered grvContentarea" ShowFooter="True">
-                                        <RowStyle />
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="Sl">
-                                                <ItemTemplate>
-                                                    <asp:Label runat="server" Font-Bold="True"
-                                                        Style="text-align: left"
-                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                            </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="ID Card" Visible="false">
-                                                <ItemTemplate>
-                                                    <asp:Label runat="server" Style="text-align: center" ID="lblempid"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                            </asp:TemplateField>
-
-                                                  <asp:TemplateField HeaderText="Date">
-                                                <ItemTemplate>
-                                                    <asp:Label runat="server" Style="text-align: center" ID="lbldate"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "dayid")) %>'></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                            </asp:TemplateField>
-
-                                                    <asp:TemplateField HeaderText="In Time">
-                                                <ItemTemplate>
-                                                    <asp:Label runat="server" Style="text-align: center" ID="lblintime"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "intime")) %>'></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                            </asp:TemplateField>
-
-                                                 <asp:TemplateField HeaderText="Out Time">
-                                                <ItemTemplate>
-                                                    <asp:Label runat="server" Style="text-align: center" ID="lblintime"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "outtime")) %>'></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                            </asp:TemplateField>
-
-                                            
-                                                 <asp:TemplateField HeaderText="Total Hour">
-                                                <ItemTemplate>
-                                                    <asp:Label runat="server" Style="text-align: center" ID="lblttlhour"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ttlhour")) %>'></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
-                                            </asp:TemplateField>
-                                        </Columns>
-
-                                    </asp:GridView>
-                                </div>
-                            </div>
-
-                            </div>
-                        </div>
-
-
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
+       
 
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
-
