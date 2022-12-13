@@ -122,7 +122,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>3.4698in</Height>
+                  <Height>3.49063in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -338,8 +338,8 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox235</rd:DefaultName>
-                              <Top>3.25521in</Top>
-                              <Left>1.25in</Left>
+                              <Top>3.25313in</Top>
+                              <Left>1.22917in</Left>
                               <Height>0.17709in</Height>
                               <Width>0.94667in</Width>
                               <ZIndex>5</ZIndex>
@@ -441,6 +441,7 @@
                             </Border>
                           </Style>
                         </Rectangle>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -511,7 +512,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Height>3.88646in</Height>
+            <Height>3.90729in</Height>
             <Width>2.20771in</Width>
             <Style>
               <Border>
@@ -520,7 +521,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>3.88646in</Height>
+        <Height>3.93854in</Height>
         <Style />
       </Body>
       <Width>2.20771in</Width>
