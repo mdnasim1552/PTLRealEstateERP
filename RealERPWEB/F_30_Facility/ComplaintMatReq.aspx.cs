@@ -404,6 +404,7 @@ namespace RealERPWEB.F_30_Facility
             string comcod = GetComCode();
             string dgno = Request.QueryString["Dgno"] ?? ddlDgNo.SelectedValue.ToString();
             DataSet ds = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GETBUDGETINFOMATREQ", dgno, "", "", "", "", "", "", "", "", "", "");
+            ViewState["tblBudgetMaterial"] = ds.Tables[0];
             ddlMaterial.DataSource = ds.Tables[0];
             ddlMaterial.DataTextField = "materialdesc";
             ddlMaterial.DataValueField = "materialId";
@@ -413,14 +414,26 @@ namespace RealERPWEB.F_30_Facility
 
         protected void lnkTransferSelect_Click(object sender, EventArgs e)
         {
+            ddlFromInventory.Enabled = false;
             this.SaveValue();
             string rescode = this.ddlMaterial.SelectedValue.ToString().Trim();
             string spcfcod = this.ddlSpecification.SelectedValue.ToString();
             DataTable dt = (DataTable)ViewState["tblmattrns"];
             DataTable dt1 = (DataTable)Session["projectreslist"];
+            DataTable dt2 = (DataTable)ViewState["tblBudgetMaterial"];
             DataRow[] projectrow1 = dt1.Select("rsircode = '" + rescode + "' and spcfcod ='" + spcfcod + "'");
             DataRow[] projectrow2 = dt.Select("rsircode = '" + rescode + "' and spcfcod = '" + spcfcod + "'");
-
+            DataRow[] projectrow3 = dt2.Select("materialId='" + rescode + "'");
+            if (projectrow1.Length == 0)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Inventory of this resource found" + "');", true);
+                return;
+            }
+            if (projectrow3.Length == 0)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Budget Quantity Found" + "');", true);
+                return;
+            }
             if (projectrow2.Length == 0)
             {
                 DataRow drforgrid = dt.NewRow();
@@ -430,7 +443,7 @@ namespace RealERPWEB.F_30_Facility
                 drforgrid["resdesc"] = projectrow1[0]["resdesc"];
                 drforgrid["spcfdesc"] = this.ddlSpecification.SelectedItem.Text;
                 drforgrid["sirunit"] = projectrow1[0]["sirunit"];
-                drforgrid["qty"] = projectrow1[0]["qty"];
+                drforgrid["qty"] = projectrow3[0]["quantity"];
                 drforgrid["rate"] = projectrow1[0]["rate"];
                 drforgrid["amt"] = projectrow1[0]["amt"];
                 drforgrid["balqty"] = projectrow1[0]["balqty"];
@@ -580,7 +593,10 @@ namespace RealERPWEB.F_30_Facility
             string rsircode = ((Label)this.grvacc.Rows[e.RowIndex].FindControl("lblgvMatCode")).Text.Trim();
             string spcfcod = ((Label)this.grvacc.Rows[e.RowIndex].FindControl("lblgspcfcode")).Text.Trim();
 
-
+            if (e.RowIndex == 0)
+            {
+                ddlFromInventory.Enabled = true;
+            }
             bool result = _process.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "DELMTRREQNO", mISUNO, rsircode, spcfcod, "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (result == true)
@@ -597,6 +613,7 @@ namespace RealERPWEB.F_30_Facility
 
         protected void ddlMaterial_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Load_Project_Res_Combo();
             GetSpecification();
         }
 
@@ -615,8 +632,8 @@ namespace RealERPWEB.F_30_Facility
             {
                 string pactcodecalc = dt.Rows[0]["pactcode"].ToString();
 
-                pactcode = "16"+ ASTUtility.Right(pactcodecalc,10);
-                pactdesc= (dt.Rows[0]["pactdesc"].ToString()).Replace("ARC-","WIPC-");
+                pactcode = "16" + ASTUtility.Right(pactcodecalc, 10);
+                pactdesc = (dt.Rows[0]["pactdesc"].ToString()).Replace("ARC-", "WIPC-");
                 bool result = _process.UpdateTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "INSERT_AR_TO_WIP", pactcode, pactdesc, "2", "", "", "", "", "", "", "", "", "", "", "", "");
                 if (result)
                 {
@@ -642,7 +659,7 @@ namespace RealERPWEB.F_30_Facility
             int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
 
-            
+
             this.SaveValue();
             Hashtable hst = (Hashtable)Session["tblLogin"];
 
@@ -676,7 +693,7 @@ namespace RealERPWEB.F_30_Facility
             this.GetMatTrns();
             string mtreqno = lblMTRNoFull.Text;
             string mtrref = Request.QueryString["DgNo"] == null ? ddlDgNo.SelectedValue : Request.QueryString["DgNo"].ToString();
-                ;
+            ;
             string mtrnar = "";
             string fromprj = this.ddlFromInventory.SelectedValue.ToString().Trim();
             string toprj = createWIP();
@@ -686,7 +703,7 @@ namespace RealERPWEB.F_30_Facility
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg1 + "');", true);
                 return;
             }
-                
+
             dr1 = dt.Select("balqty<qty");
 
             if ((comcod == "3367") && ASTUtility.Left(fromprj, 2) == "11")
@@ -737,7 +754,7 @@ namespace RealERPWEB.F_30_Facility
                     if (ds2.Tables[0].Rows.Count == 0)
                     {
 
-                    } 
+                    }
                     else
                     {
 
@@ -820,6 +837,11 @@ namespace RealERPWEB.F_30_Facility
                 string eventdesc2 = "From " + this.ddlFromInventory.SelectedItem.ToString() + " To " + toprj + " - " + mtreqno;
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
+        }
+
+        protected void ddlFromInventory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetMaterial();
         }
     }
 }

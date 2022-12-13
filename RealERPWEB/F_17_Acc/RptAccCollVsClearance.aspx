@@ -2796,7 +2796,15 @@
     
 
 
-            
+            var MonthWiseCollection = [];
+            for (var i = 0; i < sdata.length; i++) {
+                MonthWiseCollection.push({ "name": sdata[i].prjname, "y": parseFloat(sdata[i].amt) })
+              /*  sumplead += parseFloat(prjLead[i].total);*/
+
+            }
+
+
+
 
             $("#MonthlyCol").highcharts({
                 chart: {
@@ -2836,74 +2844,81 @@
                     headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
                     pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
                 },
-                "series": [
+                series: [
                     {
-                        "name": "Collection",
-                        "colorByPoint": true,
-                        "data": [
-                            {
-                                "name": "Jan",
-                                "y": sdata[0]["amt1"],
+                        name: "Collection",
+                        colorByPoint: true,
+                        data: MonthWiseCollection
+                    }
+                ]
+                //"series": [
+                //    {
+                //        "name": "Collection",
+                //        "colorByPoint": true,
+                //        "data": [
+                //            {
+                //                "name": "Jan",
+                //                "y": sdata[0]["amt1"],
 
-                            },
-                            {
-                                "name": "Feb",
-                                "y": sdata[0]["amt2"],
+                //            },
+                //            {
+                //                "name": "Feb",
+                //                "y": sdata[0]["amt2"],
 
-                            },
-                            {
-                                "name": "March",
-                                "y": sdata[0]["amt3"],
+                //            },
+                //            {
+                //                "name": "March",
+                //                "y": sdata[0]["amt3"],
 
-                            },
-                            {
-                                "name": "April",
-                                "y": sdata[0]["amt4"],
+                //            },
+                //            {
+                //                "name": "April",
+                //                "y": sdata[0]["amt4"],
 
-                            },
-                            {
-                                "name": "May",
-                                "y": sdata[0]["amt5"],
+                //            },
+                //            {
+                //                "name": "May",
+                //                "y": sdata[0]["amt5"],
 
-                            },
-                            {
-                                "name": "June",
-                                "y": sdata[0]["amt6"],
+                //            },
+                //            {
+                //                "name": "June",
+                //                "y": sdata[0]["amt6"],
 
-                            },
-                            {
-                                "name": "July",
-                                "y": sdata[0]["amt7"],
+                //            },
+                //            {
+                //                "name": "July",
+                //                "y": sdata[0]["amt7"],
 
-                            },
-                            {
-                                "name": "Aug",
-                                "y": sdata[0]["amt8"],
+                //            },
+                //            {
+                //                "name": "Aug",
+                //                "y": sdata[0]["amt8"],
 
-                            },
-                            {
-                                "name": "Sep",
-                                "y": sdata[0]["amt9"],
+                //            },
+                //            {
+                //                "name": "Sep",
+                //                "y": sdata[0]["amt9"],
 
-                            },
-                            {
-                                "name": "Oct",
-                                "y": sdata[0]["amt10"],
+                //            },
+                //            {
+                //                "name": "Oct",
+                //                "y": sdata[0]["amt10"],
 
-                            },
-                            {
-                                "name": "Nov",
-                                "y": sdata[0]["amt11"],
+                //            },
+                //            {
+                //                "name": "Nov",
+                //                "y": sdata[0]["amt11"],
 
-                            },
-                            {
-                                "name": "Dec",
-                                "y": sdata[0]["amt12"],
+                //            },
+                //            {
+                //                "name": "Dec",
+                //                "y": sdata[0]["amt12"],
 
-                            }
+                //            }
 
 
-                        ]
+                //        ]
                     }
                 ]
             });
