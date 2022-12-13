@@ -1164,7 +1164,7 @@ namespace RealERPWEB
             string section = this.ddlProjectName.SelectedItem.ToString();
             string companme = this.ddlCompany.SelectedItem.Text.ToString();
 
-            string congimg = Server.MapPath("~/Upload/UserImages/congratulations.jpeg");
+            string congimg = Server.MapPath("~/Upload/cong/cong.jpg");
             string name = this.ddlEmployee.SelectedItem.Text.ToString();
             string Desig = (dtempinf_.Rows.Count == 0) ? "" : dtempinf_.Rows[0]["desig"].ToString();//(string)ViewState["desig"];
             string depart = (dtempinf_.Rows.Count == 0) ? "" : dtempinf_.Rows[0]["dptdesc"].ToString();//(string)ViewState["section"];
@@ -1455,18 +1455,20 @@ namespace RealERPWEB
 
                     if (comcod == "3370" || comcod == "3101")
                     {
-                        lbody = "<p style='text-align: left'>&nbsp;" +
-                            "<strong>Ref: CPDL/TM/PROMOTION/23-" +
+                        lbody = "<p style='text-align: left'>" +
+                            "<strong>Ref : CPDL/TM/PROMOTION/23-" +
                             "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
                             "<strong style='text-align: right'>" + date + "</strong>" + "</strong></p><p>" +
                             "Name      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp; " + name + "" + "</p><p>" +
                             "Designation  :&nbsp;" + Desig + "" + "</p><p>" +
-                            "Department   :&nbsp;" + depart + "" + "</p><p>&nbsp;&nbsp;&nbsp;&nbsp;" +
-                            "<br> &nbsp; " +
-                            "<br>&nbsp; " +
-                            "<strong>Subject: Promotion in Service</strong></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                            "Department   :&nbsp;" + depart + "" + "</p><p>" +
+                            "<br>" +
+                            "<br>" +
 
-                            "<img style='margin-bottom:-11px;text-align: center;' src = '" + congimg + "' Height = '80' Width = '300' CssClass = 'rounded-circle img-responsive' />" +
+
+                            "<strong>Subject &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Promotion in Service</strong></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                        "<h1 style='text-align:center'>CONGRATULATIONS!!!<h1>" +
+                            //"<img style='margin-bottom:-11px;text-align: center;' src = '" + congimg + "' Height = '80' Width = '300' CssClass = 'rounded-circle img-responsive' />" +
                             "<p>It is the immense pleasure to inform you that, on reviewing of your performance and progress of your responsibilities, the management is pleased to promote you as  <strong>" + Desig + " in "
                             + depart + "</strong> with effect from<strong> 1st January 2022.</strong></p>" +
                             "<p>We are delighted towards your commitment and integrity shown towards your responsibilities in" +
@@ -1474,12 +1476,12 @@ namespace RealERPWEB
                             "growth of the company.</p>" +
 
                             "<p>Promotion to higher level is recognitions to your performance which includes expectation of" +
-                            "greater skills and higher responsibilities for you. </p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
-                             "<h2 style='margin-bottom:-11px;text-align: center;'>We Wish You All the Best</h2>&nbsp;" +
+                            "greater skills and higher responsibilities for you. </p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                             "<h3 style='margin-bottom:-11px;text-align: center;'>We wish you all the very best.</h3>&nbsp;" +
                             "<p>Thanking you</p>&nbsp;" +
                              "<br> &nbsp; " +
                             "<br>&nbsp; " +
-                             "<br>&nbsp; " +
+                     
                             "</p><p><strong></strong></p><p>" +
 
                             "<strong>------------------------------------------</strong> </p><p>" +
