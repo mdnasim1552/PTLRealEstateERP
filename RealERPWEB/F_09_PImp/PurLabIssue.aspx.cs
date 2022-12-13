@@ -46,10 +46,11 @@ namespace RealERPWEB.F_09_PImp
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 this.ComRefText();
                 string qgenno = this.Request.QueryString["genno"] ?? "";
-                if (qgenno.Length > 0)
+                string corderno = this.Request.QueryString["vounum"] ?? "";
+                if (qgenno.Length > 0 || corderno.Length>0)
                 {
                     
-                    if (qgenno.Substring(0, 3) == "COR" || qgenno.Substring(0, 3) == "MBK")
+                    if (corderno.Substring(0, 3) == "COR" || qgenno.Substring(0, 3) == "MBK")
                     {
                         this.hdnmbno.Value = qgenno;
                         this.hdnforderno.Value = this.Request.QueryString["vounum"] ?? "";
@@ -693,7 +694,23 @@ namespace RealERPWEB.F_09_PImp
                 // this.ddlRA.Enabled = false;
                 mISSNo = this.ddlPrevISSList.SelectedValue.ToString();
             }
-            string workorder = (this.Request.QueryString["genno"].ToString().Length > 0) ? ((this.Request.QueryString["genno"].ToString().Substring(0, 3) == "COR" || this.Request.QueryString["genno"].ToString().Substring(0, 3) == "MBK") ? this.Request.QueryString["genno"].ToString() : "") : "";
+            string qcorderno = this.Request.QueryString["vounum"] ?? "";
+            string qgenno = this.Request.QueryString["genno"] ?? "";
+
+
+
+            string workorder = (qcorderno.Length > 0 || qgenno.Length>0) ? 
+                (qcorderno.Substring(0,3) == "COR" ? qcorderno : (qgenno.Substring(0, 3) == "COR" ? qgenno:"")) : "";
+           
+            
+            
+            //&& || qgenno.Substring(0, 3) == "MBK"
+
+            //string workorder = (this.Request.QueryString["genno"].ToString().Length > 0) ? ((this.Request.QueryString["genno"].ToString().Substring(0, 3) == "COR" || this.Request.QueryString["genno"].ToString().Substring(0, 3) == "MBK") ? this.Request.QueryString["genno"].ToString() : "") : "";
+
+
+
+
             DataSet ds1 = new DataSet();
             ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPURLABISSUEINFO", mISSNo, CurDate1,
                          pactcode, workorder, "", "", "", "", "");
