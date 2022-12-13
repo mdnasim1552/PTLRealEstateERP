@@ -45,6 +45,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     : (this.Request.QueryString["Type"].ToString().Trim() == "Holiday") ? "EMPLOYEE HOLIDAY ALLOWANCE"
                     : (this.Request.QueryString["Type"].ToString().Trim() == "Mobile") ? "EMPLOYEE MOBILE BILL ALLOWANCE"
                     : (this.Request.QueryString["Type"].ToString().Trim() == "Lencashment") ? "LEAVE ENCASHMENT"
+                    : (this.Request.QueryString["Type"].ToString().Trim() == "salaryencashment") ? "Salary ENCASHMENT"
                      : (this.Request.QueryString["Type"].ToString().Trim() == "OtherDeduction") ? "EMPLOYEE OTHER DEDCUTION"
                      : (this.Request.QueryString["Type"].ToString().Trim() == "loan") ? "EMPLOYEE LOAN INFORMATION"
                      : (this.Request.QueryString["Type"].ToString().Trim() == "dayadj") ? "Salary Adjustment"

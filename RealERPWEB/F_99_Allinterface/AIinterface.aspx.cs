@@ -165,6 +165,9 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
                     this.GetAIInterface();
+                    this.TasktState.Items[0].Attributes["class"] = "lblactive blink_me";
+                    //((TextBox)this.gvInterface.HeaderRow.FindControl("txtSearchprj")).Attributes.Add("placeholder", ReadCookie());
+
                     break;
                 case "1":
                     this.pnlAllProject.Visible = false;
@@ -179,6 +182,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
                     this.GetBatchAssingList();
+                    this.TasktState.Items[1].Attributes["class"] = "lblactive blink_me";
                     break;
                 case "2":
                     this.pnlAllProject.Visible = false;
@@ -193,6 +197,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
                     this.GetAssignTask();
+                    this.TasktState.Items[2].Attributes["class"] = "lblactive blink_me";
                     break;
                 case "3":
                     this.pnlAllProject.Visible = false;
@@ -207,6 +212,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
                     this.Getproducttion();
+                    this.TasktState.Items[3].Attributes["class"] = "lblactive blink_me";
                     break;
                 case "4":
                     this.pnlAllProject.Visible = false;
@@ -221,6 +227,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
                     this.GetQcList();
+                    this.TasktState.Items[4].Attributes["class"] = "lblactive blink_me";
                     break;
                 case "5":
                     this.pnlAllProject.Visible = false;
@@ -235,7 +242,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
                     this.GetProductionInfo();
-
+                    this.TasktState.Items[5].Attributes["class"] = "lblactive blink_me";
                     break;
                 case "6":
                     this.pnlAllProject.Visible = false;
@@ -250,6 +257,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
                     this.GetAssignQa();
+                    this.TasktState.Items[6].Attributes["class"] = "lblactive blink_me";
                     break;
                 case "8":
                     this.pnlAllProject.Visible = false;
@@ -263,6 +271,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQA.Visible = false;
                     this.pnelFeedBack.Visible = true;
                     this.Pneldelivery.Visible = false;
+                    this.TasktState.Items[7].Attributes["class"] = "lblactive blink_me";
                     break;
                 case "7":
                     this.pnlAllProject.Visible = false;
@@ -277,6 +286,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = true;
                     this.GetAIDelivery();
+                    this.TasktState.Items[8].Attributes["class"] = "lblactive blink_me";
                     break;
                 case "9":
                     this.pnlAllProject.Visible = false;
@@ -291,6 +301,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
                     this.GetInvoiceList();
+                    this.TasktState.Items[9].Attributes["class"] = "lblactive blink_me";
                     break;
                 case "10":
                     this.pnlAllProject.Visible = false;
@@ -304,12 +315,18 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQA.Visible = false;
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
+                    this.TasktState.Items[10].Attributes["class"] = "lblactive blink_me";
                     break;
 
             }
 
         }
-
+        //private string ReadCookie()
+        //{
+        //    HttpCookie nameCookie = Request.Cookies["ProjectName"];
+        //    string prjname = nameCookie != null ? nameCookie.Value.Split('=')[1] : "ProjectName";
+        //    return prjname;
+        //}
         private void GetBatchAssingList()
         {
             string comcod = this.GetCompCode();
