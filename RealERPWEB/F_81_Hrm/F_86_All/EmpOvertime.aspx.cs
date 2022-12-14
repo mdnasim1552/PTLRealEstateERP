@@ -360,6 +360,10 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     this.AdditionalBonus();
                     break;
 
+                case "salaryencashment":
+                    this.ShowSalEncashment();
+                    break;
+                    
             }
         }
 
@@ -610,6 +614,14 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     AdditionalBonus();
                     break;
 
+                case "salaryencashment":
+                    this.MultiView1.ActiveViewIndex = 12;
+                    this.ShowSalEncashment();
+                    break;
+
+
+      
+
             }
 
         }
@@ -810,6 +822,43 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             }
             Session["tblover"] = this.HiddenSameData(ds2.Tables[0]);
             this.Data_Bind();
+
+
+        }
+
+        private void ShowSalEncashment()
+        {
+            Session.Remove("tblencashment");
+
+            string comcod = this.GetComeCode();
+
+
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompanyName.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string nozero = (hrcomln == 4) ? "0000" : "00";
+            string comnam = (this.ddlCompanyName.SelectedValue.Substring(0, hrcomln).ToString() == nozero) ? "%" : this.ddlCompanyName.SelectedValue.Substring(0, hrcomln).ToString() + "%";
+
+            string deptname = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + "%";
+            string ymon = this.ddlyearmon.SelectedValue.ToString();
+            string dayid = ymon + "01";
+            string txtdate = ASTUtility.DateFormat("01." + ymon.Substring(4, 2) + "." + ymon.Substring(0, 4));
+            string Empcode = this.txtSrcEmployee.Text.Trim() + "%";
+
+            string calltype = comcod == "3365" ? "LVENCASHMENTSALBTI" : "LVENCASHMENTSALBTI";
+
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVE_SUMMARY", calltype, deptname, dayid, txtdate, comnam, Empcode, "", "", "", "");
+            if (ds2 == null)
+            {
+                this.gvEncashment.DataSource = null;
+                this.gvEncashment.DataBind();
+                return;
+            }
+            else
+            {
+                this.gvEncashment.DataSource = ds2.Tables[0];
+                this.gvEncashment.DataBind();
+            }
+            Session["tblencashment"] = ds2.Tables[0];
+    
 
 
         }
@@ -1519,7 +1568,43 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     this.rptMobileAllowance();
                     break;
 
+
+                case "salaryencashment":
+                    this.rptSalEncashment();
+                    break;
+                    
+
             }
+        }
+        private void rptSalEncashment()
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comLogo = "";
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MMM.yyyy hh:mm:ss tt");
+            
+            DataTable dt = (DataTable)Session["tblencashment"];
+
+            var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalEncashment>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalEncashment", list, null, null);
+            Rpt1.EnableExternalImages = true;
+
+            Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+           // Rpt1.SetParameters(new ReportParameter("txtHeader2", "Pay Slip" + todate1 + " (Month of salary disbursement)"));
+            Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
         }
         private void rptBankPayment()
         {

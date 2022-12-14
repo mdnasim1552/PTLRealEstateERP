@@ -24,7 +24,7 @@ namespace RealERPLIB
     {
         ProcessAccess purData = new ProcessAccess();
         private Hashtable _errObj;
-       
+
         public string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -121,19 +121,19 @@ namespace RealERPLIB
             try
             {
                 string comcod = comcode;
-                DataSet ds3 = purData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWAPIINFOFORFORGOTPASS","", "", "", "", "");
+                DataSet ds3 = purData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWAPIINFOFORFORGOTPASS", "", "", "", "", "");
                 string user = ds3.Tables[0].Rows[0]["apiusrid"].ToString().Trim(); //"nahid@asit.com.bd";
                 string pass = ds3.Tables[0].Rows[0]["apipass"].ToString().Trim(); //"asit321";
                 string routeid = ds3.Tables[0].Rows[0]["apirouid"].ToString().Trim();//3;
                 string typeid = ds3.Tables[0].Rows[0]["apitypeid"].ToString().Trim();//1;
                 string sender = ds3.Tables[0].Rows[0]["apisender"].ToString().Trim(); //"ASITNAHID";  //Sender
-                
+
                 string catname = ds3.Tables[0].Rows[0]["apicatname"].ToString().Trim();//General
                 string ApiUrl = ds3.Tables[0].Rows[0]["apiurl"].ToString().Trim(); //"http://login.smsnet24.com/apimanager/sendsms?user_id=";
 
                 string mobile = "88" + mobilenum; //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
-                string mobilewccode =  mobilenum; //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
-                    string apiinfo = "";
+                string mobilewccode = mobilenum; //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
+                string apiinfo = "";
                 Random rnd1 = new Random(5); //seed value 10
                 string cmsid = rnd1.Next().ToString();
                 switch (comcod)
@@ -150,7 +150,7 @@ namespace RealERPLIB
                         break;
 
                     default:
-                        apiinfo = ApiUrl + user + "&password=" + pass + "&sender=" + sender + "&SMSText=" + text + "&GSM=" + mobile + "&type=longSMS";                      
+                        apiinfo = ApiUrl + user + "&password=" + pass + "&sender=" + sender + "&SMSText=" + text + "&GSM=" + mobile + "&type=longSMS";
                         break;
                 }
                 System.Net.ServicePointManager.Expect100Continue = false;
@@ -162,11 +162,11 @@ namespace RealERPLIB
                 myReq.ProtocolVersion = HttpVersion.Version10;
                 myReq.ServicePoint.ConnectionLimit = 1;
                 HttpWebResponse myResp = (HttpWebResponse)myReq.GetResponse();
-                    System.IO.StreamReader respStreamReader = new System.IO.StreamReader(myResp.GetResponseStream());
-                    string responseString = respStreamReader.ReadToEnd();
-                    respStreamReader.Close();
-                    myResp.Close();
-            
+                System.IO.StreamReader respStreamReader = new System.IO.StreamReader(myResp.GetResponseStream());
+                string responseString = respStreamReader.ReadToEnd();
+                respStreamReader.Close();
+                myResp.Close();
+
 
 
                 return true;
@@ -182,33 +182,46 @@ namespace RealERPLIB
         // Nahid 20221205
         public bool SendSms_SSL_Single(string comcode, string text, string mobilenum)
         {
-            string comcod = comcode;
-            DataSet ds3 = purData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWAPIINFOFORFORGOTPASS", "", "", "", "", "");
-            string Single_Sms_Url = ds3.Tables[0].Rows[0]["apiurl"].ToString().Trim();
-            string Single_Sms_Sid = ds3.Tables[0].Rows[0]["apisender"].ToString().Trim(); //"ASITNAHID";  //Sender
-            string Single_Sms_api_token = ds3.Tables[0].Rows[0]["apipass"].ToString().Trim(); //"ASITNAHID";  //Sender
-            string mobile = "88" + mobilenum; //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
-            Random rnd1 = new Random(9); //seed value 10
-            string cmsid = rnd1.Next().ToString();
-            var options = new RestClientOptions(Single_Sms_Url)
+            
+            try
             {
-                ThrowOnAnyError = true,
-                Timeout = 1000  // 1 second
-            };             
-            var client = new RestClient(Single_Sms_Url);
-            var request = new RestRequest();
+                string comcod = comcode;
+                DataSet ds3 = purData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWAPIINFOFORFORGOTPASS", "", "", "", "", "");
+                string Single_Sms_Url = ds3.Tables[0].Rows[0]["apiurl"].ToString().Trim();
+                string Single_Sms_Sid = ds3.Tables[0].Rows[0]["apisender"].ToString().Trim(); //"ASITNAHID";  //Sender
+                string Single_Sms_api_token = ds3.Tables[0].Rows[0]["apipass"].ToString().Trim(); //"ASITNAHID";  //Sender
+                string mobile = "88" + mobilenum; //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
+                Random rnd1 = new Random(9); //seed value 10
+                string cmsid = rnd1.Next().ToString();
+                var options = new RestClientOptions(Single_Sms_Url)
+                {
+                    ThrowOnAnyError = true,
+                    Timeout = 1000  // 1 second
+                };
+                var client = new RestClient(Single_Sms_Url);
+                var request = new RestRequest();
 
-            request.Method = Method.Post;
-            request.AddHeader("Accept", "application/json");             
-            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-            request.AddParameter("api_token", Single_Sms_api_token);
-            request.AddParameter("sid", Single_Sms_Sid);
-            request.AddParameter("msisdn", mobile);
-            request.AddParameter("sms", text);
-            request.AddParameter("csms_id", cmsid);
-            var response = client.Execute(request); 
-            return response.IsSuccessful;
+                request.Method = Method.Post;
+                request.AddHeader("Accept", "application/json");
+                request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                request.AddParameter("api_token", Single_Sms_api_token);
+                request.AddParameter("sid", Single_Sms_Sid);
+                request.AddParameter("msisdn", mobile);
+                request.AddParameter("sms", text);
+                request.AddParameter("csms_id", cmsid);
+               var response = client.Execute(request);
+
+                 
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + response.Content.ToString() + "');", true);
+
+                return response.IsSuccessful;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
         }
 
 
@@ -237,12 +250,12 @@ namespace RealERPLIB
                 switch (comcod)
                 {
                     case "3356"://for Intech
-                        apiinfo = ApiUrl + user + "&password=" + pass + "&masking=" + sender + "&MsgType=TEXT" + "&receiver=" + mobile + "&message=" + text;               
+                        apiinfo = ApiUrl + user + "&password=" + pass + "&masking=" + sender + "&MsgType=TEXT" + "&receiver=" + mobile + "&message=" + text;
                         break;
                     default:
                         apiinfo = ApiUrl + user + "&password=" + pass + "&from=" + var_from + "&to=" + mobile + "&message=" + text;
                         break;
-                }        
+                }
                 HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create(apiinfo);
 
                 HttpWebResponse myResp = (HttpWebResponse)myReq.GetResponse();
@@ -250,12 +263,12 @@ namespace RealERPLIB
                 string responseString = respStreamReader.ReadToEnd();
                 respStreamReader.Close();
                 myResp.Close();
-            //string catname = ds3.Tables[0].Rows[0]["apicatname"].ToString().Trim();//General
-            //string ApiUrl = ds3.Tables[0].Rows[0]["apiurl"].ToString().Trim(); //"http://login.smsnet24.com/apimanager/sendsms?user_id=";
-            //for (int i = 0; i < ds3.Tables[1].Rows.Count; i++)
-            //{
-            //    string mobile = "88" + ds3.Tables[1].Rows[i]["phno"].ToString().Trim(); //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
-           // http://api.boom-cast.com/boomcast/WebFramework/boomCastWebService/externalApiSendTextMessage.php?masking=Intech&userName=Intech24&password=f61874a0e2550be21aa2fa7171e7c347&MsgType=TEXT&receiver=01860454560&message=hello     
+                //string catname = ds3.Tables[0].Rows[0]["apicatname"].ToString().Trim();//General
+                //string ApiUrl = ds3.Tables[0].Rows[0]["apiurl"].ToString().Trim(); //"http://login.smsnet24.com/apimanager/sendsms?user_id=";
+                //for (int i = 0; i < ds3.Tables[1].Rows.Count; i++)
+                //{
+                //    string mobile = "88" + ds3.Tables[1].Rows[i]["phno"].ToString().Trim(); //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
+                // http://api.boom-cast.com/boomcast/WebFramework/boomCastWebService/externalApiSendTextMessage.php?masking=Intech&userName=Intech24&password=f61874a0e2550be21aa2fa7171e7c347&MsgType=TEXT&receiver=01860454560&message=hello     
                 //}
 
 
@@ -338,6 +351,6 @@ namespace RealERPLIB
             this._errObj["Location"] = exp.StackTrace;
         }
 
-      
+
     }
 }

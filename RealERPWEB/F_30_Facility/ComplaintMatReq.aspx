@@ -348,6 +348,7 @@
                                     <asp:Label runat="server" ID="Label10" class="form-label">MTR No</asp:Label>
                                     <asp:Label runat="server" ID="lblMTRNo" class="form-control"></asp:Label>
                                     <asp:Label runat="server" ID="lblMTRNoFull" class="form-control" Visible="false"></asp:Label>
+                                    <asp:Label runat="server" ID="lblToInventory" class="form-control" Visible="false"></asp:Label>
                                 </div>
                             </div>
                             <div class="col-lg-3">
@@ -479,7 +480,7 @@
                                     <asp:TemplateField HeaderText="Quantity">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtqty" runat="server" BackColor="Transparent" BorderStyle="Solid"
-                                                Style="text-align: right; font-size: 11px;"
+                                                Style="text-align: right; font-size: 11px;" Enabled="false"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="70px" BorderColor="#660033" BorderWidth="1px"></asp:TextBox>
                                         </ItemTemplate>
