@@ -1903,7 +1903,6 @@ namespace RealERPWEB.F_22_Sal
                     Rpt1.SetParameters(new ReportParameter("sign4", sign4));
                     break;
 
-                case "3101":
                 case "3370":
 
                     Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptCustPayScheduleCPDL", lst, null, null);
