@@ -13,16 +13,9 @@
         });
         function pageLoaded() {
             var gv1 = $('#<%=this.gvcustdues.ClientID %>');
-            gv1.Scrollable();
-             
+            gv1.Scrollable();             
             $('.chzn-select').chosen({ search_contains: true });
-
-
         }
-
-
-
-
     </script>
 
 

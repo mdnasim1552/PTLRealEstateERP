@@ -1317,6 +1317,12 @@ namespace RealERPWEB.F_23_CR
              
 
             DataSet dssms = CALogRecord.CheckStatus(comcod, "2301");
+            if (dssms == null)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "SMS Send Fail";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+            }
             string payableamt = Convert.ToDouble(((Label)this.grvacc.FooterRow.FindControl("txtFTotal")).Text).ToString("#,##0.00; (#,##0.00) ");
             string cutname = ds.Tables[0].Rows[0]["custname"].ToString() == "" ? "" : ds.Tables[0].Rows[0]["custname"].ToString();
             string custphone = ds.Tables[0].Rows[0]["custphone"].ToString() == "" ? "" : ds.Tables[0].Rows[0]["custphone"].ToString();

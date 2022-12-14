@@ -578,7 +578,7 @@
                             </div>
                             <div class="col-lg-1">
                                 <asp:Label ID="Label2" runat="server">To</asp:Label>
-                                <asp:TextBox ID="txttodate" runat="server" CssClass="form-control form-control-sm" AutoPostBack="true" OnTextChanged="txttodate_TextChanged" ></asp:TextBox>
+                                <asp:TextBox ID="txttodate" runat="server" CssClass="form-control form-control-sm" AutoPostBack="true" OnTextChanged="txttodate_TextChanged"></asp:TextBox>
                                 <cc1:CalendarExtender runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                             </div>
                             <div class="col-lg-2">
@@ -607,7 +607,7 @@
 
                             <div class="col-md-2">
                                 <div class="form-group-">
-                                    <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-primary btn-sm mt20">Ok</asp:LinkButton></li>
+                                    <asp:LinkButton ID="lnkbtnok" runat="server" OnClick="lnkbtnok_Click" CssClass=" btn btn-primary btn-sm mt20">Ok</asp:LinkButton></li>
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -672,19 +672,26 @@
                             <asp:Panel ID="pnlAllProject" runat="server" Visible="false">
                                 <div class="row">
                                     <div class="col-md-2">
-                                    <asp:Label ID="lblPage" runat="server">Page Size</asp:Label>
-                                    <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True"  OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" CssClass="form-control form-control-sm">
-                                        <asp:ListItem>10</asp:ListItem>
-                                        <asp:ListItem>15</asp:ListItem>
-                                        <asp:ListItem>20</asp:ListItem>
-                                        <asp:ListItem>30</asp:ListItem>
-                                        <asp:ListItem>50</asp:ListItem>
-                                        <asp:ListItem>100</asp:ListItem>
-                                        <asp:ListItem>150</asp:ListItem>
-                                        <asp:ListItem>200</asp:ListItem>
-                                        <asp:ListItem>300</asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
+                                        <asp:Label ID="lblPage" runat="server">Page Size</asp:Label>
+                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" CssClass="form-control form-control-sm">
+                                            <asp:ListItem>10</asp:ListItem>
+                                            <asp:ListItem>15</asp:ListItem>
+                                            <asp:ListItem>20</asp:ListItem>
+                                            <asp:ListItem>30</asp:ListItem>
+                                            <asp:ListItem>50</asp:ListItem>
+                                            <asp:ListItem>100</asp:ListItem>
+                                            <asp:ListItem>150</asp:ListItem>
+                                            <asp:ListItem>200</asp:ListItem>
+                                            <asp:ListItem>300</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <asp:Label runat="server" ID="lblprjserchname">Project </asp:Label>
+                                        <asp:DropDownList ID="ddlprjsearch" runat="server" CssClass="chzn-select form-control form-control-sm" ></asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-2 mt-4">
+                                        <asp:LinkButton runat="server" ID="prjSearch" OnClick="prjSearch_Click" CssClass="btn btn-primary btn-sm">Search</asp:LinkButton>
+                                    </div>
                                 </div>
                                 <div class="table-responsive mt-2">
                                     <asp:GridView ID="gvInterface" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
@@ -721,15 +728,16 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Order Type">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblordertype" runat="server"  CssClass='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype")) =="Pilot" ? "btn btn-info text-white":" " %>'
+                                                    <asp:Label ID="lblordertype" runat="server" CssClass='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype")) =="Pilot" ? "btn btn-info text-white":" " %>'
                                                         Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype"))%>'
                                                         ForeColor="Black"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="ProjectName">
+                                                
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblprojectName" runat="server" Height="16px"
+                                                    <asp:Label ID="lblprojectName" runat="server"  Width="200px"
                                                         Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "projectName"))%>'
                                                         ForeColor="Black"></asp:Label>
                                                 </ItemTemplate>
@@ -862,10 +870,10 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Batch Name">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblbatchbatchid" runat="server" Height="16px"  Width="200px"
+                                                    <asp:Label ID="lblbatchbatchid" runat="server" Height="16px" Width="200px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "batchid")) %>'></asp:Label>
                                                 </ItemTemplate>
-                                                
+
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Data <br> Type">
@@ -959,8 +967,8 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="work Status">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblbatchworkstatus" runat="server"  CssClass="badge badge-pill badge-info"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "workstatus")) %>' ></asp:Label>
+                                                    <asp:Label ID="lblbatchworkstatus" runat="server" CssClass="badge badge-pill badge-info"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "workstatus")) %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1001,11 +1009,11 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
 
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="ProjectName" Visible="false">
+                                            <%--  <asp:TemplateField HeaderText="ProjectName" Visible="false">
                                                 <ItemTemplate>
-                                                    <%--<asp:Label ID="lblpactcode" runat="server" Text='<%#Eval("pactcode").ToString()%>' Width="10px"></asp:Label>--%>
+                                                    <asp:Label ID="lblpactcode" runat="server" Text='<%#Eval("pactcode").ToString()%>' Width="10px"></asp:Label>
                                                 </ItemTemplate>
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
                                             <asp:TemplateField HeaderText="EmpID" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblempid" runat="server" Text='<%#Eval("empid").ToString()%>' Width="10px"></asp:Label>
@@ -1117,7 +1125,7 @@
                             <asp:Panel ID="pnlProduction" runat="server" Visible="false">
                                 <div class="table-responsive">
                                     <asp:GridView ID="gv_Production" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnRowDataBound="gv_Production_RowDataBound" OnPageIndexChanging="gv_Production_PageIndexChanging" >
+                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnRowDataBound="gv_Production_RowDataBound" OnPageIndexChanging="gv_Production_PageIndexChanging">
                                         <Columns>
                                             <asp:TemplateField HeaderText="SL # ">
                                                 <ItemTemplate>
@@ -1198,17 +1206,16 @@
                                                     <asp:Label ID="lblgvprojectName" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projectName")) %>'
                                                         Width="150px"></asp:Label>
-                                                    <asp:Label ID="lblgvprodu" runat="server" 
+                                                    <asp:Label ID="lblgvprodu" runat="server"
                                                         class='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype"))=="Pilot") ? " badge badge-pill badge-danger":" badge badge-pill badge-success" %>'
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype")) %>'
-                                                        ></asp:Label>
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype")) %>'></asp:Label>
                                                 </ItemTemplate>
 
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
-                                           
-                                            
+
+
                                             <asp:TemplateField HeaderText="Batch <br> Name">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvbatchname" runat="server"
@@ -1260,8 +1267,7 @@
                                             <asp:TemplateField HeaderText="Job Status">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvjobstatus" runat="server" CssClass="badge badge-pill badge-info"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus")) %>'
-                                                        ></asp:Label>
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus")) %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1330,7 +1336,7 @@
                             <asp:Panel ID="pnelQC" runat="server" Visible="false">
                                 <div class="table-responsive">
                                     <asp:GridView ID="gv_QCQA" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnRowDataBound="gv_QCQA_RowDataBound" OnPageIndexChanging="gv_QCQA_PageIndexChanging" >
+                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnRowDataBound="gv_QCQA_RowDataBound" OnPageIndexChanging="gv_QCQA_PageIndexChanging">
                                         <Columns>
                                             <asp:TemplateField HeaderText="SL # ">
                                                 <ItemTemplate>
@@ -1401,10 +1407,9 @@
                                                     <asp:Label ID="lblgvqcprojectName" runat="server" Height="16px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projectName")) %>'
                                                         Width="150px"></asp:Label>
-                                                     <asp:Label ID="lblgvqcorder" runat="server" 
+                                                    <asp:Label ID="lblgvqcorder" runat="server"
                                                         class='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype"))=="Pilot") ? " badge badge-pill badge-danger":" badge badge-pill badge-success" %>'
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype")) %>'
-                                                        ></asp:Label>
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype")) %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1466,8 +1471,7 @@
                                             <asp:TemplateField HeaderText="Job Status">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvqcjobstatus" runat="server" CssClass="badge badge-pill badge-info"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus")) %>'
-                                                        ></asp:Label>
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus")) %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1598,10 +1602,9 @@
                                                     <asp:Label ID="lblgvqaprojectName" runat="server" Height="16px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projectName")) %>'
                                                         Width="150px"></asp:Label>
-                                                     <asp:Label ID="lblgvqaorder" runat="server" 
+                                                    <asp:Label ID="lblgvqaorder" runat="server"
                                                         class='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype"))=="Pilot") ? " badge badge-pill badge-danger":" badge badge-pill badge-success" %>'
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype")) %>'
-                                                        ></asp:Label>
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype")) %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1662,9 +1665,8 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Job Status">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvqajobstatus" runat="server"  CssClass="badge badge-pill badge-info"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus")) %>'
-                                                        ></asp:Label>
+                                                    <asp:Label ID="lblgvqajobstatus" runat="server" CssClass="badge badge-pill badge-info"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus")) %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1939,10 +1941,9 @@
                                                     <asp:Label ID="lblgvarprojectName" runat="server" Height="16px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projectName")) %>'
                                                         Width="150px"></asp:Label>
-                                                     <asp:Label ID="lblgvreject" runat="server" 
+                                                    <asp:Label ID="lblgvreject" runat="server"
                                                         class='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype"))=="Pilot") ? " badge badge-pill badge-danger":" badge badge-pill badge-success" %>'
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype")) %>'
-                                                        ></asp:Label>
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype")) %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -1952,7 +1953,7 @@
                                                     <asp:Label ID="lblgvarbatchname" runat="server" Height="16px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "batchname")) %>'
                                                         Width="80px"></asp:Label>
-                                                    
+
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -2004,9 +2005,9 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Job Status">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvarjobstatus" runat="server"  CssClass="badge badge-pill badge-info"
+                                                    <asp:Label ID="lblgvarjobstatus" runat="server" CssClass="badge badge-pill badge-info"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobstatus")) %>'>
-                                                        </asp:Label>
+                                                    </asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -2674,16 +2675,16 @@
                                         <asp:Label ID="Label28" runat="server">Work Hour</asp:Label>
                                         <asp:TextBox ID="txtworkhour" runat="server" min="0" TextMode="Number" CssClass="form-control"></asp:TextBox>
                                     </div>
-                                     <div class=" col-lg-2 col-md-2 col-sm-12 mt-4">
+                                    <div class=" col-lg-2 col-md-2 col-sm-12 mt-4">
                                         <asp:CheckBox runat="server" ID="checkinoutsourcing" OnCheckedChanged="checkinoutsourcing_CheckedChanged" AutoPostBack="True" ForeColor="red"></asp:CheckBox>
 
                                         <asp:Label ID="Label30" runat="server">&nbsp;  Freelancing</asp:Label>
                                     </div>
-                                    <div class=" col-lg-3 col-md-3 col-sm-12" ID="perrate" runat="server" visible="false">
+                                    <div class=" col-lg-3 col-md-3 col-sm-12" id="perrate" runat="server" visible="false">
                                         <asp:Label ID="Label29" runat="server">Per Rate</asp:Label>
-                                        <asp:TextBox ID="textrate" runat="server"  CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="textrate" runat="server" CssClass="form-control"></asp:TextBox>
                                     </div>
-                                   
+
                                     <div class=" col-lg-1 col-md-1 col-sm-12 mt-4 ">
                                         <asp:LinkButton ID="btnaddrow" runat="server" OnClick="btnaddrow_Click" CssClass=" btn btn-primary ml-auto btn-sm mt20 mr-1 float-left"><i class="fa fa-plus"></i></asp:LinkButton>
 

@@ -1891,7 +1891,7 @@ namespace RealERPWEB.F_22_Sal
                     {
                         result = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTCLIENTINF", pactcode, usircode, "01001", clname, 0.ToString(), schDate1, "T", clnamebn, "", "", "", "", "", "", "");
 
-                        {
+                      if(!result)  {
                             ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Updated Fail');", true);
                             return;
                         }
@@ -1905,7 +1905,7 @@ namespace RealERPWEB.F_22_Sal
                 default:
                     
                     result = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTCLIENTINF", pactcode, usircode, "01001", clname, 0.ToString(), schDate1, "T", clnamebn, "", "", "", "", "", "", "");
-                   
+                    if (!result)
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Updated Fail');", true);
                         return;

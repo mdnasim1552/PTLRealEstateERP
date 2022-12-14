@@ -168,7 +168,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -3149,6 +3149,7 @@
     <Content Include="F_81_Hrm\F_89_Pay\RptMonthWiseTax.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptMonthWiseTax02.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptOvertimeSalary2.aspx" />
+    <Content Include="F_81_Hrm\F_89_Pay\RptSalaryEncashment.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliationBonus.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalarySummary.aspx" />
@@ -5377,6 +5378,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\RptMonthWiseTax02.aspx.designer.cs">
       <DependentUpon>RptMonthWiseTax02.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryEncashment.aspx.cs">
+      <DependentUpon>RptSalaryEncashment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryEncashment.aspx.designer.cs">
+      <DependentUpon>RptSalaryEncashment.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx.cs">
       <DependentUpon>RptSalaryReconciliation.aspx</DependentUpon>
