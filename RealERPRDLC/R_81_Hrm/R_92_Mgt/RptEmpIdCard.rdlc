@@ -149,7 +149,7 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox234</rd:DefaultName>
-                              <Top>0.58208in</Top>
+                              <Top>0.59458in</Top>
                               <Left>0.01042in</Left>
                               <Height>0.25in</Height>
                               <Width>2.1875in</Width>
@@ -357,6 +357,7 @@
                               <Source>External</Source>
                               <Value>=Parameters!ComLogo.Value</Value>
                               <Sizing>FitProportional</Sizing>
+                              <Top>0.025in</Top>
                               <Left>0.57604in</Left>
                               <Height>0.54528in</Height>
                               <Width>1.13959in</Width>
@@ -441,7 +442,6 @@
                             </Border>
                           </Style>
                         </Rectangle>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
