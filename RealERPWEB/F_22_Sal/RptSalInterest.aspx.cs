@@ -120,6 +120,11 @@ namespace RealERPWEB.F_22_Sal
                     this.ShowDelayRate();
                     this.MultiView1.ActiveViewIndex = 3;
                     break;
+
+                case "EarlybenADelay02":
+                    this.ShowDelayRate();
+                    this.MultiView1.ActiveViewIndex = 4;
+                    break;
             }
 
 
@@ -255,6 +260,11 @@ namespace RealERPWEB.F_22_Sal
                 case "EarlybenADelay":
                     ((Label)this.Master.FindControl("lblprintstk")).Text = "";
                     this.ShowEarbenADelay();
+                    break;
+
+                case "EarlybenADelay02":
+                    ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+                    this.ShowEarbenADelay02();
                     break;
             }
         }
@@ -434,7 +444,47 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
+        private void ShowEarbenADelay02()
+        {
 
+            ViewState.Remove("tblinterest");
+            string comcod = this.GetCompCode();
+            string pactcode = this.ddlProjectName.SelectedValue.ToString();
+            string custid = this.ddlCustName.SelectedValue.ToString();
+            string frmdate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
+            //  string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
+            // string frmdate = "01-" + ASTUtility.Right(date, 8);
+            string todate = Convert.ToDateTime(this.txttoDate.Text.Trim()).ToString("dd-MMM-yyyy");
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SHOWEARBENADELAY", pactcode, custid, frmdate, todate, "", "", "", "", "");
+            if (ds2 == null)
+            {
+                this.gvearbenadelay02.DataSource = null;
+                this.gvearbenadelay02.DataBind();
+                return;
+            }
+
+
+
+
+            ViewState["tblinterest"] = this.HiddenSameData(ds2.Tables[0]);
+
+
+
+
+
+
+
+
+            DataTable dt = ds2.Tables[1];
+
+            this.txtentryben.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Select("code='001'")[0]["charge"]).ToString("#,##0.0000;(#,##0.0000); ");
+            this.txtdelaychrg.Text = (dt.Rows.Count < 1) ? "" : Convert.ToDouble(dt.Select("code='002'")[0]["charge"]).ToString("#,##0.0000;(#,##0.0000); ");
+            this.Data_Bind();
+            ds2.Dispose();
+
+
+        }
+        
         private DataTable HiddenSameData(DataTable dt1)
         {
             if (dt1.Rows.Count == 0)
@@ -588,6 +638,16 @@ namespace RealERPWEB.F_22_Sal
                     break;
 
 
+                case "EarlybenADelay02":
+
+                    this.gvearbenadelay02.DataSource = dt;
+                    this.gvearbenadelay02.DataBind();
+                    this.FooterCal(dt);
+                    break;
+
+
+
+                    
 
 
 
@@ -679,6 +739,30 @@ namespace RealERPWEB.F_22_Sal
 
 
                     break;
+
+                case "EarlybenADelay02":
+
+
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        Session["Report1"] = gvearbenadelay02;
+                        ((HyperLink)this.gvearbenadelay02.FooterRow.FindControl("hlbtntbCdataExeleben02")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
+                        ((Label)this.gvearbenadelay02.FooterRow.FindControl("lgvFinsamteben02")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(cinsam)", "")) ?
+                                 0 : dt.Compute("sum(cinsam)", ""))).ToString("#,##0;-#,##0;");
+                        ((Label)this.gvearbenadelay02.FooterRow.FindControl("lgvFpayamteben02")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(pamount)", "")) ?
+                                              0 : dt.Compute("sum(pamount)", ""))).ToString("#,##0;-#,##0;");
+                        ((Label)this.gvearbenadelay02.FooterRow.FindControl("lgvFdelordiseben02")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(delodis)", "")) ?
+                                                  0 : dt.Compute("sum(delodis)", ""))).ToString("#,##0;-#,##0;");
+                    }
+
+
+
+                    break;
+
+
+                    
             }
 
         }
