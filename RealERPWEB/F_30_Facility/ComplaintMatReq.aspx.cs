@@ -44,6 +44,8 @@ namespace RealERPWEB.F_30_Facility
                 string type = ddlType.SelectedValue.ToString();
                 if (type == "1")
                 {
+                    getComplainUser();
+                    GetToInventoryCode();
                     GetProject();
                     GetMaterial();
                     GetMatTransferCode();
@@ -427,6 +429,10 @@ namespace RealERPWEB.F_30_Facility
             if (projectrow1.Length == 0)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Inventory of this resource found" + "');", true);
+                if (grvacc.Rows.Count == 0)
+                {
+                    ddlFromInventory.Enabled = true;
+                }
                 return;
             }
             if (projectrow3.Length == 0)
@@ -434,8 +440,14 @@ namespace RealERPWEB.F_30_Facility
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Budget Quantity Found" + "');", true);
                 return;
             }
+            
             if (projectrow2.Length == 0)
             {
+                if (Convert.ToDouble(projectrow1[0]["balqty"]) < Convert.ToDouble(projectrow3[0]["quantity"]))
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Balance Quantity Less than Budgeted Quantity" + "');", true);
+                    return;
+                }
                 DataRow drforgrid = dt.NewRow();
                 drforgrid["comcod"] = projectrow1[0]["comcod"];
                 drforgrid["rsircode"] = projectrow1[0]["rsircode"];
@@ -622,6 +634,25 @@ namespace RealERPWEB.F_30_Facility
             mtrReqEntrySave();
         }
 
+        private void GetToInventoryCode()
+        {
+            DataTable dt = (DataTable)ViewState["DetailInfo"];
+            string pactcodecalc = dt.Rows[0]["pactcode"].ToString();
+            string pactcode = "16" + ASTUtility.Right(pactcodecalc, 10);
+            string comcod = GetComCode();
+            string toInventory = pactcode;
+            DataSet ds2 = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GET_AR_To_WIP", toInventory,
+                 "", "", "", "", "", "", "", "");
+            if (ds2 != null || ds2.Tables[0].Rows.Count>=0)
+            {
+                lblToInventory.Text = ds2.Tables[0].Rows[0]["actcode"].ToString();
+            }
+            else
+            {
+                lblToInventory.Text = "";
+            }
+        }
+
         private string createWIP()
         {
             DataTable dt = (DataTable)ViewState["DetailInfo"];
@@ -663,29 +694,11 @@ namespace RealERPWEB.F_30_Facility
             this.SaveValue();
             Hashtable hst = (Hashtable)Session["tblLogin"];
 
-
-
-
-            //DataTable dtuser = (DataTable)Session["UserLog"];
-            //string tblPostedByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postedbyid"].ToString();
-            //string tblPostedtrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postrmid"].ToString();
-            //string tblPostedSession = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postseson"].ToString();
-            //string tblPosteddat = (dtuser.Rows.Count == 0) ? "01-Jan-1900" : Convert.ToDateTime(dtuser.Rows[0]["entrydat"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
             string PostedByid = hst["usrid"].ToString();
             string Posttrmid = hst["compname"].ToString();
             string PostSession = hst["session"].ToString();
             string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-            //string PostedByid = (this.Request.QueryString["type"] == "Entry") ? userid : (tblPostedByid == "") ? userid : tblPostedByid;
-            //string Posttrmid = (this.Request.QueryString["type"] == "Entry") ? Terminal : (tblPostedtrmid == "") ? Terminal : tblPostedtrmid;
-            //string PostSession = (this.Request.QueryString["type"] == "Entry") ? Sessionid : (tblPostedSession == "") ? Sessionid : tblPostedSession;
-            //string Posteddat = (this.Request.QueryString["type"] == "Entry") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : (tblPosteddat == "01-Jan-1900") ? System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt") : tblPosteddat;
-            //string EditByid = (this.Request.QueryString["type"] == "Entry") ? "" : userid;
-            //string Editdat = (this.Request.QueryString["type"] == "Entry") ? "01-Jan-1900" : System.DateTime.Today.ToString("dd-MMM-yyyy");
-
-
-
-
-
+           
             string comcod = this.GetComCode();
             DataTable dt = (DataTable)ViewState["tblmattrns"];
             string mtreqdat = this.txtEntryDate.Text.ToString().Trim();
@@ -693,24 +706,19 @@ namespace RealERPWEB.F_30_Facility
             this.GetMatTrns();
             string mtreqno = lblMTRNoFull.Text;
             string mtrref = Request.QueryString["DgNo"] == null ? ddlDgNo.SelectedValue : Request.QueryString["DgNo"].ToString();
-            ;
             string mtrnar = "";
             string fromprj = this.ddlFromInventory.SelectedValue.ToString().Trim();
-            string toprj = createWIP();
+            string toprj = lblToInventory.Text=="" ? createWIP(): lblToInventory.Text;
             if (toprj == "")
             {
                 msg1 = "Issue with WIP Code Creation";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg1 + "');", true);
                 return;
             }
-
             dr1 = dt.Select("balqty<qty");
-
             if ((comcod == "3367") && ASTUtility.Left(fromprj, 2) == "11")
             {
-
             }
-
             else
             {
                 if (dr1.Length > 0)
@@ -719,10 +727,7 @@ namespace RealERPWEB.F_30_Facility
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg1 + "');", true);
                     return;
                 }
-
             }
-
-
             if (mtrref.Length == 0)
             {
                 msg1 = "MTRF No Should Not Be Empty";
@@ -748,7 +753,6 @@ namespace RealERPWEB.F_30_Facility
                 case "3351":
                 case "3352":
                 case "3348":
-
                     DataSet ds2 = _process.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "CHECKEDDUPMATREQREF", mtrref, "", "", "", "", "", "", "", "");
 
                     if (ds2.Tables[0].Rows.Count == 0)
@@ -772,8 +776,6 @@ namespace RealERPWEB.F_30_Facility
                     }
                     break;
             }
-
-
             string reqno = "";
             string reqApproval = "Approved";
 
