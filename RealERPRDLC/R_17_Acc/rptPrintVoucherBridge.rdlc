@@ -1122,6 +1122,7 @@
                                   <Value>=Format(Sum(Fields!Dr.Value),"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1166,6 +1167,7 @@
                                   <Value>=Format(Sum(Fields!Cr.Value),"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
