@@ -2530,7 +2530,7 @@
             console.log(JSON.parse(data));
             var sdata = JSON.parse(data);
 
-            console.log(sdata);
+            //console.log(sdata);
 
             Highcharts.setOptions({
                 lang: {
@@ -2798,12 +2798,14 @@
 
             var MonthWiseCollection = [];
             for (var i = 0; i < sdata.length; i++) {
-                MonthWiseCollection.push({ "name": sdata[i].prjname, "y": parseFloat(sdata[i].amt) })
+                console.log(parseFloat(sdata[i].amt1));
+                MonthWiseCollection.push({ "name": sdata[i].pactdesc, "y": parseFloat(sdata[i].amt1) })
               /*  sumplead += parseFloat(prjLead[i].total);*/
 
             }
 
-
+            console.log(sdata);
+            console.log(MonthWiseCollection);
 
 
             $("#MonthlyCol").highcharts({
@@ -2919,8 +2921,8 @@
 
 
                 //        ]
-                    }
-                ]
+                  //  }
+               // ]
             });
 
             $("#MonthlyColLine").highcharts({

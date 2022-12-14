@@ -533,26 +533,33 @@ namespace RealERPWEB.F_17_Acc
 
 
             ViewState["tblcollvscl"] = ds1.Tables[0];
+            ViewState["tblgraph"] = ds1.Tables[2];
             this.Data_Bind();
 
-            List<RealEntity.C_17_Acc.RptMonWiseCol> Lists = new List<RealEntity.C_17_Acc.RptMonWiseCol>();
-            List<RealEntity.C_17_Acc.RptMonWiseCol> newList = ds1.Tables[0].DataTableToList<RealEntity.C_17_Acc.RptMonWiseCol>();
-            double a1 = newList.Select(a => a.amt1).Sum();
-            double a2 = newList.Select(a => a.amt2).Sum();
-            double a3 = newList.Select(a => a.amt3).Sum();
-            double a4 = newList.Select(a => a.amt4).Sum();
-            double a5 = newList.Select(a => a.amt5).Sum();
-            double a6 = newList.Select(a => a.amt6).Sum();
-            double a7 = newList.Select(a => a.amt7).Sum();
-            double a8 = newList.Select(a => a.amt8).Sum();
-            double a9 = newList.Select(a => a.amt9).Sum();
-            double a10 = newList.Select(a => a.amt10).Sum();
-            double a11 = newList.Select(a => a.amt11).Sum();
-            double a12 = newList.Select(a => a.amt12).Sum();
-            double crore = 10000000;
-            Lists.Add(new RealEntity.C_17_Acc.RptMonWiseCol(a1 / crore, a2 / crore, a3 / crore, a4 / crore, a5 / crore, a6 / crore, a7 / crore, a8 / crore, a9 / crore, a10 / crore, a11 / crore, a12 / crore));
+            DataTable dtc = (DataTable)ViewState["tblgraph"];
+            var lst = dtc.DataTableToList<RealEntity.C_17_Acc.RptMonWiseCol>();
+
+
+           // List<RealEntity.C_17_Acc.RptMonWiseCol> Lists = new List<RealEntity.C_17_Acc.RptMonWiseCol>();
+          //  List<RealEntity.C_17_Acc.RptMonWiseCol> newList = ds1.Tables[2].DataTableToList<RealEntity.C_17_Acc.RptMonWiseCol>();
+            //double a1 = newList.Select(a => a.amt1).Sum();
+            //double a2 = newList.Select(a => a.amt2).Sum();
+            //double a3 = newList.Select(a => a.amt3).Sum();
+            //double a4 = newList.Select(a => a.amt4).Sum();
+            //double a5 = newList.Select(a => a.amt5).Sum();
+            //double a6 = newList.Select(a => a.amt6).Sum();
+            //double a7 = newList.Select(a => a.amt7).Sum();
+            //double a8 = newList.Select(a => a.amt8).Sum();
+            //double a9 = newList.Select(a => a.amt9).Sum();
+            //double a10 = newList.Select(a => a.amt10).Sum();
+            //double a11 = newList.Select(a => a.amt11).Sum();
+            //double a12 = newList.Select(a => a.amt12).Sum();
+            ////double crore = 10000000;
+            ////Lists.Add(new RealEntity.C_17_Acc.RptMonWiseCol(a1 / crore, a2 / crore, a3 / crore, a4 / crore, a5 / crore, a6 / crore, a7 / crore, a8 / crore, a9 / crore, a10 / crore, a11 / crore, a12 / crore));
+           // Lists.Add(new RealEntity.C_17_Acc.RptMonWiseCol(a1, a2, a3, a4, a5, a6 , a7, a8, a9, a10, a11, a12));
             var jsonSerializer = new JavaScriptSerializer();
-            var json = jsonSerializer.Serialize(Lists);
+            //var json = jsonSerializer.Serialize(Lists);
+            var json = jsonSerializer.Serialize(lst);
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteSalesGraph('" + json + "')", true);
 
         }
