@@ -533,26 +533,33 @@ namespace RealERPWEB.F_17_Acc
 
 
             ViewState["tblcollvscl"] = ds1.Tables[0];
+            ViewState["tblgraph"] = ds1.Tables[1];
             this.Data_Bind();
 
-            List<RealEntity.C_17_Acc.RptMonWiseCol> Lists = new List<RealEntity.C_17_Acc.RptMonWiseCol>();
-            List<RealEntity.C_17_Acc.RptMonWiseCol> newList = ds1.Tables[0].DataTableToList<RealEntity.C_17_Acc.RptMonWiseCol>();
-            double a1 = newList.Select(a => a.amt1).Sum();
-            double a2 = newList.Select(a => a.amt2).Sum();
-            double a3 = newList.Select(a => a.amt3).Sum();
-            double a4 = newList.Select(a => a.amt4).Sum();
-            double a5 = newList.Select(a => a.amt5).Sum();
-            double a6 = newList.Select(a => a.amt6).Sum();
-            double a7 = newList.Select(a => a.amt7).Sum();
-            double a8 = newList.Select(a => a.amt8).Sum();
-            double a9 = newList.Select(a => a.amt9).Sum();
-            double a10 = newList.Select(a => a.amt10).Sum();
-            double a11 = newList.Select(a => a.amt11).Sum();
-            double a12 = newList.Select(a => a.amt12).Sum();
-            double crore = 10000000;
-            Lists.Add(new RealEntity.C_17_Acc.RptMonWiseCol(a1 / crore, a2 / crore, a3 / crore, a4 / crore, a5 / crore, a6 / crore, a7 / crore, a8 / crore, a9 / crore, a10 / crore, a11 / crore, a12 / crore));
+            DataTable dtc = (DataTable)ViewState["tblgraph"];
+            var lst = dtc.DataTableToList<RealEntity.C_17_Acc.RptMonWiseCol>();
+
+
+           // List<RealEntity.C_17_Acc.RptMonWiseCol> Lists = new List<RealEntity.C_17_Acc.RptMonWiseCol>();
+          //  List<RealEntity.C_17_Acc.RptMonWiseCol> newList = ds1.Tables[2].DataTableToList<RealEntity.C_17_Acc.RptMonWiseCol>();
+            //double a1 = newList.Select(a => a.amt1).Sum();
+            //double a2 = newList.Select(a => a.amt2).Sum();
+            //double a3 = newList.Select(a => a.amt3).Sum();
+            //double a4 = newList.Select(a => a.amt4).Sum();
+            //double a5 = newList.Select(a => a.amt5).Sum();
+            //double a6 = newList.Select(a => a.amt6).Sum();
+            //double a7 = newList.Select(a => a.amt7).Sum();
+            //double a8 = newList.Select(a => a.amt8).Sum();
+            //double a9 = newList.Select(a => a.amt9).Sum();
+            //double a10 = newList.Select(a => a.amt10).Sum();
+            //double a11 = newList.Select(a => a.amt11).Sum();
+            //double a12 = newList.Select(a => a.amt12).Sum();
+            ////double crore = 10000000;
+            ////Lists.Add(new RealEntity.C_17_Acc.RptMonWiseCol(a1 / crore, a2 / crore, a3 / crore, a4 / crore, a5 / crore, a6 / crore, a7 / crore, a8 / crore, a9 / crore, a10 / crore, a11 / crore, a12 / crore));
+           // Lists.Add(new RealEntity.C_17_Acc.RptMonWiseCol(a1, a2, a3, a4, a5, a6 , a7, a8, a9, a10, a11, a12));
             var jsonSerializer = new JavaScriptSerializer();
-            var json = jsonSerializer.Serialize(Lists);
+            //var json = jsonSerializer.Serialize(Lists);
+            var json = jsonSerializer.Serialize(lst);
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteSalesGraph('" + json + "')", true);
 
         }
@@ -672,17 +679,18 @@ namespace RealERPWEB.F_17_Acc
 
 
             ViewState["tblcollvscl"] = ds1.Tables[0];
+            ViewState["tblcollvsclGraph"] = ds1.Tables[1];
             this.Data_Bind();
 
-            DataTable dt1 = (DataTable)ViewState["tblcollvscl"];
+            DataTable dt1 = (DataTable)ViewState["tblcollvsclGraph"];
 
             List<RealEntity.C_17_Acc.RptMonWiseCol> lists = dt1.DataTableToList<RealEntity.C_17_Acc.RptMonWiseCol>();
-            List<RealEntity.C_17_Acc.RptMonWiseCol> newlist = new List<RealEntity.C_17_Acc.RptMonWiseCol>();
-            var list = lists.FindAll(s => s.pactdesc == "Grand Total");
-            double crore = 10000000;
-            newlist.Add(new RealEntity.C_17_Acc.RptMonWiseCol(list[0].amt1 / crore, list[0].amt2 / crore, list[0].amt3 / crore, list[0].amt4 / crore, list[0].amt5 / crore, list[0].amt6 / crore, list[0].amt7 / crore, list[0].amt8 / crore, list[0].amt9 / crore, list[0].amt10 / crore, list[0].amt11 / crore, list[0].amt12 / crore));
+            //List<RealEntity.C_17_Acc.RptMonWiseCol> newlist = new List<RealEntity.C_17_Acc.RptMonWiseCol>();
+            //var list = lists.FindAll(s => s.pactdesc == "Grand Total");
+            //double crore = 10000000;
+            //newlist.Add(new RealEntity.C_17_Acc.RptMonWiseCol(list[0].amt1 / crore, list[0].amt2 / crore, list[0].amt3 / crore, list[0].amt4 / crore, list[0].amt5 / crore, list[0].amt6 / crore, list[0].amt7 / crore, list[0].amt8 / crore, list[0].amt9 / crore, list[0].amt10 / crore, list[0].amt11 / crore, list[0].amt12 / crore));
             var jsonSerializer = new JavaScriptSerializer();
-            var json = jsonSerializer.Serialize(newlist);
+            var json = jsonSerializer.Serialize(lists);
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteSalesGraph('" + json + "')", true);
 
         }
@@ -977,15 +985,15 @@ namespace RealERPWEB.F_17_Acc
                     this.gvViewAR.Columns[3].Visible = (amt1 != 0);
                     this.gvViewAR.Columns[4].Visible = (amt2 != 0);
                     this.gvViewAR.Columns[5].Visible = (amt3 != 0);
-                    //this.gvViewAR.Columns[8].Visible = (amt4 != 0);
-                    //this.gvViewAR.Columns[9].Visible = (amt5 != 0);
-                    //this.gvViewAR.Columns[10].Visible = (amt6 != 0);
-                    //this.gvViewAR.Columns[11].Visible = (amt7 != 0);
-                    //this.gvViewAR.Columns[12].Visible = (amt8 != 0);
-                    //this.gvViewAR.Columns[13].Visible = (amt9 != 0);
-                    //this.gvViewAR.Columns[14].Visible = (amt10 != 0);
-                    //this.gvViewAR.Columns[15].Visible = (amt11 != 0);
-                    //this.gvViewAR.Columns[16].Visible = (amt12 != 0);
+                    this.gvViewAR.Columns[6].Visible = (amt4 != 0);
+                    this.gvViewAR.Columns[7].Visible = (amt5 != 0);
+                    this.gvViewAR.Columns[8].Visible = (amt6 != 0);
+                    this.gvViewAR.Columns[9].Visible = (amt7 != 0);
+                    this.gvViewAR.Columns[10].Visible = (amt8 != 0);
+                    this.gvViewAR.Columns[11].Visible = (amt9 != 0);
+                    this.gvViewAR.Columns[12].Visible = (amt10 != 0);
+                    this.gvViewAR.Columns[13].Visible = (amt11 != 0);
+                    this.gvViewAR.Columns[14].Visible = (amt12 != 0);
 
 
 
