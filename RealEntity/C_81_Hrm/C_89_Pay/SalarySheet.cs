@@ -902,22 +902,25 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
         public class SalEncashment
         {
             public string comcod { get; set; }
-            public string grp { get; set; }
-            public string id { get; set; }
+            public string empid { get; set; }
+            public string idcard { get; set; }
+            public string empname { get; set; }
+            public string deptid { get; set; }
+            public string refno { get; set; }
             public string desig { get; set; }
             public string doj { get; set; }
-            public DateTime from { get; set; }
-            public DateTime to { get; set; }
-            public string serviceperiod { get; set; }
-            public string dueel { get; set; }
+            public string frmdat { get; set; }
+            public string todat { get; set; }
+            public string servlen { get; set; }
+            public string ttlv { get; set; }
             public string foragm { get; set; }
-            public string availe { get; set; }
-            public string elencashment { get; set; }
-            public double presal { get; set; }
-            public double elamt { get; set; }
-            public double totamt { get; set; }
+            public string avail { get; set; }
+            public string elencashday { get; set; }
+            public string presal { get; set; }
+            public string encashamt { get; set; }
+
             public string rmks { get; set; }
-            
+
 
             public SalEncashment()
             {
