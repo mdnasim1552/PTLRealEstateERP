@@ -1513,8 +1513,8 @@ namespace RealERPWEB
                             "<strong>Ref: CPDL/TM/Increment / 22- " + "</strong></p>" +
                         "<strong>Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + name + "</strong></p><p>" +
                        "<strong>Personnel ID &nbsp;&nbsp;: " + idcard + "</strong></p><p>" +
-                       "<strong>Designation &nbsp;&nbsp;&nbsp;&nbsp;: " + Desig + "</strong></p><p>" +
-                       "<strong>Department   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + dptdesc + "</strong></p><p>" +
+                       "<strong>Designation &nbsp;&nbsp;&nbsp;: " + Desig + "</strong></p><p>" +
+                       "<strong>Department   &nbsp;&nbsp;&nbsp;&nbsp;: " + dptdesc + "</strong></p><p>" +
                        "<h2 style='border-bottom: 1px solid #0000;display: inline-block'><strong><u>SUB:ANNUAL INCREMENT.</u></strong></h2>" +
 
 
@@ -1731,6 +1731,40 @@ namespace RealERPWEB
                            "<p style='margin-left:10px;margin-bottom:-11px;'>1.Personal file</p>" +
                            "<p style='margin-left:10px;margin-bottom:-11px;'>2.Office file</p>";
 
+                    }
+                    else if (this.GetCompCode() == "3370" || this.GetCompCode() == "3101")
+                    {
+                        lbody = "<p style='text-align:right;'> " + date + "</p>" + "<p style='text-align:left;'><strong>Ref:CPDL/TM/Confirmation/22</strong></p>" +
+                            "<p style='margin-bottom:-11px'><strong>NAME :" + name + "</strong></p>" +
+                             
+                             "<p style='margin-bottom:-11px'>Designation :" + Desig + "</p>" +
+                             "<p style='margin-bottom:-11px'><strong>ID  :" + idcard + "</strong></p>" +
+                             "<p style='margin-bottom:-11px'>" + depart + "</p>" +
+                             "<p><strong>Sub : CONFIRMATION IN SERVICE.</strong> </p>" +
+                            
+                             "<h1 style='text-align:center'>CONGRATULATIONS!!!<h1>"  +
+                            "<p>In respect of the above, company management has reviewed your overall performances and as " +
+                            "such President is satisfied to confirm your job with effected from xxxxxxx. You will now " +
+                            "entitled with the following facilities</p>" +
+                        "<ul><li style='margin-top:50px;'><strong>Leave:</strong> CL- 14 days, SL- 10 days and LWP-90 days AL- 10 days (after one year service completion from confirmation date). For this year you will get CL- xxx days, SL- xxx days and LWP- xxx days.</li>" +
+                         "<li style='margin-top:10px;'><Strong>Special Medical Allowance:</strong> As per company policy you can now apply for special medical allowance</li>" +
+                         "<li style='margin-top:10px;'><Strong>Others Benefit:</strong> You will be eligible for other benefits as per our Service Code-2018.</li>" +
+                         "<li style='margin-top:10px;'><Strong>Provident Fund: If you wish to entitle the membership of Provident Fund & Welfare Fund, you need to contact with Talent Management Department and fill up prescribed membership form</strong> As per policy 10% of your basic salary will be deducted from your salary every month as PF and same 10% will be added in PF as company contribution. For contribution in Welfare Fund as per company policy Tk. xxx/- will be deducted every month.</li>" +
+                         "<li style='margin-top:10px;'><Strong>Provident Fund Disbursement:</strong>If you wish to resign after confirmation, you should be informed by written before Three (03) months to the management of the company or surrender 03(Three) months gross salary to company in lieu thereof. In that case for provident fund disbursement you will get full of your own contribution and in case of company contribution for successful service completion of 4 years 50%, 6 years 75% and for 8 years 100% will be provided.</li></ul>" +
+                             "<p>We hope, your confirmation in service will encourage you in discharging your duty with due care. </p>" +
+                              "<p style='text-align:right'>Thanking you, </p>" +
+                            
+                             "<p></p>" +
+                           "<p></p>" +
+                               "<p></p>" +
+
+                            "<p style='margin-bottom:-5px;display:inline;'><span style='border-top:1px solid; display:inline-block;margin-bottom:-11px;float:right'><strong>S. M. Sahedul Karim Munna </strong></p></span></p>" +
+                              "<br>" +
+                            "<p style='margin-bottom:-5px;display:inline'><span style=' display:inline-block;margin-bottom:-11px;float-left'><strong>Senior Manager – HR</strong></span><span style='display:inline-block;margin-bottom:-11px;float:right;'><strong>Chief Operating Officer</strong></p></span></p>" +
+                            "<p></p>" +
+                            "<p style='display:inline-block;border-bottom:1px solid;margin-bottom:-11px;'>CC:</p>" +
+                            "<p style='margin-left:10px;margin-bottom:-11px;'>1.Personal file</p>" +
+                            "<p style='margin-left:10px;margin-bottom:-11px;'>2.Office file</p>";
                     }
                     else
                     {
