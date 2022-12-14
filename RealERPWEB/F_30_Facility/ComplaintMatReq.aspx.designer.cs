@@ -375,6 +375,15 @@ namespace RealERPWEB.F_30_Facility
         protected global::System.Web.UI.WebControls.Label lblMTRNoFull;
 
         /// <summary>
+        /// lblToInventory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblToInventory;
+
+        /// <summary>
         /// Label14 control.
         /// </summary>
         /// <remarks>
