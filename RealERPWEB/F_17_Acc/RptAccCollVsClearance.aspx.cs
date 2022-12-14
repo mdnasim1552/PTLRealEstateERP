@@ -533,7 +533,7 @@ namespace RealERPWEB.F_17_Acc
 
 
             ViewState["tblcollvscl"] = ds1.Tables[0];
-            ViewState["tblgraph"] = ds1.Tables[2];
+            ViewState["tblgraph"] = ds1.Tables[1];
             this.Data_Bind();
 
             DataTable dtc = (DataTable)ViewState["tblgraph"];
@@ -679,17 +679,18 @@ namespace RealERPWEB.F_17_Acc
 
 
             ViewState["tblcollvscl"] = ds1.Tables[0];
+            ViewState["tblcollvsclGraph"] = ds1.Tables[1];
             this.Data_Bind();
 
-            DataTable dt1 = (DataTable)ViewState["tblcollvscl"];
+            DataTable dt1 = (DataTable)ViewState["tblcollvsclGraph"];
 
             List<RealEntity.C_17_Acc.RptMonWiseCol> lists = dt1.DataTableToList<RealEntity.C_17_Acc.RptMonWiseCol>();
-            List<RealEntity.C_17_Acc.RptMonWiseCol> newlist = new List<RealEntity.C_17_Acc.RptMonWiseCol>();
-            var list = lists.FindAll(s => s.pactdesc == "Grand Total");
-            double crore = 10000000;
-            newlist.Add(new RealEntity.C_17_Acc.RptMonWiseCol(list[0].amt1 / crore, list[0].amt2 / crore, list[0].amt3 / crore, list[0].amt4 / crore, list[0].amt5 / crore, list[0].amt6 / crore, list[0].amt7 / crore, list[0].amt8 / crore, list[0].amt9 / crore, list[0].amt10 / crore, list[0].amt11 / crore, list[0].amt12 / crore));
+            //List<RealEntity.C_17_Acc.RptMonWiseCol> newlist = new List<RealEntity.C_17_Acc.RptMonWiseCol>();
+            //var list = lists.FindAll(s => s.pactdesc == "Grand Total");
+            //double crore = 10000000;
+            //newlist.Add(new RealEntity.C_17_Acc.RptMonWiseCol(list[0].amt1 / crore, list[0].amt2 / crore, list[0].amt3 / crore, list[0].amt4 / crore, list[0].amt5 / crore, list[0].amt6 / crore, list[0].amt7 / crore, list[0].amt8 / crore, list[0].amt9 / crore, list[0].amt10 / crore, list[0].amt11 / crore, list[0].amt12 / crore));
             var jsonSerializer = new JavaScriptSerializer();
-            var json = jsonSerializer.Serialize(newlist);
+            var json = jsonSerializer.Serialize(lists);
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteSalesGraph('" + json + "')", true);
 
         }
@@ -984,15 +985,15 @@ namespace RealERPWEB.F_17_Acc
                     this.gvViewAR.Columns[3].Visible = (amt1 != 0);
                     this.gvViewAR.Columns[4].Visible = (amt2 != 0);
                     this.gvViewAR.Columns[5].Visible = (amt3 != 0);
-                    //this.gvViewAR.Columns[8].Visible = (amt4 != 0);
-                    //this.gvViewAR.Columns[9].Visible = (amt5 != 0);
-                    //this.gvViewAR.Columns[10].Visible = (amt6 != 0);
-                    //this.gvViewAR.Columns[11].Visible = (amt7 != 0);
-                    //this.gvViewAR.Columns[12].Visible = (amt8 != 0);
-                    //this.gvViewAR.Columns[13].Visible = (amt9 != 0);
-                    //this.gvViewAR.Columns[14].Visible = (amt10 != 0);
-                    //this.gvViewAR.Columns[15].Visible = (amt11 != 0);
-                    //this.gvViewAR.Columns[16].Visible = (amt12 != 0);
+                    this.gvViewAR.Columns[6].Visible = (amt4 != 0);
+                    this.gvViewAR.Columns[7].Visible = (amt5 != 0);
+                    this.gvViewAR.Columns[8].Visible = (amt6 != 0);
+                    this.gvViewAR.Columns[9].Visible = (amt7 != 0);
+                    this.gvViewAR.Columns[10].Visible = (amt8 != 0);
+                    this.gvViewAR.Columns[11].Visible = (amt9 != 0);
+                    this.gvViewAR.Columns[12].Visible = (amt10 != 0);
+                    this.gvViewAR.Columns[13].Visible = (amt11 != 0);
+                    this.gvViewAR.Columns[14].Visible = (amt12 != 0);
 
 
 
