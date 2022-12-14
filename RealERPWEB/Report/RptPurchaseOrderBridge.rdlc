@@ -2223,7 +2223,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -4269,6 +4268,9 @@
                       <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
                     <TablixMember>
+                      <Visibility>
+                        <Hidden>=iif(Fields!grp.Value="B",True,False)</Hidden>
+                      </Visibility>
                       <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
                     <TablixMember>

@@ -746,7 +746,15 @@ namespace RealERPWEB.F_22_Sal
                     break;
 
                 case "EarlybenADelay":
-                    this.RptEarlyBenADelay();
+                    if (comcod == "3370")
+                    {
+                        this.RptEarlyBenADelayCPDL();
+                    }
+                    else
+                    {
+                        this.RptEarlyBenADelay();
+                    }
+                   
                     break;
 
 
@@ -1970,7 +1978,43 @@ namespace RealERPWEB.F_22_Sal
 
 
         }
+        private void RptEarlyBenADelayCPDL()
+        {
+            string comcod = this.GetCompCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string project = this.ddlProjectName.SelectedItem.Text.Trim();
+            string customer = this.ddlCustName.SelectedItem.Text.Trim();
+            string unit = this.ddlCustName.SelectedItem.Text.Trim();
+            string delcrg = this.txtdelaychrg.Text.Trim();
+            string entben = this.txtentryben.Text.Trim();
+            LocalReport Rpt1 = new LocalReport();
+            DataTable dt = (DataTable)ViewState["tblinterest"];
 
+            List<RealEntity.C_22_Sal.EClassSales_02.EClassInterestDummyPay02> lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.EClassInterestDummyPay02>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEarlybenefitADelayCPDL", lst, null, null);
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("compname", comnam));
+            Rpt1.SetParameters(new ReportParameter("RptHead", "INDIVITUAL CLIENTS STATEMENT"));
+            Rpt1.SetParameters(new ReportParameter("ProjName", "Name of Project  : " + project));
+            Rpt1.SetParameters(new ReportParameter("customer", customer));
+            Rpt1.SetParameters(new ReportParameter("Unit", unit));
+            Rpt1.SetParameters(new ReportParameter("delcrg", "Delay Charge : " + delcrg));
+            Rpt1.SetParameters(new ReportParameter("entben", "Advance Discount : " + entben));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+        }
         private void RptEarlyBenADelay()
         {
             string comcod = this.GetCompCode();
@@ -1998,11 +2042,8 @@ namespace RealERPWEB.F_22_Sal
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
         }
-
-        private string CompanyInvoice()
+            private string CompanyInvoice()
         {
 
             string comcod = this.GetCompCode();
