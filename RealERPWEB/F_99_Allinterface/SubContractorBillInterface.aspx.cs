@@ -369,7 +369,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3351":
                 case "1205":
                 case "3352":
-                case "3101":
+               // case "3101":
                     /// Ready For Bill
                     dt = ((DataTable)ds1.Tables[7]).Copy();
                     dv = dt.DefaultView;
