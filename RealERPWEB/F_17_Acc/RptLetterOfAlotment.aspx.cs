@@ -77,6 +77,8 @@ namespace RealERPWEB.F_17_Acc
             
             string islandowner = this.Request.QueryString["Type"] == "Allotment" ? "0" : "1";
             DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTLIST", "", "", "", "", "", "", "", "", "");
+            if (ds2 == null)
+                return;
             this.ddlcustomerName.DataTextField = "gdatat";
             this.ddlcustomerName.DataValueField = "usircode";
             this.ddlcustomerName.DataSource = ds2.Tables[0];
