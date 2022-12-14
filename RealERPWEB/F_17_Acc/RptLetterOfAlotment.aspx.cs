@@ -77,6 +77,8 @@ namespace RealERPWEB.F_17_Acc
             
             string islandowner = this.Request.QueryString["Type"] == "Allotment" ? "0" : "1";
             DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTLIST", "", "", "", "", "", "", "", "", "");
+            if (ds2 == null)
+                return;
             this.ddlcustomerName.DataTextField = "gdatat";
             this.ddlcustomerName.DataValueField = "usircode";
             this.ddlcustomerName.DataSource = ds2.Tables[0];
@@ -190,9 +192,38 @@ namespace RealERPWEB.F_17_Acc
                 if (ds2 == null)
                     return;
 
+                string udesc = ds2.Tables[0].Rows[0]["udesc"].ToString();
                 string dateofbirth = Convert.ToDateTime(ds2.Tables[0].Rows[0]["dateofbirth"].ToString()).ToString("dd-MMM-yyyy");
                 string custsignature = (ds2.Tables[0].Rows[0]["custname"].ToString());
                 string custid = " ";
+                string isLO = "0";
+                DataSet ds3 =  purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETDETAILS", prjname, custname, isLO, udesc, "", "", "", "", "");
+                if (ds3 == null)
+                    return;
+               
+                string floorno = "";
+                double usize = Convert.ToDouble(ds3.Tables[0].Rows[0]["usize"]);
+                double urate = Convert.ToDouble(ds3.Tables[0].Rows[0]["urate"]);
+                double uamt = Convert.ToDouble(ds3.Tables[0].Rows[0]["uamt"]);
+                double tamt = Convert.ToDouble(ds3.Tables[0].Rows[0]["tamt"]);
+
+                string size = usize.ToString("#,##0.00;(#,##0.00); ");
+                string rate = urate.ToString("#,##0.00;(#,##0.00); ");
+                string unit = ds3.Tables[0].Rows[0]["munit"].ToString();
+                string aprtsize = size + " " + unit;
+
+                DataSet ds4 = purData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "COMBINEDTABLEFORSALES", prjname, custname, "", "", "", "", "", "", "");
+
+                if (ds4 == null)
+                    return;
+                string cname = ds4.Tables[1].Rows[0]["cname"].ToString();
+                string cphone = ds4.Tables[1].Rows[0]["cphone"].ToString();
+                string caddress = ds4.Tables[1].Rows[0]["caddress"].ToString();
+                string paddress = ds4.Tables[1].Rows[0]["paddress"].ToString();
+
+
+
+
                 LocalReport Rpt1 = new LocalReport();
                 var lst = ds2.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.AllotmentInfo>();
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptLetterOfAllotmentCPDL", lst, null, null);
