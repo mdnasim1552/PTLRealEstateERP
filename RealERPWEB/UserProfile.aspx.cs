@@ -698,6 +698,8 @@ namespace RealERPWEB
                 string date = "";
                 switch (comcod)
                 {
+                    case "3367":
+                    case "3369":
                     case "3365":
                   
 

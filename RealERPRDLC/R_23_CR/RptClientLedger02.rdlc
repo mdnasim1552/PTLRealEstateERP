@@ -757,10 +757,10 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>0.92588in</Width>
+                                <Width>0.88421in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.92588in</Width>
+                                <Width>0.96755in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -2685,7 +2685,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Cooperative  free</Value>
+                                  <Value>Cooperative  Fee</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3100,7 +3100,7 @@
                 <TablixBody>
                   <TablixColumns>
                     <TablixColumn>
-                      <Width>1.34052in</Width>
+                      <Width>1.79885in</Width>
                     </TablixColumn>
                     <TablixColumn>
                       <Width>3.0012in</Width>
@@ -3108,7 +3108,7 @@
                   </TablixColumns>
                   <TablixRows>
                     <TablixRow>
-                      <Height>0.19931in</Height>
+                      <Height>0.24098in</Height>
                       <TablixCells>
                         <TablixCell>
                           <CellContents>
@@ -3152,12 +3152,6 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value xml:space="preserve"> </Value>
-                                      <Style>
-                                        <FontFamily>Cambria</FontFamily>
-                                      </Style>
-                                    </TextRun>
-                                    <TextRun>
                                       <Value>=Parameters!rptpactdesc.Value</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
@@ -3185,7 +3179,7 @@
                       </TablixCells>
                     </TablixRow>
                     <TablixRow>
-                      <Height>0.19931in</Height>
+                      <Height>0.22014in</Height>
                       <TablixCells>
                         <TablixCell>
                           <CellContents>
@@ -3256,7 +3250,7 @@
                       </TablixCells>
                     </TablixRow>
                     <TablixRow>
-                      <Height>0.19931in</Height>
+                      <Height>0.20973in</Height>
                       <TablixCells>
                         <TablixCell>
                           <CellContents>
@@ -3343,8 +3337,8 @@
                 </TablixRowHierarchy>
                 <Top>0.92258in</Top>
                 <Left>0.10757in</Left>
-                <Height>0.59793in</Height>
-                <Width>4.34172in</Width>
+                <Height>0.67085in</Height>
+                <Width>4.80005in</Width>
                 <ZIndex>1</ZIndex>
                 <Style>
                   <Border>

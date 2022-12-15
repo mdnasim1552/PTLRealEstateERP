@@ -149,7 +149,7 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox234</rd:DefaultName>
-                              <Top>0.58208in</Top>
+                              <Top>0.59458in</Top>
                               <Left>0.01042in</Left>
                               <Height>0.25in</Height>
                               <Width>2.1875in</Width>
@@ -173,7 +173,6 @@
                                       <Value>=Fields!empname.Value</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>11pt</FontSize>
                                         <FontWeight>ExtraBold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -192,6 +191,7 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
+                                <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -208,6 +208,7 @@
                                       <Value>ID: </Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -215,6 +216,7 @@
                                       <Value>=Fields!idcardno.Value</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -225,7 +227,7 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox235</rd:DefaultName>
-                              <Top>2.18229in</Top>
+                              <Top>2.16979in</Top>
                               <Left>0.02146in</Left>
                               <Height>0.18751in</Height>
                               <Width>2.16542in</Width>
@@ -234,6 +236,7 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
+                                <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -250,6 +253,7 @@
                                       <Value>=Fields!desig.Value</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -260,7 +264,7 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox235</rd:DefaultName>
-                              <Top>2.40521in</Top>
+                              <Top>2.36771in</Top>
                               <Left>0.02146in</Left>
                               <Height>0.20834in</Height>
                               <Width>2.16542in</Width>
@@ -269,6 +273,7 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
+                                <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -285,6 +290,7 @@
                                       <Value>Blood Group: </Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -292,6 +298,7 @@
                                       <Value>=Fields!blood.Value</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -302,8 +309,8 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox235</rd:DefaultName>
-                              <Top>2.82604in</Top>
-                              <Left>0.02146in</Left>
+                              <Top>2.86979in</Top>
+                              <Left>0.04229in</Left>
                               <Height>0.20834in</Height>
                               <Width>2.155in</Width>
                               <ZIndex>4</ZIndex>
@@ -311,6 +318,7 @@
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
+                                <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -338,8 +346,8 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox235</rd:DefaultName>
-                              <Top>3.25313in</Top>
-                              <Left>1.22917in</Left>
+                              <Top>3.2948in</Top>
+                              <Left>1.21875in</Left>
                               <Height>0.17709in</Height>
                               <Width>0.94667in</Width>
                               <ZIndex>5</ZIndex>
@@ -357,6 +365,7 @@
                               <Source>External</Source>
                               <Value>=Parameters!ComLogo.Value</Value>
                               <Sizing>FitProportional</Sizing>
+                              <Top>0.025in</Top>
                               <Left>0.57604in</Left>
                               <Height>0.54528in</Height>
                               <Width>1.13959in</Width>
@@ -387,8 +396,8 @@
                               <Source>Embedded</Source>
                               <Value>signature</Value>
                               <Sizing>FitProportional</Sizing>
-                              <Top>2.95708in</Top>
-                              <Left>1.22729in</Left>
+                              <Top>2.99875in</Top>
+                              <Left>1.21687in</Left>
                               <Height>0.35417in</Height>
                               <Width>0.9375in</Width>
                               <ZIndex>8</ZIndex>
@@ -408,6 +417,7 @@
                                       <Value>=Fields!section.Value</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -418,15 +428,16 @@
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>section</rd:DefaultName>
-                              <Top>2.60938in</Top>
+                              <Top>2.59063in</Top>
                               <Left>0.02146in</Left>
-                              <Height>0.20834in</Height>
-                              <Width>2.125in</Width>
+                              <Height>0.27084in</Height>
+                              <Width>2.16667in</Width>
                               <ZIndex>9</ZIndex>
                               <Style>
                                 <Border>
                                   <Style>None</Style>
                                 </Border>
+                                <VerticalAlign>Top</VerticalAlign>
                                 <PaddingLeft>2pt</PaddingLeft>
                                 <PaddingRight>2pt</PaddingRight>
                                 <PaddingTop>2pt</PaddingTop>
@@ -441,7 +452,6 @@
                             </Border>
                           </Style>
                         </Rectangle>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
