@@ -298,6 +298,7 @@ namespace RealERPWEB.F_22_Sal
             this.txtbookdate.Text = (dt.Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(dt.Rows[0]["paydate"]).ToString("dd-MMM-yyyy");
             this.Textinsamt.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["insamptpermonth"]).ToString("#,##0;(#,##0); ");
             this.TxtNoTInstall.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["totalinstallment"]).ToString("#,##0;(#,##0); ");
+            this.txtInstallmentDate.Text = (dt.Rows.Count == 0) ? "" : dt.Rows[0]["insdaypermonth"].ToString();
             this.txtrcvbookingam.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["rcvbookingamt"]).ToString("#,##0;(#,##0); ");
 
             this.cblintavailloan.SelectedValue = (dt.Rows.Count == 0) ? "No" : dt.Rows[0]["intavail"].ToString();
@@ -788,6 +789,7 @@ namespace RealERPWEB.F_22_Sal
             string bookdate = Convert.ToDateTime(this.txtbookdate.Text).ToString("dd-MMM-yyyy");
             //string inttoavailloan = this.cblintavailloan.SelectedValue.ToString();
             //string modeofpay = this.cblpaytype.SelectedValue.ToString();
+            string installDate = this.txtInstallmentDate.Text.Trim();
 
 
             //ViewState["tblperinfo"] = ds2.Tables[1];
@@ -820,6 +822,8 @@ namespace RealERPWEB.F_22_Sal
 
             double inword = Convert.ToDouble(dt2.Rows[0]["bookamt"]);
             double percntamt = Convert.ToDouble(dt1.Select("Code='07'")[0]["amount"]);
+            double discount = Convert.ToDouble(dt1.Select("Code='08'")[0]["amount"]);
+            double grandtotal = Convert.ToDouble(dt1.Select("Code='09'")[0]["amount"]);
 
             //DataTable dt = ds2.Tables[0];
             //DataTable dt = (DataTable)Session["tblcustinfo"];
@@ -868,7 +872,11 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("datefornominated", Convert.ToDateTime(dt5.Rows[0]["datefornominated"]).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("percntamt", percntamt.ToString()));
             Rpt1.SetParameters(new ReportParameter("remarks", dt10.Rows[0]["remarks"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("discount", discount.ToString()));
+            Rpt1.SetParameters(new ReportParameter("grandtotal", grandtotal.ToString()));
+            Rpt1.SetParameters(new ReportParameter("installDate", installDate.ToString()));
 
+            
 
             string bookingmoney = (dt2.Rows.Count == 0) ? "" : Convert.ToDouble(dt2.Rows[0]["bookamt"]).ToString("#,##0;(#,##0); ");
             Rpt1.SetParameters(new ReportParameter("bookingmoney", bookingmoney));
@@ -923,6 +931,9 @@ namespace RealERPWEB.F_22_Sal
             string inttoavailloan = this.cblintavailloan.SelectedValue.ToString();
             string modeofpay = this.cblpaytype.SelectedValue.ToString();
             string customerMaxNo = this.txtCustmerNumber.Text.Trim();
+
+            string InstallmentDate = this.txtInstallmentDate.Text.Trim().ToString();
+
 
 
 
@@ -997,7 +1008,7 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-            bool result = SalData.UpdateXmlTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "INSORUPDATECUSTAPPINF", ds1, null, null, pactcode, usircode, appdate, bookingamt, bankname, branch, bookdate, inttoavailloan, modeofpay, chequeno, customerMaxNo, InstallAmtPerMonth, NoofTotalInstall, Rcvbookingam);
+            bool result = SalData.UpdateXmlTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "INSORUPDATECUSTAPPINF", ds1, null, null, pactcode, usircode, appdate, bookingamt, bankname, branch, bookdate, inttoavailloan, modeofpay, chequeno, customerMaxNo, InstallAmtPerMonth, NoofTotalInstall, Rcvbookingam, InstallmentDate);
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = SalData.ErrorObject["Msg"].ToString();
@@ -1287,8 +1298,21 @@ namespace RealERPWEB.F_22_Sal
 
 
             double amtpercnt = Convert.ToDouble(dt2.Select("Code='07'")[0]["amount"]);
+
+
+
+
+            //if (amtpercnt > 0)
+            //{
+            //    double payAmount = ((toamtafterdiscount * amtpercnt) / 100);
+            //    this.TextBookingAmt.Text = payAmount.ToString("#,##0;(#,##0); ");
+            //}
+            //else {
+            //    this.TextBookingAmt.Text = toamtafterdiscount.ToString("#,##0;(#,##0); ");
+            //}
+
             double payAmount = ((toamtafterdiscount * amtpercnt) / 100);
-            this.TextBookingAmt.Text = payAmount.ToString("#,##0;(#,##0); ");
+            this.TextBookingAmt.Text = amtpercnt == 0 ? toamtafterdiscount.ToString("#,##0;(#,##0); ") : payAmount.ToString("#,##0;(#,##0); ");
 
             //if (discount > 0)
             //{
@@ -1303,7 +1327,6 @@ namespace RealERPWEB.F_22_Sal
             Session["tblpricedetail"] = dt2;
             this.Data_BindPriceDetail();
         }
-
 
         //private void LoadImg()
         //{
