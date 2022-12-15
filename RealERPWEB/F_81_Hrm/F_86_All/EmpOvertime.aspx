@@ -2376,6 +2376,7 @@
                                                 Style="text-align: right"
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                         </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
 
@@ -2395,6 +2396,8 @@
                                             <asp:Label  runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcard")) %>'
                                                 Width="60px"></asp:Label>
+                                        <ItemStyle HorizontalAlign="Center" />
+
                                         </ItemTemplate>
                       
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -2416,6 +2419,8 @@
                                             <asp:Label  runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "doj")) %>'
                                                 Width="80px"></asp:Label>
+                                        <ItemStyle HorizontalAlign="Center" />
+
                                         </ItemTemplate>
                                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -2426,6 +2431,8 @@
                                             <asp:Label  runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "frmdat")) %>'
                                                 Width="80px"></asp:Label>
+                                        <ItemStyle HorizontalAlign="Center" />
+
                                         </ItemTemplate>
                                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -2436,6 +2443,8 @@
                                             <asp:Label  runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "todat")) %>'
                                                 Width="80px"></asp:Label>
+                                        <ItemStyle HorizontalAlign="Center" />
+
                                         </ItemTemplate>
                                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -2447,6 +2456,8 @@
                                             <asp:Label runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "servlen")) %>'
                                                 Width="50px"></asp:Label>
+                                        <ItemStyle HorizontalAlign="Center" />
+
                                         </ItemTemplate>
                                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -2458,8 +2469,10 @@
                                             <asp:Label  runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ttlv")) %>'
                                                 Width="50px"></asp:Label>
+                                        <ItemStyle HorizontalAlign="Center" />
+
                                         </ItemTemplate>
-                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                       
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
 
@@ -2470,18 +2483,20 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "avail")) %>'
                                                 Width="50px"></asp:Label>
                                         </ItemTemplate>
-                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
 
                                     
-                                                            <asp:TemplateField HeaderText="E/L FOR ENCASHMENT ">
+                                       <asp:TemplateField HeaderText="E/L FOR ENCASHMENT ">
                                         <ItemTemplate>
                                             <asp:Label  runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "elencashday")) %>'
                                                 Width="50px"></asp:Label>
                                         </ItemTemplate>
-                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                        <ItemStyle HorizontalAlign="Center" />
+                                 
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
 
@@ -2492,7 +2507,8 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "presal")) %>'
                                                 Width="80px"></asp:Label>
                                         </ItemTemplate>
-                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                            <ItemStyle HorizontalAlign="Center" />
+
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                     </asp:TemplateField>
                                     
@@ -2502,8 +2518,8 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "encashamt")) %>'
                                                 Width="80px"></asp:Label>
                                         </ItemTemplate>
-                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        <ItemStyle HorizontalAlign="Center" />
+           
                                     </asp:TemplateField>
                     
                                 </Columns>

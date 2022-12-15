@@ -1580,14 +1580,16 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         {
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comLogo = "";
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
             string comadd = hst["comadd1"].ToString();
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MMM.yyyy hh:mm:ss tt");
-            
+            string ymon = this.ddlyearmon.SelectedValue.ToString();
+            string txtdate =Convert.ToDateTime( ASTUtility.DateFormat("01-" + ymon.Substring(4, 2) + "-" + ymon.Substring(0, 4))).ToString("MMMMM-yyyy");
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
             DataTable dt = (DataTable)Session["tblencashment"];
 
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalEncashment>();
@@ -1598,7 +1600,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             Rpt1.SetParameters(new ReportParameter("printdate", printdate));
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-           // Rpt1.SetParameters(new ReportParameter("txtHeader2", "Pay Slip" + todate1 + " (Month of salary disbursement)"));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Salaray encashment report -"+ txtdate));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
