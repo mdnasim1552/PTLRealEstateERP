@@ -227,10 +227,7 @@ namespace RealERPWEB.F_17_Acc
                 dv1.RowFilter = "grp like ('gp3')";
                 DataTable dt1 = dv1.ToTable();
 
-                string installment = dt1.Rows[0]["gdesc"].ToString();
-                double totalamount = Convert.ToDouble(dt1.Rows[0]["schamt"].ToString());
-                string amount = totalamount.ToString("#,##0.00;(#,##0.00); ");
-                string duedate = Convert.ToDateTime(dt1.Rows[0]["schdate"].ToString()).ToString("dd-MMM-yyyy");
+               
 
 
 
@@ -256,7 +253,8 @@ namespace RealERPWEB.F_17_Acc
 
                 LocalReport Rpt1 = new LocalReport();
                 var lst = ds2.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.AllotmentInfo>();
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptLetterOfAllotmentCPDL", lst, null, null);
+                var lst2 = dt1.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptSalPaySchedules>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptLetterOfAllotmentCPDL", lst, lst2, null);
                 Rpt1.EnableExternalImages = true;
 
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "LETTER OF ALLOTMENT"));                
@@ -296,9 +294,7 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("custsignature", custsignature));                       
                 Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("installment", installment));
-                Rpt1.SetParameters(new ReportParameter("amount", amount));
-                Rpt1.SetParameters(new ReportParameter("duedate", duedate));
+               
 
 
                 Session["Report1"] = Rpt1;
