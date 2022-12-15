@@ -35,6 +35,8 @@
                 gv5.Scrollable();
                 moncollect.Scrollable();
                 gvMonPayment.Scrollable();
+
+                $('.chzn-select').chosen({ search_contains: true });
             }
             catch (e) {
 
@@ -84,6 +86,14 @@
                                         <asp:TextBox ID="txttodate" runat="server" CssClass="inputTxt inputDateBox"></asp:TextBox>
                                         <cc1:CalendarExtender ID="cetdate" runat="server"
                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
+                                        <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click" TabIndex="5" CssClass="btn btn-primary okBtn">Ok</asp:LinkButton>
+
+                                    </div>
+                                    <div class="col-md-3 pading5px ">
+                                        <asp:Label ID="Label2" runat="server" CssClass=" smLbl_to" Text="Sales Team"></asp:Label>
+                                        <asp:DropDownList ID="ddlSalesTeam" runat="server" CssClass="ddlPage chzn-select" Width="250px" >
+                                        </asp:DropDownList>
+
 
                                     </div>
                                     <div class="col-md-3 asitCol3 pading5px">
@@ -99,9 +109,6 @@
                                             <asp:ListItem>200</asp:ListItem>
                                             <asp:ListItem>300</asp:ListItem>
                                         </asp:DropDownList>
-
-                                        <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click" TabIndex="5" CssClass="btn btn-primary okBtn">Ok</asp:LinkButton>
-
                                         <asp:RadioButtonList ID="rbtPayment" runat="server" CssClass="rbtnList1" RepeatDirection="Horizontal" Visible="False">
                                             <asp:ListItem>Summary</asp:ListItem>
                                             <asp:ListItem>Cost Wise</asp:ListItem>

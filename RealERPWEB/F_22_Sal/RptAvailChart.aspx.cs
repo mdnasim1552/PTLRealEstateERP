@@ -451,7 +451,7 @@ namespace RealERPWEB.F_22_Sal
                 for (int j = 0; j < dtunitfilter.Rows.Count; j++)
                 {
 
-                    strunit += "<a hrf='#' class='" + dtunitfilter.Rows[j]["cssStype"].ToString() + " btn text-white m-1'>" + dtunitfilter.Rows[j]["udesc"].ToString() + "</a>";
+                    strunit += "<a hrf='#' class='" + dtunitfilter.Rows[j]["cssStype"].ToString() + " btn text-white m-1' title='" + dtunitfilter.Rows[j]["custname"].ToString() + "'>" + dtunitfilter.Rows[j]["udesc"].ToString() + "<br><small>"+ Convert.ToDecimal(dtunitfilter.Rows[j]["usize"]).ToString("#,##0;(#,##0); ") + " Sft</small></a>";
                 }
                 if (i % 2 == 0)
                 {
