@@ -124,6 +124,7 @@ namespace RealERPWEB.F_17_Acc
                 string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
                 string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
                 string prjname = this.ddlprjname.SelectedValue.ToString();
+                string ProjectName = this.ddlprjname.SelectedItem.ToString();
                 string custname = this.ddlcustomerName.SelectedValue.ToString();
                 string heading = "CPDL is pleased to other the allotment of Apartment space in your favor only subject to the following Terms" +
                     "\n and conditionslimited thereto, since variation may take place in case of necessity, for strict adherence by the applicant / allottee";
@@ -206,9 +207,14 @@ namespace RealERPWEB.F_17_Acc
                 double urate = Convert.ToDouble(ds3.Tables[0].Rows[0]["urate"]);
                 double uamt = Convert.ToDouble(ds3.Tables[0].Rows[0]["uamt"]);
                 double tamt = Convert.ToDouble(ds3.Tables[0].Rows[0]["tamt"]);
+                double pramt = Convert.ToDouble(ds3.Tables[0].Rows[0]["pamt"]);
+                double ucharge = Convert.ToDouble(ds3.Tables[0].Rows[0]["utility"]);
 
                 string size = usize.ToString("#,##0.00;(#,##0.00); ");
+                string utility = ucharge.ToString("#,##0.00;(#,##0.00); ");
+                string pamt = pramt.ToString("#,##0.00;(#,##0.00); ");
                 string rate = urate.ToString("#,##0.00;(#,##0.00); ");
+                string totalamt = tamt.ToString("#,##0.00;(#,##0.00); ");
                 string unit = ds3.Tables[0].Rows[0]["munit"].ToString();
                 string aprtsize = size + " " + unit;
 
@@ -216,13 +222,37 @@ namespace RealERPWEB.F_17_Acc
 
                 if (ds4 == null)
                     return;
+                DataTable dt01 = ds4.Tables[0].Copy();
+                DataView dv1 = dt01.DefaultView;
+                dv1.RowFilter = "grp like ('gp3')";
+                DataTable dt1 = dv1.ToTable();
+
+                string installment = dt1.Rows[0]["gdesc"].ToString();
+                double totalamount = Convert.ToDouble(dt1.Rows[0]["schamt"].ToString());
+                string amount = totalamount.ToString("#,##0.00;(#,##0.00); ");
+                string duedate = Convert.ToDateTime(dt1.Rows[0]["schdate"].ToString()).ToString("dd-MMM-yyyy");
+
+
+
+
                 string cname = ds4.Tables[1].Rows[0]["cname"].ToString();
                 string cphone = ds4.Tables[1].Rows[0]["cphone"].ToString();
                 string caddress = ds4.Tables[1].Rows[0]["caddress"].ToString();
                 string paddress = ds4.Tables[1].Rows[0]["paddress"].ToString();
 
-
-
+                string Location = " ";
+                string enrolldate = " ";
+                string parqty = " ";
+                string unitcost = " ";              
+               
+                string othercharge = " ";
+                string discount = " ";
+                string initialpayment = " ";
+                string dnpayment = " ";
+                string upDatePaym = " ";
+                string Uppay = " ";
+                string expectdate = " ";
+                
 
                 LocalReport Rpt1 = new LocalReport();
                 var lst = ds2.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.AllotmentInfo>();
@@ -242,11 +272,33 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("optionalDetails", optionalDetails));                
                 Rpt1.SetParameters(new ReportParameter("condition", condition));                
                 Rpt1.SetParameters(new ReportParameter("body", body));                       
+                Rpt1.SetParameters(new ReportParameter("totalamt", totalamt));                       
+                Rpt1.SetParameters(new ReportParameter("prjname", ProjectName));                       
+                Rpt1.SetParameters(new ReportParameter("Location", Location));                       
+                Rpt1.SetParameters(new ReportParameter("size", udesc));                       
+                Rpt1.SetParameters(new ReportParameter("aprtsize", aprtsize));                       
+                Rpt1.SetParameters(new ReportParameter("floorno", floorno));                       
+                Rpt1.SetParameters(new ReportParameter("enrolldate", enrolldate));                       
+                Rpt1.SetParameters(new ReportParameter("price", rate));                       
+                Rpt1.SetParameters(new ReportParameter("ParkingQty", parqty));                       
+                Rpt1.SetParameters(new ReportParameter("unitcost", unitcost));                       
+                Rpt1.SetParameters(new ReportParameter("parkingcost", pamt));                       
+                Rpt1.SetParameters(new ReportParameter("utilityCharge", utility));                       
+                Rpt1.SetParameters(new ReportParameter("othercharge", othercharge));                       
+                Rpt1.SetParameters(new ReportParameter("discount", discount));                       
+                Rpt1.SetParameters(new ReportParameter("initialpayment", initialpayment));                       
+                Rpt1.SetParameters(new ReportParameter("dnpayment", dnpayment));                       
+                Rpt1.SetParameters(new ReportParameter("upDatePaym", upDatePaym));                       
+                Rpt1.SetParameters(new ReportParameter("Uppay", Uppay));                       
+                Rpt1.SetParameters(new ReportParameter("expectdate", expectdate));                       
                 Rpt1.SetParameters(new ReportParameter("generalTitle", generalTitle));                       
                 Rpt1.SetParameters(new ReportParameter("generalbody", generalbody));                       
                 Rpt1.SetParameters(new ReportParameter("custsignature", custsignature));                       
                 Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("installment", installment));
+                Rpt1.SetParameters(new ReportParameter("amount", amount));
+                Rpt1.SetParameters(new ReportParameter("duedate", duedate));
 
 
                 Session["Report1"] = Rpt1;
