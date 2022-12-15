@@ -709,7 +709,7 @@ namespace RealERPLIB
 
 
 
-            tblObj.Rows.Add(new Object[] { "1701000", "1701095", "F_17_Acc", "AccSpecificCodeBook", "", "Specefic Code Book", "Accounts", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1701000", "1701095", "F_17_Acc", "AccSpecificCodeBook", "", "Specific Code Book", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1701000", "1701100", "F_17_Acc", "AccOpening", "", "Accounts Opening", "Accounts", "False", "False", "False", "False" }); ;
             // tblObj.Rows.Add(new Object[] { "1701000", "1701105", "AccSubCodeBook?", "InputType=ResCodePrint", "Resource Code Print", "Accounts", "False", "False", "False", "False" });;
             //tblObj.Rows.Add(new Object[] { "1701000", "1701107", "F_17_Acc","ResGenCodeBook", "", "Resource Code(Print)", "Accounts", "False", "False", "False", "False" });;
