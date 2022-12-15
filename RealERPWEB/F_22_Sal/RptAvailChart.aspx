@@ -28,6 +28,10 @@
         .florHead {
             line-height: 40px;
         }
+        .divunitGraph a{
+            height:35px !important;
+            line-height:12px;
+        }
     </style>
 
     <div class="RealProgressbar">
@@ -377,7 +381,7 @@
 
                     </div>
                 </div>
-                <div id="divUnitGraph" runat="server"></div>
+                <div id="divUnitGraph" class="divunitGraph" runat="server"></div>
 
 
             </div>
