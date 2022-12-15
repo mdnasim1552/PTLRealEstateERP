@@ -355,6 +355,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower+HrmEnvelopPrint.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.IndvPf+Empinfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_99_AllInterface.AllDues.datasource" />
+    <None Include="Properties\DataSources\RealEntity.EClassComModule.datasource" />
     <None Include="Properties\DataSources\RealERPEntity.C_70_Services.EClass_Quotation+EQuotationinfo.datasource" />
     <None Include="Properties\DataSources\RealERPEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower+HrmEnvelopPrint.datasource" />
   </ItemGroup>

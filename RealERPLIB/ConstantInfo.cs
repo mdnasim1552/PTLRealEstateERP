@@ -1233,6 +1233,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2203119", "F_22_Sal", "RptSalInterest?", "Type=EarlybenADelay", "Early Benefit & Delay Charge", "Sales & Recovery", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "2202000", "2202120", "F_23_CR", "ClientInfo", "", "Client Information", "Sales & Recovery", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2203000", "2203125", "F_22_Sal", "RptSalInterest?", "Type=EarlybenADelay02", "Early Benefit & Delay Charge  02", "Sales & Recovery", "False", "False", "False", "False" });
+
+
             tblObj.Rows.Add(new Object[] { "2203000", "2203130", "F_22_Sal", "RptBgdSales?", "Type=Report", "Budgeted Sales", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203140", "F_22_Sal", "RptCalTotalAvgValue", "", "Sold Information", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203141", "F_22_Sal", "RptSoldUnsoftInfGroupWise?", "Type=Report", "Sold & Unsold Information (Group Wise)", "Sales & Recovery", "False", "False", "False", "False" }); ;
@@ -7774,6 +7777,9 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301000007", "09. Delay Charge", "F_22_Sal/RptSalInterest?Type=interest", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000008", "10. Delay Charge 02", "F_22_Sal/RptSalInterest02?Type=interest", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000009", "10. Early Benefit & Delay Charge", "F_22_Sal/RptSalInterest?Type=EarlybenADelay", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000009", "10. Early Benefit & Delay Charge 02", "F_22_Sal/RptSalInterest?Type=EarlybenADelay02", "", true, "" });
+
+
             mnuTbl1.Rows.Add(new Object[] { "0301000010", "14. Client Ledger", "F_23_CR/RptCustPayStatus?Type=ClLedger", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000011", "16. Customer Invoice", "F_23_CR/RptCustomerInvoice", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000012", "27. Invoice Print", "F_22_Sal/RptSalInterest?Type=DueCollAll", "", true, "" });
