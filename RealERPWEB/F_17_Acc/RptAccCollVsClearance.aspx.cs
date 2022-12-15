@@ -91,27 +91,37 @@ namespace RealERPWEB.F_17_Acc
                 //Sales Team, CR Team
                 DataTable dtscr = ds1.Tables[0].Copy();
                 DataView dv;
-                dv = dtscr.DefaultView;
-                dv.RowFilter = ("secid like '9402%'");
-                this.ddlSalesTeam.DataTextField = "gdesc";
-                this.ddlSalesTeam.DataValueField = "gcod";
-                this.ddlSalesTeam.DataSource = dv.ToTable();
-                this.ddlSalesTeam.DataBind();
+                if (this.Request.QueryString["Type"] == "MonSales")
+                {
+                    
+                    dv = dtscr.DefaultView;
+                    dv.RowFilter = ("secid like '9402%'");
+                    this.ddlSalesTeam.DataTextField = "gdesc";
+                    this.ddlSalesTeam.DataValueField = "gcod";
+                    this.ddlSalesTeam.DataSource = dv.ToTable();
+                    this.ddlSalesTeam.DataBind();
 
 
-                if ((dv.ToTable().Select("gcod='" + empid + "'")).Length > 0)
-                    this.ddlSalesTeam.SelectedValue = empid;
+                    if ((dv.ToTable().Select("gcod='" + empid + "'")).Length > 0)
+                        this.ddlSalesTeam.SelectedValue = empid;
+
+                }
+
+                else
+                {
+                    //dv = dtscr.DefaultView;
+                    //dv.RowFilter = ("secid like '9403%'");
+                    this.ddlSalesTeam.DataTextField = "gdesc";
+                    this.ddlSalesTeam.DataValueField = "gcod";
+                    this.ddlSalesTeam.DataSource = dtscr;
+                    this.ddlSalesTeam.DataBind();
+
+                }
 
 
 
 
 
-                //dv = dtscr.DefaultView;
-                //dv.RowFilter = ("secid like '9403%'");
-                //this.ddlCollectionTeam.DataTextField = "gdesc";
-                //this.ddlCollectionTeam.DataValueField = "gcod";
-                //this.ddlCollectionTeam.DataSource = dv.ToTable(); ;
-                //this.ddlCollectionTeam.DataBind();
             }
 
 
@@ -212,7 +222,7 @@ namespace RealERPWEB.F_17_Acc
 
 
                 case "MonAR":
-
+                    this.CustInf();
                     DateTime nowdatez = DateTime.Now;
                     DateTime yearFdayz = new DateTime(nowdatez.Year, 1, 1);
                     DateTime yLDayz = new DateTime(nowdatez.Year, 12, 31);
@@ -575,8 +585,8 @@ namespace RealERPWEB.F_17_Acc
 
             string txtdatefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim()).ToString("dd-MMM-yyyy");
             string txtdateto = Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd-MMM-yyyy");
-
-            DataSet ds1 = AccData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SALES", "MONTHWISEMAR", txtdatefrm, txtdateto, "", "", "", "", "", "", "");
+            string teamcode = this.ddlSalesTeam.SelectedValue.ToString() + "%";
+            DataSet ds1 = AccData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SALES", "MONTHWISEMAR", txtdatefrm, txtdateto, teamcode, "", "", "", "", "", "");
             if (ds1 == null)
             {
                 this.gvViewAR.DataSource = null;
