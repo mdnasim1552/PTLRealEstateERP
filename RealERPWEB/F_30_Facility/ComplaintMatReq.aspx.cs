@@ -426,6 +426,7 @@ namespace RealERPWEB.F_30_Facility
             DataRow[] projectrow1 = dt1.Select("rsircode = '" + rescode + "' and spcfcod ='" + spcfcod + "'");
             DataRow[] projectrow2 = dt.Select("rsircode = '" + rescode + "' and spcfcod = '" + spcfcod + "'");
             DataRow[] projectrow3 = dt2.Select("materialId='" + rescode + "'");
+
             if (projectrow1.Length == 0)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Inventory of this resource found" + "');", true);
@@ -438,6 +439,10 @@ namespace RealERPWEB.F_30_Facility
             if (projectrow3.Length == 0)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"No Budget Quantity Found" + "');", true);
+                if (grvacc.Rows.Count == 0)
+                {
+                    ddlFromInventory.Enabled = true;
+                }
                 return;
             }
             
@@ -705,7 +710,8 @@ namespace RealERPWEB.F_30_Facility
 
             this.GetMatTrns();
             string mtreqno = lblMTRNoFull.Text;
-            string mtrref = Request.QueryString["DgNo"] == null ? ddlDgNo.SelectedValue : Request.QueryString["DgNo"].ToString();
+            string DgNo = (Request.QueryString["DgNo"] == null ? ddlDgNo.SelectedValue : Request.QueryString["DgNo"].ToString());
+            string mtrref = "DG-"+ DgNo;
             string mtrnar = "";
             string fromprj = this.ddlFromInventory.SelectedValue.ToString().Trim();
             string toprj = lblToInventory.Text=="" ? createWIP(): lblToInventory.Text;
@@ -766,7 +772,8 @@ namespace RealERPWEB.F_30_Facility
                         dv1.RowFilter = ("mtrref ='" + mtrref + "'");
                         DataTable dt1 = dv1.ToTable();
                         if (dt1.Rows.Count == 0)
-                            ;
+                        {
+                        }                            
                         else
                         {
                             msg1 = "Found Duplicate MTRF. No !!!";
@@ -797,16 +804,11 @@ namespace RealERPWEB.F_30_Facility
                 string tqty = dr["qty"].ToString().Trim();
                 string trate = dr["rate"].ToString().Trim();
                 string tamt = dr["amt"].ToString().Trim();
-                // string reqno = dr["reqno"].ToString().Trim();
-
-
-                //if (dr["qty"] <= 0)
-                //{
-
-                //}
-
+                
                 bool result1 = _process.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_05", "INESERTUPDATEMTREQ", "PURMTREQA", mtreqno, trsircode, spcfcod, tqty,
                    tamt, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                result1 = _process.UpdateTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEBUDGETMTR", DgNo, mtreqno, "", "", "", "", "", "", "", "", "", "", "", "", "");
+
                 if (!result1)
                 {
                     msg1 = "Updated Fail";
@@ -814,19 +816,6 @@ namespace RealERPWEB.F_30_Facility
 
                 }
             }
-
-            //for (int i = 0; i < dt.Rows.Count; i++)
-            //{
-            //  string trsircode=dt.Rows[i]["rsircode"].ToString().Trim();
-            //  string tunit=dt.Rows[i]["sirunit"].ToString().Trim();
-            //  string tqty=dt.Rows[i]["qty"].ToString().Trim();
-            //  string trate=dt.Rows[i]["rate"].ToString().Trim();
-            //  string tamt = dt.Rows[i]["amt"].ToString().Trim();
-
-            //  bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UpdateTransferInf", transno, fromprj, toprj, trsircode,
-            //      tunit, tqty, trate, tamt, curdate, Refno, PostedByid, Posttrmid, PostSession, Posteddat, "");
-            //}
-
             msg1 = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg1 + "');", true);
 
