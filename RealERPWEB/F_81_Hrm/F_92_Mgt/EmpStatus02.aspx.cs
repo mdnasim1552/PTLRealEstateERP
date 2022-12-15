@@ -579,7 +579,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 this.gvEmpCard.DataBind();
                 return;
             }
-            Session["tblEmpstatus"] = HiddenSameData(ds4.Tables[0]);
+            Session["tblEmpstatus"] = ds4.Tables[0];
             this.LoadGrid();
 
         }
@@ -955,7 +955,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     break;
                 case "TotalEmplist":
                 case "JoinigdWise":
-                case "EmpIDCard":
+               
                 case "EmpList":
                 case "InActiveEmpList":
                     company = dt1.Rows[0]["company"].ToString();

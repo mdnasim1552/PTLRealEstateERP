@@ -936,7 +936,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Md. Shafiul Alom Munna</Value>
+                    <Value>=Parameters!salesname.Value</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontWeight>Bold</FontWeight>
@@ -950,9 +950,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox42</rd:DefaultName>
             <Top>8.04167in</Top>
-            <Left>1.34674in</Left>
+            <Left>0.03124in</Left>
             <Height>0.5625in</Height>
-            <Width>1.31759in</Width>
+            <Width>1.55717in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -1002,9 +1002,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox42</rd:DefaultName>
             <Top>8.04167in</Top>
-            <Left>2.71989in</Left>
+            <Left>1.71532in</Left>
             <Height>0.5625in</Height>
-            <Width>1.26027in</Width>
+            <Width>1.58319in</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -1054,9 +1054,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox42</rd:DefaultName>
             <Top>8.04167in</Top>
-            <Left>4.03572in</Left>
+            <Left>3.45128in</Left>
             <Height>0.5625in</Height>
-            <Width>1.35846in</Width>
+            <Width>1.62929in</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -1106,9 +1106,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox42</rd:DefaultName>
             <Top>8.04167in</Top>
-            <Left>5.46363in</Left>
+            <Left>5.20321in</Left>
             <Height>0.5625in</Height>
-            <Width>1.3436in</Width>
+            <Width>1.60402in</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -1852,58 +1852,6 @@
               <Border>
                 <Style>None</Style>
               </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox46">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!salesname.Value</Value>
-                    <Style>
-                      <FontFamily>Cambria</FontFamily>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Prperty Consultant</Value>
-                    <Style>
-                      <FontFamily>Cambria</FontFamily>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox42</rd:DefaultName>
-            <Top>8.04167in</Top>
-            <Left>0.03124in</Left>
-            <Height>0.5625in</Height>
-            <Width>1.25995in</Width>
-            <ZIndex>10</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <TopBorder>
-                <Style>Solid</Style>
-              </TopBorder>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
