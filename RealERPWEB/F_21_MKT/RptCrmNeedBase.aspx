@@ -469,6 +469,13 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
+                                      <asp:TemplateField HeaderText="Entry By" Visible="false">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblentryby" runat="server" Width="100px" Font-Size="12px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "entryby")) %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
                                 </Columns>
                                 <FooterStyle CssClass="grvFooter" />
                                 <EditRowStyle />
