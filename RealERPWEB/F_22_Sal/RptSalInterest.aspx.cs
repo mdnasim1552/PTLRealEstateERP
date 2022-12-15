@@ -455,31 +455,21 @@ namespace RealERPWEB.F_22_Sal
             //  string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
             // string frmdate = "01-" + ASTUtility.Right(date, 8);
             string todate = Convert.ToDateTime(this.txttoDate.Text.Trim()).ToString("dd-MMM-yyyy");
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SHOWEARBENADELAY", pactcode, custid, frmdate, todate, "", "", "", "", "");
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SHOWEARBENADELAY02", pactcode, custid, frmdate, todate, "", "", "", "", "");
             if (ds2 == null)
             {
                 this.gvearbenadelay02.DataSource = null;
                 this.gvearbenadelay02.DataBind();
                 return;
             }
-
-
-
-
             ViewState["tblinterest"] = this.HiddenSameData(ds2.Tables[0]);
-
-
-
-
-
-
-
-
             DataTable dt = ds2.Tables[1];
-
             this.txtentryben.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Select("code='001'")[0]["charge"]).ToString("#,##0.0000;(#,##0.0000); ");
             this.txtdelaychrg.Text = (dt.Rows.Count < 1) ? "" : Convert.ToDouble(dt.Select("code='002'")[0]["charge"]).ToString("#,##0.0000;(#,##0.0000); ");
             this.Data_Bind();
+
+            this.gvinssum.DataSource = ds2.Tables[2];
+            this.gvinssum.DataBind();
             ds2.Dispose();
 
 
@@ -523,6 +513,7 @@ namespace RealERPWEB.F_22_Sal
                     break;
 
                 case "EarlybenADelay":
+                case "EarlybenADelay02":
                     int i = 0;
                     string gcod = dt1.Rows[0]["gcod"].ToString();
 
@@ -753,8 +744,15 @@ namespace RealERPWEB.F_22_Sal
                                  0 : dt.Compute("sum(cinsam)", ""))).ToString("#,##0;-#,##0;");
                         ((Label)this.gvearbenadelay02.FooterRow.FindControl("lgvFpayamteben02")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(pamount)", "")) ?
                                               0 : dt.Compute("sum(pamount)", ""))).ToString("#,##0;-#,##0;");
-                        ((Label)this.gvearbenadelay02.FooterRow.FindControl("lgvFdelordiseben02")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(delodis)", "")) ?
-                                                  0 : dt.Compute("sum(delodis)", ""))).ToString("#,##0;-#,##0;");
+
+                        ((Label)this.gvearbenadelay02.FooterRow.FindControl("lgvFdelamteben02")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(delamt)", "")) ?
+                                                  0 : dt.Compute("sum(delamt)", ""))).ToString("#,##0;-#,##0;");
+
+                        ((Label)this.gvearbenadelay02.FooterRow.FindControl("lgvFdisamteben02")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(disamt)", "")) ?
+                                                  0 : dt.Compute("sum(disamt)", ""))).ToString("#,##0;-#,##0;");
+                   
+                    
+                    
                     }
 
 
