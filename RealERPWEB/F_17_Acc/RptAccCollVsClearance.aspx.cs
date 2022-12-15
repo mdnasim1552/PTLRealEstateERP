@@ -71,7 +71,59 @@ namespace RealERPWEB.F_17_Acc
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
+        private void CustInf()
+        {
 
+            try
+
+            {
+                Session.Remove("tblcost");
+                Session.Remove("tblPay");
+                Session.Remove("tpripay");
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string empid = hst["empid"].ToString();
+                DataSet ds1 = AccData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT04", "GETSALESTEAM", "", "", "", "", "", "", "", "", "");
+
+
+
+
+                //Sales Team, CR Team
+                DataTable dtscr = ds1.Tables[0].Copy();
+                DataView dv;
+                dv = dtscr.DefaultView;
+                dv.RowFilter = ("secid like '9402%'");
+                this.ddlSalesTeam.DataTextField = "gdesc";
+                this.ddlSalesTeam.DataValueField = "gcod";
+                this.ddlSalesTeam.DataSource = dv.ToTable();
+                this.ddlSalesTeam.DataBind();
+
+
+                if ((dv.ToTable().Select("gcod='" + empid + "'")).Length > 0)
+                    this.ddlSalesTeam.SelectedValue = empid;
+
+
+
+
+
+                //dv = dtscr.DefaultView;
+                //dv.RowFilter = ("secid like '9403%'");
+                //this.ddlCollectionTeam.DataTextField = "gdesc";
+                //this.ddlCollectionTeam.DataValueField = "gcod";
+                //this.ddlCollectionTeam.DataSource = dv.ToTable(); ;
+                //this.ddlCollectionTeam.DataBind();
+            }
+
+
+            catch (Exception ex)
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('" + ex.Message + "');", true);
+
+
+
+            }
+        }
 
         private string GetCompCode()
         {
@@ -100,6 +152,7 @@ namespace RealERPWEB.F_17_Acc
                 case "MonCollection":
                 case "MonCollHonoured":
                 case "MonSales":
+                    this.CustInf();
                     DateTime nowDate = DateTime.Now;
                     DateTime yearfday = new DateTime(nowDate.Year, 1, 1);
                     DateTime ylDay = new DateTime(nowDate.Year, 12, 31);
@@ -664,10 +717,10 @@ namespace RealERPWEB.F_17_Acc
 
 
             }
-
+            string teamcode = this.ddlSalesTeam.SelectedValue.ToString()+"%";
             string txtdatefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim()).ToString("dd-MMM-yyyy");
             string txtdateto = Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd-MMM-yyyy");
-            DataSet ds1 = AccData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", "RPTMONWISESALES", txtdatefrm, txtdateto, "", "", "", "", "", "", "");
+            DataSet ds1 = AccData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", "RPTMONWISESALES", txtdatefrm, txtdateto, teamcode, "", "", "", "", "", "");
             if (ds1 == null)
             {
                 this.gvMonCollect.DataSource = null;
