@@ -167,6 +167,7 @@ namespace RealERPWEB.F_21_MKT
                     this.gvSummary.Columns[22].Visible = false;
                     this.gvSummary.Columns[26].Visible = true;
                     this.gvSummary.Columns[27].Visible = true;
+                    this.gvSummary.Columns[28].Visible = true;
                     break;
 
                 case "3101"://PTL SHOW all Column

@@ -150,6 +150,9 @@ namespace RealERPWEB.F_17_Acc
             string usirCode = this.Request.QueryString["usircode"].ToString();
             string pactCode = this.Request.QueryString["pactcode"].ToString();
             string mrno = this.Request.QueryString["mrno"].ToString();
+            //MoneyRepctType
+            string RepctType = Request.QueryString.AllKeys.Contains("rpType") ? this.Request.QueryString["rpType"].ToString() : ""; 
+             
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string mrDate = Convert.ToDateTime(this.Request.QueryString["mrdate"].ToString()).ToString("dd-MMM-yyyy");
             //string PrintOpt=this.Request.QueryString["PrintOpt"].ToString() ?? "";
@@ -825,7 +828,8 @@ namespace RealERPWEB.F_17_Acc
                 string shortcomnam = "CPDL.";
                 string amt22 = amt1t.Replace("(", "").Replace(")", "").Trim();
                 string vounum = dtrpt.Rows[0]["vounum"].ToString();
-                if (vounum == "00000000000000")
+                
+                if (RepctType == "ACK")
                 {
                     //Title=Acknowledgement Slip
                    

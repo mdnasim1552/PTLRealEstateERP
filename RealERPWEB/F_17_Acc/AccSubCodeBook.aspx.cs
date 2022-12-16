@@ -43,7 +43,7 @@ namespace RealERPWEB.F_17_Acc
                     Response.Redirect("../AcceessError.aspx");
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString() ;
-
+                
                 this.MappingColVisible();
 
             }
@@ -720,7 +720,7 @@ namespace RealERPWEB.F_17_Acc
         protected void grvacc_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.grvacc.PageIndex = e.NewPageIndex;
-            this.grvacc_DataBind();
+             this.grvacc_DataBind();
         }
 
 

@@ -824,9 +824,17 @@ namespace RealERPWEB.F_99_Allinterface
                 this.gvcustduescur.DataBind();
                 return;
             }
-
-
-            DataTable dt = this.HiddenSameDatacurmon(ds2.Tables[0]);
+            //Recommended by uzzal for cpdl remove hidden same value
+            DataTable dt = new DataTable();
+            if (comcod == "3370")
+            {
+                dt = ds2.Tables[0];
+            }
+            else
+            {
+                dt = this.HiddenSameDatacurmon(ds2.Tables[0]);
+            }
+            
             Session["tblbCustDues"] = dt;
             Session["tblCustDues"] = dt;
             this.Data_Bind("gvcustduescur", (DataTable)Session["tblCustDues"]);
@@ -1205,6 +1213,7 @@ namespace RealERPWEB.F_99_Allinterface
         private void Data_Bind(string gv, DataTable dt)
         {
 
+            string comcod = this.GetCompCode();
 
             switch (gv)
             {
@@ -1295,10 +1304,18 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                 case "gvcustduescur":
+                    if (comcod == "3370")
+                    {
+                        this.gvcustduescur.DataSource = dt;
+                        this.gvcustduescur.DataBind();
+                    }
+                    else
+                    {
+                        this.gvcustduescur.DataSource = HiddenSameData(dt);
+                        this.gvcustduescur.DataBind();
+                    }
 
-
-                    this.gvcustduescur.DataSource = HiddenSameData(dt);
-                    this.gvcustduescur.DataBind();
+                    
                     if (dt.Rows.Count == 0)
                         return;
 
