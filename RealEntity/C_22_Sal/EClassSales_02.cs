@@ -766,18 +766,42 @@ namespace RealEntity.C_22_Sal
 
             public double cinsam { get; set; }
 
-            public string paiddate { get; set; }
+            public DateTime paiddate { get; set; }
 
             public double pamount { get; set; }
+            public double balamt { get; set; }
+            public double advday { get; set; }
+            public double delday { get; set; }
+            public double delamt { get; set; }
+            public double disamt { get; set; }
 
-            public double dodisday { get; set; }
-
-            public double intrate { get; set; }
-
-            public double intamtpday { get; set; }
-            public double delodis { get; set; }
+           
 
             public EClassInterestDummyPay02() { }
+        }
+        
+       
+
+        [Serializable]
+        public class EClassClientSum
+        {
+            public string insno { get; set; }
+            public string paidins { get; set; }
+
+            public string duesinsno { get; set; }
+
+            public double paidamt { get; set; }
+
+            public double schamt { get; set; }
+            public double insdueamt { get; set; }
+            public double delamt { get; set; }
+            public double disamt { get; set; }
+            public double netdisdelamt { get; set; }
+            public double netreceivable { get; set; }
+            public EClassClientSum()
+            {
+
+            }
         }
 
         [Serializable]

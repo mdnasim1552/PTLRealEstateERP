@@ -1159,6 +1159,7 @@ namespace RealERPWEB
 
 
             string date = "Date:" + System.DateTime.Now.ToString("MMM dd,yyyy");
+            string Cdate = "Date:" + System.DateTime.Now.ToString("dd MMMM,yyyy");
             string year = System.DateTime.Now.ToString("yyyy");
 
             string lbody = string.Empty;
@@ -1738,15 +1739,16 @@ namespace RealERPWEB
                     else if (this.GetCompCode() == "3370" || this.GetCompCode() == "3101")
                     {
                         lbody = "<p style='text-align: left'> " +
-                            "<strong>Ref : CPDL/TM/PROMOTION/23-" +
+                            "Ref : CPDL/TM/Confirmation/22-" +
                             "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
-                            "<strong style='text-align: right'>" + date + "</strong>" + "</strong></p><p>" +
+                            "<span style='text-align: right'>" + Cdate + "</span></p>" +
                             "<p style='margin-bottom:-11px;'><strong>NAME &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;" + name + "</strong></p>" +
 
                              "<p style='margin-bottom:-11px;'><strong>Designation :&nbsp;" + Desig + "</strong></p>" +
                              "<p style='margin-bottom:-11px;'><strong>ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;" + idcard + "</strong></p>" +
                              "<p style='margin-bottom:-11px;'><strong>Department &nbsp;:&nbsp;" + depart + "</strong></p>" +
-                             "<p><strong>Sub &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: CONFIRMATION IN SERVICE.</strong> </p>" +
+                             "<br>"+
+                             "<p><strong>Sub &nbsp;&nbsp;: &nbsp;&nbsp; <u>CONFIRMATION IN SERVICE.</u></strong> </p>" +
                             
                              "<h1 style='text-align:center'>CONGRATULATIONS!!!<h1>"  +
                             "<p>In respect of the above, company management has reviewed your overall performances and as " +
@@ -1758,19 +1760,18 @@ namespace RealERPWEB
                          "<li style='margin-top:10px;'><Strong>Provident Fund: If you wish to entitle the membership of Provident Fund & Welfare Fund, you need to contact with Talent Management Department and fill up prescribed membership form</strong> As per policy 10% of your basic salary will be deducted from your salary every month as PF and same 10% will be added in PF as company contribution. For contribution in Welfare Fund as per company policy Tk. xxx/- will be deducted every month.</li>" +
                          "<li style='margin-top:10px;'><Strong>Provident Fund Disbursement:</strong>If you wish to resign after confirmation, you should be informed by written before Three (03) months to the management of the company or surrender 03(Three) months gross salary to company in lieu thereof. In that case for provident fund disbursement you will get full of your own contribution and in case of company contribution for successful service completion of 4 years 50%, 6 years 75% and for 8 years 100% will be provided.</li></ul>" +
                              "<p>We hope, your confirmation in service will encourage you in discharging your duty with due care. </p>" +
-                              "<p style='text-align:right;margin-left:20px;'>Thanking you, </p>" +
+                              "<p style='text-align:right;margin-left:30px;'>Thanking you,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>" +
                             
                              "<p></p>" +
 
-                             "<p style='margin-bottom:-11px;text-align: right;'><strong> Md.Khairuzzaman Joarder</strong> </p><p>" +
-                              "<p style='margin-bottom:-11px;text-align: right; margin-right:10px;'><strong> Chief Operating Officer</strong> </p><p>" +
-                           "<p></p>" +
+                             "<p style='margin-bottom:-11px;text-align: right;margin-right:20px;'><strong> Md.Khairuzzaman Joarder</strong> </p><p>" +
+                              "<p style='margin-bottom:-11px;text-align: right; margin-right:30px;'> Chief Operating Officer </p><p>" +
+                           
                      
-                      
                             "<p style='display:inline-block;margin-bottom:-11px;'>CC:</p>" +
-                            "<p style='margin-left:20px;margin-bottom:-11px;'>President </p>" +
-                            "<p style='margin-left:20px;margin-bottom:-11px;'>Department Head</p>" +
-                            "<p style='margin-left:20px;margin-bottom:-11px;'>Personal File.</p>";
+                            "<p style='margin-left:30px;margin-bottom:-11px;'>President </p>" +
+                            "<p style='margin-left:30px;margin-bottom:-11px;'>Department Head</p>" +
+                            "<p style='margin-left:30px;margin-bottom:-11px;'>Personal File.</p>";
                     }
                     else
                     {

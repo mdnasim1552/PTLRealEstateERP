@@ -1153,6 +1153,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 {
                     double netpay = Convert.ToDouble(dt.Rows[i]["netpay"]);
                     dt.Rows[i]["aminword"] = ASTUtility.Trans(netpay, 2);
+                    
                 }
                 Session["tblpay"] = dt;
             }
