@@ -1513,6 +1513,22 @@ namespace RealEntity.C_22_Sal
 
         }
 
+        [Serializable]
+        
+        public class Rptalloreport
+        {
+           
+            public string gdesc { get; set; }
+            public double schamt { get; set; }
+            public DateTime schdate { get; set; }
+             public Rptalloreport()
+            {
+
+            }
+
+
+        }
+
     }
 
 }

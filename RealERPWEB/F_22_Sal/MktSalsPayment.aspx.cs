@@ -1148,7 +1148,7 @@ namespace RealERPWEB.F_22_Sal
             }
 
 
-            res = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATECUSTINF", PactCode, Usircode, "51003", "D", BookDate, "", "", "", "", "", "", "", "", "", "");
+            res = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATECUSTINF", PactCode, Usircode, "", "D", BookDate, "", "", "", "", "", "", "", "", "", "");
 
             if (res == false)
             {
