@@ -49,7 +49,6 @@ namespace RealERPWEB.F_22_Sal
 
                 this.GetProjectName();
                 this.GetMaxCustNumber();
-                this.GetSalesName();
             }
 
 
@@ -236,6 +235,7 @@ namespace RealERPWEB.F_22_Sal
 
                     this.GetMaxCustNumber();
                     this.ShowData();
+                    this.GetSalesName();
                     return;
                 }
                 this.lbtnOk.Text = "Ok";
