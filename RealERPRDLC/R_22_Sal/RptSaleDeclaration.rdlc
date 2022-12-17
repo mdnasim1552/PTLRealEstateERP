@@ -1835,7 +1835,7 @@
                   <TextRun>
                     <Value>=Parameters!remarks.Value</Value>
                     <Style>
-                      <FontFamily>Cambria</FontFamily>
+                      <FontFamily>Nirmala UI</FontFamily>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1945,7 +1945,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>    SALES DECLARATION</Value>
+                      <Value>      SALES DECLARATION</Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
                         <FontSize>12pt</FontSize>
