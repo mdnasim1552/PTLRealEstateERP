@@ -2363,6 +2363,174 @@
                                 </asp:GridView>
                             </asp:View>
 
+
+
+                                <asp:View ID="Encashment" runat="server">
+
+                            <asp:GridView ID="gvEncashment" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea" AutoGenerateColumns="False">
+                
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Sl.No.">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvSlNo2" runat="server" Font-Bold="True" Height="16px"
+                                                Style="text-align: right"
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Employee Name">
+                                        <ItemTemplate>
+                                            <asp:Label  runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname"))    %>'
+                                                Width="200px">   </asp:Label>
+
+
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                        <HeaderStyle HorizontalAlign="left" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="ID Card">
+                                        <ItemTemplate>
+                                            <asp:Label  runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcard")) %>'
+                                                Width="60px"></asp:Label>
+                                        <ItemStyle HorizontalAlign="Center" />
+
+                                        </ItemTemplate>
+                      
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+
+                                                           <asp:TemplateField HeaderText="Desig">
+                                        <ItemTemplate>
+                                            <asp:Label  runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
+                                                Width="150px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+
+                                
+                                                           <asp:TemplateField HeaderText="Doj">
+                                        <ItemTemplate>
+                                            <asp:Label  runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "doj")) %>'
+                                                Width="80px"></asp:Label>
+                                        <ItemStyle HorizontalAlign="Center" />
+
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+
+                                         <asp:TemplateField HeaderText="From Date">
+                                        <ItemTemplate>
+                                            <asp:Label  runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "frmdat")) %>'
+                                                Width="80px"></asp:Label>
+                                        <ItemStyle HorizontalAlign="Center" />
+
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+
+                                                            <asp:TemplateField HeaderText="To Date">
+                                        <ItemTemplate>
+                                            <asp:Label  runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "todat")) %>'
+                                                Width="80px"></asp:Label>
+                                        <ItemStyle HorizontalAlign="Center" />
+
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+
+
+                                                            <asp:TemplateField HeaderText="Service Length">
+                                        <ItemTemplate>
+                                            <asp:Label runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "servlen")) %>'
+                                                Width="50px"></asp:Label>
+                                        <ItemStyle HorizontalAlign="Center" />
+
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+
+                                    
+                                                            <asp:TemplateField HeaderText="DUE E/L">
+                                        <ItemTemplate>
+                                            <asp:Label  runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ttlv")) %>'
+                                                Width="50px"></asp:Label>
+                                        <ItemStyle HorizontalAlign="Center" />
+
+                                        </ItemTemplate>
+                                       
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+
+                                    
+                                                            <asp:TemplateField HeaderText="Availed">
+                                        <ItemTemplate>
+                                            <asp:Label  runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "avail")) %>'
+                                                Width="50px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+
+                                    
+                                       <asp:TemplateField HeaderText="E/L FOR ENCASHMENT ">
+                                        <ItemTemplate>
+                                            <asp:Label  runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "elencashday")) %>'
+                                                Width="50px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
+                                 
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+
+                                    
+                                                            <asp:TemplateField HeaderText="Present Sal.">
+                                        <ItemTemplate>
+                                            <asp:Label  runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "presal")) %>'
+                                                Width="80px"></asp:Label>
+                                        </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Center" />
+
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    </asp:TemplateField>
+                                    
+                                                            <asp:TemplateField HeaderText="Encashment Amt ">
+                                        <ItemTemplate>
+                                            <asp:Label  runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "encashamt")) %>'
+                                                Width="80px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
+           
+                                    </asp:TemplateField>
+                    
+                                </Columns>
+                                <FooterStyle CssClass="grvFooter" />
+                                <EditRowStyle />
+                                <AlternatingRowStyle />
+                                <PagerStyle CssClass="gvPagination" />
+                                <HeaderStyle CssClass="grvHeader" />
+                            </asp:GridView>
+
+                        </asp:View>
                         </asp:MultiView>
                     </div>
                 </div>

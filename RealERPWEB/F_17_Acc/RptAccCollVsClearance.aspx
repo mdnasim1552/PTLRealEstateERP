@@ -5,8 +5,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-     <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
-    
+    <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
+
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
@@ -35,6 +35,8 @@
                 gv5.Scrollable();
                 moncollect.Scrollable();
                 gvMonPayment.Scrollable();
+
+                $('.chzn-select').chosen({ search_contains: true });
             }
             catch (e) {
 
@@ -45,7 +47,6 @@
         }
 
     </script>
-
 
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -77,7 +78,7 @@
                                 <div class="form-group">
                                     <div class="col-md-4 pading5px asitCol4">
                                         <asp:Label ID="lblFdate" runat="server" CssClass="lblTxt lblName" Text="Date"></asp:Label>
-                                        <asp:TextBox ID="txtfromdate" runat="server" autocomplete="off"  CssClass="inputTxt inputDateBox"></asp:TextBox>
+                                        <asp:TextBox ID="txtfromdate" runat="server" autocomplete="off" CssClass="inputTxt inputDateBox"></asp:TextBox>
                                         <cc1:CalendarExtender ID="csefdate" runat="server"
                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtfromdate"></cc1:CalendarExtender>
 
@@ -85,6 +86,14 @@
                                         <asp:TextBox ID="txttodate" runat="server" CssClass="inputTxt inputDateBox"></asp:TextBox>
                                         <cc1:CalendarExtender ID="cetdate" runat="server"
                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
+                                        <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click" TabIndex="5" CssClass="btn btn-primary okBtn">Ok</asp:LinkButton>
+
+                                    </div>
+                                    <div class="col-md-3 pading5px ">
+                                        <asp:Label ID="Label2" runat="server" CssClass=" smLbl_to" Text="Sales Team"></asp:Label>
+                                        <asp:DropDownList ID="ddlSalesTeam" runat="server" CssClass="ddlPage chzn-select" Width="250px" >
+                                        </asp:DropDownList>
+
 
                                     </div>
                                     <div class="col-md-3 asitCol3 pading5px">
@@ -100,9 +109,6 @@
                                             <asp:ListItem>200</asp:ListItem>
                                             <asp:ListItem>300</asp:ListItem>
                                         </asp:DropDownList>
-
-                                        <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click" TabIndex="5" CssClass="btn btn-primary okBtn">Ok</asp:LinkButton>
-
                                         <asp:RadioButtonList ID="rbtPayment" runat="server" CssClass="rbtnList1" RepeatDirection="Horizontal" Visible="False">
                                             <asp:ListItem>Summary</asp:ListItem>
                                             <asp:ListItem>Cost Wise</asp:ListItem>
@@ -469,7 +475,7 @@
 
                                     <asp:TemplateField HeaderText=" Description">
                                         <ItemTemplate>
-        <%--                                    <asp:Label ID="lgcActDesc" runat="server" Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc1")) + "</B>"+
+                                            <%--                                    <asp:Label ID="lgcActDesc" runat="server" Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc1")) + "</B>"+
                                                                          (DataBinder.Eval(Container.DataItem, "actdesc2").ToString().Trim().Length>0 ? 
                                                                          (Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc1")).Trim().Length>0 ?  "<br>" : "")+                                                             
                                                                          "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ 
@@ -802,11 +808,11 @@
 
                                             </div>
 
-                                             <div class="tab-pane fade " id="tab3primary">
+                                            <div class="tab-pane fade " id="tab3primary">
                                                 <div id="MonthlySalesPie" style="width: 700px; height: 450px; margin: 0 auto"></div>
 
                                             </div>
-                                             
+
 
                                         </div>
                                     </div>
@@ -1569,7 +1575,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Project Name" >
+                                        <asp:TemplateField HeaderText="Project Name">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvProjName" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
@@ -1577,8 +1583,8 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" />
                                         </asp:TemplateField>
-                                        
-                                        
+
+
 
                                         <asp:TemplateField HeaderText="Target">
                                             <ItemTemplate>
@@ -1594,7 +1600,7 @@
                                             <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                        
+
                                         <asp:TemplateField HeaderText="Actual">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvjan" runat="server" Style="text-align: right"
@@ -1611,7 +1617,7 @@
                                         </asp:TemplateField>
 
 
-                                         <asp:TemplateField HeaderText="Target">
+                                        <asp:TemplateField HeaderText="Target">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvfebt" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amtt2")).ToString("#,##0;(#,##0); ") %>'
@@ -1704,7 +1710,7 @@
                                         </asp:TemplateField>
 
 
-                                         <asp:TemplateField HeaderText="Target">
+                                        <asp:TemplateField HeaderText="Target">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvjmayt" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amtt5")).ToString("#,##0;(#,##0); ") %>'
@@ -1735,7 +1741,7 @@
                                         </asp:TemplateField>
 
 
-                                         <asp:TemplateField HeaderText="Target">
+                                        <asp:TemplateField HeaderText="Target">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvjunt" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amtt6")).ToString("#,##0;(#,##0); ") %>'
@@ -1765,7 +1771,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Target">
+                                        <asp:TemplateField HeaderText="Target">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvjult" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amtt7")).ToString("#,##0;(#,##0); ") %>'
@@ -1827,7 +1833,7 @@
                                         </asp:TemplateField>
 
 
-                                         <asp:TemplateField HeaderText="Target">
+                                        <asp:TemplateField HeaderText="Target">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvsept" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amtt9")).ToString("#,##0;(#,##0); ") %>'
@@ -1858,7 +1864,7 @@
                                         </asp:TemplateField>
 
 
-                                         <asp:TemplateField HeaderText="Target">
+                                        <asp:TemplateField HeaderText="Target">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvoctt" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amtt10")).ToString("#,##0;(#,##0); ") %>'
@@ -1919,7 +1925,7 @@
                                         </asp:TemplateField>
 
 
-                                         <asp:TemplateField HeaderText="Target">
+                                        <asp:TemplateField HeaderText="Target">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvdect" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amtt12")).ToString("#,##0;(#,##0); ") %>'
@@ -1949,7 +1955,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Target">
+                                        <asp:TemplateField HeaderText="Target">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvtotaltar" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tartoamt")).ToString("#,##0;(#,##0); ") %>'
@@ -2025,11 +2031,11 @@
                                     <div class="panel-heading">
                                         <ul class="nav nav-tabs">
 
-                                            <li class="active"><a href="#tab1primary1" data-toggle="tab" style="font-size: 18px"><i class="fa fa-bar-chart" aria-hidden="true"></i> Bar Chart</a></li>
-                                            
+                                            <li class="active"><a href="#tab1primary1" data-toggle="tab" style="font-size: 18px"><i class="fa fa-bar-chart" aria-hidden="true"></i>Bar Chart</a></li>
 
-                                            <li><a href="#tab2primary2" data-toggle="tab" style="font-size: 18px"> <i class="fa fa-line-chart" aria-hidden="true"></i>Line Chart</a></li>
-                                            <li><a href="#tabprimary3" data-toggle="tab" style="font-size: 18px"><i class="fa fa-pie-chart" aria-hidden="true"></i> Pie Chart</a></li>
+
+                                            <li><a href="#tab2primary2" data-toggle="tab" style="font-size: 18px"><i class="fa fa-line-chart" aria-hidden="true"></i>Line Chart</a></li>
+                                            <li><a href="#tabprimary3" data-toggle="tab" style="font-size: 18px"><i class="fa fa-pie-chart" aria-hidden="true"></i>Pie Chart</a></li>
 
 
                                         </ul>
@@ -2038,15 +2044,15 @@
                                         <div class="tab-content">
 
                                             <div class="tab-pane fade in active" id="tab1primary1">
-                                                <div id="MonthlyCol" style="width: 700px; height: 250px; margin: 0 auto"></div>
+                                                <div id="MonthlyCol" style="width: 900px; height: 250px; margin: 0 auto 0 350px"></div>
                                             </div>
                                             <div class="tab-pane fade " id="tab2primary2">
-                                                <div id="MonthlyColLine" style="width: 700px; height: 250px; margin: 0 auto"></div>
+                                                <div id="MonthlyColLine" style="width: 900px; height: 250px; margin: 0 auto 0 350px"></div>
 
                                             </div>
 
-                                             <div class="tab-pane fade " id="tabprimary3">
-                                                <div id="MonthlyColPie" style="width: 700px; height: 450px; margin: 0 auto"></div>
+                                            <div class="tab-pane fade " id="tabprimary3">
+                                                <div id="MonthlyColPie" style="width: 900px; height: 450px; margin: 0 auto 0 350px"></div>
 
                                             </div>
 
@@ -2054,9 +2060,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="table-responsive table">
+                            <div class="table-responsive table gvMarginPossition">
 
-                                <asp:GridView ID="gvViewAR" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea" ShowFooter="True" Width="616px" OnRowDataBound="gvViewAR_OnRowDataBound">
+                                <asp:GridView ID="gvViewAR" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea" ShowFooter="True" OnRowDataBound="gvViewAR_OnRowDataBound">
                                     <RowStyle />
                                     <Columns>
 
@@ -2068,7 +2074,6 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
-
                                         <asp:TemplateField HeaderText=" Description">
                                             <ItemTemplate>
                                                 <asp:HyperLink ID="HlnkResDesc" runat="server" Font-Underline="false" ForeColor="Black" Target="_blank"
@@ -2289,7 +2294,7 @@
                                     <AlternatingRowStyle />
                                     <PagerStyle CssClass="gvPagination" />
                                     <HeaderStyle CssClass="grvHeader" />
-                                    
+
                                 </asp:GridView>
                             </div>
 
@@ -2316,19 +2321,19 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText=" Description">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblprjbuyer" runat="server" ForeColor="Black" 
+                                                <asp:Label ID="lblprjbuyer" runat="server" ForeColor="Black"
                                                     Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) + "</B>"+                                                                       
                                                     Convert.ToString(DataBinder.Eval(Container.DataItem, "usirdesc")) %>'
-                                                    Width="350px" ></asp:Label>
+                                                    Width="350px"></asp:Label>
                                             </ItemTemplate>
-                                             <FooterTemplate>
+                                            <FooterTemplate>
                                                 <asp:Label ID="lbltotal" runat="server" Font-Bold="True" Font-Size="12px"
                                                     ForeColor="#000" Style="text-align: right" Width="80px">Total</asp:Label>
                                             </FooterTemplate>
                                             <ItemStyle HorizontalAlign="Left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                       <%-- <asp:TemplateField HeaderText="Project">
+                                        <%-- <asp:TemplateField HeaderText="Project">
                                             <ItemTemplate>
                                                 <asp:HyperLink ID="HlnkResDesc" runat="server" Font-Underline="false" ForeColor="Black" Target="_blank"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
@@ -2375,14 +2380,14 @@
 
                         </asp:View>
 
-                        
+
                         <asp:View runat="Server" ID="View2">
 
 
                             <div class="table-responsive table">
 
                                 <asp:GridView ID="gvmsaletarget" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                     ShowFooter="True">
+                                    ShowFooter="True">
                                     <RowStyle />
                                     <Columns>
 
@@ -2394,8 +2399,8 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
-                                        
-                                        
+
+
 
                                         <asp:TemplateField HeaderText="Employee Name">
                                             <ItemTemplate>
@@ -2403,7 +2408,7 @@
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "salesperson")) %>'
                                                     Width="250px"></asp:Label>
                                             </ItemTemplate>
-                                           
+
                                             <ItemStyle HorizontalAlign="Left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
@@ -2466,16 +2471,16 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        
 
-                                        
+
+
                                         <asp:TemplateField HeaderText="Acutal Sales </br> Amount ">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvmktactalsales" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "acsalamt")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="95px"></asp:Label>
                                             </ItemTemplate>
-                                          <%--  <FooterTemplate>
+                                            <%--  <FooterTemplate>
                                                 <asp:Label ID="lgvFmkFtactalsales"" runat="server" Font-Bold="True" Font-Size="12px"
                                                     ForeColor="#000" Style="text-align: right" Width="95px"></asp:Label>
                                             </FooterTemplate>--%>
@@ -2485,7 +2490,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Acutal Collection">
+                                        <asp:TemplateField HeaderText="Acutal Collection">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvmktacoll" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tcollamt")).ToString("#,##0;(#,##0); ") %>'
@@ -2527,10 +2532,10 @@
 
     <script language="javascript" type="text/javascript">
         function ExecuteSalesGraph(data) {
-            console.log(JSON.parse(data));
+            //console.log(JSON.parse(data));
             var sdata = JSON.parse(data);
 
-            console.log(sdata);
+            //console.log(sdata);
 
             Highcharts.setOptions({
                 lang: {
@@ -2538,6 +2543,12 @@
                     thousandsSep: ' '
                 }
             });
+            var MonthWiseCollection = [];
+            for (var i = 0; i < sdata.length; i++) {
+                console.log(parseFloat(sdata[i].amt1));
+                MonthWiseCollection.push({ "name": sdata[i].pactdesc, "y": parseFloat(sdata[i].amt1) })
+            }
+
             $("#MonthlySales").highcharts({
                 chart: {
                     type: 'column'
@@ -2576,76 +2587,81 @@
                     headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
                     pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
                 },
-                "series": [
+                series: [
                     {
-                        "name": "Sales",
-                        "colorByPoint": true,
-                        "data": [
-                            {
-                                "name": "Jan",
-                                "y": sdata[0]["amt1"],
-
-                            },
-                            {
-                                "name": "Feb",
-                                "y": sdata[0]["amt2"],
-
-                            },
-                            {
-                                "name": "March",
-                                "y": sdata[0]["amt3"],
-
-                            },
-                            {
-                                "name": "April",
-                                "y": sdata[0]["amt4"],
-
-                            },
-                            {
-                                "name": "May",
-                                "y": sdata[0]["amt5"],
-
-                            },
-                            {
-                                "name": "June",
-                                "y": sdata[0]["amt6"],
-
-                            },
-                            {
-                                "name": "July",
-                                "y": sdata[0]["amt7"],
-
-                            },
-                            {
-                                "name": "Aug",
-                                "y": sdata[0]["amt8"],
-
-                            },
-                            {
-                                "name": "Sep",
-                                "y": sdata[0]["amt9"],
-
-                            },
-                            {
-                                "name": "Oct",
-                                "y": sdata[0]["amt10"],
-
-                            },
-                            {
-                                "name": "Nov",
-                                "y": sdata[0]["amt11"],
-
-                            },
-                            {
-                                "name": "Dec",
-                                "y": sdata[0]["amt12"],
-
-                            }
-
-
-                        ]
+                        name: "Sales",
+                        colorByPoint: true,
+                        data: MonthWiseCollection
                     }
                 ]
+                //"series": [
+                //    {
+                //        "name": "Sales",
+                //        "colorByPoint": true,
+                //        "data": [
+                //            {
+                //                "name": "Jan",
+                //                "y": sdata[0]["amt1"],
+
+                //            },
+                //            {
+                //                "name": "Feb",
+                //                "y": sdata[0]["amt2"],
+
+                //            },
+                //            {
+                //                "name": "March",
+                //                "y": sdata[0]["amt3"],
+
+                //            },
+                //            {
+                //                "name": "April",
+                //                "y": sdata[0]["amt4"],
+
+                //            },
+                //            {
+                //                "name": "May",
+                //                "y": sdata[0]["amt5"],
+
+                //            },
+                //            {
+                //                "name": "June",
+                //                "y": sdata[0]["amt6"],
+
+                //            },
+                //            {
+                //                "name": "July",
+                //                "y": sdata[0]["amt7"],
+
+                //            },
+                //            {
+                //                "name": "Aug",
+                //                "y": sdata[0]["amt8"],
+
+                //            },
+                //            {
+                //                "name": "Sep",
+                //                "y": sdata[0]["amt9"],
+
+                //            },
+                //            {
+                //                "name": "Oct",
+                //                "y": sdata[0]["amt10"],
+
+                //            },
+                //            {
+                //                "name": "Nov",
+                //                "y": sdata[0]["amt11"],
+
+                //            },
+                //            {
+                //                "name": "Dec",
+                //                "y": sdata[0]["amt12"],
+
+                //            }
+                //        ]
+                //    }
+                //]
             });
 
             $("#MonthlySalesLine").highcharts({
@@ -2703,13 +2719,14 @@
 
                 series: [{
                     name: 'Sales',
-                    data: [sdata[0]["amt1"], sdata[0]["amt2"], sdata[0]["amt3"], sdata[0]["amt4"], sdata[0]["amt5"], sdata[0]["amt6"], sdata[0]["amt7"], sdata[0]["amt8"], sdata[0]["amt9"], sdata[0]["amt10"], sdata[0]["amt11"], sdata[0]["amt12"]],
+                    data: MonthWiseCollection,
+                    // data: [sdata[0]["amt1"], sdata[0]["amt2"], sdata[0]["amt3"], sdata[0]["amt4"], sdata[0]["amt5"], sdata[0]["amt6"], sdata[0]["amt7"], sdata[0]["amt8"], sdata[0]["amt9"], sdata[0]["amt10"], sdata[0]["amt11"], sdata[0]["amt12"]],
                     color: '#1581C1'
 
 
                 }]
             });
-           
+
 
 
 
@@ -2743,68 +2760,67 @@
                 series: [{
                     name: 'Months',
                     colorByPoint: true,
-                    data: [{
-                        name: 'Jan',
-                        y: sdata[0]["amt1"]
-                    }, {
-                        name: 'Feb',
-                            y: sdata[0]["amt2"]
-                    }, {
-                        name: 'Mar',
-                            y: sdata[0]["amt3"]
-                        }
-                        , {
-                            name: 'Apr',
-                            y: sdata[0]["amt4"]
-                        }
-                        , {
-                            name: 'May',
-                            y: sdata[0]["amt5"]
-                        }
-                        , {
-                            name: 'Jun',
-                            y: sdata[0]["amt6"]
-                        }
-                        , {
-                            name: 'Jul',
-                            y: sdata[0]["amt7"]
-                        }
-                        , {
-                            name: 'Aug',
-                            y: sdata[0]["amt8"]
-                        }
-                        , {
-                            name: 'Sep',
-                            y: sdata[0]["amt9"]
-                        }
-                        , {
-                            name: 'Oct',
-                            y: sdata[0]["amt10"]
-                        }
-                        , {
-                            name: 'Nov',
-                            y: sdata[0]["amt11"]
-                        }
-                        , {
-                            name: 'Dec',
-                            y: sdata[0]["amt12"]
-                        }
-                    ]
+                    data: MonthWiseCollection
                 }]
+                //series: [{
+                //    name: 'Months',
+                //    colorByPoint: true,
+                //    data: [{
+                //        name: 'Jan',
+                //        y: sdata[0]["amt1"]
+                //    }, {
+                //        name: 'Feb',
+                //            y: sdata[0]["amt2"]
+                //    }, {
+                //        name: 'Mar',
+                //            y: sdata[0]["amt3"]
+                //        }
+                //        , {
+                //            name: 'Apr',
+                //            y: sdata[0]["amt4"]
+                //        }
+                //        , {
+                //            name: 'May',
+                //            y: sdata[0]["amt5"]
+                //        }
+                //        , {
+                //            name: 'Jun',
+                //            y: sdata[0]["amt6"]
+                //        }
+                //        , {
+                //            name: 'Jul',
+                //            y: sdata[0]["amt7"]
+                //        }
+                //        , {
+                //            name: 'Aug',
+                //            y: sdata[0]["amt8"]
+                //        }
+                //        , {
+                //            name: 'Sep',
+                //            y: sdata[0]["amt9"]
+                //        }
+                //        , {
+                //            name: 'Oct',
+                //            y: sdata[0]["amt10"]
+                //        }
+                //        , {
+                //            name: 'Nov',
+                //            y: sdata[0]["amt11"]
+                //        }
+                //        , {
+                //            name: 'Dec',
+                //            y: sdata[0]["amt12"]
+                //        }
+                //    ]
+                //}]
             });
-       
-    
-
-
-            var MonthWiseCollection = [];
-            for (var i = 0; i < sdata.length; i++) {
-                MonthWiseCollection.push({ "name": sdata[i].prjname, "y": parseFloat(sdata[i].amt) })
-              /*  sumplead += parseFloat(prjLead[i].total);*/
-
-            }
 
 
 
+
+
+            //console.log(sdata);
+            //console.log(MonthWiseCollection);
 
             $("#MonthlyCol").highcharts({
                 chart: {
@@ -2919,8 +2935,8 @@
 
 
                 //        ]
-                    }
-                ]
+                //  }
+                // ]
             });
 
             $("#MonthlyColLine").highcharts({
@@ -2978,15 +2994,15 @@
 
                 series: [{
                     name: 'Collection',
-                    data: [sdata[0]["amt1"], sdata[0]["amt2"], sdata[0]["amt3"], sdata[0]["amt4"], sdata[0]["amt5"], sdata[0]["amt6"], sdata[0]["amt7"], sdata[0]["amt8"], sdata[0]["amt9"], sdata[0]["amt10"], sdata[0]["amt11"], sdata[0]["amt12"]],
-                    color: '#1581C1'
-
+                    //data: [sdata[0]["amt1"], sdata[0]["amt2"], sdata[0]["amt3"], sdata[0]["amt4"], sdata[0]["amt5"], sdata[0]["amt6"], sdata[0]["amt7"], sdata[0]["amt8"], sdata[0]["amt9"], sdata[0]["amt10"], sdata[0]["amt11"], sdata[0]["amt12"]],
+                    color: '#1581C1',
+                    data: MonthWiseCollection
 
                 }]
 
 
             });
-            
+
 
             $("#MonthlyColPie").highcharts({
                 chart: {
@@ -3017,53 +3033,54 @@
                 series: [{
                     name: 'Months',
                     colorByPoint: true,
-                    data: [{
-                        name: 'Jan',
-                        y: sdata[0]["amt1"]
-                    }, {
-                        name: 'Feb',
-                        y: sdata[0]["amt2"]
-                    }, {
-                        name: 'Mar',
-                        y: sdata[0]["amt3"]
-                    }
-                        , {
-                        name: 'Apr',
-                        y: sdata[0]["amt4"]
-                    }
-                        , {
-                        name: 'May',
-                        y: sdata[0]["amt5"]
-                    }
-                        , {
-                        name: 'Jun',
-                        y: sdata[0]["amt6"]
-                    }
-                        , {
-                        name: 'Jul',
-                        y: sdata[0]["amt7"]
-                    }
-                        , {
-                        name: 'Aug',
-                        y: sdata[0]["amt8"]
-                    }
-                        , {
-                        name: 'Sep',
-                        y: sdata[0]["amt9"]
-                    }
-                        , {
-                        name: 'Oct',
-                        y: sdata[0]["amt10"]
-                    }
-                        , {
-                        name: 'Nov',
-                        y: sdata[0]["amt11"]
-                    }
-                        , {
-                        name: 'Dec',
-                        y: sdata[0]["amt12"]
-                    }
-                    ]
+                    data: MonthWiseCollection
+                    //data: [{
+                    //    name: 'Jan',
+                    //    y: sdata[0]["amt1"]
+                    //}, {
+                    //    name: 'Feb',
+                    //    y: sdata[0]["amt2"]
+                    //}, {
+                    //    name: 'Mar',
+                    //    y: sdata[0]["amt3"]
+                    //}
+                    //    , {
+                    //    name: 'Apr',
+                    //    y: sdata[0]["amt4"]
+                    //}
+                    //    , {
+                    //    name: 'May',
+                    //    y: sdata[0]["amt5"]
+                    //}
+                    //    , {
+                    //    name: 'Jun',
+                    //    y: sdata[0]["amt6"]
+                    //}
+                    //    , {
+                    //    name: 'Jul',
+                    //    y: sdata[0]["amt7"]
+                    //}
+                    //    , {
+                    //    name: 'Aug',
+                    //    y: sdata[0]["amt8"]
+                    //}
+                    //    , {
+                    //    name: 'Sep',
+                    //    y: sdata[0]["amt9"]
+                    //}
+                    //    , {
+                    //    name: 'Oct',
+                    //    y: sdata[0]["amt10"]
+                    //}
+                    //    , {
+                    //    name: 'Nov',
+                    //    y: sdata[0]["amt11"]
+                    //}
+                    //    , {
+                    //    name: 'Dec',
+                    //    y: sdata[0]["amt12"]
+                    //}
+                    //]
                 }]
             });
         }

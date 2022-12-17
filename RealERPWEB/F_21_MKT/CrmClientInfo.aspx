@@ -2839,7 +2839,7 @@
 
 
                                                     </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:TemplateField>
                                                 <%--2--%>
 
@@ -2852,24 +2852,19 @@
 
 
                                                     </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:TemplateField>
                                                 <%--3--%>
 
                                                 <asp:TemplateField HeaderText="">
-
                                                     <HeaderTemplate>
-
-
                                                         <asp:HyperLink ID="hlbtntbCdataExel" runat="server"
                                                             CssClass="btn   btn-xs" ToolTip="Export Excel"><span class="fa  fa-file-excel "></span></asp:HyperLink>
-
                                                     </HeaderTemplate>
-
                                                     <ItemTemplate>
                                                         <asp:LinkButton ID="lnkEdit" runat="server" Font-Bold="True" Height="12px" Style="text-align: right" ToolTip="Edit Client Info" Text="Edit" OnClick="lnkEdit_Click"> <span class=" fa   fa-edit"></span></asp:LinkButton>
                                                     </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
 
 
 
@@ -2884,7 +2879,7 @@
                                                         <asp:Label ID="ldesig" runat="server" Width="40px"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'></asp:Label>
                                                     </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:TemplateField>
                                                 <%--5--%>
                                                 <asp:TemplateField HeaderText="P-ID">
@@ -2893,7 +2888,7 @@
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode1")) %>'></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:TemplateField>
                                                 <%--6--%>
                                                 <asp:TemplateField HeaderText="Generated">
@@ -2901,7 +2896,7 @@
                                                         <asp:Label ID="lblgenerated" runat="server" Font-Size="11px" Width="70px" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "generated")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "generated")).ToString("dd-MMM-yyyy") %>'></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:TemplateField>
                                                 <%--7--%>
 
@@ -2922,7 +2917,7 @@
 
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:TemplateField>
 
 
@@ -2947,7 +2942,7 @@
 
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:TemplateField>
 
 
@@ -3017,7 +3012,7 @@
                                                         <asp:LinkButton ID="lnkAct" ClientIDMode="Static" Width="12" ToolTip="" runat="server" OnClick="lnkAct_Click"><span class="fa fa-edit"></span></asp:LinkButton>
                                                     </ItemTemplate>
                                                     <ItemStyle HorizontalAlign="left" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:TemplateField>
                                                 <%--15--%>
 
@@ -3111,7 +3106,7 @@
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'></asp:Label>
 
                                                     </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:TemplateField>
 
                                                 <%--25--%>
@@ -3120,7 +3115,7 @@
                                                     <ItemTemplate>
                                                         <asp:LinkButton ID="lnkbtnRetreive" runat="server" Font-Bold="True" Height="12px" ToolTip="Retreive Prospect" Style="text-align: right" OnClientClick="javascript:return  FunConfirm()" OnClick="lnkbtnRetreive_Click"><span><i class="fa fa-undo" Style="text-align: center"></i></span></asp:LinkButton>
                                                     </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                     <ItemStyle HorizontalAlign="center" />
                                                 </asp:TemplateField>
                                                 <%--26--%>
@@ -3132,7 +3127,7 @@
 
                                                     </ItemTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:TemplateField>
                                                 <%--27--%>
                                                  <asp:TemplateField HeaderText="Project Visit<br>Status" Visible="false">
@@ -3141,7 +3136,15 @@
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projvisit")) %>'></asp:Label>
 
                                                     </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                </asp:TemplateField>
+                                                 <%--28--%>
+                                                 <asp:TemplateField HeaderText="Entry By" Visible="false">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgventryby" runat="server"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "entryby")) %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 </asp:TemplateField>
 
                                             </Columns>

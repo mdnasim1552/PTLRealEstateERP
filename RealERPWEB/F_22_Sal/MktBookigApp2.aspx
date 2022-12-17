@@ -403,9 +403,18 @@
                                                                 <asp:TextBox ID="TxtNoTInstall" runat="server" TabIndex="5" CssClass="form-control form-control-sm"></asp:TextBox>
                                                             </div>
                                                         </div>
+
+
                                                         <div class="col-md-2">
                                                             <div class"form-group">
-                                                               <asp:Label ID="lblbookdate" runat="server" CssClass="control-label" Text="Pay Date"></asp:Label>
+                                                               <asp:Label ID="lblInstallmentDate" runat="server" CssClass="control-label" Text="Installment Date"></asp:Label>
+                                                                <asp:TextBox ID="txtInstallmentDate" runat="server" TabIndex="5" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-2">
+                                                            <div class"form-group">
+                                                               <asp:Label ID="lblbookdate" runat="server" CssClass="control-label" Text="Date"></asp:Label>
                                                                <asp:TextBox ID="txtbookdate" runat="server" TabIndex="5" CssClass="form-control form-control-sm"></asp:TextBox>
                                                                 <cc1:CalendarExtender ID="CalendarExtender_txtbookdate" runat="server"
                                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtbookdate" CssClass="form-control form-control-sm"></cc1:CalendarExtender>

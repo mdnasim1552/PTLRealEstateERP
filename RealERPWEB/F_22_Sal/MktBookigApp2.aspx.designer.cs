@@ -321,6 +321,24 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.TextBox TxtNoTInstall;
 
         /// <summary>
+        /// lblInstallmentDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblInstallmentDate;
+
+        /// <summary>
+        /// txtInstallmentDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtInstallmentDate;
+
+        /// <summary>
         /// lblbookdate control.
         /// </summary>
         /// <remarks>

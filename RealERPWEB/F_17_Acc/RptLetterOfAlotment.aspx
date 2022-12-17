@@ -76,16 +76,16 @@
             <div class="card mt-3">
                 <div class="card-header well">
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <asp:Label runat="server" ID="lblprjname">Project Name</asp:Label>
-                                <asp:DropDownList runat="server" ID="ddlprjname" AutoPostBack="True" CssClass="chzn-select form-control" OnSelectedIndexChanged="ddlprjname_SelectedIndexChanged" ></asp:DropDownList>
+                                <asp:DropDownList runat="server" ID="ddlprjname" AutoPostBack="True" CssClass="form-control chzn-select form-control-sm " ></asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <asp:Label runat="server" ID="Label1">Customer Name</asp:Label>
-                                <asp:DropDownList runat="server" ID="ddlcustomerName" AutoPostBack="True" CssClass="chzn-select form-control"></asp:DropDownList>
+                                <asp:DropDownList runat="server" ID="ddlcustomerName"  AutoPostBack="True" CssClass="form-control chzn-select form-control-sm"></asp:DropDownList>
                             </div>
                         </div>
                         <div class="col-md-1 mt-4">

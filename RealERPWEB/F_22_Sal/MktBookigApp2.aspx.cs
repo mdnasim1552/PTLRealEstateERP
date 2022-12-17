@@ -49,7 +49,6 @@ namespace RealERPWEB.F_22_Sal
 
                 this.GetProjectName();
                 this.GetMaxCustNumber();
-                this.GetSalesName();
             }
 
 
@@ -236,6 +235,7 @@ namespace RealERPWEB.F_22_Sal
 
                     this.GetMaxCustNumber();
                     this.ShowData();
+                    this.GetSalesName();
                     return;
                 }
                 this.lbtnOk.Text = "Ok";
@@ -298,15 +298,15 @@ namespace RealERPWEB.F_22_Sal
             this.txtbookdate.Text = (dt.Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(dt.Rows[0]["paydate"]).ToString("dd-MMM-yyyy");
             this.Textinsamt.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["insamptpermonth"]).ToString("#,##0;(#,##0); ");
             this.TxtNoTInstall.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["totalinstallment"]).ToString("#,##0;(#,##0); ");
+            this.txtInstallmentDate.Text = (dt.Rows.Count == 0) ? "" : dt.Rows[0]["insdaypermonth"].ToString();
             this.txtrcvbookingam.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["rcvbookingamt"]).ToString("#,##0;(#,##0); ");
 
             this.cblintavailloan.SelectedValue = (dt.Rows.Count == 0) ? "No" : dt.Rows[0]["intavail"].ToString();
             this.cblpaytype.SelectedValue = (dt.Rows.Count == 0) ? "OneTime" : dt.Rows[0]["paymode"].ToString();
 
-            if (dt.Rows.Count > 0)
+            if (dt.Rows.Count > 0 && dt.Rows[0]["customerno"].ToString().Length > 0)
             {
-                if (dt.Rows[0]["customerno"].ToString().Length > 0)
-                    this.txtCustmerNumber.Text = dt.Rows[0]["customerno"].ToString();
+                this.txtCustmerNumber.Text = dt.Rows[0]["customerno"].ToString();
             }
 
 
@@ -725,8 +725,6 @@ namespace RealERPWEB.F_22_Sal
             string comfadd = hst["comadd"].ToString().Replace("<br />", "\n");
             string comadd1 = "81, S. S. Khaled Road, Jamal Khan, Chattogram. Phone: +8802333354442, 02333354443, 02333351443";
             string contactCommunication = "Mobile: +8801755663636. E-mail: mail@cpdl.com.bd, Web: www.cpdl.com.bd";
-
-
             string comlogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string modeofpay = this.cblpaytype.SelectedValue.ToString();
             string projectName = this.ddlProjectName.SelectedItem.Text;
@@ -734,49 +732,33 @@ namespace RealERPWEB.F_22_Sal
             DataTable dt3 = (DataTable)Session["tblprice"];
             DataTable dt10 = (DataTable)Session["tblrmrk"];
             DataTable dtSalname = (DataTable)Session["salesname"];
-            
 
-
-
+            string customerno = dt2.Rows[0]["customerno"].ToString() == "" ? dt2.Rows[0]["usircode"].ToString() : dt2.Rows[0]["custno"].ToString();
 
             var list = dt2.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptCustBookApp2>();
             LocalReport Rpt1 = new LocalReport();
-
-
             Rpt1 = RDLCAccountSetup.GetLocalReport("R_22_Sal.RptSaleDeclaration", list, "", "");
-
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd1", comadd1));
             Rpt1.SetParameters(new ReportParameter("comlogo", comlogo));
             Rpt1.SetParameters(new ReportParameter("comfadd", comfadd));
-
             Rpt1.SetParameters(new ReportParameter("contactCommunication", contactCommunication));
-
             Rpt1.SetParameters(new ReportParameter("enrolmentdate", Convert.ToDateTime(dt2.Rows[0]["appdate"]).ToString("ddMMyyyy")));
-            Rpt1.SetParameters(new ReportParameter("customerno", dt2.Rows[0]["custno"].ToString()));
-            if (dt2.Rows[0]["customerno"].ToString() == "") {
-                Rpt1.SetParameters(new ReportParameter("customerno", dt2.Rows[0]["usircode"].ToString()));
-            }
-
+            Rpt1.SetParameters(new ReportParameter("customerno", customerno));
             Rpt1.SetParameters(new ReportParameter("usircode", dt2.Rows[0]["usircode"].ToString()));
             Rpt1.SetParameters(new ReportParameter("bookingno", dt2.Rows[0]["bookingno"].ToString()));
             Rpt1.SetParameters(new ReportParameter("customername", dt2.Rows[0]["fullname"].ToString()));
             Rpt1.SetParameters(new ReportParameter("contactno", dt2.Rows[0]["mobilenum"].ToString()));
             Rpt1.SetParameters(new ReportParameter("address", dt2.Rows[0]["presentaddr"].ToString()));
-
             Rpt1.SetParameters(new ReportParameter("propertyname", projectName));
             Rpt1.SetParameters(new ReportParameter("floor", dt2.Rows[0]["floorr"].ToString()));
             Rpt1.SetParameters(new ReportParameter("unit", dt2.Rows[0]["parkingLevel"].ToString()));
             Rpt1.SetParameters(new ReportParameter("size", dt2.Rows[0]["size"].ToString()));
             Rpt1.SetParameters(new ReportParameter("propertyaddress", dt3.Rows[0]["propertyAddress"].ToString()));
             Rpt1.SetParameters(new ReportParameter("remarks", dt10.Rows[0]["remarks"].ToString()));
-            if (dtSalname.Rows.Count > 0) {
-                Rpt1.SetParameters(new ReportParameter("salesname", dtSalname.Rows[0]["salesname"].ToString()));
-            }
+            Rpt1.SetParameters(new ReportParameter("salesname", dtSalname.Rows.Count > 0 ? dtSalname.Rows[0]["salesname"].ToString() : ""));
 
-
-            Session["Report1"] = Rpt1;
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
@@ -807,6 +789,7 @@ namespace RealERPWEB.F_22_Sal
             string bookdate = Convert.ToDateTime(this.txtbookdate.Text).ToString("dd-MMM-yyyy");
             //string inttoavailloan = this.cblintavailloan.SelectedValue.ToString();
             //string modeofpay = this.cblpaytype.SelectedValue.ToString();
+            string installDate = this.txtInstallmentDate.Text.Trim();
 
 
             //ViewState["tblperinfo"] = ds2.Tables[1];
@@ -839,6 +822,8 @@ namespace RealERPWEB.F_22_Sal
 
             double inword = Convert.ToDouble(dt2.Rows[0]["bookamt"]);
             double percntamt = Convert.ToDouble(dt1.Select("Code='07'")[0]["amount"]);
+            double discount = Convert.ToDouble(dt1.Select("Code='08'")[0]["amount"]);
+            double grandtotal = Convert.ToDouble(dt1.Select("Code='09'")[0]["amount"]);
 
             //DataTable dt = ds2.Tables[0];
             //DataTable dt = (DataTable)Session["tblcustinfo"];
@@ -887,7 +872,11 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("datefornominated", Convert.ToDateTime(dt5.Rows[0]["datefornominated"]).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("percntamt", percntamt.ToString()));
             Rpt1.SetParameters(new ReportParameter("remarks", dt10.Rows[0]["remarks"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("discount", discount.ToString()));
+            Rpt1.SetParameters(new ReportParameter("grandtotal", grandtotal.ToString()));
+            Rpt1.SetParameters(new ReportParameter("installDate", installDate.ToString()));
 
+            
 
             string bookingmoney = (dt2.Rows.Count == 0) ? "" : Convert.ToDouble(dt2.Rows[0]["bookamt"]).ToString("#,##0;(#,##0); ");
             Rpt1.SetParameters(new ReportParameter("bookingmoney", bookingmoney));
@@ -942,6 +931,9 @@ namespace RealERPWEB.F_22_Sal
             string inttoavailloan = this.cblintavailloan.SelectedValue.ToString();
             string modeofpay = this.cblpaytype.SelectedValue.ToString();
             string customerMaxNo = this.txtCustmerNumber.Text.Trim();
+
+            string InstallmentDate = this.txtInstallmentDate.Text.Trim().ToString();
+
 
 
 
@@ -1016,7 +1008,7 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-            bool result = SalData.UpdateXmlTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "INSORUPDATECUSTAPPINF", ds1, null, null, pactcode, usircode, appdate, bookingamt, bankname, branch, bookdate, inttoavailloan, modeofpay, chequeno, customerMaxNo, InstallAmtPerMonth, NoofTotalInstall, Rcvbookingam);
+            bool result = SalData.UpdateXmlTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "INSORUPDATECUSTAPPINF", ds1, null, null, pactcode, usircode, appdate, bookingamt, bankname, branch, bookdate, inttoavailloan, modeofpay, chequeno, customerMaxNo, InstallAmtPerMonth, NoofTotalInstall, Rcvbookingam, InstallmentDate);
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = SalData.ErrorObject["Msg"].ToString();
@@ -1265,31 +1257,22 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-
-
-
-
-
-
-
-
             double upirce = usize * rate;
             DataRow[] drp = dt2.Select("Code='02'");
 
 
 
-            double discount = Convert.ToDouble(dt2.Select("Code='08'")[0]["amount"]);
-            //double propertyprice = Convert.ToDouble(dt2.Select("Code='02'")[0]["amount"]);
+            //double discount = Convert.ToDouble(dt2.Select("Code='08'")[0]["amount"]);
 
-            if (discount > 0)
-            {
-                //DataRow[] drd = dt2.Select("Code='02'");
-                //drd[0]["amount"] = ppamtafterdiscount;
-                upirce = upirce - discount;
+            //if (discount > 0)
+            //{
+            //    //DataRow[] drd = dt2.Select("Code='02'");
+            //    //drd[0]["amount"] = ppamtafterdiscount;
+            //    upirce = upirce - discount;
 
-                DataRow[] drpp = dt2.Select("Code='02'");
-                drpp[0]["amount"] = upirce;
-            }
+            //    DataRow[] drpp = dt2.Select("Code='02'");
+            //    drpp[0]["amount"] = upirce;
+            //}
 
 
             drp[0]["amount"] = upirce;
@@ -1306,35 +1289,44 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-            Session["tblprjinfo"] = dt1;
-            Session["tblpricedetail"] = dt2;
-            this.Data_BindPriceDetail();
+            double discount = Convert.ToDouble(dt2.Select("Code='08'")[0]["amount"]);
+
+            double toamtafterdiscount = toamt - discount;
+
+            DataRow[] drgt = dt2.Select("Code='09'");
+            drgt[0]["amount"] = toamtafterdiscount.ToString("#,##0;(#,##0); ");
 
 
             double amtpercnt = Convert.ToDouble(dt2.Select("Code='07'")[0]["amount"]);
-            double payAmount = ((toamt * amtpercnt) / 100);
-            this.TextBookingAmt.Text = payAmount.ToString("#,##0;(#,##0); ");
 
 
 
 
+            //if (amtpercnt > 0)
+            //{
+            //    double payAmount = ((toamtafterdiscount * amtpercnt) / 100);
+            //    this.TextBookingAmt.Text = payAmount.ToString("#,##0;(#,##0); ");
+            //}
+            //else {
+            //    this.TextBookingAmt.Text = toamtafterdiscount.ToString("#,##0;(#,##0); ");
+            //}
 
-            //double discount = Convert.ToDouble(dt2.Select("Code='08'")[0]["amount"]);
+            double payAmount = ((toamtafterdiscount * amtpercnt) / 100);
+            this.TextBookingAmt.Text = amtpercnt == 0 ? toamtafterdiscount.ToString("#,##0;(#,##0); ") : payAmount.ToString("#,##0;(#,##0); ");
 
-            //double toamtafterdiscount = toamt - discount;
             //if (discount > 0)
             //{
             //    DataRow[] drd = dt2.Select("Code='06'");
             //    drd[0]["amount"] = toamtafterdiscount;
 
-            //    //DataRow[] drpp = dt2.Select("Code='02'");
-            //    //drpp[0]["amount"] = toamtafterdiscount;
             //}
-            //double amtpercnt = Convert.ToDouble(dt2.Select("Code='07'")[0]["amount"]);
-            //double payAmount = ((toamtafterdiscount * amtpercnt) / 100);
-            //this.TextBookingAmt.Text = payAmount.ToString("#,##0;(#,##0); ");
-        }
 
+
+
+            Session["tblprjinfo"] = dt1;
+            Session["tblpricedetail"] = dt2;
+            this.Data_BindPriceDetail();
+        }
 
         //private void LoadImg()
         //{

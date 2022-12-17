@@ -378,7 +378,11 @@ namespace RealERPRDLC
                 case "R_22_Sal.RptSalesOpening": Rpt1a = SetRptSalesOpening(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptTopSheetFactory": Rpt1a = SetRptTopSheetFactory(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptLetterOfAllotmentCPDL": Rpt1a = SetRptLetterOfAllotmentCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                
+                case "R_81_Hrm.R_89_Pay.RptSalEncashment": Rpt1a = SetRptSalEncashment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
+
+    
+
 
                 #region General Accounts 17
                 case "R_17_Acc.TransectionPrint": Rpt1a = SetRptTrnPrint(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -744,6 +748,7 @@ namespace RealERPRDLC
                 case "R_22_Sal.RptSalClntInterestRup": Rpt1a = SetRptSalClntInterestRup(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptSalClntInterestEdison": Rpt1a = SetRptSalClntInterestEdison(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptEarlybenefitADelay": Rpt1a = SetRptEarlybenefitADelay(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptEarlybenefitADelayCPDL": Rpt1a = SetRptEarlybenefitADelayCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_22_Sal.rptUnitFxInf": Rpt1a = SetrptUnitFxInf(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptMonthWiseNewSales": Rpt1a = SetRptMonthWiseNewSales(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1439,10 +1444,19 @@ namespace RealERPRDLC
         private static LocalReport SetRptLetterOfAllotmentCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.Sales_BO.AllotmentInfo>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_22_Sal.EClassSales_02.RptSalPaySchedules>)RptDataSet2));
 
             return Rpt1a;
         }
 
+
+
+        private static LocalReport SetRptSalEncashment(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalEncashment>)RptDataSet));
+
+            return Rpt1a;
+        }
 
 
 
@@ -4484,6 +4498,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptEarlybenefitADelay(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet5", (List<RealEntity.C_22_Sal.EClassSales_02.EClassInterestDummyPay02>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptEarlybenefitADelayCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales_02.EClassInterestDummyPay02>)RptDataSet));
             return Rpt1a;
         }
         private static LocalReport SetrptUnitFxInf(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
