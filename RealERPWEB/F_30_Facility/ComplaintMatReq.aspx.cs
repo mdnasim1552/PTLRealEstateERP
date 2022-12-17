@@ -44,13 +44,7 @@ namespace RealERPWEB.F_30_Facility
                 string type = ddlType.SelectedValue.ToString();
                 if (type == "1")
                 {
-                    getComplainUser();
-                    GetToInventoryCode();
-                    GetProject();
-                    GetMaterial();
-                    GetMatTransferCode();
-                    pnlMatReq.Visible = false;
-                    pnlTransfer.Visible = true;
+                    getTransferInit();
                 }
                 else
                 {
@@ -267,8 +261,7 @@ namespace RealERPWEB.F_30_Facility
             string CRMPostSession = Sessionid;
             string CRMPostedDat = Date;
             string checkbyid = userid;
-
-
+            string DgNo = (Request.QueryString["DgNo"] == null ? ddlDgNo.SelectedValue : Request.QueryString["DgNo"].ToString());
 
             bool result = _process.UpdateTransInfo2(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEMATPURREQB", reqno, reqdate, pactcode, flrcod, requsrid, mrfno, reqnar,
                 PostedByid, Posttrmid, PostSession, PostedDat, CRMPostedByid, CRMPosttrmid, CRMPostSession, CRMPostedDat, "", "", "", "", "", "");
@@ -303,6 +296,9 @@ namespace RealERPWEB.F_30_Facility
                     bool resultA = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEMATPURREQA", "",
                               reqno, mRSIRCODE, mSPCFCOD, mPREQTY.ToString(), mAREQTY.ToString(), mREQRAT, mPSTKQTY, mEXPUSEDT, mREQNOTE,
                               PursDate, Lpurrate, storecode, ssircode, orderno, mREQSRAT, rowId, "", "", "", "", "", "");
+                    resultA = _process.UpdateTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEBUDGETMTR", DgNo, mRSIRCODE, reqno, "", "", "", "", "", "", "", "", "", "", "", "");
+
+
                     resultCompA.Add(resultA);
                     i++;
                 }
@@ -326,7 +322,7 @@ namespace RealERPWEB.F_30_Facility
                         result = _process.UpdateTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEMATPURREQC", "",
                                         reqno, mTERMSID, mTERMSSUBJ, mTERMSDESC, mTERMSRMRK, "", "", "", "",
                                         "", "", "", "", "");
-
+                        
                         if (!result)
                         {
                             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
@@ -451,6 +447,10 @@ namespace RealERPWEB.F_30_Facility
                 if (Convert.ToDouble(projectrow1[0]["balqty"]) < Convert.ToDouble(projectrow3[0]["quantity"]))
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Balance Quantity Less than Budgeted Quantity" + "');", true);
+                    if (grvacc.Rows.Count == 0)
+                    {
+                        ddlFromInventory.Enabled = true;
+                    }
                     return;
                 }
                 DataRow drforgrid = dt.NewRow();
@@ -648,7 +648,7 @@ namespace RealERPWEB.F_30_Facility
             string toInventory = pactcode;
             DataSet ds2 = _process.GetTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "GET_AR_To_WIP", toInventory,
                  "", "", "", "", "", "", "", "");
-            if (ds2 != null || ds2.Tables[0].Rows.Count>=0)
+            if (ds2 != null && ds2.Tables[0].Rows.Count>0)
             {
                 lblToInventory.Text = ds2.Tables[0].Rows[0]["actcode"].ToString();
             }
@@ -686,6 +686,20 @@ namespace RealERPWEB.F_30_Facility
             }
         }
 
+        public void getTransferInit()
+        {
+            getComplainUser();
+            GetToInventoryCode();
+            GetProject();
+            GetMaterial();
+            GetMatTransferCode();
+            grvacc.DataSource = null;
+            grvacc.DataBind();
+            ddlFromInventory.Enabled = true;
+            pnlMatReq.Visible = false;
+            pnlTransfer.Visible = true;
+            
+        }
 
         private void mtrReqEntrySave()
         {
@@ -807,7 +821,7 @@ namespace RealERPWEB.F_30_Facility
                 
                 bool result1 = _process.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_05", "INESERTUPDATEMTREQ", "PURMTREQA", mtreqno, trsircode, spcfcod, tqty,
                    tamt, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-                result1 = _process.UpdateTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEBUDGETMTR", DgNo, mtreqno, "", "", "", "", "", "", "", "", "", "", "", "", "");
+                result1 = _process.UpdateTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEBUDGETMTR", DgNo, trsircode, mtreqno, "", "", "", "", "", "", "", "", "", "", "", "");
 
                 if (!result1)
                 {
@@ -818,8 +832,7 @@ namespace RealERPWEB.F_30_Facility
             }
             msg1 = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg1 + "');", true);
-
-            this.txtEntryDate.Enabled = false;
+            getTransferInit();
 
             if (ConstantInfo.LogStatus == true)
             {
