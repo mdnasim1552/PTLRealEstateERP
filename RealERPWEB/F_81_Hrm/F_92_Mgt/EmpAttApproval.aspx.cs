@@ -103,8 +103,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
 
             this.lbldadte.Text =Convert.ToDateTime(reqdate).ToString("dd-MMM-yyyy");
-            this.lbldadteTime.Text = Convert.ToDateTime(intime).ToString("hh:mm tt");
-            this.lblouttime.Text = Convert.ToDateTime(outtime).ToString("hh:mm tt");
+            if (reqtype == "AB")
+            {
+                this.lbldadteTime.Text = "09:00 AM";// Convert.ToDateTime(intime).ToString("hh:mm tt");
+                this.lblouttime.Text = "05:00 PM";// Convert.ToDateTime(outtime).ToString("hh:mm tt");
+            }
+    
             this.ddlReqType.SelectedValue = reqtype;
 
             string comcod = this.GetCompCode();
