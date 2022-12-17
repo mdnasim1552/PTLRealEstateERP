@@ -1230,7 +1230,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 objReader.Close();
                 string IDCARDNO1;
                 string adt;
+                string adtime;
+                string addatetime;
+                
                 string[] arr;
+                int rowCount = 0;
+                string  rowIdCard = "";
                 foreach (DataRow dr1 in t1.Rows)
                 {
                     arr = dr1["empattn"].ToString().Trim().Split(',');
@@ -1239,15 +1244,22 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     {
                         IDCARDNO1 = arr[0].Trim();
                         adt = arr[2].Trim();
-                        ATIME = Convert.ToDateTime(adt + " " + arr[3]);
-                        MACHID = arr[1];
-                        bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ATTN_UPDATE", "ATTENDANCEUPDATE", "", IDCARDNO1, Convert.ToDateTime(adt).ToString(),
-                                Convert.ToDateTime(ATIME).ToString(), MACHID.Trim(), seldate, "", "", "", "", "", "", "", "", "");
+                        adtime = arr[3].Trim();
 
-                    } 
+                        addatetime = (adt + " " + adtime);
+                        //ATIME = Convert.ToDateTime(adt + " " + adtime);
+                        MACHID = arr[1];
+                        bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ATTN_UPDATE", "ATTENDANCEUPDATE", comcod, IDCARDNO1, Convert.ToDateTime(adt).ToString(),
+                                addatetime, MACHID.Trim(), seldate, "", "", "", "", "", "", "", "", "");
+                        rowCount++;
+                    }
+                    else
+                    {
+                        rowIdCard+= arr[0].Trim()+",";
+                    }
                 }
 
-                Msg = "Updated Successfully";
+                Msg = "Updated Successfully: "+ rowCount.ToString()+", Failed="+ rowIdCard;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
 
 
