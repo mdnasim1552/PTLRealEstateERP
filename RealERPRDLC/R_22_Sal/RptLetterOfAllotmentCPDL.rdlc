@@ -14,7 +14,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>acb64ba5-f3d5-40e5-a75d-f2a4a81053c4</rd:DataSourceID>
+      <rd:DataSourceID>1333a6a4-6310-4e52-aed7-73a6a4a2740b</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -85,22 +85,6 @@
           <DataField>gdesc</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="gdesc1">
-          <DataField>gdesc1</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="grp">
-          <DataField>grp</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="munit">
-          <DataField>munit</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="rmrks">
-          <DataField>rmrks</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="schamt">
           <DataField>schamt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -109,23 +93,11 @@
           <DataField>schdate</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="uamt">
-          <DataField>uamt</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="urate">
-          <DataField>urate</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
-        <Field Name="usize">
-          <DataField>usize</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
-        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_22_Sal</rd:DataSetName>
-        <rd:TableName>RptSalPaySchedules</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_22_Sal.EClassSales_02+RptSalPaySchedules, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>Rptalloreport</rd:TableName>
+        <rd:ObjectDataSourceType>RealEntity.C_22_Sal.EClassSales_02+Rptalloreport, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -1506,7 +1478,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
-            <Top>6.69458in</Top>
+            <Top>7.04458in</Top>
             <Left>0.01042in</Left>
             <Height>0.1875in</Height>
             <Width>7.48958in</Width>
@@ -1546,7 +1518,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox7</rd:DefaultName>
-            <Top>6.92375in</Top>
+            <Top>7.27375in</Top>
             <Left>0.01042in</Left>
             <Height>0.19792in</Height>
             <Width>7.48958in</Width>
@@ -1586,7 +1558,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox8</rd:DefaultName>
-            <Top>7.17306in</Top>
+            <Top>7.52306in</Top>
             <Left>0.01042in</Left>
             <Height>0.19792in</Height>
             <Width>7.48958in</Width>
@@ -1633,7 +1605,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
-            <Top>7.41264in</Top>
+            <Top>7.76264in</Top>
             <Left>0.01042in</Left>
             <Height>0.19792in</Height>
             <Width>7.48958in</Width>
@@ -1667,7 +1639,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox12</rd:DefaultName>
-            <Top>7.67722in</Top>
+            <Top>8.02722in</Top>
             <Left>0.01042in</Left>
             <Height>0.1875in</Height>
             <Width>7.48958in</Width>
@@ -1700,7 +1672,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox15</rd:DefaultName>
-            <Top>7.93278in</Top>
+            <Top>8.28278in</Top>
             <Left>0.01042in</Left>
             <Height>0.25in</Height>
             <Width>7.48958in</Width>
@@ -1737,7 +1709,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox21</rd:DefaultName>
-            <Top>9.005in</Top>
+            <Top>10.1675in</Top>
             <Left>1.57639in</Left>
             <Height>0.25in</Height>
             <Width>4.31945in</Width>
@@ -1760,6 +1732,7 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Parameters!generalbody.Value</Value>
+                    <MarkupType>HTML</MarkupType>
                     <Style>
                       <FontFamily>cambria</FontFamily>
                     </Style>
@@ -1769,7 +1742,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox24</rd:DefaultName>
-            <Top>9.46542in</Top>
+            <Top>10.62792in</Top>
             <Left>0.01042in</Left>
             <Height>0.25in</Height>
             <Width>7.48958in</Width>
@@ -1805,7 +1778,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox28</rd:DefaultName>
-            <Top>9.8925in</Top>
+            <Top>11.055in</Top>
             <Left>0.01042in</Left>
             <Height>0.25in</Height>
             <Width>7.48958in</Width>
@@ -1841,7 +1814,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox31</rd:DefaultName>
-            <Top>10.4882in</Top>
+            <Top>12.4507in</Top>
             <Left>0.01042in</Left>
             <Height>0.1875in</Height>
             <Width>2.32292in</Width>
@@ -1896,7 +1869,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox34</rd:DefaultName>
-            <Top>10.86333in</Top>
+            <Top>12.82583in</Top>
             <Left>0.24875in</Left>
             <Height>0.32764in</Height>
             <Width>2.75125in</Width>
@@ -1951,7 +1924,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox34</rd:DefaultName>
-            <Top>10.85764in</Top>
+            <Top>12.82014in</Top>
             <Left>4.3125in</Left>
             <Height>0.33333in</Height>
             <Width>2.69792in</Width>
@@ -1984,7 +1957,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox41</rd:DefaultName>
-            <Top>8.21125in</Top>
+            <Top>8.56125in</Top>
             <Left>0.01042in</Left>
             <Height>0.25in</Height>
             <Width>7.48958in</Width>
@@ -2962,7 +2935,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Left</TextAlign>
+                                <TextAlign>Right</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -2998,7 +2971,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Left</TextAlign>
+                                <TextAlign>Right</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -3034,7 +3007,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Left</TextAlign>
+                                <TextAlign>Right</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -3070,7 +3043,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Left</TextAlign>
+                                <TextAlign>Right</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -3106,7 +3079,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Left</TextAlign>
+                                <TextAlign>Right</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -3134,7 +3107,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!totalamt.Value</Value>
+                                  <Value>=Parameters!totalcost.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3582,7 +3555,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Left</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -3974,7 +3947,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>11.29167in</Height>
+        <Height>13.29167in</Height>
         <Style />
       </Body>
       <Width>7.54167in</Width>
@@ -4293,6 +4266,12 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="totalcost">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -4483,6 +4462,11 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>9</RowIndex>
           <ParameterName>totalamt</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>9</RowIndex>
+          <ParameterName>totalcost</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
