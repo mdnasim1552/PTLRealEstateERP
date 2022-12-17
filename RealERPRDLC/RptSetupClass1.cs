@@ -1444,7 +1444,7 @@ namespace RealERPRDLC
         private static LocalReport SetRptLetterOfAllotmentCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.Sales_BO.AllotmentInfo>)RptDataSet));
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_22_Sal.EClassSales_02.RptSalPaySchedules>)RptDataSet2));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_22_Sal.EClassSales_02.Rptalloreport>)RptDataSet2));
 
             return Rpt1a;
         }
