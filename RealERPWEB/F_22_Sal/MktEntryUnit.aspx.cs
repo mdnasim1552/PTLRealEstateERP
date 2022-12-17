@@ -177,7 +177,7 @@ namespace RealERPWEB.F_22_Sal
             if (this.lbtnOk.Text == "Ok")
             {
 
-                this.PanelGroup.Visible = true;
+                //this.PanelGroup.Visible = true;
                 this.lbtnOk.Text = "New";
                 this.lblProjectdesc.Text = this.ddlProjectName.SelectedItem.Text;
                 //this.lblProjectmDesc.Text = this.ddlProjectName.SelectedItem.Text.Substring(13);
