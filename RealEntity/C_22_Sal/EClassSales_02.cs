@@ -767,6 +767,7 @@ namespace RealEntity.C_22_Sal
             public double cinsam { get; set; }
 
             public DateTime paiddate { get; set; }
+           
 
             public double pamount { get; set; }
             public double balamt { get; set; }
