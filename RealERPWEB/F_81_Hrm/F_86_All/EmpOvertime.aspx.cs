@@ -642,6 +642,11 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                     break;
 
+                case "3370"://cpdl
+                    CallType = "EMPALLOYOVERTIMECPDL";
+
+                    break;
+
                 default:
                     CallType = "EMPALLOYOVERTIME";
                     break;
@@ -4098,6 +4103,11 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     //acmeai
                 case "3369":
                     calltype = "GETOTDETAILSACMEAI";
+                    break;
+
+                //cpdl
+                case "3370":
+                    calltype = "GETOTDETAILSCPDL";
                     break;
 
                 default:
