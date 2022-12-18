@@ -463,6 +463,8 @@ namespace RealERPWEB.F_22_Sal
                 return;
             }
             ViewState["tblinterest"] = this.HiddenSameData(ds2.Tables[0]);
+            ViewState["tblclientsum"] = ds2.Tables[2];
+            
             DataTable dt = ds2.Tables[1];
             this.txtentryben.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Select("code='001'")[0]["charge"]).ToString("#,##0.0000;(#,##0.0000); ");
             this.txtdelaychrg.Text = (dt.Rows.Count < 1) ? "" : Convert.ToDouble(dt.Select("code='002'")[0]["charge"]).ToString("#,##0.0000;(#,##0.0000); ");
@@ -828,6 +830,7 @@ namespace RealERPWEB.F_22_Sal
                     break;
 
                 case "EarlybenADelay":
+
                     if (comcod == "3370")
                     {
                         this.RptEarlyBenADelayCPDL();
@@ -836,7 +839,18 @@ namespace RealERPWEB.F_22_Sal
                     {
                         this.RptEarlyBenADelay();
                     }
-                   
+                    break;
+
+                  
+                case "EarlybenADelay02":
+                    if (comcod == "3370")
+                    {
+                        this.RptEarlyBenADelayCPDL();
+                    }
+                    else
+                    {
+                        this.RptEarlyBenADelay();
+                    }
                     break;
 
 
@@ -2073,23 +2087,25 @@ namespace RealERPWEB.F_22_Sal
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string project = this.ddlProjectName.SelectedItem.Text.Trim();
             string customer = this.ddlCustName.SelectedItem.Text.Trim();
-            string unit = this.ddlCustName.SelectedItem.Text.Trim();
-            string delcrg = this.txtdelaychrg.Text.Trim();
-            string entben = this.txtentryben.Text.Trim();
+            string unit =  ASTUtility.Right(this.ddlCustName.SelectedItem.Text.Trim(), 8);
+            double delcrg = Convert.ToDouble(this.txtdelaychrg.Text.Trim())/100 ;
+            double entben = Convert.ToDouble(this.txtentryben.Text.Trim())/100;
             LocalReport Rpt1 = new LocalReport();
             DataTable dt = (DataTable)ViewState["tblinterest"];
+            DataTable dt1 = (DataTable)ViewState["tblclientsum"];
 
             List<RealEntity.C_22_Sal.EClassSales_02.EClassInterestDummyPay02> lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.EClassInterestDummyPay02>();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEarlybenefitADelayCPDL", lst, null, null);
+            List<RealEntity.C_22_Sal.EClassSales_02.EClassClientSum> lst1 = dt1.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.EClassClientSum>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptEarlybenefitADelayCPDL", lst, lst1, null);
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("compname", comnam));
             Rpt1.SetParameters(new ReportParameter("RptHead", "INDIVITUAL CLIENTS STATEMENT"));
             Rpt1.SetParameters(new ReportParameter("ProjName", "Name of Project  : " + project));
-            Rpt1.SetParameters(new ReportParameter("customer", customer));
-            Rpt1.SetParameters(new ReportParameter("Unit", unit));
-            Rpt1.SetParameters(new ReportParameter("delcrg", "Delay Charge : " + delcrg));
-            Rpt1.SetParameters(new ReportParameter("entben", "Advance Discount : " + entben));
+            Rpt1.SetParameters(new ReportParameter("customer","Client Name : " +customer));
+            Rpt1.SetParameters(new ReportParameter("Unit", "Apartment No : "+ unit));
+            Rpt1.SetParameters(new ReportParameter("delcrg", "Delay Charge : " + delcrg +" & Advance Discount " + entben));
+           
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
