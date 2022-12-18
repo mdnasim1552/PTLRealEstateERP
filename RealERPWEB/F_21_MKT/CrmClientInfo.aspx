@@ -4597,7 +4597,7 @@
                                                         <button type="button" class="btn  btn-success btn-xs" id="lbtnreschedule" onclick="funReschedule('<%# DataBinder.Eval(Container, "DataItem.cdate").ToString()%>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString()%>')">Re-Schdule</button>
 
                                                         <button type="button" class="btn btn-primary btn-xs" id="lbtnCancel" onclick="funCancel('<%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("dd-MMM-yyyy hh:mm tt") %>')">Delete</button>
-                                                        <asp:LinkButton ID="lbtnFollowup" CssClass="btn btn-primary btn-xs" runat="server" OnClick="lbtnFollowup_Click"> Followup</asp:LinkButton>
+                                                        <asp:LinkButton ID="lbtnFollowup" CssClass="btn btn-primary btn-xs d-none" runat="server" OnClick="lbtnFollowup_Click"> Followup</asp:LinkButton>
                                                         <asp:LinkButton ID="lbtnAddition" CssClass="btn btn-primary btn-xs" runat="server" OnClick="lbtnAddition_Click">Addition</asp:LinkButton>
                                                         <button type="button" class="btn btn-primary btn-xs" runat="server" id="lbtnComments" data-toggle="collapse" data-target='<%# "#dcomments"+DataBinder.Eval(Container, "DataItem.rownum").ToString() %>'>Comments</button>
 

@@ -98,14 +98,14 @@ namespace RealERPWEB.F_17_Acc
                 case "3368":
                     mrprint = "MRPrintFinlay";
                     break;
-                
+                case "3101":
                 case "1206":
                 case "1207":
                 case "3338":
                     mrprint = "MRPrintAcme";
                     break;
                 case "3367":
-                case "3101":
+               
                     mrprint = "MRPrintEPIC";
                     break;
                 default:
