@@ -945,6 +945,7 @@ namespace RealERPRDLC
                 case "R_34_Mgt.UserLogDetails": Rpt1a = SetRptUserLogDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_34_Mgt.rptActiveSimUser": Rpt1a = SetrptActiveSimUser(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_34_Mgt.RptOtherReqPrintFinlay": Rpt1a = SetRptOtherReqPrintFinlay(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptAdvancedAgainstLoan": Rpt1a = SetRptAdvancedAgainstLoan(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
 
@@ -4352,6 +4353,12 @@ namespace RealERPRDLC
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_34_Mgt.GenBillReq>)RptDataSet));
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_34_Mgt.GenBillSupdesc>)RptDataSet2));
+            return Rpt1a; 
+        }
+        private static LocalReport SetRptAdvancedAgainstLoan(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptAdvancedAgainstLoan>)RptDataSet));
+            
             return Rpt1a; 
         }
 
