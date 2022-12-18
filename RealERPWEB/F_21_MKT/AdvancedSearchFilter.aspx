@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <script src="../../../Scripts/gridviewScrollHaVertworow.min.js"></script>
+    <%--<script src="../../../Scripts/gridviewScrollHaVertworow.min.js"></script>--%>
     <script type="text/javascript" language="javascript">
 
 
@@ -83,6 +83,7 @@
                 var arrgschval = $('#<%=this.gvInfo.ClientID %>').find('input:text[id$="txtgvValdis"]');
                 var arrgsschcheckbox = $('#<%=this.gvInfo.ClientID %>').find('input:text[id$="ChkBoxLstFollow"]');
                 var txtnfollowupdate, checkboxlastfollowup;
+                console.log(arrgschcodl);
                 for (var i = 0; i < arrgschcodl.length; i++) {
 
 
@@ -113,6 +114,7 @@
                 var txtgvdValdis = '#ContentPlaceHolder1_gvInfo_txtgvdValdis_' + number;
                 var ChkBoxLstFollow = 'ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_' + (number - 1);
                 $(txtgvdValdis).change(function () {
+                    alert("dd");
                     var followupdate = $(this).val();
                     var lastfollowup = "";
                     $('input[type=checkbox][id^="' + ChkBoxLstFollow + '"]:checked').each(function (index, item) {
@@ -274,21 +276,21 @@
             }
 
         }
-        $(document).on('click', '.panel-heading span.clickable', function (e) {
+        //$(document).on('click', '.panel-heading span.clickable', function (e) {
 
 
 
-            var $this = $(this);
-            if (!$this.hasClass('panel-collapsed')) {
-                $this.parents('.panel').find('.panel-body').slideUp();
-                $this.addClass('panel-collapsed');
-                $this.find('i').removeClass('fa fa-minus').addClass('fa fa-plus');
-            } else {
-                $this.parents('.panel').find('.panel-body').slideDown();
-                $this.removeClass('panel-collapsed');
-                $this.find('i').removeClass('fa fa-plus').addClass('fa fa-minus');
-            }
-        });
+        //    var $this = $(this);
+        //    if (!$this.hasClass('panel-collapsed')) {
+        //        $this.parents('.panel').find('.panel-body').slideUp();
+        //        $this.addClass('panel-collapsed');
+        //        $this.find('i').removeClass('fa fa-minus').addClass('fa fa-plus');
+        //    } else {
+        //        $this.parents('.panel').find('.panel-body').slideDown();
+        //        $this.removeClass('panel-collapsed');
+        //        $this.find('i').removeClass('fa fa-plus').addClass('fa fa-minus');
+        //    }
+        //});
         function funDupMobile(comcod, sircode, mobile) {
 
             try {
@@ -646,13 +648,13 @@
                         var data = JSON.parse(response.d);
                         funDataBind(data);
                         console.log(data);
+
+                        alert("nahid");
                         //var date=data[0].gdesc1;
                         //alert(date);
-
-                        $('#ContentPlaceHolder1_rpclientinfo_lbtntfollowupf_0').find('a').trigger('click');
-                      
-
-
+                        //$('#lbtntfollowup').find('a').trigger('click');
+                       $('#lbtntfollowup').click();
+                        //btnqclink_Click
                     },
 
 
@@ -1454,9 +1456,9 @@
                             <div class="card mb-3">
 
                                 <div class="pb-2 pt-2 pl-5 bg-light"><span class="font-weight-bold text-muted">Followup Summary</span></div>
+
                                 <div id="pnlflw" runat="server" visible="false" class="card-header bg-light">
                                     <span class="font-weight-bold text-muted">
-                                        <asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ID="lbtntfollowup" data-target="#followup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton></span>
                                     <div class="col-3" runat="server" id="divexland">
                                         <div class="form-group">
                                             <asp:Label runat="server" ID="lbllandname" Font-Size="16px" class="form-control bg-danger font-weight-bold text-white margin-top30px" Visible="false"></asp:Label>
@@ -1464,6 +1466,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body" style="min-height: 300px" id="pnlfollowup" runat="server">
+
                                     <asp:Repeater ID="rpclientinfo" runat="server">
                                         <HeaderTemplate>
                                         </HeaderTemplate>
@@ -1508,7 +1511,7 @@
 
 
 
-                                                            <asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ToolTip="Add Followup" ID="lbtntfollowupf" data-target="#followup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton>
+                                                            <%--<asp:LinkButton runat="server" type="button" class="btn  btn-success btn-sm mt-2" ToolTip="Add Followup" ID="lbtntfollowupf" data-target="#followup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton>--%>
                                                             <%--<asp:LinkButton type="button" runat="server" ToolTip="Re-Shedule Followup" class="btn  btn-primary btn-sm" Style="margin-top: 10px;" ID="lbtnreschedule" OnClick="btnqclink_Click">Re-schedule</asp:LinkButton>--%>
                                                         <button type="button" class="btn  btn-primary btn-sm mt-2" ToolTip="Re-Shedule Followup" id="lbtnreschedule" onclick="funReschedule('<%# DataBinder.Eval(Container, "DataItem.cdate").ToString()%>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString()%>')">Re-Schdule</button>
 
@@ -1554,6 +1557,7 @@
                                 <asp:LinkButton ID="pnlsidebarClose" OnClick="pnlsidebarClose_Click" ToolTip="Close the Window" CssClass="btn btn-danger  btn-sm pr-2 pl-2" runat="server">&times;</asp:LinkButton>
                             </div>
                             <div class="modal-body" id="followup">
+                                        <asp:LinkButton runat="server" ClientIDMode="Static" type="button" class="btn  btn-success btn-sm mt-2" ID="lbtntfollowup" OnClick="btnqclink_Click">FollowUp</asp:LinkButton></span>
 
                                 <asp:GridView ID="gvInfo" runat="server" AllowPaging="false"
                                     AutoGenerateColumns="False" ShowFooter="true" ClientIDMode="Static"
@@ -1619,17 +1623,17 @@
 
                                             <ItemTemplate>
 
+ 
+                                                        <asp:TextBox ID="txtgvValdis" runat="server" BorderWidth="0" BackColor="Transparent" Font-Size="14px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
 
 
-                                                <asp:TextBox ID="txtgvValdis" runat="server" BorderWidth="0" BackColor="Transparent" Font-Size="14px" Style="width: 80px; float: left;"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
-                                                <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
-                                                    Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdValdis"></cc1:CalendarExtender>
 
-                                                <asp:TextBox ID="txtgvdValdis" CssClass="disable_past_dates" runat="server" BorderWidth="0" Style="width: 80px; float: left;" BackColor="Transparent"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
-                                                <cc1:CalendarExtender ID="txtgvdValdis_CalendarExtender" runat="server"
-                                                    Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdValdis"></cc1:CalendarExtender>
+
+                                                        <asp:TextBox ID="txtgvdValdis" CssClass="disable_past_dates" runat="server" BorderWidth="0" Style="width: 80px; float: left;" BackColor="Transparent"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
+                                                        <cc1:CalendarExtender ID="txtgvdValdis_CalendarExtender" runat="server"
+                                                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdValdis"></cc1:CalendarExtender>
 
                                                 <asp:Panel ID="pnlTime" runat="server" Visible="false">
                                                     <asp:DropDownList ID="ddlhour" runat="server" CssClass="inputTxt ddlPage" Style="width: 50px; line-height: 22px;">
@@ -1792,7 +1796,7 @@
                                             </ItemTemplate>
                                             <FooterTemplate>
 
-                                                <asp:LinkButton ID="lbtnUpdateDiscussion" runat="server" OnClientClick="CloseModaldis();" OnClick="lbtnUpdateDiscussion_Click" CssClass="btn  btn-success btn-xs ">Final Update</asp:LinkButton>
+                                                <asp:LinkButton ID="lbtnUpdateDiscussion" runat="server"   OnClick="lbtnUpdateDiscussion_Click" CssClass="btn  btn-success btn-xs ">Final Update</asp:LinkButton>
 
                                             </FooterTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -1823,7 +1827,7 @@
 
                                 <asp:LinkButton ID="pnlEditProspectClose" OnClick="pnlEditProspectClose_Click" ToolTip="Close the Window" CssClass="btn btn-danger  btn-sm pr-2 pl-2" runat="server">&times;</asp:LinkButton>
                             </div>
-                            <div class="modal-body" id="followup">
+                            <div class="modal-body" id="xfollowup">
 
                                 <asp:MultiView ID="MultiView1" runat="server">
                                     <asp:View runat="server">
