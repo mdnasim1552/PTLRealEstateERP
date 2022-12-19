@@ -236,7 +236,9 @@ namespace RealERPWEB.F_14_Pro
 
         protected void gvMSRInfo_DataBind()
         {
-            this.gvMSRInfo2.DataSource = (DataTable)Session["tblt02"];
+            DataTable dt = (DataTable)Session["tblt02"];
+
+            this.gvMSRInfo2.DataSource = dt;
             this.gvMSRInfo2.DataBind();
             this.FooterCalculation();
         }
@@ -1704,6 +1706,68 @@ namespace RealERPWEB.F_14_Pro
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
 
+        }
+
+        protected void lbtnSameValue_Click(object sender, EventArgs e)
+        {
+            Session_tblMSR_Update_PutSameValue();
+           // this.Session_tblMSR_Update();
+            this.gvMSRInfo_DataBind();
+        }
+        protected void Session_tblMSR_Update_PutSameValue()
+        {
+            try
+            {
+                DataTable tbl1 = (DataTable)Session["tblt02"];
+
+                string Rescode = "";
+                double ResQty = 0;
+                double ResRat = 0;
+                int RowIndex = 0;
+                for (int i = 0; i < this.gvMSRInfo2.Rows.Count; i++)
+                {
+
+                    if (i == 0)
+                    {
+                        Rescode = ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+                        ResRat = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate1")).Text.Trim());
+                    }
+
+                  //  ResQty = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtgvMSRqty")).Text.Trim());
+                    if (Rescode == ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim())
+                    {
+                        Rescode = ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+                        RowIndex = this.gvMSRInfo2.PageIndex * this.gvMSRInfo2.PageSize + i;
+                        tbl1.Rows[RowIndex]["resrate1"] = ResRat;
+                       // tbl1.Rows[RowIndex]["qty"] = ResQty * ResRat;
+                    }
+
+                    else
+                    {
+                        Rescode = ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+                        ResRat = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate1")).Text.Trim());
+                        RowIndex = this.gvMSRInfo2.PageIndex * this.gvMSRInfo2.PageSize + i;
+                        tbl1.Rows[RowIndex]["resrate1"] = ResRat;
+                        //tbl1.Rows[RowIndex]["qty"] = ResQty * ResRat;
+                    }
+                }
+
+                Session["tblt02"] = tbl1;
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = ex.Message.ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+            
+        }
+
+        protected void gvMSRInfo2_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            //this.Session_tblMSR_Update();
+
+            //this.gvMSRInfo2.PageIndex = e.NewPageIndex;
+            //this.gvMSRInfo_DataBind();
         }
     }
 }
