@@ -304,7 +304,7 @@
                                     <asp:TemplateField HeaderText="Rate">
 
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lbtnSameValue" runat="server" OnClick="lbtnSameValue_Click" CssClass="btn btn-info primaryBtn">Put Same Value</asp:LinkButton>
+                                            <asp:LinkButton ID="lbtnSameValue" runat="server" OnClick="lbtnSameValue_Click" CssClass="btn btn-info primaryBtn">Put Same Rate</asp:LinkButton>
                                         </HeaderTemplate>
 
                                         <FooterTemplate>
@@ -347,6 +347,9 @@
 
 
                                     <asp:TemplateField HeaderText="Rate">
+                                         <HeaderTemplate>
+                                            <asp:LinkButton ID="lbtnSameValueB" runat="server" OnClick="lbtnSameValueB_Click" CssClass="btn btn-info primaryBtn">Put Same Rate</asp:LinkButton>
+                                        </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtrate2" runat="server" BorderColor="#99CCFF"
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -377,6 +380,9 @@
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Rate">
+                                         <HeaderTemplate>
+                                            <asp:LinkButton ID="lbtnSameValueC" runat="server" OnClick="lbtnSameValueC_Click" CssClass="btn btn-info primaryBtn">Put Same Rate</asp:LinkButton>
+                                        </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtrate3" runat="server" BorderColor="#99CCFF"
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -409,6 +415,9 @@
 
 
                                     <asp:TemplateField HeaderText="Rate">
+                                        <HeaderTemplate>
+                                            <asp:LinkButton ID="lbtnSameValueD" runat="server" OnClick="lbtnSameValueD_Click" CssClass="btn btn-info primaryBtn">Put Same Rate</asp:LinkButton>
+                                        </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtrate4" runat="server" BorderColor="#99CCFF"
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -439,6 +448,9 @@
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Rate">
+                                         <HeaderTemplate>
+                                            <asp:LinkButton ID="lbtnSameValueE" runat="server" OnClick="lbtnSameValueE_Click" CssClass="btn btn-info primaryBtn">Put Same Rate</asp:LinkButton>
+                                        </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtrate5" runat="server" BorderColor="#99CCFF"
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
