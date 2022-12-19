@@ -1307,6 +1307,7 @@ namespace RealEntity.C_17_Acc
             public string grp { get; set; }
             public string actcode { get; set; }
             public string rescode { get; set; }
+            public string drcr { get; set; }
             public string spcfcode { get; set; }
             public string actdesc { get; set; }
             public string deptname { get; set; }
@@ -1319,7 +1320,7 @@ namespace RealEntity.C_17_Acc
             public double closdram { get; set; }
             public double closcram { get; set; }
             public double clsam { get; set; }
-            public string drcr { get; set; }
+        
 
            
 

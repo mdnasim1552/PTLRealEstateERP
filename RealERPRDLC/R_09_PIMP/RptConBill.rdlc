@@ -1443,7 +1443,7 @@
       <Width>7.96888in</Width>
       <Page>
         <PageHeader>
-          <Height>0.91333in</Height>
+          <Height>1.08in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1605,7 +1605,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Date</rd:DefaultName>
-              <Top>0.63834in</Top>
+              <Top>0.68834in</Top>
               <Left>6.64584in</Left>
               <Height>0.25in</Height>
               <Width>1.30916in</Width>
@@ -1639,7 +1639,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>IssueRefNo</rd:DefaultName>
-              <Top>0.63834in</Top>
+              <Top>0.68834in</Top>
               <Left>0.04167in</Left>
               <Height>0.25in</Height>
               <Width>1.54375in</Width>
@@ -1673,7 +1673,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>IssueNo</rd:DefaultName>
-              <Top>0.63834in</Top>
+              <Top>0.68834in</Top>
               <Left>1.64098in</Left>
               <Height>0.25in</Height>
               <Width>1.69445in</Width>
@@ -1707,7 +1707,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>mBillNo</rd:DefaultName>
-              <Top>0.63834in</Top>
+              <Top>0.68834in</Top>
               <Left>3.34931in</Left>
               <Height>0.25in</Height>
               <Width>1.6611in</Width>
@@ -1739,7 +1739,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>BillRef</rd:DefaultName>
-              <Top>0.63834in</Top>
+              <Top>0.68834in</Top>
               <Left>5.05208in</Left>
               <Height>0.25in</Height>
               <Width>1.55209in</Width>
@@ -1797,6 +1797,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>printFooter</rd:DefaultName>
+              <Top>0in</Top>
               <Height>0.25in</Height>
               <Width>5.94792in</Width>
               <Style>
@@ -1830,6 +1831,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>0in</Top>
               <Left>5.94792in</Left>
               <Height>0.25in</Height>
               <Width>2.02096in</Width>

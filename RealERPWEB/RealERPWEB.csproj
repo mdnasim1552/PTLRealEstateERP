@@ -2942,6 +2942,7 @@
     <Content Include="F_38_AI\JobAnalytics.aspx" />
     <Content Include="F_38_AI\MyTasks.aspx" />
     <Content Include="F_38_AI\Projects.aspx" />
+    <Content Include="F_38_AI\RptOngoingProjects.aspx" />
     <Content Include="F_39_MyPage\ClientCodeBook.aspx" />
     <Content Include="F_39_MyPage\ClientDetail.aspx" />
     <Content Include="F_39_MyPage\CustomerDetail.aspx" />
@@ -4974,6 +4975,13 @@
     </Compile>
     <Compile Include="F_38_AI\Projects.aspx.designer.cs">
       <DependentUpon>Projects.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_38_AI\RptOngoingProjects.aspx.cs">
+      <DependentUpon>RptOngoingProjects.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_38_AI\RptOngoingProjects.aspx.designer.cs">
+      <DependentUpon>RptOngoingProjects.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_70_Services\QuotationEntry.aspx.cs">
       <DependentUpon>QuotationEntry.aspx</DependentUpon>
