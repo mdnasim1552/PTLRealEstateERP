@@ -952,6 +952,7 @@ namespace RealERPRDLC
                 #region R_38_AI
 
                 case "R_38_AI.RptAIInvoicePrint": Rpt1a = SetRptAIInvoicePrint(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_38_AI.RptOngoingProjectPrint": Rpt1a = SetRptOngoingProjectPrint(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 #endregion
 
@@ -1344,6 +1345,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptAIInvoicePrint(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_38_AI.AIallPrint.InvoicePrint>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptOngoingProjectPrint(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_38_AI.AIallPrint.RptOngoingProject>)RptDataSet));
             return Rpt1a;
         }
         private static LocalReport SetRptEmployeeTransfer(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)

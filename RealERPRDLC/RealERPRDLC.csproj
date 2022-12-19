@@ -211,6 +211,7 @@
     <None Include="Properties\DataSources\RealEntity.C_33_Doc.ActiveSimUser.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_34_Mgt.Userinfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_38_AI.AIallPrint+InvoicePrint.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_38_AI.AIallPrint+RptOngoingProject.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptGrpRecPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptGrpRecPaymentBank.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.BO_ClassManPower+EmployeeAllInfo.datasource" />
@@ -1075,6 +1076,7 @@
     <EmbeddedResource Include="R_34_Mgt\UserLogDetails.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\UserLoginInfo.rdlc" />
     <EmbeddedResource Include="R_38_AI\RptAIInvoicePrint.rdlc" />
+    <EmbeddedResource Include="R_38_AI\RptOngoingProjectPrint.rdlc" />
     <EmbeddedResource Include="R_41_GAcc\RptProProgBillStatus.rdlc" />
     <EmbeddedResource Include="R_45_GrAcc\RptGrpMisRecPayment.rdlc" />
     <EmbeddedResource Include="R_47_Kpi\RptKeyResultArea.rdlc" />
