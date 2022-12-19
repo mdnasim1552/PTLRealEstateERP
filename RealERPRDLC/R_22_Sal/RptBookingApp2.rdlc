@@ -7271,7 +7271,7 @@ The information and particulars furnished by me/us in this enrollment form are t
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Format(Parameters!customerno.Value).Substring(8,1)</Value>
+                    <Value>=Format(Parameters!customerno.Value).Substring(6,1)</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontSize>16pt</FontSize>
@@ -7308,7 +7308,7 @@ The information and particulars furnished by me/us in this enrollment form are t
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Format(Parameters!customerno.Value).Substring(9,1)</Value>
+                    <Value>=Format(Parameters!customerno.Value).Substring(7,1)</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontSize>16pt</FontSize>
@@ -8383,7 +8383,7 @@ The information and particulars furnished by me/us in this enrollment form are t
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Format(Parameters!customerno.Value).Substring(11,1)</Value>
+                    <Value>=Format(Parameters!customerno.Value).Substring(9,1)</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontSize>16pt</FontSize>
@@ -8420,7 +8420,7 @@ The information and particulars furnished by me/us in this enrollment form are t
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Format(Parameters!customerno.Value).Substring(10,1)</Value>
+                    <Value>=Format(Parameters!customerno.Value).Substring(8,1)</Value>
                     <Style>
                       <FontFamily>Cambria</FontFamily>
                       <FontSize>16pt</FontSize>
@@ -8465,10 +8465,10 @@ The information and particulars furnished by me/us in this enrollment form are t
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox7</rd:DefaultName>
-            <Top>3.83034in</Top>
-            <Left>1.11333in</Left>
-            <Height>3.28125in</Height>
-            <Width>5.67708in</Width>
+            <Top>3.83208in</Top>
+            <Left>1.09571in</Left>
+            <Height>3.27083in</Height>
+            <Width>5.6875in</Width>
             <ZIndex>42</ZIndex>
             <Style>
               <Border>
