@@ -75,6 +75,8 @@ namespace RealEntity.C_99_AllInterface
         public string tpactdesc { get; set; }
         public string trnno1 { get; set; }
         public string trnno { get; set; }
+        public string pactcode { get; set; }
+        public string refno { get; set; }
         public DateTime trnsdate { get; set; }
         public double trsnamt { get; set; }
     }
