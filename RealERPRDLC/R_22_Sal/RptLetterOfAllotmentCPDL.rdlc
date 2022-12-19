@@ -1437,6 +1437,7 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Parameters!heading.Value</Value>
+                    <MarkupType>HTML</MarkupType>
                     <Style>
                       <FontFamily>cambria</FontFamily>
                     </Style>
@@ -1709,7 +1710,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox21</rd:DefaultName>
-            <Top>10.1675in</Top>
+            <Top>11.2175in</Top>
             <Left>1.57639in</Left>
             <Height>0.25in</Height>
             <Width>4.31945in</Width>
@@ -1742,7 +1743,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox24</rd:DefaultName>
-            <Top>10.62792in</Top>
+            <Top>11.67792in</Top>
             <Left>0.01042in</Left>
             <Height>0.25in</Height>
             <Width>7.48958in</Width>
@@ -1778,7 +1779,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox28</rd:DefaultName>
-            <Top>11.055in</Top>
+            <Top>12.105in</Top>
             <Left>0.01042in</Left>
             <Height>0.25in</Height>
             <Width>7.48958in</Width>
@@ -1814,7 +1815,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox31</rd:DefaultName>
-            <Top>12.4507in</Top>
+            <Top>13.5007in</Top>
             <Left>0.01042in</Left>
             <Height>0.1875in</Height>
             <Width>2.32292in</Width>
@@ -1869,7 +1870,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox34</rd:DefaultName>
-            <Top>12.82583in</Top>
+            <Top>13.87583in</Top>
             <Left>0.24875in</Left>
             <Height>0.32764in</Height>
             <Width>2.75125in</Width>
@@ -1924,7 +1925,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox34</rd:DefaultName>
-            <Top>12.82014in</Top>
+            <Top>13.87014in</Top>
             <Left>4.3125in</Left>
             <Height>0.33333in</Height>
             <Width>2.69792in</Width>
@@ -3947,7 +3948,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>13.29167in</Height>
+        <Height>14.77084in</Height>
         <Style />
       </Body>
       <Width>7.54167in</Width>
