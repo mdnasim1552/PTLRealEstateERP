@@ -699,13 +699,13 @@
                   <Width>0.60417in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.57292in</Width>
+                  <Width>0.52975in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.57292in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.375in</Width>
+                  <Width>0.51042in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.42708in</Width>
@@ -723,7 +723,7 @@
                   <Width>0.4375in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.69792in</Width>
+                  <Width>0.57292in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.5in</Width>
@@ -942,37 +942,37 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>0.60227in</Width>
+                                <Width>0.60417in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.51894in</Width>
+                                <Width>0.50919in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.58144in</Width>
+                                <Width>0.58456in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.59186in</Width>
+                                <Width>0.60417in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.67519in</Width>
+                                <Width>0.67708in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.63352in</Width>
+                                <Width>0.625in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.57102in</Width>
+                                <Width>0.58333in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.56061in</Width>
+                                <Width>0.57292in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.59186in</Width>
+                                <Width>0.60417in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.59186in</Width>
+                                <Width>0.51473in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.59186in</Width>
+                                <Width>0.58794in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -1270,7 +1270,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Arrer</Value>
+                                                <Value>Arrear</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
                                                   <FontSize>8pt</FontSize>
@@ -1501,37 +1501,37 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>0.38068in</Width>
+                                <Width>0.51042in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.42235in</Width>
+                                <Width>0.43182in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.50568in</Width>
+                                <Width>0.50663in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.48485in</Width>
+                                <Width>0.47159in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.56818in</Width>
+                                <Width>0.56913in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.42235in</Width>
+                                <Width>0.4375in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.68277in</Width>
+                                <Width>0.57765in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.49527in</Width>
+                                <Width>0.46497in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.46402in</Width>
+                                <Width>0.46497in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.49527in</Width>
+                                <Width>0.49622in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.6411in</Width>
+                                <Width>0.64205in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -1677,7 +1677,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Absent/LWP</Value>
+                                                <Value>Absent/LWP/LJ</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
                                                   <FontSize>8pt</FontSize>
@@ -1829,7 +1829,7 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Transport Charge</Value>
+                                                <Value>Trans. Charge</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
                                                   <FontSize>8pt</FontSize>
@@ -3640,7 +3640,7 @@ Amount</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!otall.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!otall.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3675,7 +3675,7 @@ Amount</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!oallow.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!oallow.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -3711,7 +3711,7 @@ Amount</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!arsal.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!arsal.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -3783,7 +3783,7 @@ Amount</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!oth.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!oth.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4662,7 +4662,7 @@ Amount</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!otall.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!otall.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -4704,7 +4704,7 @@ Amount</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!oallow.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!oallow.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4747,7 +4747,7 @@ Amount</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!arsal.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!arsal.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4833,7 +4833,7 @@ Amount</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!oth.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!oth.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -5631,7 +5631,7 @@ Amount</Value>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.06944in</Top>
             <Height>1.73959in</Height>
-            <Width>17.65775in</Width>
+            <Width>17.625in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5973,7 +5973,7 @@ Amount</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Recomended By</Value>
+                      <Value>Recommended By</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
                         <FontWeight>Bold</FontWeight>
@@ -5987,7 +5987,7 @@ Amount</Value>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
               <Top>0.47792in</Top>
-              <Left>8.7793in</Left>
+              <Left>11.58347in</Left>
               <Height>0.25in</Height>
               <Width>1.97916in</Width>
               <ZIndex>6</ZIndex>
@@ -6038,7 +6038,7 @@ Amount</Value>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
               <Top>0.47792in</Top>
-              <Left>11.43346in</Left>
+              <Left>8.7793in</Left>
               <Height>0.25in</Height>
               <Width>2.03125in</Width>
               <ZIndex>8</ZIndex>

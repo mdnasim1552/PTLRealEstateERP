@@ -470,6 +470,11 @@
 
                             </div>
                         </div>
+                         <div class="col-md-1">
+                            <div class="form-group">
+                                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search..." onkeyup="Search_Gridview2(this)"></asp:TextBox>
+                            </div>
+                        </div>
 
                         <div class="col-md-1">
                             <div class="form-group">

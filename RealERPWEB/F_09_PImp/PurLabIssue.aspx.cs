@@ -46,10 +46,11 @@ namespace RealERPWEB.F_09_PImp
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 this.ComRefText();
                 string qgenno = this.Request.QueryString["genno"] ?? "";
-                if (qgenno.Length > 0)
+                string corderno = this.Request.QueryString["vounum"] ?? "";
+                if (qgenno.Length > 0 || corderno.Length>0)
                 {
                     
-                    if (qgenno.Substring(0, 3) == "COR" || qgenno.Substring(0, 3) == "MBK")
+                    if (corderno.Substring(0, 3) == "COR" || qgenno.Substring(0, 3) == "MBK")
                     {
                         this.hdnmbno.Value = qgenno;
                         this.hdnforderno.Value = this.Request.QueryString["vounum"] ?? "";
@@ -693,7 +694,23 @@ namespace RealERPWEB.F_09_PImp
                 // this.ddlRA.Enabled = false;
                 mISSNo = this.ddlPrevISSList.SelectedValue.ToString();
             }
-            string workorder = (this.Request.QueryString["genno"].ToString().Length > 0) ? ((this.Request.QueryString["genno"].ToString().Substring(0, 3) == "COR" || this.Request.QueryString["genno"].ToString().Substring(0, 3) == "MBK") ? this.Request.QueryString["genno"].ToString() : "") : "";
+            string qcorderno = this.Request.QueryString["vounum"] ?? "";
+            string qgenno = this.Request.QueryString["genno"] ?? "";
+
+
+
+            string workorder = (qcorderno.Length > 0 || qgenno.Length>0) ? 
+                (qcorderno.Substring(0,3) == "COR" ? qcorderno : (qgenno.Substring(0, 3) == "COR" ? qgenno:"")) : "";
+           
+            
+            
+            //&& || qgenno.Substring(0, 3) == "MBK"
+
+            //string workorder = (this.Request.QueryString["genno"].ToString().Length > 0) ? ((this.Request.QueryString["genno"].ToString().Substring(0, 3) == "COR" || this.Request.QueryString["genno"].ToString().Substring(0, 3) == "MBK") ? this.Request.QueryString["genno"].ToString() : "") : "";
+
+
+
+
             DataSet ds1 = new DataSet();
             ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPURLABISSUEINFO", mISSNo, CurDate1,
                          pactcode, workorder, "", "", "", "", "");
@@ -1685,6 +1702,7 @@ namespace RealERPWEB.F_09_PImp
         {
             try
             {
+                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
                 ((Label)this.Master.FindControl("lblmsg")).Text = "";
                 DataTable dt = (DataTable)ViewState["tblmatissue"];
                 int TblRowIndex;
@@ -1778,6 +1796,37 @@ namespace RealERPWEB.F_09_PImp
                         //    break;
 
 
+                        case"3101":
+                        case"3370":
+                            if(dgvQty > balqty)
+                            {
+                                ((Label)this.Master.FindControl("lblmsg")).Text = "Bill Qty Can't Excess Balance Qty .. !! ";
+                                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                                return;
+                            }
+                            dt.Rows[TblRowIndex]["wrkqty"] = wrkqty;
+                            dt.Rows[TblRowIndex]["prcent"] = percent;
+                            isuqty = (percent > 0) ? (wrkqty > 0 ? wrkqty * percent * 0.01 : balqty * percent * 0.01) : dgvQty;
+                            dedrate = idedamt > 0 ? (idedamt / dedqty) : dedrate;
+                            idedamt = idedamt > 0 ? idedamt : dedqty * dedrate;
+                            amount = amount > 0 ? amount : isuqty * labrate;
+                            labrate = amount > 0 ? amount / isuqty : labrate;
+                            adedamt = amount - idedamt;
+                            issueamt = (rsircode.Substring(0, 7) == "0499999") ? issueamt : adedamt + (adedamt * 0.01 * above);
+                            dt.Rows[TblRowIndex]["isuqty"] = isuqty;
+                            dt.Rows[TblRowIndex]["toqty"] = toqty;
+                            dt.Rows[TblRowIndex]["isurat"] = labrate;
+                            dt.Rows[TblRowIndex]["amount"] = amount;
+                            dt.Rows[TblRowIndex]["dedqty"] = dedqty;
+                            dt.Rows[TblRowIndex]["dedunit"] = dedunit;
+                            dt.Rows[TblRowIndex]["dedrate"] = dedrate;
+                            dt.Rows[TblRowIndex]["idedamt"] = idedamt;
+                            dt.Rows[TblRowIndex]["adedamt"] = adedamt;
+                            dt.Rows[TblRowIndex]["above"] = above;
+                            dt.Rows[TblRowIndex]["isuamt"] = issueamt;
+                            dt.Rows[TblRowIndex]["mbbook"] = mbbook;
+
+                            break; 
                         default:
                             dt.Rows[TblRowIndex]["wrkqty"] = wrkqty;
                             dt.Rows[TblRowIndex]["prcent"] = percent;
@@ -1968,6 +2017,7 @@ namespace RealERPWEB.F_09_PImp
                 case "3351":
                 case "3352":
                 case "3370": //cpdl
+                case "3101": //cpdl
 
 
 

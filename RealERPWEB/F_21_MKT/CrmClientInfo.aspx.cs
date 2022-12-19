@@ -167,6 +167,7 @@ namespace RealERPWEB.F_21_MKT
                     this.gvSummary.Columns[22].Visible = false;
                     this.gvSummary.Columns[26].Visible = true;
                     this.gvSummary.Columns[27].Visible = true;
+                    this.gvSummary.Columns[28].Visible = true;
                     break;
 
                 case "3101"://PTL SHOW all Column
@@ -1172,6 +1173,27 @@ namespace RealERPWEB.F_21_MKT
                         ddlgval.Items.Insert(0, new ListItem("--Please Select--", ""));
                         ddlgval.SelectedValue = ((TextBox)this.gvpinfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                         break;
+
+                    case "0303008": //Project Type
+                        dv1 = dt1.DefaultView;
+                        dv1.RowFilter = ("gcod like '68%'");
+                        ((TextBox)this.gvpinfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((TextBox)this.gvpinfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                        ((Panel)this.gvpinfo.Rows[i].FindControl("pnlMullocation")).Visible = false;
+                        ((DropDownList)this.gvpinfo.Rows[i].FindControl("ddlvalcom")).Items.Clear();
+                        ((DropDownList)this.gvpinfo.Rows[i].FindControl("ddlvalcom")).Visible = false;
+                        ((ListBox)this.gvpinfo.Rows[i].FindControl("lstlocation")).Items.Clear();
+                        ddlgval = ((DropDownList)this.gvpinfo.Rows[i].FindControl("ddlvalpros"));
+                        ddlgval.DataTextField = "gdesc";
+                        ddlgval.DataValueField = "gcod";
+                        ddlgval.DataSource = dv1.ToTable();
+                        ddlgval.DataBind();
+                        ddlgval.Items.Insert(0, new ListItem("--Please Select--", ""));
+                        ddlgval.SelectedValue = ((TextBox)this.gvpinfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                        break;
+
+
+
                     case "0303009": //Apartment Floor
                         dv1 = dt1.DefaultView;
                         dv1.RowFilter = ("gcod like '34%'");
@@ -5354,6 +5376,7 @@ namespace RealERPWEB.F_21_MKT
             DataTable dt6 = (DataTable)ViewState["tblparti"];
 
             DataView dv;
+            DataView dvLeadStatus;
             DataTable dtvs = ((DataTable)ViewState["tblFollow"]).Copy();
             dv = dtvs.DefaultView;
             dv.RowFilter = ("gcod like '95%'");
@@ -5700,7 +5723,18 @@ namespace RealERPWEB.F_21_MKT
                         ChkBoxLstStatus.DataSource = dts;
                         ChkBoxLstStatus.DataBind();
                         ChkBoxLstStatus.SelectedValue = (lstleadstatus.Length > 0 ? lstleadstatus : ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim());
+                        
 
+                        //int index = 0;
+                        //DataRow[] rows = dts.Select("gcod='" + lstleadstatus + "'");
+                        //if (rows.Length > 0)
+                        //{
+                        //    index = Convert.ToInt32(rows[0]["rowid"]);
+                        //}
+                        //for (int m = index; m < dts.Rows.Count; m++)
+                        //{                            
+                        //    ChkBoxLstStatus.Items[m].Enabled = true;                             
+                        //}
 
                         break;
 

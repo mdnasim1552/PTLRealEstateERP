@@ -266,7 +266,7 @@
 
                                         <asp:TemplateField HeaderText="ProjectType">
                                             <ItemTemplate>
-                                                <asp:Label ID="tblproj" runat="server"
+                                                <asp:Label ID="tblproj" runat="server" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "typedesc")) %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>

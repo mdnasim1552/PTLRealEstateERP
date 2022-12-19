@@ -103,6 +103,7 @@ namespace RealERPWEB.F_23_CR
 
                 HyperLink hlnkMoneyRcptEdit = (HyperLink)e.Row.FindControl("hlnkMoneyRcptEdit");
                 HyperLink hlnkrcptPrint = (HyperLink)e.Row.FindControl("hlnkMoneyRcptPrint");
+                HyperLink hlnkrcptPrintACK = (HyperLink)e.Row.FindControl("hlnkMoneyRcptPrintACK");
                 LinkButton btnrcptPrint = (LinkButton)e.Row.FindControl("lnkMoneyRcptPrint");
                 string comcod = this.GetCompCode();
                 switch (comcod)
@@ -111,9 +112,11 @@ namespace RealERPWEB.F_23_CR
                     case "3368":
                         btnrcptPrint.Visible = true;
                         hlnkrcptPrint.Visible = false;
+                        hlnkrcptPrintACK.Visible = false;
                         break;
                     default:
                         btnrcptPrint.Visible = false;
+                        hlnkrcptPrintACK.Visible = true;
                         hlnkrcptPrint.Visible = true;
                         break;
                 }
@@ -123,6 +126,7 @@ namespace RealERPWEB.F_23_CR
                 string mrdate = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mrdate")).ToString();
 
                 hlnkMoneyRcptEdit.NavigateUrl = "~/F_23_CR/MktMoneyReceipt?Type=Management&prjcode=" + pactcode + "&usircode=" + usircode + "&genno=" + mrno;
+                hlnkrcptPrintACK.NavigateUrl = "~/F_17_Acc/PrintMoneyReceipt?Type=moneyReceipt&pactcode=" + pactcode + "&usircode=" + usircode + "&mrno=" + mrno + "&mrdate=" + mrdate+ "&rpType=ACK";
                 hlnkrcptPrint.NavigateUrl = "~/F_17_Acc/PrintMoneyReceipt?Type=moneyReceipt&pactcode=" + pactcode + "&usircode=" + usircode + "&mrno=" + mrno + "&mrdate=" + mrdate;
 
             }
@@ -134,7 +138,7 @@ namespace RealERPWEB.F_23_CR
             string PrintOpt = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
 
             int index = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            //LinkButton rcptPrint = ((LinkButton)this.gvAccMR.Rows[index].FindControl("lnkMoneyRcptPrint"));
+            LinkButton rcptPrint = ((LinkButton)this.gvAccMR.Rows[index].FindControl("lnkMoneyRcptPrint"));
 
             string pactcode = ((Label)this.gvAccMR.Rows[index].FindControl("lgvpactcode")).Text.Trim().ToString();
             string usircode = ((Label)this.gvAccMR.Rows[index].FindControl("lgvusircode")).Text.Trim().ToString();

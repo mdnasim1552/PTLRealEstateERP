@@ -850,7 +850,8 @@ namespace RealERPWEB.F_34_Mgt
                     if (ds4.Tables[0].Rows.Count == 0)
                         this.txtReqNarr.Text = "";
                     else
-                        this.txtReqNarr.Text = comcod == "1103" ? "" : ds4.Tables[0].Rows[0]["vernar"].ToString();
+                                       
+                     this.txtReqNarr.Text = (comcod == "1103"|| comcod=="3368") ? "" : ds4.Tables[0].Rows[0]["vernar"].ToString();
 
                     return;
                 }
@@ -1599,7 +1600,6 @@ namespace RealERPWEB.F_34_Mgt
                     switch (comcod)
                     {
                         case "3370": //CPDL
-                        case "3101":
                             if (approval == "")
                             {
                                 this.CreateDataTable();
@@ -1947,7 +1947,6 @@ namespace RealERPWEB.F_34_Mgt
             {  //Checked defaul all company without finlay and cpdl
                 case "3368"://Finlay
                 case "3370"://CPDL
-                case "3101":
                     chckid = "";
                     checkdat = "01-Jan-1900";
                     break;
@@ -2711,7 +2710,7 @@ namespace RealERPWEB.F_34_Mgt
 
             this.GeResVisibility();
             string comcod = this.GetCompCode();
-            if (comcod == "3338" || comcod == "3101" || comcod == "3348")
+            if (comcod == "3338" || comcod == "3101" || comcod == "3348" || comcod=="3368")
                 return;
 
             this.ProjectData();

@@ -741,16 +741,16 @@ namespace RealERPWEB.F_23_CR
             string PactCode = this.ddlProjectName.SelectedValue.ToString();
             string date = this.txtReceiveDate.Text.Trim().Length == 0 ? System.DateTime.Today.ToString("dd-MMM-yyyy") : this.txtReceiveDate.Text;
             //string date =Convert.ToDateTime(this.txtReceiveDate.Text).ToString("dd-MMM-yyyy");
-          
+
             string ProcName = this.chkConsolidate.Checked ? "SP_REPORT_SALSMGT01" : "SP_ENTRY_SALSMGT";
             string CallType = this.chkConsolidate.Checked ? "RPTCLIENTLEDGER" : "INSTALLMANTWITHMRR";
             string length = "";
             string reconcile = this.GetReceiptOnlyRecon();
             string orderbymr = this.GetComPanyOrdeMRWISE();
-           
+
             DataSet ds2 = MktData.GetTransInfo(comcod, ProcName, CallType, PactCode, UsirCode, date, length, reconcile, orderbymr, "", "", "");
-           
-            if(ds2.Tables[0].Rows.Count==0)
+
+            if (ds2.Tables[0].Rows.Count == 0)
             {
                 return;
 
@@ -1141,10 +1141,10 @@ namespace RealERPWEB.F_23_CR
 
                     //schamt = schamt + paidamt;
                     if (paidamt != 0 || disamt != 0)
-                       
+
                         result = MktData.UpdateTransInfo01(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEMRINF", PactCode, Usircode, mrno, type, mrdate, paidamt.ToString(), chqno,
-                                                          bname, branchname, paydate, refno, remrks, PostedByid, PostSession, Posttrmid, Posteddat, EditByid, 
-                                                          Editdat, SchCode, repchqno, Collfrm, RecType, disamt.ToString(), bookno,"","0.00", isLO);
+                                                          bname, branchname, paydate, refno, remrks, PostedByid, PostSession, Posttrmid, Posteddat, EditByid,
+                                                          Editdat, SchCode, repchqno, Collfrm, RecType, disamt.ToString(), bookno, "", "0.00", isLO);
 
                     if (result == false)
                     {
@@ -1169,7 +1169,7 @@ namespace RealERPWEB.F_23_CR
                     {
                         case "3339": //Tropical
                         case "3367": //epic
-                        //case "3101": //ptl
+                                     //case "3101": //ptl
 
 
                             break;
@@ -1287,13 +1287,17 @@ namespace RealERPWEB.F_23_CR
                     //case "3101": // Pintech                   
                     case "3356": //Intech                    
                     case "3366": //Intech                    
+                    case "3101": //Intech                    
                         this.SMSSendMoneyRecipt(comcod, PactCode, Usircode, mrno, mrdate);
                         break;
                     default:
                         break;
                 }
 
-
+                if (comcod == "3370")
+                {
+                    this.lbtRefreshMrr_Click(null, null);
+                }
             }
             catch (Exception ex)
             {
@@ -1310,7 +1314,15 @@ namespace RealERPWEB.F_23_CR
             {
                 return;
             }
+             
+
             DataSet dssms = CALogRecord.CheckStatus(comcod, "2301");
+            if (dssms == null)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "SMS Send Fail";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+            }
             string payableamt = Convert.ToDouble(((Label)this.grvacc.FooterRow.FindControl("txtFTotal")).Text).ToString("#,##0.00; (#,##0.00) ");
             string cutname = ds.Tables[0].Rows[0]["custname"].ToString() == "" ? "" : ds.Tables[0].Rows[0]["custname"].ToString();
             string custphone = ds.Tables[0].Rows[0]["custphone"].ToString() == "" ? "" : ds.Tables[0].Rows[0]["custphone"].ToString();
@@ -1318,7 +1330,13 @@ namespace RealERPWEB.F_23_CR
             string payment = ds.Tables[0].Rows[0]["payamt"].ToString() == "" ? "" : Convert.ToDouble(ds.Tables[0].Rows[0]["payamt"]).ToString("#,##0.00;(#,##0.00) ");
             string paymentdate = ds.Tables[0].Rows[0]["paydate"].ToString() == "" ? "" : Convert.ToDateTime(ds.Tables[0].Rows[0]["paydate"]).ToString("dd-MMM-yyyy");
             string dues = ds.Tables[0].Rows[0]["duesamt"].ToString() == "" ? "" : Convert.ToDouble(ds.Tables[0].Rows[0]["duesamt"]).ToString("#,##0.00;(#,##0.00) ");
-
+            switch (comcod)
+            {
+                case "3101":
+                case "3366":
+                    paymentdate = mrdate;
+                        break; 
+            }
             string paymod = this.ddlpaytype.SelectedItem.Text.ToString();
             string cheq = this.txtchqno.Text.ToString();
 
@@ -1333,11 +1351,24 @@ namespace RealERPWEB.F_23_CR
             SendSmsProcess sms = new SendSmsProcess();
             string ntype = dssms.Tables[0].Rows[0]["gcod"].ToString();
             string smsstatus = (dssms.Tables[0].Rows[0]["sactive"].ToString() == "True") ? "Y" : "N";
-            bool resultsms = sms.SendSMSClient(comcod, smtext, custphone);
+            bool resultsms;
+            if (comcod == "3366" || comcod=="3101")
+            {
+                //sslwireless.com Provider API
+                resultsms = sms.SendSms_SSL_Single(comcod, smtext, custphone);
+            }
+            else
+            {
+                resultsms = sms.SendSMSClient(comcod, smtext, custphone);
+            }
+
+
             if (resultsms == true)
             {
                 bool IsSMSaved = CALogRecord.AddSMRecord(comcod, ((Hashtable)Session["tblLogin"]), PactCode, Usircode, mrno, mrdate, ntype, smsstatus, smtext, "",
                            "", "", custphone, "");
+                ((Label)this.Master.FindControl("lblmsg")).Text = "SMS Send Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
         }
         private string GetSchCode(string instype)

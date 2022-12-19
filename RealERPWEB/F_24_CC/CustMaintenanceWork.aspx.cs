@@ -572,12 +572,9 @@ namespace RealERPWEB.F_24_CC
 
             DataTable dt = ds1.Tables[0];
             DataTable dt1 = ds1.Tables[1];
-            string custid= dt1.Rows[0]["usircode"].ToString();
-            DataTable dt2 = (DataTable)Session["tblunit"];
            
-            DataRow[] dr = dt2.Select("usircode='" + custid + "'");
-            string unitName =  dr[0]["udesc"].ToString();
-            string ClientName = dr[0]["custname"].ToString(); 
+            string unitName = dt1.Rows[0]["udesc"].ToString(); 
+            string ClientName = dt1.Rows[0]["custname"].ToString(); 
 
             string ftxtcheck = ds1.Tables[2].Rows[0]["chkusr"].ToString();
             string ftxtapp1st = ds1.Tables[2].Rows[0]["fapvusr"].ToString();
@@ -889,7 +886,6 @@ namespace RealERPWEB.F_24_CC
             bool isChk = false;
             switch (GetCompCode())
             {
-                case "3101":
                 case "3367":
                     isChk = true;
                     break;
@@ -1100,7 +1096,7 @@ namespace RealERPWEB.F_24_CC
                     {
                         this.CreateDataTable();
                         DataTable dt = (DataTable)ViewState["tblapproval"];
-                        if (comcod == "3315" || comcod == "3316" || comcod == "3364")
+                        if (comcod == "3315" || comcod == "3316" || comcod == "3364"|| comcod == "3101")
                         {
                             DataRow dr1 = dt.NewRow();
                             dr1["chkbyid"] = usrid;
@@ -1221,7 +1217,7 @@ namespace RealERPWEB.F_24_CC
                 case "Check":
                     switch (comcod)
                     {
-                        //case "3101":
+                        case "3101":
                         case "3315"://Assure 
                         case "3316":
                         case "3317":
@@ -1233,7 +1229,7 @@ namespace RealERPWEB.F_24_CC
                 case "Audit":
                     switch (comcod)
                     {
-                        //case "3101":
+                        case "3101":
                         case "3315"://Assure 
                         case "3316":
                         case "3317":
@@ -1246,7 +1242,7 @@ namespace RealERPWEB.F_24_CC
                 case "Approv":
                     switch (comcod)
                     {
-                        //case "3101":
+                        case "3101":
                         case "3315"://Assure 
                         case "3316":
                         case "3317":
@@ -1278,7 +1274,7 @@ namespace RealERPWEB.F_24_CC
             string curdate = Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy");
 
             string paysch = "";
-            if (comcod == "3315" || comcod == "3316" || comcod == "3317" || comcod == "3364")
+            if (comcod == "3315" || comcod == "3316" || comcod == "3317" || comcod == "3364" ||comcod == "3101")
             {
                 paysch = this.GetSchCode();
             }

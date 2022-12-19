@@ -170,6 +170,34 @@ namespace RealEntity.C_09_PIMP
         //comcod, billno,  lisuno, pactcode, csircode, billdate,  rmrks, lisurefno, cbillref, percntge, sdamt, 
         //   flrcod, rsircode, billqty, billamt, conqty, conrate,  pactdesc,  csirdesc,  flrdes, rsirdesc, rsirunit, peronbgd, bgdrat, grp, grpdesc 
 
+
+        [Serializable]
+        public class Workorder03
+        {
+            public string rsircode { get; set; }
+            public int serial { get; set; }
+            public string rsirdesc { get; set; }
+            public string sdetails { get; set; }
+            public string spec { get; set; }
+            public string rsirunit { get; set; }
+            public double bgdqty { get; set; }
+            public double ordqty { get; set; }
+            public double ordrrate { get; set; }
+            public double ordamt { get; set; }
+            public string rmrks { get; set; }
+
+            public Workorder03()
+            {
+
+            }
+
+        }
+
+
+
+
+
+
         [Serializable]
         public class BillFinalization
         {
@@ -204,6 +232,20 @@ namespace RealEntity.C_09_PIMP
             public double balqty { get; set; }
             public double wrkqty { get; set; }
             public double prcent { get; set; }
+            public double curbillper { get; set; }
+            public double preisuqty { get; set; }
+            public double tisuqty { get; set; }
+            public double amount { get; set; }
+            public double dedqty { get; set; }
+            public double dedrate { get; set; }
+            public double idedamt { get; set; }
+            public double adedamt { get; set; }
+            public string dedunit { get; set; }
+            public double above { get; set; }
+            
+
+
+
             public BillFinalization() { }
         }
 

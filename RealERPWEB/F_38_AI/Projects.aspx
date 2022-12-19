@@ -116,7 +116,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Code">
                                                         <ItemTemplate>
-                                                            <asp:Label runat="server" ID="lblprjgdesce" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdatat")) %>'></asp:Label>
+                                                            <asp:Label runat="server" Width="150px" ID="lblprjgdesce" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdatat")) %>'></asp:Label>
                                                         </ItemTemplate>
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                     </asp:TemplateField>

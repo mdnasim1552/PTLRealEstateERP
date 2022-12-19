@@ -33,7 +33,7 @@ namespace RealERPWEB.F_14_Pro
                     Response.Redirect("~/AcceessError.aspx");
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Sub-Contractor Comparative Statement";
 
-                this.txtCurMSRDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
+                this.txtCurMSRDate.Text = DateTime.Today.ToString("dd-MMM-yyyy");
                 //  this.TableCreate();
                 this.GetProjects();
                 this.GetReqNo();
@@ -57,6 +57,7 @@ namespace RealERPWEB.F_14_Pro
         {
             switch (GetCompCode())
             {
+                case "3101":
                 case "3370":
                     this.printCPDL_cs_approval();
                     break;
@@ -126,18 +127,18 @@ namespace RealERPWEB.F_14_Pro
         }
 
 
-        protected string GetStdDate(string Date1)
-        {
-            Date1 = (Date1.Trim().Length == 0 ? DateTime.Today.ToString("dd.MM.yyyy") : Date1);
-            string[] moth1 = { "XXX", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
-            Date1 = Date1.Substring(0, 2) + "-" + moth1[Convert.ToInt32(Date1.Substring(3, 2))] + "-" + Date1.Substring(6, 4);
-            return Date1;
-        }
+        //protected string GetStdDate(string Date1)
+        //{
+        //    Date1 = (Date1.Trim().Length == 0 ? DateTime.Today.ToString("dd.MM.yyyy") : Date1);
+        //    string[] moth1 = { "XXX", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+        //    Date1 = Date1.Substring(0, 2) + "-" + moth1[Convert.ToInt32(Date1.Substring(3, 2))] + "-" + Date1.Substring(6, 4);
+        //    return Date1;
+        //}
         protected void ImgbtnFindPreMR_Click(object sender, EventArgs e)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            string date = Convert.ToDateTime(this.GetStdDate(this.txtCurMSRDate.Text.Trim())).ToString("dd-MMM-yyyy");
+            string date = Convert.ToDateTime(this.txtCurMSRDate.Text.Trim()).ToString("dd-MMM-yyyy");
             string mSrchTxt = this.txtPreMSRSearch.Text.Trim() + "%";
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETPREMSR_CON", date, mSrchTxt, "", "", "", "", "", "", "");
             if (ds1 == null)
@@ -192,7 +193,7 @@ namespace RealERPWEB.F_14_Pro
         {
 
             string comcod = this.GetCompCode();
-            string CurDate1 = this.GetStdDate(this.txtCurMSRDate.Text.Trim());
+            string CurDate1 = this.txtCurMSRDate.Text.Trim();
             // string date = Convert.ToDateTime(this.GetStdDate(this.txtCurMSRDate.Text.Trim())).ToString("dd-MMM-yyyy");
             string mMSRNo = "NEWMSR";
             if (this.ddlPrevMSRList.Items.Count > 0)
@@ -225,7 +226,7 @@ namespace RealERPWEB.F_14_Pro
             }
             this.lblCurMSRNo1.Text = ds1.Tables[0].Rows[0]["msrno1"].ToString().Substring(0, 6);
             this.txtCurMSRNo2.Text = ds1.Tables[0].Rows[0]["msrno1"].ToString().Substring(6, 5);
-            this.txtCurMSRDate.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["msrdat"]).ToString("dd.MM.yyyy");
+            this.txtCurMSRDate.Text = Convert.ToDateTime(ds1.Tables[0].Rows[0]["msrdat"]).ToString("dd-MMM-yyyy");
 
             this.txtMSRNarr.Text = ds1.Tables[4].Rows[0]["remarks"].ToString();
             this.gvMSRInfo_DataBind();
@@ -235,9 +236,9 @@ namespace RealERPWEB.F_14_Pro
 
         protected void gvMSRInfo_DataBind()
         {
+            DataTable dt = (DataTable)Session["tblt02"];
 
-
-            this.gvMSRInfo2.DataSource = (DataTable)Session["tblt02"];
+            this.gvMSRInfo2.DataSource = dt;
             this.gvMSRInfo2.DataBind();
             this.FooterCalculation();
         }
@@ -271,7 +272,7 @@ namespace RealERPWEB.F_14_Pro
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
 
-            string CurDate1 = this.GetStdDate(this.txtCurMSRDate.Text.Trim());
+            string CurDate1 = this.txtCurMSRDate.Text.Trim();
             // string mMSRNo = this.ddlPrevMSRList.SelectedValue.ToString();
             string mMSRNo = "NEWMSR";
             if (this.ddlPrevMSRList.Items.Count > 0)
@@ -396,7 +397,7 @@ namespace RealERPWEB.F_14_Pro
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string CurDate1 = this.GetStdDate(this.txtCurMSRDate.Text.Trim());
+            string CurDate1 = this.txtCurMSRDate.Text.Trim();
             string comments = this.txtMSRNarr.Text.Trim();
             // string mMSRNo = this.ddlPrevMSRList.SelectedValue.ToString();
             string mMSRNo = "NEWMSR";
@@ -539,9 +540,10 @@ namespace RealERPWEB.F_14_Pro
                 case "3351":
                 case "3352":
                 case "1205":
-                case "3101":
+                    //case "3101":
                     this.printP2P_cs_approval();
                     break;
+                case "3101": // cpdl
                 case "3370": // cpdl
                     this.printCPDL_cs_approval();
                     break;
@@ -563,7 +565,7 @@ namespace RealERPWEB.F_14_Pro
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string CurDate1 = this.GetStdDate(this.txtCurMSRDate.Text.Trim());
+            string CurDate1 = this.txtCurMSRDate.Text.Trim();
             string comments = this.txtMSRNarr.Text.Trim();
             // string mMSRNo = this.ddlPrevMSRList.SelectedValue.ToString();
             string mMSRNo = "";
@@ -571,10 +573,15 @@ namespace RealERPWEB.F_14_Pro
             {
                 mMSRNo = Request.QueryString["msrno"].ToString() == "" ? "NEWMSR" : Request.QueryString["msrno"].ToString();
             }
+            else if (this.ddlPrevMSRList.Items.Count > 0)
+            {
+                mMSRNo = this.ddlPrevMSRList.SelectedValue.ToString();
+            }
             else
             {
-                DataTable dt = (DataTable)Session["tblmsr01"];
-                mMSRNo = dt.Rows[0]["maxmsrno"].ToString();
+                //mMSRNo = Request.QueryString["msrno"].ToString() == "" ? "NEWMSR" : Request.QueryString["msrno"].ToString();
+                DataTable dt2 = (DataTable)Session["tblmsr01"];
+                mMSRNo = dt2.Rows[0]["maxmsrno"].ToString();
             }
 
 
@@ -729,7 +736,7 @@ namespace RealERPWEB.F_14_Pro
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                             ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "',  target='_blank');</script>";
             }
-        } 
+        }
 
         protected void printCPDL_cs_approval()
         {
@@ -738,19 +745,24 @@ namespace RealERPWEB.F_14_Pro
             string comnam = hst["comnam"].ToString();
             string compname = hst["compname"].ToString();
             string comsnam = hst["comsnam"].ToString();
-            string comadd = hst["comadd1"].ToString();
+            string comadd = hst["comadd"].ToString().Replace("<br />", "\n");
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string CurDate1 = this.GetStdDate(this.txtCurMSRDate.Text.Trim());
+            string CurDate1 = this.txtCurMSRDate.Text.Trim();
             string comments = this.txtMSRNarr.Text.Trim();
             string mMSRNo = "";
             if (Request.QueryString.AllKeys.Contains("msrno"))
             {
                 mMSRNo = Request.QueryString["msrno"].ToString() == "" ? "NEWMSR" : Request.QueryString["msrno"].ToString();
             }
+            else if (this.ddlPrevMSRList.Items.Count > 0)
+            {
+                mMSRNo = this.ddlPrevMSRList.SelectedValue.ToString();
+            }
             else
             {
+                //mMSRNo = Request.QueryString["msrno"].ToString() == "" ? "NEWMSR" : Request.QueryString["msrno"].ToString();
                 DataTable dt2 = (DataTable)Session["tblmsr01"];
                 mMSRNo = dt2.Rows[0]["maxmsrno"].ToString();
             }
@@ -770,7 +782,7 @@ namespace RealERPWEB.F_14_Pro
             string userdesig = "";
             string rsirdesc = "";
             string txtsign1 = "";
-            string txtsign2 = ""; 
+            string txtsign2 = "";
             string txtsign3 = "";
             string recomsup = ds1.Tables[2].Rows[0]["rcmsupdesc"].ToString();
 
@@ -847,6 +859,7 @@ namespace RealERPWEB.F_14_Pro
                 }
             }
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
             Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
             Rpt1.SetParameters(new ReportParameter("Username", Username));
@@ -898,7 +911,7 @@ namespace RealERPWEB.F_14_Pro
             string mMSRNO = "NEWMSR";
             if (this.ddlPrevMSRList.Items.Count > 0)
                 mMSRNO = this.ddlPrevMSRList.SelectedValue.ToString();
-            string mMSRDAT = this.GetStdDate(this.txtCurMSRDate.Text.Trim());
+            string mMSRDAT = this.txtCurMSRDate.Text.Trim();
             if (mMSRNO == "NEWMSR")
             {
                 DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETLASTMSRINFO1_CON", mMSRDAT,
@@ -1165,7 +1178,7 @@ namespace RealERPWEB.F_14_Pro
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string userid = hst["usrid"].ToString();
-            string date = Convert.ToDateTime(this.GetStdDate(this.txtCurMSRDate.Text.Trim())).ToString("dd-MMM-yyyy");
+            string date = Convert.ToDateTime(this.txtCurMSRDate.Text.Trim()).ToString("dd-MMM-yyyy");
 
 
             string lisuno = (this.Request.QueryString["lisuno"].ToString()).Length == 0 ? "%" : this.Request.QueryString["lisuno"].ToString() + "%";
@@ -1417,9 +1430,10 @@ namespace RealERPWEB.F_14_Pro
 
             switch (GetCompCode())
             {
+                case "3101":
                 case "3370":
                     this.gvterm.Columns[4].Visible = false;
-                    this.gvterm.Columns[6].Visible = false;                    
+                    this.gvterm.Columns[6].Visible = false;
                     this.gvterm.Columns[8].Visible = false;
                     this.gvterm.Columns[9].Visible = false;
                     this.gvterm.Columns[5].HeaderText = "VAT & TAX";
@@ -1692,6 +1706,68 @@ namespace RealERPWEB.F_14_Pro
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
 
+        }
+
+        protected void lbtnSameValue_Click(object sender, EventArgs e)
+        {
+            Session_tblMSR_Update_PutSameValue();
+           // this.Session_tblMSR_Update();
+            this.gvMSRInfo_DataBind();
+        }
+        protected void Session_tblMSR_Update_PutSameValue()
+        {
+            try
+            {
+                DataTable tbl1 = (DataTable)Session["tblt02"];
+
+                string Rescode = "";
+                double ResQty = 0;
+                double ResRat = 0;
+                int RowIndex = 0;
+                for (int i = 0; i < this.gvMSRInfo2.Rows.Count; i++)
+                {
+
+                    if (i == 0)
+                    {
+                        Rescode = ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+                        ResRat = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate1")).Text.Trim());
+                    }
+
+                  //  ResQty = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtgvMSRqty")).Text.Trim());
+                    if (Rescode == ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim())
+                    {
+                        Rescode = ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+                        RowIndex = this.gvMSRInfo2.PageIndex * this.gvMSRInfo2.PageSize + i;
+                        tbl1.Rows[RowIndex]["resrate1"] = ResRat;
+                       // tbl1.Rows[RowIndex]["qty"] = ResQty * ResRat;
+                    }
+
+                    else
+                    {
+                        Rescode = ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+                        ResRat = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate1")).Text.Trim());
+                        RowIndex = this.gvMSRInfo2.PageIndex * this.gvMSRInfo2.PageSize + i;
+                        tbl1.Rows[RowIndex]["resrate1"] = ResRat;
+                        //tbl1.Rows[RowIndex]["qty"] = ResQty * ResRat;
+                    }
+                }
+
+                Session["tblt02"] = tbl1;
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = ex.Message.ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+            
+        }
+
+        protected void gvMSRInfo2_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            //this.Session_tblMSR_Update();
+
+            //this.gvMSRInfo2.PageIndex = e.NewPageIndex;
+            //this.gvMSRInfo_DataBind();
         }
     }
 }

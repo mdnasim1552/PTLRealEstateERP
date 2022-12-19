@@ -13,16 +13,9 @@
         });
         function pageLoaded() {
             var gv1 = $('#<%=this.gvcustdues.ClientID %>');
-            gv1.Scrollable();
-             
+            gv1.Scrollable();             
             $('.chzn-select').chosen({ search_contains: true });
-
-
         }
-
-
-
-
     </script>
 
 
@@ -55,7 +48,7 @@
                     <div class="card mt-4 mb-2">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="col-lg-3 col-md-3 col-sm-12">
                                     <div class="form-group">
                                         <asp:Label ID="lblRefNo" runat="server">Project Name 
 
@@ -66,7 +59,7 @@
                                         </asp:DropDownList>
                                     </div>
                                 </div>
-                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="col-lg-2 col-md-2 col-sm-12">
                                     <div class="form-group">
                                         <asp:Label ID="Label1" runat="server">From </asp:Label>
                                         <asp:TextBox ID="txtfrmDate" runat="server" AutoCompleteType="Disabled"
@@ -77,7 +70,7 @@
                                     </div>
 
                                 </div>
-                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="col-lg-2 col-md-2 col-sm-12">
                                     <div class="form-group">
                                         <asp:Label ID="Label2" runat="server">To </asp:Label>
                                         <asp:TextBox ID="txttodate" runat="server" AutoCompleteType="Disabled"
@@ -87,7 +80,7 @@
                                     </div>
 
                                 </div>
-                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="col-lg-1 col-md-1 col-sm-1">
                                     <div class="form-group">
                                         <asp:Label ID="lblPage" runat="server" CssClass="d-block" Text="Page Size"></asp:Label>
 
@@ -105,10 +98,10 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-2 col-md-2 col-sm-2">
+                                <div class="col-lg-3 col-md-3 col-sm-3">
                                     <div class="form-group mt-3">
-                                        <asp:CheckBox ID="chkoverdues" runat="server" Text="Over Dues" CssClass="btn btn-info checkBox" AutoPostBack="True" OnCheckedChanged="chkoverdues_CheckedChanged" />
-                                        <asp:CheckBox ID="chkCurrentdues" runat="server" Text="Current Dues" CssClass="btn btn-info checkBox" />
+                                        <asp:CheckBox ID="chkoverdues" runat="server" Text="Over Dues" CssClass="btn btn-info btn-sm checkBox" AutoPostBack="True" OnCheckedChanged="chkoverdues_CheckedChanged" />
+                                        <asp:CheckBox ID="chkCurrentdues" runat="server" Text="Current Dues" CssClass="btn btn-info btn-sm checkBox" />
                                         <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnOk_Click" TabIndex="8">Ok</asp:LinkButton>
                                     </div>
                                 </div>

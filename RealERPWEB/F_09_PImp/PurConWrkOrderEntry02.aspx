@@ -103,7 +103,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-md-1 pading5px">
+                                    <div class="col-md-1 pading8px">
                                         <asp:Label ID="lblProjectList" runat="server" CssClass="lblTxt lblName" Text="Project Name"></asp:Label>
                                     </div>
                                     <div class="col-md-5 pading5px">
@@ -112,7 +112,11 @@
 
 
                                     </div>
-
+                                     <div class="col-md-3 pading5px">
+                                        
+                                             <asp:CheckBox ID="checkletter" runat="server" TabIndex="10" Text="Offerletter Print" CssClass="btn btn-default checkBox" AutoPostBack="True"  />
+                                        
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -444,8 +448,6 @@
 
                                         <div class="col-md-3 pading5px">
                                         </div>
-
-
 
 
                                     </div>

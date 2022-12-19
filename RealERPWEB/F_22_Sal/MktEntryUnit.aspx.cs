@@ -133,8 +133,8 @@ namespace RealERPWEB.F_22_Sal
                     //this.gvUnit.Columns[12].Visible = false;
                     this.gvUnit.Columns[16].Visible = false;
                     this.gvUnit.Columns[19].Visible = false;
-                    this.gvUnit.Columns[20].Visible = false;
                     this.gvUnit.Columns[21].Visible = false;
+                    this.gvUnit.Columns[22].Visible = false;
                     break;
 
 
@@ -177,7 +177,7 @@ namespace RealERPWEB.F_22_Sal
             if (this.lbtnOk.Text == "Ok")
             {
 
-                this.PanelGroup.Visible = true;
+                //this.PanelGroup.Visible = true;
                 this.lbtnOk.Text = "New";
                 this.lblProjectdesc.Text = this.ddlProjectName.SelectedItem.Text;
                 //this.lblProjectmDesc.Text = this.ddlProjectName.SelectedItem.Text.Substring(13);
@@ -237,8 +237,8 @@ namespace RealERPWEB.F_22_Sal
                 double dUsize = Convert.ToDouble('0' + ((TextBox)this.gvUnit.Rows[i].FindControl("txtgvUSize")).Text.Trim());
                 double dRate = Convert.ToDouble('0' + ((TextBox)this.gvUnit.Rows[i].FindControl("txtgvRate")).Text.Trim());
                 double Uamount = Convert.ToDouble('0' + ((TextBox)this.gvUnit.Rows[i].FindControl("txtgvuamt")).Text.Trim());
-
-
+                string handvodate= ((TextBox)this.gvUnit.Rows[i].FindControl("txtgvhoverdate")).Text.Trim()==""?"01-Jan-1900" :Convert.ToDateTime(((TextBox)this.gvUnit.Rows[i].FindControl("txtgvhoverdate")).Text.Trim()).ToString("dd-MMM-yyyy");
+                double handovper = Convert.ToDouble('0' + ((TextBox)this.gvUnit.Rows[i].FindControl("txtgvhoverper")).Text.Trim());
 
                 double Qty = Convert.ToDouble('0' + ((TextBox)this.gvUnit.Rows[i].FindControl("txtgvUqty")).Text.Trim());
                 string status = ((TextBox)this.gvUnit.Rows[i].FindControl("txtgvbstat")).Text.Trim();
@@ -282,6 +282,9 @@ namespace RealERPWEB.F_22_Sal
                 tblt02.Rows[rowindex]["minbam"] = MinBMoney;
                 tblt02.Rows[rowindex]["bookingper"] = bookingper;
                 tblt02.Rows[rowindex]["noofinstall"] = noofinstall;
+                tblt02.Rows[rowindex]["handovdate"] = handvodate;
+                tblt02.Rows[rowindex]["handovper"] = handovper;
+                
                 tblt02.Rows[rowindex]["urmrks"] = Remarsk;
 
                 tblt02.Rows[rowindex]["facing"] = facing;
@@ -397,13 +400,14 @@ namespace RealERPWEB.F_22_Sal
                 string isLO = (Request.QueryString["Type"] == null) ? "0" : "1";
                 string bookingper = dt.Rows[i]["bookingper"].ToString();
                 string noofinstall = dt.Rows[i]["noofinstall"].ToString();
-
-
+                string handovdate = Convert.ToDateTime(dt.Rows[i]["handovdate"].ToString()).ToString("dd-MMM-yyyy");
+                string handovper = dt.Rows[i]["handovper"].ToString();
+                
 
                 if (dUsize > 0)
                 {
-                    bool result = MktData.UpdateTransInfo3(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATESALINF", PactCode, UsirCode, UNumber, dUsize.ToString(), qty, Udesc,
-                        bstat, Uramrks, Amt, Pqty, Pamt, Minbam, facing, view, utility, cooprative, chkper, fcode, Udescbn, isLO, bookingper, noofinstall,"");
+                    bool result = MktData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATESALINF", PactCode, UsirCode, UNumber, dUsize.ToString(), qty, Udesc,
+                        bstat, Uramrks, Amt, Pqty, Pamt, Minbam, facing, view, utility, cooprative, chkper, fcode, Udescbn, isLO, bookingper, noofinstall, handovdate, handovper, "","","","","","","","","");
 
                     if (!result)
                     {

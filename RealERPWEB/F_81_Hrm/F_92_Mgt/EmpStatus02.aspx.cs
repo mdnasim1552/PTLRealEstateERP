@@ -53,6 +53,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     : (Type == "EmpGradeADesig") ? "Grade & Designation Wise  Salary Detail"
                     : (Type == "InActiveEmpList") ? "Inactive Employee List"
                     : (Type == "TotalEmplist") ? "Total Employee List"
+                    : (Type == "EmpIDCard") ? "Employee ID Card"
                     : "Employee Confirmation";
 
                 if (hst["comcod"].ToString().Substring(0, 1) == "8")
@@ -233,6 +234,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.withBirth.Visible = false;
                     this.MultiView1.ActiveViewIndex = 12;
                     break;
+                case "EmpIDCard":
+                   
+                    this.lblfrmdate.Visible = false;
+                    this.txtFdate.Visible = false;
+                    this.lbltodate.Visible = false;
+                    this.txtTdate.Visible = false;
+                    this.MultiView1.ActiveViewIndex = 13;
+                    break;
 
             }
         }
@@ -360,6 +369,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 case "EmpList":
                     this.GetEmpList();
+                    break;
+                case "EmpIDCard":
+                    this.GetEmpIDList();
                     break;
                 case "TransList":
                     this.GetTransList();
@@ -548,6 +560,26 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 return;
             }
             Session["tblEmpstatus"] = HiddenSameData(ds4.Tables[0]);
+            this.LoadGrid();
+
+        }
+
+        private void GetEmpIDList()
+        {
+            Session.Remove("tblEmpstatus");
+            string comcod = this.GetCompCode();
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
+            string Deptid = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + "%";
+            string secid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
+            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETALLACTIVEEMP", Company, Deptid, secid, "", "", "", "", "", "");
+            if (ds4 == null)
+            {
+                this.gvEmpCard.DataSource = null;
+                this.gvEmpCard.DataBind();
+                return;
+            }
+            Session["tblEmpstatus"] = ds4.Tables[0];
             this.LoadGrid();
 
         }
@@ -923,6 +955,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     break;
                 case "TotalEmplist":
                 case "JoinigdWise":
+               
                 case "EmpList":
                 case "InActiveEmpList":
                     company = dt1.Rows[0]["company"].ToString();
@@ -1074,6 +1107,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     }
 
                     break;
+                case "EmpIDCard":
+                    this.gvEmpCard.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.gvEmpCard.DataSource = dt;
+                    this.gvEmpCard.DataBind();
+                   
+                    
+                    break;
                 case "TransList":
                     this.grvTransList.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.grvTransList.DataSource = dt;
@@ -1164,6 +1204,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     break;
                 case "EmpList":
                     this.PrintEmpList();
+                    break;
+                case "EmpIDCard":
+                    this.PrintEmpIdCard();
                     break;
                 case "TransList":
                     this.RptTransList();
@@ -1416,6 +1459,66 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
+        private void PrintEmpIdCard()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetCompCode();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string session = hst["session"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+           
+
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            LocalReport Rpt1 = new LocalReport();
+            DataTable dt = (DataTable)Session["tblEmpstatus"];
+
+            
+           
+            
+            int index;
+            for (int i = 0; i < this.gvEmpCard.Rows.Count; i++)
+            {
+                string isPrint = (((CheckBox)gvEmpCard.Rows[i].FindControl("isPrint")).Checked) ? "True" : "False";
+                if (isPrint == "True")
+                {
+                    ((CheckBox)gvEmpCard.HeaderRow.FindControl("chkAllfrm")).Checked = true;
+                }
+                index = (this.gvEmpCard.PageSize) * (this.gvEmpCard.PageIndex) + i;
+                dt.Rows[index]["isprint"] = isPrint;
+            }
+
+            string isCheckPrint = ((CheckBox)gvEmpCard.HeaderRow.FindControl("chkAllfrm")).Checked ? "1" : "";
+            if (isCheckPrint == "1")
+            {
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = "isprint = 'True'";
+                dt = dv.ToTable();
+            }
+          
+            var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_92_mgt.BO_ClassEmployee.EmployeeIDCardInfo>();
+           // new Uri(Server.MapPath("~/images/Mudassar.jpg")).AbsoluteUri;
+            list.Where(w => w.empimg != "").ToList().ForEach(s => s.empimg = new Uri(Server.MapPath(s.empimg)).AbsoluteUri);
+
+
+           
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_92_Mgt.RptEmpIdCard", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                //string EmpLogo = new Uri(Server.MapPath(@""+dt.Rows[i]["empimg"])).AbsoluteUri;
+               
+               // Rpt1.SetParameters(new ReportParameter("EmpLogo", EmpLogo));
+
+            
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
+                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
         private void RptTransList()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -1575,7 +1678,35 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
+        protected void chkAllfrm_CheckedChanged(object sender, EventArgs e)
+        {
 
+            int i, index;
+            if (((CheckBox)this.gvEmpCard.HeaderRow.FindControl("chkAllfrm")).Checked)
+            {
+
+                for (i = 0; i < this.gvEmpCard.Rows.Count; i++)
+                {
+
+                    ((CheckBox)this.gvEmpCard.Rows[i].FindControl("isPrint")).Checked = true;
+
+                }
+
+
+            }
+
+            else
+            {
+                for (i = 0; i < this.gvEmpCard.Rows.Count; i++)
+                {
+
+                    ((CheckBox)this.gvEmpCard.Rows[i].FindControl("isPrint")).Checked = false;
+
+                }
+
+            }
+
+        }
         protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.LoadGrid();
@@ -1594,6 +1725,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         protected void gvEmpList_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.gvEmpList.PageIndex = e.NewPageIndex;
+            this.LoadGrid();
+
+        }
+        protected void gvEmpCard_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvEmpCard.PageIndex = e.NewPageIndex;
             this.LoadGrid();
 
         }

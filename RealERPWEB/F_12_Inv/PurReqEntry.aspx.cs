@@ -435,7 +435,7 @@ namespace RealERPWEB.F_12_Inv
             {
                 if (IscheckDuplicateMPR())
                 {
-                    this.lbtnOk.Text = "OK";
+                    this.lbtnOk.Text = "Ok";
                     return;
                 }
             }
@@ -482,8 +482,8 @@ namespace RealERPWEB.F_12_Inv
                 case "3351":
                 case "3352":
                 case "3368":
-                case "3367":
                 case "3101":
+               
                     if (Request.QueryString["InputType"].ToString() == "IndentEntry" || ASTUtility.Left(this.ddlProject.SelectedValue.ToString(), 2) == "11")
                     {
 
@@ -494,6 +494,20 @@ namespace RealERPWEB.F_12_Inv
                     {
                         this.PnlDesc.Visible = true;
                     }
+
+                    break;
+
+
+               
+                case "3367":
+                    this.PnlDesc.Visible = true;
+                    if (Request.QueryString["InputType"].ToString() == "IndentEntry" || ASTUtility.Left(this.ddlProject.SelectedValue.ToString(), 2) == "11")
+                    {
+
+                       
+                        this.uPrj.Visible = false;
+                    }
+                    
 
                     break;
 
@@ -967,122 +981,53 @@ namespace RealERPWEB.F_12_Inv
             //     return;
             // }
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = this.GetCompCode();
-            this.lbtnResFooterTotal_Click(null, null);
-            string mMRFNO = this.txtMRFNo.Text.Trim();
-            if (this.ddlPrevReqList.Items.Count == 0)
-                this.GetReqNo();
-            string mREQDAT = this.GetStdDate(this.txtCurReqDate.Text.Trim());
-            string mREQNO = this.lblCurReqNo1.Text.Trim().Substring(0, 3) + this.txtCurReqDate.Text.Trim().Substring(6, 4) + this.lblCurReqNo1.Text.Trim().Substring(3, 2) + this.txtCurReqNo2.Text.Trim();
-
-            DataTable tbl1 = (DataTable)ViewState["tblReq"];
-            DataTable dt2 = (DataTable)Session["tblUserReq"];
-
-
-            if (this.chkdupMRF.Checked && IscheckDuplicateMPR())
-            {
-                return;
-
-                //if (mMRFNO.Length == 0)
-                //{
-                //    ((Label)this.Master.FindControl("lblmsg")).Text = "M.R.F No. Should Not Be Empty";
-                //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                //    return;
-                //}
-                //DataSet ds2 = new DataSet();
-                //switch (comcod)
-                //{
-                //    case "3332":
-                //        string pactcode = this.ddlProject.SelectedValue.ToString();
-                //        ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "CHECKEDDUPMRRNO", mMRFNO, pactcode, "", "", "", "", "", "", "");
-                //        //if (bbgdamt < 0 || dgvBgdQty < dgvReqQty)
-                //        break;
-
-                //    default:
-                //        ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "CHECKEDDUPMRRNO", mMRFNO, "", "", "", "", "", "", "", "");
-                //        break;
-                //}
-
-                //if (ds2.Tables[0].Rows.Count == 0)
-                //    ;
-
-
-                //else
-                //{
-                //    DataView dv1 = ds2.Tables[0].DefaultView;
-                //    dv1.RowFilter = ("reqno <>'" + mREQNO + "'");
-                //    DataTable dt = dv1.ToTable();
-                //    if (dt.Rows.Count == 0)
-                //        ;
-                //    else
-                //    {
-                //        ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate M.R.F No";
-                //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                //        //this.ddlPrevReqList.Items.Clear();
-                //        return;
-                //    }
-                //}
-            }
-
-            // Emty Quantity
-            DataRow[] dr2 = tbl1.Select("areqty>0");
-            //if(dr2.Length>0)
-            //Log Entry
-
-            DataTable dtuser = (DataTable)Session["tblUserReq"];
-            string tblPostedByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postedbyid"].ToString();
-            string tblPostedtrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postrmid"].ToString();
-            string tblPostedSession = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postseson"].ToString();
-            string tblPostedDat = (dtuser.Rows.Count == 0) ? "" : Convert.ToDateTime(dtuser.Rows[0]["posteddat"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
             string userid = hst["usrid"].ToString();
             string Terminal = hst["compname"].ToString();
             string Sessionid = hst["session"].ToString();
             string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
 
+            string comcod = this.GetCompCode();
+            this.lbtnResFooterTotal_Click(null, null);
+            string mMRFNO = this.txtMRFNo.Text.Trim();
+          
 
-            string PostedByid = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedByid == "") ? userid : tblPostedByid) : ((tblPostedByid == "") ? userid : tblPostedByid);
-            string Posttrmid = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedtrmid == "") ? Terminal : tblPostedtrmid) : ((tblPostedtrmid == "") ? Terminal : tblPostedtrmid);
-            string PostSession = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedSession == "") ? Sessionid : tblPostedSession) : ((tblPostedSession == "") ? Sessionid : tblPostedSession);
-            string PostedDat = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedDat == "") ? Date : tblPostedDat) : ((tblPostedDat == "") ? Date : tblPostedDat);
-
-
-
-
-            //string PostedByid = (this.Request.QueryString["InputType"] == "Entry") ? userid : (this.Request.QueryString["InputType"] == "FxtAstEntry") ? userid
-            //        : (tblPostedByid == "") ? userid : tblPostedByid;
-            //string Posttrmid = (this.Request.QueryString["InputType"] == "Entry") ? Terminal : (this.Request.QueryString["InputType"] == "FxtAstEntry") ? Terminal
-            //    : (tblPostedtrmid == "") ? Terminal : tblPostedtrmid;
-            //string PostSession = (this.Request.QueryString["InputType"] == "Entry") ? Sessionid : (this.Request.QueryString["InputType"] == "FxtAstEntry") ? Sessionid
-            //    : (tblPostedSession == "") ? Sessionid : tblPostedSession;
-            //string PostedDat = (this.Request.QueryString["InputType"] == "Entry") ? Date : (this.Request.QueryString["InputType"] == "FxtAstEntry") ? Date
-            //    : (tblPostedSession == "") ? Date : tblPostedDat;
+            DataTable tbl1 = (DataTable)ViewState["tblReq"];
+            DataTable dt2 = (DataTable)Session["tblUserReq"];
 
 
 
 
-            string EditByid = (this.Request.QueryString["InputType"] == "ReqEdit") ? userid : "";
-            string Edittrmid = (this.Request.QueryString["InputType"] == "ReqEdit") ? Terminal : "";
-            string EditSession = (this.Request.QueryString["InputType"] == "ReqEdit") ? Sessionid : "";
-            string EditDat = (this.Request.QueryString["InputType"] == "ReqEdit") ? Date : "01-Jan-1900";
+            DataTable dtuser = (DataTable)Session["tblUserReq"];
+
+
+            string tblPostedByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postedbyid"].ToString();
+            string tblPostedtrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postrmid"].ToString();
+            string tblPostedSession = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postseson"].ToString();
+            string tblPostedDat = (dtuser.Rows.Count == 0) ? "" : Convert.ToDateTime(dtuser.Rows[0]["posteddat"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+
+            string crmchekd = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["iscrchecked"].ToString();
+            string tblcrmcheckbyid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["crmcheckbyid"].ToString();
+
+            string tblcrnPosttrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["crmchecktrmid"].ToString();
+            string tblcrmPostSession = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["crmcheckseson"].ToString();
+            string tblcrmcPostedDat = (dtuser.Rows.Count == 0) ? "" : Convert.ToDateTime(dtuser.Rows[0]["crmcheckdat"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
+            //crm part  iscrchecked
+
+            string crmcheckbyid = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedByid == "") ? userid : tblPostedByid) : ((tblcrmcheckbyid == "") ? userid : tblcrmcheckbyid);
+            string crnPosttrmid = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedtrmid == "") ? Terminal : tblPostedtrmid) : ((tblcrnPosttrmid == "") ? Terminal : tblcrnPosttrmid);
+            string crmPostSession = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedSession == "") ? Sessionid : tblPostedSession) : ((tblcrmPostSession == "") ? Sessionid : tblcrmPostSession);
+            string crmcPostedDat = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedDat == "") ? Date : tblPostedDat) : ((tblcrmcPostedDat == "") ? Date : tblcrmcPostedDat);
 
 
 
+            string deptcode = this.ddlDeptCode.SelectedValue.ToString();
 
-
-
-            //string ApprovByid = (this.Request.QueryString["InputType"] == "Entry") ? "" : (this.Request.QueryString["InputType"] == "FxtAstEntry") ? "" : userid;
-            //string approvdat = (this.Request.QueryString["InputType"] == "Entry") ? "01-Jan-1900" : (this.Request.QueryString["InputType"] == "FxtAstEntry") ? "01-Jan-1900"
-            //    : System.DateTime.Today.ToString("dd-MMM-yyyy");
-            //string Approvtrmid = (this.Request.QueryString["InputType"] == "Entry") ? "" : (this.Request.QueryString["InputType"] == "FxtAstEntry") ? "" : Terminal;
-            //string ApprovSession = (this.Request.QueryString["InputType"] == "Entry") ? "" : (this.Request.QueryString["InputType"] == "FxtAstEntry") ? "" : Sessionid;
-
-
-
-            ////string approved = (this.Request.QueryString["InputType"] == "Approval") ? "Ok" :
-            //    (this.Request.QueryString["InputType"] == "FxtAstApproval") ? "Ok" : (dtuser.Rows.Count == 0) ? "" : dr2.Length == 0 ? "" : dtuser.Rows[0]["approved"].ToString();
-
-            //////
-
+            if (this.chkdupMRF.Checked && IscheckDuplicateMPR())
+            {
+                return;
+                
+            }
 
             // Balance quantity Cheecked
             if (this.Request.QueryString["InputType"] == "Entry" || this.Request.QueryString["InputType"] == "FxtAstEntry")
@@ -1192,46 +1137,6 @@ namespace RealERPWEB.F_12_Inv
                 }
             }
 
-            string mPACTCODE = this.ddlProject.SelectedValue.ToString().Trim();
-            string mFLRCOD = this.ddlFloor.SelectedValue.ToString().Trim();
-            string mREQUSRID = "";
-            string mAPPRUSRID = "";
-            string mAPPRDAT = this.GetStdDate(this.txtApprovalDate.Text.Trim());  // DateTime.Today.ToString("dd-MMM-yyyy");
-            string mEDDAT = this.GetStdDate(this.txtExpDeliveryDate.Text.Trim()); // DateTime.Today.ToString("dd-MMM-yyyy");
-            string mREQBYDES = this.txtPreparedBy.Text.Trim();
-            string mAPPBYDES = this.txtApprovedBy.Text.Trim();
-            string reqtype = "";
-            string uFP = this.ddlPrjForUse.SelectedValue.ToString();
-
-            string deptcode = this.ddlDeptCode.SelectedValue.ToString();
-
-            if (this.Request.QueryString["InputType"] == "LcEntry")
-            {
-                reqtype = "LC";
-            }
-
-
-            string crmchekd = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["iscrchecked"].ToString();
-            string tblcrmcheckbyid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["crmcheckbyid"].ToString();
-
-            string tblcrnPosttrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["crmchecktrmid"].ToString();
-            string tblcrmPostSession = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["crmcheckseson"].ToString();
-            string tblcrmcPostedDat = (dtuser.Rows.Count == 0) ? "" : Convert.ToDateTime(dtuser.Rows[0]["crmcheckdat"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
-
-            //crm part  iscrchecked
-
-            string crmcheckbyid = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedByid == "") ? userid : tblPostedByid) : ((tblcrmcheckbyid == "") ? userid : tblcrmcheckbyid);
-            string crnPosttrmid = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedtrmid == "") ? Terminal : tblPostedtrmid) : ((tblcrnPosttrmid == "") ? Terminal : tblcrnPosttrmid);
-            string crmPostSession = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedSession == "") ? Sessionid : tblPostedSession) : ((tblcrmPostSession == "") ? Sessionid : tblcrmPostSession);
-            string crmcPostedDat = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedDat == "") ? Date : tblPostedDat) : ((tblcrmcPostedDat == "") ? Date : tblcrmcPostedDat);
-
-
-            ////crm part
-            //string crmchekd = "";
-            //string crmcheckbyid = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedByid == "") ? userid : tblPostedByid) : ((tblPostedByid == "") ? userid : tblPostedByid);
-            //string crnPosttrmid = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedtrmid == "") ? Terminal : tblPostedtrmid) : ((tblPostedtrmid == "") ? Terminal : tblPostedtrmid);
-            //string crmPostSession = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedSession == "") ? Sessionid : tblPostedSession) : ((tblPostedSession == "") ? Sessionid : tblPostedSession);
-            //string crmcPostedDat = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedDat == "") ? Date : tblPostedDat) : ((tblPostedDat == "") ? Date : tblPostedDat);
 
             if (this.Request.QueryString["InputType"] == "Entry")
             {
@@ -1266,17 +1171,7 @@ namespace RealERPWEB.F_12_Inv
                 }
             }
 
-            //else if (this.Request.QueryString["InputType"] == "ReqCheck")
-            //{
-            //    string pactcode1 = this.ddlProject.SelectedValue.ToString();
-            //    string mReqno = this.lblCurReqNo1.Text.Trim().Substring(0, 3) + this.txtCurReqDate.Text.Trim().Substring(6, 4) + this.lblCurReqNo1.Text.Trim().Substring(3, 2) + this.txtCurReqNo2.Text.Trim();              
-            //    DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "CHECKISCRMCHECKED", pactcode1, mReqno, "", "", "", "", "", "", "");
-            //    if (ds1.Tables[0].Rows.Count == 0)
-            //        return;
 
-            //    crmchekd = ds1.Tables[0].Rows[0]["ISCRCHECKED"].ToString();
-
-            //}
 
             string indentType = "";
             if (this.Request.QueryString["InputType"] == "IndentEntry")
@@ -1288,6 +1183,66 @@ namespace RealERPWEB.F_12_Inv
                     return;
                 }
             }
+
+
+            if (this.ddlPrevReqList.Items.Count == 0)
+                this.GetReqNo();
+            string mREQDAT = this.GetStdDate(this.txtCurReqDate.Text.Trim());
+            string mREQNO = this.lblCurReqNo1.Text.Trim().Substring(0, 3) + this.txtCurReqDate.Text.Trim().Substring(6, 4) + this.lblCurReqNo1.Text.Trim().Substring(3, 2) + this.txtCurReqNo2.Text.Trim();
+
+
+       
+
+
+            string PostedByid = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedByid == "") ? userid : tblPostedByid) : ((tblPostedByid == "") ? userid : tblPostedByid);
+            string Posttrmid = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedtrmid == "") ? Terminal : tblPostedtrmid) : ((tblPostedtrmid == "") ? Terminal : tblPostedtrmid);
+            string PostSession = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedSession == "") ? Sessionid : tblPostedSession) : ((tblPostedSession == "") ? Sessionid : tblPostedSession);
+            string PostedDat = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedDat == "") ? Date : tblPostedDat) : ((tblPostedDat == "") ? Date : tblPostedDat);
+            string EditByid = (this.Request.QueryString["InputType"] == "ReqEdit") ? userid : "";
+            string Edittrmid = (this.Request.QueryString["InputType"] == "ReqEdit") ? Terminal : "";
+            string EditSession = (this.Request.QueryString["InputType"] == "ReqEdit") ? Sessionid : "";
+            string EditDat = (this.Request.QueryString["InputType"] == "ReqEdit") ? Date : "01-Jan-1900";
+          
+
+
+
+
+
+            string mPACTCODE = this.ddlProject.SelectedValue.ToString().Trim();
+            string mFLRCOD = this.ddlFloor.SelectedValue.ToString().Trim();
+            string mREQUSRID = "";
+            string mAPPRUSRID = "";
+            string mAPPRDAT = this.GetStdDate(this.txtApprovalDate.Text.Trim());  // DateTime.Today.ToString("dd-MMM-yyyy");
+            string mEDDAT = this.GetStdDate(this.txtExpDeliveryDate.Text.Trim()); // DateTime.Today.ToString("dd-MMM-yyyy");
+            string mREQBYDES = this.txtPreparedBy.Text.Trim();
+            string mAPPBYDES = this.txtApprovedBy.Text.Trim();
+            string reqtype = "";
+            string uFP = this.ddlPrjForUse.SelectedValue.ToString();
+
+         
+
+            if (this.Request.QueryString["InputType"] == "LcEntry")
+            {
+                reqtype = "LC";
+            }
+
+
+            
+         
+
+          
+
+            ////crm part
+            //string crmchekd = "";
+            //string crmcheckbyid = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedByid == "") ? userid : tblPostedByid) : ((tblPostedByid == "") ? userid : tblPostedByid);
+            //string crnPosttrmid = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedtrmid == "") ? Terminal : tblPostedtrmid) : ((tblPostedtrmid == "") ? Terminal : tblPostedtrmid);
+            //string crmPostSession = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedSession == "") ? Sessionid : tblPostedSession) : ((tblPostedSession == "") ? Sessionid : tblPostedSession);
+            //string crmcPostedDat = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedDat == "") ? Date : tblPostedDat) : ((tblPostedDat == "") ? Date : tblPostedDat);
+
+
+
+
+
             string mREQNAR = this.txtReqNarr.Text.Trim();
 
             string compsms = hst["compsms"].ToString();

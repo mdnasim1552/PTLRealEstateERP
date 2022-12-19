@@ -27,7 +27,20 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script type="text/javascript">       
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
+
+        });
+        function pageLoaded() {
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+            $('.chzn-select').chosen({ search_contains: true });
+        }
+    </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
@@ -52,6 +65,15 @@
                         </div>
                         <div class="col-lg-2">
                             <div class="form-group">
+                                <asp:Label runat="server" ID="Label8" class="form-label">Type</asp:Label>
+                                <asp:DropDownList ID="ddlType" CssClass="chzn-select form-control" runat="server">
+                                    <asp:ListItem Value="0">Material Req.</asp:ListItem>
+                                    <asp:ListItem Value="1">Transfer</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="form-group">
                                 <br />
                                 <asp:LinkButton ID="btnOKClick" runat="server" CssClass="btn btn-info align-self-end" OnClick="btnOKClick_Click">
                                 </asp:LinkButton>
@@ -71,7 +93,7 @@
                                 <div class="form-group">
                                     <asp:Label runat="server" ID="lblProject" class="form-label">Project</asp:Label>
                                     <asp:HiddenField runat="server" ID="lblpactcode" />
-                                     <asp:Label runat="server" ID="lblProjectText" class="form-control"></asp:Label>
+                                    <asp:Label runat="server" ID="lblProjectText" class="form-control"></asp:Label>
                                 </div>
                             </div>
                             <div class="col-lg-2">
@@ -319,7 +341,191 @@
 
                     </asp:Panel>
 
+                    <asp:Panel runat="server" ID="pnlTransfer" Visible="false">
+                        <div class="row mt-1">
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <asp:Label runat="server" ID="Label10" class="form-label">MTR No</asp:Label>
+                                    <asp:Label runat="server" ID="lblMTRNo" class="form-control"></asp:Label>
+                                    <asp:Label runat="server" ID="lblMTRNoFull" class="form-control" Visible="false"></asp:Label>
+                                    <asp:Label runat="server" ID="lblToInventory" class="form-control" Visible="false"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <asp:Label runat="server" ID="Label14" class="form-label">From</asp:Label>
+                                    <asp:DropDownList ID="ddlFromInventory" CssClass="chzn-select form-control" runat="server" AutoPostBack="true" 
+                                        OnSelectedIndexChanged="ddlFromInventory_SelectedIndexChanged">
+                                    </asp:DropDownList>
+                                </div>
 
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <asp:Label runat="server" ID="Label12" class="form-label">Resource List</asp:Label>
+                                    <asp:DropDownList ID="ddlMaterial" runat="server" CssClass="form-control chzn-select" AutoPostBack="true"
+                                        OnSelectedIndexChanged="ddlMaterial_SelectedIndexChanged">
+                                    </asp:DropDownList>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <asp:Label runat="server" ID="Label13" class="form-label">Specification</asp:Label>
+                                    <asp:DropDownList ID="ddlSpecification" runat="server" CssClass="form-control chzn-select"></asp:DropDownList>
+                                    <asp:Label ID="lblVoucherNo" runat="server" CssClass="lblTxt lblName"></asp:Label>
+                                </div>
+
+                            </div>                         
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <br />
+                                    <asp:LinkButton ID="lnkTransferSelect" runat="server" CssClass="btn btn-warning align-self-end" OnClick="lnkTransferSelect_Click">
+                                        Select
+                                    </asp:LinkButton>
+                                    <asp:HyperLink ID="HyperLink1" runat="server" CssClass="btn btn-primary align-self-end" Target="_blank" NavigateUrl="~/F_12_Inv/RptMaterialStock.aspx?Type=inv&prjcode=&sircode=">
+                                        Mat. Stock
+                                    </asp:HyperLink>
+                                </div>
+                            </div>
+                            <%--<div class="col-lg-2">
+                                <div class="form-group">
+                                    <br />
+                                    <asp:HyperLink ID="LinkButton1" runat="server" CssClass="btn btn-warning align-self-end" NavigateUrl="~/F_12_Inv/RptMaterialStock.aspx?Type=inv&prjcode=&sircode=">
+                                        Mat. Stock
+                                    </asp:HyperLink>
+                                </div>
+                            </div>--%>
+                            
+                        </div>
+                        <div class="row mt-1">
+                            <asp:GridView ID="grvacc" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                AutoGenerateColumns="False" ShowFooter="True" Width="501px"
+                                OnRowDeleting="grvacc_RowDeleting">
+                                <RowStyle />
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Sl.No.">
+                                        <ItemTemplate>
+                                            <asp:Label ID="serialnoid" runat="server" Style="text-align: right"
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                    </asp:TemplateField>
+                                    <asp:CommandField ShowDeleteButton="True" />
+                                    <asp:TemplateField HeaderText=" resourcecode" Visible="False">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvMatCode" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Resource Description">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbgrcod" runat="server" Style="text-align: left"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "resdesc")) %>'
+                                                Width="180px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="spcfcode" Visible="False">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgspcfcode" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfcod")) %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Specification">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbgvspecification" runat="server" Style="text-align: left"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfdesc")) %>'
+                                                Width="180px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Unit">
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label13" runat="server"
+                                                Style="font-size: 11px; text-align: center;"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirunit")) %>'
+                                                Width="50px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:LinkButton ID="lnktotal" runat="server" Font-Bold="True"
+                                                CssClass="btn btn-primary primaryBtn" OnClick="lnktotal_Click">Total</asp:LinkButton>
+
+                                        </FooterTemplate>
+                                        <FooterStyle HorizontalAlign="Center" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
+
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Balance Quantity">
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvBalqty" runat="server" Style="text-align: right"
+                                                Width="100px"></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemTemplate>
+
+                                            <asp:Label ID="lblBalqty" runat="server"
+                                                Style="font-size: 11px; text-align: right;"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balqty")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="100px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" ForeColor="Black" HorizontalAlign="right"
+                                            VerticalAlign="Middle" Font-Size="12px" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+
+
+                                    <asp:TemplateField HeaderText="Quantity">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtqty" runat="server" BackColor="Transparent" BorderStyle="Solid"
+                                                Style="text-align: right; font-size: 11px;" Enabled="false"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="70px" BorderColor="#660033" BorderWidth="1px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:LinkButton ID="lnkupdate" runat="server" Font-Bold="True"
+                                                CssClass="btn btn-danger primaryBtn" OnClick="lnkupdate_Click">Update</asp:LinkButton>
+
+                                        </FooterTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Rate">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtrate" runat="server" BackColor="Transparent" BorderStyle="Solid"
+                                                Style="text-align: right; font-size: 11px;"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rate")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="70px" BorderColor="#660033" BorderWidth="1px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Amount">
+                                        <FooterTemplate>
+                                            <asp:Label ID="lgvFAmount" runat="server" Style="text-align: right"
+                                                Width="100px"></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemTemplate>
+
+                                            <asp:Label ID="lblamt" runat="server"
+                                                Style="font-size: 11px; text-align: right;"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="100px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" ForeColor="Black" HorizontalAlign="right"
+                                            VerticalAlign="Middle" Font-Size="12px" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+                                </Columns>
+                                <FooterStyle CssClass="grvFooter" />
+                                <EditRowStyle />
+                                <AlternatingRowStyle />
+                                <PagerStyle CssClass="gvPagination" />
+                                <HeaderStyle CssClass="grvHeader" />
+                            </asp:GridView>
+                        </div>
+
+                    </asp:Panel>
 
                 </div>
             </div>

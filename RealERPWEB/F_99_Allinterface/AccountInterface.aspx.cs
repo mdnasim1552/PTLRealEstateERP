@@ -77,7 +77,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             switch (comcod)
             {
-                //case "3101": //own 
+                case "3101": //own 
                 case "3333"://Alliance
                 case "3354": // Edison
                 case "3353"://Manama
@@ -2324,7 +2324,7 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
 
             }
-
+            string ptype = GetCompUnpostApproval();
 
             bool resultb = accData.UpdateTransInfo2(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "UPUNPOSTEDVOUCHER", vounum, ApprovedByid, Approvedtrmid, ApprovedSession, Approvedddat,
                                "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
@@ -2340,6 +2340,21 @@ namespace RealERPWEB.F_99_Allinterface
             this.SaleRequRpt();
             this.RadioButtonList1_SelectedIndexChanged(null, null);
 
+        }
+
+        private string GetCompUnpostApproval()
+        {
+            string type = "";
+            switch (GetCompCode())
+            {
+                case "3368":
+                    type = "UPUNPOSTEDVOUCHERFINLAY";
+                    break;
+                default:
+                    type = "UPUNPOSTEDVOUCHER";
+                    break;
+            }
+            return type;
         }
 
 
@@ -2486,6 +2501,23 @@ namespace RealERPWEB.F_99_Allinterface
 
             }
 
+        }
+
+        protected void btnDelOrder_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string adno = ((Label)this.gvClientMod.Rows[Rowindex].FindControl("lblgvadno")).Text.Trim(); 
+
+            //UPDATEMODAPPROVAL
+            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT02", "UPDATEMODAPPROVAL", adno, "", "", "", "", "", "", "", "", "", "");
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Cancellation failed..!');", true);
+                return;
+            }
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Successfully Deleted');", true);
+            this.lbtnOk_Click(null, null);
         }
     }
 }

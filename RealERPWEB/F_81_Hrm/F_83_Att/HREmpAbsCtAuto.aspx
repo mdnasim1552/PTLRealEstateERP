@@ -251,7 +251,7 @@
 
                             <asp:TemplateField HeaderText=" ">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lbtnabscountdelete" runat="server" OnClick="lbtnabscountdelete_Click"><span class="glyphicon glyphicon-remove"> </span></asp:LinkButton>
+                                    <asp:LinkButton ID="lbtnabscountdelete" runat="server" OnClick="lbtnabscountdelete_Click"><i class="fa fa-trash"> </i></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Emp ID" Visible="false">

@@ -283,6 +283,8 @@ namespace RealERPWEB.F_12_Inv
         protected void Load_Project_Res_Combo()
         {
 
+            Session.Remove("projectreslist");
+            Session.Remove("tblspcf");
             string comcod = this.GetCompCode();
             string ProjectCode = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
             string FindResDesc = this.txtSearchRes.Text.Trim() + "%";
@@ -290,7 +292,7 @@ namespace RealERPWEB.F_12_Inv
 
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GetProjResList", ProjectCode, curdate, FindResDesc, "", "", "", "", "", "");
             Session["projectreslist"] = ds1.Tables[0];
-            ViewState["tblspcf"] = ds1.Tables[1];
+            Session["tblspcf"] = ds1.Tables[1];
 
             if (ds1 == null)
                 return;
@@ -317,7 +319,7 @@ namespace RealERPWEB.F_12_Inv
             string mResCode = this.ddlreslist.SelectedValue.ToString();
             //string spcfcod1 = this.ddlResSpcf.SelectedValue.ToString();
             this.ddlResSpcf.Items.Clear();
-            DataTable tbl1 = (DataTable)ViewState["tblspcf"];
+            DataTable tbl1 = (DataTable)Session["tblspcf"];
             DataView dv1 = tbl1.DefaultView;
             dv1.RowFilter = ("mspcfcod = '" + mResCode + "'");
             DataTable dt = dv1.ToTable();

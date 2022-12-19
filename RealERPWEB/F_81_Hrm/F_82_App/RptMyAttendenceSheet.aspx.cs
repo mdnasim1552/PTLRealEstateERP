@@ -14,6 +14,8 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
+using System.Globalization;
+
 namespace RealERPWEB.F_81_Hrm.F_82_App
 {
     public partial class RptMyAttendenceSheet : System.Web.UI.Page
@@ -258,10 +260,34 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string comcod = this.GetComeCode();
             //string Company = "";
             // string PCompany = "";
+            string type = this.Request.QueryString["Type"].ToString();
+            string frmdate = "";
+            string todate = "";
+            string empid = "";
+
+            if (type == "MGT")
+            {
+                frmdate = this.txtgvenjoydt1.Text.ToString();
+                todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                empid = this.ddlEmpName.SelectedValue.ToString(); ;
+            }
+            else
+            {
+                frmdate = this.Request.QueryString["frmdate"].ToString();
+                todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                empid = this.Request.QueryString["empid"].ToString();
+            }
+
+
+
+
+
+
+
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string empid = this.Request.QueryString["empid"].ToString();
-            string frmdate = this.Request.QueryString["frmdate"].ToString();
-            string todate = this.Request.QueryString["todate"].ToString();
+            //string empid = this.Request.QueryString["empid"].ToString();
+            //string frmdate = this.Request.QueryString["frmdate"].ToString();
+            //string todate = this.Request.QueryString["todate"].ToString();
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "EMPATTNIDWISE", frmdate, todate, empid, "", "", "", "", "", "");
 
 
@@ -540,7 +566,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             if (comcod == "3354")
             {
-
+                outTimeV.Visible = true;
             }
 
             if (attstatus == "A")
@@ -585,7 +611,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             this.lbldadteIntime.Text = lblIntime.Text;
             this.lbldadte.Text = issuedate.Text;
-            this.lbldadteTime.Text = actualin.Text;
+       
+            this.lbldadteTime.Text =  actualin.Text;
+
+
+
+
+
             this.lbldadteOuttime.Text = lblIntime.Text;
             this.txtAreaReson.Text = lblisremarks.Text;
             this.ReqID.Value = lblRequid.Text;

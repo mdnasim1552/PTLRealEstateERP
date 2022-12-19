@@ -430,43 +430,50 @@ namespace RealERPWEB.F_30_Facility
 
         protected void lnkWorkDone_Click(object sender, EventArgs e)
         {
-            List<EClass_Complain_List> list = (List<EClass_Complain_List>)ViewState["ComplainList"];
-            if (list.Count > 0)
+            string dgno = lblDgNo.Text;
+            if (dgno == "")
             {
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = GetComCode();
-                string dgno = Request.QueryString["Dgno"] ?? "0";
-                string complno = Request.QueryString["ComplNo"] ?? ddlComplain.SelectedValue.ToString();
-                string dgdate = txtEntryDate.Text;
-                string sitevisiteddate = txtSiteVisisted.Text;
-                string estimatedwddate = txtwdtime.Text;
-                string userId = hst["usrid"].ToString();
-                string addremarks = txtNarration.Text;
-
-
-                DataSet ds = _process.GetTransInfoNew(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTDIAGNOSISB", null, null, null, dgno, complno, dgdate,
-                    sitevisiteddate, estimatedwddate, addremarks,
-                    "", "", "", "", "", "", "", "", "", "", "", "", "", "", userId);
-                if (ds == null)
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
-                DataTable dt = ds.Tables[0];
-
-                bool result = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTCCB", dt.Rows[0]["dgno"].ToString(), dgdate, addremarks, "", "", "", "", "", "", "", "", "", "",
-                  "", "", "", "", "", "", "", "", "", userId);
-                result = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTQCB", dt.Rows[0]["dgno"].ToString(), dgdate, addremarks, "", "", "", "", "", "", "", "", "", "",
-                       "", "", "", "", "", "", "", "", "", userId);
-                if (result)
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Please Save to Proceed to Customer Care" + "');", true);
+            }
+            else
+            {
+                List<EClass_Complain_List> list = (List<EClass_Complain_List>)ViewState["ComplainList"];
+                if (list.Count > 0)
                 {
-                    Response.Redirect("~/F_30_Facility/EngrCheck.aspx?Type=Edit&ComplNo=" + complno + "&Dgno=" + dt.Rows[0]["dgno"].ToString());
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Dg-{dt.Rows[0]["dgno"].ToString()} - Proceed to Work Done" + "');", true);
-                    
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    string comcod = GetComCode();
+                    //string dgno = Request.QueryString["Dgno"] ?? "0";
+                    string complno = Request.QueryString["ComplNo"] ?? ddlComplain.SelectedValue.ToString();
+                    string dgdate = txtEntryDate.Text;
+                    string sitevisiteddate = txtSiteVisisted.Text;
+                    string estimatedwddate = txtwdtime.Text;
+                    string userId = hst["usrid"].ToString();
+                    string addremarks = txtNarration.Text;
 
-                }
 
+                    DataSet ds = _process.GetTransInfoNew(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTDIAGNOSISB", null, null, null, dgno, complno, dgdate,
+                        sitevisiteddate, estimatedwddate, addremarks,
+                        "", "", "", "", "", "", "", "", "", "", "", "", "", "", userId);
+                    if (ds == null)
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                    DataTable dt = ds.Tables[0];
+
+                    //bool result = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTCCB", dt.Rows[0]["dgno"].ToString(), dgdate, addremarks, "", "", "", "", "", "", "", "", "", "",
+                    //  "", "", "", "", "", "", "", "", "", userId);
+                    bool result = _process.UpdateTransInfo3(comcod, "SP_ENTRY_FACILITYMGT", "UPSERTQCB", dt.Rows[0]["dgno"].ToString(), dgdate, addremarks, "", "", "", "", "", "", "", "", "", "",
+                           "", "", "", "", "", "", "", "", "", userId);
+                    if (result)
+                    {
+                        Response.Redirect("~/F_30_Facility/EngrCheck.aspx?Type=Edit&ComplNo=" + complno + "&Dgno=" + dt.Rows[0]["dgno"].ToString());
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"Dg-{dt.Rows[0]["dgno"].ToString()} - Proceed to Work Done" + "');", true);
+
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+
+                    }
+                }
 
             }
         }

@@ -35,6 +35,7 @@
         <%: Scripts.Render("~/bundles/Counter") %>
         <%: Scripts.Render("~/bundles/highchart") %>
         <%: Scripts.Render("~/bundles/flatpickr") %>
+        <%: Scripts.Render("~/bundles/autocomplete") %>
         
         
     </asp:PlaceHolder>
@@ -350,6 +351,7 @@
                 <asp:ScriptReference Path="~/tinymce/tinymce.min.js" />   
                <asp:ScriptReference Path="~/Scripts/select2.min.js" />
                <asp:ScriptReference Path="~/Scripts/jquery.keynavigation.js" />
+               <asp:ScriptReference Path="~/Scripts/jquery.autocomplete.js" />
                 --%>
             </Scripts>
 
@@ -1014,7 +1016,7 @@
                                     <div class="float-right">
                                         <asp:LinkButton ID="lnkbtnRecalculate" Visible="false" runat="server" CssClass="btn btn-sm btn-secondary" OnClick="lnkbtnRecalculate_Click"><i class="fas fa-sync"></i>&nbsp;Recalculate</asp:LinkButton>
 
-                                        <asp:LinkButton ID="lnkbtnNew" runat="server" Visible="false" CssClass="btnsave btncommon " Style="margin: 0 5px;" OnClick="lnkbtnNew_Click"><i class="fa fa-file-o" aria-hidden="true"></i>New</asp:LinkButton>
+                                        <asp:LinkButton ID="lnkbtnNew" runat="server" Visible="false" CssClass="btn btn-sm btn-primary " Style="margin: 0 5px;" OnClick="lnkbtnNew_Click"><i class="fa fa-file-o" aria-hidden="true"></i>New</asp:LinkButton>
                                         <asp:LinkButton ID="lnkbtnAdd" runat="server" Visible="false" CssClass="btn btn-primary btn-sm" OnClick="lnkbtnAdd_Click1" Style="margin: 0 5px;"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add</asp:LinkButton>
                                         <asp:LinkButton ID="lnkbtnSave" Visible="false" ClientIDMode="Static" OnClientClick="return confirm('Do You want to Save?');" runat="server" CssClass="btn btn-md btn-info" Style="margin: 0 5px;" OnClick="lnkbtnSave_Click"><i class="fas fa-save"></i>&nbsp;Save</asp:LinkButton>
                                         <asp:LinkButton ID="lnkbtnEdit" Visible="false" runat="server" CssClass="btnEdit btncommon" OnClick="lnkbtnEdit_Click" Style="margin: 0 5px;"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</asp:LinkButton>

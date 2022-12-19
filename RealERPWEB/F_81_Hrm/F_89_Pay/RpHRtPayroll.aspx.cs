@@ -165,7 +165,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         //    this.txttodate.Text= "25" + this.txtfromdate.Text.Trim().Substring(2);
 
                         //    break;
-
+                        case "3367":
                         case "3365":   //  bti 
             
                             this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
@@ -207,7 +207,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                             this.txtfromdate.Text = "26" + this.txtfromdate.Text.Trim().Substring(2);
                             this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                             break;
-
+                        case "3367":
                         case "3365"://bti
                             this.divEMplist.Visible = true;
                             this.txtfromdate.Text = System.DateTime.Today.AddMonths(-2).ToString("dd-MMM-yyyy");
@@ -223,6 +223,20 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     }
                     break;
 
+                case "3101":
+                case "3365"://bti
+                    this.divEMplist.Visible = true;
+                    this.txtfromdate.Text = System.DateTime.Today.AddMonths(-2).ToString("dd-MMM-yyyy");
+                    this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
+                    this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                    break;
+                default:
+                    this.divEMplist.Visible = true;
+                    this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
+                    this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                    break;
+                    break;
                 case "Signature":
                     this.MultiView1.ActiveViewIndex = 3;
                     this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
@@ -738,6 +752,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "Payslip":
                     this.ShowPaySlip();
                     break;
+     
                 case "Signature":
                     this.ShowSignature();
                     break;
@@ -1056,6 +1071,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Session["tblpay"] = dt;
             this.TakaInWord();
         }
+       
         private void ShowSignature()
         {
             Session.Remove("tblpay");
@@ -1137,6 +1153,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 {
                     double netpay = Convert.ToDouble(dt.Rows[i]["netpay"]);
                     dt.Rows[i]["aminword"] = ASTUtility.Trans(netpay, 2);
+                    
                 }
                 Session["tblpay"] = dt;
             }
@@ -1488,6 +1505,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                     break;
 
+
                 case "OvertimeSalary":
                     ((Label)this.gvOvertime.FooterRow.FindControl("lgvFoallows")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(oallow)", "")) ? 0.00 : dt.Compute("sum(oallow)", ""))).ToString("#,##0;(#,##0); ");
                     break;
@@ -1511,6 +1529,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "Payslip":
                     this.PrintPaySlip();
                     break;
+       
 
                 case "Signature":
                     this.PrintSignature();
@@ -2640,7 +2659,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", this.ddlCompany.SelectedItem.Text.Trim()));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "Statement of Salary : " + "Month of " + todate1 + "(" + frmdate + "- " + todate + ")"));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Statement of Salary : Month of " + todate1 ));
             Rpt1.SetParameters(new ReportParameter("TkInWord", "In Word: " + ASTUtility.Trans(netpayatax, 2)));
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
@@ -4401,6 +4420,42 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
                               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
             }
+            else if (comcod == "3102")
+            {
+
+                string txtsign1 = "Md. Saiful Islam\nSenior Executive";
+                var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipBTI", list, null, null);
+                Rpt1.EnableExternalImages = true;
+
+                Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+                Rpt1.SetParameters(new ReportParameter("compName", comnam));
+                Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+                Rpt1.SetParameters(new ReportParameter("txtHeader2", "Pay Slip" + todate1 + " (Month of salary disbursement)"));
+                Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
+                Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            }
+            else if (comcod == "3101")
+            {
+
+                string txtsign1 = "Md. Saiful Islam\nSenior Executive";
+                var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipBTI", list, null, null);
+                Rpt1.EnableExternalImages = true;
+
+                Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+                Rpt1.SetParameters(new ReportParameter("compName", comnam));
+                Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+                Rpt1.SetParameters(new ReportParameter("txtHeader2", "Pay Slip" + todate1 + " (Month of salary disbursement)"));
+                Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
+                Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            }
 
             else if (comcod == "3368" )
             {
@@ -4440,7 +4495,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
                               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
             }
-            else if (comcod == "3101" || comcod== "3370")
+            else if (comcod== "3370")
             {
                 var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
                 Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipCPDL", list, null, null);
@@ -4471,7 +4526,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
         }
-
 
 
 

@@ -25,15 +25,18 @@
     <style type="text/css">
         .lineheight {
         }
-        .customchk{
-            padding:2px;
-            margin-left:20px;
+
+        .customchk {
+            padding: 2px;
+            margin-left: 20px;
         }
-        .customchk label {
-            padding-left:5px;
-        }
+
+            .customchk label {
+                padding-left: 5px;
+            }
+
         .moduleItemWrpper .btn-info {
-            background-color: #5bc0de; 
+            background-color: #5bc0de;
             color: #000;
             font-weight: bold;
             border: 1px solid #155273 !important;
@@ -81,8 +84,6 @@
                                         <asp:Label ID="lblorderref" runat="server" CssClass="smLbl_to" Text="SMCR.No."></asp:Label>
 
                                         <asp:TextBox ID="txtOrderRef" runat="server" CssClass=" inputtextbox" TabIndex="3" Style="width: 195px;"></asp:TextBox>
-
-
                                         <div class="col-md-3 pading5px pull-right">
                                             <asp:LinkButton ID="lbtnPrevList" runat="server" CssClass="lblTxt lblName prvLinkBtn" OnClick="lbtnPrevList_Click">Prev. List:</asp:LinkButton>
                                             <asp:DropDownList ID="ddlPrevList" runat="server" CssClass=" ddlPage inputTxt" Width="130px" AutoPostBack="True" TabIndex="3"></asp:DropDownList>
@@ -94,16 +95,12 @@
                                 <div class="form-group">
                                     <div class="col-md-3 pading5px asitCol3">
                                         <asp:Label ID="lblContractorList" runat="server" CssClass="lblTxt lblName" Text="Contractor Name"></asp:Label>
-
-
                                         <asp:TextBox ID="txtsrchContractor" runat="server" CssClass=" inputtextbox" TabIndex="10"></asp:TextBox>
 
                                         <div class="colMdbtn">
                                             <asp:LinkButton ID="lbtnFindContractor" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="lbtnFindContractor_Click" TabIndex="9"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                         </div>
-
                                     </div>
-
 
                                     <div class="col-md-4 pading5px">
 
@@ -111,8 +108,6 @@
                                         <asp:Label ID="lblddlContractor" runat="server" Visible="False" Style="width: 380px;" CssClass=" form-control   inputtextbox"></asp:Label>
 
                                     </div>
-
-
 
                                     <div class="colMdbtn">
                                         <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click" TabIndex="11">Ok</asp:LinkButton>
@@ -123,20 +118,13 @@
                                         <div class="msgHandSt">
                                             <asp:Label ID="lblmsg1" CssClass="btn btn-danger primaryBtn" runat="server" Visible="false"></asp:Label>
                                         </div>
-
-
                                     </div>
                                 </div>
-
-
 
                                 <div class="form-group">
                                     <div class="col-md-3 pading5px asitCol3">
                                         <asp:Label ID="lblProjectList" runat="server" CssClass="lblTxt lblName" Text="Project Name"></asp:Label>
-
-
                                         <asp:TextBox ID="txtsrchproject" runat="server" CssClass=" inputtextbox" TabIndex="10"></asp:TextBox>
-
                                         <div class="colMdbtn">
                                             <asp:LinkButton ID="lbtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="lbtnFindProject_Click" TabIndex="9"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                         </div>
@@ -144,14 +132,8 @@
                                     <div class="col-md-4 pading5px">
                                         <asp:DropDownList ID="ddlprjlist" runat="server" CssClass="chzn-select form-control  inputTxt" AutoPostBack="True" TabIndex="3" Style="width: 385px;"></asp:DropDownList>
                                         <asp:Label ID="lblddlProject" runat="server" Visible="False" Style="width: 380px;" CssClass=" form-control   inputtextbox"></asp:Label>
-
-
                                     </div>
-
                                 </div>
-
-
-
                             </div>
                         </fieldset>
                     </div>
@@ -160,11 +142,6 @@
                             <fieldset class="scheduler-border fieldset_B">
 
                                 <div class="form-horizontal">
-
-
-
-
-
                                     <div class="form-group">
 
                                         <div class="col-md-3 pading5px asitCol3">
@@ -172,7 +149,6 @@
                                             <asp:DropDownList ID="ddlfloorno" runat="server" CssClass=" form-control inputTxt" Width="96" OnSelectedIndexChanged="ddlfloorno_SelectedIndexChanged" TabIndex="12" AutoPostBack="True">
                                                 <asp:ListItem Selected="True" Text="Unspecified" Value="00"></asp:ListItem>
                                             </asp:DropDownList>
-
                                         </div>
 
                                         <div class="col-md-3 pading5px asitCol3" style="width: 155px;">
@@ -185,13 +161,6 @@
                                             MaxDropDownHeight="200" TabIndex="8" TransitionalMode="True" Width="350px">
                                         </cc1:DropCheck>
 
-
-
-
-
-
-
-
                                         <%-- <asp:DropDownList ID="ddllabour" runat="server" CssClass=" form-control inputTxt" TabIndex="16" >
                                                 </asp:DropDownList>--%>
 
@@ -200,10 +169,7 @@
                                             <asp:LinkButton ID="LinkButton2" runat="server" OnClick="lbtnSelect_Click" CssClass="btn btn-primary primaryBtn"
                                                 TabIndex="17">Select</asp:LinkButton>
 
-
-
                                             <asp:Label ID="lblPage" runat="server" CssClass="lblTxt smLbl_to" Text="Page"></asp:Label>
-
                                             <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="ddlPage" Style="margin-left: 6px;" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" TabIndex="18">
                                                 <asp:ListItem Value="15">15</asp:ListItem>
                                                 <asp:ListItem Value="20">20</asp:ListItem>
@@ -214,18 +180,9 @@
                                                 <asp:ListItem Value="200">200</asp:ListItem>
                                                 <asp:ListItem Value="300">300</asp:ListItem>
                                             </asp:DropDownList>
-
                                         </div>
-
-
                                     </div>
-
-
-
-
-
                                 </div>
-
                             </fieldset>
 
 
@@ -252,14 +209,17 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-
-
                                     <asp:TemplateField HeaderText="Floor Desc.">
+                                        <FooterTemplate>
+                                            <asp:LinkButton ID="lnkTotal" runat="server" CssClass="btn btn-primary primaryBtn"
+                                                OnClick="lnkTotal_Click">Total</asp:LinkButton>
+                                        </FooterTemplate>
 
                                         <ItemTemplate>
                                             <asp:Label ID="lblFloordes" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrdes")) %>' Width="100px"></asp:Label>
                                         </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
                                     <%-- <asp:TemplateField HeaderText="Spec">
 
@@ -280,10 +240,7 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) %>'
                                                 Width="200px"></asp:Label>
                                             <asp:TextBox ID="txtwrkdesc" BackColor="Transparent" BorderStyle="None" runat="server" TextMode="MultiLine" Height="50px"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sdetails")).Trim()
-                                         
-                                                                         
-                                                                    %>'
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sdetails")).Trim() %>'
                                                 Width="500px">
                                             <%--sdetails--%>
                                             </asp:TextBox>
@@ -308,6 +265,10 @@
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ordqty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="70px" BackColor="Transparent" Style="text-align: right" BorderStyle="None"></asp:TextBox>
                                         </ItemTemplate>
+                                         <FooterTemplate>
+                                            <asp:Label ID="lblgvFQty" runat="server" Style="text-align: right"
+                                                Width="70px" Font-Size="12px" ForeColor="#000"></asp:Label>
+                                        </FooterTemplate>
                                         <ItemStyle Font-Size="10pt" HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
@@ -323,8 +284,12 @@
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvAmount" runat="server"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ordamt")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                Width="70px" BackColor="Transparent" Style="text-align: right" BorderStyle="None"></asp:TextBox>
+                                                Width="80px" BackColor="Transparent" Style="text-align: right" BorderStyle="None"></asp:TextBox>
                                         </ItemTemplate>
+                                         <FooterTemplate>
+                                            <asp:Label ID="lblgvFamount" runat="server" Style="text-align: right"
+                                                Width="80px" Font-Size="12px" ForeColor="#000"></asp:Label>
+                                        </FooterTemplate>
                                         <ItemStyle Font-Size="10pt" HorizontalAlign="Center" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Remarks">
@@ -335,9 +300,6 @@
                                         </ItemTemplate>
                                         <ItemStyle Font-Size="10pt" HorizontalAlign="Center" />
                                     </asp:TemplateField>
-
-
-
                                 </Columns>
                                 <FooterStyle BackColor="#F5F5F5" />
                                 <EditRowStyle />
@@ -350,11 +312,7 @@
                     </div>
 
                     <div class="row">
-
-
-
                         <asp:Panel ID="PnlNarration" runat="server" Visible="False">
-
                             <fieldset class="scheduler-border fieldset_Nar">
                                 <div class="form-horizontal">
 
@@ -395,11 +353,8 @@
                                                 <span class="input-group-addon glypingraddon">
                                                     <asp:Label ID="Label5" runat="server" CssClass="lblTxt lblName" Text="Dear Vendor,"></asp:Label>
                                                 </span>
-
                                             </div>
                                         </div>
-
-
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-12 pading5px">
@@ -413,8 +368,6 @@
                                         <div class="col-md-2 pading5px">
                                         </div>
                                     </div>
-
-
                                     <div class="form-group">
                                         <div class="col-md-12 pading5px">
                                             <div class="input-group">
@@ -424,32 +377,15 @@
                                                 <asp:TextBox ID="txtTerm" runat="server" class="form-control" Rows="2" TextMode="MultiLine" Style="height: 300px; line-height: 18px;"></asp:TextBox>
                                             </div>
                                         </div>
-
-
                                         <div class="col-md-3 pading5px">
                                         </div>
-
-
-
-
                                     </div>
-
                                 </div>
-
                             </fieldset>
-
-
-
-
                         </asp:Panel>
                     </div>
                 </div>
             </div>
-
-
-
-
-
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

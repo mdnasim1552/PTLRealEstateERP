@@ -76,7 +76,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-                case "3101": // ptl
+               // case "3101": // ptl
                 case "3370": // cpdl
                 case "1205":
                 case "3351":
@@ -362,32 +362,58 @@ namespace RealERPWEB.F_99_Allinterface
             dv.RowFilter = ("orderno =''");
             this.Data_Bind("gvWorkOrder", dv.ToTable());
 
+            switch (comcod)
+            {
+                
 
-            /// Measurement Book  
-            dt = (DataTable)ds1.Tables[11];
-            this.Data_Bind("gvmbook", dt);
-
-
-            /// Measurement Book Approval
-            //dt = ((DataTable)ds1.Tables[11]).Copy();
-            //dv = dt.DefaultView;
-            //dv.RowFilter = ("orderno <>'' and mbno <>'' and mbnoapp=''");
-            //this.Data_Bind("gvmbookapp", dv.ToTable());
-
-
-
-
-            // Ready For Bill
-            dt = (DataTable)ds1.Tables[12];
-            this.Data_Bind("gvReadyForBill", dt);
+                case "3351":
+                case "1205":
+                case "3352":
+               // case "3101":
+                    /// Ready For Bill
+                    dt = ((DataTable)ds1.Tables[7]).Copy();
+                    dv = dt.DefaultView;
+                    dv.RowFilter = ("orderno <>''  and lisueno=''");
+                    this.Data_Bind("gvReadyForBill", dv.ToTable());
 
 
+                    break;
 
-            /// Ready For Bill
-            //dt = ((DataTable)ds1.Tables[7]).Copy();
-            //dv = dt.DefaultView;
-            //dv.RowFilter = ("orderno <>''  and lisueno=''");
-            //this.Data_Bind("gvReadyForBill", dv.ToTable());
+                default:
+
+                    /// Measurement Book  
+                    dt = (DataTable)ds1.Tables[11];
+                    this.Data_Bind("gvmbook", dt);
+
+
+                    /// Measurement Book Approval
+                    //dt = ((DataTable)ds1.Tables[11]).Copy();
+                    //dv = dt.DefaultView;
+                    //dv.RowFilter = ("orderno <>'' and mbno <>'' and mbnoapp=''");
+                    //this.Data_Bind("gvmbookapp", dv.ToTable());
+
+
+                    // Ready For Bill
+                    dt = (DataTable)ds1.Tables[12];
+                    this.Data_Bind("gvReadyForBill", dt);
+
+                    break;
+
+            }       
+
+           
+
+
+
+
+
+
+
+           
+
+
+
+
 
 
             dtb = ((DataTable)ds1.Tables[2]).Copy();
@@ -422,6 +448,7 @@ namespace RealERPWEB.F_99_Allinterface
             dv = dtb.DefaultView;
             dv.RowFilter = (" frecid <>'' and secrecid<>'' and threcid=''");
             this.Data_Bind("gvthrec", dv.ToTable());
+
 
 
             //dv = dtb.DefaultView;
@@ -1121,7 +1148,7 @@ namespace RealERPWEB.F_99_Allinterface
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkbtnPrintIN");
+                HyperLink hlnkprint = (HyperLink)e.Row.FindControl("lnkbtnPrintIN"); 
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnApp");
                 LinkButton btnDelReqCheck = (LinkButton)e.Row.FindControl("btnDelReqCheck");
                 HyperLink lnkbtnEditBilll = (HyperLink)e.Row.FindControl("lnkbtnEditBilll");
@@ -1142,38 +1169,37 @@ namespace RealERPWEB.F_99_Allinterface
                 hlnkBillDetails.Enabled = mbno.Length > 0;
                 hlnkBillDetails.NavigateUrl = "~/F_09_PImp/BillingMBEntry?Type=Entry&prjcode=" + pactcode + "&genno=" + mbno + "&sircode=" + sircode;
 
+                hlnkprint.NavigateUrl = "~/F_99_Allinterface/PurchasePrint.aspx?Type=ConBillPrint&lisuno=" + lisuno + "&pactcode=" + pactcode;
+
                 if (issustatus == "S")
                 {
                     hlink2.NavigateUrl = "~/F_09_PImp/PurSubConBillFinal?Type=BillServiceEntry&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode + "&status=" + issustatus;
-
                 }
                 else
                 {
                     hlink2.NavigateUrl = "~/F_09_PImp/PurSubConBillFinal?Type=BillEntry&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
-
                 }
-
-                if (comcod == "3340")
-                {
-                    lnkbtnEditBilll.NavigateUrl = "~/F_09_PImp/PurLabIssue2?Type=Edit&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
-
-                }
-                else
-                {
-                    lnkbtnEditBilll.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Edit&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
-
-                }
+                
                 switch (comcod)
                 {
                     case "3336":
                     case "3337":
                         btnDelReqCheck.Visible = false;
+                        lnkbtnEditBilll.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Edit&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
+                        break;
+
+                    case "3340":
+                        btnDelReqCheck.Visible = true;
+                        lnkbtnEditBilll.NavigateUrl = "~/F_09_PImp/PurLabIssue2?Type=Edit&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
                         break;
 
                     default:
                         btnDelReqCheck.Visible = true;
+                        lnkbtnEditBilll.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Edit&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
+
                         break;
                 }
+
             }
         }
         protected void gvsubbill_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -1936,13 +1962,16 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkWorkOrder");
+                HyperLink csAppEdit = (HyperLink)e.Row.FindControl("hlnkCsAppEdit");
 
                 string lreqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lreqno")).ToString();
                 string csircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "csircode")).ToString();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                string msrno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "msrno")).ToString(); 
 
                 hlink1.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Entry&genno=" + lreqno + "&sircode=" + csircode + "&actcode=" + pactcode;
-
+                //csAppEdit.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Entry&genno=" + lreqno + "&sircode=" + csircode + "&actcode=" + pactcode;
+                csAppEdit.NavigateUrl = "~/F_09_PImp/PurLabRequisition?Type=CSAppEdit&prjcode=" + pactcode + "&genno=" + lreqno + "&sircode=" + "" + "&recomsup=" + csircode + "&msrno=" + msrno;
             }
         }
 
@@ -2058,6 +2087,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 HyperLink hlnbillapp = (HyperLink)e.Row.FindControl("hlnklnkmb");
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lbtnPrintWorkOrder");
+                HyperLink hlnkEdit = (HyperLink)e.Row.FindControl("hlnkOrderEdit");
 
                 string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
                 string lreqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lreqno")).ToString();
@@ -2067,6 +2097,7 @@ namespace RealERPWEB.F_99_Allinterface
                 hlnbillapp.NavigateUrl = "~/F_09_PImp/BillingMBEntry?Type=Entry&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + sircode;
                 //F_09_PImp/PurLabIssue2?Type=Current&prjcode=&genno=&sircode=
                 hlink2.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Entry&genno=" + lreqno + "&sircode=" + sircode + "&actcode=" + pactcode + "&orderno=" + orderno;
+                hlnkEdit.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Edit&genno=" + lreqno + "&sircode=" + sircode + "&actcode=" + pactcode + "&orderno=" + orderno;
 
             } 
         }
