@@ -1528,42 +1528,7 @@ namespace RealERPWEB.F_04_Bgd
             double ResQty = 0;
             double ResRat = 0;
             int RowIndex = 0;
-            //int i=0;
-            //foreach (DataRow dr1 in tbl1.Rows)
-            //{
-            //    if (i == 0) 
-            //    {
-            //        Rescode = dr1["rsircode"].ToString();
-            //        ResRat =Convert.ToDouble( dr1["bgdrat"].ToString());
-            //    i++;
-            //    continue;
-
-            //    }
-
-            //    ResQty = Convert.ToDouble(dr1["tresqty"].ToString());
-
-            //    if (Rescode == dr1["rsircode"].ToString())
-            //    {
-
-            //        dr1["bgdrat"] = ResRat;
-            //        dr1["tresamt"] = ResQty * ResRat;
-
-
-            //    }
-
-            //    else 
-            //    {
-            //        Rescode = dr1["rsircode"].ToString();
-            //        ResRat = Convert.ToDouble(dr1["bgdrat"].ToString());
-            //        dr1["bgdrat"] = ResRat;
-            //        dr1["tresamt"] = ResQty * ResRat;
-
-
-            //    }
-
-
-
-            //}
+             
             for (int i = 0; i < this.gvResInfo.Rows.Count; i++)
             {
 
