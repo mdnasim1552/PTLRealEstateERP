@@ -258,15 +258,6 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnlflw;
 
         /// <summary>
-        /// lbtntfollowup control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtntfollowup;
-
-        /// <summary>
         /// divexland control.
         /// </summary>
         /// <remarks>
@@ -303,33 +294,6 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.Repeater rpclientinfo;
 
         /// <summary>
-        /// Label3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-
-        /// <summary>
-        /// Close control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Close;
-
-        /// <summary>
-        /// GridView1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
-
-        /// <summary>
         /// pnlSidebar control.
         /// </summary>
         /// <remarks>
@@ -346,6 +310,15 @@ namespace RealERPWEB.F_21_MKT
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton pnlsidebarClose;
+
+        /// <summary>
+        /// lbtntfollowup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtntfollowup;
 
         /// <summary>
         /// gvInfo control.

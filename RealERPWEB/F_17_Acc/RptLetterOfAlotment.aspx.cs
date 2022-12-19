@@ -63,7 +63,7 @@ namespace RealERPWEB.F_17_Acc
             this.ddlprjname.DataValueField = "pactcode";
             this.ddlprjname.DataSource = dt;
             this.ddlprjname.DataBind();
-            //this.ddlprjname_SelectedIndexChanged(null, null);
+            this.ddlprjname_SelectedIndexChanged(null, null);
 
 
 
@@ -74,9 +74,9 @@ namespace RealERPWEB.F_17_Acc
             string custotype = this.Request.QueryString["Type"].ToString();
             //string calltype = custotype=="LO"? "GETCUSTOMERNAMELANDOWNER" : "GETCUSTOMERNAME";          
             string comcod = this.GetCompCode();
-            
+            string pactcode = this.ddlprjname.SelectedValue == " " ? "51%" : this.ddlprjname.SelectedValue.ToString() + "%";
             string islandowner = this.Request.QueryString["Type"] == "Allotment" ? "0" : "1";
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTLIST", "", "", "", "", "", "", "", "", "");
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTLIST", pactcode, "", "", "", "", "", "", "", "");
             if (ds2 == null)
                 return;
             this.ddlcustomerName.DataTextField = "gdatat";
@@ -89,7 +89,7 @@ namespace RealERPWEB.F_17_Acc
 
         protected void ddlprjname_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //this.GetCustomerName();
+            this.GetCustomerName();
         }
 
         private void lbtnPrint_Click(object sender, EventArgs e)
@@ -126,8 +126,7 @@ namespace RealERPWEB.F_17_Acc
                 string prjname = this.ddlprjname.SelectedValue.ToString();
                 string ProjectName = this.ddlprjname.SelectedItem.ToString();
                 string custname = this.ddlcustomerName.SelectedValue.ToString();
-                string heading = "CPDL is pleased to other the allotment of Apartment space in your favor only subject to the following Terms" +
-                    "\n and conditionslimited thereto, since variation may take place in case of necessity, for strict adherence by the applicant / allottee";
+                
 
                 string method = "OTHER PAYMENTS ON CUSTOMERS ACCOUNT";
                 string head01 = "At actual with incidental expenses at the time of Registration";
@@ -139,6 +138,10 @@ namespace RealERPWEB.F_17_Acc
                 string type = "Flat";
                 string condition = "GENERAL TERMS & CONDITIONS OF ALLOTMENT FOR " + "<strong>" + type + "<strong>";
                 string companyname = "CPDL";
+                string heading = " " + "<strong>" + companyname + "</strong>" + " is pleased to other the allotment of Apartment space in your favor only subject to the following Terms and " + "<br>" +
+                    "conditionslimited thereto, since variation may take place in case of necessity, for strict adherence by the applicant / allottee";
+
+
                 string body = "1. All payment should be made to " + "<strong>" + companyname + "</strong>" + " by Account Payee Cheque or Bank Draft or Pay Order or DD or TT in locally against" + "<br>" +
                           "which respective receipts will be issued. All payments of the applicant / allottee from outside of Chittagong City should " + "<strong>" + companyname + "</strong>" + " <br>" +
                           "be made to by local TT or DD from any scheduled commercial bank. The Bangladeshi residing abroad may remit payments " + "<br>" +
@@ -183,9 +186,9 @@ namespace RealERPWEB.F_17_Acc
                           "undertaking any structural or layout change within the " + type + " complex. Failure to do so will be at the sole risk of allottee.";
                 string generalTitle = "GENERAL AGREEMENT";
                 string generalbody = "The enrollment Form, Materials Specification, Acknowledgement of Booking Amount, Money Receipt" +
-                                   "\n and Payment Schedule will be an integral part of this Allotment Letter. On acceptance of this" +
-                                   "\n Allotment Letter, please return the duplicate of the same with your signature for our record." +
-                                   "\n The management of" + "<strong>" + companyname + "</strong>" + "congratulates you on this occasion and looks forward to the successful handing over of your" + type + ".";
+                                   "and Payment Schedule will be an integral part of this Allotment Letter. On acceptance of this" + 
+                                   "Allotment Letter, please return the duplicate of the same with your signature for our record." +
+                                   "The management of" + "<strong>" + companyname + "</strong>" + "congratulates you on this occasion and looks forward to the successful handing over of your" + type + ".";
 
                
 
@@ -197,8 +200,8 @@ namespace RealERPWEB.F_17_Acc
                 string dateofbirth = Convert.ToDateTime(ds2.Tables[0].Rows[0]["dateofbirth"].ToString()).ToString("dd-MMM-yyyy");
                 string custsignature = (ds2.Tables[0].Rows[0]["custname"].ToString());
                 string custid = " ";
-                string isLO = "0";
-                DataSet ds3 =  purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETDETAILS", prjname, custname, isLO, udesc, "", "", "", "", "");
+                
+                DataSet ds3 =  purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETDETAILS", prjname, custname, "", "", "", "", "", "", "");
                 if (ds3 == null)
                     return;
                
@@ -217,43 +220,25 @@ namespace RealERPWEB.F_17_Acc
                 string totalamt = tamt.ToString("#,##0.00;(#,##0.00); ");
                 string unit = ds3.Tables[0].Rows[0]["munit"].ToString();
                 string aprtsize = size + " " + unit;
-
-                DataSet ds4 = purData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "COMBINEDTABLEFORSALES", prjname, custname, "", "", "", "", "", "", "");
-
-                if (ds4 == null)
-                    return;
-                DataTable dt01 = ds4.Tables[0].Copy();
-                DataView dv1 = dt01.DefaultView;
-                dv1.RowFilter = "grp like ('gp3')";
-                DataTable dt1 = dv1.ToTable();
-
-               
-
-
-
-
-                string cname = ds4.Tables[1].Rows[0]["cname"].ToString();
-                string cphone = ds4.Tables[1].Rows[0]["cphone"].ToString();
-                string caddress = ds4.Tables[1].Rows[0]["caddress"].ToString();
-                string paddress = ds4.Tables[1].Rows[0]["paddress"].ToString();
-
                 string Location = " ";
                 string enrolldate = " ";
                 string parqty = " ";
-                string unitcost = " ";              
+                string unitcost = Convert.ToDouble("0"+ ds3.Tables[3].Rows[0]["uamt"].ToString()).ToString("#,##0.00;(#,##0.00); ");              
                
-                string othercharge = " ";
-                string discount = " ";
-                string initialpayment = " ";
-                string dnpayment = " ";
-                string upDatePaym = " ";
-                string Uppay = " ";
-                string expectdate = " ";
-                
+                string othercharge = "0.00";
+                string discount = "0.00";
+                string initialpayment = Convert.ToDouble("0" + ds3.Tables[2].Rows[0]["initialpament"].ToString()).ToString("#,##0.00;(#,##0.00); ");
+                string dnpayment = Convert.ToDouble("0" + ds3.Tables[2].Rows[0]["downpayment"].ToString()).ToString("#,##0.00;(#,##0.00); ");
+                string upDatePaym = Convert.ToDouble("0" + ds3.Tables[2].Rows[0]["updatpayamount"].ToString()).ToString("#,##0.00;(#,##0.00); ");
+                string Uppay = Convert.ToDouble("0" + ds3.Tables[2].Rows[0]["updatpay"].ToString()).ToString("#,##0.00;(#,##0.00); ");
+                string totalcost = Convert.ToDouble("0" + ds3.Tables[2].Rows[0]["unittotalcost"].ToString()).ToString("#,##0.00;(#,##0.00); ");
+
+                string expectdate = Convert.ToDateTime(ds3.Tables[0].Rows[0]["handoverdat"].ToString()).ToString("dd-MMM-yyyy");
+
 
                 LocalReport Rpt1 = new LocalReport();
                 var lst = ds2.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.AllotmentInfo>();
-                var lst2 = dt1.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptSalPaySchedules>();
+                var lst2 = ds3.Tables[1].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.Rptalloreport>();
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptLetterOfAllotmentCPDL", lst, lst2, null);
                 Rpt1.EnableExternalImages = true;
 
@@ -294,6 +279,7 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("custsignature", custsignature));                       
                 Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("totalcost", totalcost));
                
 
 
