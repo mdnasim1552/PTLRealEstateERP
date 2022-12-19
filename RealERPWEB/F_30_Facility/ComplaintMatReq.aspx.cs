@@ -329,14 +329,14 @@ namespace RealERPWEB.F_30_Facility
                             return;
                         }
                     }
-                    bool resultReqNo = _process.UpdateTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEREQNODIAGNOSIS", Request.QueryString["DgNo"].ToString(),
-                                        reqno, "", "", "", "", "", "", "", "",
-                                        "", "", "", "", "");
-                    if (!resultReqNo)
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
-                        return;
-                    }
+                    //bool resultReqNo = _process.UpdateTransInfo(comcod, "SP_ENTRY_FACILITYMGT", "UPDATEREQNODIAGNOSIS", Request.QueryString["DgNo"].ToString(),
+                    //                    reqno, "", "", "", "", "", "", "", "",
+                    //                    "", "", "", "", "");
+                    //if (!resultReqNo)
+                    //{
+                    //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + $"Error Occured" + "');", true);
+                    //    return;
+                    //}
 
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + $"{reqno} is Updated Successful" + "');", true);
                 }
