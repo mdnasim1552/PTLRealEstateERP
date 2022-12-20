@@ -2094,11 +2094,12 @@ namespace RealERPWEB.F_99_Allinterface
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comnam = hst["comnam"].ToString();
-            //string comcod = hst["comcod"].ToString();
+            string comcod = hst["comcod"].ToString();
             string comadd = hst["comadd1"].ToString();
             string compname = hst["compname"].ToString();
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             //string hostname = hst["hostname"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " +
@@ -2112,8 +2113,9 @@ namespace RealERPWEB.F_99_Allinterface
             var list = dt.DataTableToList<RealEntity.C_99_AllInterface.RptUpdateMatTrans>();
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RDLCAccountSetup.GetLocalReport("R_99_AllInterface.RptUpdateMatTrans", list, null, null);
-
+            Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("txtCom", comnam));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("txtAdd", comadd));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
 
