@@ -172,7 +172,7 @@
                                             <asp:LinkButton ID="ImgbtnFindMat" runat="server" CssClass="btn btn-primary primaryBtn hidden" OnClick="ImgbtnFindMat_Click"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
                                         </div>
                                         <div class="col-md-4 pading5px asitCol4">
-                                                <asp:ListBox ID="chkMSRRes" runat="server" CssClass="form-control" SelectionMode="Multiple"></asp:ListBox>
+                                            <asp:ListBox ID="chkMSRRes" runat="server" CssClass="form-control" SelectionMode="Multiple"></asp:ListBox>
 
                                             <%--<asp:DropDownList ID="ddlMSRRes" runat="server" AutoPostBack="True" Width="322px" OnSelectedIndexChanged="ddlMSRRes_SelectedIndexChanged" CssClass="ddlPage chzn-select" Visible="false"></asp:DropDownList>--%>
                                         </div>
@@ -203,7 +203,7 @@
                         <div class="table table-responsive" style="min-height: 360px!important">
 
                             <asp:GridView ID="gvMSRInfo2" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                AutoGenerateColumns="False" ShowFooter="True"
+                                AutoGenerateColumns="False" ShowFooter="True" OnPageIndexChanging="gvMSRInfo2_PageIndexChanging" PageSize="20" AllowPaging="True"
                                 OnRowDataBound="gvMSRInfo2_RowDataBound" OnRowCreated="gvMSRInfo2_RowCreated">
                                 <PagerSettings Visible="False" />
                                 <Columns>
@@ -223,7 +223,7 @@
 
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="rsircode" Visible="false">
+                                    <asp:TemplateField HeaderText="rsircode"  >
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvrsircode" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>'
@@ -302,6 +302,11 @@
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Rate">
+
+                                        <HeaderTemplate>
+                                            <asp:LinkButton ID="lbtnSameValue" runat="server" OnClick="lbtnSameValue_Click" CssClass="btn btn-info primaryBtn">Put Same Rate</asp:LinkButton>
+                                        </HeaderTemplate>
+
                                         <FooterTemplate>
                                             <asp:LinkButton ID="lbtnMSRUpdate" runat="server" OnClick="lbtnMSRUpdate_Click" CssClass="btn btn-danger primaryBtn">Final Update</asp:LinkButton>
                                         </FooterTemplate>
@@ -342,6 +347,9 @@
 
 
                                     <asp:TemplateField HeaderText="Rate">
+                                         <HeaderTemplate>
+                                            <asp:LinkButton ID="lbtnSameValueB" runat="server" OnClick="lbtnSameValueB_Click" CssClass="btn btn-info primaryBtn">Put Same Rate</asp:LinkButton>
+                                        </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtrate2" runat="server" BorderColor="#99CCFF"
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -372,6 +380,9 @@
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Rate">
+                                         <HeaderTemplate>
+                                            <asp:LinkButton ID="lbtnSameValueC" runat="server" OnClick="lbtnSameValueC_Click" CssClass="btn btn-info primaryBtn">Put Same Rate</asp:LinkButton>
+                                        </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtrate3" runat="server" BorderColor="#99CCFF"
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -404,6 +415,9 @@
 
 
                                     <asp:TemplateField HeaderText="Rate">
+                                        <HeaderTemplate>
+                                            <asp:LinkButton ID="lbtnSameValueD" runat="server" OnClick="lbtnSameValueD_Click" CssClass="btn btn-info primaryBtn">Put Same Rate</asp:LinkButton>
+                                        </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtrate4" runat="server" BorderColor="#99CCFF"
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
@@ -434,6 +448,9 @@
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Rate">
+                                         <HeaderTemplate>
+                                            <asp:LinkButton ID="lbtnSameValueE" runat="server" OnClick="lbtnSameValueE_Click" CssClass="btn btn-info primaryBtn">Put Same Rate</asp:LinkButton>
+                                        </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtrate5" runat="server" BorderColor="#99CCFF"
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"

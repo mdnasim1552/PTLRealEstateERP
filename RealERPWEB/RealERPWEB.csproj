@@ -88,7 +88,7 @@
       <HintPath>..\..\Real Estate Bin 211213\bin\CrystalDecisions.Shared.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.Web">
-      <HintPath>..\..\Real Estate Bin 211213\bin\CrystalDecisions.Web.dll</HintPath>
+      <HintPath>..\..\..\..\..\bin\CrystalDecisions.Web.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.Windows.Forms">
       <HintPath>..\..\Real Estate Bin 211213\bin\CrystalDecisions.Windows.Forms.dll</HintPath>
@@ -169,7 +169,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.Common.dll</HintPath>
+      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
     <Reference Include="microsoft.reportviewer.datavisualization">
       <HintPath>..\..\Real Estate Bin 211213\bin\microsoft.reportviewer.datavisualization.dll</HintPath>
@@ -179,7 +179,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -187,9 +187,6 @@
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ScriptManager.WebForms">
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ScriptManager.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.SqlServer.Types.dll</HintPath>
@@ -294,7 +291,7 @@
     <Reference Include="System.Drawing.Common, Version=4.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Drawing.Common.5.0.2\lib\net461\System.Drawing.Common.dll</HintPath>
     </Reference>
-    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Users\Administrator\Desktop\System.Memory.dll</HintPath>
     </Reference>
@@ -2342,6 +2339,7 @@
     <Content Include="F_22_Sal\MktBookigApp2.aspx" />
     <Content Include="F_22_Sal\MktSampleNoteSheet.aspx" />
     <Content Include="F_22_Sal\MktGrandNoteSheet.aspx" />
+    <Content Include="F_22_Sal\RptSalesVsCollTeamWise.aspx" />
     <Content Include="F_22_Sal\SaleSurvey.aspx" />
     <Content Include="F_22_Sal\SaleSurPrjInformation.aspx" />
     <Content Include="F_22_Sal\SaleSurPCodeBook.aspx" />
@@ -3816,6 +3814,7 @@
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="StepofOperation.aspx" />
     <Content Include="StepofOperationNew.aspx" />
+    <Content Include="System.Memory.dll" />
     <Content Include="S_05_MyPage\RptEmpMonthWiseEva03.asmx" />
     <Content Include="Technology.aspx" />
     <Content Include="Tickets\CreateTicket.aspx" />
@@ -4401,6 +4400,13 @@
     </Compile>
     <Compile Include="F_22_Sal\MktGrandNoteSheet.aspx.designer.cs">
       <DependentUpon>MktGrandNoteSheet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_22_Sal\RptSalesVsCollTeamWise.aspx.cs">
+      <DependentUpon>RptSalesVsCollTeamWise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\RptSalesVsCollTeamWise.aspx.designer.cs">
+      <DependentUpon>RptSalesVsCollTeamWise.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_22_Sal\SaleSurvey.aspx.cs">
       <DependentUpon>SaleSurvey.aspx</DependentUpon>
