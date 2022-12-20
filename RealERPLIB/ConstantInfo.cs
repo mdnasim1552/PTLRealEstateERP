@@ -1304,6 +1304,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2202275", "F_22_Sal", "RptSalesVsAchievement?", "Type=MonsalVsAchieve", "Month Wise Sales (Reconcilation)", "Sales", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202276", "F_22_Sal", "RptSalesVsAchievement?", "Type=DownpayClearnce", "Down Payment Status (Prev.Sales)", "Sales", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202277", "F_22_Sal", "RptSalesVsAchievement?", "Type=CollectionStatus", "Month Wise Sales ( Collection Status ) ", "Sales", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2203000", "2202279", "F_22_Sal", "RptSalesVsCollTeamWise?", "Type=SalesTeam", "Executive Wise Sales", "Sales & Recovery", "False", "False", "False", "False" });
 
 
 
@@ -7656,6 +7657,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0402000003", "16. Month Wise Sales (Marketing Person)", "F_17_Acc/RptAccCollVsClearance?Type=MonSalPerWise&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000003", "17. Month Report (Monthly Sales Target)", "F_17_Acc/RptAccCollVsClearance?Type=MonSalPerTarWise&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000004", "18. Customer Sales Report", "F_17_Acc/RptLetterOfAlotment?Type=Allotment", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0402000004", "19. Executive Wise Sales", "F_22_Sal/RptSalesVsCollTeamWise?Type=SalesTeam", "", true, "" });
+
 
 
             mnuTbl1.Rows.Add(new Object[] { "0426000000", "", "", "", true, "" });
