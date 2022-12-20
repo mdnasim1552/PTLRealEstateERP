@@ -171,9 +171,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
-    <Reference Include="microsoft.reportviewer.datavisualization">
-      <HintPath>..\..\Real Estate Bin 211213\bin\microsoft.reportviewer.datavisualization.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel">
       <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
@@ -3690,7 +3687,6 @@
     <Content Include="landMenu-1.png" />
     <Content Include="LetterDefault.aspx" />
     <Content Include="LogIn.aspx" />
-    <Content Include="login_new.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="MyDashboard.aspx" />
     <Content Include="MyDashboardUddl.aspx" />
@@ -3710,7 +3706,6 @@
     <Content Include="Notices\Notice.aspx" />
     <Content Include="Notification\GetNotification.aspx" />
     <Content Include="Notification\Occasion.aspx" />
-    <Content Include="Oops.aspx" />
     <Content Include="p1.PNG" />
     <Content Include="p2.PNG" />
     <Content Include="p3.PNG" />
@@ -5681,13 +5676,6 @@
     <Compile Include="LetterDefault.aspx.designer.cs">
       <DependentUpon>LetterDefault.aspx</DependentUpon>
     </Compile>
-    <Compile Include="login_new.aspx.cs">
-      <DependentUpon>login_new.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="login_new.aspx.designer.cs">
-      <DependentUpon>login_new.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5722,13 +5710,6 @@
     </Compile>
     <Compile Include="Notification\Occasion.aspx.designer.cs">
       <DependentUpon>Occasion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Oops.aspx.cs">
-      <DependentUpon>Oops.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Oops.aspx.designer.cs">
-      <DependentUpon>Oops.aspx</DependentUpon>
     </Compile>
     <Compile Include="RDLCViewerWin.aspx.cs">
       <DependentUpon>RDLCViewerWin.aspx</DependentUpon>
