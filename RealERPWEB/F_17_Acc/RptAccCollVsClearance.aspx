@@ -2678,21 +2678,25 @@
                         fontWeight: 'bold'
                     }
                 },
+                //xAxis: {
+                //    categories: [
+                //        'Jan',
+                //        'Feb',
+                //        'Mar',
+                //        'Apr',
+                //        'May',
+                //        'Jun',
+                //        'Jul',
+                //        'Aug',
+                //        'Sep',
+                //        'Oct',
+                //        'Nov',
+                //        'Dec'
+                //    ],
+                //    crosshair: true
+                //},
                 xAxis: {
-                    categories: [
-                        'Jan',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug',
-                        'Sep',
-                        'Oct',
-                        'Nov',
-                        'Dec'
-                    ],
+                    type: 'category',
                     crosshair: true
                 },
                 yAxis: {
@@ -2953,21 +2957,25 @@
                         fontWeight: 'bold'
                     }
                 },
+                //xAxis: {
+                //    categories: [
+                //        'Jan',
+                //        'Feb',
+                //        'Mar',
+                //        'Apr',
+                //        'May',
+                //        'Jun',
+                //        'Jul',
+                //        'Aug',
+                //        'Sep',
+                //        'Oct',
+                //        'Nov',
+                //        'Dec'
+                //    ],
+                //    crosshair: true
+                //},
                 xAxis: {
-                    categories: [
-                        'Jan',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug',
-                        'Sep',
-                        'Oct',
-                        'Nov',
-                        'Dec'
-                    ],
+                    type: 'category',
                     crosshair: true
                 },
                 yAxis: {

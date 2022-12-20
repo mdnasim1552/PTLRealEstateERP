@@ -183,7 +183,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -291,15 +291,10 @@
     <Reference Include="System.Drawing.Common, Version=4.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Drawing.Common.5.0.2\lib\net461\System.Drawing.Common.dll</HintPath>
     </Reference>
-
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-    
-
-      <HintPath>..\..\bin\System.Memory.dll</HintPath>
-
+      <HintPath>..\..\Real Estate Bin 211213\bin\System.Memory.dll</HintPath>
     </Reference>
-
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\Real Estate Bin 211213\bin\System.Numerics.Vectors.dll</HintPath>
@@ -2344,7 +2339,6 @@
     <Content Include="F_22_Sal\MktBookigApp2.aspx" />
     <Content Include="F_22_Sal\MktSampleNoteSheet.aspx" />
     <Content Include="F_22_Sal\MktGrandNoteSheet.aspx" />
-    <Content Include="F_22_Sal\RptSalesVsCollTeamWise.aspx" />
     <Content Include="F_22_Sal\SaleSurvey.aspx" />
     <Content Include="F_22_Sal\SaleSurPrjInformation.aspx" />
     <Content Include="F_22_Sal\SaleSurPCodeBook.aspx" />
@@ -4404,13 +4398,6 @@
     </Compile>
     <Compile Include="F_22_Sal\MktGrandNoteSheet.aspx.designer.cs">
       <DependentUpon>MktGrandNoteSheet.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="F_22_Sal\RptSalesVsCollTeamWise.aspx.cs">
-      <DependentUpon>RptSalesVsCollTeamWise.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_22_Sal\RptSalesVsCollTeamWise.aspx.designer.cs">
-      <DependentUpon>RptSalesVsCollTeamWise.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_22_Sal\SaleSurvey.aspx.cs">
       <DependentUpon>SaleSurvey.aspx</DependentUpon>
