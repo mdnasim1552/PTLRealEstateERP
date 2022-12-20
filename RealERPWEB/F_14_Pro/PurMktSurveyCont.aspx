@@ -203,7 +203,7 @@
                         <div class="table table-responsive" style="min-height: 360px!important">
 
                             <asp:GridView ID="gvMSRInfo2" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                AutoGenerateColumns="False" ShowFooter="True" OnPageIndexChanging="gvMSRInfo2_PageIndexChanging" PageSize="20" AllowPaging="True"
+                                AutoGenerateColumns="False" ShowFooter="True"  
                                 OnRowDataBound="gvMSRInfo2_RowDataBound" OnRowCreated="gvMSRInfo2_RowCreated">
                                 <PagerSettings Visible="False" />
                                 <Columns>
