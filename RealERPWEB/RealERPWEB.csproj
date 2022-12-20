@@ -288,8 +288,9 @@
     <Reference Include="System.Drawing.Common, Version=4.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Drawing.Common.5.0.2\lib\net461\System.Drawing.Common.dll</HintPath>
     </Reference>
-    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\Administrator\Desktop\System.Memory.dll</HintPath>
       <HintPath>..\..\bin\System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Numerics" />
@@ -3808,6 +3809,7 @@
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="StepofOperation.aspx" />
     <Content Include="StepofOperationNew.aspx" />
+    <Content Include="System.Memory.dll" />
     <Content Include="S_05_MyPage\RptEmpMonthWiseEva03.asmx" />
     <Content Include="Technology.aspx" />
     <Content Include="Tickets\CreateTicket.aspx" />

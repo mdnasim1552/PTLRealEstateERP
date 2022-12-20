@@ -733,7 +733,7 @@ namespace RealERPWEB.F_22_Sal
             DataTable dt10 = (DataTable)Session["tblrmrk"];
             DataTable dtSalname = (DataTable)Session["salesname"];
 
-            string customerno = dt2.Rows[0]["customerno"].ToString() == "" ? dt2.Rows[0]["usircode"].ToString() : dt2.Rows[0]["custno"].ToString();
+            string customerno = dt2.Rows[0]["customerno"].ToString() == "" ? dt2.Rows[0]["usircode"].ToString() : dt2.Rows[0]["customerno"].ToString();
 
             var list = dt2.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptCustBookApp2>();
             LocalReport Rpt1 = new LocalReport();
