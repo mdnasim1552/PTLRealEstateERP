@@ -1071,6 +1071,24 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         this.gvEmpOverTime.Columns[14].Visible = false;
                         this.gvEmpOverTime.Columns[15].Visible = false;
                         this.gvEmpOverTime.Columns[16].Visible = true;
+                    }else if (comcod == "3368")
+                    {
+                        this.gvEmpOverTime.Columns[3].Visible = true;
+                        this.gvEmpOverTime.Columns[4].Visible = true;
+                        this.gvEmpOverTime.Columns[5].Visible = true;
+                        this.gvEmpOverTime.Columns[6].Visible = true;
+                        this.gvEmpOverTime.Columns[8].Visible = false;
+                        this.gvEmpOverTime.Columns[9].Visible = false;
+                        this.gvEmpOverTime.Columns[10].Visible = false;
+                        this.gvEmpOverTime.Columns[11].Visible = false;
+                        this.gvEmpOverTime.Columns[12].Visible = false;
+                        this.gvEmpOverTime.Columns[13].Visible = false;
+                        this.gvEmpOverTime.Columns[14].Visible = false;
+                        this.gvEmpOverTime.Columns[15].Visible = false;
+                        this.gvEmpOverTime.Columns[16].Visible = false;
+                        this.gvEmpOverTime.Columns[17].Visible = true;
+                        this.gvEmpOverTime.Columns[18].Visible = true;
+                        this.gvEmpOverTime.Columns[19].Visible = true;
                     }
                     else
                     {
@@ -2079,7 +2097,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             {
                 string empid = dt.Rows[i]["empid"].ToString();
                 string gcod = dt.Rows[i]["gcod"].ToString();
-                double fixhour = Convert.ToDouble(dt.Rows[i]["fixhour"]);
+                //double fixhour = Convert.ToDouble(dt.Rows[i]["fixhour"]);
+                double fixhour = Convert.ToDouble(dt.Rows[i]["syshour"]);
                 double hourly = Convert.ToDouble(dt.Rows[i]["hourly"]);
                 double c1hour = Convert.ToDouble(dt.Rows[i]["c1hour"]);
                 double c2hour = Convert.ToDouble(dt.Rows[i]["c2hour"]);
@@ -2099,10 +2118,24 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 string c3amt = (c3hour * c3rate).ToString();
                 double tohour = Convert.ToDouble(dt.Rows[i]["tohour"]); ;
 
-                if (tohour > 0)
+
+                double daycount= Convert.ToDouble(dt.Rows[i]["daycount"]);
+                double dayrate = Convert.ToDouble(dt.Rows[i]["holidayrate"]);
+
+                double syshour = Convert.ToDouble(dt.Rows[i]["syshour"]);
+                double syshourrate = Convert.ToDouble(dt.Rows[i]["fixrate"]);
+                double dayamt = daycount * dayrate;
+                double totalamt = Convert.ToDouble(dt.Rows[i]["totalamt"]);
+                
+
+
+
+
+
+                if (syshour > 0|| daycount>0)
                 {
 
-                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, "");
+                    result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, daycount.ToString(), dayrate.ToString(), dayamt.ToString(),"","","","");
                     if (!result)
                         return;
                 }
@@ -2110,9 +2143,9 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 {
                     case "3101":
                     case "3370":
-                        if (fixamtx > 0)
+                        if (totalamt > 0)
                         {
-                            result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, "");
+                      result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, daycount.ToString(), dayrate.ToString(), dayamt.ToString(), "", "", "", "");
                             if (!result)
                                 return;
                         }

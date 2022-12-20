@@ -171,9 +171,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
-    <Reference Include="microsoft.reportviewer.datavisualization">
-      <HintPath>..\..\Real Estate Bin 211213\bin\microsoft.reportviewer.datavisualization.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel">
       <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
@@ -294,6 +291,9 @@
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Users\Administrator\Desktop\System.Memory.dll</HintPath>
+
+      <HintPath>..\..\bin\System.Memory.dll</HintPath>
+
     </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -2339,7 +2339,6 @@
     <Content Include="F_22_Sal\MktBookigApp2.aspx" />
     <Content Include="F_22_Sal\MktSampleNoteSheet.aspx" />
     <Content Include="F_22_Sal\MktGrandNoteSheet.aspx" />
-    <Content Include="F_22_Sal\RptSalesVsCollTeamWise.aspx" />
     <Content Include="F_22_Sal\SaleSurvey.aspx" />
     <Content Include="F_22_Sal\SaleSurPrjInformation.aspx" />
     <Content Include="F_22_Sal\SaleSurPCodeBook.aspx" />
@@ -3691,7 +3690,6 @@
     <Content Include="landMenu-1.png" />
     <Content Include="LetterDefault.aspx" />
     <Content Include="LogIn.aspx" />
-    <Content Include="login_new.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="MyDashboard.aspx" />
     <Content Include="MyDashboardUddl.aspx" />
@@ -3711,7 +3709,6 @@
     <Content Include="Notices\Notice.aspx" />
     <Content Include="Notification\GetNotification.aspx" />
     <Content Include="Notification\Occasion.aspx" />
-    <Content Include="Oops.aspx" />
     <Content Include="p1.PNG" />
     <Content Include="p2.PNG" />
     <Content Include="p3.PNG" />
@@ -4400,13 +4397,6 @@
     </Compile>
     <Compile Include="F_22_Sal\MktGrandNoteSheet.aspx.designer.cs">
       <DependentUpon>MktGrandNoteSheet.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="F_22_Sal\RptSalesVsCollTeamWise.aspx.cs">
-      <DependentUpon>RptSalesVsCollTeamWise.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_22_Sal\RptSalesVsCollTeamWise.aspx.designer.cs">
-      <DependentUpon>RptSalesVsCollTeamWise.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_22_Sal\SaleSurvey.aspx.cs">
       <DependentUpon>SaleSurvey.aspx</DependentUpon>
@@ -5690,13 +5680,6 @@
     <Compile Include="LetterDefault.aspx.designer.cs">
       <DependentUpon>LetterDefault.aspx</DependentUpon>
     </Compile>
-    <Compile Include="login_new.aspx.cs">
-      <DependentUpon>login_new.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="login_new.aspx.designer.cs">
-      <DependentUpon>login_new.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5731,13 +5714,6 @@
     </Compile>
     <Compile Include="Notification\Occasion.aspx.designer.cs">
       <DependentUpon>Occasion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Oops.aspx.cs">
-      <DependentUpon>Oops.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Oops.aspx.designer.cs">
-      <DependentUpon>Oops.aspx</DependentUpon>
     </Compile>
     <Compile Include="RDLCViewerWin.aspx.cs">
       <DependentUpon>RDLCViewerWin.aspx</DependentUpon>
