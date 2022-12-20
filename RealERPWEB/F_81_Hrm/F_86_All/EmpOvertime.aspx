@@ -312,6 +312,21 @@
                                             <ItemStyle HorizontalAlign="right" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
+
+<%--                                              <asp:TemplateField HeaderText="Fixed Day">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvFixedday" runat="server" BackColor="Transparent"
+                                                    BorderStyle="None"
+                                                    Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "daycount")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="80px"></asp:TextBox>
+                                            </ItemTemplate>
+
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>--%>
                                         <asp:TemplateField HeaderText="Hourly">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvhourly" runat="server" BackColor="Transparent"
@@ -518,6 +533,22 @@
                                             <ItemStyle HorizontalAlign="right" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
+
+
+<%--                                                           <asp:TemplateField HeaderText="Total Amount">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvttlamt" runat="server" BackColor="Transparent"
+                                                    BorderStyle="None"
+                                                    Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "daycount")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="80px"></asp:TextBox>
+                                            </ItemTemplate>
+
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>--%>
 
 
                                     </Columns>
