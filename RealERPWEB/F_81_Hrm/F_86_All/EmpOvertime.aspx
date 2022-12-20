@@ -303,7 +303,7 @@
                                                 <asp:TextBox ID="txtgvFixed" runat="server" BackColor="Transparent"
                                                     BorderStyle="None"
                                                     Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fixhour")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "syshour")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                     Width="80px"></asp:TextBox>
                                             </ItemTemplate>
 
@@ -327,12 +327,27 @@
                                             <ItemStyle HorizontalAlign="right" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Hourly">
+                                        <asp:TemplateField HeaderText="Hourly Rate">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvhourly" runat="server" BackColor="Transparent"
                                                     BorderStyle="None"
                                                     Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "hourly")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fixrate")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="80px"></asp:TextBox>
+                                            </ItemTemplate>
+
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+                                              <asp:TemplateField HeaderText="Day Rate">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvdayrate" runat="server" BackColor="Transparent"
+                                                    BorderStyle="None"
+                                                    Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "holidayrate")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                     Width="80px"></asp:TextBox>
                                             </ItemTemplate>
 
@@ -529,7 +544,7 @@
                                                 <asp:TextBox ID="txtgvttlamt" runat="server" BackColor="Transparent"
                                                     BorderStyle="None"
                                                     Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "daycount")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "totalamt")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                     Width="80px"></asp:TextBox>
                                             </ItemTemplate>
 
