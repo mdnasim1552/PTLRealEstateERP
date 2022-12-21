@@ -49,7 +49,7 @@ namespace RealERPWEB.F_09_PImp
                 string corderno = this.Request.QueryString["vounum"] ?? "";
                 if (qgenno.Length > 0 || corderno.Length>0)
                 {
-                    
+                    corderno = corderno.Length == 0 ? "Previous" : corderno;
                     if (corderno.Substring(0, 3) == "COR" || qgenno.Substring(0, 3) == "MBK")
                     {
                         this.hdnmbno.Value = qgenno;
@@ -694,7 +694,7 @@ namespace RealERPWEB.F_09_PImp
                 // this.ddlRA.Enabled = false;
                 mISSNo = this.ddlPrevISSList.SelectedValue.ToString();
             }
-            string qcorderno = this.Request.QueryString["vounum"] ?? "";
+            string qcorderno = this.Request.QueryString["vounum"] ?? "Previous";
             string qgenno = this.Request.QueryString["genno"] ?? "";
 
 

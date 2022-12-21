@@ -219,7 +219,7 @@
 
                              <asp:TemplateField HeaderText="Upto Bill">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblgvmbqty" runat="server"
+                                    <asp:Label ID="lblgvuptobillqty" runat="server"
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "uptombqty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                         Width="70px" BackColor="Transparent" Style="text-align: right" BorderStyle="None"></asp:Label>
                                 </ItemTemplate>
@@ -230,6 +230,16 @@
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvbalqty" runat="server"
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balqty")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                        Width="70px" BackColor="Transparent" Style="text-align: right" BorderStyle="None"></asp:Label>
+                                </ItemTemplate>
+                                <ItemStyle Font-Size="10pt" HorizontalAlign="Center" />
+                            </asp:TemplateField>
+
+
+                             <asp:TemplateField HeaderText="This MB">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvmbqty" runat="server"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "mbqty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                         Width="70px" BackColor="Transparent" Style="text-align: right" BorderStyle="None"></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle Font-Size="10pt" HorizontalAlign="Center" />
