@@ -201,6 +201,12 @@ namespace RealERPWEB.F_04_Bgd
             }
 
         }
+        private string GetCompCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
+
+        }
 
         protected void ddlPageNo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -307,7 +313,60 @@ namespace RealERPWEB.F_04_Bgd
 
         }
 
+        protected void lbtnAdd_Click(object sender, EventArgs e)
+        {
+            string msg = "";
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["entry"]))
+            {
 
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
+                return;
+            }
+
+            GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int RowIndex = gvr.RowIndex;
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+
+            int index = this.grvacc.PageSize * this.grvacc.PageIndex + RowIndex;
+            string prgcode = ((DataTable)Session["storedata"]).Rows[index]["prgcod"].ToString();
+            this.txtprgcode.Text = prgcode.Substring(0, 2) + "-" + ASTUtility.Right(prgcode, 3);
+            this.prgcode.Text = prgcode;
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+        }
+
+        protected void lbtnAddCode_Click(object sender, EventArgs e)
+        {
+            
+            string comcod = this.GetCompCode();
+            string prgcod = prgcode.Text;
+
+            string txtprgcode = this.txtprgcode.Text.Trim().Replace("-", "");
+            string Desc = this.txtprgdesc.Text.Trim();
+            string gtype = this.txtprgtype.Text.Trim();
+            string Gtype = (gtype.ToString() == "") ? "T" : gtype;
+            string chkprgvisibility = (this.chkprgvisibility.Checked == true) ? "True" : "False";
+            string mnumber = (prgcod == txtprgcode) ? "" : "manual";
+
+            bool result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTPRGCODE", txtprgcode,
+                          Desc, Gtype,"","", chkprgvisibility, "", mnumber);
+
+            if (result == true)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Updated ";
+            }
+
+            else
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+            }
+            ShowInformation();
+            grvacc_DataBind();
+        }
     }
 }
