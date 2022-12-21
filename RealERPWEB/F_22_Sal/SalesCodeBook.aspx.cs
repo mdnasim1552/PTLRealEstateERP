@@ -147,7 +147,7 @@ namespace RealERPWEB.F_22_Sal
 
             string comcod = this.GetCompCode();
             string gcode1 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lblgrcode")).Text.Trim();
-            string gcode2 = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgrcode")).Text.Trim();
+            string gcode2 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lbgrcod3")).Text.Trim();
 
             string Desc = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvDesc")).Text.Trim();
 
@@ -348,6 +348,83 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
-      
+        protected void lbtnAdd_Click(object sender, EventArgs e)    
+        {
+            string msg = "";
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["entry"]))
+            {
+
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
+                return;
+            }
+
+            GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int RowIndex = gvr.RowIndex;
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            int index = this.grvacc.PageSize * this.grvacc.PageIndex + RowIndex;
+            string gcod = ((DataTable)Session["storedata"]).Rows[index]["gcod"].ToString();
+            this.lblgrcode.Text = gcod;
+            this.txtgrcode.Text = gcod.Substring(0, 2) + "-" + ASTUtility.Right(gcod, 3);
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+        }
+
+        protected void lbtnAddCode_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            string gcod = lblgrcode.Text;
+
+           
+            string tgrcode = this.txtgrcode.Text.Trim().Replace("-", "");
+            string Desc = this.txtresourcehead.Text.Trim();
+            string DescBN = this.txtresourceheadBN.Text.Trim();
+            string gtype = this.txttype.Text.Trim();            
+            string Gtype = (gtype.ToString() == "") ? "T" : gtype;
+
+            string rate =Convert.ToDouble(("0"+this.txtrate.Text.Trim())).ToString();
+
+            string sl = Convert.ToInt32("0"+this.txtsl.Text.Trim()).ToString();
+            string chkstatus = (this.chkstatus.Checked == true) ? "True" : "False";
+            //bool chkstatus = this.chkstatus.Checked;
+            string mnumber = (gcod == tgrcode) ? "" : "manual";
+            
+
+            bool result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "ADDSALECODE", tgrcode,
+                          Desc, Gtype, rate, "", sl, DescBN, mnumber,"" ,chkstatus, "", "", "", "");
+            
+            if (result == true)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Updated ";
+            }
+
+            else
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+            }
+            ShowInformation();
+            grvacc_DataBind();
+        }
+
+        //protected void grvacc_RowDataBound(object sender, GridViewRowEventArgs e)
+        //{
+        //    DataTable dt = (DataTable)Session["storedata"];
+        //    var maxgcod = dt.AsEnumerable().Max(x => x[1]);
+
+        //    if (e.Row.RowType == DataControlRowType.DataRow)
+        //    {
+        //        string gcod = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "GCOD"));
+        //        if (gcod == Convert.ToString(maxgcod))
+        //        {
+        //            LinkButton link = (LinkButton)e.Row.FindControl("lbtnAdd") ;
+        //            link.Visible = true;
+        //        }
+        //    }
+            
+        //}
     }
 }
