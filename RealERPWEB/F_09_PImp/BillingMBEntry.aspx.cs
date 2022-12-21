@@ -760,19 +760,32 @@ namespace RealERPWEB.F_09_PImp
 
             // Log Data
 
-
+            string comcod = this.GetCompCode();
             DataTable dt = (DataTable)ViewState["tblmb"];
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string rsircode = ((Label)this.gvdetails.Rows[RowIndex].FindControl("lblgvItmCode")).Text.Trim();
             string flrcod = ((Label)this.gvdetails.Rows[RowIndex].FindControl("lblgvflrcod")).Text.Trim();
             string sl = ((Label)this.gvdetails.Rows[RowIndex].FindControl("lblgvserial")).Text.Trim();
-            DataRow dr1 = dt.Select("rsircode='" + rsircode + "' and flrcod='" + flrcod + "' and sl='" + sl + "'")[0];
+
+
+            //bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURPROPOSAL", mAPROVNO, mREQNO, mRSIRCODE, mSPCFCOD, mSSIRCODE, mORDERNO, mORDRQTY.ToString(), "", "", "", "", "", "", "", ""); 
+            //if (!result)
+            //{
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
+            //    return;
+            //}
+        
+
+
+
+        DataRow dr1 = dt.Select("rsircode='" + rsircode + "' and flrcod='" + flrcod + "' and sl='" + sl + "'")[0];
             dt.Rows.Remove(dr1);
             dt.AcceptChanges();
 
             ViewState["tblmb"] = dt;
             this.Data_Bind();
-           // ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModalDetails();", true);
+           
+
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModalDetailsBack();", true);
         }
 
@@ -802,12 +815,12 @@ namespace RealERPWEB.F_09_PImp
             dradd["flrdes"] = dr1["flrdes"];
             dradd["sl"] = asl;
             dradd["nos"] = dr1["nos"];
-            dradd["lnght"] = dr1["lnght"];
-            dradd["breadth"] = dr1["breadth"];
-            dradd["height"] = dr1["height"];
-            dradd["uweight"] = dr1["uweight"];
-            dradd["tweight"] = dr1["tweight"];
-            dradd["remarks"] = dr1["remarks"];
+            dradd["lnght"] = 0.00;
+            dradd["breadth"] = 0.00;
+            dradd["height"] = 0.00;
+            dradd["uweight"] = 0.00;
+            dradd["tweight"] = 0.00;
+            dradd["remarks"] = "";
             dt.Rows.Add(dradd);
             ViewState["tblmb"] = dt;
             this.Data_Bind();       
@@ -875,9 +888,54 @@ namespace RealERPWEB.F_09_PImp
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             this.SaveValueDetails();
+
+
+
+
+            
+            #region For Summation 
+
+            DataTable dtord = (DataTable)ViewState["tblcorder"];
             DataTable dt = (DataTable)ViewState["tblmb"];
-            bool result = false;
-         
+
+
+            List<RealEntity.C_09_PIMP.SubConBill.EClassResourceWiseMBSum> lst = new List<RealEntity.C_09_PIMP.SubConBill.EClassResourceWiseMBSum>();
+            lst = dt.DataTableToList<RealEntity.C_09_PIMP.SubConBill.EClassResourceWiseMBSum>();
+            var lst1 = (from Product in lst
+                        group Product by new { Product.rsircode, Product.flrcod} into grp
+
+                        select new RealEntity.C_09_PIMP.SubConBill.EClassResourceWiseMBSum
+                        {
+                            rsircode = grp.Key.rsircode,
+                            flrcod = grp.Key.flrcod,                            
+                            tweight = grp.Sum(g => g.tweight),
+                        }).ToList();
+
+
+            string rsircode, flrcod; 
+            double tweight ;
+            foreach (RealEntity.C_09_PIMP.SubConBill.EClassResourceWiseMBSum lstitem in lst1)
+            {
+                rsircode = lstitem.rsircode;
+                flrcod = lstitem.flrcod;
+                tweight = lstitem.tweight;
+
+                DataRow[] drord = dtord.Select("rsircode='" + rsircode + "' and flrcod='" + flrcod + "'");
+
+                if (drord.Length > 0)
+                {
+
+                    drord[0]["mbqty"] = tweight;                
+                }
+
+            }
+
+            ViewState["tblcorder"] = dtord;
+            this.gvOrderInfo_DataBind();
+
+            #endregion
+
+            bool result = false;        
 
               if (this.ddlPrevOrderList.Items.Count == 0)
                 this.GetMBNo();
@@ -908,8 +966,8 @@ namespace RealERPWEB.F_09_PImp
                 foreach (DataRow dr in dt.Rows)
            
                 {
-                string rsircode = dr["rsircode"].ToString();
-                string flrcod = dr["flrcod"].ToString();
+                 rsircode = dr["rsircode"].ToString();
+                 flrcod = dr["flrcod"].ToString();
                 string sl = dr["sl"].ToString();
                 string nos = dr["nos"].ToString();
                 string Length = dr["lnght"].ToString();
