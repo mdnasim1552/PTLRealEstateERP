@@ -184,10 +184,7 @@
                                 <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control chzn-select" TabIndex="12">
                                 </asp:DropDownList>
                                 <asp:Label ID="lblProjectmDesc" runat="server" Visible="False" CssClass="form-control "></asp:Label>
-
                             </div>
-
-
                         </div>
                         <div class="col-md-1">
                             <div class="form-group">
@@ -195,24 +192,15 @@
                                 <asp:LinkButton ID="lbtnsrchunit" runat="server" OnClick="lbtnsrchunit_Click"> <i class="fa fa-search" aria-hidden="true"></i>
                                 </asp:LinkButton>
                                 <asp:TextBox ID="txtsrchunit" runat="server" CssClass="form-control"></asp:TextBox>
-
-
                             </div>
-
-
                         </div>
-
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label id="Label1" runat="server">Prospective</label>
                                 <asp:LinkButton ID="lbtnProspective" runat="server" OnClick="lbtnProspective_Click"> <i class="fa fa-search" aria-hidden="true"></i>
                                 </asp:LinkButton>                             
-
                                  <asp:TextBox ID="txtprospective" runat="server" ClientIDMode="Static" CssClass="form-control"></asp:TextBox>
-                                
-                              
                             </div>
-
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
@@ -222,9 +210,7 @@
                                 <asp:DropDownList ID="ddlPrevious" runat="server" CssClass="form-control chzn-select" TabIndex="12">
                                 </asp:DropDownList>
                             </div>
-
                         </div>
-
                           <div class="col-md-2">
                              <label class="control-label" for="ddlUserName" id="Label3" runat="server">Type</label>
                                <asp:DropDownList ID="ddlPrintType" runat="server" CssClass="form-control chzn-select" TabIndex="12">
@@ -232,19 +218,13 @@
                                    <asp:ListItem Value="grandnotesheet">Grand Note Sheet(Summary)</asp:ListItem>
                                    <asp:ListItem Value="grandnotesheetdet">Grand Note Sheet(Details)</asp:ListItem>
                                 </asp:DropDownList>
-
                         </div>
-
                         <div class="col-md-1">
                             <div class="form-group">
-
                                 <asp:LinkButton ID="lbtnOk" runat="server" CssClass=" btn btn-primary btn-sm  margin-top30px" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
-
                             </div>
-
                         </div>
                     </div>
-
                 </div>
             </div>
 
