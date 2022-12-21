@@ -582,11 +582,12 @@ namespace RealERPWEB.F_17_Acc
 
 
             }
+            string withCUnit = (this.WithCanUnit.Checked == true ? "CU" : "");
 
             string txtdatefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim()).ToString("dd-MMM-yyyy");
             string txtdateto = Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd-MMM-yyyy");
             string teamcode = this.ddlSalesTeam.SelectedValue.ToString() + "%";
-            DataSet ds1 = AccData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SALES", "MONTHWISEMAR", txtdatefrm, txtdateto, teamcode, "", "", "", "", "", "");
+            DataSet ds1 = AccData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SALES", "MONTHWISEMAR", txtdatefrm, txtdateto, teamcode, withCUnit, "", "", "", "", "");
             if (ds1 == null)
             {
                 this.gvViewAR.DataSource = null;
@@ -724,13 +725,12 @@ namespace RealERPWEB.F_17_Acc
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Month Less Than Equal Twelve');", true);
                 return;
-
-
             }
+            string withCUnit = (this.WithCanUnit.Checked == true ?"CU": "");
             string teamcode = this.ddlSalesTeam.SelectedValue.ToString()+"%";
             string txtdatefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim()).ToString("dd-MMM-yyyy");
             string txtdateto = Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd-MMM-yyyy");
-            DataSet ds1 = AccData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", "RPTMONWISESALES", txtdatefrm, txtdateto, teamcode, "", "", "", "", "", "");
+            DataSet ds1 = AccData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", "RPTMONWISESALES", txtdatefrm, txtdateto, teamcode, withCUnit, "", "", "", "", "");
             if (ds1 == null)
             {
                 this.gvMonCollect.DataSource = null;
@@ -3086,6 +3086,11 @@ namespace RealERPWEB.F_17_Acc
 
             }
 
+        }
+
+        protected void WithCanUnit_CheckedChanged(object sender, EventArgs e)
+        {
+            lbtnOk_Click(null,null);
         }
     }
 }
