@@ -1246,7 +1246,7 @@
                                     <asp:TemplateField HeaderText="Honor Date">
                                         <ItemTemplate>
                                             <asp:Label ID="lgvpaiddateeben02" runat="server"
-                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "paiddate")).ToString("dd-MMM-yyyy") %>'
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "paiddate"))%>'
                                                 Width="70px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="left" />

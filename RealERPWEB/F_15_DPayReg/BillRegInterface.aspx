@@ -419,7 +419,112 @@
         function FunApprovedBill(url) {
             window.open('' + url + '', '_blank');
         }
+        function Search_Gridview(strKey, cellNr, gvname) {
+            try {
 
+                var strData = strKey.value.toLowerCase().split(" ");
+                var tbldata;
+
+                switch (gvname) {
+
+                    case 'gvPurchase':
+                        tblData = document.getElementById("<%=this.gvBillInfo.ClientID %>");
+                        break;
+
+                    case 'gvContUpdate':
+                        tblData = document.getElementById("<%=this.grvRecm.ClientID %>");
+                        break;
+
+                    default:
+                        tblData = document.getElementById("<%=this.gvforward.ClientID %>");
+
+                        break;
+
+
+
+                }
+
+
+                var rowData;
+                for (var i = 0; i < tblData.rows.length; i++) {
+                    rowData = tblData.rows[i].cells[cellNr].innerHTML;
+                    var styleDisplay = 'none';
+                    for (var j = 0; j < strData.length; j++) {
+                        if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                            styleDisplay = '';
+                        else {
+                            styleDisplay = 'none';
+                            break;
+                        }
+                    }
+                    tblData.rows[i].style.display = styleDisplay;
+                }
+            }
+
+            catch (e) {
+                alert(e.message);
+
+            }
+
+        }
+        function Search_Gridview2(strKey) {
+            try {
+
+                var strData = strKey.value.toLowerCase().split(" ");
+                /*alert()*/
+                var tbldata;
+                var rbtn = $("input[name$='RadioButtonList1']:checked").val();
+
+
+                switch (rbtn) {
+
+                    case '0':
+                        tblData = document.getElementById("<%=this.gvBillInfo.ClientID %>");
+                        break;
+                    case '1':
+                        tblData = document.getElementById("<%=this.grvRecm.ClientID %>");
+                        break;
+                    case '2':
+                        tblData = document.getElementById("<%=this.gvforward.ClientID %>");
+                        break;
+                    case '3':
+                        tblData = document.getElementById("<%=this.grvApproved.ClientID %>");
+                        break;
+                    case '4':
+                        tblData = document.getElementById("<%=this.grvIssued.ClientID %>");
+                        break;
+                    case '5':
+                        tblData = document.getElementById("<%=this.gvChequeSign.ClientID %>");
+                        break;
+
+                    default:
+                        tblData = document.getElementById("<%=this.grvComp.ClientID %>");
+                        break;
+                  
+                 }
+
+                 var rowData;
+                 for (var i = 1; i < tblData.rows.length; i++) {
+                     rowData = tblData.rows[i].innerHTML;
+                     var styleDisplay = 'none';
+                     for (var j = 0; j < strData.length; j++) {
+                         if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                             styleDisplay = '';
+                         else {
+                             styleDisplay = 'none';
+                             break;
+                         }
+                     }
+                     tblData.rows[i].style.display = styleDisplay;
+                 }
+             }
+
+             catch (e) {
+                 alert(e.message);
+
+             }
+
+         }
     </script>
 
     <%-- <asp:ObjectDataSource ID="source_session_online" runat="server" SelectMethod="session_online" TypeName="t_session" />--%>
@@ -461,7 +566,11 @@
                                 <asp:LinkButton ID="lnkbtnok" runat="server" CssClass="btn btn-primary" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                             </div>
                         </div>
-
+                          <div class="col-md-1">
+                            <div class="form-group">
+                                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search..." onkeyup="Search_Gridview2(this)"></asp:TextBox>
+                            </div>
+                        </div>
                         <div class="col-md-1">
                             <div class="form-group">
                                 <label class="control-label lblmargin-top9px" for="FromDate">Total Bill</label>
@@ -470,6 +579,7 @@
 
                             </div>
                         </div>
+                       
 
                         <div class="col-md-1">
                             <div class="form-group">

@@ -63,7 +63,7 @@ namespace RealERPWEB.F_17_Acc
             this.ddlprjname.DataValueField = "pactcode";
             this.ddlprjname.DataSource = dt;
             this.ddlprjname.DataBind();
-            //this.ddlprjname_SelectedIndexChanged(null, null);
+            this.ddlprjname_SelectedIndexChanged(null, null);
 
 
 
@@ -74,9 +74,9 @@ namespace RealERPWEB.F_17_Acc
             string custotype = this.Request.QueryString["Type"].ToString();
             //string calltype = custotype=="LO"? "GETCUSTOMERNAMELANDOWNER" : "GETCUSTOMERNAME";          
             string comcod = this.GetCompCode();
-            
+            string pactcode = this.ddlprjname.SelectedValue == " " ? "51%" : this.ddlprjname.SelectedValue.ToString() + "%";
             string islandowner = this.Request.QueryString["Type"] == "Allotment" ? "0" : "1";
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTLIST", "", "", "", "", "", "", "", "", "");
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTLIST", pactcode, "", "", "", "", "", "", "", "");
             if (ds2 == null)
                 return;
             this.ddlcustomerName.DataTextField = "gdatat";
@@ -89,7 +89,7 @@ namespace RealERPWEB.F_17_Acc
 
         protected void ddlprjname_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //this.GetCustomerName();
+            this.GetCustomerName();
         }
 
         private void lbtnPrint_Click(object sender, EventArgs e)
@@ -126,8 +126,7 @@ namespace RealERPWEB.F_17_Acc
                 string prjname = this.ddlprjname.SelectedValue.ToString();
                 string ProjectName = this.ddlprjname.SelectedItem.ToString();
                 string custname = this.ddlcustomerName.SelectedValue.ToString();
-                string heading = "CPDL is pleased to other the allotment of Apartment space in your favor only subject to the following Terms" +
-                    "\n and conditionslimited thereto, since variation may take place in case of necessity, for strict adherence by the applicant / allottee";
+                
 
                 string method = "OTHER PAYMENTS ON CUSTOMERS ACCOUNT";
                 string head01 = "At actual with incidental expenses at the time of Registration";
@@ -137,14 +136,20 @@ namespace RealERPWEB.F_17_Acc
                 string OptionalCost = "Optional Up Gradation Cost : ";
                 string optionalDetails = "On acceptance of customers request";
                 string type = "Flat";
-                string condition = "GENERAL TERMS & CONDITIONS OF ALLOTMENT FOR " + "<strong>" + type + "<strong>";
+                string type01 = "FLAT";
+
+                string condition = "GENERAL TERMS & CONDITIONS OF ALLOTMENT FOR " + "<strong>" + type01 + "<strong>";
                 string companyname = "CPDL";
+                string heading = " " + "<strong>" + companyname + "</strong>" + " is pleased to offer the allotment of Apartment space in your favor only subject to the following Terms and condition " + "<br>" +
+                    "but not Limited there to, since variation may take place in case of necessity, for strict adherence by the applicant / allottee.";
+
+
                 string body = "1. All payment should be made to " + "<strong>" + companyname + "</strong>" + " by Account Payee Cheque or Bank Draft or Pay Order or DD or TT in locally against" + "<br>" +
                           "which respective receipts will be issued. All payments of the applicant / allottee from outside of Chittagong City should " + "<strong>" + companyname + "</strong>" + " <br>" +
                           "be made to by local TT or DD from any scheduled commercial bank. The Bangladeshi residing abroad may remit payments " + "<br>" +
                           "in foreign exchange by international TT or  DD.Any Cash payment is restricted.Payments of installment and other" + "<br>" +
-                          " charges are to be made on duedates.The company may issue reminders to the Allottee " + "<br>" +
-                          "but notwithstanding the issue of reminders,the Allottee must adhere to the schedule of payment to ensure completion of construction in time. " + "<br>" +
+                          " charges are to be made on due dates.The company may issue reminders to the Allottee " + "<br>" +
+                          "but notwithstanding the issue of reminders,the Allottee must adhere to the schedule of payment to ensure completion of construction in time. " + "<br><br>" +
                           " 2. Delay in payments beyond the due date will make the allottee liable to pay a delay charge of 3% per 30 Thirty)days on " + "<br>" +
                           "the amount of payment delayed.If the payment is delayed beyond 60(sixty) days or if the allottee wishes to surrender" + "<br>" +
                           "his allotment, the Company shall cancel the allotment without serving any notice to the Allottee. in such an" + "<br>" +
@@ -153,16 +158,16 @@ namespace RealERPWEB.F_17_Acc
                           "3. The allotee should not have right to transfer the allotment to a third party until full payment of installments and other charges, if any. " + "<br><br>" +
                           "4. Connection fees/charges, security deposits and other incidental expenses relating to gas, water,sewerage and electric" + "<br>" +
                           "connections  as Utility Charges  are not included in the price of " + type + " space. These payments will be made by the" + "<br>" +
-                          "company directly to the authorities concerned, on the allottees account." + "<br><br>"+
-                          "5. Limited changes in the " + type + " and other facilities may be made by the " + "<b>" + companyname + "</b>" + " for greater and overall interest of the project.  ";
-
-            string body02 = 
-                          " 6. No modification from customer's end will be allowed on elevation or which seen from outside of the complex, sanitary line etc." + "<br><br>" +
+                          "company directly to the authorities concerned, on the allottees account." + "<br><br>" +
+                          "5. Limited changes in the " + type + " and other facilities may be made by the " + "<b>" + companyname + "</b>" + " for greater and overall interest of the project.  " + "<br><br>" +
+                          " 6. No modification from customer's end will be allowed on elevation or which seen from outside of the complex, sanitary line etc.";
+         string body02 = 
+                          
                           "7. If the allottee intends to have any modification of the civil or electrical work of his " + type + " compared to the standard set by " +
                           "<strong>" + companyname + "</strong>" + " any such modification request shall first be assessed  by the " + "<strong>" + companyname + "</strong>" + " management." +
                           "Implementation of any such modification work whether in part or full, is strictly subject to prior approval of " + "<strong>" + companyname + "</strong>" + " management. "  +
                           "In the event, that an additional cost is involved in implementing any such modification request the concerned allottee must bear such cost. "  +
-                          "The allottee is at liberty to select fittings & fixtures of his/her own choice other than those specified in the " + "<strong>" + companyname + "</strong>" + "s" +
+                          "The allottee is at liberty to select fittings & fixtures of his/her own choice other than those specified in the " + "<strong>" + companyname + "</strong>" + " s " +
                           "standard materials specification sheet." + "<br><br>" +
                           "8. However, if additional cost is involved for use of any such fittings and / or fixtures, the allottee must bear such extra cost. " + "<br><br>" +
                           "9. Civil layout, electrical layout, modification, finishing material confirmation should be completed within 30 days after dispatch of request letter for " +
@@ -178,14 +183,14 @@ namespace RealERPWEB.F_17_Acc
                           "12. The completion period may be affected and delayed by the unavoidable circumstances beyond the control of the company, like Force Majeure, Natural Calamities,"  +
                           "Political Disturbances, Act of God, Strike Non Availability of Materials, Change in the Policy of the Government etc." + "<br><br>" +
                           "13. " + "<strong>" + companyname + "</strong>" + " will not take any responsibility for providing finishing materials beyond " + "<strong>" + companyname + "</strong>" + " standards" + "<br><br>" +
-                          "14. Upon registration, the " + type + " owner, irrespective of the floor, will become the proportionate owner of the un-divided and un-demarcated land"  +
+                          "14. Upon registration, the " + type + " owner, irrespective of the floor, will become the proportionate owner of the un-divided and un-demarcated land "  +
                           "on which the building is constructed. After having possession of the" + type + " , the allottee must consult with the " + "<strong>" + companyname + "</strong>" + " before " +
                           "undertaking any structural or layout change within the " + type + " complex. Failure to do so will be at the sole risk of allottee.";
                 string generalTitle = "GENERAL AGREEMENT";
                 string generalbody = "The enrollment Form, Materials Specification, Acknowledgement of Booking Amount, Money Receipt" +
-                                   "\n and Payment Schedule will be an integral part of this Allotment Letter. On acceptance of this" +
-                                   "\n Allotment Letter, please return the duplicate of the same with your signature for our record." +
-                                   "\n The management of" + "<strong>" + companyname + "</strong>" + "congratulates you on this occasion and looks forward to the successful handing over of your" + type + ".";
+                                   "and Payment Schedule will be an integral part of this Allotment Letter. On acceptance of this" + 
+                                   "Allotment Letter, please return the duplicate of the same with your signature for our record." +
+                                   "The management of " + "<strong>" + companyname + "</strong>" + " congratulates you on this occasion and looks forward to the successful handing over of your " + type + ".";
 
                
 
@@ -193,67 +198,54 @@ namespace RealERPWEB.F_17_Acc
                 if (ds2 == null)
                     return;
 
-                string udesc = ds2.Tables[0].Rows[0]["udesc"].ToString();
+                
                 string dateofbirth = Convert.ToDateTime(ds2.Tables[0].Rows[0]["dateofbirth"].ToString()).ToString("dd-MMM-yyyy");
                 string custsignature = (ds2.Tables[0].Rows[0]["custname"].ToString());
-                string custid = " ";
-                string isLO = "0";
-                DataSet ds3 =  purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETDETAILS", prjname, custname, isLO, udesc, "", "", "", "", "");
+               
+                
+                DataSet ds3 =  purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETDETAILS", prjname, custname, "", "", "", "", "", "", "");
                 if (ds3 == null)
                     return;
-               
-                string floorno = "";
-                double usize = Convert.ToDouble(ds3.Tables[0].Rows[0]["usize"]);
+                string custid = ds3.Tables[0].Rows[0]["customerno"].ToString();
+                string floorno = ds3.Tables[0].Rows[0]["floorno"].ToString();
+                string unitno = ds3.Tables[0].Rows[0]["unitno"].ToString();
+                string size =ds3.Tables[0].Rows[0]["size"].ToString();
+                string carno = ds3.Tables[0].Rows[0]["carno"].ToString();
+
+
+
+
                 double urate = Convert.ToDouble(ds3.Tables[0].Rows[0]["urate"]);
                 double uamt = Convert.ToDouble(ds3.Tables[0].Rows[0]["uamt"]);
                 double tamt = Convert.ToDouble(ds3.Tables[0].Rows[0]["tamt"]);
                 double pramt = Convert.ToDouble(ds3.Tables[0].Rows[0]["pamt"]);
                 double ucharge = Convert.ToDouble(ds3.Tables[0].Rows[0]["utility"]);
 
-                string size = usize.ToString("#,##0.00;(#,##0.00); ");
+               
                 string utility = ucharge.ToString("#,##0.00;(#,##0.00); ");
                 string pamt = pramt.ToString("#,##0.00;(#,##0.00); ");
                 string rate = urate.ToString("#,##0.00;(#,##0.00); ");
                 string totalamt = tamt.ToString("#,##0.00;(#,##0.00); ");
                 string unit = ds3.Tables[0].Rows[0]["munit"].ToString();
                 string aprtsize = size + " " + unit;
-
-                DataSet ds4 = purData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "COMBINEDTABLEFORSALES", prjname, custname, "", "", "", "", "", "", "");
-
-                if (ds4 == null)
-                    return;
-                DataTable dt01 = ds4.Tables[0].Copy();
-                DataView dv1 = dt01.DefaultView;
-                dv1.RowFilter = "grp like ('gp3')";
-                DataTable dt1 = dv1.ToTable();
-
+                string Location = ds3.Tables[0].Rows[0]["location"].ToString();
+                string enrolldate = Convert.ToDateTime(ds3.Tables[0].Rows[0]["enrolldate"]).ToString("dd-MMM-yyyy");                 
+                string unitcost = Convert.ToDouble("0"+ ds3.Tables[3].Rows[0]["uamt"].ToString()).ToString("#,##0.00;(#,##0.00); ");             
                
+                string othercharge = "0.00";
+                string discount = "0.00";
+                string initialpayment = Convert.ToDouble("0" + ds3.Tables[2].Rows[0]["initialpament"].ToString()).ToString("#,##0.00;(#,##0.00); ");
+                string dnpayment = Convert.ToDouble("0" + ds3.Tables[2].Rows[0]["downpayment"].ToString()).ToString("#,##0.00;(#,##0.00); ");
+                string upDatePaym = Convert.ToDouble("0" + ds3.Tables[2].Rows[0]["updatpayamount"].ToString()).ToString("#,##0.00;(#,##0.00); ");
+                string Uppay = Convert.ToDouble("0" + ds3.Tables[2].Rows[0]["updatpay"].ToString()).ToString("#,##0.00;(#,##0.00); ");
+                string totalcost = Convert.ToDouble("0" + ds3.Tables[2].Rows[0]["unittotalcost"].ToString()).ToString("#,##0.00;(#,##0.00); ");
 
+                string expectdate = Convert.ToDateTime(ds3.Tables[0].Rows[0]["handoverdat"].ToString()).ToString("dd-MMM-yyyy");
 
-
-
-                string cname = ds4.Tables[1].Rows[0]["cname"].ToString();
-                string cphone = ds4.Tables[1].Rows[0]["cphone"].ToString();
-                string caddress = ds4.Tables[1].Rows[0]["caddress"].ToString();
-                string paddress = ds4.Tables[1].Rows[0]["paddress"].ToString();
-
-                string Location = " ";
-                string enrolldate = " ";
-                string parqty = " ";
-                string unitcost = " ";              
-               
-                string othercharge = " ";
-                string discount = " ";
-                string initialpayment = " ";
-                string dnpayment = " ";
-                string upDatePaym = " ";
-                string Uppay = " ";
-                string expectdate = " ";
-                
 
                 LocalReport Rpt1 = new LocalReport();
                 var lst = ds2.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.AllotmentInfo>();
-                var lst2 = dt1.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptSalPaySchedules>();
+                var lst2 = ds3.Tables[1].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.Rptalloreport>();
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptLetterOfAllotmentCPDL", lst, lst2, null);
                 Rpt1.EnableExternalImages = true;
 
@@ -273,12 +265,12 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("totalamt", totalamt));                       
                 Rpt1.SetParameters(new ReportParameter("prjname", ProjectName));                       
                 Rpt1.SetParameters(new ReportParameter("Location", Location));                       
-                Rpt1.SetParameters(new ReportParameter("size", udesc));                       
+                Rpt1.SetParameters(new ReportParameter("size", unitno));                       
                 Rpt1.SetParameters(new ReportParameter("aprtsize", aprtsize));                       
                 Rpt1.SetParameters(new ReportParameter("floorno", floorno));                       
                 Rpt1.SetParameters(new ReportParameter("enrolldate", enrolldate));                       
                 Rpt1.SetParameters(new ReportParameter("price", rate));                       
-                Rpt1.SetParameters(new ReportParameter("ParkingQty", parqty));                       
+                Rpt1.SetParameters(new ReportParameter("ParkingQty", carno));                       
                 Rpt1.SetParameters(new ReportParameter("unitcost", unitcost));                       
                 Rpt1.SetParameters(new ReportParameter("parkingcost", pamt));                       
                 Rpt1.SetParameters(new ReportParameter("utilityCharge", utility));                       
@@ -294,6 +286,7 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("custsignature", custsignature));                       
                 Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("totalcost", totalcost));
                
 
 

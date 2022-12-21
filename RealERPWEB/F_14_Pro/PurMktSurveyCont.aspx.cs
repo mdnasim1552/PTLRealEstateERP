@@ -236,7 +236,12 @@ namespace RealERPWEB.F_14_Pro
 
         protected void gvMSRInfo_DataBind()
         {
-            this.gvMSRInfo2.DataSource = (DataTable)Session["tblt02"];
+            DataTable dt = (DataTable)Session["tblt02"];
+
+            dt.DefaultView.Sort = "rsircode ASC, flrcod ASC";
+            dt = dt.DefaultView.ToTable();
+
+            this.gvMSRInfo2.DataSource = dt;
             this.gvMSRInfo2.DataBind();
             this.FooterCalculation();
         }
@@ -1222,7 +1227,8 @@ namespace RealERPWEB.F_14_Pro
                 string dgvMSRRemarks = ((TextBox)this.gvMSRInfo2.Rows[j].FindControl("txtgvMSRRemarks")).Text.Trim();
 
 
-                TblRowIndex2 = (this.gvMSRInfo2.PageIndex) * this.gvMSRInfo2.PageSize + j;
+                // TblRowIndex2 = (this.gvMSRInfo2.PageIndex) * this.gvMSRInfo2.PageSize + j;
+                 TblRowIndex2 = (this.gvMSRInfo2.PageIndex) *  j;
 
                 tbl1.Rows[TblRowIndex2]["qty"] = qty;
                 tbl1.Rows[TblRowIndex2]["rsirunit"] = rsirunit;
@@ -1705,5 +1711,175 @@ namespace RealERPWEB.F_14_Pro
             }
 
         }
+
+        protected void lbtnSameValue_Click(object sender, EventArgs e)
+        {
+            string Sup1 = "A";
+            Session_tblMSR_Update_PutSameValue(Sup1);            
+            this.gvMSRInfo_DataBind();
+        }
+        protected void lbtnSameValueB_Click(object sender, EventArgs e)
+        {
+            string Sup1 = "B";
+            Session_tblMSR_Update_PutSameValue(Sup1);
+            this.gvMSRInfo_DataBind();
+        }
+        protected void lbtnSameValueC_Click(object sender, EventArgs e)
+        {
+            string Sup1 = "C";
+            Session_tblMSR_Update_PutSameValue(Sup1);
+            this.gvMSRInfo_DataBind();
+        }
+        protected void lbtnSameValueD_Click(object sender, EventArgs e)
+        {
+            string Sup1 = "D";
+            Session_tblMSR_Update_PutSameValue(Sup1);
+            this.gvMSRInfo_DataBind();
+        }
+        protected void lbtnSameValueE_Click(object sender, EventArgs e)
+        {
+            string Sup1 = "E";
+            Session_tblMSR_Update_PutSameValue(Sup1);
+            this.gvMSRInfo_DataBind();
+        }
+        protected void Session_tblMSR_Update_PutSameValue(string Sup1)
+        {
+            try
+            {
+                DataTable tbl1 = (DataTable)Session["tblt02"];
+                tbl1.DefaultView.Sort = "rsircode ASC, flrcod ASC";
+                tbl1 = tbl1.DefaultView.ToTable();
+
+                string Rescode = "";
+                double ResQty = 0;
+                double ResRat = 0;
+                int RowIndex = 0;
+                for (int i = 0; i < this.gvMSRInfo2.Rows.Count; i++)
+                {
+                 
+
+                    if (Sup1 == "A")
+                    {
+                        if (i == 0)
+                        {
+                            Rescode = ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+                            ResRat = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate1")).Text.Trim());
+                        }
+                        if (Rescode == ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim())
+                        {
+                            Rescode = ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+                            
+                            tbl1.Rows[i]["resrate1"] = ResRat;
+                        }
+                        else
+                        {
+                            Rescode = ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+                            ResRat = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate1")).Text.Trim());
+                            
+                            tbl1.Rows[i]["resrate1"] = ResRat;
+                        }
+                    }
+                    else if (Sup1 == "B")
+                    {
+                        if (i == 0)
+                        {
+                            Rescode = ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+                            ResRat = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate2")).Text.Trim());
+                        }
+                        if (Rescode == ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim())
+                        {
+                            Rescode = ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+                            
+                            tbl1.Rows[i]["resrate2"] = ResRat;
+                        }
+                        else
+                        {
+                            Rescode = ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+                            ResRat = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate2")).Text.Trim());
+                            
+                            tbl1.Rows[i]["resrate2"] = ResRat;
+                        }
+                    }
+
+                    else if (Sup1 == "C")
+                    {
+                        if (i == 0)
+                        {
+                            Rescode = ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+                            ResRat = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate3")).Text.Trim());
+                        }
+                        if (Rescode == ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim())
+                        {
+                            Rescode = ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+                             
+                            tbl1.Rows[i]["resrate3"] = ResRat;
+                        }
+                        else
+                        {
+                            Rescode = ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+                            ResRat = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate3")).Text.Trim());
+                           
+                            tbl1.Rows[i]["resrate3"] = ResRat;
+                        }
+                    }
+
+                    else if (Sup1 == "D")
+                    {
+                        if (i == 0)
+                        {
+                            Rescode = ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+                            ResRat = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate4")).Text.Trim());
+                        }
+                        if (Rescode == ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim())
+                        {
+                            Rescode = ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+                            
+                            tbl1.Rows[i]["resrate4"] = ResRat;
+                        }
+                        else
+                        {
+                            Rescode = ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+                            ResRat = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate4")).Text.Trim());
+                            
+                            tbl1.Rows[i]["resrate4"] = ResRat;
+                        }
+                    }
+                    else if (Sup1 == "E")
+                    {
+                        if (i == 0)
+                        {
+                            Rescode = ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+                            ResRat = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate5")).Text.Trim());
+                        }
+                        if (Rescode == ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim())
+                        {
+                            Rescode = ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+                            
+                            tbl1.Rows[i]["resrate5"] = ResRat;
+                        }
+                        else
+                        {
+                            Rescode = ((Label)this.gvMSRInfo2.Rows[i].FindControl("lblgvrsircode")).Text.Trim();
+                            ResRat = Convert.ToDouble("0" + ((TextBox)this.gvMSRInfo2.Rows[i].FindControl("txtrate5")).Text.Trim());
+                            
+                            tbl1.Rows[i]["resrate5"] = ResRat;
+                        }
+                    }
+
+
+
+                }
+
+                Session["tblt02"] = tbl1;
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = ex.Message.ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+
+        }
+
+       
     }
 }

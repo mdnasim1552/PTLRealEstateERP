@@ -45,7 +45,7 @@ namespace RealERPWEB.F_17_Acc
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
-           // ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
             // ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
             //((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lbtnUpdate_Click);
         }
@@ -117,25 +117,39 @@ namespace RealERPWEB.F_17_Acc
 
             for (int j = 1; j < dt1.Rows.Count; j++)
             {
-                if (dt1.Rows[j]["actcode"].ToString() == actcode && dt1.Rows[j]["spcfcode"].ToString() == deptcode)
+                if (dt1.Rows[j]["actcode"].ToString() == actcode )
                 {
                     actcode = dt1.Rows[j]["actcode"].ToString();
-                    deptcode = dt1.Rows[j]["spcfcode"].ToString();
                     dt1.Rows[j]["actdesc"] = "";
-                    dt1.Rows[j]["deptname"] = "";
+
+                    if ( dt1.Rows[j]["spcfcode"].ToString() == deptcode)
+                    {
+                        deptcode = dt1.Rows[j]["spcfcode"].ToString();
+                        dt1.Rows[j]["deptname"] = "";
+                    }
+                    else
+                    {
+                        
+                        deptcode = dt1.Rows[j]["spcfcode"].ToString();
+                    }
+                   
                 }
                 else
                 {
-                    if (dt1.Rows[j]["spcfcode"].ToString() == deptcode)
-                    {
-                        dt1.Rows[j]["deptname"] = "";
-                    }
-                    if (dt1.Rows[j]["spcfcode"].ToString() == deptcode)
-                    {
-                        dt1.Rows[j]["deptname"] = "";
-                    }
+                   
                     actcode = dt1.Rows[j]["actcode"].ToString();
-                    deptcode = dt1.Rows[j]["spcfcode"].ToString();
+
+                    if (dt1.Rows[j]["spcfcode"].ToString() == deptcode)
+                    {
+                        deptcode = dt1.Rows[j]["spcfcode"].ToString();
+                        dt1.Rows[j]["deptname"] = "";
+                    }
+                    else
+                    {
+
+                        deptcode = dt1.Rows[j]["spcfcode"].ToString();
+                    }
+
                 }
             }
             return dt1;
@@ -147,8 +161,13 @@ namespace RealERPWEB.F_17_Acc
             // this.MultiView1.ActiveViewIndex = 0;
             try
             {
-                this.gvadvLoan.DataSource = (DataTable)Session["tbladvloan"];
+                DataTable dt = (DataTable)Session["tbladvloan"];
+                this.gvadvLoan.DataSource = dt;
                 this.gvadvLoan.DataBind();
+                if (dt.Rows.Count == 0)
+                    return;
+                Session["Report1"] = gvadvLoan;
+                ((HyperLink)this.gvadvLoan.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
             }
             catch (Exception ex)
             {
@@ -157,6 +176,123 @@ namespace RealERPWEB.F_17_Acc
             //Session["Report1"] = gvsupstatus;
             //((HyperLink)this.gvsupstatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
+        }
+        private void lnkPrint_Click(object sender, EventArgs e)
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            DataTable dt = (DataTable)Session["tbladvloan"];
+           
+            LocalReport Rpt1 = new LocalReport();
+          
+                var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.RptAdvancedAgainstLoan>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAdvancedAgainstLoan", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Advance Againts Loan"));
+                Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("printdate", "( From " + this.txtfrmdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
+
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            
+
+
+
+        }
+
+        protected void gvadvLoan_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                Label lblgvempname = (Label)e.Row.FindControl("lblgvempname");
+                Label lblgvopndr = (Label)e.Row.FindControl("lblgvopndr");
+                Label lblgvopncr = (Label)e.Row.FindControl("lblgvopncr");
+                Label lblgvcurrentdr = (Label)e.Row.FindControl("lblgvcurrentdr");
+                Label lblgvcurrentcr = (Label)e.Row.FindControl("lblgvcurrentcr");
+                Label lblgvclsdr = (Label)e.Row.FindControl("lblgvclsdr");
+                Label lblgvclscr = (Label)e.Row.FindControl("lblgvclscr");
+                Label lblgvnetamt = (Label)e.Row.FindControl("lblgvnetamt");
+                Label lblgvdrcr = (Label)e.Row.FindControl("lblgvdrcr");
+
+                string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString().Trim();
+
+                if (grp == "")
+                {
+                    return;
+                }
+
+                if (grp == "B")
+                {
+
+
+                    lblgvempname.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+                    lblgvopndr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+                    lblgvopncr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+                    lblgvcurrentdr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+                    lblgvcurrentcr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+                    lblgvclsdr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+                    lblgvclscr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+                    lblgvnetamt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+                    lblgvdrcr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Navy;";
+
+
+
+
+                    lblgvempname.Style.Add("text-align", "right");
+
+                }
+                if (grp == "C")
+                {
+
+
+                    lblgvempname.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
+                    lblgvopndr.Attributes["style"] = "font-weight:bold; font-size: 15px;  color:Green;";
+                    lblgvopncr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
+                    lblgvcurrentdr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
+                    lblgvcurrentcr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
+                    lblgvclsdr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
+                    lblgvclscr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
+                    lblgvnetamt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
+                    lblgvdrcr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Green;";
+
+
+                    lblgvempname.Style.Add("text-align", "right");
+
+                }
+                if (grp == "D")
+                {
+
+
+                    lblgvempname.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+                    lblgvopndr.Attributes["style"] = "font-weight:bold; font-size: 15px;  color:Orange;";
+                    lblgvopncr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+                    lblgvcurrentdr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+                    lblgvcurrentcr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+                    lblgvclsdr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+                    lblgvclscr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+                    lblgvnetamt.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+                    lblgvdrcr.Attributes["style"] = "font-weight:bold; font-size: 15px; color:Orange;";
+
+
+                    lblgvempname.Style.Add("text-align", "right");
+
+                }
+
+            }
         }
     }
 

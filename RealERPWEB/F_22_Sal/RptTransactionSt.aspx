@@ -28,8 +28,6 @@
                   harrowleftimg: "../Image/arrowhl.png",
                   harrowrightimg: "../Image/arrowhr.png",
                   freezesize: 11
-
-
               });
 
 
@@ -79,8 +77,14 @@
 
 
         }
-
       </script>
+
+
+    <style>
+        .table td, .table th {
+            padding: 0rem;
+        }
+    </style>
 
 
 

@@ -300,7 +300,7 @@
 
                                         <asp:TemplateField HeaderText="Fixed Hour">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtgvFixed" runat="server" BackColor="Transparent"
+                                                <asp:TextBox ID="txtgvFixedhour" runat="server" BackColor="Transparent"
                                                     BorderStyle="None"
                                                     Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fixhour")).ToString("#,##0.00;(#,##0.00); ") %>'
@@ -312,7 +312,55 @@
                                             <ItemStyle HorizontalAlign="right" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Hourly">
+
+                                       
+                          
+                                       <asp:TemplateField HeaderText="Fixed Day">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvFixedDaycount" runat="server" BackColor="Transparent"
+                                                    BorderStyle="None"
+                                                    Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fixday")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="80px"></asp:TextBox>
+                                            </ItemTemplate>
+
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Hourly Rate">
+                                            <ItemTemplate>
+                                                <asp:Label ID="txtgvhourlyrate" runat="server" BackColor="Transparent"
+                                                    BorderStyle="None"
+                                                    Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fixrate")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="80px"></asp:Label>
+                                            </ItemTemplate>
+
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Day Rate">
+                                            <ItemTemplate>
+                                                <asp:Label ID="txtgvdayrate" runat="server" BackColor="Transparent"
+                                                    BorderStyle="None"
+                                                    Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "holidayrate")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="80px"></asp:Label>
+                                            </ItemTemplate>
+
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+
+                                        <asp:TemplateField HeaderText="Hourly" Visible="false">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvhourly" runat="server" BackColor="Transparent"
                                                     BorderStyle="None"
@@ -326,6 +374,22 @@
                                             <ItemStyle HorizontalAlign="right" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Fix Hour" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvFixed" runat="server" BackColor="Transparent"
+                                                    BorderStyle="None"
+                                                    Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fixhour")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="80px"></asp:TextBox>
+                                            </ItemTemplate>
+
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Ceiling<br/>(7PM-10PM)">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvc1" runat="server" BackColor="Transparent"
@@ -483,12 +547,7 @@
                                                       
                                          <asp:TemplateField HeaderText="System Hour" >
                                             <ItemTemplate>
-     <%--                                           <asp:Label ID="lblsyshour" runat="server" BackColor="Transparent"
-                                                    BorderStyle="None"
-                                                    Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "syshour")).ToString("#,##0;(#,##0); ") %>'
-                                                    Width="80px"></asp:Label>
-                                               <asp:LinkButton runat="server" ID="lnksyshour" OnClick="lnksyshour_Click"></asp:LinkButton>--%>
+
 
                                           <asp:Button runat="server" ID="lblsyshour" Width="40px" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "syshour")).ToString("#,##0.0;(#,##0.0); ") %>' CommandArgument="H" />
                                             </ItemTemplate>
@@ -502,15 +561,25 @@
                                
                                          <asp:TemplateField HeaderText="System Day" >
                                             <ItemTemplate>
-               <%--                                 <asp:Label ID="lblsysday" runat="server" BackColor="Transparent"
-                                                    BorderStyle="None"
-                                                    Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "daycount")).ToString("#,##0;(#,##0); ") %>'
-                                                    Width="80px"></asp:Label>
-                                               <asp:LinkButton runat="server" ID="lnksysdaycount" OnClick="lnksysdaycount_Click"></asp:LinkButton>--%>
+
 
                                           <asp:Button runat="server" ID="lblsysday" Width="40px"  Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "daycount")).ToString("#,##0;(#,##0); ") %>' CommandArgument="D" />
                                       
+                                            </ItemTemplate>
+
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
+                                          <asp:TemplateField HeaderText="Total Amount">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvttlamt" runat="server" BackColor="Transparent"
+                                                    BorderStyle="None"
+                                                    Style="text-align: right"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "totalamt")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="80px"></asp:TextBox>
                                             </ItemTemplate>
 
                                             <FooterStyle HorizontalAlign="Right" />
