@@ -1073,7 +1073,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         this.gvEmpOverTime.Columns[14].Visible = false;
                         this.gvEmpOverTime.Columns[15].Visible = false;
                         this.gvEmpOverTime.Columns[16].Visible = true;
-                    }else if (comcod == "3368")
+                    }
+                    else if (comcod == "3368")
                     {
                         this.gvEmpOverTime.Columns[3].Visible = true;
                         this.gvEmpOverTime.Columns[4].Visible = true;
@@ -1095,9 +1096,30 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         this.gvEmpOverTime.Columns[20].Visible = false;
                         this.gvEmpOverTime.Columns[21].Visible = true;
                         this.gvEmpOverTime.Columns[22].Visible = true;
+                    }
 
-
-
+                    else if (comcod == "3369")
+                    {
+                        this.gvEmpOverTime.Columns[3].Visible = true;
+                        this.gvEmpOverTime.Columns[4].Visible = true;
+                        this.gvEmpOverTime.Columns[5].Visible = true;
+                        this.gvEmpOverTime.Columns[6].Visible = true;
+                        this.gvEmpOverTime.Columns[7].Visible = true;
+                        this.gvEmpOverTime.Columns[8].Visible = true;
+                        this.gvEmpOverTime.Columns[9].Visible = false;
+                        this.gvEmpOverTime.Columns[10].Visible = false;
+                        this.gvEmpOverTime.Columns[11].Visible = false;
+                        this.gvEmpOverTime.Columns[12].Visible = false;
+                        this.gvEmpOverTime.Columns[13].Visible = false;
+                        this.gvEmpOverTime.Columns[14].Visible = false;
+                        this.gvEmpOverTime.Columns[15].Visible = false;
+                        this.gvEmpOverTime.Columns[16].Visible = false;
+                        this.gvEmpOverTime.Columns[17].Visible = false;
+                        this.gvEmpOverTime.Columns[18].Visible = false;
+                        this.gvEmpOverTime.Columns[19].Visible = false;
+                        this.gvEmpOverTime.Columns[20].Visible = false;
+                        this.gvEmpOverTime.Columns[21].Visible = true;
+                        this.gvEmpOverTime.Columns[22].Visible = true;
                     }
                     else
                     {
@@ -1854,7 +1876,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         dt.Rows[rowindex]["c3hour"] = c3hour;
                         dt.Rows[rowindex]["tohour"] = tohour;
                         dt.Rows[rowindex]["fixamt"] = fixamt;
-                        if (comcod == "3368")
+                        if (comcod == "3368" || comcod=="3369")
                         {
 
                             dt.Rows[rowindex]["fixday"] = fixdaycount;
@@ -2160,7 +2182,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 double dayamt = 0.0;
                 double totalamt = 0.0;
 
-                if (comcod == "3368")
+                if (comcod == "3368" || comcod=="3369")
                 {
                     daycount = Convert.ToDouble(dt.Rows[i]["fixday"]);
                     dayrate = Convert.ToDouble(dt.Rows[i]["holidayrate"]);
