@@ -291,6 +291,19 @@
 
 
 
+                      <div class="row" runat="server">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class=" form-label">Naration:</label>                             
+                                <asp:TextBox ID="txtmbnarr" runat="server" CssClass="form-control form-control-sm " Height="100px" TextMode="MultiLine"></asp:TextBox>
+
+                            </div>
+                        </div>
+                      
+
+
+                    </div>
+
 
                     <div>
                         <asp:HiddenField ID="hdnflrcod"  runat="server"/>
@@ -311,7 +324,7 @@
                     <div class="modal-content  ">
                         <div class="modal-header">
                             <h5 class="modal-title"><i class="fas fa-info-circle"></i>&nbsp;Add Details</h5>
-                            <asp:Label ID="lblmobile" runat="server"></asp:Label>
+                            <asp:Label ID="lblorderDetails" Style="color:darkblue; font-size:16px; font-weight:bold;" runat="server"></asp:Label>
                             <button type="button" class="btn btn-xs btn-danger float-right" data-dismiss="modal" title="Close"><i class="fas fa-times-circle"></i></button>
                         </div>
                         <div class="modal-body form-horizontal">
@@ -517,7 +530,7 @@
                                          <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
                                                    
-                                                    <asp:LinkButton ID="lbtnDeldet" OnClick="lbtnDeldet_Click"   runat="server"  CssClass="btn btn-default btn-xs"><span style="color:red" class="fa  fa-recycle" aria-hidden="true"></span> </asp:LinkButton>
+                                                    <asp:LinkButton ID="lbtnDeldet" OnClick="lbtnDeldet_Click" OnClientClick="return FunConfirm();"   runat="server"  CssClass="btn btn-default btn-xs"><span style="color:red" class="fa  fa-recycle" aria-hidden="true"></span> </asp:LinkButton>
 
 
                                                 </ItemTemplate>
