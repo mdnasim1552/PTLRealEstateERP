@@ -515,6 +515,48 @@ namespace RealEntity.C_09_PIMP
             public SubConAllBill() { }
 
         }
+        [Serializable]
+        public class EClassResourceWiseMB
+        {
+            public string rsircode { get; set; }
+            public string flrcod { get; set; }
+            public int sl { get; set; }
+            public double tweight { get; set; }
+            public EClassResourceWiseMB() { }
+
+            public EClassResourceWiseMB(string rsircode, string flrcod, double tweight, int sl)
+            {
+
+                this.rsircode = rsircode;
+                this.flrcod = flrcod;
+                this.tweight = tweight;
+                this.sl = sl;
+
+            }
+
+
+        }
+
+
+
+        public class EClassResourceWiseMBSum
+        {
+            public string rsircode { get; set; }
+            public string flrcod { get; set; }
+            public double tweight { get; set; }
+            public EClassResourceWiseMBSum() { }
+
+            public EClassResourceWiseMBSum(string rsircode, string flrcod, double tweight)
+            {
+
+                this.rsircode = rsircode;
+                this.flrcod = flrcod;
+                this.tweight = tweight;
+
+            }
+
+
+        }
 
 
     }
