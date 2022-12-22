@@ -728,7 +728,7 @@
                                         <asp:HyperLink ID="HyperLink4" runat="server" Target="_blank" NavigateUrl="~/F_34_Mgt/OtherReqEntry?Type=mgtOreqEntry&prjcode=&genno=" CssClass="dropdown-item">Create Requsition(Mgt)</asp:HyperLink>
                                         <asp:HyperLink ID="HyperLink2" runat="server" Target="_blank" NavigateUrl="~/F_17_Acc/AccGenAdjJournal" CssClass="dropdown-item">Petty Cash Adjustment </asp:HyperLink>
                                         <asp:HyperLink ID="HyperLink3" runat="server" Target="_blank" NavigateUrl="~/F_17_Acc/AccVoucherUnposted" CssClass="dropdown-item"> Adjustment Final Approval </asp:HyperLink>
-                                         <asp:HyperLink ID="HyperLink5" runat="server" Target="_blank" NavigateUrl="~/F_14_Pro/RptPurchaseStatus?Type=GenBillTrack" CssClass="dropdown-item">General Bill Tracking</asp:HyperLink>
+                                         <asp:HyperLink ID="HyperLink5" runat="server" Target="_blank" NavigateUrl="~/F_14_Pro/RptPurchaseStatus?Type=GenBillTrack&Rpt=GenBillTracktrk" CssClass="dropdown-item">General Bill Tracking</asp:HyperLink>
                                     </div>
 
                                 </div>
