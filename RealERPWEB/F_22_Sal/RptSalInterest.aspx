@@ -159,7 +159,7 @@
                     <div class="form-horizontal">
                         <div class="form-group">
                             <div class=" col-md-3 pading5px asitCol3">
-                                <asp:Label ID="lblentryben" CssClass="lblTxt lblName" runat="server" Text="Entry Benefit:"></asp:Label>
+                                <asp:Label ID="lblentryben" CssClass="lblTxt lblName" runat="server" Text="Early Benefit:"></asp:Label>
                                 <asp:TextBox ID="txtentryben" runat="server" CssClass=" inputtextbox"></asp:TextBox>
                             </div>
                             <div class=" col-md-3 pading5px asitCol3">
