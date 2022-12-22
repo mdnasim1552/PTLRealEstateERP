@@ -707,7 +707,9 @@ namespace RealERPWEB.F_09_PImp
             }
             
             string workorder = (qcorderno.Length > 0 || qgenno.Length > 0) ?
-                (qcorderno.Substring(0, 3) == "COR" ?(qgenno.Substring(0, 3) == "MBK" ? qgenno : qcorderno): "") : "";
+                (qcorderno.Substring(0, 3) == "COR" ?
+                (qgenno.Length>0?(qgenno.Substring(0, 3) == "MBK" ? qgenno : qcorderno): qcorderno) : "") 
+                : "";
 
 
             //string workorder = (qcorderno.Length > 0 || qgenno.Length>0) ? 
