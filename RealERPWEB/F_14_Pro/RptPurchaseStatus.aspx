@@ -2149,12 +2149,8 @@
                             </asp:View>
 
                             <asp:View ID="ViewOrderTracking" runat="server">
-
-
-
                                 <fieldset class="scheduler-border fieldset_B">
                                     <div class="form-horizontal">
-
                                         <div class="form-group">
                                             <div class="col-md-3 pading5px asitCol3">
                                                 <asp:Label ID="lblorder" runat="server" CssClass="lblTxt lblName" Text="Order"></asp:Label>
