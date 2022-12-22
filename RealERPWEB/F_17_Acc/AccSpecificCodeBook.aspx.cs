@@ -25,6 +25,7 @@ namespace RealERPWEB.F_17_Acc
         ProcessRAccess Rprss = new ProcessRAccess();
         ProcessAccess da = new ProcessAccess();
         //static string tempddl1 = "", tempddl2 = "";
+        string msg = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -167,6 +168,16 @@ namespace RealERPWEB.F_17_Acc
                 int Index = grvacc.PageSize * grvacc.PageIndex + e.RowIndex;
                 this.grvacc.EditIndex = -1;
                 bool result = false;
+                bool isResultValid = true;
+                if (Desc.Length == 0)
+                {
+                    msg = "Resource Head is not empty";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+                    isResultValid = false;
+                    return;
+                }
                 result = this.da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "SPACCOUNTUPDATE", sircode2.Substring(0, 2), sircode, Desc, "", "", "", "", "", "", "", "", "", "", "", "");
                 if (result)
                 {
@@ -470,6 +481,16 @@ namespace RealERPWEB.F_17_Acc
                 string mnumber = (speccode1 == speccode3) ? "" : "manual";
    
                 bool result = false;
+                bool isResultValid = true;
+                if (Desc.Length == 0)
+                {
+                    msg = "Resource Head is not empty";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+                    isResultValid = false;
+                    return;
+                }
                 result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTSPECODE", speccode, Desc, mnumber, "", "", "", "","");
                 if (result)
                 {
