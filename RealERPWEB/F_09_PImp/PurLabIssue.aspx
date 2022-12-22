@@ -695,6 +695,25 @@
                                 </asp:TemplateField>
 
 
+                                
+                            <asp:TemplateField HeaderText="" Visible="false">
+                                <ItemTemplate>
+
+
+                                       <asp:HyperLink ID="hlnkMb" runat="server" ToolTip="Edit to MB" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><i class="fa fa-edit" aria-hidden="true"></i>
+
+                                                            </asp:HyperLink>
+
+                                   
+
+
+                                </ItemTemplate>
+                                <ItemStyle Width="150px" />
+                                <HeaderStyle HorizontalAlign="Center" Width="150px" VerticalAlign="Top" />
+                            </asp:TemplateField>
+
+
+
 
 
 

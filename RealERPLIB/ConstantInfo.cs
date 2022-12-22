@@ -10004,7 +10004,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0212000003", "03. Depreciation Charge in percentage", "F_29_Fxt/DepreciationCharge", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0205000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0213000000", "Accounts & Finance", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0213000001", "14. Specefication Code Book", "F_17_Acc/AccSpecificCodeBook", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0213000001", "14. Specification Code Book", "F_17_Acc/AccSpecificCodeBook", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0213000002", "18. Resource Code Print", "F_17_Acc/AccSubCodeBook?InputType=ResCodePrint", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0213000003", "21. Pay to/Received by Code", "F_17_Acc/AccPayRecCodeBook", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0213000004", "22. Cheque Book Input", "F_17_Acc/AccBankCheque", "", true, "" });
