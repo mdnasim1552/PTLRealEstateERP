@@ -522,7 +522,8 @@
                         $(".tbMenuWrp table tr td:nth-child(3)").show();
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
                         $(".tbMenuWrp table tr td:nth-child(8)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(10)").hide(); // 9 - for billApproval
+                        $(".tbMenuWrp table tr td:nth-child(11)").hide(); // 9 - for billApproval
+                       // $(".tbMenuWrp table tr td:nth-child(10)").hide(); // 9 - for billApproval Emdad22.12.2022
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
                         $(".tbMenuWrp table tr td:nth-child(15)").hide();

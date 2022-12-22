@@ -298,7 +298,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Fixed Hour">
+                                        <asp:TemplateField HeaderText="Fixed Hour" Visible="false">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvFixedhour" runat="server" BackColor="Transparent"
                                                     BorderStyle="None"
@@ -329,7 +329,7 @@
                                             <ItemStyle HorizontalAlign="right" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Hourly Rate">
+                                        <asp:TemplateField HeaderText="Hourly Rate" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="txtgvhourlyrate" runat="server" BackColor="Transparent"
                                                     BorderStyle="None"
@@ -390,7 +390,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Ceiling<br/>(7PM-10PM)">
+                                        <asp:TemplateField HeaderText="Ceiling<br/>(7PM-10PM)" Visible="false">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvc1" runat="server" BackColor="Transparent"
                                                     BorderStyle="None"
@@ -403,7 +403,7 @@
                                             <ItemStyle HorizontalAlign="right" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Ceiling<br/>(10:1PM-2AM)">
+                                        <asp:TemplateField HeaderText="Ceiling<br/>(10:1PM-2AM)" Visible="false">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvc2" runat="server" BackColor="Transparent"
                                                     BorderStyle="None"
@@ -417,7 +417,7 @@
                                             <ItemStyle HorizontalAlign="right" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Ceiling<br/>(2AM-6PM)">
+                                        <asp:TemplateField HeaderText="Ceiling<br/>(2AM-6PM)" Visible="false">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvc3" runat="server" BackColor="Transparent"
                                                     BorderStyle="None"
@@ -507,7 +507,7 @@
                                        
 
 
-                                        <asp:TemplateField HeaderText="Total Hour">
+                                        <asp:TemplateField HeaderText="Total Hour" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvAmt" runat="server" BackColor="Transparent"
                                                     BorderStyle="None"
@@ -545,7 +545,7 @@
 
 
                                                       
-                                         <asp:TemplateField HeaderText="System Hour" >
+                                         <asp:TemplateField HeaderText="System Hour" Visible="false">
                                             <ItemTemplate>
 
 

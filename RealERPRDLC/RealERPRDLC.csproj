@@ -1112,6 +1112,8 @@
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptHRAllEmpStatus.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptHRMonthlyLateSum.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptHRMonthlyLateSumBR.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptMonAttendanceBTI02EXCEL.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptMonAttendanceBTIEXCEL.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptMonAttendanceBTI02.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptMonAttendanceBTI.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptMonAttendance.rdlc" />
