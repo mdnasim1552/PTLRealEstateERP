@@ -695,15 +695,25 @@ namespace RealERPWEB.F_09_PImp
                 mISSNo = this.ddlPrevISSList.SelectedValue.ToString();
             }
             string qcorderno = this.Request.QueryString["vounum"] ?? "Previous";
-            string qgenno = this.Request.QueryString["genno"] ?? "";
+            string qgenno = this.Request.QueryString["genno"] ?? "NEWLISS";
 
 
-
-            string workorder = (qcorderno.Length > 0 || qgenno.Length>0) ? 
-                (qcorderno.Substring(0,3) == "COR" ? qcorderno : (qgenno.Substring(0, 3) == "COR" ? qgenno:"")) : "";
-           
+            switch (comcod)
+            { 
             
             
+            
+            }
+            
+            string workorder = (qcorderno.Length > 0 || qgenno.Length > 0) ?
+                (qcorderno.Substring(0, 3) == "COR" ?(qgenno.Substring(0, 3) == "MBK" ? qgenno : qcorderno): "") : "";
+
+
+            //string workorder = (qcorderno.Length > 0 || qgenno.Length>0) ? 
+            //    (qcorderno.Substring(0,3) == "COR" ? qcorderno : (qgenno.Substring(0, 3) == "COR" ? qgenno:"")) : "";
+
+
+
             //&& || qgenno.Substring(0, 3) == "MBK"
 
             //string workorder = (this.Request.QueryString["genno"].ToString().Length > 0) ? ((this.Request.QueryString["genno"].ToString().Substring(0, 3) == "COR" || this.Request.QueryString["genno"].ToString().Substring(0, 3) == "MBK") ? this.Request.QueryString["genno"].ToString() : "") : "";
