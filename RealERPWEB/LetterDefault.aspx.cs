@@ -2176,7 +2176,7 @@ namespace RealERPWEB
 
 
                          "<p style='margin-bottom:-5px;'><span text-align:left;> Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + name + "</span>" +
-                         "<span style='margin-bottom:-5px;text-align:center;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Department: &nbsp;&nbsp;" + depart + "</span></p>" +
+                         "<span style='margin-bottom:-5px;text-align:center;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + depart + "</span></p>" +
                          "<p style='margin-bottom:-5px;'>Designation :&nbsp;</p>" +
                          "<p style='margin-bottom:-5px;'><span text-align:left;>Joining Date :&nbsp;" + jdate + "</span>" +
                          "<span style='margin-bottom:-5px;text-align:center;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Personal Mobile: &nbsp;&nbsp;" + empMobile + "</span></p>" +
@@ -2222,8 +2222,10 @@ namespace RealERPWEB
                         "<br>" +
                         "<br>" +
                         "<br>" +
-                       
-                        
+                        "<br>" +
+                        "<br>" +
+
+
                        "<p style='text-align: center;'><strong ><u>EXIT INTERVIEW QUESTIONNAIRES</u></strong> </p>" +
                       
                        "<p style='margin-bottom:-5px;text-align:left;'><span>01. How long have you been served in CPDL:-</p>" +

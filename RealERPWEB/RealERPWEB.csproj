@@ -3251,7 +3251,6 @@
     <Content Include="F_81_Hrm\F_92_Mgt\RetiredEmployee.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\RptEmpIncrAPro.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\RptEmpStatus03.aspx" />
-    <Content Include="F_81_Hrm\F_92_Mgt\RptServiceStoryProjectWise.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\RptSettlementStatus.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\RptUserLogDetails.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\UserImage.aspx" />
@@ -3266,6 +3265,7 @@
     <Content Include="F_81_Hrm\F_97_MIS\LinkMgtInterface.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\RptMgtInterface.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\RptNewJoingInfo.aspx" />
+    <Content Include="F_81_Hrm\F_97_MIS\RptServiceStoryProjectWise.aspx" />
     <Content Include="F_81_Hrm\F_99_MgtAct\EntryDailyActivities.aspx" />
     <Content Include="F_81_Hrm\F_99_MgtAct\GenCodeBook.aspx" />
     <Content Include="F_81_Hrm\F_99_MgtAct\LinkLateElLeaveAAbs.aspx" />
@@ -5566,13 +5566,6 @@
     <Compile Include="F_81_Hrm\F_92_Mgt\LetterInterface.aspx.designer.cs">
       <DependentUpon>LetterInterface.aspx</DependentUpon>
     </Compile>
-    <Compile Include="F_81_Hrm\F_92_Mgt\RptServiceStoryProjectWise.aspx.cs">
-      <DependentUpon>RptServiceStoryProjectWise.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_81_Hrm\F_92_Mgt\RptServiceStoryProjectWise.aspx.designer.cs">
-      <DependentUpon>RptServiceStoryProjectWise.aspx</DependentUpon>
-    </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\RptSettlementStatus.aspx.cs">
       <DependentUpon>RptSettlementStatus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5593,6 +5586,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx.designer.cs">
       <DependentUpon>linkEmployeeStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_97_MIS\RptServiceStoryProjectWise.aspx.cs">
+      <DependentUpon>RptServiceStoryProjectWise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_97_MIS\RptServiceStoryProjectWise.aspx.designer.cs">
+      <DependentUpon>RptServiceStoryProjectWise.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\AIinterface.aspx.cs">
       <DependentUpon>AIinterface.aspx</DependentUpon>
