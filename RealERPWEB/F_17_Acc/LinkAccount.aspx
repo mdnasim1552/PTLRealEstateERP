@@ -65,7 +65,26 @@
             .slider.round:before {
                 border-radius: 50%;
             }
+
+       
+        #ContentPlaceHolder1_UpdatePanel1 .grvFooter {
+            display:none;
+        }
     </style>
+
+    <script>
+        $(document).ready(function () {
+            //var lasttr = $('#ContentPlaceHolder1_gvDayWSale tr td span').last().attr('id');
+            var lasttr1 = $('#ContentPlaceHolder1_gvDayWSale tr td span').last().attr('id').replace("lgvDCandate", "lgvDTAmt");
+            var lasttr2 = $('#ContentPlaceHolder1_gvDayWSale tr td span').last().attr('id').replace("lgvDCandate", "lgvDSAmt");
+            //alert("#" + lasttr1 + "---" + lasttr2);
+            $("#" + lasttr1).css("font-weight", "bold");
+            $("#" + lasttr1).css("font-size", "12px");
+            $("#" + lasttr2).css("font-weight", "bold");
+            $("#" + lasttr2).css("font-size", "12px");
+        });
+        
+    </script>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -282,10 +301,10 @@
                                                 <asp:Label ID="lgvDResDesc" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "udesc")) %>'
                                                     Width="120px"></asp:Label>
                                             </ItemTemplate>
-                                            <FooterTemplate>
+                                            <%--<FooterTemplate>
                                                 <asp:Label ID="lgvFditem" runat="server" Text="Total" Font-Bold="True" HorizontalAlign="Left"
                                                     Font-Size="12px" Style="text-align: right" Width="150px"></asp:Label>
-                                            </FooterTemplate>
+                                            </FooterTemplate>--%>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Unit">
@@ -325,10 +344,10 @@
                                                 <asp:Label ID="lgvDTAmt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tuamt")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="75px" Style="text-align: right"></asp:Label>
                                             </ItemTemplate>
-                                            <FooterTemplate>
+                                            <%--<FooterTemplate>
                                                 <asp:Label ID="lgvFDTAmt" runat="server" Font-Bold="True" Font-Size="12px"
                                                     Style="text-align: right" Width="75px"></asp:Label>
-                                            </FooterTemplate>
+                                            </FooterTemplate>--%>
                                             <FooterStyle Font-Bold="True" HorizontalAlign="right" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
@@ -337,10 +356,10 @@
                                                 <asp:Label ID="lgvDSAmt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "suamt")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="75px" Style="text-align: right"></asp:Label>
                                             </ItemTemplate>
-                                            <FooterTemplate>
+                                            <%--<FooterTemplate>
                                                 <asp:Label ID="lgvFDSAmt" runat="server" Font-Bold="True" Font-Size="12px"
                                                     Style="text-align: right" Width="75px"></asp:Label>
-                                            </FooterTemplate>
+                                            </FooterTemplate>--%>
                                             <ItemStyle HorizontalAlign="Right" />
                                             <FooterStyle Font-Bold="True" HorizontalAlign="right" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
