@@ -928,6 +928,7 @@
     <EmbeddedResource Include="R_22_Sal\RptUnsoldUnit.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RTypeWiseTransaction02.rdlc" />
     <EmbeddedResource Include="R_22_Sal\test.rdlc" />
+    <EmbeddedResource Include="R_23_CR\RptClientLedger02P2P.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptCollectionStatusLO.rdlc" />
     <EmbeddedResource Include="R_23_CR\Reporttest.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptAllProDuesCollection.rdlc" />
