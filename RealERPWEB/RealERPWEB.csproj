@@ -2334,6 +2334,7 @@
     <Content Include="F_22_Sal\MktBookigApp2.aspx" />
     <Content Include="F_22_Sal\MktSampleNoteSheet.aspx" />
     <Content Include="F_22_Sal\MktGrandNoteSheet.aspx" />
+    <Content Include="F_22_Sal\SalesAllReports.aspx" />
     <Content Include="F_22_Sal\SaleSurvey.aspx" />
     <Content Include="F_22_Sal\SaleSurPrjInformation.aspx" />
     <Content Include="F_22_Sal\SaleSurPCodeBook.aspx" />
@@ -4392,6 +4393,13 @@
     </Compile>
     <Compile Include="F_22_Sal\MktGrandNoteSheet.aspx.designer.cs">
       <DependentUpon>MktGrandNoteSheet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_22_Sal\SalesAllReports.aspx.cs">
+      <DependentUpon>SalesAllReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\SalesAllReports.aspx.designer.cs">
+      <DependentUpon>SalesAllReports.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_22_Sal\SaleSurvey.aspx.cs">
       <DependentUpon>SaleSurvey.aspx</DependentUpon>
