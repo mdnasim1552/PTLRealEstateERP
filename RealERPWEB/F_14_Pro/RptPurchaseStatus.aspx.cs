@@ -47,6 +47,9 @@ namespace RealERPWEB.F_14_Pro
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
                 CommonButton();
 
+                
+
+
                 string Type = this.Request.QueryString["Rpt"].ToString();
                 ((Label)this.Master.FindControl("lblTitle")).Text = (Type == "DaywPur") ? "Day Wise Purchase" 
                     : (Type == "PurSum") ? "Purchase Summary (Project Wise)"

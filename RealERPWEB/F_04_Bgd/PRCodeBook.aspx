@@ -130,13 +130,6 @@
                                 <ItemStyle Font-Size="12px" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Code">
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="txtgrcode" runat="server" Font-Size="12px" Height="16px"
-                                        MaxLength="3"
-                                        Style="border-top-style: none; border-right-style: none; border-left-style: none; border-bottom-style: none; font-size: 12px; border-left-color: midnightblue; border-bottom-color: midnightblue; border-top-color: midnightblue; border-right-color: midnightblue;"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prgcod3")) %>'
-                                        Width="40px"></asp:TextBox>
-                                </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbgrcod3" runat="server" Font-Size="12px"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prgcod3")) %>'

@@ -25,6 +25,7 @@ namespace RealERPWEB.F_04_Bgd
 
         ProcessAccess da = new ProcessAccess();
         // static string tempddl1 = "", tempddl2 = "";
+        string msg = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -124,7 +125,7 @@ namespace RealERPWEB.F_04_Bgd
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string gcode1 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lblgrcode")).Text.Trim();
-            string gcode2 = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgrcode")).Text.Trim();
+            string gcode2 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lbgrcod3")).Text.Trim();
 
             string Desc = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvDesc")).Text.Trim();
             string tgcod = gcode1.Substring(0, 2) + gcode2;
@@ -135,6 +136,17 @@ namespace RealERPWEB.F_04_Bgd
             string code = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlData")).Text.Trim();
             string chkvisibility = (((CheckBox)grvacc.Rows[e.RowIndex].FindControl("chkvisibility")).Checked) ? "True" : "False";
             string unit = ((TextBox)this.grvacc.Rows[e.RowIndex].FindControl("txtgvunit")).Text.Trim();
+
+            bool isResultValid = true;
+            if (Desc.Length == 0)
+            {
+                msg = "Resource Head is not empty";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+                isResultValid = false;
+                return;
+            }
 
             bool result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTUPPRINF", tgcod,
                            gdesc, Gtype, slno, code, chkvisibility, unit, "", "", "", "", "", "", "", "");
@@ -352,7 +364,16 @@ namespace RealERPWEB.F_04_Bgd
             string Gtype = (gtype.ToString() == "") ? "T" : gtype;
             string chkprgvisibility = (this.chkprgvisibility.Checked == true) ? "True" : "False";
             string mnumber = (prgcod == txtprgcode) ? "" : "manual";
-
+            bool isResultValid = true;
+            if (Desc.Length == 0)
+            {
+                msg = "Resource Head is not empty";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+                isResultValid = false;
+                return;
+            }
             bool result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTPRGCODE", txtprgcode,
                           Desc, Gtype,"","", chkprgvisibility, "", mnumber);
 
