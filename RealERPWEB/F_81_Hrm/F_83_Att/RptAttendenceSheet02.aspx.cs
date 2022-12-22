@@ -402,7 +402,25 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             var list = dt1.DataTableToList<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpMnthAttn>();
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptMonAttendanceBTI02", list, null, null);
+            //Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptMonAttendanceBTI02", list, null, null);
+
+
+
+
+            string printtype = ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
+            if (printtype == "EXCEL")
+            {
+                Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptMonAttendanceBTI02EXCEL", list, null, null);
+
+
+            }
+            else
+            {
+                Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptMonAttendanceBTI02", list, null, null);
+
+
+            }
+
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("compLogo", compLogo));
