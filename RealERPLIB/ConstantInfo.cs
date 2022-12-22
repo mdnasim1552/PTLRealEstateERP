@@ -1305,6 +1305,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2202276", "F_22_Sal", "RptSalesVsAchievement?", "Type=DownpayClearnce", "Down Payment Status (Prev.Sales)", "Sales", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202277", "F_22_Sal", "RptSalesVsAchievement?", "Type=CollectionStatus", "Month Wise Sales ( Collection Status ) ", "Sales", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202279", "F_22_Sal", "RptSalesVsCollTeamWise?", "Type=SalesTeam", "Executive Wise Sales", "Sales & Recovery", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2203000", "2202280", "F_22_Sal", "SalesAllReports?", "Type=AllReports", "Sales All Reports", "Sales & Recovery", "False", "False", "False", "False" });
 
 
 
@@ -7653,6 +7654,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000006", "18. Periodic Sales With Collection ", "F_22_Sal/RptPeriodicSalesWithCollection", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0401000007", "19. Monthly Sales Target-Market", "F_22_Sal/RptSalSummery?Type=mSalesTarget", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000008", "19. Sales All Reports", "F_22_Sal/SalesAllReports?Type=AllReports", "", true, "" });
+
 
             mnuTbl1.Rows.Add(new Object[] { "0402000000", "Other Related Report", "", "", false, "mb" });
 
