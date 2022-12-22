@@ -49,7 +49,6 @@
                     <div class="row">
                         <fieldset class="scheduler-border fieldset_A">
                             <div class="form-horizontal">
-
                                 <div class="form-group">
                                     <div class="col-md-3 pading5px asitCol3" style="width: 215px;">
 

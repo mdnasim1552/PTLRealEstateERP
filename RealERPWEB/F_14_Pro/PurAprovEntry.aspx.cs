@@ -1152,8 +1152,7 @@ namespace RealERPWEB.F_14_Pro
 
                 switch (comcod)
                 {
-                    case "3333":
-                        break;
+                     
 
                     default:
 

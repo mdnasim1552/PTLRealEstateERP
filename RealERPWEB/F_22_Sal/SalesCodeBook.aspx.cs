@@ -25,7 +25,7 @@ namespace RealERPWEB.F_22_Sal
         ProcessRAccess Rprss = new ProcessRAccess();
         ProcessAccess da = new ProcessAccess();
         //static string tempddl1 = "", tempddl2 = "";
-
+        string msg = "";
 
 
 
@@ -160,6 +160,16 @@ namespace RealERPWEB.F_22_Sal
             string slno = Convert.ToDouble("0" + ((TextBox)this.grvacc.Rows[e.RowIndex].FindControl("txtslno")).Text.Trim()).ToString();
 
             string gdescbn = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvDescbn")).Text.Trim();
+            bool isResultValid = true;
+            if (Desc.Length == 0)
+            {
+                msg = "Resource Head is not empty";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+                isResultValid = false;
+                return;
+            }
 
             bool result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTUPSALINF", tgcod,
                            gdesc, Gtype, Rate, "", slno, gdescbn, "", "", "", "", "", "", "");
@@ -390,21 +400,30 @@ namespace RealERPWEB.F_22_Sal
 
             string sl = Convert.ToInt32("0"+this.txtsl.Text.Trim()).ToString();
             string chkstatus = (this.chkstatus.Checked == true) ? "True" : "False";
-            //bool chkstatus = this.chkstatus.Checked;
             string mnumber = (gcod == tgrcode) ? "" : "manual";
-            
+
+            bool isResultValid = true;
+            if (Desc.Length == 0)
+            {
+                msg = "Resource Head is not empty";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+                isResultValid = false;
+                return;
+            }
 
             bool result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "ADDSALECODE", tgrcode,
                           Desc, Gtype, rate, "", sl, DescBN, mnumber,"" ,chkstatus, "", "", "", "");
             
             if (result == true)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Updated ";
+                ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Created ";
             }
 
             else
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Create Failed";
             }
             ShowInformation();
             grvacc_DataBind();

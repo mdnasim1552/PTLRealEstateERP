@@ -318,14 +318,13 @@ namespace RealERPWEB
                 Session.Remove("tblusrlog");
                 Session.Remove("tbllog1");
                 string username = this.txtuserid.Text.Trim();
-                 string deafltPass =this.txtuserpass.Text.Trim();
+                string deafltPass =this.txtuserpass.Text.Trim();
                 string pass = ASTUtility.EncodePassword(this.txtuserpass.Text.Trim());
                 string HostAddress = Request.UserHostAddress.ToString();
                 if (this.ChkChangePass.Checked)
                 {
                     this.CheangePassword();
                     return;
-
                 }
                 if ((comcod == "3365" || comcod=="3101") && deafltPass == "123")
                 {
