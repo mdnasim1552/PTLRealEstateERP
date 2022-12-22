@@ -1300,6 +1300,35 @@ namespace RealEntity.C_17_Acc
             }
         }
 
+        [Serializable]
+        public class RptAdvancedAgainstLoan
+        {
+            public string comcod { get; set; }
+            public string grp { get; set; }
+            public string actcode { get; set; }
+            public string rescode { get; set; }
+            public string drcr { get; set; }
+            public string spcfcode { get; set; }
+            public string actdesc { get; set; }
+            public string deptname { get; set; }
+            public string empname { get; set; }
+            public double opndram { get; set; }
+            public double opncram { get; set; }
+            public double dram { get; set; }
+            public double cram { get; set; }
+            public double trnam { get; set; }
+            public double closdram { get; set; }
+            public double closcram { get; set; }
+            public double clsam { get; set; }
+        
+
+           
+
+            public RptAdvancedAgainstLoan()
+            {
+
+            }
+        }
 
 
 

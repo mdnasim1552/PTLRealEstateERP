@@ -557,7 +557,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1403000", "1403091", "F_14_Pro", "RptWorkOrderVsSupply?", "Type=OrderTk&comcod=", "Order Tracking", "Procurement", "False", "False", "False", "False" }); 
             tblObj.Rows.Add(new Object[] { "1403000", "1403094", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=Ordertrk", "Order Tracking-01", "Procurement", "False", "False", "False", "False" }); 
             tblObj.Rows.Add(new Object[] { "1403000", "1403095", "F_14_Pro", "RptPurchaseStatus02?", "Type=DaywPur", "Day Wise Purchase History (Project & Supplier) Wise", "Procurement", "False", "False", "False", "False" });
-
+            tblObj.Rows.Add(new Object[] { "1403000", "1403096", "F_14_Pro", "RptPurchaseStatus?", "Type=GenBillTrack", "General Bill Tracking", "Procurement", "False", "False", "False", "False" });
             //tblObj.Rows.Add(new Object[] { "14275", "RptPurchaseStatus?", "Type=Purchase&Rpt=Ordertrk", "Order Tracking", "Procurement", "False", "False", "False", "False" });
 
 
@@ -1304,6 +1304,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2202275", "F_22_Sal", "RptSalesVsAchievement?", "Type=MonsalVsAchieve", "Month Wise Sales (Reconcilation)", "Sales", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202276", "F_22_Sal", "RptSalesVsAchievement?", "Type=DownpayClearnce", "Down Payment Status (Prev.Sales)", "Sales", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202277", "F_22_Sal", "RptSalesVsAchievement?", "Type=CollectionStatus", "Month Wise Sales ( Collection Status ) ", "Sales", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2203000", "2202279", "F_22_Sal", "RptSalesVsCollTeamWise?", "Type=SalesTeam", "Executive Wise Sales", "Sales & Recovery", "False", "False", "False", "False" });
 
 
 
@@ -5734,6 +5735,10 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301010006", "05. Purchase Order Wise Item Rate", "F_14_Pro/RptPurchaseOrdItemRate", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0301010007", "10. Purchase Tracking-01", "F_14_Pro/RptPurchaseStatus?Type=Purchase&Rpt=Purchasetrk&comcod=&Date1=&Date2=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301010021", "10. General Bill Tracking", "F_14_Pro/RptPurchaseStatus?Type=GenBillTrack", "", true, "" });
+
+
+
             mnuTbl1.Rows.Add(new Object[] { "0301010008", "11. Purchase Tracking-02", "F_14_Pro/RptPurchaseStatus?Type=Purchase&Rpt=Purchasetrk02&comcod=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301010009", "11. Bill Register Tracking", "F_14_Pro/RptPurchaseStatus?Type=Purchase&Rpt=BillRegTrack&comcod=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301010010", "12. Order Tracking-01", "F_14_Pro/RptPurchaseStatus?Type=Purchase&Rpt=Ordertrk&comcod=&Date1=&Date2=", "", true, "" });
@@ -7656,6 +7661,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0402000003", "16. Month Wise Sales (Marketing Person)", "F_17_Acc/RptAccCollVsClearance?Type=MonSalPerWise&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000003", "17. Month Report (Monthly Sales Target)", "F_17_Acc/RptAccCollVsClearance?Type=MonSalPerTarWise&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000004", "18. Customer Sales Report", "F_17_Acc/RptLetterOfAlotment?Type=Allotment", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0402000004", "19. Executive Wise Sales", "F_22_Sal/RptSalesVsCollTeamWise?Type=SalesTeam", "", true, "" });
+
 
 
             mnuTbl1.Rows.Add(new Object[] { "0426000000", "", "", "", true, "" });

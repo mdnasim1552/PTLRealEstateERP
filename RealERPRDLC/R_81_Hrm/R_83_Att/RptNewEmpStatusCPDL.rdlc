@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>63981b7a-edff-47df-a57f-cef1dfa74e1c</rd:DataSourceID>
+      <rd:DataSourceID>125f8849-cdcf-41d0-9368-8ebdd1a25bd5</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -2263,7 +2263,7 @@ len(Fields!actTimehour.Value)=0, True)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!overtime.Value)</Value>
+                                  <Value>=CDec(Fields!overtime.Value)</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2515,10 +2515,11 @@ len(Fields!actTimehour.Value)=0, True)</Hidden>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Sum(CDec(Fields!overtime.Value))</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>

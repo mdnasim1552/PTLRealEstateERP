@@ -964,7 +964,7 @@ namespace RealERPWEB.F_32_Mis
                 //    return;
                 string rescode1 = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "rescode1")).ToString();
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("HLgvDesc");
-                string Actcode = this.ddlProjectInd.SelectedValue.ToString();
+                string Actcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "actcode")).ToString(); ;
                 string Date1 = Convert.ToDateTime(this.txtDatefrom.Text).ToString("dd-MMM-yyy");
                 string rescode = ((Label)e.Row.FindControl("lblgvCode")).Text;
                 if (ASTUtility.Left(rescode1, 2) == "51")
