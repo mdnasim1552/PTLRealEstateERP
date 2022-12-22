@@ -242,6 +242,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.SpResign.Visible = false;
 
                 }
+            }else if (comcod=="3370")
+            {
+                this.chkBoxSkippWH.Checked = false;
+                this.sspnlv.Visible = false;
+                this.SpResign.Visible = false;
+                this.chkBoxSkippWH.Checked = false;
             }
             else
             {
