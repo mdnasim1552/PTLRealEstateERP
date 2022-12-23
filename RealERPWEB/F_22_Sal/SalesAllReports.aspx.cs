@@ -33,7 +33,7 @@ namespace RealERPWEB.F_22_Sal
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Inventory Report(All in One)";
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Sales Reports";
                 //string date1 = this.Request.QueryString["Date1"];
                 //string date2 = this.Request.QueryString["Date2"];
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -41,6 +41,7 @@ namespace RealERPWEB.F_22_Sal
                 this.txttoDate.Text =  System.DateTime.Today.ToString("dd-MMM-yyyy");
 
               this.GetProjectName();
+              this.ddlReport_SelectedIndexChanged(null, null);
 
 
 
@@ -54,7 +55,47 @@ namespace RealERPWEB.F_22_Sal
             // ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
             //((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lbtnUpdate_Click);
         }
-      
+
+
+        protected void ddlReport_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string rpt = this.ddlReport.SelectedValue;
+            switch (rpt)
+            {
+                case "PrjCollect":
+
+                    this.lblDate.Visible = true; 
+                    this.txtFDate.Visible = true;
+                    this.lbltoDate.Visible = true; 
+                    this.txttoDate.Visible = true;
+                    this.imgbtnFindCustomer.Visible = false;
+                    this.ddlCustName.Visible = false;
+                    break;
+
+                case "PrjCollTilldate":                               
+                    this.lblDate.Visible = false;
+                    this.txtFDate.Visible = false;
+                    this.imgbtnFindCustomer.Visible = false;
+                    this.ddlCustName.Visible = false;
+                    break;
+
+                case "PaymentStatus":
+                    this.lblDate.Visible = false;
+                    this.txtFDate.Visible = false;
+                    this.imgbtnFindCustomer.Visible = true;
+                    this.ddlCustName.Visible = true;
+                    break;
+                default:
+                    this.lblDate.Visible = true;
+                    this.txtFDate.Visible = true;
+                    this.lbltoDate.Visible = true;
+                    this.txttoDate.Visible = true;
+                    this.imgbtnFindCustomer.Visible = false;
+                    this.ddlCustName.Visible = false;
+                    break;
+            }
+        }
+
 
         private string GetComeCode()
         {
@@ -69,13 +110,42 @@ namespace RealERPWEB.F_22_Sal
         {
             string comcod = this.GetComeCode();
             string Srchpactcode = "%%";
-            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_SALSMGT03", "GETPROJECTNAME", Srchpactcode, "", "", "", "", "", "", "", "");
+            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_COLLECTIONMGT", "GETPROJECTNAME", Srchpactcode, "", "", "", "", "", "", "", "");
             this.ddlPrjName.DataTextField = "pactdesc";
             this.ddlPrjName.DataValueField = "pactcode";
             this.ddlPrjName.DataSource = ds1.Tables[0];
             this.ddlPrjName.DataBind();
 
 
+        }
+
+        protected void ddlPrjName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetCustomerName();
+
+        }
+
+        private void GetCustomerName()
+        {
+            ViewState.Remove("tblcustomer");
+
+            string comcod = this.GetComeCode();
+            string pactcode = this.ddlPrjName.SelectedValue.ToString();
+            string txtSProject = "%" + this.txtSrcCustomer.Text.Trim() + "%";
+            string islandowner = this.Request.QueryString["Type"] == "LOClLedger" ? "1" : "0";
+            DataSet ds2 = ImpleData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "GETCUSTOMERNAME", pactcode, txtSProject, islandowner, "", "", "", "", "", "");
+            this.ddlCustName.DataTextField = "custnam";
+            this.ddlCustName.DataValueField = "custid";
+            this.ddlCustName.DataSource = ds2.Tables[0];
+            this.ddlCustName.DataBind();
+            ViewState["tblcustomer"] = ds2.Tables[0];
+            ds2.Dispose();
+
+        }
+
+        protected void imgbtnFindCustomer_Click(object sender, EventArgs e)
+        {
+            this.GetCustomerName();
         }
 
 
@@ -88,16 +158,16 @@ namespace RealERPWEB.F_22_Sal
                     this.GetPrCollection();
 
                     break;
-                case "qtybasis":
-                    this.InventoryAmtBasis();
+                case "PrjCollTilldate":
+                    this.GetPrCollectionTillDate();
 
                     break;
-                case "amtbasisp":
-                    this.InventoryAmtBasisPeriodic();
+                case "PaymentStatus":
+                    this.ShowPaymentStatus();
                     break;
-                case "qtybasisp":
-                    this.InventoryAmtBasisPeriodic();
-                    break;
+                //case "qtybasisp":
+                //    this.InventoryAmtBasisPeriodic();
+                //    break;
 
                 default:
                     break;
@@ -110,7 +180,7 @@ namespace RealERPWEB.F_22_Sal
             string comcod = this.GetComeCode();
             string frmdate = this.txtFDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
-            string pactcode = this.ddlPrjName.SelectedValue.ToString() + "%";
+            string pactcode = this.ddlPrjName.SelectedValue.ToString()=="000000000000"? "18"+"%" : this.ddlPrjName.SelectedValue.ToString() + "%";
 
             DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_COLLECTIONMGT", "GETTOTALCOLLECTION", pactcode, frmdate, todate, "", "", "", "", "");
             if (ds1 == null)
@@ -118,8 +188,7 @@ namespace RealERPWEB.F_22_Sal
 
                 this.gvprjcoll.DataSource = null;
                 this.gvprjcoll.DataBind();
-                this.gvprjcoll.DataSource = null;
-                this.gvprjcoll.DataBind();
+               
                 return;
 
             }
@@ -132,65 +201,59 @@ namespace RealERPWEB.F_22_Sal
             this.Data_Bind();
 
         }
-        private void InventoryAmtBasisPeriodic()
+        private void GetPrCollectionTillDate()
         {
             string comcod = this.GetComeCode();
 
-            string frmdate = this.txtFDate.Text.Trim();
+           // string frmdate = this.txtFDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
-            // string frmdate = Convert.ToDateTime(this.txtDateFrom.Text).ToString("dd-MMM-yyyy");
-
-            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_PURCHASE01", "RPTAMTBASISRESPERIODIC", frmdate, todate, "", "", "", "", "", "");
+            string pactcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18" + "%" : this.ddlPrjName.SelectedValue.ToString() + "%";
+            string length = "Length";
+            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_COLLECTIONMGT", "GETTOTALCOLLECTION", pactcode, "", todate, length, "", "", "", "");
             if (ds1 == null)
             {
 
-                this.gvAmtPeriodic.DataSource = null;
-                this.gvAmtPeriodic.DataBind();
-                this.dvQtyBasisPeriodic.DataSource = null;
-                this.dvQtyBasisPeriodic.DataBind();
+                this.gvprjcolltilldate.DataSource = null;
+                this.gvprjcolltilldate.DataBind();
+                
                 return;
 
             }
 
             // DataTable dt=this.HiddenSamaData(ds1.Tables[0])
 
-            Session["amtbasisp"] = ds1.Tables[0];
-            Session["qtybasisp"] = ds1.Tables[1];
-
+            ViewState["prjcoll"] = ds1.Tables[0];
             this.Data_Bind();
         }
-        public void InventoryAmtBasis()
+        public void ShowPaymentStatus()
         {
-            //string comcod = this.GetCompCod();
+            string comcod = this.GetComeCode();
 
-            //string frmdate = this.txtFDate.Text.Trim();
-            //string todate = this.txttoDate.Text.Trim();
-            //// string frmdate = Convert.ToDateTime(this.txtDateFrom.Text).ToString("dd-MMM-yyyy");
+            // string frmdate = this.txtFDate.Text.Trim();
+            string todate = this.txttoDate.Text.Trim();
+            string pactcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18" + "%" : this.ddlPrjName.SelectedValue.ToString() + "%";
+            string usircode = this.ddlCustName.SelectedValue.ToString();
+            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_COLLECTIONMGT", "GETPAYMENTSATATUS", pactcode, usircode, todate, "", "", "", "", "");
+            if (ds1 == null)
+            {
 
-            //DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_PURCHASE01", "RPTSTOCKINVPRO", "%", frmdate, todate, "", "", "", "", "", "");
-            //if (ds1 == null)
-            //{
-            //    this.gvMatStock.DataSource = null;
-            //    this.gvMatStock.DataBind();
-            //    this.gvQtyBasis.DataSource = null;
-            //    this.gvQtyBasis.DataBind();
-            //    return;
+                this.gvpaystatus.DataSource = null;
+                this.gvpaystatus.DataBind();
 
-            //}
+                return;
 
-            //// DataTable dt=this.HiddenSamaData(ds1.Tables[0])
+            }
 
-            //Session["amtbasis"] = ds1.Tables[0];
-            //Session["qtybasis"] = ds1.Tables[1];
-            //this.Data_Bind();
+            // DataTable dt=this.HiddenSamaData(ds1.Tables[0])
+
+            ViewState["prjcoll"] = ds1.Tables[0];
+            this.Data_Bind();
         }
 
         private void Data_Bind()
         {
             DataTable dt = (DataTable)ViewState["prjcoll"];
-            DataTable dt1 = (DataTable)Session["qtybasis"];
-            DataTable dt2 = (DataTable)Session["amtbasisp"];
-            DataTable dt3 = (DataTable)Session["qtybasisp"];
+           
             string rpt = this.ddlReport.SelectedValue;
             switch (rpt)
             {
@@ -198,24 +261,25 @@ namespace RealERPWEB.F_22_Sal
                     
                     break;
                 case "PrjCollect":
-                    this.MultiView1.ActiveViewIndex = 1;
+                    this.MultiView1.ActiveViewIndex = 0;
                     this.gvprjcoll.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                    this.gvprjcoll.DataSource = dt1;
+                    this.gvprjcoll.DataSource = dt;
                     this.gvprjcoll.DataBind();
+                    this.FooterCal();
                     break;
-                case "amtbasisp":
+                case "PrjCollTilldate":
+                    this.MultiView1.ActiveViewIndex = 1;
+                    this.gvprjcolltilldate.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.gvprjcolltilldate.DataSource = dt;
+                    this.gvprjcolltilldate.DataBind();
+                    this.FooterCal();
+                    break;
+                case "PaymentStatus":
                     this.MultiView1.ActiveViewIndex = 2;
-                    this.gvAmtPeriodic.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                    this.gvAmtPeriodic.DataSource = dt2;
-                    this.gvAmtPeriodic.DataBind();
-                    this.FooterCalperiodic();
-                    break;
-                case "qtybasisp":
-                    this.MultiView1.ActiveViewIndex = 3;
-                    this.dvQtyBasisPeriodic.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                    this.dvQtyBasisPeriodic.DataSource = dt3;
-                    this.dvQtyBasisPeriodic.DataBind();
-                    ///this.FooterCalperiodicqty();
+                    this.gvpaystatus.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.gvpaystatus.DataSource = dt;
+                    this.gvpaystatus.DataBind();
+                    this.FooterCal();
                     break;
                 default:
                     break;
@@ -230,68 +294,40 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
-        //private void FooterCal()
-        //{
-        //    DataTable dt = (DataTable)Session["amtbasis"];
-
-        //    ((Label)this.gvMatStock.FooterRow.FindControl("lblrcvf")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(rcvamt)", "")) ?
-        //        0.00 : dt.Compute("Sum(rcvamt)", ""))).ToString("#,##0;(#,##0); ");
-
-        //    ((Label)this.gvMatStock.FooterRow.FindControl("lbltinf")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(trninamt)", "")) ?
-        //        0.00 : dt.Compute("Sum(trninamt)", ""))).ToString("#,##0;(#,##0); ");
-
-        //    ((Label)this.gvMatStock.FooterRow.FindControl("lbltoutf")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(trnoutamt)", "")) ?
-        //       0.00 : dt.Compute("Sum(trnoutamt)", ""))).ToString("#,##0;(#,##0); ");
-
-        //    ((Label)this.gvMatStock.FooterRow.FindControl("lbllstf")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(lsamt)", "")) ?
-        //        0.00 : dt.Compute("Sum(lsamt)", ""))).ToString("#,##0;(#,##0); ");
-
-        //    ((Label)this.gvMatStock.FooterRow.FindControl("lblnetrcvf")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(netrcvamt)", "")) ?
-        //       0.00 : dt.Compute("Sum(netrcvamt)", ""))).ToString("#,##0;(#,##0); ");
-
-        //    ((Label)this.gvMatStock.FooterRow.FindControl("lblisuf")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(issueamt)", "")) ?
-        //        0.00 : dt.Compute("Sum(issueamt)", ""))).ToString("#,##0;(#,##0); ");
-
-        //    ((Label)this.gvMatStock.FooterRow.FindControl("lblbgdconf")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(bgdconamt)", "")) ?
-        //       0.00 : dt.Compute("Sum(bgdconamt)", ""))).ToString("#,##0;(#,##0); ");
-
-        //    ((Label)this.gvMatStock.FooterRow.FindControl("lblactstktf")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(actstock)", "")) ?
-        //        0.00 : dt.Compute("Sum(actstock)", ""))).ToString("#,##0;(#,##0); ");
-
-        //    ((Label)this.gvMatStock.FooterRow.FindControl("lblbgdstkf")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(bgdstock)", "")) ?
-        //       0.00 : dt.Compute("Sum(bgdstock)", ""))).ToString("#,##0;(#,##0); ");
-
-        //    ((Label)this.gvMatStock.FooterRow.FindControl("lblvarf")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(varamt)", "")) ?
-        //        0.00 : dt.Compute("Sum(varamt)", ""))).ToString("#,##0;(#,##0); ");
-        //}
-        private void FooterCalperiodic()
+        private void FooterCal()
         {
-            DataTable dt = (DataTable)Session["amtbasisp"];
+            DataTable dt = (DataTable)ViewState["prjcoll"];
+            if (dt.Rows.Count == 0)
+                return;
+            
+            string rpt = this.ddlReport.SelectedValue;
 
-            ((Label)this.gvAmtPeriodic.FooterRow.FindControl("lblopnf")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(opamt)", "")) ?
-                0.00 : dt.Compute("Sum(opamt)", ""))).ToString("#,##0;(#,##0); ");
-            ((Label)this.gvAmtPeriodic.FooterRow.FindControl("lblrcvfp")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(rcvamt)", "")) ?
-               0.00 : dt.Compute("Sum(rcvamt)", ""))).ToString("#,##0;(#,##0); ");
-            ((Label)this.gvAmtPeriodic.FooterRow.FindControl("lbltinfp")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(trninamt)", "")) ?
-                0.00 : dt.Compute("Sum(trninamt)", ""))).ToString("#,##0;(#,##0); ");
-
-            ((Label)this.gvAmtPeriodic.FooterRow.FindControl("lbltoutfp")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(trnoutamt)", "")) ?
-               0.00 : dt.Compute("Sum(trnoutamt)", ""))).ToString("#,##0;(#,##0); ");
-
-            ((Label)this.gvAmtPeriodic.FooterRow.FindControl("lbllstfp")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(lsamt)", "")) ?
-                0.00 : dt.Compute("Sum(lsamt)", ""))).ToString("#,##0;(#,##0); ");
-
-            ((Label)this.gvAmtPeriodic.FooterRow.FindControl("lblnetrcvfp")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(netrcvamt)", "")) ?
-               0.00 : dt.Compute("Sum(netrcvamt)", ""))).ToString("#,##0;(#,##0); ");
-
-            ((Label)this.gvAmtPeriodic.FooterRow.FindControl("lblisufp")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(issueamt)", "")) ?
-                0.00 : dt.Compute("Sum(issueamt)", ""))).ToString("#,##0;(#,##0); ");
-
-            ((Label)this.gvAmtPeriodic.FooterRow.FindControl("lblactstktfp")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(actstock)", "")) ?
-                0.00 : dt.Compute("Sum(actstock)", ""))).ToString("#,##0;(#,##0); ");
+            switch (rpt)
+            {
+                case "PrjCollect":
+                    ((Label)this.gvprjcoll.FooterRow.FindControl("lgvFtamount")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(ramt)", "")) ?
+               0.00 : dt.Compute("Sum(ramt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                    break;
+                case "PrjCollTilldate":
+                    ((Label)this.gvprjcolltilldate.FooterRow.FindControl("lgvFtamounttill")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(ramt)", "")) ?
+               0.00 : dt.Compute("Sum(ramt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                    break;
+                case "PaymentStatus":
+                    ((Label)this.gvpaystatus.FooterRow.FindControl("lgvFPaidamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(paidamt)", "")) ?
+               0.00 : dt.Compute("Sum(paidamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
 
 
+
+                    break;
+                default:
+                    break;
+            }
+
+
+
+           
         }
+
 
         //private void FooterCalperiodicqty()
         //{
@@ -331,11 +367,11 @@ namespace RealERPWEB.F_22_Sal
         //    this.Data_Bind();
         //}
 
-        protected void gvQtyBasis_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            this.gvQtyBasis.PageIndex = e.NewPageIndex;
-            this.Data_Bind();
-        }
+        //protected void gvQtyBasis_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        //{
+        //    this.gvQtyBasis.PageIndex = e.NewPageIndex;
+        //    this.Data_Bind();
+        //}
         //protected void gvMatStock_RowDataBound(object sender, GridViewRowEventArgs e)
         //{
         //    if (e.Row.RowType == DataControlRowType.DataRow)
@@ -347,33 +383,17 @@ namespace RealERPWEB.F_22_Sal
         //        hlink2.NavigateUrl = "~/F_12_Inv/RptProjectStock.aspx?Type=inv&prjcode=" + pactcode;
         //    }
         //}
-        protected void gvAmtPeriodic_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            this.gvAmtPeriodic.PageIndex = e.NewPageIndex;
-            this.Data_Bind();
-        }
+        //protected void gvAmtPeriodic_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        //{
+        //    this.gvAmtPeriodic.PageIndex = e.NewPageIndex;
+        //    this.Data_Bind();
+        //}
         protected void dvQtyBasisPeriodic_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.dvQtyBasisPeriodic.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.Data_Bind();
         }
-        protected void ddlReport_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string rpt = this.ddlReport.SelectedValue;
-            switch (rpt)
-            {
-                case "amtbasis":
-                case "qtybasis":
-                    this.lblDate.Visible = false;
-                    this.txtFDate.Visible = false;
-                    break;
-                default:
-                    this.lblDate.Visible = true;
-                    this.txtFDate.Visible = true;
-                    break;
-            }
-        }
-
+       
         protected void gvAmtPeriodic_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
