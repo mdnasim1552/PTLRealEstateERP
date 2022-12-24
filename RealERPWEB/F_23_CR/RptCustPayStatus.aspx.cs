@@ -2381,10 +2381,12 @@ namespace RealERPWEB.F_23_CR
             double fcheque = (dtsum.Rows.Count == 0) ? 0 : (Convert.ToDouble(dtsum.Rows[0]["fcheque"]) > 0) ? Convert.ToDouble(dtsum.Rows[0]["fcheque"]) : 0.00;
             double retcheque = (dtsum.Rows.Count == 0) ? 0 : (Convert.ToDouble(dtsum.Rows[0]["retcheque"]) > 0) ? Convert.ToDouble(dtsum.Rows[0]["retcheque"]) : 0.00;
             double pcheque = (dtsum.Rows.Count == 0) ? 0 : (Convert.ToDouble(dtsum.Rows[0]["pcheque"]) > 0) ? Convert.ToDouble(dtsum.Rows[0]["pcheque"]) : 0.00;
-            //double reconamt = treceived - (fcheque + retcheque + pcheque);
-            double reconamt = treceived;
+            double reconamt = treceived - (fcheque + retcheque + pcheque);
+        
 
-            double netbal = tsalevalue - reconamt;
+            //double netbal = tsalevalue - reconamt;
+            double netbal = tsalevalue - treceived;
+
 
 
 
