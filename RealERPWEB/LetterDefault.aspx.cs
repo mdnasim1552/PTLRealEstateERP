@@ -2170,13 +2170,15 @@ namespace RealERPWEB
                         "<p style='margin-bottom:-11px;text-align: right;margin-right:20px;'>----------------------------------------------------</p><p>" +
                          "<p style='margin-bottom:-11px;text-align: right; margin-right:50px;'> Chief Operating Officer </p><p>" +
                         "<br>" +
+                         "<br>" +
+                          "<br>" +
                         "<p style='text-align: center;'><strong ><u>PERSONNEL EXIT REPORT</u></strong> </p>" +
                         "<br>" +
 
 
 
                          "<p style='margin-bottom:-5px;'><span text-align:left;> Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + name + "</span>" +
-                         "<span style='margin-bottom:-5px;text-align:center;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + depart + "</span></p>" +
+                         "<span style='margin-bottom:-5px;text-align:center;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Department&nbsp;:" + depart + "</span></p>" +
                          "<p style='margin-bottom:-5px;'>Designation :&nbsp;</p>" +
                          "<p style='margin-bottom:-5px;'><span text-align:left;>Joining Date :&nbsp;" + jdate + "</span>" +
                          "<span style='margin-bottom:-5px;text-align:center;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Personal Mobile: &nbsp;&nbsp;" + empMobile + "</span></p>" +
