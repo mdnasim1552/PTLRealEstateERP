@@ -6177,7 +6177,7 @@ namespace RealERPWEB.F_99_Allinterface
                     PrintReq = "PrintBillFinlay";
                     break;
                 // bill epic
-                case "3101":
+               
                 case "3367":
                     PrintReq = "PrintBillEpic";
                     break;

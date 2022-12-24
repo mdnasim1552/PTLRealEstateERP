@@ -49,7 +49,7 @@ namespace RealERPWEB.F_09_PImp
                 string corderno = this.Request.QueryString["vounum"] ?? "";
                 if (qgenno.Length > 0 || corderno.Length>0)
                 {
-                    
+                    corderno = corderno.Length == 0 ? "Previous" : corderno;
                     if (corderno.Substring(0, 3) == "COR" || qgenno.Substring(0, 3) == "MBK")
                     {
                         this.hdnmbno.Value = qgenno;
@@ -153,7 +153,8 @@ namespace RealERPWEB.F_09_PImp
                     this.grvissue.Columns[25].Visible = true;
                     this.grvissue.Columns[26].Visible = true;
                     this.grvissue.Columns[27].Visible = true;
-                    this.grvissue.Columns[28].Visible = true;
+                    this.grvissue.Columns[29].Visible = true;
+                    //  this.grvissue.Columns[28].Visible = true;
                     //this.divgrp.Attributes["style"] = "width: 750px;float: left;";
                     this.ddlgroup.Visible = true;
                     this.lblgrp.Visible = true;
@@ -694,16 +695,28 @@ namespace RealERPWEB.F_09_PImp
                 // this.ddlRA.Enabled = false;
                 mISSNo = this.ddlPrevISSList.SelectedValue.ToString();
             }
-            string qcorderno = this.Request.QueryString["vounum"] ?? "";
-            string qgenno = this.Request.QueryString["genno"] ?? "";
+            string qcorderno = this.Request.QueryString["vounum"] ?? "Previous";
+            string qgenno = this.Request.QueryString["genno"] ?? "NEWLISS";
 
 
-
-            string workorder = (qcorderno.Length > 0 || qgenno.Length>0) ? 
-                (qcorderno.Substring(0,3) == "COR" ? qcorderno : (qgenno.Substring(0, 3) == "COR" ? qgenno:"")) : "";
-           
+            switch (comcod)
+            { 
             
             
+            
+            }
+            
+            string workorder = (qcorderno.Length > 0 || qgenno.Length > 0) ?
+                (qcorderno.Substring(0, 3) == "COR" ?
+                (qgenno.Length>0?(qgenno.Substring(0, 3) == "MBK" ? qgenno : qcorderno): qcorderno) : "") 
+                : "";
+
+
+            //string workorder = (qcorderno.Length > 0 || qgenno.Length>0) ? 
+            //    (qcorderno.Substring(0,3) == "COR" ? qcorderno : (qgenno.Substring(0, 3) == "COR" ? qgenno:"")) : "";
+
+
+
             //&& || qgenno.Substring(0, 3) == "MBK"
 
             //string workorder = (this.Request.QueryString["genno"].ToString().Length > 0) ? ((this.Request.QueryString["genno"].ToString().Substring(0, 3) == "COR" || this.Request.QueryString["genno"].ToString().Substring(0, 3) == "MBK") ? this.Request.QueryString["genno"].ToString() : "") : "";
@@ -2073,14 +2086,24 @@ namespace RealERPWEB.F_09_PImp
 
 
                 TextBox txtisuqty = (TextBox)e.Row.FindControl("txtisuqty");
+                HyperLink hlnkmb = (HyperLink)e.Row.FindControl("hlnkMb");
 
                 string grp = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString();
+                string pactcode = this.ddlprjlist.SelectedValue.ToString();
+                string csircode = this.ddlcontractorlist.SelectedValue.ToString();
+                string genno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mbno")).ToString();
                 if (grp.Substring(0,1) == "2")
                 {
                     txtisuqty.Attributes["style"] = "background:#f9f9a1";
                     txtisuqty.Attributes["placeholder"] = "use - (minus qty)";
                 }
-                  
+
+
+                hlnkmb.NavigateUrl = "~/F_09_PImp/BillingMBEntry?Type=Edit&prjcode=" + pactcode + "&genno=" + genno + "&sircode=" + csircode;
+
+
+
+
             }
         }
 

@@ -125,6 +125,10 @@
           <DataField>section</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="sectionname">
+          <DataField>sectionname</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="sl">
           <DataField>sl</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
@@ -821,7 +825,7 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=Fields!section.Value</Value>
+                                  <Value>=Fields!sectionname.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>

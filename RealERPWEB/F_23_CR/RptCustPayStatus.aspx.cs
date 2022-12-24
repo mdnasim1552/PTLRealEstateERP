@@ -69,7 +69,7 @@ namespace RealERPWEB.F_23_CR
         {
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Replace("%20", " "), (DataSet)Session["tblusrlog"]);
             ((Label)this.Master.FindControl("lblmsg")).Visible = false;
-            ((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
+            //((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
 
 
             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
@@ -192,13 +192,13 @@ namespace RealERPWEB.F_23_CR
                         case "3336":
                         case "3337":
                         case "3101":
-                            this.upben.Visible = false;
+                            //this.upben.Visible = false;
                             this.chkConsolidate.Checked = true;
                             this.chkConsolidate.Visible = true;
                             break;
                         default:
 
-                            this.upben.Visible = false;
+                            //this.upben.Visible = false;
                             this.chkConsolidate.Checked = true;
                             this.chkConsolidate.Visible = true;
 
@@ -2381,7 +2381,9 @@ namespace RealERPWEB.F_23_CR
             double fcheque = (dtsum.Rows.Count == 0) ? 0 : (Convert.ToDouble(dtsum.Rows[0]["fcheque"]) > 0) ? Convert.ToDouble(dtsum.Rows[0]["fcheque"]) : 0.00;
             double retcheque = (dtsum.Rows.Count == 0) ? 0 : (Convert.ToDouble(dtsum.Rows[0]["retcheque"]) > 0) ? Convert.ToDouble(dtsum.Rows[0]["retcheque"]) : 0.00;
             double pcheque = (dtsum.Rows.Count == 0) ? 0 : (Convert.ToDouble(dtsum.Rows[0]["pcheque"]) > 0) ? Convert.ToDouble(dtsum.Rows[0]["pcheque"]) : 0.00;
-            double reconamt = treceived - (fcheque + retcheque + pcheque);
+            //double reconamt = treceived - (fcheque + retcheque + pcheque);
+            double reconamt = treceived;
+
             double netbal = tsalevalue - reconamt;
 
 
