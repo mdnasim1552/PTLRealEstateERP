@@ -273,6 +273,49 @@ namespace RealEntity.C_22_Sal
 
 
         }
+        [Serializable]
+        public class PaymentStatusReconcile
+        {
+            public string comcod { get; set; }
 
+
+            public string pactcode { get; set; }
+            public string usircode { get; set; }
+            public string mrno { get; set; }
+            public string chqno { get; set; }
+            public DateTime recdate { get; set; }
+            public DateTime recndate { get; set; }
+            public DateTime mrdate { get; set; }
+            public string refno { get; set; }
+            public string bankname { get; set; }
+            public double paidamt { get; set; }
+            public double loamt { get; set; }
+          
+
+
+
+            public PaymentStatusReconcile()
+            {
+
+            }
+
+
+        }
+        [Serializable]
+        public class PaymentStatusRevenue
+        {
+            public string comcod { get; set; }
+
+
+            public string pactcode { get; set; }
+            public string usircode { get; set; }
+            public string gcod { get; set; }
+            public double uamt { get; set; }
+
+            public PaymentStatusRevenue()
+            {
+
+            }
+        }
     }
 }

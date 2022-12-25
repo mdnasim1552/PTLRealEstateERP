@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptBgdPrjoject.aspx.cs" Inherits="RealERPWEB.F_04_Bgd.RptBgdPrjoject" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptBgdPrjoject.aspx.cs" Inherits="RealERPWEB.F_04_Bgd.RptBgdPrjoject" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Assembly="DropCheck" Namespace="xMilk" TagPrefix="cc1" %>
@@ -99,10 +99,13 @@
                 <div class="card-body">
                     <asp:Panel ID="panelHead" runat="server">
                         <div class="row">
-                          
-                                        <div class=" col-md-3" visible="false">
+                            <fieldset class="scheduler-border fieldset_A">
 
-                                           
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <div class=" col-md-3  pading5px asitCol3">
+
+                                            <asp:Label ID="lblProjectList" CssClass="lblTxt lblName " runat="server" Text="Project Name:"></asp:Label>
                                             <asp:TextBox ID="txtSrcProject" runat="server" CssClass=" inputtextbox"></asp:TextBox>
 
 
@@ -113,15 +116,14 @@
 
 
                                         <div class="col-md-4 pading5px">
-                                             <asp:Label ID="lblProjectList" CssClass="form-label" runat="server" Text="Project Name:"></asp:Label>
-                                            <asp:DropDownList ID="ddlProjectName" runat="server" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" CssClass="form-control form-control-sm chzn-select" TabIndex="13" AutoPostBack="true">
+                                            <asp:DropDownList ID="ddlProjectName" runat="server" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" CssClass="form-control inputTxt chzn-select" TabIndex="13" AutoPostBack="true">
                                             </asp:DropDownList>
 
                                         </div>
 
 
                                         <div class="col-md-1 pading5px">
-                                            <asp:LinkButton ID="lbtOk" runat="server" CssClass="btn btn-sm btn-primary primaryBtn" OnClick="lbtOk_Click">Ok</asp:LinkButton>
+                                            <asp:LinkButton ID="lbtOk" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtOk_Click">Ok</asp:LinkButton>
 
                                         </div>
 
@@ -133,8 +135,8 @@
                                         </div>
                                         <div class=" col-md-3  pading5px">
 
-                                            <asp:Label ID="Label5" CssClass="form-label" runat="server" Text="Group"></asp:Label>
-                                            <asp:DropDownList ID="ddlGrp" runat="server" CssClass="form-control ddlPage">
+                                            <asp:Label ID="Label5" CssClass="lblTxt lblName" runat="server" Text="Group"></asp:Label>
+                                            <asp:DropDownList ID="ddlGrp" runat="server" CssClass="ddlPage">
                                                 <asp:ListItem Selected="True">Work</asp:ListItem>
                                                 <asp:ListItem>Resource</asp:ListItem>
                                             </asp:DropDownList>
@@ -142,7 +144,9 @@
                                         </div>
 
 
-                                  
+                                    </div>
+                                </div>
+                            </fieldset>
                         </div>
                     </asp:Panel>
                     <asp:MultiView ID="MultiView1" runat="server">

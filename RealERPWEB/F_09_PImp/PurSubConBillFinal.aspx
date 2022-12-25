@@ -405,9 +405,9 @@
 
                         <asp:TemplateField HeaderText="Con. Qty">
                             <ItemTemplate>
-                                <asp:Label ID="lgvconqty" runat="server" Style="text-align: right"
+                                <asp:TextBox ID="txtgvconqty" runat="server" Style="text-align: right" BackColor="Transparent"
                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "conqty")).ToString("#,##0.0000;-#,##0.0000; ") %>'
-                                    Width="80px"></asp:Label>
+                                    Width="80px"></asp:TextBox>
                             </ItemTemplate>
 
                             <FooterTemplate>
