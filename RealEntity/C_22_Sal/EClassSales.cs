@@ -310,6 +310,7 @@ namespace RealEntity.C_22_Sal
             public string pactcode { get; set; }
             public string usircode { get; set; }
             public string gcod { get; set; }
+            public string gdesc { get; set; }
             public double uamt { get; set; }
 
             public PaymentStatusRevenue()

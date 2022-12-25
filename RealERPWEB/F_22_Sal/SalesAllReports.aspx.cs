@@ -249,6 +249,8 @@ namespace RealERPWEB.F_22_Sal
             // DataTable dt=this.HiddenSamaData(ds1.Tables[0])
 
             ViewState["prjcoll"] = ds1.Tables[0];
+            ViewState["prjdesc"] = ds1.Tables[1];
+            ViewState["prjcust"] = ds1.Tables[2];
             this.Data_Bind();
         }
 
@@ -421,20 +423,26 @@ namespace RealERPWEB.F_22_Sal
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printdate = System.DateTime.Now.ToString("dd-MMMM-yyyy");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string frmdate = this.txtFDate.Text;
             string todate = this.txttoDate.Text;
             string reportType = GetReportType();
-
+            DataTable dt2 = (DataTable)ViewState["prjcust"];
+           string custname = dt2.Rows[0]["custname"].ToString();
+           string udesc = dt2.Rows[0]["udesc"].ToString();
+           string mobileno = dt2.Rows[0]["mobileno"].ToString();
+           string preaddress = dt2.Rows[0]["preaddress"].ToString();
 
             LocalReport Rpt1 = new LocalReport();
             if (this.ddlReport.SelectedValue == "PaymentStatus")
             {
                 DataTable dt = (DataTable)ViewState["prjcoll"];
+                DataTable dt1 = (DataTable)ViewState["prjdesc"];
+               
                 
-                  var list = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.PaymentStatusReconcile>();
-                  var list1 = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.PaymentStatusRevenue>();
+                var list = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.PaymentStatusReconcile>();
+                var list1 = dt1.DataTableToList<RealEntity.C_22_Sal.EClassSales.PaymentStatusRevenue>();
                
                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptPaymentSystem", list, list1, null);
                    Rpt1.EnableExternalImages = true;
@@ -444,8 +452,12 @@ namespace RealERPWEB.F_22_Sal
            
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("custname", custname));
+            Rpt1.SetParameters(new ReportParameter("udesc", udesc));
+            Rpt1.SetParameters(new ReportParameter("mobileno", mobileno));
+            Rpt1.SetParameters(new ReportParameter("preaddress", preaddress));
             
-            Rpt1.SetParameters(new ReportParameter("printdate", printdate));
+            Rpt1.SetParameters(new ReportParameter("printdate", "Print Date : " + printdate));
 
 
             Session["Report1"] = Rpt1;
