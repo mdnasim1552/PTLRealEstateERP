@@ -435,6 +435,7 @@ namespace RealERPWEB.F_22_Sal
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string frmdate = this.txtFDate.Text;
             string todate = this.txttoDate.Text;
+            string prjname = this.ddlPrjName.SelectedItem.Text.Trim();
             string reportType = GetReportType();
             DataTable dt2 = (DataTable)ViewState["prjcust"];
            string custname = dt2.Rows[0]["custname"].ToString();
@@ -463,6 +464,7 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("custname", custname));
             Rpt1.SetParameters(new ReportParameter("udesc", udesc));
             Rpt1.SetParameters(new ReportParameter("mobileno", mobileno));
+            Rpt1.SetParameters(new ReportParameter("prjname", prjname));
             Rpt1.SetParameters(new ReportParameter("preaddress", preaddress));
             
             Rpt1.SetParameters(new ReportParameter("printdate", "Print Date : " + printdate));
