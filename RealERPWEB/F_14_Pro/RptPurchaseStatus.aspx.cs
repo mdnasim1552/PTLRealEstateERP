@@ -378,10 +378,10 @@ namespace RealERPWEB.F_14_Pro
                     this.MultiView1.ActiveViewIndex = 9;
                     break;
 
+                case "GenBillTrack":
+                    this.MultiView1.ActiveViewIndex = 10;
+                    break;
             }
-
-
-
         }
 
 
@@ -1640,7 +1640,6 @@ namespace RealERPWEB.F_14_Pro
 
 
             }
-
 
             return dt1;
 
