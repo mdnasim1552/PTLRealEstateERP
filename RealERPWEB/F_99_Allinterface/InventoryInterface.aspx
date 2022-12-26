@@ -500,11 +500,12 @@
         function pageLoaded() {
             var comcod = <%=this.GetCompCode()%>;
             switch (comcod) {
-                case 1205:   // p2p Eng 
-                case 3351:   // weacon 
-                case 3352:   // 360   
-                    $(".tbMenuWrp table tr td:nth-child(3)").show();// Check  
-                    break;
+                //case 1205:   // p2p Eng 
+                //case 3351:   // weacon 
+                //case 3352:   // 360   
+
+                  //  $(".tbMenuWrp table tr td:nth-child(3)").show();// Check  
+                 //   break;
                 case 3367:   // Epic Properties
                     $(".tbMenuWrp table tr td:nth-child(2)").show();// mgt Check  
                     $(".tbMenuWrp table tr td:nth-child(3)").show();// Check  
