@@ -117,14 +117,14 @@ namespace RealERPWEB.F_22_Sal
         }
         protected void gvPaySch_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            if (((TextBox)gvPaySch.Rows[e.RowIndex].FindControl("txtgrcode")).Text.Trim().Length == 6)
+            if (((Label)gvPaySch.Rows[e.RowIndex].FindControl("lbgrcod3")).Text.Trim().Length == 6)
             {
                 //Hashtable hst = (Hashtable)Session["tblLogin"];
                 //string comcod = hst["comcod"].ToString();
 
                 string comcod = this.GetCompCode();
                 string gcode1 = ((Label)gvPaySch.Rows[e.RowIndex].FindControl("lblgrcode")).Text.Trim();
-                string gcode2 = ((TextBox)gvPaySch.Rows[e.RowIndex].FindControl("txtgrcode")).Text.Trim().Replace("-", "");
+                string gcode2 = ((TextBox)gvPaySch.Rows[e.RowIndex].FindControl("lbgrcod3")).Text.Trim().Replace("-", "");
 
                 string Desc = ((TextBox)gvPaySch.Rows[e.RowIndex].FindControl("txtgvDesc")).Text.Trim();
                 string tgcod = gcode1.Substring(0, 2) + gcode2;
@@ -358,19 +358,20 @@ namespace RealERPWEB.F_22_Sal
                 return;
             }
 
-            //bool result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "ADDSALECODE", tgrcode,
-            //              Desc, Gtype, rate, "", sl, DescBN, mnumber, "", chkstatus, "", "", "", "");
+            bool result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTPAYMENTCODE", tpaymentcode,
+                          Desc, DescBN, Gtype, mnumber, "", "", "", "", "");
 
-            //if (result == true)
-            //{
-            //    ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Created ";
-            //}
+            if (result == true)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Created ";
+            }
 
-            //else
-            //{
-            //    ((Label)this.Master.FindControl("lblmsg")).Text = "Create Failed";
-            //}
+            else
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Create Failed";
+            }
             ShowInformation();
+            gvPaySch_DataBind();
         }
     }
 }       

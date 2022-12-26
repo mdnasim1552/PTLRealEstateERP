@@ -66,34 +66,42 @@ namespace RealERPWEB.F_22_Sal
 
                     this.lblDate.Visible = true; 
                     this.txtFDate.Visible = true;
+                    this.clfdate.Visible = true;
                     this.lbltoDate.Visible = true; 
                     this.txttoDate.Visible = true;
                     this.clstodat.Visible = true;
                     this.imgbtnFindCustomer.Visible = false;
                     this.ddlCustName.Visible = false;
+                    this.clcust.Visible = false;
                     break;
 
                 case "PrjCollTilldate":                               
                     this.lblDate.Visible = false;
                     this.txtFDate.Visible = false;
+                    this.clfdate.Visible = false;
                     this.imgbtnFindCustomer.Visible = false;
                     this.ddlCustName.Visible = false;
+                    this.clcust.Visible = false;
                     break;
 
                 case "PaymentStatus":
                     this.lblDate.Visible = false;
                     this.txtFDate.Visible = false;
+                    this.clfdate.Visible = false;
                     this.imgbtnFindCustomer.Visible = true;
                     this.ddlCustName.Visible = true;
+                    this.clcust.Visible = true;
                     break;
                 default:
                     this.lblDate.Visible = true;
                     this.txtFDate.Visible = true;
+                    this.clfdate.Visible = false;
                     this.lbltoDate.Visible = true;
                     this.txttoDate.Visible = true;
                     this.clstodat.Visible = true;
                     this.imgbtnFindCustomer.Visible = false;
                     this.ddlCustName.Visible = false;
+                    this.clcust.Visible = false;
                     break;
             }
         }
