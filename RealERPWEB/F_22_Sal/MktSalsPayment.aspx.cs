@@ -232,8 +232,8 @@ namespace RealERPWEB.F_22_Sal
                 string ddldesc = hst["ddldesc"].ToString();
                 this.lblProjectmDesc.Text = (ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim().ToString() :
                     this.ddlProjectName.SelectedItem.Text.Substring(13));
-                this.ddlProjectName.Visible = false;
-                this.lblProjectmDesc.Visible = true;
+                //this.ddlProjectName.Visible = false;
+                //this.lblProjectmDesc.Visible = true;
                 this.GetCustomerinfo();
                 this.LoadGrid();
 
