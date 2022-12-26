@@ -239,7 +239,7 @@ namespace RealERPWEB.F_38_AI
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text = gdatat;
                         break;
                     case "03018"://order type
-                        string ordtype = ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvdVal")).Text.ToString();
+                        string ordtype = ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.ToString();
                         dv2 = dt3.DefaultView;
                         dv2.RowFilter = ("gcod like '80%' and gcod not like'%00'");
                         ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
@@ -332,9 +332,9 @@ namespace RealERPWEB.F_38_AI
         {
             try
             {
-                string prjcode = this.lblproj.Text.Trim().ToString();
+                string sircode = this.lblproj.Text.Trim().ToString();
                 string comcod = this.GetComdCode();
-                string sircode = "";
+               
                 for (int i = 0; i < this.gvProjectInfo.Rows.Count; i++)
                 {
                    
@@ -342,7 +342,7 @@ namespace RealERPWEB.F_38_AI
                     string Gcode = ((Label)this.gvProjectInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
                     string gtype = ((Label)this.gvProjectInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
                     string Gvalue = (((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvProjectInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvProjectInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
-                    if (Gcode == "03018")// order type
+                    if (Gcode == "03018" && sircode.Length==0)// order type
                     {
                         sircode = this.GetLastid(Gvalue);
 

@@ -72,7 +72,11 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_83_Att.rptMonthyEarlyLeaveEmp": Rpt1a = SetRptMonthyEarlyLeaveEmp(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_83_Att.RptAttendenceSheetEarly": Rpt1a = SetRptAttendenceSheetEarly(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_83_Att.RptMonAttendanceBTI": Rpt1a = SetRptMonAttendanceBTI(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_83_Att.RptMonAttendanceBTIEXCEL": Rpt1a = SetRptMonAttendanceBTIEXCEL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
                 case "R_81_Hrm.R_83_Att.RptMonAttendanceBTI02": Rpt1a = SetRptMonAttendanceBTI02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_83_Att.RptMonAttendanceBTI02EXCEL": Rpt1a = SetRptMonAttendanceBTI02EXCEL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
 
                 //LeaveApp by Parbaz
                 case "R_81_Hrm.R_84_Lea.EmpLeavApp": Rpt1a = SetEmpLeavApp(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -334,12 +338,25 @@ namespace RealERPRDLC
             rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpMnthAttn>)rptDataSet));
             return rpt1a;
         }
+
+        private static LocalReport SetRptMonAttendanceBTI02EXCEL(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
+        {
+            rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpMnthAttn>)rptDataSet));
+            return rpt1a;
+        }
+
         private static LocalReport SetRptMonAttendanceEPIC(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
         {
             rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.RptMntAttenReport>)rptDataSet));
             return rpt1a;
         }
         private static LocalReport SetRptMonAttendanceBTI(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
+        {
+            rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpMnthAttn>)rptDataSet));
+            return rpt1a;
+        }
+
+        private static LocalReport SetRptMonAttendanceBTIEXCEL(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
         {
             rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpMnthAttn>)rptDataSet));
             return rpt1a;

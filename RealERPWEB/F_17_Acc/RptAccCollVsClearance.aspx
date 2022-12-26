@@ -116,7 +116,7 @@
                                         </asp:RadioButtonList>
                                     </div>
 
-                                    <div class="col-md-5 pading5px">
+                                    <div class="col-md-2 pading5px">
                                         <asp:RadioButtonList ID="rbtCol" runat="server" CssClass="rbtnList1" RepeatDirection="Horizontal" Visible="False">
                                             <asp:ListItem Selected="True">Data</asp:ListItem>
                                             <asp:ListItem>Bar Chart</asp:ListItem>
@@ -125,6 +125,9 @@
                                         <asp:CheckBox runat="server" Text="Project Wise" ID="chkSal" Visible="False" />
 
                                     </div>
+                                    <div class="col-md-1 pading5px">
+                                        <asp:CheckBox ID="WithCanUnit" runat="server" Text="With Cancel Unit" Checked="false" AutoPostBack="true" OnCheckedChanged="WithCanUnit_CheckedChanged" />
+                                        </div>
                                 </div>
                             </div>
                         </fieldset>
@@ -2678,21 +2681,25 @@
                         fontWeight: 'bold'
                     }
                 },
+                //xAxis: {
+                //    categories: [
+                //        'Jan',
+                //        'Feb',
+                //        'Mar',
+                //        'Apr',
+                //        'May',
+                //        'Jun',
+                //        'Jul',
+                //        'Aug',
+                //        'Sep',
+                //        'Oct',
+                //        'Nov',
+                //        'Dec'
+                //    ],
+                //    crosshair: true
+                //},
                 xAxis: {
-                    categories: [
-                        'Jan',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug',
-                        'Sep',
-                        'Oct',
-                        'Nov',
-                        'Dec'
-                    ],
+                    type: 'category',
                     crosshair: true
                 },
                 yAxis: {
@@ -2953,21 +2960,25 @@
                         fontWeight: 'bold'
                     }
                 },
+                //xAxis: {
+                //    categories: [
+                //        'Jan',
+                //        'Feb',
+                //        'Mar',
+                //        'Apr',
+                //        'May',
+                //        'Jun',
+                //        'Jul',
+                //        'Aug',
+                //        'Sep',
+                //        'Oct',
+                //        'Nov',
+                //        'Dec'
+                //    ],
+                //    crosshair: true
+                //},
                 xAxis: {
-                    categories: [
-                        'Jan',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug',
-                        'Sep',
-                        'Oct',
-                        'Nov',
-                        'Dec'
-                    ],
+                    type: 'category',
                     crosshair: true
                 },
                 yAxis: {

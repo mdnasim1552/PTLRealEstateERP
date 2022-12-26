@@ -653,8 +653,12 @@ namespace RealERPWEB.F_23_CR
             string username = hst["username"].ToString();
             string comcod = hst["comcod"].ToString();
             //string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             DateTime frmdate = Convert.ToDateTime(this.txtfrmdate.Text.Trim());
             DateTime todate = Convert.ToDateTime(this.txttodate.Text.Trim());
+
+            string frmdt = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).ToString("MMM yy");
+            string todt = Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("MMM yy");
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             DataTable dt1 = (DataTable)Session["tblAccRec"];
 
@@ -666,10 +670,11 @@ namespace RealERPWEB.F_23_CR
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptYearlyCollectionForecasting", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("companyname", comnam));
-            //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "YEARLY COLLECTION FORCASTING"));
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
             Rpt1.SetParameters(new ReportParameter("date", "From(" + this.txtfrmdate.Text.Trim() + " To " + this.txttodate.Text + ")"));
+            Rpt1.SetParameters(new ReportParameter("cdate", "("+frmdt+"-"+todt +")"));
 
             for (int i = 1; i <= 12; i++)
             {

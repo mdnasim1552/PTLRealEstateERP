@@ -11,7 +11,7 @@
 
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
+            $('.chzn-select').chosen({ search_contains: true });
         });
         function pageLoaded() {
             var gv = $('#<%=this.gvUnit.ClientID %>');
@@ -68,7 +68,7 @@
                         <div class="col-md-3 col-sm-3 col-lg-3">
                             <div class="form-group">
                                 <asp:Label ID="lblPrjName" runat="server" CssClass="control-label" Text=""></asp:Label>
-                                <asp:LinkButton ID="ibtnFindProject" CssClass="srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2">Project Name</asp:LinkButton>
+                                <asp:LinkButton ID="ibtnFindProject" CssClass="srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2">Project Name&nbsp;<i class="fas fa-search"></i></asp:LinkButton>
                                 <asp:TextBox ID="txtSrcPro" runat="server" CssClass="form-control form-control-sm" TabIndex="1" Visible="false"></asp:TextBox>
                                 <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control form-control-sm" style="width:290px;" TabIndex="3">
                                 </asp:DropDownList>
@@ -78,7 +78,7 @@
                         <div class="col-md-2 col-sm-2 col-lg-2">
                             <div class="form-group">
                                 <asp:Label ID="Label1" runat="server" CssClass="control-label" Text=""></asp:Label>
-                                <asp:LinkButton ID="btnType" CssClass="srearchBtn" OnClick="btnType_Click" runat="server" TabIndex="2">Type Name</asp:LinkButton>
+                                <asp:LinkButton ID="btnType" CssClass="srearchBtn" OnClick="btnType_Click" runat="server" TabIndex="2">Type Name&nbsp;<i class="fas fa-search"></i></asp:LinkButton>
                                 <asp:TextBox ID="txtType" runat="server" CssClass="form-control form-control-sm" TabIndex="1" Visible="false"></asp:TextBox>
                                 <asp:DropDownList ID="ddlUnitType" runat="server" CssClass="form-control form-control-sm chzn-select" style="width:185px;" AutoPostBack="true" TabIndex="4" OnSelectedIndexChanged="ddlUnitType_SelectedIndexChanged">
                                 </asp:DropDownList>
@@ -88,7 +88,7 @@
                             <div class="form-group">
                                 <asp:Label ID="lblMaterials" runat="server" CssClass="lblTxt lblName" Text=""></asp:Label>
                                 <asp:TextBox ID="txtSrcMat" runat="server" CssClass="form-control form-control-sm" TabIndex="1" Visible="false"></asp:TextBox>
-                                <asp:LinkButton ID="ibtnGroup" CssClass="srearchBtn" runat="server" OnClick="ibtnGroup_Click" TabIndex="2">Group Name</asp:LinkButton>
+                                <asp:LinkButton ID="ibtnGroup" CssClass="srearchBtn" runat="server" OnClick="ibtnGroup_Click" TabIndex="2">Group Name&nbsp;<i class="fas fa-search"></i></asp:LinkButton>
                                 <asp:DropDownList ID="ddlGroup" runat="server" CssClass="form-control form-control-sm  chzn-select" style="width:185px;" AutoPostBack="true" OnSelectedIndexChanged="ddlGroup_SelectedIndexChanged" TabIndex="4">
                                 </asp:DropDownList>
                             </div>

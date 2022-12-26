@@ -11,6 +11,10 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
+
+
+            $('.chzn-select').chosen({ search_contains: true });
+
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
 

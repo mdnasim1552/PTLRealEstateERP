@@ -8,9 +8,9 @@
 //------------------------------------------------------------------------------
 
 
-namespace RealERPWEB
+namespace RealERPWEB.F_81_Hrm.F_97_MIS
 {
-    public partial class Oops
+    public partial class RptServiceStoryProjectWise
     {
     }
 }

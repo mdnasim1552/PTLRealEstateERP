@@ -69,6 +69,8 @@ namespace RealEntity.C_81_Hrm.C_83_Att
             public string company { get; set; }
             public string deptid { get; set; }
             public string section { get; set; }
+            public string sectionname { get; set; }
+
             public string joindate { get; set; }
             public string desigid { get; set; }
             public string gradeid { get; set; }

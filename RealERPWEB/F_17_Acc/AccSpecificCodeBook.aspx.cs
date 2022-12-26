@@ -25,6 +25,7 @@ namespace RealERPWEB.F_17_Acc
         ProcessRAccess Rprss = new ProcessRAccess();
         ProcessAccess da = new ProcessAccess();
         //static string tempddl1 = "", tempddl2 = "";
+        string msg = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -46,7 +47,7 @@ namespace RealERPWEB.F_17_Acc
         {
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Replace("%20", " "), (DataSet)Session["tblusrlog"]);
             ((Label)this.Master.FindControl("lblmsg")).Visible = false;
-            ((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
+            //((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
 
 
             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
@@ -147,7 +148,7 @@ namespace RealERPWEB.F_17_Acc
             try
             {
                 string comcod = this.GetComeCode();
-                string sircode1 = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgrcode")).Text.Trim().Replace("-", "");
+                string sircode1 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lbgrcod")).Text.Trim().Replace("-", "");
                 string sircode2 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lbgrcode")).Text.Trim().Replace("-", "");
                 string sircode = "";
                 if (sircode1.Length == 5)
@@ -167,6 +168,16 @@ namespace RealERPWEB.F_17_Acc
                 int Index = grvacc.PageSize * grvacc.PageIndex + e.RowIndex;
                 this.grvacc.EditIndex = -1;
                 bool result = false;
+                bool isResultValid = true;
+                if (Desc.Length == 0)
+                {
+                    msg = "Resource Head is not empty";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+                    isResultValid = false;
+                    return;
+                }
                 result = this.da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "SPACCOUNTUPDATE", sircode2.Substring(0, 2), sircode, Desc, "", "", "", "", "", "", "", "", "", "", "", "");
                 if (result)
                 {
@@ -199,7 +210,6 @@ namespace RealERPWEB.F_17_Acc
         protected void grvacc_DataBind()
         {
             DataTable tbl1 = (DataTable)Session["storedata"];
-            this.grvacc.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.grvacc.DataSource = tbl1;
             this.grvacc.DataBind();
 
@@ -221,34 +231,22 @@ namespace RealERPWEB.F_17_Acc
             try
             {
 
-                if (this.lnkok.Text == "Ok")
+                if (this.lbtnOk.Text == "Ok")
                 {
 
-                    this.lnkok.Text = "New";
+                    this.lbtnOk.Text = "New";
 
                     this.ddlMainBook.Enabled = false;
                     this.ddlCodeSegment.Enabled = false;
-
-
-                    this.ibtnSrch.Visible = true;
-                    this.lblPage.Visible = true;
-                    this.ddlpagesize.Visible = true;
-                    this.ibtnGroup.Visible = true;
                     this.ShowInformation();
                 }
-
 
                 else
                 {
 
-                    this.lnkok.Text = "Ok";
+                    this.lbtnOk.Text = "Ok";
                     this.ddlMainBook.Enabled = true;
                     this.ddlCodeSegment.Enabled = true;
-
-                    this.ibtnSrch.Visible = false;
-                    this.ibtnGroup.Visible = false;
-                    this.lblPage.Visible = false;
-                    this.ddlpagesize.Visible = false;
                     this.grvacc.DataSource = null;
                     this.grvacc.DataBind();
                 }
@@ -421,6 +419,105 @@ namespace RealERPWEB.F_17_Acc
             }
 
 
+        }
+
+        protected void lbtnAdd_Click(object sender, EventArgs e)
+        {
+            string msg = "";
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["entry"]))
+            {
+
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
+                return;
+            }
+
+            GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int RowIndex = gvr.RowIndex;
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            int index = this.grvacc.PageSize * this.grvacc.PageIndex + RowIndex;
+            string spcfcod2 = ((DataTable)Session["storedata"]).Rows[index]["spcfcod2"].ToString();
+            string spcfcod4 = ((DataTable)Session["storedata"]).Rows[index]["spcfcod4"].ToString();
+            this.spcfcod2.Text = spcfcod2;
+            this.lbgrcod.Text = spcfcod4;
+            this.txtspccode.Text = spcfcod4.Substring(0, 2) + "-" + ASTUtility.Right(spcfcod4, 3);
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+        }
+
+        protected void lbtnAddCode_Click(object sender, EventArgs e)
+        {
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["entry"]))
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+            }
+            try
+            {
+                string comcod = this.GetComeCode();
+
+                string speccode1 = this.txtspccode.Text.Trim().Replace("-", "");
+                string speccode2 = this.spcfcod2.Text.Trim().Replace("-", "");
+                string speccode3 = lbgrcod.Text.Trim().Replace("-","");
+                string Desc = this.txtgvDesc.Text.Trim();
+                string speccode = "";
+                if (speccode1.Length == 5)
+                {
+                    speccode = speccode2 + speccode1;
+                }
+                else
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Invalid code!";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+
+                }
+                string mnumber = (speccode1 == speccode3) ? "" : "manual";
+   
+                bool result = false;
+                bool isResultValid = true;
+                if (Desc.Length == 0)
+                {
+                    msg = "Resource Head is not empty";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+                    isResultValid = false;
+                    return;
+                }
+                result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTSPECODE", speccode, Desc, mnumber, "", "", "", "","");
+                if (result)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+                    if (ConstantInfo.LogStatus == true)
+                    {
+                        string eventtype = "Specification CodeBook";
+                        string eventdesc = "Update CodeBook";
+                        string eventdesc2 = speccode;
+                        bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                    }
+                }
+                else
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Parent Code Not Found!!!";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                }
+                this.ShowInformation();
+            }
+
+            catch (Exception ex)
+            {
+
+
+            }
         }
     }
 }
