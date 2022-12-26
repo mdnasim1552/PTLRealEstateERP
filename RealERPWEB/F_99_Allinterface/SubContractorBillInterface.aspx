@@ -1070,6 +1070,20 @@
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
+
+                                              <asp:TemplateField HeaderText="MB No">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvmbno1" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mbno1")) %>'
+                                                        Width="70px"></asp:Label>
+                                                  
+                                                </ItemTemplate>
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+
+
                                             <asp:TemplateField HeaderText="Date">
 
                                                 <ItemTemplate>
@@ -1201,13 +1215,43 @@
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
                                                     <asp:HyperLink ID="lnkbtnPrintBU" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span></asp:HyperLink>
-                                                    <%-- <asp:HyperLink ID="lnkbtnApp" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span class="glyphicon glyphicon-ok"></span>
-                                                                    </asp:HyperLink>
-                                                                    <asp:LinkButton ID="btnDelOrder" runat="server"><span style="color:red" class="glyphicon glyphicon-floppy-remove"></span> </asp:LinkButton>--%>
+
+                                                      
+
+                                               
                                                 </ItemTemplate>
-                                                <ItemStyle Width="50px" />
-                                                <HeaderStyle HorizontalAlign="Center" Width="50px" VerticalAlign="Top" />
+                                                <ItemStyle Width="20px" />
+                                                <HeaderStyle HorizontalAlign="Center" Width="20px" VerticalAlign="Top" />
                                             </asp:TemplateField>
+
+
+                                            
+                                            <asp:TemplateField HeaderText="">
+                                                <ItemTemplate>
+                                                   
+
+                                                        <asp:HyperLink ID="hlnkconBillDetaitls" runat="server" ToolTip="MB Details" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"
+                                                        Visible='<%# (Convert.ToBoolean((Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) == "3370") || (Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")) == "3101")) ? true : false)%>'>  
+                                                         <i class=" fa fa-info-circle" aria-hidden="false"></i>
+                                                    </asp:HyperLink>
+
+
+                                               
+                                                </ItemTemplate>
+                                                <ItemStyle Width="20px" />
+                                                <HeaderStyle HorizontalAlign="Center" Width="20px" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+
+                                            
+
+
+                                         
+
+
+
+
+
                                         </Columns>
                                         <FooterStyle CssClass="grvFooter" />
                                         <EditRowStyle />

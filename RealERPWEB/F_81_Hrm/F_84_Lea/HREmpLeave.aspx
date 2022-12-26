@@ -392,6 +392,14 @@
                                             </asp:TemplateField>
 
 
+                                             <asp:TemplateField HeaderText="Confirm Date">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvconf" runat="server" Height="16px" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "confdate")).ToString("dd-MMM-yyyy") %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                                <ItemStyle HorizontalAlign="left" />
+                                            </asp:TemplateField>
 
 
                                             <asp:TemplateField HeaderText="Designation">

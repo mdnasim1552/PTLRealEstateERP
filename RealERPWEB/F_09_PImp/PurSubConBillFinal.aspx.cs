@@ -1108,9 +1108,10 @@ namespace RealERPWEB.F_09_PImp
             {
                 double conrate = ASTUtility.StrPosOrNagative(((TextBox)this.gvSubBill.Rows[i].FindControl("lgvSubRate")).Text.Trim());
 
-                double conqty = ASTUtility.StrPosOrNagative(((Label)this.gvSubBill.Rows[i].FindControl("lgvconqty")).Text.Trim());
+                double conqty = ASTUtility.StrPosOrNagative(((TextBox)this.gvSubBill.Rows[i].FindControl("txtgvconqty")).Text.Trim());
                 double billamt = ASTUtility.StrPosOrNagative(((TextBox)this.gvSubBill.Rows[i].FindControl("txtgvamt")).Text.Trim());
                 TblRowIndex = (gvSubBill.PageIndex) * gvSubBill.PageSize + i;
+
 
                 //if (Request.QueryString["status"] != null)
                 //{
@@ -1124,8 +1125,9 @@ namespace RealERPWEB.F_09_PImp
                 //else
                 //{
 
-                    dt.Rows[TblRowIndex]["billamt"] = billamt;
-                    dt.Rows[TblRowIndex]["conrate"] = conqty == 0 ? 0.00 : billamt / conqty;
+                    dt.Rows[TblRowIndex]["conqty"] = conqty;
+                    dt.Rows[TblRowIndex]["billamt"] = conqty>0? conqty*conrate: billamt;
+                dt.Rows[TblRowIndex]["conrate"] = conqty == 0 ? 0.00 : billamt / conqty;
                // }
 
 
