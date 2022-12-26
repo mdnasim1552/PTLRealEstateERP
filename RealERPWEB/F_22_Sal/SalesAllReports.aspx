@@ -72,7 +72,7 @@
                         </div>
                         
 
-                        <div class="col-md-2">
+                        <div class="col-md-2" runat="server" visible="false" id="clfdate">
                             <div class="form-group">
                                 <label ID="lblDate" runat="server" Visible="false">From Date</label>
                                 <asp:TextBox ID="txtFDate" runat="server" CssClass="form-control form-control-sm" visible="false"></asp:TextBox>
@@ -97,7 +97,7 @@
                                 <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="form-control form-control-sm chzn-select" style="width:200px" AutoPostBack="True" OnSelectedIndexChanged="ddlPrjName_SelectedIndexChanged"></asp:DropDownList>
                             </div>
                         </div>
-                       <div class="col-md-2">
+                       <div class="col-md-2" runat="server" visible="false" id="clcust">
                            <div class="form-group">
                               <%--  <asp:Label ID="Label6" runat="server" CssClass="control-label"></asp:Label>--%>
                                 <asp:TextBox ID="txtSrcCustomer" runat="server" CssClass="form-control form-control-sm" TabIndex="14" Visible="false"></asp:TextBox>
