@@ -1305,6 +1305,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2202276", "F_22_Sal", "RptSalesVsAchievement?", "Type=DownpayClearnce", "Down Payment Status (Prev.Sales)", "Sales", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202277", "F_22_Sal", "RptSalesVsAchievement?", "Type=CollectionStatus", "Month Wise Sales ( Collection Status ) ", "Sales", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2203000", "2202279", "F_22_Sal", "RptSalesVsCollTeamWise?", "Type=SalesTeam", "Executive Wise Sales", "Sales & Recovery", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2203000", "2202280", "F_22_Sal", "SalesAllReports?", "Type=AllReports", "Sales All Reports", "Sales & Recovery", "False", "False", "False", "False" });
 
 
 
@@ -2267,6 +2268,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102069", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=TotalEmplist", "Total Employee List", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102110", "F_81_Hrm/F_83_Att", "RptEmpAbsCount?", "Type=", "Employee Absent Count List", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102070", "F_81_Hrm/F_92_Mgt", "EmpEvaluationFrm", "", "Employee Evaluation For Confirmation", "ACR", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8103071", "F_81_Hrm/F_97_MIS", "RptServiceStoryProjectWise", "", "Service Story(Project Wise)", "MIS", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102172", "F_81_Hrm/F_84_Lea", "YearlyHoliday", "", "Yearly Holidays", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102173", "F_81_Hrm/F_99_MgtAct", "RptgroupAttendance?", "Type=Dept", "Employee Daily Attendance(Department Wise)", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102174", "F_81_Hrm/F_92_Mgt", "EmployeeListEpic", "", "Employee List Details", "HR Management", "False", "False", "False", "False" });
@@ -7653,6 +7655,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000006", "18. Periodic Sales With Collection ", "F_22_Sal/RptPeriodicSalesWithCollection", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0401000007", "19. Monthly Sales Target-Market", "F_22_Sal/RptSalSummery?Type=mSalesTarget", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000008", "19. Sales All Reports", "F_22_Sal/SalesAllReports?Type=AllReports", "", true, "" });
+
 
             mnuTbl1.Rows.Add(new Object[] { "0402000000", "Other Related Report", "", "", false, "mb" });
 
@@ -15835,6 +15839,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0206000001", "01. Employee Confirmation Date", "F_81_Hrm/F_92_Mgt/HREmpConfirmation", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000002", "03. Salary Hold", "F_81_Hrm/F_92_Mgt/EmpHold", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000003", "05. HR Leave Approval Setup", "F_81_Hrm/F_92_Mgt/HrLeaveApprovalForm", "", true, "" });                    
+            mnuTbl1.Rows.Add(new Object[] { "0206000033", "05. Service Story (Project Wise)", "F_81_Hrm/F_97_MIS/RptServiceStoryProjectWise", "", true, "" });                    
             mnuTbl1.Rows.Add(new Object[] { "0206000004", "01. Department Permission Access", "F_81_Hrm/F_92_Mgt/PayrollLink", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000004", "01.Section Wise Permission", "F_81_Hrm/F_92_Mgt/EntrySectionWisePermission", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000005", "06. Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=EmpList&comcod=", "", true, "" });

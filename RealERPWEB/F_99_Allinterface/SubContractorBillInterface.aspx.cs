@@ -1370,6 +1370,7 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkbtnPrintBU");
+                HyperLink hlnkconBillDetaitls = (HyperLink)e.Row.FindControl("hlnkconBillDetaitls");
 
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -1377,12 +1378,11 @@ namespace RealERPWEB.F_99_Allinterface
                 string billno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "billno")).ToString();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "csircode")).ToString();
-                //string isudate = Convert.ToDateTime (DataBinder.Eval (e.Row.DataItem, "isudat")).ToString ("dd-MMM-yyyy");
-
-
+                string mbno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mbno")).ToString();
                 hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ConBillFinalization&billno=" + billno;
+                hlnkconBillDetaitls.NavigateUrl = "~/F_09_PImp/BillingMBEntry?Type=Entry&prjcode=" + pactcode + "&genno=" + mbno + "&sircode=" + sircode;
 
-
+            
 
 
             }
