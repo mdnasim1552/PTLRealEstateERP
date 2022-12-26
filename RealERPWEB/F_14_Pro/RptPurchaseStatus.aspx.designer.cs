@@ -123,6 +123,51 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.DropDownList ddlSerialno;
 
         /// <summary>
+        /// genbillno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl genbillno;
+
+        /// <summary>
+        /// lblGenBillTrack control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblGenBillTrack;
+
+        /// <summary>
+        /// TextGenBillTrack control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextGenBillTrack;
+
+        /// <summary>
+        /// LinkGenBillTrack control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkGenBillTrack;
+
+        /// <summary>
+        /// ddlGenBillTracking control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlGenBillTracking;
+
+        /// <summary>
         /// lbtnOk control.
         /// </summary>
         /// <remarks>
@@ -490,6 +535,24 @@ namespace RealERPWEB.F_14_Pro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvDescrip;
+
+        /// <summary>
+        /// GenBillTrack control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View GenBillTrack;
+
+        /// <summary>
+        /// gvGenBillTracking control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvGenBillTracking;
 
         /// <summary>
         /// ViewBudgetBal control.
