@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="MktSalsPayment.aspx.cs" Inherits="RealERPWEB.F_22_Sal.MktSalsPayment" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="MktSalsPayment.aspx.cs" Inherits="RealERPWEB.F_22_Sal.MktSalsPayment" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -10,7 +10,7 @@
 
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
+            $('.chzn-select').chosen({ search_contains: true });
         });
         function pageLoaded() {
             $("input, select").bind("keydown", function (event) {
@@ -106,45 +106,49 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+
+
+
+            <div class="card card-fluid">
+                <div class="card-body">
                     <div class="row">
-                        <fieldset class="scheduler-border fieldset_B">
-
-                            <div class="form-horizontal">
-
-                                <div class="form-group">
-
-                                    <div class="col-md-5 pading5px">
-                                        <asp:Label ID="lblMaterial" runat="server" CssClass="lblTxt lblName" Text="Project Name"></asp:Label>
-                                        <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputTxt inpPixedWidth" Visible="false" TabIndex="10"></asp:TextBox>
-
-                                        <div class="colMdbtn">
-                                            <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindProject_Click" Visible="false" TabIndex="9"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                        </div>
-
-                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select inputTxt" Width="350px" TabIndex="12">
-                                        </asp:DropDownList>
-                                        <asp:Label ID="lblProjectdesc" runat="server" CssClass="form-control inputTxt" Visible="false"></asp:Label>
-                                        <asp:Label ID="lblProjectmDesc" runat="server" Visible="False" Width="350px" CssClass="lblTxt lblName txtAlgLeft"></asp:Label>
-
-
-                                    </div>
-
-                                    <div class=" col-md-7  pading5px">
-
-                                        <asp:Label ID="lblSearch" CssClass=" smLbl_to" runat="server" Text="Unit Name"></asp:Label>
-                                        <asp:TextBox ID="txtsrchunit" runat="server" CssClass=" inputtextbox"></asp:TextBox>
-                                        <asp:LinkButton ID="lbtnsrchunit" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="lbtnsrchunit_Click" TabIndex="12"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
-
-                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
-                                        <asp:Label ID="lmsg" runat="server" CssClass="lblTxt lblName  btn-danger pull-right" Visible="false"></asp:Label>
-
-
-                                    </div>
-                        </fieldset>
+                        <div class="col-md-4 col-sm-4 col-lg-4">
+                            <div class="form-group">
+                               <asp:Label ID="lblMaterial" runat="server" CssClass="control-label" Text="Project Name"></asp:Label>
+                                <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputTxt inpPixedWidth" Visible="false" TabIndex="10"></asp:TextBox>
+                                 <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindProject_Click" Visible="false" TabIndex="9"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>                                
+                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control form-control-sm" style="width:386px;"  TabIndex="12">
+                                </asp:DropDownList>
+                                <asp:Label ID="lblProjectdesc" runat="server" CssClass="form-control inputTxt" Visible="false"></asp:Label>
+                                <asp:Label ID="lblProjectmDesc" runat="server" Visible="False" Width="350px" CssClass="lblTxt lblName txtAlgLeft"></asp:Label>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-2 col-sm-2 col-lg-2 ml-3">
+                            <div class="form-group">
+                               <asp:Label ID="lblSearch" CssClass="control-label" runat="server" Text=""></asp:Label>
+                                <asp:LinkButton ID="lbtnsrchunit" runat="server" CssClass="" OnClick="lbtnsrchunit_Click" TabIndex="12">Unit Name&nbsp;<i class="fas fa-search"></i></asp:LinkButton>
+                                <asp:TextBox ID="txtsrchunit" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>                                
+                            </div>
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-lg-1">
+                            <div class="form-group">
+                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm primaryBtn" OnClick="lbtnOk_Click" style="margin-top:21px;">Ok</asp:LinkButton>
+                                <asp:Label ID="lmsg" runat="server" CssClass="lblTxt lblName  btn-danger pull-right" Visible="false"></asp:Label>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <div class="card card-fluid">
+                <div class="card-body" style="min-height: 400px; overflow-x:scroll;">
                     <div class="row">
                         <asp:GridView ID="gvSpayment" runat="server" AutoGenerateColumns="False"
                             ShowFooter="True" Width="831px" CssClass=" table-striped table-hover table-bordered grvContentarea"
@@ -421,7 +425,7 @@
 
                                 <asp:TemplateField HeaderText="Customer Number" Visible="false">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblgvcustomernumber" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "customerno")) %>' Width="70px"></asp:Label>
+                                        <asp:Label ID="lblgvcustomernumber" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "customerno")) %>' Width="75px"></asp:Label>
 
 
                                     </ItemTemplate>
