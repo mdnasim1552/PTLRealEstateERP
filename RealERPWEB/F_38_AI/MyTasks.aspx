@@ -179,6 +179,7 @@
                                                         </ItemTemplate>
                                                         <ItemStyle Width="80px" />
                                                     </asp:TemplateField>
+                                                   
 
                                                 </Columns>
                                                 <%--<FooterStyle CssClass="grvFooter" />--%>
@@ -253,6 +254,7 @@
                                                         </ItemTemplate>
                                                         <ItemStyle VerticalAlign="Middle" HorizontalAlign="Center" />
                                                     </asp:TemplateField>
+                                                    
                                                 </Columns>
                                                 <PagerStyle CssClass="gvPagination" />
 
@@ -270,7 +272,7 @@
                                     <div class="card" style="height: 100%; background-color: #F6F6F6;">
                                         <div class="table-responsive">
                                             <asp:GridView ID="gvTodayList" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea customeGV"
-                                                ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15">
+                                                ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnRowDataBound="gvTodayList_RowDataBound">
 
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="Job ID ">
@@ -378,6 +380,7 @@
 
                                                             <asp:LinkButton ID="lnkJObDone" runat="server" CssClass="text-green pr-1 pl-1" Font-Size="20px" ToolTip="Hold Job" OnClick="lnkJObDone_Click" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99220" ? false:true %>'><i class="fa fa-check-square"></i></asp:LinkButton>
 
+                                                           <asp:LinkButton runat="server" ID="tblworkedit" Visible="false" OnClick="tblworkedit_Click" CssClass="text-success  btn-sm btn" ToolTip="Edit Job" ><i class="fa fa-edit"></i></asp:LinkButton>
 
 
                                                             <%-- <asp:HyperLink ID="lnkView" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/Projects"  CssClass="text-primary pr-2 pl-2" ToolTip="view"><i class="fa fa-eye"></i></asp:HyperLink>
@@ -386,7 +389,7 @@
                                                         </ItemTemplate>
                                                         <ItemStyle Width="80px" />
                                                     </asp:TemplateField>
-
+                                                     
                                                 </Columns>
                                                 <%--<FooterStyle CssClass="grvFooter" />--%>
 
