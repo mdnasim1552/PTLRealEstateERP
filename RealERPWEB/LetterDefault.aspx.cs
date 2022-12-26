@@ -2134,57 +2134,141 @@ namespace RealERPWEB
                     if (comcod == "3370" || comcod == "3101")
                     {
                         lbody = "<p style='text-align: center;'><strong >CLEARANCE FORM</strong> </p>" +
-                             "<p style='margin-bottom:-11px;'>Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;" + name + "</p>" +
+                             "<p style='margin-bottom:-11px;'>Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;" + name + "</p>" +
 
-                        "<p style='margin-bottom:-5px;'><span text-align:left;> Designation :&nbsp;" + Desig +"</span>"+
+                        "<p style='margin-bottom:-5px;'><span text-align:left;> Designation :&nbsp;" + Desig + "</span>" +
                         "<span style='margin-bottom:-5px;text-align:center;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Department: &nbsp;&nbsp;" + depart + "</span></p>" +
                         "<p style='margin-bottom:-5px;'>Responsibility Handover To :&nbsp;</p>" +
                         "<p style='margin-bottom:-5px;'><u>Company Name: [Please</u><strong>click</strong> (√)]</p>" +
-                        "<p style='margin-top:5px;><input type='checkbox' /> CA PROPERTY DEVELOPMENT LTD <input type='checkbox' style='margin-bottom:2px;' /> CPDL Ltd<input type='checkbox' style='margin-bottom:2px;' />PARAGONTECH LTD.<input type='checkbox' style='margin-bottom:2px;' />NEO SOUL" +
+                        "<p style='margin-top:10px;'><input type='checkbox' /> CA PROPERTY DEVELOPMENT LTD <input type='checkbox' style='margin-bottom:2px;' /> CPDL Ltd<input type='checkbox' style='margin-bottom:2px;' />PARAGONTECH LTD.<input type='checkbox' style='margin-bottom:2px;' />NEO SOUL" +
                         "<p style='margin-bottom:-5px;'>I do hereby declare that, on acceptance of my Resignation/Termination/Dismiss/Discharge from service by the" +
                         "management with effect from Effect Date, company has no claim on me </p>" +
-                        "<br>"+
+                        "<br>" +
                         "<p style='margin-bottom:-11px;text-align:left;'>------------------------------------------</p><p>" +
-                        "<p style='margin-bottom:-11px;margin-left:30px;text-align: left;'><strong>Signature</strong>" +
-                        "<span style='margin-bottom:-11px;text-align: right;'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date: &nbsp;&nbsp;/ &nbsp;&nbsp;/</span></p>" +
+                        "<p style='margin-bottom:-11px;margin-left:50px;text-align: left;'><strong>Signature</strong>" +
+
+                        "<span style='margin-bottom:-11px;text-align: right;'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date: &nbsp;&nbsp;/ &nbsp;&nbsp;/</span></p>" +
+                         "<br>" +
                         "<p style='text-align: center;'><strong>Departmental Clearance Remarks & Signature for final Settlement </strong> </p>" +
-                  //"<table style='width:90%;border-style:solid; border: 1px solid black;'><tr style='border-style:solid;border: 1px solid black;background:#B4C6E7;'><th style='width:70px;height:50px;text-align:center;border-style:solid;border:1px solid black;'>Department/Section </th><th style='width:80px;'>Particulars</th><th style='border-style:solid;border: 1px solid black;'>Outstanding</th><th>NotOutstanding</th><th>Signature</th></tr>" +
+                  "<table style='width:90%;border-style:solid; border: 1px solid black;'><tr style='border-style:solid;border: 1px solid black;background:#B4C6E7;'><th style='width:40%;border-style:solid;border: 1px solid black;'>Department/Section </th><th style='width:40%;border-style:solid;border: 1px solid black;'>Particulars</th><th style='border-style:solid;border: 1px solid black;'>Outstanding</th><th style='border-style:solid;border: 1px solid black;'>NotOutstanding</th><th style='border-style:solid;border: 1px solid black;'>Signature</th></tr>" +
 
-                  //   "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>RESPECTIVE DEPARTMENT</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right';></td></tr>" +
-                  //   "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>HTALENT MANAGEMENT</td><td style='border-style:solid;border: 1px solid black;'></td><td style='border-style:solid;border: 1px solid black;'>ID Card:<br>Loan issue :<br> Others:</td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
-                  //   "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>LOGISTIC MANAGEMENT</td><td style='border-style:solid;border: 1px solid black;'>P. Number :<br>Unadjusted M. Bill:<br>SIM Card:<br>Stationery :</td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
-                  //   "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>MIS/IT</td><td style='border-style:solid;border: 1px solid black;'>Hardware:<br>Email ID:<br>What’s app Group:</td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
+                    "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>RESPECTIVE DEPARTMENT</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
+                    "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>HTALENT MANAGEMENT</td><td style='border-style:solid;border: 1px solid black;'>ID Card:<br>Loan issue :<br> Others:</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>LOGISTIC MANAGEMENT</td><td style='border-style:solid;border: 1px solid black;'>P. Number :<br>Unadjusted M. Bill:<br>SIM Card:<br>Stationery :</td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
+                    "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>MIS/IT</td><td style='border-style:solid;border: 1px solid black;'>Hardware:<br>Email ID:<br>What’s app Group:</td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
 
-
-                  //   "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>ENGINEERING/ iNNSTUDIO/BOQ /PARAGONTECH</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:right;color:red'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
-                  //   "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>ELECTRO MECHANICAL</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:center;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
-                  //   "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>ACCOUNTS & FINANCE</td><td style='border-style:solid;border: 1px solid black;'>Unadjusted Amount:</td><td style='text-align:center;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right';></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
-                  //   "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>SUPPLY CHAIN MANAGEMENT</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:center;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
-                  //   "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>PROPERTY SOLUTION</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:center;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
-                  //   "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>HAPPINESS TEAM</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:center;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
-                  //   "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>OTHERS</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:center;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
-
-
-                  //   "</table>"+
-                  "<p>His salary break down is as follows:</p>" +
-                     "<table style='width:70%;border-style:solid; border: 1px solid black;'><tr style='border-style:solid;border: 1px solid black;background:#B4C6E7;'><th style='width:50px;text-align:center;border-style:solid;border:1px solid black;'>SL</th><th>Particulars</th><th style='border-style:solid;border: 1px solid black;'>Amount in BDT</th></tr>" +
-                     "<tr style='border-style:solid;border: 1px solid black;background:#D9E1F2;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='3'><strong>Earnings</strong></td></tr>" +
-                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>1</td><td style='border-style:solid;border: 1px solid black;'>Basic (60% of Gross)</td><td style='text-align:right';color:red>" + bsal + "</td></tr>" +
-                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>2</td><td style='border-style:solid;border: 1px solid black;'>House Rent (30% of Gross)</td><td style='text-align:right;border-style:solid;border: 1px solid black;color:red'>" + hrent + "</td></tr>" +
-                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>3</td><td style='border-style:solid;border: 1px solid black;'>Medical Allowance (6% of Gross)</td><td style='text-align:right;border-style:solid;border: 1px solid black;color:red;'>" + mallow + "</td></tr>" +
-                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>4</td><td style='border-style:solid;border: 1px solid black;'>Conveyance Allowance (4% of Gross)</td><td style='text-align:right;color:red'>" + cven + "</td></tr>" +
-                     "<tr style='border-style:solid;border: 1px solid black;background:#D9E1F2;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Total</strong></td><td style='text-align:right;border-style:solid;border:1px solid black;'><strong style='color:red;'>" + total + "</strong></td></tr>" +
-                     "<tr style='border-style:solid;border: 1px solid black;background:#D9E1F2;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='3'><strong>Deduction</strong></td></tr>" +
-                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>1</td><td style='border-style:solid;border: 1px solid black;'>Income Tax</td><td style='text-align:right;color:red'>" + incmtax + "</td></tr>" +
-                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>2</td><td style='border-style:solid;border: 1px solid black;'>Stamp</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td></tr>" +
-                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;'>3</td><td style='border-style:solid;border: 1px solid black;'>Others</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td></tr>" +
-                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Total Deduction</strong></td><td style='text-align: right;border-style:solid;border:1px solid black;'><strong style='color:red;'>" + incmtax + "</strong></td></tr>" +
-                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Payable Salay in Bank</strong></td><td style='text-align: right;border-style:solid;border:1px solid black;'><strong style='color:red;'>" + payablesal + "</strong></td></tr>" +
-                      "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:center;border-style:solid;border: 1px solid black;' colspan='2'><strong>Payable Salary in Cash</strong></td><td style='text-align:center;border-style:solid;border:1px solid black;'><strong style='color:red;'>-</strong></td></tr>" +
+                    "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>ENGINEERING/ iNNSTUDIO/BOQ /PARAGONTECH</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:right;color:red'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>ELECTRO MECHANICAL</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:center;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>ACCOUNTS & FINANCE</td><td style='border-style:solid;border: 1px solid black;'>Unadjusted Amount:</td><td style='text-align:center;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td><td style='text-align:right';></td></tr>" +
+                    "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>SUPPLY CHAIN MANAGEMENT</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:center;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>PROPERTY SOLUTION</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:center;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>HAPPINESS TEAM</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:center;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
+                     "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;'>OTHERS</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:center;border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
 
                      "</table>" +
+                 "<br>" +
                         "<p style='margin-bottom:-11px;text-align: right;margin-right:20px;'>----------------------------------------------------</p><p>" +
-                         "<p style='margin-bottom:-11px;text-align: right; margin-right:30px;'> Chief Operating Officer </p><p>";
+                         "<p style='margin-bottom:-11px;text-align: right; margin-right:50px;'> Chief Operating Officer </p><p>" +
+                        "<br>" +
+                         "<br>" +
+                          "<br>" +
+                        "<p style='text-align: center;'><strong ><u>PERSONNEL EXIT REPORT</u></strong> </p>" +
+                        "<br>" +
+
+
+
+                         "<p style='margin-bottom:-5px;'><span text-align:left;> Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: " + name + "</span>" +
+                         "<span style='margin-bottom:-5px;text-align:center;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Department&nbsp;:" + depart + "</span></p>" +
+                         "<p style='margin-bottom:-5px;'>Designation :&nbsp;</p>" +
+                         "<p style='margin-bottom:-5px;'><span text-align:left;>Joining Date :&nbsp;" + jdate + "</span>" +
+                         "<span style='margin-bottom:-5px;text-align:center;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Personal Mobile: &nbsp;&nbsp;" + empMobile + "</span></p>" +
+
+                     "<br>" +
+                        "<p style='margin-bottom:-5px;'><Strong>The Personel: click (√) the type of left</p>" +
+
+                        "<br>" +
+                        "<table style='width:90%;border-style:solid; border: 1px solid black;'><tr style='border-style:solid;border: 1px solid black;'><th style='width:140px;border-style:solid;border: 1px solid black;background:#B4C6E7;'>Types of Left</th><th style='border-style:solid;border: 1px solid black;'>Application Date</th><th style='border-style:solid;border: 1px solid black;'>Effected Date</th></tr>" +
+
+                   "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;background:#B4C6E7;'>Resigned</td><td style='border-style:solid;border: 1px solid black;'></td><td style='text-align:right;border-style:solid;border: 1px solid black;'></td></tr>" +
+                   "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;background:#B4C6E7;'>Termination</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td></tr>" +
+                    "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;background:#B4C6E7;'>Discharged</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td></tr>" +
+                   "<tr style='border-style:solid;border: 1px solid black;'><td style='text-align:left;border-style:solid;border: 1px solid black;background:#B4C6E7;'>Dismiss</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td><td style='text-align:center;border-style:solid;border: 1px solid black;'>-</td></tr>" +
+
+                    "</table>" +
+                     "<br>" +
+
+                         "<p style='margin-bottom:-5px;'><span style='text-align:left;'><strong>Reasons for Resign &nbsp; : As mention his/her resignation letter</strong>" +
+                            "<br>" +
+                             "<br>" +
+                        "<p style='margin-bottom:-11px;text-align:Right;'>--------------------------</p><p>" +
+                        "<p style='margin-bottom:-11px;margin-left:80px;text-align:Right;'><strong>Signature</strong></p>" +
+
+                        "<br>" +
+                        "<p style='text-align: center;'><strong ><u>Fill up by Talent Management</u></strong> </p>" +
+                        
+
+                         "<p style='margin-bottom:-5px;text-align:left;'><span>Is re-employment recommended?&nbsp;Yes  <input type='checkbox' />&nbsp; No  <input type='checkbox' /></p> " +
+                         "<p style='margin-bottom:-5px;text-align:left;'><span>If No state reason: </p>" +
+
+
+                        "<br>" +
+                        "<p style='margin-bottom:-11px;text-align: left;margin-right:20px;'>Signed----------------------------------------------------</p>" +
+                        "<p style='margin-bottom:-11px;text-align: right;margin-right:50px;'>Date:</p>" +
+                        "<p style='margin-bottom:-11px;text-align: left;margin-right:20px;'>Name----------------------------------------------------</p>" +
+                        "<br>" +
+                        "<p style='margin-bottom:-1px;text-align: left;margin-right:20px;'>Designation-----------------------------------------------------</p>" +
+                        "<br>" +
+                        "<br>" +
+                        "<br>" +
+                        "<br>" +
+                        "<br>" +
+                        "<br>" +
+                        "<br>" +
+                        "<br>" +
+                        "<br>" +
+                        "<br>" +
+                        "<br>" +
+
+
+                       "<p style='text-align: center;'><strong ><u>EXIT INTERVIEW QUESTIONNAIRES</u></strong> </p>" +
+                      
+                       "<p style='margin-bottom:-5px;text-align:left;'><span>01. How long have you been served in CPDL:-</p>" +
+                       "<p style='margin-bottom:-5px;text-align:left;'><span>02. How did you enjoy your job in CPDL?</p>" +
+                       "<ul><li style='list-style-type:none;'>a) Very satisfied</li><li style='list-style-type:none;'>b) Satisfied</li><li style='list-style-type:none;'>c) Neutral</li><li style='list-style-type:none;'>d) Dissatisfied</li></ul>" +
+
+                       "<p style='margin-bottom:-5px;text-align:left;'><span>03. How did you feel the working environment of CPDL?</p>" +
+                       "<ul><li style='list-style-type:none;'>a) Very satisfied</li><li style='list-style-type:none;'>b) Satisfied</li><li style='list-style-type:none;'>c) Neutral</li><li style='list-style-type:none;'>d) Dissatisfied</li></ul>" +
+
+                       "<p style='margin-bottom:-5px;text-align:left;'><span>04. Are you satisfied with the appreciation or reward system provided by CPDL Management?</p>" +
+                       "<ul><li style='list-style-type:none;'>a) High Satisfied</li><li style='list-style-type:none;'>b) Satisfied</li><li style='list-style-type:none;'>c) Needs Improvement.</li></ul>" +
+
+                        "<p style='margin-bottom:-5px;text-align:left;'><span>05. Are you satisfied with bonus and incentives given?</p>" +
+                       "<ul><li style='list-style-type:none;'>a) High Satisfied</li><li style='list-style-type:none;'>b) Satisfied</li><li style='list-style-type:none;'>c) Needs Improvement.</li></ul>" +
+
+                        "<p style='margin-bottom:-5px;text-align:left;'><span>06. Did you feel that there is an overall employee satisfaction in CPDL?</p>" +
+                        "<ul><li style='list-style-type:none;'>a) Yes</li><li style='list-style-type:none;'>b) No</li></ul>" +
+
+                        "<p style='margin-bottom:-5px;text-align:left;'><span>07. What is your opinion about the smooth relationship with CPDL Management and Members?</p>" +
+                        "<ul><li style='list-style-type:none;'>a) Very High</li><li style='list-style-type:none;'>b) High</li><li style='list-style-type:none;'>c) Medium</li><li style='list-style-type:none;'>d) Low</li></ul>" +
+
+                         "<p style='margin-bottom:-5px;text-align:left;'><span>08. What is our opinion about the level of Personnel career development system in CPDL based on arranged " +
+                         "training program, workshop &others programs ?</p>" +
+                        "<ul><li style='list-style-type:none;'>a) Excellent</li><li style='list-style-type:none;'>b) Very good</li><li style='list-style-type:none;'>c) Average</li><li style='list-style-type:none;'>d) Needs to improvement.</li></ul>" +
+
+                        "<p style='margin-bottom:-5px;text-align:left;'><span>09. Are you motivated during your services period by company’s existing rules and regulation?</p>" +
+                        "<ul><li style='list-style-type:none;'>a) Highly Motivated</li><li style='list-style-type:none;'>b) Neutral </li><li style='list-style-type:none;'>c) Needs to improvement.</li></ul>" +
+
+                        "<p style='margin-bottom:-5px;text-align:left;'><span>10. What changes or policy implementation will you recommend to HRD to satisfy the Personnel? </p>" +
+                         "<p style='margin-bottom:-5px;text-align:left;'>Yes <input type='checkbox' /> No <input type='checkbox' style='margin-bottom:2px;'/> </p>" +
+                        "<br>"+
+                        "<p style='margin-bottom:-5px;text-align:left;'>If Yes: ------------------------------------------------------------------------------------------------------------" +
+                        "-------------------------------------------------------------------------------------------------------------------------------------------------------------------" +
+                        "-------------------------------------------------------------------------------------------------------------------------------------------------------------------- </p>"+
+                        "<br>" +
+                        "<p style='margin-bottom:-11px;text-align:left;'>------------------------------------------" +
+                        "<span style='margin-bottom:-11px;text-align:right;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date:</span></p>" +
+                        "<p style='margin-bottom:-11px;margin-left:30px;text-align: left;'><strong>Signature of Personnel</strong></p>";
+
                     }
                     else
                     {

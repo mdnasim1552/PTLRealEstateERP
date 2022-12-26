@@ -180,7 +180,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPRDLC\bin\Debug\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -3263,6 +3263,7 @@
     <Content Include="F_81_Hrm\F_97_MIS\LinkMgtInterface.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\RptMgtInterface.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\RptNewJoingInfo.aspx" />
+    <Content Include="F_81_Hrm\F_97_MIS\RptServiceStoryProjectWise.aspx" />
     <Content Include="F_81_Hrm\F_99_MgtAct\EntryDailyActivities.aspx" />
     <Content Include="F_81_Hrm\F_99_MgtAct\GenCodeBook.aspx" />
     <Content Include="F_81_Hrm\F_99_MgtAct\LinkLateElLeaveAAbs.aspx" />
@@ -5590,6 +5591,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx.designer.cs">
       <DependentUpon>linkEmployeeStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_97_MIS\RptServiceStoryProjectWise.aspx.cs">
+      <DependentUpon>RptServiceStoryProjectWise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_97_MIS\RptServiceStoryProjectWise.aspx.designer.cs">
+      <DependentUpon>RptServiceStoryProjectWise.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\AIinterface.aspx.cs">
       <DependentUpon>AIinterface.aspx</DependentUpon>

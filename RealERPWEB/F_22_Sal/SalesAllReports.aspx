@@ -80,7 +80,7 @@
                                     Format="dd-MMM-yyyy" TargetControlID="txtFDate"></cc1:CalendarExtender>
                             </div>
                         </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2" ID="clstodat" runat="server" visible="false">
                             <div class="form-group">
                                 <label ID="lbltoDate" runat="server" Visible="false">To Date</label>
                                 <asp:TextBox ID="txttoDate" runat="server" CssClass="form-control form-control-sm" Visible="false"></asp:TextBox>

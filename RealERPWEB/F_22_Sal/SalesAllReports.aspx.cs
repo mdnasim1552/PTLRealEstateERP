@@ -68,6 +68,7 @@ namespace RealERPWEB.F_22_Sal
                     this.txtFDate.Visible = true;
                     this.lbltoDate.Visible = true; 
                     this.txttoDate.Visible = true;
+                    this.clstodat.Visible = true;
                     this.imgbtnFindCustomer.Visible = false;
                     this.ddlCustName.Visible = false;
                     break;
@@ -90,6 +91,7 @@ namespace RealERPWEB.F_22_Sal
                     this.txtFDate.Visible = true;
                     this.lbltoDate.Visible = true;
                     this.txttoDate.Visible = true;
+                    this.clstodat.Visible = true;
                     this.imgbtnFindCustomer.Visible = false;
                     this.ddlCustName.Visible = false;
                     break;
@@ -247,6 +249,8 @@ namespace RealERPWEB.F_22_Sal
             // DataTable dt=this.HiddenSamaData(ds1.Tables[0])
 
             ViewState["prjcoll"] = ds1.Tables[0];
+            ViewState["prjdesc"] = ds1.Tables[1];
+            ViewState["prjcust"] = ds1.Tables[2];
             this.Data_Bind();
         }
 
@@ -419,51 +423,41 @@ namespace RealERPWEB.F_22_Sal
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printdate = System.DateTime.Now.ToString("dd-MMMM-yyyy");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string frmdate = this.txtFDate.Text;
             string todate = this.txttoDate.Text;
             string reportType = GetReportType();
+            DataTable dt2 = (DataTable)ViewState["prjcust"];
+           string custname = dt2.Rows[0]["custname"].ToString();
+           string udesc = dt2.Rows[0]["udesc"].ToString();
+           string mobileno = dt2.Rows[0]["mobileno"].ToString();
+           string preaddress = dt2.Rows[0]["preaddress"].ToString();
 
             LocalReport Rpt1 = new LocalReport();
-            if (reportType == "amtbasis")
+            if (this.ddlReport.SelectedValue == "PaymentStatus")
             {
-                DataTable dt = (DataTable)Session["amtbasis"];
-                var list = dt.DataTableToList<RealEntity.C_12_Inv.EclassPurchase.InventoryAmountBasis>();
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptInvenAmtBasis", list, null, null);
-                Rpt1.EnableExternalImages = true;
-                Rpt1.SetParameters(new ReportParameter("rptTitle", "Inventory Report Amount Basis"));
+                DataTable dt = (DataTable)ViewState["prjcoll"];
+                DataTable dt1 = (DataTable)ViewState["prjdesc"];
+               
+                
+                var list = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.PaymentStatusReconcile>();
+                var list1 = dt1.DataTableToList<RealEntity.C_22_Sal.EClassSales.PaymentStatusRevenue>();
+               
+                   Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptPaymentSystem", list, list1, null);
+                   Rpt1.EnableExternalImages = true;
+                   Rpt1.SetParameters(new ReportParameter("rptTitle", "Payment Status"));
             }
-            else if (reportType == "qtybasis")
-            {
-                DataTable dt = (DataTable)Session["qtybasis"];
-                var list = dt.DataTableToList<RealEntity.C_12_Inv.EclassPurchase.InventoryAmountBasis>();
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptInvenQtyBasis", list, null, null);
-                Rpt1.EnableExternalImages = true;
-                Rpt1.SetParameters(new ReportParameter("rptTitle", "Inventory Report Quantity Basis"));
-            }
-            else if (reportType == "amtbasisp")
-            {
-                DataTable dt = (DataTable)Session["amtbasisp"];
-                var list = dt.DataTableToList<RealEntity.C_12_Inv.EclassPurchase.InventoryAmountBasis>();
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptInvenAmtBasisPeriodic", list, null, null);
-                Rpt1.EnableExternalImages = true;
-                Rpt1.SetParameters(new ReportParameter("rptTitle", "Inventory Report Amount Basis Periodic"));
-            }
-            else if (reportType == "qtybasisp")
-            {
-                DataTable dt = (DataTable)Session["qtybasisp"];
-                var list = dt.DataTableToList<RealEntity.C_12_Inv.EclassPurchase.InventoryQtyBasisPeriodic>();
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptInvenQtyBasisPeriodic", list, null, null);
-                Rpt1.EnableExternalImages = true;
-                Rpt1.SetParameters(new ReportParameter("rptTitle", "Inventory Report Quantity Basis Periodic"));
-            }
-            Rpt1.SetParameters(new ReportParameter("comNam", comnam));
-            Rpt1.SetParameters(new ReportParameter("comAdd", comadd));
-            Rpt1.SetParameters(new ReportParameter("footer", printFooter));
-            Rpt1.SetParameters(new ReportParameter("comLogo", ComLogo));
-            Rpt1.SetParameters(new ReportParameter("frmdate", frmdate));
-            Rpt1.SetParameters(new ReportParameter("todate", todate));
+          
+           
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("custname", custname));
+            Rpt1.SetParameters(new ReportParameter("udesc", udesc));
+            Rpt1.SetParameters(new ReportParameter("mobileno", mobileno));
+            Rpt1.SetParameters(new ReportParameter("preaddress", preaddress));
+            
+            Rpt1.SetParameters(new ReportParameter("printdate", "Print Date : " + printdate));
 
 
             Session["Report1"] = Rpt1;
