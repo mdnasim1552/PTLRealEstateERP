@@ -339,7 +339,7 @@
                                 <ItemStyle HorizontalAlign="Right" />
                                 <FooterStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Total Amount">
+                            <asp:TemplateField HeaderText="Total Amount" >
                                 <ItemTemplate>
                                     <asp:Label ID="lgpfamt" runat="server" BackColor="Transparent"
                                         BorderStyle="None" Font-Size="11px" Height="18px" Style="text-align: right"
