@@ -50,7 +50,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 ////this.getAllData();
                 this.GetAIInterface();
-                this.GetBatchAssingList();
+                //this.GetBatchAssingList();
                 this.TasktState.SelectedIndex = 0;
                 this.TasktState_SelectedIndexChanged(null, null);
                 this.GetEmployeeName();
@@ -2284,6 +2284,25 @@ namespace RealERPWEB.F_99_Allinterface
         protected void lnkbtnok_Click(object sender, EventArgs e)
         {
             this.prjSearch_Click(null,null);
+        }
+
+        protected void ddlBatchPage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.gv_BatchList.PageSize = Convert.ToInt32(this.ddlBatchPage.SelectedValue.ToString());
+            this.GetBatchAssingList();
+
+        }
+
+        protected void ddlassignpagesize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.gvAssingJob.PageSize = Convert.ToInt32(this.ddlassignpagesize.SelectedValue.ToString());
+            this.GetAssignTask();
+        }
+
+        protected void ddlProduction_page_Size_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.gv_Production.PageSize = Convert.ToInt32(this.ddlProduction_page_Size.SelectedValue.ToString());
+            this.Getproducttion();
         }
     }
 }
