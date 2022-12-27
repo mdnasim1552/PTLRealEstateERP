@@ -421,8 +421,23 @@ namespace RealERPWEB.F_38_AI
         {
             try
             {
-              
-              
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;
+                string id = ((Label)this.gvActivities.Rows[index].FindControl("lblid")).Text.Trim();
+                string title = ((Label)this.gvActivities.Rows[index].FindControl("Lbltasktitle")).Text.Trim();
+                string date = ((Label)this.gvActivities.Rows[index].FindControl("tblcreatedate")).Text.Trim();
+                string qty = ((Label)this.gvActivities.Rows[index].FindControl("lblvelocityqty")).Text.Trim();
+                string doneqty = ((Label)this.gvActivities.Rows[index].FindControl("lbldoneqty")).Text.Trim();
+                this.lblactiviesid.Text = id;
+                this.tbljobname.Text = title;
+                this.tblstratdate.Text = date;
+                this.tblassignqty.Text = qty;
+                this.tbldoneqtyac.Text = doneqty;
+
+
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "activiteseditModal();", true);
+
             }
             catch (Exception exp)
             {
@@ -431,9 +446,10 @@ namespace RealERPWEB.F_38_AI
             }
         }
 
-        protected void gvTodayList_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
+       
 
+        protected void gvActivities_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 string type = Request.QueryString["Type"].ToString();
@@ -450,6 +466,37 @@ namespace RealERPWEB.F_38_AI
 
                 }
             }
+
+        }
+
+        protected void btlactivitesupdate_ServerClick(object sender, EventArgs e)
+        {
+            try
+            {
+                string comcod = this.GetCompCode();
+                string id = this.lblactiviesid.Text;
+                string track = this.ddlstatusupdate.SelectedValue;
+
+                bool result = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "ACTIVEWORKUPDATE", id, track, "", "", "", "", "", "", "", "");
+
+                if (!result)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Update Fail..!!');", true);
+                    return;
+                }
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Update  Successfully');", true);
+                this.GetRecentAssigned();
+                this.GetTodayDoingJob();
+                this.GetTodayActivities();
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+
         }
     }
 }
