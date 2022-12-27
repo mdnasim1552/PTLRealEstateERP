@@ -2312,6 +2312,7 @@
     <Content Include="F_12_Inv\PurReqEntry.aspx" />
     <Content Include="F_12_Inv\RptIndentIssueStatus.aspx" />
     <Content Include="F_12_Inv\RptIndentIssueStatusSummary.aspx" />
+    <Content Include="F_12_Inv\RptProjectStockEva.aspx" />
     <Content Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx" />
     <Content Include="F_14_Pro\RptDateWiseBill.aspx" />
     <Content Include="F_14_Pro\PoMrrBillStatus.aspx" />
@@ -4240,6 +4241,13 @@
     </Compile>
     <Compile Include="F_12_Inv\RptIndentIssueStatusSummary.aspx.designer.cs">
       <DependentUpon>RptIndentIssueStatusSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_12_Inv\RptProjectStockEva.aspx.cs">
+      <DependentUpon>RptProjectStockEva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_12_Inv\RptProjectStockEva.aspx.designer.cs">
+      <DependentUpon>RptProjectStockEva.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx.cs">
       <DependentUpon>LinkRptPurchaseStatusUr.aspx</DependentUpon>
