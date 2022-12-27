@@ -208,6 +208,7 @@ namespace RealERPWEB.F_22_Sal
         }
         protected void gvSalPlnCode_RowEditing(object sender, GridViewEditEventArgs e)
         {
+            string comcod = this.GetCompCode();
             this.gvSalPlnCode.EditIndex = e.NewEditIndex;
             this.Data_Bind();
 
@@ -224,7 +225,7 @@ namespace RealERPWEB.F_22_Sal
             {
                 ViewState["gindex"] = e.NewEditIndex;
                 string SearchProject = "%" + ((TextBox)gvSalPlnCode.Rows[e.NewEditIndex].FindControl("txtSearchUserName")).Text.Trim() + "%";
-                DataSet ds1 = da.GetTransInfo("", "SP_ENTRY_CODEBOOK", "GETEMPTIDNAME", SearchProject, "", "", "", "", "", "", "", "");
+                DataSet ds1 = da.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "GETEMPTIDNAME", SearchProject, "", "", "", "", "", "", "", "");
                 ddl2.DataTextField = "empname";
                 ddl2.DataValueField = "empid";
                 ddl2.DataSource = ds1;
