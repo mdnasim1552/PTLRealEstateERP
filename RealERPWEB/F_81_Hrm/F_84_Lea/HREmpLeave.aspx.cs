@@ -349,14 +349,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             {
                 this.gvLeaveRule.Columns[0].HeaderText = "sl no";
 
-                this.gvLeaveRule.Columns[14].HeaderText = "Paternity Leave";
-                this.gvLeaveRule.Columns[17].HeaderText = "Leave On Probation";
+                this.gvLeaveRule.Columns[15].HeaderText = "Paternity Leave";
+                this.gvLeaveRule.Columns[13].HeaderText = "Leave On Probation";
 
             }
 
             if (GetComeCode() == "3367")
             {
-                this.gvLeaveRule.Columns[12].HeaderText = "Special Leave";
+                this.gvLeaveRule.Columns[15].HeaderText = "Special Leave";
             }
             this.gvLeaveRule.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvLeaveRule.DataSource = dtfilter;
