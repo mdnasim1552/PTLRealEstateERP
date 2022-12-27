@@ -1074,7 +1074,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         this.gvEmpOverTime.Columns[15].Visible = false;
                         this.gvEmpOverTime.Columns[16].Visible = true;
                     }
-                    else if (comcod == "3368")
+                    else if (comcod == "3368" || comcod == "3369")
                     {
                         this.gvEmpOverTime.Columns[3].Visible = true;
                         this.gvEmpOverTime.Columns[4].Visible = true;

@@ -51,6 +51,15 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.DropDownList ddlReport;
 
         /// <summary>
+        /// clfdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl clfdate;
+
+        /// <summary>
         /// lblDate control.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,15 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
+
+        /// <summary>
+        /// clstodat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl clstodat;
 
         /// <summary>
         /// lbltoDate control.
@@ -121,6 +139,15 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlPrjName;
+
+        /// <summary>
+        /// clcust control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl clcust;
 
         /// <summary>
         /// txtSrcCustomer control.

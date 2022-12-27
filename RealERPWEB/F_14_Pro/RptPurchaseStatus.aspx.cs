@@ -26,9 +26,6 @@ namespace RealERPWEB.F_14_Pro
         {
             if (!IsPostBack)
             {
-
-
-
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string url = HttpContext.Current.Request.Url.AbsoluteUri.ToString();
                 int index1 = (url.Contains("&")) ? url.IndexOf('&') : url.Length;
@@ -36,9 +33,12 @@ namespace RealERPWEB.F_14_Pro
 
                 int indexofamp = index1 + (index2 > 0 ? index2 + 1 : index2);
 
-                if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp),
-                        (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
-                    Response.Redirect("../AcceessError.aspx");
+                if (this.Request.QueryString["Rpt"].ToString() != "GenBillTrack")
+                {
+                    if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp),
+                            (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
+                        Response.Redirect("../AcceessError.aspx");
+                }
 
 
 
@@ -47,18 +47,20 @@ namespace RealERPWEB.F_14_Pro
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
                 CommonButton();
 
-                
+
 
 
                 string Type = this.Request.QueryString["Rpt"].ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (Type == "DaywPur") ? "Day Wise Purchase" 
+                ((Label)this.Master.FindControl("lblTitle")).Text = (Type == "DaywPur") ? "Day Wise Purchase"
                     : (Type == "PurSum") ? "Purchase Summary (Project Wise)"
                     : (Type == "PenBill") ? "Pending Bill" : (Type == "IndSup") ? "Purchase History-Supplier Wise Report"
                     : (Type == "Purchasetrk") ? "Purchase Tracking-01 " : (Type == "Purchasetrk02") ? "Purchase Tracking-02"
                     : (Type == "PurBilltk") ? "Bill Tracking"
                     : (Type == "MatRateVar") ? "Rate Variance - Materials"
                     : (Type == "Ordertrk") ? "Order Tracking-01"
+                    : (Type == "GenBillTrack") ? "General Bill Tracking"
                     : (Type == "BillRegTrack") ? "Bill Reister Tracking" : "Budget Tracking";
+
 
 
                 if (Type == "BillRegTrack")
@@ -76,12 +78,27 @@ namespace RealERPWEB.F_14_Pro
                 this.txtFDate.Text = qdate1.Length > 0 ? qdate1 : "01" + date.Substring(2);
                 if (this.ddlProjectName.Items.Count == 0)
                 {
-                    this.GetProjectName();
+                    if (Type == "GenBillTrack")
+                    {
+                        this.main.Visible = false;
+                        this.genbillno.Visible = true;
+                        this.GetGeneralBillNo();
+                    }
+                    else
+                    {
+                        this.GetProjectName();
+                    }
+                    
                 }
                 this.ShowView();
                 if (Type == "Ordertrk")
                 {
                     this.GetOrderNo();
+                }
+                else if (Type == "GenBillTrack") {
+                    //this.main.Visible = false;
+                    //this.genbillno.Visible = true;
+                    //this.GetGeneralBillNo();
                 }
                 else
                 {
@@ -92,7 +109,7 @@ namespace RealERPWEB.F_14_Pro
 
                 this.imgbtnFindMatCom_Click(null, null);
             }
-        }
+         }
 
         public void CommonButton()
         {
@@ -166,7 +183,7 @@ namespace RealERPWEB.F_14_Pro
                 ddlProjectName.SelectedValue = (Request.QueryString["prjcode"].ToString());
                 ddlProjectName.Enabled = false;
             }
-            if(Request.QueryString["Rpt"].ToString() == "BgdBal" && Request.QueryString.AllKeys.Contains("pactcode"))
+            if (Request.QueryString["Rpt"].ToString() == "BgdBal" && Request.QueryString.AllKeys.Contains("pactcode"))
             {
                 ddlProjectName.SelectedValue = (Request.QueryString["pactcode"].ToString());
                 ddlProjectName.Enabled = false;
@@ -361,10 +378,10 @@ namespace RealERPWEB.F_14_Pro
                     this.MultiView1.ActiveViewIndex = 9;
                     break;
 
+                case "GenBillTrack":
+                    this.MultiView1.ActiveViewIndex = 10;
+                    break;
             }
-
-
-
         }
 
 
@@ -408,6 +425,22 @@ namespace RealERPWEB.F_14_Pro
 
         }
 
+
+        private void GetGeneralBillNo()
+        {
+            Session.Remove("tblreq");
+            string comcod = this.GetComeCode();
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETGENERALBILLNO", "%", "", "", "", "", "", "", "", "");
+            this.ddlGenBillTracking.DataTextField = "reqno1";
+            this.ddlGenBillTracking.DataValueField = "reqno";
+            this.ddlGenBillTracking.DataSource = ds1.Tables[0];
+            this.ddlGenBillTracking.DataBind();
+            Session["tblgenbilltrk"] = ds1.Tables[0];
+            ds1.Dispose();
+        }
+
+
+
         private void GetBillNo()
         {
             Session.Remove("tblreq");
@@ -420,8 +453,6 @@ namespace RealERPWEB.F_14_Pro
             this.ddlBillno.DataBind();
             Session["tblreq"] = ds1.Tables[0];
             ds1.Dispose();
-
-
         }
 
         private void GetMaterial()
@@ -566,7 +597,7 @@ namespace RealERPWEB.F_14_Pro
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
             ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
-        }   
+        }
         private void RptDayPurchaseEdison()
         {
 
@@ -969,6 +1000,9 @@ namespace RealERPWEB.F_14_Pro
                 case "BillRegTrack":
                     this.BillRegTrack();
                     break;
+                case "GenBillTrack":
+                    this.GeneralBillTrack();
+                    break;
 
             }
             if (ConstantInfo.LogStatus == true)
@@ -1147,6 +1181,33 @@ namespace RealERPWEB.F_14_Pro
 
         }
 
+
+        private void GeneralBillTrack()
+        {
+
+            Session.Remove("tblpurchase");
+            string comcod = this.GetComeCode();
+            string reqno = this.ddlGenBillTracking.SelectedValue.ToString();
+            //string recom = this.getCompanyRecom();
+
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETGENERALBILL", reqno, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+            {
+                this.gvGenBillTracking.DataSource = null;
+                this.gvGenBillTracking.DataBind();
+                return;
+            }
+            DataTable dt = this.HiddenSameData(ds1.Tables[0]);
+            Session["tblpurchase"] = ds1.Tables[0];
+
+            //this.gvGenBillTracking.DataSource = dt;
+            //this.gvGenBillTracking.DataBind();
+            
+           this.LoadGrid();
+            //this.Date_Bind02();
+        }
+        
+
         private void Date_Bind02()
         {
             string comcod = this.GetComeCode();
@@ -1162,11 +1223,7 @@ namespace RealERPWEB.F_14_Pro
                 return;
             this.gvDescrip.DataSource = dt2;
             this.gvDescrip.DataBind();
-
-
-
         }
-
 
 
         private void BillRegTrack()
@@ -1191,8 +1248,6 @@ namespace RealERPWEB.F_14_Pro
 
         private void ShowPurChaseTrk02()
         {
-
-
             Session.Remove("tblpurchase");
             string comcod = this.GetComeCode();
             string reqno = this.ddlReqNo02.SelectedValue.ToString();
@@ -1586,7 +1641,6 @@ namespace RealERPWEB.F_14_Pro
 
             }
 
-
             return dt1;
 
         }
@@ -1662,13 +1716,14 @@ namespace RealERPWEB.F_14_Pro
                         {
                             this.gvPurstk01.Columns[12].Visible = true;
                         }
-
-
-
                         break;
                     case "BillRegTrack":
                         this.gvBillRegTrack.DataSource = dt;
                         this.gvBillRegTrack.DataBind();
+                        break;
+                    case "GenBillTrack":
+                        this.gvGenBillTracking.DataSource = dt;
+                        this.gvGenBillTracking.DataBind();
                         break;
                     case "Purchasetrk02":
                         DataTable dt1 = (DataTable)Session["tblpurchase1"];
@@ -1697,8 +1752,6 @@ namespace RealERPWEB.F_14_Pro
 
                         ((Label)this.gvBgdBal.FooterRow.FindControl("lgvFordradjqty")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(oadjqty)", "")) ?
                                            0 : dt.Compute("sum(oadjqty)", ""))).ToString("#,##0;(#,##0); ");
-
-
 
 
                         break;
@@ -2059,6 +2112,21 @@ namespace RealERPWEB.F_14_Pro
                           ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
+        protected void LinkGenBillTrack_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        protected void btnPrintReqInfo1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+       
+
+        protected void ddlGenBillTracking_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetGeneralBillNo();
+        }
     }
 }

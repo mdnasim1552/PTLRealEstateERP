@@ -26,9 +26,17 @@
             gvAmtPeriodic.Scrollable();--%>
             var gvpaystatus = $('#<%=this.gvpaystatus.ClientID %>');
             gvpaystatus.Scrollable();
+
+            
         }
 
     </script>
+    <style type="text/css">
+        .chzn-single{
+                border-radius: 3px!important;
+                height: 29px!important;
+            }
+    </style>
 
   <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -57,10 +65,10 @@
                     <div class="row">
                         
                         
-                        <div class="col-md-2">
+                        <div class="col-md-2 mt-2">
                             <div class="form-group">
-                                <asp:Label ID="ddlReportsName" runat="server" CssClass="control-label">Reports </asp:Label>                              
-                                <asp:DropDownList ID="ddlReport" runat="server" CssClass="form-control-sm chzn-select" OnSelectedIndexChanged="ddlReport_SelectedIndexChanged" AutoPostBack="true">                                  
+                                <asp:Label ID="ddlReportsName" runat="server" CssClass="form-label">Reports </asp:Label>                              
+                                <asp:DropDownList ID="ddlReport" runat="server" CssClass="form-control form-control-sm chzn-select" OnSelectedIndexChanged="ddlReport_SelectedIndexChanged" AutoPostBack="true">                                  
                                     <asp:ListItem Value="" Selected="True">-------------Select-----------</asp:ListItem>
                                     <asp:ListItem Value="PrjCollect">Project Wise Colletion</asp:ListItem>
                                     <asp:ListItem Value="PrjCollTilldate">Project Wise Colletion Till Date</asp:ListItem>
@@ -72,17 +80,17 @@
                         </div>
                         
 
-                        <div class="col-md-2">
+                        <div class="col-md-2" runat="server" visible="false" id="clfdate">
                             <div class="form-group">
-                                <label ID="lblDate" runat="server" Visible="false">From Date</label>
+                                <label ID="lblDate" runat="server" CssClass="form-label" Visible="false">From Date</label>
                                 <asp:TextBox ID="txtFDate" runat="server" CssClass="form-control form-control-sm" visible="false"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
                                     Format="dd-MMM-yyyy" TargetControlID="txtFDate"></cc1:CalendarExtender>
                             </div>
                         </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2" ID="clstodat" runat="server" visible="false">
                             <div class="form-group">
-                                <label ID="lbltoDate" runat="server" Visible="false">To Date</label>
+                                <label ID="lbltoDate" runat="server" CssClass="form-label" Visible="false">To Date</label>
                                 <asp:TextBox ID="txttoDate" runat="server" CssClass="form-control form-control-sm" Visible="false"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtender2" runat="server"
                                     Format="dd-MMM-yyyy" TargetControlID="txttoDate"></cc1:CalendarExtender>
@@ -91,13 +99,13 @@
 
                         </div>
 
-                              <div class="col-md-2">
+                              <div class="col-md-2 mt-2">
                             <div class="from-group">
-                                <asp:Label ID="prjName" runat="server" CssClass="control-label">Project Name </asp:Label>
+                                <asp:Label ID="prjName" runat="server" CssClass="form-label">Project Name </asp:Label>
                                 <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="form-control form-control-sm chzn-select" style="width:200px" AutoPostBack="True" OnSelectedIndexChanged="ddlPrjName_SelectedIndexChanged"></asp:DropDownList>
                             </div>
                         </div>
-                       <div class="col-md-2">
+                       <div class="col-md-2 mt-2" runat="server" visible="false" id="clcust">
                            <div class="form-group">
                               <%--  <asp:Label ID="Label6" runat="server" CssClass="control-label"></asp:Label>--%>
                                 <asp:TextBox ID="txtSrcCustomer" runat="server" CssClass="form-control form-control-sm" TabIndex="14" Visible="false"></asp:TextBox>
@@ -123,7 +131,7 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
-                    <div class="col-md-1" style="margin-top: 19px; margin-left:-65px;">
+                    <div class="col-md-1" style="margin-top: 23px; margin-left:-65px;">
                             
                      <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                            

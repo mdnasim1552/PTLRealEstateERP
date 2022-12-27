@@ -557,7 +557,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1403000", "1403091", "F_14_Pro", "RptWorkOrderVsSupply?", "Type=OrderTk&comcod=", "Order Tracking", "Procurement", "False", "False", "False", "False" }); 
             tblObj.Rows.Add(new Object[] { "1403000", "1403094", "F_14_Pro", "RptPurchaseStatus?", "Type=Purchase&Rpt=Ordertrk", "Order Tracking-01", "Procurement", "False", "False", "False", "False" }); 
             tblObj.Rows.Add(new Object[] { "1403000", "1403095", "F_14_Pro", "RptPurchaseStatus02?", "Type=DaywPur", "Day Wise Purchase History (Project & Supplier) Wise", "Procurement", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "1403000", "1403096", "F_14_Pro", "RptPurchaseStatus?", "Type=GenBillTrack&Rpt=GenBillTracktrk", "General Bill Tracking", "Procurement", "False", "False", "False", "False" });
+            //tblObj.Rows.Add(new Object[] { "1403000", "1403096", "F_14_Pro", "RptPurchaseStatus?", "Type=GenBill&Rpt=GenBillTrack", "General Bill Tracking", "Procurement", "False", "False", "False", "False" });
             //tblObj.Rows.Add(new Object[] { "14275", "RptPurchaseStatus?", "Type=Purchase&Rpt=Ordertrk", "Order Tracking", "Procurement", "False", "False", "False", "False" });
 
 
@@ -2268,6 +2268,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102069", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=TotalEmplist", "Total Employee List", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102110", "F_81_Hrm/F_83_Att", "RptEmpAbsCount?", "Type=", "Employee Absent Count List", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102070", "F_81_Hrm/F_92_Mgt", "EmpEvaluationFrm", "", "Employee Evaluation For Confirmation", "ACR", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8103071", "F_81_Hrm/F_97_MIS", "RptServiceStoryProjectWise", "", "Service Story(Project Wise)", "MIS", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102172", "F_81_Hrm/F_84_Lea", "YearlyHoliday", "", "Yearly Holidays", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102173", "F_81_Hrm/F_99_MgtAct", "RptgroupAttendance?", "Type=Dept", "Employee Daily Attendance(Department Wise)", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102174", "F_81_Hrm/F_92_Mgt", "EmployeeListEpic", "", "Employee List Details", "HR Management", "False", "False", "False", "False" });
@@ -5736,7 +5737,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301010006", "05. Purchase Order Wise Item Rate", "F_14_Pro/RptPurchaseOrdItemRate", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0301010007", "10. Purchase Tracking-01", "F_14_Pro/RptPurchaseStatus?Type=Purchase&Rpt=Purchasetrk&comcod=&Date1=&Date2=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301010021", "10. General Bill Tracking", "F_14_Pro/RptPurchaseStatus?Type=GenBillTrack&Rpt=GenBillTracktrk", "", true, "" });
+            //mnuTbl1.Rows.Add(new Object[] { "0301010021", "10. General Bill Tracking", "F_14_Pro/RptPurchaseStatus?Type=GenBill&Rpt=GenBillTrack", "", true, "" });
 
 
 
@@ -15838,6 +15839,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0206000001", "01. Employee Confirmation Date", "F_81_Hrm/F_92_Mgt/HREmpConfirmation", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000002", "03. Salary Hold", "F_81_Hrm/F_92_Mgt/EmpHold", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000003", "05. HR Leave Approval Setup", "F_81_Hrm/F_92_Mgt/HrLeaveApprovalForm", "", true, "" });                    
+            mnuTbl1.Rows.Add(new Object[] { "0206000033", "05. Service Story (Project Wise)", "F_81_Hrm/F_97_MIS/RptServiceStoryProjectWise", "", true, "" });                    
             mnuTbl1.Rows.Add(new Object[] { "0206000004", "01. Department Permission Access", "F_81_Hrm/F_92_Mgt/PayrollLink", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000004", "01.Section Wise Permission", "F_81_Hrm/F_92_Mgt/EntrySectionWisePermission", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000005", "06. Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=EmpList&comcod=", "", true, "" });
