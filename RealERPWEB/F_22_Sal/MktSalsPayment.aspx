@@ -156,8 +156,8 @@
                             OnRowEditing="gvSpayment_RowEditing" OnRowUpdating="gvSpayment_RowUpdating">
                             <RowStyle />
                             <Columns>
-                                <asp:CommandField ShowEditButton="True" HeaderStyle-Width="80px" CancelText="&lt;span class='glyphicon glyphicon-remove pull-left'&gt;&lt;/span&gt;" DeleteText="&lt;span class='glyphicon glyphicon-remove'&gt;&lt;/span&gt;" EditText="&lt;span class='glyphicon glyphicon-pencil'&gt;&lt;/span&gt;" UpdateText="&lt;span class='glyphicon glyphicon-ok'&gt;&lt;/span&gt;" />
-
+                                <asp:CommandField ShowEditButton="True" HeaderStyle-Width="80px" CancelText="&lt;span class='fa fa-remove pull-left'&gt;&lt;/span&gt;" DeleteText="&lt;span class=' fa fa-remove'&gt;&lt;/span&gt;" EditText="&lt;span class='fa fa-edit'&gt;&lt;/span&gt;" UpdateText="&lt;span class='fa fa-ok'&gt;&lt;/span&gt;" />
+                                
                                 <asp:TemplateField HeaderText="Sl.No.">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
