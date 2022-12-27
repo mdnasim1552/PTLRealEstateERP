@@ -178,7 +178,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             this.ddlyearmon.DataValueField = "ymon";
             this.ddlyearmon.DataSource = ds1.Tables[0];
 
-            this.ddlyearmon.SelectedValue = System.DateTime.Today.AddMonths(-1).ToString("yyyyMM");
+            this.ddlyearmon.SelectedValue = System.DateTime.Today.ToString("yyyyMM");
             this.ddlyearmon.DataBind();
             //this.ddlyearmon.DataBind();
             //string txtdate = Convert.ToDateTime(this.txtDate.Text.Trim()).ToString("dd-MMMM-yyyy");
@@ -2198,6 +2198,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, daycount.ToString(), dayrate.ToString(), dayamt.ToString(), "", "", "", "");
                     if (!result)
                         return;
+
                 }
                 else
                 {
@@ -2227,8 +2228,9 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
 
             }
+            ShowOvertime();
 
-            msg = "Updated Successfully";
+             msg = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
         }
