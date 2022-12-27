@@ -186,6 +186,15 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.HyperLink HyperLink5;
 
         /// <summary>
+        /// HyperLink6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink6;
+
+        /// <summary>
         /// HyperLink7 control.
         /// </summary>
         /// <remarks>
@@ -276,6 +285,24 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.Panel pnlStatus;
 
         /// <summary>
+        /// Label31 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label31;
+
+        /// <summary>
+        /// ddlBatchPage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlBatchPage;
+
+        /// <summary>
         /// gv_BatchList control.
         /// </summary>
         /// <remarks>
@@ -294,6 +321,24 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.Panel pnlAssign;
 
         /// <summary>
+        /// Label32 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label32;
+
+        /// <summary>
+        /// ddlassignpagesize control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlassignpagesize;
+
+        /// <summary>
         /// gvAssingJob control.
         /// </summary>
         /// <remarks>
@@ -310,6 +355,24 @@ namespace RealERPWEB.F_99_Allinterface
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlProduction;
+
+        /// <summary>
+        /// Label33 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label33;
+
+        /// <summary>
+        /// ddlProduction_page_Size control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlProduction_page_Size;
 
         /// <summary>
         /// gv_Production control.

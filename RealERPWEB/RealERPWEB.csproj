@@ -49,22 +49,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
-      <HintPath>..\..\Real Estate Bin 211213\bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\..\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Antlr3.Runtime">
-      <HintPath>..\..\Real Estate Bin 211213\bin\Antlr3.Runtime.dll</HintPath>
+      <HintPath>..\..\..\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.bootstrap">
-      <HintPath>..\..\Real Estate Bin 211213\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
+      <HintPath>..\..\..\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.jQuery">
-      <HintPath>..\..\Real Estate Bin 211213\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
+      <HintPath>..\..\..\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
     </Reference>
     <Reference Include="BilSimser.GeoJson">
-      <HintPath>..\..\Real Estate Bin 211213\bin\BilSimser.GeoJson.dll</HintPath>
+      <HintPath>..\..\..\bin\BilSimser.GeoJson.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Design">
-      <HintPath>..\..\Real Estate Bin 211213\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
+      <HintPath>..\..\..\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine">
       <HintPath>..\..\Real Estate Bin 211213\bin\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
@@ -88,36 +88,36 @@
       <HintPath>..\..\Real Estate Bin 211213\bin\CrystalDecisions.Shared.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.Web">
-      <HintPath>..\..\Real Estate Bin 211213\bin\CrystalDecisions.Web.dll</HintPath>
+      <HintPath>..\..\..\..\..\bin\CrystalDecisions.Web.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.Windows.Forms">
       <HintPath>..\..\Real Estate Bin 211213\bin\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
     <Reference Include="DayPilot">
-      <HintPath>..\..\Real Estate Bin 211213\bin\DayPilot.dll</HintPath>
+      <HintPath>..\..\bin\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="DropCheck">
-      <HintPath>..\..\Real Estate Bin 211213\bin\DropCheck.dll</HintPath>
+      <HintPath>..\..\bin\DropCheck.dll</HintPath>
     </Reference>
     <Reference Include="EASendMail">
-      <HintPath>..\..\Real Estate Bin 211213\bin\EASendMail.dll</HintPath>
+      <HintPath>..\..\bin\EASendMail.dll</HintPath>
     </Reference>
     <Reference Include="FastMember">
-      <HintPath>..\..\Real Estate Bin 211213\bin\FastMember.dll</HintPath>
+      <HintPath>..\..\bin\FastMember.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Real Estate Bin 211213\bin\FlashControlV71.dll</HintPath>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
-      <HintPath>..\..\..\..\Backup\Projects\Project Reference\Real Estate Bin 211213\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+      <HintPath>..\..\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNetCore.Cryptography.Internal, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNetCore.Cryptography.Internal.7.0.0\lib\net462\Microsoft.AspNetCore.Cryptography.Internal.dll</HintPath>
@@ -138,7 +138,7 @@
       <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.Build.Utilities.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Extensions.DependencyInjection, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
@@ -169,27 +169,24 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="microsoft.reportviewer.datavisualization">
-      <HintPath>..\..\Real Estate Bin 211213\bin\microsoft.reportviewer.datavisualization.dll</HintPath>
+      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel">
       <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <HintPath>..\..\..\..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.WebForms">
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ScriptManager.WebForms.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.ScriptManager.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.SqlServer.Types.dll</HintPath>
@@ -261,10 +258,10 @@
     </Reference>
     <Reference Include="RealERPRPT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\RealERPRPT.dll</HintPath>
+      <HintPath>..\..\bin\RealERPRPT.dll</HintPath>
     </Reference>
     <Reference Include="RealERPWEB.XmlSerializers">
-      <HintPath>..\..\Real Estate Bin 211213\bin\RealERPWEB.XmlSerializers.dll</HintPath>
+      <HintPath>..\..\bin\RealERPWEB.XmlSerializers.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=108.0.3.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.108.0.3\lib\netstandard2.0\RestSharp.dll</HintPath>
@@ -294,9 +291,9 @@
     <Reference Include="System.Drawing.Common, Version=4.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Drawing.Common.5.0.2\lib\net461\System.Drawing.Common.dll</HintPath>
     </Reference>
-    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Backup\Projects\Project Reference\System.Memory.dll</HintPath>
+      <HintPath>..\..\..\System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -340,12 +337,12 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <HintPath>..\..\Real Estate Bin 211213\bin\System.Web.Optimization.dll</HintPath>
+      <HintPath>..\..\bin\System.Web.Optimization.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
-      <HintPath>..\..\Real Estate Bin 211213\bin\WebGrease.dll</HintPath>
+      <HintPath>..\..\bin\WebGrease.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -2342,6 +2339,7 @@
     <Content Include="F_22_Sal\MktBookigApp2.aspx" />
     <Content Include="F_22_Sal\MktSampleNoteSheet.aspx" />
     <Content Include="F_22_Sal\MktGrandNoteSheet.aspx" />
+    <Content Include="F_22_Sal\SalesAllReports.aspx" />
     <Content Include="F_22_Sal\SaleSurvey.aspx" />
     <Content Include="F_22_Sal\SaleSurPrjInformation.aspx" />
     <Content Include="F_22_Sal\SaleSurPCodeBook.aspx" />
@@ -3270,6 +3268,7 @@
     <Content Include="F_81_Hrm\F_97_MIS\LinkMgtInterface.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\RptMgtInterface.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\RptNewJoingInfo.aspx" />
+    <Content Include="F_81_Hrm\F_97_MIS\RptServiceStoryProjectWise.aspx" />
     <Content Include="F_81_Hrm\F_99_MgtAct\EntryDailyActivities.aspx" />
     <Content Include="F_81_Hrm\F_99_MgtAct\GenCodeBook.aspx" />
     <Content Include="F_81_Hrm\F_99_MgtAct\LinkLateElLeaveAAbs.aspx" />
@@ -3693,7 +3692,6 @@
     <Content Include="landMenu-1.png" />
     <Content Include="LetterDefault.aspx" />
     <Content Include="LogIn.aspx" />
-    <Content Include="login_new.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="MyDashboard.aspx" />
     <Content Include="MyDashboardUddl.aspx" />
@@ -3713,7 +3711,6 @@
     <Content Include="Notices\Notice.aspx" />
     <Content Include="Notification\GetNotification.aspx" />
     <Content Include="Notification\Occasion.aspx" />
-    <Content Include="Oops.aspx" />
     <Content Include="p1.PNG" />
     <Content Include="p2.PNG" />
     <Content Include="p3.PNG" />
@@ -3816,6 +3813,7 @@
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="StepofOperation.aspx" />
     <Content Include="StepofOperationNew.aspx" />
+    <Content Include="System.Memory.dll" />
     <Content Include="S_05_MyPage\RptEmpMonthWiseEva03.asmx" />
     <Content Include="Technology.aspx" />
     <Content Include="Tickets\CreateTicket.aspx" />
@@ -4401,6 +4399,13 @@
     </Compile>
     <Compile Include="F_22_Sal\MktGrandNoteSheet.aspx.designer.cs">
       <DependentUpon>MktGrandNoteSheet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_22_Sal\SalesAllReports.aspx.cs">
+      <DependentUpon>SalesAllReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\SalesAllReports.aspx.designer.cs">
+      <DependentUpon>SalesAllReports.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_22_Sal\SaleSurvey.aspx.cs">
       <DependentUpon>SaleSurvey.aspx</DependentUpon>
@@ -5592,6 +5597,13 @@
     <Compile Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx.designer.cs">
       <DependentUpon>linkEmployeeStatus.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_97_MIS\RptServiceStoryProjectWise.aspx.cs">
+      <DependentUpon>RptServiceStoryProjectWise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_97_MIS\RptServiceStoryProjectWise.aspx.designer.cs">
+      <DependentUpon>RptServiceStoryProjectWise.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_99_Allinterface\AIinterface.aspx.cs">
       <DependentUpon>AIinterface.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5684,13 +5696,6 @@
     <Compile Include="LetterDefault.aspx.designer.cs">
       <DependentUpon>LetterDefault.aspx</DependentUpon>
     </Compile>
-    <Compile Include="login_new.aspx.cs">
-      <DependentUpon>login_new.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="login_new.aspx.designer.cs">
-      <DependentUpon>login_new.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5725,13 +5730,6 @@
     </Compile>
     <Compile Include="Notification\Occasion.aspx.designer.cs">
       <DependentUpon>Occasion.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Oops.aspx.cs">
-      <DependentUpon>Oops.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Oops.aspx.designer.cs">
-      <DependentUpon>Oops.aspx</DependentUpon>
     </Compile>
     <Compile Include="RDLCViewerWin.aspx.cs">
       <DependentUpon>RDLCViewerWin.aspx</DependentUpon>

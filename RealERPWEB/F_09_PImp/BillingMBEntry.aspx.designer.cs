@@ -177,6 +177,15 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.GridView gvcorder;
 
         /// <summary>
+        /// txtmbnarr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtmbnarr;
+
+        /// <summary>
         /// hdnflrcod control.
         /// </summary>
         /// <remarks>
@@ -204,13 +213,13 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.HiddenField hdnrsircode;
 
         /// <summary>
-        /// lblmobile control.
+        /// lblorderDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmobile;
+        protected global::System.Web.UI.WebControls.Label lblorderDetails;
 
         /// <summary>
         /// gvdetails control.

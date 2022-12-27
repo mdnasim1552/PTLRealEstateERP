@@ -40,7 +40,7 @@ namespace RealERPWEB.F_21_MKT
 
                 this.txtfrmdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.txtkpitodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy"); 
+                this.txtkpitodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
                 this.MultiView1.ActiveViewIndex = 1;
                 GetAllSubdata();
@@ -55,7 +55,7 @@ namespace RealERPWEB.F_21_MKT
                 this.GetParcipants();
                 this.ShowDiscussion();
                 this.IsTeamLeader();
-               
+
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "Initializescroll();", true);
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -87,7 +87,7 @@ namespace RealERPWEB.F_21_MKT
 
         }
 
-      
+
         private void lnkPrint_Click(object sender, EventArgs e)
         {
             this.CRMClientInformation();
@@ -440,7 +440,7 @@ namespace RealERPWEB.F_21_MKT
 
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
@@ -478,7 +478,7 @@ namespace RealERPWEB.F_21_MKT
                         switch (comcod)
                         {
                             case "3368"://Finlay
-                               
+
                                 if (lbllandname.Text.Length > 0)
                                 {
                                     if (teamLeader)
@@ -548,17 +548,17 @@ namespace RealERPWEB.F_21_MKT
                         ccc = dt.Rows[i]["ccc"].ToString();
 
                         ddlgval1 = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone"));
-                       
+
 
                         dv1 = dt1.Copy().DefaultView;
                         dv1.RowFilter = ("gcod = 'phonecode'");
-                        DataTable dtCcc = dv1.ToTable();  
-                        
+                        DataTable dtCcc = dv1.ToTable();
+
                         ddlgval1.DataTextField = "gdesc";
                         ddlgval1.DataValueField = "gdesc";
                         ddlgval1.DataSource = dtCcc;
                         ddlgval1.DataBind();
-                        ddlgval1.SelectedValue = (ccc==""?"+88": ccc);
+                        ddlgval1.SelectedValue = (ccc == "" ? "+88" : ccc);
 
 
 
@@ -568,11 +568,11 @@ namespace RealERPWEB.F_21_MKT
 
                         //((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
                         //((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;
-                      
+
                         //For changing Mobile No. by Team Leader
                         switch (comcod)
                         {
-                          
+
                             case "3315"://Assure
                             case "3316"://Assure
                                 //Edit     
@@ -607,12 +607,12 @@ namespace RealERPWEB.F_21_MKT
                                                 ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
                                                 ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = false;
                                                 break;
-                                        }                                       
+                                        }
 
                                     }
                                 }
                                 else
-                                {                                   
+                                {
 
                                     ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).ReadOnly = false;
                                     ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
@@ -653,7 +653,7 @@ namespace RealERPWEB.F_21_MKT
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
                                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
-                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;                                     
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = true;
 
                                     }
                                     else
@@ -662,7 +662,7 @@ namespace RealERPWEB.F_21_MKT
                                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Visible = false;
                                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Visible = true;
-                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = false;                                        
+                                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).Enabled = false;
 
                                     }
                                 }
@@ -772,7 +772,7 @@ namespace RealERPWEB.F_21_MKT
                             //For Not Changing Source without Team Leader
                             //Epic
                             case "3367":
-                            //case "3101":
+                                //case "3101":
                                 dv1 = dt1.DefaultView;
                                 dv1.RowFilter = ("gcod like '31%'");
                                 dt1 = dv1.ToTable();
@@ -3015,8 +3015,8 @@ namespace RealERPWEB.F_21_MKT
                 dr["gcod"] = Gcode;
                 dr["ccc"] = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlcountryPhone")).SelectedValue.ToString();
                 dr["gval"] = gval;
-                dr["gvalue"] = (((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? 
-                    ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : 
+                dr["gvalue"] = (((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ?
+                    ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() :
                     ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
                 dt1.Rows.Add(dr);
             }
@@ -3056,7 +3056,7 @@ namespace RealERPWEB.F_21_MKT
                         return;
                     }
                 }
-                
+
                 //Source Remarks
                 if (Gcode == "0302002")
                 {
@@ -3076,7 +3076,7 @@ namespace RealERPWEB.F_21_MKT
                             break;
                         //Epic
                         case "3367":
-                            if (sourcecode == "3101010" )
+                            if (sourcecode == "3101010")
                             {
                                 string sourceRemarks = ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                                 if (sourceRemarks.Trim().Length == 0)
@@ -3361,9 +3361,9 @@ namespace RealERPWEB.F_21_MKT
 
 
             string number = "";
-            number = Phone.Length > 0 ? CCC0+Phone + "," : "";
-            number = number + (altphone1.Length > 0 ? CCC1+altphone1 + "," : "");
-            number = number + (altphone2.Length > 0 ? CCC2+altphone2 + "," : "");
+            number = Phone.Length > 0 ? CCC0 + Phone + "," : "";
+            number = number + (altphone1.Length > 0 ? CCC1 + altphone1 + "," : "");
+            number = number + (altphone2.Length > 0 ? CCC2 + altphone2 + "," : "");
             number = number.Length > 0 ? number.Substring(0, number.Length - 1) : number;
 
 
@@ -3395,7 +3395,7 @@ namespace RealERPWEB.F_21_MKT
                 }
             }
 
-             
+
             //this is automatic kpi first discussion entry . recomended by Rahian for all company 20210804 dev by NAHID
             string kpidiscu = "";
             switch (comcod)
@@ -3594,7 +3594,7 @@ namespace RealERPWEB.F_21_MKT
             this.ddlCountry_SelectedIndexChanged(null, null);
 
 
-            
+
 
         }
 
@@ -4935,7 +4935,7 @@ namespace RealERPWEB.F_21_MKT
             catch (Exception ex)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + ex.Message + "');", true);
-            }         
+            }
 
         }
 
@@ -5366,7 +5366,7 @@ namespace RealERPWEB.F_21_MKT
 
 
             //    GetFollow();
-            DataTable dt5 = ((DataTable)ViewState["tblFollow"]).Copy(); 
+            DataTable dt5 = ((DataTable)ViewState["tblFollow"]).Copy();
             DataView dv1;
             dv1 = dt5.DefaultView;
             dv1.RowFilter = ("gcod like '96%'");
@@ -5723,18 +5723,33 @@ namespace RealERPWEB.F_21_MKT
                         ChkBoxLstStatus.DataSource = dts;
                         ChkBoxLstStatus.DataBind();
                         ChkBoxLstStatus.SelectedValue = (lstleadstatus.Length > 0 ? lstleadstatus : ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim());
-                        
 
-                        //int index = 0;
-                        //DataRow[] rows = dts.Select("gcod='" + lstleadstatus + "'");
-                        //if (rows.Length > 0)
-                        //{
-                        //    index = Convert.ToInt32(rows[0]["rowid"]);
-                        //}
-                        //for (int m = index; m < dts.Rows.Count; m++)
-                        //{                            
-                        //    ChkBoxLstStatus.Items[m].Enabled = true;                             
-                        //}
+                        ////////////////
+                        //////// this below code disbale lead status apply for all company
+                        //////////  Nahid 20221222
+                        int index = 0;
+                        string holdLost = "";
+                        DataRow[] rows = dts.Select("gcod='" + lstleadstatus + "'");
+                        if (rows.Length > 0)
+                        {
+                            index = Convert.ToInt32(rows[0]["rowid"]);
+                            if((rows[0]["gcod"].ToString()=="9501020") || (rows[0]["gcod"].ToString() == "9501028"))
+                            {
+                                holdLost = "hold_lost";//rows[0]["gcod"].ToString();
+                            }                            
+                        }
+                        if(holdLost != "hold_lost")// if hold or lost then lead status enable req by emadad bhai and raihan
+                        {
+                            index = index - 1;
+                            for (int p = 0; p < ChkBoxLstStatus.Items.Count; p++)
+                            {
+                                if (p < index)
+                                {
+                                    ChkBoxLstStatus.Items[p].Enabled = false;
+                                }
+                            }
+                        }
+                        
 
                         break;
 

@@ -95,8 +95,8 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+            <div class="card">
+                <div class="card-body">
                     <asp:Panel ID="panelHead" runat="server">
                         <div class="row">
                             <fieldset class="scheduler-border fieldset_A">

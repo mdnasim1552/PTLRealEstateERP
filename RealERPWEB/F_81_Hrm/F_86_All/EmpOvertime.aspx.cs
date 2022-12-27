@@ -142,6 +142,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lnkbtnRecalculate_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
@@ -376,6 +377,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             switch (type)
             {
                 case "Overtime":
+                    ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
                     break;
                 case "BankPayment":
                     break;
@@ -1072,6 +1074,53 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         this.gvEmpOverTime.Columns[15].Visible = false;
                         this.gvEmpOverTime.Columns[16].Visible = true;
                     }
+                    else if (comcod == "3368" || comcod == "3369")
+                    {
+                        this.gvEmpOverTime.Columns[3].Visible = true;
+                        this.gvEmpOverTime.Columns[4].Visible = true;
+                        this.gvEmpOverTime.Columns[5].Visible = true;
+                        this.gvEmpOverTime.Columns[6].Visible = true;
+                        this.gvEmpOverTime.Columns[7].Visible = true;
+                        this.gvEmpOverTime.Columns[8].Visible = true;
+                        this.gvEmpOverTime.Columns[9].Visible = false;
+                        this.gvEmpOverTime.Columns[10].Visible = false;
+                        this.gvEmpOverTime.Columns[11].Visible = false;
+                        this.gvEmpOverTime.Columns[12].Visible = false;
+                        this.gvEmpOverTime.Columns[13].Visible = false;
+                        this.gvEmpOverTime.Columns[14].Visible = false;
+                        this.gvEmpOverTime.Columns[15].Visible = false;
+                        this.gvEmpOverTime.Columns[16].Visible = false;
+                        this.gvEmpOverTime.Columns[17].Visible = false;
+                        this.gvEmpOverTime.Columns[18].Visible = false;
+                        this.gvEmpOverTime.Columns[19].Visible = false;
+                        this.gvEmpOverTime.Columns[20].Visible = false;
+                        this.gvEmpOverTime.Columns[21].Visible = true;
+                        this.gvEmpOverTime.Columns[22].Visible = true;
+                    }
+
+                    //else if (comcod == "3369")
+                    //{
+                    //    this.gvEmpOverTime.Columns[3].Visible = true;
+                    //    this.gvEmpOverTime.Columns[4].Visible = true;
+                    //    this.gvEmpOverTime.Columns[5].Visible = true;
+                    //    this.gvEmpOverTime.Columns[6].Visible = true;
+                    //    this.gvEmpOverTime.Columns[7].Visible = true;
+                    //    this.gvEmpOverTime.Columns[8].Visible = true;
+                    //    this.gvEmpOverTime.Columns[9].Visible = false;
+                    //    this.gvEmpOverTime.Columns[10].Visible = false;
+                    //    this.gvEmpOverTime.Columns[11].Visible = false;
+                    //    this.gvEmpOverTime.Columns[12].Visible = false;
+                    //    this.gvEmpOverTime.Columns[13].Visible = false;
+                    //    this.gvEmpOverTime.Columns[14].Visible = false;
+                    //    this.gvEmpOverTime.Columns[15].Visible = false;
+                    //    this.gvEmpOverTime.Columns[16].Visible = false;
+                    //    this.gvEmpOverTime.Columns[17].Visible = false;
+                    //    this.gvEmpOverTime.Columns[18].Visible = false;
+                    //    this.gvEmpOverTime.Columns[19].Visible = false;
+                    //    this.gvEmpOverTime.Columns[20].Visible = false;
+                    //    this.gvEmpOverTime.Columns[21].Visible = true;
+                    //    this.gvEmpOverTime.Columns[22].Visible = true;
+                    //}
                     else
                     {
                         this.gvEmpOverTime.Columns[16].Visible = false;
@@ -1804,6 +1853,20 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         double c3hour = Convert.ToDouble("0" + ((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvc3")).Text.Trim());
                         double fixamt = Convert.ToDouble("0" + ((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvfixamt")).Text.Trim());
 
+
+
+
+                        
+                        double fixdaycount = Convert.ToDouble("0" + ((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvFixedDaycount")).Text.Trim());
+                        double dayrate = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("txtgvdayrate")).Text.Trim());
+                        double fixhourcount = Convert.ToDouble("0" + ((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvFixedhour")).Text.Trim());
+                        double hourlyrate = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("txtgvhourlyrate")).Text.Trim());
+ 
+
+
+
+
+
                         double tohour = fixhour + hourly + c1hour + c2hour + c3hour;
                         rowindex = (this.gvEmpOverTime.PageSize) * (this.gvEmpOverTime.PageIndex) + i;
                         dt.Rows[rowindex]["fixhour"] = fixhour;
@@ -1813,6 +1876,15 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         dt.Rows[rowindex]["c3hour"] = c3hour;
                         dt.Rows[rowindex]["tohour"] = tohour;
                         dt.Rows[rowindex]["fixamt"] = fixamt;
+                        if (comcod == "3368" || comcod=="3369")
+                        {
+
+                            dt.Rows[rowindex]["fixday"] = fixdaycount;
+                            dt.Rows[rowindex]["fixhour"] = fixhourcount;
+                            dt.Rows[rowindex]["totalamt"] = (fixdaycount * dayrate) + (fixhourcount * hourlyrate);
+                        }
+
+
 
                     }
 
@@ -2061,6 +2133,9 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             Session["tblover"] = dt;
         }
 
+
+
+
         protected void lUpdate_Click(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
@@ -2079,6 +2154,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             {
                 string empid = dt.Rows[i]["empid"].ToString();
                 string gcod = dt.Rows[i]["gcod"].ToString();
+                //double fixhour = Convert.ToDouble(dt.Rows[i]["fixhour"]);
                 double fixhour = Convert.ToDouble(dt.Rows[i]["fixhour"]);
                 double hourly = Convert.ToDouble(dt.Rows[i]["hourly"]);
                 double c1hour = Convert.ToDouble(dt.Rows[i]["c1hour"]);
@@ -2089,9 +2165,9 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 double c1rate = Convert.ToDouble(dt.Rows[i]["c1rate"]);
                 double c2rate = Convert.ToDouble(dt.Rows[i]["c2rate"]);
                 double c3rate = Convert.ToDouble(dt.Rows[i]["c3rate"]);
-                double fixamtx = Convert.ToDouble(dt.Rows[i]["fixamt"]);               
+                double fixamtx = Convert.ToDouble(dt.Rows[i]["fixamt"]);
 
-                string fixamt = (comcod == "3370" || comcod == "3101")? fixamtx.ToString() : (fixhour * fixrate).ToString();
+                string fixamt = (comcod == "3370" || comcod == "3101") ? fixamtx.ToString() : (fixhour * fixrate).ToString();
 
                 string houramt = (hourly * hourrate).ToString();
                 string c1amt = (c1hour * c1rate).ToString();
@@ -2099,10 +2175,37 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 string c3amt = (c3hour * c3rate).ToString();
                 double tohour = Convert.ToDouble(dt.Rows[i]["tohour"]); ;
 
+                double daycount = 0.0;
+                double dayrate = 0.0;
+                double syshour = 0.0;
+                double syshourrate = 0.0;
+                double dayamt = 0.0;
+                double totalamt = 0.0;
+
+                if (comcod == "3368" || comcod=="3369")
+                {
+                    daycount = Convert.ToDouble(dt.Rows[i]["fixday"]);
+                    dayrate = Convert.ToDouble(dt.Rows[i]["holidayrate"]);
+                    syshour = Convert.ToDouble(dt.Rows[i]["fixhour"]);
+                    syshourrate = Convert.ToDouble(dt.Rows[i]["fixrate"]);
+                    dayamt = daycount * dayrate;
+
+
+
+
+
+
+                    result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, daycount.ToString(), dayrate.ToString(), dayamt.ToString(), "", "", "", "");
+                    if (!result)
+                        return;
+                }
+                else
+                {
+
                 if (tohour > 0)
                 {
 
-                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, "");
+                    result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, daycount.ToString(), dayrate.ToString(), dayamt.ToString(), "", "", "", "");
                     if (!result)
                         return;
                 }
@@ -2112,13 +2215,15 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     case "3370":
                         if (fixamtx > 0)
                         {
-                            result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, "");
+                            result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, daycount.ToString(), dayrate.ToString(), dayamt.ToString(), "", "", "", "");
                             if (!result)
                                 return;
                         }
                         break;
-                        
+
                 }
+
+            }
 
 
             }
@@ -2128,7 +2233,11 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
         }
 
-
+        private void lnkbtnRecalculate_Click(object sender, EventArgs e)
+        {
+            this.SaveValue();
+            this.Data_Bind();
+        }
         protected void gvEmpOverTime_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
 

@@ -275,6 +275,18 @@
                                                             <%--  Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>' --%>
                                                         </li>
 
+                                                         <li class="mt-2">
+                                                            <asp:HyperLink ID="HyperLink7" Target="_blank"
+                                                                NavigateUrl='<%# "~/LetterDefault?Type=10011&Entry=appoinment Letter &empid="+Eval("empid") %>'
+                                                                CssClass="dropdown-item" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? false:true %>' runat="server">Resignation Letter</asp:HyperLink>
+                                                            <%--  Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>' --%>
+                                                        </li>
+                                                         <li class="mt-2">
+                                                            <asp:HyperLink ID="HyperLink8" Target="_blank"
+                                                                NavigateUrl='<%# "~/LetterDefault?Type=10030&Entry=appoinment Letter &empid="+Eval("empid") %>'
+                                                                CssClass="dropdown-item" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? false:true %>' runat="server">Clearence Letter</asp:HyperLink>
+                                                            <%--  Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>' --%>
+                                                        </li>
                                                           <li class="mt-2">
                                                             <asp:HyperLink ID="lnkConfirmation" Target="_blank"
                                                                 NavigateUrl='<%# "~/LetterDefault?Type=10025&Entry=confirmation Letter &empid="+Eval("empid") %>'

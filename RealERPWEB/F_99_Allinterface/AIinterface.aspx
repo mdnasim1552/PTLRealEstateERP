@@ -621,9 +621,10 @@
                                             <asp:LinkButton ID="btnaddPrj" OnClick="btnaddPrj_Click" CssClass="dropdown-item" Style="padding: 0 10px" runat="server">Add Project</asp:LinkButton>
                                             <asp:HyperLink ID="HyperLink1" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/CustomerList" CssClass="dropdown-item" Style="padding: 0 10px">Customer List</asp:HyperLink>
                                             <asp:HyperLink ID="HyperLink2" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/AddProject" CssClass="dropdown-item" Style="padding: 0 10px">All Project's</asp:HyperLink>
-                                            <asp:HyperLink ID="HyperLink3" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/CreateTask" CssClass="dropdown-item" Style="padding: 0 10px">Create Task</asp:HyperLink>
-                                            <asp:HyperLink ID="HyperLink4" runat="server" Target="_blank" NavigateUrl="~/StepofOperationNew?moduleid=14" CssClass="dropdown-item" Style="padding: 0 10px">Assign Team Leader</asp:HyperLink>
-                                            <asp:HyperLink ID="HyperLink5" runat="server" Target="_blank" NavigateUrl="~/StepofOperationNew?moduleid=14" CssClass="dropdown-item" Style="padding: 0 10px">Creating Invoice</asp:HyperLink>
+                                            <asp:HyperLink ID="HyperLink3" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/RptOngoingProjects.aspx?Type=Report" CssClass="dropdown-item" Style="padding: 0 10px">Ongoing Projects</asp:HyperLink>
+                                            <asp:HyperLink ID="HyperLink4" runat="server" Target="_blank" NavigateUrl="~/F_38_AI/CreateTask" CssClass="dropdown-item" Style="padding: 0 10px">Create Task</asp:HyperLink>
+                                            <asp:HyperLink ID="HyperLink5" runat="server" Target="_blank" NavigateUrl="~/StepofOperationNew?moduleid=14" CssClass="dropdown-item" Style="padding: 0 10px">Assign Team Leader</asp:HyperLink>
+                                            <asp:HyperLink ID="HyperLink6" runat="server" Target="_blank" NavigateUrl="~/StepofOperationNew?moduleid=14" CssClass="dropdown-item" Style="padding: 0 10px">Creating Invoice</asp:HyperLink>
                                             <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/StepofOperationNew?moduleid=14" CssClass="dropdown-item" Style="padding: 0 10px">Day Wise Work Status</asp:HyperLink>
 
                                         </div>
@@ -829,6 +830,22 @@
                             </asp:Panel>
                             <asp:Panel ID="pnlStatus" runat="server" Visible="false">
                                 <div class="row">
+                                       <div class="col-md-2">
+                                        <asp:Label ID="Label31" runat="server">Page Size</asp:Label>
+                                        <asp:DropDownList ID="ddlBatchPage" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlBatchPage_SelectedIndexChanged" CssClass="form-control form-control-sm">
+                                            <asp:ListItem>10</asp:ListItem>
+                                            <asp:ListItem>15</asp:ListItem>
+                                            <asp:ListItem>20</asp:ListItem>
+                                            <asp:ListItem>30</asp:ListItem>
+                                            <asp:ListItem>50</asp:ListItem>
+                                            <asp:ListItem>100</asp:ListItem>
+                                            <asp:ListItem>150</asp:ListItem>
+                                            <asp:ListItem>200</asp:ListItem>
+                                            <asp:ListItem>300</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
                                     <asp:GridView ID="gv_BatchList" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                         ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" Width="100%" OnPageIndexChanging="gv_BatchList_PageIndexChanging" OnRowDataBound="gv_BatchList_RowDataBound">
                                         <Columns>
@@ -870,6 +887,9 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Batch Name">
                                                 <ItemTemplate>
+                                                     <asp:Label ID="lblbatchuniqid" runat="server" Height="16px" CssClass="badge badge-pill badge-primary"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "id")) %>'></asp:Label>
+
                                                     <asp:Label ID="lblbatchbatchid" runat="server" Height="16px" Width="200px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "batchid")) %>'></asp:Label>
                                                 </ItemTemplate>
@@ -993,7 +1013,23 @@
                                 </div>
                             </asp:Panel>
                             <asp:Panel ID="pnlAssign" runat="server" Visible="false">
-                                <div class="table-responsive">
+                                <div class="row">
+                                       <div class="col-md-2">
+                                        <asp:Label ID="Label32" runat="server">Page Size</asp:Label>
+                                        <asp:DropDownList ID="ddlassignpagesize" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlassignpagesize_SelectedIndexChanged" CssClass="form-control form-control-sm">
+                                            <asp:ListItem>10</asp:ListItem>
+                                            <asp:ListItem>15</asp:ListItem>
+                                            <asp:ListItem>20</asp:ListItem>
+                                            <asp:ListItem>30</asp:ListItem>
+                                            <asp:ListItem>50</asp:ListItem>
+                                            <asp:ListItem>100</asp:ListItem>
+                                            <asp:ListItem>150</asp:ListItem>
+                                            <asp:ListItem>200</asp:ListItem>
+                                            <asp:ListItem>300</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+                                <div class="table-responsive mt-2">
                                     <asp:GridView ID="gvAssingJob" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                         ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnRowDataBound="gvAssingJob_RowDataBound" OnPageIndexChanging="gvAssingJob_PageIndexChanging">
 
@@ -1049,7 +1085,9 @@
 
                                             <asp:TemplateField HeaderText="Batch Name">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="tblproj" runat="server" Width="150px"
+                                                     <asp:Label ID="lbljobiduniq" runat="server" class="badge badge-pill badge-info"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobid")) %>'></asp:Label>
+                                                    <asp:Label ID="tblproj" runat="server" Width="200px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "batchname")) %>'></asp:Label>
                                                 </ItemTemplate>
 
@@ -1123,7 +1161,23 @@
                                 </div>
                             </asp:Panel>
                             <asp:Panel ID="pnlProduction" runat="server" Visible="false">
-                                <div class="table-responsive">
+                                 <div class="row">
+                                       <div class="col-md-2">
+                                        <asp:Label ID="Label33" runat="server">Page Size</asp:Label>
+                                        <asp:DropDownList ID="ddlProduction_page_Size" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProduction_page_Size_SelectedIndexChanged"  CssClass="form-control form-control-sm">
+                                            <asp:ListItem>10</asp:ListItem>
+                                            <asp:ListItem>15</asp:ListItem>
+                                            <asp:ListItem>20</asp:ListItem>
+                                            <asp:ListItem>30</asp:ListItem>
+                                            <asp:ListItem>50</asp:ListItem>
+                                            <asp:ListItem>100</asp:ListItem>
+                                            <asp:ListItem>150</asp:ListItem>
+                                            <asp:ListItem>200</asp:ListItem>
+                                            <asp:ListItem>300</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+                                <div class="table-responsive mt-2">
                                     <asp:GridView ID="gv_Production" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                         ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnRowDataBound="gv_Production_RowDataBound" OnPageIndexChanging="gv_Production_PageIndexChanging">
                                         <Columns>
@@ -1211,7 +1265,7 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ordertype")) %>'></asp:Label>
                                                 </ItemTemplate>
 
-                                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                <%--//<ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />--%>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                             </asp:TemplateField>
 

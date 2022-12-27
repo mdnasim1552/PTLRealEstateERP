@@ -25,6 +25,7 @@ namespace RealERPWEB.F_22_Sal
         ProcessRAccess Rprss = new ProcessRAccess();
         ProcessAccess da = new ProcessAccess();
         //static string tempddl1 = "", tempddl2 = "";
+        string msg = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -116,14 +117,14 @@ namespace RealERPWEB.F_22_Sal
         }
         protected void gvPaySch_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            if (((TextBox)gvPaySch.Rows[e.RowIndex].FindControl("txtgrcode")).Text.Trim().Length == 6)
+            if (((Label)gvPaySch.Rows[e.RowIndex].FindControl("lbgrcod3")).Text.Trim().Length == 6)
             {
                 //Hashtable hst = (Hashtable)Session["tblLogin"];
                 //string comcod = hst["comcod"].ToString();
 
                 string comcod = this.GetCompCode();
                 string gcode1 = ((Label)gvPaySch.Rows[e.RowIndex].FindControl("lblgrcode")).Text.Trim();
-                string gcode2 = ((TextBox)gvPaySch.Rows[e.RowIndex].FindControl("txtgrcode")).Text.Trim().Replace("-", "");
+                string gcode2 = ((TextBox)gvPaySch.Rows[e.RowIndex].FindControl("lbgrcod3")).Text.Trim().Replace("-", "");
 
                 string Desc = ((TextBox)gvPaySch.Rows[e.RowIndex].FindControl("txtgvDesc")).Text.Trim();
                 string tgcod = gcode1.Substring(0, 2) + gcode2;
@@ -172,7 +173,7 @@ namespace RealERPWEB.F_22_Sal
             {
 
                 DataTable tbl1 = (DataTable)Session["storedata"];
-                this.gvPaySch.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                //this.gvPaySch.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                 this.gvPaySch.DataSource = tbl1;
                 this.gvPaySch.DataBind();
 
@@ -308,5 +309,69 @@ namespace RealERPWEB.F_22_Sal
             this.gvPaySch.PageIndex = e.NewPageIndex;
             this.gvPaySch_DataBind();
         }
+
+        protected void lbtnAdd_Click(object sender, EventArgs e)
+        {  
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["entry"]))
+            {
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                return;
+            }
+
+            GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int RowIndex = gvr.RowIndex;
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            int index = this.gvPaySch.PageSize * this.gvPaySch.PageIndex + RowIndex;
+            string gcod = ((DataTable)Session["storedata"]).Rows[index]["gcod"].ToString();
+            this.lbgrcod.Text = gcod;
+            this.paymentcodchk.Text = gcod;
+            this.txtpaymentcode.Text = gcod.Substring(0, 2) + "-" + gcod.Substring(2, 3) + "-" + ASTUtility.Right(gcod, 2);
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+        }
+
+        protected void lbtnAddCode_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            string gcod = paymentcodchk.Text;
+
+
+            string tpaymentcode = this.txtpaymentcode.Text.Trim().Replace("-", "");
+            string Desc = this.txtDesc.Text.Trim();
+            string DescBN = this.txtDescBN.Text.Trim();
+            string gtype = this.txttype.Text.Trim();
+            string Gtype = (gtype.ToString() == "") ? "T" : gtype;
+            string mnumber = (gcod == tpaymentcode) ? "" : "manual";
+
+            bool isResultValid = true;
+            if (Desc.Length == 0)
+            {
+                msg = "Resource Head is not empty";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+                isResultValid = false;
+                return;
+            }
+
+            bool result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTPAYMENTCODE", tpaymentcode,
+                          Desc, DescBN, Gtype, mnumber, "", "", "", "", "");
+
+            if (result == true)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Created ";
+            }
+
+            else
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Create Failed";
+            }
+            ShowInformation();
+            gvPaySch_DataBind();
+        }
     }
-}
+}       
