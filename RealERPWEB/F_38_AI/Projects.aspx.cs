@@ -369,7 +369,7 @@ namespace RealERPWEB.F_38_AI
           
 
 
-                if (roletype == "95001" && totalassign < assignqty || roletype == "95001" && pedingannotor < validtotal)
+                if ((roletype == "95001" && totalassign < assignqty) || (roletype == "95001" && pedingannotor < validtotal))
                 {
 
 
