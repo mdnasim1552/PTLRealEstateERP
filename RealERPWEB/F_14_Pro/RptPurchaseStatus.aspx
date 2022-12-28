@@ -96,8 +96,9 @@
 
                                         <asp:LinkButton ID="imgbtnFindProject" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnFindProject_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
-                                        <asp:DropDownList ID="ddlProjectName" OnSelectedIndexChanged="ddlProjectName_OnSelectedIndexChanged" AutoPostBack="True" runat="server" Style="width: 350px" CssClass="chzn-select  ddlPage">
+                                        <asp:DropDownList ID="ddlProjectName" OnSelectedIndexChanged="ddlProjectName_OnSelectedIndexChanged" AutoPostBack="True" runat="server"  CssClass="chzn-select  ddlPage">
                                         </asp:DropDownList>
+
                                     </div>
                                     <div class="col-md-5 pading5px asitCol6" runat="server" id="serail" visible="False">
                                         <asp:Label ID="Label7" runat="server" CssClass="lblTxt lblName" Text="Serial Number"></asp:Label>
@@ -111,11 +112,11 @@
 
                                     <div class="col-md-5 pading5px asitCol6" runat="server" id="genbillno" visible="False">
                                        <asp:Label ID="lblGenBillTrack" runat="server" CssClass="lblTxt lblName" Text="Project Name"></asp:Label>
-                                        <asp:TextBox ID="TextGenBillTrack" Style="display: none" runat="server" CssClass=" inputtextbox"></asp:TextBox>
+                                        <asp:TextBox ID="TextGenBillTrack"  runat="server" CssClass=" inputtextbox"></asp:TextBox>
 
                                         <asp:LinkButton ID="LinkGenBillTrack" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="LinkGenBillTrack_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
-                                        <asp:DropDownList ID="ddlGenBillTracking" OnSelectedIndexChanged="ddlGenBillTracking_SelectedIndexChanged" AutoPostBack="True" runat="server" Style="width: 350px" CssClass="chzn-select  ddlPage">
+                                        <asp:DropDownList ID="ddlGenBillTracking"  AutoPostBack="True" runat="server" Style="width: 250px" CssClass="chzn-select  ddlPage">
                                         </asp:DropDownList>
                                     </div>
 
@@ -2338,23 +2339,23 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Req No">
+                                           <%-- <asp:TemplateField HeaderText="Req No">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvReqno1" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno")) %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
 
-                                            <asp:TemplateField HeaderText="Voucher Number">
+                                          <%--  <asp:TemplateField HeaderText="Voucher Number">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvReqno1" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "vounum")) %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
 
                                             <asp:TemplateField HeaderText="Date">
                                                 <ItemTemplate>
@@ -2373,14 +2374,24 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Bill No">
+                                            <%--<asp:TemplateField HeaderText="Bill No">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvgchlno1" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "genno")) %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>--%>
+
+                                                <asp:TemplateField HeaderText="Project Name">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvprjname4" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
+                                                        Width="180px"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
+
+
                                             <asp:TemplateField HeaderText="Material Name">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvMaterials4" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) %>'
@@ -2388,14 +2399,14 @@
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Unit ">
+                                            <%--<asp:TemplateField HeaderText="Unit ">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvUnit3" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirunit")) %>'
                                                         Width="25px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
                                             <asp:TemplateField HeaderText="Specification">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvSpecification1" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfdesc")) %>'
@@ -2456,7 +2467,7 @@
                                             </asp:TemplateField>
 
 
-                                            <asp:TemplateField HeaderText="Print">
+                                         <%--   <asp:TemplateField HeaderText="Print">
                                                 <ItemTemplate>                                                    
                                                     <asp:LinkButton ID="btnPrintReqInfo1" OnClick="btnPrintReqInfo1_Click" runat="server" CssClass="btn btn-default btn-xs" Style="background-color:#C0C0C0"><span style="color:#002bff" class="fa fa-print"></span> </asp:LinkButton>
 
@@ -2464,7 +2475,7 @@
 
                                                 <ItemStyle Width="40px" HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" Width="40px" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
 
 
 
