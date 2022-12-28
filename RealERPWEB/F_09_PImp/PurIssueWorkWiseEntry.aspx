@@ -117,7 +117,8 @@
                                             <div class="col-md-3 pading5px ">
 
                                                 <asp:Label ID="lblitemList" runat="server" CssClass=" smLbl_to" Text="Item List"></asp:Label>
-                                                <asp:DropDownList ID="ddlitemlist" runat="server" CssClass=" chzn-select  form-control" Width="220px" TabIndex="12" AutoPostBack="True" OnSelectedIndexChanged="ddlitemlist_SelectedIndexChanged">
+                                                <asp:DropDownList ID="ddlitemlist" runat="server" CssClass=" chzn-select  form-control" Width="220px" TabIndex="12" AutoPostBack="True" 
+                                                    OnSelectedIndexChanged="ddlitemlist_SelectedIndexChanged">
                                                 </asp:DropDownList>
                                             </div>
                                             
