@@ -207,12 +207,24 @@ namespace RealERPWEB.F_14_Pro
         {
             string comcod = this.GetComeCode();
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
-            string txtSrchSupplier = this.txtSrcSupplier.Text.Trim() + "%";
+            string txtSrchSupplier =  "%%";
             DataSet ds2 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETSUPPLIER", pactcode, txtSrchSupplier, "", "", "", "", "", "", "");
+
+            DataTable dt = ds2.Tables[0];
+            DataRow dr1 =dt.NewRow();
+            dr1["ssircode"] = "000000000000";
+            dr1["ssirdesc"] = "All Suppler";
+            dt.Rows.Add(dr1);
+        
+
             this.ddlSupplier.DataTextField = "ssirdesc";
             this.ddlSupplier.DataValueField = "ssircode";
-            this.ddlSupplier.DataSource = ds2.Tables[0];
+            this.ddlSupplier.DataSource = dt;
             this.ddlSupplier.DataBind();
+            this.ddlSupplier.SelectedValue = "000000000000";
+            ds2.Dispose();
+
+
 
         }
 
@@ -253,6 +265,7 @@ namespace RealERPWEB.F_14_Pro
             {
                 case "DaywPur":
                     this.GetMaterialCode();
+                    this.PnlSupplier.Visible = true;
                     this.LblReqno.Visible = true;
                     this.txtSrcMrfNo.Visible = true;
                     this.imgbtnFindRequiSition.Visible = true;
@@ -260,6 +273,7 @@ namespace RealERPWEB.F_14_Pro
                     this.ddlMatCode.Visible = true;
                     this.MultiView1.ActiveViewIndex = 0;
                     this.chkDirect.Visible = true;
+                    this.GetSupplier();
 
                     break;
 
@@ -1052,7 +1066,8 @@ namespace RealERPWEB.F_14_Pro
             string mrfno = "%" + this.txtSrcMrfNo.Text.Trim() + "%";
             string rescode = ((this.ddlMatCode.SelectedValue.ToString() == "000000000000") ? "" : (this.ddlMatCode.SelectedValue.Substring(9, 3).ToString() == "000") ? (this.ddlMatCode.SelectedValue.ToString().Substring(0, 9)).ToString() : this.ddlMatCode.SelectedValue.ToString()) + "%";
             string dirorin = (this.chkDirect.Checked) ? "direct" : "";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "REQSATIONMRRSTATUS", fromdate, todate, pactcode, mrfno, rescode, dirorin, "", "", "");
+            string supplier = ((this.ddlMatCode.SelectedValue.ToString() == "000000000000")?"":this.ddlSupplier.SelectedValue.ToString())+"%";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "REQSATIONMRRSTATUS", fromdate, todate, pactcode, mrfno, rescode, dirorin, supplier, "", "");
             if (ds1.Tables[0].Rows.Count == 0)
             {
                 this.gvPurStatus.DataSource = null;

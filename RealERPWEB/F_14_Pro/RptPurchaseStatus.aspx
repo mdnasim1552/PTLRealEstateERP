@@ -88,8 +88,7 @@
                         <fieldset class="scheduler-border fieldset_A">
 
                             <div class="form-horizontal">
-                                <div class="form-group">
-                                </div>
+                                
                                 <div class="form-group">
                                     <div class="col-md-6 pading5px asitCol6" id="main" runat="server">
                                         <asp:Label ID="lblProjectName" runat="server" CssClass="lblTxt lblName" Text="Project Name"></asp:Label>
@@ -159,7 +158,7 @@
 
                                     <div class="col-md-12 pading5px asitCol11">
 
-                                        <div runat="server" id="datepart" class="col-md-3">
+                                        <div runat="server" id="datepart" class="col-md-6 padding5px">
                                             <asp:Label ID="lbldatefrm" runat="server" CssClass="smLbl_to" Text="Date"></asp:Label>
                                             <asp:TextBox ID="txtFDate" runat="server" AutoCompleteType="Disabled" CssClass="inputtextbox"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txtFDate_CalendarExtender" runat="server"
@@ -170,19 +169,17 @@
                                             <asp:TextBox ID="txttodate" runat="server" AutoCompleteType="Disabled" CssClass="inputtextbox" ToolTip="(dd-MM-yyyy)"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server"
                                                 Format="dd-MMM-yyyy" TargetControlID="txttodate" Enabled="true"></cc1:CalendarExtender>
-
-
-                                        </div>
-
-                                        <div class="col-md-3" style="margin-left: -80px;">
-                                            <asp:Label ID="lblMcod" runat="server" CssClass="lblTxt lblName" Visible="false" Text="Material Code"></asp:Label>
+                                             <asp:Label ID="lblMcod" runat="server" CssClass="lblTxt lblName" Visible="false" Text="Material"></asp:Label>
 
                                             <asp:DropDownList ID="ddlMatCode" runat="server" Visible="false" Width="150px" CssClass="chzn-select ddlPage">
                                             </asp:DropDownList>
+
                                         </div>
-                                        <div>
-                                            <%--<asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click">Ok</asp:LinkButton>--%>
-                                        </div>
+
+                                      
+                                        
+                                           
+                                    
 
                                         <div class="col-md-4 pull-right">
                                             <asp:CheckBox ID="chkDirect" runat="server" Visible="false" Text="Petty Cash" CssClass="btn btn-primary checkBox" />
@@ -200,8 +197,6 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-3 pading5px   asitCol3">
-                                </div>
                             </div>
 
                         </fieldset>
@@ -214,21 +209,15 @@
 
                                         <div class="form-horizontal">
                                             <div class="form-group">
-                                                <div class="col-md-3 pading5px asitCol3">
+                                                <div class="col-md-6 pading5px ">
                                                     <asp:Label ID="lblsupplier" runat="server" CssClass="lblTxt lblName" Text="Supplier"></asp:Label>
-                                                    <asp:TextBox ID="txtSrcSupplier" runat="server" CssClass=" inputtextbox"></asp:TextBox>
-                                                    <div class="colMdbtn">
-                                                        <asp:LinkButton ID="imgbtnFindSupplier" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnFindSupplier_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-md-3 pading5px  asitCol3">
-                                                    <asp:DropDownList ID="ddlSupplier" runat="server" CssClass="form-control inputTxt">
+                                                  
+                                                   <asp:DropDownList ID="ddlSupplier" runat="server" CssClass="form-control  chzn-select" style="width:380px">
                                                     </asp:DropDownList>
 
                                                 </div>
+
+                                               
                                             </div>
 
                                         </div>
