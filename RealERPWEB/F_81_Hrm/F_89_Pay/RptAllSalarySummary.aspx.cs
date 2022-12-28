@@ -439,7 +439,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case 5:
                     //for (i = 2; i < this.GvModPayment.Columns.Count - 1; i++)
                     //    this.GvModPayment.Columns[i].Visible = false;
-                    j = 1;
+                    j = 0;
                     DataTable dtmontotal = (DataTable)Session["tblmondesc"];
                     if (dtmontotal == null)
                     {
