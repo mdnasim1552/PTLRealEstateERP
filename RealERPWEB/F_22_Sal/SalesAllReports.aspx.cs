@@ -85,9 +85,9 @@ namespace RealERPWEB.F_22_Sal
                     break;
 
                 case "PaymentStatus":
-                    this.lblDate.Visible = false;
-                    this.txtFDate.Visible = false;
-                    this.clfdate.Visible = false;
+                    this.lblDate.Visible = true;
+                    this.txtFDate.Visible = true;
+                    this.clfdate.Visible = true;
                     this.imgbtnFindCustomer.Visible = true;
                     this.ddlCustName.Visible = true;
                     this.clcust.Visible = true;
@@ -241,9 +241,10 @@ namespace RealERPWEB.F_22_Sal
 
             // string frmdate = this.txtFDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
+            string frmdate = this.txtFDate.Text.Trim();
             string pactcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18" + "%" : this.ddlPrjName.SelectedValue.ToString() + "%";
             string usircode = this.ddlCustName.SelectedValue.ToString();
-            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_COLLECTIONMGT", "GETPAYMENTSATATUS", pactcode, usircode, todate, "", "", "", "", "");
+            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_COLLECTIONMGT", "GETPAYMENTSATATUS", pactcode, frmdate,todate , usircode, "", "", "", "");
             if (ds1 == null)
             {
 

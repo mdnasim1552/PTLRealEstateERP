@@ -1334,6 +1334,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2302000", "2303050", "F_23_CR", "RptDelMonyRec", "", "Cancellation Money Receipt", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2302000", "2302060", "F_23_CR", "TransactionSearch", "", "Transaction Search", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2302000", "2303070", "F_23_CR", "RptCustPayStatus?", "Type=Payment", "Payment Status", "Credit Realization", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2302000", "2304120", "F_23_CR", "RptPaymentStatusdaywise", "", "Payment Status(Date Wise)", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2302000", "2303071", "F_23_CR", "RptCustPayStatus?", "Type=ClLedger", "Client Ledger", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2302000", "2303075", "F_23_CR", "RptCustPayStatus?", "Type=ClPayDetails", "Client Payment Details", "Credit Realization", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2302000", "2302080", "F_23_CR", "CustOthMoneyReceipt", "Typq=CustCare", "Collection- Finishing Project", "Credit Realization", "False", "False", "False", "False" });
@@ -7822,6 +7823,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000000", "	Supervision Level", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0302000001", "12. Transaction Search", "F_23_CR/TransactionSearch", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000002", "13. Payment Status", "F_23_CR/RptCustPayStatus?Type=Payment", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000008", "13. Payment Status (Day Wise)", "F_23_CR/RptPaymentStatusdaywise", "", true, "" });
+       
 
             mnuTbl1.Rows.Add(new Object[] { "0302000003", "15. Client Payment Details", "F_23_CR/RptCustPayStatus?Type=ClPayDetails", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000004", "17. List Of Return Cheque(Report)", "F_23_CR/RptDishonourCheque", "", true, "" });
