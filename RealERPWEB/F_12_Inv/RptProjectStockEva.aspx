@@ -265,7 +265,7 @@
                                     <asp:TemplateField HeaderText="%">
                                         <ItemTemplate>
                                             <asp:Label ID="lblPercentage" runat="server" Style="text-align: right" Width="40px"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "percnt")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "percnt")).ToString("0.00") %>'></asp:Label>
                                         </ItemTemplate>
                                         <%--<FooterTemplate>
                                             <asp:Label ID="lgvttlsolamt" runat="server" ForeColor="Black" Font-Bold="true"></asp:Label>

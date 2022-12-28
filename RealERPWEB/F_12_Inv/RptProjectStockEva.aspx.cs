@@ -123,15 +123,15 @@ namespace RealERPWEB.F_12_Inv
                 return dt1;
 
             string isircod = dt1.Rows[0]["mrsircode"].ToString();
-            for (int j = 1; j < dt1.Rows.Count; j++)
+            for (int i = 1; i < dt1.Rows.Count; i++)
             {
-                if (dt1.Rows[j]["mrsircode"].ToString() == isircod)
+                if (dt1.Rows[i]["mrsircode"].ToString() == isircod)
                 {
 
-                    dt1.Rows[j]["msirdesc"] = "";
+                    dt1.Rows[i]["msirdesc"] = "";
                 }
 
-                isircod = dt1.Rows[j]["mrsircode"].ToString();
+                isircod = dt1.Rows[i]["mrsircode"].ToString();
             }
 
             string pactcode = dt1.Rows[0]["pactcode"].ToString();
@@ -144,7 +144,6 @@ namespace RealERPWEB.F_12_Inv
 
                 isircod = dt1.Rows[j]["pactcode"].ToString();
             }
-
             return dt1;
         }
 
