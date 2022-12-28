@@ -180,7 +180,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2317,6 +2317,7 @@
     <Content Include="F_12_Inv\PurReqEntry.aspx" />
     <Content Include="F_12_Inv\RptIndentIssueStatus.aspx" />
     <Content Include="F_12_Inv\RptIndentIssueStatusSummary.aspx" />
+    <Content Include="F_12_Inv\RptProjectStockEva.aspx" />
     <Content Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx" />
     <Content Include="F_14_Pro\RptDateWiseBill.aspx" />
     <Content Include="F_14_Pro\PoMrrBillStatus.aspx" />
@@ -4244,6 +4245,13 @@
     </Compile>
     <Compile Include="F_12_Inv\RptIndentIssueStatusSummary.aspx.designer.cs">
       <DependentUpon>RptIndentIssueStatusSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_12_Inv\RptProjectStockEva.aspx.cs">
+      <DependentUpon>RptProjectStockEva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_12_Inv\RptProjectStockEva.aspx.designer.cs">
+      <DependentUpon>RptProjectStockEva.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx.cs">
       <DependentUpon>LinkRptPurchaseStatusUr.aspx</DependentUpon>

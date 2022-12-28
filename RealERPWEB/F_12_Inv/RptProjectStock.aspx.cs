@@ -295,15 +295,14 @@ namespace RealERPWEB.F_12_Inv
 
                 case "invWithSpec":
                     string isircod = dt1.Rows[0]["rptcod"].ToString();
-                    for (int j = 1; j < dt1.Rows.Count; j++)
+                    for (int i = 1; i < dt1.Rows.Count; i++)
                     {
-                        if (dt1.Rows[j]["rptcod"].ToString() == isircod)
+                        if (dt1.Rows[i]["rptcod"].ToString() == isircod)
                         {
 
-                            dt1.Rows[j]["rptdesc1"] = "";
+                            dt1.Rows[i]["rptdesc1"] = "";
                         }
-
-                        isircod = dt1.Rows[j]["rptcod"].ToString();
+                        isircod = dt1.Rows[i]["rptcod"].ToString();
                     }
                     break;
 
@@ -322,7 +321,6 @@ namespace RealERPWEB.F_12_Inv
             }
 
             return dt1;
-
 
         }
         private void Data_Bind()
