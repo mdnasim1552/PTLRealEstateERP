@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptBgdPrjoject.aspx.cs" Inherits="RealERPWEB.F_04_Bgd.RptBgdPrjoject" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptBgdPrjoject.aspx.cs" Inherits="RealERPWEB.F_04_Bgd.RptBgdPrjoject" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Assembly="DropCheck" Namespace="xMilk" TagPrefix="cc1" %>
@@ -6,8 +6,18 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <style>
+       .modalcss {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            overflow: scroll;
+        }
+
         .multiselect {
-            width: 350px !important;
+            width: 233px !important;
+            text-wrap: initial !important;
             height: 27px !important;
         }
 
@@ -17,17 +27,37 @@
 
         .multiselect-container {
             height: 250px !important;
-            width: 350px !important;
+            width: 250px !important;
             overflow-y: scroll !important;
         }
 
         span.multiselect-selected-text {
             width: 200px !important;
         }
+
+        .rbtnAtten tbody tr td {
+            margin: 0 5px;
+        }
+
+            .rbtnAtten tbody tr td input[type=checkbox], .rbtnAtten tbody tr td input[type=radio] {
+                box-sizing: border-box;
+                padding: 0;
+                margin: 0 0 0 12px;
+            }
+
+            .rbtnAtten tbody tr td label {
+                margin: 0 0 0 5px;
+            }
+            .chzn-single {
+            border-radius: 3px !important;
+            height: 29px !important;}
     </style>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             //For navigating using left and right arrow of the keyboard
+            $(".select2").select2();
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
         function pageLoaded() {
@@ -41,13 +71,7 @@
                 gv1.Scrollable();
 
                 var gvadwrk = $('#<%=this.gvadwrk.ClientID %>');
-                $(function () {
-                    $('[id*=DropCheck1]').multiselect({
-                        includeSelectAllOption: true
-
-                    });
-
-                });
+             
 
                 gvadwrk.gridviewScroll({
                     width: 1140,
@@ -65,6 +89,19 @@
                 $('#<%=this.gvRptResBasis.ClientID%>').tblScrollable();
                 $('#<%=this.gvmatreq.ClientID%>').tblScrollable();
                 $('.chzn-select').chosen({ search_contains: true });
+                $('.select2').each(function () {
+                    var select = $(this);
+                    select.select2({
+                        placeholder: 'Select an option',
+                        width: '100%',
+                        allowClear: !select.prop('required'),
+                        language: {
+                            noResults: function () {
+                                return "{{ __('No results found') }}";
+                            }
+                        }
+                    });
+                });
 
             }
 
@@ -95,18 +132,15 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="card">
-                <div class="card-body">
+            <div class="card mt-2 pb-2">
+                <div class="card-header">
                     <asp:Panel ID="panelHead" runat="server">
-                        <div class="row">
-                            <fieldset class="scheduler-border fieldset_A">
+                        <div class="row mt-4 mb-2">
+                            
+                                        <div class=" col-md-3 d-none">
 
-                                <div class="form-horizontal">
-                                    <div class="form-group">
-                                        <div class=" col-md-3  pading5px asitCol3">
-
-                                            <asp:Label ID="lblProjectList" CssClass="lblTxt lblName " runat="server" Text="Project Name:"></asp:Label>
-                                            <asp:TextBox ID="txtSrcProject" runat="server" CssClass=" inputtextbox"></asp:TextBox>
+                                           
+                                            <asp:TextBox ID="txtSrcProject" runat="server" CssClass="form-control"></asp:TextBox>
 
 
                                             <asp:LinkButton ID="imgbtnFindProject" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnFindProject_Click" TabIndex="12"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
@@ -115,28 +149,29 @@
                                         </div>
 
 
-                                        <div class="col-md-4 pading5px">
-                                            <asp:DropDownList ID="ddlProjectName" runat="server" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" CssClass="form-control inputTxt chzn-select" TabIndex="13" AutoPostBack="true">
+                                        <div class="col-md-3">
+                                             <asp:Label ID="lblProjectList" CssClass="form-label" runat="server" Text="Project Name:"></asp:Label>
+                                            <asp:DropDownList ID="ddlProjectName" runat="server" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" CssClass="form-control form-control-sm chzn-select" TabIndex="13" AutoPostBack="true">
                                             </asp:DropDownList>
 
                                         </div>
 
 
-                                        <div class="col-md-1 pading5px">
-                                            <asp:LinkButton ID="lbtOk" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtOk_Click">Ok</asp:LinkButton>
+                                        <div class="col-md-1 ml-2" style="margin-top:22px;">
+                                            <asp:LinkButton ID="lbtOk" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtOk_Click">Ok</asp:LinkButton>
 
                                         </div>
 
 
 
-                                        <div class="col-md-1 pading5px">
-                                            <asp:CheckBox ID="chkSum" runat="server" TabIndex="10" Text="Summary" CssClass="btn btn-primary checkBox" Visible="false" Checked="true" />
+                                        <div class="col-md-1" style="margin-top:22px;">
+                                            <asp:CheckBox ID="chkSum" runat="server" TabIndex="10" Text="Summary" CssClass="btn btn-sm btn-primary checkBox" Visible="false" Checked="true" />
 
                                         </div>
-                                        <div class=" col-md-3  pading5px">
+                                        <div class=" col-md-1">
 
                                             <asp:Label ID="Label5" CssClass="lblTxt lblName" runat="server" Text="Group"></asp:Label>
-                                            <asp:DropDownList ID="ddlGrp" runat="server" CssClass="ddlPage">
+                                            <asp:DropDownList ID="ddlGrp" runat="server" CssClass="form-control form-control-sm">
                                                 <asp:ListItem Selected="True">Work</asp:ListItem>
                                                 <asp:ListItem>Resource</asp:ListItem>
                                             </asp:DropDownList>
@@ -144,16 +179,16 @@
                                         </div>
 
 
-                                    </div>
-                                </div>
-                            </fieldset>
+                            
                         </div>
                     </asp:Panel>
-                    <asp:MultiView ID="MultiView1" runat="server">
+                </div>
+                <div class="card-body">
+                        <asp:MultiView ID="MultiView1" runat="server">
                         <asp:View ID="ViewBgd" runat="server">
                             <asp:Panel ID="Panel1" runat="server">
                                 <div class="form-group">
-                                    <div class=" col-md-3  pading5px asitCol3">
+                                    <div class=" col-md-3">
 
                                         <asp:Label ID="lblRptGroup" CssClass="lblTxt lblName" runat="server" Text="Group"></asp:Label>
                                         <asp:DropDownList ID="ddlRptGroup" runat="server" CssClass="ddlPage">
@@ -1389,20 +1424,21 @@
 
                                 </div>
 
-                                <div class=" col-md-3 pading5px  asitCol3">
-                                    <asp:Label ID="lblgroup" runat="server" CssClass=" lblTxt lblName">Group</asp:Label>
+                                <div class=" col-md-3 pading5px  asitCol3 d-none">
+                                    
                                     <asp:TextBox ID="txtSrcGroup" runat="server" CssClass="inputtextbox"></asp:TextBox>
                                     <asp:LinkButton ID="ibtnFindgroup" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ibtnFindgroup_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                 </div>
-                                <div class="col-md-3">
-                                    <asp:ListBox ID="DropCheck1" runat="server" CssClass="form-control multiselect-search" Style="min-width: 100px !important;" SelectionMode="Multiple"></asp:ListBox>
+                                <div class="col-md-2">
+                                    <asp:Label ID="lblgroup" runat="server" CssClass="form-label">Group</asp:Label>
+                                    <asp:ListBox ID="DropCheck1" runat="server" CssClass="form-control select2"  SelectionMode="Multiple"></asp:ListBox>
 
 
                                 </div>
                                 <%--<cc1:DropCheck ID="DropCheck1" runat="server" BackColor="Black" CssClass=" "
                                     MaxDropDownHeight="200" TabIndex="8" TransitionalMode="True" Width="200px"></cc1:DropCheck>--%>
-                                <div class=" clearfix"></div>
+                              
                             </div>
                             <asp:GridView ID="gvbgdgrwisedet" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                 OnRowDataBound="gvbgdgrwisedet_RowDataBound"
@@ -2087,6 +2123,8 @@
 
                         </asp:View>
                     </asp:MultiView>
+                  
+                    
 
 
 
