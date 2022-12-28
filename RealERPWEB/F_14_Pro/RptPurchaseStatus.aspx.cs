@@ -82,6 +82,10 @@ namespace RealERPWEB.F_14_Pro
                     {
                         this.main.Visible = false;
                         this.genbillno.Visible = true;
+                        this.datepart.Visible = false;
+
+                        this.genbillno.Visible = true;
+
                         this.GetGeneralBillNo();
                     }
                     else
@@ -430,7 +434,8 @@ namespace RealERPWEB.F_14_Pro
         {
             Session.Remove("tblreq");
             string comcod = this.GetComeCode();
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETGENERALBILLNO", "%", "", "", "", "", "", "", "", "");
+            string txtsearch = "%"+ this.TextGenBillTrack.Text+"%";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETGENERALBILLNO", txtsearch, "", "", "", "", "", "", "", "");
             this.ddlGenBillTracking.DataTextField = "reqno1";
             this.ddlGenBillTracking.DataValueField = "reqno";
             this.ddlGenBillTracking.DataSource = ds1.Tables[0];
@@ -1403,7 +1408,7 @@ namespace RealERPWEB.F_14_Pro
 
             string rpt = this.Request.QueryString["Rpt"].ToString().Trim();
 
-            string reqno = "", matcode = "", spcfcod = "";
+            string reqno = "", matcode = "", spcfcod = ""; string grp = ""; string grpdesc = "";
             switch (rpt)
             {
                 case "DaywPur":
@@ -1448,12 +1453,13 @@ namespace RealERPWEB.F_14_Pro
                 case "PenBill":
                     break;
 
+                    
 
 
-                case "Purchasetrk":
+                   case "GenBillTrack":
 
-                    string grp = dt1.Rows[0]["grp"].ToString();
-                    string grpdesc = dt1.Rows[0]["grpdesc"].ToString();
+                     grp = dt1.Rows[0]["grp"].ToString();
+                     grpdesc = dt1.Rows[0]["grpdesc"].ToString();
                     for (int j = 1; j < dt1.Rows.Count; j++)
                     {
                         if (dt1.Rows[j]["grp"].ToString() == grp)
@@ -1462,6 +1468,22 @@ namespace RealERPWEB.F_14_Pro
                         grp = dt1.Rows[j]["grp"].ToString();
 
                     }
+
+                    break;
+
+                case "Purchasetrk":
+
+                     grp = dt1.Rows[0]["grp"].ToString();
+                     grpdesc = dt1.Rows[0]["grpdesc"].ToString();
+                    for (int j = 1; j < dt1.Rows.Count; j++)
+                    {
+                        if (dt1.Rows[j]["grp"].ToString() == grp)
+                            dt1.Rows[j]["grpdesc"] = "";
+
+                        grp = dt1.Rows[j]["grp"].ToString();
+
+                    }
+
 
 
 
@@ -2114,19 +2136,19 @@ namespace RealERPWEB.F_14_Pro
 
         protected void LinkGenBillTrack_Click(object sender, EventArgs e)
         {
-
+            this.GetGeneralBillNo();
         }
 
-        protected void btnPrintReqInfo1_Click(object sender, EventArgs e)
-        {
+        //protected void btnPrintReqInfo1_Click(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
        
 
-        protected void ddlGenBillTracking_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.GetGeneralBillNo();
-        }
+        //protected void ddlGenBillTracking_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    this.GetGeneralBillNo();
+        //}
     }
 }
