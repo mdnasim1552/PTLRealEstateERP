@@ -78,6 +78,15 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.LinkButton btnOK;
 
         /// <summary>
+        /// pnl1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl1;
+
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -105,13 +114,13 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// DropDownList1 control.
+        /// ddlItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlItem;
 
         /// <summary>
         /// Label4 control.
@@ -123,13 +132,13 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.Label Label4;
 
         /// <summary>
-        /// DropCheck1 control.
+        /// ddlDivision control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox DropCheck1;
+        protected global::System.Web.UI.WebControls.ListBox ddlDivision;
 
         /// <summary>
         /// btnSelectOne control.
@@ -204,6 +213,15 @@ namespace RealERPWEB.F_09_PImp
         protected global::System.Web.UI.WebControls.TextBox txtWRefNo;
 
         /// <summary>
+        /// btnGenerateIssue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnGenerateIssue;
+
+        /// <summary>
         /// DataGridOne control.
         /// </summary>
         /// <remarks>
@@ -211,6 +229,15 @@ namespace RealERPWEB.F_09_PImp
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView DataGridOne;
+
+        /// <summary>
+        /// pnl2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnl2;
 
         /// <summary>
         /// Label6 control.
