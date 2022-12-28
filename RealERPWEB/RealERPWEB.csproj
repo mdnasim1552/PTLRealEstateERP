@@ -180,13 +180,10 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ScriptManager.WebForms">
-      <HintPath>..\..\bin\Microsoft.ScriptManager.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.SqlServer.Types.dll</HintPath>
@@ -2303,6 +2300,7 @@
     <Content Include="F_09_PImp\SubConBillWiseReport.aspx" />
     <Content Include="F_09_PImp\SubConPrjWiseBilldetails.aspx" />
     <Content Include="F_09_PImp\SubContracBillTracking.aspx" />
+    <Content Include="F_09_PImp\WorkExecutionWithIssue.aspx" />
     <Content Include="F_12_Inv\AllIndentIsuList.aspx" />
     <Content Include="F_12_Inv\IndentMaterialRequired.aspx" />
     <Content Include="F_12_Inv\LinkMatReceipt.aspx" />
@@ -2317,6 +2315,7 @@
     <Content Include="F_12_Inv\PurReqEntry.aspx" />
     <Content Include="F_12_Inv\RptIndentIssueStatus.aspx" />
     <Content Include="F_12_Inv\RptIndentIssueStatusSummary.aspx" />
+    <Content Include="F_12_Inv\RptProjectStockEva.aspx" />
     <Content Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx" />
     <Content Include="F_14_Pro\RptDateWiseBill.aspx" />
     <Content Include="F_14_Pro\PoMrrBillStatus.aspx" />
@@ -4217,6 +4216,13 @@
     <Compile Include="F_09_PImp\SubContracBillTracking.aspx.designer.cs">
       <DependentUpon>SubContracBillTracking.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_09_PImp\WorkExecutionWithIssue.aspx.cs">
+      <DependentUpon>WorkExecutionWithIssue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_09_PImp\WorkExecutionWithIssue.aspx.designer.cs">
+      <DependentUpon>WorkExecutionWithIssue.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_12_Inv\IndentMaterialRequired.aspx.cs">
       <DependentUpon>IndentMaterialRequired.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4244,6 +4250,13 @@
     </Compile>
     <Compile Include="F_12_Inv\RptIndentIssueStatusSummary.aspx.designer.cs">
       <DependentUpon>RptIndentIssueStatusSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_12_Inv\RptProjectStockEva.aspx.cs">
+      <DependentUpon>RptProjectStockEva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_12_Inv\RptProjectStockEva.aspx.designer.cs">
+      <DependentUpon>RptProjectStockEva.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx.cs">
       <DependentUpon>LinkRptPurchaseStatusUr.aspx</DependentUpon>
