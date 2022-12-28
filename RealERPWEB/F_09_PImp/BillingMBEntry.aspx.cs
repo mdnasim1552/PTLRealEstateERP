@@ -21,7 +21,9 @@ using System.IO;
 using System.Drawing;
 using AjaxControlToolkit;
 using RealEntity;
-
+using Microsoft.Reporting.WinForms;
+using RealERPLIB;
+using RealERPRPT;
 namespace RealERPWEB.F_09_PImp
 {
     public partial class BillingMBEntry : System.Web.UI.Page
@@ -108,25 +110,12 @@ namespace RealERPWEB.F_09_PImp
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
-            // Create an event handler for the master page's contentCallEvent event
-            //  ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
-
-            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click2);
-
-            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
-
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+            // ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
+            //((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lbtnUpdate_Click);
         }
 
-        private void lnkPrint_Click2(object sender, EventArgs e)
-        {
-
-            //string orderno = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
-            //string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
-            //string currentptah = "PurchasePrint.aspx?Type=MktOrderPrint&orderno=" + orderno;
-            //string totalpath = hostname + currentptah;
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
-
-        }
+        
 
 
         private string GetCompCode()
@@ -276,8 +265,9 @@ namespace RealERPWEB.F_09_PImp
                 return;
 
             ViewState["tblmb"] = ds1.Tables[0];
+            ViewState["tblmbinfo"] = ds1.Tables[1];
             ViewState["tblcorder"] = ds1.Tables[2];
-        
+
 
             if (mMBNo == "NEWMB")
             {
@@ -338,6 +328,55 @@ namespace RealERPWEB.F_09_PImp
 
 
         }
+        private void lnkPrint_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd-MMMM-yyyy");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+
+            DataTable dt1 = (DataTable)ViewState["tblmb"];
+            DataTable dt2 = (DataTable)ViewState["tblcorder"];
+            DataTable dt3 = (DataTable)ViewState["tblmbinfo"];
+
+            string project = this.ddlProject.SelectedItem.Text.Substring(14);
+            
+            string contractor = this.ddlContractor.SelectedItem.Text.Substring(13);
+            string mbno = dt3.Rows[0]["mbno"].ToString();
+            string refno = dt3.Rows[0]["mbrefno"].ToString();
+
+            LocalReport Rpt1 = new LocalReport();
+            var list = dt1.DataTableToList<RealEntity.C_09_PIMP.SubConBill.EClassMRbook>();
+
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptMRbook", list, null, null);
+
+
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+
+
+
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("project", project));
+            Rpt1.SetParameters(new ReportParameter("contractor", contractor));
+            Rpt1.SetParameters(new ReportParameter("mbno", mbno));
+            Rpt1.SetParameters(new ReportParameter("refno", refno));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "MR Book (Edit)"));
+
+            Rpt1.SetParameters(new ReportParameter("printdate", "Print Date : " + printdate));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
         protected void gvOrderInfo_DataBind()
         {
             try
@@ -356,37 +395,6 @@ namespace RealERPWEB.F_09_PImp
             }
 
         }
-
-
-
-
-     
-
-
-
-
-        
-
-
-
-
-
-
-
-
-
-       
-        protected void lnkPrint_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-
-
-
-
 
 
 

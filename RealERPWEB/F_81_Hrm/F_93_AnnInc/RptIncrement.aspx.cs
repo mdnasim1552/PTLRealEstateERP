@@ -33,11 +33,6 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
                     Response.Redirect("../AcceessError.aspx");
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
-
-                //this.txtfrmDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                //this.txtfrmDate.Text = "01" + this.txtfrmDate.Text.Trim().Substring(2);
-                //this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-                //// this.txtdate.Text = System.DateTime.Today.ToString("dd.MM.yyyy");
                 GetDate();
                 this.GetCompany();
                 this.GetIncreNo();
@@ -58,11 +53,6 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
             this.txtfrmDate.Text = startdate + this.txtfrmDate.Text.Trim().Substring(2);
             this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
-
-            //string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
-            //string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-            //this.txtFdate.Text = startdate + date.Substring(2);
-            //this.txtTdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
         }
 
         protected void Page_PreInit(object sender, EventArgs e)
@@ -169,37 +159,15 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
 
         protected void lnkbtnShow_Click(object sender, EventArgs e)
         {
-            //if (this.lnkbtnShow.Text == "New")
-            //{
+            if (this.lnkbtnShow.Text == "New")
+            {
+                this.lnkbtnShow.Text = "Ok";
+                this.gvAnnIncre.DataSource = null;
+                this.gvAnnIncre.DataBind();
+                return;
+            }
 
-
-
-            //    this.lblCompany.Visible = false;
-            //    this.lblDept.Visible = false;
-            //    this.lblSection.Visible = false;
-            //    this.ddlCompany.Visible = true;
-            //    this.ddlDept.Visible = true;
-            //    this.ddlSection.Visible = true;
-            //    this.lnkbtnShow.Text = "Ok";
-
-            //    return;
-            //}
-
-
-            //this.lblPreVious.Visible = false;
-            //this.txtSrchPreviousList.Visible = false;
-            //this.imgbtnPreList.Visible = false;
-            //this.ddlPrevIncList.Visible = false;
-            //this.lnkbtnShow.Text = "New";
-            //this.lblCompany.Text = this.ddlCompany.SelectedItem.Text.Trim();
-            //this.lblDept.Text = this.ddlDept.SelectedItem.Text.Trim();
-            //this.lblSection.Text = this.ddlSection.SelectedItem.Text.Trim();
-            //this.lblCompany.Visible = true;
-            //this.lblDept.Visible = true;
-            //this.lblSection.Visible = true;
-            //this.ddlCompany.Visible = false;
-            //this.ddlDept.Visible = false;
-            //this.ddlSection.Visible = false;
+            this.lnkbtnShow.Text = "New";
             this.ShowInc();
         }
 
@@ -322,7 +290,7 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
         }
         protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            this.SaveValue();
             this.LoadGrid();
         }
 
@@ -356,9 +324,8 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
 
         protected void gvAnnIncre_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            //this.SaveValue();
+            this.SaveValue();
             this.gvAnnIncre.PageIndex = e.NewPageIndex;
-            //this.lbtnTotal_Click(null,null);
             this.LoadGrid();
         }
 
@@ -415,10 +382,109 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
         {
             this.GetSection();
         }
+        private void SaveValue()
+        {
+            try
+            {
+                DataTable dt = (DataTable)Session["tblAnnInc"];
+                int i;
+                for (i = 0; i < this.gvAnnIncre.Rows.Count; i++)
+                {
+                    int row = (this.gvAnnIncre.PageSize) * this.gvAnnIncre.PageIndex + i;
+                    bool chkitm = ((CheckBox)this.gvAnnIncre.Rows[i].FindControl("chkPrint")).Checked;
+                    if (chkitm == true)
+                    {
+                        dt.Rows[row]["chk"] = "True";
 
+                    }
+
+                    else
+                    {
+                        dt.Rows[row]["chk"] = "False";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }           
+        }
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
         {
             ShowInc();
+        }
+
+        protected void chkAllPrint_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)Session["tblAnnInc"];
+            int i;
+            int row;
+            if (((CheckBox)this.gvAnnIncre.HeaderRow.FindControl("chkAllPrint")).Checked)
+            {
+
+                for (i = 0; i < this.gvAnnIncre.Rows.Count; i++)
+                {
+                    ((CheckBox)this.gvAnnIncre.Rows[i].FindControl("chkPrint")).Checked = true;
+                    row = (this.gvAnnIncre.PageSize * this.gvAnnIncre.PageIndex) + i;
+                    dt.Rows[row]["chk"] = "True";
+                }
+
+            }
+
+            else
+            {
+                for (i = 0; i < this.gvAnnIncre.Rows.Count; i++)
+                {
+                    ((CheckBox)this.gvAnnIncre.Rows[i].FindControl("chkPrint")).Checked = false;
+                    row = (this.gvAnnIncre.PageSize * this.gvAnnIncre.PageIndex) + i;
+                    dt.Rows[row]["chk"] = "False";
+
+                }
+
+            }
+
+
+            Session["tblAnnInc"] = dt;
+        }
+
+        protected void lnkbtnInLtrPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string comnam = hst["comnam"].ToString();
+                string curYear = System.DateTime.Today.ToString("yyyy");
+                string curDate = System.DateTime.Today.ToString("MMMM dd, yyyy");
+
+                this.SaveValue();
+                DataTable dt = (DataTable)Session["tblAnnInc"];
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = ("chk='True'");
+                var list = dv.ToTable().DataTableToList<RealEntity.C_81_Hrm.C_93_AnnInc.AnnIncReport.AnnualIncrementStatus>();
+                foreach (var item in list)
+                {
+                    double netsal = Convert.ToDouble(item.tosalary);
+                    item.tkinwrd = ASTUtility.Trans(netsal, 2).Replace("(", "").Replace(")", "");
+                }
+
+                LocalReport Rpt1 = new LocalReport();
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_93_AnnInc.RptIncrementLetter", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("compName", comnam));
+                Rpt1.SetParameters(new ReportParameter("curYear", curYear));
+                Rpt1.SetParameters(new ReportParameter("curDate", curDate));
+
+                Session["Report1"] = Rpt1;
+                string type = "PDF";
+                ScriptManager.RegisterStartupScript(this, GetType(), "target", "SetTarget('" + type + "');", true);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }         
         }
     }
 }
