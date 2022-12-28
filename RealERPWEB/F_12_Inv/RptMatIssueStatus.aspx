@@ -13,30 +13,45 @@
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
         });
-        function pageLoaded() {
+        function pageLoaded()
 
-            $("input, select").bind("keydown", function (event) {
-                var k1 = new KeyPress();
-                k1.textBoxHandler(event);
-            });
+        {
+
+            try {
+                
+
+                var comcod =<%=this.GetCompCode()%>;
+                switch (comcod) {
+                    case 3370://CPDL                
+                    case 3101://PTL
+
+                        $('#<%=this.lblsisasirno.ClientID%>').text("SIS/SIR No");
+                        break;
+
+
+                    default:
+
+                        break;
+                }
+
+
+
+                $("input, select").bind("keydown", function (event) {
+                    var k1 = new KeyPress();
+                    k1.textBoxHandler(event);
+                });
+
+                $('.chzn-select').chosen({ search_contains: true });
+            }
+
+            catch (e)
+            {
+                alert(e.message);
+
+            }
         }
     </script>
-    <script type="text/javascript" language="javascript">
-
-        $(document).ready(function () {
-
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-        });
-
-        function pageLoaded() {
-
-
-            $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
-
-        }
-
-    </script>
+ 
 
 
 
@@ -129,7 +144,7 @@
                                     </div>
 
                                     <div class="col-md-4 pading5px asitCol4">
-                                        <asp:Label ID="Label1" runat="server" CssClass=" smLbl_to" Text="SMCR No/ DMIRF No"></asp:Label>
+                                        <asp:Label ID="lblsisasirno" runat="server" CssClass=" smLbl_to" Text="SMCR No/ DMIRF No"></asp:Label>
                                         <asp:TextBox ID="txtSrcRefNo" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
 
                                         <div class="colMdbtn">
@@ -236,6 +251,16 @@
                                 <ItemStyle HorizontalAlign="Right" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
+
+                             <asp:TemplateField HeaderText="Use of Location">
+                                <ItemTemplate>
+                                    <asp:Label ID="lgvlocation" runat="server"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "useoflocation")) %>'
+                                        Width="120px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+
                         </Columns>
                         <FooterStyle CssClass="grvFooter" />
                         <EditRowStyle />

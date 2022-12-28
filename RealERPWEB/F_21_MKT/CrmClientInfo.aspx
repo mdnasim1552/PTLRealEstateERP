@@ -2463,7 +2463,7 @@
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField>
-
+Change
                                                         <ItemTemplate>
 
                                                             <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
@@ -2478,7 +2478,7 @@
                                                             <asp:Panel ID="Panegrd" runat="server">
                                                                 <div class="form-group">
                                                                     <div class="col-md-12 pading5px">
-                                                                        <asp:DropDownList ID="ddlvalplot" runat="server" CssClass="ddlcountry chzn-select form-control" Width="300px" AutoPostBack="true" OnSelectedIndexChanged="ddlvalbusinfo_SelectedIndexChanged">
+                                                                        <asp:DropDownList ID="ddlvalplot" runat="server" CssClass="ddlcountry chzn-select form-control" Width="300px" AutoPostBack="true" OnSelectedIndexChanged="ddlvalbusinfo_SelectedIndexd">
                                                                         </asp:DropDownList>
                                                                     </div>
                                                                 </div>

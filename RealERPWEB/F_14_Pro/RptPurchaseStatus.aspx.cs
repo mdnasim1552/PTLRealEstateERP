@@ -203,12 +203,24 @@ namespace RealERPWEB.F_14_Pro
         {
             string comcod = this.GetComeCode();
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
-            string txtSrchSupplier = this.txtSrcSupplier.Text.Trim() + "%";
+            string txtSrchSupplier =  "%%";
             DataSet ds2 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETSUPPLIER", pactcode, txtSrchSupplier, "", "", "", "", "", "", "");
+
+            DataTable dt = ds2.Tables[0];
+            DataRow dr1 =dt.NewRow();
+            dr1["ssircode"] = "000000000000";
+            dr1["ssirdesc"] = "All Suppler";
+            dt.Rows.Add(dr1);
+        
+
             this.ddlSupplier.DataTextField = "ssirdesc";
             this.ddlSupplier.DataValueField = "ssircode";
-            this.ddlSupplier.DataSource = ds2.Tables[0];
+            this.ddlSupplier.DataSource = dt;
             this.ddlSupplier.DataBind();
+            this.ddlSupplier.SelectedValue = "000000000000";
+            ds2.Dispose();
+
+
 
         }
 
@@ -257,6 +269,7 @@ namespace RealERPWEB.F_14_Pro
                     this.ddlMatCode.Visible = true;
                     this.MultiView1.ActiveViewIndex = 0;
                     this.chkDirect.Visible = true;
+                    this.GetSupplier();
 
                     break;
 
