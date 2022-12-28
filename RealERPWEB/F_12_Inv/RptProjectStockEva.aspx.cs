@@ -102,21 +102,60 @@ namespace RealERPWEB.F_12_Inv
 
             string fdate = this.txtfromdate.Text;
             string tdate = this.txttodate.Text;
-            string gp = this.chkResourcelist.SelectedValue.ToString().Trim();
 
-            string pactcode = this.ddlProName.SelectedValue.ToString() == "000000000000" ? "%%" : "%" + this.ddlProName.SelectedValue.ToString() + "%";
-            DataSet ds1 = PurData.GetTransInfo(comcod, "SP_REPORT_MAT_STOCK", "GETSTOCKVALUATIONMATWISE", pactcode, "", "", "", "", "", "", "", "");
+            string pactcode = this.ddlProName.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlProName.SelectedValue.ToString() + "%";
+            DataSet ds1 = PurData.GetTransInfo(comcod, "SP_REPORT_MAT_STOCK", "GETSTOCKVALUATIONMATWISE", fdate, tdate, pactcode, "", "", "", "", "", "", "", "");
 
+            Session["tbMatStc"] = HiddenSameData(ds1.Tables[0]);
+            //Session["tbMatStc"] = ds1.Tables[0];
+            DataTable dt =  ds1.Tables[0];
+
+            this.gvStocjEvaluation.DataSource = dt;
+            this.gvStocjEvaluation.DataBind();
+            //this.FooterCalculation();
         }
 
 
-    private void GetMaterial()
+        private DataTable HiddenSameData(DataTable dt1)
+        {
+
+            if (dt1.Rows.Count == 0)
+                return dt1;
+
+            string isircod = dt1.Rows[0]["mrsircode"].ToString();
+            for (int j = 1; j < dt1.Rows.Count; j++)
+            {
+                if (dt1.Rows[j]["mrsircode"].ToString() == isircod)
+                {
+
+                    dt1.Rows[j]["msirdesc"] = "";
+                }
+
+                isircod = dt1.Rows[j]["mrsircode"].ToString();
+            }
+
+            string pactcode = dt1.Rows[0]["pactcode"].ToString();
+            for (int j = 1; j < dt1.Rows.Count; j++)
+            {
+                if (dt1.Rows[j]["pactcode"].ToString() == isircod)
+                {
+                    dt1.Rows[j]["pactdesc"] = "";
+                }
+
+                isircod = dt1.Rows[j]["pactcode"].ToString();
+            }
+
+            return dt1;
+        }
+
+
+        private void GetMaterial()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string pactcode = this.ddlProName.SelectedValue.ToString() == "000000000000" ? "%%" : "%" + this.ddlProName.SelectedValue.ToString() + "%";
             string txtfindMat = this.txtsrchresource.Text.Trim() + "%";
-            DataSet ds1 = PurData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS02", "GETMATERIAL", pactcode, txtfindMat, "", "", "", "", "", "", "");
+            DataSet ds1 = PurData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS02", "GETMATERIALEVA", pactcode, txtfindMat, "", "", "", "", "", "", "");
             this.chkResourcelist.DataTextField = "rsirdesc";
             this.chkResourcelist.DataValueField = "rsircode";
             this.chkResourcelist.DataSource = ds1.Tables[0];
@@ -127,8 +166,6 @@ namespace RealERPWEB.F_12_Inv
             }
 
             ds1.Dispose();
-
-
         }
 
 
@@ -181,6 +218,31 @@ namespace RealERPWEB.F_12_Inv
         protected void lbtnresource_Click(object sender, EventArgs e)
         {
             this.GetMaterial();
+        }
+
+
+
+        private void FooterCalculation()
+        {
+
+            DataTable dt = (DataTable)Session["tbMatStc"];
+
+            if (dt.Rows.Count > 0)
+            {
+                //((Label)this.gvStocjEvaluation.FooterRow.FindControl("lgvttaccrecvbale")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(actstock)", "")) ? 0.00 : dt.Compute("Sum(actstock)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                //((Label)this.gvStocjEvaluation.FooterRow.FindControl("lgvttlsolamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(percnt)", "")) ? 0.00 : dt.Compute("Sum(percnt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                
+
+                //Session["Report1"] = gvMatStock;
+                //((HyperLink)this.gvMatStock.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
+
+            }
+
+            else
+            {
+                return;
+            }
         }
 
     }

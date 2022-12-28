@@ -42,6 +42,9 @@
         .form-control {
             height: 34px;
         }
+        #ContentPlaceHolder1_gvStocjEvaluation_lblgvtCompany_0 {
+            display:none;
+        }
     </style>
 
     <script type="text/javascript" language="javascript">
@@ -181,7 +184,6 @@
                                 </div>
 
                                 <div class="form-group">
-
                                     <div class="col-md-3 pading5px asitCol3">
                                         <asp:Label ID="lblPage" runat="server" CssClass="smLbl_to" Text="Page Size"></asp:Label>
 
@@ -212,14 +214,75 @@
 
 
 
+                    <div class="row">
+                        <div class="table-responsive">
+                            <asp:GridView ID="gvStocjEvaluation" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered"
+                                ShowFooter="True">
+                                <RowStyle />
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Sl.No.">
+                                        <ItemTemplate>
+                                            <asp:Label ID="serialnoid0" runat="server" Style="text-align: right"
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Project Name">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvtCompany" runat="server" Style="text-align: left" Width="90px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    
+                                    <asp:TemplateField HeaderText="Project Description">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvtCompany" runat="server" Style="text-align: left" Width="90px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "msirdesc")) %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Material Name">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvtCompany" runat="server" Style="text-align: left" Width="110px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <%--<FooterTemplate>
+                                            <asp:Label ID="lgvtotal" runat="server" ForeColor="Black" Font-Bold="true">Total :</asp:Label>
+                                        </FooterTemplate>--%>
+                                    </asp:TemplateField>
+
+
+                                    <asp:TemplateField HeaderText="Ammount">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblActualStock" runat="server" Style="text-align: right" Width="85px"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "actstock")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <%--<FooterTemplate>
+                                            <asp:Label ID="lgvttaccrecvbale" runat="server" ForeColor="Black" Font-Bold="true"></asp:Label>
+                                        </FooterTemplate>--%>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="%">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblPercentage" runat="server" Style="text-align: right" Width="40px"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "percnt")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <%--<FooterTemplate>
+                                            <asp:Label ID="lgvttlsolamt" runat="server" ForeColor="Black" Font-Bold="true"></asp:Label>
+                                        </FooterTemplate>--%>
+                                    </asp:TemplateField>
 
 
 
-
-
-
-
-
+                                </Columns>
+                                <FooterStyle CssClass="grvFooter text-right" Font-Size="13px" Font-Bold="false" />
+                                <EditRowStyle />
+                                <AlternatingRowStyle />
+                                <PagerStyle CssClass="gvPagination" />
+                                <HeaderStyle CssClass="grvHeader" />
+                            </asp:GridView>
+                        </div>
+                    </div>
 
 
                 </div>
