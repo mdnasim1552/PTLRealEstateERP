@@ -185,9 +185,6 @@
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ScriptManager.WebForms">
-      <HintPath>..\..\bin\Microsoft.ScriptManager.WebForms.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
@@ -2303,6 +2300,7 @@
     <Content Include="F_09_PImp\SubConBillWiseReport.aspx" />
     <Content Include="F_09_PImp\SubConPrjWiseBilldetails.aspx" />
     <Content Include="F_09_PImp\SubContracBillTracking.aspx" />
+    <Content Include="F_09_PImp\WorkExecutionWithIssue.aspx" />
     <Content Include="F_12_Inv\AllIndentIsuList.aspx" />
     <Content Include="F_12_Inv\IndentMaterialRequired.aspx" />
     <Content Include="F_12_Inv\LinkMatReceipt.aspx" />
@@ -4217,6 +4215,13 @@
     </Compile>
     <Compile Include="F_09_PImp\SubContracBillTracking.aspx.designer.cs">
       <DependentUpon>SubContracBillTracking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_09_PImp\WorkExecutionWithIssue.aspx.cs">
+      <DependentUpon>WorkExecutionWithIssue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_09_PImp\WorkExecutionWithIssue.aspx.designer.cs">
+      <DependentUpon>WorkExecutionWithIssue.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_12_Inv\IndentMaterialRequired.aspx.cs">
       <DependentUpon>IndentMaterialRequired.aspx</DependentUpon>
