@@ -210,16 +210,12 @@ namespace RealERPWEB.F_09_PImp
 
             Session["itemlist"] = ds1.Tables[0];
             Session["item"] = ds1.Tables[1];
-
-
             if (ds1 == null)
                 return;
-
             this.ddlcatagory.DataTextField = "sirdesc";
             this.ddlcatagory.DataValueField = "mitemcode";
             this.ddlcatagory.DataSource = ds1.Tables[2];
             this.ddlcatagory.DataBind();
-
             this.ddlcatagory_OnSelectedIndexChanged(null, null);
         }
         //private void GetFloorCode()

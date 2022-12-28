@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="BgdStdAna.aspx.cs" Inherits="RealERPWEB.F_04_Bgd.BgdStdAna" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="BgdStdAna.aspx.cs" Inherits="RealERPWEB.F_04_Bgd.BgdStdAna" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -44,137 +44,142 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
-                    <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
-                                <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3" style="width: 215px;">
+            <div class="card mt-2 pb-2">
+                <div class="card-header">
+                    <div class="row mt-3">
 
-                                        <asp:Label ID="lblItem" runat="server" Font-Size="11px" CssClass="smLbl_to">Description of Items</asp:Label>
+                        <div class="col-md-3 pading5px asitCol3 d-none" style="width: 215px;">
 
-                                        <asp:TextBox ID="txtItemSearch" AutoCompleteType="Disabled" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
-                                        <asp:LinkButton ID="ImgbtnFindItem" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ImgbtnFindItem_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
-                                    </div>
-                                    <div class="col-md-3 pading5px">
-                                        <asp:DropDownList ID="ddlItem" runat="server" CssClass="chzn-select form-control  inputTxt">
-                                        </asp:DropDownList>
-                                        <asp:Label ID="lblItemDesc" runat="server" Visible="false" CssClass="form-control inputTxt"></asp:Label>
-                                    </div>
-                                    <div class="col-md-1 pading5px">
-                                        <asp:LinkButton ID="lbtnOk1" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnOk1_Click" Text="Select Item"></asp:LinkButton>
-                                        <asp:HyperLink ID="hlbtAddnew1" runat="server" Target="_blank" NavigateUrl="~/F_17_Acc/AccSubCodeBook?InputType=Wrkschedule" CssClass="btn btn-xs btn-success" ToolTip="Add New Work" BackColor="transparent" Style="margin-left: 10px"><span class="fa fa-plus" aria-hidden="true" style="color:blue"></span></asp:HyperLink>
+                            <asp:TextBox ID="txtItemSearch" AutoCompleteType="Disabled" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
+                            <asp:LinkButton ID="ImgbtnFindItem" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ImgbtnFindItem_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
-                                    </div>
-                                    <div class="col-md-2 pading5px asitCol3" style="width: 245px;">
-                                        <asp:Label ID="lblItem3" runat="server" CssClass="smLbl_to" Text="Std Qty"></asp:Label>
+                        </div>
+                        <div class="col-md-3">
+                            <asp:Label ID="lblItem" runat="server" Font-Size="11px" CssClass="form-label">Description of Items</asp:Label>
 
-                                        <asp:Label ID="lblStdQtyF" runat="server" Text=" " CssClass="inputTxt inpPixedWidth"></asp:Label>
-                                        <asp:Label ID="lblItem8" runat="server" CssClass="smLbl_to" Text="Unit"></asp:Label>
-                                        <asp:Label ID="lblUnitFPS" runat="server" CssClass="inputTxt inpPixedWidth" Text=" "></asp:Label>
+                            <asp:DropDownList ID="ddlItem" runat="server" CssClass="chzn-select form-control form-control-sm">
+                            </asp:DropDownList>
+                            <asp:Label ID="lblItemDesc" runat="server" Visible="false" CssClass="form-control form-control-sm "></asp:Label>
+                        </div>
+                        <div class="col-md-1 " style="margin-top:20px;">
+                            <asp:LinkButton ID="lbtnOk1" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnOk1_Click" Text="Select Item"></asp:LinkButton>
 
-                                    </div>
-                                    <div class="col-md-2 pading5px asitCol3" style="position: relative">
-                                        <div style="position: absolute; top: 0; left: 0">
-                                            <asp:Label ID="lblFloor1" runat="server" CssClass=" smLbl_to" Text="Catagory:"></asp:Label>
-                                            <asp:DropDownList ID="ddlFloor1" runat="server" Font-Bold="True" CssClass="ddlPage">
-                                            </asp:DropDownList>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-1 pading5px">
-                                        <asp:CheckBox ID="ChkCopy" runat="server" AutoPostBack="True" OnCheckedChanged="ChkCopy_CheckedChanged" Text="Copy"
-                                            Visible="False" CssClass="btn btn-primary chkBoxControl primaryBtn" />
-                                        <asp:Label ID="lblItemDes2" runat="server" CssClass="smLbl_to" Style="display: none;"></asp:Label>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
+                        </div>
+                        <div class="col-md-1"  style="margin-top:20px;">
+                            <asp:HyperLink ID="hlbtAddnew1" runat="server" Target="_blank" NavigateUrl="~/F_17_Acc/AccSubCodeBook?InputType=Wrkschedule" CssClass="btn btn-xs btn-success" ToolTip="Add New Work" BackColor="transparent"><span class="fa fa-plus" aria-hidden="true" style="color:blue"></span></asp:HyperLink>
+
+                        </div>
+                        <div class="col-md-1">
+                            <asp:Label ID="lblItem3" runat="server" CssClass="smLbl_to" Text="Std Qty"></asp:Label>
+
+                            <asp:Label ID="lblStdQtyF" runat="server" Text=" " CssClass="form-control form-control-sm"></asp:Label>
+                
+
+                        </div>
+                        <div class="col-md-1" >
+                                  <asp:Label ID="lblItem8" runat="server" CssClass="smLbl_to" Text="Unit"></asp:Label>
+                            <asp:Label ID="lblUnitFPS" runat="server" CssClass="form-control form-control-sm" Text=" "></asp:Label>
+                        </div>
+                        <div class="col-md-2" style="position: relative">
+                            <div style="position: absolute; top: 0; left: 0">
+                                <asp:Label ID="lblFloor1" runat="server" CssClass="form-label" Text="Catagory:"></asp:Label>
+                                <asp:DropDownList ID="ddlFloor1" runat="server" Font-Bold="True" CssClass="form-control form-control-sm">
+                                </asp:DropDownList>
                             </div>
-                        </fieldset>
+                        </div>
+                        <div class="col-md-1" style="margin-top:20px;">
+                            <asp:CheckBox ID="ChkCopy" runat="server" AutoPostBack="True" OnCheckedChanged="ChkCopy_CheckedChanged" Text="Copy"
+                                Visible="False" CssClass="btn btn-sm btn-primary chkBoxControl primaryBtn" />
+                            <asp:Label ID="lblItemDes2" runat="server" CssClass="form-label" Style="display: none;"></asp:Label>
+                        </div>
+
+
                     </div>
-                    <div class="row">
+                </div>
+                <div class="card-body">
+                    
                         <asp:Panel ID="PnlAnalysis" runat="server" Visible="False">
-                            <fieldset class="scheduler-border fieldset_A">
-                                <div class="form-horizontal">
-                                    <div class="form-group">
-                                        <div class="col-md-3 pading5px asitCol3" style="width: 215px;">
-                                            <asp:Label ID="Label2" runat="server" Font-Size="11px" CssClass="smLbl_to">Desc of Resources</asp:Label>
-                                            <asp:TextBox ID="txtResSearch" AutoCompleteType="Disabled" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
-                                            <asp:LinkButton ID="ImgbtnFindResource" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ImgbtnFindResource_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                        </div>
+                            <div class="row">
+                                  <div class="col-md-3 pading5px asitCol3 d-none" style="width: 215px;">
+                                <asp:TextBox ID="txtResSearch" AutoCompleteType="Disabled" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
+                                <asp:LinkButton ID="ImgbtnFindResource" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ImgbtnFindResource_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                            </div>
 
-                                        <div class="col-md-3 pading5px">
-                                            <asp:DropDownList ID="ddlResource" runat="server" CssClass="form-control inputTxt chzn-select" AutoPostBack="True" OnSelectedIndexChanged="ddlResource_SelectedIndexChanged">
-                                            </asp:DropDownList>
-                                        </div>
-                                        <div class="col-md-1 pading5px">
-                                            <asp:LinkButton ID="lbtnOk2" runat="server" CssClass="btn btn-primary primaryBtn" AutoPostBack="True" OnClick="lbtnOk2_Click">Select Res</asp:LinkButton>
-                                            <asp:HyperLink ID="hlbtAddnew2" runat="server" Target="_blank" NavigateUrl="~/F_17_Acc/AccSubCodeBook?InputType=MatLab" CssClass="btn btn-xs btn-success" ToolTip="Add New Resource" BackColor="transparent" Style="margin-left: 10px"><span class="fa fa-plus" aria-hidden="true" style="color:blue"></span></asp:HyperLink>
+                            <div class="col-md-3">
+                                <asp:Label ID="Label2" runat="server" Font-Size="11px" CssClass="form-label">Desc of Resources</asp:Label>
 
-                                        </div>
-                                        <div class="col-md-3 pading5px asitCol3" style="width: 245px;">
-                                            <asp:Label ID="Label5" runat="server" CssClass="smLbl_to" Text="Current Column Group:"></asp:Label>
-                                            <asp:Label ID="lblColGroup" runat="server" Text=" " CssClass="inputTxt inpPixedWidth"></asp:Label>
+                                <asp:DropDownList ID="ddlResource" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="True" OnSelectedIndexChanged="ddlResource_SelectedIndexChanged">
+                                </asp:DropDownList>
+                            </div>
+                            <div class="col-md-1" style="margin-top:22px;">
+                                <asp:LinkButton ID="lbtnOk2" runat="server" CssClass="btn btn-sm btn-primary primaryBtn" AutoPostBack="True" OnClick="lbtnOk2_Click">Select Res</asp:LinkButton>
 
-                                        </div>
-                                        <div class="col-md-2 pading5px asitCol3">
-                                            <table>
-                                                <tr>
-                                                    <td class="style43">
-                                                        <asp:LinkButton ID="lbtngvP1" runat="server" Font-Bold="True" Font-Size="12px"
-                                                            OnClick="lbtngvP_Click" Style="text-align: center" Width="17px"
-                                                            Height="16px">1</asp:LinkButton>
-                                                    </td>
-                                                    <td class="style17">
-                                                        <asp:LinkButton ID="lbtngvP2" runat="server" Font-Bold="True" Font-Size="12px"
-                                                            OnClick="lbtngvP_Click" Style="text-align: center" Width="17px">2</asp:LinkButton>
-                                                    </td>
-                                                    <td class="style34">
-                                                        <asp:LinkButton ID="lbtngvP3" runat="server" Font-Bold="True" Font-Size="12px"
-                                                            OnClick="lbtngvP_Click" Style="text-align: center" Width="17px">3</asp:LinkButton>
-                                                    </td>
-                                                    <td class="style114">
-                                                        <asp:LinkButton ID="lbtngvP4" runat="server" Font-Bold="True" Font-Size="12px"
-                                                            OnClick="lbtngvP_Click" Style="text-align: center" Width="17px">4</asp:LinkButton>
-                                                    </td>
-                                                    <td class="style115">
-                                                        <asp:LinkButton ID="lbtngvP5" runat="server" Font-Bold="True" Font-Size="12px"
-                                                            OnClick="lbtngvP_Click" Style="text-align: center" Width="17px">5</asp:LinkButton>
-                                                    </td>
-                                                    <td class="style116">
-                                                        <asp:LinkButton ID="lbtngvP6" runat="server" Font-Bold="True" Font-Size="12px"
-                                                            OnClick="lbtngvP_Click" Style="text-align: center" Width="17px">6</asp:LinkButton>
-                                                    </td>
-                                                    <td>
-                                                        <asp:LinkButton ID="lbtngvP7" runat="server" Font-Bold="True" Font-Size="12px"
-                                                            OnClick="lbtngvP_Click" Style="text-align: center" Width="17px">7</asp:LinkButton>
-                                                    </td>
-                                                    <td class="style113">
-                                                        <asp:LinkButton ID="lbtngvP8" runat="server" Font-Bold="True" Font-Size="12px"
-                                                            OnClick="lbtngvP_Click" Style="text-align: center" Width="17px">8</asp:LinkButton>
-                                                    </td>
-                                                </tr>
-                                            </table>
+                            </div>
+                            <div class="col-md-1" style="margin-top:22px;">
+                                <asp:HyperLink ID="hlbtAddnew2" runat="server" Target="_blank" NavigateUrl="~/F_17_Acc/AccSubCodeBook?InputType=MatLab" CssClass="btn btn-xs btn-success" ToolTip="Add New Resource" BackColor="transparent" ><span class="fa fa-plus" aria-hidden="true" style="color:blue"></span></asp:HyperLink>
 
-                                        </div>
-                                        <div class="clearfix"></div>
+                            </div>
+                            <div class="col-md-2">
+                                <asp:Label ID="Label5" runat="server" CssClass="smLbl_to" Text="Current Column Group:"></asp:Label>
+                                <asp:Label ID="lblColGroup" runat="server" Text=" " CssClass="form-control form-control-sm"></asp:Label>
 
-                                    </div>
+                            </div>
+                            <div class="col-md-2" style="margin-top:20px;">
+                                <table>
+                                    <tr>
+                                        <td class="style43">
+                                            <asp:LinkButton ID="lbtngvP1" runat="server" Font-Bold="True" Font-Size="12px"
+                                                OnClick="lbtngvP_Click" Style="text-align: center" Width="17px"
+                                                Height="16px">1</asp:LinkButton>
+                                        </td>
+                                        <td class="style17">
+                                            <asp:LinkButton ID="lbtngvP2" runat="server" Font-Bold="True" Font-Size="12px"
+                                                OnClick="lbtngvP_Click" Style="text-align: center" Width="17px">2</asp:LinkButton>
+                                        </td>
+                                        <td class="style34">
+                                            <asp:LinkButton ID="lbtngvP3" runat="server" Font-Bold="True" Font-Size="12px"
+                                                OnClick="lbtngvP_Click" Style="text-align: center" Width="17px">3</asp:LinkButton>
+                                        </td>
+                                        <td class="style114">
+                                            <asp:LinkButton ID="lbtngvP4" runat="server" Font-Bold="True" Font-Size="12px"
+                                                OnClick="lbtngvP_Click" Style="text-align: center" Width="17px">4</asp:LinkButton>
+                                        </td>
+                                        <td class="style115">
+                                            <asp:LinkButton ID="lbtngvP5" runat="server" Font-Bold="True" Font-Size="12px"
+                                                OnClick="lbtngvP_Click" Style="text-align: center" Width="17px">5</asp:LinkButton>
+                                        </td>
+                                        <td class="style116">
+                                            <asp:LinkButton ID="lbtngvP6" runat="server" Font-Bold="True" Font-Size="12px"
+                                                OnClick="lbtngvP_Click" Style="text-align: center" Width="17px">6</asp:LinkButton>
+                                        </td>
+                                        <td>
+                                            <asp:LinkButton ID="lbtngvP7" runat="server" Font-Bold="True" Font-Size="12px"
+                                                OnClick="lbtngvP_Click" Style="text-align: center" Width="17px">7</asp:LinkButton>
+                                        </td>
+                                        <td class="style113">
+                                            <asp:LinkButton ID="lbtngvP8" runat="server" Font-Bold="True" Font-Size="12px"
+                                                OnClick="lbtngvP_Click" Style="text-align: center" Width="17px">8</asp:LinkButton>
+                                        </td>
+                                    </tr>
+                                </table>
 
-                                    <div class="form-group">
-                                        <div class="col-md-1">
-                                            <asp:CheckBox ID="ChkZeroQty" runat="server" Text="Ignoe Zero" CssClass="btn btn-primary primaryBtn chkBoxControl" />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <asp:LinkButton ID="lbtnInputSame" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnInputSame_Click" Style="padding-left: 5px; padding-right: 5px">Put same value for all floors</asp:LinkButton>
-                                            <asp:LinkButton ID="lbtnUpdateAna" runat="server" class="btn btn-danger primaryBtn" OnClick="lbtnUpdateAna_Click" Style="margin-left: 5px;">Update Analysis</asp:LinkButton>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <asp:GridView ID="gvAnalysis" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                            </div>
+
+                       </div>
+                      <div class="row mt-2" style="margin-top:20px;">
+                            <div class="col-md-1" style="margin-top:20px;">
+                                <asp:CheckBox ID="ChkZeroQty" runat="server" Text="Ignoe Zero" CssClass="btn btn-sm btn-primary primaryBtn chkBoxControl" />
+                            </div>
+                            <div class="col-md-6" style="margin-top:20px;">
+                                <asp:LinkButton ID="lbtnInputSame" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnInputSame_Click" Style="padding-left: 5px; padding-right: 5px">Put same value for all floors</asp:LinkButton>
+                                <asp:LinkButton ID="lbtnUpdateAna" runat="server" class="btn btn-sm btn-danger" OnClick="lbtnUpdateAna_Click" Style="margin-left: 5px;">Update Analysis</asp:LinkButton>
+                            </div>
+
+                            </div>
+                         
+                          <div class="row mt-4">
+                              <asp:GridView ID="gvAnalysis" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                 Width="16px" OnRowDeleting="gvAnalysis_RowDeleting" HeaderStyle-CssClass="HeaderStyle" ShowFooter="true">
                                 <RowStyle />
                                 <Columns>
@@ -634,9 +639,12 @@
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
+                          </div>
+
+                            
 
                         </asp:Panel>
-                    </div>
+                 
                     <div class="row">
                         <fieldset class="scheduler-border fieldset_A">
                             <div class="form-horizontal">
@@ -667,4 +675,5 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
+
 
