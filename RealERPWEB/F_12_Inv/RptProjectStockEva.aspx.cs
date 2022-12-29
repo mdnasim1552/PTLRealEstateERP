@@ -34,7 +34,7 @@ namespace RealERPWEB.F_12_Inv
 
                 // Session.Remove("Unit");
                 string type = this.Request.QueryString["Type"].ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (type == "acc" ? "MATERIALS STOCK REPORT " : "MATERIALS STOCK REPORT INVENTORY");
+                ((Label)this.Master.FindControl("lblTitle")).Text = "MATERIALS STOCK REPORT EVALUATION";
 
                 this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
@@ -47,7 +47,6 @@ namespace RealERPWEB.F_12_Inv
 
                 }
             }
-
         }
 
         private string Complength()
@@ -96,6 +95,8 @@ namespace RealERPWEB.F_12_Inv
             this.MatStockEva();
         }
 
+        
+
         private void MatStockEva()
         {
             Session.Remove("UserLog");
@@ -121,6 +122,8 @@ namespace RealERPWEB.F_12_Inv
 
 
             DataSet ds1 = PurData.GetTransInfo(comcod, "SP_REPORT_MAT_STOCK", "GETSTOCKVALUATIONMATWISE", fdate, tdate, pactcode, resListMulti, group, "", "", "", "", "", "");
+
+            Session["tblRptMatStc"] = ds1.Tables[0];
 
             Session["tbMatStc"] = HiddenSameData(ds1.Tables[0]);
             //Session["tbMatStc"] = ds1.Tables[0];
@@ -153,7 +156,7 @@ namespace RealERPWEB.F_12_Inv
             {
                 if (dt1.Rows[j]["pactcode"].ToString() == isircod)
                 {
-                    dt1.Rows[0]["pactdesc"] = "";
+                    //dt1.Rows[0]["pactdesc"] = "";
                     dt1.Rows[j]["pactdesc"] = "";
                 }
 
@@ -210,6 +213,98 @@ namespace RealERPWEB.F_12_Inv
             }
 
         }
+
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            // Create an event handler for the master page's contentCallEvent event
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+
+            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+
+        }
+
+        protected void lbtnPrint_Click(object sender, EventArgs e)
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+
+            this.RtpStockReportEva();
+        }
+
+
+        private void RtpStockReportEva()//09-May-2020
+        {
+            DataTable dt = (DataTable)Session["tblRptMatStc"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string fdate = this.txtfromdate.Text.ToString();
+            string tdate = this.txttodate.Text.ToString();
+            string txtuserinfo = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
+            
+
+            
+            string strstkValuation = this.group.SelectedValue.ToString();
+            string strstock = "";
+            if (strstkValuation == "1")
+            {
+                strstock = "( Group Wise )";
+            }
+            else 
+            {
+                strstock = "( Material Wise )";
+            }
+
+            
+            DataTable dt1 = (DataTable)Session["tblRptMatStc"];
+
+            if (comcod == "3315" || comcod == "3316")
+            {
+                DataView dv = dt1.DefaultView; //only Assure
+                dv.RowFilter = ("tqty<>0 or opqty<>0 or rcvqty<>0 or trninqty<>0 or trnoutqty<>0");
+                dt1 = dv.ToTable();
+            }
+
+            if (dt1 == null)
+                return;
+            var lst = dt1.DataTableToList<RealEntity.C_12_Inv.MatStockReportEvaluation>();
+            LocalReport Rpt1 = new LocalReport();
+            
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptMaterialStockEva", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+
+            Rpt1.SetParameters(new ReportParameter("companyname", comnam));
+            Rpt1.SetParameters(new ReportParameter("StockValuation", "Stock Valuation : " + strstock));
+
+            Rpt1.SetParameters(new ReportParameter("ProjectName", "Project Name : " + this.ddlProName.SelectedItem.Text));
+
+            Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
+            Rpt1.SetParameters(new ReportParameter("date", "From: " + fdate + " To: " + tdate));
+            Rpt1.SetParameters(new ReportParameter("date", "From: " + fdate + " To: " + tdate));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+            if (ConstantInfo.LogStatus == true)
+            {
+                string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text;
+                string eventdesc = "Print Report:";
+                string eventdesc2 = "Project Name: " + this.ddlProName.SelectedItem.ToString();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+        }
+
+
 
         private string CompCallType()
         {
@@ -274,7 +369,7 @@ namespace RealERPWEB.F_12_Inv
             //{
 
             Label RecDesc = (Label)e.Row.FindControl("lblActualStock");
-            string msirdesc = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "rsirdesc")).ToString();
+            string msirdesc = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "msirdesc")).ToString();
 
             if (msirdesc == "")
             {
@@ -284,6 +379,7 @@ namespace RealERPWEB.F_12_Inv
             {
                 RecDesc.Font.Bold = true;
             }
+
         }
     }
 }

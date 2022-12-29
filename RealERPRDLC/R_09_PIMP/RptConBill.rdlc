@@ -947,7 +947,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox42</rd:DefaultName>
-            <Top>3.40626in</Top>
+            <Top>3.40278in</Top>
             <Left>6.21542in</Left>
             <Height>0.25in</Height>
             <Width>1.75346in</Width>
@@ -1797,7 +1797,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>printFooter</rd:DefaultName>
-              <Top>0in</Top>
               <Height>0.25in</Height>
               <Width>5.94792in</Width>
               <Style>
@@ -1831,7 +1830,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0in</Top>
               <Left>5.94792in</Left>
               <Height>0.25in</Height>
               <Width>2.02096in</Width>

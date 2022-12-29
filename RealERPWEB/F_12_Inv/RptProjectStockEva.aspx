@@ -42,7 +42,11 @@
         .form-control {
             height: 34px;
         }
-        
+
+
+        #ContentPlaceHolder1_gvStocjEvaluation_lblActualStock_0 {
+            font-weight:bold;
+        }
     </style>
 
     <script type="text/javascript" language="javascript">
@@ -143,7 +147,7 @@
 
                                 <div class="form-group">
                                     <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="lblGroup" runat="server" CssClass="lblTxt lblName" Text="Select Group"></asp:Label>
+                                        <asp:Label ID="lblGroup" runat="server" CssClass="lblTxt lblName" Text="Stock Valuation"></asp:Label>
                                     </div>
                                     <div class="col-md-2 pading5px ">
                                            <asp:DropDownList ID="group" runat="server" CssClass="chzn-select form-control"> 

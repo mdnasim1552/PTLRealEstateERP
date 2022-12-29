@@ -218,6 +218,35 @@ namespace RealEntity.C_12_Inv
 
     }
 
+
+
+
+    public class MatStockReportEvaluation
+    {
+        public string comcod { get; set; }
+        public string grp { get; set; }
+        public string pactcode { get; set; }
+        public string mrsircode { get; set; }
+        public string rsircode { get; set; }
+        public string pactdesc { get; set; }
+        public string msirdesc { get; set; }
+        public string rsirdesc { get; set; }
+        public decimal opnamt { get; set; }
+        public decimal rcvamt { get; set; }
+        public decimal trninamt { get; set; }
+        public decimal trnoutamt { get; set; }
+        public decimal lsamt { get; set; }
+        public decimal netrcvamt { get; set; }
+        public decimal issueamt { get; set; }
+        public decimal actstock { get; set; }
+        public decimal percnt { get; set; }
+        public MatStockReportEvaluation() { }
+    }
+
+
+
+
+
     [Serializable]
     public class ProjStock
     {
