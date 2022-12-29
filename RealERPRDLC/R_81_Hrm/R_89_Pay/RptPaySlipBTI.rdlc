@@ -32,6 +32,10 @@
           <DataField>absded</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="absded2">
+          <DataField>absded2</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="acat">
           <DataField>acat</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -100,6 +104,10 @@
           <DataField>dedday</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="deptname">
+          <DataField>deptname</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="desig">
           <DataField>desig</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -130,6 +138,14 @@
         </Field>
         <Field Name="entaint">
           <DataField>entaint</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="extday">
+          <DataField>extday</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="extdayamt">
+          <DataField>extdayamt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="fallded">
@@ -190,7 +206,7 @@
         </Field>
         <Field Name="joindate">
           <DataField>joindate</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
         <Field Name="kpi">
           <DataField>kpi</DataField>
@@ -268,6 +284,10 @@
           <DataField>ohour</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="otallow">
+          <DataField>otallow</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="oth">
           <DataField>oth</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
@@ -326,7 +346,19 @@
         </Field>
         <Field Name="stamp">
           <DataField>stamp</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="subfee">
+          <DataField>subfee</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="swf">
+          <DataField>swf</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="tallow">
+          <DataField>tallow</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="tdeduc">
           <DataField>tdeduc</DataField>
@@ -380,7 +412,7 @@
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_81_Hrm.C_89_Pay</rd:DataSetName>
         <rd:TableName>SalaryPaySlip</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryPaySlip, RealERPEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryPaySlip, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -3819,7 +3851,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Microsoft.VisualBasic.Strings.Format(Fields!tptallow.Value, "#,##0;(#,##0); ")</Value>
+                                  <Value>=Microsoft.VisualBasic.Strings.Format(Fields!tptallow.Value+Fields!extdayamt.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                   </Style>

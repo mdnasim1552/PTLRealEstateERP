@@ -461,6 +461,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1203000", "1203150", "F_12_Inv", "RptPurchaseStatus?", "Type=Purchase&Rpt=DaywPur", "Day Wise Purchase", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1203000", "1203160", "F_12_Inv", "RptCusPurchaseStatus?", "Type=DayWisePurchase", "Day Wise Purchase(Customization)", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1203000", "1203170", "F_14_Pro", "RptPurchasetracking?", "Type=TransferReqtrk&mtreqno=", "Material Purchase Tracking", "Inventory", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1203000", "1203171", "F_14_Pro", "RptPurchesStatusPrjWise?", "Type=Report", "Purchase Status (Project Wise)", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1203000", "1203180", "F_12_Inv", "RptInterMatTransStatus", "", "Materials Transfer Status (Inter Company)", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1203000", "1203181", "F_12_Inv", "RptOrderVsReceive", "", "Purchase Order Search", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1203000", "1203182", "F_12_Inv", "AllIndentIsuList?", "Type=Entry", "Indent Issue List", "Inventory", "False", "False", "False", "False" });
@@ -5784,6 +5785,7 @@ namespace RealERPLIB
 
             mnuTbl1.Rows.Add(new Object[] { "0302000014", "18. Purchase Order Top Sheet", "F_14_Pro/RptPurOrderTopSheet", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000015", "19. Purchase History (Project & Supplier) Wise", "F_14_Pro/RptPurchaseStatus02?Type=DaywPur&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000016", "20. Purchase Status (Project Wise)", "F_14_Pro/RptPurchesStatusPrjWise?Type=Report", "", true, "" });
 
 
 

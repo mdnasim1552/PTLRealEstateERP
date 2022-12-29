@@ -85,6 +85,10 @@
           <DataField>todat</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="ttlencashamt">
+          <DataField>ttlencashamt</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="ttlv">
           <DataField>ttlv</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1305,14 +1309,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="encashamt1">
+                        <Textbox Name="ttlencashamt">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!encashamt.Value</Value>
+                                  <Value>=Fields!ttlencashamt.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1324,7 +1328,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>encashamt1</rd:DefaultName>
+                          <rd:DefaultName>ttlencashamt</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -1401,7 +1405,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Cint(Fields!encashamt.Value))</Value>
+                                  <Value>=Format(Sum(Cint(Fields!encashamt.Value)),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1436,7 +1440,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(Cint(Fields!encashamt.Value))</Value>
+                                  <Value>=Format(Sum(Cint(Fields!ttlencashamt.Value)),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1460,6 +1464,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>

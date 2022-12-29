@@ -62,7 +62,7 @@
                             </asp:DropDownList>
                             <asp:Label ID="lblItemDesc" runat="server" Visible="false" CssClass="form-control form-control-sm "></asp:Label>
                         </div>
-                        <div class="col-md-1 " style="margin-top:20px;">
+                        <div class="col-md-1 ml-2" style="margin-top:20px;">
                             <asp:LinkButton ID="lbtnOk1" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnOk1_Click" Text="Select Item"></asp:LinkButton>
 
                         </div>
