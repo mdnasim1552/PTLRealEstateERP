@@ -5,6 +5,51 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript" language="javascript">
+
+        function Search_Gridview(strKey, cellNr, gvname) {
+            try {
+
+                var strData = strKey.value.toLowerCase().split(" ");
+                var tbldata;
+
+                switch (gvname) {
+
+                    case 'gvReqInfo':
+                        tblData = document.getElementById("<%=this.dgvBE.ClientID %>");
+                        break;
+                   
+
+                    default:
+                          tblData = document.getElementById("<%=dgvBE.ClientID %>");
+
+                          break;
+
+
+
+                  }
+
+                  var rowData;
+                  for (var i = 0; i < tblData.rows.length; i++) {
+                      rowData = tblData.rows[i].cells[cellNr].innerHTML;
+                      var styleDisplay = 'none';
+                      for (var j = 0; j < strData.length; j++) {
+                          if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                              styleDisplay = '';
+                          else {
+                              styleDisplay = 'none';
+                              break;
+                          }
+                      }
+                      tblData.rows[i].style.display = styleDisplay;
+                  }
+              }
+
+              catch (e) {
+                  alert(e.message);
+
+              }
+
+          }
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
@@ -94,7 +139,7 @@
             <div class=" card card-fluid mt-5">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-1">
+                        <div class="col-md-1 d-none">
                             <div class="form-group">
 
                                 <%--   <label for="lblDatefrom" runat="server"  id="lblDatefrom" class=" control-label lblmargin-top9px lblleftwidth ">From</label>
@@ -103,13 +148,13 @@
                                     TargetControlID="txtDatefrom" Enabled="true"></cc1:CalendarExtender>--%>
 
 
-                                <label class="control-label  lblmargin-top9px" for="FromDate" id="lblDatefrom" runat="server">From</label>
 
                             </div>
 
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
+                                                                <label class="control-label  lblmargin-top9px" for="FromDate" id="lblDatefrom" runat="server">From</label>
 
                                 <asp:TextBox ID="txtDatefrom" runat="server" CssClass="form-control flatpickr-input"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txtDatefrom_CalendarExtender" runat="server"
@@ -163,10 +208,10 @@
                             </div>
 
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3" style="margin-top:25px;">
                             <div class="form-group">
 
-                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary " OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-sm btn-primary " OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                                 <asp:CheckBox ID="ChkTopHead" runat="server" Text="Print top heads" CssClass="btn  btn-default" />
 
                             </div>
@@ -507,17 +552,18 @@
                     <div class="card card-fluid">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-1">
+                                <div class="col-md-1 d-none">
                                     <div class="form-group">
-                                        <label class="control-label" for="FromDate" id="lblProjectname" runat="server">Project Name:</label>
+                                       
                                         <asp:TextBox ID="txtSearch" runat="server" CssClass=" inputtextbox" Visible="false"></asp:TextBox>
 
                                         <asp:LinkButton ID="ImgbtnFindProj" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ImgbtnFindProj_Click" TabIndex="12" Visible="false"><span class="glyphicon glyphicon-search "> </span></asp:LinkButton>
 
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
+                                         <label class="control-label" for="FromDate" id="lblProjectname" runat="server">Project Name:</label>
                                         <asp:DropDownList ID="ddlAccProject" OnSelectedIndexChanged="ddlAccProject_OnSelectedIndexChanged" runat="server" CssClass="chzn-select form-control ddlPage" TabIndex="13" AutoPostBack="true">
                                         </asp:DropDownList>
 
@@ -526,10 +572,7 @@
 
                                 </div>
 
-
-
-
-                                <div class="col-md-2">
+                                <div class="col-md-2 ml-2">
                                     <div class="form-group">
                                         <asp:Label ID="Label3" CssClass="control-label" runat="server" Text="Resource Name"></asp:Label>
                                         <asp:TextBox ID="txtSrcRes" runat="server" CssClass=" inputtextbox" Visible="false"></asp:TextBox>
@@ -541,18 +584,12 @@
                                         <asp:DropDownList ID="ddlResHead" runat="server" CssClass="chzn-select form-control  ddlPage" TabIndex="13" AutoPostBack="true">
                                         </asp:DropDownList>
 
-
-
                                     </div>
 
                                 </div>
 
-                                <div class="col-md-1">
-                                    <div class="form-group">
-                                        <asp:Label ID="lblRptGroup" runat="server" CssClass="control-label" Text="Group"></asp:Label>
-                                    </div>
-                                </div>
                                 <div class="col-md-2">
+                                     <asp:Label ID="lblRptGroup" runat="server" CssClass="form-label" Text="Group"></asp:Label>
                                     <asp:DropDownList ID="ddlRptGroup" runat="server" CssClass="form-control ">
                                         <asp:ListItem>Main</asp:ListItem>
                                         <asp:ListItem>Sub-1</asp:ListItem>
@@ -734,13 +771,9 @@
                     <div class="card card-fluid">
                         <div class=" card-body">
 
-
-
-
                             <div class="row ">
-                                <div class="col-md-1">
+                                <div class="col-md-1 d-none">
 
-                                    <label class="control-label  " for="FromDate" id="Label5" runat="server">Project Name:</label>
                                     <%-- <asp:LinkButton ID="ImgbtnFindProjI" runat="server" CssClass="btn btn-primary btn-sm" OnClick="ImgbtnFindProjI_Click" ><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>--%>
 
                                     <asp:LinkButton ID="ImgbtnFindProjI" CssClass="btn btn-primary " runat="server" OnClick="ImgbtnFindProjI_Click" Visible="false"> <i  class="fa fa-search" aria-hidden="true" ></i> </asp:LinkButton>
@@ -750,8 +783,10 @@
                                 </div>
 
 
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
+                                    <label class="form-label" for="FromDate" id="Label5" runat="server">Project Name:</label>
+
                                         <asp:DropDownList ID="ddlHAccProject" OnSelectedIndexChanged="ddlAccProject_OnSelectedIndexChanged" runat="server" CssClass="chzn-select form-control " AutoPostBack="true">
                                         </asp:DropDownList>
 
@@ -761,15 +796,16 @@
 
 
 
-                                <div class="col-md-1 ">
+                                <div class="col-md-1 d-none">
                                     <div class="form-group">
 
-                                        <label class="control-label   " for="FromDate" id="lblRptGroup0" runat="server">Group</label>
+                                      
 
 
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-1 ml-2">
+                                      <label class="form-label" for="FromDate" id="lblRptGroup0" runat="server">Group</label>
                                     <asp:DropDownList ID="ddlRptGroupbve" runat="server" CssClass="form-control">
                                         <asp:ListItem>Main</asp:ListItem>
                                         <asp:ListItem>Sub-1</asp:ListItem>
@@ -869,11 +905,16 @@
                                             </td>
                                             <td class="style60">&nbsp;</td>
 
+                                       <td>
+                                           <asp:TextBox ID="txtSearchrefnum" SortExpression="subdesc1" runat="server" Width="70px" onkeyup="Search_Gridview(this,1,'dgvBE')"></asp:TextBox><br />
 
+                                       </td>
+
+                                                            
                                             <td class="style60">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;</td>
                                             <td>
 
-                                                <asp:HyperLink ID="hlbtntbCdataExelbe" CssClass="btn btn-xs btn-success" runat="server"><span class="fa fa-file-excel-o"></span></asp:HyperLink>
+                                                <asp:HyperLink ID="hlbtntbCdataExelbe" CssClass="btn btn-xs btn-success" runat="server"><span class="fa fa-file-excel"></span></asp:HyperLink>
 
 
                                             </td>

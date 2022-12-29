@@ -587,7 +587,9 @@
 
                                     <a href="<%=this.ResolveUrl ("~/F_09_PImp/RptConTractorBillAll")%>" target="_blank" class="btn btn-info btn-sm" style="margin-left: 10px; font-weight: bold; font-size: 14px;">Details<span class="fa fa-history"></span></a>
 
-
+                                     <asp:Label ID="lblAdvpay" runat="server"
+                                        Text="Advanced Payment" CssClass=" smLbl_to"></asp:Label>
+                                    <asp:TextBox ID="txtadvpay" runat="server" CssClass="inputtextbox" Style="width: 60px; text-align: right;"></asp:TextBox>
 
                                 </div>
                             </div>

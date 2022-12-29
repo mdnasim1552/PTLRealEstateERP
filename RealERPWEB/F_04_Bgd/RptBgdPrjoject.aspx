@@ -51,6 +51,9 @@
             .chzn-single {
             border-radius: 3px !important;
             height: 29px !important;}
+            .table td, .table th {
+                padding:4px;
+            }
     </style>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -186,12 +189,14 @@
                 <div class="card-body">
                         <asp:MultiView ID="MultiView1" runat="server">
                         <asp:View ID="ViewBgd" runat="server">
-                            <asp:Panel ID="Panel1" runat="server">
-                                <div class="form-group">
-                                    <div class=" col-md-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <asp:Panel ID="Panel1" runat="server">
+                                <div class="row">
+                                    <div class=" col-md-1">
 
-                                        <asp:Label ID="lblRptGroup" CssClass="lblTxt lblName" runat="server" Text="Group"></asp:Label>
-                                        <asp:DropDownList ID="ddlRptGroup" runat="server" CssClass="ddlPage">
+                                        <asp:Label ID="lblRptGroup" CssClass="form-label" runat="server" Text="Group"></asp:Label>
+                                        <asp:DropDownList ID="ddlRptGroup" runat="server" CssClass="form-control form-control-sm">
                                             <asp:ListItem>Main</asp:ListItem>
                                             <asp:ListItem>Sub-1</asp:ListItem>
                                             <asp:ListItem>Sub-2</asp:ListItem>
@@ -201,10 +206,10 @@
 
                                     </div>
 
-                                    <div class=" col-md-3  pading5px asitCol3">
+                                    <div class=" col-md-1">
 
-                                        <asp:Label ID="lblPage" CssClass="smLbl_to" runat="server" Text="Size"></asp:Label>
-                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="ddlPage" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged"
+                                        <asp:Label ID="lblPage" CssClass="form-label" runat="server" Text="Size" Visible="False"></asp:Label>
+                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged"
                                             Visible="False">
                                             <asp:ListItem Value="10">10</asp:ListItem>
                                             <asp:ListItem Value="15">15</asp:ListItem>
@@ -226,15 +231,21 @@
                                     </div>
 
                                 </div>
-                                <div class="form-group">
-                                    <div class=" col-md-8  pading5px">
+                                <div class="row mt-2">
+                                    <div class="col-md-2">
 
-                                        <asp:Label ID="lblConArea" CssClass="smLbl_to" runat="server"></asp:Label>
-                                        <asp:Label ID="lblSalArea" CssClass=" smLbl_to" runat="server"></asp:Label>
+                                        <asp:Label ID="lblConArea" CssClass="form-label" Font-Bold="true" runat="server"></asp:Label>
+                                       
+                                    </div>
+                                    <div class="col-md-2">
+                                         <asp:Label ID="lblSalArea" CssClass="form-label" Font-Bold="true" runat="server"></asp:Label>
                                     </div>
                                 </div>
-                                <div class=" clearfix"></div>
+                               
                             </asp:Panel>
+                                </div>
+                            </div>
+                            
                             <asp:GridView ID="gvBgd" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                 Width="640px" AllowPaging="True" OnPageIndexChanging="gvBgd_PageIndexChanging"
                                 OnRowDataBound="gvBgd_RowDataBound">
@@ -366,12 +377,15 @@
 
                         </asp:View>
                         <asp:View ID="RptMasterBgdSp" runat="server">
-                            <asp:Panel ID="Panel2" runat="server">
-                                <div class="form-group">
-                                    <div class=" col-md-3  pading5px asitCol3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <asp:Panel ID="Panel2" runat="server">
 
-                                        <asp:Label ID="lblPagesp" CssClass="lblTxt lblName" runat="server" Text="Size"></asp:Label>
-                                        <asp:DropDownList ID="ddlpagesizesp" runat="server" AutoPostBack="True" CssClass="ddlPage" OnSelectedIndexChanged="ddlpagesizesp_SelectedIndexChanged">
+                                <div class="row">
+                                    <div class="col-md-1">
+
+                                        <asp:Label ID="lblPagesp" CssClass="form-label" runat="server" Text="Size"></asp:Label>
+                                        <asp:DropDownList ID="ddlpagesizesp" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlpagesizesp_SelectedIndexChanged">
                                             <asp:ListItem Value="10">10</asp:ListItem>
                                             <asp:ListItem Value="15">15</asp:ListItem>
                                             <asp:ListItem Value="20">20</asp:ListItem>
@@ -383,22 +397,25 @@
                                             <asp:ListItem Value="300">300</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
-                                    <div class=" clearfix"></div>
+                                   
                                 </div>
-                                <div class="form-group">
-                                    <div class=" col-md-8 pading5px">
+                                <div class="row mt-2">
+                                    <div class=" col-md-2">
 
-                                        <asp:Label ID="lblConAreasp" CssClass="smLbl_to" runat="server"></asp:Label>
-                                        <asp:Label ID="lblSalAreasp" CssClass=" smLbl_to" runat="server"></asp:Label>
-
-
-
+                                        <asp:Label ID="lblConAreasp" CssClass="smLbl_to" Font-Bold="true" runat="server"></asp:Label>
+                                       
                                     </div>
-                                    <div class=" clearfix"></div>
+                                    <div class="col-md-2">
+                                         <asp:Label ID="lblSalAreasp" CssClass=" smLbl_to" Font-Bold="true" runat="server"></asp:Label>
+                                    </div>
+                                    
                                 </div>
 
-                                <div class=" clearfix"></div>
+                               
                             </asp:Panel>
+                                </div>
+                            </div>
+                            
 
                             <asp:GridView ID="gvBgdsp" runat="server" AllowPaging="True" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                 OnPageIndexChanging="gvBgdsp_PageIndexChanging" OnRowDataBound="gvBgdsp_RowDataBound"
@@ -470,13 +487,14 @@
 
                         </asp:View>
                         <asp:View ID="ViewWorkVsResource" runat="server">
+                            <div class="row mb-2">
+                                <div class="col-md-12">
+                                     <asp:Panel ID="Panel3" runat="server">
+                                <div class="row">
+                                    <div class=" col-md-2">
+                                        <asp:LinkButton ID="lbtnFloorList" runat="server" CssClass="form-label" OnClick="lbtnFloorList_Click">Floor</asp:LinkButton>
 
-                            <asp:Panel ID="Panel3" runat="server">
-                                <div class="form-group">
-                                    <div class=" col-md-3  pading5px asitCol3">
-                                        <asp:LinkButton ID="lbtnFloorList" runat="server" CssClass="lblTxt lblName " OnClick="lbtnFloorList_Click">Floor</asp:LinkButton>
-
-                                        <asp:DropDownList ID="ddlFloorList" runat="server" CssClass="ddlPage">
+                                        <asp:DropDownList ID="ddlFloorList" runat="server" CssClass="form-control form-control-sm">
                                             <asp:ListItem>Main</asp:ListItem>
                                             <asp:ListItem>Sub-1</asp:ListItem>
                                             <asp:ListItem>Sub-2</asp:ListItem>
@@ -484,11 +502,11 @@
                                             <asp:ListItem Selected="True">Details</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
-                                    <div class=" col-md-3  pading5px asitCol3">
+                                    <div class=" col-md-1">
 
-                                        <asp:Label ID="lblPagesp0" CssClass="lblTxt lblName" runat="server">Page Size</asp:Label>
+                                        <asp:Label ID="lblPagesp0" CssClass="form-label" runat="server">Page Size</asp:Label>
 
-                                        <asp:DropDownList ID="ddlpagesizewrkvres" runat="server" CssClass="ddlPage" AutoPostBack="True" OnSelectedIndexChanged="ddlpagesizewrkvres_SelectedIndexChanged">
+                                        <asp:DropDownList ID="ddlpagesizewrkvres" runat="server" CssClass="form-control form-control-sm" AutoPostBack="True" OnSelectedIndexChanged="ddlpagesizewrkvres_SelectedIndexChanged">
                                             <asp:ListItem Value="10">10</asp:ListItem>
                                             <asp:ListItem Value="15">15</asp:ListItem>
                                             <asp:ListItem Value="20">20</asp:ListItem>
@@ -508,6 +526,9 @@
                                     </div>
                                 </div>
                             </asp:Panel>
+                                </div>
+                            </div>
+                           
                             <div class="table table-responsive">
                                 <asp:GridView ID="gvWrkVsRes" runat="server" AllowPaging="True" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                     OnPageIndexChanging="gvWrkVsRes_PageIndexChanging" ShowFooter="True" Width="640px">
@@ -1330,14 +1351,14 @@
                         </asp:View>
                         <asp:View ID="ViewMasterbgdgrwise" runat="server">
 
-                            <div class="form-group">
-                                <div class=" col-md-8 pading5px">
+                            <div class="row mb-2">
+                                <div class=" col-md-2">
 
-                                    <asp:Label ID="lblConAreagrwise" CssClass="smLbl_to" runat="server"></asp:Label>
-                                    <asp:Label ID="lblSalAreagrwise" CssClass=" smLbl_to" runat="server"></asp:Label>
-
-
-
+                                    <asp:Label ID="lblConAreagrwise" CssClass="form-label" Font-Bold="true" runat="server"></asp:Label>
+                                   
+                                </div>
+                                <div class="col-md-2">
+                                     <asp:Label ID="lblSalAreagrwise" CssClass="form-label" Font-Bold="true" runat="server"></asp:Label>
                                 </div>
                                 <div class=" clearfix"></div>
                             </div>
