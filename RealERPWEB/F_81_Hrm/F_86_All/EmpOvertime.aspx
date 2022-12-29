@@ -24,7 +24,9 @@
             var gvEmploan = $('#<%=this.gvEmploan.ClientID %>');
             var gvarrear = $('#<%=this.gvarrear.ClientID %>');
             var gvothearn = $('#<%=this.gvothearn.ClientID %>');
+            var gvEncashment = $('#<%=this.gvEncashment.ClientID %>');
 
+            
 
             gvarrear.Scrollable();
 
@@ -49,6 +51,7 @@
             gvothearn.Scrollable();
             gvOvertime.Scrollable();
             gvEmpOtherded.Scrollable();
+            gvEncashment.Scrollable();
             //  gvEmpMbill.Scrollable();
             $('.chzn-select').chosen({ search_contains: true });
         }
@@ -2436,7 +2439,7 @@
 
                         <asp:View ID="Encashment" runat="server">
 
-                            <asp:GridView ID="gvEncashment" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea" AutoGenerateColumns="False" ShowFooter="true">
+                            <asp:GridView ID="gvEncashment" runat="server" AllowPaging="False" CssClass="table-striped table-hover table-bordered grvContentarea" AutoGenerateColumns="False" ShowFooter="False">
 
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl.No.">
