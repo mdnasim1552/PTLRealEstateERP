@@ -181,7 +181,9 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+
+      <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2320,6 +2322,9 @@
     <Content Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx" />
     <Content Include="F_14_Pro\RptDateWiseBill.aspx" />
     <Content Include="F_14_Pro\PoMrrBillStatus.aspx" />
+    <Content Include="F_14_Pro\RptPurchaseStatus.aspx" />
+    <Content Include="F_14_Pro\RptPurchesStatus.aspx" />
+    <Content Include="F_14_Pro\RptPurchesStatusPrjWise.aspx" />
     <Content Include="F_14_Pro\RptPurOrderTopSheet.aspx" />
     <Content Include="F_14_Pro\RptSupAdvanceDetails.aspx" />
     <Content Include="F_17_Acc\AccIssueUpdate.aspx" />
@@ -2427,7 +2432,6 @@
     <Content Include="F_14_Pro\RptPaymetDueAllPrj.aspx" />
     <Content Include="F_14_Pro\RptPrjWiseMrfHistory.aspx" />
     <Content Include="F_14_Pro\RptPurchaseOrdItemRate.aspx" />
-    <Content Include="F_14_Pro\RptPurchaseStatus.aspx" />
     <Content Include="F_14_Pro\RptPurchaseStatus02.aspx" />
     <Content Include="F_14_Pro\RptPurchasetracking.aspx" />
     <Content Include="F_14_Pro\RptReqAdjust.aspx" />
@@ -4284,6 +4288,27 @@
     </Compile>
     <Compile Include="F_14_Pro\PoMrrBillStatus.aspx.designer.cs">
       <DependentUpon>PoMrrBillStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchaseStatus.aspx.cs">
+      <DependentUpon>RptPurchaseStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchaseStatus.aspx.designer.cs">
+      <DependentUpon>RptPurchaseStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchesStatus.aspx.cs">
+      <DependentUpon>RptPurchesStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchesStatus.aspx.designer.cs">
+      <DependentUpon>RptPurchesStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchesStatusPrjWise.aspx.cs">
+      <DependentUpon>RptPurchesStatusPrjWise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchesStatusPrjWise.aspx.designer.cs">
+      <DependentUpon>RptPurchesStatusPrjWise.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\RptPurOrderTopSheet.aspx.cs">
       <DependentUpon>RptPurOrderTopSheet.aspx</DependentUpon>
@@ -7639,13 +7664,6 @@
     </Compile>
     <Compile Include="F_14_Pro\RptPurchaseOrdItemRate.aspx.designer.cs">
       <DependentUpon>RptPurchaseOrdItemRate.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="F_14_Pro\RptPurchaseStatus.aspx.cs">
-      <DependentUpon>RptPurchaseStatus.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_14_Pro\RptPurchaseStatus.aspx.designer.cs">
-      <DependentUpon>RptPurchaseStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\RptPurchaseStatus02.aspx.cs">
       <DependentUpon>RptPurchaseStatus02.aspx</DependentUpon>

@@ -6494,6 +6494,22 @@ namespace RealERPWEB.F_99_Allinterface
                 rptbill.SetParameters(new ReportParameter("IssueNo", "Issue No: " + dt.Rows[0]["lisuno2"].ToString()));
                 rptbill.SetParameters(new ReportParameter("IssueRefNo", IssueRefNo));
 
+                if (_dtuser.Rows[0]["lpostuser"].ToString() == "") {
+                    sign1 = "";
+                }
+                if (_dtuser.Rows[0]["bpostuser"].ToString() == "")
+                {
+                    sign2 = "";
+                }
+                if (_dtuser.Rows[0]["baprvuser"].ToString() == "")
+                {
+                    sign3 = "";
+                }
+                rptbill.SetParameters(new ReportParameter("sign1", sign1));
+                rptbill.SetParameters(new ReportParameter("sign2", sign2));
+                rptbill.SetParameters(new ReportParameter("sign3", sign3));
+                rptbill.SetParameters(new ReportParameter("sign4", sign4));
+
 
             }
             else
