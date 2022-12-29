@@ -59,14 +59,56 @@
                                 <cc1:CalendarExtender runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                             </div>
                         </div>
-                         <div class="col-md-2 mt-4">
+                        <div class="col-md-2 mt-4">
                             <div class="form-group-">
-                                <asp:LinkButton ID="lnkbtnok" runat="server"  CssClass=" btn btn-primary btn-sm mt20">Ok</asp:LinkButton></li>
+                                <asp:LinkButton ID="lnkbtnok" runat="server" OnClick="lnkbtnok_Click" CssClass=" btn btn-primary btn-sm mt20">Ok</asp:LinkButton></li>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
+                    <div class="table-responsive mt-2">
+                        <asp:GridView ID="gv_PurchesSummary" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                            ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15">
+                            <Columns>
+                                <asp:TemplateField HeaderText="SL # ">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
+                                            Style="text-align: right; font-size: 16px;"
+                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"
+                                            ForeColor="Black"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="ProjectName">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblprjnamebatchwise" runat="server" Width="300px"
+                                            Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc"))%>'
+                                            ForeColor="Black"></asp:Label>
+                                    </ItemTemplate>
+                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Amount">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblprjnamebatchwise" runat="server" Width="200px"
+                                            Text='<%#Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt")).ToString("#,##0.00;(#,##0.00); ")%>'
+                                            ForeColor="Black"></asp:Label>
+                                    </ItemTemplate>
+                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                </asp:TemplateField>
+                                <%--<asp:TemplateField HeaderText="ProjectName">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblprjnamebatchwise" runat="server" Width="200px"
+                                            Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "prjnamebatchwise"))%>'
+                                            ForeColor="Black"></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>--%>
+                            </Columns>
+                            <PagerStyle CssClass="gvPagination" />
+
+                            <HeaderStyle CssClass="grvHeader" />
+                        </asp:GridView>
+                    </div>
                 </div>
             </div>
         </ContentTemplate>

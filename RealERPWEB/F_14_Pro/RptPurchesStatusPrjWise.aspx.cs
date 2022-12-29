@@ -1,6 +1,8 @@
 ﻿using RealERPLIB;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -27,6 +29,40 @@ namespace RealERPWEB.F_14_Pro
 
             }
 
+        }
+
+        private string GetCompCode()
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
+
+        }
+
+        protected void lnkbtnok_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                string comcod = this.GetCompCode();
+                string formdat = this.txtfrmdate.Text;
+                string tomdat = this.txttodate.Text;
+
+                DataSet ds = purData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETPURCHASEPRJWISE", formdat, tomdat, "", "", "", "");
+                if (ds == null)
+                    return;
+
+                this.gv_PurchesSummary.DataSource = ds;
+
+                this.gv_PurchesSummary.DataBind();
+
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
         }
     }
 }
