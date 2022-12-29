@@ -33,15 +33,6 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// lblInformation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblInformation;
-
-        /// <summary>
         /// txtInfo control.
         /// </summary>
         /// <remarks>
@@ -58,6 +49,15 @@ namespace RealERPWEB.F_14_Pro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+
+        /// <summary>
+        /// lblInformation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblInformation;
 
         /// <summary>
         /// ddlSurveyType control.
@@ -195,15 +195,6 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.Panel Panel4;
 
         /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-
-        /// <summary>
         /// txtMSRResSearch control.
         /// </summary>
         /// <remarks>
@@ -222,6 +213,15 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.LinkButton ImgbtnFindMat;
 
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
         /// ddlMSRRes control.
         /// </summary>
         /// <remarks>
@@ -229,24 +229,6 @@ namespace RealERPWEB.F_14_Pro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMSRRes;
-
-        /// <summary>
-        /// lbtnMSRSelect control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnMSRSelect;
-
-        /// <summary>
-        /// lblspecificationms control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblspecificationms;
 
         /// <summary>
         /// txtsrchSpecification3 control.
@@ -267,6 +249,15 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.LinkButton ImgbtnFindSpecificationms;
 
         /// <summary>
+        /// lblspecificationms control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblspecificationms;
+
+        /// <summary>
         /// ddlSpecificationms control.
         /// </summary>
         /// <remarks>
@@ -274,15 +265,6 @@ namespace RealERPWEB.F_14_Pro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSpecificationms;
-
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
         /// txtMSRSupSearch control.
@@ -303,6 +285,15 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.LinkButton ImgbtnFindSup;
 
         /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+
+        /// <summary>
         /// ddlMSRSupl control.
         /// </summary>
         /// <remarks>
@@ -310,6 +301,15 @@ namespace RealERPWEB.F_14_Pro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlMSRSupl;
+
+        /// <summary>
+        /// lbtnMSRSelect control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnMSRSelect;
 
         /// <summary>
         /// gvMSRInfo control.
@@ -573,15 +573,6 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.View View3;
 
         /// <summary>
-        /// lblSuplList2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSuplList2;
-
-        /// <summary>
         /// txtSuplSearch2 control.
         /// </summary>
         /// <remarks>
@@ -598,6 +589,15 @@ namespace RealERPWEB.F_14_Pro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton ImgbtnFindSupl2;
+
+        /// <summary>
+        /// lblSuplList2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSuplList2;
 
         /// <summary>
         /// ddlSupl2 control.
@@ -627,15 +627,6 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.Panel Panel3;
 
         /// <summary>
-        /// lblResList2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblResList2;
-
-        /// <summary>
         /// txtResSearch2 control.
         /// </summary>
         /// <remarks>
@@ -652,6 +643,15 @@ namespace RealERPWEB.F_14_Pro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton ImgbtnFindRes2;
+
+        /// <summary>
+        /// lblResList2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblResList2;
 
         /// <summary>
         /// ddlResList2 control.
@@ -690,15 +690,6 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.LinkButton lbtnSelectReaSpesAll;
 
         /// <summary>
-        /// Label3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-
-        /// <summary>
         /// txtsrchSpecification2 control.
         /// </summary>
         /// <remarks>
@@ -715,6 +706,15 @@ namespace RealERPWEB.F_14_Pro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton ImgbtnFindSpecification2;
+
+        /// <summary>
+        /// Label3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
         /// ddlSpecification02 control.

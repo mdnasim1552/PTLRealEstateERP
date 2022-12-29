@@ -58,7 +58,7 @@
                 <div class="card-body">
                     <div class="row">
                         
-                        <div class="col-md-2">
+                        <div class="col-md-1">
                             <div class="form-group">
                                 <label ID="lblDate"  CssClass="form-label">From Date</label>
                                 <asp:TextBox ID="txtFDate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
@@ -66,7 +66,7 @@
                                     Format="dd-MMM-yyyy" TargetControlID="txtFDate"></cc1:CalendarExtender>
                             </div>
                         </div>
-                    <div class="col-md-2" >
+                    <div class="col-md-1" >
                             <div class="form-group">
                                 <label ID="lbltoDate"  CssClass="form-label" >To Date</label>
                                 <asp:TextBox ID="txttoDate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
@@ -77,10 +77,10 @@
 
                         </div>
 
-                              <div class="col-md-3 mt-2">
+                              <div class="col-md-2 mt-2">
                             <div class="from-group">
                                 <asp:Label ID="prjName" CssClass="form-label">Project Name </asp:Label>
-                                <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="True" OnSelectedIndexChanged="ddlPrjName_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlPrjName" runat="server" CssClass="chzn-select form-control form-control-sm" AutoPostBack="True" OnSelectedIndexChanged="ddlPrjName_SelectedIndexChanged"></asp:DropDownList>
                             </div>
                         </div>
                        <div class="col-md-2 ml-2 mt-2">
