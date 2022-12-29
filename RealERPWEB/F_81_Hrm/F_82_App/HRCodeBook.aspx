@@ -27,6 +27,33 @@
         .pd4 {
             padding: 4px !important;
         }
+        .grvHeader th {
+            font-weight: normal;
+            text-align: center;
+            text-transform: capitalize;
+        }
+        /*.cald {
+             z-index: 1;
+        }*/
+
+        .lblmargin {
+            margin: 0px !important;
+        }
+
+        .lblheadertitle {
+            background-color: #346CB0;
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+            padding-left: 5px !important;
+        }
+
+        .form-control-sm {
+            padding: 0.25rem 0rem !important;
+        }
+
+        .grvContentarea {
+        }
     </style>
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
@@ -43,6 +70,15 @@
 
             $('.chzn-select').chosen({ search_contains: true });
         }
+        function loadModalAddCode() {
+            $('#AddResCode').modal('toggle', {
+                backdrop: 'static',
+                keyboard: false
+            });
+        };
+        function CloseModalAddCode() {
+            $('#AddResCode').modal('hide');
+        };
 
     </script>
 
@@ -93,8 +129,16 @@
                                     <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                     <ItemStyle Font-Size="12px" />
                                 </asp:TemplateField>
-                                <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText=""
-                                    SelectText="" ShowEditButton="True">
+                                <asp:TemplateField HeaderText="+">
+                                 <ItemTemplate>
+                                     <asp:LinkButton ID="lbtnAdd" runat="server" CssClass="btn btn-xs btn-default" ToolTip="Add New Code" BackColor="Transparent"
+                                            Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "additem"))=="True"?true:false %>' OnClick="lbtnAdd_Click" ><span class="fa fa-plus" aria-hidden="true"></span></asp:LinkButton>
+                                 </ItemTemplate>
+                                 <HeaderStyle Font-Bold="True" Font-Size="16px" Width="20px" HorizontalAlign="Center" />
+                                 <ItemStyle HorizontalAlign="Left" />
+                                </asp:TemplateField>
+                                <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText="" SelectText=""
+                                    ShowEditButton="True" EditText="&lt;i class=&quot;fa fa-edit&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;">
                                     <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                     <ItemStyle Font-Bold="True" Font-Size="12px" ForeColor="#0000C0" />
                                 </asp:CommandField>
@@ -107,13 +151,6 @@
                                     <ItemStyle Font-Size="12px" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Code">
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="txtgrcode" runat="server" Font-Size="12px" Height="16px"
-                                            MaxLength="3"
-                                            Style="border-style: none; border-color: midnightblue; font-size: 12px; text-align: left;"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgcod3")) %>'
-                                            Width="50px"></asp:TextBox>
-                                    </EditItemTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lbgrcod3" runat="server" Font-Size="12px"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgcod3")) %>'
@@ -293,6 +330,52 @@
                         </fieldset>--%>
 
 
+            <div id="AddResCode" class="modal animated slideInLeft " role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content  ">
+                        <div class="modal-header">
+                            <h5 class="modal-title"><i class="fas fa-info-circle"></i>&nbsp;Add New Code</h5>
+                            <asp:Label ID="lblmobile" runat="server"></asp:Label>
+                            <button type="button" class="btn btn-xs btn-danger float-right" data-dismiss="modal" title="Close"><i class="fas fa-times-circle"></i></button>
+                        </div>
+                        <div class="modal-body form-horizontal">
+                            <div class="row mb-1">
+                                <asp:Label ID="lbgrcod" runat="server" Visible="false"></asp:Label>
+                                <label class="col-md-4">HR-Gcode  </label>
+                                <div class="col-md-8">
+                                    <asp:TextBox ID="txthrgcode" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div>
+                                <asp:TextBox Visible="false" ID="hrgcodechk" runat="server" CssClass="form-control"></asp:TextBox>
+                            </div>
+                            <div class="row mb-1">
+                                <label class="col-md-4">Description of Code</label>
+                                <div class="col-md-8">
+                                    <asp:TextBox ID="txtDesc" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>  
+                            <div class="row mb-1">
+                                <label class="col-md-4">Description of Code BN</label>
+                                <div class="col-md-8">
+                                    <asp:TextBox ID="txtDescBN" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div> 
+                            <div class="row mb-1">
+                                <label class="col-md-4">Type </label>
+                                <div class="col-md-8">
+                                    <asp:TextBox ID="txttype" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="modal-footer ">
+                            <asp:LinkButton ID="lbtnAddCode" runat="server" CssClass="btn btn-sm btn-success" OnClientClick="CloseModalAddCode();" OnClick="lbtnAddCode_Click"  ToolTip="Update Code Info.">
+                                <i class="fas fa-save"></i>&nbsp;Update </asp:LinkButton>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </ContentTemplate>
     </asp:UpdatePanel>

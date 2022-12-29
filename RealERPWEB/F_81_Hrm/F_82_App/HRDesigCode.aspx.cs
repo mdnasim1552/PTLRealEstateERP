@@ -24,6 +24,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
     {
         ProcessAccess da = new ProcessAccess();
         //static string tempddl1 = "", tempddl2 = "";
+        string msg = "";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -284,5 +285,70 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.grvacc_DataBind();
 
         }
+
+        protected void lbtnAdd_Click(object sender, EventArgs e)
+        {
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["entry"]))
+            {
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                return;
+            }
+
+            GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int RowIndex = gvr.RowIndex;
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            int index = this.grvacc.PageSize * this.grvacc.PageIndex + RowIndex;
+            string hrgcod = ((DataTable)Session["storedata"]).Rows[index]["hrgcod"].ToString();
+            this.hrgcodechk.Text = hrgcod;
+            this.txthrgcode.Text = hrgcod.Substring(0, 2) + "-" + hrgcod.Substring(2, 3) + "-" + ASTUtility.Right(hrgcod, 2);
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+        }
+
+        protected void lbtnAddCode_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            string hrgcod = hrgcodechk.Text;
+
+
+            string tgrcode = this.txthrgcode.Text.Trim().Replace("-", "");
+            string Desc = this.txtDesc.Text.Trim();
+            string DescBN = this.txtDescBN.Text.Trim();
+            string gtype = this.txttype.Text.Trim();
+            string Gtype = (gtype.ToString() == "") ? "T" : gtype;
+            ;
+            string mnumber = (hrgcod == tgrcode) ? "" : "manual";
+
+            bool isResultValid = false;
+            if (Desc.Length == 0)
+            {
+                msg = "Resource Head is not empty";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+                isResultValid = false;
+                return;
+            }
+
+            //bool result = da.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_CODEBOOK", "INSERTHRGCODE", tgrcode,
+            //              Desc, DescBN, Gtype, mnumber, "", "", "", "", "");
+
+            //if (result == true)
+            //{
+            //    ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Created ";
+            //}
+
+            //else
+            //{
+            //    ((Label)this.Master.FindControl("lblmsg")).Text = "Create Failed";
+            //}
+            ShowInformation();
+            grvacc_DataBind();
+        }
+    }
     }
 }

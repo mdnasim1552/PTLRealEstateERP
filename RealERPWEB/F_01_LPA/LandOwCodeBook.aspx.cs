@@ -414,9 +414,9 @@ namespace RealERPWEB.F_01_LPA
             this.grvacc_DataBind();
         }
 
+        protected void lbtnAdd_Click(object sender, EventArgs e)
+        {
 
-
-
-
+        }
     }
 }
