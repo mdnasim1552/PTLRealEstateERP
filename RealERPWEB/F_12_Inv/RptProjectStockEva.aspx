@@ -42,9 +42,7 @@
         .form-control {
             height: 34px;
         }
-        #ContentPlaceHolder1_gvStocjEvaluation_lblgvtCompany_0 {
-            display:none;
-        }
+        
     </style>
 
     <script type="text/javascript" language="javascript">
@@ -52,6 +50,7 @@
         $(document).ready(function () {
 
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+            //$('.chzn-select').chosen({ search_contains: true });
 
         });
 
@@ -65,6 +64,7 @@
 
                     enableCaseInsensitiveFiltering: true,
                     //enableFiltering: true,
+                    //$('.chzn-select').chosen({ search_contains: true });
 
                 });
 
@@ -138,16 +138,23 @@
                                         <asp:TextBox ID="txttodate" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server"
                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
-
-
                                     </div>
                                 </div>
 
-
-
+                                <div class="form-group">
+                                    <div class="col-md-3 pading5px asitCol3">
+                                        <asp:Label ID="lblGroup" runat="server" CssClass="lblTxt lblName" Text="Select Group"></asp:Label>
+                                    </div>
+                                    <div class="col-md-2 pading5px ">
+                                           <asp:DropDownList ID="group" runat="server" CssClass="chzn-select form-control"> 
+                                            <asp:ListItem Value="0">Select</asp:ListItem>
+                                            <asp:ListItem Value="1">Group Wise</asp:ListItem> 
+                                            <asp:ListItem Value="2">Material Wise</asp:ListItem> 
+                                           </asp:DropDownList>
+                                    </div>
+                                </div>
 
                                 <div class="form-group">
-
                                     <div class="col-md-3 pading5px asitCol3">
                                         <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName" Text="Project Name"></asp:Label>
                                         <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
@@ -161,6 +168,11 @@
                                         </asp:DropDownList>
 
                                     </div>
+
+                                    
+                                       
+
+                                    
 
                                     <div class="col-md-1 pading5px">
                                         <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click" TabIndex="4" Style="margin-left: -147px;">ok</asp:LinkButton>
@@ -216,8 +228,9 @@
 
                     <div class="row">
                         <div class="table-responsive">
-                            <asp:GridView ID="gvStocjEvaluation" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered"
+                            <asp:GridView ID="gvStocjEvaluation" runat="server" AutoGenerateColumns="False" AllowPaging="True" OnPageIndexChanging="gvStocjEvaluation_PageIndexChanging" OnRowDataBound="gvStocjEvaluation_RowDataBound" CssClass="table-striped table-hover table-bordered"
                                 ShowFooter="True">
+
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl.No.">
@@ -229,21 +242,21 @@
 
                                     <asp:TemplateField HeaderText="Project Name">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvtCompany" runat="server" Style="text-align: left" Width="90px"
+                                            <asp:Label ID="lblgvtPactdesc" runat="server" Style="text-align: left" Width="90px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     
                                     <asp:TemplateField HeaderText="Project Description">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvtCompany" runat="server" Style="text-align: left" Width="90px"
+                                            <asp:Label ID="lblgvtMrdesc" runat="server" Style="text-align: left" Width="90px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "msirdesc")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Material Name">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvtCompany" runat="server" Style="text-align: left" Width="110px"
+                                            <asp:Label ID="lblgvtResource" runat="server" Style="text-align: left" Width="110px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) %>'></asp:Label>
                                         </ItemTemplate>
                                         <%--<FooterTemplate>

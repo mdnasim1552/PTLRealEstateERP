@@ -82,8 +82,10 @@ namespace RealERPWEB.F_12_Inv
 
         protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //this.gvMatStock.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-            //this.Data_Bind();
+            DataTable dt = (DataTable)Session["tbMatStc"];
+            this.gvStocjEvaluation.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+            this.gvStocjEvaluation.DataSource = dt;
+            this.gvStocjEvaluation.DataBind();
         }
 
 
@@ -102,13 +104,27 @@ namespace RealERPWEB.F_12_Inv
 
             string fdate = this.txtfromdate.Text;
             string tdate = this.txttodate.Text;
-
             string pactcode = this.ddlProName.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlProName.SelectedValue.ToString() + "%";
-            DataSet ds1 = PurData.GetTransInfo(comcod, "SP_REPORT_MAT_STOCK", "GETSTOCKVALUATIONMATWISE", fdate, tdate, pactcode, "", "", "", "", "", "", "", "");
+
+            string resListMulti = "";
+            string resourcelist = this.chkResourcelist.SelectedValue.ToString();
+
+            foreach (ListItem item in chkResourcelist.Items)
+            {
+                if (item.Selected)
+                {
+                    resListMulti += item.Value;
+                }
+            }
+
+            string group = this.group.SelectedValue.ToString();
+
+
+            DataSet ds1 = PurData.GetTransInfo(comcod, "SP_REPORT_MAT_STOCK", "GETSTOCKVALUATIONMATWISE", fdate, tdate, pactcode, resListMulti, group, "", "", "", "", "", "");
 
             Session["tbMatStc"] = HiddenSameData(ds1.Tables[0]);
             //Session["tbMatStc"] = ds1.Tables[0];
-            DataTable dt =  ds1.Tables[0];
+            DataTable dt = ds1.Tables[0];
 
             this.gvStocjEvaluation.DataSource = dt;
             this.gvStocjEvaluation.DataBind();
@@ -127,10 +143,8 @@ namespace RealERPWEB.F_12_Inv
             {
                 if (dt1.Rows[i]["mrsircode"].ToString() == isircod)
                 {
-
                     dt1.Rows[i]["msirdesc"] = "";
                 }
-
                 isircod = dt1.Rows[i]["mrsircode"].ToString();
             }
 
@@ -139,6 +153,7 @@ namespace RealERPWEB.F_12_Inv
             {
                 if (dt1.Rows[j]["pactcode"].ToString() == isircod)
                 {
+                    dt1.Rows[0]["pactdesc"] = "";
                     dt1.Rows[j]["pactdesc"] = "";
                 }
 
@@ -230,7 +245,7 @@ namespace RealERPWEB.F_12_Inv
             {
                 //((Label)this.gvStocjEvaluation.FooterRow.FindControl("lgvttaccrecvbale")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(actstock)", "")) ? 0.00 : dt.Compute("Sum(actstock)", ""))).ToString("#,##0.00;(#,##0.00); ");
                 //((Label)this.gvStocjEvaluation.FooterRow.FindControl("lgvttlsolamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(percnt)", "")) ? 0.00 : dt.Compute("Sum(percnt)", ""))).ToString("#,##0.00;(#,##0.00); ");
-                
+
 
                 //Session["Report1"] = gvMatStock;
                 //((HyperLink)this.gvMatStock.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
@@ -244,5 +259,31 @@ namespace RealERPWEB.F_12_Inv
             }
         }
 
+        protected void gvStocjEvaluation_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvStocjEvaluation.PageIndex = e.NewPageIndex;
+            this.ddlpagesize_SelectedIndexChanged(null, null);
+        }
+
+        protected void gvStocjEvaluation_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+
+            //GridViewRow gvRow = e.Row;
+            //if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
+
+            Label RecDesc = (Label)e.Row.FindControl("lblActualStock");
+            string msirdesc = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "rsirdesc")).ToString();
+
+            if (msirdesc == "")
+            {
+                return;
+            }
+            else
+            {
+                RecDesc.Font.Bold = true;
+            }
+        }
     }
 }
