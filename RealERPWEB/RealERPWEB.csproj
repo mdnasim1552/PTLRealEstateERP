@@ -109,9 +109,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Real Estate Bin 211213\bin\FlashControlV71.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.Microsoft.Office.Interop.Excel">
-      <HintPath>..\..\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+    <Reference Include="Interop.Microsoft.Office.Interop.Excel, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
       <HintPath>..\..\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
