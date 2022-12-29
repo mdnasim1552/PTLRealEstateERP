@@ -144,7 +144,7 @@
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
-                                                    <asp:TemplateField HeaderText="Employee Name" Visible="false">
+                                                    <asp:TemplateField HeaderText="Emp Name" Visible="false">
                                                         <ItemTemplate>
                                                             <asp:HyperLink runat="server" ID="btnMytask" Target="_blank" NavigateUrl="~/F_38_AI/MyTasks">
                                                                 <asp:Label ID="tblwrktype" runat="server"
@@ -158,7 +158,7 @@
                                                                 Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "startdate")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "startdate")).ToString("dd-MMM-yyyy")%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Assigned <br> QTY">
+                                                    <asp:TemplateField HeaderText="Ass. <br> QTY">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblvelocityqty" runat="server" Width="80px"
                                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "assignqty")).ToString("#,##;(#,##); ") %>'></asp:Label>
@@ -273,7 +273,7 @@
                                     </div>
 
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <h5>Working Progress</h5>
                                     <div class="card" style="height: 100%; background-color: #F6F6F6;">
                                         <div class="table-responsive">
@@ -323,7 +323,7 @@
                                                                 Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "worktime")).ToString("dd-MMM-yyyy hh:mm tt")=="01-Jan-1900"?"": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "worktime")).ToString("dd-MMM-yyyy")%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Assigned <br> QTY">
+                                                    <asp:TemplateField HeaderText="Ass. <br> QTY">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblvelocityqty" runat="server" Width="50px"
                                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "assignqty")).ToString("#,##;(#,##); ") %>'></asp:Label>
@@ -405,7 +405,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <h5>Activities</h5>
 
                                     <div class="card" style="height: 100%; background-color: #F6F6F6;">
@@ -482,7 +482,7 @@
 
                                                 <asp:TemplateField HeaderText="Status">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lbljobstatus" runat="server" Width="75px"
+                                                        <asp:Label ID="lbljobstatus" runat="server"
                                                             CssClass='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99220") ? "badge badge-pill badge-success"://done
                                                                     (Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99215") ? "badge badge-pill badge-warning"://hold
                                                                     (Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99217") ? "badge badge-pill badge-primary"://start
