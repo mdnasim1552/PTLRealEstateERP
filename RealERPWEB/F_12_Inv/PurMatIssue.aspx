@@ -26,6 +26,32 @@
 
             $('.chzn-select').chosen({ search_contains: true });
 
+            var comcod =<%=this.GetCompCode()%>;
+
+            switch (comcod) {
+                case 3370://CPDL                
+                case 3101://PTL
+
+                    $('#<%=this.lblSMCR.ClientID%>').text("SIS No. ");
+                      $('#<%=this.lblDMIR.ClientID%>').text("SIR No. ");                     
+
+
+                    break;
+
+                case "3340":
+                    $('#<%=this.lblSMCR.ClientID%>').text("SRF. ");
+                    $('#<%=this.lblDMIR.ClientID%>').text("DMMS. ");                    
+                    break;
+
+
+                  default:
+
+                      break;
+              }
+
+          
+
+
         }
 
     </script>

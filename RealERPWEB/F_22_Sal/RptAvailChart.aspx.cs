@@ -70,7 +70,9 @@ namespace RealERPWEB.F_22_Sal
                     if (comcod == "3366" || comcod == "3101")
                     {
                         this.gvAailChart.Columns[9].Visible = false;
+                        this.gvAailChart.Columns[17].Visible = false;
                     }
+
                     break;
                 default:
 

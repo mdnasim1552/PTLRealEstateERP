@@ -334,7 +334,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 return;
             }
 
-            //bool result = da.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_CODEBOOK", "INSERTHRGCODE", tgrcode,
+            //bool result = da.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_CODEBOOK", "INSERTHRDESIGCODE", tgrcode,
             //              Desc, DescBN, Gtype, mnumber, "", "", "", "", "");
 
             //if (result == true)
@@ -349,6 +349,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             ShowInformation();
             grvacc_DataBind();
         }
-    }
+    
     }
 }

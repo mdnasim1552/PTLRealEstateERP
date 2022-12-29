@@ -85,9 +85,9 @@ namespace RealERPWEB.F_22_Sal
                     break;
 
                 case "PaymentStatus":
-                    this.lblDate.Visible = false;
-                    this.txtFDate.Visible = false;
-                    this.clfdate.Visible = false;
+                    this.lblDate.Visible = true;
+                    this.txtFDate.Visible = true;
+                    this.clfdate.Visible = true;
                     this.imgbtnFindCustomer.Visible = true;
                     this.ddlCustName.Visible = true;
                     this.clcust.Visible = true;
@@ -241,9 +241,10 @@ namespace RealERPWEB.F_22_Sal
 
             // string frmdate = this.txtFDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
+            string frmdate = this.txtFDate.Text.Trim();
             string pactcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18" + "%" : this.ddlPrjName.SelectedValue.ToString() + "%";
             string usircode = this.ddlCustName.SelectedValue.ToString();
-            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_COLLECTIONMGT", "GETPAYMENTSATATUS", pactcode, usircode, todate, "", "", "", "", "");
+            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_COLLECTIONMGT", "GETPAYMENTSATATUS", pactcode, frmdate,todate , usircode, "", "", "", "");
             if (ds1 == null)
             {
 
@@ -435,6 +436,7 @@ namespace RealERPWEB.F_22_Sal
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string frmdate = this.txtFDate.Text;
             string todate = this.txttoDate.Text;
+            string prjname = this.ddlPrjName.SelectedItem.Text.Trim();
             string reportType = GetReportType();
             DataTable dt2 = (DataTable)ViewState["prjcust"];
            string custname = dt2.Rows[0]["custname"].ToString();
@@ -463,6 +465,7 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("custname", custname));
             Rpt1.SetParameters(new ReportParameter("udesc", udesc));
             Rpt1.SetParameters(new ReportParameter("mobileno", mobileno));
+            Rpt1.SetParameters(new ReportParameter("prjname", prjname));
             Rpt1.SetParameters(new ReportParameter("preaddress", preaddress));
             
             Rpt1.SetParameters(new ReportParameter("printdate", "Print Date : " + printdate));
