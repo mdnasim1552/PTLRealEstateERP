@@ -47,10 +47,6 @@ namespace RealERPWEB.F_12_Inv
                 }
                 this.txtCurISSDate_CalendarExtender.EndDate = System.DateTime.Today;
 
-                this.VisibleLabel();
-
-
-
             }
 
 
@@ -67,28 +63,7 @@ namespace RealERPWEB.F_12_Inv
         }
 
 
-        private void VisibleLabel()
-        {
-            string comcod = this.GetCompCode();
-            switch (comcod)
-            {
-                case "3340":
-                    this.lblSMCR.Text = "SRF";
-                    this.lblDMIR.Text = "DMMS";
-                    break;
-                
-                case "3370":
-                    this.lblSMCR.Text = "MTR";
-                    this.lblDMIR.Text = "ATR";
-                    break;
-                default:
-                    this.lblSMCR.Text = "SMCR.No.";
-                    this.lblDMIR.Text = "DMIRF No.";
-                    break;
-
-            }
-
-        }
+       
         protected void lbtnFindProject_Click(object sender, EventArgs e)
         {
             if (this.lbtnOk.Text == "Ok")
@@ -97,7 +72,7 @@ namespace RealERPWEB.F_12_Inv
             }
         }
 
-        private string GetCompCode()
+        public string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
