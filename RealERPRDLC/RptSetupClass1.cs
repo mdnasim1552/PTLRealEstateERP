@@ -277,6 +277,7 @@ namespace RealERPRDLC
                 case "R_12_Inv.rptProMatStock": Rpt1a = GetrptProMatStock(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.rptProMatStock2": Rpt1a = GetrptProMatStock2(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.rptProMatStock2Leisure": Rpt1a = GetrptProMatStock2Leisure(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_12_Inv.rptGroupStockEva": Rpt1a = GetrptProGrpStockEva(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.rptMaterialStockEva": Rpt1a = GetrptProMatStockEva(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.rptPurMrrEntry": Rpt1a = GetrptPurMrrEntry(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.rptPurMrrEntryFinlay": Rpt1a = GetrptPurMrrEntryFinlay(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -372,6 +373,8 @@ namespace RealERPRDLC
                 case "R_22_Sal.RptSalesVsAchivement": Rpt1a = SetRptSalesVsAchivement(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptSalesVsAchivementLO": Rpt1a = SetRptSalesVsAchivementLO(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptPaymentSystem": Rpt1a = SetRptPaymentSystem(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptPrjWiseCollection": Rpt1a = SetRptPrjWiseCollection(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptPrjWiseCollectionTillDate": Rpt1a = SetRptPrjWiseCollectionTillDate(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                
                 case "R_22_Sal.RptSalesCollectionStatement": Rpt1a = RptSalesCollectionStatement(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptComSalesServey": Rpt1a = SetRptComSalesServey(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -4944,6 +4947,14 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
+        private static LocalReport GetrptProGrpStockEva(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.MatStockReportEvaluation>)RptDataSet));
+            return Rpt1a;
+        }
+
+        
+
         private static LocalReport RptRptSubContEnlistmentForm(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.EClassSuppaContractior02>)RptDataSet));
@@ -7018,10 +7029,23 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales.SalesvsAchievement>)RptDataSet));
 
             return Rpt1a;
-        }private static LocalReport SetRptPaymentSystem(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        }
+        private static LocalReport SetRptPaymentSystem(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales.PaymentStatusReconcile>)RptDataSet));
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_22_Sal.EClassSales.PaymentStatusRevenue>)RptDataSet2));
+
+            return Rpt1a;
+        }
+        private static LocalReport SetRptPrjWiseCollection(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales.PrjWiseCollection>)RptDataSet));
+
+            return Rpt1a;
+        }
+        private static LocalReport SetRptPrjWiseCollectionTillDate(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales.PrjWiseCollectiontilldate>)RptDataSet));
 
             return Rpt1a;
         }

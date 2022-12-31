@@ -251,7 +251,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     
-                                    <asp:TemplateField HeaderText="Project Description">
+                                    <asp:TemplateField HeaderText="Material Group">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvtMrdesc" runat="server" Style="text-align: left" Width="90px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "msirdesc")) %>'></asp:Label>
@@ -263,9 +263,6 @@
                                             <asp:Label ID="lblgvtResource" runat="server" Style="text-align: left" Width="110px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) %>'></asp:Label>
                                         </ItemTemplate>
-                                        <%--<FooterTemplate>
-                                            <asp:Label ID="lgvtotal" runat="server" ForeColor="Black" Font-Bold="true">Total :</asp:Label>
-                                        </FooterTemplate>--%>
                                     </asp:TemplateField>
 
 
