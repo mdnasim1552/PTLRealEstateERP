@@ -174,6 +174,11 @@
 
                                     <asp:TemplateField HeaderText="Concern Person">
 
+                                        <%-- <FooterTemplate>
+                                            <asp:LinkButton ID="lnkTotal" CssClass="btn btn-primary btn-sm" runat="server" OnClick="lnkTotal_Click" Font-Bold="True" 
+                                                Text="Total" Font-Size="12px"></asp:LinkButton>
+                                        </FooterTemplate>--%>
+                                        
                                         <ItemTemplate>
                                             <asp:Label ID="lgCper" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cteam")) %>'

@@ -2476,7 +2476,10 @@
                                                             <asp:Panel ID="Panegrd" runat="server">
                                                                 <div class="form-group">
                                                                     <div class="col-md-12 pading5px">
-                                                                        <asp:DropDownList ID="ddlvalplot" runat="server" CssClass="ddlcountry chzn-select form-control" Width="300px" AutoPostBack="true" OnSelectedIndexChanged="ddlvalbusinfo_SelectedIndexd">
+                                                                       <%-- <asp:DropDownList ID="ddlvalplot" runat="server" CssClass="ddlcountry chzn-select form-control" Width="300px" AutoPostBack="true" OnSelectedIndexChanged="ddlvalbusinfo_SelectedIndexd">
+                                                                        </asp:DropDownList>--%>
+
+                                                                          <asp:DropDownList ID="ddlvalplot" runat="server" CssClass="ddlcountry chzn-select form-control" Width="300px">
                                                                         </asp:DropDownList>
                                                                     </div>
                                                                 </div>
