@@ -108,8 +108,6 @@ namespace RealERPWEB.F_09_PImp
             {
                 case "ImpPlan":
                 case "Execution":
-
-
                     this.MultiView1.ActiveViewIndex = 0;
                     break;
                 case "PlanVSEx":
