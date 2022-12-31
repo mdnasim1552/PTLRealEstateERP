@@ -458,6 +458,29 @@ namespace RealERPWEB.F_22_Sal
                    Rpt1.EnableExternalImages = true;
                    Rpt1.SetParameters(new ReportParameter("rptTitle", "Payment Status"));
             }
+           else if (this.ddlReport.SelectedValue == "PrjCollect")
+            {
+                DataTable dt = (DataTable)ViewState["prjcoll"];
+          
+
+
+                var list = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.PrjWiseCollection>();
+               
+
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptPaymentSystem", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("rptTitle", "Collection Statement"));
+            }
+            else
+            {
+                DataTable dt = (DataTable)ViewState["prjcoll"];
+
+                var list = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.PaymentStatusReconcile>();
+
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptPaymentSystem", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("rptTitle", "Collection Statement"));
+            }
           
            
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
