@@ -576,59 +576,69 @@ namespace RealERPWEB.F_12_Inv
         }
         protected void lbtnSelectRes_Click(object sender, EventArgs e)
         {
-            this.Session_tblAprov_Update();
-            DataTable tbl1 = (DataTable)ViewState["tblgetPass"];
-            string mReqNo = this.ddlSpecification.SelectedValue.ToString().Substring(0, 14);
-            //string mProgNo = this.ddlResList.SelectedValue.ToString().Substring(14, 14);
-            string mResCode = this.ddlSpecification.SelectedValue.ToString().Substring(14, 12);
-            string mSpcfCod = this.ddlSpecification.SelectedValue.ToString().Substring(26, 12);
-           
-            string frmprjcode = this.Request.QueryString.AllKeys.Contains("frmpactcode") ? this.Request.QueryString["frmpactcode"].ToString() : this.ddlprjlistfrom.SelectedValue.ToString().Trim();
-            DataTable dt5 = (DataTable)Session["tblStockbal"];
-
-            DataRow[] dr2 = tbl1.Select("mtreqno = '" + mReqNo + "' and rsircode = '" + mResCode +
-                                        "' and spcfcod = '" + mSpcfCod + "'");
-
-            if (dr2.Length == 0)
+            try
             {
+                this.Session_tblAprov_Update();
+                DataTable tbl1 = (DataTable)ViewState["tblgetPass"];
+                string mReqNo = this.ddlSpecification.SelectedValue.ToString().Substring(0, 14);
+                //string mProgNo = this.ddlResList.SelectedValue.ToString().Substring(14, 14);
+                string mResCode = this.ddlSpecification.SelectedValue.ToString().Substring(14, 12);
+                string mSpcfCod = this.ddlSpecification.SelectedValue.ToString().Substring(26, 12);
 
-                // (getpno , getpno1, mtreqno, mtreqno1, rsircode, spcfcod , rsirdesc, spcfdesc, rsirunit, mtrfqty, getpqty, rate ,getpamt, mtrdat, mtrref
+                string frmprjcode = this.Request.QueryString.AllKeys.Contains("frmpactcode") ? this.Request.QueryString["frmpactcode"].ToString() : this.ddlprjlistfrom.SelectedValue.ToString().Trim();
+                DataTable dt5 = (DataTable)Session["tblStockbal"];
 
-                DataRow dr1 = tbl1.NewRow();
-                dr1["mtreqno"] = mReqNo;
-                dr1["rsircode"] = mResCode;
-                dr1["spcfcod"] = mSpcfCod;
+                DataRow[] dr2 = tbl1.Select("mtreqno = '" + mReqNo + "' and rsircode = '" + mResCode +
+                                            "' and spcfcod = '" + mSpcfCod + "'");
 
-                DataTable tbl2 = (DataTable)ViewState["tblsp"];
-                DataRow[] dr3 = tbl2.Select("mtreqno = '" + mReqNo + "' and rsircode = '" + mResCode +
-                                        "' and spcfcod = '" + mSpcfCod + "'");
-                dr1["mtreqno1"] = dr3[0]["mtreqno1"];
-                dr1["mtrref"] = dr3[0]["mtrref"];
-                dr1["mtrdat"] = dr3[0]["mtrdat"];
-                dr1["tfpactcode"] = dr3[0]["tfpactcode"];
-                dr1["ttpactcode"] = dr3[0]["ttpactcode"];
-                dr1["tfpactdesc"] = dr3[0]["tfpactdesc"];
-                dr1["ttpactdesc"] = dr3[0]["ttpactdesc"];
-                dr1["rsirdesc"] = dr3[0]["rsirdesc"];
-                dr1["spcfdesc"] = dr3[0]["spcfdesc"];
-                dr1["rsirunit"] = dr3[0]["rsirunit"];
-                dr1["mtrfqty"] = dr3[0]["mtrfqty"];
-                dr1["getpqty"] = dr3[0]["balqty"];
-                dr1["balqty"] = dr3[0]["balqty"];
-                dr1["rate"] = dr3[0]["mtrfrat"];
-                dr1["getpamt"] = dr3[0]["mtrfamt"];
-                dr1["stockbal"] = dt5.Select("pactcode = '" + frmprjcode + "' and rsircode = '" + mResCode + "' and spcfcod = '" + mSpcfCod + "'")[0]["balqty"].ToString();
+                if (dr2.Length == 0)
+                {
+
+                    // (getpno , getpno1, mtreqno, mtreqno1, rsircode, spcfcod , rsirdesc, spcfdesc, rsirunit, mtrfqty, getpqty, rate ,getpamt, mtrdat, mtrref
+
+                    DataRow dr1 = tbl1.NewRow();
+                    dr1["mtreqno"] = mReqNo;
+                    dr1["rsircode"] = mResCode;
+                    dr1["spcfcod"] = mSpcfCod;
+
+                    DataTable tbl2 = (DataTable)ViewState["tblsp"];
+                    DataRow[] dr3 = tbl2.Select("mtreqno = '" + mReqNo + "' and rsircode = '" + mResCode +
+                                            "' and spcfcod = '" + mSpcfCod + "'");
+                    dr1["mtreqno1"] = dr3[0]["mtreqno1"];
+                    dr1["mtrref"] = dr3[0]["mtrref"];
+                    dr1["mtrdat"] = dr3[0]["mtrdat"];
+                    dr1["tfpactcode"] = dr3[0]["tfpactcode"];
+                    dr1["ttpactcode"] = dr3[0]["ttpactcode"];
+                    dr1["tfpactdesc"] = dr3[0]["tfpactdesc"];
+                    dr1["ttpactdesc"] = dr3[0]["ttpactdesc"];
+                    dr1["rsirdesc"] = dr3[0]["rsirdesc"];
+                    dr1["spcfdesc"] = dr3[0]["spcfdesc"];
+                    dr1["rsirunit"] = dr3[0]["rsirunit"];
+                    dr1["mtrfqty"] = dr3[0]["mtrfqty"];
+                    dr1["getpqty"] = dr3[0]["balqty"];
+                    dr1["balqty"] = dr3[0]["balqty"];
+                    dr1["rate"] = dr3[0]["mtrfrat"];
+                    dr1["getpamt"] = dr3[0]["mtrfamt"];
+                    dr1["stockbal"] =dt5.Select("pactcode = '" + frmprjcode + "' and rsircode = '" + mResCode + "' and spcfcod = '" + mSpcfCod + "'")[0]["balqty"].ToString();
 
 
-                //((DataTable)Session["tblStockbal"]).Select("pactcode='" + frmprjcode + "'")[0]["balqty"].ToString();
+                    //((DataTable)Session["tblStockbal"]).Select("pactcode='" + frmprjcode + "'")[0]["balqty"].ToString();
 
+                  string ddd=  dt5.Select("pactcode = '" + frmprjcode + "' and rsircode = '" + mResCode + "' and spcfcod = '" + mSpcfCod + "'")[0]["balqty"].ToString();
 
+                    tbl1.Rows.Add(dr1);
+                }
 
-                tbl1.Rows.Add(dr1);
+                ViewState["tblgetPass"] = this.HiddenSameData(tbl1);
+                this.Data_Bind();
+
+            }catch(Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
             }
 
-            ViewState["tblgetPass"] = this.HiddenSameData(tbl1);
-            this.Data_Bind();
+
 
 
 

@@ -283,6 +283,17 @@ namespace RealEntity.C_14_Pro
         }
 
         [Serializable]
+         public class RptPurchasePrjwise
+        {
+            public string comcod { get; set; }
+            public string pactcode { get; set; }
+            public string pactdesc { get; set; }
+
+            public double amt { get; set; }
+            public double percntage { get; set; }
+        }
+
+        [Serializable]
         public class MkrServay02
         {
             public string comcod { get; set; }

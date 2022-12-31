@@ -69,7 +69,7 @@
                 <div class="card-body">
                     <div class="table-responsive mt-2">
                         <asp:GridView ID="gv_PurchesSummary" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                            ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15">
+                            ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnPageIndexChanging="gv_PurchesSummary_PageIndexChanging">
                             <Columns>
                                 <asp:TemplateField HeaderText="SL # ">
                                     <ItemTemplate>
@@ -78,7 +78,7 @@
                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"
                                             ForeColor="Black"></asp:Label>
                                     </ItemTemplate>
-                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ProjectName">
                                     <ItemTemplate>
@@ -86,7 +86,11 @@
                                             Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc"))%>'
                                             ForeColor="Black"></asp:Label>
                                     </ItemTemplate>
-                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    <FooterTemplate>
+                                        <asp:Label ID="fgvsup" runat="server" Font-Bold="True" Font-Size="14px"
+                                            ForeColor="Black" Style="text-align: right">Total :</asp:Label>
+                                    </FooterTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Amount">
                                     <ItemTemplate>
@@ -94,15 +98,25 @@
                                             Text='<%#Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt")).ToString("#,##0.00;(#,##0.00); ")%>'
                                             ForeColor="Black"></asp:Label>
                                     </ItemTemplate>
-                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                    <FooterTemplate>
+                                        <asp:Label ID="tblsumAmount" runat="server" Width="100px" ForeColor="Black" Font-Bold="True" Font-Size="14px" Style="text-align: right"></asp:Label>
+                                    </FooterTemplate>
+                                    <FooterStyle HorizontalAlign="Right" VerticalAlign="Middle" />
+                                    <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                                 </asp:TemplateField>
-                                <%--<asp:TemplateField HeaderText="ProjectName">
+                                <asp:TemplateField HeaderText="Percentage (%)">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblprjnamebatchwise" runat="server" Width="200px"
-                                            Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "prjnamebatchwise"))%>'
+                                        <asp:Label ID="lblpercntage" runat="server" Width="80px"
+                                            Text='<%#Convert.ToDouble(DataBinder.Eval(Container.DataItem, "percntage")).ToString("#,##0.00;(#,##0.00); ")%>'
                                             ForeColor="Black"></asp:Label>
                                     </ItemTemplate>
-                                </asp:TemplateField>--%>
+                                     <FooterTemplate>
+                                        <asp:Label ID="tblAmountper" runat="server" Width="100px" ForeColor="Black" Font-Bold="True" Font-Size="14px" Style="text-align: right"></asp:Label>
+                                    </FooterTemplate>
+                                    <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
+                                </asp:TemplateField>
                             </Columns>
                             <PagerStyle CssClass="gvPagination" />
 
