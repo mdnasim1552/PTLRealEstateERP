@@ -72,7 +72,7 @@
                                     <asp:ListItem Value="" Selected="True">-------------Select-----------</asp:ListItem>
                                     <asp:ListItem Value="PrjCollect">Project Wise Colletion</asp:ListItem>
                                     <asp:ListItem Value="PrjCollTilldate">Project Wise Colletion Till Date</asp:ListItem>
-                                    <asp:ListItem Value="PaymentStatus">Payment Status</asp:ListItem>
+                                   
                       <%--              <asp:ListItem Value="qtybasisp">Inventory Report-Quantity Basis(Periodic)</asp:ListItem>--%>
                                 </asp:DropDownList>
 
