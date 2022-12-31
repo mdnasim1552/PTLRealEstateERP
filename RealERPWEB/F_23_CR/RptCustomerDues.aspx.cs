@@ -415,5 +415,10 @@ namespace RealERPWEB.F_23_CR
             }
 
         }
+
+        protected void chkAll_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
