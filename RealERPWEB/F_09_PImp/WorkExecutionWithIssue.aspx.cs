@@ -92,7 +92,7 @@ namespace RealERPWEB.F_09_PImp
         private void GetCategory()
         {           
             string comcod = GetComCode();
-            string pactcode = this.ddlProject.SelectedItem.Value.ToString();
+            string pactcode = this.ddlProject.SelectedValue.ToString();
             string flrcode = "";
             string date = this.txtEntryDate.Text.Trim();
             string txtsrchItem = "%";
