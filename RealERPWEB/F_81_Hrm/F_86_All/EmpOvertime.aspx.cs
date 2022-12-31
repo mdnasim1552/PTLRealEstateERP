@@ -847,15 +847,15 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             string nozero = (hrcomln == 4) ? "0000" : "00";
             string comnam = (this.ddlCompanyName.SelectedValue.Substring(0, hrcomln).ToString() == nozero) ? "%" : this.ddlCompanyName.SelectedValue.Substring(0, hrcomln).ToString() + "%";
 
-            string deptname = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + "%";
+            string deptname = (this.ddlDepartment.SelectedValue.ToString() == "000000000000" ? "94" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9)) + "%";
             string ymon = this.ddlyearmon.SelectedValue.ToString();
             string dayid = ymon + "01";
             string txtdate = ASTUtility.DateFormat("01." + ymon.Substring(4, 2) + "." + ymon.Substring(0, 4));
             string Empcode = this.txtSrcEmployee.Text.Trim() + "%";
 
-            string calltype = comcod == "3365" ? "LVENCASHMENTSALBTI" : "LVENCASHMENTSALBTI";
+          //  string calltype = comcod == "3365" ? "LVENCASHMENTSALBTI" : "LVENCASHMENTSALBTI";
 
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVE_SUMMARY", calltype, deptname, dayid, txtdate, comnam, Empcode, "", "", "", "");
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVE_SUMMARY", "LVENCASHMENTSALBTI", deptname, dayid, txtdate, comnam, Empcode, "", "", "", "");
             if (ds2 == null)
             {
                 this.gvEncashment.DataSource = null;
@@ -864,11 +864,10 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             }
             else
             {
-                this.gvEncashment.DataSource = ds2.Tables[0];
-                this.gvEncashment.DataBind();
+                Session["tblencashment"] = this.HiddenSameData(ds2.Tables[0]);
+                this.Data_Bind();
             }
-            Session["tblencashment"] = ds2.Tables[0];
-    
+           
 
 
         }
@@ -1052,8 +1051,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
             string comcod = this.GetComeCode();
           //  DataTable dt = (DataTable)Session["tblover"];
-            DataTable dt = ((type == "tblencashment") ? (DataTable)Session["tblencashment"] : (DataTable)Session["tblover"]);
-               
+            DataTable dt = ((type == "salaryencashment") ? (DataTable)Session["tblencashment"] : (DataTable)Session["tblover"]);
+
 
             switch (type)
             {
@@ -1342,7 +1341,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     break;
 
                 case "salaryencashment":
-                    //this.gvarrear.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.gvEncashment.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvEncashment.DataSource = dt;
                     this.gvEncashment.DataBind();
                    // this.FooterCalculation();
@@ -2590,7 +2589,20 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                     }
                     break;
+                case "salaryencashment":
+                    secid = dt1.Rows[0]["empid"].ToString();
+                    for (j = 1; j < dt1.Rows.Count; j++)
+                    {
+                        if (dt1.Rows[j]["empid"].ToString() == secid)
+                        {
+                            secid = dt1.Rows[j]["empid"].ToString();
+                            dt1.Rows[j]["ttlencashamt"] = "0";
+                        }
 
+                     
+
+                    }
+                    break;
 
 
 

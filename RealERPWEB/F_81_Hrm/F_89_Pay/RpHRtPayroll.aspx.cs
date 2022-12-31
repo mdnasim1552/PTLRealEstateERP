@@ -5118,7 +5118,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                          pwf = dt.Rows[i]["swf"].ToString();
                          subfee = dt.Rows[i]["subfee"].ToString();
                     }
-                    if (comcod == "3369")
+                    if (comcod == "3369" || comcod=="3365")
                     {
                         extday = dt.Rows[i]["extday"].ToString();
                         extdayamt = dt.Rows[i]["extdayamt"].ToString();
