@@ -563,7 +563,8 @@ namespace RealEntity.C_09_PIMP
             public string rsircode { get; set; }
             public string rsirdesc { get; set; }
             public string rsirunit { get; set; }
-            public string nos { get; set; }
+            public string flrdes { get; set; }
+            public double nos { get; set; }
             public double lnght { get; set; }
             public double breadth { get; set; }
             public double height { get; set; }

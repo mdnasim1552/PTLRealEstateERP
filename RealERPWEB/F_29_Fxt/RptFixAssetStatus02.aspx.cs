@@ -414,8 +414,6 @@ namespace RealERPWEB.F_29_Fxt
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-
-
                 Label RecDesc = (Label)e.Row.FindControl("lblRecDesc");
                 Label recqty = (Label)e.Row.FindControl("lblgvrecqty");
                 Label refDesc = (Label)e.Row.FindControl("lblgvrefDesc");
@@ -442,17 +440,12 @@ namespace RealERPWEB.F_29_Fxt
                     refqty.Font.Bold = true;
                     refDesc.Style.Add("text-align", "right");
                 }
-
             }
-
-
         }
 
 
         protected void gvrecissaref_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-
-
 
             GridViewRow gvRow = e.Row;
             if (gvRow.RowType == DataControlRowType.Header)

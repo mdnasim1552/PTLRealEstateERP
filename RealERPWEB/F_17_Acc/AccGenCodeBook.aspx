@@ -122,8 +122,7 @@ div#ContentPlaceHolder1_ddlGenCodeBook_chzn {
                             CellPadding="4" Font-Size="12px" OnPageIndexChanging="grvacc_PageIndexChanging"
                             OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
                             OnRowUpdating="grvacc_RowUpdating" PageSize="15" Width="576px">
-                            <PagerSettings NextPageText="Next" PreviousPageText="Previous"
-                                Visible="False" />
+                            <PagerSettings NextPageText="Next" PreviousPageText="Previous" />
                             <FooterStyle BackColor="#5F9467" Font-Bold="True" ForeColor="White" />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.No.">
@@ -298,7 +297,7 @@ div#ContentPlaceHolder1_ddlGenCodeBook_chzn {
 
                                 </asp:Panel>
                          
-                        </fieldset--%>>
+                        </fieldset--%>
                  
         
 

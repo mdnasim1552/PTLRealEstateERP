@@ -921,6 +921,8 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
 
             public string rmks { get; set; }
 
+            public string ttlencashamt { get; set; }
+
 
             public SalEncashment()
             {

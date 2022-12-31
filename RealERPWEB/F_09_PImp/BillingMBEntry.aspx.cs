@@ -338,14 +338,14 @@ namespace RealERPWEB.F_09_PImp
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string printdate = System.DateTime.Now.ToString("dd-MMMM-yyyy");
+            string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
             DataTable dt1 = (DataTable)ViewState["tblmb"];
             DataTable dt2 = (DataTable)ViewState["tblcorder"];
             DataTable dt3 = (DataTable)ViewState["tblmbinfo"];
 
-            string project = this.ddlProject.SelectedItem.Text.Substring(14);
+            string project = this.ddlProject.SelectedItem.Text.Substring(15);
             
             string contractor = this.ddlContractor.SelectedItem.Text.Substring(13);
             string mbno = dt3.Rows[0]["mbno"].ToString();
@@ -366,9 +366,9 @@ namespace RealERPWEB.F_09_PImp
             Rpt1.SetParameters(new ReportParameter("contractor", contractor));
             Rpt1.SetParameters(new ReportParameter("mbno", mbno));
             Rpt1.SetParameters(new ReportParameter("refno", refno));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "MR Book (Edit)"));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "MR Information"));
 
-            Rpt1.SetParameters(new ReportParameter("printdate", "Print Date : " + printdate));
+            Rpt1.SetParameters(new ReportParameter("printdate", printdate));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
 
 
