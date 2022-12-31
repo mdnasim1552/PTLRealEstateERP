@@ -847,15 +847,15 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             string nozero = (hrcomln == 4) ? "0000" : "00";
             string comnam = (this.ddlCompanyName.SelectedValue.Substring(0, hrcomln).ToString() == nozero) ? "%" : this.ddlCompanyName.SelectedValue.Substring(0, hrcomln).ToString() + "%";
 
-            string deptname = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + "%";
+            string deptname = (this.ddlDepartment.SelectedValue.ToString() == "000000000000" ? "94" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9)) + "%";
             string ymon = this.ddlyearmon.SelectedValue.ToString();
             string dayid = ymon + "01";
             string txtdate = ASTUtility.DateFormat("01." + ymon.Substring(4, 2) + "." + ymon.Substring(0, 4));
             string Empcode = this.txtSrcEmployee.Text.Trim() + "%";
 
-            string calltype = comcod == "3365" ? "LVENCASHMENTSALBTI" : "LVENCASHMENTSALBTI";
+          //  string calltype = comcod == "3365" ? "LVENCASHMENTSALBTI" : "LVENCASHMENTSALBTI";
 
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVE_SUMMARY", calltype, deptname, dayid, txtdate, comnam, Empcode, "", "", "", "");
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVE_SUMMARY", "LVENCASHMENTSALBTI", deptname, dayid, txtdate, comnam, Empcode, "", "", "", "");
             if (ds2 == null)
             {
                 this.gvEncashment.DataSource = null;
