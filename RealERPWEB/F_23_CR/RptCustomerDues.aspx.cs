@@ -328,8 +328,29 @@ namespace RealERPWEB.F_23_CR
             this.Data_Bind();
 
         }
+        private void SaveValue()
+        {
+
+            DataTable dt = (DataTable)Session["tblCustDues"];
+            int rowindex = 0;          
+
+                foreach (GridViewRow gv1 in gvcustdues.Rows)
+                {
+
+                    rowindex = (this.gvcustdues.PageIndex) * (this.gvcustdues.PageSize) + gv1.RowIndex;
+                     bool chksms = ((CheckBox)gv1.FindControl("chksms")).Checked;                  
+                    dt.Rows[rowindex]["chksms"] = chksms;
+                }
+
+            Session["tblCustDues"] = dt;
+
+
+
+
+        }
         protected void gvcustdues_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
+            this.SaveValue();
             this.gvcustdues.PageIndex = e.NewPageIndex;
             this.Data_Bind();
         }
@@ -376,7 +397,11 @@ namespace RealERPWEB.F_23_CR
         {
             try
             {
-                DataTable dt = (DataTable)Session["tblCustDues"];
+                this.SaveValue();
+                DataTable dt = ((DataTable)Session["tblCustDues"]).Copy();
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = ("chksms=1");
+                DataTable dt1 = dv.ToTable();
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string compsms = hst["compsms"].ToString();
@@ -386,15 +411,15 @@ namespace RealERPWEB.F_23_CR
 
                 SendSmsProcess sms = new SendSmsProcess();
                 int smsFailCount = 0;
-                int totalSMS = dt.Rows.Count;
+                int totalSMS = dt1.Rows.Count;
                 if (compsms == "True")
                 {
-                    for (int j = 0; j < dt.Rows.Count; j++)
+                    for (int j = 0; j < dt1.Rows.Count; j++)
                     {
-                        if (dt.Rows[j]["custmob"].ToString().Length > 0)
+                        if (dt1.Rows[j]["custmob"].ToString().Length > 0)
                         {
-                            string supphone = dt.Rows[j]["custmob"].ToString();
-                            string SMSText = dt.Rows[j]["smstxt"].ToString();
+                            string supphone = dt1.Rows[j]["custmob"].ToString();
+                            string SMSText = dt1.Rows[j]["smstxt"].ToString();
                             bool resultsms = sms.SendSms_SSL_Single(comcod, SMSText, supphone);
                             if (resultsms == false)
                             {
@@ -414,6 +439,48 @@ namespace RealERPWEB.F_23_CR
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
             }
 
+        }
+
+        protected void chkAll_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)Session["tblCustDues"];
+           
+            int rowindex = 0;
+            if (((CheckBox)this.gvcustdues.HeaderRow.FindControl("chkAll")).Checked)
+            {
+
+                foreach (GridViewRow gv1 in gvcustdues.Rows)
+                {
+
+                    rowindex = (this.gvcustdues.PageIndex) * (this.gvcustdues.PageSize) + gv1.RowIndex;
+                    ((CheckBox)gv1.FindControl("chksms")).Checked = true;
+                    dt.Rows[rowindex]["chksms"] = true;
+                }
+
+            }
+            else
+            {
+
+                foreach (GridViewRow gv1 in gvcustdues.Rows)
+                {
+
+                    rowindex = (this.gvcustdues.PageIndex) * (this.gvcustdues.PageSize) + gv1.RowIndex;
+                    ((CheckBox)gv1.FindControl("chksms")).Checked = false;
+                    dt.Rows[rowindex]["chksms"] = false;
+                }
+
+            }
+
+
+            Session["tblCustDues"] = dt;
+
+
+        }
+
+        protected void lnkTotal_Click(object sender, EventArgs e)
+        {
+            this.SaveValue();
+           
         }
     }
 }
