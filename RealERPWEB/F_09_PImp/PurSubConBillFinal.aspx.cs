@@ -958,6 +958,7 @@ namespace RealERPWEB.F_09_PImp
                 this.txtPenaltyAmount.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["penamt"]).ToString("#,##0.00;(#,##0.00); ");
                 this.txtAdvanced.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["advamt"]).ToString("#,##0.00;(#,##0.00); ");
                 this.txtreward.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["reward"]).ToString("#,##0.00;(#,##0.00); ");
+                this.txtadvpay.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["advpay"]).ToString("#,##0.00;(#,##0.00); ");
                 this.ddlbilltype.SelectedValue = ds1.Tables[1].Rows[0]["billtcode"].ToString();
 
                 this.txtRemarks.Text = ds1.Tables[1].Rows[0]["rmrks"].ToString();
@@ -1844,7 +1845,7 @@ namespace RealERPWEB.F_09_PImp
             double Advanced = Convert.ToDouble("0" + this.txtAdvanced.Text.Trim());
             double Reward = Convert.ToDouble("0" + this.txtreward.Text.Trim());
             double Advpay = Convert.ToDouble("0" + this.txtadvpay.Text.Trim());
-            this.lblvalnettotal.Text = (amount + Reward - (security + deduction + penalty + Advanced)).ToString("#,##0;(#,##0); ");
+            this.lblvalnettotal.Text = (amount + Reward  - (security + deduction + penalty + Advanced)).ToString("#,##0;(#,##0); ");
             //if (((DataTable)Session["tblbill"]).Rows.Count == 0)
             //    return;
             //double amount = Convert.ToDouble((Convert.IsDBNull(((DataTable)Session["tblbill"]).Compute("sum(billamt)", "")) ? 0.00
