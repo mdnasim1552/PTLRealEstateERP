@@ -224,6 +224,7 @@
                                     </fieldset>
                                 </asp:Panel>
 
+
                                 <asp:GridView ID="gvPurStatus" runat="server" AllowPaging="false" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                     OnPageIndexChanging="gvPurStatus_PageIndexChanging" ShowFooter="True" Width="831px">
                                     <PagerSettings Position="Top" />
@@ -2310,10 +2311,19 @@
 
                             </asp:View>
 
+
+
+
+
+
+
+
+                            <%--OnRowDeleting="dgv1_RowDeleting" OnRowEditing="dgv1_RowEditing" OnRowUpdating="dgv1_RowUpdating" OnRowCancelingEdit="dgv1_RowCancelingEdit"--%>
+
                             <asp:View ID="GenBillTrack" runat="server">
                                 <div class="table-responsive">
                                     <asp:GridView ID="gvGenBillTracking" runat="server" AutoGenerateColumns="False"
-                                        ShowFooter="True" CssClass=" table-responsive  table-hover table-bordered grvContentarea" >
+                                        ShowFooter="True" OnRowEditing="gvGenBillTracking_RowEditing" OnRowCancelingEdit="gvGenBillTracking_RowCancelingEdit" OnRowUpdating="gvGenBillTracking_RowUpdating"  CssClass=" table-responsive  table-hover table-bordered grvContentarea" >
                                         <PagerSettings Position="Top" />
                                         <RowStyle />
                                         <Columns>
@@ -2383,22 +2393,80 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>--%>
 
-                                                <asp:TemplateField HeaderText="Project Name">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lgvprjname4" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
-                                                        Width="180px"></asp:Label>
-                                                </ItemTemplate>
+                                            <asp:CommandField ShowEditButton="True" ControlStyle-Width="25px">
+                                                <ControlStyle Width="35px" />
+                                                <HeaderStyle Width="35px" />
+                                                <ItemStyle Width="35px" />
+                                            </asp:CommandField>
+
+                                            <asp:TemplateField HeaderText="Project Name">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvprjname4" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
+                                                    Width="180px"></asp:Label>
+                                            </ItemTemplate>
+
+
+                                                <EditItemTemplate>
+                                                    <fieldset class="scheduler-border fieldset_A">
+                                                        <div class="form-horizontal">
+                                                            <div class="form-group">
+                                                                <div class="col-md-3 pading5px asitCol4">
+                                                                    <asp:Label ID="lblcontrolAccHead" runat="server" CssClass="lblTxt lblName">Accounts Head</asp:Label>
+                                                                    <div class="col-md-3 pading5px">
+                                                                        <asp:DropDownList ID="ddlgrdacccode" runat="server" OnSelectedIndexChanged="ddlgrdacccode_SelectedIndexChanged" CssClass="form-control chzn-select"
+                                                                            TabIndex="28" Style="width: 200px;" AutoPostBack="True">  
+                                                                        </asp:DropDownList>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </EditItemTemplate>
+
+
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
-
 
                                             <asp:TemplateField HeaderText="Material Name">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvMaterials4" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) %>'
                                                         Width="170px"></asp:Label>
                                                 </ItemTemplate>
+
+
+                                                <EditItemTemplate>
+                                                    <fieldset class="scheduler-border fieldset_A">
+                                                        <div class="form-horizontal">
+                                                            <%--<div class="form-group">
+                                                                <div class="col-md-3 pading5px asitCol3">
+                                                                    <asp:Label ID="lblcontrolAccHead" runat="server" CssClass="lblTxt lblName">Accounts Head</asp:Label>
+                                                                    <div class="col-md-3 pading5px">
+                                                                        <asp:DropDownList ID="ddlgrdacccode" runat="server" OnSelectedIndexChanged="ddlgrdacccode_SelectedIndexChanged" CssClass="form-control chzn-select"
+                                                                            TabIndex="28" Style="width: 130px;" AutoPostBack="True">  
+                                                                        </asp:DropDownList>
+                                                                    </div>
+                                                                </div>
+                                                            </div>--%>
+                                                            <div class="form-group">
+                                                                <div class="col-md-3 pading5px asitCol4">
+                                                                    <asp:Label ID="lblgvreshead" runat="server" CssClass="lblTxt lblName">Details Head</asp:Label>
+                                                                    <div class="col-md-3 pading5px">
+                                                                        <asp:DropDownList ID="ddlrgrdesuorcecode" runat="server" CssClass="chzn-select"
+                                                                            TabIndex="28" Style="width: 200px;">
+                                                                        </asp:DropDownList>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </EditItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
+
+
+
+
+
                                             <%--<asp:TemplateField HeaderText="Unit ">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvUnit3" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirunit")) %>'
@@ -2407,11 +2475,13 @@
                                                 <ItemStyle HorizontalAlign="left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>--%>
+
                                             <asp:TemplateField HeaderText="Specification">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvSpecification1" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfdesc")) %>'
                                                         Width="120px"></asp:Label>
                                                 </ItemTemplate>
+
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Qty">
