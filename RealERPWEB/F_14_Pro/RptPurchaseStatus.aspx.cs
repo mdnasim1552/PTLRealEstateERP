@@ -115,6 +115,101 @@ namespace RealERPWEB.F_14_Pro
             }
          }
 
+
+
+        protected void gvGenBillTracking_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            this.gvGenBillTracking.EditIndex = e.NewEditIndex;
+
+            DataTable dt = (DataTable)Session["tblpurchase"];
+            gvGenBillTracking.DataSource = dt;
+            gvGenBillTracking.DataBind();
+
+            string comcod = this.GetComeCode();
+            int rowindex = (gvGenBillTracking.PageSize) * (this.gvGenBillTracking.PageIndex) + e.NewEditIndex;
+            //string accconhead = this.ddlConAccHead.SelectedValue.ToString();
+
+            //string actcode = ((DataTable)Session["tblvoucher"]).Rows[rowindex]["actcode"].ToString();
+            //string subcode = ((DataTable)Session["tblvoucher"]).Rows[rowindex]["subcode"].ToString();
+
+            DropDownList ddlgrdacccode = (DropDownList)this.gvGenBillTracking.Rows[e.NewEditIndex].FindControl("ddlgrdacccode");
+
+
+            ViewState["gindex"] = e.NewEditIndex;
+            string SearchProject = "%";//+ ((TextBox)this.dgv1.Rows[e.NewEditIndex].FindControl("txtgrdserceacc")).Text.Trim() + "%";
+
+
+            DataSet ds2 = MktData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETACCCODE", SearchProject, "", "", "", "", "", "", "", "");
+            DataTable dt2 = ds2.Tables[0];
+            ViewState["HeadAcc1"] = ds2.Tables[0];
+
+            ddlgrdacccode.DataTextField = "actdesc1";
+            ddlgrdacccode.DataValueField = "actcode";
+            ddlgrdacccode.DataSource = dt2;
+            ddlgrdacccode.DataBind();
+            //ddlgrdacccode.SelectedValue = actcode;
+
+
+
+
+            //DataTable dt01 = (DataTable)ViewState["HeadAcc1"];
+            //string search1 = ddlgrdacccode.SelectedValue.ToString().Trim();
+            //DataRow[] dr1 = dt01.Select("actcode='" + search1 + "'");
+            //if (dr1.Length == 0)
+            //    return;
+
+
+
+            DropDownList ddlgrdresouce = (DropDownList)this.gvGenBillTracking.Rows[e.NewEditIndex].FindControl("ddlrgrdesuorcecode");
+
+           
+            string SearchResourche = "%"; // +((TextBox)this.dgv1.Rows[e.NewEditIndex].FindControl("txtgrdserresource")).Text.Trim() + "%";
+
+            DataSet ds3 = MktData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETRESCODE", "", SearchResourche, "", "", "", "", "", "", "");
+            DataTable dt3 = ds3.Tables[0];
+            Session["HeadRsc1"] = ds3.Tables[0];
+
+            ddlgrdresouce.DataTextField = "resdesc1";
+            ddlgrdresouce.DataValueField = "rescode";
+            ddlgrdresouce.DataSource = dt3;
+            ddlgrdresouce.DataBind();
+            //ddlgrdresouce.SelectedValue = subcode;
+            //ddlgrdresouce.Focus();
+        }
+
+
+        protected void gvGenBillTracking_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+
+            string comcod = this.GetComeCode();
+            DataTable dt = (DataTable)Session["tblvoucher"];
+            int rowindex = (int)ViewState["gindex"];
+
+            string actcode = ((DropDownList)this.gvGenBillTracking.Rows[rowindex].FindControl("ddlgrdacccode")).SelectedValue.ToString();
+            string rescode = ((DropDownList)this.gvGenBillTracking.Rows[rowindex].FindControl("ddlrgrdesuorcecode")).SelectedValue.ToString();
+            string billno = this.ddlGenBillTracking.SelectedValue.ToString();
+
+            bool resulta = MktData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "UPDATEPROJECT", actcode, rescode, billno,
+                                 "", "","","","","","","","", "", "", "", "", "", "", "", "","","","","","","","");
+        }
+
+
+        protected void ddlgrdacccode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void gvGenBillTracking_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            this.gvGenBillTracking.EditIndex = -1;
+            DataTable dt = (DataTable)Session["tblpurchase"];
+            gvGenBillTracking.DataSource = dt;
+            gvGenBillTracking.DataBind();
+        }
+
+
+
+
         public void CommonButton()
         {
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Replace("%20", " "), (DataSet)Session["tblusrlog"]);
@@ -450,6 +545,8 @@ namespace RealERPWEB.F_14_Pro
             string comcod = this.GetComeCode();
             string txtsearch = "%"+ this.TextGenBillTrack.Text+"%";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETGENERALBILLNO", txtsearch, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
             this.ddlGenBillTracking.DataTextField = "reqno1";
             this.ddlGenBillTracking.DataValueField = "reqno";
             this.ddlGenBillTracking.DataSource = ds1.Tables[0];
@@ -1031,8 +1128,6 @@ namespace RealERPWEB.F_14_Pro
                 string eventdesc2 = "";
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
-
-
         }
 
         protected void imgbtnFindRequiSition_Click(object sender, EventArgs e)
@@ -2154,12 +2249,16 @@ namespace RealERPWEB.F_14_Pro
             this.GetGeneralBillNo();
         }
 
+        
+
+
+
         //protected void btnPrintReqInfo1_Click(object sender, EventArgs e)
         //{
 
         //}
 
-       
+
 
         //protected void ddlGenBillTracking_SelectedIndexChanged(object sender, EventArgs e)
         //{
