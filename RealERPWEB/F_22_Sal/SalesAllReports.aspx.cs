@@ -37,11 +37,11 @@ namespace RealERPWEB.F_22_Sal
                 //string date1 = this.Request.QueryString["Date1"];
                 //string date2 = this.Request.QueryString["Date2"];
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                 this.txtFDate.Text = Convert.ToDateTime("01" + date.Substring(2)).ToString("dd-MMM-yyyy");
-                this.txttoDate.Text =  System.DateTime.Today.ToString("dd-MMM-yyyy");
+                this.txtFDate.Text = Convert.ToDateTime("01" + date.Substring(2)).ToString("dd-MMM-yyyy");
+                this.txttoDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
-              this.GetProjectName();
-              this.ddlReport_SelectedIndexChanged(null, null);
+                this.GetProjectName();
+                this.ddlReport_SelectedIndexChanged(null, null);
 
 
 
@@ -64,10 +64,10 @@ namespace RealERPWEB.F_22_Sal
             {
                 case "PrjCollect":
 
-                    this.lblDate.Visible = true; 
+                    this.lblDate.Visible = true;
                     this.txtFDate.Visible = true;
                     this.clfdate.Visible = true;
-                    this.lbltoDate.Visible = true; 
+                    this.lbltoDate.Visible = true;
                     this.txttoDate.Visible = true;
                     this.clstodat.Visible = true;
                     this.imgbtnFindCustomer.Visible = false;
@@ -75,7 +75,7 @@ namespace RealERPWEB.F_22_Sal
                     this.clcust.Visible = false;
                     break;
 
-                case "PrjCollTilldate":                               
+                case "PrjCollTilldate":
                     this.lblDate.Visible = false;
                     this.txtFDate.Visible = false;
                     this.clfdate.Visible = false;
@@ -190,7 +190,7 @@ namespace RealERPWEB.F_22_Sal
             string comcod = this.GetComeCode();
             string frmdate = this.txtFDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
-            string pactcode = this.ddlPrjName.SelectedValue.ToString()=="000000000000"? "18"+"%" : this.ddlPrjName.SelectedValue.ToString() + "%";
+            string pactcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18" + "%" : this.ddlPrjName.SelectedValue.ToString() + "%";
 
             DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_COLLECTIONMGT", "GETTOTALCOLLECTION", pactcode, frmdate, todate, "", "", "", "", "");
             if (ds1 == null)
@@ -198,7 +198,7 @@ namespace RealERPWEB.F_22_Sal
 
                 this.gvprjcoll.DataSource = null;
                 this.gvprjcoll.DataBind();
-               
+
                 return;
 
             }
@@ -206,7 +206,7 @@ namespace RealERPWEB.F_22_Sal
             // DataTable dt=this.HiddenSamaData(ds1.Tables[0])
 
             ViewState["prjcoll"] = ds1.Tables[0];
-          
+
 
             this.Data_Bind();
 
@@ -215,7 +215,7 @@ namespace RealERPWEB.F_22_Sal
         {
             string comcod = this.GetComeCode();
 
-           // string frmdate = this.txtFDate.Text.Trim();
+            // string frmdate = this.txtFDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
             string pactcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18" + "%" : this.ddlPrjName.SelectedValue.ToString() + "%";
             string length = "Length";
@@ -225,7 +225,7 @@ namespace RealERPWEB.F_22_Sal
 
                 this.gvprjcolltilldate.DataSource = null;
                 this.gvprjcolltilldate.DataBind();
-                
+
                 return;
 
             }
@@ -244,7 +244,7 @@ namespace RealERPWEB.F_22_Sal
             string frmdate = this.txtFDate.Text.Trim();
             string pactcode = this.ddlPrjName.SelectedValue.ToString() == "000000000000" ? "18" + "%" : this.ddlPrjName.SelectedValue.ToString() + "%";
             string usircode = this.ddlCustName.SelectedValue.ToString();
-            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_COLLECTIONMGT", "GETPAYMENTSATATUS", pactcode, frmdate,todate , usircode, "", "", "", "");
+            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_REPORT_COLLECTIONMGT", "GETPAYMENTSATATUS", pactcode, frmdate, todate, usircode, "", "", "", "");
             if (ds1 == null)
             {
 
@@ -266,12 +266,12 @@ namespace RealERPWEB.F_22_Sal
         private void Data_Bind()
         {
             DataTable dt = (DataTable)ViewState["prjcoll"];
-           
+
             string rpt = this.ddlReport.SelectedValue;
             switch (rpt)
             {
                 case "amtbasis":
-                    
+
                     break;
                 case "PrjCollect":
                     this.MultiView1.ActiveViewIndex = 0;
@@ -312,7 +312,7 @@ namespace RealERPWEB.F_22_Sal
             DataTable dt = (DataTable)ViewState["prjcoll"];
             if (dt.Rows.Count == 0)
                 return;
-            
+
             string rpt = this.ddlReport.SelectedValue;
 
             switch (rpt)
@@ -338,7 +338,7 @@ namespace RealERPWEB.F_22_Sal
 
 
 
-           
+
         }
 
 
@@ -406,7 +406,7 @@ namespace RealERPWEB.F_22_Sal
             this.dvQtyBasisPeriodic.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.Data_Bind();
         }
-       
+
         protected void gvAmtPeriodic_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
@@ -438,60 +438,43 @@ namespace RealERPWEB.F_22_Sal
             string todate = this.txttoDate.Text;
             string prjname = this.ddlPrjName.SelectedItem.Text.Trim();
             string reportType = GetReportType();
-            DataTable dt2 = (DataTable)ViewState["prjcust"];
-           string custname = dt2.Rows[0]["custname"].ToString();
-           string udesc = dt2.Rows[0]["udesc"].ToString();
-           string mobileno = dt2.Rows[0]["mobileno"].ToString();
-           string preaddress = dt2.Rows[0]["preaddress"].ToString();
+
 
             LocalReport Rpt1 = new LocalReport();
-            if (this.ddlReport.SelectedValue == "PaymentStatus")
+           
+           if (this.ddlReport.SelectedValue == "PrjCollect")
             {
+                string ptodate =Convert.ToDateTime(this.txttoDate.Text).ToString("MMMM,yyyy");
                 DataTable dt = (DataTable)ViewState["prjcoll"];
-                DataTable dt1 = (DataTable)ViewState["prjdesc"];
-               
-                
-                var list = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.PaymentStatusReconcile>();
-                var list1 = dt1.DataTableToList<RealEntity.C_22_Sal.EClassSales.PaymentStatusRevenue>();
-               
-                   Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptPaymentSystem", list, list1, null);
-                   Rpt1.EnableExternalImages = true;
-                   Rpt1.SetParameters(new ReportParameter("rptTitle", "Payment Status"));
-            }
-           else if (this.ddlReport.SelectedValue == "PrjCollect")
-            {
-                DataTable dt = (DataTable)ViewState["prjcoll"];
-          
-
 
                 var list = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.PrjWiseCollection>();
-               
 
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptPaymentSystem", list, null, null);
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptPrjWiseCollection", list, null, null);
                 Rpt1.EnableExternalImages = true;
-                Rpt1.SetParameters(new ReportParameter("rptTitle", "Collection Statement"));
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("rptTitle", "Project Wise Collection for the month of " + ptodate));
+               
             }
             else
             {
+                string ptodate = Convert.ToDateTime(this.txttoDate.Text).ToString("MMMM,yyyy");
                 DataTable dt = (DataTable)ViewState["prjcoll"];
 
-                var list = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.PaymentStatusReconcile>();
+                var list = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.PrjWiseCollectiontilldate>();
 
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptPaymentSystem", list, null, null);
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptPrjWiseCollectionTillDate", list, null, null);
                 Rpt1.EnableExternalImages = true;
-                Rpt1.SetParameters(new ReportParameter("rptTitle", "Collection Statement"));
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("rptTitle", "Project Wise Collection Till Date " + ptodate));
             }
-          
-           
+
+
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-            Rpt1.SetParameters(new ReportParameter("custname", custname));
-            Rpt1.SetParameters(new ReportParameter("udesc", udesc));
-            Rpt1.SetParameters(new ReportParameter("mobileno", mobileno));
-            Rpt1.SetParameters(new ReportParameter("prjname", prjname));
-            Rpt1.SetParameters(new ReportParameter("preaddress", preaddress));
-            
-            Rpt1.SetParameters(new ReportParameter("printdate", "Print Date : " + printdate));
+
+           
 
 
             Session["Report1"] = Rpt1;
@@ -524,6 +507,6 @@ namespace RealERPWEB.F_22_Sal
             return Type;
         }
 
-        
+
     }
 }
