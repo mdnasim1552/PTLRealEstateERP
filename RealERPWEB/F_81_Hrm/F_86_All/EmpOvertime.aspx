@@ -2439,7 +2439,7 @@
 
                         <asp:View ID="Encashment" runat="server">
 
-                            <asp:GridView ID="gvEncashment" runat="server" AllowPaging="False" CssClass="table-striped table-hover table-bordered grvContentarea" AutoGenerateColumns="False" ShowFooter="False">
+                            <asp:GridView ID="gvEncashment" runat="server" AllowPaging="False" CssClass="table-striped table-hover table-bordered grvContentarea" AutoGenerateColumns="False" ShowFooter="True">
 
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl.No.">
