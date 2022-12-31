@@ -5,6 +5,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -18,7 +20,38 @@
             background: #F9F9F9;
         }
     </style>
-
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".select2").select2();
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+        });
+        function pageLoaded() {
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+            $('.chzn-select').chosen({ search_contains: true });
+            $(".chosen-select").chosen({
+                search_contains: true,
+                no_results_text: "Sorry, no match!",
+                allow_single_deselect: true
+            });
+            $('.select2').each(function () {
+                var select = $(this);
+                select.select2({
+                    placeholder: 'Select an option',
+                    width: '100%',
+                    allowClear: !select.prop('required'),
+                    language: {
+                        noResults: function () {
+                            return "'No results found'";
+                        }
+                    }
+                });
+            });
+        }
+    </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="card card-fluid container-data">
@@ -34,7 +67,7 @@
                         </div>
                         <div class="col-lg-2">
                             <asp:Label runat="server" ID="lblProject" class="form-label">Project</asp:Label>
-                            <asp:DropDownList ID="ddlProject" CssClass="form-control select2" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID="ddlProject" CssClass="form-control" runat="server"></asp:DropDownList>
                         </div>
                         <div class="col-lg-1">
                             <br />
@@ -392,36 +425,4 @@
 
 
 
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".select2").select2();
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-        });
-        function pageLoaded() {
-            $("input, select").bind("keydown", function (event) {
-                var k1 = new KeyPress();
-                k1.textBoxHandler(event);
-            });
-            $('.chzn-select').chosen({ search_contains: true });
-            $(".chosen-select").chosen({
-                search_contains: true,
-                no_results_text: "Sorry, no match!",
-                allow_single_deselect: true
-            });
-            $('.select2').each(function () {
-                var select = $(this);
-                select.select2({
-                    placeholder: 'Select an option',
-                    width: '100%',
-                    allowClear: !select.prop('required'),
-                    language: {
-                        noResults: function () {
-                            return "'No results found'";
-                        }
-                    }
-                });
-            });
-        }
-    </script>
 </asp:Content>
