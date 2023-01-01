@@ -137,35 +137,19 @@ namespace RealERPWEB.F_14_Pro
 
 
             ViewState["gindex"] = e.NewEditIndex;
-            string SearchProject = "%";//+ ((TextBox)this.dgv1.Rows[e.NewEditIndex].FindControl("txtgrdserceacc")).Text.Trim() + "%";
-
-
+            string SearchProject = "%";
             DataSet ds2 = MktData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETACCCODE", SearchProject, "", "", "", "", "", "", "", "");
             DataTable dt2 = ds2.Tables[0];
             ViewState["HeadAcc1"] = ds2.Tables[0];
-
             ddlgrdacccode.DataTextField = "actdesc1";
             ddlgrdacccode.DataValueField = "actcode";
             ddlgrdacccode.DataSource = dt2;
             ddlgrdacccode.DataBind();
-            //ddlgrdacccode.SelectedValue = actcode;
-
-
-
-
-            //DataTable dt01 = (DataTable)ViewState["HeadAcc1"];
-            //string search1 = ddlgrdacccode.SelectedValue.ToString().Trim();
-            //DataRow[] dr1 = dt01.Select("actcode='" + search1 + "'");
-            //if (dr1.Length == 0)
-            //    return;
-
-
+            string pactcode = ((Label)this.gvGenBillTracking.Rows[e.NewEditIndex].FindControl("lgvpactcode")).Text.Trim();
+            ddlgrdacccode.SelectedValue = pactcode;
 
             DropDownList ddlgrdresouce = (DropDownList)this.gvGenBillTracking.Rows[e.NewEditIndex].FindControl("ddlrgrdesuorcecode");
-
-
-            string SearchResourche = "%"; // +((TextBox)this.dgv1.Rows[e.NewEditIndex].FindControl("txtgrdserresource")).Text.Trim() + "%";
-
+            string SearchResourche = "%";
             DataSet ds3 = MktData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETRESCODE", "", SearchResourche, "", "", "", "", "", "", "");
             DataTable dt3 = ds3.Tables[0];
             Session["HeadRsc1"] = ds3.Tables[0];
@@ -174,8 +158,8 @@ namespace RealERPWEB.F_14_Pro
             ddlgrdresouce.DataValueField = "rescode";
             ddlgrdresouce.DataSource = dt3;
             ddlgrdresouce.DataBind();
-            //ddlgrdresouce.SelectedValue = subcode;
-            //ddlgrdresouce.Focus();
+            string rsircode = ((Label)this.gvGenBillTracking.Rows[e.NewEditIndex].FindControl("lgvrsircode")).Text.Trim();
+            ddlgrdresouce.SelectedValue = rsircode;
         }
 
 
@@ -183,41 +167,101 @@ namespace RealERPWEB.F_14_Pro
         {
             this.GetSingleProjectDetails();
             string comcod = this.GetComeCode();
-            DataTable dt = (DataTable)Session["tblvoucher"];
+            DataTable dt = (DataTable)Session["tblpurchase"];
             int rowindex = (int)ViewState["gindex"];
 
-            string actcode = ((DropDownList)this.gvGenBillTracking.Rows[rowindex].FindControl("ddlgrdacccode")).SelectedValue.ToString();
-            string rescode = ((DropDownList)this.gvGenBillTracking.Rows[rowindex].FindControl("ddlrgrdesuorcecode")).SelectedValue.ToString();
+            string actcode = ((DropDownList)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("ddlgrdacccode")).SelectedValue.ToString();
+            string rescode = ((DropDownList)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("ddlrgrdesuorcecode")).SelectedValue.ToString();
+            string vounum = ((Label)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("lgvvounum")).Text.Trim();
+            string reqno = ((Label)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("lgvreqno")).Text.Trim();
+            string rsircode = ((Label)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("lgvrsircode")).Text.Trim();  
+            string spcfcod = ((Label)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("lgvspcfcod")).Text.Trim();
+            string pactcode = ((Label)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("lgvpactcode")).Text.Trim();
+            string billno1 = ((Label)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("lgvBillNo")).Text.Trim();
+
+
+            //ViewState["actcode"] = actcode;
+            //ViewState["rescode"] = rescode;
+
             string billno = this.ddlGenBillTracking.SelectedValue.ToString();
 
-            DataTable projectDetails = (DataTable)Session["projectdetails"];
 
-            if (projectDetails.Rows.Count > 0)
+            int index = (this.gvGenBillTracking.PageIndex) * this.gvGenBillTracking.PageSize + e.RowIndex;
+
+            dt.Rows[index]["pactcode"] = actcode;
+            dt.Rows[index]["rsircode"] = rescode;
+            dt.Rows[index]["vounum"] = vounum;
+            dt.Rows[index]["reqno"] = reqno;
+            dt.Rows[index]["spcfcod"] = spcfcod;
+            dt.Rows[index]["billno"] = billno1;
+
+            Session["tblpurchase"] = dt;
+
+
+            this.gvGenBillTracking.EditIndex = -1;
+            gvGenBillTracking.DataSource = dt;
+            gvGenBillTracking.DataBind();
+
+
+            //bool resulta = MktData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "UPDATEPROJECT", vounum, sectcode, actcode, rescode, spclcode, billno, cactcode, trnrmrk, voudat, trnqty
+            //                    , vtcode, trnam, vactive, rowdate, recndt, rpcode, userid, editdat, edittrmid, "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+        }
+
+
+        protected void lbtnUpdate_Click(object sender, EventArgs e)
+        {
+            //((Label)this.Master.FindControl("lblmsg")).Visible = true;
+
+            string comcod = this.GetComeCode();
+            this.SaveValue();
+            DataTable dt = (DataTable)Session["tblpurchase"];
+
+
+            foreach (DataRow dr2 in dt.Rows)
             {
-                string vounum = projectDetails.Rows[0]["vounum"].ToString();
-                string sectcode = projectDetails.Rows[0]["sectcode"].ToString();
-                string actcode1 = projectDetails.Rows[0]["actcode"].ToString();
-                string rescode1 = projectDetails.Rows[0]["rescode"].ToString();
-                string cactcode = projectDetails.Rows[0]["cactcode"].ToString();
-                string voudat = projectDetails.Rows[0]["voudat"].ToString();
-                string trnqty = projectDetails.Rows[0]["trnqty"].ToString();
-                string trnrmrk = projectDetails.Rows[0]["trnrmrk"].ToString();
-                string vtcode = projectDetails.Rows[0]["vtcode"].ToString();
-                string trnam = projectDetails.Rows[0]["trnam"].ToString();
-                string spclcode = projectDetails.Rows[0]["spclcode"].ToString();
-                string vactive = projectDetails.Rows[0]["actcode"].ToString();
-                string rowdate = projectDetails.Rows[0]["rowdate"].ToString();
-                string recndt = projectDetails.Rows[0]["recndt"].ToString();
-                string rpcode = projectDetails.Rows[0]["rpcode"].ToString();
-                string billno1 = projectDetails.Rows[0]["billno"].ToString();
-                string userid = projectDetails.Rows[0]["userid"].ToString();
-                string editdat = projectDetails.Rows[0]["editdat"].ToString();
-                string edittrmid = projectDetails.Rows[0]["edittrmid"].ToString();
-            
-                bool resulta = MktData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "UPDATEPROJECT", vounum, sectcode, actcode, rescode, spclcode, billno, cactcode, trnrmrk, voudat, trnqty
-                                , vtcode, trnam, vactive, rowdate, recndt, rpcode, userid, editdat, edittrmid, "", "", "", "", "", "", "", "", "", "", "", "", "");
-            }
+                string pactcode = dr2["pactcode"].ToString();
+                string rsircode = dr2["rsircode"].ToString();
+                string vounum = dr2["vounum"].ToString();
+                string reqno = dr2["reqno"].ToString();
+                string spcfcod = dr2["spcfcod"].ToString();
+                string billno1 = dr2["billno"].ToString();
 
+                //string actcode = (string)ViewState["actcode"];
+                //string rescode = (string)ViewState["rescode"];
+
+                bool result = MktData.UpdateTransInfo2(comcod, "SP_REPORT_REQ_STATUS", "INSERTUPDATEGENBILLTRACKING", vounum, pactcode, reqno, rsircode, spcfcod, billno1, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+                //if (result == false)
+                //{
+                //    ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //    return;
+                //}
+            }
+        }
+
+
+        private void SaveValue()
+        {
+            DataTable tbl1 = (DataTable)Session["tblpurchase"];
+            for (int i = 0; i < gvGenBillTracking.Rows.Count; i++)
+            {
+                string vounum = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvvounum")).Text.Trim();
+                string reqno = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvreqno")).Text.Trim();
+                string rsircode = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvrsircode")).Text.Trim();
+                string spcfcod = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvspcfcod")).Text.Trim();
+                string pactcode = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvpactcode")).Text.Trim();
+
+
+
+                tbl1.Rows[i]["pactcode"] = pactcode;
+                tbl1.Rows[i]["rsircode"] = rsircode;
+                tbl1.Rows[i]["vounum"] = vounum;
+                tbl1.Rows[i]["reqno"] = reqno;
+                tbl1.Rows[i]["spcfcod"] = spcfcod;
+            }
+            Session["tblpurchase"] = tbl1;
         }
 
 
