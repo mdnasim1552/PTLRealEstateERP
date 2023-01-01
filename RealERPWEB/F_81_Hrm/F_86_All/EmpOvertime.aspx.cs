@@ -647,10 +647,10 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                     break;
 
-                case "3370"://cpdl
-                    CallType = "EMPALLOYOVERTIMECPDL";
+                //case "3370"://cpdl
+                //    CallType = "EMPALLOYOVERTIMECPDL";
 
-                    break;
+                //    break;
 
                 default:
                     CallType = "EMPALLOYOVERTIME";
@@ -1063,7 +1063,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     this.EnabledOrVissible();
                     this.FooterCalculation();
 
-                    if (comcod == "3370" || comcod == "3101")//For cpdl
+                    if ( comcod == "3101")//For cpdl
                     {
                         
                         this.gvEmpOverTime.Columns[4].Visible = true;
@@ -1104,29 +1104,33 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         this.gvEmpOverTime.Columns[22].Visible = true;
                     }
 
-                    //else if (comcod == "3369")
-                    //{
-                    //    this.gvEmpOverTime.Columns[3].Visible = true;
-                    //    this.gvEmpOverTime.Columns[4].Visible = true;
-                    //    this.gvEmpOverTime.Columns[5].Visible = true;
-                    //    this.gvEmpOverTime.Columns[6].Visible = true;
-                    //    this.gvEmpOverTime.Columns[7].Visible = true;
-                    //    this.gvEmpOverTime.Columns[8].Visible = true;
-                    //    this.gvEmpOverTime.Columns[9].Visible = false;
-                    //    this.gvEmpOverTime.Columns[10].Visible = false;
-                    //    this.gvEmpOverTime.Columns[11].Visible = false;
-                    //    this.gvEmpOverTime.Columns[12].Visible = false;
-                    //    this.gvEmpOverTime.Columns[13].Visible = false;
-                    //    this.gvEmpOverTime.Columns[14].Visible = false;
-                    //    this.gvEmpOverTime.Columns[15].Visible = false;
-                    //    this.gvEmpOverTime.Columns[16].Visible = false;
-                    //    this.gvEmpOverTime.Columns[17].Visible = false;
-                    //    this.gvEmpOverTime.Columns[18].Visible = false;
-                    //    this.gvEmpOverTime.Columns[19].Visible = false;
-                    //    this.gvEmpOverTime.Columns[20].Visible = false;
-                    //    this.gvEmpOverTime.Columns[21].Visible = true;
-                    //    this.gvEmpOverTime.Columns[22].Visible = true;
-                    //}
+                    else if (comcod == "3370")
+                    {
+                        this.gvEmpOverTime.Columns[1].Visible = true;
+                        this.gvEmpOverTime.Columns[2].Visible = true;
+
+
+                        this.gvEmpOverTime.Columns[3].Visible = true;
+                        this.gvEmpOverTime.Columns[4].Visible = true;
+                        this.gvEmpOverTime.Columns[5].Visible = false;
+                        this.gvEmpOverTime.Columns[6].Visible = false;
+                        this.gvEmpOverTime.Columns[7].Visible = false;
+                        this.gvEmpOverTime.Columns[8].Visible = false;
+                        this.gvEmpOverTime.Columns[9].Visible = false;
+                        this.gvEmpOverTime.Columns[10].Visible = false;
+                        this.gvEmpOverTime.Columns[11].Visible = false;
+                        this.gvEmpOverTime.Columns[12].Visible = false;
+                        this.gvEmpOverTime.Columns[13].Visible = false;
+                        this.gvEmpOverTime.Columns[14].Visible = false;
+                        this.gvEmpOverTime.Columns[15].Visible = false;
+                        this.gvEmpOverTime.Columns[16].Visible = false;
+                        this.gvEmpOverTime.Columns[17].Visible = false;
+                        this.gvEmpOverTime.Columns[18].Visible = false;
+                        this.gvEmpOverTime.Columns[19].Visible = true;
+                        this.gvEmpOverTime.Columns[20].Visible = false;
+                        this.gvEmpOverTime.Columns[21].Visible = false;
+                        this.gvEmpOverTime.Columns[22].Visible = false;
+                    }
                     else
                     {
                         this.gvEmpOverTime.Columns[16].Visible = false;
@@ -2235,13 +2239,13 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 else
                 {
 
-                if (tohour > 0)
-                {
+                //if (tohour > 0)
+                //{
 
-                    result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, daycount.ToString(), dayrate.ToString(), dayamt.ToString(), "", "", "", "");
-                    if (!result)
-                        return;
-                }
+                //    result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, daycount.ToString(), dayrate.ToString(), dayamt.ToString(), "", "", "", "");
+                //    if (!result)
+                //        return;
+                //}
                 switch (comcod)
                 {
                     case "3101":
