@@ -318,5 +318,41 @@ namespace RealEntity.C_22_Sal
 
             }
         }
+        [Serializable]
+        public class PrjWiseCollection
+        {
+            public string comcod { get; set; }
+
+
+            public string pactcode { get; set; }
+            public string pactdesc { get; set; }
+            public string aptdesc { get; set; }
+           
+            public double ramt { get; set; }
+
+            public PrjWiseCollection()
+            {
+
+            }
+        }
+        [Serializable]
+        public class PrjWiseCollectiontilldate
+        {
+            public string comcod { get; set; }
+
+
+            public string pactcode { get; set; }
+            public string musircode { get; set; }
+            public string pactdesc { get; set; }
+            public string aptdesc { get; set; }
+
+            public double ramt { get; set; }
+
+            public PrjWiseCollectiontilldate()
+            {
+
+            }
+        }
+
     }
 }
