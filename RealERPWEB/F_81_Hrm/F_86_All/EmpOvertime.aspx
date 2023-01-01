@@ -221,7 +221,7 @@
                                         </asp:RadioButtonList>
 
                                     </div>
-                                </div>
+                                </div>	
                                 <div class="col-lg-1 col-md-3 col-sm-4 ">
                                     <div class="form-group">
 
@@ -304,7 +304,7 @@
                                     </asp:TemplateField>
                                     <%--4--%>
 
-                                    <asp:TemplateField HeaderText="Fixed Hour" Visible="false">
+                                    <asp:TemplateField HeaderText="Fixed Hour" >
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvFixedhour" runat="server" BackColor="Transparent"
                                                 BorderStyle="None"
@@ -321,7 +321,7 @@
 
                                     <%--5--%>
 
-                                    <asp:TemplateField HeaderText="Fixed Day">
+                                    <asp:TemplateField HeaderText="Fixed Day" Visible="false">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvFixedDaycount" runat="server" BackColor="Transparent"
                                                 BorderStyle="None"
@@ -351,7 +351,7 @@
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
                                     <%--7--%>
-                                    <asp:TemplateField HeaderText="Day Rate">
+                                    <asp:TemplateField HeaderText="Day Rate" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="txtgvdayrate" runat="server" BackColor="Transparent"
                                                 BorderStyle="None"
@@ -367,7 +367,7 @@
                                     </asp:TemplateField>
                                     <%--8--%>
 
-                                    <asp:TemplateField HeaderText="Hourly" Visible="false">
+                                    <asp:TemplateField HeaderText="Hourly" >
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvhourly" runat="server" BackColor="Transparent"
                                                 BorderStyle="None"
@@ -444,12 +444,12 @@
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
                                     <%--13--%>
-                                    <asp:TemplateField HeaderText="Fixed Rate" Visible="false">
+                                    <asp:TemplateField HeaderText="Fixed Rate" >
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvFixedrate" runat="server" BackColor="Transparent"
                                                 BorderStyle="None"
                                                 Style="text-align: right"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fixrate")).ToString("#,##0;(#,##0); ") %>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fixrate")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="70px"></asp:Label>
                                         </ItemTemplate>
 
@@ -461,12 +461,12 @@
 
                                     <%--14--%>
 
-                                    <asp:TemplateField HeaderText="Hourly(Rate)" Visible="false">
+                                    <asp:TemplateField HeaderText="Hourly(Rate)"> 
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvhourlyrate" runat="server" BackColor="Transparent"
                                                 BorderStyle="None"
                                                 Style="text-align: right"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "hourrate")).ToString("#,##0;(#,##0); ") %>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "hourrate")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="70px"></asp:Label>
                                         </ItemTemplate>
 
@@ -523,7 +523,7 @@
                                     <%--18--%>
 
 
-                                    <asp:TemplateField HeaderText="Total Hour" Visible="false">
+                                    <asp:TemplateField HeaderText="Total Hour" >
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvAmt" runat="server" BackColor="Transparent"
                                                 BorderStyle="None"
@@ -543,7 +543,7 @@
                                     </asp:TemplateField>
                                     <%--19--%>
 
-                                    <asp:TemplateField HeaderText="Fixed Amount" >
+                                    <asp:TemplateField HeaderText="Fixed Amount" Visible="false">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvfixamt" runat="server" BackColor="Transparent"
                                                 BorderStyle="None"
@@ -579,7 +579,7 @@
 
                                     <%--21--%>
 
-                                    <asp:TemplateField HeaderText="System Day">
+                                    <asp:TemplateField HeaderText="System Day" Visible="false">
                                         <ItemTemplate>
 
 
@@ -593,7 +593,7 @@
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
                                     <%--22--%>
-                                    <asp:TemplateField HeaderText="Total Amount">
+                                    <asp:TemplateField HeaderText="Total Amount" Visible="false">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvttlamt" runat="server" BackColor="Transparent"
                                                 BorderStyle="None"
@@ -608,10 +608,10 @@
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
                                     
-                                    <asp:TemplateField HeaderText="Fixed Amount" >
+                                    <asp:TemplateField HeaderText="Fixed Amount" Visible="false" >
                                         <ItemTemplate>
                                             <asp:Label runat="server" BackColor="Transparent"
-                                               
+                                                ID="lblgvfixedamt"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fixamt")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="80px"></asp:Label>
 
