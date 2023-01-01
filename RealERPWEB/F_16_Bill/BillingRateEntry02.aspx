@@ -35,17 +35,15 @@
 
 
                         <div class="col-md-1 d-none">
-                            
-
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <asp:Label ID="lblItem5" runat="server" CssClass="form-label" Text="Project/Unit"></asp:Label>
                             <asp:Label ID="lblProjectDesc" runat="server" Visible="False" CssClass="form-control form-control-sm"></asp:Label>
                             <asp:DropDownList ID="ddlProject" runat="server" CssClass="chzn-select form-control form-control-sm"></asp:DropDownList>
                         </div>
 
-                        <div class="col-md-1" style="margin-top:22px">
+                        <div class="col-md-1" style="margin-top: 22px">
                             <asp:LinkButton ID="lbtnOk1" runat="server" CssClass="btn btn-sm btn-primary ml-2" OnClick="lbtnOk1_Click" Text="Ok"></asp:LinkButton>
                         </div>
                     </div>
@@ -55,71 +53,71 @@
                         <div class="col-md-12">
                             <asp:Panel ID="pnlItem" Visible="false" runat="server">
 
-                            <div class="row">
-
-                       
+                                <div class="row">
 
 
 
 
-                            <div class="col-md-1 d-none">
-                            </div>
-
-                            <div class="col-md-2">
-                                <asp:Label ID="lblgroup" runat="server" CssClass="form-label" Text="Group"></asp:Label>
-                                <asp:DropDownList ID="ddlGroup" runat="server" CssClass="chzn-select form-control form-control-sm" TabIndex="12" AutoPostBack="True" OnSelectedIndexChanged="ddlGroup_SelectedIndexChanged">
-                                </asp:DropDownList>
-
-                            </div>
 
 
-                            <div class="col-md-1 pading5px asitCol1 d-none">
-                            </div>
+                                    <div class="col-md-1 d-none">
+                                    </div>
 
-                            <div class="col-md-4">
-                                <asp:Label ID="lblitemList" runat="server" CssClass="form-label" Text="Item List"></asp:Label>
-                                <asp:DropDownList ID="ddlitemlist" runat="server" CssClass="chzn-select form-control form-control-sm" TabIndex="12">
-                                </asp:DropDownList>
+                                    <div class="col-md-2">
+                                        <asp:Label ID="lblgroup" runat="server" CssClass="form-label" Text="Group"></asp:Label>
+                                        <asp:DropDownList ID="ddlGroup" runat="server" CssClass="chzn-select form-control form-control-sm" TabIndex="12" AutoPostBack="True" OnSelectedIndexChanged="ddlGroup_SelectedIndexChanged">
+                                        </asp:DropDownList>
 
-                            </div>
-                            <div class="col-md-1 ml-2" style="margin-top:22px">
-                                <asp:LinkButton ID="lbtnWork" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnWork_Click">Select</asp:LinkButton>
-
-                            </div>
-                            <div class="col-md-2 ml-2" style="margin-top:22px">
-                                <asp:LinkButton ID="lbtnAllWork" runat="server" CssClass="btn btn-sm btn-primary"  OnClick="lbtnAllWork_Click">Select ALL</asp:LinkButton>
-
-                            </div>
+                                    </div>
 
 
+                                    <div class="col-md-1 pading5px asitCol1 d-none">
+                                    </div>
 
-                            <div class="col-md-1">
-                                <asp:Label ID="lblpage" runat="server" CssClass="form-label" Text="Page Size:" Visible="False"></asp:Label>
-                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True"
-                                    Font-Bold="True" Font-Size="12px" CssClass="form-control form-control-sm"
-                                    OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Visible="False">
-                                    <asp:ListItem Value="10">10</asp:ListItem>
-                                    <asp:ListItem Value="15">15</asp:ListItem>
-                                    <asp:ListItem Value="20">20</asp:ListItem>
-                                    <asp:ListItem Value="30">30</asp:ListItem>
-                                    <asp:ListItem Value="50">50</asp:ListItem>
-                                    <asp:ListItem Value="100">100</asp:ListItem>
-                                    <asp:ListItem Value="150">150</asp:ListItem>
-                                    <asp:ListItem Value="200">200</asp:ListItem>
-                                    <asp:ListItem Value="300">300</asp:ListItem>
-                                </asp:DropDownList>
-                                <asp:Label ID="lblmsg" runat="server" BackColor="Red" Font-Bold="True" Font-Size="12px"></asp:Label>
-                            </div>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblitemList" runat="server" CssClass="form-label" Text="Item List"></asp:Label>
+                                        <asp:DropDownList ID="ddlitemlist" runat="server" CssClass="chzn-select form-control form-control-sm" TabIndex="12">
+                                        </asp:DropDownList>
+
+                                    </div>
+                                    <div class="col-md-1 ml-2" style="margin-top: 22px">
+                                        <asp:LinkButton ID="lbtnWork" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnWork_Click">Select</asp:LinkButton>
+
+                                    </div>
+                                    <div class="col-md-2 ml-2" style="margin-top: 22px">
+                                        <asp:LinkButton ID="lbtnAllWork" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnAllWork_Click">Select ALL</asp:LinkButton>
+
+                                    </div>
 
 
 
+                                    <div class="col-md-1">
+                                        <asp:Label ID="lblpage" runat="server" CssClass="form-label" Text="Page Size:" Visible="False"></asp:Label>
+                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True"
+                                            Font-Bold="True" Font-Size="12px" CssClass="form-control form-control-sm"
+                                            OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Visible="False">
+                                            <asp:ListItem Value="10">10</asp:ListItem>
+                                            <asp:ListItem Value="15">15</asp:ListItem>
+                                            <asp:ListItem Value="20">20</asp:ListItem>
+                                            <asp:ListItem Value="30">30</asp:ListItem>
+                                            <asp:ListItem Value="50">50</asp:ListItem>
+                                            <asp:ListItem Value="100">100</asp:ListItem>
+                                            <asp:ListItem Value="150">150</asp:ListItem>
+                                            <asp:ListItem Value="200">200</asp:ListItem>
+                                            <asp:ListItem Value="300">300</asp:ListItem>
+                                        </asp:DropDownList>
+                                        <asp:Label ID="lblmsg" runat="server" BackColor="Red" Font-Bold="True" Font-Size="12px"></asp:Label>
+                                    </div>
 
-     </div>
 
-                        </asp:Panel>
+
+
+                                </div>
+
+                            </asp:Panel>
                         </div>
-                        
-                        </div>
+
+                    </div>
                     <div class="row mt-4">
 
 

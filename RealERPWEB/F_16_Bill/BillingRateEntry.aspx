@@ -157,7 +157,7 @@
 
                                     <FooterTemplate>
                                         <asp:Label ID="lblgvFordam" runat="server" BackColor="Transparent" BorderStyle="None" BorderWidth="1px" Font-Bold="True" Font-Size="11px" Height="16px"
-                                            Style="text-align: right" Width="70px"></asp:Label>
+                                            Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
 
                                     <ItemTemplate>
@@ -179,7 +179,7 @@
                                         <asp:Label ID="lblbgdrate" runat="server" BackColor="Transparent" BorderStyle="None"
                                             BorderWidth="1px" Font-Size="11px" Height="16px" Style="text-align: right"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdrate")).ToString("#,##0.000;(#,##0.000); ") %>'
-                                            Width="60px"></asp:Label>
+                                            Width="70px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterStyle HorizontalAlign="Right" />
                                     <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
@@ -189,7 +189,7 @@
                                 <asp:TemplateField HeaderText=" Amount">
                                     <FooterTemplate>
                                         <asp:Label ID="lblgvFbgddam" runat="server" BackColor="Transparent" BorderStyle="None" BorderWidth="1px" Font-Bold="True" Font-Size="11px" Height="16px"
-                                            Style="text-align: right" Width="70px"></asp:Label>
+                                            Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
 
                                     <ItemTemplate>
