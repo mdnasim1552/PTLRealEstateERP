@@ -1440,7 +1440,8 @@
                                             <asp:DropDownList ID="ddlyear" ClientIDMode="Static" data-placeholder="Choose year" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlyear_SelectedIndexChanged">
                                                 <asp:ListItem Value="2020">2020</asp:ListItem>
                                                 <asp:ListItem Value="2021">2021</asp:ListItem>
-                                                <asp:ListItem Value="2022" Selected="True">2022</asp:ListItem>
+                                                <asp:ListItem Value="2022">2022</asp:ListItem>
+                                                 <asp:ListItem Value="2023" Selected="True">2023</asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
                                     </div>
