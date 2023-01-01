@@ -117,7 +117,7 @@
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
       <HintPath>..\..\..\..\_backup\bin\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+      <HintPath>..\..\..\..\_backup\bin\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
       <HintPath>..\..\..\..\_backup\bin\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
