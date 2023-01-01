@@ -29,6 +29,12 @@
         function HoldtaskNoteModal() {
             $('#myModal').modal('toggle');
         }
+        function activiteseditModal() {
+            $('#myactivitesEdit').modal('toggle');
+        }
+
+
+
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -138,7 +144,7 @@
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
-                                                    <asp:TemplateField HeaderText="Employee Name" Visible="false">
+                                                    <asp:TemplateField HeaderText="Emp Name" Visible="false">
                                                         <ItemTemplate>
                                                             <asp:HyperLink runat="server" ID="btnMytask" Target="_blank" NavigateUrl="~/F_38_AI/MyTasks">
                                                                 <asp:Label ID="tblwrktype" runat="server"
@@ -152,7 +158,7 @@
                                                                 Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "startdate")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "startdate")).ToString("dd-MMM-yyyy")%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Assigned <br> QTY">
+                                                    <asp:TemplateField HeaderText="Ass. <br> QTY">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblvelocityqty" runat="server" Width="80px"
                                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "assignqty")).ToString("#,##;(#,##); ") %>'></asp:Label>
@@ -179,6 +185,7 @@
                                                         </ItemTemplate>
                                                         <ItemStyle Width="80px" />
                                                     </asp:TemplateField>
+                                                   
 
                                                 </Columns>
                                                 <%--<FooterStyle CssClass="grvFooter" />--%>
@@ -253,6 +260,7 @@
                                                         </ItemTemplate>
                                                         <ItemStyle VerticalAlign="Middle" HorizontalAlign="Center" />
                                                     </asp:TemplateField>
+                                                    
                                                 </Columns>
                                                 <PagerStyle CssClass="gvPagination" />
 
@@ -265,12 +273,12 @@
                                     </div>
 
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <h5>Working Progress</h5>
                                     <div class="card" style="height: 100%; background-color: #F6F6F6;">
                                         <div class="table-responsive">
                                             <asp:GridView ID="gvTodayList" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea customeGV"
-                                                ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15">
+                                                ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" >
 
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="Job ID ">
@@ -315,7 +323,7 @@
                                                                 Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "worktime")).ToString("dd-MMM-yyyy hh:mm tt")=="01-Jan-1900"?"": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "worktime")).ToString("dd-MMM-yyyy")%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Assigned <br> QTY">
+                                                    <asp:TemplateField HeaderText="Ass. <br> QTY">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblvelocityqty" runat="server" Width="50px"
                                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "assignqty")).ToString("#,##;(#,##); ") %>'></asp:Label>
@@ -386,7 +394,7 @@
                                                         </ItemTemplate>
                                                         <ItemStyle Width="80px" />
                                                     </asp:TemplateField>
-
+                                                     
                                                 </Columns>
                                                 <%--<FooterStyle CssClass="grvFooter" />--%>
 
@@ -397,12 +405,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <h5>Activities</h5>
 
                                     <div class="card" style="height: 100%; background-color: #F6F6F6;">
                                         <asp:GridView ID="gvActivities" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea customeGV"
-                                            ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15">
+                                            ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnRowDataBound="gvActivities_RowDataBound">
 
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Job ID " Visible="false">
@@ -415,6 +423,8 @@
                                                         <asp:Label ID="lbltimetaskid" runat="server" Text="0" Visible="false"></asp:Label>
                                                         <asp:Label ID="lblempid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assignuser")) %>' Visible="false"></asp:Label>
                                                         <asp:Label ID="lbljobid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobid")) %>' Visible="false"></asp:Label>
+                                                        <asp:Label ID="lblid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "id")) %>' Visible="false"></asp:Label>
+
 
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -472,7 +482,7 @@
 
                                                 <asp:TemplateField HeaderText="Status">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lbljobstatus" runat="server" Width="75px"
+                                                        <asp:Label ID="lbljobstatus" runat="server"
                                                             CssClass='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99220") ? "badge badge-pill badge-success"://done
                                                                     (Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99215") ? "badge badge-pill badge-warning"://hold
                                                                     (Convert.ToString(DataBinder.Eval(Container.DataItem, "trackertype"))=="99217") ? "badge badge-pill badge-primary"://start
@@ -483,7 +493,12 @@
                                                     <ItemStyle VerticalAlign="Middle" HorizontalAlign="Center" />
                                                 </asp:TemplateField>
 
-
+                                                <asp:TemplateField HeaderText="Status">
+                                                    <ItemTemplate>
+                                                           <asp:LinkButton runat="server" ID="tblworkedit" Visible="false" OnClick="tblworkedit_Click" CssClass="text-success  btn-sm btn" ToolTip="Edit Job" ><i class="fa fa-edit"></i></asp:LinkButton>
+                                                        
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
                                                 <%--            <asp:TemplateField HeaderText="Status">
                                                         <ItemTemplate>
@@ -600,6 +615,83 @@
                         <!-- Modal footer -->
                         <div class="modal-footer">
                             <button type="button" runat="server" id="SaveNote" data-dismiss="modal" aria-hidden="true" onserverclick="SaveNote_ServerClick" class="btn btn-primary btn-sm">Save Note</button>
+                            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+             <div class="modal" id="myactivitesEdit" data-backdrop="false" tabindex="-1">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content" style="background: #f3f7f9">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title text-primary">Activites Edit </h4>
+                               
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <asp:Label ID="lblactiviesid" runat="server" Visible="false"></asp:Label>
+                        <!-- Modal body -->
+                        <div class="modal-body">                          
+
+                            <div class="row" >
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="username">Job Name</label>
+                                        <asp:TextBox ID="tbljobname" runat="server" ReadOnly="true"   class="form-control"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" >
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="username">Start Date</label>
+                                        <asp:TextBox ID="tblstratdate" runat="server" ReadOnly="true"  class="form-control"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="username">Assign Qty</label>
+                                        <asp:TextBox ID="tblassignqty" runat="server" ReadOnly="true"  TextMode="Number" class="form-control"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" >
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="username">Done Qty</label>
+                                        <asp:TextBox ID="tbldoneqtyac" runat="server" ReadOnly="true"  TextMode="Number" class="form-control"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" >
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label id="Label10" runat="server">Status</label>
+                                        <asp:DropDownList ID="ddlstatusupdate" runat="server" CssClass="form-control chzn-select">
+                                            <asp:ListItem Value="99204">Work Processing</asp:ListItem>
+                                            <asp:ListItem Value="99215">Hold</asp:ListItem>
+                                            <asp:ListItem Value="99220">Done</asp:ListItem>
+                                           
+
+                                        </asp:DropDownList>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" runat="server" id="btlactivitesupdate"  data-dismiss="modal" aria-hidden="true" onserverclick="btlactivitesupdate_ServerClick" class="btn btn-primary btn-sm">Update</button>
                             <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
                         </div>
 

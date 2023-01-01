@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="BillingRateEntry02.aspx.cs" Inherits="RealERPWEB.F_16_Bill.BillingRateEntry02" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="BillingRateEntry02.aspx.cs" Inherits="RealERPWEB.F_16_Bill.BillingRateEntry02" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -29,107 +29,104 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
-                    <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
-                                <div class="form-group">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row mt-4">
 
-                                    <div class="col-md-1 pading5px  asitCol1">
-                                        <asp:Label ID="lblItem5" runat="server" CssClass="lblTxt smLbl_to lblName" Text="Project/Unit"></asp:Label>
-                                        
-                                    </div>
 
-                                    <div class="col-md-4 pading5px asitCol4">
-                                        <asp:Label ID="lblProjectDesc" runat="server" Visible="False" CssClass="inputlblVal form-control " ></asp:Label>
-                                        <asp:DropDownList ID="ddlProject" runat="server" CssClass="chzn-select form-control inputTxt"></asp:DropDownList>
-                                    </div>
+                        <div class="col-md-1 d-none">
+                            
 
-                                    <div class="colMdbtn pading5px">
-                                        <asp:LinkButton ID="lbtnOk1" runat="server" stylr="margin-left=-50px;" CssClass="btn btn-primary primaryBtn" OnClick="lbtnOk1_Click" Text="Ok"></asp:LinkButton>
-                                    </div>
-                                </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <asp:Label ID="lblItem5" runat="server" CssClass="form-label" Text="Project/Unit"></asp:Label>
+                            <asp:Label ID="lblProjectDesc" runat="server" Visible="False" CssClass="form-control form-control-sm"></asp:Label>
+                            <asp:DropDownList ID="ddlProject" runat="server" CssClass="chzn-select form-control form-control-sm"></asp:DropDownList>
+                        </div>
+
+                        <div class="col-md-1" style="margin-top:22px">
+                            <asp:LinkButton ID="lbtnOk1" runat="server" CssClass="btn btn-sm btn-primary ml-2" OnClick="lbtnOk1_Click" Text="Ok"></asp:LinkButton>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row mt-2 mb-2">
+                        <div class="col-md-12">
+                            <asp:Panel ID="pnlItem" Visible="false" runat="server">
+
+                            <div class="row">
+
+                       
+
+
+
+
+                            <div class="col-md-1 d-none">
                             </div>
 
-                           
-                   
-                    </fieldset>
-                        <asp:Panel ID="pnlItem" Visible="false" runat="server">
+                            <div class="col-md-2">
+                                <asp:Label ID="lblgroup" runat="server" CssClass="form-label" Text="Group"></asp:Label>
+                                <asp:DropDownList ID="ddlGroup" runat="server" CssClass="chzn-select form-control form-control-sm" TabIndex="12" AutoPostBack="True" OnSelectedIndexChanged="ddlGroup_SelectedIndexChanged">
+                                </asp:DropDownList>
+
+                            </div>
 
 
-                     
-                    
-                       <fieldset class="scheduler-border fieldset_B">
+                            <div class="col-md-1 pading5px asitCol1 d-none">
+                            </div>
 
-                                    <div class="form-horizontal">
-                                        <div class="form-group">
+                            <div class="col-md-4">
+                                <asp:Label ID="lblitemList" runat="server" CssClass="form-label" Text="Item List"></asp:Label>
+                                <asp:DropDownList ID="ddlitemlist" runat="server" CssClass="chzn-select form-control form-control-sm" TabIndex="12">
+                                </asp:DropDownList>
 
-                                            <div class="col-md-1 pading5px asitCol1 ">                                               
-                                                
-                                                <asp:Label ID="lblgroup" runat="server" CssClass=" lblTxt lblName" Text="Group"></asp:Label>  
-                                            </div>
+                            </div>
+                            <div class="col-md-1 ml-2" style="margin-top:22px">
+                                <asp:LinkButton ID="lbtnWork" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnWork_Click">Select</asp:LinkButton>
 
-                                              <div class="col-md-2 pading5px  asitCol2">
-                                                  <asp:DropDownList ID="ddlGroup" runat="server" CssClass="chzn-select form-control " TabIndex="12" AutoPostBack="True" OnSelectedIndexChanged="ddlGroup_SelectedIndexChanged">
-                                                </asp:DropDownList>
+                            </div>
+                            <div class="col-md-2 ml-2" style="margin-top:22px">
+                                <asp:LinkButton ID="lbtnAllWork" runat="server" CssClass="btn btn-sm btn-primary"  OnClick="lbtnAllWork_Click">Select ALL</asp:LinkButton>
 
-                                            </div>
-
-
-                                            <div class="col-md-1 pading5px asitCol1 ">
-                                               
-                                                 <asp:Label ID="lblitemList" runat="server" CssClass=" lblTxt lblName" Text="Item List"></asp:Label>
-                                               
-                                               
-                                              
-                                            </div>
-
-                                            <div class="col-md-4 pading5px  asitCol4">
-                                                  <asp:DropDownList ID="ddlitemlist" runat="server" CssClass="chzn-select form-control " TabIndex="12">
-                                                </asp:DropDownList>
-
-                                            </div>
-                                            <div class="col-md-2 pading5px asitCol2">
-                                                 <asp:LinkButton ID="lbtnWork" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnWork_Click">Select</asp:LinkButton>
-
-                                                  <asp:LinkButton ID="lbtnAllWork" runat="server" CssClass="btn btn-primary primaryBtn" Style="margin-left: 20px;" OnClick="lbtnAllWork_Click">Select ALL</asp:LinkButton>
-                                            </div>
+                            </div>
 
 
-                                             <div class="col-md-3 pading5px asitCol3">
-                                    <asp:Label ID="lblpage" runat="server" CssClass="lblTxt lblName" Text="Page Size:" Visible="False"></asp:Label>
-                                    <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True"
-                                        Font-Bold="True" Font-Size="12px" CssClass="ddlPage"
-                                        OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Visible="False">
-                                        <asp:ListItem Value="10">10</asp:ListItem>
-                                        <asp:ListItem Value="15">15</asp:ListItem>
-                                        <asp:ListItem Value="20">20</asp:ListItem>
-                                        <asp:ListItem Value="30">30</asp:ListItem>
-                                        <asp:ListItem Value="50">50</asp:ListItem>
-                                        <asp:ListItem Value="100">100</asp:ListItem>
-                                        <asp:ListItem Value="150">150</asp:ListItem>
-                                        <asp:ListItem Value="200">200</asp:ListItem>
-                                        <asp:ListItem Value="300">300</asp:ListItem>
-                                    </asp:DropDownList>
-                                    <asp:Label ID="lblmsg" runat="server" BackColor="Red" Font-Bold="True" Font-Size="12px"></asp:Label>
-                                </div>
-                                          
+
+                            <div class="col-md-1">
+                                <asp:Label ID="lblpage" runat="server" CssClass="form-label" Text="Page Size:" Visible="False"></asp:Label>
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True"
+                                    Font-Bold="True" Font-Size="12px" CssClass="form-control form-control-sm"
+                                    OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Visible="False">
+                                    <asp:ListItem Value="10">10</asp:ListItem>
+                                    <asp:ListItem Value="15">15</asp:ListItem>
+                                    <asp:ListItem Value="20">20</asp:ListItem>
+                                    <asp:ListItem Value="30">30</asp:ListItem>
+                                    <asp:ListItem Value="50">50</asp:ListItem>
+                                    <asp:ListItem Value="100">100</asp:ListItem>
+                                    <asp:ListItem Value="150">150</asp:ListItem>
+                                    <asp:ListItem Value="200">200</asp:ListItem>
+                                    <asp:ListItem Value="300">300</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:Label ID="lblmsg" runat="server" BackColor="Red" Font-Bold="True" Font-Size="12px"></asp:Label>
+                            </div>
 
 
-                                        </div>
 
-                                    </div>
-                                </fieldset>
-                              
-                            
-                          </asp:Panel>
-               
+
+     </div>
+
+                        </asp:Panel>
+                        </div>
+                        
+                        </div>
+                    <div class="row mt-4">
+
 
                         <asp:GridView ID="gvRptResBasis" runat="server" AllowPaging="True"
                             AutoGenerateColumns="False"
                             OnPageIndexChanging="gvRptResBasis_PageIndexChanging" PageSize="20"
-                            ShowFooter="True" Width="654px" CssClass="table-responsive table-striped table-hover table-bordered grvContentarea" OnRowCreated="gvRptResBasis_RowCreated">
+                            ShowFooter="True" Width="1054px" CssClass="table-responsive table-striped table-hover table-bordered grvContentarea" OnRowCreated="gvRptResBasis_RowCreated">
                             <PagerSettings PageButtonCount="20" Mode="NumericFirstLast" />
                             <RowStyle Font-Size="11px" />
                             <Columns>
@@ -142,21 +139,21 @@
                                 </asp:TemplateField>
 
 
-                                 <asp:TemplateField HeaderText="">
-                                    
+                                <asp:TemplateField HeaderText="">
 
-                                  
-                                     <ItemTemplate>
-                                         <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn  btn-sm" OnClientClick="return FunConfirm();" ToolTip="Delete"  OnClick="lbtnDelete_Click"><span  class="glyphicon glyphicon-trash"></span></asp:LinkButton>
-                                     </ItemTemplate>
-                                    
-                                    
-                                  
+
+
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn  btn-sm" OnClientClick="return FunConfirm();" ToolTip="Delete" OnClick="lbtnDelete_Click"><span  class="glyphicon glyphicon-trash"></span></asp:LinkButton>
+                                    </ItemTemplate>
+
+
+
                                     <FooterStyle HorizontalAlign="Right" />
                                     <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
                                 </asp:TemplateField>
 
-                                 <asp:TemplateField HeaderText="Group">
+                                <asp:TemplateField HeaderText="Group">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvgroup" runat="server" Font-Bold="False" Font-Size="12px"
                                             Text='<%#  "<B>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "misirdesc"))  + "</B>"                                                                      
@@ -168,7 +165,7 @@
                                     <FooterStyle Font-Bold="true" Font-Size="14px" />
                                 </asp:TemplateField>
 
-                                
+
                                 <asp:TemplateField HeaderText="Work Description">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvRptRes1" runat="server" Font-Bold="False" Font-Size="12px"
@@ -185,7 +182,7 @@
                                     <FooterStyle Font-Bold="true" Font-Size="14px" />
                                 </asp:TemplateField>
 
-                               
+
 
                                 <asp:TemplateField HeaderText="Unit">
                                     <ItemTemplate>
@@ -211,7 +208,7 @@
 
 
                                 <asp:TemplateField HeaderText="Percent">
-                                   
+
 
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvpercnt" runat="server" BorderColor="#99CCFF" BackColor="Wheat" BorderStyle="Solid" Style="text-align: right"
@@ -277,11 +274,11 @@
                             <HeaderStyle CssClass="grvHeader" />
                         </asp:GridView>
 
+                    </div>
+
                 </div>
-                 
-                </div>
-            
-             </div>
+
+            </div>
 
 
 

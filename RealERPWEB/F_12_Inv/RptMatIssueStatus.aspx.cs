@@ -39,7 +39,37 @@ namespace RealERPWEB.F_12_Inv
                 this.txtfromdate.Text = System.DateTime.Today.AddDays(-30).ToString("dd-MMM-yyyy");
                 this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyy");
                 this.GetProjectName();
+                this.GridViewHeaderName();
             }
+        }
+
+        public string GetCompCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
+
+        }
+        private void GridViewHeaderName()
+        {
+
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "3370"://CPDL
+                case "3101"://PTL
+                    this.gvMatIssueStatus.Columns[3].HeaderText = "SIS No";
+                    this.gvMatIssueStatus.Columns[4].HeaderText = "SIR No";
+                    break;
+
+                default:
+                    break;
+            
+            
+            
+            }
+            
+        
+        
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {

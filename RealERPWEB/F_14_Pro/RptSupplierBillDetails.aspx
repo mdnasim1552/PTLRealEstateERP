@@ -4,7 +4,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    &nbsp;<script type="text/javascript" language="javascript">
+    
+    <script type="text/javascript" language="javascript">
 
               $(document).ready(function () {
 
@@ -17,12 +18,109 @@
                   $('.chzn-select').chosen({ search_contains: true });
 
 
+                  $('#<%=this.chkasondate.ClientID%>').change(function () {
+
+                      try {
+
+                          var chk = $(this).is(':checked');
+                          if (chk == true)
+                          {
+                              $('#<%=this.txtDate.ClientID%>').hide();
+                              $('#<%=this.lblfrmdate.ClientID%>').hide();
+
+                              $('#<%=this.lbltodate.ClientID%>').text("Date:");
+
+                          }
+                          else
+                          {
+                              $('#<%=this.txtDate.ClientID%>').show();
+                              $('#<%=this.lblfrmdate.ClientID%>').show();
+                              $('#<%=this.lbltodate.ClientID%>').text("To:");
+
+                          }
+                         
+                      
+                        
+                      }
+                      catch (e)
+                      {
+
+                          alert(e.message);
+
+                      }
+
+                  });
+
+
+                 }
 
 
 
-              }
 
     </script>
+
+       <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+        }
+
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 18px;
+                width: 18px;
+                left: 1px;
+                bottom: 1px;
+                background-color: white;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(18px);
+            -ms-transform: translateX(18px);
+            transform: translateX(18px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 20px;
+        }
+
+            .slider.round:before {
+                border-radius: 50%;
+            }
+
+           </style>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
 
         <ContentTemplate>
@@ -88,7 +186,7 @@
                                     <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                 </div>
-                                <div class="col-md-3 pading5px">
+                                <div class="col-md-4 asitCol4 pading5px">
                                     <asp:DropDownList ID="ddlProjectName" runat="server"
                                         CssClass="chzn-select ddlistPull" Width="336px" TabIndex="5"
                                         AutoPostBack="True">
@@ -97,12 +195,28 @@
 
 
                                 <div class="col-md-3">
-                                    <asp:Label ID="Label15" runat="server" CssClass="lblTxt lblName" Text="Date:"></asp:Label>
+                                    <asp:Label ID="lblfrmdate" runat="server" CssClass="smLbl_to" Text="From:"></asp:Label>
 
                                     <asp:TextBox ID="txtDate" runat="server" CssClass="inputtextbox"
                                         TabIndex="7"></asp:TextBox>
                                     <cc1:CalendarExtender ID="txtDate_CalendarExtender0" runat="server"
                                         Format="dd-MMM-yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
+                                    <asp:Label ID="lbltodate" runat="server" CssClass="smLbl_to" Text="To:"></asp:Label>
+
+                                    <asp:TextBox ID="txttoDate" runat="server" CssClass="inputtextbox"
+                                        TabIndex="7"></asp:TextBox>
+                                    <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
+                                        Format="dd-MMM-yyyy" TargetControlID="txttoDate"></cc1:CalendarExtender>
+                                </div>
+
+
+                                <div class="col-md-2">
+                                    <label id="chkbod" runat="server" class="switch">
+                                        <asp:CheckBox ID="chkasondate" runat="server" />
+                                        <span class="btn btn-xs slider round"></span>
+                                    </label>
+                                    <asp:Label runat="server" Text="as on date" ID="lblnetbalance" CssClass="control-label"></asp:Label>
+
                                 </div>
 
 
@@ -197,7 +311,7 @@
                                     <asp:Label ID="lgvFBillAmt" runat="server" Font-Bold="True" Font-Size="12px"
                                         ForeColor="Black" Style="text-align: right"></asp:Label>
                                 </FooterTemplate>
-                                
+
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Sec %">
                                 <ItemTemplate>

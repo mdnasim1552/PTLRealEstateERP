@@ -538,7 +538,7 @@ namespace RealEntity.C_09_PIMP
         }
 
 
-
+        [Serializable]
         public class EClassResourceWiseMBSum
         {
             public string rsircode { get; set; }
@@ -557,7 +557,30 @@ namespace RealEntity.C_09_PIMP
 
 
         }
+        [Serializable]
+        public class EClassMRbook
+        {
+            public string rsircode { get; set; }
+            public string rsirdesc { get; set; }
+            public string rsirunit { get; set; }
+            public string flrdes { get; set; }
+            public double nos { get; set; }
+            public double lnght { get; set; }
+            public double breadth { get; set; }
+            public double height { get; set; }
+            public double uweight { get; set; }
+            public double tweight { get; set; }
+            public string remarks { get; set; }
 
+            public EClassMRbook()
+            {
+
+            }
+
+
+
+
+        }
 
     }
 

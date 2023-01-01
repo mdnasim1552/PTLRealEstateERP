@@ -33,7 +33,12 @@ namespace RealERPWEB.F_14_Pro
                 //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Supplier Bill Details";
-                this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                DateTime curdate = System.DateTime.Today;
+                string frmdate = "01-" + curdate.ToString("MMM-yyyy"); 
+                string todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+                this.txtDate.Text = frmdate;
+                this.txttoDate.Text = todate;
                 this.GetSupplierName();
                 this.GetProjectName();
 
@@ -136,8 +141,10 @@ namespace RealERPWEB.F_14_Pro
             string PactCode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
 
             string SupplierName = this.ddlSubName.SelectedValue.ToString();
-            string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
-            DataSet ds1 = BgdData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", "RPTSUPPLIERBILLDETAILS", PactCode, SupplierName, date, "", "", "", "", "", "");
+            string frmdate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
+            string asondate = this.chkasondate.Checked ? "asondate" : "";
+            DataSet ds1 = BgdData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", "RPTSUPPLIERBILLDETAILS", PactCode, SupplierName, frmdate, todate, asondate, "", "", "", "");
             if (ds1 == null)
                 return;
             Session["tblSubbill"] = HiddenSameData(ds1.Tables[0]);
@@ -282,5 +289,7 @@ namespace RealERPWEB.F_14_Pro
         {
             this.GetProjectName();
         }
+
+      
     }
 }

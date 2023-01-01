@@ -573,15 +573,6 @@ namespace RealERPWEB.F_22_Sal
         protected global::System.Web.UI.WebControls.Label Label7;
 
         /// <summary>
-        /// txtsrchInstallment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtsrchInstallment;
-
-        /// <summary>
         /// ibtnFindInstallment control.
         /// </summary>
         /// <remarks>
@@ -589,6 +580,15 @@ namespace RealERPWEB.F_22_Sal
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton ibtnFindInstallment;
+
+        /// <summary>
+        /// txtsrchInstallment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtsrchInstallment;
 
         /// <summary>
         /// ddlInstallment control.

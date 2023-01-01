@@ -64,7 +64,7 @@
       <HintPath>..\..\..\..\_backup\bin\bin\BilSimser.GeoJson.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Design">
-      <HintPath>..\..\Real Estate Bin 211213\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
+      <HintPath>..\..\..\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine">
       <HintPath>..\..\Real Estate Bin 211213\bin\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
@@ -117,6 +117,7 @@
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
       <HintPath>..\..\..\..\_backup\bin\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
       <HintPath>..\..\..\..\_backup\bin\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
@@ -185,10 +186,10 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+      <HintPath>..\..\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.SqlServer.Types.dll</HintPath>
@@ -262,6 +263,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\_backup\bin\bin\RealERPRPT.dll</HintPath>
     </Reference>
+    <Reference Include="RealERPWEB.XmlSerializers">
+      <HintPath>..\..\bin\RealERPWEB.XmlSerializers.dll</HintPath>
+    </Reference>
     <Reference Include="RestSharp, Version=108.0.3.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.108.0.3\lib\netstandard2.0\RestSharp.dll</HintPath>
     </Reference>
@@ -292,8 +296,7 @@
     </Reference>
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\Administrator\Desktop\System.Memory.dll</HintPath>
-      <HintPath>..\..\bin\System.Memory.dll</HintPath>
+      <HintPath>..\..\..\System.Memory.dll</HintPath>
     </Reference>
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -337,7 +340,7 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
-      <HintPath>..\..\Real Estate Bin 211213\bin\System.Web.Optimization.dll</HintPath>
+      <HintPath>..\..\bin\System.Web.Optimization.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
@@ -2303,6 +2306,7 @@
     <Content Include="F_09_PImp\SubConBillWiseReport.aspx" />
     <Content Include="F_09_PImp\SubConPrjWiseBilldetails.aspx" />
     <Content Include="F_09_PImp\SubContracBillTracking.aspx" />
+    <Content Include="F_09_PImp\WorkExecutionWithIssue.aspx" />
     <Content Include="F_12_Inv\AllIndentIsuList.aspx" />
     <Content Include="F_12_Inv\IndentMaterialRequired.aspx" />
     <Content Include="F_12_Inv\LinkMatReceipt.aspx" />
@@ -2317,9 +2321,13 @@
     <Content Include="F_12_Inv\PurReqEntry.aspx" />
     <Content Include="F_12_Inv\RptIndentIssueStatus.aspx" />
     <Content Include="F_12_Inv\RptIndentIssueStatusSummary.aspx" />
+    <Content Include="F_12_Inv\RptProjectStockEva.aspx" />
     <Content Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx" />
     <Content Include="F_14_Pro\RptDateWiseBill.aspx" />
     <Content Include="F_14_Pro\PoMrrBillStatus.aspx" />
+    <Content Include="F_14_Pro\RptPurchaseStatus.aspx" />
+    <Content Include="F_14_Pro\RptPurchesStatus.aspx" />
+    <Content Include="F_14_Pro\RptPurchesStatusPrjWise.aspx" />
     <Content Include="F_14_Pro\RptPurOrderTopSheet.aspx" />
     <Content Include="F_14_Pro\RptSupAdvanceDetails.aspx" />
     <Content Include="F_17_Acc\AccIssueUpdate.aspx" />
@@ -2339,6 +2347,7 @@
     <Content Include="F_22_Sal\MktBookigApp2.aspx" />
     <Content Include="F_22_Sal\MktSampleNoteSheet.aspx" />
     <Content Include="F_22_Sal\MktGrandNoteSheet.aspx" />
+    <Content Include="F_22_Sal\RptSalesVsCollTeamWise.aspx" />
     <Content Include="F_22_Sal\SalesAllReports.aspx" />
     <Content Include="F_22_Sal\SaleSurvey.aspx" />
     <Content Include="F_22_Sal\SaleSurPrjInformation.aspx" />
@@ -2354,6 +2363,7 @@
     <Content Include="F_23_CR\RptDuesReportAll.aspx" />
     <Content Include="F_23_CR\RptMonthlyProbCollection.aspx" />
     <Content Include="F_23_CR\RptOtherCollHistory.aspx" />
+    <Content Include="F_23_CR\RptPaymentStatusdaywise.aspx" />
     <Content Include="F_24_CC\CustCycInformation.aspx" />
     <Content Include="F_28_MPro\AccMktMonthlyBgd.aspx" />
     <Content Include="F_28_MPro\MktMarketSurvey.aspx" />
@@ -2425,7 +2435,6 @@
     <Content Include="F_14_Pro\RptPaymetDueAllPrj.aspx" />
     <Content Include="F_14_Pro\RptPrjWiseMrfHistory.aspx" />
     <Content Include="F_14_Pro\RptPurchaseOrdItemRate.aspx" />
-    <Content Include="F_14_Pro\RptPurchaseStatus.aspx" />
     <Content Include="F_14_Pro\RptPurchaseStatus02.aspx" />
     <Content Include="F_14_Pro\RptPurchasetracking.aspx" />
     <Content Include="F_14_Pro\RptReqAdjust.aspx" />
@@ -3718,6 +3727,7 @@
     <Content Include="p5.PNG" />
     <Content Include="p6.PNG" />
     <Content Include="p7.png" />
+    <Content Include="Properties\PublishProfiles\FolderProfile.pubxml.user" />
     <Content Include="RDLCViewer.aspx" />
     <Content Include="F_01_LPA\RptLandDevProposal.aspx" />
     <Content Include="RDLCViewerWin.aspx" />
@@ -4044,6 +4054,7 @@
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
     </None>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -4218,6 +4229,13 @@
     <Compile Include="F_09_PImp\SubContracBillTracking.aspx.designer.cs">
       <DependentUpon>SubContracBillTracking.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_09_PImp\WorkExecutionWithIssue.aspx.cs">
+      <DependentUpon>WorkExecutionWithIssue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_09_PImp\WorkExecutionWithIssue.aspx.designer.cs">
+      <DependentUpon>WorkExecutionWithIssue.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_12_Inv\IndentMaterialRequired.aspx.cs">
       <DependentUpon>IndentMaterialRequired.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4246,6 +4264,13 @@
     <Compile Include="F_12_Inv\RptIndentIssueStatusSummary.aspx.designer.cs">
       <DependentUpon>RptIndentIssueStatusSummary.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_12_Inv\RptProjectStockEva.aspx.cs">
+      <DependentUpon>RptProjectStockEva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_12_Inv\RptProjectStockEva.aspx.designer.cs">
+      <DependentUpon>RptProjectStockEva.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_14_Pro\LinkRptPurchaseStatusUr.aspx.cs">
       <DependentUpon>LinkRptPurchaseStatusUr.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4266,6 +4291,27 @@
     </Compile>
     <Compile Include="F_14_Pro\PoMrrBillStatus.aspx.designer.cs">
       <DependentUpon>PoMrrBillStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchaseStatus.aspx.cs">
+      <DependentUpon>RptPurchaseStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchaseStatus.aspx.designer.cs">
+      <DependentUpon>RptPurchaseStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchesStatus.aspx.cs">
+      <DependentUpon>RptPurchesStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchesStatus.aspx.designer.cs">
+      <DependentUpon>RptPurchesStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchesStatusPrjWise.aspx.cs">
+      <DependentUpon>RptPurchesStatusPrjWise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchesStatusPrjWise.aspx.designer.cs">
+      <DependentUpon>RptPurchesStatusPrjWise.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\RptPurOrderTopSheet.aspx.cs">
       <DependentUpon>RptPurOrderTopSheet.aspx</DependentUpon>
@@ -4400,6 +4446,13 @@
     <Compile Include="F_22_Sal\MktGrandNoteSheet.aspx.designer.cs">
       <DependentUpon>MktGrandNoteSheet.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_22_Sal\RptSalesVsCollTeamWise.aspx.cs">
+      <DependentUpon>RptSalesVsCollTeamWise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\RptSalesVsCollTeamWise.aspx.designer.cs">
+      <DependentUpon>RptSalesVsCollTeamWise.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_22_Sal\SalesAllReports.aspx.cs">
       <DependentUpon>SalesAllReports.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4504,6 +4557,13 @@
     </Compile>
     <Compile Include="F_23_CR\RptOtherCollHistory.aspx.designer.cs">
       <DependentUpon>RptOtherCollHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_23_CR\RptPaymentStatusdaywise.aspx.cs">
+      <DependentUpon>RptPaymentStatusdaywise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_23_CR\RptPaymentStatusdaywise.aspx.designer.cs">
+      <DependentUpon>RptPaymentStatusdaywise.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_24_CC\CustCycInformation.aspx.cs">
       <DependentUpon>CustCycInformation.aspx</DependentUpon>
@@ -7607,13 +7667,6 @@
     </Compile>
     <Compile Include="F_14_Pro\RptPurchaseOrdItemRate.aspx.designer.cs">
       <DependentUpon>RptPurchaseOrdItemRate.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="F_14_Pro\RptPurchaseStatus.aspx.cs">
-      <DependentUpon>RptPurchaseStatus.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_14_Pro\RptPurchaseStatus.aspx.designer.cs">
-      <DependentUpon>RptPurchaseStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\RptPurchaseStatus02.aspx.cs">
       <DependentUpon>RptPurchaseStatus02.aspx</DependentUpon>

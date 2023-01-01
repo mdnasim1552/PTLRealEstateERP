@@ -21,9 +21,11 @@ namespace RealERPWEB.F_38_AI
             {
                 ((Label)this.Master.FindControl("lblTitle")).Text = "My Tasks";
                 string type = Request.QueryString["Type"];
-                if(type == "MGT")
+                if (type == "MGT")
                 {
-                    this.mgtenplist.Visible = true;
+                    this.mgtenplist.Visible = true; 
+                    
+                    
                 }
                 this.GetEmployeeName();
                 btnMyTasks_SelectedIndexChanged(null, null);
@@ -42,7 +44,7 @@ namespace RealERPWEB.F_38_AI
             string projectName = "%";
             string qtype = Request.QueryString["Type"].ToString();
 
-            string emp = Request.QueryString["EmpID"].ToString()==""?"": Request.QueryString["EmpID"].ToString();
+            string emp = Request.QueryString["EmpID"].ToString() == "" ? "" : Request.QueryString["EmpID"].ToString();
             string txtSEmployee = "%%";
             DataSet ds3 = AIData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "GETEMPNAME", company, projectName, txtSEmployee, "", "", "", "", "", "");
             if (ds3 == null)
@@ -56,7 +58,7 @@ namespace RealERPWEB.F_38_AI
             this.ddemplist.DataValueField = "empid";
             this.ddemplist.DataSource = dv2.ToTable();
             this.ddemplist.DataBind();
-            if(emp.Length > 0 && qtype=="MGT")
+            if (emp.Length > 0 && qtype == "MGT")
             {
                 this.ddemplist.SelectedValue = emp;
 
@@ -124,7 +126,7 @@ namespace RealERPWEB.F_38_AI
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
-            
+
             string empid = this.ddemplist.SelectedValue.ToString();
 
             string comcod = this.GetCompCode();
@@ -155,7 +157,7 @@ namespace RealERPWEB.F_38_AI
             Session["tblActivities"] = ds.Tables[0];
             DataTable dt1 = new DataTable();
             DataView view = new DataView();
-            view.Table = ds.Tables[0]; 
+            view.Table = ds.Tables[0];
             view.RowFilter = " trackertype='99220'";
             dt1 = view.ToTable();
             Session["tblcompletejob"] = dt1;
@@ -181,9 +183,9 @@ namespace RealERPWEB.F_38_AI
             this.gvActivities.DataSource = tblActivities;
             this.gvActivities.DataBind();
 
-           
-           
-           
+
+
+
             this.gv_Completejob.DataSource = tblcompletesjob;
             this.gv_Completejob.DataBind();
 
@@ -208,7 +210,7 @@ namespace RealERPWEB.F_38_AI
                 string cdate = System.DateTime.Now.ToString("yyyy-MM-dd h:mm:ss tt");
                 string createuser = hst["usrid"].ToString();
                 string empid = hst["empid"].ToString();
-                
+
                 string assignuser = this.ddemplist.SelectedValue.ToString();
 
                 string trackertype = "99204";// task wip
@@ -223,7 +225,7 @@ namespace RealERPWEB.F_38_AI
                 int index = this.gvAssingJob.PageSize * this.gvAssingJob.PageIndex + RowIndex;
                 string comcod = this.GetCompCode();
                 string jobid = ((Label)this.gvAssingJob.Rows[RowIndex].FindControl("lbljobid")).Text.Trim();
-                bool resultb = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INSERTUPDATE_STARTTASK", jobid, assignuser, cdate, trackertype, doneqty, skipqty, remarks,"", returnqty, rejectqty);
+                bool resultb = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INSERTUPDATE_STARTTASK", jobid, assignuser, cdate, trackertype, doneqty, skipqty, remarks, "", returnqty, rejectqty);
                 if (!resultb)
                 {
                     string msg = "Task Start Fail";
@@ -271,7 +273,7 @@ namespace RealERPWEB.F_38_AI
                 this.divRejQty.Visible = false;
                 this.holdreason.Visible = true;
             }
-           
+
 
             this.holdstatus.Text = "99215";
             this.notetaskid.Text = timeid;
@@ -285,10 +287,10 @@ namespace RealERPWEB.F_38_AI
 
         protected void SaveNote_ServerClick(object sender, EventArgs e)
         {
-            
+
             try
             {
-                
+
 
                 string postdate = System.DateTime.Now.ToString("yyyy-MM-dd h:mm:ss tt");
                 string timeTkerID = this.notetaskid.Text;
@@ -367,7 +369,7 @@ namespace RealERPWEB.F_38_AI
 
 
 
-            bool resultb = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INSERTUPDATE_STARTTASK", jobid, empid, postdate, trackertype, "0", "0", "Start", "","0","0");
+            bool resultb = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "INSERTUPDATE_STARTTASK", jobid, empid, postdate, trackertype, "0", "0", "Start", "", "0", "0");
 
             if (!resultb)
             {
@@ -412,6 +414,88 @@ namespace RealERPWEB.F_38_AI
         protected void ddemplist_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnMyTasks_SelectedIndexChanged(null, null);
+
+        }
+
+        protected void tblworkedit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int index = row.RowIndex;
+                string id = ((Label)this.gvActivities.Rows[index].FindControl("lblid")).Text.Trim();
+                string title = ((Label)this.gvActivities.Rows[index].FindControl("Lbltasktitle")).Text.Trim();
+                string date = ((Label)this.gvActivities.Rows[index].FindControl("tblcreatedate")).Text.Trim();
+                string qty = ((Label)this.gvActivities.Rows[index].FindControl("lblvelocityqty")).Text.Trim();
+                string doneqty = ((Label)this.gvActivities.Rows[index].FindControl("lbldoneqty")).Text.Trim();
+                this.lblactiviesid.Text = id;
+                this.tbljobname.Text = title;
+                this.tblstratdate.Text = date;
+                this.tblassignqty.Text = qty;
+                this.tbldoneqtyac.Text = doneqty;
+
+
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "activiteseditModal();", true);
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
+
+       
+
+        protected void gvActivities_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string type = Request.QueryString["Type"].ToString();
+
+                //int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+                //int index = (this.gvTodayList.PageSize * this.gvTodayList.PageIndex) + rowIndex;
+
+                if (type == "MGT")
+                {
+                    //this.tblworkedit.Visible = true;
+                    LinkButton HyplnkModal = (LinkButton)e.Row.FindControl("tblworkedit");
+                    HyplnkModal.Visible = true;
+
+
+                }
+            }
+
+        }
+
+        protected void btlactivitesupdate_ServerClick(object sender, EventArgs e)
+        {
+            try
+            {
+                string comcod = this.GetCompCode();
+                string id = this.lblactiviesid.Text;
+                string track = this.ddlstatusupdate.SelectedValue;
+
+                bool result = AIData.UpdateTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "ACTIVEWORKUPDATE", id, track, "", "", "", "", "", "", "", "");
+
+                if (!result)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Update Fail..!!');", true);
+                    return;
+                }
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Update  Successfully');", true);
+                this.GetRecentAssigned();
+                this.GetTodayDoingJob();
+                this.GetTodayActivities();
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
 
         }
     }
