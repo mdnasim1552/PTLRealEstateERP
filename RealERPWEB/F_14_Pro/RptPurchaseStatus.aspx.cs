@@ -92,14 +92,15 @@ namespace RealERPWEB.F_14_Pro
                     {
                         this.GetProjectName();
                     }
-                    
+
                 }
                 this.ShowView();
                 if (Type == "Ordertrk")
                 {
                     this.GetOrderNo();
                 }
-                else if (Type == "GenBillTrack") {
+                else if (Type == "GenBillTrack")
+                {
                     //this.main.Visible = false;
                     //this.genbillno.Visible = true;
                     //this.GetGeneralBillNo();
@@ -113,7 +114,7 @@ namespace RealERPWEB.F_14_Pro
 
                 this.imgbtnFindMatCom_Click(null, null);
             }
-         }
+        }
 
 
 
@@ -162,7 +163,7 @@ namespace RealERPWEB.F_14_Pro
 
             DropDownList ddlgrdresouce = (DropDownList)this.gvGenBillTracking.Rows[e.NewEditIndex].FindControl("ddlrgrdesuorcecode");
 
-           
+
             string SearchResourche = "%"; // +((TextBox)this.dgv1.Rows[e.NewEditIndex].FindControl("txtgrdserresource")).Text.Trim() + "%";
 
             DataSet ds3 = MktData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETRESCODE", "", SearchResourche, "", "", "", "", "", "", "");
@@ -180,7 +181,7 @@ namespace RealERPWEB.F_14_Pro
 
         protected void gvGenBillTracking_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-
+            this.GetSingleProjectDetails();
             string comcod = this.GetComeCode();
             DataTable dt = (DataTable)Session["tblvoucher"];
             int rowindex = (int)ViewState["gindex"];
@@ -189,14 +190,60 @@ namespace RealERPWEB.F_14_Pro
             string rescode = ((DropDownList)this.gvGenBillTracking.Rows[rowindex].FindControl("ddlrgrdesuorcecode")).SelectedValue.ToString();
             string billno = this.ddlGenBillTracking.SelectedValue.ToString();
 
-            bool resulta = MktData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "UPDATEPROJECT", actcode, rescode, billno,
-                                 "", "","","","","","","","", "", "", "", "", "", "", "", "","","","","","","","");
+            DataTable projectDetails = (DataTable)Session["projectdetails"];
+
+            if (projectDetails.Rows.Count > 0)
+            {
+                string vounum = projectDetails.Rows[0]["vounum"].ToString();
+                string sectcode = projectDetails.Rows[0]["sectcode"].ToString();
+                string actcode1 = projectDetails.Rows[0]["actcode"].ToString();
+                string rescode1 = projectDetails.Rows[0]["rescode"].ToString();
+                string cactcode = projectDetails.Rows[0]["cactcode"].ToString();
+                string voudat = projectDetails.Rows[0]["voudat"].ToString();
+                string trnqty = projectDetails.Rows[0]["trnqty"].ToString();
+                string trnrmrk = projectDetails.Rows[0]["trnrmrk"].ToString();
+                string vtcode = projectDetails.Rows[0]["vtcode"].ToString();
+                string trnam = projectDetails.Rows[0]["trnam"].ToString();
+                string spclcode = projectDetails.Rows[0]["spclcode"].ToString();
+                string vactive = projectDetails.Rows[0]["actcode"].ToString();
+                string rowdate = projectDetails.Rows[0]["rowdate"].ToString();
+                string recndt = projectDetails.Rows[0]["recndt"].ToString();
+                string rpcode = projectDetails.Rows[0]["rpcode"].ToString();
+                string billno1 = projectDetails.Rows[0]["billno"].ToString();
+                string userid = projectDetails.Rows[0]["userid"].ToString();
+                string editdat = projectDetails.Rows[0]["editdat"].ToString();
+                string edittrmid = projectDetails.Rows[0]["edittrmid"].ToString();
+            
+                bool resulta = MktData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "UPDATEPROJECT", vounum, sectcode, actcode, rescode, spclcode, billno, cactcode, trnrmrk, voudat, trnqty
+                                , vtcode, trnam, vactive, rowdate, recndt, rpcode, userid, editdat, edittrmid, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            }
+
+        }
+
+
+        protected void GetSingleProjectDetails()
+        {
+            string comcod = this.GetComeCode();
+            int rowindex = (int)ViewState["gindex"];
+
+            string actcode = ((DropDownList)this.gvGenBillTracking.Rows[rowindex].FindControl("ddlgrdacccode")).SelectedValue.ToString();
+            string rescode = ((DropDownList)this.gvGenBillTracking.Rows[rowindex].FindControl("ddlrgrdesuorcecode")).SelectedValue.ToString();
+            string billno = this.ddlGenBillTracking.SelectedValue.ToString();
+
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETPROJECTDETAILS", actcode, rescode, billno, "", "", "", "", "", "");
+
+            if (ds1 == null)
+            {
+                return;
+            }
+
+            Session["projectdetails"] = ds1.Tables[0];
         }
 
 
         protected void ddlgrdacccode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void gvGenBillTracking_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
@@ -302,15 +349,15 @@ namespace RealERPWEB.F_14_Pro
         {
             string comcod = this.GetComeCode();
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
-            string txtSrchSupplier =  "%%";
+            string txtSrchSupplier = "%%";
             DataSet ds2 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETSUPPLIER", pactcode, txtSrchSupplier, "", "", "", "", "", "", "");
 
             DataTable dt = ds2.Tables[0];
-            DataRow dr1 =dt.NewRow();
+            DataRow dr1 = dt.NewRow();
             dr1["ssircode"] = "000000000000";
             dr1["ssirdesc"] = "All Suppler";
             dt.Rows.Add(dr1);
-        
+
 
             this.ddlSupplier.DataTextField = "ssirdesc";
             this.ddlSupplier.DataValueField = "ssircode";
@@ -543,7 +590,7 @@ namespace RealERPWEB.F_14_Pro
         {
             Session.Remove("tblreq");
             string comcod = this.GetComeCode();
-            string txtsearch = "%"+ this.TextGenBillTrack.Text+"%";
+            string txtsearch = "%" + this.TextGenBillTrack.Text + "%";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETGENERALBILLNO", txtsearch, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -1161,7 +1208,7 @@ namespace RealERPWEB.F_14_Pro
             string mrfno = "%" + this.txtSrcMrfNo.Text.Trim() + "%";
             string rescode = ((this.ddlMatCode.SelectedValue.ToString() == "000000000000") ? "" : (this.ddlMatCode.SelectedValue.Substring(9, 3).ToString() == "000") ? (this.ddlMatCode.SelectedValue.ToString().Substring(0, 9)).ToString() : this.ddlMatCode.SelectedValue.ToString()) + "%";
             string dirorin = (this.chkDirect.Checked) ? "direct" : "";
-            string supplier = ((this.ddlMatCode.SelectedValue.ToString() == "000000000000")?"":this.ddlSupplier.SelectedValue.ToString())+"%";
+            string supplier = ((this.ddlMatCode.SelectedValue.ToString() == "000000000000") ? "" : this.ddlSupplier.SelectedValue.ToString()) + "%";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "REQSATIONMRRSTATUS", fromdate, todate, pactcode, mrfno, rescode, dirorin, supplier, "", "");
             if (ds1.Tables[0].Rows.Count == 0)
             {
@@ -1317,11 +1364,11 @@ namespace RealERPWEB.F_14_Pro
 
             //this.gvGenBillTracking.DataSource = dt;
             //this.gvGenBillTracking.DataBind();
-            
-           this.LoadGrid();
+
+            this.LoadGrid();
             //this.Date_Bind02();
         }
-        
+
 
         private void Date_Bind02()
         {
@@ -1563,13 +1610,13 @@ namespace RealERPWEB.F_14_Pro
                 case "PenBill":
                     break;
 
-                    
 
 
-                   case "GenBillTrack":
 
-                     grp = dt1.Rows[0]["grp"].ToString();
-                     grpdesc = dt1.Rows[0]["grpdesc"].ToString();
+                case "GenBillTrack":
+
+                    grp = dt1.Rows[0]["grp"].ToString();
+                    grpdesc = dt1.Rows[0]["grpdesc"].ToString();
                     for (int j = 1; j < dt1.Rows.Count; j++)
                     {
                         if (dt1.Rows[j]["grp"].ToString() == grp)
@@ -1583,8 +1630,8 @@ namespace RealERPWEB.F_14_Pro
 
                 case "Purchasetrk":
 
-                     grp = dt1.Rows[0]["grp"].ToString();
-                     grpdesc = dt1.Rows[0]["grpdesc"].ToString();
+                    grp = dt1.Rows[0]["grp"].ToString();
+                    grpdesc = dt1.Rows[0]["grpdesc"].ToString();
                     for (int j = 1; j < dt1.Rows.Count; j++)
                     {
                         if (dt1.Rows[j]["grp"].ToString() == grp)
@@ -2249,7 +2296,7 @@ namespace RealERPWEB.F_14_Pro
             this.GetGeneralBillNo();
         }
 
-        
+
 
 
 
