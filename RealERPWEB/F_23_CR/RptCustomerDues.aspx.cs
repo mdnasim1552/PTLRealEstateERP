@@ -424,6 +424,14 @@ namespace RealERPWEB.F_23_CR
                             if (resultsms == false)
                             {
                                 smsFailCount += 1;
+                                string msg = sms.ErrorObject["Msg"].ToString();
+                                string sournce = sms.ErrorObject["Src"].ToString();
+                                string Location = sms.ErrorObject["Location"].ToString();
+                                string allinfo = msg + "," + sournce + "," + Location;
+
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + allinfo + "');", true);
+                                return;
+
                             }
                         }
                     }
@@ -435,8 +443,8 @@ namespace RealERPWEB.F_23_CR
             }
             catch (Exception ex)
             {
-                string Messagesd = "SMS has not been sent " + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+               // string Messagesd = "SMS has not been sent " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
             }
 
         }
