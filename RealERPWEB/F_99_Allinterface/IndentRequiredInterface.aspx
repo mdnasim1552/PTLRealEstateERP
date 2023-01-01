@@ -846,7 +846,7 @@
 
                             <div class="table-responsive">
                                   <asp:GridView ID="gv_Pending" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" Width="100%" >
+                                        ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" Width="100%" OnRowDataBound="gv_Pending_RowDataBound" >
                                         <Columns>
 
                                             <asp:TemplateField HeaderText="SL # ">
