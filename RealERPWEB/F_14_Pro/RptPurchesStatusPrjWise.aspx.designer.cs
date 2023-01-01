@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB.F_16_Bill
+namespace RealERPWEB.F_14_Pro
 {
 
 
-    public partial class BillingRateEntry
+    public partial class RptPurchesStatusPrjWise
     {
 
         /// <summary>
@@ -24,31 +24,13 @@ namespace RealERPWEB.F_16_Bill
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
-        /// lblItem5 control.
+        /// UpdateProgress2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblItem5;
-
-        /// <summary>
-        /// txtProjectSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProjectSearch;
-
-        /// <summary>
-        /// ImgbtnFindProject control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ImgbtnFindProject;
+        protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
         /// Label1 control.
@@ -60,66 +42,48 @@ namespace RealERPWEB.F_16_Bill
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// lblProjectDesc control.
+        /// txtfrmdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProjectDesc;
+        protected global::System.Web.UI.WebControls.TextBox txtfrmdate;
 
         /// <summary>
-        /// ddlProject control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProject;
+        protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// lbtnOk1 control.
+        /// txttodate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnOk1;
+        protected global::System.Web.UI.WebControls.TextBox txttodate;
 
         /// <summary>
-        /// lblpage control.
+        /// lnkbtnok control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblpage;
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnok;
 
         /// <summary>
-        /// ddlpagesize control.
+        /// gv_PurchesSummary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlpagesize;
-
-        /// <summary>
-        /// lblmsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg;
-
-        /// <summary>
-        /// gvRptResBasis control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvRptResBasis;
+        protected global::System.Web.UI.WebControls.GridView gv_PurchesSummary;
     }
 }
