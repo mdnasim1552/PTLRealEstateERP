@@ -96,6 +96,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -132,6 +133,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -168,6 +170,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -204,6 +207,7 @@
                               <Style>Solid</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
                             <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -297,7 +301,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!amt.Value</Value>
+                                  <Value>=Format(Fields!amt.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                   </Style>
@@ -375,6 +379,7 @@
                                   <Value />
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -410,11 +415,12 @@
                                   <Value>Total</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Left</TextAlign>
+                                <TextAlign>Right</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -445,6 +451,7 @@
                                   <Value>=Format(Sum(Fields!amt.Value),"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -480,6 +487,7 @@
                                   <Value>=Format(Sum(Fields!percntage.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -530,10 +538,9 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>0.08194in</Top>
             <Left>0.0625in</Left>
-            <Height>0.80208in</Height>
-            <Width>6.36333in</Width>
+            <Height>0.80209in</Height>
+            <Width>6.36334in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -541,13 +548,13 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>2in</Height>
+        <Height>0.85417in</Height>
         <Style />
       </Body>
       <Width>6.44667in</Width>
       <Page>
         <PageHeader>
-          <Height>0.79583in</Height>
+          <Height>1.37916in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -640,9 +647,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox3</rd:DefaultName>
-              <Top>0.55208in</Top>
+              <Top>0.49791in</Top>
               <Left>1.44875in</Left>
-              <Height>0.14653in</Height>
+              <Height>0.1257in</Height>
               <Width>4.22917in</Width>
               <ZIndex>2</ZIndex>
               <Style>
@@ -675,9 +682,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
-              <Top>0.36667in</Top>
+              <Top>0.32084in</Top>
               <Left>1.44875in</Left>
-              <Height>0.17083in</Height>
+              <Height>0.12916in</Height>
               <Width>4.22917in</Width>
               <ZIndex>3</ZIndex>
               <Style>
@@ -694,7 +701,7 @@
               <Source>External</Source>
               <Value>=Parameters!ComLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
-              <Height>0.60417in</Height>
+              <Height>0.64861in</Height>
               <Width>1.11333in</Width>
               <ZIndex>4</ZIndex>
               <Style>

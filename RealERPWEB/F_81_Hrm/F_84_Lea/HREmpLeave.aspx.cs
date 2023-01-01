@@ -37,11 +37,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 //this.lbtnOk_Click(null,null);
 
 
-                if (GetComeCode() == "3370")
-                {
-                    this.lnkReset.Visible = false;
-                    this.lnkRule.Visible = false;
-                }
+                //if (GetComeCode() == "3370")
+                //{
+                //    this.lnkReset.Visible = false;
+                //    this.lnkRule.Visible = false;
+                //}
 
             }
 
