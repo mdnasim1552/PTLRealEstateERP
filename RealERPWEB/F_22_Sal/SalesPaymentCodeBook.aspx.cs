@@ -338,7 +338,7 @@ namespace RealERPWEB.F_22_Sal
         {
             string comcod = this.GetCompCode();
             string gcod = paymentcodchk.Text;
-
+            //hi
 
             string tpaymentcode = this.txtpaymentcode.Text.Trim().Replace("-", "");
             string Desc = this.txtDesc.Text.Trim();
