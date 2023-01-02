@@ -145,7 +145,7 @@
                             <asp:TemplateField HeaderText="+">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lbtnAdd" runat="server" CssClass="btn btn-xs btn-default" ToolTip="Add New Code" BackColor="Transparent"
-                                        Visible="true" OnClick="lbtnAdd_Click"><span class="fa fa-plus" aria-hidden="true"></span></asp:LinkButton>
+                                        Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "additem"))=="1"?true:false %>' OnClick="lbtnAdd_Click"><span class="fa fa-plus" aria-hidden="true"></span></asp:LinkButton>
                                     <%--data-toggle="modal" data-target="#detialsinfo"--%>
                                 </ItemTemplate>
                             <HeaderStyle Font-Bold="True" Font-Size="16px" Width="20px" HorizontalAlign="Center" />
@@ -165,13 +165,6 @@
                                 <ItemStyle Font-Size="12px" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Code">
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="txtgrcode" runat="server" Font-Size="12px" Height="16px"
-                                        MaxLength="6"
-                                        Style="border-top-style: none; border-right-style: none; border-left-style: none; border-bottom-style: none; font-size: 12px; border-left-color: midnightblue; border-bottom-color: midnightblue; border-top-color: midnightblue; border-right-color: midnightblue;"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgcod3")) %>'
-                                        Width="40px"></asp:TextBox>
-                                </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lbgrcod3" runat="server" Font-Size="12px"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgcod3")) %>' Width="40px"
@@ -339,7 +332,7 @@
                         <div class="modal-body form-horizontal">
                             <div class="row mb-1">
                                 <asp:Label ID="lbgrcod" runat="server" Visible="false"></asp:Label>
-                                <label class="col-md-4"> Designation Code  </label>
+                                <label class="col-md-4"> Code  </label>
                                 <div class="col-md-8">
                                     <asp:TextBox ID="txthrgcode" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>

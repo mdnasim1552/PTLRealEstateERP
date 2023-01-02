@@ -107,7 +107,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             //string comcod = hst["comcod"].ToString();
             string comcod = this.GetCompCode();
             string gcode1 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lblgrcode")).Text.Trim();
-            string gcode2 = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgrcode")).Text.Trim().Replace("-", "");
+            string gcode2 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lbgrcod3")).Text.Trim().Replace("-", "");
             if (gcode2.Length != 5)
                 return;
 
@@ -334,18 +334,18 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 return;
             }
 
-            //bool result = da.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_CODEBOOK", "INSERTHRDESIGCODE", tgrcode,
-            //              Desc, DescBN, Gtype, mnumber, "", "", "", "", "");
+            bool result = da.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_CODEBOOK", "INSERTHRDESIGCODE", tgrcode,
+                          Desc, DescBN, Gtype, mnumber, "", "", "", "", "");
 
-            //if (result == true)
-            //{
-            //    ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Created ";
-            //}
+            if (result == true)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Created ";
+            }
 
-            //else
-            //{
-            //    ((Label)this.Master.FindControl("lblmsg")).Text = "Create Failed";
-            //}
+            else
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Create Failed";
+            }
             ShowInformation();
             grvacc_DataBind();
         }

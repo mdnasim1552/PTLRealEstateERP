@@ -153,13 +153,6 @@
                                 <ItemStyle Font-Bold="True" Font-Size="12px" ForeColor="#0000C0" />
                             </asp:CommandField>
                             <asp:TemplateField HeaderText="Code">
-                                <%--<EditItemTemplate>
-                                    <asp:TextBox ID="txtgvInfCod1" runat="server" BorderColor="Blue"
-                                        BorderStyle="Solid" BorderWidth="1px" Font-Size="11px" MaxLength="16"
-                                        Style="font-weight: 700; text-align: left;"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "infcod1")) %>'
-                                        Width="100px"></asp:TextBox>
-                                </EditItemTemplate>--%>
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvInfCod1" runat="server" Height="16px"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "infcod1")) %>'

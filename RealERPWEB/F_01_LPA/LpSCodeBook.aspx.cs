@@ -347,8 +347,10 @@ namespace RealERPWEB.F_01_LPA
             string unit = this.txtunit.Text.Trim();
             string unitrate = this.txtunitrate.Text.Trim();
             string projectname = this.txtprojectname.Text.Trim();
-            string infcod = (this.Chboxchild.Checked) ? ((ASTUtility.Right(isinfcod, 8) == "00000000") ? (ASTUtility.Left(isinfcod, 4) + "001" + ASTUtility.Right(isinfcod, 5))
-                    : ((ASTUtility.Right(isinfcod, 5) == "00000" && ASTUtility.Right(isinfcod, 8) != "00000000") ? (ASTUtility.Left(isinfcod, 7) + "01" + ASTUtility.Right(isinfcod, 3)) : ASTUtility.Left(isinfcod, 9) + "001"))
+            string infcod = (this.Chboxchild.Checked) ? 
+                ((ASTUtility.Right(isinfcod, 8) == "00000000") ? (ASTUtility.Left(isinfcod, 4) + "001" + ASTUtility.Right(isinfcod, 5))
+                    : ((ASTUtility.Right(isinfcod, 5) == "00000" && ASTUtility.Right(isinfcod, 8) != "00000000") ? (ASTUtility.Left(isinfcod, 7) + "01" + ASTUtility.Right(isinfcod, 3)) 
+                    : ASTUtility.Left(isinfcod, 9) + "001"))
                     : ((isinfcod != tinfcode) ? tinfcode : isinfcod);
 
             string mnumber = (isinfcod == tinfcode) ? "" : "manual";

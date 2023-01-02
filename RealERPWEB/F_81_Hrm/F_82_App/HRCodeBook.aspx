@@ -341,7 +341,7 @@
                         <div class="modal-body form-horizontal">
                             <div class="row mb-1">
                                 <asp:Label ID="lbgrcod" runat="server" Visible="false"></asp:Label>
-                                <label class="col-md-4">HR-Gcode  </label>
+                                <label class="col-md-4">Code  </label>
                                 <div class="col-md-8">
                                     <asp:TextBox ID="txthrgcode" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
