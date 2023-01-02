@@ -402,7 +402,7 @@ namespace RealERPWEB.F_22_Sal
             string chkstatus = (this.chkstatus.Checked == true) ? "True" : "False";
             string mnumber = (gcod == tgrcode) ? "" : "manual";
 
-            bool isResultValid = true;
+            bool isResultValid = false;
             if (Desc.Length == 0)
             {
                 msg = "Resource Head is not empty";

@@ -118,7 +118,7 @@
                         <asp:GridView ID="gvPaySch" runat="server" AllowPaging="True" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                         Font-Size="12px" OnRowCancelingEdit="gvPaySch_RowCancelingEdit" OnRowEditing="gvPaySch_RowEditing"
                         OnRowUpdating="gvPaySch_RowUpdating" PageSize="15" Width="284px" ShowFooter="True" OnPageIndexChanging="gvPaySch_PageIndexChanging">
-                        <PagerSettings NextPageText="Next" PreviousPageText="Previous" />
+                        <PagerSettings NextPageText="Next" PreviousPageText="Previous" Mode="NumericFirstLast" />
                         <FooterStyle />
                         <Columns>
                             <asp:TemplateField HeaderText="Sl.No.">

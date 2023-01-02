@@ -1928,13 +1928,13 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         dt.Rows[rowindex]["c3hour"] = c3hour;
                         dt.Rows[rowindex]["tohour"] = tohour;
                         dt.Rows[rowindex]["fixamt"] = fixamt;
-                        if (comcod == "3368")
-                        {
+                        //if (comcod == "3368")
+                        //{
 
-                            dt.Rows[rowindex]["fixday"] = fixdaycount;
-                            dt.Rows[rowindex]["fixhour"] = fixhourcount;
-                            dt.Rows[rowindex]["totalamt"] = (fixdaycount * dayrate) + (fixhourcount * hourlyrate);
-                        }
+                        //    dt.Rows[rowindex]["fixday"] = fixdaycount;
+                        //    dt.Rows[rowindex]["fixhour"] = fixhourcount;
+                        //    dt.Rows[rowindex]["totalamt"] = (fixdaycount * dayrate) + (fixhourcount * hourlyrate);
+                        //}
 
 
 
@@ -2262,29 +2262,48 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     if (!result)
                         return;
                 }
+                
+                
+                
+                
+                
                 else
                 {
 
-                    if (tohour > 0)
-                    {
+                    //if (tohour > 0)
+                    //{
 
                         result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, daycount.ToString(), dayrate.ToString(), dayamt.ToString(), "", "", "", "");
-                        if (!result)
-                            return;
-                    }
-                    switch (comcod)
-                {
-                    case "3101":
-                    case "3370":
-                        if (fixamtx > 0)
-                        {
-                            result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, daycount.ToString(), dayrate.ToString(), dayamt.ToString(), "", "", "", "");
-                            if (!result)
-                                return;
-                        }
-                        break;
 
-                }
+                    if (!result)
+                    {
+
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + HRData.ErrorObject["Msg"] + "');", true);
+                        return;
+
+                    }
+                           
+                   // }
+                    
+                    
+                    
+                    
+                    
+                    
+                    //switch (comcod)                
+                    
+                    //{
+                    //case "3101":
+                    //case "3370":
+                    //    if (fixamtx > 0)
+                    //    {
+                    //        result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, daycount.ToString(), dayrate.ToString(), dayamt.ToString(), "", "", "", "");
+                    //        if (!result)
+                    //            return;
+                    //    }
+                    //    break;
+
+                    //}
 
             }
 

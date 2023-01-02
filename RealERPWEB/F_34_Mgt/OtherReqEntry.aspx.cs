@@ -1270,7 +1270,7 @@ namespace RealERPWEB.F_34_Mgt
             string paytype = "Pay Type: " + this.rblpaytype.SelectedItem.Text.ToString();
             string date = "Date : " + this.txtCurReqDate.Text.ToString().Trim();
             string refno = "Ref No : " + this.txtMRFNo.Text.ToString().Trim();
-            string reqno = "Requisition No : " + this.lblCurReqNo1.Text + this.txtCurReqNo2.Text.ToString().Trim();
+            //string reqno = "Requisition No : " + this.lblCurReqNo1.Text + this.txtCurReqNo2.Text.ToString().Trim();
             string narration = "Narration:" + this.txtReqNarr.Text.Trim();
             string title = this.Request.QueryString["Type"].ToString() == "OreqEntry" ? "General Bill Requisition" : "Software Generated Bill";
 
@@ -1279,6 +1279,9 @@ namespace RealERPWEB.F_34_Mgt
                  "", "", "", "", "", "", "");
 
             DataTable dtsign = ds1.Tables[2];
+            DataTable dt1 = ds1.Tables[1];
+
+            string reqno = "Requisition No : " + dt1.Rows[0]["reqno"].ToString();
 
             string requsinput = dtsign.Rows[0]["reqnam"].ToString() + "\n" + dtsign.Rows[0]["reqdesig"].ToString() + "\n" + dtsign.Rows[0]["reqdat"].ToString();     // req posted 
             string confirmby = dtsign.Rows[0]["reqanam"].ToString() + "\n" + dtsign.Rows[0]["reqadesig"].ToString() + "\n" + dtsign.Rows[0]["reqdat"].ToString();     // req approved

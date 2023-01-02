@@ -133,9 +133,9 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class=" card card-fluid" style="min-height: 600px">
+            <div class=" card card-fluid " style="min-height: 600px">
                 <div class=" card-body">
-                    <div class="row">
+                    <div class="row mt-4">
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="Label5" runat="server" class=" control-label  lblmargin-top9px ">From</label>
