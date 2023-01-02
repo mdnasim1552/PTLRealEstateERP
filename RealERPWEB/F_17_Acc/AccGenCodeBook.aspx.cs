@@ -24,6 +24,8 @@ namespace RealERPWEB.F_17_Acc
 
         ProcessAccess da = new ProcessAccess();
         //static string tempddl1 = "", tempddl2 = "";
+        string msg = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -118,7 +120,7 @@ namespace RealERPWEB.F_17_Acc
 
                 string comcod = this.GetCompCode();
                 string gencode1 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lbgrcode")).Text.Trim().Replace("-", "");
-                string gencode2 = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgrcode")).Text.Trim().Replace("-", "");
+                string gencode2 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lbgrcod3")).Text.Trim().Replace("-", "");
 
                 string Desc = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvDesc")).Text.Trim();
                 string txtsirtdesc = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvsirtdesc")).Text.Trim();
@@ -312,5 +314,76 @@ namespace RealERPWEB.F_17_Acc
         {
             this.ShowInformation();
         }
+
+        protected void lbtnAdd_Click(object sender, EventArgs e)
+        {
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["entry"]))
+            {
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                return;
+            }
+
+            GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int RowIndex = gvr.RowIndex;
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            int index = this.grvacc.PageSize * this.grvacc.PageIndex + RowIndex;
+            string gencod = ((DataTable)Session["storedata"]).Rows[index]["gencode"].ToString();
+            //this.lbgrcod.Text = gcod;
+            this.gencodechk.Text = gencod;
+            this.txtgencode.Text = gencod.Substring(0, 2) + "-" + gencod.Substring(2, 2) + "-" + gencod.Substring(4, 2) + "-" + ASTUtility.Right(gencod, 2);
+
+            this.Chboxchild.Checked = (ASTUtility.Right(gencod, 4) == "0000" && ASTUtility.Right(gencod, 6) != "000000") || (ASTUtility.Right(gencod, 2) == "00" && ASTUtility.Right(gencod, 4) != "0000") || (ASTUtility.Right(gencod, 2) == "00");
+            this.chkbod.Visible = (ASTUtility.Right(gencod, 4) == "0000" && ASTUtility.Right(gencod, 6) != "000000") || (ASTUtility.Right(gencod, 2) == "00" && ASTUtility.Right(gencod, 4) != "0000") || (ASTUtility.Right(gencod, 2) == "00");
+            this.lblchild.Visible = (ASTUtility.Right(gencod, 4) == "0000" && ASTUtility.Right(gencod, 6) != "000000") || (ASTUtility.Right(gencod, 2) == "00" && ASTUtility.Right(gencod, 4) != "0000") || (ASTUtility.Right(gencod, 2) == "00");
+
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+        }
+        protected void lbtnAddCode_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            string isgencod = gencodechk.Text;
+
+            string tgrcode = this.txtgencode.Text.Trim().Replace("-", "");
+            string Desc = this.txtDesc.Text.Trim();
+            string mnumber = (isgencod == tgrcode) ? "" : "manual";
+            string gencod = this.Chboxchild.Checked ? ((ASTUtility.Right(isgencod, 4) == "0000") ? (ASTUtility.Left(isgencod, 4) + "01" + ASTUtility.Right(isgencod, 2)): ASTUtility.Left(isgencod, 6) + "01")
+
+                    : ((isgencod != tgrcode) ? tgrcode : isgencod);
+
+
+
+            bool isResultValid = false;
+            if (Desc.Length == 0)
+            {
+                msg = "Resource Head is not empty";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+                isResultValid = false;
+                return;
+            }
+
+            bool result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTDISPLAYGENCODE", gencod,
+                          Desc, mnumber, "", "", "", "", "");
+
+            if (result == true)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Created ";
+            }
+
+            else
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Create Failed";
+            }
+            ShowInformation();
+            grvacc_DataBind();
+        }
+
+        
     }
 }

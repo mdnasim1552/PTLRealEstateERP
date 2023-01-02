@@ -612,6 +612,28 @@ namespace RealERPLIB
             }
             return _refno;
         }
+
+        public static List<string> GetYear()
+        {
+            List<string> lst = new List<string>();
+
+            int curyear = System.DateTime.Today.Year;
+            int minyear = curyear - 20;
+
+            for (int i = minyear; i <= curyear; i++)
+            {
+
+                lst.Add(i.ToString());            
+            
+            
+            }
+
+            return lst;
+
+
+
+
+        }
     }
 
 }

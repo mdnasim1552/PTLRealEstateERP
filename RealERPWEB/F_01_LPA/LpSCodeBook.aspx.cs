@@ -19,10 +19,10 @@ using RealERPLIB;
 using RealERPRPT;
 namespace RealERPWEB.F_01_LPA
 {
-
     public partial class LpSCodeBook : System.Web.UI.Page
     {
         ProcessAccess feaData = new ProcessAccess();
+        string msg = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -112,7 +112,7 @@ namespace RealERPWEB.F_01_LPA
             this.gvCodeBookDataBind();
             //
 
-            string rescode1 = ((TextBox)gvCodeBook.Rows[e.NewEditIndex].FindControl("txtgvInfCod1")).Text.Trim();
+            string rescode1 = ((Label)gvCodeBook.Rows[e.NewEditIndex].FindControl("lblgvInfCod1")).Text.Trim();
             string rescode = rescode1.Substring(0, 2) + rescode1.Substring(3, 2) + rescode1.Substring(6, 3) + rescode1.Substring(10, 2) + rescode1.Substring(13);
             int rowindex = (gvCodeBook.PageSize) * (this.gvCodeBook.PageIndex) + e.NewEditIndex;
 
@@ -156,7 +156,7 @@ namespace RealERPWEB.F_01_LPA
 
             string sQryParm = ((Label)this.Master.FindControl("lblTitle")).Text;
             string mInfGrp = (sQryParm.Contains("PROJECT") ? "PRJ" : sQryParm.Contains("PRIPROJ") ? "PRJ" : "RES");
-            string mInfCode = ((TextBox)this.gvCodeBook.Rows[e.RowIndex].FindControl("txtgvInfCod1")).Text.Trim().Replace("-", "");
+            string mInfCode = ((Label)this.gvCodeBook.Rows[e.RowIndex].FindControl("lblgvInfCod1")).Text.Trim().Replace("-", "");
             string mInfDesc = ((TextBox)this.gvCodeBook.Rows[e.RowIndex].FindControl("txtgvInfDesc")).Text.Trim();//.ToUpper();
             string mInfDes2 = ((TextBox)this.gvCodeBook.Rows[e.RowIndex].FindControl("txtgvInfDes2")).Text.Trim();//.ToUpper();
             string mUnitFPS = ((TextBox)this.gvCodeBook.Rows[e.RowIndex].FindControl("txtgvUnitFPS")).Text.Trim();//.ToUpper();
@@ -291,6 +291,98 @@ namespace RealERPWEB.F_01_LPA
             ddl2.DataBind();
             //ddl2.SelectedValue = actcode;
 
+        }
+        private string GetCompCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
+
+        }
+
+
+        protected void lbtnAdd_Click(object sender, EventArgs e)
+        {
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["entry"]))
+            {
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                return;
+            }
+
+            GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int RowIndex = gvr.RowIndex;
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            int index = this.gvCodeBook.PageSize * this.gvCodeBook.PageIndex + RowIndex;
+            string infgrp = ((DataTable)Session["CodeBook"]).Rows[index]["infgrp"].ToString();
+            string infcod = ((DataTable)Session["CodeBook"]).Rows[index]["infcod"].ToString();
+            string actcod = ((DataTable)Session["CodeBook"]).Rows[index]["actcode"].ToString();
+            this.lbgrcod.Text = infcod;
+            this.infgrpchk.Text = infgrp;
+            this.infcodchk.Text = infcod;
+            this.actcodechk.Text = actcod;
+
+            this.Chboxchild.Checked = (ASTUtility.Right(infcod, 8) == "00000000" && ASTUtility.Right(infcod, 10) != "0000000000") || (ASTUtility.Right(infcod, 5) == "00000" && ASTUtility.Right(infcod, 8) != "00000000") || (ASTUtility.Right(infcod, 3) == "000");
+            this.chkbod.Visible = (ASTUtility.Right(infcod, 8) == "00000000" && ASTUtility.Right(infcod, 10) != "0000000000") || (ASTUtility.Right(infcod, 5) == "00000" && ASTUtility.Right(infcod, 8) != "00000000") || (ASTUtility.Right(infcod, 3) == "000");
+            this.lblchild.Visible = (ASTUtility.Right(infcod, 8) == "00000000" && ASTUtility.Right(infcod, 10) != "0000000000") || (ASTUtility.Right(infcod, 5) == "00000" && ASTUtility.Right(infcod, 8) != "00000000") || (ASTUtility.Right(infcod, 3) == "000");
+
+
+            this.txtlandcode.Text = infcod.Substring(0, 2) + "-" + infcod.Substring(2, 2) + "-"+ infcod.Substring(4, 3) + "-" + infcod.Substring(7, 2) + "-" + ASTUtility.Right(infcod, 3);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+        }
+        
+
+        protected void lbtnAddCode_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            string isinfcod = infcodchk.Text;
+            string infgrp = infgrpchk.Text;
+            string actcod = actcodechk.Text;
+
+            string tinfcode = this.txtlandcode.Text.Trim().Replace("-", "");
+            string DescFull = this.txtfullDesc.Text.Trim();
+            string DescShort = this.txtshortDesc.Text.Trim();
+            string unit = this.txtunit.Text.Trim();
+            string unitrate = this.txtunitrate.Text.Trim();
+            string projectname = this.txtprojectname.Text.Trim();
+            string infcod = (this.Chboxchild.Checked) ? 
+                ((ASTUtility.Right(isinfcod, 8) == "00000000") ? (ASTUtility.Left(isinfcod, 4) + "001" + ASTUtility.Right(isinfcod, 5))
+                    : ((ASTUtility.Right(isinfcod, 5) == "00000" && ASTUtility.Right(isinfcod, 8) != "00000000") ? (ASTUtility.Left(isinfcod, 7) + "01" + ASTUtility.Right(isinfcod, 3)) 
+                    : ASTUtility.Left(isinfcod, 9) + "001"))
+                    : ((isinfcod != tinfcode) ? tinfcode : isinfcod);
+
+            string mnumber = (isinfcod == tinfcode) ? "" : "manual";
+            unitrate = (unitrate == "") ? "0" : unitrate;
+
+            bool isResultValid = true;
+            if (DescFull.Length == 0)
+            {
+                msg = "Resource Head is not empty";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+                isResultValid = false;
+                return;
+            }
+
+            bool result = feaData.UpdateTransInfo(comcod, "SP_ENTRY_LP_CODEBOOK", "INSERTLPCODE", infcod, infgrp,
+                          DescFull, DescShort, unit, unitrate, actcod, mnumber, "", "", "", "", "");
+
+            if (result == true)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Created ";
+            }
+
+            else
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Create Failed";
+            }
+            string sQryParm = ((Label)this.Master.FindControl("lblTitle")).Text;
+            string mInfGrp = (sQryParm.Contains("PROJECT") ? "PRJ" : sQryParm.Contains("PRIPROJ") ? "PRJ" : "RES");
+            ShowCodeList(mInfGrp);
+            gvCodeBookDataBind();
         }
     }
 }
