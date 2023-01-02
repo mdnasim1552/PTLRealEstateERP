@@ -2884,7 +2884,7 @@
 
 
                                                         <asp:HyperLink ID="hlbotherCdataExcel" runat="server"
-                                                                        CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel-o "></i></asp:HyperLink>
+                                                                        CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel"></i></asp:HyperLink>
                                                      
                                                     </HeaderTemplate>
 
