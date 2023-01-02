@@ -111,7 +111,8 @@
                     </div>
                 <div class="card-body">
                 <div class="row">
-                    <asp:Panel ID="PnlMoneyReceipt" runat="server" Visible="False">
+                    <div class="col-md-12">
+                        <asp:Panel ID="PnlMoneyReceipt" runat="server" Visible="False">
 
                         <asp:Panel ID="Panel3" runat="server" Visible="False">
 
@@ -199,20 +200,20 @@
 
 
                                 <div class="row mt-2">
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
 
                                         <asp:Label ID="Label10" runat="server" CssClass="form-label" Text="Branch Name " Font-Bold="true"></asp:Label>
                                         <asp:TextBox ID="txtBranchName" runat="server" AutoCompleteType="Disabled" CssClass="form-control form-control-sm" TabIndex="13"></asp:TextBox>
 
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <asp:Label ID="Label22" runat="server" CssClass="form-label" Text="Pay Date" Font-Bold="true"></asp:Label>
                                         <asp:TextBox ID="txtpaydate" runat="server" AutoCompleteType="Disabled" CssClass="form-control form-control-sm" TabIndex="14"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtpaydate_CalendarExtender" runat="server" Enabled="True"
                                             Format="dd-MMM-yyyy" TargetControlID="txtpaydate"></cc1:CalendarExtender>
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <asp:Label ID="Label23" runat="server" CssClass="form-label" Text="Ref. ID" Font-Bold="true"></asp:Label>
 
                                         <asp:TextBox ID="txtrefid" runat="server" AutoCompleteType="Disabled" CssClass="form-control form-control-sm"
@@ -224,11 +225,13 @@
                                         <asp:TextBox ID="txtremarks" runat="server" AutoCompleteType="Disabled" CssClass="form-control form-control-sm" TabIndex="16"></asp:TextBox>
 
                                     </div>
-                                    <div class="col-md-2" style="margin-top:22px;">
-                                        <asp:LinkButton ID="lblAddToTable" runat="server" OnClick="lblAddToTable_Click" CssClass="btn btn-sm btn-primary" TabIndex="21">Add To Table</asp:LinkButton>
+                                   <div class="col-md-1" style="margin-top:20px;">
+                                        <asp:LinkButton ID="lblAddToTable" runat="server" OnClick="lblAddToTable_Click" CssClass="btn btn-xm btn-primary" TabIndex="21">Add To Table</asp:LinkButton>
                                     </div>
                                 </div>
-
+                        <div class="row mt-2">
+                                    
+                            </div>
                                 <div class="row mt-2 mb-4">
                                     <div class="col-md-2 d-none">
 
@@ -268,6 +271,8 @@
 
 
                     </asp:Panel>
+                    </div>
+                    
 
                 </div>
                     <div class="row mb-4">

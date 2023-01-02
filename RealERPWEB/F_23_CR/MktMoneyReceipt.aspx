@@ -211,7 +211,7 @@
 
                     <div class="row">
 
-                        <div class="col-md-9" style="margin-top: -25px;text-align:right;">
+                        <div class="col-md-12" style="margin-top: -25px;text-align:right;">
                             <asp:Label ID="lblCode" runat="server" Visible="False"></asp:Label>
                             <asp:Label ID="lblPhone" runat="server" Visible="False"></asp:Label>
                             <asp:CheckBox ID="chkAllSchedul" runat="server" CssClass=" " Text="Multiple Cheque No" />
