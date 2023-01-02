@@ -121,9 +121,12 @@ namespace RealERPWEB.F_12_Inv
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             this.txtCurISSDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-            string srchproject = "%" + this.txtsrchproject.Text.Trim() + "%";
+            string type = Request.QueryString["Type"].ToString()== "Link"? Request.QueryString["genno"].ToString(): "%" + this.txtsrchproject.Text.Trim() + "%";          
+
+
+            //string srchproject = "%" + this.txtsrchproject.Text.Trim() + "%";
             string isComplain = Request.QueryString["Type"].ToString()=="ComplainMgt" ? "Complain" : "";
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUEPRJLIST01", srchproject, isComplain, userid, "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUEPRJLIST01", type, isComplain, userid, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             this.ddlprjlist.DataTextField = "actdesc1";

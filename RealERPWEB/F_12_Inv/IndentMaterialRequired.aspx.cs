@@ -206,6 +206,7 @@ namespace RealERPWEB.F_12_Inv
                     return;
 
                 ViewState["tblIssue"] = ds1.Tables[0];
+                
 
 
                 if (mISUNo == "NEWISU")
@@ -363,9 +364,11 @@ namespace RealERPWEB.F_12_Inv
                     DataTable tbl2 = (DataTable)ViewState["tblMat"];
                     DataRow[] dr3 = tbl2.Select("rsircode = '" + mResCode + "' and spcfcod='" + spcfcod + "'");
                     dr1["rsirunit"] = dr3[0]["rsirunit"];
-                    dr1["stkqty"] = "0";
+                    dr1["stkqty"] = dr3[0]["stkqty"];
                     dr1["stkrate"] = "0";
                     dr1["issueqty"] = dr3[0]["issueqty"];
+                    //dr1["balqty"] = ((((DataTable)Session["itemlist"]).Select("rsircode='" + mResCode + "' and spcfcod='" + spcfcod + "'")).Length == 0) ? "0.00" : Convert.ToDouble((((DataTable)Session["itemlist"]).Select("rsircode='" + rsircode + "' and spcfcod='" + specification + "'"))[0]["bbgdqty"]).ToString();
+
                     dr1["issueamt"] = 0;
                     tbl1.Rows.Add(dr1);
                 }
@@ -385,6 +388,9 @@ namespace RealERPWEB.F_12_Inv
         protected void lbtnSelectAll_Click(object sender, EventArgs e)
         {
             this.SaveValue();
+           
+
+
             DataTable tbl1 = (DataTable)ViewState["tblIssue"];
             string mResCode = this.ddlMaterials.SelectedValue.ToString();
             string Empcode = "";
@@ -405,7 +411,7 @@ namespace RealERPWEB.F_12_Inv
                     dr1["deptname"] = this.ddlDeptCode.SelectedItem.Text.Trim();
                     dr1["empid"] = "";
                     dr1["rsirunit"] = tbl2.Rows[i]["rsirunit"];
-                    dr1["stkqty"] = 0;
+                    dr1["stkqty"] = tbl2.Rows[i]["stkqty"];
                     dr1["stkrate"] = 0;
                     dr1["issueqty"] = tbl2.Rows[i]["issueqty"];
                     dr1["issueamt"] = 0;
@@ -442,6 +448,14 @@ namespace RealERPWEB.F_12_Inv
 
             this.gvIssue.DataSource = (DataTable)ViewState["tblIssue"];
             this.gvIssue.DataBind();
+
+            //string type = Request.QueryString["Type"].ToString();
+            //if (type == "Completed")
+            //{
+            //    gvIssue.Columns[7].Visible = true;
+            //}
+
+
             //this.FooterCalCulation();
 
 
