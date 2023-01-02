@@ -25,6 +25,13 @@ namespace RealERPLIB
         ProcessAccess purData = new ProcessAccess();
         private Hashtable _errObj;
 
+        public Hashtable ErrorObject
+        {
+            get
+            {
+                return this._errObj;
+            }
+        }
         public string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -214,11 +221,13 @@ namespace RealERPLIB
 
                  
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + response.Content.ToString() + "');", true);
+               // response.
 
                 return response.IsSuccessful;
             }
             catch (Exception ex)
             {
+                this.SetError(ex);
                 return false;
             }
 

@@ -159,20 +159,10 @@
                                         <asp:TextBox ID="txtEntryDate" runat="server" CssClass="inputtextbox"></asp:TextBox>
                                         <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtEntryDate"></cc1:CalendarExtender>
-
-
                                     </div>
-
                                     <div class="col-md-6 pading5px">
-
-
                                         <asp:Label ID="lblPrivVou" runat="server" CssClass=" smLbl_to">Previous</asp:Label>
-
-
-
                                         <asp:TextBox ID="txtScrchPre" runat="server" CssClass=" inputBox50px"></asp:TextBox>
-
-
                                         <asp:DropDownList ID="ddlvoucher" runat="server" TabIndex="1" CssClass=" ddlPage" Style="width: 110px;" AutoPostBack="True" OnSelectedIndexChanged="ddlvoucher_SelectedIndexChanged">
                                             <asp:ListItem Value="BD">Bank Payment</asp:ListItem>
                                             <asp:ListItem Value="CD">Cash Payment</asp:ListItem>
@@ -181,28 +171,15 @@
                                             <asp:ListItem Value="CT">Contra Voucher</asp:ListItem>
                                             <asp:ListItem Value="JV">Journal Voucher</asp:ListItem>
                                             <asp:ListItem Value="PV" Enabled="false">Post Dated Voucher</asp:ListItem>
-
                                         </asp:DropDownList>
-
-
                                         <div class="colMdbtn">
                                             <asp:LinkButton ID="ibtnFindPrv" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ibtnFindPrv_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
                                         </div>
-
                                         <asp:DropDownList ID="ddlPrivousVou" runat="server" CssClass=" ddlistPull chzn-select" Style="width: 197px;">
                                         </asp:DropDownList>
-
-
-
                                     </div>
-
-
-
-
                                 </div>
                                 <div class="form-group">
-
                                     <div class="col-md-3 pading5px asitCol3">
                                         <asp:Label ID="lblcontrolAccHead" runat="server" CssClass="lblTxt lblName" Text="Control Code"></asp:Label>
                                         <asp:TextBox ID="txtScrchConCode" runat="server" CssClass="inputtextbox"></asp:TextBox>
@@ -210,32 +187,20 @@
                                             <asp:LinkButton ID="ibtnFindConCode" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ibtnFindConCode_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                         </div>
                                     </div>
-
                                     <div class="col-md-6 pading5px ">
                                         <asp:DropDownList ID="ddlConAccHead" TabIndex="2" runat="server" CssClass="form-control inputTxt chzn-select">
                                         </asp:DropDownList>
                                     </div>
-
                                     <div class="col-md-2 pading5px">
                                         <div class="colMdbtn">
                                             <asp:LinkButton ID="lnkOk" TabIndex="3" runat="server" CssClass="btn btn-primary okBtn" OnClick="lnkOk_Click">Ok</asp:LinkButton>
                                         </div>
                                         <asp:Label ID="lblbalamt" runat="server" ForeColor="Red" CssClass=" smLbl_to margin5px"></asp:Label>
                                     </div>
-
-
                                 </div>
                             </div>
-
                         </fieldset>
-
-
-
-
-
                     </div>
-
-
                     <asp:Panel ID="pnlondated" runat="server" Visible="false">
                         <div class="row">
                             <div class="col-md-5 pading5px">
@@ -605,11 +570,13 @@
                                                 </ItemTemplate>
                                                 <HeaderStyle Font-Bold="True" Font-Size="13px" />
                                             </asp:TemplateField>
+
                                             <asp:CommandField ShowDeleteButton="True" ButtonType="Link" ControlStyle-Width="30px">
                                                 <ControlStyle Width="30px" />
                                                 <HeaderStyle Width="30px" />
                                                 <ItemStyle Width="30px" />
                                             </asp:CommandField>
+
                                             <asp:CommandField ShowEditButton="True" ControlStyle-Width="25px">
                                                 <ControlStyle Width="25px" />
                                                 <HeaderStyle Width="25px" />
@@ -668,13 +635,9 @@
                                                 </ItemTemplate>
 
                                                 <EditItemTemplate>
-
                                                     <fieldset class="scheduler-border fieldset_A">
-
                                                         <div class="form-horizontal">
-
                                                             <div class="form-group">
-
                                                                 <div class="col-md-3 pading5px asitCol3">
                                                                     <asp:Label ID="lblcontrolAccHead" runat="server" CssClass="lblTxt lblName">Accounts Head</asp:Label>
                                                                     <div class="col-md-3 pading5px">
@@ -682,55 +645,35 @@
                                                                             TabIndex="28" Style="width: 130px;" AutoPostBack="True" OnSelectedIndexChanged="ddlgrdacccode_SelectedIndexChanged">
                                                                         </asp:DropDownList>
                                                                     </div>
-
-
-
                                                                     <%-- <asp:TextBox ID="txtgrdserceacc" runat="server" CssClass="inputtextbox" TabIndex="26"></asp:TextBox>--%>
-
                                                                     <%--<div class="colMdbtn">
                                                     <asp:LinkButton ID="ibtngrdFindAccCode" runat="server" CssClass="btn btn-primary srearchBtn"  TabIndex="27"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
                                                 </div>--%>
-
                                             <
-
                                            <%-- <div class="col-md-3 pading5px">
-                                                
-
                                             </div--%>>
                                                                 </div>
                                                             </div>
-
                                                             <div class="form-group">
-
                                                                 <div class="col-md-3 pading5px asitCol3">
                                                                     <asp:Label ID="lblgvreshead" runat="server" CssClass="lblTxt lblName">Details Head</asp:Label>
-
                                                                     <div class="col-md-3 pading5px">
                                                                         <asp:DropDownList ID="ddlrgrdesuorcecode" runat="server" CssClass="chzn-select"
                                                                             TabIndex="28" Style="width: 130px;">
                                                                         </asp:DropDownList>
-
                                                                     </div>
                                                                     <%--<asp:TextBox ID="txtgrdserresource" runat="server" CssClass="inputtextbox" TabIndex="29"></asp:TextBox>--%>
-
-
                                                                     <%--<div class="colMdbtn">
                                                     <asp:LinkButton ID="ibtngrdFindResource" runat="server" CssClass="btn btn-primary srearchBtn"  TabIndex="30"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
                                                 </div>--%>
                                                                 </div>
-
-
                                                             </div>
-
                                                         </div>
                                                     </fieldset>
                                                 </EditItemTemplate>
                                                 <FooterStyle HorizontalAlign="Right" Width="325px" />
                                                 <HeaderStyle HorizontalAlign="Left" Width="325px" />
                                                 <ItemStyle Width="325px" />
-                                                
                                             </asp:TemplateField>
 
 

@@ -156,7 +156,10 @@ namespace RealERPWEB.F_12_Inv
             {
                 if (dt1.Rows[j]["pactcode"].ToString() == isircod)
                 {
-                    //dt1.Rows[0]["pactdesc"] = "";
+                    string strstkValuation = this.group.SelectedValue.ToString();
+                    if (strstkValuation != "1") {
+                        dt1.Rows[0]["pactdesc"] = "";
+                    }
                     dt1.Rows[j]["pactdesc"] = "";
                 }
 
@@ -264,7 +267,8 @@ namespace RealERPWEB.F_12_Inv
             }
 
             
-            DataTable dt1 = (DataTable)Session["tblRptMatStc"];
+            //DataTable dt1 = (DataTable)Session["tblRptMatStc"];
+            DataTable dt1 = (DataTable)Session["tbMatStc"];
 
             if (comcod == "3315" || comcod == "3316")
             {
@@ -277,8 +281,17 @@ namespace RealERPWEB.F_12_Inv
                 return;
             var lst = dt1.DataTableToList<RealEntity.C_12_Inv.MatStockReportEvaluation>();
             LocalReport Rpt1 = new LocalReport();
-            
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptMaterialStockEva", lst, null, null);
+
+            if (strstkValuation == "1")
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptGroupStockEva", lst, null, null);
+            }
+            else
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptMaterialStockEva", lst, null, null);
+            }
+
+
             Rpt1.EnableExternalImages = true;
             //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
 

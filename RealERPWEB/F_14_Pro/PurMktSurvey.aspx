@@ -56,7 +56,7 @@
             </div>
             <div class="card">
                 <div class="card-header">
-                    <div class="row">
+                    <div class="row mt-4">
 
 
                         <div class="col-md-3 d-none">
@@ -69,7 +69,7 @@
                         </div>
                         <div class="col-md-3">
                             <asp:Label ID="lblInformation" runat="server" CssClass="form-label" Text="Information for"></asp:Label>
-                            <asp:DropDownList ID="ddlSurveyType" runat="server" AutoPostBack="True" CssClass="chzn-select form-control inputTxt" TabIndex="6" OnSelectedIndexChanged="ddlSurveyType_SelectedIndexChanged" Style="width: 336px;">
+                            <asp:DropDownList ID="ddlSurveyType" runat="server" AutoPostBack="True" CssClass="chzn-select form-control form-control-sm" TabIndex="6" OnSelectedIndexChanged="ddlSurveyType_SelectedIndexChanged" Style="width: 336px;">
                                 <asp:ListItem Value="1">Market Survey Report</asp:ListItem>
                                 <asp:ListItem Value="2">Material Wise Suppliers List</asp:ListItem>
                                 <asp:ListItem Value="3">Supplier Wise Materials List</asp:ListItem>
@@ -597,8 +597,8 @@
                                     <asp:DropDownList ID="ddlSupl2" runat="server" CssClass="chzn-select form-control form-control-sm" TabIndex="6">
                                     </asp:DropDownList>
                                 </div>
-                                <div class="col-md-1" style="margin-top: 22px;">
-                                    <asp:LinkButton ID="lbtnSelectSupl2" runat="server" CssClass="btn btn-sm btn-primary " OnClick="lbtnSelectSupl2_Click" TabIndex="2" Style="margin-left: 140px;">Ok</asp:LinkButton>
+                                <div class="col-md-1 ml-2" style="margin-top: 22px;">
+                                    <asp:LinkButton ID="lbtnSelectSupl2" runat="server" CssClass="btn btn-sm btn-primary " OnClick="lbtnSelectSupl2_Click" TabIndex="2">Ok</asp:LinkButton>
 
                                 </div>
 
@@ -624,15 +624,15 @@
                                                 </asp:DropDownList>
                                             </div>
                                             <div class="col-md-2 ml-5" style="margin-top:21px;">
-                                                <asp:LinkButton ID="lbtnSelectRes2" runat="server" CssClass="btn btn-sm btn-primary   primarygrdBtn" OnClick="lbtnSelectRes2_Click" TabIndex="2">Select</asp:LinkButton>
+                                                <asp:LinkButton ID="lbtnSelectRes2" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnSelectRes2_Click">Select</asp:LinkButton>
 
                                             </div>
                                             <div class="col-md-2" style="margin-top:21px;">
-                                                <asp:LinkButton ID="lbtnSelectResAll" runat="server" CssClass="btn btn-sm btn-primary   primarygrdBtn" OnClick="lbtnSelectResAll_Click" TabIndex="2">Select all(Spec)</asp:LinkButton>
+                                                <asp:LinkButton ID="lbtnSelectResAll" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnSelectResAll_Click" >Select all(Spec)</asp:LinkButton>
 
                                             </div>
                                             <div class="col-md-2" style="margin-top:21px;">
-                                                <asp:LinkButton ID="lbtnSelectReaSpesAll" runat="server" CssClass="btn btn-sm btn-primary   primarygrdBtn" OnClick="lbtnSelectReaSpesAll_Click" TabIndex="2">Select all(Mat)</asp:LinkButton>
+                                                <asp:LinkButton ID="lbtnSelectReaSpesAll" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnSelectReaSpesAll_Click">Select all(Mat)</asp:LinkButton>
 
                                             </div>
 
