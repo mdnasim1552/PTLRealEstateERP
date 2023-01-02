@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="EntryPrjCollSumAdj.aspx.cs" Inherits="RealERPWEB.F_23_CR.EntryPrjCollSumAdj" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="EntryPrjCollSumAdj.aspx.cs" Inherits="RealERPWEB.F_23_CR.EntryPrjCollSumAdj" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -8,6 +8,13 @@
         .btn-space {
     margin-right: 120px;
 }
+         .chzn-single {
+            border-radius: 3px !important;
+            height: 29px !important;
+        }
+         .table th, .table td{
+             padding:4px;
+         }
     </style>
 <script type="text/javascript" language="javascript">
 
@@ -27,8 +34,8 @@
 
     }
 
-    <div class="container moduleItemWrpper">
-        <div class="contentPart">
+    <div class="card">
+        <div class="card-header">
             <div class="RealProgressbar">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
                     <ProgressTemplate>
@@ -46,12 +53,10 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="row">
-                <fieldset class="scheduler-border fieldset_A">
-
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <div class="col-md-3 asitCol3 pading5px">
+            <div class="row mt-3">
+                
+                       
+                            <div class="col-md-3 d-none">
 
                                 <asp:Label ID="Label5" runat="server"
                                     CssClass="lblTxt lblName" Text=" Name:"></asp:Label>
@@ -61,31 +66,33 @@
                                 <asp:LinkButton ID="imgbtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="imgbtnFindProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                             </div>
-                            <div class="col-md-4 asitCol4 pading5px">
-                                <asp:DropDownList ID="ddlProjectName" CssClass=" ddlPage chzn-select" runat="server" Font-Bold="True"
-                                    Width="300px">
+                            <div class="col-md-2">
+                                 <asp:Label ID="Label1" runat="server"
+                                    CssClass="form-label" Text=" Name:"></asp:Label>
+                                <asp:DropDownList ID="ddlProjectName" CssClass="form-control form-control-sm chzn-select" runat="server" Font-Bold="True"
+                                   >
                                 </asp:DropDownList>
-                                <cc1:ListSearchExtender ID="ddlProjectName_ListSearchExtender2" runat="server"
+                               <%-- <cc1:ListSearchExtender ID="ddlProjectName_ListSearchExtender2" runat="server"
                                     QueryPattern="Contains" TargetControlID="ddlProjectName">
-                                </cc1:ListSearchExtender>
+                                </cc1:ListSearchExtender>--%>
 
                                 
                             </div>
-                            <div class="col-md-1 pading5px pull-left">
-                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                            <div class="col-md-1  pull-left" style="margin-top:22px;">
+                                <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                             </div>
 
 
 
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-12 ">
+                       
+                      
+                            <div class="col-md-1">
 
-                                <asp:Label ID="lblPage0" runat="server" CssClass="lblTxt lblName" Text="Size:" ></asp:Label>
+                                <asp:Label ID="lblPage0" runat="server" CssClass="form-label" Text="Size:" ></asp:Label>
 
                                 <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True"
-                                    CssClass="ddlPage"
-                                    OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Width="71px">
+                                    CssClass="form-control form-control-sm"
+                                    OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                     <asp:ListItem>10</asp:ListItem>
                                     <asp:ListItem>15</asp:ListItem>
                                     <asp:ListItem>20</asp:ListItem>
@@ -96,13 +103,13 @@
                                     <asp:ListItem>200</asp:ListItem>
                                     <asp:ListItem>300</asp:ListItem>
                                 </asp:DropDownList>
-
+                                </div>
                                
-                            <div class="col-md-5 pading5px ">
-                                <asp:Label ID="Label6" runat="server" CssClass=" smLbl_to" Text="Month:"></asp:Label>
+                            <div class="col-md-1">
+                                <asp:Label ID="Label6" runat="server" CssClass="form-label" Text="Month:"></asp:Label>
 
                                 <asp:DropDownList ID="ddlyearmon" runat="server" AutoPostBack="True"
-                                    TabIndex="11" CssClass=" ddlPage">
+                                    TabIndex="11" CssClass="form-control form-control-sm">
                                 </asp:DropDownList>
 
                                 
@@ -131,11 +138,13 @@
                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>--%>
 
                             </div>
-                        </div>
+                     
 
-                    </div>
-
-                </fieldset>
+                    
+                </div>
+               
+        <div class="card-body">
+            <div class="row">
                 <div class="table table-responsive">
                     <asp:GridView ID="gvprjstatus" runat="server" AllowPaging="True"
                         AutoGenerateColumns="False" OnPageIndexChanging="gvprjstatus_PageIndexChanging"
@@ -189,9 +198,9 @@
                                 </ItemTemplate>
 
                                   <FooterTemplate>
-                                            <asp:LinkButton ID="btnAdjTotal" runat="server" OnClick="btnAdjTotal_Click" CssClass="btn btn-primary primaryBtn btn-space">Total</asp:LinkButton>
+                                            <asp:LinkButton ID="btnAdjTotal" runat="server" OnClick="btnAdjTotal_Click" CssClass="btn btn-xs btn-primary primaryBtn btn-space">Total</asp:LinkButton>
                                     
-                                           <asp:LinkButton ID="lnkFiUpdate" runat="server"  CssClass="btn btn-danger primaryBtn" onClick="lnkFiUpdate_Click" >Update</asp:LinkButton>
+                                           <asp:LinkButton ID="lnkFiUpdate" runat="server"  CssClass="btn btn-xs btn-danger primaryBtn" onClick="lnkFiUpdate_Click" >Update</asp:LinkButton>
                                          
                                   </FooterTemplate>
 
@@ -239,8 +248,9 @@
                     </asp:GridView>
                 </div>
             </div>
-        </div>
+      
     </div>
+        </div>
 
 </asp:Content>
 

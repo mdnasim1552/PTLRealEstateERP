@@ -2349,23 +2349,59 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                           <%-- <asp:TemplateField HeaderText="Req No">
+                                            <asp:TemplateField HeaderText="Req No">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvReqno1" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno")) %>'
+                                                    <asp:Label ID="lgvreqno" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno")) %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>--%>
+                                            </asp:TemplateField>
 
-                                          <%--  <asp:TemplateField HeaderText="Voucher Number">
+                                            <asp:TemplateField HeaderText="Voucher Number" >
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvReqno1" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "vounum")) %>'
+                                                    <asp:Label ID="lgvvounum" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "vounum")) %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>--%>
+                                            </asp:TemplateField>
+
+                                             <asp:TemplateField HeaderText="Resource Code">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvrsircode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Specification Code">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvspcfcod" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfcod")) %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Project Account Code">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvpactcode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactcode")) %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Bill No">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvbillno" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "billno")) %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            
 
                                             <asp:TemplateField HeaderText="Date">
                                                 <ItemTemplate>
@@ -2423,6 +2459,11 @@
                                                     </fieldset>
                                                 </EditItemTemplate>
 
+
+                                                <FooterTemplate>
+                                                    <asp:LinkButton ID="lbtnUpdate" runat="server" Font-Bold="True"
+                                                        CssClass="btn btn-danger primarygrdBtn" OnClick="lbtnUpdate_Click">Update</asp:LinkButton>
+                                                </FooterTemplate>
 
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
