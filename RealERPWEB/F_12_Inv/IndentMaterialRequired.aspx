@@ -207,6 +207,17 @@ ForeColor="Red"></asp:RequiredFieldValidator>
                                                 <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Balance QTY" Visible="false" >
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblactualqty" runat="server"
+                                                        Style="font-size: 11px; text-align: center;"
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "stkqty")) %>'
+                                                        Width="100px"></asp:Label>
+                                                </ItemTemplate>
+
+                                                <FooterStyle HorizontalAlign="Center" />
+                                                <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
+                                            </asp:TemplateField>
 
 
                                         </Columns>
