@@ -304,7 +304,7 @@
                                     </asp:TemplateField>
                                     <%--4--%>
 
-                                    <asp:TemplateField HeaderText="Fixed Hour" >
+                                    <asp:TemplateField HeaderText="Fixed Hour" Visible="false" >
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvFixedhour" runat="server" BackColor="Transparent"
                                                 BorderStyle="None"
@@ -366,13 +366,12 @@
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
                                     <%--8--%>
-
-                                    <asp:TemplateField HeaderText="Hourly" >
+                                       <asp:TemplateField HeaderText="Fix Hour">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtgvhourly" runat="server" BackColor="Transparent"
+                                            <asp:TextBox ID="txtgvFixed" runat="server" BackColor="Transparent"
                                                 BorderStyle="None"
                                                 Style="text-align: right"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "hourly")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fixhour")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="80px"></asp:TextBox>
                                         </ItemTemplate>
 
@@ -381,14 +380,15 @@
                                         <ItemStyle HorizontalAlign="right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
-                                    <%--9--%>
+                                   
+                                    <%--9--%>                                 
 
-                                    <asp:TemplateField HeaderText="Fix Hour" Visible="false">
+                                     <asp:TemplateField HeaderText="Hourly" >
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtgvFixed" runat="server" BackColor="Transparent"
+                                            <asp:TextBox ID="txtgvhourly" runat="server" BackColor="Transparent"
                                                 BorderStyle="None"
                                                 Style="text-align: right"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "fixhour")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "hourly")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="80px"></asp:TextBox>
                                         </ItemTemplate>
 
