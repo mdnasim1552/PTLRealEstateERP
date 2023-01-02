@@ -1482,7 +1482,7 @@ namespace RealERPWEB.F_09_PImp
 
 
                 result = PurData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_PURCHASE_02", "INSORUPDATECBILL", "PURCBILLB", billno, pactcode, csircode, curdate,
-                      Remarks, cbillref, percentage, sdamt, dedamt, Penalty, advamt, billtype, Reward, PostedByid, Posteddat, PostSession, Posttrmid, EditByid, Editdat, EditSession, Edittrmid, Approval, advpay,"","","","","","","","","");
+                      Remarks, cbillref, percentage, sdamt, dedamt, Penalty, advamt, billtype, Reward, PostedByid, Posteddat, PostSession, Posttrmid, EditByid, Editdat, EditSession, Edittrmid,advpay, Approval, "","","","","","","","", "");
 
                 if (type == "BillServiceEntry")
                 {
