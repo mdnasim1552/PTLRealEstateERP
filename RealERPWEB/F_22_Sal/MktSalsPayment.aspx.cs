@@ -1146,9 +1146,9 @@ namespace RealERPWEB.F_22_Sal
             {
                 BookDate = (this.txtBookDate.Text.Trim() == "") ? "01-jan-1900" : this.txtBookDate.Text;
             }
+            
 
-
-            res = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATECUSTINF", PactCode, Usircode, "", "D", BookDate, "", "", "", "", "", "", "", "", "", "");
+            res = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATECUSTINF", PactCode, Usircode, "51003", "D", BookDate, "", "", "", "", "", "", "", "", "", "");
 
             if (res == false)
             {
