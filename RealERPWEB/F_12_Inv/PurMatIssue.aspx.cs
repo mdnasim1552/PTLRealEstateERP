@@ -513,7 +513,7 @@ namespace RealERPWEB.F_12_Inv
         protected void grvissue_DataBind()
         {
             this.grvissue.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue);
-            this.grvissue.DataSource = (DataTable)ViewState["tblmatissue"]; ;
+            this.grvissue.DataSource = (DataTable)ViewState["tblmatissue"]; 
             this.grvissue.DataBind();
         }
 
