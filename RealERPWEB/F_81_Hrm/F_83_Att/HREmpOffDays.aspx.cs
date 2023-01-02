@@ -328,7 +328,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case "3365":
                 case "3367":
                 case "3355":
-                case "3330":
+                //case "3330":
                 case "3338":
                 case "1206":
                 case "1207":

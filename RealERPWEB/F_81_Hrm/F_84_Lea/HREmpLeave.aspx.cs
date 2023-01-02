@@ -349,8 +349,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             {
                 this.gvLeaveRule.Columns[0].HeaderText = "sl no";
 
-                this.gvLeaveRule.Columns[15].HeaderText = "Paternity Leave";
-                this.gvLeaveRule.Columns[13].HeaderText = "Leave On Probation";
+                this.gvLeaveRule.Columns[13].HeaderText = "Paternity Leave";
+                this.gvLeaveRule.Columns[18].HeaderText = "Probation";
+
 
             }
 
@@ -472,6 +473,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 string lonsepaid = dt.Rows[i]["lonsepaid"].ToString();
                 string lonsepaleave = dt.Rows[i]["lonsepaleave"].ToString();
+   
+
 
                 string lappretiship = dt.Rows[i]["lappretiship"].ToString();
                 string lappreleave = dt.Rows[i]["lappreleave"].ToString();
