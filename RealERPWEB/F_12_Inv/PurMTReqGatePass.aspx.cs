@@ -619,12 +619,15 @@ namespace RealERPWEB.F_12_Inv
                     dr1["balqty"] = dr3[0]["balqty"];
                     dr1["rate"] = dr3[0]["mtrfrat"];
                     dr1["getpamt"] = dr3[0]["mtrfamt"];
-                    dr1["stockbal"] =dt5.Select("pactcode = '" + frmprjcode + "' and rsircode = '" + mResCode + "' and spcfcod = '" + mSpcfCod + "'")[0]["balqty"].ToString();
+
+                    
+                    
+                        dr1["stockbal"] =dt5.Select("pactcode = '" + frmprjcode + "' and rsircode = '" + mResCode + "' and spcfcod = '" + mSpcfCod + "'")[0]["balqty"].ToString();
 
 
                     //((DataTable)Session["tblStockbal"]).Select("pactcode='" + frmprjcode + "'")[0]["balqty"].ToString();
 
-                  string ddd=  dt5.Select("pactcode = '" + frmprjcode + "' and rsircode = '" + mResCode + "' and spcfcod = '" + mSpcfCod + "'")[0]["balqty"].ToString();
+                  //string ddd=  dt5.Select("pactcode = '" + frmprjcode + "' and rsircode = '" + mResCode + "' and spcfcod = '" + mSpcfCod + "'")[0]["balqty"].ToString();
 
                     tbl1.Rows.Add(dr1);
                 }
