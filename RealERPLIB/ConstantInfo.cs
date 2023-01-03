@@ -425,6 +425,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1202000", "1202031", "F_12_Inv", "MaterialsTransfer?", "Type=Audit", "Material Audit", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1202000", "1202035", "F_12_Inv", "PurInterComMatTransfer", "", "Inter Company Material Transfer", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1202000", "1202040", "F_12_Inv", "PurMatIssue?", "Type=Entry", "Material Issue", "Inventory", "False", "False", "False", "False" }); ;
+           
 
             tblObj.Rows.Add(new Object[] { "1202000", "1202042", "F_12_Inv", "PurMatIssue?", "Type=ComplainMgt", "Material Issue (Complain)", "Inventory", "False", "False", "False", "False" }); ;
 
@@ -467,10 +468,12 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1203000", "1203182", "F_12_Inv", "AllIndentIsuList?", "Type=Entry", "Indent Issue List", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1203000", "1203183", "F_12_Inv", "Material_Issue?", "Type=Entry", "Indent Materials Issue", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1203000", "1203184", "F_12_Inv", "Material_Issue?", "Type=Approve", "Indent Materials Approve", "Inventory", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1203000", "1203189", "F_12_Inv", "Material_Issue?", "Type=Link", "Indent Materials Link", "Inventory", "False", "False", "False", "False" });
             ///nahid
             tblObj.Rows.Add(new Object[] { "1203000", "1203185", "F_12_Inv", "IndentMaterialRequired?", "Type=Entry", "Indent Materials Required", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1203000", "1203186", "F_12_Inv", "IndentMaterialRequired?", "Type=Approve", "Indent Materials Required Approve", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1203000", "1203187", "F_12_Inv", "IndentMaterialRequired?", "Type=Checked", "Indent Materials Required Checked", "Inventory", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1203000", "1203188", "F_12_Inv", "IndentMaterialRequired?", "Type=Completed", "Indent Materials Required Completed", "Inventory", "False", "False", "False", "False" });
 
             //Added 
             tblObj.Rows.Add(new Object[] { "1203000", "1203190", "F_12_Inv", "MatConversion", "", "Material Conversion", "Inventory", "False", "False", "False", "False" });
@@ -5253,6 +5256,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000005", "05. Material Transfer Approval", "F_12_Inv/MaterialsTransfer?Type=Entry&genno=", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0201000006", "06. Material Issue", "F_12_Inv/PurMatIssue?Type=Entry", "", true, "" });
+           
             mnuTbl1.Rows.Add(new Object[] { "0201000007", "07. Physical Stock", "F_12_Inv/PurPhyStock", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000008", "08. Inter Company  Material Transfer", "F_12_Inv/PurInterComMatTransfer", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000009", "03. Inter Company Voucher Delete", "F_17_Acc/InterCompMatTranStatusDel", "", true, "" });
@@ -5337,9 +5341,11 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000009", "05. Indent Issue List", "F_12_Inv/AllIndentIsuList?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000010", "05. Indent Materials Issue ", "F_12_Inv/Material_Issue?Type=Entry&genno=&prjcode=&sircode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000011", "05. Indent Materials Approve ", "F_12_Inv/Material_Issue?Type=Approve&genno=&prjcode=&sircode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000011", "06. Indent Materials Link ", "F_12_Inv/Material_Issue?Type=Link&genno=&prjcode=&sircode=", "", true, "" });
           
             mnuTbl1.Rows.Add(new Object[] { "0302000012", "05. Indent Materials Rrquired ", "F_12_Inv/IndentMaterialRequired?Type=Entry&genno=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000013", "05. Indent Materials Checked ", "F_12_Inv/IndentMaterialRequired?Type=Checked&genno=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000013", "05. Indent Materials Completed ", "F_12_Inv/IndentMaterialRequired?Type=Completed&genno=", "", true, "" });
 
             //mnuTbl1.Rows.Add(new Object[] { "0311000000", "", "", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0312000000", "", "", "", true, "" });
