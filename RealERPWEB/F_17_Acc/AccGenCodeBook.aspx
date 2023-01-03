@@ -131,11 +131,11 @@
                             CellPadding="4" Font-Size="12px" OnPageIndexChanging="grvacc_PageIndexChanging"
                             OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
                             OnRowUpdating="grvacc_RowUpdating" PageSize="15" Width="576px">
-<<<<<<< HEAD
+
                            
-=======
+
                             <PagerSettings NextPageText="Next" PreviousPageText="Previous" />
->>>>>>> dbd267703e96e6a001f4a647adc69ad177ebf1ad
+
                             <FooterStyle BackColor="#5F9467" Font-Bold="True" ForeColor="White" />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.No.">
@@ -313,7 +313,7 @@
                                 </asp:Panel>
                          
                         </fieldset--%>
-<<<<<<< HEAD
+
 
             <div id="AddResCode" class="modal animated slideInLeft " role="dialog" data-keyboard="false" data-backdrop="static">
                 <div class="modal-dialog modal-lg">
@@ -359,10 +359,7 @@
                     </div>
                 </div>
             </div>
-=======
-                 
-        
->>>>>>> dbd267703e96e6a001f4a647adc69ad177ebf1ad
+
 
 
         </ContentTemplate>
