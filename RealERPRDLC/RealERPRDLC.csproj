@@ -203,6 +203,7 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EnvelopModel.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+CustomerMoneyrecipt.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+MonSalPerTarWise.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+MonthWisseSales.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+PaymentScheduleN.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+perodicsalesColl.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CR.EClassLand+RptLandownerColStatus.datasource" />

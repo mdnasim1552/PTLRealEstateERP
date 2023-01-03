@@ -1742,10 +1742,11 @@ namespace RealERPWEB.F_17_Acc
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            DataTable dt = (DataTable)Session["tblbgd"];
+             DataTable dt1 = (DataTable)ViewState["tblcollvscl"];
+
 
             LocalReport Rpt1 = new LocalReport();
-            var lst = dt.DataTableToList<RealEntity.C_22_Sal.Sales_BO.MonthWisseSales>();
+            var lst = dt1.DataTableToList<RealEntity.C_22_Sal.Sales_BO.MonthWisseSales>();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptMonWiseCollection", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
