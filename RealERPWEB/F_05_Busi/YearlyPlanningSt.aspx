@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="YearlyPlanningSt.aspx.cs" Inherits="RealERPWEB.F_05_Busi.YearlyPlanningSt" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="YearlyPlanningSt.aspx.cs" Inherits="RealERPWEB.F_05_Busi.YearlyPlanningSt" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -27,33 +27,31 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
+            <div class="card">
+                <div class="card-header">
                     <div class="row">
 
-                        <fieldset class="scheduler-border">
+                      
 
-                            <div class="form-horizontal">
-                                <div class="form-group">
+                                    <div class="col-md-2">
+                                      <asp:Label ID="Label1" runat="server" CssClass="form-label" Text="Year:"></asp:Label>
 
-                                    <asp:Label ID="Label1" runat="server" CssClass="col-md-2 control-label lblTxt" Text="Year:"></asp:Label>
-
-                                    <div class="col-md-2 pading5px">
-                                        <asp:DropDownList ID="ddlyear" runat="server" AutoPostBack="True" CssClass="form-control inputTxt"
+                                        <asp:DropDownList ID="ddlyear" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm"
                                             TabIndex="11">
                                         </asp:DropDownList>
                                     </div>
 
-                                    <div class="col-md-1 pading5px">
-                                        <asp:LinkButton ID="lbtnYearbgd" runat="server" Text="Ok" OnClick="lbtnYearbgd_Click" CssClass="btn btn-primary okBtn"></asp:LinkButton>
+                                    <div class="col-md-1" style="margin-top:22px;">
+                                        <asp:LinkButton ID="lbtnYearbgd" runat="server" Text="Ok" OnClick="lbtnYearbgd_Click" CssClass="btn btn-sm btn-primary"></asp:LinkButton>
                                     </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="form-group">
+                                 
+                         
+                            
 
-                                    <asp:Label ID="lblPage" runat="server" CssClass="col-md-2 control-label lblTxt" Text="Page Size" Visible="False"></asp:Label>
-                                    <div class="col-md-1 pading5px">
-                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control inputTxt"
+                                    <div class="col-md-1">
+                                    <asp:Label ID="lblPage" runat="server" CssClass="form-label" Text="Page Size" Visible="False"></asp:Label>
+
+                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm "
                                             OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Visible="False">
                                             <asp:ListItem>15</asp:ListItem>
                                             <asp:ListItem>20</asp:ListItem>
@@ -67,16 +65,16 @@
                                             <asp:ListItem>900</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
-                                    <div class="col-md-4 pading5px">
+                                    <div class="col-md-4 d-none">
                                         <div class="msgHandSt">
                                             <asp:Label ID="lblmsg02" CssClass="btn-danger btn disabled" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="ConfirmMessage" CssClass="btn-danger btn disabled" runat="server" Visible="false"></asp:Label>
                                         </div>
                                     </div>
-                                </div>
+                               
 
                             </div>
-                        </fieldset>
+                    
 
                         <asp:MultiView ID="MultiView1" runat="server">
 

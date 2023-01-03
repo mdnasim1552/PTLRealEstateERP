@@ -18,11 +18,54 @@
             });
 
         };
+        function pageLoaded() {
+
+            $('#Chboxchild').change(function () {
+                var result = $('#Chboxchild').is(':checked');
+                var description = result ? "Add Child" : "Add Group";
+                $('#lblchild').html(description);
+            });
+            $('.chzn-select').chosen({ search_contains: true });
+        };
+        function loadModalAddCode() {
+            $('#AddResCode').modal('toggle', {
+                backdrop: 'static',
+                keyboard: false
+            });
+        };
+        function CloseModalAddCode() {
+            $('#AddResCode').modal('hide');
+        };
     </script>
+    <style>
+        .grvHeader th {
+            font-weight: normal;
+            text-align: center;
+            text-transform: capitalize;
+        }
+        /*.cald {
+             z-index: 1;
+        }*/
 
+        .lblmargin {
+            margin: 0px !important;
+        }
 
+        .lblheadertitle {
+            background-color: #346CB0;
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+            padding-left: 5px !important;
+        }
 
+        .form-control-sm {
+            padding: 0.25rem 0rem !important;
+        }
 
+        .grvContentarea {
+        }
+    </style>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -53,14 +96,7 @@
                             <div class="col-md-2" style="margin-top:20px">
                                  <asp:LinkButton ID="lbtnShowData" runat="server" CssClass="btn btn-sm btn-primary "
                                                 OnClick="lbtnShowData_Click">Show Data</asp:LinkButton>
-
                             </div>
-                                
-                              
-                            
-                       
-                       
-                       
                     </div>
                     </div>
                 </div>
@@ -103,21 +139,24 @@
                                         Width="49px"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:CommandField ShowEditButton="True">
-                                <ItemStyle Font-Bold="True" />
+                            <asp:TemplateField HeaderText="+">
+                                 <ItemTemplate>
+                                     <asp:LinkButton ID="lbtnAdd" runat="server" CssClass="btn btn-xs btn-default" ToolTip="Add New Code" BackColor="Transparent"
+                                            Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "additem"))=="1"?true:false %>' OnClick="lbtnAdd_Click" ><span class="fa fa-plus" aria-hidden="true"></span></asp:LinkButton>
+                                 </ItemTemplate>
+                                 <HeaderStyle Font-Bold="True" Font-Size="16px" Width="20px" HorizontalAlign="Center" />
+                                 <ItemStyle HorizontalAlign="Left" />
+                            </asp:TemplateField>
+                            <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText="" SelectText=""
+                                ShowEditButton="True" EditText="&lt;i class=&quot;fa fa-edit&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;">
+                                <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                <ItemStyle Font-Bold="True" Font-Size="12px" ForeColor="#0000C0" />
                             </asp:CommandField>
                             <asp:TemplateField HeaderText="Code">
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="txtgvInfCod1" runat="server" BorderColor="Blue"
-                                        BorderStyle="Solid" BorderWidth="1px" Font-Size="11px" MaxLength="16"
-                                        Style="font-weight: 700; text-align: left;"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "infcod1")) %>'
-                                        Width="100px"></asp:TextBox>
-                                </EditItemTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvInfCod1" runat="server" Height="16px"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "infcod1")) %>'
-                                        Width="100px" Style="text-align: left; font-weight: 700"></asp:Label>
+                                        Width="110px" Style="text-align: left; font-weight: 700"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Details Description">
@@ -310,6 +349,81 @@
                     <td class="style11">&nbsp;</td>
                 </tr>
             </table>
+
+             <div id="AddResCode" class="modal animated slideInLeft " role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content  ">
+                        <div class="modal-header">
+                            <h5 class="modal-title"><i class="fas fa-info-circle"></i>&nbsp;Add New Code</h5>
+                            <asp:Label ID="lblmobile" runat="server"></asp:Label>
+                            <button type="button" class="btn btn-xs btn-danger float-right" data-dismiss="modal" title="Close"><i class="fas fa-times-circle"></i></button>
+                        </div>
+                        <div class="modal-body form-horizontal">
+                            <div class="row mb-1">
+                                <asp:Label ID="lbgrcod" runat="server" Visible="false"></asp:Label>
+                                <label class="col-md-4">Land Code</label>
+                                <div class="col-md-8">
+                                    <asp:TextBox ID="txtlandcode" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div>
+                                <asp:TextBox Visible="false" ID="infgrpchk" runat="server" CssClass="form-control"></asp:TextBox>
+                            </div>  
+                            <div>
+                                <asp:TextBox Visible="false" ID="infcodchk" runat="server" CssClass="form-control"></asp:TextBox>
+                            </div>
+                            <div>
+                                <asp:TextBox Visible="false" ID="actcodechk" runat="server" CssClass="form-control"></asp:TextBox>
+                            </div>
+                            <div class="row mb-1">
+                                <label class="col-md-4">Description of Code</label>
+                                <div class="col-md-8">
+                                    <asp:TextBox ID="txtfullDesc" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>  
+                            <div class="row mb-1">
+                                <label class="col-md-4">Description of Code BN</label>
+                                <div class="col-md-8">
+                                    <asp:TextBox ID="txtshortDesc" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div> 
+                            <div class="row mb-1">
+                                <label class="col-md-4">Unit </label>
+                                <div class="col-md-4">
+                                    <asp:TextBox ID="txtunit" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                                <div class="col-md-1">
+                                    <label id="chkbod" runat="server" class="switch">
+                                        <asp:CheckBox ID="Chboxchild" runat="server" ClientIDMode="Static" />
+                                        <span class="btn btn-xs slider round"></span>
+                                    </label>
+                                    <%--<asp:Label ID="lblchild" runat="server" Text="Add Child" CssClass="btn btn-xs" ClientIDMode="Static"></asp:Label>--%>
+                                </div>
+                                <div class="col-md-2">
+                                    <asp:Label ID="lblchild" runat="server" Text="Add Child" CssClass="btn btn-xs" ClientIDMode="Static"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                <label class="col-md-4">Unit Rate</label>
+                                <div class="col-md-8">
+                                    <asp:TextBox ID="txtunitrate" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                <label class="col-md-4">Project Name</label>
+                                <div class="col-md-8">
+                                    <asp:TextBox ID="txtprojectname" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="modal-footer ">
+                            <asp:LinkButton ID="lbtnAddCode" runat="server" CssClass="btn btn-sm btn-success" OnClientClick="CloseModalAddCode();" OnClick="lbtnAddCode_Click" ToolTip="Update Code Info.">
+                                <i class="fas fa-save"></i>&nbsp;Update </asp:LinkButton>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

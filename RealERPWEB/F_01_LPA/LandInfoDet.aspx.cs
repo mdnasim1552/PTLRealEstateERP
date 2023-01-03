@@ -838,9 +838,6 @@ namespace RealERPWEB.F_01_LPA
 
                 switch (gcod)
                 {
-
-
-
                     case "0401011": //Priority
                         dv1 = dt1.DefaultView;
                         dv1.RowFilter = ("gcod like '51%'");

@@ -958,6 +958,7 @@ namespace RealERPWEB.F_09_PImp
                 this.txtPenaltyAmount.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["penamt"]).ToString("#,##0.00;(#,##0.00); ");
                 this.txtAdvanced.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["advamt"]).ToString("#,##0.00;(#,##0.00); ");
                 this.txtreward.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["reward"]).ToString("#,##0.00;(#,##0.00); ");
+                this.txtadvpay.Text = Convert.ToDouble(ds1.Tables[1].Rows[0]["advpay"]).ToString("#,##0.00;(#,##0.00); ");
                 this.ddlbilltype.SelectedValue = ds1.Tables[1].Rows[0]["billtcode"].ToString();
 
                 this.txtRemarks.Text = ds1.Tables[1].Rows[0]["rmrks"].ToString();
@@ -1471,6 +1472,7 @@ namespace RealERPWEB.F_09_PImp
                 string Penalty = Convert.ToDouble("0" + this.txtPenaltyAmount.Text.Trim()).ToString();
                 string advamt = Convert.ToDouble("0" + this.txtAdvanced.Text.Trim()).ToString();
                 string Reward = Convert.ToDouble("0" + this.txtreward.Text.Trim()).ToString();
+                string advpay = Convert.ToDouble("0" + this.txtadvpay.Text.Trim()).ToString();
                 string billtype = this.ddlbilltype.SelectedValue.ToString();
                 bool result;
 
@@ -1479,8 +1481,8 @@ namespace RealERPWEB.F_09_PImp
                 string type = Request.QueryString["Type"].ToString();
 
 
-                result = PurData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_02", "INSORUPDATECBILL", "PURCBILLB", billno, pactcode, csircode, curdate,
-                      Remarks, cbillref, percentage, sdamt, dedamt, Penalty, advamt, billtype, Reward, PostedByid, Posteddat, PostSession, Posttrmid, EditByid, Editdat, EditSession, Edittrmid, Approval);
+                result = PurData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_PURCHASE_02", "INSORUPDATECBILL", "PURCBILLB", billno, pactcode, csircode, curdate,
+                      Remarks, cbillref, percentage, sdamt, dedamt, Penalty, advamt, billtype, Reward, PostedByid, Posteddat, PostSession, Posttrmid, EditByid, Editdat, EditSession, Edittrmid,advpay, Approval, "","","","","","","","", "");
 
                 if (type == "BillServiceEntry")
                 {
@@ -1842,7 +1844,8 @@ namespace RealERPWEB.F_09_PImp
             double deduction = Convert.ToDouble("0" + this.txtDedAmount.Text.Trim());
             double Advanced = Convert.ToDouble("0" + this.txtAdvanced.Text.Trim());
             double Reward = Convert.ToDouble("0" + this.txtreward.Text.Trim());
-            this.lblvalnettotal.Text = (amount + Reward - (security + deduction + penalty + Advanced)).ToString("#,##0;(#,##0); ");
+            double Advpay = Convert.ToDouble("0" + this.txtadvpay.Text.Trim());
+            this.lblvalnettotal.Text = (amount + Reward  - (security + deduction + penalty + Advanced)).ToString("#,##0;(#,##0); ");
             //if (((DataTable)Session["tblbill"]).Rows.Count == 0)
             //    return;
             //double amount = Convert.ToDouble((Convert.IsDBNull(((DataTable)Session["tblbill"]).Compute("sum(billamt)", "")) ? 0.00

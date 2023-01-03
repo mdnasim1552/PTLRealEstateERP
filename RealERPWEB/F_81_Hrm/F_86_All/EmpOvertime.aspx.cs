@@ -178,7 +178,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             this.ddlyearmon.DataValueField = "ymon";
             this.ddlyearmon.DataSource = ds1.Tables[0];
 
-            this.ddlyearmon.SelectedValue = System.DateTime.Today.AddMonths(-1).ToString("yyyyMM");
+            this.ddlyearmon.SelectedValue = System.DateTime.Today.ToString("yyyyMM");
             this.ddlyearmon.DataBind();
             //this.ddlyearmon.DataBind();
             //string txtdate = Convert.ToDateTime(this.txtDate.Text.Trim()).ToString("dd-MMMM-yyyy");
@@ -444,6 +444,9 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     //this.txtDate_CalendarExtender.Format = "yyyyMM";
                     //this.txtDate.MaxLength = 6;
                     break;
+                case "salaryencashment":
+                    ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+                    break;
 
 
 
@@ -644,10 +647,10 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                     break;
 
-                case "3370"://cpdl
-                    CallType = "EMPALLOYOVERTIMECPDL";
+                //case "3370"://cpdl
+                //    CallType = "EMPALLOYOVERTIMECPDL";
 
-                    break;
+                //    break;
 
                 default:
                     CallType = "EMPALLOYOVERTIME";
@@ -844,15 +847,15 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             string nozero = (hrcomln == 4) ? "0000" : "00";
             string comnam = (this.ddlCompanyName.SelectedValue.Substring(0, hrcomln).ToString() == nozero) ? "%" : this.ddlCompanyName.SelectedValue.Substring(0, hrcomln).ToString() + "%";
 
-            string deptname = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + "%";
+            string deptname = (this.ddlDepartment.SelectedValue.ToString() == "000000000000" ? "94" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9)) + "%";
             string ymon = this.ddlyearmon.SelectedValue.ToString();
             string dayid = ymon + "01";
             string txtdate = ASTUtility.DateFormat("01." + ymon.Substring(4, 2) + "." + ymon.Substring(0, 4));
             string Empcode = this.txtSrcEmployee.Text.Trim() + "%";
 
-            string calltype = comcod == "3365" ? "LVENCASHMENTSALBTI" : "LVENCASHMENTSALBTI";
+          //  string calltype = comcod == "3365" ? "LVENCASHMENTSALBTI" : "LVENCASHMENTSALBTI";
 
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVE_SUMMARY", calltype, deptname, dayid, txtdate, comnam, Empcode, "", "", "", "");
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVE_SUMMARY", "LVENCASHMENTSALBTI", deptname, dayid, txtdate, comnam, Empcode, "", "", "", "");
             if (ds2 == null)
             {
                 this.gvEncashment.DataSource = null;
@@ -861,11 +864,10 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             }
             else
             {
-                this.gvEncashment.DataSource = ds2.Tables[0];
-                this.gvEncashment.DataBind();
+                Session["tblencashment"] = this.HiddenSameData(ds2.Tables[0]);
+                this.Data_Bind();
             }
-            Session["tblencashment"] = ds2.Tables[0];
-    
+           
 
 
         }
@@ -1045,9 +1047,13 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         }
         private void Data_Bind()
         {
-            string comcod = this.GetComeCode();
-            DataTable dt = (DataTable)Session["tblover"];
             string type = this.Request.QueryString["Type"].ToString().Trim();
+
+            string comcod = this.GetComeCode();
+          //  DataTable dt = (DataTable)Session["tblover"];
+            DataTable dt = ((type == "salaryencashment") ? (DataTable)Session["tblencashment"] : (DataTable)Session["tblover"]);
+
+
             switch (type)
             {
                 case "Overtime":
@@ -1057,7 +1063,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     this.EnabledOrVissible();
                     this.FooterCalculation();
 
-                    if (comcod == "3370" || comcod == "3101")//For cpdl
+                    if ( comcod == "3101")//For cpdl
                     {
                         
                         this.gvEmpOverTime.Columns[4].Visible = true;
@@ -1074,7 +1080,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         this.gvEmpOverTime.Columns[15].Visible = false;
                         this.gvEmpOverTime.Columns[16].Visible = true;
                     }
-                    else if (comcod == "3368")
+                    else if (comcod == "3369")
                     {
                         this.gvEmpOverTime.Columns[3].Visible = true;
                         this.gvEmpOverTime.Columns[4].Visible = true;
@@ -1098,34 +1104,67 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         this.gvEmpOverTime.Columns[22].Visible = true;
                     }
 
-                    //else if (comcod == "3369")
+                    else if (comcod == "3370")
+                    {
+                        this.gvEmpOverTime.Columns[1].Visible = true;
+                        this.gvEmpOverTime.Columns[2].Visible = true;
+
+
+                        this.gvEmpOverTime.Columns[3].Visible = true;
+                        this.gvEmpOverTime.Columns[4].Visible = true;
+                        this.gvEmpOverTime.Columns[5].Visible = false;
+                        this.gvEmpOverTime.Columns[6].Visible = false;
+                        this.gvEmpOverTime.Columns[7].Visible = false;
+                        this.gvEmpOverTime.Columns[8].Visible = false;
+                        this.gvEmpOverTime.Columns[9].Visible = false;
+                        this.gvEmpOverTime.Columns[10].Visible = false;
+                        this.gvEmpOverTime.Columns[11].Visible = false;
+                        this.gvEmpOverTime.Columns[12].Visible = false;
+                        this.gvEmpOverTime.Columns[13].Visible = false;
+                        this.gvEmpOverTime.Columns[14].Visible = false;
+                        this.gvEmpOverTime.Columns[15].Visible = false;
+                        this.gvEmpOverTime.Columns[16].Visible = false;
+                        this.gvEmpOverTime.Columns[17].Visible = false;
+                        this.gvEmpOverTime.Columns[18].Visible = false;
+                        this.gvEmpOverTime.Columns[19].Visible = true;
+                        this.gvEmpOverTime.Columns[20].Visible = false;
+                        this.gvEmpOverTime.Columns[21].Visible = false;
+                        this.gvEmpOverTime.Columns[22].Visible = false;
+                    }
+                    //else if (comcod == "3368")
                     //{
+                    //    this.gvEmpOverTime.Columns[1].Visible = true;
+                    //    this.gvEmpOverTime.Columns[2].Visible = true;
                     //    this.gvEmpOverTime.Columns[3].Visible = true;
                     //    this.gvEmpOverTime.Columns[4].Visible = true;
-                    //    this.gvEmpOverTime.Columns[5].Visible = true;
-                    //    this.gvEmpOverTime.Columns[6].Visible = true;
-                    //    this.gvEmpOverTime.Columns[7].Visible = true;
+
+                    //    this.gvEmpOverTime.Columns[5].Visible = false;
+                    //    this.gvEmpOverTime.Columns[6].Visible = false;
+                    //    this.gvEmpOverTime.Columns[7].Visible = false;
                     //    this.gvEmpOverTime.Columns[8].Visible = true;
+
                     //    this.gvEmpOverTime.Columns[9].Visible = false;
                     //    this.gvEmpOverTime.Columns[10].Visible = false;
                     //    this.gvEmpOverTime.Columns[11].Visible = false;
                     //    this.gvEmpOverTime.Columns[12].Visible = false;
-                    //    this.gvEmpOverTime.Columns[13].Visible = false;
+                    //    this.gvEmpOverTime.Columns[13].Visible = true;
+
                     //    this.gvEmpOverTime.Columns[14].Visible = false;
                     //    this.gvEmpOverTime.Columns[15].Visible = false;
                     //    this.gvEmpOverTime.Columns[16].Visible = false;
                     //    this.gvEmpOverTime.Columns[17].Visible = false;
-                    //    this.gvEmpOverTime.Columns[18].Visible = false;
+                    //    this.gvEmpOverTime.Columns[18].Visible = true;
+
                     //    this.gvEmpOverTime.Columns[19].Visible = false;
                     //    this.gvEmpOverTime.Columns[20].Visible = false;
-                    //    this.gvEmpOverTime.Columns[21].Visible = true;
-                    //    this.gvEmpOverTime.Columns[22].Visible = true;
+                    //    this.gvEmpOverTime.Columns[21].Visible = false;
+                    //    this.gvEmpOverTime.Columns[22].Visible = false;
                     //}
-                    else
-                    {
-                        this.gvEmpOverTime.Columns[16].Visible = false;
+                    //else
+                    //{
+                    //    this.gvEmpOverTime.Columns[16].Visible = false;
 
-                    }
+                    //}
 
 
 
@@ -1332,6 +1371,13 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     this.GvAddiBonus.DataSource = dt;
                     this.GvAddiBonus.DataBind();
                     this.FooterCalculation();
+                    break;
+
+                case "salaryencashment":
+                    this.gvEncashment.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.gvEncashment.DataSource = dt;
+                    this.gvEncashment.DataBind();
+                   // this.FooterCalculation();
                     break;
 
 
@@ -1837,7 +1883,9 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
             string comcod = this.GetComeCode();
             string type = this.Request.QueryString["Type"].ToString().Trim();
-            DataTable dt = (DataTable)Session["tblover"];
+            //DataTable dt = (DataTable)Session["tblover"];
+            DataTable dt = ((type == "salaryencashment") ? (DataTable)Session["tblencashment"] : (DataTable)Session["tblover"]);
+
             int rowindex;
             switch (type)
             {
@@ -1851,12 +1899,16 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         double c1hour = Convert.ToDouble("0" + ((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvc1")).Text.Trim());
                         double c2hour = Convert.ToDouble("0" + ((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvc2")).Text.Trim());
                         double c3hour = Convert.ToDouble("0" + ((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvc3")).Text.Trim());
-                        double fixamt = Convert.ToDouble("0" + ((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvfixamt")).Text.Trim());
-
-
-
+                        //double fixamt = Convert.ToDouble("0" + ((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvfixamt")).Text.Trim());
+                        double fixamt = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("lblgvfixedamt")).Text.Trim());
 
                         
+
+
+
+
+
+
                         double fixdaycount = Convert.ToDouble("0" + ((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvFixedDaycount")).Text.Trim());
                         double dayrate = Convert.ToDouble("0" + ((Label)this.gvEmpOverTime.Rows[i].FindControl("txtgvdayrate")).Text.Trim());
                         double fixhourcount = Convert.ToDouble("0" + ((TextBox)this.gvEmpOverTime.Rows[i].FindControl("txtgvFixedhour")).Text.Trim());
@@ -1876,13 +1928,13 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         dt.Rows[rowindex]["c3hour"] = c3hour;
                         dt.Rows[rowindex]["tohour"] = tohour;
                         dt.Rows[rowindex]["fixamt"] = fixamt;
-                        if (comcod == "3368" || comcod=="3369")
-                        {
+                        //if (comcod == "3368")
+                        //{
 
-                            dt.Rows[rowindex]["fixday"] = fixdaycount;
-                            dt.Rows[rowindex]["fixhour"] = fixhourcount;
-                            dt.Rows[rowindex]["totalamt"] = (fixdaycount * dayrate) + (fixhourcount * hourlyrate);
-                        }
+                        //    dt.Rows[rowindex]["fixday"] = fixdaycount;
+                        //    dt.Rows[rowindex]["fixhour"] = fixhourcount;
+                        //    dt.Rows[rowindex]["totalamt"] = (fixdaycount * dayrate) + (fixhourcount * hourlyrate);
+                        //}
 
 
 
@@ -2129,6 +2181,23 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     }
                     break;
 
+                case "salaryencashment":
+                   // DataTable dt2 = (DataTable)Session["tblencashment"];
+
+                    for (int i = 0; i < this.gvEncashment.Rows.Count; i++)
+                    {
+
+                        rowindex = (this.gvEmpOverTime.PageSize) * (this.gvEncashment.PageIndex) + i;
+                        double balleave = Convert.ToDouble("0" + ((TextBox)this.gvEncashment.Rows[i].FindControl("txtballve")).Text.Trim());
+                        double salary = Convert.ToDouble("0" + ((Label)this.gvEncashment.Rows[i].FindControl("lblsal")).Text.Trim());
+                        double encashamt = salary * 12 / 365 * balleave;
+                        dt.Rows[rowindex]["encashamt"] = encashamt;
+                        dt.Rows[rowindex]["elencashday"] = balleave;
+
+                    }
+                    Session["tblencashment"] = dt;
+                    break;
+
             }
             Session["tblover"] = dt;
         }
@@ -2182,53 +2251,67 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 double dayamt = 0.0;
                 double totalamt = 0.0;
 
-                if (comcod == "3368" || comcod=="3369")
+                if ( comcod=="3369")
                 {
                     daycount = Convert.ToDouble(dt.Rows[i]["fixday"]);
                     dayrate = Convert.ToDouble(dt.Rows[i]["holidayrate"]);
                     syshour = Convert.ToDouble(dt.Rows[i]["fixhour"]);
                     syshourrate = Convert.ToDouble(dt.Rows[i]["fixrate"]);
                     dayamt = daycount * dayrate;
-
-
-
-
-
-
                     result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, daycount.ToString(), dayrate.ToString(), dayamt.ToString(), "", "", "", "");
                     if (!result)
                         return;
                 }
+                
+                
+                
+                
+                
                 else
                 {
 
-                if (tohour > 0)
-                {
+                    //if (tohour > 0)
+                    //{
 
-                    result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, daycount.ToString(), dayrate.ToString(), dayamt.ToString(), "", "", "", "");
+                        result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, daycount.ToString(), dayrate.ToString(), dayamt.ToString(), "", "", "", "");
+
                     if (!result)
+                    {
+
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + HRData.ErrorObject["Msg"] + "');", true);
                         return;
-                }
-                switch (comcod)
-                {
-                    case "3101":
-                    case "3370":
-                        if (fixamtx > 0)
-                        {
-                            result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, daycount.ToString(), dayrate.ToString(), dayamt.ToString(), "", "", "", "");
-                            if (!result)
-                                return;
-                        }
-                        break;
 
-                }
+                    }
+                           
+                   // }
+                    
+                    
+                    
+                    
+                    
+                    
+                    //switch (comcod)                
+                    
+                    //{
+                    //case "3101":
+                    //case "3370":
+                    //    if (fixamtx > 0)
+                    //    {
+                    //        result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEOVRTIME", dayid, empid, gcod, date, fixhour.ToString(), hourly.ToString(), c1hour.ToString(), c2hour.ToString(), c3hour.ToString(), fixamt, houramt, c1amt, c2amt, c3amt, daycount.ToString(), dayrate.ToString(), dayamt.ToString(), "", "", "", "");
+                    //        if (!result)
+                    //            return;
+                    //    }
+                    //    break;
+
+                    //}
 
             }
 
 
             }
+            ShowOvertime();
 
-            msg = "Updated Successfully";
+             msg = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
         }
@@ -2555,7 +2638,20 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                     }
                     break;
+                case "salaryencashment":
+                    secid = dt1.Rows[0]["empid"].ToString();
+                    for (j = 1; j < dt1.Rows.Count; j++)
+                    {
+                        if (dt1.Rows[j]["empid"].ToString() == secid)
+                        {
+                            secid = dt1.Rows[j]["empid"].ToString();
+                            dt1.Rows[j]["ttlencashamt"] = "0";
+                        }
 
+                     
+
+                    }
+                    break;
 
 
 
@@ -4224,6 +4320,46 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     break;
             }
             return calltype;
+        }
+
+        protected void lnkencashUpdate_Click(object sender, EventArgs e)
+        {
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+
+            this.SaveValue();
+            DataTable dt = (DataTable)Session["tblencashment"];
+            string comcod = this.GetComeCode();
+
+
+            bool result = false;
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                //a.comcod, a.empid, a.salary, a.fdate, a.tdate, a.duration, a.dueelve,  enjoyday=a.lvenjoyed, balleave=a.dueelve-a.lvenjoyed
+                // comcod,empid,idcard=idcardno,empname,deptid,refno=secid,desig,doj,frmdat,todat,servlen,ttlv,foragm='',avail=enjlv,elencashday=eleave,presal=format(presal,'N0'), encashamt
+                string rowid = dt.Rows[i]["rowid"].ToString();
+                string empid = dt.Rows[i]["empid"].ToString();
+                string fdate = dt.Rows[i]["frmdat"].ToString();
+                string tdate = dt.Rows[i]["todat"].ToString();
+
+
+                double salary = Convert.ToDouble(dt.Rows[i]["presal"]);
+                double duration = Convert.ToDouble(dt.Rows[i]["servlen"]);
+                double dueelve = Convert.ToDouble(dt.Rows[i]["ttlv"]);
+                double enjoyday = Convert.ToDouble(dt.Rows[i]["avail"]);
+                double balleave = Convert.ToDouble(dt.Rows[i]["elencashday"]);
+
+
+                 result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_REPORT_LEAVE_SUMMARY", "INSERTUPDATENCASHMENT", empid,rowid, fdate, tdate, salary.ToString(), duration.ToString(), dueelve.ToString(), enjoyday.ToString(), balleave.ToString(),"","","","","","","","","","","","");
+                    if (!result)
+                        return;
+
+                }
+
+
+
+            ShowSalEncashment();
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
         }
     }
 
