@@ -49,19 +49,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
-      <HintPath>..\..\Real Estate Bin 211213\bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\..\Project Reference\bin\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Antlr3.Runtime">
-      <HintPath>..\..\Real Estate Bin 211213\bin\Antlr3.Runtime.dll</HintPath>
+      <HintPath>..\..\..\Project Reference\bin\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.bootstrap">
-      <HintPath>..\..\Real Estate Bin 211213\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
+      <HintPath>..\..\..\Project Reference\bin\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.jQuery">
-      <HintPath>..\..\Real Estate Bin 211213\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
+      <HintPath>..\..\..\Project Reference\bin\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
     </Reference>
     <Reference Include="BilSimser.GeoJson">
-      <HintPath>..\..\Real Estate Bin 211213\bin\BilSimser.GeoJson.dll</HintPath>
+      <HintPath>..\..\..\Project Reference\bin\bin\BilSimser.GeoJson.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine">
       <HintPath>..\..\Real Estate Bin 211213\bin\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
@@ -136,13 +136,13 @@
       <HintPath>..\..\Real Estate Bin 211213\bin\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
     <Reference Include="DayPilot">
-      <HintPath>..\..\Real Estate Bin 211213\bin\DayPilot.dll</HintPath>
+      <HintPath>..\..\..\Project Reference\bin\bin\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="DropCheck">
-      <HintPath>..\..\Real Estate Bin 211213\bin\DropCheck.dll</HintPath>
+      <HintPath>..\..\..\Project Reference\bin\bin\DropCheck.dll</HintPath>
     </Reference>
     <Reference Include="EASendMail">
-      <HintPath>..\..\Real Estate Bin 211213\bin\EASendMail.dll</HintPath>
+      <HintPath>..\..\..\Project Reference\bin\bin\EASendMail.dll</HintPath>
     </Reference>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>
@@ -150,21 +150,21 @@
       <HintPath>..\..\Real Estate Bin 211213\bin\EnvDTE.dll</HintPath>
     </Reference>
     <Reference Include="FastMember">
-      <HintPath>..\..\Real Estate Bin 211213\bin\FastMember.dll</HintPath>
+      <HintPath>..\..\..\Project Reference\bin\bin\FastMember.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Real Estate Bin 211213\bin\FlashControlV71.dll</HintPath>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
-      <HintPath>..\..\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+      <HintPath>..\..\..\Project Reference\bin\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+      <HintPath>..\..\..\Project Reference\bin\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+      <HintPath>..\..\..\Project Reference\bin\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNetCore.Cryptography.Internal, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNetCore.Cryptography.Internal.7.0.0\lib\net462\Microsoft.AspNetCore.Cryptography.Internal.dll</HintPath>
@@ -184,9 +184,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.Build.Utilities.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>F:\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\..\..\Project Reference\bin\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Extensions.DependencyInjection, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
@@ -228,10 +227,10 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Project Reference\bin\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+      <HintPath>..\..\..\Project Reference\bin\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.SqlServer.Types.dll</HintPath>
@@ -301,8 +300,9 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="RealERPRPT">
-      <HintPath>..\..\Real Estate Bin 211213\bin\RealERPRPT.dll</HintPath>
+    <Reference Include="RealERPRPT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Project Reference\bin\bin\RealERPRPT.dll</HintPath>
     </Reference>
     <Reference Include="RealERPWEB">
       <HintPath>..\..\Real Estate Bin 211213\bin\RealERPWEB.dll</HintPath>
@@ -387,9 +387,13 @@
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\..\..\Project Reference\bin\bin\System.Web.Optimization.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
-      <HintPath>..\..\Real Estate Bin 211213\bin\WebGrease.dll</HintPath>
+      <Private>True</Private>
+      <HintPath>..\..\..\Project Reference\bin\bin\WebGrease.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
