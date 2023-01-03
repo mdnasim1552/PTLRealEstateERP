@@ -150,12 +150,6 @@
                                 <ItemStyle Font-Size="12px" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Code">
-                                <%--<EditItemTemplate>
-                                    <asp:TextBox ID="txtgrcode" runat="server" Font-Size="12px" Height="16px" MaxLength="6"
-                                        Style="border-top-style: none; border-right-style: none; border-left-style: none; border-bottom-style: none; font-size: 12px; border-left-color: midnightblue; border-bottom-color: midnightblue; border-top-color: midnightblue; border-right-color: midnightblue;"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod3")) %>'
-                                        Width="50px"></asp:TextBox>
-                                </EditItemTemplate>--%>
                                 <ItemTemplate>
                                     <asp:Label ID="lbgrcod3" runat="server" Font-Size="12px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod3")) %>'
                                         Width="50px"></asp:Label>
@@ -252,8 +246,18 @@
                             </div> 
                             <div class="row mb-1">
                                 <label class="col-md-4">Type </label>
-                                <div class="col-md-8">
+                                <div class="col-md-4">
                                     <asp:TextBox ID="txttype" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                                <div class="col-md-1">
+                                    <label id="chkbod" runat="server" class="switch">
+                                        <asp:CheckBox ID="Chboxchild" runat="server" ClientIDMode="Static" />
+                                        <span class="btn btn-xs slider round"></span>
+                                    </label>
+                                    <%--<asp:Label ID="lblchild" runat="server" Text="Add Child" CssClass="btn btn-xs" ClientIDMode="Static"></asp:Label>--%>
+                                </div>
+                                <div class="col-md-2">
+                                    <asp:Label ID="lblchild" runat="server" Text="Add Child" CssClass="btn btn-xs" ClientIDMode="Static"></asp:Label>
                                 </div>
                             </div>
                             <div class="modal-footer ">
