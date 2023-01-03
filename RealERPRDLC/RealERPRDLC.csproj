@@ -52,7 +52,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Project Reference\bin\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -132,6 +132,7 @@
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+PurchaseOrderInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+PurOrderTermsCondition.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.ErptStock.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_12_Inv.MatStockIndPro.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.MatStockReportEvaluation.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.PurEqisition+PurMatReq.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.RptDayWisePurchase.datasource" />
@@ -281,6 +282,7 @@
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasis.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptGroupStockEva.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptMaterialStockEva.rdlc" />
+    <EmbeddedResource Include="R_12_Inv\rptMatStockIndPro.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptProMatStock2Leisure.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptPurMrrEntryCPDL.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptPurMrrEntryFinlay.rdlc" />
