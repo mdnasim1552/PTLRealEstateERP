@@ -54,6 +54,11 @@ namespace RealERPWEB.F_12_Inv
                     this.PreList();
                 }
 
+                if(this.Request.QueryString["Type"].ToString()=="Link")
+                {
+                    this.IndentIssue();
+                }
+
             }
             if (fileuploadExcel.HasFile)
             {
@@ -429,10 +434,21 @@ namespace RealERPWEB.F_12_Inv
 
         }
 
+        private void IndentIssue()
+        {
+            string comcod = this.GetCompCode();
+            this.lbtnOk_Click(null, null);
+            this.GetMatList();
+            this.lbtnSelectAll_Click(null, null);
+
+
+
+        }
+
         private void GetMatList()
         {
             string comcod = this.GetCompCode();
-            string mProject = this.ddlProject.SelectedValue.ToString();
+            string mProject = Request.QueryString["Type"].ToString()=="Link"? Request.QueryString["prjcode"].ToString(): this.ddlProject.SelectedValue.ToString();
             string mSrchTxt = "%";
             string date = this.txtCurDate.Text.Trim();
             DataTable dt = (DataTable)ViewState["tblStoreType"];
@@ -441,6 +457,15 @@ namespace RealERPWEB.F_12_Inv
             dt = dv.ToTable();
             string Codetype = dt.Rows[0]["acttype"].ToString();
             string SearchInfo = "";
+            if (Request.QueryString["Type"].ToString() == "Link")
+            {
+                string pactcode = Request.QueryString["prjcode"].ToString();
+                string deprt = Request.QueryString["sircode"].ToString();
+
+
+            }
+            else
+            {           
             if (Codetype.Length > 0)
             {
 
@@ -484,6 +509,8 @@ namespace RealERPWEB.F_12_Inv
             this.ddlResList.DataValueField = "rsircode";
             this.ddlResList.DataSource = ds1.Tables[1];
             this.ddlResList.DataBind();
+            }
+
             this.ImgbtnSpecification_Click(null, null);
             //this.GetSpecification();
 
@@ -513,8 +540,9 @@ namespace RealERPWEB.F_12_Inv
         protected void GetDeparment()
         {
             string comcod = this.GetCompCode();
-            //string txtSProject = "%" + this.txtSrcPro.Text.Trim() + "%";
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO", "FXTASSTGETDEPARTMENT", "%%", "", "", "", "", "", "", "", "");
+
+           string department = this.Request.QueryString["Type"].ToString()=="Link"? this.Request.QueryString["sircode"].ToString()+"%" : "%%";
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO", "FXTASSTGETDEPARTMENT", department, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             ds1.Tables[0].Rows.Add(comcod, "000000000000", "Department");
@@ -525,7 +553,7 @@ namespace RealERPWEB.F_12_Inv
             this.ddlDeptCode.DataValueField = "fxtgcod";
             this.ddlDeptCode.DataSource = ds1.Tables[0];
             this.ddlDeptCode.DataBind();
-            this.ddlDeptCode.SelectedValue = "AAAAAAAAAAAA";
+            this.ddlDeptCode.SelectedValue = this.Request.QueryString["Type"].ToString() == "Link" ? this.Request.QueryString["sircode"].ToString(): "AAAAAAAAAAAA";
             if (this.Request.QueryString["prjcode"].Length > 0)
             {
                 string deptcode = this.Request.QueryString["prjcode"].ToString();
