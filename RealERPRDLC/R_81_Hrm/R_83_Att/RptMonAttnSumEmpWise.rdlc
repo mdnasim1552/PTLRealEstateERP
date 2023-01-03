@@ -1602,7 +1602,7 @@
             <Width>7.83843in</Width>
             <ZIndex>1</ZIndex>
             <Visibility>
-              <Hidden>=iif(Parameters!comcod.Value="3370",true,false)</Hidden>
+              <Hidden>=iif(Parameters!comcod.Value="3370",false,true)</Hidden>
             </Visibility>
             <Style>
               <Border>
