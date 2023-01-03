@@ -210,16 +210,12 @@ namespace RealERPWEB.F_09_PImp
 
             Session["itemlist"] = ds1.Tables[0];
             Session["item"] = ds1.Tables[1];
-
-
             if (ds1 == null)
                 return;
-
             this.ddlcatagory.DataTextField = "sirdesc";
             this.ddlcatagory.DataValueField = "mitemcode";
             this.ddlcatagory.DataSource = ds1.Tables[2];
             this.ddlcatagory.DataBind();
-
             this.ddlcatagory_OnSelectedIndexChanged(null, null);
         }
         //private void GetFloorCode()
@@ -606,8 +602,6 @@ namespace RealERPWEB.F_09_PImp
         }
         protected void lbtnSelect_Click(object sender, EventArgs e)
         {
-
-
             this.LoopForSession();
             DataTable itemtable = (DataTable)Session["itemlist"];
             DataTable tempforgrid = (DataTable)Session["sessionforgrid"];
@@ -617,10 +611,6 @@ namespace RealERPWEB.F_09_PImp
             foreach (string lab1 in lab)
             {
                 string flrcode = lab1.Substring(0, 3);
-
-
-
-
                 DataRow[] dr1 = tempforgrid.Select("flrcod='" + flrcode + "'  and itemcode='" + itemcode + "'");
                 if (dr1.Length == 0)
                 {

@@ -47,10 +47,6 @@ namespace RealERPWEB.F_12_Inv
                 }
                 this.txtCurISSDate_CalendarExtender.EndDate = System.DateTime.Today;
 
-                this.VisibleLabel();
-
-
-
             }
 
 
@@ -67,28 +63,7 @@ namespace RealERPWEB.F_12_Inv
         }
 
 
-        private void VisibleLabel()
-        {
-            string comcod = this.GetCompCode();
-            switch (comcod)
-            {
-                case "3340":
-                    this.lblSMCR.Text = "SRF";
-                    this.lblDMIR.Text = "DMMS";
-                    break;
-                
-                case "3370":
-                    this.lblSMCR.Text = "MTR";
-                    this.lblDMIR.Text = "ATR";
-                    break;
-                default:
-                    this.lblSMCR.Text = "SMCR.No.";
-                    this.lblDMIR.Text = "DMIRF No.";
-                    break;
-
-            }
-
-        }
+       
         protected void lbtnFindProject_Click(object sender, EventArgs e)
         {
             if (this.lbtnOk.Text == "Ok")
@@ -97,7 +72,7 @@ namespace RealERPWEB.F_12_Inv
             }
         }
 
-        private string GetCompCode()
+        public string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
@@ -146,9 +121,12 @@ namespace RealERPWEB.F_12_Inv
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             this.txtCurISSDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-            string srchproject = "%" + this.txtsrchproject.Text.Trim() + "%";
+            string type = Request.QueryString["Type"].ToString()== "Link"? Request.QueryString["genno"].ToString(): "%" + this.txtsrchproject.Text.Trim() + "%";          
+
+
+            //string srchproject = "%" + this.txtsrchproject.Text.Trim() + "%";
             string isComplain = Request.QueryString["Type"].ToString()=="ComplainMgt" ? "Complain" : "";
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUEPRJLIST01", srchproject, isComplain, userid, "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUEPRJLIST01", type, isComplain, userid, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             this.ddlprjlist.DataTextField = "actdesc1";
@@ -538,7 +516,7 @@ namespace RealERPWEB.F_12_Inv
         protected void grvissue_DataBind()
         {
             this.grvissue.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue);
-            this.grvissue.DataSource = (DataTable)ViewState["tblmatissue"]; ;
+            this.grvissue.DataSource = (DataTable)ViewState["tblmatissue"]; 
             this.grvissue.DataBind();
         }
 

@@ -714,14 +714,14 @@
                                                     <asp:Label ID="Label10" runat="server">Work Hour</asp:Label>
                                                     <asp:TextBox ID="txtworkhour" runat="server" min="0" TextMode="Number" CssClass="form-control"></asp:TextBox>
                                                 </div>
-                                                 <div class=" col-lg-2 col-md-2 col-sm-12 mt-4">
+                                                <div class=" col-lg-2 col-md-2 col-sm-12 mt-4">
                                                     <asp:CheckBox runat="server" ID="checkinoutsourcing" OnCheckedChanged="checkinoutsourcing_CheckedChanged" AutoPostBack="True" ForeColor="red"></asp:CheckBox>
                                                     <asp:Label ID="Label1" runat="server">&nbsp;  Freelancing</asp:Label>
                                                 </div>
-                                                <div class=" col-lg-3 col-md-3 col-sm-12" ID="perrate" runat="server" visible="false">
+                                                <div class=" col-lg-3 col-md-3 col-sm-12" id="perrate" runat="server" visible="false">
                                                     <asp:Label ID="Label2" runat="server">Per Rate</asp:Label>
                                                     <asp:TextBox ID="textrate" runat="server" CssClass="form-control"></asp:TextBox>
-                                                </div>                                               
+                                                </div>
                                                 <div class=" col-lg-1 col-md-1 col-sm-12 mt-4 ">
                                                     <asp:LinkButton ID="btnaddrow" runat="server" OnClick="btnaddrow_Click" CssClass=" btn btn-primary ml-auto btn-sm mt20 mr-1 float-left"><i class="fa fa-plus"></i></asp:LinkButton>
 
@@ -777,6 +777,10 @@
                                                                 <asp:Label ID="tbltype" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assigndesc")) %>' Width="100px" ForeColor="Black" Font-Size="12px"></asp:Label>
 
                                                             </ItemTemplate>
+                                                            <FooterTemplate>
+                                                                <asp:Label ID="fgvsup" runat="server" Font-Bold="True" Font-Size="12px"
+                                                                    ForeColor="Black" Style="text-align: right">Total :</asp:Label>
+                                                            </FooterTemplate>
                                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                         </asp:TemplateField>
@@ -785,8 +789,12 @@
                                                                 <asp:Label ID="tblValoquantity" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assignqty")) %>' Width="100px" ForeColor="Black" Font-Size="12px"></asp:Label>
 
                                                             </ItemTemplate>
+                                                            <FooterTemplate>
+                                                                <asp:Label ID="tblsumValoquantity" runat="server" Width="100px" ForeColor="Black" Font-Size="12px" Style="text-align: right"></asp:Label>
+                                                            </FooterTemplate>
                                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+
                                                         </asp:TemplateField>
 
                                                         <asp:TemplateField HeaderText="Work <br> Hour">

@@ -1976,7 +1976,7 @@ namespace RealERPWEB.F_21_MKT
                 return;
             DataTable dt1 = (DataTable)ViewState["tblsubddl"];
             DropDownList ddlgval;
-
+            //Comments at 31 Dec 2022
             for (int i = 0; i < dt.Rows.Count; i++)
             {
 

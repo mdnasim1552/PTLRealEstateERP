@@ -214,6 +214,7 @@
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.EclassPurchase+PurchaseOrderInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+OtherCollHistory.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+PurOrderTopSheet.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+RptPurchasePrjwise.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+RptSupAdvanceDetails.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+OppPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+PWRPDetails.datasource" />

@@ -194,7 +194,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             string Section = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%%" : this.ddlProjectName.SelectedValue.ToString()) + "%";
 
-            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "GETEMPLOYEENAME", Section, txtempsrch, company, "", "", "", "", "", "");
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "GETEMPLOYEENAME", Section, txtempsrch, company, Department, "", "", "", "", "");
             this.ddlEmpName.DataTextField = "empname";
             this.ddlEmpName.DataValueField = "empid";
             this.ddlEmpName.DataSource = ds3.Tables[0];

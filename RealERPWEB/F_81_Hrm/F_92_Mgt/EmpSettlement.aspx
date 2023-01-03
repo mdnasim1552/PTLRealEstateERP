@@ -59,7 +59,7 @@
                             <div class="dot"></div>
                             <div class="dot"></div>
                             <div class="dot"></div>
-                            <div class="lading"></div>
+                            <div class="loading"></div>
                         </div>
                     </ProgressTemplate>
                 </asp:UpdateProgress>

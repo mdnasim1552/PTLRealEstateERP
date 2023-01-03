@@ -88,8 +88,7 @@
                         <fieldset class="scheduler-border fieldset_A">
 
                             <div class="form-horizontal">
-                                <div class="form-group">
-                                </div>
+                                
                                 <div class="form-group">
                                     <div class="col-md-6 pading5px asitCol6" id="main" runat="server">
                                         <asp:Label ID="lblProjectName" runat="server" CssClass="lblTxt lblName" Text="Project Name"></asp:Label>
@@ -97,8 +96,9 @@
 
                                         <asp:LinkButton ID="imgbtnFindProject" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnFindProject_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
-                                        <asp:DropDownList ID="ddlProjectName" OnSelectedIndexChanged="ddlProjectName_OnSelectedIndexChanged" AutoPostBack="True" runat="server" Style="width: 350px" CssClass="chzn-select  ddlPage">
+                                        <asp:DropDownList ID="ddlProjectName" OnSelectedIndexChanged="ddlProjectName_OnSelectedIndexChanged" AutoPostBack="True" runat="server"  CssClass="chzn-select  ddlPage">
                                         </asp:DropDownList>
+
                                     </div>
                                     <div class="col-md-5 pading5px asitCol6" runat="server" id="serail" visible="False">
                                         <asp:Label ID="Label7" runat="server" CssClass="lblTxt lblName" Text="Serial Number"></asp:Label>
@@ -112,11 +112,11 @@
 
                                     <div class="col-md-5 pading5px asitCol6" runat="server" id="genbillno" visible="False">
                                        <asp:Label ID="lblGenBillTrack" runat="server" CssClass="lblTxt lblName" Text="Project Name"></asp:Label>
-                                        <asp:TextBox ID="TextGenBillTrack" Style="display: none" runat="server" CssClass=" inputtextbox"></asp:TextBox>
+                                        <asp:TextBox ID="TextGenBillTrack"  runat="server" CssClass=" inputtextbox"></asp:TextBox>
 
                                         <asp:LinkButton ID="LinkGenBillTrack" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="LinkGenBillTrack_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
-                                        <asp:DropDownList ID="ddlGenBillTracking" OnSelectedIndexChanged="ddlGenBillTracking_SelectedIndexChanged" AutoPostBack="True" runat="server" Style="width: 350px" CssClass="chzn-select  ddlPage">
+                                        <asp:DropDownList ID="ddlGenBillTracking"  AutoPostBack="True" runat="server" Style="width: 250px" CssClass="chzn-select  ddlPage">
                                         </asp:DropDownList>
                                     </div>
 
@@ -158,7 +158,7 @@
 
                                     <div class="col-md-12 pading5px asitCol11">
 
-                                        <div runat="server" id="datepart" class="col-md-3">
+                                        <div runat="server" id="datepart" class="col-md-6 padding5px">
                                             <asp:Label ID="lbldatefrm" runat="server" CssClass="smLbl_to" Text="Date"></asp:Label>
                                             <asp:TextBox ID="txtFDate" runat="server" AutoCompleteType="Disabled" CssClass="inputtextbox"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txtFDate_CalendarExtender" runat="server"
@@ -169,19 +169,17 @@
                                             <asp:TextBox ID="txttodate" runat="server" AutoCompleteType="Disabled" CssClass="inputtextbox" ToolTip="(dd-MM-yyyy)"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server"
                                                 Format="dd-MMM-yyyy" TargetControlID="txttodate" Enabled="true"></cc1:CalendarExtender>
-
-
-                                        </div>
-
-                                        <div class="col-md-3" style="margin-left: -80px;">
-                                            <asp:Label ID="lblMcod" runat="server" CssClass="lblTxt lblName" Visible="false" Text="Material Code"></asp:Label>
+                                             <asp:Label ID="lblMcod" runat="server" CssClass="lblTxt lblName" Visible="false" Text="Material"></asp:Label>
 
                                             <asp:DropDownList ID="ddlMatCode" runat="server" Visible="false" Width="150px" CssClass="chzn-select ddlPage">
                                             </asp:DropDownList>
+
                                         </div>
-                                        <div>
-                                            <%--<asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click">Ok</asp:LinkButton>--%>
-                                        </div>
+
+                                      
+                                        
+                                           
+                                    
 
                                         <div class="col-md-4 pull-right">
                                             <asp:CheckBox ID="chkDirect" runat="server" Visible="false" Text="Petty Cash" CssClass="btn btn-primary checkBox" />
@@ -199,8 +197,6 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-3 pading5px   asitCol3">
-                                </div>
                             </div>
 
                         </fieldset>
@@ -213,26 +209,21 @@
 
                                         <div class="form-horizontal">
                                             <div class="form-group">
-                                                <div class="col-md-3 pading5px asitCol3">
+                                                <div class="col-md-6 pading5px ">
                                                     <asp:Label ID="lblsupplier" runat="server" CssClass="lblTxt lblName" Text="Supplier"></asp:Label>
-                                                    <asp:TextBox ID="txtSrcSupplier" runat="server" CssClass=" inputtextbox"></asp:TextBox>
-                                                    <div class="colMdbtn">
-                                                        <asp:LinkButton ID="imgbtnFindSupplier" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnFindSupplier_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="col-md-3 pading5px  asitCol3">
-                                                    <asp:DropDownList ID="ddlSupplier" runat="server" CssClass="form-control inputTxt">
+                                                  
+                                                   <asp:DropDownList ID="ddlSupplier" runat="server" CssClass="form-control  chzn-select" style="width:380px">
                                                     </asp:DropDownList>
 
                                                 </div>
+
+                                               
                                             </div>
 
                                         </div>
                                     </fieldset>
                                 </asp:Panel>
+
 
                                 <asp:GridView ID="gvPurStatus" runat="server" AllowPaging="false" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                     OnPageIndexChanging="gvPurStatus_PageIndexChanging" ShowFooter="True" Width="831px">
@@ -2320,10 +2311,19 @@
 
                             </asp:View>
 
+
+
+
+
+
+
+
+                            <%--OnRowDeleting="dgv1_RowDeleting" OnRowEditing="dgv1_RowEditing" OnRowUpdating="dgv1_RowUpdating" OnRowCancelingEdit="dgv1_RowCancelingEdit"--%>
+
                             <asp:View ID="GenBillTrack" runat="server">
                                 <div class="table-responsive">
                                     <asp:GridView ID="gvGenBillTracking" runat="server" AutoGenerateColumns="False"
-                                        ShowFooter="True" CssClass=" table-responsive  table-hover table-bordered grvContentarea" >
+                                        ShowFooter="True" OnRowEditing="gvGenBillTracking_RowEditing" OnRowCancelingEdit="gvGenBillTracking_RowCancelingEdit" OnRowUpdating="gvGenBillTracking_RowUpdating"  CssClass=" table-responsive  table-hover table-bordered grvContentarea" >
                                         <PagerSettings Position="Top" />
                                         <RowStyle />
                                         <Columns>
@@ -2349,9 +2349,33 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
+
+                                            <asp:TemplateField HeaderText="grpdesc" visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvdemogrpdesc" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "demogrpdesc")) %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+
+                                            <asp:TemplateField HeaderText="slnum" visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvslnum" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "slnum")) %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+
+
+
+
                                             <asp:TemplateField HeaderText="Req No">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvReqno1" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno")) %>'
+                                                    <asp:Label ID="lgvreqno" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno")) %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
@@ -2360,12 +2384,66 @@
 
                                             <asp:TemplateField HeaderText="Voucher Number">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvReqno1" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "vounum")) %>'
+                                                    <asp:Label ID="lgvvounum" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "vounum")) %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Specification Code" Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvspcfcod" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfcod")) %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Project Account Code">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvpactcode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactcode")) %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Demo Pactcode">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvdemopactcode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "demopactcode")) %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Resource Code">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvrsircode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Demo Rescode">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvdemorescode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "demorescode")) %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Bill No">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvbillno" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "billno")) %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            
 
                                             <asp:TemplateField HeaderText="Date">
                                                 <ItemTemplate>
@@ -2384,34 +2462,109 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Bill No">
+                                            <%--<asp:TemplateField HeaderText="Bill No">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvgchlno1" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "genno")) %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>--%>
+
+                                            <asp:CommandField ShowEditButton="True" ControlStyle-Width="25px">
+                                                <ControlStyle Width="35px" />
+                                                <HeaderStyle Width="35px" />
+                                                <ItemStyle Width="35px" />
+                                            </asp:CommandField>
+
+                                            <asp:TemplateField HeaderText="Project Name">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvprjname4" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
+                                                    Width="180px"></asp:Label>
+                                            </ItemTemplate>
+
+
+                                                <EditItemTemplate>
+                                                    <fieldset class="scheduler-border fieldset_A">
+                                                        <div class="form-horizontal">
+                                                            <div class="form-group">
+                                                                <div class="col-md-3 pading5px asitCol4">
+                                                                    <asp:Label ID="lblcontrolAccHead" runat="server" CssClass="lblTxt lblName">Accounts Head</asp:Label>
+                                                                    <div class="col-md-3 pading5px">
+                                                                        <asp:DropDownList ID="ddlgrdacccode" runat="server" OnSelectedIndexChanged="ddlgrdacccode_SelectedIndexChanged" CssClass="form-control chzn-select"
+                                                                            TabIndex="28" Style="width: 200px;" AutoPostBack="True">  
+                                                                        </asp:DropDownList>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </EditItemTemplate>
+
+
+                                                <FooterTemplate>
+                                                    <asp:LinkButton ID="lbtnUpdate" runat="server" Font-Bold="True"
+                                                        CssClass="btn btn-danger primarygrdBtn" OnClick="lbtnUpdate_Click">Update</asp:LinkButton>
+                                                </FooterTemplate>
+
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
+
                                             <asp:TemplateField HeaderText="Material Name">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvMaterials4" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) %>'
                                                         Width="170px"></asp:Label>
                                                 </ItemTemplate>
+
+
+                                                <EditItemTemplate>
+                                                    <fieldset class="scheduler-border fieldset_A">
+                                                        <div class="form-horizontal">
+                                                            <%--<div class="form-group">
+                                                                <div class="col-md-3 pading5px asitCol3">
+                                                                    <asp:Label ID="lblcontrolAccHead" runat="server" CssClass="lblTxt lblName">Accounts Head</asp:Label>
+                                                                    <div class="col-md-3 pading5px">
+                                                                        <asp:DropDownList ID="ddlgrdacccode" runat="server" OnSelectedIndexChanged="ddlgrdacccode_SelectedIndexChanged" CssClass="form-control chzn-select"
+                                                                            TabIndex="28" Style="width: 130px;" AutoPostBack="True">  
+                                                                        </asp:DropDownList>
+                                                                    </div>
+                                                                </div>
+                                                            </div>--%>
+                                                            <div class="form-group">
+                                                                <div class="col-md-3 pading5px asitCol4">
+                                                                    <asp:Label ID="lblgvreshead" runat="server" CssClass="lblTxt lblName">Details Head</asp:Label>
+                                                                    <div class="col-md-3 pading5px">
+                                                                        <asp:DropDownList ID="ddlrgrdesuorcecode" runat="server" CssClass="chzn-select"
+                                                                            TabIndex="28" Style="width: 200px;">
+                                                                        </asp:DropDownList>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </EditItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Unit ">
+
+
+
+
+
+                                            <%--<asp:TemplateField HeaderText="Unit ">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvUnit3" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirunit")) %>'
                                                         Width="25px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
+
                                             <asp:TemplateField HeaderText="Specification">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvSpecification1" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfdesc")) %>'
                                                         Width="120px"></asp:Label>
                                                 </ItemTemplate>
+
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Qty">
@@ -2467,7 +2620,7 @@
                                             </asp:TemplateField>
 
 
-                                            <asp:TemplateField HeaderText="Print">
+                                         <%--   <asp:TemplateField HeaderText="Print">
                                                 <ItemTemplate>                                                    
                                                     <asp:LinkButton ID="btnPrintReqInfo1" OnClick="btnPrintReqInfo1_Click" runat="server" CssClass="btn btn-default btn-xs" Style="background-color:#C0C0C0"><span style="color:#002bff" class="fa fa-print"></span> </asp:LinkButton>
 
@@ -2475,7 +2628,7 @@
 
                                                 <ItemStyle Width="40px" HorizontalAlign="Center" VerticalAlign="Middle" />
                                                 <HeaderStyle HorizontalAlign="Center" Width="40px" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
 
 
 

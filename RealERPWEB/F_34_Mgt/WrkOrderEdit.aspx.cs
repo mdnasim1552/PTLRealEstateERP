@@ -27,9 +27,6 @@ namespace RealERPWEB.F_34_Mgt
                 this.txtCurReqDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtCurReqDate_CalendarExtender.EndDate = System.DateTime.Today;
 
-
-
-
             }
 
         }
@@ -189,8 +186,6 @@ namespace RealERPWEB.F_34_Mgt
 
             //((LinkButton)this.gvpurorder.FooterRow.FindControl("lbtnUpdate")).Visible = (this.lblvalvounum.Text.Trim() == "00000000000000");
             //this.gvpurorder.Columns[9].Visible= (this.lblvalvounum.Text.Trim() == "00000000000000");
-
-
 
         }
 

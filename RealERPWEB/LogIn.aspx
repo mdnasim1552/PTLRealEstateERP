@@ -312,10 +312,10 @@ border-top-right-radius: 25px;
 
 
         //Welcome Modal 
-        //function leave() {
-        //    $('#WCModal').modal('hide');
-        //}
-        //setTimeout("leave()", 5000);
+        function leave() {
+            $('#WCModal').modal('hide');
+        }
+        setTimeout("leave()", 5000);
 
         $(document).ready(function () {
             $(".toggle-password").click(function () {
@@ -335,7 +335,7 @@ border-top-right-radius: 25px;
                 }
             });
 
-            //$('#WCModal').modal('show');
+          //  $('#WCModal').modal('show');
 
             $('#ForgetPass').click(function () {
                 $('#myModal').modal('toggle');//.modal('show')/.modal('hide');
@@ -543,7 +543,7 @@ border-top-right-radius: 25px;
                 <div class="modal-body">
                     <div class="row" style="padding: 0px; margin: 0px;">
                         <%--<a href="#" data-dismiss="modal" class="class pull-right btn btn-sm btn-danger btn-circle"><span class="glyphicon glyphicon-remove"></span></a>--%>
-                        <asp:Image ID="Image2" CssClass="img img-responsive" runat="server" ImageUrl="~/image/new-year-01.jpg" />
+                        <asp:Image ID="Image2" CssClass="img img-responsive" runat="server" ImageUrl="~/image/NewYear_ 2023.jpg" />
 
                         <%--<img src="<?php echo base_url();?>images/NewYear2018.gif" class="img img-responsive">--%>
                     </div>

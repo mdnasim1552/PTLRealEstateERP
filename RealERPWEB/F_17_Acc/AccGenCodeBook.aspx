@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
     <style>
-div#ContentPlaceHolder1_ddlGenCodeBook_chzn {
+        div#ContentPlaceHolder1_ddlGenCodeBook_chzn {
             width: 100% !important;
         }
 
@@ -37,7 +37,7 @@ div#ContentPlaceHolder1_ddlGenCodeBook_chzn {
         }
     </style>
 
-    
+
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
@@ -53,7 +53,15 @@ div#ContentPlaceHolder1_ddlGenCodeBook_chzn {
 
             $('.chzn-select').chosen({ search_contains: true });
         }
-
+        function loadModalAddCode() {
+            $('#AddResCode').modal('toggle', {
+                backdrop: 'static',
+                keyboard: false
+            });
+        };
+        function CloseModalAddCode() {
+            $('#AddResCode').modal('hide');
+        };
     </script>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -73,7 +81,7 @@ div#ContentPlaceHolder1_ddlGenCodeBook_chzn {
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <asp:Label ID="LblBookName2" runat="server" Text="Search Option">
-                                    <asp:LinkButton ID="ibtnSrch" runat="server" OnClick="ibtnSrch_Click"  Visible="false"><i class="fa fa-search"> </i></asp:LinkButton>
+                                    <asp:LinkButton ID="ibtnSrch" runat="server" OnClick="ibtnSrch_Click" Visible="false"><i class="fa fa-search"> </i></asp:LinkButton>
                                 </asp:Label>
                                 <asp:TextBox ID="txtsrch" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                             </div>
@@ -96,6 +104,7 @@ div#ContentPlaceHolder1_ddlGenCodeBook_chzn {
 
                                 <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass=" form-control form-control-sm"
                                     OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                    <asp:ListItem>10</asp:ListItem>
                                     <asp:ListItem>15</asp:ListItem>
                                     <asp:ListItem>20</asp:ListItem>
                                     <asp:ListItem>30</asp:ListItem>
@@ -110,20 +119,23 @@ div#ContentPlaceHolder1_ddlGenCodeBook_chzn {
                             </div>
                         </div>
                         <div class="col-lg-1">
-                            <asp:Label ID="lblGenCode0" runat="server"  Visible="False"></asp:Label>
+                            <asp:Label ID="lblGenCode0" runat="server" Visible="False"></asp:Label>
                             <asp:LinkButton ID="lnkok" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lnkok_Click">Ok</asp:LinkButton>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                                <div class="table table-responsive">
+                    <div class="table-responsive">
                         <asp:GridView ID="grvacc" runat="server" AllowPaging="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
                             AutoGenerateColumns="False"
                             CellPadding="4" Font-Size="12px" OnPageIndexChanging="grvacc_PageIndexChanging"
                             OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
                             OnRowUpdating="grvacc_RowUpdating" PageSize="15" Width="576px">
-                            <PagerSettings NextPageText="Next" PreviousPageText="Previous"
-                                Visible="False" />
+<<<<<<< HEAD
+                           
+=======
+                            <PagerSettings NextPageText="Next" PreviousPageText="Previous" />
+>>>>>>> dbd267703e96e6a001f4a647adc69ad177ebf1ad
                             <FooterStyle BackColor="#5F9467" Font-Bold="True" ForeColor="White" />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.No.">
@@ -134,8 +146,16 @@ div#ContentPlaceHolder1_ddlGenCodeBook_chzn {
                                     <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                     <ItemStyle Font-Size="12px" />
                                 </asp:TemplateField>
-                                <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText=""
-                                    SelectText="" ShowEditButton="True">
+                                <asp:TemplateField HeaderText="+">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lbtnAdd" runat="server" CssClass="btn btn-xs btn-default" ToolTip="Add New Code" BackColor="Transparent"
+                                            Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "additem"))=="1"?true:false %>' OnClick="lbtnAdd_Click"><span class="fa fa-plus" aria-hidden="true"></span></asp:LinkButton>
+                                    </ItemTemplate>
+                                    <HeaderStyle Font-Bold="True" Font-Size="16px" Width="20px" HorizontalAlign="Center" />
+                                    <ItemStyle HorizontalAlign="Left" />
+                                </asp:TemplateField>
+                                <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText="" SelectText=""
+                                    ShowEditButton="True" EditText="&lt;i class=&quot;fa fa-edit&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;">
                                     <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                     <ItemStyle Font-Bold="True" Font-Size="12px" ForeColor="#0000C0" />
                                 </asp:CommandField>
@@ -153,13 +173,6 @@ div#ContentPlaceHolder1_ddlGenCodeBook_chzn {
                                     <ItemStyle Font-Size="12px" />
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Code">
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="txtgrcode" runat="server" Font-Size="12px" Height="16px"
-                                            MaxLength="5"
-                                            Style="border-top-style: none; border-right-style: none; border-left-style: none; border-bottom-style: none; font-size: 12px; border-left-color: midnightblue; border-bottom-color: midnightblue; border-top-color: midnightblue; border-right-color: midnightblue;"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gencode2")) %>'
-                                            Width="50px"></asp:TextBox>
-                                    </EditItemTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lbgrcod3" runat="server" Font-Size="12px"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gencode2")) %>'
@@ -225,6 +238,7 @@ div#ContentPlaceHolder1_ddlGenCodeBook_chzn {
                             <FooterStyle CssClass="grvFooter" />
                             <EditRowStyle />
                             <AlternatingRowStyle />
+                            <PagerSettings Mode="NumericFirstLast" />
                             <PagerStyle CssClass="gvPagination" />
                             <HeaderStyle CssClass="grvHeader" />
 
@@ -298,9 +312,57 @@ div#ContentPlaceHolder1_ddlGenCodeBook_chzn {
 
                                 </asp:Panel>
                          
-                        </fieldset--%>>
+                        </fieldset--%>
+<<<<<<< HEAD
+
+            <div id="AddResCode" class="modal animated slideInLeft " role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content  ">
+                        <div class="modal-header">
+                            <h5 class="modal-title"><i class="fas fa-info-circle"></i>&nbsp;Add New Code</h5>
+                            <asp:Label ID="lblmobile" runat="server"></asp:Label>
+                            <button type="button" class="btn btn-xs btn-danger float-right" data-dismiss="modal" title="Close"><i class="fas fa-times-circle"></i></button>
+                        </div>
+                        <div class="modal-body form-horizontal">
+                            <div class="row mb-1">
+                                <asp:Label ID="lbgrcod" runat="server" Visible="false"></asp:Label>
+                                <label class="col-md-4">Code  </label>
+                                <div class="col-md-8">
+                                    <asp:TextBox ID="txtgencode" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div>
+                                <asp:TextBox Visible="false" ID="gencodechk" runat="server" CssClass="form-control"></asp:TextBox>
+                            </div>
+                            <div class="row mb-1">
+                                <label class="col-md-4">Description of Code</label>
+                                <div class="col-md-4">
+                                    <asp:TextBox ID="txtDesc" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                                <div class="col-md-1">
+                                    <label id="chkbod" runat="server" class="switch">
+                                        <asp:CheckBox ID="Chboxchild" runat="server" ClientIDMode="Static" />
+                                        <span class="btn btn-xs slider round"></span>
+                                    </label>
+                                    <%--<asp:Label ID="lblchild" runat="server" Text="Add Child" CssClass="btn btn-xs" ClientIDMode="Static"></asp:Label>--%>
+                                </div>
+                                <div class="col-md-2">
+                                    <asp:Label ID="lblchild" runat="server" Text="Add Child" CssClass="btn btn-xs" ClientIDMode="Static"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="modal-footer ">
+                                <asp:LinkButton ID="lbtnAddCode" runat="server" CssClass="btn btn-sm btn-success" OnClientClick="CloseModalAddCode();" OnClick="lbtnAddCode_Click" ToolTip="Update Code Info.">
+                                <i class="fas fa-save"></i>&nbsp;Update </asp:LinkButton>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+=======
                  
         
+>>>>>>> dbd267703e96e6a001f4a647adc69ad177ebf1ad
 
 
         </ContentTemplate>
