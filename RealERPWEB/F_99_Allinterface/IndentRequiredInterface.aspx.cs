@@ -105,6 +105,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlgatepass.Visible = true;
                     this.pnlcomplete.Visible = false;
                     this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
+                    GetIndentRequirdData();
                     //this.RadioButtonList1.Items[2].Attributes["style"] = "background: #430000; display:block; ";
                     break;
                 case "4":
@@ -115,6 +116,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlcomplete.Visible = true;
                     this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[2].Attributes["style"] = "background: #430000; display:block; ";
+                    GetIndentRequirdData();
                     break;
             }
 
@@ -184,15 +186,20 @@ namespace RealERPWEB.F_99_Allinterface
                 dt2 = view2.ToTable();
                 this.gv_Pending.DataSource = dt2;
                 this.gv_Pending.DataBind();
-                //Status
 
-                //this.Data_Bind("gvstatus", ds2.Tables[0]);
-                //this.Data_Bind("gvreqchk", ds2.Tables[1]);
-                //this.Data_Bind("gvreqaprv", ds2.Tables[2]);
-                //this.Data_Bind("gvgatepass", ds2.Tables[3]);
-                //this.Data_Bind("gvapproval", ds2.Tables[4]);
-                //this.Data_Bind("gvaudit", ds2.Tables[5]);
-                //this.Data_Bind("gvaccount", ds2.Tables[6]);
+
+
+                DataTable dt3 = new DataTable();
+                DataView view3 = new DataView();
+
+
+                view3.Table = ds2.Tables[1];
+                view3.RowFilter = "steptype= 'Completed' ";
+                dt3 = view3.ToTable();
+                this.gv_Complete.DataSource = dt3;
+                this.gv_Complete.DataBind();
+
+
             }
             catch (Exception exp)
             {
@@ -298,7 +305,22 @@ namespace RealERPWEB.F_99_Allinterface
 
                 string issueno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "issueno")).ToString().Trim();
 
-                hlink.NavigateUrl = "~/F_12_Inv/IndentMaterialRequired?Type=Approve&genno=" + issueno;
+                hlink.NavigateUrl = "~/F_12_Inv/IndentMaterialRequired?Type=Completed&genno=" + issueno;
+
+
+            }
+        }
+
+        protected void gv_Complete_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("hybtncompleteidentlink");
+
+                string actcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "actcode")).ToString().Trim();
+                string depart = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "deptcode")).ToString().Trim();
+
+                hlink.NavigateUrl = "~/F_12_Inv/Material_Issue?Type=Link&genno=&prjcode="+ actcode + "&sircode="+ depart;
 
 
             }

@@ -8,7 +8,7 @@ namespace RealEntity.C_09_PIMP
 {
     public class EClassExecution
     {
-#region
+        #region
         [Serializable]
         public class EmplemanPlan
         {
@@ -29,8 +29,8 @@ namespace RealEntity.C_09_PIMP
 
 
         }
-#endregion
-#region
+        #endregion
+        #region
         [Serializable]
         public class SubConPrjBillDetails
         {
@@ -40,17 +40,17 @@ namespace RealEntity.C_09_PIMP
             public double billamt { get; set; }
             public double payment { get; set; }
             public double netpayable { get; set; }
-        
+
             public SubConPrjBillDetails() { }
 
 
         }
 
 
-#endregion
+        #endregion
 
 
-     #region
+        #region
         [Serializable]
         public class MonthlyPlan
         {
@@ -67,7 +67,7 @@ namespace RealEntity.C_09_PIMP
             public double rptrat { get; set; }
             public double trqty { get; set; }
             public double qty { get; set; }
-            public double rptamt { get; set; }                      
+            public double rptamt { get; set; }
             public MonthlyPlan() { }
 
 
@@ -101,14 +101,14 @@ namespace RealEntity.C_09_PIMP
 
             public MonthlyPlanVSExecution() { }
 
-        #endregion
+            #endregion
         }
 
 
-       
 
 
-       
+
+
 
 
 
@@ -140,13 +140,13 @@ namespace RealEntity.C_09_PIMP
 
             public RptMaPlanVsPlanVsEx() { }
 
-        #endregion
+            #endregion
         }
 
         [Serializable]
         public class WorkExecution
         {
-        
+
             public string flrcod { get; set; }
             public string itemcode { get; set; }
             public string flrdes { get; set; }
@@ -162,43 +162,44 @@ namespace RealEntity.C_09_PIMP
 
 
             }
-        
+
         }
+
 
 
         [Serializable]
         public class BudgetVsExecution
         {
-        
-        public string  bldcod{get;set;}
-        public string  rptcod{get;set;}
-        public double  bgdrat{get;set;}
-        public double  bgdqty{get;set;}
-        public double  bgdamt{get;set;}
-        public double  eqty{get;set;}
-        public double  eamt{get;set;}
-        public double  varqty{get;set;}
-        public double  varamt{get;set;}
-        public double  prcent{get;set;}
-        public string  flrdes{get;set;}
-        public string  rptdesc1{get;set;}
-        public string  rptunit{get;set;}
 
-        public BudgetVsExecution() 
-        {
-        
-        
+            public string bldcod { get; set; }
+            public string rptcod { get; set; }
+            public double bgdrat { get; set; }
+            public double bgdqty { get; set; }
+            public double bgdamt { get; set; }
+            public double eqty { get; set; }
+            public double eamt { get; set; }
+            public double varqty { get; set; }
+            public double varamt { get; set; }
+            public double prcent { get; set; }
+            public string flrdes { get; set; }
+            public string rptdesc1 { get; set; }
+            public string rptunit { get; set; }
+
+            public BudgetVsExecution()
+            {
+
+
+            }
+
+
         }
-        
-        
-        }
-      
 
 
 
-       
+
+
     }
-    
+
 
 
 }

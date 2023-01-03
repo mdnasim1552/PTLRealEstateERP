@@ -172,12 +172,19 @@ namespace RealERPWEB.F_14_Pro
 
             string actcode = ((DropDownList)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("ddlgrdacccode")).SelectedValue.ToString();
             string rescode = ((DropDownList)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("ddlrgrdesuorcecode")).SelectedValue.ToString();
+
+            string txtactcode = ((DropDownList)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("ddlgrdacccode")).SelectedItem.ToString();
+            string txtrescode = ((DropDownList)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("ddlrgrdesuorcecode")).SelectedItem.ToString();
+
+
             string vounum = ((Label)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("lgvvounum")).Text.Trim();
             string reqno = ((Label)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("lgvreqno")).Text.Trim();
             string rsircode = ((Label)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("lgvrsircode")).Text.Trim();  
             string spcfcod = ((Label)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("lgvspcfcod")).Text.Trim();
             string pactcode = ((Label)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("lgvpactcode")).Text.Trim();
             string billno1 = ((Label)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("lgvBillNo")).Text.Trim();
+
+
 
 
             //ViewState["actcode"] = actcode;
@@ -194,6 +201,8 @@ namespace RealERPWEB.F_14_Pro
             dt.Rows[index]["reqno"] = reqno;
             dt.Rows[index]["spcfcod"] = spcfcod;
             dt.Rows[index]["billno"] = billno1;
+            dt.Rows[index]["actdesc"] = txtactcode;
+            dt.Rows[index]["rsirdesc"] = txtrescode;
 
             Session["tblpurchase"] = dt;
 
@@ -216,21 +225,26 @@ namespace RealERPWEB.F_14_Pro
             string comcod = this.GetComeCode();
             this.SaveValue();
             DataTable dt = (DataTable)Session["tblpurchase"];
+            
 
 
             foreach (DataRow dr2 in dt.Rows)
             {
                 string pactcode = dr2["pactcode"].ToString();
                 string rsircode = dr2["rsircode"].ToString();
+                string demooldpactcode = dr2["demopactcode"].ToString();
+                string demooldrescode = dr2["demorescode"].ToString();
                 string vounum = dr2["vounum"].ToString();
                 string reqno = dr2["reqno"].ToString();
                 string spcfcod = dr2["spcfcod"].ToString();
                 string billno1 = dr2["billno"].ToString();
+                string demogrpdesc = dr2["demogrpdesc"].ToString();
+                string slnum = dr2["slnum"].ToString();
 
-                //string actcode = (string)ViewState["actcode"];
-                //string rescode = (string)ViewState["rescode"];
 
-                bool result = MktData.UpdateTransInfo2(comcod, "SP_REPORT_REQ_STATUS", "INSERTUPDATEGENBILLTRACKING", vounum, pactcode, reqno, rsircode, spcfcod, billno1, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                if (pactcode != demooldpactcode || rsircode != demooldrescode) { 
+                    bool result = MktData.UpdateTransInfo2(comcod, "SP_REPORT_REQ_STATUS", "INSERTUPDATEGENBILLTRACKING", vounum, pactcode, reqno, rsircode, spcfcod, billno1, demooldpactcode, demooldrescode, demogrpdesc, slnum, "", "", "", "", "", "", "", "", "", "", "");
+                }
 
                 //if (result == false)
                 //{
@@ -239,6 +253,9 @@ namespace RealERPWEB.F_14_Pro
                 //    return;
                 //}
             }
+
+            this.lbtnOk_Click(null, null);
+
         }
 
 
@@ -249,17 +266,25 @@ namespace RealERPWEB.F_14_Pro
             {
                 string vounum = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvvounum")).Text.Trim();
                 string reqno = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvreqno")).Text.Trim();
-                string rsircode = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvrsircode")).Text.Trim();
                 string spcfcod = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvspcfcod")).Text.Trim();
                 string pactcode = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvpactcode")).Text.Trim();
+                string rsircode = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvrsircode")).Text.Trim();
+                string demopactcode = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvdemopactcode")).Text.Trim();
+                string demorescode = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvdemorescode")).Text.Trim();
+                string demogrpdesc = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvdemogrpdesc")).Text.Trim();
+                string slnum = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvslnum")).Text.Trim();
 
 
 
                 tbl1.Rows[i]["pactcode"] = pactcode;
                 tbl1.Rows[i]["rsircode"] = rsircode;
+                tbl1.Rows[i]["demopactcode"] = demopactcode;
+                tbl1.Rows[i]["demorescode"] = demorescode;
                 tbl1.Rows[i]["vounum"] = vounum;
                 tbl1.Rows[i]["reqno"] = reqno;
                 tbl1.Rows[i]["spcfcod"] = spcfcod;
+                tbl1.Rows[i]["grpdesc"] = demogrpdesc;
+                tbl1.Rows[i]["slnum"] = slnum;
             }
             Session["tblpurchase"] = tbl1;
         }
@@ -1404,6 +1429,7 @@ namespace RealERPWEB.F_14_Pro
                 return;
             }
             DataTable dt = this.HiddenSameData(ds1.Tables[0]);
+            //DataTable dt = ds1.Tables[0];
             Session["tblpurchase"] = ds1.Tables[0];
 
             //this.gvGenBillTracking.DataSource = dt;
