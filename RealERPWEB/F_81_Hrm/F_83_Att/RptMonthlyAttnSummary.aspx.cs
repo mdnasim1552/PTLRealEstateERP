@@ -260,6 +260,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 rpt1.SetParameters(new ReportParameter("monthof", "Month of "+monthof));
                 rpt1.SetParameters(new ReportParameter("footer", ASTUtility.Concat(compname, username, printdate)));
                 rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                rpt1.SetParameters(new ReportParameter("comcod", comcod));
+
 
                 Session["Report1"] = rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +

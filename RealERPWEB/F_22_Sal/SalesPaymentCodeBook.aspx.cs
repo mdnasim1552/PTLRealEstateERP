@@ -311,7 +311,7 @@ namespace RealERPWEB.F_22_Sal
         }
 
         protected void lbtnAdd_Click(object sender, EventArgs e)
-        {  
+        {
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
@@ -331,13 +331,18 @@ namespace RealERPWEB.F_22_Sal
             this.paymentcodchk.Text = gcod;
             this.txtpaymentcode.Text = gcod.Substring(0, 2) + "-" + gcod.Substring(2, 3) + "-" + ASTUtility.Right(gcod, 2);
 
+            this.Chboxchild.Checked = (ASTUtility.Right(gcod, 2) == "00" && ASTUtility.Right(gcod, 5) != "00000") || (ASTUtility.Right(gcod, 2) == "00");
+            this.chkbod.Visible = (ASTUtility.Right(gcod, 2) == "00" && ASTUtility.Right(gcod, 5) != "00000") || (ASTUtility.Right(gcod, 2) == "00");
+            this.lblchild.Visible = (ASTUtility.Right(gcod, 2) == "00" && ASTUtility.Right(gcod, 5) != "00000") || (ASTUtility.Right(gcod, 2) == "00");
+
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
         }
 
         protected void lbtnAddCode_Click(object sender, EventArgs e)
         {
+
             string comcod = this.GetCompCode();
-            string gcod = paymentcodchk.Text;
+            string isgcod = paymentcodchk.Text.Trim().Replace("-", "");
 
 
             string tpaymentcode = this.txtpaymentcode.Text.Trim().Replace("-", "");
@@ -345,7 +350,7 @@ namespace RealERPWEB.F_22_Sal
             string DescBN = this.txtDescBN.Text.Trim();
             string gtype = this.txttype.Text.Trim();
             string Gtype = (gtype.ToString() == "") ? "T" : gtype;
-            string mnumber = (gcod == tpaymentcode) ? "" : "manual";
+            string mnumber = (isgcod == tpaymentcode) ? "" : "manual";
 
             bool isResultValid = true;
             if (Desc.Length == 0)
@@ -357,8 +362,11 @@ namespace RealERPWEB.F_22_Sal
                 isResultValid = false;
                 return;
             }
+             string gcod = this.Chboxchild.Checked ? ((ASTUtility.Right(isgcod, 5) == "00000") ? (ASTUtility.Left(isgcod, 2) + "001" + ASTUtility.Right(isgcod, 2)) : ASTUtility.Left(isgcod, 5) + "01")
 
-            bool result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTPAYMENTCODE", tpaymentcode,
+                    : ((isgcod != tpaymentcode) ? tpaymentcode : isgcod);
+
+            bool result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTPAYMENTCODE", gcod,
                           Desc, DescBN, Gtype, mnumber, "", "", "", "", "");
 
             if (result == true)
