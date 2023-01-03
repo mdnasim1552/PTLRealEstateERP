@@ -1405,19 +1405,6 @@
           </Tablix>
           <Rectangle Name="Rectangle1">
             <ReportItems>
-              <Image Name="Image2">
-                <Source>Embedded</Source>
-                <Value>srexchr</Value>
-                <Sizing>FitProportional</Sizing>
-                <Left>0.04538in</Left>
-                <Height>0.51389in</Height>
-                <Width>1.40055in</Width>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                </Style>
-              </Image>
               <Textbox Name="Textbox221">
                 <CanGrow>true</CanGrow>
                 <KeepTogether>true</KeepTogether>
@@ -1458,7 +1445,6 @@
                 <Left>0.05245in</Left>
                 <Height>0.36458in</Height>
                 <Width>1.40055in</Width>
-                <ZIndex>1</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1472,21 +1458,6 @@
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
-              <Image Name="Image3">
-                <Source>Embedded</Source>
-                <Value>dgmacc</Value>
-                <Sizing>FitProportional</Sizing>
-                <Top>0.01389in</Top>
-                <Left>3.32299in</Left>
-                <Height>0.5in</Height>
-                <Width>1.42564in</Width>
-                <ZIndex>2</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                </Style>
-              </Image>
               <Textbox Name="Textbox265">
                 <CanGrow>true</CanGrow>
                 <KeepTogether>true</KeepTogether>
@@ -1527,7 +1498,7 @@
                 <Left>3.34383in</Left>
                 <Height>0.36458in</Height>
                 <Width>1.40055in</Width>
-                <ZIndex>3</ZIndex>
+                <ZIndex>1</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1541,21 +1512,6 @@
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
-              <Image Name="Image4">
-                <Source>Embedded</Source>
-                <Value>coo</Value>
-                <Sizing>FitProportional</Sizing>
-                <Top>0.01389in</Top>
-                <Left>6.37658in</Left>
-                <Height>0.5in</Height>
-                <Width>1.31302in</Width>
-                <ZIndex>4</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                </Style>
-              </Image>
               <Textbox Name="Textbox266">
                 <CanGrow>true</CanGrow>
                 <KeepTogether>true</KeepTogether>
@@ -1581,7 +1537,7 @@
                 <Left>6.387in</Left>
                 <Height>0.25in</Height>
                 <Width>1.32763in</Width>
-                <ZIndex>5</ZIndex>
+                <ZIndex>2</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
