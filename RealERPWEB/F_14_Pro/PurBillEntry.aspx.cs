@@ -3020,6 +3020,9 @@ namespace RealERPWEB.F_14_Pro
                 return;
             }
 
+            //Disable billdate
+            this.txtCurBillDate.Enabled = false;
+
 
             for (int i = 0; i < tbl1.Rows.Count; i++)
             {
@@ -3085,7 +3088,7 @@ namespace RealERPWEB.F_14_Pro
 
 
 
-            this.txtCurBillDate.Enabled = false;
+            
             ((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
