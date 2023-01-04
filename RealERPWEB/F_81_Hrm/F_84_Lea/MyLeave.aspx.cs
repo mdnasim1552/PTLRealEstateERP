@@ -236,10 +236,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 if ((comcod == "3365" || comcod == "3101") && qtype == "MGT")
                 {
                     this.SpResign.Visible = true;
+                    this.sspnlv.Visible = true;
                 }
                 else
                 {
                     this.SpResign.Visible = false;
+                    this.sspnlv.Visible = false;
 
                 }
             }else if (comcod=="3370")
