@@ -56,6 +56,7 @@ namespace RealERPWEB.F_12_Inv
 
                 if (this.Request.QueryString["Type"].ToString() == "Link")
                 {
+                    this.GetIssuenfo(); ;
                     this.IndentIssue();
                 }
 
@@ -342,6 +343,8 @@ namespace RealERPWEB.F_12_Inv
             string comcod = this.GetCompCode();
             DataTable dt = (DataTable)ViewState["tblIssue"];
             string curdate = this.txtCurDate.Text.ToString().Trim();
+            string curdate1 = Convert.ToDateTime(this.txtCurDate.Text.ToString().Trim()).ToString("dd-MM-yyyy");
+            string formatdate = Convert.ToString(curdate1);
             DateTime Bdate = this.GetBackDate();
             bool dcon = ASITUtility02.TransactionDateCon(Bdate, Convert.ToDateTime(curdate));
             if (!dcon)
@@ -362,7 +365,9 @@ namespace RealERPWEB.F_12_Inv
 
             if (this.ddlPreList.Items.Count == 0)
                 this.GetLSDNo();
-            string Issueno = this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurNo1.Text.ToString().Trim().Substring(3, 2) + this.txtCurNo2.Text.ToString().Trim();
+
+            string Issueno = (Request.QueryString["Type"])== "Link"? this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + formatdate.Trim().Substring(3, 2) + this.txtCurNo2.Text.ToString().Trim()
+                : this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurNo1.Text.ToString().Trim().Substring(3, 2) + this.txtCurNo2.Text.ToString().Trim();
 
             DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "CHECKEDDUPINDREFNO", Refno, "", "", "", "", "", "", "", "");
             if (ds2.Tables[0].Rows.Count == 0) ;
@@ -442,6 +447,7 @@ namespace RealERPWEB.F_12_Inv
         private void IndentIssue()
         {
             string comcod = this.GetCompCode();
+           
             this.lbtnOk_Click(null, null);
             this.GetMatList();
             this.ImgbtnSpecification_Click(null, null);
@@ -728,7 +734,7 @@ namespace RealERPWEB.F_12_Inv
 
             if (mIssueNo == "NEWISU")
             {
-                DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MATERIAL_ISSUE", "GETISSUENO", date,
+                DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GETISSUENO", date,
                        "", "", "", "", "", "", "", "");
                 if (ds2 == null)
                     return;
@@ -982,7 +988,7 @@ namespace RealERPWEB.F_12_Inv
                         dr1["rsirunit"] = tbl2.Rows[i]["rsirunit"];
                         dr1["stkqty"] = tbl2.Rows[i]["stkqty"];
                         dr1["stkrate"] = tbl2.Rows[i]["stkrate"];
-                        dr1["issueqty"] = tbl2.Rows[i]["issueqty"];
+                        dr1["issueqty"] = 0;
                         dr1["issueamt"] = 0;
                         dr1["remarks"] = "";
 
@@ -1063,6 +1069,27 @@ namespace RealERPWEB.F_12_Inv
         protected void ddlDeptCode_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GetEmployeeList();
+        }
+
+        protected void txtCurDate_TextChanged(object sender, EventArgs e)
+        {
+            if (Request.QueryString["Type"] == "Link")
+            {
+                string comcod = this.GetCompCode();
+                string curdate02 = this.txtCurDate.Text.Trim();
+                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GETPREISSUELIST", curdate02, "", "", "", "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+
+                this.ddlPreList.DataTextField = "issueno1";
+                this.ddlPreList.DataValueField = "issueno";
+                this.ddlPreList.DataSource = ds1.Tables[0];
+                this.ddlPreList.DataBind();
+               
+                
+
+
+            }
         }
     }
 
