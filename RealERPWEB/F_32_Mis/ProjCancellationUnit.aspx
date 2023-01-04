@@ -18,6 +18,34 @@
             gv.Scrollable();
 
             $('.chzn-select').chosen({ search_contains: true });
+
+
+            $('#<%=this.chkasondate.ClientID%>').change(function () {
+
+                try {
+                    var chk = $(this).is(':checked');
+                    if (chk == true) {
+                        alert("ok");
+                        $('#<%=this.txttoDate.ClientID%>').hide();
+                        $('#<%=this.lbltodate.ClientID%>').hide();
+                        $('#<%=this.lblfromDate.ClientID%>').text("Date:");
+                    }
+                    else {
+                        alert("ok_11");
+                        $('#<%=this.txttoDate.ClientID%>').show();
+                        $('#<%=this.lbltodate.ClientID%>').show();
+                        $('#<%=this.lbltodate.ClientID%>').text("To:");
+                        $('#<%=this.lblfromDate.ClientID%>').text("From:");
+
+                    }
+                }
+                catch (e) {
+
+                    alert(e.message);
+
+                }
+
+            });
         }
 
     </script>
@@ -51,12 +79,21 @@
                             <div class="form-horizontal">
                                 <div class="form-group">
                                     <div class="col-md-5 pading5px ">
-                                        <asp:Label ID="lblfromDate" runat="server" CssClass="lblTxt lblName" Text="Date:"></asp:Label>
+                                        <%--<asp:Label ID="lblfromDate" runat="server" CssClass="lblTxt lblName" Text="Date:"></asp:Label>--%>
+                                        <asp:Label ID="lblfromDate" runat="server" CssClass="smLbl_to" Text="From:"></asp:Label>
                                         <asp:TextBox ID="txtfromDate" runat="server" CssClass=" inputtextbox" TabIndex="1" AutoComplete="off"></asp:TextBox>
                                         <cc1:CalendarExtender ID="Calfromdate" runat="server" Format="dd-MMM-yyyy " TargetControlID="txtfromDate"></cc1:CalendarExtender>
+
+                                       
+                                        <asp:Label ID="lbltodate" runat="server" CssClass="smLbl_to" Text="To:"></asp:Label>
+                                        <asp:TextBox ID="txttoDate" runat="server" CssClass=" inputtextbox" TabIndex="1" AutoComplete="off"></asp:TextBox>
+                                        <cc1:CalendarExtender ID="Caltodate" runat="server" Format="dd-MMM-yyyy " TargetControlID="txttoDate"></cc1:CalendarExtender>
+
                                         <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click" TabIndex="4">Ok</asp:LinkButton>
                                     </div>
                                 </div>
+
+
 
 
                                 <div class="form-group">
@@ -67,6 +104,14 @@
                                     </div>
                                     <div class="col-md-4 pading5px ">
                                         <asp:DropDownList ID="ddlProjectInd" runat="server" CssClass=" chzn-select form-control inputTxt" TabIndex="3"></asp:DropDownList>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <label id="chkbod" runat="server" class="switch">
+                                            <asp:CheckBox ID="chkasondate" runat="server" />
+                                            <span class="btn btn-xs slider round"></span>
+                                        </label>
+                                        <asp:Label runat="server" Text="as on date" ID="lblnetbalance" CssClass="control-label"></asp:Label>
                                     </div>
                                 </div>
 

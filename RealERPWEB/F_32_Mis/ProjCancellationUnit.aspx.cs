@@ -75,7 +75,6 @@ namespace RealERPWEB.F_32_Mis
             this.ddlProjectInd.DataTextField = "actdesc1";
             this.ddlProjectInd.DataValueField = "actcode";
             this.ddlProjectInd.DataBind();
-
         }
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
@@ -86,9 +85,8 @@ namespace RealERPWEB.F_32_Mis
             string frmdate = this.txtfromDate.Text.ToString();
 
             string actcode = this.ddlProjectInd.SelectedValue.ToString().Substring(0, 12) == "240000000000" ? "24%" : this.ddlProjectInd.SelectedValue.ToString();
-
-
-            DataSet ds2 = accData.GetTransInfo(comcod, "dbo.SP_REPORT_CANCELLATION_UNIT", "CANCELLATIONUNIT", actcode, frmdate);
+            string asondate = this.chkasondate.Checked ? "asondate" : "";
+            DataSet ds2 = accData.GetTransInfo(comcod, "dbo.SP_REPORT_CANCELLATION_UNIT", "CANCELLATIONUNIT", actcode, frmdate, asondate);
             if (ds2 == null)
                 return;
             if (ds2.Tables[0].Rows.Count == 0)
