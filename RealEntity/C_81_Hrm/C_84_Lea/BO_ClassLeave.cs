@@ -190,8 +190,21 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public string gdesc { get; set; }
             public RptEmpLeavStatus(){}
         }
+        [Serializable]
+        public class RptLeaveRegister
+        {
 
-         
+            public string empname { get; set; }
+            public string idcardno { get; set; }
+            public string desigadept { get; set; }
+            public string joindate { get; set; }
+           
+            public RptLeaveRegister() { 
+
+            }
+        }
+
+
         [Serializable]
         public class RptEmpInfoData
         {
