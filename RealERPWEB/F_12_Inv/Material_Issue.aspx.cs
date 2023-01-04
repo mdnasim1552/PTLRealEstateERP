@@ -734,7 +734,7 @@ namespace RealERPWEB.F_12_Inv
 
             if (mIssueNo == "NEWISU")
             {
-                DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MATERIAL_ISSUE", "GETISSUENO", date,
+                DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GETISSUENO", date,
                        "", "", "", "", "", "", "", "");
                 if (ds2 == null)
                     return;
