@@ -131,14 +131,7 @@
                             CellPadding="4" Font-Size="12px" OnPageIndexChanging="grvacc_PageIndexChanging"
                             OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
                             OnRowUpdating="grvacc_RowUpdating" PageSize="15" Width="576px">
-<<<<<<< HEAD
-=======
-
-                           
-
                             <PagerSettings NextPageText="Next" PreviousPageText="Previous" />
-
->>>>>>> 5bc674ff3a84f685bf1ef29d0b15b6e4fc9dab97
                             <FooterStyle BackColor="#5F9467" Font-Bold="True" ForeColor="White" />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.No.">
