@@ -1617,7 +1617,7 @@ namespace RealERPWEB.F_14_Pro
             string orderno = ds1.Tables[0].Rows[0]["orderno1"].ToString();
             string chlno = ds1.Tables[0].Rows[0]["chlnno"].ToString();
             string mrrno = ds1.Tables[0].Rows[0]["mrrno1"].ToString();
-            string projectName = "Project Name : " + ds1.Tables[0].Rows[0]["pactdesc"].ToString().Substring(4);
+            string projectName = "Project Name : " + ds1.Tables[0].Rows[0]["pactdesc"].ToString();
 
             ////Signing Part
 
