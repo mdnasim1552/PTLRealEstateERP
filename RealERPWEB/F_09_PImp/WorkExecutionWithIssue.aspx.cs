@@ -253,9 +253,25 @@ namespace RealERPWEB.F_09_PImp
             ViewState["WorkExeWithIssue"] = ds.Tables[0];
         }
 
+        private void GetMaterials()
+        {
+            string comcod = this.GetCompCode();
+            string pactcode = this.ddlprjlist.SelectedValue.ToString();
+            string date = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
+            string SearchMat = this.txtSearchMaterials.Text.Trim() + "%";
+            string balcon = this.CompBalConMat();
+            //string CallType = this.CompReceived();
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETMETERIALS", pactcode, date, SearchMat, balcon, "", "", "", "", "");
+            Session["itemlistMaterials"] = ds1.Tables[0];
+            Session["specification"] = ds1.Tables[2];           
+        }
+
         protected void btnGenerateIssue_Click(object sender, EventArgs e)
         {
             LoopForSession();
+
+
             DataTable tempforgrid = (DataTable)Session["sessionforgrid"];
             DataTable dt = ((DataTable)ViewState["WorkExeWithIssue"]).Copy();
             DataView dv = dt.DefaultView;
@@ -284,9 +300,6 @@ namespace RealERPWEB.F_09_PImp
 
             for (int i = 1; i < dt.Rows.Count; i++)
             {
-
-
-
                 if ((dt.Rows[i]["flrcod"].ToString() == flrcod) && (dt.Rows[i]["isircode"].ToString() == Itemcode))
                 {
 
