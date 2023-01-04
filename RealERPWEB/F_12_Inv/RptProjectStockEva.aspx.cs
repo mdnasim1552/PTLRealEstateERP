@@ -156,10 +156,16 @@ namespace RealERPWEB.F_12_Inv
             {
                 if (dt1.Rows[j]["pactcode"].ToString() == isircod)
                 {
-                    string strstkValuation = this.group.SelectedValue.ToString();
-                    if (strstkValuation != "1") {
-                        dt1.Rows[0]["pactdesc"] = "";
-                    }
+                    //string strstkValuation = this.group.SelectedValue.ToString();
+                    //if (strstkValuation != "1")
+                    //{
+                    //    dt1.Rows[0]["pactdesc"] = "";
+                    //}
+                    //else
+                    //{
+                        
+                    //}
+                    dt1.Rows[1]["pactdesc"] = "";
                     dt1.Rows[j]["pactdesc"] = "";
                 }
 
