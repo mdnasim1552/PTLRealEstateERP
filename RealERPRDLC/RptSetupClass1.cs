@@ -162,6 +162,8 @@ namespace RealERPRDLC
                 case "R_09_PIMP.RptPerodSubConBill": Rpt1a = SetRptPerodSubConBill(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptConBillCPDL": Rpt1a = SetRptConBillCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptMRbook": Rpt1a = SetRptMRbook(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_09_PIMP.RptLabIssueCPDL": Rpt1a = SetRptLabIssueCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
 
 
 
@@ -2381,6 +2383,16 @@ namespace RealERPRDLC
         private static LocalReport SetRptMRbook(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.SubConBill.EClassMRbook>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptLabIssueCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.SubConBill.ConRaBill>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptLabIssueCPDL(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.SubConBill.ConRaBill>)RptDataSet));
             return Rpt1a;
         }
         private static LocalReport SetRptMonCollReceiptType(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)

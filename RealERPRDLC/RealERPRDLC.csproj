@@ -52,13 +52,19 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RealERPRDLC">
+      <HintPath>..\..\Real Estate Bin 211213\bin\RealERPRDLC.dll</HintPath>
+    </Reference>
+    <Reference Include="RealERPWEB">
+      <HintPath>F:\bin\RealERPWEB.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -262,6 +268,7 @@
     <EmbeddedResource Include="R_02_Fea\rptCostAnlys.rdlc" />
     <EmbeddedResource Include="R_02_Fea\rptEstmtProfitLoss.rdlc" />
     <EmbeddedResource Include="R_04_Bgd\RptProjectBgdFinlay.rdlc" />
+    <EmbeddedResource Include="R_09_PIMP\RptLabIssueCPDL.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillCPDL.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillEpic.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillFinaly.rdlc" />

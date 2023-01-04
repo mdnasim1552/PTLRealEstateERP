@@ -7017,6 +7017,10 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptLabIssueRup", lst, null, null);
                     // rptstk = new RealERPRPT.R_09_PImp.rptLabIssue();
                     break;
+                case "3370":
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptLabIssueCPDL", lst, null, null);
+                    // rptstk = new RealERPRPT.R_09_PImp.rptLabIssue();
+                    break;
                 default:
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptLabIssue", lst, null, null);
                     // rptstk = new RealERPRPT.R_09_PImp.rptLabIssue();
