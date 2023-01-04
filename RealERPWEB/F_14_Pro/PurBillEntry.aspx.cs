@@ -1617,7 +1617,7 @@ namespace RealERPWEB.F_14_Pro
             string orderno = ds1.Tables[0].Rows[0]["orderno1"].ToString();
             string chlno = ds1.Tables[0].Rows[0]["chlnno"].ToString();
             string mrrno = ds1.Tables[0].Rows[0]["mrrno1"].ToString();
-            string projectName = "Project Name : " + ds1.Tables[0].Rows[0]["pactdesc"].ToString().Substring(4);
+            string projectName = "Project Name : " + ds1.Tables[0].Rows[0]["pactdesc"].ToString();
 
             ////Signing Part
 
@@ -3020,6 +3020,9 @@ namespace RealERPWEB.F_14_Pro
                 return;
             }
 
+            //Disable billdate
+            this.txtCurBillDate.Enabled = false;
+
 
             for (int i = 0; i < tbl1.Rows.Count; i++)
             {
@@ -3085,7 +3088,7 @@ namespace RealERPWEB.F_14_Pro
 
 
 
-            this.txtCurBillDate.Enabled = false;
+            
             ((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 

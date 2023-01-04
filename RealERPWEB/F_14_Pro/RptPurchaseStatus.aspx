@@ -2382,7 +2382,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Voucher Number">
+                                            <asp:TemplateField HeaderText="Voucher Number" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvvounum" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "vounum")) %>'
                                                         Width="80px"></asp:Label>
@@ -2407,7 +2407,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Demo Pactcode">
+                                            <asp:TemplateField HeaderText="Demo Pactcode" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvdemopactcode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "demopactcode")) %>'
                                                         Width="80px"></asp:Label>
@@ -2425,7 +2425,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Demo Rescode">
+                                            <asp:TemplateField HeaderText="Demo Rescode" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvdemorescode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "demorescode")) %>'
                                                         Width="80px"></asp:Label>
@@ -2587,6 +2587,20 @@
                                             <asp:TemplateField HeaderText="Amount">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvamount1" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt")).ToString("#,##0;(#,##0); ") %>'
+                                                        Width="60px"></asp:Label>
+                                                </ItemTemplate>
+                                                <EditItemTemplate>
+                                                    <asp:TextBox ID="lgvamount2" runat="server" CssClass="form-control inputTxt"
+                                                        Style="border-top-style: none; border-right-style: none; border-left-style: none; border-bottom-style: none; font-size: 12px; border-left-color: midnightblue; border-bottom-color: midnightblue; border-top-color: midnightblue; border-right-color: midnightblue;"
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt")).ToString("#,##0;(#,##0); ") %>'></asp:TextBox>
+                                                </EditItemTemplate>
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <ItemStyle HorizontalAlign="Right" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Old Amount" Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvoldamt" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "oldamt")).ToString("#,##0;(#,##0); ") %>'
                                                         Width="60px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
