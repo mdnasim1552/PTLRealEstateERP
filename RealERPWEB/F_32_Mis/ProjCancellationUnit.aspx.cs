@@ -26,14 +26,15 @@ namespace RealERPWEB.F_32_Mis
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Project Cancellation Summary";
 
-                this.txtfromDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                //this.txtfromDate.Text = System.DateTime.Today.ToString("01-"+"MMM-yyyy");
+                //this.txttoDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 //string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 //this.txtfromDate.Text = "01" + date.Substring(2);
                 //this.txttodate.Text = Convert.ToDateTime(this.txtfromDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 this.ImgbtnFindProjind_Click(null, null);
-
             }
         }
+
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -83,10 +84,11 @@ namespace RealERPWEB.F_32_Mis
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string frmdate = this.txtfromDate.Text.ToString();
+            string todate = this.txttoDate.Text.ToString();
 
             string actcode = this.ddlProjectInd.SelectedValue.ToString().Substring(0, 12) == "240000000000" ? "24%" : this.ddlProjectInd.SelectedValue.ToString();
             string asondate = this.chkasondate.Checked ? "asondate" : "";
-            DataSet ds2 = accData.GetTransInfo(comcod, "dbo.SP_REPORT_CANCELLATION_UNIT", "CANCELLATIONUNIT", actcode, frmdate, asondate);
+            DataSet ds2 = accData.GetTransInfo(comcod, "dbo.SP_REPORT_CANCELLATION_UNIT", "CANCELLATIONUNIT", actcode, frmdate, todate, asondate);
             if (ds2 == null)
                 return;
             if (ds2.Tables[0].Rows.Count == 0)
@@ -99,6 +101,7 @@ namespace RealERPWEB.F_32_Mis
             Session["tblprjCancel"] = dt;
             this.gvPrjCancellation.DataSource = dt;
             this.gvPrjCancellation.DataBind();
+
 
             int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
@@ -200,9 +203,20 @@ namespace RealERPWEB.F_32_Mis
 
             hlink1.NavigateUrl = "~/F_17_Acc/AccMultiReport.aspx?rpttype=spledger&comcod=" + mCOMCOD + "&actcode=" + actcode + "&rescode=" + rescode + "&spclcode=%&Date1=" + fromdate + "&Date2=" + todate + "&opnoption=";
 
+        }
 
-
-
+        protected void chkasondate_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.chkasondate.Checked)
+            {
+                txttoDate.Visible = false;
+                lbltodate.Visible = false;
+            }
+            else 
+            {
+                txttoDate.Visible = true;
+                lbltodate.Visible = true;
+            }
         }
     }
 }

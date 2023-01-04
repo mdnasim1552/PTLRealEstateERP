@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static RealEntity.C_09_PIMP.EClassExecution;
 
 namespace RealERPWEB.F_09_PImp
 {
@@ -48,7 +49,7 @@ namespace RealERPWEB.F_09_PImp
         {
             txtEntryDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
             btnOK.Text = "<span class='fa fa-check-circle' style='color: white;' aria-hidden='true'></span> OK";
-            GetProject();
+            GetProject();            
             //Default Panel Visible false
         }
         //----END SETUP----
@@ -63,17 +64,20 @@ namespace RealERPWEB.F_09_PImp
                 //OK Click
                 ddlProject.Enabled = false;
                 pnl1.Visible = true;
+                pnl2.Visible = false;
                 btnOK.Text = "<span class='fa fa-arrow-circle-left' style='color: white;' aria-hidden='true'></span> New";
                 GetCategory();
                 GetItem();
                 GetDivision();
                 GetWENIssueNo();
+                GetWorkWithIssue();
             }
             else
             {
                 //New Click
                 ddlProject.Enabled = true;
                 pnl1.Visible = false;
+               
                 btnOK.Text = "<span class='fa fa-check-circle' style='color: white;' aria-hidden='true'></span> OK";
             }
         }
@@ -201,6 +205,7 @@ namespace RealERPWEB.F_09_PImp
             string itemcode = this.ddlItem.SelectedValue.ToString().Trim();
             string gp = this.ddlDivision.SelectedValue.Trim();            
             var ItemList = (DataTable)Session["itemlist"];
+            
             if (gp.Length > 0)
             {
                 foreach (ListItem s1 in ddlDivision.Items)
@@ -221,6 +226,7 @@ namespace RealERPWEB.F_09_PImp
                             drforgrid["itemcode"] = this.ddlItem.SelectedValue.ToString();
                             drforgrid["workitem"] = this.ddlItem.SelectedItem.ToString().Trim();
                             tempforgrid.Rows.Add(drforgrid);
+                            
                         }
                     }
                 }
@@ -239,5 +245,67 @@ namespace RealERPWEB.F_09_PImp
             this.DataGridOne.DataSource = tbl1;
             this.DataGridOne.DataBind();
         }
+
+        private void GetWorkWithIssue()
+        {
+            string comcod = this.GetComCode();
+            DataSet ds = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUEINFOFROMWORK", "", "", "", "", "", "", "", "", "");
+            ViewState["WorkExeWithIssue"] = ds.Tables[0];
+        }
+
+        protected void btnGenerateIssue_Click(object sender, EventArgs e)
+        {
+            LoopForSession();
+            DataTable tempforgrid = (DataTable)Session["sessionforgrid"];
+            DataTable dt = ((DataTable)ViewState["WorkExeWithIssue"]).Copy();
+            DataView dv = dt.DefaultView;
+            DataTable dt1 = new DataTable();
+            for (int i=0; i< tempforgrid.Rows.Count; i++)
+            {
+                string isircode = tempforgrid.Rows[i]["itemcode"].ToString();     
+                string flrcode= tempforgrid.Rows[i]["flrcod"].ToString();
+                dv.RowFilter = ("isircode='" + isircode + "'  and flrcod='" + flrcode + "'");
+                dt = dv.ToTable();
+                dt1.Merge(dt);
+            }
+            DataGridTwo.DataSource = HiddenTableTwo(dt1);
+            DataGridTwo.DataBind();
+            pnl2.Visible = true;
+        }
+
+        private DataTable HiddenTableTwo(DataTable dt)
+        {
+            if (dt.Rows.Count == 0)
+                return dt;
+            string flrcod = dt.Rows[0]["flrcod"].ToString();
+            string Itemcode = dt.Rows[0]["isircode"].ToString();
+            //((((DataTable)Session["itemlist"]).Select("rsircode='" + rsircode + "'")).Length == 0) ? "0.00" :
+            //    Convert.ToDouble((((DataTable)Session["itemlist"]).Select("rsircode='" + rsircode + "'"))[0]["bbgdqty"]).ToString();
+
+            for (int i = 1; i < dt.Rows.Count; i++)
+            {
+
+
+
+                if ((dt.Rows[i]["flrcod"].ToString() == flrcod) && (dt.Rows[i]["isircode"].ToString() == Itemcode))
+                {
+
+                    flrcod = dt.Rows[i]["flrcod"].ToString();
+                    Itemcode = dt.Rows[i]["isircode"].ToString();
+
+                    dt.Rows[i]["flrdesc"] = "";
+                    dt.Rows[i]["isirdesc"] = "";                   
+                }
+                else
+                {
+                    flrcod = dt.Rows[i]["flrcod"].ToString();
+                    Itemcode = dt.Rows[i]["isircode"].ToString();
+                }
+            }
+            return dt;
+        }
+
+
+
     }
 }

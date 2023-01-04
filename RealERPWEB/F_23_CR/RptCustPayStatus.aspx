@@ -398,7 +398,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="MR No(System)">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblmrNo" runat="server" ForeColor="Black" Style="text-align: left" Height="16px"
+                                                    <asp:Label ID="lblmrNo" runat="server" ForeColor="Black" Style="text-align: right" Height="16px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrno")) %>'
                                                         Width="70px"></asp:Label>
                                                 </ItemTemplate>

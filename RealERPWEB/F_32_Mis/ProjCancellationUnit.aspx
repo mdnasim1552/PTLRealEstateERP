@@ -19,35 +19,33 @@
 
             $('.chzn-select').chosen({ search_contains: true });
 
-
+            $('#<%=this.txtfromDate.ClientID%>').val($.datepicker.formatDate('dd-M-yy', new Date()));
+            $('#<%=this.txttoDate.ClientID%>').val($.datepicker.formatDate('dd-M-yy', new Date()));
             $('#<%=this.chkasondate.ClientID%>').change(function () {
-
                 try {
                     var chk = $(this).is(':checked');
                     if (chk == true) {
-                        alert("ok");
+                        //alert("ok");
                         $('#<%=this.txttoDate.ClientID%>').hide();
                         $('#<%=this.lbltodate.ClientID%>').hide();
                         $('#<%=this.lblfromDate.ClientID%>').text("Date:");
+                        $('#<%=this.txtfromDate.ClientID%>').val($.datepicker.formatDate('dd-M-yy', new Date()));
                     }
                     else {
-                        alert("ok_11");
+                        //alert("ok_11");
                         $('#<%=this.txttoDate.ClientID%>').show();
                         $('#<%=this.lbltodate.ClientID%>').show();
                         $('#<%=this.lbltodate.ClientID%>').text("To:");
                         $('#<%=this.lblfromDate.ClientID%>').text("From:");
-
+                        $('#<%=this.txttoDate.ClientID%>').val($.datepicker.formatDate('dd-M-yy', new Date()));
+                        $('#<%=this.txtfromDate.ClientID%>').val($.datepicker.formatDate('01-'+'M-yy', new Date()));
                     }
                 }
                 catch (e) {
-
                     alert(e.message);
-
                 }
-
             });
         }
-
     </script>
 
 
@@ -108,7 +106,7 @@
 
                                     <div class="col-md-2">
                                         <label id="chkbod" runat="server" class="switch">
-                                            <asp:CheckBox ID="chkasondate" runat="server" />
+                                            <asp:CheckBox ID="chkasondate" runat="server" OnCheckedChanged="chkasondate_CheckedChanged" AutoPostBack="true"/>
                                             <span class="btn btn-xs slider round"></span>
                                         </label>
                                         <asp:Label runat="server" Text="as on date" ID="lblnetbalance" CssClass="control-label"></asp:Label>

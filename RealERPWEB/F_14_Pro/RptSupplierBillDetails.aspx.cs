@@ -286,7 +286,5 @@ namespace RealERPWEB.F_14_Pro
         {
             this.GetProjectName();
         }
-
-      
     }
 }

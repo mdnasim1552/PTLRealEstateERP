@@ -221,12 +221,11 @@ namespace RealERPWEB.F_14_Pro
                     }
                 }
             }
-            this.lbtnOk_Click(null, null);
-
+            
             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            this.lbtnOk_Click(null, null);
         }
-
 
 
 
@@ -246,8 +245,6 @@ namespace RealERPWEB.F_14_Pro
                 string slnum = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvslnum")).Text.Trim();
                 string amount = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvamount1")).Text.Trim();
                 string oldamount = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvoldamt")).Text.Trim();
-
-                
 
 
                 tbl1.Rows[i]["pactcode"] = pactcode;

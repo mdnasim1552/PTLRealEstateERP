@@ -54,6 +54,11 @@ namespace RealERPWEB.F_12_Inv
                     this.PreList();
                 }
 
+                if (this.Request.QueryString["Type"].ToString() == "Link")
+                {
+                    this.IndentIssue();
+                }
+
             }
             if (fileuploadExcel.HasFile)
             {
@@ -346,15 +351,18 @@ namespace RealERPWEB.F_12_Inv
                 ((Label)this.Master.FindControl("lblANMgsBox")).Visible = true;
                 return;
             }
-            if (this.ddlPreList.Items.Count == 0)
-                this.GetLSDNo();
-            string Issueno = this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurNo1.Text.ToString().Trim().Substring(3, 2) + this.txtCurNo2.Text.ToString().Trim();
+            
+            
             string Refno = this.txtrefno.Text.ToString();
             if (Refno.Length == 0)
             {
                 this.lblmsg1.Text = "Ref. No. Should Not Be Empty";
                 return;
             }
+
+            if (this.ddlPreList.Items.Count == 0)
+                this.GetLSDNo();
+            string Issueno = this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurNo1.Text.ToString().Trim().Substring(3, 2) + this.txtCurNo2.Text.ToString().Trim();
 
             DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "CHECKEDDUPINDREFNO", Refno, "", "", "", "", "", "", "", "");
             if (ds2.Tables[0].Rows.Count == 0) ;
@@ -375,6 +383,8 @@ namespace RealERPWEB.F_12_Inv
                     return;
                 }
             }
+
+         
             string pactcode = this.ddlProject.SelectedValue.ToString();
             string reqno = (this.Request.QueryString["sircode"].Length == 0) ? "" : this.Request.QueryString["sircode"].ToString();
             bool result;
@@ -429,10 +439,22 @@ namespace RealERPWEB.F_12_Inv
 
         }
 
+        private void IndentIssue()
+        {
+            string comcod = this.GetCompCode();
+            this.lbtnOk_Click(null, null);
+            this.GetMatList();
+            this.ImgbtnSpecification_Click(null, null);
+            this.lbtnSelectAll_Click(null, null);
+
+
+
+        }
+
         private void GetMatList()
         {
             string comcod = this.GetCompCode();
-            string mProject = this.ddlProject.SelectedValue.ToString();
+            string mProject = Request.QueryString["Type"].ToString() == "Link" ? Request.QueryString["prjcode"].ToString() : this.ddlProject.SelectedValue.ToString();
             string mSrchTxt = "%";
             string date = this.txtCurDate.Text.Trim();
             DataTable dt = (DataTable)ViewState["tblStoreType"];
@@ -441,6 +463,20 @@ namespace RealERPWEB.F_12_Inv
             dt = dv.ToTable();
             string Codetype = dt.Rows[0]["acttype"].ToString();
             string SearchInfo = "";
+            string reqno = "";
+            if (Request.QueryString["Type"].ToString() == "Link")
+            {
+                string pactcode = Request.QueryString["prjcode"].ToString();
+                reqno = (this.Request.QueryString["sircode"].Length == 0) ? this.Request.QueryString["sircode"].ToString() : " ";
+
+
+            }
+            else
+            {
+                reqno = (this.Request.QueryString["sircode"].Length == 0) ? "" : this.Request.QueryString["sircode"].ToString();
+
+            }
+
             if (Codetype.Length > 0)
             {
 
@@ -467,9 +503,11 @@ namespace RealERPWEB.F_12_Inv
                 if (SearchInfo.Length > 0)
                     SearchInfo = "(" + SearchInfo.Substring(0, SearchInfo.Length - 3) + ")";
             }
-            string reqno = (this.Request.QueryString["sircode"].Length == 0) ? "" : this.Request.QueryString["sircode"].ToString();
 
-                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "INDENTGETMATLIST", mProject, mSrchTxt, date, reqno, "", "", "", "", "");
+
+
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "INDENTGETMATLIST", mProject, mSrchTxt, date, reqno, "", "", "", "", "");
 
             if (ds1 == null)
             {
@@ -484,6 +522,8 @@ namespace RealERPWEB.F_12_Inv
             this.ddlResList.DataValueField = "rsircode";
             this.ddlResList.DataSource = ds1.Tables[1];
             this.ddlResList.DataBind();
+
+
             this.ImgbtnSpecification_Click(null, null);
             //this.GetSpecification();
 
@@ -513,8 +553,9 @@ namespace RealERPWEB.F_12_Inv
         protected void GetDeparment()
         {
             string comcod = this.GetCompCode();
-            //string txtSProject = "%" + this.txtSrcPro.Text.Trim() + "%";
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO", "FXTASSTGETDEPARTMENT", "%%", "", "", "", "", "", "", "", "");
+
+            string department = this.Request.QueryString["Type"].ToString() == "Link" ? this.Request.QueryString["sircode"].ToString() + "%" : "%%";
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO", "FXTASSTGETDEPARTMENT", department, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             ds1.Tables[0].Rows.Add(comcod, "000000000000", "Department");
@@ -525,7 +566,7 @@ namespace RealERPWEB.F_12_Inv
             this.ddlDeptCode.DataValueField = "fxtgcod";
             this.ddlDeptCode.DataSource = ds1.Tables[0];
             this.ddlDeptCode.DataBind();
-            this.ddlDeptCode.SelectedValue = "AAAAAAAAAAAA";
+            this.ddlDeptCode.SelectedValue = this.Request.QueryString["Type"].ToString() == "Link" ? this.Request.QueryString["sircode"].ToString() : "AAAAAAAAAAAA";
             if (this.Request.QueryString["prjcode"].Length > 0)
             {
                 string deptcode = this.Request.QueryString["prjcode"].ToString();
@@ -551,7 +592,7 @@ namespace RealERPWEB.F_12_Inv
             this.ddlEmpList.DataValueField = "sircode";
             this.ddlEmpList.DataSource = ds1.Tables[0];
             this.ddlEmpList.DataBind();
-            
+
             ds1.Dispose();
 
         }
@@ -721,7 +762,7 @@ namespace RealERPWEB.F_12_Inv
             }
             string pactcode = this.ddlProject.SelectedValue.ToString();
 
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GETISSUEINFO", mISUNo, CurDate1,"");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GETISSUEINFO", mISUNo, CurDate1, "");
 
             //  DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETMETERIALS", CurDate1, mISUNo, "", "", "", "", "", "", "");
             if (ds1 == null)
@@ -830,7 +871,7 @@ namespace RealERPWEB.F_12_Inv
             // string Specification = this.ddlResSpcf.SelectedValue.ToString();
             string Empcode = this.ddlDeptCode.SelectedValue.ToString();
             string spcfcod = this.ddlResSpcf.SelectedValue.ToString();
-            DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode + "' and spcfcod='" + spcfcod  + "'");
+            DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode + "' and spcfcod='" + spcfcod + "'");
             if (dr2.Length == 0)
             {
                 DataRow dr1 = tbl1.NewRow();
@@ -860,44 +901,97 @@ namespace RealERPWEB.F_12_Inv
         }
         protected void lbtnSelectAll_Click(object sender, EventArgs e)
         {
-
+            string comcod = this.GetCompCode();
             this.SaveValue();
             DataTable tbl1 = (DataTable)ViewState["tblIssue"];
             string mResCode = this.ddlResList.SelectedValue.ToString();
             // string Specification = this.ddlResSpcf.SelectedValue.ToString();
             string Empcode = this.ddlEmpList.SelectedValue.ToString();
+            string mSrchTxt = "%";
+            string date = this.txtCurDate.Text.Trim();
             DataTable tbl2 = (DataTable)ViewState["tblMat"];
-
-            for (int i = 0; i < tbl2.Rows.Count; i++)
+            if (this.Request.QueryString["Type"] == "Link")
             {
-                DataRow[] dr3 = tbl1.Select("rsircode = '" + tbl2.Rows[i]["rsircode"].ToString() + "'");
-                if (dr3.Length == 0)
+                string pact = this.Request.QueryString["prjcode"].ToString();
+
+                string dept = this.Request.QueryString["sircode"].ToString();
+
+                DataSet ds1 = purData.GetTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "GETDEPTWISECOMPINDENTET", pact, mSrchTxt, date, dept, "", "", "", "", "");
+                ViewState["tbltolissue"] = ds1.Tables[0];
+
+                DataTable tb21 = (DataTable)ViewState["tbltolissue"];
+
+                for (int i = 0; i < tb21.Rows.Count; i++)
                 {
-                    DataRow dr1 = tbl1.NewRow();
-                    dr1["comcod"] = this.GetCompCode(); ;
-                    dr1["rsircode"] = tbl2.Rows[i]["rsircode"];
-                    dr1["spcfcod"] = this.ddlResSpcf.SelectedValue.ToString();
-                    dr1["deptcode"] = this.ddlDeptCode.SelectedValue.ToString();
-                    dr1["rsirdesc"] = tbl2.Rows[i]["rsirdesc"];
-                    dr1["spcfdesc"] = this.ddlResSpcf.SelectedItem.Text.Trim();
-                    dr1["deptname"] = this.ddlDeptCode.SelectedItem.Text.Trim();
-                    dr1["empid"] = this.ddlEmpList.SelectedValue.ToString();
+
+
+                    DataRow[] dr3 = tbl1.Select("rsircode = '" + tb21.Rows[i]["rsircode"].ToString() + "'");
+                    if (dr3.Length == 0)
+                    {
+                        DataRow dr1 = tbl1.NewRow();
+                        dr1["comcod"] = this.GetCompCode(); ;
+                        dr1["rsircode"] = tb21.Rows[i]["rsircode"];
+                        dr1["spcfcod"] = this.ddlResSpcf.SelectedValue.ToString();
+                        dr1["deptcode"] = this.ddlDeptCode.SelectedValue.ToString();
+                        dr1["rsirdesc"] = tb21.Rows[i]["rsirdesc"];
+                        dr1["spcfdesc"] = this.ddlResSpcf.SelectedItem.Text.Trim();
+                        dr1["deptname"] = this.ddlDeptCode.SelectedItem.Text.Trim();
+                        dr1["empid"] = this.ddlEmpList.SelectedValue.ToString();
 
 
 
-                    dr1["rsirunit"] = tbl2.Rows[i]["rsirunit"];
-                    dr1["stkqty"] = tbl2.Rows[i]["stkqty"];
-                    dr1["stkrate"] = tbl2.Rows[i]["stkrate"];
-                    dr1["issueqty"] = tbl2.Rows[i]["issueqty"];
-                    dr1["issueamt"] = 0;
-                    dr1["remarks"] = "";
+                        dr1["rsirunit"] = tb21.Rows[i]["rsirunit"];
+                        dr1["stkqty"] = tb21.Rows[i]["stkqty"];
+                        dr1["stkrate"] = tb21.Rows[i]["stkrate"];
+                        dr1["issueqty"] = tb21.Rows[i]["qtyapp"];
+                        dr1["issueamt"] = 0;
+                        dr1["remarks"] = "";
 
-                    tbl1.Rows.Add(dr1);
+                        tbl1.Rows.Add(dr1);
+                    }
+
+
                 }
 
 
             }
+            else
+            {
 
+
+
+                for (int i = 0; i < tbl2.Rows.Count; i++)
+                {
+
+
+                    DataRow[] dr3 = tbl1.Select("rsircode = '" + tbl2.Rows[i]["rsircode"].ToString() + "'");
+                    if (dr3.Length == 0)
+                    {
+                        DataRow dr1 = tbl1.NewRow();
+                        dr1["comcod"] = this.GetCompCode(); ;
+                        dr1["rsircode"] = tbl2.Rows[i]["rsircode"];
+                        dr1["spcfcod"] = this.ddlResSpcf.SelectedValue.ToString();
+                        dr1["deptcode"] = this.ddlDeptCode.SelectedValue.ToString();
+                        dr1["rsirdesc"] = tbl2.Rows[i]["rsirdesc"];
+                        dr1["spcfdesc"] = this.ddlResSpcf.SelectedItem.Text.Trim();
+                        dr1["deptname"] = this.ddlDeptCode.SelectedItem.Text.Trim();
+                        dr1["empid"] = this.ddlEmpList.SelectedValue.ToString();
+
+
+
+                        dr1["rsirunit"] = tbl2.Rows[i]["rsirunit"];
+                        dr1["stkqty"] = tbl2.Rows[i]["stkqty"];
+                        dr1["stkrate"] = tbl2.Rows[i]["stkrate"];
+                        dr1["issueqty"] = tbl2.Rows[i]["issueqty"];
+                        dr1["issueamt"] = 0;
+                        dr1["remarks"] = "";
+
+                        tbl1.Rows.Add(dr1);
+                    }
+
+
+                }
+            }
             ViewState["tblIssue"] = tbl1;
             this.Data_Bind();
 
