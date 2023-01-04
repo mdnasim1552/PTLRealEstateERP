@@ -45,7 +45,7 @@ namespace RealEntity.C_12_Inv
         public decimal isuqty { get; set; }
         public string useoflocation { get; set; }
         public string remarks { get; set; }
-       
+
         public RptMatIssue()
         {
 
@@ -68,8 +68,8 @@ namespace RealEntity.C_12_Inv
         public double rptqty { get; set; }
         public double bgdstkqty { get; set; }
         public double stkqty { get; set; }
-      
-       
+
+
 
         public rptPurVarAa()
         {
@@ -83,7 +83,7 @@ namespace RealEntity.C_12_Inv
 
 
 
-    
+
 
     public class EClassGetID
     {
@@ -123,12 +123,12 @@ namespace RealEntity.C_12_Inv
         public string sircode { get; set; }
         public string sirdesc { get; set; }
         public string curcode { get; set; }
-       
-        public string curdesc {get;set;}
 
-        public EClassGetSupplier02(string sircode, string sirdesc, string curcode,  string curdesc)
+        public string curdesc { get; set; }
+
+        public EClassGetSupplier02(string sircode, string sirdesc, string curcode, string curdesc)
         {
-            
+
             this.sircode = sircode;
             this.sirdesc = sirdesc;
             this.curcode = curcode;
@@ -157,9 +157,9 @@ namespace RealEntity.C_12_Inv
         public string rsirunit { get; set; }
         public string flrdes { get; set; }
 
-        public EClassTopSheetCashPurchase() 
+        public EClassTopSheetCashPurchase()
         {
-        
+
         }
 
         public EClassTopSheetCashPurchase(string reqno, string reqno1, string mrfno, string reqdat, double reqqty, double reqrat, double reqamt, string rsirdesc, string spcfdesc, string ssirdesc, string pactdesc, string rsirunit, string flrdes)
@@ -195,15 +195,15 @@ namespace RealEntity.C_12_Inv
     public class ErptStock
     {
         public string bldcod { get; set; }
-        public string pactdesc { get; set; } 
+        public string pactdesc { get; set; }
         public string rptcod { get; set; }
-        public decimal issueqty { get; set; }        
+        public decimal issueqty { get; set; }
         public decimal opqty { get; set; }
         public decimal rcvqty { get; set; }
         public decimal trninqty { get; set; }
         public decimal trnoutqty { get; set; }
         public decimal transqty { get; set; }
-        public decimal lqty { get; set; }      
+        public decimal lqty { get; set; }
         public decimal tqty { get; set; }
         public decimal acstock { get; set; }
         public decimal amount { get; set; }
@@ -218,7 +218,24 @@ namespace RealEntity.C_12_Inv
 
     }
 
-
+    public class MatStockIndPro
+    {
+        public string comcod { get; set; }
+        public string pactcode { get; set; }
+        public string rsircode { get; set; }
+        public string sirdesc { get; set; }
+        public double opqty { get; set; }
+        public double rcvqty { get; set; }
+        public double issueqty { get; set; }
+        public double trninqty { get; set; }
+        public double trnoutqty { get; set; }
+        public double lqty { get; set; }
+        public double trcvqty { get; set; }
+        public double actstockqty { get; set; }
+        public double rate { get; set; }
+        public double actstockamt { get; set; }
+        public MatStockIndPro() { }
+    }
 
 
     public class MatStockReportEvaluation
@@ -250,28 +267,28 @@ namespace RealEntity.C_12_Inv
     [Serializable]
     public class ProjStock
     {
-    
-        public string rptcod {get;set;}
-        public string rptdesc1 {get;set;}
-        public string spcfdesc {get;set;}
-        public string rptunit {get;set;}
-        public double stkqty {get;set;}
 
-        public ProjStock() 
+        public string rptcod { get; set; }
+        public string rptdesc1 { get; set; }
+        public string spcfdesc { get; set; }
+        public string rptunit { get; set; }
+        public double stkqty { get; set; }
+
+        public ProjStock()
         {
-        
-        
+
+
         }
-    
+
     }
 
     [Serializable]
-    public class EMaterialsStock 
+    public class EMaterialsStock
     {
 
         public DateTime vdate { get; set; }
         public string vnumber { get; set; }
-        public string refno{ get; set; }     
+        public string refno { get; set; }
         public double inqty { get; set; }
         public double outqty { get; set; }
         public double clqty { get; set; }
@@ -313,8 +330,8 @@ namespace RealEntity.C_12_Inv
         public decimal bbgdamt { get; set; }
         public decimal tbgdqty { get; set; }
         public decimal tbbgdqty { get; set; }
-        public string reqnote { get; set; }      
-        public string ssircode { get; set; }  
+        public string reqnote { get; set; }
+        public string ssircode { get; set; }
         public decimal pstkqty { get; set; }
         public decimal reqsrat { get; set; }
         public PurEqisition()
@@ -322,42 +339,42 @@ namespace RealEntity.C_12_Inv
 
         }
 
-    #endregion
+        #endregion
 
         #region
         [Serializable]
         public class PurMatReq
         {
-        public string sircode { get; set; }
-        public string resdesc { get; set; }
-        public string sirunit { get; set; }
-        public string spcfdesc { get; set; }
-        public double  qty { get; set; }
+            public string sircode { get; set; }
+            public string resdesc { get; set; }
+            public string sirunit { get; set; }
+            public string spcfdesc { get; set; }
+            public double qty { get; set; }
 
 
-        public PurMatReq(){}
+            public PurMatReq() { }
 
         }
-    
+
 
         #endregion
 
-            #region
+        #region
         [Serializable]
         public class PurGetPass
         {
-        public string rsircode { get; set; }
-        public string spcfcod { get; set; }
-        public string rsirdesc { get; set; }
-        public string spcfdesc { get; set; }
-        public string rsirunit { get; set; }
-        public double  getpqty { get; set; }
+            public string rsircode { get; set; }
+            public string spcfcod { get; set; }
+            public string rsirdesc { get; set; }
+            public string spcfdesc { get; set; }
+            public string rsirunit { get; set; }
+            public double getpqty { get; set; }
 
 
-        public PurGetPass(){}
+            public PurGetPass() { }
 
         }
-    
+
 
         #endregion
 
@@ -376,7 +393,7 @@ namespace RealEntity.C_12_Inv
             public double rate { get; set; }
             public double amt { get; set; }
 
-        
+
             public RptMatTransReq() { }
 
         }
@@ -397,11 +414,11 @@ namespace RealEntity.C_12_Inv
             public double resrate { get; set; }
             public string msrrmrk { get; set; }
             public string cperson { get; set; }
-            public string phone { get; set; }          
+            public string phone { get; set; }
             public double reqqty { get; set; }
             public string mobile { get; set; }
             public double delivery { get; set; }
-            public double amount { get; set; }          
+            public double amount { get; set; }
             public double payment { get; set; }
 
 
@@ -418,8 +435,8 @@ namespace RealEntity.C_12_Inv
         [Serializable]
         public class RptPurMktSurveySummary
         {
-           
-            public string rsirdesc { get; set; }           
+
+            public string rsirdesc { get; set; }
             public double samount { get; set; }
             public RptPurMktSurveySummary() { }
 
@@ -433,7 +450,7 @@ namespace RealEntity.C_12_Inv
         public class RptMatWiseSupList
         {
 
-            public string ssirdesc1 { get; set; }      
+            public string ssirdesc1 { get; set; }
             public string rmrks { get; set; }
             public RptMatWiseSupList() { }
 
@@ -449,7 +466,7 @@ namespace RealEntity.C_12_Inv
         {
 
             public string rsirdesc1 { get; set; }
-            public string spcfdesc { get; set; }     
+            public string spcfdesc { get; set; }
             public string rmrks { get; set; }
             public RptSupWiseMatList() { }
 
@@ -536,12 +553,12 @@ namespace RealEntity.C_12_Inv
     [Serializable]
     public class RptMaterialStock
     {
-       
-      
-        public string  comcod { get; set; }
+
+
+        public string comcod { get; set; }
         public string bldcod { get; set; }
         public string rptcod { get; set; }
-      
+
         public double opqty { get; set; }
         public double rcvqty { get; set; }
         public double trninqty { get; set; }
@@ -593,7 +610,7 @@ namespace RealEntity.C_12_Inv
         public string billno { get; set; }
         public string billno1 { get; set; }
         public string mrfno { get; set; }
-        public DateTime reqdat { get; set; } 
+        public DateTime reqdat { get; set; }
         public string resdesc { get; set; }
 
         public string resunit { get; set; }
@@ -608,7 +625,7 @@ namespace RealEntity.C_12_Inv
 
 
     [Serializable]
-    public class RptPurVarA  
+    public class RptPurVarA
     {
 
 
@@ -622,12 +639,12 @@ namespace RealEntity.C_12_Inv
         public double stkqty { get; set; }
         public double rptqty { get; set; }
         public double bgdstkqty { get; set; }
-       
+
         public double varqty { get; set; }
 
         public string rptdesc1 { get; set; }
         public string rptunit { get; set; }
-    
+
 
         public RptPurVarA() { }
 
@@ -650,7 +667,7 @@ namespace RealEntity.C_12_Inv
         public double rptrat { get; set; }
         public double rptamt { get; set; }
         public double peramt { get; set; }
-      
+
         public RptInResource() { }
 
 

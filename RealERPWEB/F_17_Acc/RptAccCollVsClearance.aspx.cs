@@ -1261,6 +1261,8 @@ namespace RealERPWEB.F_17_Acc
                     ((Label)this.gvMonCollect.FooterRow.FindControl("lgvFamt10")).Text = Convert.ToDouble((Convert.IsDBNull(dt4.Compute("sum(amt10)", "")) ? 0.00 : dt4.Compute("sum(amt10)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvMonCollect.FooterRow.FindControl("lgvFamt11")).Text = Convert.ToDouble((Convert.IsDBNull(dt4.Compute("sum(amt11)", "")) ? 0.00 : dt4.Compute("sum(amt11)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvMonCollect.FooterRow.FindControl("lgvFamt12")).Text = Convert.ToDouble((Convert.IsDBNull(dt4.Compute("sum(amt12)", "")) ? 0.00 : dt4.Compute("sum(amt12)", ""))).ToString("#,##0;(#,##0); ");
+                    Session["Report1"] = gvMonCollect;
+                    ((HyperLink)this.gvMonCollect.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
                     break;
 
@@ -1740,10 +1742,11 @@ namespace RealERPWEB.F_17_Acc
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            DataTable dt = (DataTable)Session["tblbgd"];
+             DataTable dt1 = (DataTable)ViewState["tblcollvscl"];
+
 
             LocalReport Rpt1 = new LocalReport();
-            var lst = dt.DataTableToList<RealEntity.C_22_Sal.Sales_BO.MonthWisseSales>();
+            var lst = dt1.DataTableToList<RealEntity.C_22_Sal.Sales_BO.MonthWisseSales>();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptMonWiseCollection", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));

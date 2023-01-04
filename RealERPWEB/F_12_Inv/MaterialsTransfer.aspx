@@ -402,21 +402,21 @@
                             <HeaderStyle CssClass="grvHeader" />
                         </asp:GridView>
 
+                        <div class="row   mt-2">
 
+                            <div class="col-md-6">
+                                <div class="form-group">
 
-
-                        <div class="form-group">
-                            <div class="col-md-6 pading5px">
-                                <div class="input-group">
-                                    <span class="input-group-addon glypingraddon">
-                                        <asp:Label ID="lblReqNarr" runat="server" CssClass="lblTxt" Text="Narration:"></asp:Label>
-                                    </span>
-                                    <asp:TextBox ID="txtNarr" runat="server" class="form-control" TextMode="MultiLine" Height="40px"></asp:TextBox>
+                                    <div class="input-group">
+                                        <span class="input-group-addon glypingraddon">
+                                            <asp:Label ID="lblReqNarr" runat="server" Visible="false" CssClass="lblTxt" Text="Narration:"></asp:Label>
+                                        </span>
+                                        <asp:TextBox ID="txtNarr" runat="server" Visible="false" class="form-control" TextMode="MultiLine" Height="40px"></asp:TextBox>
+                                    </div>
                                 </div>
+
                             </div>
-
                         </div>
-
                     </div>
                 </div>
         </ContentTemplate>
