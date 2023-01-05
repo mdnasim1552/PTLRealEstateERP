@@ -213,6 +213,24 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.DropDownList ddlpagesize;
 
         /// <summary>
+        /// lblrpttype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblrpttype;
+
+        /// <summary>
+        /// ddlrpttype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlrpttype;
+
+        /// <summary>
         /// datepart control.
         /// </summary>
         /// <remarks>
@@ -400,6 +418,15 @@ namespace RealERPWEB.F_14_Pro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvPurSum;
+
+        /// <summary>
+        /// gvpursumall control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvpursumall;
 
         /// <summary>
         /// Pendingbill control.
