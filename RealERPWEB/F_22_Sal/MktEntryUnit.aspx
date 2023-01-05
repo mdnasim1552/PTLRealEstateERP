@@ -38,11 +38,6 @@
     </style>
 
 
-
-
-
-
-
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -194,13 +189,6 @@
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
-
-
-
-
-
-
-
                                 <asp:TemplateField HeaderText="Unit ">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgUnitnum" runat="server" AutoCompleteType="Disabled"
@@ -225,9 +213,6 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
-
-
-
                                 <asp:TemplateField HeaderText="Rate">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvRate" runat="server" BackColor="Transparent"
@@ -253,7 +238,6 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle HorizontalAlign="right" />
                                 </asp:TemplateField>
-
                                 <asp:TemplateField HeaderText="Parking">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvPamt" runat="server" AutoCompleteType="Disabled"
@@ -287,7 +271,6 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle HorizontalAlign="right" />
                                 </asp:TemplateField>
-
                                 <asp:TemplateField HeaderText="Co-operative">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvPCooprative" runat="server" AutoCompleteType="Disabled"
