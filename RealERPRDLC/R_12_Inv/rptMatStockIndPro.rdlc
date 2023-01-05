@@ -89,10 +89,10 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.39761in</Width>
+                  <Width>0.24761in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.25802in</Width>
+                  <Width>1.43303in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.69969in</Width>
@@ -113,7 +113,7 @@
                   <Width>0.49477in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.62816in</Width>
+                  <Width>0.63648in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.67955in</Width>
@@ -876,7 +876,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!actstockamt.Value,"#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=Format(Fields!actstockamt.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1214,7 +1214,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!actstockamt.Value),"#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=Format(Sum(Fields!actstockamt.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1278,7 +1278,7 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Height>0.90833in</Height>
-            <Width>7.78in</Width>
+            <Width>7.81333in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1391,6 +1391,7 @@
                       <Value>=Parameters!txtTitle.Value</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
+                        <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
