@@ -52,7 +52,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -243,6 +243,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+LeaveRule.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+prevtLeaveInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+RptEmpInfoData.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+RptLeaveRegister.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+yearlyholiday.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+YearlyLeaveRecord.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.datasource" />
@@ -284,6 +285,7 @@
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasisDetails.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasis.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptGroupStockEva.rdlc" />
+    <EmbeddedResource Include="R_12_Inv\RptMaterialStock.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptMaterialStockEva.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptMatStockIndPro.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptProMatStock2Leisure.rdlc" />
@@ -374,6 +376,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+ERptGroupAtt.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+ERptLateleaveaabs.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_mgt.EmpSettlmnt+EmpFinalSettlmnt.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_mgt.EmpSettlmnt.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_93_AnnInc.AnnIncReport+AnnualIncrementStatus.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower+HrmEnvelopPrint.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.IndvPf+Empinfo.datasource" />
@@ -1150,6 +1153,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptNewEmpStatus.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptRetiredEmployee.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\EmpLeavApp.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptLeaveRegister.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptTimeOff.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptLeaveDateRange.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptAllEmpLeavStatus.rdlc" />
@@ -1332,6 +1336,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_91_ACR\RptEmpperformance.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\EmpFinalSettmnt.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpIdCard.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptFinalSettlmntCP.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptGroupAtt.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptInterfaceAttApp.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptInterfaceLeave.rdlc" />

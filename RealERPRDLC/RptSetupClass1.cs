@@ -388,9 +388,12 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptTopSheetFactory": Rpt1a = SetRptTopSheetFactory(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptLetterOfAllotmentCPDL": Rpt1a = SetRptLetterOfAllotmentCPDL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSalEncashment": Rpt1a = SetRptSalEncashment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_92_Mgt.RptFinalSettlmntCP": Rpt1a = SetRptFinalSettlmntCP(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
+                    
 
 
-    
+
 
 
                 #region General Accounts 17
@@ -1122,6 +1125,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_84_Lea.RptAllEmpLeavStatus": Rpt1a = SetRptAllEmpLeavStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_84_Lea.RptAllEmpLeavStatusBR": Rpt1a = SetRptAllEmpLeavStatusBR(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_84_Lea.RptMonWiseLeaveBR": Rpt1a = SetRptMonWiseEmpLeaveBR(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_84_Lea.RptLeaveRegister": Rpt1a = SetRptLeaveRegister(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSalaryDetailsManama02": Rpt1a = SetRptSalaryDetailsManama02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSalaryDetailsManamaBN": Rpt1a = SetRptSalaryDetailsManamaBN(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_87_Tra.RptEmployeeTransfer": Rpt1a = SetRptEmployeeTransfer(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1484,7 +1488,17 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
+        private static LocalReport SetRptFinalSettlmntCP(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)RptDataSet2));
 
+
+            return Rpt1a;
+        }
+
+
+        
 
         private static LocalReport SetRptPurchaseTrack02(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -6744,6 +6758,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptMonWiseEmpLeaveBR(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.RptMonWiseEmpLeave>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptLeaveRegister(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.RptLeaveRegister>)RptDataSet));
             return Rpt1a;
         }
 
