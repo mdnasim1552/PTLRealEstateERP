@@ -464,6 +464,8 @@ namespace RealERPWEB.F_14_Pro
                 case "PurSum":
                     this.lblRptGroup.Visible = true;
                     this.ddlRptGroup.Visible = true;
+                    this.lblrpttype.Visible = true;
+                    this.ddlrpttype.Visible = true;
                     this.MultiView1.ActiveViewIndex = 1;
                     break;
 
@@ -1284,14 +1286,18 @@ namespace RealERPWEB.F_14_Pro
             string comcod = this.GetComeCode();
             string fromdate = Convert.ToDateTime(this.txtFDate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            string pactcode = this.ddlProjectName.SelectedValue.ToString();
+            string pactcode = (this.ddlProjectName.SelectedValue.ToString()=="000000000000"?"":this.ddlProjectName.SelectedValue.ToString())+"%";
             string mRptGroup = Convert.ToString(this.ddlRptGroup.SelectedIndex);
             mRptGroup = (mRptGroup == "0" ? "2" : (mRptGroup == "1" ? "4" : (mRptGroup == "2" ? "7" : (mRptGroup == "3" ? "9" : "12"))));
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "RPTPURSUMMARY", fromdate, todate, pactcode, mRptGroup, "", "", "", "", "");
+
+            string Calltype = this.ddlrpttype.SelectedIndex == 0 ? "RPTPURSUMMARYALLPROJECT" : "RPTPURSUMMARY";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", Calltype, fromdate, todate, pactcode, mRptGroup, "", "", "", "", "");
             if (ds1 == null)
             {
                 this.gvPurSum.DataSource = null;
                 this.gvPurSum.DataBind();
+                this.gvpursumall.DataSource = null;
+                this.gvpursumall.DataBind();
                 return;
             }
 
@@ -1912,16 +1918,54 @@ namespace RealERPWEB.F_14_Pro
                         break;
 
                     case "PurSum":
-                        this.gvPurSum.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                        this.gvPurSum.DataSource = dt;
-                        this.gvPurSum.DataBind();
 
-                        DataTable dt2 = dt.Copy();
-                        DataView dv2 = dt2.DefaultView;
-                        dv2.RowFilter = "qty > '0'";
-                        dt2 = dv2.ToTable();
-                        ((Label)this.gvPurSum.FooterRow.FindControl("lgvFAmtS")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(amt)", "")) ?
-                                             0 : dt2.Compute("sum(amt)", ""))).ToString("#,##0;(#,##0); ");
+                        
+
+                        this.gvPurSum.DataSource = null;
+                        this.gvPurSum.DataBind();
+                        this.gvpursumall.DataSource = null;
+                        this.gvpursumall.DataBind();
+
+                        if (this.ddlrpttype.SelectedIndex == 0)
+                        {
+
+                            this.gvpursumall.DataSource = dt;
+                            this.gvpursumall.DataBind();
+                            if (dt.Rows.Count > 0)
+                            {
+                                ((Label)this.gvpursumall.FooterRow.FindControl("lgvFAmtSall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ?
+                                                     0 : dt.Compute("sum(amt)", ""))).ToString("#,##0;(#,##0); ");
+
+                                ((Label)this.gvpursumall.FooterRow.FindControl("lgvFpercntall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(percnt)", "")) ?
+                                                    0 : dt.Compute("sum(percnt)", ""))).ToString("#,##0;(#,##0); ");
+                            }
+
+
+                           
+
+                        }
+
+                        else
+                        {
+
+                            this.gvPurSum.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                            this.gvPurSum.DataSource = dt;
+                            this.gvPurSum.DataBind();
+
+                            DataTable dt2 = dt.Copy();
+                            DataView dv2 = dt2.DefaultView;
+                            dv2.RowFilter = "qty > '0'";
+                            dt2 = dv2.ToTable();
+                            ((Label)this.gvPurSum.FooterRow.FindControl("lgvFAmtS")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(amt)", "")) ?
+                                                 0 : dt2.Compute("sum(amt)", ""))).ToString("#,##0;(#,##0); ");
+
+
+
+
+
+                        }
+
+
                         break;
 
                     case "PenBill":
