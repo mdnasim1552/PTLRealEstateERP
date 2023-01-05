@@ -334,8 +334,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3101":
                 case "2325":
                 case "3325":
-                case "3325":
-
+                case "3370":
                     ctype = "GETPURPROJECTNAMELEISURE";
                     break;
                 default:
