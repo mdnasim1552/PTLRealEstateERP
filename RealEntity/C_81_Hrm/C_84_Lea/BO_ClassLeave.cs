@@ -198,6 +198,25 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public string idcardno { get; set; }
             public string desigadept { get; set; }
             public string joindate { get; set; }
+            public string section { get; set; }
+            public string secid { get; set; }
+            public double serlength { get; set; }
+            public double cleave { get; set; }
+            public double sleave { get; set; }
+            public double enleave { get; set; }
+            public double upachivclv { get; set; }
+            public double upachivslv { get; set; }
+            public double upachivelv { get; set; }
+            public double avclv { get; set; }
+            public double avslv { get; set; }
+            public double avelv { get; set; }
+            public double upbclv { get; set; }
+            public double upbslv { get; set; }
+            public double upbelv { get; set; }
+            public double balclv { get; set; }
+            public double balslv { get; set; }
+            public double balelv { get; set; }
+            public double balstlv { get; set; }
            
             public RptLeaveRegister() { 
 
