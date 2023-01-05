@@ -55,38 +55,25 @@ namespace RealERPWEB.F_12_Inv
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
-            string comadd = hst["comadd1"].ToString();
-            string compname = hst["compname"].ToString();
-            string session = hst["session"].ToString();
-            string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string txtuserinfo = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string frmdate = Convert.ToDateTime(this.txtFDate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
 
-
+            string rpthead = "Inventory Report";
 
             if (dt == null)
                 return;
             var lst = dt.DataTableToList<RealEntity.C_12_Inv.MatStockIndPro>();
 
             LocalReport Rpt1 = new LocalReport();
-
-
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptMatStockIndPro", lst, null, null);
-
-
 
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-
             Rpt1.SetParameters(new ReportParameter("comname", comnam));
-            //Rpt1.SetParameters(new ReportParameter("StockValuation", "Stock Valuation : " + strstock));
-
-            //Rpt1.SetParameters(new ReportParameter("ProjectName", "Project Name : " + this.ddlProName.SelectedItem.Text));
-
-            //Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
-            //Rpt1.SetParameters(new ReportParameter("date", "From: " + fdate + " To: " + tdate));
-            //Rpt1.SetParameters(new ReportParameter("date", "From: " + fdate + " To: " + tdate));
+            Rpt1.SetParameters(new ReportParameter("txtProject", "Project Name : " + this.ddlProjectName.SelectedItem.Text));
+            Rpt1.SetParameters(new ReportParameter("txtdate", " (" + "From  " + frmdate + " To " + todate + ")"));
+            Rpt1.SetParameters(new ReportParameter("txtTitle", rpthead));
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +

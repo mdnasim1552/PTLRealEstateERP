@@ -131,9 +131,12 @@
                             CellPadding="4" Font-Size="12px" OnPageIndexChanging="grvacc_PageIndexChanging"
                             OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
                             OnRowUpdating="grvacc_RowUpdating" PageSize="15" Width="576px">
+<<<<<<< HEAD
 
                            
 
+=======
+>>>>>>> f6f0858687917c3378731bf2d069bac0cb1b0a2c
                             <PagerSettings NextPageText="Next" PreviousPageText="Previous" />
 
                             <FooterStyle BackColor="#5F9467" Font-Bold="True" ForeColor="White" />

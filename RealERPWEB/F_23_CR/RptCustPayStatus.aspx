@@ -132,7 +132,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvItmCode3" runat="server" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'
-                                                    Width="49px"></asp:Label>
+                                                    Width="50"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
@@ -155,7 +155,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvsDate" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "schdate")) %>'
-                                                    Width="70px"></asp:Label>
+                                                    Width="80px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -251,6 +251,7 @@
                                     <AlternatingRowStyle />
                                     <PagerStyle CssClass="gvPagination" />
                                     <HeaderStyle CssClass="grvHeader" />
+                                       <RowStyle CssClass="grvRows" />
                                 </asp:GridView>
                                 <div class="row">
                                     <asp:Label ID="lblchqdishonour" runat="server" BorderStyle="None"

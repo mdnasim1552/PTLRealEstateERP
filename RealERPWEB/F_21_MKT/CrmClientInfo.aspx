@@ -695,6 +695,10 @@
                         //alert("test--");
                         funDupMobile(comcod, sircode, mobile);
                     }
+                    if (comcod == "3354") {
+                        //alert("test--");
+                        funDupMobile(comcod, sircode, mobile);
+                    }
 
                 });
 

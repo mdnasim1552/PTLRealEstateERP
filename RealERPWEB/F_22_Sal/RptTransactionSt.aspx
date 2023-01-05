@@ -31,7 +31,7 @@
 
               var gridViewScroll1 = new GridViewScroll({
                   elementID: "grvTrnDatWise",
-                  width: 1300,
+                  width: 1400,
                   height: 500,
                   freezeColumn: true,
                   freezeFooter: true,
@@ -549,7 +549,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcGrpt" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "grpdesc")) %>'
-                                                        Width="65px"></asp:Label>
+                                                        Width="180px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
@@ -557,7 +557,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcMRNo" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrno")) %>'
-                                                        Width="60px"></asp:Label>
+                                                        Width="90px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
@@ -567,7 +567,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgcMRDat" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrdate1")) %>'
-                                                        Width="65px"></asp:Label>
+                                                        Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
@@ -648,7 +648,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvCuName" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custname")) %>'
-                                                        Width="120px"></asp:Label>
+                                                        Width="290px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -684,7 +684,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvChDat" runat="server" Style="text-align: left"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chqdate")) %>'
-                                                        Width="70px"></asp:Label>
+                                                        Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
@@ -757,7 +757,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvEntrydate" runat="server" Style="text-align: left"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "entrydat")) %>'
-                                                        Width="70px"></asp:Label>
+                                                        Width="90px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
