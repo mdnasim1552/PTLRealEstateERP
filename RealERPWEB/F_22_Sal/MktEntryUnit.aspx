@@ -5,8 +5,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
-
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -483,7 +481,6 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-
 </asp:Content>
 
 
