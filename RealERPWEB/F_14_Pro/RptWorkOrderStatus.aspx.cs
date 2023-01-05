@@ -39,6 +39,7 @@ namespace RealERPWEB.F_14_Pro
                 this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtFDate.Text = System.DateTime.Today.AddDays(-30).ToString("dd-MMM-yyyy");
                 this.GetProjectName();
+                this.GetSupplier();
               
             }
         }
@@ -162,15 +163,38 @@ namespace RealERPWEB.F_14_Pro
             this.RequisitionVsOrder();
 
         }
+        private void GetSupplier()
+        {
+            string comcod = this.GetCompCode();
+            string pactcode = this.ddlProjectName.SelectedValue.ToString();
+            string txtSrchSupplier = "%%";
+            DataSet ds2 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETSUPPLIER", pactcode, txtSrchSupplier, "", "", "", "", "", "", "");
 
-        
+            DataTable dt = ds2.Tables[0];
+            DataRow dr1 = dt.NewRow();
+            dr1["ssircode"] = "000000000000";
+            dr1["ssirdesc"] = "All Suppler";
+            dt.Rows.Add(dr1);
+
+
+            this.ddlSupplier.DataTextField = "ssirdesc";
+            this.ddlSupplier.DataValueField = "ssircode";
+            this.ddlSupplier.DataSource = dt;
+            this.ddlSupplier.DataBind();
+            this.ddlSupplier.SelectedValue = "000000000000";
+            ds2.Dispose();
+
+
+
+        }
+
         private string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             return comcod;
         }
-
+     
         private void LoadData()
         {
             Session.Remove("tblstatus");
@@ -227,8 +251,10 @@ namespace RealERPWEB.F_14_Pro
             string fromdate = Convert.ToDateTime(this.txtFDate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
+            string suppliercode = (this.ddlSupplier.SelectedValue=="000000000000"?"": this.ddlSupplier.SelectedValue.ToString())+"%";
+                  
             string ordertype = this.rbtnpurtype.SelectedIndex == 0 ? "002" : this.rbtnpurtype.SelectedIndex == 1 ? "001" : "";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "RPTWORKORDERSTATUS", fromdate, todate, pactcode, ordertype, "", "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "RPTWORKORDERSTATUS", fromdate, todate, pactcode, ordertype, suppliercode, "", "", "", "");
             if (ds1.Tables[0] == null)
             {
                 this.gvDeWorkOrdSt.DataSource = null;
