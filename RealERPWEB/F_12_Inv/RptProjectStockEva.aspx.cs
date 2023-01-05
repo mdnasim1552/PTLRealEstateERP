@@ -156,10 +156,16 @@ namespace RealERPWEB.F_12_Inv
             {
                 if (dt1.Rows[j]["pactcode"].ToString() == isircod)
                 {
-                    string strstkValuation = this.group.SelectedValue.ToString();
-                    if (strstkValuation != "1") {
-                        dt1.Rows[0]["pactdesc"] = "";
-                    }
+                    //string strstkValuation = this.group.SelectedValue.ToString();
+                    //if (strstkValuation != "1")
+                    //{
+                    //    dt1.Rows[0]["pactdesc"] = "";
+                    //}
+                    //else
+                    //{
+                        
+                    //}
+                    dt1.Rows[1]["pactdesc"] = "";
                     dt1.Rows[j]["pactdesc"] = "";
                 }
 
@@ -298,7 +304,7 @@ namespace RealERPWEB.F_12_Inv
             Rpt1.SetParameters(new ReportParameter("companyname", comnam));
             Rpt1.SetParameters(new ReportParameter("StockValuation", "Stock Valuation : " + strstock));
 
-            Rpt1.SetParameters(new ReportParameter("ProjectName", "Project Name : " + this.ddlProName.SelectedItem.Text));
+            //Rpt1.SetParameters(new ReportParameter("ProjectName", "Project Name : " + this.ddlProName.SelectedItem.Text));
 
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
             Rpt1.SetParameters(new ReportParameter("date", "From: " + fdate + " To: " + tdate));
@@ -328,6 +334,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3101":
                 case "2325":
                 case "3325":
+                case "3370":
                     ctype = "GETPURPROJECTNAMELEISURE";
                     break;
                 default:

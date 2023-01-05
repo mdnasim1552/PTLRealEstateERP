@@ -16,6 +16,9 @@ using RealERPLIB;
 using RealERPRPT;
 using Microsoft.Reporting.WinForms;
 using RealERPRDLC;
+using RestSharp;
+using System.Net;
+
 namespace RealERPWEB.F_23_CR
 {
     public partial class RptCustomerDues : System.Web.UI.Page
@@ -392,6 +395,51 @@ namespace RealERPWEB.F_23_CR
                 this.chkCurrentdues.Checked = false;
             }
         }
+        public bool SendSms_SSL_Single(string comcode, string text, string mobilenum)
+        {
+
+            try
+            {
+                string comcod = comcode;
+                DataSet ds3 = CustData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWAPIINFOFORFORGOTPASS", "", "", "", "", "");
+                string Single_Sms_Url = ds3.Tables[0].Rows[0]["apiurl"].ToString().Trim();
+                string Single_Sms_Sid = ds3.Tables[0].Rows[0]["apisender"].ToString().Trim(); //"ASITNAHID";  //Sender
+                string Single_Sms_api_token = ds3.Tables[0].Rows[0]["apipass"].ToString().Trim(); //"ASITNAHID";  //Sender
+                string mobile = "88" + mobilenum; //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
+                Random rnd1 = new Random(9); //seed value 10
+                string cmsid = rnd1.Next().ToString();
+                var options = new RestClientOptions(Single_Sms_Url)
+                {
+                    ThrowOnAnyError = true,
+                    Timeout = 1000  // 1 second
+                };
+                var client = new RestClient(Single_Sms_Url);
+                var request = new RestRequest();
+
+                request.Method = Method.Post;
+                request.AddHeader("Accept", "application/json");
+                request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+                request.AddParameter("api_token", Single_Sms_api_token);
+                request.AddParameter("sid", Single_Sms_Sid);
+                request.AddParameter("msisdn", mobile);
+                request.AddParameter("sms", text);
+                request.AddParameter("csms_id", cmsid);
+                var response = client.Execute(request);
+
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + response.Content.ToString() + "');", true);
+                // response.
+
+                return response.IsSuccessful;
+            }
+            catch (Exception ex)
+            {
+               
+                return false;
+            }
+
+        }
 
         protected void lnkSendSMS_Click(object sender, EventArgs e)
         {
@@ -421,6 +469,7 @@ namespace RealERPWEB.F_23_CR
                             string supphone = dt1.Rows[j]["custmob"].ToString();
                             string SMSText = dt1.Rows[j]["smstxt"].ToString();
                             bool resultsms = sms.SendSms_SSL_Single(comcod, SMSText, supphone);
+                           // bool resultsms = SendSms_SSL_Single(comcod, SMSText, supphone);
                             if (resultsms == false)
                             {
                                 smsFailCount += 1;
@@ -428,7 +477,6 @@ namespace RealERPWEB.F_23_CR
                                 string sournce = sms.ErrorObject["Src"].ToString();
                                 string Location = sms.ErrorObject["Location"].ToString();
                                 string allinfo = msg + "," + sournce + "," + Location;
-
                                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + allinfo + "');", true);
                                 return;
 

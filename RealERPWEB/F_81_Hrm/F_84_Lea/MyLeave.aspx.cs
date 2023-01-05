@@ -236,10 +236,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 if ((comcod == "3365" || comcod == "3101") && qtype == "MGT")
                 {
                     this.SpResign.Visible = true;
+                    this.sspnlv.Visible = true;
                 }
                 else
                 {
                     this.SpResign.Visible = false;
+                    this.sspnlv.Visible = false;
 
                 }
             }else if (comcod=="3370")
@@ -1374,6 +1376,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             DataTable dt1 = ds.Tables[1];
             DataTable dt2 = ds.Tables[2];
+            DataTable dt3 = ds.Tables[3];
+
 
             //this.ClientQueryString("MGT")
 
@@ -1386,7 +1390,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             var list1 = dt1.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.LeaveRule>();
             var list2 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.currentLeaveInfo>();
-            var list3 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.currentLeaveInfo>();
+            var list3 = dt3.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.currentLeaveInfo>();
 
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_84_Lea.rptEmpLeaveCard", list1, list2, list3);

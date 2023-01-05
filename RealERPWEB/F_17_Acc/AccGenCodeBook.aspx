@@ -130,11 +130,7 @@
                             AutoGenerateColumns="False"
                             CellPadding="4" Font-Size="12px" OnPageIndexChanging="grvacc_PageIndexChanging"
                             OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
-                            OnRowUpdating="grvacc_RowUpdating" PageSize="15" Width="576px">
-
-                           
-
-                            <PagerSettings NextPageText="Next" PreviousPageText="Previous" />
+                            OnRowUpdating="grvacc_RowUpdating" PageSize="15" Width="576px">                        
 
                             <FooterStyle BackColor="#5F9467" Font-Bold="True" ForeColor="White" />
                             <Columns>

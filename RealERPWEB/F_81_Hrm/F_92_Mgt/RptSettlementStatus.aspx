@@ -58,6 +58,11 @@
             window.open('../../RDLCViewerWin.aspx?PrintOpt=' + type, '_blank');
         };
 
+
+        function PrintRpt() {
+            window.open('<%= ResolveUrl("RDLCViewerWin.aspx?PrintOpt=PDF") %>', '_blank');
+            }
+
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
