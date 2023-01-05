@@ -132,6 +132,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl engst;
 
         /// <summary>
+        /// lblidcard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblidcard;
+
+        /// <summary>
         /// lblname control.
         /// </summary>
         /// <remarks>
@@ -148,6 +157,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbldesig;
+
+        /// <summary>
+        /// lblsection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblsection;
 
         /// <summary>
         /// lbljoin control.
@@ -168,33 +186,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         protected global::System.Web.UI.WebControls.Label lblsep;
 
         /// <summary>
-        /// lblidcard control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblidcard;
-
-        /// <summary>
-        /// lblsection control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblsection;
-
-        /// <summary>
-        /// lblgross control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblgross;
-
-        /// <summary>
         /// lblseptype control.
         /// </summary>
         /// <remarks>
@@ -211,6 +202,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbllastday;
+
+        /// <summary>
+        /// lblgross control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblgross;
 
         /// <summary>
         /// lblservlen control.
