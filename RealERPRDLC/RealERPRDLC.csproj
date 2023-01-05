@@ -376,6 +376,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+ERptGroupAtt.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+ERptLateleaveaabs.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_mgt.EmpSettlmnt+EmpFinalSettlmnt.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_mgt.EmpSettlmnt.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_93_AnnInc.AnnIncReport+AnnualIncrementStatus.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_97_MIS.Mgt_ManPower+HrmEnvelopPrint.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.IndvPf+Empinfo.datasource" />
@@ -1335,6 +1336,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_91_ACR\RptEmpperformance.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\EmpFinalSettmnt.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpIdCard.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptFinalSettlmntCP.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptGroupAtt.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptInterfaceAttApp.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptInterfaceLeave.rdlc" />
