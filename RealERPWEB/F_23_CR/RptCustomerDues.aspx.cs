@@ -468,25 +468,8 @@ namespace RealERPWEB.F_23_CR
                         {
                             string supphone = dt1.Rows[j]["custmob"].ToString();
                             string SMSText = dt1.Rows[j]["smstxt"].ToString();
-                            //bool resultsms = sms.SendSms_SSL_Single(comcod, SMSText, supphone);
-                            bool resultsms = SendSms_SSL_Single(comcod, SMSText, supphone);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                            bool resultsms = sms.SendSms_SSL_Single(comcod, SMSText, supphone);
+                           // bool resultsms = SendSms_SSL_Single(comcod, SMSText, supphone);
                             if (resultsms == false)
                             {
                                 smsFailCount += 1;
@@ -494,7 +477,6 @@ namespace RealERPWEB.F_23_CR
                                 string sournce = sms.ErrorObject["Src"].ToString();
                                 string Location = sms.ErrorObject["Location"].ToString();
                                 string allinfo = msg + "," + sournce + "," + Location;
-
                                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + allinfo + "');", true);
                                 return;
 
