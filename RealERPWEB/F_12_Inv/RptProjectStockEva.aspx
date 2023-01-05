@@ -47,6 +47,9 @@
         #ContentPlaceHolder1_gvStocjEvaluation_lblActualStock_0 {
             font-weight:bold;
         }
+        .totalcount {
+            font-weight:bold;
+        }
     </style>
 
     <script type="text/javascript" language="javascript">
@@ -69,9 +72,7 @@
                     enableCaseInsensitiveFiltering: true,
                     //enableFiltering: true,
                     //$('.chzn-select').chosen({ search_contains: true });
-
                 });
-
             });
             //$(function () {
             //    $('[id*=listGroup]').multiselect({
@@ -246,7 +247,7 @@
 
                                     <asp:TemplateField HeaderText="Project Name">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvtPactdesc" runat="server" Style="text-align: left" Width="90px"
+                                            <asp:Label ID="lblgvtPactdesc" runat="server" Style="text-align: left" Width="170px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>

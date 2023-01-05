@@ -304,7 +304,7 @@ namespace RealERPWEB.F_12_Inv
             Rpt1.SetParameters(new ReportParameter("companyname", comnam));
             Rpt1.SetParameters(new ReportParameter("StockValuation", "Stock Valuation : " + strstock));
 
-            Rpt1.SetParameters(new ReportParameter("ProjectName", "Project Name : " + this.ddlProName.SelectedItem.Text));
+            //Rpt1.SetParameters(new ReportParameter("ProjectName", "Project Name : " + this.ddlProName.SelectedItem.Text));
 
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
             Rpt1.SetParameters(new ReportParameter("date", "From: " + fdate + " To: " + tdate));
@@ -334,6 +334,8 @@ namespace RealERPWEB.F_12_Inv
                 case "3101":
                 case "2325":
                 case "3325":
+                case "3325":
+
                     ctype = "GETPURPROJECTNAMELEISURE";
                     break;
                 default:

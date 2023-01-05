@@ -284,6 +284,7 @@
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasisDetails.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasis.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptGroupStockEva.rdlc" />
+    <EmbeddedResource Include="R_12_Inv\RptMaterialStock.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptMaterialStockEva.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptMatStockIndPro.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptProMatStock2Leisure.rdlc" />
