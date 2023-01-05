@@ -6206,6 +6206,7 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
             ViewState["tblmatissue"] = ds1.Tables[0];
             ViewState["tblbillinfo"] = ds1.Tables[1];
+            ViewState["tblUseinfo"] = ds1.Tables[2];
             switch (comcod)
             {
                 //case "2305":
@@ -6227,10 +6228,98 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3339":// Tropical              
                     this.PrintLabIssueSubCon();
                     break;
+                case "3370":// CPDL             
+                    this.PrintLabIssueCPDL();
+                    break;
+
                 default:
                     this.PrintLabIssue();
                     break;
             }
+        }
+
+        private void PrintLabIssueCPDL()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string session = hst["session"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string txtuserinfo = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
+            string PrintOpt2 = Request.QueryString.AllKeys.Contains("PrintOpt") ? this.Request.QueryString["PrintOpt"].ToString() : "";
+            string PrintOpt = PrintOpt2.Length > 0 ? PrintOpt2 : ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString();
+
+
+            DataTable dt = (DataTable)ViewState["tblmatissue"];
+            DataTable dtd = (DataTable)ViewState["tblbillinfo"]; 
+            DataTable _dtuser = (DataTable)ViewState["tblUseinfo"];
+            var lst =dt.DataTableToList<RealEntity.C_09_PIMP.SubConBill.ConRaBill>();
+            var TAmt = lst.Select(p => p.isuamt).Sum();
+
+            string pCompanyBill = this.CompanyBillCon();
+
+            string sign1 =  _dtuser.Rows[0]["lpostuser"].ToString() + "\n" + _dtuser.Rows[0]["lpostdesig"].ToString() + "\n" + Convert.ToDateTime(_dtuser.Rows[0]["lposteddat"]).ToString("dd-MMM-yyyy");
+            string sign2 = _dtuser.Rows[0]["bpostuser"].ToString() + "\n" + _dtuser.Rows[0]["bpostdesig"].ToString() + "\n" + Convert.ToDateTime(_dtuser.Rows[0]["bposteddat"]).ToString("dd-MMM-yyyy");
+            string sign3 = _dtuser.Rows[0]["baprvuser"].ToString() + "\n" + _dtuser.Rows[0]["baprvdesig"].ToString() + "\n" + Convert.ToDateTime(_dtuser.Rows[0]["baprvdat"]).ToString("dd-MMM-yyyy");
+            string sign4 = "";
+
+
+
+    
+            LocalReport rptbill = new LocalReport();
+
+            string IssueRefNo = (dtd.Rows[0]["lisurefno"].ToString().Length > 0) ? "Issue Ref No: " + dtd.Rows[0]["lisurefno"].ToString() : "Issue Ref No:";
+            //string billrefno = (dtd.Rows[0]["cbillref"].ToString().Length > 0) ? "Bill Ref. No: " + dtd.Rows[0]["cbillref"].ToString() : "";
+
+            string pactcode = dtd.Rows[0]["pactcode"].ToString();
+            string secdep = Convert.ToDouble(dtd.Rows[0]["percntge"]).ToString("#,##0.00;(#,##0.00); ");
+            string lblSecurity = "Security Deposit " + "(" + secdep + " %)";
+
+            rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptLabIssueCPDL", lst, null, null);
+            rptbill.EnableExternalImages = true;
+            rptbill.SetParameters(new ReportParameter("IssueNo", "Issue No: " + dtd.Rows[0]["lisuno1"].ToString()));
+            rptbill.SetParameters(new ReportParameter("IssueRefNo", IssueRefNo));
+
+            double netamt = TAmt + Convert.ToDouble("0" + dtd.Rows[0]["reward"]) - Convert.ToDouble("0" + dtd.Rows[0]["sdamt"]) - Convert.ToDouble("0" + dtd.Rows[0]["dedamt"]) - Convert.ToDouble("0" + dtd.Rows[0]["penamt"]) - Convert.ToDouble("0" + dtd.Rows[0]["advamt"]);
+
+
+          
+            rptbill.SetParameters(new ReportParameter("compname", comnam));
+            rptbill.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            
+
+            rptbill.SetParameters(new ReportParameter("comadd", comadd));
+            rptbill.SetParameters(new ReportParameter("Rptname", "Sub-Contractor Bill"));
+            rptbill.SetParameters(new ReportParameter("ProjectName", "Project Name : " + dtd.Rows[0]["pactdesc"].ToString()));
+            rptbill.SetParameters(new ReportParameter("SubContNam", "Contractor Name : " + dtd.Rows[0]["csirdesc"].ToString()));
+            rptbill.SetParameters(new ReportParameter("mBillNo", "Bill No: " + dtd.Rows[0]["lisuno1"].ToString()));
+            rptbill.SetParameters(new ReportParameter("Date", "Date: " + Convert.ToDateTime(dtd.Rows[0]["isudat"]).ToString("dd-MMM-yyyy")));
+            rptbill.SetParameters(new ReportParameter("SeDep", Convert.ToDouble(dtd.Rows[0]["sdamt"]).ToString("#,##0.00;(#,##0.00); ")));
+            rptbill.SetParameters(new ReportParameter("DedAmt", Convert.ToDouble(dtd.Rows[0]["dedamt"]).ToString("#,##0.00;(#,##0.00); ")));
+            rptbill.SetParameters(new ReportParameter("PenaltyAmt", Convert.ToDouble(dtd.Rows[0]["penamt"]).ToString("#,##0.00;(#,##0.00); ")));
+            rptbill.SetParameters(new ReportParameter("Advanced", Convert.ToDouble(dtd.Rows[0]["advamt"]).ToString("#,##0.00;(#,##0.00); ")));
+            rptbill.SetParameters(new ReportParameter("TotalAmt", Math.Round(netamt, 0).ToString("#,##0.00;(#,##0.00); ")));
+            //rptbill.SetParameters(new ReportParameter("BillRef", billrefno));
+            rptbill.SetParameters(new ReportParameter("naration", dtd.Rows[0]["rmrks"].ToString()));
+            rptbill.SetParameters(new ReportParameter("printFooter", txtuserinfo));
+            rptbill.SetParameters(new ReportParameter("sign1", sign1));
+            rptbill.SetParameters(new ReportParameter("sign2", sign2));
+            rptbill.SetParameters(new ReportParameter("sign3", sign3));
+            rptbill.SetParameters(new ReportParameter("sign4", sign4));
+            //  Rpt1.SetParameters(new ReportParameter("InWrd", "In Words : " + ASTUtility.Trans(Math.Round(TAmt), 2)));
+            Session["Report1"] = rptbill;
+
+            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+            //            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" + PrintOpt + "', target='_self');</script>";
+
         }
 
         private void PurConBillFinal_Print()
@@ -7017,14 +7106,11 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptLabIssueRup", lst, null, null);
                     // rptstk = new RealERPRPT.R_09_PImp.rptLabIssue();
                     break;
-                case "3370":
-                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptLabIssueCPDL", lst, null, null);
-                    // rptstk = new RealERPRPT.R_09_PImp.rptLabIssue();
-                    break;
                 default:
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptLabIssue", lst, null, null);
                     // rptstk = new RealERPRPT.R_09_PImp.rptLabIssue();
                     break;
+
 
 
 
