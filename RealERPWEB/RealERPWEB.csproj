@@ -2399,6 +2399,7 @@
     <Content Include="F_14_Pro\RptDateWiseBill.aspx" />
     <Content Include="F_14_Pro\PoMrrBillStatus.aspx" />
     <Content Include="F_14_Pro\RptPurchaseStatus.aspx" />
+    <Content Include="F_14_Pro\RptPurchaseSummaryVsPayment.aspx" />
     <Content Include="F_14_Pro\RptPurchesStatus.aspx" />
     <Content Include="F_14_Pro\RptPurchesStatusPrjWise.aspx" />
     <Content Include="F_14_Pro\RptPurOrderTopSheet.aspx" />
@@ -4371,6 +4372,13 @@
     </Compile>
     <Compile Include="F_14_Pro\RptPurchaseStatus.aspx.designer.cs">
       <DependentUpon>RptPurchaseStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchaseSummaryVsPayment.aspx.cs">
+      <DependentUpon>RptPurchaseSummaryVsPayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchaseSummaryVsPayment.aspx.designer.cs">
+      <DependentUpon>RptPurchaseSummaryVsPayment.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\RptPurchesStatus.aspx.cs">
       <DependentUpon>RptPurchesStatus.aspx</DependentUpon>
