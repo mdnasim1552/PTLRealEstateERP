@@ -567,6 +567,15 @@ namespace RealEntity.C_14_Pro
             public double rate { get; set; }
             public double amt { get; set; }
         }
+        public class RptSummaryProject
+        {
+            public string comcod { get; set; }
+            public string pactcode { get; set; }
+
+            public double amt { get; set; }
+            public double percnt { get; set; }
+            public string pactdesc { get; set; }
+        }
 
 
         [Serializable]
