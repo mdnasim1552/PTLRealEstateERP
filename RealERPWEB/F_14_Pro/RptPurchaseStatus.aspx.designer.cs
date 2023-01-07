@@ -132,6 +132,60 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl genbillno;
 
         /// <summary>
+        /// lbldate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbldate;
+
+        /// <summary>
+        /// txtfromdate1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtfromdate1;
+
+        /// <summary>
+        /// txtfromdate1_CalendarExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender txtfromdate1_CalendarExtender;
+
+        /// <summary>
+        /// lbltodate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbltodate;
+
+        /// <summary>
+        /// txttodate1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txttodate1;
+
+        /// <summary>
+        /// txttodate1_CalendarExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender txttodate1_CalendarExtender;
+
+        /// <summary>
         /// lblGenBillTrack control.
         /// </summary>
         /// <remarks>
@@ -175,6 +229,15 @@ namespace RealERPWEB.F_14_Pro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
+
+        /// <summary>
+        /// Checksamehead control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox Checksamehead;
 
         /// <summary>
         /// lblRptGroup control.
