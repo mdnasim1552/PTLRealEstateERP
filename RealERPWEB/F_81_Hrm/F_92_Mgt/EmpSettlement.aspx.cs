@@ -214,10 +214,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
             if (GetComeCode() == "3370")
             {
+                this.gvsettlemntcredit.Columns[0].Visible = false;
                 this.gvsettlemntcredit.Columns[2].Visible = false;
                 this.gvsettlemntcredit.Columns[3].Visible = false;
                 this.gvsettlemntcredit.Columns[4].Visible = false;
 
+                this.gvsttlededuct.Columns[0].Visible = false;
                 this.gvsttlededuct.Columns[2].Visible = false;
                 this.gvsttlededuct.Columns[3].Visible = false;
                 this.gvsttlededuct.Columns[4].Visible = false;
