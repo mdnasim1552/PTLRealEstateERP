@@ -605,6 +605,7 @@
                                             <asp:ListItem Value="89005">Tea Break</asp:ListItem>
                                             <asp:ListItem Value="89006">Discussion Break</asp:ListItem>
                                             <asp:ListItem Value="89007">Gossip Break</asp:ListItem>
+                                            <asp:ListItem Value="89008">End Of Day</asp:ListItem>
 
                                         </asp:DropDownList>
                                     </div>
