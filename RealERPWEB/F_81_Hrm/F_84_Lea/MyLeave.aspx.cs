@@ -1364,6 +1364,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string curr_year = System.DateTime.Now.ToString("yyyy");
+            string prev_year = System.DateTime.Now.AddYears(-1).ToString("yyyy");
+
             string curr_date = "26-Dec-" + curr_year;
             string lvname = "";
             string empid = "";
@@ -1393,9 +1395,17 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 return;
             }
 
+            //current  leave rule
             DataTable dt1 = ds.Tables[1];
+            //current leave data
             DataTable dt2 = ds.Tables[2];
+
+
+            //previous leave rule
             DataTable dt3 = ds.Tables[3];
+            //previous leave data
+            DataTable dt4 = ds.Tables[4];
+
 
 
             //this.ClientQueryString("MGT")
@@ -1409,17 +1419,25 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             var list1 = dt1.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.LeaveRule>();
             var list2 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.currentLeaveInfo>();
-            var list3 = dt3.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.currentLeaveInfo>();
+            var list3 = dt4.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.currentLeaveInfo>();
 
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_84_Lea.rptEmpLeaveCard", list1, list2, list3);
             Rpt1.EnableExternalImages = true;
-
+            //curent leave
             for (int i = 0; i < dt1.Rows.Count; i++)
             {
                 lvname = dt1.Rows[i]["leave"].ToString().Substring(0, 4);
                 Rpt1.SetParameters(new ReportParameter("lvname" + i.ToString(), lvname));
             }
+
+            //previous leave 
+            for (int i = 0; i < dt3.Rows.Count; i++)
+            {
+                lvname = dt3.Rows[i]["leave"].ToString().Substring(0, 4);
+                Rpt1.SetParameters(new ReportParameter("lvnameprev" + i.ToString(), lvname));
+            }
+
 
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
 
@@ -1433,6 +1451,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             Rpt1.SetParameters(new ReportParameter("dept", dept));
             Rpt1.SetParameters(new ReportParameter("desig", desig));
             Rpt1.SetParameters(new ReportParameter("curyear", curr_year));
+            Rpt1.SetParameters(new ReportParameter("prevyear", prev_year));
+
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
             //Rpt1.PrintToPrinter();
             Session["Report1"] = Rpt1;
