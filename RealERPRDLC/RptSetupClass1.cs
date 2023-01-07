@@ -263,6 +263,7 @@ namespace RealERPRDLC
                 case "R_14_Pro.RptDayWisePurchase": Rpt1a = SetRptDayWisePurchase(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptDayWisePurchaseEdison": Rpt1a = SetRptDayWisePurchaseEdison(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptPurchaseSummary": Rpt1a = SetRptPurchaseSummary(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_14_Pro.RptSummaryProject": Rpt1a = SetRptSummaryProject(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.rptPurchaseBillTk": Rpt1a = SetrptPurchaseBillTk(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptBillTracking": Rpt1a = SetRptBillTracking(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
@@ -1392,6 +1393,12 @@ namespace RealERPRDLC
         private static LocalReport SetRptPurchaseSummary(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.RptPurchaseSummary02>)RptDataSet));
+
+            return Rpt1a;
+        }
+        private static LocalReport SetRptSummaryProject(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.RptSummaryProject>)RptDataSet));
 
             return Rpt1a;
         }
