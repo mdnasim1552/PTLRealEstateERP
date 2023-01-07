@@ -53,6 +53,7 @@
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -137,6 +138,7 @@
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.MatStockReportEvaluation.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.PurEqisition+PurMatReq.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_12_Inv.RptDayWisePurchase.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPayment+EclassPurchasesummaryvspayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPayment+EclassRptDateWiseBill.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPayment+EclassRptPOMRRBillStatus.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+ChequeSheet01.datasource" />
@@ -304,6 +306,7 @@
     <EmbeddedResource Include="R_14_Pro\rptDeliveryEfficiency.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptDateWiseBill.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptOtherCollHistory.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurSumVsPay.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPOMRRBillStatus.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurchasePrjwiseReport.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyCPDL03.rdlc" />
@@ -1157,7 +1160,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptNewEmpStatus.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptRetiredEmployee.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\EmpLeavApp.rdlc" />
-    <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptEmployeeLeaveRecord.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptEmployeeLeaveRecordCPDL.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptLeaveRegister.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptTimeOff.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptLeaveDateRange.rdlc" />
@@ -1166,7 +1169,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\rptBirthday.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\rptEmpLeaveCard.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptEmpLeavStatus.rdlc" />
-    <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptEmployeeLeaveRecordcoppy.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptEmployeeLeaveRecord.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptHrEmpLeave02.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptHrEmpLeave03.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptMonWiseEmpLeave.rdlc" />
