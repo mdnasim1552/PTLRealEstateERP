@@ -5,8 +5,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
-
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -36,11 +34,6 @@
             width:289 px!important;
         }
     </style>
-
-
-
-
-
 
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -194,13 +187,6 @@
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
-
-
-
-
-
-
-
                                 <asp:TemplateField HeaderText="Unit ">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgUnitnum" runat="server" AutoCompleteType="Disabled"
@@ -225,9 +211,6 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
-
-
-
                                 <asp:TemplateField HeaderText="Rate">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvRate" runat="server" BackColor="Transparent"
@@ -253,7 +236,6 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle HorizontalAlign="right" />
                                 </asp:TemplateField>
-
                                 <asp:TemplateField HeaderText="Parking">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvPamt" runat="server" AutoCompleteType="Disabled"
@@ -287,7 +269,6 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle HorizontalAlign="right" />
                                 </asp:TemplateField>
-
                                 <asp:TemplateField HeaderText="Co-operative">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvPCooprative" runat="server" AutoCompleteType="Disabled"
@@ -500,7 +481,6 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
-
 </asp:Content>
 
 

@@ -304,10 +304,16 @@ namespace RealEntity.C_09_PIMP
             public double isurat { get; set; }
             public double isuamt { get; set; }
             public double bgdqty { get; set; }
-
-
-
-
+            public double prevqty { get; set; }
+            public double dedqty { get; set; }
+            public string dedunit { get; set; }
+            public double dedrate { get; set; }
+            public double idedamt { get; set; }
+            public double above { get; set; }
+            public double amount { get; set; }
+            public double adedamt { get; set; }
+            public double toqty { get; set; }
+            public double curbillper { get; set; }
 
             public ConRaBill() { }
 

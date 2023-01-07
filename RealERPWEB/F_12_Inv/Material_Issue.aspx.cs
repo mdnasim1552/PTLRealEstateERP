@@ -411,6 +411,20 @@ namespace RealERPWEB.F_12_Inv
                    deptcode, issueqty, issueamt, empid, remarks, "", "", "", "", "", "");
             }
 
+            if (Request.QueryString["Type"] == "Link")
+            {
+                DataTable tb21 = (DataTable)ViewState["tbltolissue"];
+                string status = "Complated";
+                string issuno = tb21.Rows[0]["indentissuno"].ToString();
+                result = purData.UpdateTransInfo(comcod, "SP_REPORT_INDENT_STATUS", "INSERTINTOINDENTLOG", issuno, PostedByid, curdate, Posttrmid, PostSession, status);
+
+
+            }
+
+            //string issuno = tb21.Select();
+       
+
+
             this.lblmsg1.Text = "Updated Successfully";
             this.txtCurDate.Enabled = false;
 
