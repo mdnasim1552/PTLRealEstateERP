@@ -42,7 +42,7 @@
                 var gridViewScroll = new GridViewScroll
                     ({
                         elementID: _gridview,
-                        width: 1400,
+                        width: 500,
                         height: 500,
                         freezeColumn: true,
                         freezeFooter: true,
