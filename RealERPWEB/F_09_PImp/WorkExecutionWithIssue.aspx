@@ -210,13 +210,12 @@
                                                     Width="40px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
-                                                <asp:LinkButton ID="lnkTotal" runat="server" CssClass="btn btn-primary btn-sm primarygrdBtn"
-                                                    >Total</asp:LinkButton>
+                                                <asp:LinkButton ID="lnkTotal" runat="server" CssClass="btn btn-primary btn-sm primarygrdBtn">Total</asp:LinkButton>
                                             </FooterTemplate>
 
                                             <ItemStyle Font-Size="10pt" HorizontalAlign="left" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Bal.Qty">                                            
+                                        <asp:TemplateField HeaderText="Bal.Qty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblbalqty" runat="server"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balqty")).ToString("#,##0.00;(#,##0.00); ") %>'
@@ -264,7 +263,7 @@
                             </div>
 
                             <div class="backgroundColorContainer mt-1">
-                               <%-- <div class="row">
+                                <%-- <div class="row">
                                     <div class="col-lg-2">
                                         <asp:Label runat="server" ID="Label11" class="form-label">Materials</asp:Label>
                                         <asp:DropDownList ID="ddlMaterials" CssClass="form-control select2" runat="server"></asp:DropDownList>
@@ -327,10 +326,10 @@
                                                     <asp:Label ID="lblgvconcatcode" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isircode")) %>'
                                                         Width="150px"></asp:Label>
-                                                      <asp:Label ID="Label13" runat="server"
+                                                    <asp:Label ID="Label13" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>'
                                                         Width="150px"></asp:Label>
-                                                     <asp:Label ID="Label15" runat="server"
+                                                    <asp:Label ID="Label15" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrcod")) %>'
                                                         Width="150px"></asp:Label>
                                                 </ItemTemplate>
@@ -370,7 +369,14 @@
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Left" />
                                             </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Specification">
+                                                <ItemTemplate>
+                                                    <asp:DropDownList ID="ddlSpecification" CssClass="form-control select2" runat="server"
+                                                        ></asp:DropDownList>
 
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Left" />
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Bal. Qty">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvitemdesc" runat="server" BackColor="Transparent"
@@ -395,7 +401,7 @@
                                                 <HeaderStyle HorizontalAlign="Left" />
                                                 <FooterStyle ForeColor="Black" />
                                                 <FooterStyle HorizontalAlign="Right" />
-                                            </asp:TemplateField>     
+                                            </asp:TemplateField>
                                         </Columns>
 
 

@@ -194,7 +194,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                 view3.Table = ds2.Tables[1];
-                view3.RowFilter = "steptype= 'Completed' ";
+                view3.RowFilter = "steptype= 'Complated' ";
                 dt3 = view3.ToTable();
                 this.gv_Complete.DataSource = dt3;
                 this.gv_Complete.DataBind();
@@ -304,26 +304,15 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink hlink = (HyperLink)e.Row.FindControl("hybtnpenidentlink");
 
                 string issueno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "issueno")).ToString().Trim();
-
-                hlink.NavigateUrl = "~/F_12_Inv/IndentMaterialRequired?Type=Completed&genno=" + issueno;
-
-
-            }
-        }
-
-        protected void gv_Complete_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                HyperLink hlink = (HyperLink)e.Row.FindControl("hybtncompleteidentlink");
-
                 string actcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "actcode")).ToString().Trim();
                 string depart = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "deptcode")).ToString().Trim();
 
-                hlink.NavigateUrl = "~/F_12_Inv/Material_Issue?Type=Link&genno=&prjcode="+ actcode + "&sircode="+ depart;
+                hlink.NavigateUrl = "~/F_12_Inv/Material_Issue?Type=Link&genno=&prjcode=" + actcode + "&sircode=" + depart;
 
 
             }
         }
+
+        
     }
 }

@@ -69,7 +69,7 @@
     <Reference Include="CrystalDecisions.ReportAppServer.ClientDoc, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\Real Estate Bin 211213\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll</HintPath>
+      <HintPath>..\..\..\..\..\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.ReportAppServer.CommLayer">
       <HintPath>..\..\..\..\Backup\Projects\Project Reference\SPEERP BIN\bin\CrystalDecisions.ReportAppServer.CommLayer.dll</HintPath>
@@ -78,7 +78,7 @@
     <Reference Include="CrystalDecisions.ReportAppServer.CommonControls, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\Real Estate Bin 211213\bin\CrystalDecisions.ReportAppServer.CommonControls.dll</HintPath>
+      <HintPath>..\..\..\..\..\bin\CrystalDecisions.ReportAppServer.CommonControls.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.ReportAppServer.CommonObjectModel, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -106,12 +106,12 @@
     <Reference Include="CrystalDecisions.ReportAppServer.ObjectFactory, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\Real Estate Bin 211213\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll</HintPath>
+      <HintPath>..\..\..\..\..\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.ReportAppServer.Prompting, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\Real Estate Bin 211213\bin\CrystalDecisions.ReportAppServer.Prompting.dll</HintPath>
+      <HintPath>..\..\..\..\..\bin\CrystalDecisions.ReportAppServer.Prompting.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.ReportAppServer.ReportDefModel, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -121,7 +121,7 @@
     <Reference Include="CrystalDecisions.ReportAppServer.XmlSerialize, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\Real Estate Bin 211213\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll</HintPath>
+      <HintPath>..\..\..\..\..\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.ReportSource">
       <HintPath>..\..\Real Estate Bin 211213\bin\CrystalDecisions.ReportSource.dll</HintPath>
@@ -300,16 +300,8 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="RealERPRPT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Project Reference\bin\bin\RealERPRPT.dll</HintPath>
-    </Reference>
-    <Reference Include="RealERPWEB">
-      <HintPath>..\..\Real Estate Bin 211213\bin\RealERPWEB.dll</HintPath>
-    </Reference>
-    <Reference Include="RealERPWEB.XmlSerializers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\RealERPWEB.XmlSerializers.dll</HintPath>
+    <Reference Include="RealERPRPT">
+      <HintPath>..\..\Real Estate Bin 211213\bin\RealERPRPT.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=108.0.3.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.108.0.3\lib\netstandard2.0\RestSharp.dll</HintPath>
@@ -409,9 +401,6 @@
     <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.Entity.Design" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Optimization">
-      <HintPath>..\..\Real Estate Bin 211213\bin\System.Web.Optimization.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Drawing" />
@@ -13277,13 +13266,6 @@
       <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>
       <Name>RealERPRDLC</Name>
     </ProjectReference>
-    <ProjectReference Include="..\RealERPRDLC\RealERPRDLC.csproj">
-      <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>
-      <Name>RealERPRDLC</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <!--<Analyzer Include="C:\Users\Administrator\Downloads\microsoft.reportviewer.datavisualization.dll" />-->
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -74,6 +74,9 @@ namespace RealERPWEB.F_14_Pro
                 string qdate1 = this.Request.QueryString["Date1"];
                 string qdate2 = this.Request.QueryString["Date2"];
 
+                this.txtfromdate1.Text = System.DateTime.Today.ToString("01-" + "MMM-yyyy");
+                this.txttodate1.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
                 this.txttodate.Text = qdate2.Length > 0 ? qdate2 : date;
                 this.txtFDate.Text = qdate1.Length > 0 ? qdate1 : "01" + date.Substring(2);
                 if (this.ddlProjectName.Items.Count == 0)
@@ -152,23 +155,23 @@ namespace RealERPWEB.F_14_Pro
             string comcod = this.GetComeCode();
             DataTable dt = (DataTable)Session["tblpurchase"];
             int rowindex = (int)ViewState["gindex"];
-
             string actcode = ((DropDownList)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("ddlgrdacccode")).SelectedValue.ToString();
             string rescode = ((DropDownList)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("ddlrgrdesuorcecode")).SelectedValue.ToString();
+            ViewState["actcode"] = actcode;
+            ViewState["rescode"] = rescode;
             string txtactcode = ((DropDownList)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("ddlgrdacccode")).SelectedItem.ToString();
             string txtrescode = ((DropDownList)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("ddlrgrdesuorcecode")).SelectedItem.ToString();
-
+            ViewState["actcodedesc"] = txtactcode;
+            ViewState["rescodedesc"] = txtrescode;
             string vounum = ((Label)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("lgvvounum")).Text.Trim();
             string reqno = ((Label)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("lgvreqno")).Text.Trim();
-            string rsircode = ((Label)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("lgvrsircode")).Text.Trim();  
+            string rsircode = ((Label)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("lgvrsircode")).Text.Trim();
             string spcfcod = ((Label)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("lgvspcfcod")).Text.Trim();
             string pactcode = ((Label)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("lgvpactcode")).Text.Trim();
             string billno1 = ((Label)this.gvGenBillTracking.Rows[e.RowIndex].FindControl("lgvBillNo")).Text.Trim();
             string amount = ((TextBox)gvGenBillTracking.Rows[e.RowIndex].FindControl("lgvamount2")).Text.Trim();
-
-            
+            ViewState["amount"] = amount;
             string billno = this.ddlGenBillTracking.SelectedValue.ToString();
-
             int index = (this.gvGenBillTracking.PageIndex) * this.gvGenBillTracking.PageSize + e.RowIndex;
 
             dt.Rows[index]["pactcode"] = actcode;
@@ -182,10 +185,21 @@ namespace RealERPWEB.F_14_Pro
             dt.Rows[index]["rsirdesc"] = txtrescode;
 
             Session["tblpurchase"] = dt;
+            if (Checksamehead.Checked)
+            {
+                this.UpdateGridView();
+            }
+            else
+            {
+                this.gvGenBillTracking.EditIndex = -1;
+                gvGenBillTracking.DataSource = dt;
+                gvGenBillTracking.DataBind();
+            }
 
-            this.gvGenBillTracking.EditIndex = -1;
-            gvGenBillTracking.DataSource = dt;
-            gvGenBillTracking.DataBind();
+
+
+
+
         }
 
 
@@ -210,18 +224,49 @@ namespace RealERPWEB.F_14_Pro
                 string amount = dr2["amt"].ToString();
                 string oldamount = dr2["oldamt"].ToString();
 
-                if (pactcode != demooldpactcode || rsircode != demooldrescode || amount != oldamount) { 
-                    bool result = MktData.UpdateTransInfo2(comcod, "SP_REPORT_REQ_STATUS", "INSERTUPDATEGENBILLTRACKING", vounum, pactcode, reqno, rsircode, spcfcod, billno1, demooldpactcode, demooldrescode, demogrpdesc, slnum, amount, "", "", "", "", "", "", "", "", "", "");
-                    
+                if (pactcode != demooldpactcode || rsircode != demooldrescode || amount != oldamount)
+                {
+                    bool result = MktData.UpdateTransInfo2(comcod, "SP_REPORT_REQ_STATUS_RND", "INSERTUPDATEGENBILLTRACKING", vounum, pactcode, reqno, rsircode, spcfcod, billno1, demooldpactcode, demooldrescode, demogrpdesc, slnum, amount, "", "", "", "", "", "", "", "", "", "");
+
                     if (result == false)
                     {
                         ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                        return;
+                        //return;
                     }
                 }
+
+
+                //string updatesamehead = this.Checksamehead.Checked ? "updatesamehead" : "";
+
+                //if (!Checksamehead.Checked)
+                //{
+                //    if (pactcode != demooldpactcode || rsircode != demooldrescode || amount != oldamount)
+                //    {
+                //        bool result = MktData.UpdateTransInfo2(comcod, "SP_REPORT_REQ_STATUS_RND", "INSERTUPDATEGENBILLTRACKING", vounum, pactcode, reqno, rsircode, spcfcod, billno1, demooldpactcode, demooldrescode, demogrpdesc, slnum, amount, updatesamehead, "", "", "", "", "", "", "", "", "");
+
+                //        if (result == false)
+                //        {
+                //            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                //            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //            return;
+                //        }
+                //    }
+                //}
+                //else
+                //{
+                //    bool result = MktData.UpdateTransInfo2(comcod, "SP_REPORT_REQ_STATUS_RND", "INSERTUPDATEGENBILLTRACKING", vounum, pactcode, reqno, rsircode, spcfcod, billno1, demooldpactcode, demooldrescode, demogrpdesc, slnum, amount, updatesamehead, "", "", "", "", "", "", "", "", "");
+                //    if (result == false)
+                //    {
+                //        ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //        return;
+                //    }
+                //}
+
+
             }
-            
+
             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
             this.lbtnOk_Click(null, null);
@@ -260,6 +305,52 @@ namespace RealERPWEB.F_14_Pro
                 tbl1.Rows[i]["slnum"] = slnum;
             }
             Session["tblpurchase"] = tbl1;
+        }
+
+
+        private void UpdateGridView()
+        {
+            DataTable tbl1 = (DataTable)Session["tblpurchase"];
+            for (int i = 0; i < gvGenBillTracking.Rows.Count; i++)
+            {
+                string vounum = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvvounum")).Text.Trim();
+                string reqno = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvreqno")).Text.Trim();
+                string spcfcod = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvspcfcod")).Text.Trim();
+                string pactcode = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvpactcode")).Text.Trim();
+                string rsircode = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvrsircode")).Text.Trim();
+                string demopactcode = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvdemopactcode")).Text.Trim();
+                string demorescode = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvdemorescode")).Text.Trim();
+                string demogrpdesc = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvdemogrpdesc")).Text.Trim();
+                string slnum = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvslnum")).Text.Trim();
+                //string amount = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvamount1")).Text.Trim();
+                string oldamount = ((Label)this.gvGenBillTracking.Rows[i].FindControl("lgvoldamt")).Text.Trim();
+
+                string selectedactcode = (string)ViewState["actcode"];
+                string selectedrescode = (string)ViewState["rescode"];
+                string selectedactcodedesc = (string)ViewState["actcodedesc"];
+                string selectedrescodedesc = (string)ViewState["rescodedesc"];
+                string txtamt = (string)ViewState["amount"];
+
+
+                tbl1.Rows[i]["pactcode"] = selectedactcode;
+                tbl1.Rows[i]["rsircode"] = selectedrescode;
+                tbl1.Rows[i]["demopactcode"] = demopactcode;
+                tbl1.Rows[i]["demorescode"] = demorescode;
+                tbl1.Rows[i]["vounum"] = vounum;
+                tbl1.Rows[i]["reqno"] = reqno;
+                tbl1.Rows[i]["spcfcod"] = spcfcod;
+                tbl1.Rows[i]["amt"] = txtamt;
+                tbl1.Rows[i]["oldamt"] = oldamount;
+                tbl1.Rows[i]["grpdesc"] = demogrpdesc;
+                tbl1.Rows[i]["slnum"] = slnum;
+                tbl1.Rows[i]["actdesc"] = selectedactcodedesc;
+                tbl1.Rows[i]["rsirdesc"] = selectedrescodedesc;
+            }
+            Session["tblpurchase"] = tbl1;
+
+            this.gvGenBillTracking.EditIndex = -1;
+            gvGenBillTracking.DataSource = tbl1;
+            gvGenBillTracking.DataBind();
         }
 
 
@@ -699,8 +790,12 @@ namespace RealERPWEB.F_14_Pro
                     this.RptDayPurchase();
                     break;
                 case "PurSum":
-                    this.RptPurchaseSum();
-                    break;
+                    string rpttype = ddlrpttype.SelectedItem.ToString();
+                    if(rpttype=="Details")
+                      this.RptPurchaseDetails();
+                    else
+                        this.RptSummary();
+                        break;
 
                 case "PenBill":
                     break;
@@ -875,7 +970,7 @@ namespace RealERPWEB.F_14_Pro
 
         }
 
-        private void RptPurchaseSum()
+        private void RptPurchaseDetails()
         {
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -903,6 +998,41 @@ namespace RealERPWEB.F_14_Pro
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
+
+        private void RptSummary()
+        {
+
+            DataTable dt = (DataTable)Session["tblpurchase"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string frmdate = Convert.ToDateTime(this.txtFDate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+
+            string rpthead = "Summary Report";
+
+            if (dt == null)
+                return;
+            var lst = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptSummaryProject>();
+            
+
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptSummaryProject", lst, null, null);
+
+            Rpt1.EnableExternalImages = true;
+            //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("comname", comnam));
+            //Rpt1.SetParameters(new ReportParameter("txtProject", "Project Name : " + this.ddlProjectName.SelectedItem.Text));
+            Rpt1.SetParameters(new ReportParameter("txtdate", " (" + "From  " + frmdate + " To " + todate + ")"));
+            Rpt1.SetParameters(new ReportParameter("txtTitle", rpthead));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
 
         }
         private void RptIndSup()
@@ -1286,7 +1416,7 @@ namespace RealERPWEB.F_14_Pro
             string comcod = this.GetComeCode();
             string fromdate = Convert.ToDateTime(this.txtFDate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            string pactcode = (this.ddlProjectName.SelectedValue.ToString()=="000000000000"?"":this.ddlProjectName.SelectedValue.ToString())+"%";
+            string pactcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "" : this.ddlProjectName.SelectedValue.ToString()) + "%";
             string mRptGroup = Convert.ToString(this.ddlRptGroup.SelectedIndex);
             mRptGroup = (mRptGroup == "0" ? "2" : (mRptGroup == "1" ? "4" : (mRptGroup == "2" ? "7" : (mRptGroup == "3" ? "9" : "12"))));
 
@@ -1399,14 +1529,17 @@ namespace RealERPWEB.F_14_Pro
             string comcod = this.GetComeCode();
             string reqno = this.ddlGenBillTracking.SelectedValue.ToString();
             //string recom = this.getCompanyRecom();
+            string frmdate = this.txtfromdate1.Text.ToString();
+            string todate = this.txttodate1.Text.ToString();
 
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETGENERALBILL", reqno, "", "", "", "", "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETGENERALBILL", reqno, frmdate, todate, "", "", "", "", "", "");
             if (ds1 == null)
             {
                 this.gvGenBillTracking.DataSource = null;
                 this.gvGenBillTracking.DataBind();
                 return;
             }
+            this.Checksamehead.Visible = true;
             DataTable dt = this.HiddenSameData(ds1.Tables[0]);
             //DataTable dt = ds1.Tables[0];
             Session["tblpurchase"] = ds1.Tables[0];
@@ -1919,7 +2052,7 @@ namespace RealERPWEB.F_14_Pro
 
                     case "PurSum":
 
-                        
+
 
                         this.gvPurSum.DataSource = null;
                         this.gvPurSum.DataBind();
@@ -1941,7 +2074,7 @@ namespace RealERPWEB.F_14_Pro
                             }
 
 
-                           
+
 
                         }
 
@@ -2384,6 +2517,10 @@ namespace RealERPWEB.F_14_Pro
         }
 
 
+        protected void Checksamehead_CheckedChanged(object sender, EventArgs e)
+        {
+            //this.gvGenBillTracking_RowEditing(null, null);
+        }
 
 
 
