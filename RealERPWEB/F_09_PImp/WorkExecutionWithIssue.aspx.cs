@@ -253,21 +253,51 @@ namespace RealERPWEB.F_09_PImp
             ViewState["WorkExeWithIssue"] = ds.Tables[0];
         }
 
+        private void GetMaterials()
+        {
+            //string comcod = this.GetComCode();
+            //string pactcode = this.ddlprjlist.SelectedValue.ToString();
+            //string date = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
+            //string SearchMat = this.txtSearchMaterials.Text.Trim() + "%";
+            //string balcon = this.CompBalConMat();
+            //string CallType = this.CompReceived();
+
+            //DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETMETERIALS", pactcode, date, SearchMat, balcon, "", "", "", "", "");
+            //Session["itemlistMaterials"] = ds1.Tables[0];
+            //Session["specification"] = ds1.Tables[2];           
+        }
+
         protected void btnGenerateIssue_Click(object sender, EventArgs e)
         {
             LoopForSession();
+
+
             DataTable tempforgrid = (DataTable)Session["sessionforgrid"];
             DataTable dt = ((DataTable)ViewState["WorkExeWithIssue"]).Copy();
             DataView dv = dt.DefaultView;
             DataTable dt1 = new DataTable();
+
+
+
             for (int i=0; i< tempforgrid.Rows.Count; i++)
             {
                 string isircode = tempforgrid.Rows[i]["itemcode"].ToString();     
                 string flrcode= tempforgrid.Rows[i]["flrcod"].ToString();
+                double wrkqty= Convert.ToDouble(tempforgrid.Rows[i]["wrkqty"].ToString());
                 dv.RowFilter = ("isircode='" + isircode + "'  and flrcod='" + flrcode + "'");
+
                 dt = dv.ToTable();
                 dt1.Merge(dt);
+
+                string strColName = "ratio";
+                DataColumn colNew = new DataColumn(strColName, typeof(double));
+                colNew.DefaultValue = wrkqty/100;
+                if (!dt1.Columns.Contains("ratio"))
+                    dt1.Columns.Add(colNew);
+
             }
+            
+
             DataGridTwo.DataSource = HiddenTableTwo(dt1);
             DataGridTwo.DataBind();
             pnl2.Visible = true;
@@ -284,9 +314,6 @@ namespace RealERPWEB.F_09_PImp
 
             for (int i = 1; i < dt.Rows.Count; i++)
             {
-
-
-
                 if ((dt.Rows[i]["flrcod"].ToString() == flrcod) && (dt.Rows[i]["isircode"].ToString() == Itemcode))
                 {
 
