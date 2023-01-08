@@ -413,6 +413,7 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public string desig { get; set; }
             public string idcardno { get; set; }
             public string joindate { get; set; }
+            public string confirmdate { get; set; }
             public string monjoin { get; set; }
             public string servday { get; set; }
             public double oplv { get; set; }
