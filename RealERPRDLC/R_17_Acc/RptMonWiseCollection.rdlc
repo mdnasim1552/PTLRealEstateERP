@@ -2026,11 +2026,11 @@
           </Style>
         </PageFooter>
         <PageHeight>8.27in</PageHeight>
-        <PageWidth>11.69in</PageWidth>
-        <LeftMargin>0.25in</LeftMargin>
-        <RightMargin>0.25in</RightMargin>
-        <TopMargin>0.25in</TopMargin>
-        <BottomMargin>0.25in</BottomMargin>
+        <PageWidth>13.02in</PageWidth>
+        <LeftMargin>0.15in</LeftMargin>
+        <RightMargin>0.15in</RightMargin>
+        <TopMargin>0.15in</TopMargin>
+        <BottomMargin>0.15in</BottomMargin>
         <Style />
       </Page>
     </ReportSection>

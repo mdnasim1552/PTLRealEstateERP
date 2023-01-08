@@ -1450,7 +1450,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>Checked By Sr. DGM</Value>
+                        <Value>Checked By</Value>
                         <Style>
                           <FontFamily>Cambria</FontFamily>
                           <FontSize>9pt</FontSize>
@@ -1504,7 +1504,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>Approved By COO</Value>
+                        <Value>Approved By</Value>
                         <Style>
                           <FontFamily>Cambria</FontFamily>
                           <FontSize>9pt</FontSize>

@@ -610,6 +610,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string txtuserinfo = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string frmdate = Convert.ToDateTime(this.txtfrmDate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
+            string yr = Convert.ToDateTime(this.txttoDate.Text).ToString("MMM-yy");
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.RptLeaveRegister>();
@@ -624,6 +625,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             Rpt1.SetParameters(new ReportParameter("rptTitle", " Leave Register (Yearly)"));
             Rpt1.SetParameters(new ReportParameter("txtDate", "Period: " + frmdate + " To " + todate));
             Rpt1.SetParameters(new ReportParameter("txtaddress", comadd));
+            Rpt1.SetParameters(new ReportParameter("yr", yr));
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
 
 
