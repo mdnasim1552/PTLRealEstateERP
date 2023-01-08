@@ -92,8 +92,9 @@ namespace RealERPWEB.F_14_Pro
             this.ddlProjectName.DataValueField = "pactcode";
             this.ddlProjectName.DataSource = ds1.Tables[0];
             this.ddlProjectName.DataBind();
-
         }
+
+
         private void GetSupplier()
         {
             string comcod = this.GetComeCode();
@@ -104,8 +105,8 @@ namespace RealERPWEB.F_14_Pro
             this.ddlSupplier.DataValueField = "ssircode";
             this.ddlSupplier.DataSource = ds2.Tables[0];
             this.ddlSupplier.DataBind();
-
         }
+
 
         protected void imgbtnFindProject_Click(object sender, EventArgs e)
         {

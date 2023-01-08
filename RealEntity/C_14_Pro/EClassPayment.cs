@@ -244,8 +244,24 @@ namespace RealEntity.C_14_Pro
             {
 
             }
-
         }
+
+
+        public class RPTPURSTATUSSUPPIERANDMATGROUP
+        {
+            public string comcod { get; set; }
+            public string ssircode { get; set; }
+            public string mgrpcode { get; set; }
+            public double amt { get; set; }
+            public string mgrpdesc { get; set; }
+            public string ssirdesc { get; set; }
+
+            public RPTPURSTATUSSUPPIERANDMATGROUP()
+            {
+
+            }
+        }
+
 
     }
 }
