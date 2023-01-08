@@ -52,11 +52,23 @@ namespace RealERPWEB.F_22_Sal
         {
             // Create an event handler for the master page's contentCallEvent event
             //((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
-        private void Visibility()
+        protected void lbtnPrint_Click(object sender, EventArgs e)
+        {
+
+           this.RtpAvailChart();
+        }
+        private void RtpAvailChart()
+        {
+            
+
+        }
+            private void Visibility()
         {
             string type = this.Request.QueryString["Type"].ToString();
             string comcod = this.GetComCode();
