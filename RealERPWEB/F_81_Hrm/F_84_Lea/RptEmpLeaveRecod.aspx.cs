@@ -236,9 +236,18 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             LocalReport Rpt1 = new LocalReport();
 
-
+            if(comcod == "3370" || comcod =="3101")
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_84_Lea.RptEmployeeLeaveRecordCPDL", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            }
+            else
+            {
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_84_Lea.RptEmployeeLeaveRecord", list, null, null);
                 Rpt1.EnableExternalImages = true;
+            }
+               
       
             //Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
