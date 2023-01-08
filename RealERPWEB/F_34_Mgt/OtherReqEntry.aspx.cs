@@ -3250,6 +3250,40 @@ namespace RealERPWEB.F_34_Mgt
 
         }
 
+        protected void lbtpath_Click(object sender, EventArgs e)
+        {
+           string auth = HttpContext.Current.Request.Url.Authority;
 
+
+          
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string portAdd = hst["portnum"].ToString().Length==0?"": (":" + hst["portnum"].ToString());
+
+            //string fullurl= HttpContext.Current.Request.Url.AbsoluteUri.ToString();
+            //string application = HttpContext.Current.Request.ApplicationPath;
+            //fullurl = fullurl.Replace("//", "/");
+            //string []array = fullurl.Split('/');
+            //string ipwithport = array[1];
+            //int indexoffapp = fullurl.IndexOf('/');
+            ////string ipwithport = array[1];
+            ////  int portStart = ipString.LastIndexOf(':');
+
+            //string add="";
+            //foreach (string item in array)
+            //{
+            //    add= add+","+ item.ToString();
+
+
+            //}
+
+            string HostAdd = HttpContext.Current.Request.Url.Host;
+          
+            string uhostname = "http://" + HostAdd+ portAdd + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";           
+            string currentptah = "RptEngInterface?Type=Report";
+            string totalpath = uhostname + currentptah;
+            string autvshanport = "author:" + auth+"host add:"+ portAdd + " End"+" ";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + autvshanport + "');", true);
+
+        }
     }
 }
