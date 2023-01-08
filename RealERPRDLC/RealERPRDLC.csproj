@@ -52,7 +52,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\Real Estate Bin 211213\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -140,6 +140,7 @@
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPayment+EclassPurchasesummaryvspayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPayment+EclassRptDateWiseBill.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPayment+EclassRptPOMRRBillStatus.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPayment+RPTPURSTATUSSUPPIERANDMATGROUP.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+ChequeSheet01.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+ComparativeStatementCreate.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+DeliveryEffciency.datasource" />
@@ -305,6 +306,7 @@
     <EmbeddedResource Include="R_14_Pro\rptDeliveryEfficiency.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptDateWiseBill.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptOtherCollHistory.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurchaseStatusSupplierandMaterial.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurSumVsPay.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPOMRRBillStatus.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurchasePrjwiseReport.rdlc" />
