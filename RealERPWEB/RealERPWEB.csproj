@@ -227,7 +227,11 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+<<<<<<< HEAD
       <HintPath>..\..\..\Project Reference\bin\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+=======
+      <HintPath>..\..\..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+>>>>>>> b27d8d974a9a7a5b4327d205171f4a2d1e917150
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Project Reference\bin\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2399,6 +2403,7 @@
     <Content Include="F_14_Pro\RptDateWiseBill.aspx" />
     <Content Include="F_14_Pro\PoMrrBillStatus.aspx" />
     <Content Include="F_14_Pro\RptPurchaseStatus.aspx" />
+    <Content Include="F_14_Pro\RptPurchaseSummaryVsPayment.aspx" />
     <Content Include="F_14_Pro\RptPurchesStatus.aspx" />
     <Content Include="F_14_Pro\RptPurchesStatusPrjWise.aspx" />
     <Content Include="F_14_Pro\RptPurOrderTopSheet.aspx" />
@@ -4371,6 +4376,13 @@
     </Compile>
     <Compile Include="F_14_Pro\RptPurchaseStatus.aspx.designer.cs">
       <DependentUpon>RptPurchaseStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchaseSummaryVsPayment.aspx.cs">
+      <DependentUpon>RptPurchaseSummaryVsPayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchaseSummaryVsPayment.aspx.designer.cs">
+      <DependentUpon>RptPurchaseSummaryVsPayment.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\RptPurchesStatus.aspx.cs">
       <DependentUpon>RptPurchesStatus.aspx</DependentUpon>

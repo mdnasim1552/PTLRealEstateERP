@@ -231,6 +231,21 @@ namespace RealEntity.C_14_Pro
             }
 
         }
+        [Serializable]
+        public class EclassPurchasesummaryvspayment
+        {
+
+            public string comcod { get; set; }
+            public string grp { get; set; }
+            public string particular { get; set; }
+            public double amt { get; set; }
+         
+            public EclassPurchasesummaryvspayment()
+            {
+
+            }
+
+        }
 
     }
 }
