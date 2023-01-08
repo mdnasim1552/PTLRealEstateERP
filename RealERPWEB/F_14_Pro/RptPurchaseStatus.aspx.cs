@@ -135,6 +135,7 @@ namespace RealERPWEB.F_14_Pro
             ddlgrdacccode.DataBind();
             string pactcode = ((Label)this.gvGenBillTracking.Rows[e.NewEditIndex].FindControl("lgvpactcode")).Text.Trim();
             ddlgrdacccode.SelectedValue = pactcode;
+            ViewState["targetPactcode"] = pactcode;
 
             DropDownList ddlgrdresouce = (DropDownList)this.gvGenBillTracking.Rows[e.NewEditIndex].FindControl("ddlrgrdesuorcecode");
             string SearchResourche = "%";
@@ -147,6 +148,7 @@ namespace RealERPWEB.F_14_Pro
             ddlgrdresouce.DataBind();
             string rsircode = ((Label)this.gvGenBillTracking.Rows[e.NewEditIndex].FindControl("lgvrsircode")).Text.Trim();
             ddlgrdresouce.SelectedValue = rsircode;
+            ViewState["targetSircode"] = rsircode;
         }
 
         protected void gvGenBillTracking_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -226,49 +228,20 @@ namespace RealERPWEB.F_14_Pro
 
                 if (pactcode != demooldpactcode || rsircode != demooldrescode || amount != oldamount)
                 {
-                    bool result = MktData.UpdateTransInfo2(comcod, "SP_REPORT_REQ_STATUS_RND", "INSERTUPDATEGENBILLTRACKING", vounum, pactcode, reqno, rsircode, spcfcod, billno1, demooldpactcode, demooldrescode, demogrpdesc, slnum, amount, "", "", "", "", "", "", "", "", "", "");
+                    bool result = MktData.UpdateTransInfo2(comcod, "SP_REPORT_REQ_STATUS", "INSERTUPDATEGENBILLTRACKING", vounum, pactcode, reqno, rsircode, spcfcod, billno1, demooldpactcode, demooldrescode, demogrpdesc, slnum, amount, "", "", "", "", "", "", "", "", "", "");
 
                     if (result == false)
                     {
                         ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                        //return;
+                        return;
                     }
                 }
-
-
-                //string updatesamehead = this.Checksamehead.Checked ? "updatesamehead" : "";
-
-                //if (!Checksamehead.Checked)
-                //{
-                //    if (pactcode != demooldpactcode || rsircode != demooldrescode || amount != oldamount)
-                //    {
-                //        bool result = MktData.UpdateTransInfo2(comcod, "SP_REPORT_REQ_STATUS_RND", "INSERTUPDATEGENBILLTRACKING", vounum, pactcode, reqno, rsircode, spcfcod, billno1, demooldpactcode, demooldrescode, demogrpdesc, slnum, amount, updatesamehead, "", "", "", "", "", "", "", "", "");
-
-                //        if (result == false)
-                //        {
-                //            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
-                //            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                //            return;
-                //        }
-                //    }
-                //}
-                //else
-                //{
-                //    bool result = MktData.UpdateTransInfo2(comcod, "SP_REPORT_REQ_STATUS_RND", "INSERTUPDATEGENBILLTRACKING", vounum, pactcode, reqno, rsircode, spcfcod, billno1, demooldpactcode, demooldrescode, demogrpdesc, slnum, amount, updatesamehead, "", "", "", "", "", "", "", "", "");
-                //    if (result == false)
-                //    {
-                //        ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
-                //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                //        return;
-                //    }
-                //}
-
-
             }
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            //((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Updated Successfully');", true);
             this.lbtnOk_Click(null, null);
         }
 
@@ -330,21 +303,25 @@ namespace RealERPWEB.F_14_Pro
                 string selectedactcodedesc = (string)ViewState["actcodedesc"];
                 string selectedrescodedesc = (string)ViewState["rescodedesc"];
                 string txtamt = (string)ViewState["amount"];
+                string targetrPactcode = (string)ViewState["targetPactcode"];
+                string targetrSircode = (string)ViewState["targetSircode"];
 
-
-                tbl1.Rows[i]["pactcode"] = selectedactcode;
-                tbl1.Rows[i]["rsircode"] = selectedrescode;
-                tbl1.Rows[i]["demopactcode"] = demopactcode;
-                tbl1.Rows[i]["demorescode"] = demorescode;
-                tbl1.Rows[i]["vounum"] = vounum;
-                tbl1.Rows[i]["reqno"] = reqno;
-                tbl1.Rows[i]["spcfcod"] = spcfcod;
-                tbl1.Rows[i]["amt"] = txtamt;
-                tbl1.Rows[i]["oldamt"] = oldamount;
-                tbl1.Rows[i]["grpdesc"] = demogrpdesc;
-                tbl1.Rows[i]["slnum"] = slnum;
-                tbl1.Rows[i]["actdesc"] = selectedactcodedesc;
-                tbl1.Rows[i]["rsirdesc"] = selectedrescodedesc;
+                if (targetrPactcode == pactcode && targetrSircode == rsircode)
+                {
+                    tbl1.Rows[i]["pactcode"] = selectedactcode;
+                    tbl1.Rows[i]["rsircode"] = selectedrescode;
+                    tbl1.Rows[i]["demopactcode"] = demopactcode;
+                    tbl1.Rows[i]["demorescode"] = demorescode;
+                    tbl1.Rows[i]["vounum"] = vounum;
+                    tbl1.Rows[i]["reqno"] = reqno;
+                    tbl1.Rows[i]["spcfcod"] = spcfcod;
+                    tbl1.Rows[i]["amt"] = txtamt;
+                    tbl1.Rows[i]["oldamt"] = oldamount;
+                    tbl1.Rows[i]["grpdesc"] = demogrpdesc;
+                    tbl1.Rows[i]["slnum"] = slnum;
+                    tbl1.Rows[i]["actdesc"] = selectedactcodedesc;
+                    tbl1.Rows[i]["rsirdesc"] = selectedrescodedesc;
+                }
             }
             Session["tblpurchase"] = tbl1;
 
@@ -791,11 +768,11 @@ namespace RealERPWEB.F_14_Pro
                     break;
                 case "PurSum":
                     string rpttype = ddlrpttype.SelectedItem.ToString();
-                    if(rpttype=="Details")
-                      this.RptPurchaseDetails();
+                    if (rpttype == "Details")
+                        this.RptPurchaseDetails();
                     else
                         this.RptSummary();
-                        break;
+                    break;
 
                 case "PenBill":
                     break;
@@ -1017,7 +994,7 @@ namespace RealERPWEB.F_14_Pro
             if (dt == null)
                 return;
             var lst = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptSummaryProject>();
-            
+
 
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptSummaryProject", lst, null, null);
