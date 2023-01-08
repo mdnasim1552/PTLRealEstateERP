@@ -331,20 +331,22 @@ namespace RealERPWEB.F_14_Pro
                 string selectedrescodedesc = (string)ViewState["rescodedesc"];
                 string txtamt = (string)ViewState["amount"];
 
-
-                tbl1.Rows[i]["pactcode"] = selectedactcode;
-                tbl1.Rows[i]["rsircode"] = selectedrescode;
-                tbl1.Rows[i]["demopactcode"] = demopactcode;
-                tbl1.Rows[i]["demorescode"] = demorescode;
-                tbl1.Rows[i]["vounum"] = vounum;
-                tbl1.Rows[i]["reqno"] = reqno;
-                tbl1.Rows[i]["spcfcod"] = spcfcod;
-                tbl1.Rows[i]["amt"] = txtamt;
-                tbl1.Rows[i]["oldamt"] = oldamount;
-                tbl1.Rows[i]["grpdesc"] = demogrpdesc;
-                tbl1.Rows[i]["slnum"] = slnum;
-                tbl1.Rows[i]["actdesc"] = selectedactcodedesc;
-                tbl1.Rows[i]["rsirdesc"] = selectedrescodedesc;
+                if (demopactcode == pactcode && demorescode == rsircode)
+                {
+                    tbl1.Rows[i]["pactcode"] = selectedactcode;
+                    tbl1.Rows[i]["rsircode"] = selectedrescode;
+                    tbl1.Rows[i]["demopactcode"] = demopactcode;
+                    tbl1.Rows[i]["demorescode"] = demorescode;
+                    tbl1.Rows[i]["vounum"] = vounum;
+                    tbl1.Rows[i]["reqno"] = reqno;
+                    tbl1.Rows[i]["spcfcod"] = spcfcod;
+                    tbl1.Rows[i]["amt"] = txtamt;
+                    tbl1.Rows[i]["oldamt"] = oldamount;
+                    tbl1.Rows[i]["grpdesc"] = demogrpdesc;
+                    tbl1.Rows[i]["slnum"] = slnum;
+                    tbl1.Rows[i]["actdesc"] = selectedactcodedesc;
+                    tbl1.Rows[i]["rsirdesc"] = selectedrescodedesc;
+                }
             }
             Session["tblpurchase"] = tbl1;
 
@@ -791,11 +793,11 @@ namespace RealERPWEB.F_14_Pro
                     break;
                 case "PurSum":
                     string rpttype = ddlrpttype.SelectedItem.ToString();
-                    if(rpttype=="Details")
-                      this.RptPurchaseDetails();
+                    if (rpttype == "Details")
+                        this.RptPurchaseDetails();
                     else
                         this.RptSummary();
-                        break;
+                    break;
 
                 case "PenBill":
                     break;
@@ -1017,7 +1019,7 @@ namespace RealERPWEB.F_14_Pro
             if (dt == null)
                 return;
             var lst = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptSummaryProject>();
-            
+
 
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptSummaryProject", lst, null, null);
