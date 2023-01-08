@@ -606,6 +606,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1403000", "1403264", "F_14_Pro", "RptSupAdvanceDetails", "", "Supplier Advance Details", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1403000", "1403265", "F_14_Pro", "RptDateWiseBill", "", "Supplier Date Wise Bill", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1403000", "1403266", "F_14_Pro", "PoMrrBillStatus", "", "PO MRR & Bill Status", "Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "1403000", "1403267", "F_14_Pro", "RptPurchaseSummaryVsPayment", "", "Purchase Summary Vs Payment", "Procurement", "False", "False", "False", "False" });
 
 
 
@@ -5882,6 +5883,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0402000021", "42. Supplier Advanced Details", "F_14_Pro/RptSupAdvanceDetails", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000022", "43. Supplier Date Wise Bill", "F_14_Pro/RptDateWiseBill", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0402000023", "44. PO MRR & Bill Status", "F_14_Pro/PoMrrBillStatus", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0402000024", "44. Purchase Summary Vs Payment", "F_14_Pro/RptPurchaseSummaryVsPayment", "", true, "" });
            // mnuTbl1.Rows.Add(new Object[] { "0402000020", "42. Supplier Details Info (Order Advanced) ", "F_14_Pro/RptWorkOdrAdvSupplierWise", "", true, "" });
 
             

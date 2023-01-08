@@ -819,13 +819,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
                 string hyptext =  "http://";
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string portAdd = hst["portnum"].ToString().Length == 0 ? "" : (":" + hst["portnum"].ToString());
 
                 for (int j = 0; j < ds1.Tables[0].Rows.Count; j++)
                 {
                     string suserid = ds1.Tables[0].Rows[0]["suserid"].ToString();
                     string tomail = ds1.Tables[0].Rows[0]["mail"].ToString();
                     string roletype = (string)ds1.Tables[0].Rows[0]["roletype"];
-                    string uhostname = hyptext + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
+                    string uhostname = hyptext + HttpContext.Current.Request.Url.Authority+ portAdd + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
                     string currentptah = "EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid=" + suserid + "&RoleType=" + roletype;
                     string totalpath = uhostname + currentptah;
 
