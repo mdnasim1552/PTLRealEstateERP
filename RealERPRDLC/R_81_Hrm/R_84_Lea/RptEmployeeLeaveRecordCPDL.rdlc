@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>a0720372-c9e1-4861-8b7f-d2e5a908f491</rd:DataSourceID>
+      <rd:DataSourceID>6eea3428-5e64-4492-95cf-4f89f5b09718</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -19,18 +19,22 @@
       <Fields>
         <Field Name="balclv">
           <DataField>balclv</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="balernlv">
           <DataField>balernlv</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="balsklv">
           <DataField>balsklv</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="cleavenj">
           <DataField>cleavenj</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="confirmdate">
+          <DataField>confirmdate</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="csid">
@@ -39,7 +43,7 @@
         </Field>
         <Field Name="csleave">
           <DataField>csleave</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="deptid">
           <DataField>deptid</DataField>
@@ -71,7 +75,7 @@
         </Field>
         <Field Name="ernleave">
           <DataField>ernleave</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="idcardno">
           <DataField>idcardno</DataField>
@@ -87,7 +91,7 @@
         </Field>
         <Field Name="oplv">
           <DataField>oplv</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="sckenjoy">
           <DataField>sckenjoy</DataField>
@@ -107,13 +111,13 @@
         </Field>
         <Field Name="skleave">
           <DataField>skleave</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_81_Hrm.C_84_Lea</rd:DataSetName>
         <rd:TableName>EmpLeaveRecord</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+EmpLeaveRecord, RealERPEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+EmpLeaveRecord, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -131,7 +135,7 @@
                   <Width>0.61811in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.53989in</Width>
+                  <Width>0.60239in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.95486in</Width>
@@ -143,7 +147,7 @@
                   <Width>0.65284in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.69792in</Width>
+                  <Width>0.625in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.4202in</Width>
@@ -1396,7 +1400,7 @@ Leave</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=CDate(Fields!confirmdate.Value).ToString("dd-MMM-yyyy")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>6pt</FontSize>
@@ -1404,7 +1408,7 @@ Leave</Value>
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Left</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -1786,7 +1790,7 @@ Leave</Value>
             <Top>0.0375in</Top>
             <Left>0.02083in</Left>
             <Height>0.85417in</Height>
-            <Width>8.00581in</Width>
+            <Width>7.99539in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
