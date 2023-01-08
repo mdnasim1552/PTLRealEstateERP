@@ -2411,7 +2411,7 @@
                                                 <ItemStyle HorizontalAlign="left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Project Account Code">
+                                            <asp:TemplateField HeaderText="Project Account Code" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvpactcode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactcode")) %>'
                                                         Width="80px"></asp:Label>
@@ -2419,8 +2419,7 @@
                                                 <ItemStyle HorizontalAlign="left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
-
-                                            <asp:TemplateField HeaderText="Old Pactcode">
+                                            <asp:TemplateField HeaderText="Old Pactcode" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvdemopactcode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "demopactcode")) %>'
                                                         Width="80px"></asp:Label>
@@ -2429,7 +2428,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Resource Code">
+                                            <asp:TemplateField HeaderText="Resource Code" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvrsircode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>'
                                                         Width="80px"></asp:Label>
@@ -2438,7 +2437,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Old Rescode">
+                                            <asp:TemplateField HeaderText="Old Rescode" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvdemorescode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "demorescode")) %>'
                                                         Width="80px"></asp:Label>
