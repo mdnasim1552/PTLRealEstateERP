@@ -197,11 +197,6 @@ namespace RealERPWEB.F_14_Pro
                 gvGenBillTracking.DataSource = dt;
                 gvGenBillTracking.DataBind();
             }
-
-
-
-
-
         }
 
 
@@ -1516,6 +1511,8 @@ namespace RealERPWEB.F_14_Pro
                 this.gvGenBillTracking.DataBind();
                 return;
             }
+
+            
             this.Checksamehead.Visible = true;
             DataTable dt = this.HiddenSameData(ds1.Tables[0]);
             //DataTable dt = ds1.Tables[0];
