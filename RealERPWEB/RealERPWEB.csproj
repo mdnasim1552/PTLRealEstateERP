@@ -227,7 +227,6 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-
       <HintPath>..\..\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
 
     </Reference>
@@ -2401,6 +2400,7 @@
     <Content Include="F_14_Pro\RptDateWiseBill.aspx" />
     <Content Include="F_14_Pro\PoMrrBillStatus.aspx" />
     <Content Include="F_14_Pro\RptPurchaseStatus.aspx" />
+    <Content Include="F_14_Pro\RptPurchaseStatusSupMatGroup.aspx" />
     <Content Include="F_14_Pro\RptPurchaseSummaryVsPayment.aspx" />
     <Content Include="F_14_Pro\RptPurchesStatus.aspx" />
     <Content Include="F_14_Pro\RptPurchesStatusPrjWise.aspx" />
@@ -4374,6 +4374,13 @@
     </Compile>
     <Compile Include="F_14_Pro\RptPurchaseStatus.aspx.designer.cs">
       <DependentUpon>RptPurchaseStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchaseStatusSupMatGroup.aspx.cs">
+      <DependentUpon>RptPurchaseStatusSupMatGroup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_14_Pro\RptPurchaseStatusSupMatGroup.aspx.designer.cs">
+      <DependentUpon>RptPurchaseStatusSupMatGroup.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\RptPurchaseSummaryVsPayment.aspx.cs">
       <DependentUpon>RptPurchaseSummaryVsPayment.aspx</DependentUpon>

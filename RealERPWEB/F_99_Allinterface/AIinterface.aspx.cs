@@ -189,6 +189,19 @@ namespace RealERPWEB.F_99_Allinterface
             this.ddlsearchtitle.DataValueField = "prjid";
             this.ddlsearchtitle.DataSource = ds.Tables[0];
             this.ddlsearchtitle.DataBind();
+
+
+
+
+
+
+            this.ddlsearchtasktitle.DataTextField = "tasktitle";
+            this.ddlsearchtasktitle.DataValueField = "prjid";
+            this.ddlsearchtasktitle.DataSource = ds.Tables[0];
+            this.ddlsearchtasktitle.DataBind();
+
+
+
         }
         private void GetAssignTask()
         {
@@ -270,6 +283,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQA.Visible = false;
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
+                    this.GetSearchAssign();
                     this.Getproducttion();
                     this.TasktState.Items[3].Attributes["class"] = "lblactive blink_me";
                     break;

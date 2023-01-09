@@ -576,7 +576,7 @@ namespace RealERPWEB.F_38_AI
             try
             {
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
-                int index = row.RowIndex;
+                int index = row.RowIndex; 
                 string id = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvjobid")).Text.ToString();
                 this.HiddinTaskid.Value = id;
                 string titlename = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvtasktitle")).Text.ToString();
@@ -584,8 +584,8 @@ namespace RealERPWEB.F_38_AI
                 string empid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblempid")).Text.ToString();
                 string roletype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblrolettpcode")).Text.ToString();
                 string anotationid = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvannoid")).Text.ToString();
-                string assigntype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvassigntype")).Text.ToString();
-                string assginqty = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvassignqty")).Text.ToString();
+                string assigntype = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgrassigincode")).Text.ToString();
+                double assginqty = Convert.ToDouble("0"+((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvassignqty")).Text.ToString());
                 string workhour = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvwrkhour")).Text.ToString();
                 string workperrate = ((Label)this.gv_BatchInfo.Rows[index].FindControl("lblgvworkrate")).Text.ToString();
 
@@ -594,7 +594,8 @@ namespace RealERPWEB.F_38_AI
                 this.ddlassignmember.SelectedValue = empid;
                 this.ddlUserRoleType.SelectedValue = roletype;
                 this.ddlAnnotationid.SelectedValue= anotationid;
-                this.txtquantity.Text = assginqty;
+                this.ddlassigntype.SelectedValue = assigntype;
+                this.txtquantity.Text = Convert.ToString(assginqty).ToString();
                 this.txtworkhour.Text = workhour;
                 this.textrate.Text = workperrate;
 
