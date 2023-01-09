@@ -71,14 +71,16 @@ namespace RealERPWEB.F_09_PImp
                 GetDivision();
                 GetWENIssueNo();
                 GetWorkWithIssue();
+                GetMaterials();
             }
             else
             {
                 //New Click
                 ddlProject.Enabled = true;
-                pnl1.Visible = false;
-               
+                pnl1.Visible = false;               
                 btnOK.Text = "<span class='fa fa-check-circle' style='color: white;' aria-hidden='true'></span> OK";
+                //Remove All Session
+                //Grid One and Grid Two Bind Null
             }
         }
         private void GetProject()
@@ -255,53 +257,87 @@ namespace RealERPWEB.F_09_PImp
 
         private void GetMaterials()
         {
-            //string comcod = this.GetComCode();
-            //string pactcode = this.ddlprjlist.SelectedValue.ToString();
-            //string date = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
-            //string SearchMat = this.txtSearchMaterials.Text.Trim() + "%";
-            //string balcon = this.CompBalConMat();
-            //string CallType = this.CompReceived();
+            string comcod = this.GetComCode();
+            string pactcode = this.ddlProject.SelectedValue.ToString();
+            string date = Convert.ToDateTime(txtEntryDate.Text).ToString("dd-MMM-yyyy");
+            string SearchMat = "%";
 
-            //DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETMETERIALS", pactcode, date, SearchMat, balcon, "", "", "", "", "");
-            //Session["itemlistMaterials"] = ds1.Tables[0];
-            //Session["specification"] = ds1.Tables[2];           
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETMETERIALS", pactcode, date, SearchMat, "", "", "", "", "", "");
+            ViewState["itemlistMaterialsBalance"] = ds1.Tables[0];
+            ViewState["specification"] = ds1.Tables[2];
         }
 
         protected void btnGenerateIssue_Click(object sender, EventArgs e)
         {
             LoopForSession();
-
-
-            DataTable tempforgrid = (DataTable)Session["sessionforgrid"];
-            DataTable dt = ((DataTable)ViewState["WorkExeWithIssue"]).Copy();
+            DataTable tempforgrid = (DataTable)Session["sessionforgrid"]; // Work Execution grid with Session
+            DataTable dt = ((DataTable)ViewState["WorkExeWithIssue"]).Copy(); // Work Execution Issue Standard Analysis
+            DataTable dtMatList = (DataTable)ViewState["itemlistMaterialsBalance"];
             DataView dv = dt.DefaultView;
             DataTable dt1 = new DataTable();
-
-
-
+            string strColName = "Ratio";
+            string strColName1 = "AnaQty";
+            string strColName2 = "specification";
+            string strColName3 = "rsirunit";
+            string strColName4 = "balqty";
+            DataColumn colNew = new DataColumn(strColName, typeof(double));
+            DataColumn colNew1 = new DataColumn(strColName1, typeof(double));
+            DataColumn colNew2 = new DataColumn(strColName2, typeof(string));
+            DataColumn colNew3 = new DataColumn(strColName3, typeof(string));
+            DataColumn colNew4 = new DataColumn(strColName4, typeof(string));
+            colNew.DefaultValue = 0.00;
+            colNew1.DefaultValue = 0.00;
+            colNew2.DefaultValue = "000000000000";
+            if (!dt.Columns.Contains(strColName))
+                dt.Columns.Add(colNew);
+            if (!dt.Columns.Contains(strColName1))
+                dt.Columns.Add(colNew1);
+            if (!dt.Columns.Contains(strColName2))
+                dt.Columns.Add(colNew2);
+            if (!dt.Columns.Contains(strColName3))
+                dt.Columns.Add(colNew3);
+            if (!dt.Columns.Contains(strColName4))
+                dt.Columns.Add(colNew4);
             for (int i=0; i< tempforgrid.Rows.Count; i++)
             {
                 string isircode = tempforgrid.Rows[i]["itemcode"].ToString();     
                 string flrcode= tempforgrid.Rows[i]["flrcod"].ToString();
-                double wrkqty= Convert.ToDouble(tempforgrid.Rows[i]["wrkqty"].ToString());
+                double wrkqty= Convert.ToDouble(tempforgrid.Rows[i]["wrkqty"].ToString()==""?"0.00":tempforgrid.Rows[i]["wrkqty"].ToString());
                 dv.RowFilter = ("isircode='" + isircode + "'  and flrcod='" + flrcode + "'");
 
                 dt = dv.ToTable();
-                dt1.Merge(dt);
 
-                string strColName = "ratio";
-                DataColumn colNew = new DataColumn(strColName, typeof(double));
-                colNew.DefaultValue = wrkqty/100;
-                if (!dt1.Columns.Contains("ratio"))
-                    dt1.Columns.Add(colNew);
+                foreach(DataRow dr in dt.Rows)
+                {
+                    string rsircode = dr["rsircode"].ToString();
+                    string specification= dr["specification"].ToString();
+                    dr["Ratio"] = wrkqty / 100;
+                    dr["AnaQty"] = Convert.ToDouble(dr["RSTDQTY"].ToString()??"0.00") * (wrkqty / 100);
+                    dr["rsirunit"] = ((dtMatList).Select("rsircode='" + rsircode + "'"))[0]["rsirunit"];
+                    dr["balqty"] = (((dtMatList).Select("rsircode='" + rsircode + "' and spcfcod='" + specification + "'")).Length == 0) ? "0.00" : Convert.ToDouble(((dtMatList).Select("rsircode='" + rsircode + "' and spcfcod='" + specification + "'"))[0]["bbgdqty"]).ToString();
+
+                }
+                dt1.Merge(dt);
+            }
+            ViewState["materialexefinal"] = dt1;
+            GridTwo_DataBind();
+            pnl2.Visible = true;
+        }
+        private void GridTwo_DataBind()
+        {
+            try
+            {
+                DataTable dt1 = (DataTable)ViewState["materialexefinal"];
+                DataGridTwo.DataSource = HiddenTableTwo(dt1);
+                DataGridTwo.DataBind();
+            }
+            catch (Exception ex)
+            {
 
             }
             
-
-            DataGridTwo.DataSource = HiddenTableTwo(dt1);
-            DataGridTwo.DataBind();
-            pnl2.Visible = true;
         }
+
 
         private DataTable HiddenTableTwo(DataTable dt)
         {
@@ -332,7 +368,37 @@ namespace RealERPWEB.F_09_PImp
             return dt;
         }
 
+        protected void DataGridTwo_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            DataTable dtspec = (DataTable)ViewState["specification"];
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                DropDownList ddlSpec = (DropDownList)e.Row.FindControl("ddlSpecification");                
+                string rsircode = ((Label)e.Row.FindControl("lblrsircode")).Text;
+                DataView dv = dtspec.DefaultView;
+                dv.RowFilter = ("rsircode='" + rsircode + "'");
+                ddlSpec.DataSource = dv.ToTable();
+                ddlSpec.DataTextField = "spcfdesc";
+                ddlSpec.DataValueField = "spcfcod";
+                ddlSpec.DataBind();
+            }
+        }
 
-
+        protected void ddlSpecification_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DropDownList dropDownList = sender as DropDownList;
+            GridViewRow gridrow = (GridViewRow)dropDownList.NamingContainer;
+            int row = gridrow.RowIndex;
+            string specification = dropDownList.SelectedValue.ToString();
+            
+            DataTable dtMatList = (DataTable)ViewState["itemlistMaterialsBalance"];
+            DataTable dt = (DataTable)ViewState["materialexefinal"];
+            string rsircode = dt.Rows[row]["rsircode"].ToString();
+            dt.Rows[row]["balqty"]= (((dtMatList).Select("rsircode='" + rsircode + "' and spcfcod='" + specification + "'")).Length == 0) ? "0.00" : Convert.ToDouble(((dtMatList).Select("rsircode='" + rsircode + "' and spcfcod='" + specification + "'"))[0]["bbgdqty"]).ToString();
+            dt.Rows[row]["specification"] = specification;           
+            ViewState["materialexefinal"] = dt;
+            GridTwo_DataBind();
+            dropDownList.SelectedValue = specification;
+        }
     }
 }

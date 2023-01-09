@@ -599,12 +599,6 @@ namespace RealERPWEB.F_12_Inv
         }
         protected void lbtnSelectReaSpesAll_Click(object sender, EventArgs e)
         {
-
-
-
-
-
-
             //////////
             DataTable dt = (DataTable)ViewState["tblmatissue"];
 
