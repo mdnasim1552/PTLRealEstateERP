@@ -1400,7 +1400,7 @@ Leave</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=CDate(Fields!confirmdate.Value).ToString("dd-MMM-yyyy")</Value>
+                                  <Value>=IIF(cDate(Fields!confirmdate.Value).ToString("dd-MMM-yyyy")="01-Jan-1900","",cDate(Fields!confirmdate.Value).ToString("dd-MMM-yyyy"))</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>6pt</FontSize>
