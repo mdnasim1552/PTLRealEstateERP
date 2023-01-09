@@ -341,7 +341,7 @@ namespace RealERPWEB.F_12_Inv
                     string tomprj = this.ddlprjlistto.SelectedValue.ToString();
                     DataSet ds21 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "MATERIALENTRYNATATION", fmprj, tomprj, "", "", "", "", "", "", "");
                     ViewState["prjnaton"] = ds21.Tables[0];
-                    string naration = ds21.Tables[0].Rows[0]["mtrnar"].ToString();
+                    string naration = ds21.Tables[0].Rows.Count>0 ? ds21.Tables[0].Rows[0]["mtrnar"].ToString(): "";
                     this.txtNarr.Text = naration;
                     break;
                 default:
