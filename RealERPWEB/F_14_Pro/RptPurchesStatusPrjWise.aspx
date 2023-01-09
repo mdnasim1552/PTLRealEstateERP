@@ -156,7 +156,7 @@
                               <asp:Panel ID="pnlprojectDetails" runat="server" Visible="false">
                                    <div class="table-responsive mt-2">
                                    <asp:GridView ID="gvPurSum" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                     ShowFooter="True" Width="100%" CssClass="table-striped table-hover table-bordered grvContentarea">
+                                     ShowFooter="True"  CssClass="table-striped table-hover table-bordered grvContentarea">
                                     
                                     <RowStyle />
                                     <Columns>
@@ -177,14 +177,14 @@
                                         <asp:TemplateField HeaderText="Material Name">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvMaterials0" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rptdesc")) %>'
-                                                    Width="200px"></asp:Label>
+                                                    Width="150px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Unit ">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvUnit0" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rptunit")) %>'
-                                                    Width="25px"></asp:Label>
+                                                    Width="50px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -192,7 +192,7 @@
                                         <asp:TemplateField HeaderText="Qty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvqty0" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                    Width="75px"></asp:Label>
+                                                    Width="100px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="Right" />
@@ -200,7 +200,7 @@
                                         <asp:TemplateField HeaderText="Rate">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvrate0" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rate")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                    Width="60px"></asp:Label>
+                                                    Width="100px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="Right" />
@@ -208,7 +208,7 @@
                                         <asp:TemplateField HeaderText="Amount">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvAmt0" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                    Width="75px"></asp:Label>
+                                                    Width="130px"></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFAmtS" runat="server" Font-Bold="True" Font-Size="16px" ForeColor="#000"
