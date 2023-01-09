@@ -320,7 +320,7 @@
                                                     <asp:TemplateField HeaderText="Start <br> date">
                                                         <ItemTemplate>
                                                             <asp:Label ID="tblcreatedate" runat="server" Width="80px"
-                                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "worktime")).ToString("dd-MMM-yyyy hh:mm tt")=="01-Jan-1900"?"": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "worktime")).ToString("dd-MMM-yyyy")%>'></asp:Label>
+                                                                Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "startdate")).ToString("dd-MMM-yyyy hh:mm tt")=="01-Jan-1900"?"": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "startdate")).ToString("dd-MMM-yyyy")%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Ass. <br> QTY">

@@ -73,6 +73,7 @@ namespace RealERPRDLC
                 case "R_14_Pro.RptOrderStatus": Rpt1a = RptOrderStatus (Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptPOMRRBillStatus": Rpt1a = RptPOMRRBillStatus (Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptPurSumVsPay": Rpt1a = RptPurSumVsPay (Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_14_Pro.RptPurchaseStatusSupplierandMaterial": Rpt1a = RptPurchaseStatusSupplierandMaterial(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 case "R_04_Bgd.RptPrjFloorWise": Rpt1a = RptPrjFloorWise (Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -324,12 +325,17 @@ namespace RealERPRDLC
         }
         private static LocalReport RptPurSumVsPay( LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset )
         {
-
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPayment.EclassPurchasesummaryvspayment>)RptDataSet));
             return Rpt1a;
         }
 
-       
+        private static LocalReport RptPurchaseStatusSupplierandMaterial(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPayment.RPTPURSTATUSSUPPIERANDMATGROUP>)RptDataSet));
+            return Rpt1a;
+        }
+
+
         private static LocalReport RptBundle(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
 

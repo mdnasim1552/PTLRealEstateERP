@@ -58,7 +58,7 @@
         $(document).ready(function () {
 
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-            //$('.chzn-select').chosen({ search_contains: true });
+            $('.chzn-select').chosen({ search_contains: true });
 
             $('[id*=chkResourcelist]').multiselect({
                 includeSelectAllOption: true,
@@ -155,7 +155,7 @@
                         <div class="col-md-1">
                             <div class="form-group">
                                 <asp:Label ID="lblGroup" runat="server" CssClass="control-label" Text="Stock Valuation"></asp:Label>
-                                <asp:DropDownList ID="group" runat="server" CssClass="chzn-select form-control form-control-sm">
+                                <asp:DropDownList ID="group" runat="server" CssClass="form-control form-control-sm">
                                     <asp:ListItem Value="0">Select</asp:ListItem>
                                     <asp:ListItem Value="1">Group Wise</asp:ListItem>
                                     <asp:ListItem Value="2">Material Wise</asp:ListItem>
@@ -206,6 +206,8 @@
                     </div>
                 </div>
             </div>
+
+
             <div class="card card-fluid">
                 <div class="card-body" style="min-height: 400px;">
                     <div class="row">

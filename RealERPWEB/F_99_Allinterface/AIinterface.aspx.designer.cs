@@ -429,6 +429,33 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.DropDownList ddlProduction_page_Size;
 
         /// <summary>
+        /// Label36 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label36;
+
+        /// <summary>
+        /// ddlsearchtasktitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlsearchtasktitle;
+
+        /// <summary>
+        /// btntasktitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btntasktitle;
+
+        /// <summary>
         /// gv_Production control.
         /// </summary>
         /// <remarks>
