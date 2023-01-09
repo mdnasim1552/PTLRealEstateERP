@@ -108,11 +108,10 @@
                                     </div>
 
                                     
-                                    <div class="col-md-12 pading12px asitCol12" runat="server" id="genbillno">
+                                    <div class="col-md-12 pading12px asitCol12" runat="server" id="genbillno" Visible="false">
                                         <asp:Label ID="lbldate" runat="server" CssClass="lblTxt lblName" Text="From"></asp:Label>
-                                        <asp:TextBox ID="txtfromdate1" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
-                                        <cc1:CalendarExtender ID="txtfromdate1_CalendarExtender" runat="server"
-                                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtfromdate1"></cc1:CalendarExtender>
+                                        <asp:TextBox ID="txtfromdate1" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1" ></asp:TextBox>
+                                        <cc1:CalendarExtender ID="txtfromdate1_CalendarExtender" runat="server" Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtfromdate1"></cc1:CalendarExtender>
 
                                         <asp:Label ID="lbltodate" runat="server" CssClass="smLbl_to" Text="To"></asp:Label>
                                         <asp:TextBox ID="txttodate1" runat="server" CssClass="inputTxt inpPixedWidth" TabIndex="1"></asp:TextBox>
@@ -120,7 +119,7 @@
                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txttodate1"></cc1:CalendarExtender>
                                     </div>
 
-                                    <div class="col-md-6 pading6px asitCol6" runat="server">
+                                    <div class="col-md-6 pading6px asitCol6" id="prjSection" runat="server" visible="false">
                                         <asp:Label ID="lblGenBillTrack" runat="server" CssClass="lblTxt lblName" Text="Project Name"></asp:Label>
                                         <asp:TextBox ID="TextGenBillTrack"  runat="server" CssClass=" inputtextbox"></asp:TextBox>
                                         <asp:LinkButton ID="LinkGenBillTrack" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="LinkGenBillTrack_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
