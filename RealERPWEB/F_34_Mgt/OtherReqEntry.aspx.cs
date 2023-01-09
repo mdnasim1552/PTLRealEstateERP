@@ -2319,7 +2319,28 @@ namespace RealERPWEB.F_34_Mgt
 
 
                     string SMSText = comnam + ":\n" + SMSHead + "\n" + "\n" + "MRF No: " + txtMRFNo.Text + "\n" + "Req. Entry: " + rusername + "\n" + "First Approved: " + fausername + "\n" + "Thanks";
-                    bool resultsms = sms.SendSmms(SMSText, userid, frmname);
+
+                    bool resultsms;
+                    switch (comcod)
+                    {
+                        case "3101"://PTL
+                        case "3333"://Alliance                              
+
+                            resultsms = sms.SendSms_novocom(SMSText, ApprovByid, frmname);
+                            break;
+
+
+                        default:
+
+                            resultsms = sms.SendSmms(SMSText, ApprovByid, frmname);
+
+
+                            break;
+
+
+                    }
+
+                  //  bool resultsms = sms.SendSmms(SMSText, userid, frmname);
                 }
             }
 
