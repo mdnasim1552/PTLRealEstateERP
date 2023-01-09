@@ -385,12 +385,12 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Assigned  <br> Type">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblgvassigntype" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assigntype")) %>' Width="50px" ForeColor="Black" Font-Size="12px"></asp:Label>
-
+                                                            <asp:Label ID="lblgvassigntype" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assigntypedesc")) %>' Width="50px" ForeColor="Black" Font-Size="12px"></asp:Label>
+                                                             <asp:Label ID="lblgrassigincode" runat="server" Visible="false" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assigntype")) %>' Width="50px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" />
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Role <br> QTY">
+                                                    <asp:TemplateField HeaderText="Assign <br> QTY">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvassignqty" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "assignqty")).ToString("#,##0;(#,##0); ") %>' Width="40px" ForeColor="Black" Font-Size="12px"></asp:Label>
 
@@ -707,7 +707,7 @@
 
                                                 <div class="col-lg-3 col-md-3 col-sm-12">
                                                     <asp:Label ID="Label9" runat="server"> Assigned QYT</asp:Label>
-                                                    <asp:TextBox ID="txtquantity" min="0" runat="server" TextMode="Number" CssClass="form-control"></asp:TextBox>
+                                                    <asp:TextBox ID="txtquantity"  runat="server"  min="0" TextMode="Number"   CssClass="form-control"></asp:TextBox>
                                                 </div>
 
                                                 <div class=" col-lg-3 col-md-3 col-sm-12">

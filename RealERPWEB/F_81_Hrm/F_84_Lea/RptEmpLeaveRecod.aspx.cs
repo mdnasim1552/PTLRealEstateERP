@@ -251,7 +251,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
       
             //Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Employee Leave Report"));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "ANNUAL LEAVE APPROVAL SHEET"));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("txtDate", txtDate));
