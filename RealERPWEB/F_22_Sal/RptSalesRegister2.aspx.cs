@@ -91,9 +91,7 @@ namespace RealERPWEB.F_22_Sal
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-
             return comcod;
-
         }
         private void GetProjectName()
         {

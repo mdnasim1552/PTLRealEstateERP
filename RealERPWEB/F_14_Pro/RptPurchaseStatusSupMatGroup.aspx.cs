@@ -80,7 +80,6 @@ namespace RealERPWEB.F_14_Pro
             {
                 this.chkResourcelist.Text = this.Request.QueryString["prjcode"].Length > 0 ? "000000000000" : "";
             }
-
             ds1.Dispose();
         }
 
