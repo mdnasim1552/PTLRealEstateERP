@@ -378,6 +378,8 @@ namespace RealERPRDLC
                 case "R_22_Sal.RptSoldUnsoldUnitAvgPrice": Rpt1a = SetRptSoldUnsoldUnitAvgPrice(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptSalesVsAchivement": Rpt1a = SetRptSalesVsAchivement(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptSalesVsAchivementLO": Rpt1a = SetRptSalesVsAchivementLO(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptSalesVsAchivementDPC": Rpt1a = RptSalesVsAchivementDPC(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
                 case "R_22_Sal.RptPaymentSystem": Rpt1a = SetRptPaymentSystem(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptPrjWiseCollection": Rpt1a = SetRptPrjWiseCollection(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptPrjWiseCollectionTillDate": Rpt1a = SetRptPrjWiseCollectionTillDate(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
