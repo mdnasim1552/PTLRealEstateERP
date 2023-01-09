@@ -32,8 +32,9 @@ namespace RealERPWEB.F_14_Pro
                 this.txtfrmdate.Text = "01" + this.txtfrmdate.Text.Trim().Substring(2);
                 this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 this.GetMaterial();
-                this.GetSupplier();
+                //this.imgbtnFindSupplier_Click(null,null);
                 this.GetProjectName();
+                this.GetSupplier();
             }
         }
 
@@ -107,9 +108,7 @@ namespace RealERPWEB.F_14_Pro
             this.ddlProjectName.DataValueField = "pactcode";
             this.ddlProjectName.DataSource = ds1.Tables[0];
             this.ddlProjectName.DataBind();
-
         }
-
 
 
         private void ShowPurStatus()
@@ -131,8 +130,39 @@ namespace RealERPWEB.F_14_Pro
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "RPTPURSTATUSSUPPIERANDMATGROUP", frmdate, todate, supplier, resListMulti, "", "", "");
             if (ds1 == null)
                 return;
-            Session["tblpursum"] = ds1.Tables[0];
+            Session["tblpursum"] = HiddenSameData(ds1.Tables[0]);
             this.Data_Bind();
+        }
+
+
+
+        private DataTable HiddenSameData(DataTable dt1)
+        {
+            if (dt1.Rows.Count == 0)
+                return dt1;
+
+            string isircod = dt1.Rows[0]["mgrpcode"].ToString();
+            for (int i = 1; i < dt1.Rows.Count; i++)
+            {
+                if (dt1.Rows[i]["mgrpcode"].ToString() == isircod)
+                {
+                    dt1.Rows[i]["mgrpdesc"] = "";
+                }
+                isircod = dt1.Rows[i]["mgrpcode"].ToString();
+            }
+
+            //string pactcode = dt1.Rows[0]["pactcode"].ToString();
+            //for (int j = 1; j < dt1.Rows.Count; j++)
+            //{
+            //    if (dt1.Rows[j]["pactcode"].ToString() == isircod)
+            //    {
+            //        dt1.Rows[1]["pactdesc"] = "";
+            //        dt1.Rows[j]["pactdesc"] = "";
+            //    }
+
+            //    isircod = dt1.Rows[j]["pactcode"].ToString();
+            //}
+            return dt1;
         }
 
 
