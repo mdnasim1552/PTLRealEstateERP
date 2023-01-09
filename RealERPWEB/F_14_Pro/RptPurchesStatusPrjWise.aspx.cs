@@ -23,11 +23,27 @@ namespace RealERPWEB.F_14_Pro
                 //if (dr1.Length == 0)
                 //    Response.Redirect("../AcceessError.aspx");
                 //((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Purchase Status Report";
-                string Date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.txtfrmdate.Text = "01-" + ASTUtility.Right(Date, 8);
-                this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
+                if (Request.QueryString["Type"] == "Report")
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Purchase Status Report";
+                    string Date01 = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.txtfrmdate.Text = "01-" + ASTUtility.Right(Date01, 8);
+                    this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                }
+                else
+                {
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Purchase Status Details";
+                    this.lnkbtnok.Visible = false;
+                    string Date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.txtfrmdate.Text = "01-" + ASTUtility.Right(Date, 8);
+                    this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                }
+                this.GridHidden();
+               
+
+
+                
 
             }
 
@@ -46,6 +62,42 @@ namespace RealERPWEB.F_14_Pro
 
         }
 
+        private void GridHidden()
+        {
+            string type = Request.QueryString["Type"].ToString();
+            if (type == "Report")
+            {
+                this.GetProjectList();
+                this.pnlAllProjectreport.Visible = true;
+                this.pnlprojectDetails.Visible = false;
+
+            }
+            else
+            {
+                this.Pagging.Visible = false;
+                this.txtfrmdate.Enabled = true;
+                this.txttodate.Enabled = true;
+                this.ddlprojectname.Enabled = true;
+                this.GetProjectList();
+                this.GetProjectDetails();
+                this.pnlAllProjectreport.Visible = false;
+                this.pnlprojectDetails.Visible = true;
+            }
+        }
+
+
+        private void GetProjectList()
+        {
+            string comcod = this.GetCompCode();
+            string txtSProject = Request.QueryString["Type"] == "Report"? "%%": Request.QueryString["pactcode"].ToString() + "%";
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETPROJECTNAME", txtSProject, "", "", "", "", "", "", "", "");
+            this.ddlprojectname.DataTextField = "pactdesc";
+            this.ddlprojectname.DataValueField = "pactcode";
+            this.ddlprojectname.DataSource = ds1.Tables[0];
+            this.ddlprojectname.DataBind();
+
+        }
+
         protected void lnkbtnok_Click(object sender, EventArgs e)
         {
             try
@@ -54,8 +106,8 @@ namespace RealERPWEB.F_14_Pro
                 string comcod = this.GetCompCode();
                 string formdat = this.txtfrmdate.Text;
                 string tomdat = this.txttodate.Text;
-
-                DataSet ds = purData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETPURCHASEPRJWISE", formdat, tomdat, "", "", "", "");
+                string prjname = this.ddlprojectname.SelectedValue =="000000000000" ? "%%" : this.ddlprojectname.SelectedValue + "%";
+                DataSet ds = purData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETPURCHASEPRJWISE", formdat, tomdat, prjname, "", "", "", "");
                 if (ds == null)
                     return;
 
@@ -72,6 +124,49 @@ namespace RealERPWEB.F_14_Pro
 
             }
         }
+
+
+        private void GetProjectDetails()
+        {
+            try
+            {
+                string comcod = this.GetCompCode();
+                string formdat = this.txtfrmdate.Text;
+                string tomdat = this.txttodate.Text;
+                string mRptGroup = "12";
+                string pactcode = Request.QueryString["pactcode"].ToString();
+                DataSet ds1 = purData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS","RPTPURSUMMARY", formdat, tomdat, pactcode, mRptGroup, "", "", "", "", "");
+
+                if (ds1 == null)
+                    return;
+                ViewState["tblpurchasesummarydetails"]= ds1.Tables[0];
+                this.Details_Load();
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
+        }
+
+        private void Details_Load()
+        {
+
+            DataTable tbl011 = (DataTable)ViewState["tblpurchasesummarydetails"];
+            this.gvPurSum.DataSource = tbl011;
+            this.gvPurSum.DataBind();
+            //this.FooterCalculationDetails(tbl011);
+        }
+
+
+        //private void FooterCalculationDetails(DataTable tbl011)
+        //{
+        //    if (tbl011.Rows.Count == 0)
+        //        return;
+        //    ((Label)this.gv_PurchesSummary.FooterRow.FindControl("lgvFAmtS")).Text = Convert.ToDouble((Convert.IsDBNull(tbl011.Compute("sum(amt)", "")) ? 0.00 :
+        //      tbl011.Compute("sum(amt)", ""))).ToString("#,##0;(#,##0); ") ;
+        //}
 
         private void Load_GridView()
         {
@@ -91,7 +186,7 @@ namespace RealERPWEB.F_14_Pro
                 tbl1.Compute("sum(amt)", ""))).ToString("#,##0.00;(#,##0.00); ");
 
             ((Label)this.gv_PurchesSummary.FooterRow.FindControl("tblAmountper")).Text = Convert.ToDouble((Convert.IsDBNull(tbl1.Compute("sum(percntage)", "")) ? 0.00 :
-               tbl1.Compute("sum(percntage)", ""))).ToString("#,##0.00;(#,##0.00); ");
+               tbl1.Compute("sum(percntage)", ""))).ToString("#,##0;(#,##0); ") + " %";
         }
 
 
@@ -144,6 +239,25 @@ namespace RealERPWEB.F_14_Pro
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
+            }
+        }
+
+        protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.gv_PurchesSummary.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+            this.Load_GridView();
+        }
+
+        protected void gv_PurchesSummary_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("lnkbtndetailslink");
+               
+                string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString().Trim();
+                
+                hlink.NavigateUrl = "~/F_14_Pro/RptPurchesStatusPrjWise.aspx?Type=Details&pactcode=" + pactcode;
+                
             }
         }
     }

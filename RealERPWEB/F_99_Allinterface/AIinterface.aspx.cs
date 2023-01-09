@@ -1621,14 +1621,14 @@ namespace RealERPWEB.F_99_Allinterface
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
 
                 }
-                else if (roletype == "95002" && doneannotor < assignqty  )
+                else if (roletype == "95002" && doneannotor < assignqty && pedingqc!=0)
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneannotor  " + doneannotor.ToString();
                     this.txtquantity.Focus();
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
                 }
-                else if (roletype == "95003" && doneqc < assignqty )
+                else if (roletype == "95003" && doneqc < assignqty && pedingqar!=0)
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneqc  " + doneqc.ToString();
                     this.txtquantity.Focus();

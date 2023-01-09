@@ -207,6 +207,7 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptNominatedBookApp2.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptNomineeBookApp2.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptSalPaySchedules.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RtpAvailChartPrint.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EnvelopModel.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+CustomerMoneyrecipt.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+MonSalPerTarWise.datasource" />
@@ -960,6 +961,7 @@
     <EmbeddedResource Include="R_22_Sal\rptUnitFxInf.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptUnitWiseCost.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptUnsoldUnit.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RtpAvailChartPrint.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RTypeWiseTransaction02.rdlc" />
     <EmbeddedResource Include="R_22_Sal\test.rdlc" />
     <EmbeddedResource Include="R_23_CR\RptClientLedger02P2P.rdlc" />

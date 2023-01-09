@@ -101,9 +101,8 @@ namespace RealERPWEB.F_14_Pro
                 }
                 else if (Type == "GenBillTrack")
                 {
-                    //this.main.Visible = false;
-                    //this.genbillno.Visible = true;
-                    //this.GetGeneralBillNo();
+                    this.prjSection.Visible = true;
+                    this.genbillno.Visible = true;
                 }
                 else
                 {

@@ -1239,7 +1239,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!avelv.Value, "#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=Format(Fields!avslv.Value, "#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1275,7 +1275,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!avslv.Value, "#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=Format(Fields!avelv.Value, "#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1311,7 +1311,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!serlength.Value, "#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=Format(Fields!balclv.Value, "#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
