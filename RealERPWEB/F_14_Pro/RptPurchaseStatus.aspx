@@ -190,7 +190,7 @@
                                             <asp:DropDownList ID="ddlMatCode" runat="server" Visible="false" Width="150px" CssClass="chzn-select ddlPage">
                                             </asp:DropDownList>
                                         </div> 
-                                        <div class="col-md-4 pull-right
+                                        <div class="col-md-4 pull-right>
                                             <asp:CheckBox ID="chkDirect" runat="server" Visible="false" Text="Petty Cash" CssClass="btn btn-primary checkBox" />
                                             <asp:Label ID="LblReqno" runat="server" CssClass="lblTxt lblName" Visible="false" Text="MRR REF"></asp:Label>
                                             <asp:TextBox ID="txtSrcMrfNo" runat="server" CssClass=" inputtextbox" Visible="false"></asp:TextBox>
