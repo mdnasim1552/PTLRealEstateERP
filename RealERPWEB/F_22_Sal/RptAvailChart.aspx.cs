@@ -61,11 +61,35 @@ namespace RealERPWEB.F_22_Sal
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
 
-           this.RtpAvailChart();
+           this.RtpAvailChartPrint();
         }
-        private void RtpAvailChart()
+        private void RtpAvailChartPrint()
         {
+            DataTable dt = (DataTable)Session["tblAvChartPrint"];
             
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
+            string rpthead = "Booking Chart Report";
+
+            if (dt == null)
+                return;
+            var list = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RtpAvailChartPrint>();
+
+
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RtpAvailChartPrint", list, null, null);
+
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comname", comnam));
+            Rpt1.SetParameters(new ReportParameter("txtTitle", rpthead));
+            Rpt1.SetParameters(new ReportParameter("txtProject", "Project Name : " + this.ddlProjectName.SelectedItem.Text));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
             private void Visibility()
@@ -281,6 +305,7 @@ namespace RealERPWEB.F_22_Sal
 
             DataSet ds2 = feaData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, "", "", "", "", "", "", "", "");
 
+            DataSet ds3 = feaData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", "PRINTAVAILCHARt", pactcode, "", "", "", "", "", "", "", "");
 
             if (ds2 == null || ds2.Tables[0].Rows.Count == 0 || ds2.Tables[1].Rows.Count == 0)
             {
@@ -291,6 +316,7 @@ namespace RealERPWEB.F_22_Sal
 
             DataTable dt = this.HiddenSameData(ds2.Tables[0]);
             Session["tblAvChart"] = dt;
+            
             this.Data_Bind();
             Session["tblFtCal"] = (DataTable)ds2.Tables[1];
 
@@ -301,6 +327,9 @@ namespace RealERPWEB.F_22_Sal
                 Session["tblflorUnit"] = (DataTable)ds2.Tables[3];
                 Session["grpname"] = (DataTable)ds2.Tables[4];
                 Session["floorname"] = (DataTable)ds2.Tables[5];
+
+                Session["tblAvChartPrint"]= (DataTable)ds3.Tables[0];
+
                 GetAvailabilityChart();
 
             }
