@@ -2326,13 +2326,13 @@ namespace RealERPWEB.F_34_Mgt
                         case "3101"://PTL
                         case "3333"://Alliance                              
 
-                            resultsms = sms.SendSms_novocom(SMSText, ApprovByid, frmname);
+                            resultsms = sms.SendSms_novocom(SMSText, userid, frmname);
                             break;
 
 
                         default:
 
-                            resultsms = sms.SendSmms(SMSText, ApprovByid, frmname);
+                            resultsms = sms.SendSmms(SMSText, userid, frmname);
 
 
                             break;

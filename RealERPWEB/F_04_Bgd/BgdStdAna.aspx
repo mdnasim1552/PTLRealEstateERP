@@ -177,7 +177,7 @@
 
                                     <asp:TemplateField ShowHeader="true">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="lbtnDelAnalysis" runat="server" OnClick="lbtnDelAnalysis_Click" ToolTip="Delete Analysis" OnClientClick="javascript:return FunConfirm();"><span class="glyphicon glyphicon-trash" style="color:red"> </span> </asp:LinkButton>
+                                            <asp:LinkButton ID="lbtnDelAnalysis" runat="server" OnClick="lbtnDelAnalysis_Click" ToolTip="Delete Analysis" OnClientClick="javascript:return FunConfirm();"><i class="fa fa-trash" style="color:red"> </i> </asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 

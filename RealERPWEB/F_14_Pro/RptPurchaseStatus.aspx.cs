@@ -1353,7 +1353,7 @@ namespace RealERPWEB.F_14_Pro
             string mrfno = "%" + this.txtSrcMrfNo.Text.Trim() + "%";
             string rescode = ((this.ddlMatCode.SelectedValue.ToString() == "000000000000") ? "" : (this.ddlMatCode.SelectedValue.Substring(9, 3).ToString() == "000") ? (this.ddlMatCode.SelectedValue.ToString().Substring(0, 9)).ToString() : this.ddlMatCode.SelectedValue.ToString()) + "%";
             string dirorin = (this.chkDirect.Checked) ? "direct" : "";
-            string supplier = ((this.ddlMatCode.SelectedValue.ToString() == "000000000000") ? "" : this.ddlSupplier.SelectedValue.ToString()) + "%";
+            string supplier = ((this.ddlSupplier.SelectedValue.ToString() == "000000000000") ? "" : this.ddlSupplier.SelectedValue.ToString()) + "%";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "REQSATIONMRRSTATUS", fromdate, todate, pactcode, mrfno, rescode, dirorin, supplier, "", "");
             if (ds1.Tables[0].Rows.Count == 0)
             {

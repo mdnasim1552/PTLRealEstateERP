@@ -38,6 +38,11 @@ namespace RealEntity.C_47_Kpi
     {
         public string mrange { set; get; }
         public string mdescrip { set; get; }
+
+        public GradeWise()
+        { 
+        
+        }
         public GradeWise(string mrange, string mdescrip)
         {
             this.mrange = mrange;
