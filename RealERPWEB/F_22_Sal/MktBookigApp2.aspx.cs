@@ -701,13 +701,11 @@ namespace RealERPWEB.F_22_Sal
             }
             Session["tblperinfo"] = dtp;
             this.Data_BindPer();
-
         }
 
 
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
-
             if (this.saleDeclaration.Checked)
             {
                 this.PrintSaleDeclaration();
