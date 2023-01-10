@@ -606,6 +606,44 @@ namespace RealEntity.C_22_Sal
             public double famt { get; set; }
 
         }
+        [Serializable]
+        public class RtpAvailChartPrint
+        {
+            public string comcod { get; set; }
+            public string flrcod { get; set; }
+            public string flrdesc { get; set; }
+            public string untd1 { get; set; }
+            public string untd2 { get; set; }
+            public string untd3 { get; set; }
+            public string untd4 { get; set; }
+            public string untd5 { get; set; }
+            public string untd6 { get; set; }
+            public string untd7 { get; set; }
+            public string untd8 { get; set; }
+            public string untd9 { get; set; }
+            public string untd10 { get; set; }
+            public string unts1 { get; set; }
+            public string unts2 { get; set; }
+            public string unts3 { get; set; }
+            public string unts4 { get; set; }
+            public string unts5 { get; set; }
+            public string unts6 { get; set; }
+            public string unts7 { get; set; }
+            public string unts8 { get; set; }
+            public string unts9 { get; set; }
+            public string unts10 { get; set; }
+            public string untsz1 { get; set; }
+            public string untsz2 { get; set; }
+            public string untsz3 { get; set; }
+            public string untsz4 { get; set; }
+            public string untsz5 { get; set; }
+            public string untsz6 { get; set; }
+            public string untsz7 { get; set; }
+            public string untsz8 { get; set; }
+            public string untsz9 { get; set; }
+            public string untsz10 { get; set; }
+           
+        }
 
         [Serializable]
         public class CustomerImagePath
