@@ -2,8 +2,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <style>
         .mt20 {
             margin-top: 20px;
@@ -17,19 +15,6 @@
         });
         function pageLoaded() {
 
-            $('.select2').each(function () {
-                var select = $(this);
-                select.select2({
-                    placeholder: 'Select an option',
-                    width: '100%',
-                    allowClear: !select.prop('required'),
-                    language: {
-                        noResults: function () {
-                            return "{{ __('No results found') }}";
-                        }
-                    }
-                });
-            });
         };
 
     </script>
@@ -64,13 +49,13 @@
                                 </asp:DropDownList>
                             </div>
                         </div> 
-                        <div class="col-sm-3 col-md-3 col-lg-3">
+                        <%--<div class="col-sm-3 col-md-3 col-lg-3">
                             <div class="form-group">
                                 <asp:Label ID="Label2" runat="server">To Employee</asp:Label>
                                 <asp:DropDownList ID="ddlEmpNameTo" ClientIDMode="Static" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">
                                 </asp:DropDownList>
                             </div>
-                        </div> 
+                        </div> --%>
                         <div class="col-sm-1 col-md-1 col-lg-1">
                             <asp:LinkButton ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" CssClass="btn btn-primary btn-sm mt20">Ok</asp:LinkButton>
                         </div>
@@ -100,19 +85,9 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="card card-fluid container-data">
-
                 <div class="card-body mb-0 pb-0">
                     <div class="row mb-0 pb-0">
                         <div class="col-md-8">
-                            <div class="row">
-                                
-
-                                <div class="col-7">
-                                    
-                                </div>
-
-
-                            </div>
                             <div class="row">
                                 <asp:GridView ID="gvProspectWorking" runat="server" AutoGenerateColumns="False"
                                     PageSize="200" AllowPaging="true" OnPageIndexChanging="gvProspectWorking_PageIndexChanging"
@@ -122,14 +97,23 @@
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl" HeaderStyle-Width="30px">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
+                                                <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px" 
                                                     Style="text-align: center"
-                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"
+                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="40px"
                                                     ForeColor="Black"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
+                                        <asp:TemplateField HeaderText="Prospect Code" HeaderStyle-Width="30px">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvproscod1" runat="server" Height="16px" 
+                                                    Style="text-align: center"
+                                                    Text='<%# "P-" + Convert.ToString(DataBinder.Eval(Container.DataItem, "proscod1")) %>' Width="100px"
+                                                    ForeColor="Black"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
 
 
                                         <asp:TemplateField
@@ -172,7 +156,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvProfession" runat="server" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "profession")) %>'
-                                                    Width="80px" ForeColor="Black"></asp:Label>
+                                                    Width="100px" ForeColor="Black"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
@@ -181,7 +165,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvAddress" runat="server" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "preaddress")) %>'
-                                                    Width="120px" ForeColor="Black"></asp:Label>
+                                                    Width="140px" ForeColor="Black"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
@@ -190,21 +174,18 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvIntProject" runat="server" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "interestproj")) %>'
-                                                    Width="120px" ForeColor="Black"></asp:Label>
+                                                    Width="160px" ForeColor="Black"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="Source" Visible="false">
+                                        <asp:TemplateField HeaderText="Lost Date">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvSource" runat="server" Height="16px"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "leadsrc")) %>'
-                                                    Width="80px" ForeColor="Black"></asp:Label>
+                                                <asp:Label ID="lblgvIntlostdate" runat="server" Height="16px"
+                                                    Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lostdate")).ToString("dd-MMM-yyyy") %>'
+                                                    Width="110px" ForeColor="Black"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-
-
 
                                         <asp:TemplateField HeaderText="">
                                             <HeaderTemplate>

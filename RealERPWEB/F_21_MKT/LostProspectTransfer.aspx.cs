@@ -31,9 +31,6 @@ namespace RealERPWEB.F_21_MKT
 
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
-
-
-
                 GetAllSubdata();
 
                 GETEMPLOYEEUNDERSUPERVISED();
@@ -127,10 +124,10 @@ namespace RealERPWEB.F_21_MKT
             this.ddlEmpid.DataBind();
             this.ddlEmpid.SelectedValue = lempid;
 
-            this.ddlEmpNameTo.DataTextField = "gdesc";
-            this.ddlEmpNameTo.DataValueField = "gcod";
-            this.ddlEmpNameTo.DataSource = dtE;
-            this.ddlEmpNameTo.DataBind();
+            //this.ddlEmpNameTo.DataTextField = "gdesc";
+            //this.ddlEmpNameTo.DataValueField = "gcod";
+            //this.ddlEmpNameTo.DataSource = dtE;
+            //this.ddlEmpNameTo.DataBind();
 
 
         }
@@ -146,7 +143,7 @@ namespace RealERPWEB.F_21_MKT
 
             string comcod = this.GetComeCode();
             string empId = this.ddlEmpid.SelectedValue.ToString();
-            DataSet ds1 = instcrm.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE", "PROSPECT_LIST", null, null, null, empId, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            DataSet ds1 = instcrm.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE", "LOST_PROSPECT_LIST", null, null, null, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             ViewState["tblproswork"] = (ds1.Tables[0]);
@@ -225,7 +222,7 @@ namespace RealERPWEB.F_21_MKT
                     string fteamcode = ((Label)gvProspectWorking.Rows[i].FindControl("lblteamcode")).Text.Trim();
                     string proscod = ((Label)gvProspectWorking.Rows[i].FindControl("lblproscod")).Text.Trim();
                     string proscodName = ((Label)gvProspectWorking.Rows[i].FindControl("lblgvProsName")).Text.Trim();
-                    string toemp = this.ddlEmpNameTo.SelectedValue.ToString();
+                    string toemp = "";
 
                     result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "TRANSFER_PROSPECT", null, null, null, proscod, fteamcode, toemp, userid, proscodName, "", "", "", "",
                    "", "", "", "", "", "", "", "", "", "", "");

@@ -51,24 +51,6 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.DropDownList ddlEmpid;
 
         /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-
-        /// <summary>
-        /// ddlEmpNameTo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEmpNameTo;
-
-        /// <summary>
         /// btnUpdate control.
         /// </summary>
         /// <remarks>
