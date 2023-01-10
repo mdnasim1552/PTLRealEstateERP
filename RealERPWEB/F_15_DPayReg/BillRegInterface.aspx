@@ -500,31 +500,31 @@
                     default:
                         tblData = document.getElementById("<%=this.grvComp.ClientID %>");
                         break;
-                  
-                 }
 
-                 var rowData;
-                 for (var i = 1; i < tblData.rows.length; i++) {
-                     rowData = tblData.rows[i].innerHTML;
-                     var styleDisplay = 'none';
-                     for (var j = 0; j < strData.length; j++) {
-                         if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
-                             styleDisplay = '';
-                         else {
-                             styleDisplay = 'none';
-                             break;
-                         }
-                     }
-                     tblData.rows[i].style.display = styleDisplay;
-                 }
-             }
+                }
 
-             catch (e) {
-                 alert(e.message);
+                var rowData;
+                for (var i = 1; i < tblData.rows.length; i++) {
+                    rowData = tblData.rows[i].innerHTML;
+                    var styleDisplay = 'none';
+                    for (var j = 0; j < strData.length; j++) {
+                        if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                            styleDisplay = '';
+                        else {
+                            styleDisplay = 'none';
+                            break;
+                        }
+                    }
+                    tblData.rows[i].style.display = styleDisplay;
+                }
+            }
 
-             }
+            catch (e) {
+                alert(e.message);
 
-         }
+            }
+
+        }
     </script>
 
     <%-- <asp:ObjectDataSource ID="source_session_online" runat="server" SelectMethod="session_online" TypeName="t_session" />--%>
@@ -566,7 +566,7 @@
                                 <asp:LinkButton ID="lnkbtnok" runat="server" CssClass="btn btn-primary" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                             </div>
                         </div>
-                          <div class="col-md-1">
+                        <div class="col-md-1">
                             <div class="form-group">
                                 <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search..." onkeyup="Search_Gridview2(this)"></asp:TextBox>
                             </div>
@@ -579,7 +579,7 @@
 
                             </div>
                         </div>
-                       
+
 
                         <div class="col-md-1">
                             <div class="form-group">
@@ -1553,6 +1553,22 @@
                                                         </ItemTemplate>
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                     </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="">
+                                                        <ItemTemplate>
+
+                                                           <asp:LinkButton ID="lnkbtnSplit" runat="server" OnClientClick="return FunConfirmSplit();"
+                                                                OnClick="lnkbtnSplit_Click" ToolTip="Split" CssClass="btn  btn-default btn-sm"> <i class="fas fa-minus-square"></i> </span> </asp:LinkButton>
+
+
+
+
+                                                        </ItemTemplate>
+                                                        <ItemStyle Width="20px" />
+                                                        <HeaderStyle HorizontalAlign="Center" Width="20px" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
+
+
                                                     <asp:TemplateField HeaderText="Payment Id">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvreqno12" runat="server" Style="text-align: left"
@@ -1574,6 +1590,9 @@
 
                                                             <asp:LinkButton ID="lnkbtnMerge" runat="server" OnClientClick="return FunConfirmMerge();"
                                                                 OnClick="lnkbtnMerge_Click" ToolTip="Merge" CssClass="btn  btn-default btn-sm"> <i class="fas fa-plus-square"></i> </span> </asp:LinkButton>
+
+
+                                                            
 
                                                             <%--<asp:LinkButton ID="lnkbtnMerge"runat="server" OnClick="lnkbtnMerge_Click"><span style="color:red" class="glyphicon  glyphicon-plus-sign"></span>  </asp:LinkButton>--%>
                                                         </FooterTemplate>

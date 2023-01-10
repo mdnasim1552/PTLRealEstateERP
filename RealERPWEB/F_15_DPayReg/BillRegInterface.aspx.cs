@@ -1017,6 +1017,50 @@ namespace RealERPWEB.F_15_DPayReg
         }
 
 
+
+        protected void lnkbtnSplit_Click(object sender, EventArgs e)
+        {
+
+
+            string comcod = this.GetCompCode();
+            int rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;  
+            string slnum = ((Label)this.grvIssued.Rows[rowindex].FindControl("lblgvreqno12")).Text.Trim();
+            string billno = ((Label)this.grvIssued.Rows[rowindex].FindControl("lbgvbillno")).Text.Trim();
+            int i = 0;
+            
+            string[] arrbill = billno.Split(',');
+            foreach (string arrbillno in arrbill)
+            {
+                string ibillno = arrbillno.Trim();
+                if (i == 0)
+                {
+                    i++;
+                    continue;
+                }
+                bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "SPLITSLNUM", slnum, ibillno, "", "", "", "", "", "", "", "", "", "", "", "", "");
+                if (!result)
+                {
+
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Merge Failed.";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                    return;
+
+                }
+            }
+
+              
+
+        ((Label)this.Master.FindControl("lblmsg")).Text = "Split Successfully";
+        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+        this.BillRequRpt();
+        this.RadioButtonList1_SelectedIndexChanged(null, null);
+
+            
+
+           
+        }
+
         protected void lnkbtnPayIdAppCancel_Click(object sender, EventArgs e)
         {
 
@@ -1174,23 +1218,32 @@ namespace RealERPWEB.F_15_DPayReg
 
             string billno = ((Label)this.grvIssued.Rows[rowindex].FindControl("lbgvbillno")).Text.Trim();
 
-            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "DELETEBILLAPPROVAL", slno, billno, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            string []arrbill = billno.Split(',');
 
-            if (result == true)
+            foreach (string arrbillno in arrbill)
             {
 
-                this.BillRequRpt();
-                this.RadioButtonList1_SelectedIndexChanged(null, null);
+                string ibillno = arrbillno.Trim();
+                bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "DELETEBILLAPPROVAL", slno, ibillno, "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+                if (!result)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('delete  Fail');", true);
+                    return;
+
+                }
+
 
 
             }
 
-            else
-            {
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('delete  Fail');", true);
 
-            }
+
+            this.BillRequRpt();
+            this.RadioButtonList1_SelectedIndexChanged(null, null);
+
+
 
 
 
@@ -1220,24 +1273,30 @@ namespace RealERPWEB.F_15_DPayReg
 
             string billno = ((Label)this.grvApproved.Rows[rowindex].FindControl("lbgvbillno")).Text.Trim();
 
-            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "DELETEBILLFORWARD", slno, billno, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            string[] arrbill = billno.Split(',');
 
-            if (result == true)
+            foreach (string arrbillno in arrbill)
             {
 
-                this.BillRequRpt();
-                this.RadioButtonList1_SelectedIndexChanged(null, null);
+                string ibillno = arrbillno.Trim();
 
 
+                bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "DELETEBILLFORWARD", slno, ibillno, "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+                if (!result)
+                {
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('delete  Fail');", true);
+                    return;
+
+                }
+
+               
             }
 
-            else
-            {
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('delete  Fail');", true);
-
-            }
-
+            this.BillRequRpt();
+            this.RadioButtonList1_SelectedIndexChanged(null, null);
 
         }
 
@@ -1264,23 +1323,28 @@ namespace RealERPWEB.F_15_DPayReg
 
             string billno = ((Label)this.gvforward.Rows[rowindex].FindControl("lbgvbillnofr")).Text.Trim();
 
-            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "DELETEBILLCHECKED", slno, billno, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
-            if (result == true)
+            string[] arrbill = billno.Split(',');
+
+            foreach (string arrbillno in arrbill)
             {
 
-                this.BillRequRpt();
-                this.RadioButtonList1_SelectedIndexChanged(null, null);
+                string ibillno = arrbillno.Trim();
+
+                bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "DELETEBILLCHECKED", slno, ibillno, "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+                if (!result)
+                {
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('delete  Fail');", true);
+                    return;
 
 
+                }
             }
 
-            else
-            {
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('delete  Fail');", true);
-
-            }
+            this.BillRequRpt();
+            this.RadioButtonList1_SelectedIndexChanged(null, null);
 
 
         }
@@ -1310,26 +1374,29 @@ namespace RealERPWEB.F_15_DPayReg
 
             string billno = ((Label)this.grvRecm.Rows[rowindex].FindControl("lbgvbillno")).Text.Trim();
 
-            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "DELETEPAYPROPOSAL", slno, billno, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            string[] arrbill = billno.Split(',');
 
-            if (result == true)
+            foreach (string arrbillno in arrbill)
             {
 
-                this.BillRequRpt();
-                this.RadioButtonList1_SelectedIndexChanged(null, null);
+                string ibillno = arrbillno.Trim();
+
+                bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "DELETEPAYPROPOSAL", slno, ibillno, "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+                if (!result)
+                {
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('delete  Fail');", true);
+                    return;
 
 
+                }
+
+                
             }
 
-            else
-            {
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('delete  Fail');", true);
-
-            }
-
-
-
+            this.BillRequRpt();
+            this.RadioButtonList1_SelectedIndexChanged(null, null);
 
 
 
