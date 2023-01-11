@@ -41,23 +41,16 @@
             </div>
             <div class="card card-fluid">
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row">                        
                         <div class="col-sm-3 col-md-3 col-lg-3">
                             <div class="form-group">
-                                <asp:Label ID="lbl" runat="server">Dristribute To</asp:Label>
-                                <asp:DropDownList ID="ddlEmpid" ClientIDMode="Static" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">
+                                <asp:Label ID="Label2" runat="server">Dristribute To</asp:Label>
+                                <asp:DropDownList ID="ddlEmpNameTo" ClientIDMode="Static" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="true" >
                                 </asp:DropDownList>
                             </div>
                         </div> 
-                        <%--<div class="col-sm-3 col-md-3 col-lg-3">
-                            <div class="form-group">
-                                <asp:Label ID="Label2" runat="server">To Employee</asp:Label>
-                                <asp:DropDownList ID="ddlEmpNameTo" ClientIDMode="Static" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">
-                                </asp:DropDownList>
-                            </div>
-                        </div> --%>
                         <div class="col-sm-1 col-md-1 col-lg-1">
-                            <asp:LinkButton ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" CssClass="btn btn-primary btn-sm mt20">Ok</asp:LinkButton>
+                            <asp:LinkButton ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" CssClass="btn btn-primary btn-sm mt20">Transfer</asp:LinkButton>
                         </div>
                         <div class="col-sm-1 col-md-1 col-lg-1">
                             <div class="form-group">
@@ -75,6 +68,13 @@
                                 </asp:DropDownList>
                             </div>
                         </div>  
+                        <div class="col-sm-3 col-md-3 col-lg-3" >
+                            <div class="form-group" >
+                                <asp:Label ID="lbl" runat="server" visible="false">Dristribute To</asp:Label>
+                                <asp:DropDownList ID="ddlEmpid" ClientIDMode="Static" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged" visible="false">
+                                </asp:DropDownList>
+                            </div>
+                        </div> 
                     </div>
                 </div>
             </div>
@@ -194,7 +194,7 @@
                                             <ItemTemplate>
                                                 <asp:CheckBox ID="chckTrnsfer" runat="server"
                                                     Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chkper"))=="True" %>'
-                                                    Width="50px" />
+                                                    Width="50px"  />
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
@@ -206,25 +206,6 @@
                                     <PagerStyle CssClass="gvPagination" />
                                     <HeaderStyle CssClass="grvHeader" />
                                 </asp:GridView>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="row mt-0 pb-0">
-                                
-                            </div>
-                            <div class="row mt-5 pb-0">
-
-                                
-
-                                <div class="col-8">
-
-                                    
-                                </div>
-                                <div class="col-12 text-center">
-
-                                    
-                                </div>
                             </div>
                         </div>
                     </div>

@@ -29,8 +29,6 @@ namespace RealERPWEB.F_21_MKT
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "CRM Lost Prospect Transfer";
 
-                string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-
                 GetAllSubdata();
 
                 GETEMPLOYEEUNDERSUPERVISED();
@@ -124,10 +122,10 @@ namespace RealERPWEB.F_21_MKT
             this.ddlEmpid.DataBind();
             this.ddlEmpid.SelectedValue = lempid;
 
-            //this.ddlEmpNameTo.DataTextField = "gdesc";
-            //this.ddlEmpNameTo.DataValueField = "gcod";
-            //this.ddlEmpNameTo.DataSource = dtE;
-            //this.ddlEmpNameTo.DataBind();
+            this.ddlEmpNameTo.DataTextField = "gdesc";
+            this.ddlEmpNameTo.DataValueField = "gcod";
+            this.ddlEmpNameTo.DataSource = dtE;
+            this.ddlEmpNameTo.DataBind();
 
 
         }
@@ -222,9 +220,9 @@ namespace RealERPWEB.F_21_MKT
                     string fteamcode = ((Label)gvProspectWorking.Rows[i].FindControl("lblteamcode")).Text.Trim();
                     string proscod = ((Label)gvProspectWorking.Rows[i].FindControl("lblproscod")).Text.Trim();
                     string proscodName = ((Label)gvProspectWorking.Rows[i].FindControl("lblgvProsName")).Text.Trim();
-                    string toemp = "";
+                    string toemp = this.ddlEmpNameTo.SelectedValue.ToString();
 
-                    result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "TRANSFER_PROSPECT", null, null, null, proscod, fteamcode, toemp, userid, proscodName, "", "", "", "",
+                    result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "LOST_TRANSFER_PROSPECT", null, null, null, proscod, fteamcode, toemp, userid, proscodName, "", "", "", "",
                    "", "", "", "", "", "", "", "", "", "", "");
                     if (!result)
                     {
