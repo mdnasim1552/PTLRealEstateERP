@@ -252,7 +252,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 if (comcod == "3354")
                 {
-                    this.sspnlv.Visible = false;
+                    this.sspnlv.Visible = true;
                 }
 
             }
