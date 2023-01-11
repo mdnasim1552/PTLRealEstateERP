@@ -870,6 +870,8 @@
     <EmbeddedResource Include="R_22_Sal\RptPaymentSystem.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalesCollectionStatement.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSaleDeclaration.rdlc" />
+    <Content Include="R_22_Sal\RptSalesInvCPDL.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptSalesInvCPDLPrint.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalesOpening.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptAccSumCustPayStatus.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptAccSummaryInflow.rdlc" />
