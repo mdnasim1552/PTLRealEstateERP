@@ -105,7 +105,8 @@ namespace RealERPWEB.F_17_Acc
                 string frmdate = txtfrmdate.Text.ToString();
                 string todate = txttodate.Text.ToString();
                 string deptcode = this.ddlDeptName.SelectedValue.ToString() == "000000000000" ? "94%" : this.ddlDeptName.SelectedValue.ToString() + "%";
-                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "RPTADVANCEDLOAN", frmdate, todate, deptcode, "", "", "", "", "", "");
+                string empcode = this.ddlempname.SelectedValue.ToString() == "000000000000" ? "93%" : this.ddlempname.SelectedValue.ToString() + "%";
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "RPTADVANCEDLOAN", frmdate, todate, deptcode, empcode, "", "", "", "", "");
                 if (ds1 == null)
                 {
                     this.gvadvLoan.DataSource = null;
