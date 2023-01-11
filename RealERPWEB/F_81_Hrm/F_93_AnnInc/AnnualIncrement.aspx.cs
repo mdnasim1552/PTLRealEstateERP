@@ -28,7 +28,7 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
             if (!IsPostBack)
             {
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-                if (dr1.Length==0)
+                if (dr1.Length == 0)
                     Response.Redirect("../AcceessError.aspx");
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
@@ -400,11 +400,11 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
 
             LocalReport Rpt1 = new LocalReport();
 
-            if (comcod == "3330")
+            if (comcod == "3330" || comcod == "3101")
             {
 
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_93_AnnInc.RptAnnInctrmentBridge", lst, null, null);
-                Rpt1.SetParameters(new ReportParameter("txtDate", "Basic Salary As On  " + Convert.ToDateTime(this.GetStdDate(this.txtdate.Text)).ToString("MMMM dd , yyyy")));
+                Rpt1.SetParameters(new ReportParameter("txtDate", " As On  " + Convert.ToDateTime(this.GetStdDate(this.txtdate.Text)).ToString("MMMM dd , yyyy")));
 
                 //rptmattrans = new RealERPRPT.R_81_Hrm.R_93_AnnInc.RptAnnInctrmentBridge();
                 //TextObject rptdate = rptmattrans.ReportDefinition.ReportObjects["date"] as TextObject;
@@ -671,12 +671,12 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
         //    this.LoadGrid();      
         //}
 
-      
+
         protected void imgbtnPreList_Click(object sender, EventArgs e)
         {
             this.GetPreviousList();
         }
-       
+
         protected void lbtnPutSameValue_Click(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)Session["tblAnnInc"];
@@ -719,8 +719,8 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
             DataTable dt = (DataTable)Session["tblAnnInc"];
             //string incno = this.lblCurIncrNo.Text.ToString().Trim().Substring(0, 3) + cutdate.Substring(7, 4) + this.lblCurIncrNo.Text.ToString().Trim().Substring(3, 2) + this.txtCurIncrNo.Text.ToString().Trim();
 
-           // this.txtdate.Text
-            string incno = this.lblCurIncrNo.Text.Trim().Substring(0, 3) + ASTUtility.Right((this.txtdate.Text.Trim()), 4) + this.lblCurIncrNo.Text.Trim().Substring(3, 2) + this.txtCurIncrNo.Text.Trim();     
+            // this.txtdate.Text
+            string incno = this.lblCurIncrNo.Text.Trim().Substring(0, 3) + ASTUtility.Right((this.txtdate.Text.Trim()), 4) + this.lblCurIncrNo.Text.Trim().Substring(3, 2) + this.txtCurIncrNo.Text.Trim();
             string empid = ((Label)this.gvAnnIncre.Rows[rownum].FindControl("lgvEmpId")).Text.Trim();
             bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ANNUAL_INCREMENT", "INCREMENTEMPLOYEEDELETE",
                        incno, empid, "", "", "", "", "", "", "", "", "", "", "", "", "");
@@ -770,7 +770,7 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
 
                 string preincreno = this.ddlPrevIncList.SelectedValue.ToString();
                 ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ANNUAL_INCREMENT", "GETPREINCREMENT", preincreno, txtDate, "", "", "", "", "", "", "");
-        
+
 
             }
             string empid = ds2.Tables[0].Rows[0]["empid"].ToString();
@@ -781,7 +781,7 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
                 return;
 
             }
-       
+
             DataRow drforgrid = dt.NewRow();
             drforgrid["comcod"] = ds2.Tables[0].Rows[0]["comcod"].ToString();
             drforgrid["companycod"] = ds2.Tables[0].Rows[0]["companycod"].ToString();
