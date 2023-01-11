@@ -58,8 +58,7 @@
 
                                 <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True"
                                     CssClass="form-control form-control-sm"
-                                    OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
-                                    <asp:ListItem>10</asp:ListItem>
+                                    OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">                                    
                                     <asp:ListItem>15</asp:ListItem>
                                     <asp:ListItem>20</asp:ListItem>
                                     <asp:ListItem>30</asp:ListItem>
@@ -85,7 +84,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <asp:GridView ID="grvInvRpt" runat="server" AllowPaging="True"
+                    <asp:GridView ID="grvInvRpt" runat="server" AllowPaging="True"  PageSize="15"
                         AutoGenerateColumns="False" OnPageIndexChanging="grvInvRpt_PageIndexChanging"
                         ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
                         OnRowDataBound="grvInvRpt_RowDataBound">
@@ -97,7 +96,8 @@
                                         Style="text-align: right"
                                         Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                 </ItemTemplate>
-                                <HeaderStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="14px" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                             </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Project Name">
@@ -111,7 +111,8 @@
                                         Width="250px"></asp:Label>
                                 </ItemTemplate>
 
-                                <HeaderStyle HorizontalAlign="Left" />
+                               <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Font-Size="14px" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="location">
                                 <ItemTemplate>
@@ -119,8 +120,8 @@
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "loc")) %>'
                                         Width="160px"></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Left" />
-                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Font-Size="14px" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Total Unit Qty">
                                 <ItemTemplate>
@@ -129,8 +130,8 @@
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
 
-                                <HeaderStyle HorizontalAlign="Center" />
-                                <ItemStyle HorizontalAlign="Right" />
+                                <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" Font-Size="14px" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                             </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Sold Qty">
@@ -144,8 +145,8 @@
                                         ForeColor="White" Style="text-align: right" Width="70px"></asp:Label>
                                 </FooterTemplate>
                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
-                                <HeaderStyle HorizontalAlign="Center" Width="70px" />
-                                <ItemStyle HorizontalAlign="Right" />
+                                 <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" Font-Size="14px" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Mgt. Booking">
                                 <ItemTemplate>
@@ -154,8 +155,8 @@
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
 
-                                <HeaderStyle HorizontalAlign="Center" />
-                                <ItemStyle HorizontalAlign="Right" />
+                                 <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" Font-Size="14px" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Unsold Qty">
                                 <ItemTemplate>
@@ -163,18 +164,10 @@
                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "usoldqty")).ToString("#,##0;(#,##0); ") %>'
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>
-                                <HeaderStyle HorizontalAlign="Center" Width="70px" />
-                                <ItemStyle HorizontalAlign="Right" />
+                                <ItemStyle HorizontalAlign="Right" VerticalAlign="Middle" Font-Size="14px" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="16px" />
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Exp. Handover Date">
-                                <ItemTemplate>
-                                    <asp:Label ID="lgvHdate" runat="server"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hdate")) %>'
-                                        Width="65px"></asp:Label>
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Left" />
-                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                            </asp:TemplateField>
+                           
                         </Columns>
 
                         <FooterStyle CssClass="grvFooter" />
