@@ -182,7 +182,6 @@ namespace RealERPWEB.F_14_Pro
             this.gvSubBill.DataSource = dt;
             this.gvSubBill.DataBind();
             this.FooterCalculation(dt);
-
         }
 
         private void FooterCalculation(DataTable dt)
@@ -208,8 +207,6 @@ namespace RealERPWEB.F_14_Pro
                        dt.Compute("sum(spayment)", ""))).ToString("#,##0.00;(#,##0.00); ");
             ((Label)this.gvSubBill.FooterRow.FindControl("lgvFNetpayableAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpayable)", "")) ? 0.00 :
                 dt.Compute("sum(netpayable)", ""))).ToString("#,##0.00;(#,##0.00); ");
-
-
 
         }
 
@@ -289,7 +286,5 @@ namespace RealERPWEB.F_14_Pro
         {
             this.GetProjectName();
         }
-
-      
     }
 }

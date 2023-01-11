@@ -2300,14 +2300,36 @@ namespace RealERPWEB.F_12_Inv
                         if (Type == "RateInput")
                         {
 
-
+                            string comnam, compname, frmname, SMSHead, SMSText;
+                            bool resultsms;
                             SendSmsProcess sms = new SendSmsProcess();
-                            string comnam = hst["comnam"].ToString();
-                            string compname = hst["compname"].ToString();
-                            string frmname = "PurReqApproval.aspx?Type=Approval";
-                            string SMSHead = "Ready To Requisiton Approval(Purchase Requisition)";
-                            string SMSText = comnam + ":\n" + SMSHead + "\n" + "MRF No: " + mrfno;
-                            bool resultsms = sms.SendSmms(SMSText, ApprovByid, frmname);
+
+                            comnam = hst["comnam"].ToString();
+                            compname = hst["compname"].ToString();
+                            frmname = "PurReqApproval?Type=Approval";
+                            SMSHead = "Ready To Requisiton Approval(Purchase Requisition)";
+                            SMSText = comnam + ":\n" + SMSHead + "\n" + "MRF No: " + mrfno;
+
+                            switch (comcod)
+                            {
+                                case "3101"://PTL
+                                case "3333"://Alliance                              
+                                   
+                                     resultsms = sms.SendSms_novocom(SMSText, ApprovByid, frmname);                                  
+                                    break;
+
+
+                                default:                                
+                                   
+                                     resultsms = sms.SendSmms(SMSText, ApprovByid, frmname);
+                                   
+
+                                    break;
+                            
+                            
+                            }
+
+
                             if (!resultsms)
                             {
                                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Message Send Fail.');", true);
@@ -2316,6 +2338,7 @@ namespace RealERPWEB.F_12_Inv
                             {
                                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Message Send Successfully.');", true);
                             }
+
 
                         }
 

@@ -75,8 +75,7 @@ namespace RealERPWEB.F_12_Inv
 
             }
 
-            this.lblReqNarr.Visible = false;
-            this.txtNarr.Visible = false;
+           
             this.txtCurTransDate_CalendarExtender.EndDate = System.DateTime.Today;
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -331,7 +330,26 @@ namespace RealERPWEB.F_12_Inv
         }
         protected void lnkselect_Click(object sender, EventArgs e)
         {
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                //case "3101":
+                case "3370":
+                    this.lblReqNarr.Visible = true;
+                    this.txtNarr.Visible = true;
+                    string fmprj = this.ddlprjlistfrom.SelectedValue.ToString();
+                    string tomprj = this.ddlprjlistto.SelectedValue.ToString();
+                    DataSet ds21 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "MATERIALENTRYNATATION", fmprj, tomprj, "", "", "", "", "", "", "");
+                    ViewState["prjnaton"] = ds21.Tables[0];
+                    string naration = ds21.Tables[0].Rows.Count>0 ? ds21.Tables[0].Rows[0]["mtrnar"].ToString(): "";
+                    this.txtNarr.Text = naration;
+                    break;
+                default:
+                    this.lblReqNarr.Visible = false;
+                    this.txtNarr.Visible = false;
+                    break;
 
+            }
             string rescode = this.ddlreslist.SelectedValue.ToString().Trim();
             string spcfcod = this.ddlResSpcf.SelectedValue.ToString();
             DataTable dt = (DataTable)ViewState["tblmattrns"];
@@ -667,11 +685,19 @@ namespace RealERPWEB.F_12_Inv
             //    this.GetMatTrns();
 
             DataRow[] dr2 = dt.Select("qty=0.00");
+            DataRow[] dr3 = dt.Select("rate=0.00");
 
 
             if (dr2.Length > 0)
             {
                 msg = "Please Fillup Qtuantity  ";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                return;
+            }
+
+            if(dr3.Length > 0)
+            {
+                msg = "You Can not Save Without Rate";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }

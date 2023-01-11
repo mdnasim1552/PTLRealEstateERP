@@ -314,9 +314,9 @@ namespace RealERPWEB.F_09_PImp
             string pactcode = this.ddlprjlist.SelectedValue.ToString();
             string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
             string currentptah = "PurchasePrint.aspx?Type=ConBillPrint&lisuno=" + lisuno + "&pactcode=" + pactcode;
-            string totalpath = hostname + currentptah;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
-
+            //string totalpath = hostname + currentptah;
+            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
+            Response.Redirect("~/F_99_Allinterface/" + currentptah);
             //string comcod = this.GetCompCode();
 
             //switch (comcod)

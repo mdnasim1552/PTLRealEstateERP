@@ -197,13 +197,13 @@
                                         <div class="col-md-5 pading5px">
 
 
-                                            <asp:Label ID="Label13" runat="server" CssClass=" smLbl_to"
+                                           <%-- <asp:Label ID="Label13" runat="server" CssClass=" smLbl_to"
                                                 Text="From:"></asp:Label>
 
 
                                             <asp:TextBox ID="txtFDate" runat="server" CssClass="inputDateBox" TabIndex="5"></asp:TextBox>
                                             <cc1:CalendarExtender ID="CalendarExtender2" runat="server"
-                                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtFDate"></cc1:CalendarExtender>
+                                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtFDate"></cc1:CalendarExtender>--%>
 
                                             <asp:Label ID="Label3" runat="server" CssClass="smLbl_to"
                                                 Text="to:"></asp:Label>

@@ -844,6 +844,15 @@
                                             <asp:ListItem>300</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
+                                    <div class="col-md-2">
+                                         <asp:Label ID="Label34" runat="server">Batch List</asp:Label>
+                                        <asp:DropDownList ID="ddlsearchBatchlist" runat="server" AutoPostBack="True" CssClass="chzn-select form-control form-control-sm"></asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-2 mt-3">
+                                        <asp:LinkButton runat="server" ID="btnbatchSearch" OnClick="btnbatchSearch_Click" CssClass="btn btn-primary btn-sm">Search</asp:LinkButton>
+
+                                    </div>
+
                                 </div>
                                 <div class="row mt-2">
                                     <asp:GridView ID="gv_BatchList" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
@@ -1028,6 +1037,14 @@
                                             <asp:ListItem>300</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
+                                     <div class="col-md-3">
+                                         <asp:Label ID="Label35" runat="server">Title List</asp:Label>
+                                        <asp:DropDownList ID="ddlsearchtitle" runat="server" AutoPostBack="True" CssClass="chzn-select form-control form-control-sm"></asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-2 mt-3">
+                                        <asp:LinkButton runat="server" ID="btnsearchtitle" OnClick="btnsearchtitle_Click" CssClass="btn btn-primary btn-sm">Search</asp:LinkButton>
+
+                                    </div>
                                 </div>
                                 <div class="table-responsive mt-2">
                                     <asp:GridView ID="gvAssingJob" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
@@ -1175,6 +1192,14 @@
                                             <asp:ListItem>200</asp:ListItem>
                                             <asp:ListItem>300</asp:ListItem>
                                         </asp:DropDownList>
+                                    </div>
+                                       <div class="col-md-3">
+                                         <asp:Label ID="Label36" runat="server">Task Title</asp:Label>
+                                        <asp:DropDownList ID="ddlsearchtasktitle" runat="server" AutoPostBack="True" CssClass="chzn-select form-control form-control-sm"></asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-2 mt-3">
+                                        <asp:LinkButton runat="server" ID="btntasktitle"  CssClass="btn btn-primary btn-sm">Search</asp:LinkButton>
+
                                     </div>
                                 </div>
                                 <div class="table-responsive mt-2">

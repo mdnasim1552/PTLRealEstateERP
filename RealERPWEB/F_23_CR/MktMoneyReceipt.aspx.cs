@@ -960,6 +960,9 @@ namespace RealERPWEB.F_23_CR
                     case "3340":
                     case "3337":
                     case "3101":
+                    case "3354":
+
+
                         string refno = this.txtrefid.Text.Trim();
                         DataSet ds1 = MktData.GetTransInfo(compcod, "SP_ENTRY_PURCHASE_01", "CHECKMRRREFNO", refno, "", "", "",
                             "", "", "", "", "");

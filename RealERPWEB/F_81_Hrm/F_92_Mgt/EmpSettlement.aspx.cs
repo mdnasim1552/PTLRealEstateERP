@@ -124,6 +124,23 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.txtCurDate.Enabled = true;
         }
 
+        private string getcallType()
+        {
+            string calltype = "";
+            string comcod = GetComeCode();
+            switch (comcod)
+            {
+                case "3365":
+                    calltype = "GET_EMP_SETTLEMENT_INFO";
+                    break;
+
+                case "3370":
+                    calltype = "GET_EMP_SETTLEMENT_INFO_CPDL";
+                    break;
+            }
+            return calltype;
+        }
+
         private void ShowPerformance()
 
         {
@@ -143,10 +160,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 empid = Request.QueryString["actcode"].ToString();
             }
+            string calltype = getcallType();
 
             string rpttype = this.rbtnstatement.SelectedIndex.ToString();
             var emplist = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSepEmployee>)ViewState["empdata"];
-            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ACR_EMPLOYEE", "GET_EMP_SETTLEMENT_INFO", empid, rpttype, "", "", "", "", "", "");
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ACR_EMPLOYEE", calltype, empid, rpttype, "", "", "", "", "", "");
             if (ds3 == null)
                 return;
             ViewState["tblsttlmnt"] = ds3.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>();
@@ -193,6 +211,19 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.gvsttlededuct.DataSource = sttlmntinfo2;
             this.gvsttlededuct.DataBind();
             this.FooterCalculation();
+
+            if (GetComeCode() == "3370")
+            {
+                this.gvsettlemntcredit.Columns[0].Visible = false;
+                this.gvsettlemntcredit.Columns[2].Visible = false;
+                this.gvsettlemntcredit.Columns[3].Visible = false;
+                this.gvsettlemntcredit.Columns[4].Visible = false;
+
+                this.gvsttlededuct.Columns[0].Visible = false;
+                this.gvsttlededuct.Columns[2].Visible = false;
+                this.gvsttlededuct.Columns[3].Visible = false;
+                this.gvsttlededuct.Columns[4].Visible = false;
+            }
 
 
             var paycount = sttlmntinfo1;
@@ -283,9 +314,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             var sttlmntinfo1 = ((List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt1"]).OrderBy(x => x.seq).ToList();
             var sttlmntinfo2 = ((List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt2"]).OrderBy(x => x.seq).ToList();
-            //var sttlmntinfo1 = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt1"];
-
-            //var sttlmntinfo2 = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt2"];
             var sttlmntinfo = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt"];
             for (int i = 0; i < this.gvsettlemntcredit.Rows.Count; i++)
             {
@@ -293,18 +321,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string frmdat = ((TextBox)gvsettlemntcredit.Rows[i].FindControl("txtfrmdat")).Text.ToString();
                 string todat = ((TextBox)gvsettlemntcredit.Rows[i].FindControl("txttodat")).Text.ToString();
                 string hrgcod = ((Label)gvsettlemntcredit.Rows[i].FindControl("lblhrgcod")).Text.ToString();
-
                 string calculation = ((TextBox)gvsettlemntcredit.Rows[i].FindControl("lblcalculation")).Text.ToString();
-
-                //double gross = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)gvsettlemntcredit.Rows[i].FindControl("lblcalculation")).Text.Trim()));
 
                 double gross = Convert.ToDouble("0" + ((TextBox)gvsettlemntcredit.Rows[i].FindControl("txtgross")).Text.Trim());
                 double ttlamt = Convert.ToDouble("0" + ((TextBox)gvsettlemntcredit.Rows[i].FindControl("TtlAmout")).Text.Trim());
                 double numofday =Convert.ToDouble("0"+ ((TextBox)gvsettlemntcredit.Rows[i].FindControl("lblnmday")).Text.Trim());
                 //var index = sttlmntinfo1.FindIndex(p => p.hrgcod == hrgcod);
                 int ttlday = 30;
-                double years = 0.0;
-                 double days = 0.00;
 
                 sttlmntinfo1[i].amount = gross;
                 sttlmntinfo1[i].numofday = numofday;
@@ -313,60 +336,17 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 sttlmntinfo1[i].frmdat = frmdat;
                 sttlmntinfo1[i].todat = todat;
 
-                if (hrgcod == "35101" || hrgcod == "35108" || hrgcod == "35110" || hrgcod == "35106")
+                if (GetComeCode() == "3365" && (hrgcod == "35101" || hrgcod == "35108" || hrgcod == "35110" || hrgcod == "35106"))
                 {
                  
                     ttlday = System.DateTime.DaysInMonth(Convert.ToInt32(Convert.ToDateTime(frmdat).ToString("yyyy")), Convert.ToInt32(Convert.ToDateTime(frmdat).ToString("MM")));
 
-                    //var prevDate = Convert.ToDateTime(frmdat);
-                    //var today = Convert.ToDateTime(todat);
-                    //var diffOfDates = today.Subtract(prevDate);
-                    //days = Convert.ToDouble(diffOfDates.Days);
-                    //years = Convert.ToDouble(diffOfDates.Days) / 365;
-                    //numofday = days;
                     numofday =ASTUtility.DatediffTotalDays(Convert.ToDateTime(todat), Convert.ToDateTime(frmdat));
-
-
-
-
-
                     sttlmntinfo1[i].numofday = Convert.ToDouble("0" + numofday.ToString());
             
-
                 }
                 sttlmntinfo1[i].calculation = calculation;
                 sttlmntinfo1[i].ttlamt = Convert.ToDouble(ASTUtility.ExprToValue(calculation));
-
-
-                //switch (hrgcod)
-                //{
-                //    case "35101"://salary 
-                //        sttlmntinfo1[i].numofday = Convert.ToDouble("0" + days.ToString("0.##"));
-                //        sttlmntinfo1[i].ttlamt = (gross / ttlday) * numofday;
-                //        break;
-
-                //    case "35108"://earn leave 
-                //        sttlmntinfo1[i].numofday = Convert.ToDouble("0" + days.ToString("0.##"));
-                //        sttlmntinfo1[i].ttlamt = gross * 12 / 365 * numofday;
-                //        break;
-
-                //    case "35110": //Gratuity
-                //        sttlmntinfo1[i].numofday = Convert.ToDouble("0" + years.ToString("0.##"));
-                //        break;
-
-                //    case "35114"://Fooding Allowance
-                //        sttlmntinfo1[i].numofday = Convert.ToDouble("0" + days.ToString("0.##"));
-                //        sttlmntinfo1[i].ttlamt = (gross / ttlday) * numofday;
-                //        break;
-
-                //    case "35106"://Notice Salary
-                //        sttlmntinfo1[i].numofday = Convert.ToDouble("0" + days.ToString("0.##"));
-                //        sttlmntinfo1[i].ttlamt = gross * 12 / 365 * numofday;
-                //        break;
-
-                //}
-
-
 
             }
 
@@ -379,9 +359,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 double gross = Convert.ToDouble("0" + ((TextBox)gvsttlededuct.Rows[i].FindControl("txtgross")).Text.Trim());
                 double ttlamt = Convert.ToDouble("0" + ((TextBox)gvsttlededuct.Rows[i].FindControl("TtlAmout")).Text.Trim());
                 double numofday = Convert.ToDouble("0" + ((TextBox)gvsttlededuct.Rows[i].FindControl("lblnmday")).Text.Trim());
-                double years = 0.0;
-                double days = 0.00;
-                int ttlday = 30;
                 string calculation = ((TextBox)gvsttlededuct.Rows[i].FindControl("lblcalculation")).Text.ToString();
 
 
@@ -393,65 +370,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 sttlmntinfo2[i].frmdat = frmdat;
                 sttlmntinfo2[i].todat = todat;
 
-                //if (hrgcod == "35201")
-                //{
-                //     ttlday = System.DateTime.DaysInMonth(Convert.ToInt32(Convert.ToDateTime(frmdat).ToString("yyyy")), Convert.ToInt32(Convert.ToDateTime(frmdat).ToString("MM")));
-
-                //    var prevDate = Convert.ToDateTime(frmdat);
-                //    var today = Convert.ToDateTime(todat);
-                //    var diffOfDates = today.Subtract(prevDate);
-                //    days = Convert.ToDouble(diffOfDates.Days);
-                //    years = Convert.ToDouble(diffOfDates.Days) / 365;
-                //    numofday = days;
-                //}
-                if (hrgcod == "35206" || hrgcod == "35224" || hrgcod == "35226" || hrgcod == "35228" || hrgcod == "35201" || hrgcod == "35216")
+                if (GetComeCode()=="3365" && (hrgcod == "35206" || hrgcod == "35224" || hrgcod == "35226" || hrgcod == "35228" || hrgcod == "35201" || hrgcod == "35216"))
                 {
-                    //ttlday = System.DateTime.DaysInMonth(Convert.ToInt32(Convert.ToDateTime(frmdat).ToString("yyyy")), Convert.ToInt32(Convert.ToDateTime(frmdat).ToString("MM")));
-
-                    //var prevDate = Convert.ToDateTime(frmdat);
-                    //var today = Convert.ToDateTime(todat);
-                    //var diffOfDates = today.Subtract(prevDate);
-                    //days = Convert.ToDouble(diffOfDates.Days);
-                    //years = Convert.ToDouble(diffOfDates.Days) / 365;
-                    //numofday = days;
-          
                     sttlmntinfo2[i].numofday = numofday;
-
-
                 }
                 sttlmntinfo2[i].calculation = calculation;
                 sttlmntinfo2[i].ttlamt = Convert.ToDouble(ASTUtility.ExprToValue(calculation));
 
 
-                //switch (hrgcod)
-                //{
-                //    case "35206"://absent
-                //        sttlmntinfo2[i].ttlamt = (gross / ttlday) * numofday;
-
-                //        break;
-
-                //    case "35224"://cl 	
-                //        sttlmntinfo2[i].ttlamt = gross*12/365* numofday;
-                //        break;
-                //    case "35226"://sl leave 
-                //        sttlmntinfo2[i].ttlamt = gross * 12 / 365 * numofday;
-
-
-                //        break;
-                //    case "35228"://el leave
-                //        sttlmntinfo2[i].ttlamt = gross * 12 / 365 * numofday;
-                //        break;
-
-                //    case "35201"://Notice Period Salary
-                //        sttlmntinfo2[i].ttlamt = gross;
-                //        break;
-
-
-                //    case "35216"://Transport Facilities
-                //        sttlmntinfo2[i].ttlamt = (gross / ttlday) * numofday;
-                //        break;
-
-                //}
             }
             ViewState["tblsttlmnt1"] = sttlmntinfo1;
             ViewState["tblsttlmnt2"] = sttlmntinfo2;
@@ -462,140 +388,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
        
 
-        private void printRptEnglish()
-        {
-            string comcod = this.GetComeCode();
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comnam = hst["comnam"].ToString();
-            string compname = hst["compname"].ToString();
-            string comadd = hst["comadd1"].ToString();
-            string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-
-
-
-            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-
-            var emplist = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSepEmployee>)ViewState["empdata"];
-            var sttlmntinfo = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt"];
-
-
-
-
-            var list1 = sttlmntinfo.FindAll(p => p.hrgcod.Substring(0, 3) == "351");
-            var list2 = sttlmntinfo.FindAll(p => p.hrgcod.Substring(0, 3) == "352");
-
-
-            string billDate = emplist[0].billdate.ToString("dd-MMM-yyyy");
-            string name = emplist[0].empname.ToString();
-            string Desgin = emplist[0].designation.ToString();
-            string Id = emplist[0].idno.ToString();
-            string Section = emplist[0].deptname.ToString();
-            string jobseperation = emplist[0].septypedesc.ToString();
-            string joining = emplist[0].joindat.ToString("dd-MMM-yyyy");
-            string sepdate = emplist[0].retdat.ToString("dd-MMM-yyyy");
-            var netamount = (sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "351").Sum(p => p.ttlamt) - sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "352").Sum(p => p.ttlamt)).ToString("#,##0.00;(#,##0.00); ");
-            var grossslary = sttlmntinfo[0].ttlamt.ToString();
-            string servicelength = emplist[0].servleng.ToString();
-
-            double netpay = Convert.ToDouble(netamount);
-
-
-
-            LocalReport rpt1 = new LocalReport();
-            rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_92_Mgt.RptEmpSattelment", list1, list2, null);
-            rpt1.EnableExternalImages = true;
-
-            rpt1.SetParameters(new ReportParameter("comnam", comnam));
-            rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            rpt1.SetParameters(new ReportParameter("rpttitle", "Employee Final Sattelment"));
-            rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-            rpt1.SetParameters(new ReportParameter("netamount", netamount));
-            rpt1.SetParameters(new ReportParameter("footer", ASTUtility.Concat("", username, printdate)));
-
-            // for Show EmplInfo
-            rpt1.SetParameters(new ReportParameter("billDate", billDate));
-            rpt1.SetParameters(new ReportParameter("name", name));
-            rpt1.SetParameters(new ReportParameter("Desgin", Desgin));
-            rpt1.SetParameters(new ReportParameter("Id", Id));
-            rpt1.SetParameters(new ReportParameter("Section", Section));
-            rpt1.SetParameters(new ReportParameter("jobseperation", jobseperation));
-            rpt1.SetParameters(new ReportParameter("grossslary", grossslary));
-            rpt1.SetParameters(new ReportParameter("joining", joining));
-            rpt1.SetParameters(new ReportParameter("sepdate", sepdate));
-            rpt1.SetParameters(new ReportParameter("servicelength", servicelength));
-            rpt1.SetParameters(new ReportParameter("inwords", ASTUtility.Trans(netpay, 2)));
-
-
-            Session["Report1"] = rpt1;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" + ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-        }
-        private void printRptBangla()
-        {
-            string comcod = this.GetComeCode();
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comnam = hst["comnam"].ToString();
-            string compname = hst["compname"].ToString();
-            string comadd = hst["comadd1"].ToString();
-            string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-
-
-
-            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-
-            var emplist = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSepEmployee>)ViewState["empdata"];
-            var sttlmntinfo = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt"];
-
-
-
-
-            var list1 = sttlmntinfo.FindAll(p => p.hrgcod.Substring(0, 3) == "351");
-            var list2 = sttlmntinfo.FindAll(p => p.hrgcod.Substring(0, 3) == "352");
-
-
-            string billDate = emplist[0].billdate.ToString("dd-MMM-yyyy");
-            string name = emplist[0].empname.ToString();
-            string Desgin = emplist[0].designation.ToString();
-            string Id = emplist[0].idno.ToString();
-            string Section = emplist[0].deptname.ToString();
-            string jobseperation = emplist[0].septypedesc.ToString();
-            string joining = emplist[0].joindat.ToString("dd-MMM-yyyy");
-            string sepdate = emplist[0].retdat.ToString("dd-MMM-yyyy");
-            var netamount = (sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "351").Sum(p => p.ttlamt) - sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "352").Sum(p => p.ttlamt)).ToString("#,##0.00;(#,##0.00); ");
-            string servicelength = emplist[0].servleng.ToString();
-            var grossslary = sttlmntinfo[0].ttlamt.ToString();
-
-            double netpay = Convert.ToDouble(netamount);
-
-
-
-            LocalReport rpt1 = new LocalReport();
-            rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_92_Mgt.RptEmpSattelmentBangla", list1, list2, null);
-            rpt1.EnableExternalImages = true;
-
-            rpt1.SetParameters(new ReportParameter("comnam", comnam));
-            rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            rpt1.SetParameters(new ReportParameter("rpttitle", "চূড়ান্ত নিষ্পত্তিকরন বিল"));
-            rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-            rpt1.SetParameters(new ReportParameter("netamount", netamount));
-            rpt1.SetParameters(new ReportParameter("footer", ASTUtility.Concat("", username, printdate)));
-
-            // for Show EmplInfo
-            rpt1.SetParameters(new ReportParameter("billDate", billDate));
-            rpt1.SetParameters(new ReportParameter("name", name));
-            rpt1.SetParameters(new ReportParameter("Desgin", Desgin));
-            rpt1.SetParameters(new ReportParameter("Id", Id));
-            rpt1.SetParameters(new ReportParameter("Section", Section));
-            rpt1.SetParameters(new ReportParameter("jobseperation", jobseperation));
-            rpt1.SetParameters(new ReportParameter("joining", joining));
-            rpt1.SetParameters(new ReportParameter("sepdate", sepdate));
-            rpt1.SetParameters(new ReportParameter("servicelength", servicelength));
-            rpt1.SetParameters(new ReportParameter("inwords", ASTUtility.Trans(netpay, 2)));
-
-            Session["Report1"] = rpt1;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" + ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-        }
         protected void lnkbtnUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -776,7 +568,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             double ttlamt = 0.00;
             double perday = 0.00;
 
-            if (hrgcod== "35101" || hrgcod== "35108" || hrgcod == "35110" || hrgcod== "35106")
+            if (GetComeCode()=="3365" &&  (hrgcod== "35101" || hrgcod== "35108" || hrgcod == "35110" || hrgcod== "35106"))
             {
                 frmdat = curdate;
                 todat = curdate;

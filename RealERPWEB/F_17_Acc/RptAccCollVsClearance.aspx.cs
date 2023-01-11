@@ -93,7 +93,7 @@ namespace RealERPWEB.F_17_Acc
                 DataView dv;
                 if (this.Request.QueryString["Type"] == "MonSales")
                 {
-                    
+
                     dv = dtscr.DefaultView;
                     dv.RowFilter = ("secid like '9402%'");
                     this.ddlSalesTeam.DataTextField = "gdesc";
@@ -334,7 +334,7 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
                 case "MonSalPerTarWise":
-        
+
                     this.ShowSalMktPerWise();
                     break;
 
@@ -604,8 +604,8 @@ namespace RealERPWEB.F_17_Acc
             var lst = dtc.DataTableToList<RealEntity.C_17_Acc.RptMonWiseCol>();
 
 
-           // List<RealEntity.C_17_Acc.RptMonWiseCol> Lists = new List<RealEntity.C_17_Acc.RptMonWiseCol>();
-          //  List<RealEntity.C_17_Acc.RptMonWiseCol> newList = ds1.Tables[2].DataTableToList<RealEntity.C_17_Acc.RptMonWiseCol>();
+            // List<RealEntity.C_17_Acc.RptMonWiseCol> Lists = new List<RealEntity.C_17_Acc.RptMonWiseCol>();
+            //  List<RealEntity.C_17_Acc.RptMonWiseCol> newList = ds1.Tables[2].DataTableToList<RealEntity.C_17_Acc.RptMonWiseCol>();
             //double a1 = newList.Select(a => a.amt1).Sum();
             //double a2 = newList.Select(a => a.amt2).Sum();
             //double a3 = newList.Select(a => a.amt3).Sum();
@@ -620,7 +620,7 @@ namespace RealERPWEB.F_17_Acc
             //double a12 = newList.Select(a => a.amt12).Sum();
             ////double crore = 10000000;
             ////Lists.Add(new RealEntity.C_17_Acc.RptMonWiseCol(a1 / crore, a2 / crore, a3 / crore, a4 / crore, a5 / crore, a6 / crore, a7 / crore, a8 / crore, a9 / crore, a10 / crore, a11 / crore, a12 / crore));
-           // Lists.Add(new RealEntity.C_17_Acc.RptMonWiseCol(a1, a2, a3, a4, a5, a6 , a7, a8, a9, a10, a11, a12));
+            // Lists.Add(new RealEntity.C_17_Acc.RptMonWiseCol(a1, a2, a3, a4, a5, a6 , a7, a8, a9, a10, a11, a12));
             var jsonSerializer = new JavaScriptSerializer();
             //var json = jsonSerializer.Serialize(Lists);
             var json = jsonSerializer.Serialize(lst);
@@ -657,7 +657,7 @@ namespace RealERPWEB.F_17_Acc
             ViewState.Remove("tblcollvscl");
             string comcod = this.GetCompCode();
 
-           
+
 
             string txtdatefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim()).ToString("dd-MMM-yyyy");
             string txtdateto = Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd-MMM-yyyy");
@@ -726,8 +726,8 @@ namespace RealERPWEB.F_17_Acc
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Month Less Than Equal Twelve');", true);
                 return;
             }
-            string withCUnit = (this.WithCanUnit.Checked == true ?"CU": "");
-            string teamcode = this.ddlSalesTeam.SelectedValue.ToString()+"%";
+            string withCUnit = (this.WithCanUnit.Checked == true ? "CU" : "");
+            string teamcode = this.ddlSalesTeam.SelectedValue.ToString() + "%";
             string txtdatefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim()).ToString("dd-MMM-yyyy");
             string txtdateto = Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd-MMM-yyyy");
             DataSet ds1 = AccData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", "RPTMONWISESALES", txtdatefrm, txtdateto, teamcode, withCUnit, "", "", "", "", "");
@@ -1164,7 +1164,7 @@ namespace RealERPWEB.F_17_Acc
                     //this.FooterCalculation();
                     break;
 
-                    
+
             }
 
         }
@@ -1261,6 +1261,8 @@ namespace RealERPWEB.F_17_Acc
                     ((Label)this.gvMonCollect.FooterRow.FindControl("lgvFamt10")).Text = Convert.ToDouble((Convert.IsDBNull(dt4.Compute("sum(amt10)", "")) ? 0.00 : dt4.Compute("sum(amt10)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvMonCollect.FooterRow.FindControl("lgvFamt11")).Text = Convert.ToDouble((Convert.IsDBNull(dt4.Compute("sum(amt11)", "")) ? 0.00 : dt4.Compute("sum(amt11)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvMonCollect.FooterRow.FindControl("lgvFamt12")).Text = Convert.ToDouble((Convert.IsDBNull(dt4.Compute("sum(amt12)", "")) ? 0.00 : dt4.Compute("sum(amt12)", ""))).ToString("#,##0;(#,##0); ");
+                    Session["Report1"] = gvMonCollect;
+                    ((HyperLink)this.gvMonCollect.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
                     break;
 
@@ -1528,7 +1530,7 @@ namespace RealERPWEB.F_17_Acc
         }
         private void PrintMonSalPerTarWise()
         {
- 
+
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = GetCompCode();
             string comnam = hst["comnam"].ToString();
@@ -1540,7 +1542,7 @@ namespace RealERPWEB.F_17_Acc
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             DataTable dt = (DataTable)ViewState["tblcollvscl"];
-            if(dt==null || dt.Rows.Count==0)
+            if (dt == null || dt.Rows.Count == 0)
                 return;
 
             LocalReport Rpt1 = new LocalReport();
@@ -1740,10 +1742,11 @@ namespace RealERPWEB.F_17_Acc
             string username = hst["username"].ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            DataTable dt = (DataTable)Session["tblbgd"];
+            DataTable dt1 = (DataTable)ViewState["tblcollvscl"];
+
 
             LocalReport Rpt1 = new LocalReport();
-            var lst = dt.DataTableToList<RealEntity.C_22_Sal.Sales_BO.MonthWisseSales>();
+            var lst = dt1.DataTableToList<RealEntity.C_22_Sal.Sales_BO.MonthWisseSales>();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptMonWiseCollection", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
@@ -3090,7 +3093,7 @@ namespace RealERPWEB.F_17_Acc
 
         protected void WithCanUnit_CheckedChanged(object sender, EventArgs e)
         {
-            lbtnOk_Click(null,null);
+            lbtnOk_Click(null, null);
         }
     }
 }

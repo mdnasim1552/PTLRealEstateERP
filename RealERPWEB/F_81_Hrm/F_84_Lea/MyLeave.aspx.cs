@@ -236,10 +236,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 if ((comcod == "3365" || comcod == "3101") && qtype == "MGT")
                 {
                     this.SpResign.Visible = true;
+                    this.sspnlv.Visible = true;
                 }
                 else
                 {
                     this.SpResign.Visible = false;
+                    this.sspnlv.Visible = false;
 
                 }
             }else if (comcod=="3370")
@@ -794,7 +796,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 #endregion
 
                 string callType = "GETSUPERVISERMAIL";
-                if ((comcod == "3368" || comcod == "3101"))
+                if (comcod == "3368")
                 {
                     callType = "GETDELEGATIONEMPEMAIL";
                 }
@@ -817,13 +819,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
                 string hyptext =  "http://";
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string portAdd = hst["portnum"].ToString().Length == 0 ? "" : (":" + hst["portnum"].ToString());
 
                 for (int j = 0; j < ds1.Tables[0].Rows.Count; j++)
                 {
                     string suserid = ds1.Tables[0].Rows[0]["suserid"].ToString();
                     string tomail = ds1.Tables[0].Rows[0]["mail"].ToString();
                     string roletype = (string)ds1.Tables[0].Rows[0]["roletype"];
-                    string uhostname = hyptext + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
+                    string uhostname = hyptext + HttpContext.Current.Request.Url.Authority+ portAdd + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
                     string currentptah = "EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid=" + suserid + "&RoleType=" + roletype;
                     string totalpath = uhostname + currentptah;
 
@@ -941,7 +945,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     {
                         SendSmsProcess sms = new SendSmsProcess();
                         string SMSText = "New Leave Request from : " + frmdate + " To " + todate;// 
-                        bool resultsms = sms.SendSmmsPwd(comcod, SMSText, supphone);
+                        bool resultsms;
+                        resultsms = sms.SendSmmsPwd(comcod, SMSText, supphone);
+                       
+                        
                     }
                         if (compmail == "True")
                     {
@@ -1060,40 +1067,56 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             this.gvLeaveStatus.DataSource = (DataTable)Session["tblleavest"];
             this.gvLeaveStatus.DataBind();
         }
-        protected void SendSms(string frmdate, string todate)
-        {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = this.GetComeCode();
-            string empid = this.GetEmpID();
-            var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETSUPERVISER", empid, "", "", "", "", "", "", "", "");
+        //protected void SendSms(string frmdate, string todate)
+        //{
+        //    Hashtable hst = (Hashtable)Session["tblLogin"];
+        //    string comcod = this.GetComeCode();
+        //    string empid = this.GetEmpID();
+        //    var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETSUPERVISER", empid, "", "", "", "", "", "", "", "");
 
-            if (ds == null)
-                return;
-            DataTable dt = (DataTable)Session["tblleave"];
+        //    if (ds == null)
+        //        return;
+        //    DataTable dt = (DataTable)Session["tblleave"];
 
-            //DataRow[] dr = dt.Select("lapplied>0"); 
-            double lapplied = Convert.ToDouble(this.Duration.Value.ToString());
-            string leavedesc = this.ddlLvType.SelectedValue.ToString();
+        //    //DataRow[] dr = dt.Select("lapplied>0"); 
+        //    double lapplied = Convert.ToDouble(this.Duration.Value.ToString());
+        //    string leavedesc = this.ddlLvType.SelectedValue.ToString();
 
 
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
-                string phone = (string)ds.Tables[0].Rows[i]["phone"];
-                string empname = (string)ds.Tables[1].Rows[0]["name"];
-                string empdesig = (string)ds.Tables[1].Rows[0]["desig"];
-                string appdate = "";
-                if (hst["compsms"].ToString() == "True")
-                {
-                    SendSmsProcess sms = new SendSmsProcess();
-                    string comnam = hst["comnam"].ToString();
-                    string compname = hst["compname"].ToString();
-                    // string frmname = "PurReqApproval.aspx?Type=RateInput";
-                    // string SMSHead = "Leave Applied From : ";
-                    string SMSText = leavedesc + " applied from : " + frmdate + " To " + todate + "\n" + "Name: " + empname + " Designation : " + empdesig;
-                    bool resultsms = sms.SendSmmsPwd(comcod, SMSText, phone);
-                }
-            }
-        }
+        //    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+        //    {
+        //        string phone = (string)ds.Tables[0].Rows[i]["phone"];
+        //        string empname = (string)ds.Tables[1].Rows[0]["name"];
+        //        string empdesig = (string)ds.Tables[1].Rows[0]["desig"];
+        //        string appdate = "";
+        //        if (hst["compsms"].ToString() == "True")
+        //        {
+        //            SendSmsProcess sms = new SendSmsProcess();
+        //            string comnam = hst["comnam"].ToString();
+        //            string compname = hst["compname"].ToString();
+        //            // string frmname = "PurReqApproval.aspx?Type=RateInput";
+        //            // string SMSHead = "Leave Applied From : ";
+        //            string SMSText = leavedesc + " applied from : " + frmdate + " To " + todate + "\n" + "Name: " + empname + " Designation : " + empdesig;
+        //            bool resultsms;
+        //            switch (comcod)
+        //            {
+
+        //                case "3101":
+        //                case "3333"://Alliance
+        //                    resultsms = sms.SendSmmsPwd(comcod, SMSText, phone);
+        //                    break;
+
+        //                default:
+        //                    resultsms = sms.SendSmmsPwd(comcod, SMSText, phone);
+        //                    break;
+                    
+        //            }
+                    
+                    
+        //           // bool resultsms = sms.SendSmmsPwd(comcod, SMSText, phone);
+        //        }
+        //    }
+        //}
 
 
         protected void gvleaveInfo_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -1343,6 +1366,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string curr_year = System.DateTime.Now.ToString("yyyy");
+            string prev_year = System.DateTime.Now.AddYears(-1).ToString("yyyy");
+
             string curr_date = "26-Dec-" + curr_year;
             string lvname = "";
             string empid = "";
@@ -1372,8 +1397,18 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 return;
             }
 
+            //current  leave rule
             DataTable dt1 = ds.Tables[1];
+            //current leave data
             DataTable dt2 = ds.Tables[2];
+
+
+            //previous leave rule
+            DataTable dt3 = ds.Tables[3];
+            //previous leave data
+            DataTable dt4 = ds.Tables[4];
+
+
 
             //this.ClientQueryString("MGT")
 
@@ -1386,17 +1421,25 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             var list1 = dt1.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.LeaveRule>();
             var list2 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.currentLeaveInfo>();
-            var list3 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.currentLeaveInfo>();
+            var list3 = dt4.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.currentLeaveInfo>();
 
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_84_Lea.rptEmpLeaveCard", list1, list2, list3);
             Rpt1.EnableExternalImages = true;
-
+            //curent leave
             for (int i = 0; i < dt1.Rows.Count; i++)
             {
                 lvname = dt1.Rows[i]["leave"].ToString().Substring(0, 4);
                 Rpt1.SetParameters(new ReportParameter("lvname" + i.ToString(), lvname));
             }
+
+            //previous leave 
+            for (int i = 0; i < dt3.Rows.Count; i++)
+            {
+                lvname = dt3.Rows[i]["leave"].ToString().Substring(0, 4);
+                Rpt1.SetParameters(new ReportParameter("lvnameprev" + i.ToString(), lvname));
+            }
+
 
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
 
@@ -1410,6 +1453,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             Rpt1.SetParameters(new ReportParameter("dept", dept));
             Rpt1.SetParameters(new ReportParameter("desig", desig));
             Rpt1.SetParameters(new ReportParameter("curyear", curr_year));
+            Rpt1.SetParameters(new ReportParameter("prevyear", prev_year));
+
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
             //Rpt1.PrintToPrinter();
             Session["Report1"] = Rpt1;

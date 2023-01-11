@@ -465,7 +465,26 @@ namespace RealERPWEB.F_15_DPayReg
 
 
                         string SMSText = comnam + ":\n" + SMSHead + "\n" + "\n" + "Issue No: " + issueno;
-                        bool resultsms = sms.SendSmms(SMSText, userid, frmname);
+                        bool resultsms;
+
+                        switch (comcod)
+                        {
+                            case "3101"://PTL
+                            case "3333"://Alliance                              
+
+                                resultsms = sms.SendSms_novocom(SMSText, userid, frmname);
+                                break;
+
+
+                            default:
+
+                                resultsms = sms.SendSmms(SMSText, userid, frmname);
+
+
+                                break;
+
+
+                        }
 
 
                     }
