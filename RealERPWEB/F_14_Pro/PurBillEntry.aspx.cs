@@ -266,7 +266,7 @@ namespace RealERPWEB.F_14_Pro
                 this.PrintBill08();
 
             else if (printcomreq == "PrintBillLanco")
-                this.PrintBillLanco(); 
+                this.PrintBillLanco();
 
             else if (printcomreq == "PrintBillFinlay")
                 this.PrintBillFinlay();
@@ -1202,14 +1202,14 @@ namespace RealERPWEB.F_14_Pro
             string mrrno = ASTUtility.CustomReqFormat(ds1.Tables[0].Rows[0]["mrrno"].ToString());
             string projectName = "Project Name : " + ds1.Tables[0].Rows[0]["pactdesc"].ToString();
             string suppname = "Supplier Name: " + ds1.Tables[1].Rows[0]["ssirdesc"].ToString();
-            string billno = ASTUtility.CustomReqFormat(ds1.Tables[1].Rows[0]["billno"].ToString());            
-            string mrrref = ds1.Tables[0].Rows[0]["mrrref"].ToString();             
+            string billno = ASTUtility.CustomReqFormat(ds1.Tables[1].Rows[0]["billno"].ToString());
+            string mrrref = ds1.Tables[0].Rows[0]["mrrref"].ToString();
             string narration = "Narration : " + ds1.Tables[1].Rows[0]["billnar"].ToString();
 
 
 
             string txtMrrdate = ds1.Tables[0].Rows[0]["mrrdate"].ToString();
-            string txtReqno = ASTUtility.CustomReqFormat(ds1.Tables[0].Rows[0]["reqno"].ToString());           
+            string txtReqno = ASTUtility.CustomReqFormat(ds1.Tables[0].Rows[0]["reqno"].ToString());
             string txtChalandate = ds1.Tables[0].Rows[0]["challandat"].ToString();
             string txtPodate = ds1.Tables[3].Rows[0]["orddat"].ToString();
             string txtBillref = ds1.Tables[1].Rows[0]["billref"].ToString();
@@ -1236,10 +1236,10 @@ namespace RealERPWEB.F_14_Pro
             rpt.SetParameters(new ReportParameter("txtMrfno", mrfno));
             rpt.SetParameters(new ReportParameter("txtPono", orderno));
             rpt.SetParameters(new ReportParameter("txtRefno", refno));
-            rpt.SetParameters(new ReportParameter("txtChalan",chlno));
+            rpt.SetParameters(new ReportParameter("txtChalan", chlno));
             rpt.SetParameters(new ReportParameter("txtBilldate", billdat));
-            rpt.SetParameters(new ReportParameter("txtBillno",billno));
-            rpt.SetParameters(new ReportParameter("txtMrrno",mrrno));
+            rpt.SetParameters(new ReportParameter("txtBillno", billno));
+            rpt.SetParameters(new ReportParameter("txtMrrno", mrrno));
             rpt.SetParameters(new ReportParameter("mrrref", mrrref));
             rpt.SetParameters(new ReportParameter("txtProjectName", projectName));
             rpt.SetParameters(new ReportParameter("txtInword", inword));
@@ -1530,7 +1530,7 @@ namespace RealERPWEB.F_14_Pro
             // rdlc end
 
         }
-        private void PrintBillLanco() 
+        private void PrintBillLanco()
         {
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -2133,42 +2133,52 @@ namespace RealERPWEB.F_14_Pro
         protected void gvBillInfo_DataBind()
         {
 
-            DataTable tbl1 = (DataTable)ViewState["tblBill"];
-            this.gvBillInfo.DataSource = tbl1;
-            this.gvBillInfo.DataBind();
-
-            //For Visible Item Serial Manama
-            string comcod = GetCompCode();
-            if (comcod == "3353" || comcod == "3101")
+            try
             {
-                this.gvBillInfo.Columns[1].Visible = true;
+
+
+                DataTable tbl1 = (DataTable)ViewState["tblBill"];
+                this.gvBillInfo.DataSource = tbl1;
+                this.gvBillInfo.DataBind();
+
+                //For Visible Item Serial Manama
+                string comcod = GetCompCode();
+                if (comcod == "3353" || comcod == "3101")
+                {
+                    this.gvBillInfo.Columns[1].Visible = true;
+                }
+
+                this.gvBillInfo.Columns[9].Visible = (this.Request.QueryString["Type"].ToString().Trim() == "BillEdit" && this.lblvalvounum.Text.Trim() == "00000000000000");
+                ((LinkButton)this.gvBillInfo.FooterRow.FindControl("lbtnUpdateBill")).Visible = (this.lblvalvounum.Text.Trim() == "00000000000000" || this.lblvalvounum.Text.Trim() == "");
+                ((LinkButton)this.gvBillInfo.FooterRow.FindControl("lbtnDeleteBill")).Visible = (this.Request.QueryString["Type"].ToString().Trim() == "BillEdit" && this.lblvalvounum.Text.Trim() == "00000000000000");
+
+
+                //Adeed By Nime
+
+                ((LinkButton)this.gvBillInfo.FooterRow.FindControl("lbtnUpdateBill")).Visible = ((this.Request.QueryString["Type"].ToString().Trim() == "BillEntry") || (this.Request.QueryString["Type"].ToString().Trim() == "BillEdit"));
+
+                ((LinkButton)this.gvBillInfo.FooterRow.FindControl("lbtnFinalUpdateBill")).Visible = ((this.Request.QueryString["Type"].ToString().Trim() == "BillEntryAudit"));
+
+
+
+                //End Of Adding
+
+                this.GridColoumnVisible();
+                ((DropDownList)this.gvBillInfo.FooterRow.FindControl("ddlPageNo")).Visible = false;
+                double TotalPage = Math.Ceiling(tbl1.Rows.Count * 1.00 / this.gvBillInfo.PageSize);
+                ((DropDownList)this.gvBillInfo.FooterRow.FindControl("ddlPageNo")).Items.Clear();
+                for (int i = 1; i <= TotalPage; i++)
+                    ((DropDownList)this.gvBillInfo.FooterRow.FindControl("ddlPageNo")).Items.Add("Page: " + i.ToString() + " of " + TotalPage.ToString());
+                if (TotalPage > 1)
+                    ((DropDownList)this.gvBillInfo.FooterRow.FindControl("ddlPageNo")).Visible = true;
+                ((DropDownList)this.gvBillInfo.FooterRow.FindControl("ddlPageNo")).SelectedIndex = this.gvBillInfo.PageIndex;
+                this.lbtnResFooterTotal_Click(null, null);
             }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
-            this.gvBillInfo.Columns[9].Visible = (this.Request.QueryString["Type"].ToString().Trim() == "BillEdit" && this.lblvalvounum.Text.Trim() == "00000000000000");
-            ((LinkButton)this.gvBillInfo.FooterRow.FindControl("lbtnUpdateBill")).Visible = (this.lblvalvounum.Text.Trim() == "00000000000000" || this.lblvalvounum.Text.Trim() == "");
-            ((LinkButton)this.gvBillInfo.FooterRow.FindControl("lbtnDeleteBill")).Visible = (this.Request.QueryString["Type"].ToString().Trim() == "BillEdit" && this.lblvalvounum.Text.Trim() == "00000000000000");
-
-
-            //Adeed By Nime
-
-            ((LinkButton)this.gvBillInfo.FooterRow.FindControl("lbtnUpdateBill")).Visible = ((this.Request.QueryString["Type"].ToString().Trim() == "BillEntry") || (this.Request.QueryString["Type"].ToString().Trim() == "BillEdit"));
-
-            ((LinkButton)this.gvBillInfo.FooterRow.FindControl("lbtnFinalUpdateBill")).Visible = ((this.Request.QueryString["Type"].ToString().Trim() == "BillEntryAudit"));
-
-
-
-            //End Of Adding
-
-            this.GridColoumnVisible();
-            ((DropDownList)this.gvBillInfo.FooterRow.FindControl("ddlPageNo")).Visible = false;
-            double TotalPage = Math.Ceiling(tbl1.Rows.Count * 1.00 / this.gvBillInfo.PageSize);
-            ((DropDownList)this.gvBillInfo.FooterRow.FindControl("ddlPageNo")).Items.Clear();
-            for (int i = 1; i <= TotalPage; i++)
-                ((DropDownList)this.gvBillInfo.FooterRow.FindControl("ddlPageNo")).Items.Add("Page: " + i.ToString() + " of " + TotalPage.ToString());
-            if (TotalPage > 1)
-                ((DropDownList)this.gvBillInfo.FooterRow.FindControl("ddlPageNo")).Visible = true;
-            ((DropDownList)this.gvBillInfo.FooterRow.FindControl("ddlPageNo")).SelectedIndex = this.gvBillInfo.PageIndex;
-            this.lbtnResFooterTotal_Click(null, null);
+            }
         }
 
 
@@ -2403,6 +2413,7 @@ namespace RealERPWEB.F_14_Pro
                     dr1["mrramt"] = drc["orderamt"];
                     dr1["mmrramt"] = 0.00;
                     dr1["remrks"] = "";
+                    dr1["boqrate"] = 0.00;
                     tbl1.Rows.Add(dr1);
 
                 }
@@ -2503,6 +2514,7 @@ namespace RealERPWEB.F_14_Pro
                     dr1["mrramt"] = drc["orderamt"];
                     dr1["mmrramt"] = 0.00;
                     dr1["remrks"] = "";
+                    dr1["boqrate"] = 0.00;
                     tbl1.Rows.Add(dr1);
 
                 }
@@ -2630,11 +2642,13 @@ namespace RealERPWEB.F_14_Pro
 
 
 
-                ViewState["tblBill"] = this.HiddenSameData(tbl1);
-                this.gvBillInfo_DataBind();
-
+               
 
             }
+
+            ViewState["tblBill"] = this.HiddenSameData(tbl1);
+            this.gvBillInfo_DataBind();
+
 
 
 
@@ -3088,7 +3102,7 @@ namespace RealERPWEB.F_14_Pro
 
 
 
-            
+
             ((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 

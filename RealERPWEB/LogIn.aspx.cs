@@ -473,7 +473,7 @@ namespace RealERPWEB
                 hst["compmail"] = ds5.Tables[0].Rows[0]["compmail"];
                 hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
                 hst["ddldesc"] = ds5.Tables[0].Rows[0]["ddldesc"];
-                hst["portnum"] = ds5.Tables[0].Rows[0]["portnum"];
+               // hst["portnum"] = ds5.Tables[0].Rows[0]["portnum"];
                 //hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
 
                 if (ds5.Tables[0].Columns.Contains("comunpost"))
