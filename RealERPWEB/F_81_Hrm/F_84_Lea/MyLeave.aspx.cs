@@ -87,7 +87,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string usrRole = hst2["userrole"].ToString();
 
 
-                if (this.GetComeCode() == "3365" && qtype!="MGT")
+                if (this.GetComeCode() == "3365" && qtype != "MGT")
                 {
 
                     DisabledCalender();
@@ -115,7 +115,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             if (Convert.ToInt32(curDay) < 26)
             {
-                this.txtgvenjoydt1_CalendarExtender.StartDate = DateTime.ParseExact( "26/" + prevMonth + "/" + prevYear, "dd/MM/yyyy", null);
+                this.txtgvenjoydt1_CalendarExtender.StartDate = DateTime.ParseExact("26/" + prevMonth + "/" + prevYear, "dd/MM/yyyy", null);
 
             }
             else
@@ -226,8 +226,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             string qtype = this.Request.QueryString["Type"] ?? "";
             string comcod = this.GetComeCode();
-            if (comcod == "3365" || comcod == "3354" || comcod == "3101" || comcod=="3102")
+            string isCheck = (this.chkresign.Checked ? "True" : "False");
+
+            if (comcod == "3365" || comcod == "3354" || comcod == "3101" || comcod == "3102")
             {
+
                 this.sspnlv.Visible = true;
 
                 this.chkBoxSkippWH.Checked = true;
@@ -237,6 +240,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 {
                     this.SpResign.Visible = true;
                     this.sspnlv.Visible = true;
+
+
                 }
                 else
                 {
@@ -244,7 +249,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.sspnlv.Visible = false;
 
                 }
-            }else if (comcod=="3370")
+
+                if (comcod == "3354")
+                {
+                    this.sspnlv.Visible = true;
+                }
+
+            }
+            else if (comcod == "3370")
             {
                 this.chkBoxSkippWH.Checked = false;
                 this.sspnlv.Visible = false;
@@ -256,6 +268,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.sspnlv.Visible = false;
                 this.SpResign.Visible = false;
                 this.chkBoxSkippWH.Checked = false;
+            }
+
+            if (isCheck == "True")
+            {
+                this.btnSave.Enabled = false;
             }
         }
         private void CreateTable()
@@ -667,7 +684,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string isHalfday = (this.chkHalfDay.Checked ? "True" : "False");
                 string ttdays = this.Duration.Value.ToString();
                 string qtype = this.Request.QueryString["Type"] ?? "";
-             
+                string isCheck = (this.chkresign.Checked ? "True" : "False");
+                if (isCheck == "True")
+                {
+                    string Messaged = "This is resign employee!";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                    return;
+                }
+
 
                 if (ttdays != "0")
                 {
@@ -682,15 +706,22 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string dnameadesig = onDutiesEmp + this.txtdutiesnameandDesig.Text.Trim();
                     string delegationEMPID = this.ddlDutyEmp.SelectedValue.ToString() == "000000000000" ? "" : this.ddlDutyEmp.SelectedValue.ToString();
                     string APRdate = (qtype == "MGT" ? applydat : "");
-                   
-                    if(gcod== "51999" && frmdate==todate)
+
+                    if (comcod == "3330" && reason == "")
+                    {
+                        string Messaged = "Reason can't be empty!";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                        return;
+                    }
+
+                    if (gcod == "51999" && frmdate == todate)
                     {
                         string Messaged = "Leave day and Off day can not be same!";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                         return;
                     }
 
-                        bool result = false;
+                    bool result = false;
                     //below code for if apply without date range 
                     if (chkBoxSkippWH.Checked == true)
                     {
@@ -818,7 +849,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
 
-                string hyptext =  "http://";
+                string hyptext = "http://";
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string portAdd = hst["portnum"].ToString().Length == 0 ? "" : (":" + hst["portnum"].ToString());
 
@@ -827,7 +858,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string suserid = ds1.Tables[0].Rows[0]["suserid"].ToString();
                     string tomail = ds1.Tables[0].Rows[0]["mail"].ToString();
                     string roletype = (string)ds1.Tables[0].Rows[0]["roletype"];
-                    string uhostname = hyptext + HttpContext.Current.Request.Url.Authority+ portAdd + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
+                    string uhostname = hyptext + HttpContext.Current.Request.Url.Authority + portAdd + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
                     string currentptah = "EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid=" + suserid + "&RoleType=" + roletype;
                     string totalpath = uhostname + currentptah;
 
@@ -947,10 +978,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         string SMSText = "New Leave Request from : " + frmdate + " To " + todate;// 
                         bool resultsms;
                         resultsms = sms.SendSmmsPwd(comcod, SMSText, supphone);
-                       
-                        
+
+
                     }
-                        if (compmail == "True")
+                    if (compmail == "True")
                     {
                         bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, empname, empdesig, deptname, compName, tomail, msgbody, isSSL);
                         if (Result_email == false)
@@ -1109,10 +1140,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         //                default:
         //                    resultsms = sms.SendSmmsPwd(comcod, SMSText, phone);
         //                    break;
-                    
+
         //            }
-                    
-                    
+
+
         //           // bool resultsms = sms.SendSmmsPwd(comcod, SMSText, phone);
         //        }
         //    }
@@ -1388,10 +1419,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
 
+            string isCheck = (this.chkresign.Checked ? "True" : "False");
 
 
-
-            var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", "EMPLOYEELEAVECARD", empid, curr_date);
+            var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", "EMPLOYEELEAVECARD", empid, curr_date, isCheck);
             if (ds == null)
             {
                 return;
@@ -1475,7 +1506,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             {
                 this.GetEmpLoyee();
             }
-          //  this.ddlEmpName_SelectedIndexChanged(null, null);
+            //  this.ddlEmpName_SelectedIndexChanged(null, null);
 
         }
 
