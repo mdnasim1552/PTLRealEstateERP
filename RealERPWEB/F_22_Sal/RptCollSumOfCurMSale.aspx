@@ -78,7 +78,7 @@
                                                 <th style="width: 120px;">Project Name</th>
                                                 <th style="width: 120px;">Sales Team</th>
                                                 <th style="width: 120px;">Customer</th>
-                                                <th style="width: 80px;">Saling Unit</th>
+                                                <th style="width: 80px;">Unit</th>
                                                 <th style="width: 130px;">Collection From Booking Money</th>
                                                 <th style="width: 130px;">Collection From Installation</th>
                                                 <th style="width: 130px;">Total Collection</th>
