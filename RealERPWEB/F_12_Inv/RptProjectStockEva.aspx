@@ -44,13 +44,18 @@
         }
 
 
-        #ContentPlaceHolder1_gvStocjEvaluation_lblActualStock_0 {
+        /*#ContentPlaceHolder1_gvStocjEvaluation_lblActualStock_0 {
+            font-weight: bold;
+        }*/
+
+       /* .totalcount {
             font-weight: bold;
         }
 
-        .totalcount {
-            font-weight: bold;
-        }
+        .grosstotal .subtotal {
+             font-weight: bold;
+        }*/
+
     </style>
 
     <script type="text/javascript" language="javascript">
@@ -153,7 +158,7 @@
                             </div>
                         </div>
                         <div class="col-md-1">
-                            <div class="form-group">
+                            <div class="form-group" style="width:100px;">
                                 <asp:Label ID="lblGroup" runat="server" CssClass="control-label" Text="Stock Valuation"></asp:Label>
                                 <asp:DropDownList ID="group" runat="server" CssClass="form-control form-control-sm">
                                     <asp:ListItem Value="0">Select</asp:ListItem>
