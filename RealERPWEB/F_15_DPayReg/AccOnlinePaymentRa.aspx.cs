@@ -459,7 +459,7 @@ namespace RealERPWEB.F_15_DPayReg
                         SendSmsProcess sms = new SendSmsProcess();
                         string comnam = hst["comnam"].ToString();
                         string compname = hst["compname"].ToString();
-                        string frmname = "AccOnlinePaymentApp.aspx?Type=ChequePayment";
+                        string frmname = "AccOnlinePaymentApp?Type=ChequePayment";
                         string SMSHead = "Ready for  Bill Payment Approval(Bill Register) ";
                         string issueno = this.Request.QueryString["payid"].ToString();
 
