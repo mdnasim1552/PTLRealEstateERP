@@ -6,15 +6,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript">
         $(document).ready(function () {
-
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-
-
-
+            $('.chzn-select').chosen({ search_contains: true });
         });
         function pageLoaded() {
-
             $('#tblrpcashflow').gridviewScroll({
                 width: 1160,
                 height: 420,
@@ -26,11 +21,9 @@
                 harrowleftimg: "../Image/arrowhl.png",
                 harrowrightimg: "../Image/arrowhr.png",
                 freezesize: 6
-                          
-
             });
+            $('.chzn-select').chosen({ search_contains: true });
         }
-
     </script>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -55,8 +48,6 @@
                         </asp:UpdateProgress>
                     </div>
 
-
-
                     <div class="card card-fluid">
                         <div class="card-body">
                             <div class="row">
@@ -76,19 +67,20 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <asp:TextBox ID="txtSrcProject" runat="server" TabIndex="3" CssClass="form-control form-control-sm" Visible="false"></asp:TextBox>
                                         <asp:LinkButton ID="imgbtnFindProject" runat="server" OnClick="imgbtnFindProject_Click" TabIndex="4" CssClass="btn btn-sm">Project Name</asp:LinkButton>
+                                        <asp:TextBox ID="txtSrcProject" runat="server" TabIndex="3" CssClass="form-control form-control-sm" Visible="false"></asp:TextBox>
                                         <asp:DropDownList ID="ddlProjectName" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm chzn-select" TabIndex="5">
                                         </asp:DropDownList>
                                     </div>
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-1" style="margin-top:21px;">
                                     <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    
+                    
                     <div class="card card-fluid">
                         <div class="card-body" style="min-height:480px;">
                             <div class="row table-responsive">
@@ -105,7 +97,6 @@
                                                 <th style="width: 130px;">Collection From Installation</th>
                                                 <th style="width: 130px;">Total Collection</th>
                                                 <th style="width: 130px;">Bank Clearance</th>
-
                                             </tr>
                                     </HeaderTemplate>
                                     <ItemTemplate>
@@ -113,26 +104,15 @@
                                             <td>
                                                 <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px" Style="text-align: right" Text='<%# Convert.ToString(Container.ItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                             </td>
-
                                             <td>
                                                 <asp:Label ID="lblProjectName" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc"))  %>' Width="130px"></asp:Label>
-
-
                                             </td>
-
                                             <td>
-                                                <asp:Label ID="lblrpSalesTeam" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "salesteam"))  %>' Width="130px"></asp:Label>
-
-
+                                                <asp:Label ID="lblrpSalesTeam" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "salesteam"))  %>' Width="150px"></asp:Label>
                                             </td>
-
-
-
-
                                             <td style="text-align: left">
-                                                <asp:Label ID="lblrpCustomer" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "custname")) %>' Width="70px"></asp:Label>
+                                                <asp:Label ID="lblrpCustomer" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "custname")) %>' Width="110px"></asp:Label>
                                             </td>
-
                                             <td style="text-align: left">
                                                 <asp:Label ID="lblrpSunit" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "udesc")) %>' Width="70px"></asp:Label>
                                             </td>
@@ -148,7 +128,6 @@
                                             <td style="text-align: right">
                                                 <asp:Label ID="lblrpBclearance" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bclam")).ToString("#,##0;(#,##0); ") %>' Width="70px"></asp:Label>
                                             </td>
-
                                         </tr>
                                     </ItemTemplate>
                                     <FooterTemplate>
@@ -158,39 +137,27 @@
                                             <th>Total </th>
                                             <th></th>
                                             <th></th>
-
                                             <th style="text-align: right">
                                                 <asp:Label ID="lblrpFbMoney" runat="server" Width="80px"></asp:Label>
                                             </th>
                                             <th style="text-align: right">
                                                 <asp:Label ID="lblFcinstall" runat="server" Width="80px"></asp:Label>
                                             </th>
-
                                             <th style="text-align: right">
                                                 <asp:Label ID="lblFtotal" runat="server" Width="80px"></asp:Label>
                                             </th>
                                             <th style="text-align: right">
                                                 <asp:Label ID="lblFbclearace" runat="server" Width="80px"></asp:Label>
                                             </th>
-
                                         </tr>
                                         </table>
                                     </FooterTemplate>
-
-
                                 </asp:Repeater>
-
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </ContentTemplate>
     </asp:UpdatePanel>
-
-
 </asp:Content>
-
-

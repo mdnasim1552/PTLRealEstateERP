@@ -71,8 +71,9 @@ namespace RealERPWEB.F_22_Sal
             string comcod = this.GetCompCode();
             string frmdate = Convert.ToDateTime(this.txtfrmDate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string pactcode = this.ddlProjectName.SelectedValue.ToString();
 
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_SUM", "TRANSSTCURSALES", frmdate, todate, "", "", "", "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT_SUM", "TRANSSTCURSALES", frmdate, todate, pactcode, "", "", "", "", "", "");
             if (ds1 == null)
             {
                 this.rpcsummary.DataSource = null;
