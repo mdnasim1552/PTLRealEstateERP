@@ -374,6 +374,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+SalSummary2.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_mgt.BO_ClassEmployee+EmployeeIDCardInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_mgt.BO_ClassEmployee+EmployeeInfo.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_mgt.BO_ClassEmployee+RtpServiceHistoryProjectWise.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+AttgraphLbl.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EclassSttlemntInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface+EInterfaceAttApp.datasource" />
@@ -1369,6 +1370,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RpTotalEmplist.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RpTotalEmplists.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptTransList.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RtpServiceHistoryProjectWise.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_93_AnnInc\RptAnnInctrment.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_93_AnnInc\RptAnnInctrmentAcme.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_93_AnnInc\RptAnnInctrmentBridge.rdlc" />
