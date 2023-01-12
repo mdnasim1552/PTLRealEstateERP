@@ -2287,7 +2287,7 @@ namespace RealERPWEB.F_12_Inv
 
                 //string Type = this.Request.QueryString["Type"];
 
-                if (comcod == "3315" || comcod == "3316")
+                if (comcod == "3315" || comcod == "3316"|| comcod == "3333") //Alliance  As per Instruction Hafiz     
                 {
                 }
 
@@ -2312,10 +2312,11 @@ namespace RealERPWEB.F_12_Inv
 
                             switch (comcod)
                             {
+
                                 case "3101"://PTL
-                                case "3333"://Alliance                              
-                                   
-                                     resultsms = sms.SendSms_novocom(SMSText, ApprovByid, frmname);                                  
+                                 //case "3333"://Alliance                          
+
+                                    resultsms = sms.SendSms_novocom(SMSText, ApprovByid, frmname);
                                     break;
 
 
