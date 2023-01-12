@@ -15,16 +15,14 @@ namespace RealEntity.C_22_Sal
 
             public string grp { get; set; }
             public string grpdesc { get; set; }
-            public string pactcode { get; set; }
-
+            public string pactcode { get; set; }           
+            public double soldqty { get; set; }
+            public double mgtbook { get; set; }
+            public double usoldqty { get; set; }
             public string grp1 { get; set; }
             public string prodesc { get; set; }
             public string loc { get; set; }
             public double uqty { get; set; }
-            public double soldqty { get; set; }
-            public double mgtbook { get; set; }
-            public double usoldqty { get; set; }
-            public string hdate { get; set; }
 
             public SalesInventory()
             {

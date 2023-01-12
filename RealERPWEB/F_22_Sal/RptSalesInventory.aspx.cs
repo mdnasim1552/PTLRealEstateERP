@@ -14,7 +14,8 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
-using Microsoft.Reporting.WebForms;
+using Microsoft.Reporting.WinForms;
+
 namespace RealERPWEB.F_22_Sal
 {
     public partial class RptSalesInventory : System.Web.UI.Page
@@ -91,71 +92,43 @@ namespace RealERPWEB.F_22_Sal
         {
 
 
+            try
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string comnam = hst["comnam"].ToString();
+                string comadd = hst["comadd1"].ToString();
+                string compname = hst["compname"].ToString();
+                string username = hst["username"].ToString();
+                string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+                string userinfo = ASTUtility.Concat(compname, username, printdate);
+                string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+                DataTable dt = (DataTable)ViewState["tblsalesinventory"];
+                LocalReport Rpt1 = new LocalReport(); 
+                var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesInventory>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptSalesInvCPDLPrint", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("companyname", comnam.ToUpper()));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Sales Inventory Report(Summary)"));
+                Rpt1.SetParameters(new ReportParameter("txtuserinfo", userinfo));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
 
 
 
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
+                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+            }
+            catch (Exception exp)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
+
+            }
 
 
-
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //string comcod = hst["comcod"].ToString();
-            //string comnam = hst["comnam"].ToString();
-            //string comadd = hst["comadd1"].ToString();
-            //string compname = hst["compname"].ToString();
-            //string username = hst["username"].ToString();
-            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            //DataTable dt = (DataTable)Session["StoreTable"];
-            //ReportDocument rptstk = new ReportDocument();
-            //string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            //string userinfo = ASTUtility.Concat(compname, username, printdate);
-            //var lst = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales.SalesInventory>();
-            //LocalReport Rpt1 = new LocalReport();
-            //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccLedgerBridge", lst, null, null);
-            //Rpt1.EnableExternalImages = true;
-
-
-             //Rpt1 = Server.MapPath("~/Report/RptSalesInv.rdlc");
-
-
-            //Rpt1.SetParameters(new ReportParameter("companyname", comnam.ToUpper()));
-            //Rpt1.SetParameters(new ReportParameter("RptTitle", "Sales Inventory Report(Summary)"));
-            //Rpt1.SetParameters(new ReportParameter("txtuserinfo", userinfo));       
-            //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-
-            //Session["Report1"] = Rpt1;
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
-            //            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
-
-
-
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //string comcod = GetCompCode();
-            //string comnam = hst["comnam"].ToString();
-            //string compname = hst["compname"].ToString();
-            //string username = hst["username"].ToString();
-            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            //ReportDocument rptcusdues = new RealERPRPT.R_22_Sal.RptSalesInv();
-            //TextObject rpttxtCompanyName = rptcusdues.ReportDefinition.ReportObjects["CompName"] as TextObject;
-            //rpttxtCompanyName.Text = comnam;
-
-            //TextObject txtuserinfo = rptcusdues.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
-            //txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
-
-            //rptcusdues.SetDataSource((DataTable)Session["tbinvRpt"]);
-            //if (ConstantInfo.LogStatus == true)
-            //{
-            //    string eventtype = "Sold Info";
-            //    string eventdesc = "Print Report Sold Inventory";
-            //    string eventdesc2 = "";
-            //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-            //}
-            //string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
-            //rptcusdues.SetParameterValue("ComLogo", ComLogo);
-            //Session["Report1"] = rptcusdues;
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-            //                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+           
+            
         }
         //private void ShowInfo()
         //{
