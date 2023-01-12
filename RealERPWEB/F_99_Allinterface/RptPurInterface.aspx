@@ -1948,7 +1948,7 @@
 
 
                                                                 <HeaderTemplate>
-                                                                    <asp:TextBox ID="txtSearchrefnumratepro" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" placeholder="Mrf No." onkeyup="Search_Gridview(this,4,'gvRatePro')"></asp:TextBox><br />
+                                                                    <asp:TextBox ID="txtSearchrefnumratepro" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" placeholder="Mrf No." onkeyup="Search_Gridview(this,6,'gvRatePro')"></asp:TextBox><br />
 
                                                                 </HeaderTemplate>
 
@@ -1981,7 +1981,7 @@
 
                                                             <asp:TemplateField HeaderText="Catagory">
                                                                 <HeaderTemplate>
-                                                                    <asp:TextBox ID="txtSearchCatagoryRatPro" SortExpression="catagory" BackColor="Transparent" BorderStyle="None" runat="server" Width="120px" placeholder="Catagory" onkeyup="Search_Gridview(this,5,'gvRatePro')"></asp:TextBox>
+                                                                    <asp:TextBox ID="txtSearchCatagoryRatPro" SortExpression="catagory" BackColor="Transparent" BorderStyle="None" runat="server" Width="120px" placeholder="Catagory" onkeyup="Search_Gridview(this,7,'gvRatePro')"></asp:TextBox>
                                                                 </HeaderTemplate>
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvcatagory" runat="server" Font-Bold="True"

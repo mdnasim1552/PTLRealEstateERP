@@ -186,7 +186,7 @@ namespace RealERPWEB.F_23_CR
 
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptPaymentSystem", list, list1, null);
                 Rpt1.EnableExternalImages = true;
-                Rpt1.SetParameters(new ReportParameter("rptTitle", "Payment Status (Date Wise)"));
+                Rpt1.SetParameters(new ReportParameter("rptTitle", "Payment Status"));
           
 
 
