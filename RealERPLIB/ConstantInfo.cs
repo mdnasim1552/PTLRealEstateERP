@@ -1131,6 +1131,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2102000", "2102138", "F_21_MKT", "RptPerDeleteProspect", "", "Permanent Delete Prospect", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2102000", "2102139", "F_21_MKT", "RptProspectWorking?", "Type=RptDayWise", "Associate Working Report (Day Wise)", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2102000", "2102140", "F_21_MKT", "LostProspectTransfer", "", "CRM Lost Prospect Transfer", "CRM", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2102000", "2102141", "F_21_MKT", "LostProspect", "", "CRM Lost Prospect", "CRM", "False", "False", "False", "False" });
 
             //kpi 
             // 05. My Marketing Interface(Sales)
@@ -7260,6 +7261,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0202000006", "06. CRM Prospect Transfer ", "F_21_MKT/ProspectTransfer", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000007", "07. Land Transfer ", "F_21_MKT/LandProspectTransfer", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000008", "08. CRM Lost Prospect Transfer ", "F_21_MKT/LostProspectTransfer", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000009", "09. CRM Lost Prospect ", "F_21_MKT/LostProspect", "", true, "" });
 
 
             //mnuTbl1.Rows.Add(new Object[] { "0202000006", "", "", "", true, "" });//"03. Basic Information Field", "F_21_Mkt/MktGenCodeBook", "", true, "" });
