@@ -115,6 +115,8 @@ namespace RealERPRDLC
                 case "R_09_PIMP.RptProposalFromAcmeConst": Rpt1a = SetRptProposalFromAcmeConst(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_81_Hrm.R_90_PF.RptIndvPfAlli": Rpt1a = SetRptIndvPf(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_90_PF.RptIndPfSattlement": Rpt1a = SetRptIndPfSattlement(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_90_PF.RptEmpWiseSwf": Rpt1a = SetRptEmpWiseSwf(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptLabIssueSubCon": Rpt1a = SetRptLabIssueSubCon(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptSubConBillFinalization": Rpt1a = SetRptSubConBillFinalization(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptSubConWiseBillReport": Rpt1a = SetRptSubConBillWise(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -6323,6 +6325,16 @@ namespace RealERPRDLC
         private static LocalReport SetRptIndvPf(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.IndvPf.PaymentScheduleList>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptIndPfSattlement(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_90_PF.IndPfSattlement>)RptDataSet));
+            return Rpt1a;
+        } 
+        private static LocalReport SetRptEmpWiseSwf(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_90_PF.EmpWiseSWF>)RptDataSet));
             return Rpt1a;
         }
 
