@@ -419,7 +419,7 @@
         function FunApprovedBill(url) {
             window.open('' + url + '', '_blank');
         }
-        function Search_Gridview(strKey, cellNr, gvname) {
+<%--        function Search_Gridview(strKey, cellNr, gvname) {
             try {
 
                 var strData = strKey.value.toLowerCase().split(" ");
@@ -466,7 +466,7 @@
 
             }
 
-        }
+        }--%>
         function Search_Gridview2(strKey) {
             try {
 
@@ -496,15 +496,15 @@
                     case '5':
                         tblData = document.getElementById("<%=this.gvChequeSign.ClientID %>");
                         break;
-
-                    default:
+                    case '6':
                         tblData = document.getElementById("<%=this.grvComp.ClientID %>");
                         break;
+                  
 
                 }
 
                 var rowData;
-                for (var i = 1; i < tblData.rows.length; i++) {
+                for (var i = 0; i < tblData.rows.length; i++) {
                     rowData = tblData.rows[i].innerHTML;
                     var styleDisplay = 'none';
                     for (var j = 0; j < strData.length; j++) {
@@ -675,7 +675,7 @@
                                     <div class="row">
                                         <div class="table-responsive col-lg-12">
 
-                                            <asp:GridView ID="gvBillInfo" runat="server" OnRowDataBound="gvBillInfo_RowDataBound" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                            <asp:GridView ID="gvBillInfo" runat="server" cl OnRowDataBound="gvBillInfo_RowDataBound" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                                                 ShowFooter="True">
                                                 <RowStyle />
                                                 <Columns>
