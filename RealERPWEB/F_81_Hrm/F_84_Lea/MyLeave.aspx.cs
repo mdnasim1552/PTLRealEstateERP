@@ -673,7 +673,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string sendDptdesc = hst["dptdesc"].ToString();
                 string sendUsrdesig = hst["usrdesig"].ToString();
                 string compName = hst["comnam"].ToString();
-
+                string Editrmid = hst["compname"].ToString();
                 string usrid = hst["usrid"].ToString();
                 string deptcode = hst["deptcode"].ToString();
 
@@ -731,7 +731,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                             frmdate = Convert.ToDateTime(dt1.Rows[j]["leavday"]).ToString("dd-MMM-yyyy");
                             isHalfday = dt1.Rows[j]["isHalfday"].ToString();
                             ttdays = (dt1.Rows[j]["isHalfday"].ToString() == "True") ? "0.5" : "1.00";
-                            result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP_SKIPPHOLIDAY", trnid, empid, gcod, frmdate, frmdate, applydat, reason, remarks, APRdate, addentime, dnameadesig, ttdays, isHalfday, usrid, qtype, delegationEMPID, "", "", "", "", "");
+                            result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP_SKIPPHOLIDAY", trnid, empid, gcod, frmdate, frmdate, applydat, reason, remarks, APRdate, addentime, dnameadesig, ttdays, isHalfday, usrid, qtype, delegationEMPID, "", "", "", "", Editrmid);
 
                             htmtableboyd += "<tr><td>" + frmdate + "</td><td>(" + ttdays + ") Day</td></tr>";
                         }
@@ -746,7 +746,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     {
                         htmtableboyd = "<table><tr><th>From Date</th><th>To Date</th><th>Days</th></tr>";
 
-                        result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP", trnid, empid, gcod, frmdate, todate, applydat, reason, remarks, APRdate, addentime, dnameadesig, ttdays.ToString(), isHalfday, usrid, qtype, delegationEMPID, "", "", "", "", "");
+                        result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP", trnid, empid, gcod, frmdate, todate, applydat, reason, remarks, APRdate, addentime, dnameadesig, ttdays.ToString(), isHalfday, usrid, qtype, delegationEMPID, "", "", "", "",Editrmid);
                         htmtableboyd += "<tr><td>" + frmdate + "<td><td>" + todate + "</td><td>(" + ttdays.ToString() + ") day</td></tr>";
                         htmtableboyd += "</table>";
                     }

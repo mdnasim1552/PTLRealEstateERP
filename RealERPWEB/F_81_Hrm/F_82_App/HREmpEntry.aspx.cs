@@ -1299,6 +1299,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 string Editdat = (dtuser.Rows.Count == 0) ? "01-Jan-1900" : System.DateTime.Today.ToString("dd-MMM-yyyy");
                 string Editrmid = (dtuser.Rows.Count == 0) ? "" : Terminal;
 
+                //userid,Editrmid
+
                 //-------------------------////
 
                 string projectcode = this.ddlProjectName.SelectedValue.ToString();
@@ -1373,35 +1375,35 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     return;
                 }
 
-                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, desigid, "T", designame, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, desigid, "T", designame, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", "", "", "", "", "", "", userid, Editrmid);
                 if (result == false)
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                     return;
                 }
-                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, offinid, "D", "01-Jan-1900 " + offintime, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, offinid, "D", "01-Jan-1900 " + offintime, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", "", "", "", "", "", "", userid, Editrmid);
                 if (result == false)
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                     return;
                 }
-                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, offoutid, "D", "01-Jan-1900 " + offouttime, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, offoutid, "D", "01-Jan-1900 " + offouttime, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", "", "", "", "", "", "", userid, Editrmid);
                 if (result == false)
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                     return;
                 }
-                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, laninid, "D", "01-Jan-1900 " + lanintime, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, laninid, "D", "01-Jan-1900 " + lanintime, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", "", "", "", "", "", "", userid, Editrmid);
                 if (result == false)
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                     return;
                 }
-                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, lanoutid, "D", "01-Jan-1900 " + lanouttime, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, lanoutid, "D", "01-Jan-1900 " + lanouttime, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", "", "", "", "", "", "", userid, Editrmid);
                 if (result == false)
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
@@ -1410,14 +1412,14 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 }
                 if (comcod != "4330")
 
-                    result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, eduid, "T", education, projectcode, txtedupass, edupass, "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                    result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, eduid, "T", education, projectcode, txtedupass, edupass, "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", "", "", "", "", "", "", userid, Editrmid);
                 if (result == false)
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                     return;
                 }
-                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, agtypeid, "T", agtype, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, agtypeid, "T", agtype, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900","","","","","","","","","", userid, Editrmid);
                 if (result == false)
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
@@ -1426,7 +1428,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 }
 
                 // Bank COde
-                result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "19001", "T", bank1, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", acno1, bank2, acno2, bankamt2, "0", cashamt, "", "01-jan-1900", "01-jan-1900", "", "", "", paytypedesc, "", cash0Bank1, "", routing1, routing2);
+                result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "19001", "T", bank1, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", acno1, bank2, acno2, bankamt2, "0", cashamt, "", "01-jan-1900", "01-jan-1900", "", "", "", paytypedesc, "", cash0Bank1, "", routing1, routing2, userid, Editrmid);
                 if (result == false)
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
@@ -1448,7 +1450,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
                 // PF Start Date
-                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "20001", "D", pfdate, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", acno2, "0", "0", cashamt, "", "01-jan-1900", "01-jan-1900");
+                result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "20001", "D", pfdate, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", acno2, "0", "0", cashamt, "", "01-jan-1900", "01-jan-1900", "", "", "", "", "", "", "", "", "", userid, Editrmid);
                 if (result == false)
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
@@ -1457,7 +1459,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 }
 
                 //PF END DATE
-                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "20002", "D", pfenddat, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", acno2, "0", "0", cashamt, "", "01-jan-1900", "01-jan-1900");
+                result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "20002", "D", pfenddat, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", acno2, "0", "0", cashamt, "", "01-jan-1900", "01-jan-1900", "", "", "", "", "", "", "", "", "", userid, Editrmid);
                 if (result == false)
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
@@ -1533,7 +1535,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     gtype = dtsaladd.Rows[i]["gtype"].ToString();
                     gval = dtsaladd.Rows[i]["gval"].ToString();
                     percnt = dtsaladd.Rows[i]["percnt"].ToString();
-                    result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, gcode, gtype, gval, projectcode, "", "", "", "", percnt, "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                    result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, gcode, gtype, gval, projectcode, "", "", "", "", percnt, "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", "", "", "", "", "", "", userid, Editrmid);
                 }
 
                 for (i = 0; i < dtsalsub.Rows.Count; i++)
@@ -1542,7 +1544,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     gtype = dtsalsub.Rows[i]["gtype"].ToString();
                     gval = dtsalsub.Rows[i]["gval"].ToString();
                     percnt = dtsalsub.Rows[i]["percnt"].ToString();
-                    result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, gcode, gtype, gval, projectcode, "", "", "", "", percnt, "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                    result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, gcode, gtype, gval, projectcode, "", "", "", "", percnt, "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", "", "", "", "", "", "", userid, Editrmid);
                 }
                 for (i = 0; i < dtallowadd.Rows.Count; i++)
                 {
@@ -1554,16 +1556,16 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     qty = dtallowadd.Rows[i]["qty"].ToString();
                     rate = dtallowadd.Rows[i]["rate"].ToString();
 
-                    result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, gcode, gtype, gval, projectcode, "", "", "", "", percnt, unit, qty, rate, "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                    result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, gcode, gtype, gval, projectcode, "", "", "", "", percnt, unit, qty, rate, "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", "", "", "", "", "", "", userid, Editrmid);
                 }
 
                 // Overtime
-                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "07004", "N", "0", projectcode, overtimetype, "", "", "", "0", "", "0", fixedrate,
-               hourlyrate, ceilingrate1, ceilingrate2, ceilingrate3, "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "07004", "N", "0", projectcode, overtimetype, "", "", "", "0", "", "0", fixedrate,
+               hourlyrate, ceilingrate1, ceilingrate2, ceilingrate3, "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", "", "", "", "", "", "", userid, Editrmid);
 
                 //holiday rate
-                result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "07005", "N", "0", projectcode, holidaytype, "", "", "", "0", "", "0", holidayrate
-                    , "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "07005", "N", "0", projectcode, holidaytype, "", "", "", "0", "", "0", holidayrate
+                    , "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", "", "", "", "", "", "", userid, Editrmid);
 
                 ///Time sloat Insert 
                 string slothour; string otrate;
@@ -1597,7 +1599,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     unit = dtallowsub.Rows[i]["unit"].ToString();
                     qty = dtallowsub.Rows[i]["qty"].ToString();
                     rate = dtallowsub.Rows[i]["rate"].ToString();
-                    result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, gcode, gtype, gval, projectcode, "", "", "", "", percnt, unit, qty, rate, "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
+                    result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, gcode, gtype, gval, projectcode, "", "", "", "", percnt, unit, qty, rate, "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", "", "", "", "", "", "", userid, Editrmid);
                 }
 
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
