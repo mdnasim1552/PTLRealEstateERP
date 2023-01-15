@@ -1452,9 +1452,11 @@ namespace RealEntity.C_14_Pro
             public DateTime mrrdat { get; set; }
             public string chlnno { get; set; }
             public double amount { get; set; }
+            public double taxam { get; set; }
+            public double netamount { get; set; }
             public string chequeno { get; set; }
 
-            public DateTime voudat { get; set; }
+            public string voudat { get; set; }
             public string rmrks { get; set; }
 
             public RptSupAdvanceDetails()
