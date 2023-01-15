@@ -65,11 +65,17 @@ namespace RealERPWEB.F_22_Sal
         }
         private void RtpAvailChartPrint()
         {
-            DataTable dt = (DataTable)Session["tblAvChartPrint"];
-            
+           
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
+            string pactcode = ((this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "18" : this.ddlProjectName.SelectedValue.ToString()) + "%";
+
+            DataSet ds3 = feaData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", "PRINTAVAILCHART", pactcode, "", "", "", "", "", "", "", "");
+            //DataTable dt = (DataTable)Session["tblAvChartPrint"];
+             DataTable dt= (DataTable)ds3.Tables[0];
+
+
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
             string rpthead = "Booking Chart Report";
@@ -305,7 +311,7 @@ namespace RealERPWEB.F_22_Sal
 
             DataSet ds2 = feaData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, "", "", "", "", "", "", "", "");
 
-            DataSet ds3 = feaData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", "PRINTAVAILCHARt", pactcode, "", "", "", "", "", "", "", "");
+            //DataSet ds3 = feaData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", "PRINTAVAILCHARt", pactcode, "", "", "", "", "", "", "", "");
 
             if (ds2 == null || ds2.Tables[0].Rows.Count == 0 || ds2.Tables[1].Rows.Count == 0)
             {
@@ -328,7 +334,7 @@ namespace RealERPWEB.F_22_Sal
                 Session["grpname"] = (DataTable)ds2.Tables[4];
                 Session["floorname"] = (DataTable)ds2.Tables[5];
 
-                Session["tblAvChartPrint"]= (DataTable)ds3.Tables[0];
+                //Session["tblAvChartPrint"]= (DataTable)ds3.Tables[0];
 
                 GetAvailabilityChart();
 

@@ -59,10 +59,10 @@
                   <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.75833in</Width>
+                  <Width>1.8861in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.2in</Width>
+                  <Width>1.7in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.99167in</Width>
@@ -290,7 +290,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!idcardno.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -320,7 +322,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!empname.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -350,7 +354,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!desig.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -380,7 +386,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!serlength.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -424,10 +432,9 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>0.09667in</Top>
-            <Left>0.25in</Left>
+            <Left>0.5in</Left>
             <Height>0.5in</Height>
-            <Width>6.36667in</Width>
+            <Width>6.99444in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -435,13 +442,13 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>0.70833in</Height>
+        <Height>0.55833in</Height>
         <Style />
       </Body>
-      <Width>7.33908in</Width>
+      <Width>7.49444in</Width>
       <Page>
         <PageHeader>
-          <Height>0.83333in</Height>
+          <Height>0.84166in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -454,21 +461,21 @@
                     <TextRun>
                       <Value>=Parameters!comname.Value</Value>
                       <Style>
-                        <FontFamily>cambria</FontFamily>
+                        <FontFamily>Cambria</FontFamily>
                         <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Left</TextAlign>
+                    <TextAlign>Center</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>comnam</rd:DefaultName>
               <Top>0.05555in</Top>
-              <Left>1.20173in</Left>
-              <Height>0.325in</Height>
+              <Left>2.70173in</Left>
+              <Height>0.25833in</Height>
               <Width>3.29827in</Width>
               <Style>
                 <Border>
@@ -496,15 +503,15 @@
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Right</TextAlign>
+                    <TextAlign>Center</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>txtTitle</rd:DefaultName>
-              <Top>0.05555in</Top>
-              <Left>4.56944in</Left>
+              <Top>0.3in</Top>
+              <Left>2.70173in</Left>
               <Height>0.25in</Height>
-              <Width>2.65in</Width>
+              <Width>3.29827in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -525,18 +532,19 @@
                     <TextRun>
                       <Value>=Parameters!txtProject.Value</Value>
                       <Style>
-                        <FontFamily>cambria</FontFamily>
-                        <FontSize>12pt</FontSize>
+                        <FontFamily>Cambria</FontFamily>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
-                  <Style />
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>txtProject</rd:DefaultName>
-              <Top>0.45in</Top>
-              <Left>1.20173in</Left>
+              <Top>0.57777in</Top>
+              <Left>2.7045in</Left>
               <Height>0.25in</Height>
               <Width>3.29827in</Width>
               <ZIndex>2</ZIndex>
@@ -555,7 +563,7 @@
               <Value>=Parameters!ComLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
               <Top>0.05555in</Top>
-              <Left>0.11771in</Left>
+              <Left>0.25in</Left>
               <Height>0.58889in</Height>
               <Width>1.01458in</Width>
               <ZIndex>3</ZIndex>
@@ -574,7 +582,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.34167in</Height>
+          <Height>0.24167in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -598,10 +606,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox42</rd:DefaultName>
-              <Top>0.06944in</Top>
-              <Left>4.66319in</Left>
+              <Left>5.20833in</Left>
               <Height>0.20833in</Height>
-              <Width>2.55625in</Width>
+              <Width>2.13611in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
