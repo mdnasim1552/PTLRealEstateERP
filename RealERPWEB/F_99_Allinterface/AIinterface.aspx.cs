@@ -192,13 +192,27 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-
-
-
             this.ddlsearchtasktitle.DataTextField = "tasktitle";
             this.ddlsearchtasktitle.DataValueField = "prjid";
             this.ddlsearchtasktitle.DataSource = ds.Tables[0];
             this.ddlsearchtasktitle.DataBind();
+
+            this.ddltastileqa1.DataTextField = "tasktitle";
+            this.ddltastileqa1.DataValueField = "prjid";
+            this.ddltastileqa1.DataSource = ds.Tables[0];
+            this.ddltastileqa1.DataBind();
+
+
+
+            this.ddllistoftask.DataTextField = "tasktitle";
+            this.ddllistoftask.DataValueField = "prjid";
+            this.ddllistoftask.DataSource = ds.Tables[0];
+            this.ddllistoftask.DataBind();
+
+            this.ddlAcceptRejecttask.DataTextField = "tasktitle";
+            this.ddlAcceptRejecttask.DataValueField = "prjid";
+            this.ddlAcceptRejecttask.DataSource = ds.Tables[0];
+            this.ddlAcceptRejecttask.DataBind();
 
 
 
@@ -299,6 +313,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQA.Visible = false;
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
+                    this.GetSearchAssign();
                     this.GetQcList();
                     this.TasktState.Items[4].Attributes["class"] = "lblactive blink_me";
                     break;
@@ -314,6 +329,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQA.Visible = false;
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
+                    this.GetSearchAssign();
                     this.GetProductionInfo();
                     this.TasktState.Items[5].Attributes["class"] = "lblactive blink_me";
                     break;
@@ -329,6 +345,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnelQA.Visible = true;
                     this.pnelFeedBack.Visible = false;
                     this.Pneldelivery.Visible = false;
+                    this.GetSearchAssign();
                     this.GetAssignQa();
                     this.TasktState.Items[6].Attributes["class"] = "lblactive blink_me";
                     break;
@@ -418,7 +435,8 @@ namespace RealERPWEB.F_99_Allinterface
         private void  Getproducttion()
         {
             string comcod = this.GetCompCode();
-            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", "", "", "", "", "", "", "");
+            string prjid = this.ddlsearchtasktitle.SelectedValue.ToString() =="000000000000" ? "16%" : this.ddlsearchtasktitle.SelectedValue.ToString() + "%";
+            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", prjid, "", "", "", "", "", "");
             if (ds == null)
                 return;
             DataTable dt1 = new DataTable();
@@ -433,7 +451,9 @@ namespace RealERPWEB.F_99_Allinterface
        private void GetQcList()
         {
             string comcod = this.GetCompCode();
-            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", "", "", "", "", "", "", "");
+            string prjidname = this.ddltastileqa1.SelectedValue.ToString() == "000000000000" ? "16%" : this.ddltastileqa1.SelectedValue.ToString() + "%";
+
+            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", prjidname, "", "", "", "", "", "");
             if (ds == null)
                 return;
             DataTable dt1 = new DataTable();
@@ -450,7 +470,9 @@ namespace RealERPWEB.F_99_Allinterface
         private void GetAssignQa()
         {
             string comcod = this.GetCompCode();
-            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", "", "", "", "", "", "", "");
+            string prjid = this.ddllistoftask.SelectedValue.ToString() == "000000000000" ? "16%" : this.ddllistoftask.SelectedValue.ToString() + "%";
+
+            DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", prjid, "", "", "", "", "", "");
             if (ds == null)
                 return;
             Session["tblproductioninfo"] = ds.Tables[0];
@@ -469,7 +491,9 @@ namespace RealERPWEB.F_99_Allinterface
             {
 
                 string comcod = this.GetCompCode();
-                DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", "", "", "", "", "", "", "");
+                string prjid = this.ddlAcceptRejecttask.SelectedValue.ToString() == "000000000000" ? "16%" : this.ddlAcceptRejecttask.SelectedValue.ToString() + "%";
+
+                DataSet ds = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "GETPRODUCTION_INTERFACE", prjid, "", "", "", "", "", "");
                 if (ds == null)
                     return;
                 Session["tblproductioninfo"] = ds.Tables[0];
@@ -2361,6 +2385,45 @@ namespace RealERPWEB.F_99_Allinterface
         protected void btnsearchtitle_Click(object sender, EventArgs e)
         {
             this.GetAssignTask();
+        }
+
+        protected void btntasktitle_Click(object sender, EventArgs e)
+        {
+            this.Getproducttion();
+        }
+
+        protected void dllQA1search_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.gv_QCQA.PageSize = Convert.ToInt32(this.dllQA1search.SelectedValue.ToString());
+            this.GetQcList();
+
+        }
+
+        protected void btnqa1search_Click(object sender, EventArgs e)
+        {
+            this.GetQcList();
+        }
+
+        protected void ddlpagingQC1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.gv_AssignQA.PageSize = Convert.ToInt32(this.ddlpagingQC1.SelectedValue.ToString());
+            this.GetAssignQa();
+        }
+
+        protected void btnsearhqc1_Click(object sender, EventArgs e)
+        {
+            this.GetAssignQa();
+        }
+
+        protected void ddlAcceptReject_pagging_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.gv_AcceptReject.PageSize = Convert.ToInt32(this.ddlAcceptReject_pagging.SelectedValue.ToString());
+            this.GetProductionInfo();
+        }
+
+        protected void btnAcceptRejectsearch_Click(object sender, EventArgs e)
+        {
+            this.GetProductionInfo();
         }
     }
 }

@@ -1198,7 +1198,7 @@
                                         <asp:DropDownList ID="ddlsearchtasktitle" runat="server" AutoPostBack="True" CssClass="chzn-select form-control form-control-sm"></asp:DropDownList>
                                     </div>
                                     <div class="col-md-2 mt-3">
-                                        <asp:LinkButton runat="server" ID="btntasktitle"  CssClass="btn btn-primary btn-sm">Search</asp:LinkButton>
+                                        <asp:LinkButton runat="server" ID="btntasktitle" OnClick="btntasktitle_Click"  CssClass="btn btn-primary btn-sm">Search</asp:LinkButton>
 
                                     </div>
                                 </div>
@@ -1413,7 +1413,33 @@
 
                             </asp:Panel>
                             <asp:Panel ID="pnelQC" runat="server" Visible="false">
-                                <div class="table-responsive">
+                                 <div class="row">
+                                       <div class="col-md-2">
+                                        <asp:Label ID="Label37" runat="server">Page Size</asp:Label>
+                                        <asp:DropDownList ID="dllQA1search" runat="server" AutoPostBack="True"  OnSelectedIndexChanged="dllQA1search_SelectedIndexChanged"  CssClass="form-control form-control-sm">
+                                            <asp:ListItem>10</asp:ListItem>
+                                            <asp:ListItem>15</asp:ListItem>
+                                            <asp:ListItem>20</asp:ListItem>
+                                            <asp:ListItem>30</asp:ListItem>
+                                            <asp:ListItem>50</asp:ListItem>
+                                            <asp:ListItem>100</asp:ListItem>
+                                            <asp:ListItem>150</asp:ListItem>
+                                            <asp:ListItem>200</asp:ListItem>
+                                            <asp:ListItem>300</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                       <div class="col-md-3">
+                                         <asp:Label ID="Label38" runat="server">Task Title</asp:Label>
+                                        <asp:DropDownList ID="ddltastileqa1" runat="server" AutoPostBack="True" CssClass="chzn-select form-control form-control-sm"></asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-2 mt-3">
+                                        <asp:LinkButton runat="server" ID="btnqa1search" OnClick="btnqa1search_Click"  CssClass="btn btn-primary btn-sm">Search</asp:LinkButton>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="table-responsive mt-2">
                                     <asp:GridView ID="gv_QCQA" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                         ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnRowDataBound="gv_QCQA_RowDataBound" OnPageIndexChanging="gv_QCQA_PageIndexChanging">
                                         <Columns>
@@ -1611,7 +1637,35 @@
                                 </div>
                             </asp:Panel>
                             <asp:Panel ID="pnelQA" runat="server" Visible="false">
-                                <div class="table-responsive">
+                                <div class="row">
+                                       <div class="col-md-2">
+                                        <asp:Label ID="Label39" runat="server">Page Size</asp:Label>
+                                        <asp:DropDownList ID="ddlpagingQC1" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlpagingQC1_SelectedIndexChanged"  CssClass="form-control form-control-sm">
+                                            <asp:ListItem>10</asp:ListItem>
+                                            <asp:ListItem>15</asp:ListItem>
+                                            <asp:ListItem>20</asp:ListItem>
+                                            <asp:ListItem>30</asp:ListItem>
+                                            <asp:ListItem>50</asp:ListItem>
+                                            <asp:ListItem>100</asp:ListItem>
+                                            <asp:ListItem>150</asp:ListItem>
+                                            <asp:ListItem>200</asp:ListItem>
+                                            <asp:ListItem>300</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                       <div class="col-md-3">
+                                         <asp:Label ID="Label40" runat="server">Task Title</asp:Label>
+                                        <asp:DropDownList ID="ddllistoftask" runat="server" AutoPostBack="True" CssClass="chzn-select form-control form-control-sm"></asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-2 mt-3">
+                                        <asp:LinkButton runat="server" ID="btnsearhqc1" OnClick="btnsearhqc1_Click"   CssClass="btn btn-primary btn-sm">Search</asp:LinkButton>
+
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="table-responsive mt-2">
                                     <asp:GridView ID="gv_AssignQA" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                         ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15" OnRowDataBound="gv_AssignQA_RowDataBound">
                                         <Columns>
@@ -1962,7 +2016,31 @@
                                 </div>
                             </asp:Panel>
                             <asp:Panel ID="pnelAReject" runat="server" Visible="false">
-                                <div class="table-responsive">
+                                 <div class="row">
+                                       <div class="col-md-2">
+                                        <asp:Label ID="Label41" runat="server">Page Size</asp:Label>
+                                        <asp:DropDownList ID="ddlAcceptReject_pagging" runat="server" AutoPostBack="True"  OnSelectedIndexChanged="ddlAcceptReject_pagging_SelectedIndexChanged" CssClass="form-control form-control-sm">
+                                            <asp:ListItem>10</asp:ListItem>
+                                            <asp:ListItem>15</asp:ListItem>
+                                            <asp:ListItem>20</asp:ListItem>
+                                            <asp:ListItem>30</asp:ListItem>
+                                            <asp:ListItem>50</asp:ListItem>
+                                            <asp:ListItem>100</asp:ListItem>
+                                            <asp:ListItem>150</asp:ListItem>
+                                            <asp:ListItem>200</asp:ListItem>
+                                            <asp:ListItem>300</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                       <div class="col-md-3">
+                                         <asp:Label ID="Label42" runat="server">Task Title</asp:Label>
+                                        <asp:DropDownList ID="ddlAcceptRejecttask" runat="server" AutoPostBack="True" CssClass="chzn-select form-control form-control-sm"></asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-2 mt-3">
+                                        <asp:LinkButton runat="server" ID="btnAcceptRejectsearch" OnClick="btnAcceptRejectsearch_Click" CssClass="btn btn-primary btn-sm">Search</asp:LinkButton>
+
+                                    </div>
+                                </div>
+                                <div class="table-responsive mt-2">
                                     <asp:GridView ID="gv_AcceptReject" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                         ShowFooter="True" Visible="True" AllowPaging="true" PageSize="15">
                                         <Columns>
