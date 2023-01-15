@@ -41,6 +41,7 @@ namespace RealERPWEB.F_09_PImp
                     Response.Redirect("../AcceessError.aspx");
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+               
                 this.txtCurOrderDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtCurOrderDate_CalendarExtender.EndDate = System.DateTime.Today;
 
@@ -760,7 +761,7 @@ namespace RealERPWEB.F_09_PImp
                 foreach (DataRow dr in dtord.Rows)
                 {
 
-                    if (Convert.ToDouble(dr["balqty"]) <= Convert.ToDouble(dr["mbqty"]))
+                    if (Convert.ToDouble(dr["balqty"]) < Convert.ToDouble(dr["mbqty"]))
                     {
 
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Balance Quantity Exccced');", true);
