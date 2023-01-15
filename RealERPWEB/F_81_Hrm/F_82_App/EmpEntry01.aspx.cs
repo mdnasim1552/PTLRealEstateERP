@@ -1078,7 +1078,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                 Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : Gvalue;
                 result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, Gcode, gtype, Gvalue, "", "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "",
-                            "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", gvalueBn);
+                            "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", gvalueBn, "", "", "", "", "", userid, Editrmid);
 
 
                 if (!result)
@@ -1119,7 +1119,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                 Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : Gvalue;
                 result = HRData.UpdateTransInfo01(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, Gcode, gtype, Gvalue, "", "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "",
-                            "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", gvalueBn);
+                            "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", gvalueBn, "", "", "", "", "", userid, Editrmid);
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Updated Fail" + "');", true);
