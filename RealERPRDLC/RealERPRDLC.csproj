@@ -52,7 +52,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Project Reference\bin\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Projects\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -152,6 +152,7 @@
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+PurOrderTopSheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+RptPurchasePrjwise.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+RptSummaryProject.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+RptSupAdvanceDetails.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.UserManPur+ChequeSheet01.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+AccOpening.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+ChequeDepositPrint.datasource" />
@@ -372,6 +373,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+RptCashPay02.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+RptMonthlySalaryTaxFinlay.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+SalSummary2.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_90_PF.EmpWiseSWF.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_mgt.BO_ClassEmployee+EmployeeIDCardInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_mgt.BO_ClassEmployee+EmployeeInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_92_mgt.BO_ClassEmployee+RtpServiceHistoryProjectWise.datasource" />
@@ -1341,6 +1343,8 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalSummDetails.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSecuritySalarySuvstu.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSignatureSheet.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_90_PF\RptEmpWiseSwf.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_90_PF\RptIndPfSattlement.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_90_PF\RptIndvPfAlli.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_90_PF\RptMonthWisePFAlliance.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_90_PF\RptProvidedFund.rdlc" />

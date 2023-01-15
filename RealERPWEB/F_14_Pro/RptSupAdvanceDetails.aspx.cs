@@ -93,7 +93,7 @@ namespace RealERPWEB.F_14_Pro
 
                 string calltype = (stindex == "0" ? "SUPPLIERWISEWRKORDERDETAIL" : "SUPPLIERWISEWRKORDERBILLDETAIL");
 
-                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", calltype, frmdate, todate, supcode, "", "", "", "", "", "");
+                DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_PURCHASE_RND", calltype, frmdate, todate, supcode, "", "", "", "", "", "");
                 if (ds1 == null)
                 {
                     this.gvsupstatus.DataSource = null;
@@ -142,7 +142,7 @@ namespace RealERPWEB.F_14_Pro
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             DataTable dt = (DataTable)Session["tblsupinfo"];
             string stindex = this.rbtnAtStatus.SelectedIndex.ToString();
-
+            String Suppliername = this.ddlSuplist.SelectedItem.Text.Trim();
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptSupAdvanceDetails>();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptSupAdvanceDetails", lst, null, null);
@@ -152,6 +152,7 @@ namespace RealERPWEB.F_14_Pro
             Rpt1.SetParameters(new ReportParameter("RptTitle", stindex=="0"? "Supplier Advance Details": "Supplier Bill Details"));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("Suppliername","Supplier Name :" + Suppliername));
             Rpt1.SetParameters(new ReportParameter("date", "( From " + this.txtfrmdate.Text.Trim() + " To " + this.txttodate.Text.Trim() + " )"));
 
             Session["Report1"] = Rpt1;
