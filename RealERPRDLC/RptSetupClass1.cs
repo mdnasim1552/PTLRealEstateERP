@@ -1181,6 +1181,8 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_92_Mgt.RptEmpListJoinDateWise": Rpt1a = SetRptEmpListJDateWise(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_92_Mgt.RptEmpListBirthDateWise": Rpt1a = SetRptEmpListBirthDateWise(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_92_Mgt.RptInactiveEmplists": Rpt1a = SetRptInactiveEmplists(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_92_Mgt.RtpServiceHistoryProjectWise": Rpt1a = SetRtpServiceHistoryProjectWise(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
                 case "R_81_Hrm.R_92_Mgt.RpTotalEmplists": Rpt1a = SetRpTotalEmplists(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_81_Hrm.R_92_Mgt.RptTransList": Rpt1a = SetRptTransList(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -6916,6 +6918,12 @@ namespace RealERPRDLC
         private static LocalReport SetRptInactiveEmplists(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_92_mgt.BO_ClassEmployee.EmployeeInfo>)RptDataSet));
+            return Rpt1a;
+        }
+
+        private static LocalReport SetRtpServiceHistoryProjectWise(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_92_mgt.BO_ClassEmployee.RtpServiceHistoryProjectWise>)RptDataSet));
             return Rpt1a;
         }
 

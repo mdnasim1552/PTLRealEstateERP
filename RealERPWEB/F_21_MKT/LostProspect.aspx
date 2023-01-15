@@ -1,4 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="LostProspectTransfer.aspx.cs" Inherits="RealERPWEB.F_21_MKT.LostProspectTransfer" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/ASITNEW.Master"  AutoEventWireup="true" CodeBehind="LostProspect.aspx.cs" Inherits="RealERPWEB.F_21_MKT.LostProspect" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -44,13 +46,30 @@
                     <div class="row">                        
                         <div class="col-sm-3 col-md-3 col-lg-3">
                             <div class="form-group">
-                                <asp:Label ID="Label2" runat="server">Dristribute To</asp:Label>
+                                <asp:Label ID="Label2" runat="server">Associate</asp:Label>
                                 <asp:DropDownList ID="ddlEmpNameTo" ClientIDMode="Static" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="true" >
                                 </asp:DropDownList>
                             </div>
                         </div> 
+                        <div class="col-sm-2 col-md-2  col-lg-2">
+                            <div class="form-group">
+
+                                <asp:Label ID="lblFdate" runat="server">From Date</asp:Label>
+                                <asp:TextBox ID="txtfromdate" runat="server" autocomplete="off" CssClass="form-control form-control-sm"></asp:TextBox>
+                                <cc1:CalendarExtender ID="csefdate" runat="server"
+                                    Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtfromdate"></cc1:CalendarExtender>
+                            </div>
+                        </div>
+                        <div class="col-sm-1.5  col-md-1.5  col-lg-1.5 ">
+                            <div class="form-group">
+                                <asp:Label ID="lblTdate" runat="server">To Date</asp:Label>
+                                <asp:TextBox ID="txttodate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                <cc1:CalendarExtender ID="cetdate" runat="server"
+                                    Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
+                            </div>
+                        </div>
                         <div class="col-sm-1 col-md-1 col-lg-1">
-                            <asp:LinkButton ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" CssClass="btn btn-primary btn-sm mt20">Transfer</asp:LinkButton>
+                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                         </div>
                         <div class="col-sm-1 col-md-1 col-lg-1">
                             <div class="form-group">
@@ -73,7 +92,7 @@
                         <div class="col-sm-3 col-md-3 col-lg-3" >
                             <div class="form-group" >
                                 <asp:Label ID="lbl" runat="server" visible="false">Dristribute To</asp:Label>
-                                <asp:DropDownList ID="ddlEmpid" ClientIDMode="Static" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged" visible="false">
+                                <asp:DropDownList ID="ddlEmpid" ClientIDMode="Static" runat="server" CssClass="form-control form-control-sm chzn-select" AutoPostBack="true"  visible="false">
                                 </asp:DropDownList>
                             </div>
                         </div> 
@@ -189,7 +208,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="">
+                                        <%--<asp:TemplateField HeaderText="">
                                             <HeaderTemplate>
                                                 <asp:CheckBox ID="chkAllfrm" OnCheckedChanged="chkAllfrm_CheckedChanged" runat="server" AutoPostBack="True" Text="All" />
                                             </HeaderTemplate>
@@ -199,7 +218,7 @@
                                                     Width="50px"  />
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
 
                                     </Columns>
                                     <FooterStyle CssClass="grvFooter" />
