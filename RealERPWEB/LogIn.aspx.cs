@@ -545,6 +545,12 @@ namespace RealERPWEB
 
                 string dptcod = ds5.Tables[0].Rows[0]["deptcode"].ToString().Substring(0, 4);
 
+
+                if (comcod == "3333")
+                {
+                    Url1 = "DeafultMenu?Type=3333";
+                }
+
                 //if (userrole == "2")
                 //{
                 //    Url1 = "AllGraph";
