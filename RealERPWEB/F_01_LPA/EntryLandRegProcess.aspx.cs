@@ -28,6 +28,7 @@ namespace RealERPWEB.F_01_LPA
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
 
+
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.GetProjectName();
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
