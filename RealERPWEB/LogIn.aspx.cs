@@ -473,26 +473,27 @@ namespace RealERPWEB
                 hst["compmail"] = ds5.Tables[0].Rows[0]["compmail"];
                 hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
                 hst["ddldesc"] = ds5.Tables[0].Rows[0]["ddldesc"];
-               // hst["portnum"] = ds5.Tables[0].Rows[0]["portnum"];
-                //hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
+                hst["portnum"] = ds5.Tables[0].Rows[0]["portnum"];
+                hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
+                hst["homeurl"] = ds5.Tables[0].Rows[0]["homeurl"];
 
-                if (ds5.Tables[0].Columns.Contains("comunpost"))
-                {
-                    hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
-                }
-                else
-                {
-                    hst["comunpost"] = "0";
-                }
+                //if (ds5.Tables[0].Columns.Contains("comunpost"))
+                //{
+                //    hst["comunpost"] = ds5.Tables[0].Rows[0]["comunpost"];
+                //}
+                //else
+                //{
+                //    hst["comunpost"] = "0";
+                //}
 
-                if (ds5.Tables[0].Columns.Contains("homeurl"))
-                {
-                    hst["homeurl"] = ds5.Tables[0].Rows[0]["homeurl"];
-                }
-                else
-                {
-                    hst["homeurl"] = "UserProfile";
-                }
+                //if (ds5.Tables[0].Columns.Contains("homeurl"))
+                //{
+                //    hst["homeurl"] = ds5.Tables[0].Rows[0]["homeurl"];
+                //}
+                //else
+                //{
+                //    hst["homeurl"] = "UserProfile";
+                //}
 
                 // hst["permission"] = ds5.Tables[0].Rows[0]["permission"];
                 Session["tblLogin"] = hst;

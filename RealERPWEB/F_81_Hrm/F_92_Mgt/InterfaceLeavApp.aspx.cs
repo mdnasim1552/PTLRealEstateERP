@@ -35,7 +35,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             if (!IsPostBack)
             {
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect(this.ResolveUrl("~/AcceessError.aspx"));
+                    Response.Redirect(this.ResolveUrl("~/AcceessError"));
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
 
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
@@ -229,6 +229,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 DataView dv = new DataView();
                 dt = ((DataTable)ds1.Tables[0]).Copy();
                 ViewState["tbltotalleav"] = dt;
+                Session["tblmaproved"] = ds1.Tables[2];
+             
                 this.Data_Bind("gvLvReq", dt);
 
                 //In-process
@@ -328,7 +330,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     if (dt.Rows.Count == 0)
                         return;
                     Session["Report1"] = gvLvReq;
-                    ((HyperLink)this.gvLvReq.HeaderRow.FindControl("hlbtntbCdataExelSP2")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    ((HyperLink)this.gvLvReq.HeaderRow.FindControl("hlbtntbCdataExelSP2")).NavigateUrl = "../../RptViewer?PrintOpt=GRIDTOEXCEL";
                     break;
                 case "gvInprocess":
                     this.gvInprocess.DataSource = (dt);
@@ -390,32 +392,32 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 {
                     hlink3.Visible = false;
                     lnkbtnDptApp.Visible = true;
-                    lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=DPT";
+                    lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=DPT";
                 }
                 if (userid == suserid)
                 {
                     lnkbtnDptApp.Visible = false;
                     hlink3.Visible = true;
-                    hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=SUP";
+                    hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=SUP";
                 }
                 if ((userid == suserid) && (userid == dptusrid))
                 {
                     lnkbtnDptApp.Visible = true;
                     hlink3.Visible = false;
-                    lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=DPT";
+                    lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=DPT";
                 }
                 if ((userid == mgtusid))
                 {
                     lnkbtnDptApp.Visible = true;
                     hlink3.Visible = false;
-                    lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=DPT";
+                    lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=DPT";
                 }
 
                 hlnDel.Visible = (userid == empusrid) ? true : false;
                 hlnEdit.Visible = (userid == empusrid) ? true : false;
 
-                hlnEdit.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
-                hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
+                hlnEdit.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave?Type=User&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
+                hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
             }
         }
         protected void gvApproved_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -438,9 +440,17 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString();
                 string lvstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lvstatus")).ToString();
 
-                hlink3.Visible = (((userid == dptusid) || (userid == mgtusid))  && (lvstatus != "Approved")) ? true : false;
-                hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=DPT";
-                hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
+                //bool booluser = (((userid == dptusid) || (userid == mgtusid))&& (lvstatus != "Approved"));
+                //bool boolstatus= (lvstatus != "Approved");
+
+                DataTable dte = (DataTable)Session["tblmaproved"];
+                DataRow[] dre = dte.Select("usrid='" + userid + "'");
+
+                hlink3.Visible = (((userid == dptusid) || (userid == mgtusid)) && (lvstatus != "Approved")) || dre.Length>0;
+               // hlink3.Attributes["style"] = (dre.Length > 0) ? "background:blue;" : ((dr1.Length > 0) ? "background:blue;" : " background:red;");
+
+                hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=DPT";
+                hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
 
             }
         }
@@ -466,8 +476,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 hlnEdit.Visible = ((usrid == empusrid) && (lvstatus != "Approved")) ? true : false;
 
 
-                hlnEdit.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
-                hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
+                hlnEdit.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave?Type=User&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
+                hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
             }
         }
         protected void gvConfirm_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -488,7 +498,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string dptusid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dptusid")).ToString();
                 string lvstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lvstatus")).ToString();
                 hlinkForward.Visible = ((userid == dptusid) && (lvstatus == "Approved")) ? true : false;
-                hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
+                hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
             }
         }
         protected void gvfiApproved_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -516,7 +526,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                         //hlink3.Visible = dre.Length > 0 ? true : ((dr1.Length > 0) ? true : false);
                         break;
                 }
-                hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=App&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=MGT";
+                hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval?Type=App&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=MGT";
             }
         }
         protected void lnkRemove_Click(object sender, EventArgs e)
@@ -735,7 +745,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
 
             Session["Report1"] = Rpt1;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
         private void GetCompany()
