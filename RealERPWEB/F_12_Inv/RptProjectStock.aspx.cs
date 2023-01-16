@@ -534,6 +534,11 @@ namespace RealERPWEB.F_12_Inv
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             }
+            else if (comcod == "3370")
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptProMatStock2CPDL", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+            }
             else
             {
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.rptProMatStock2", lst, null, null);
