@@ -29,7 +29,11 @@ namespace RealERPWEB.F_04_Bgd
                 // this.txtDateFrom.Text = "01" + date.Substring(2);
                 this.lbldate.Text = this.Request.QueryString["Date1"];
                 this.lblprject.Text = this.Request.QueryString["pactdesc"];
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Construction Budget";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Construction Budget";
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 this.ShowFloorcode();
 
             }

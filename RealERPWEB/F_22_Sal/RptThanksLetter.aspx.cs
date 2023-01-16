@@ -36,11 +36,14 @@ namespace RealERPWEB.F_22_Sal
                     string TypeDesc = "";
                     TypeDesc = Request.QueryString["Type"].ToString().Trim();
                     //this.lCTitle.Text = (TypeDesc == "Thanks" ? "THANKS LETTER " : (TypeDesc == "Down" ? "DOWN PAYMENT LETTER " : (TypeDesc == "Install" ? "INSTALLMENT LETTER " :(TypeDesc == "Dues" ? "DUES LETTER":"OTHERS")))) + " INFORMATIOIN VIEW/EDIT";
-                    ((Label)this.Master.FindControl("lblTitle")).Text = (TypeDesc == "Thanks" ? "THANKS LETTER " : (TypeDesc == "Down" ? "DOWN PAYMENT LETTER " : (TypeDesc == "Install" ? "INSTALLMENT LETTER " : (TypeDesc == "Dues" ? "DUES LETTER" : (TypeDesc == "Remind" ? "REMINDER LETTER" : (TypeDesc == "RRemind" ? "LAST REMINDER LETTER" : "CANCELATION LETTER")))))) + " INFORMATIOIN VIEW/EDIT";
+                    //((Label)this.Master.FindControl("lblTitle")).Text = (TypeDesc == "Thanks" ? "THANKS LETTER " : (TypeDesc == "Down" ? "DOWN PAYMENT LETTER " : (TypeDesc == "Install" ? "INSTALLMENT LETTER " : (TypeDesc == "Dues" ? "DUES LETTER" : (TypeDesc == "Remind" ? "REMINDER LETTER" : (TypeDesc == "RRemind" ? "LAST REMINDER LETTER" : "CANCELATION LETTER")))))) + " INFORMATIOIN VIEW/EDIT";
 
                     DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                    ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                    this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                     ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                    ((Label)this.Master.FindControl("lblTitle")).Text = "REMINDER LETTER INFORMATIOIN";
+                    //((Label)this.Master.FindControl("lblTitle")).Text = "REMINDER LETTER INFORMATIOIN";
                 }
 
             }
