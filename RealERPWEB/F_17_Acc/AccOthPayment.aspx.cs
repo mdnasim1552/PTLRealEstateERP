@@ -32,10 +32,12 @@ namespace RealERPWEB.F_17_Acc
                         Response.Redirect("../AcceessError.aspx");
                     DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Replace("%20", " "), (DataSet)Session["tblusrlog"]);
                     ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                    ((Label)this.Master.FindControl("lblTitle")).Text = "Post Dated Cheque(Issue-02)";
+                    //((Label)this.Master.FindControl("lblTitle")).Text = "Post Dated Cheque(Issue-02)";
                     this.lnkFinalUpdate.Enabled = (Convert.ToBoolean(dr1[0]["entry"]));
 
-                    this.Master.Page.Title = "Post Dated Cheque(Issue-02)";
+                    //this.Master.Page.Title = "Post Dated Cheque(Issue-02)";
+                    ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                    this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 }
                 lnkFinalUpdate.Attributes.Add("onClick",
                "javascript:return confirm('You sure you want to Save the record?');");

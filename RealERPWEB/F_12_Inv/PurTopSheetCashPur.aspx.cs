@@ -26,7 +26,9 @@ namespace RealERPWEB.F_12_Inv
             if (!IsPostBack)
             {
 
-
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
@@ -37,7 +39,7 @@ namespace RealERPWEB.F_12_Inv
                 //this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 //----------------udate-20150120---------
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Top Sheet (Cash Purchase)";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Top Sheet (Cash Purchase)";
 
                 this.txtCurISSDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtCurISSDate_CalendarExtender.EndDate = System.DateTime.Today;

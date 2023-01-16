@@ -45,6 +45,9 @@ namespace RealERPWEB.F_12_Inv
                     Response.Redirect("~/AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 //this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtdate_CalendarExtender.EndDate = System.DateTime.Today;
@@ -54,8 +57,8 @@ namespace RealERPWEB.F_12_Inv
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string reqapproval = this.GetReqApproval();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (Request.QueryString["Type"].ToString() == "RateInput") ? "Rate Proposal" : reqapproval;
-                this.Master.Page.Title = (Request.QueryString["Type"].ToString() == "RateInput") ? "Rate Proposal" : reqapproval;
+                //((Label)this.Master.FindControl("lblTitle")).Text = (Request.QueryString["Type"].ToString() == "RateInput") ? "Rate Proposal" : reqapproval;
+                //this.Master.Page.Title = (Request.QueryString["Type"].ToString() == "RateInput") ? "Rate Proposal" : reqapproval;
 
 
 

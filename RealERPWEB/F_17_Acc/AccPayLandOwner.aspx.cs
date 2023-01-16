@@ -34,7 +34,10 @@ namespace RealERPWEB.F_17_Acc
                 this.GetProjectName();
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "LAND WITH PAYMENT SCHEDULE INFORMATION ";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "LAND WITH PAYMENT SCHEDULE INFORMATION ";
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 this.RadioButtonList1.SelectedIndex = 0;
                 //this.RadioButtonList1.SelectedIndex = 1;

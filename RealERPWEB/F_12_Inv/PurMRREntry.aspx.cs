@@ -32,15 +32,18 @@ namespace RealERPWEB.F_12_Inv
                     Response.Redirect("~/AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Material Receive";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Material Receive";
                 string comcod = this.GetCompCode();
 
                 this.txtCurMRRDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtApprovalDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtChaDate.Text = (comcod == "3354" ? "" : DateTime.Today.ToString("dd.MM.yyyy"));
-                ((Label)this.Master.FindControl("lblTitle")).Text = (Request.QueryString["Type"].ToString() == "Entry") ? "Materials Receive"
-                    : "Delete Materials Receive Information Input/Edit Screen";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (Request.QueryString["Type"].ToString() == "Entry") ? "Materials Receive"
+                //    : "Delete Materials Receive Information Input/Edit Screen";
 
                 string qgenno = this.Request.QueryString["genno"] ?? "";
                 if (qgenno.Length > 0)

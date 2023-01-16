@@ -47,6 +47,8 @@ namespace RealERPWEB.F_14_Pro
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("~/AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
@@ -55,8 +57,8 @@ namespace RealERPWEB.F_14_Pro
                    : (Request.QueryString["InputType"].ToString() == "SecondApp") ? "Purchase Order Final Approval"
                    : "Purchase Order";
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = title;
-                this.Master.Page.Title = title;
+                //((Label)this.Master.FindControl("lblTitle")).Text = title;
+                //this.Master.Page.Title = title;
 
                 this.txtCurOrderDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtApprovalDate.Text = DateTime.Today.ToString("dd.MM.yyyy");

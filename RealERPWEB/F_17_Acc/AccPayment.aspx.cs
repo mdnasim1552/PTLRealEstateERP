@@ -40,9 +40,11 @@ namespace RealERPWEB.F_17_Acc
                     this.BindModalDialog();
 
                     string tname = this.Request.QueryString["tname"].ToString();
-                    ((Label)this.Master.FindControl("lblTitle")).Text = tname == "Payment Voucher" ? "Post Dated Cheque(Issue-01)" : "Post Dated Cheque(Received)";
+                    //((Label)this.Master.FindControl("lblTitle")).Text = tname == "Payment Voucher" ? "Post Dated Cheque(Issue-01)" : "Post Dated Cheque(Received)";
                     ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                    this.Master.Page.Title = "Post Dated Cheque";
+                    //this.Master.Page.Title = "Post Dated Cheque";
+                    ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                    this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
 
 

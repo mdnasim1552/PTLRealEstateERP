@@ -34,12 +34,15 @@ namespace RealERPWEB.F_22_Sal
                 this.NameChangee();
                 this.ShowOpeningInfo();
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 string type = this.Request.QueryString["Type"].ToString();
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = type == "Consolidate" ? "Sales & Collection Opening (Consolidate)"
-                         : type == "Details" ? "Collection Break Down (Project Wise)"
-                         : type == "Details02" ? "Collection Break Down (All Project)" : "SALES OPENING INFORMATION ";
+                //((Label)this.Master.FindControl("lblTitle")).Text = type == "Consolidate" ? "Sales & Collection Opening (Consolidate)"
+                //         : type == "Details" ? "Collection Break Down (Project Wise)"
+                //         : type == "Details02" ? "Collection Break Down (All Project)" : "SALES OPENING INFORMATION ";
 
 
 
