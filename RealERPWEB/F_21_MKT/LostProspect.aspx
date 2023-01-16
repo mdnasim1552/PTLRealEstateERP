@@ -16,7 +16,11 @@
 
         });
         function pageLoaded() {
-
+            $(".chosen-select").chosen({
+                search_contains: true,
+                no_results_text: "Sorry, no match!",
+                allow_single_deselect: true
+            });
         };
 
     </script>
@@ -67,11 +71,20 @@
                                 <cc1:CalendarExtender ID="cetdate" runat="server"
                                     Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                             </div>
-                        </div>
+                        </div>                        
                         <div class="col-sm-1 col-md-1 col-lg-1">
                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                         </div>
+                        <div class="col-sm-2  col-md-2  col-lg-2 ">
+                            <div class="form-group">
+                                <asp:Label ID="search" runat="server">Search</asp:Label>
+                                <asp:TextBox ID="txtVal" runat="server" CssClass="form-control form-control-sm" TextMode="Search"></asp:TextBox>                                
+                            </div>
+                        </div>
                         <div class="col-sm-1 col-md-1 col-lg-1">
+                            <asp:LinkButton ID="SrchBtn" runat="server" CssClass="btn btn-primary btn-sm mt20" OnClick="SrchBtn_Click">Search</asp:LinkButton>
+                        </div>
+                        <div class="col-sm-.5 col-md-.5 col-lg-.5">
                             <div class="form-group">
                                 <asp:Label ID="lblPage" runat="server">Page Size</asp:Label>
                                 <asp:DropDownList ID="ddlpage" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm chzn-select" OnSelectedIndexChanged="ddlpage_SelectedIndexChanged">
@@ -86,6 +99,10 @@
                                     <asp:ListItem>300</asp:ListItem>
                                     <asp:ListItem>500</asp:ListItem>
                                     <asp:ListItem>800</asp:ListItem>
+                                    <asp:ListItem>1000</asp:ListItem>
+                                    <asp:ListItem>1500</asp:ListItem>
+                                    <asp:ListItem>3000</asp:ListItem>
+                                    <asp:ListItem>5000</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>  
