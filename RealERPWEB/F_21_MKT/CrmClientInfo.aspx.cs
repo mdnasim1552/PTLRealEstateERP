@@ -124,7 +124,7 @@ namespace RealERPWEB.F_21_MKT
                     this.gvSummary.Columns[17].Visible = false;
                     this.gvSummary.Columns[18].Visible = false;
                     this.gvSummary.Columns[19].Visible = false;
-                    this.gvSummary.Columns[20].Visible = false;
+                    this.gvSummary.Columns[20].Visible = true;
                     this.gvSummary.Columns[21].Visible = false;
                     this.gvSummary.Columns[22].Visible = true;
                     this.gvSummary.Columns[23].Visible = true;

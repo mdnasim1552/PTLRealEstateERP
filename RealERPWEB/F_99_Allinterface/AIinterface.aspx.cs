@@ -943,8 +943,9 @@ namespace RealERPWEB.F_99_Allinterface
 
                 }
             }
-            catch (Exception ex)
+            catch (Exception exp)
             {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + exp.Message.ToString() + "');", true);
 
             }
         }
@@ -1629,10 +1630,16 @@ namespace RealERPWEB.F_99_Allinterface
                 double pedingannotor = Convert.ToDouble("0" + this.lblcountannotid.Text.ToString());
                 double pedingqc = Convert.ToDouble("0" + this.lblcountQC.Text.ToString());
                 double pedingqar = Convert.ToDouble("0" + this.lblcountQA.Text.ToString());
-               
+
+                
+
                 double doneannotor = Convert.ToDouble("0" + this.lblDoneAnnot.Text.ToString());
                 double doneqc = Convert.ToDouble("0" + this.lblDoneQC.Text.ToString());
                 double doneqa = Convert.ToDouble("0" + this.lblDoneQA.Text.ToString());
+
+
+
+
                 if (roletype == "95001" && pedingannotor < assignqty && pedingannotor !=0)
                 {
 
@@ -1645,14 +1652,14 @@ namespace RealERPWEB.F_99_Allinterface
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
 
                 }
-                else if (roletype == "95002" && doneannotor < assignqty && pedingqc!=0)
+                else if (roletype == "95002" && doneannotor < assignqty && pedingqc < assignqty)
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneannotor  " + doneannotor.ToString();
                     this.txtquantity.Focus();
                     this.txtquantity.ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg.ToString() + "');", true);
                 }
-                else if (roletype == "95003" && doneqc < assignqty && pedingqar!=0)
+                else if (roletype == "95003" && doneqc < assignqty && pedingqar < assignqty)
                 {
                     string msg = "Assigned Quantity " + assignqty.ToString() + " Grater Then doneqc  " + doneqc.ToString();
                     this.txtquantity.Focus();
@@ -1842,6 +1849,7 @@ namespace RealERPWEB.F_99_Allinterface
                 DataSet ds1 = AIData.GetTransInfo(comcod, "dbo_ai.SP_INTERFACE_AI", "ASSIGNQTYCOUNT", prjid, batchid, "", "", "", "", "");
                 if (ds1 == null)
                     return;
+                ViewState["Donetask"] = ds1.Tables[0];
                 DataTable dt = ds1.Tables[0];
                 double pedingannotor = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["pendingqty"].ToString());
                 double pedingqc = Convert.ToDouble("0" + ds1.Tables[0].Rows[0]["qcpending"].ToString());
