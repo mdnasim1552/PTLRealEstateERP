@@ -227,7 +227,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Projects\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Project Reference\bin\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2391,6 +2391,7 @@
     <Content Include="F_12_Inv\Material_Issue.aspx" />
     <Content Include="F_12_Inv\MatTransfer02.aspx" />
     <Content Include="F_12_Inv\MatTransStatus.aspx" />
+    <Content Include="F_12_Inv\ProjectWiseStock.aspx" />
     <Content Include="F_12_Inv\PurReqEntry.aspx" />
     <Content Include="F_12_Inv\RptIndentIssueStatus.aspx" />
     <Content Include="F_12_Inv\RptIndentIssueStatusSummary.aspx" />
@@ -4319,6 +4320,13 @@
     </Compile>
     <Compile Include="F_12_Inv\IndentMaterialRequired.aspx.designer.cs">
       <DependentUpon>IndentMaterialRequired.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_12_Inv\ProjectWiseStock.aspx.cs">
+      <DependentUpon>ProjectWiseStock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_12_Inv\ProjectWiseStock.aspx.designer.cs">
+      <DependentUpon>ProjectWiseStock.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_12_Inv\PurReqEntry.aspx.cs">
       <DependentUpon>PurReqEntry.aspx</DependentUpon>

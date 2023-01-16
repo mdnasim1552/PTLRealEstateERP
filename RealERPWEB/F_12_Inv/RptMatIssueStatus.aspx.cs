@@ -40,6 +40,7 @@ namespace RealERPWEB.F_12_Inv
                 this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyy");
                 this.GetProjectName();
                 this.GridViewHeaderName();
+                this.GetMaterialCode();
             }
         }
 
@@ -79,7 +80,7 @@ namespace RealERPWEB.F_12_Inv
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
-
+       
         protected void GetProjectName()
         {
 
@@ -94,7 +95,19 @@ namespace RealERPWEB.F_12_Inv
             this.ddlProName.DataSource = ds1.Tables[0];
             this.ddlProName.DataBind();
         }
+        private void GetMaterialCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
 
+
+            DataSet ds3 = PurData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "GETRESOURCE", "%%", "", "", "", "", "", "", "", "");
+            this.ddlmatlist.DataTextField = "sirdesc";
+            this.ddlmatlist.DataValueField = "sircode";
+            this.ddlmatlist.DataSource = ds3.Tables[0];
+            this.ddlmatlist.DataBind();
+          
+        }
         protected void ibtnFindProject_Click(object sender, EventArgs e)
         {
             this.GetProjectName();
@@ -115,7 +128,8 @@ namespace RealERPWEB.F_12_Inv
             string fdate = this.txtfromdate.Text;
             string tdate = this.txttodate.Text;
             string refno = "%" + this.txtSrcRefNo.Text.Trim() + "%";
-            DataSet ds1 = PurData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "RPTMATISSUESTATUS", pactcode, fdate, tdate, refno, "", "", "", "", "");
+            string rescode = ((this.ddlmatlist.SelectedValue.ToString() == "000000000000") ? "" : this.ddlmatlist.SelectedValue.ToString()) + "%";
+            DataSet ds1 = PurData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "RPTMATISSUESTATUS", pactcode, fdate, tdate, refno, rescode, "", "", "", "");
             if (ds1 == null)
             {
                 this.gvMatIssueStatus.DataSource = null;
