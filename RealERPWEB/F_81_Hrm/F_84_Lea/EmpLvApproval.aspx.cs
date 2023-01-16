@@ -73,7 +73,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.txtdate.Text = Date;
 
                 this.IsApprovalCheck();
-                this.GetDptUserCheck();
+               // this.GetDptUserCheck(); Emdad/16.01.2023
 
                 // this.CommonButton();
                 this.GetProjectName();
