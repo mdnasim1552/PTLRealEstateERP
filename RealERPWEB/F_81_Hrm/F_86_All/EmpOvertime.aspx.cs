@@ -4329,7 +4329,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             this.SaveValue();
             DataTable dt = (DataTable)Session["tblencashment"];
             string comcod = this.GetComeCode();
-
+            string yearMon = this.ddlyearmon.SelectedValue.ToString();
 
             bool result = false;
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -4349,7 +4349,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 double balleave = Convert.ToDouble(dt.Rows[i]["elencashday"]);
 
 
-                 result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_REPORT_LEAVE_SUMMARY", "INSERTUPDATENCASHMENT", empid,rowid, fdate, tdate, salary.ToString(), duration.ToString(), dueelve.ToString(), enjoyday.ToString(), balleave.ToString(),"","","","","","","","","","","","");
+                 result = HRData.UpdateTransInfo2(comcod, "dbo_hrm.SP_REPORT_LEAVE_SUMMARY", "INSERTUPDATENCASHMENT", empid,rowid, fdate, tdate, salary.ToString(), duration.ToString(), dueelve.ToString(), enjoyday.ToString(), balleave.ToString(), yearMon, "","","","","","","","","","","");
                     if (!result)
                         return;
 

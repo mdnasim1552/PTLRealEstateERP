@@ -231,6 +231,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                 return;
             ViewState["tblempinfo"] = ds.Tables[1];
             ViewState["tblemppfinfo"] = ds.Tables[0];
+            ViewState["tblemppfinfototalsum"] = ds.Tables[2];
             this.Data_Bind();
 
         }
@@ -371,6 +372,9 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                 case "Indswfsum":
                     this.PrintindSwfSum();
                     break;
+                case "IndPfSattlement":
+                    this.PrintIndPfSattlement();
+                    break;
 
             }
 
@@ -382,9 +386,108 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
 
         private void PrintindSwfSum()
         {
+            string comcod = this.GetComeCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
+            LocalReport Rpt1 = new LocalReport();
+            DataTable Pfinfo = (DataTable)ViewState["tblemppfinfo"];
+            DataTable empinfo = (DataTable)ViewState["tblempinfo"];
+            DataTable emppfinfototalsum = (DataTable)ViewState["tblemppfinfototalsum"];
+
+            var pflist = Pfinfo.DataTableToList<RealEntity.C_81_Hrm.C_90_PF.EmpWiseSWF>();
+
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_90_PF.RptEmpWiseSwf", pflist, null, null);
+            //Rpt1.SetParameters(new ReportParameter("txtconpriod", Convert.ToDouble(empinfo.Rows[0]["years"]).ToString("#,##0;(#,##0") + "  Year  " + Convert.ToDouble(empinfo.Rows[0]["months"]).ToString("#,##0;(#,##0") + "  Month"));
+
+
+
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("compname", comnam));
+            Rpt1.SetParameters(new ReportParameter("printdate", "Date : " + printdate));
+            Rpt1.SetParameters(new ReportParameter("empname", empinfo.Rows[0]["name"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("empid", empinfo.Rows[0]["idcard"].ToString()));
+            
+            Rpt1.SetParameters(new ReportParameter("rptname", "Employee Wise SWF Status"));
+         
+            Rpt1.SetParameters(new ReportParameter("dept", empinfo.Rows[0]["dept"].ToString()));
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
+        private void PrintIndPfSattlement()
+        {
+            string comcod = this.GetComeCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd-MMM-yyyy");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
+            LocalReport Rpt1 = new LocalReport();
+            DataTable Pfinfo = (DataTable)ViewState["tblemppfinfo"];
+            DataTable empinfo = (DataTable)ViewState["tblempinfo"];
+            DataTable emppfinfototalsum = (DataTable)ViewState["tblemppfinfototalsum"];
+
+
+
+
+            string tswf = Convert.ToDouble(emppfinfototalsum.Rows[0]["tswf"]).ToString("#,##0.00;(#,##0.00); ");
+
+            string grandtotalamt = Convert.ToDouble(emppfinfototalsum.Rows[0]["grandtotalamt"]).ToString("#,##0.00;(#,##0.00); ");
+            string contributioncom = Convert.ToDouble(emppfinfototalsum.Rows[0]["contributioncom"]).ToString("#,##0.00;(#,##0.00); ");
+            string grandtotalpf = Convert.ToDouble(emppfinfototalsum.Rows[0]["grandtotalpf"]).ToString("#,##0.00;(#,##0.00); ");
+
+
+            string inword = ASTUtility.Trans(Convert.ToDouble(grandtotalamt), 2);
+
+
+            var pflist = Pfinfo.DataTableToList<RealEntity.C_81_Hrm.C_90_PF.IndPfSattlement>();
+
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_90_PF.RptIndPfSattlement", pflist, null, null);
+            //Rpt1.SetParameters(new ReportParameter("txtconpriod", Convert.ToDouble(empinfo.Rows[0]["years"]).ToString("#,##0;(#,##0") + "  Year  " + Convert.ToDouble(empinfo.Rows[0]["months"]).ToString("#,##0;(#,##0") + "  Month"));
+
+
+
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("compname", comnam));
+            Rpt1.SetParameters(new ReportParameter("printdate", "Date : " + printdate));
+            Rpt1.SetParameters(new ReportParameter("empname", empinfo.Rows[0]["name"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("empid", empinfo.Rows[0]["idcard"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("empdesig", empinfo.Rows[0]["desig"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("joindate", Convert.ToDateTime(empinfo.Rows[0]["joindate"]).ToString("dd-MMM-yy")));
+            Rpt1.SetParameters(new ReportParameter("empconfdate", Convert.ToDateTime(empinfo.Rows[0]["confirmdate"]).ToString("dd-MMM-yy")));
+            Rpt1.SetParameters(new ReportParameter("slength", empinfo.Rows[0]["slength"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("rptname", "Final Sattlement of PF and WF"));
+            Rpt1.SetParameters(new ReportParameter("pfstart", empinfo.Rows[0]["pfstart"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("contributioncom", contributioncom));
+            Rpt1.SetParameters(new ReportParameter("tswf", tswf));
+            Rpt1.SetParameters(new ReportParameter("grandtotalpf", grandtotalpf));
+            Rpt1.SetParameters(new ReportParameter("grandtotalamt", grandtotalamt));
+            Rpt1.SetParameters(new ReportParameter("InWrd", inword));
+            Rpt1.SetParameters(new ReportParameter("pfend", empinfo.Rows[0]["pfend"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("dept", empinfo.Rows[0]["dept"].ToString()));
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
         private void PrintIndpfund()
         {
             string comcod = this.GetComeCode();

@@ -508,12 +508,17 @@
                               <Color>LightGrey</Color>
                               <Style>None</Style>
                             </Border>
+                            <RightBorder>
+                              <Color>White</Color>
+                              <Style>Solid</Style>
+                              <Width>4pt</Width>
+                            </RightBorder>
                             <BackgroundColor>=iif(Fields!unts5.Value="Sale","Red"
 ,iif(Fields!unts5.Value="UnSold","Green"
 ,iif(Fields!unts5.Value="MGTBooking","Blue",""
 )))</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingRight>6pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
@@ -532,6 +537,7 @@
                                   <Value>=Fields!untd6.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
+                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -545,6 +551,7 @@
                                   <Value>=Fields!untsz6.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
+                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -559,12 +566,17 @@
                               <Color>LightGrey</Color>
                               <Style>None</Style>
                             </Border>
+                            <RightBorder>
+                              <Color>White</Color>
+                              <Style>Solid</Style>
+                              <Width>4pt</Width>
+                            </RightBorder>
                             <BackgroundColor>=iif(Fields!unts6.Value="Sale","Red"
 ,iif(Fields!unts6.Value="UnSold","Green"
 ,iif(Fields!unts6.Value="MGTBooking","Blue",""
 )))</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingRight>6pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
@@ -583,6 +595,7 @@
                                   <Value>=Fields!untd7.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
+                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -596,6 +609,7 @@
                                   <Value>=Fields!untsz7.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
+                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -610,12 +624,17 @@
                               <Color>LightGrey</Color>
                               <Style>None</Style>
                             </Border>
+                            <RightBorder>
+                              <Color>White</Color>
+                              <Style>Solid</Style>
+                              <Width>4pt</Width>
+                            </RightBorder>
                             <BackgroundColor>=iif(Fields!unts7.Value="Sale","Red"
 ,iif(Fields!unts7.Value="UnSold","Green"
 ,iif(Fields!unts7.Value="MGTBooking","Blue",""
 )))</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingRight>6pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
@@ -634,12 +653,14 @@
                                   <Value>=Fields!untd8.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
+                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                                 <TextRun>
                                   <Value>=Fields!untsz8.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
+                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -654,12 +675,17 @@
                               <Color>LightGrey</Color>
                               <Style>None</Style>
                             </Border>
+                            <RightBorder>
+                              <Color>White</Color>
+                              <Style>Solid</Style>
+                              <Width>4pt</Width>
+                            </RightBorder>
                             <BackgroundColor>=iif(Fields!unts8.Value="Sale","Red"
 ,iif(Fields!unts8.Value="UnSold","Green"
 ,iif(Fields!unts8.Value="MGTBooking","Blue",""
 )))</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingRight>6pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
@@ -678,12 +704,14 @@
                                   <Value>=Fields!untd9.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
+                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                                 <TextRun>
                                   <Value>=Fields!untsz9.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
+                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -698,12 +726,17 @@
                               <Color>LightGrey</Color>
                               <Style>None</Style>
                             </Border>
+                            <RightBorder>
+                              <Color>White</Color>
+                              <Style>Solid</Style>
+                              <Width>4pt</Width>
+                            </RightBorder>
                             <BackgroundColor>=iif(Fields!unts9.Value="Sale","Red"
 ,iif(Fields!unts9.Value="UnSold","Green"
 ,iif(Fields!unts9.Value="MGTBooking","Blue",""
 )))</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingRight>6pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
@@ -722,12 +755,14 @@
                                   <Value>=Fields!untd10.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
+                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                                 <TextRun>
                                   <Value>=Fields!untsz10.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
+                                    <Color>White</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>

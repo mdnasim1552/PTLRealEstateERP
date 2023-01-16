@@ -7849,7 +7849,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302000000", "	Supervision Level", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0302000001", "12. Transaction Search", "F_23_CR/TransactionSearch", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302000002", "13. Payment Status", "F_23_CR/RptCustPayStatus?Type=Payment", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0302000008", "13. Payment Status (Day Wise)", "F_23_CR/RptPaymentStatusdaywise", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000008", "13. Payment Status (Date Wise)", "F_23_CR/RptPaymentStatusdaywise", "", true, "" });
        
 
             mnuTbl1.Rows.Add(new Object[] { "0302000003", "15. Client Payment Details", "F_23_CR/RptCustPayStatus?Type=ClPayDetails", "", true, "" });
