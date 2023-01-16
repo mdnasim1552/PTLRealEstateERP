@@ -26,8 +26,11 @@ namespace RealERPWEB.F_21_MKT
                     Response.Redirect("~/AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "CRM Lost Prospect Transfer";
+                ((Label)this.Master.FindControl("lblTitle")).Text = "CRM Lost Prospect";
 
                 GetAllSubdata();
 
@@ -200,7 +203,7 @@ namespace RealERPWEB.F_21_MKT
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             DataTable dt = (DataTable)ViewState["tblproswork"];
 
-            string assocname = dt.Rows[0]["assocname"].ToString();
+            string assocname = this.ddlEmpNameTo.SelectedValue == "000000000000"?" All" : dt.Rows[0]["assocname"].ToString();
 
             var lst = dt.DataTableToList<RealEntity.C_21_Mkt.ECRMClientInfo.RptProspectTransfer>();
             LocalReport Rpt1 = new LocalReport();
@@ -208,7 +211,7 @@ namespace RealERPWEB.F_21_MKT
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("compname", comnam));
-            Rpt1.SetParameters(new ReportParameter("Rptname", "Prospect Transfer of " + assocname));
+            Rpt1.SetParameters(new ReportParameter("Rptname", "Lost Prospect of " + assocname));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             Session["Report1"] = Rpt1;
@@ -222,9 +225,22 @@ namespace RealERPWEB.F_21_MKT
             string comcod = GetComeCode();
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            string toemp = this.ddlEmpNameTo.SelectedValue.ToString();
+            string toemp = this.ddlEmpNameTo.SelectedValue=="000000000000"?"%" : this.ddlEmpNameTo.SelectedValue.ToString();
 
             DataSet ds1 = instcrm.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE", "LOST_PROSPECT_UNDER_ASSOCIATE", null, null, null, toemp, frmdate, todate, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            ViewState["tblproswork"] = (ds1.Tables[0]);
+            this.Data_Bind();
+        }
+
+        protected void SrchBtn_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetComeCode();
+            string toemp = this.ddlEmpNameTo.SelectedValue == "000000000000" ? "%" : this.ddlEmpNameTo.SelectedValue.ToString();
+            string srcval ="%" + txtVal.Text + "%";
+            DataSet ds1 = instcrm.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE", "LOST_PROSPECT_SEARCH", null, null, null, toemp, srcval, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             ViewState["tblproswork"] = (ds1.Tables[0]);

@@ -31,10 +31,13 @@ namespace RealERPWEB.F_04_Bgd
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "Rate") ? "SUB-CONTRACTOR'S RATE INFORMATION INPUT/EDIT" : "CONSTRUCTION LEVEL INFORMATION INPUT/EDIT";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "Rate") ? "SUB-CONTRACTOR'S RATE INFORMATION INPUT/EDIT" : "CONSTRUCTION LEVEL INFORMATION INPUT/EDIT";
 
                 this.SectionView();
 

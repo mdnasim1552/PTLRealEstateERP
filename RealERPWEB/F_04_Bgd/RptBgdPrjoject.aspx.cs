@@ -33,7 +33,8 @@ namespace RealERPWEB.F_04_Bgd
                     Response.Redirect("~/AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("../AcceessError.aspx");
@@ -43,23 +44,23 @@ namespace RealERPWEB.F_04_Bgd
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "MasterBgdAcWk") ? "Budgeted Income Statement -(Work)"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "MasterBgd") ? "Budgeted Income Statement -(Resource)"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "PrjInfo") ? "PROJECT INFORMATION"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "WrkVsResource") ? "Budgeted Work Vs. Resource"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "BudgetedCost") ? "Budgeted Total Cost"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "BudgetAlocation") ? "Budget Balance After Approval"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "BgdAlocBal") ? "Budget Balance Information"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "LandPurReg") ? "Land Purchase Register"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "BudgetBal") ? "Budget Balance (Resource Basis)"
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "MasterBgdAcWk") ? "Budgeted Income Statement -(Work)"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "MasterBgd") ? "Budgeted Income Statement -(Resource)"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "PrjInfo") ? "PROJECT INFORMATION"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "WrkVsResource") ? "Budgeted Work Vs. Resource"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "BudgetedCost") ? "Budgeted Total Cost"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "BudgetAlocation") ? "Budget Balance After Approval"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "BgdAlocBal") ? "Budget Balance Information"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "LandPurReg") ? "Land Purchase Register"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "BudgetBal") ? "Budget Balance (Resource Basis)"
 
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "AddBudget") ? "Additional Budget"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "BgdWkVsActual") ? "Budgeted Income Statement -(Budget Vs Actual)"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "MasterBgdGrWiseDet") ? "Budgeted Cost-Details"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "MasterBgdFlrDet") ? "Budgeted Details(Catagory Wise)"
-                    : (this.Request.QueryString["Type"].ToString().Trim() == "MatRequired") ? "Material Requirements"
-                     : (this.Request.QueryString["Type"].ToString().Trim() == "BgdCostResBasis02") ? "Material Group Wise Cost"
-                    : "Budgeted Income Statement -Summary";
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "AddBudget") ? "Additional Budget"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "BgdWkVsActual") ? "Budgeted Income Statement -(Budget Vs Actual)"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "MasterBgdGrWiseDet") ? "Budgeted Cost-Details"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "MasterBgdFlrDet") ? "Budgeted Details(Catagory Wise)"
+                //    : (this.Request.QueryString["Type"].ToString().Trim() == "MatRequired") ? "Material Requirements"
+                //     : (this.Request.QueryString["Type"].ToString().Trim() == "BgdCostResBasis02") ? "Material Group Wise Cost"
+                //    : "Budgeted Income Statement -Summary";
 
 
                 this.GetProjectName();

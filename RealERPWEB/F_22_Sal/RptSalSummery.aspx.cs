@@ -36,7 +36,8 @@ namespace RealERPWEB.F_22_Sal
                         (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                     Response.Redirect("~/AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 string date1 = this.Request.QueryString["Date1"];
                 string date2 = this.Request.QueryString["Date2"];
@@ -60,9 +61,9 @@ namespace RealERPWEB.F_22_Sal
 
                 string type = this.Request.QueryString["Type"].ToString();
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = type == "SalesRegister" ? "Sales Register"
-                    : type == "QtyBasis" ? "Sale Summary(Qty Basis)"
-                    : type == "AmtBasis" ? "Sale Summary(Amount Basis)" : type == "CollVsHonoured" ? "Collection Vs Reconcillation - Summary" : "Daily Sales & Collection Status";
+                //((Label)this.Master.FindControl("lblTitle")).Text = type == "SalesRegister" ? "Sales Register"
+                //    : type == "QtyBasis" ? "Sale Summary(Qty Basis)"
+                //    : type == "AmtBasis" ? "Sale Summary(Amount Basis)" : type == "CollVsHonoured" ? "Collection Vs Reconcillation - Summary" : "Daily Sales & Collection Status";
 
                 this.lbtnOk_Click(null, null);
             }

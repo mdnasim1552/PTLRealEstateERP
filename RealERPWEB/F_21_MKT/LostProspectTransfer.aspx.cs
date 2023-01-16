@@ -26,8 +26,11 @@ namespace RealERPWEB.F_21_MKT
                     Response.Redirect("~/AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "CRM Lost Prospect Transfer";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "CRM Lost Prospect Transfer";
 
                 GetAllSubdata();
 
@@ -257,8 +260,7 @@ namespace RealERPWEB.F_21_MKT
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             DataTable dt = (DataTable)ViewState["tblproswork"];
-
-            string assocname = dt.Rows[0]["assocname"].ToString();
+            //string assocname = dt.Rows[0]["assocname"].ToString();
 
             var lst = dt.DataTableToList<RealEntity.C_21_Mkt.ECRMClientInfo.RptProspectTransfer>();
             LocalReport Rpt1 = new LocalReport();
@@ -266,12 +268,39 @@ namespace RealERPWEB.F_21_MKT
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("compname", comnam));
-            Rpt1.SetParameters(new ReportParameter("Rptname", "Prospect Transfer of " + assocname));
+            //Rpt1.SetParameters(new ReportParameter("Rptname", "Prospect Transfer of " + assocname));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
+        protected void SrchBtn_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetComeCode();
+            string toemp = this.ddlEmpNameTo.SelectedValue == "000000000000" ? "%" : this.ddlEmpNameTo.SelectedValue.ToString();
+            string srcval = "%" + txtVal.Text + "%";
+            DataSet ds1 = instcrm.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE", "LOST_TRANSFER_PROSPECT_SEARCH", null, null, null, toemp, srcval, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            ViewState["tblproswork"] = (ds1.Tables[0]);
+            this.Data_Bind();
+        }
+
+        protected void lnkEditfollowup_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetComeCode();
+            int rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string cdate = DateTime.Now.ToString("dd-MMM-yyyy");
+            string proscod = ((Label)this.gvProspectWorking.Rows[rowindex].FindControl("lblproscod")).Text;
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "SHOWPROSPECTIVEDISCUSSION", proscod, cdate, "", "", "", "");
+
+            this.rpclientinfo.DataSource = ds1.Tables[0];
+            this.rpclientinfo.DataBind();
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
         }
     }
 }

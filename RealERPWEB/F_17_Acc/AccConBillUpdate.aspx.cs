@@ -38,7 +38,9 @@ namespace RealERPWEB.F_17_Acc
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Contractor Bill Update";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Contractor Bill Update";
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 this.CreateTable();
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.GetConAndBill();
