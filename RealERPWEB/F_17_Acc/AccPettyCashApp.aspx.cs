@@ -32,8 +32,8 @@ namespace RealERPWEB.F_17_Acc
             if (!IsPostBack)
             {
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Petty cash Bill Approval Sheet";
-                this.Master.Page.Title = "Petty cash Bill Approval Sheet";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Petty cash Bill Approval Sheet";
+                //this.Master.Page.Title = "Petty cash Bill Approval Sheet";
 
                 int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
@@ -41,7 +41,8 @@ namespace RealERPWEB.F_17_Acc
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 //this..Enabled = (Convert.ToBoolean(dr1[0]["entry"]));
-
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
 
 

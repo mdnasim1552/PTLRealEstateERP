@@ -31,6 +31,8 @@ namespace RealERPWEB.F_22_Sal
                     Response.Redirect("../AcceessError.aspx");
                 this.ProjectName();
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
@@ -45,7 +47,7 @@ namespace RealERPWEB.F_22_Sal
                     this.divGVData.Visible = true;
                     this.divgvChart.Visible = false;
                 }
-                ((Label)this.Master.FindControl("lblTitle")).Text = (type == "Details" ? "Availability Chart 1" : type == "BookingChart" ? "Booking Chart" : "Availability Chart 2");
+                //((Label)this.Master.FindControl("lblTitle")).Text = (type == "Details" ? "Availability Chart 1" : type == "BookingChart" ? "Booking Chart" : "Availability Chart 2");
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)
