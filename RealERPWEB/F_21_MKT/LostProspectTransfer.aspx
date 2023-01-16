@@ -182,6 +182,14 @@
                                             <ItemStyle HorizontalAlign="left" />
                                             <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
                                         </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Associate Name">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvassocname" runat="server" Height="16px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assocname")) %>'
+                                                    Width="120px" ForeColor="Black"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Contact No">
                                             <ItemTemplate>
