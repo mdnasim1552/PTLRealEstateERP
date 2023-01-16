@@ -39,7 +39,32 @@ namespace RealERPWEB.F_12_Inv
                 this.GetProjectName();
                 this.GetMaterial();
                 this.GetToProject();
+                this.GridHeaderName();
             }
+        }
+
+        private void GridHeaderName()
+        {
+            string comcod = this.GetCompCode();
+
+            switch (comcod)
+            {
+
+
+
+
+
+
+                case "3370": //CPDL
+                    this.grvacc.Columns[2].HeaderText = "MRR No";
+                    break;
+                default:
+                    
+                    break;
+
+            }
+
+
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -237,11 +262,34 @@ namespace RealERPWEB.F_12_Inv
             DataTable dt1 = (DataTable)Session["tblMatTranStatus"];
             var list = dt1.DataTableToList<RealEntity.C_12_Inv.EClassMaterial.MatTransStatus>();
             LocalReport rpt = new LocalReport();
-            string txtTmrrData = "MTRF No";
-            if (comcod == "3330")
+            
+           
+            
+            
+            string txtTmrrData = "";
+           
+            switch (comcod)
             {
-                txtTmrrData = "TMRR No";
+
+
+
+
+
+
+                case "3370": //CPDL
+                    txtTmrrData = "MRR No";
+                    break;
+                case "3330": //Bridge
+                    txtTmrrData = "TMRR No";
+                    break;
+                default:
+                    txtTmrrData="MTRF No";
+                    break;
+
             }
+
+
+
 
             rpt = RptSetupClass1.GetLocalReport("R_12_Inv.RptMatTransStatus", list, null, null);
             rpt.SetParameters(new ReportParameter("compNam", comnam));
