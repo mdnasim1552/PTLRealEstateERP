@@ -29,12 +29,15 @@ namespace RealERPWEB.F_09_PImp
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 string type = this.Request.QueryString["Type"].ToString();
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = type == "BillDetails" ? "Sub-Contractor Status (R/A Bill All)" : "Sub-Contractor Bill - R/A Wise";
+                //((Label)this.Master.FindControl("lblTitle")).Text = type == "BillDetails" ? "Sub-Contractor Status (R/A Bill All)" : "Sub-Contractor Bill - R/A Wise";
                 this.GetConTractorName();
                 this.GetProjectName();
                 this.SelectView();

@@ -35,7 +35,9 @@ namespace RealERPWEB.F_08_PPlan
                 if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(),
                         (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"])) ;
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Constraction DASHBOARD";
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Constraction DASHBOARD";
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
                 this.txtDate.Text = DateTime.Today.ToString("dd-MMM-yyyy");
 

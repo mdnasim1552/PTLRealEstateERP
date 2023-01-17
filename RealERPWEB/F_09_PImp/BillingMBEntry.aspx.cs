@@ -41,7 +41,8 @@ namespace RealERPWEB.F_09_PImp
                     Response.Redirect("../AcceessError.aspx");
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
-               
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 this.txtCurOrderDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtCurOrderDate_CalendarExtender.EndDate = System.DateTime.Today;
 

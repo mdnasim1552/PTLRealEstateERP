@@ -34,6 +34,8 @@ namespace RealERPWEB.F_24_CC
                     Response.Redirect("../AcceessError.aspx");
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 this.GetProjectName();
                 this.GetUnitName();
                 this.txtCurTransDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
