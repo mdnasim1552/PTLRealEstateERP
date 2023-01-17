@@ -209,7 +209,7 @@ namespace RealERPWEB.F_22_Sal
             string custid = this.ddlCustName.SelectedValue.ToString();
 
 
-            DataSet ds2 = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "GETBOOKINGAPPLICATION", pactcode, custid, "", "", "", "", "", "", "");
+            DataSet ds2 = SalData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "GETBOOKINGAPPLICATION_SUVASTU", pactcode, custid, "", "", "", "", "", "", "");
             if (ds2 == null)
             {
                 this.gvProjectInfo.DataSource = null;
