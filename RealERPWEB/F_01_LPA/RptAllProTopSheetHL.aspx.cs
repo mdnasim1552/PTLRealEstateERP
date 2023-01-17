@@ -29,7 +29,11 @@ namespace RealERPWEB.F_01_LPA
             {
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Land Data Bank";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Land Data Bank";
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 //this.Getcatagory();
                 this.ShowReport();
                 this.txtDate.Text = this.Request.QueryString["frmdate"];
