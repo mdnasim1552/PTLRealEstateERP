@@ -210,6 +210,15 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
+                              <asp:TemplateField HeaderText="MTRF No">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblrefno" runat="server" Style="text-align: left"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mtrref")) %>'
+                                        Width="75px"></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+
                             <asp:TemplateField HeaderText="MTRF NO/Ref No">
                                 <ItemTemplate>
                                     <asp:Label ID="lblrefno" runat="server" Style="text-align: left"
@@ -311,6 +320,16 @@
                                     VerticalAlign="Middle" />
                                 <HeaderStyle HorizontalAlign="Center" />
                             </asp:TemplateField>
+
+                              <asp:TemplateField HeaderText="Narration">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvnarraion" runat="server" Style="text-align: left"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "narration")) %>'
+                                        Width="170px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </asp:TemplateField>
+
                         </Columns>
                         <FooterStyle CssClass="grvFooter" />
                         <EditRowStyle />
