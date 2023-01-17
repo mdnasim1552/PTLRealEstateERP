@@ -44,6 +44,9 @@ namespace RealERPWEB.F_14_Pro
 
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
                 CommonButton();
 
@@ -51,15 +54,15 @@ namespace RealERPWEB.F_14_Pro
 
 
                 string Type = this.Request.QueryString["Rpt"].ToString();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (Type == "DaywPur") ? "Day Wise Purchase"
-                    : (Type == "PurSum") ? "Purchase Summary (Project Wise)"
-                    : (Type == "PenBill") ? "Pending Bill" : (Type == "IndSup") ? "Purchase History-Supplier Wise Report"
-                    : (Type == "Purchasetrk") ? "Purchase Tracking-01 " : (Type == "Purchasetrk02") ? "Purchase Tracking-02"
-                    : (Type == "PurBilltk") ? "Bill Tracking"
-                    : (Type == "MatRateVar") ? "Rate Variance - Materials"
-                    : (Type == "Ordertrk") ? "Order Tracking-01"
-                    : (Type == "GenBillTrack") ? "General Bill Tracking"
-                    : (Type == "BillRegTrack") ? "Bill Reister Tracking" : "Budget Tracking";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (Type == "DaywPur") ? "Day Wise Purchase"
+                //    : (Type == "PurSum") ? "Purchase Summary (Project Wise)"
+                //    : (Type == "PenBill") ? "Pending Bill" : (Type == "IndSup") ? "Purchase History-Supplier Wise Report"
+                //    : (Type == "Purchasetrk") ? "Purchase Tracking-01 " : (Type == "Purchasetrk02") ? "Purchase Tracking-02"
+                //    : (Type == "PurBilltk") ? "Bill Tracking"
+                //    : (Type == "MatRateVar") ? "Rate Variance - Materials"
+                //    : (Type == "Ordertrk") ? "Order Tracking-01"
+                //    : (Type == "GenBillTrack") ? "General Bill Tracking"
+                //    : (Type == "BillRegTrack") ? "Bill Reister Tracking" : "Budget Tracking";
 
 
 

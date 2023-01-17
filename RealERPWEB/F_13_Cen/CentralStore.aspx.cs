@@ -31,10 +31,13 @@ namespace RealERPWEB.F_13_Cen
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"] == "Stockrpt") ? "Materials Stock Report"
-                    : (this.Request.QueryString["Type"] == "Stockrptqbasis") ? "Materials Stock- Quantity Basis" : "Materials Stock- Amount Basis";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"] == "Stockrpt") ? "Materials Stock Report"
+                //    : (this.Request.QueryString["Type"] == "Stockrptqbasis") ? "Materials Stock- Quantity Basis" : "Materials Stock- Amount Basis";
                 this.GetProjectName();
                 double day = Convert.ToInt32(System.DateTime.Today.ToString("dd")) - 1;
                 this.txtDatefrom.Text = DateTime.Today.AddDays(-day).ToString("dd-MMM-yyyy");

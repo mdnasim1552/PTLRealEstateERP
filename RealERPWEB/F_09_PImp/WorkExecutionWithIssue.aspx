@@ -8,9 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <style>
-        body {
+        /*body {
             font-family: 'Poppins', sans-serif;
-        }
+        }*/
 
         hr {
             margin: 0;
@@ -147,7 +147,9 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <asp:GridView ID="DataGridOne" runat="server" AutoGenerateColumns="False" CssClass=" table table-striped table-hover table-bordered grvContentarea"
+                                <asp:GridView ID="DataGridOne" runat="server" AutoGenerateColumns="False" 
+                                    CssClass=" table table-striped table-hover table-bordered grvContentarea"
+                                    OnRowDeleting="DataGridOne_RowDeleting"
                                     ShowFooter="True">
                                     <RowStyle />
                                     <Columns>
@@ -196,10 +198,6 @@
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "wrkunit")) %>'
                                                     Width="40px"></asp:Label>
                                             </ItemTemplate>
-                                            <FooterTemplate>
-                                                <asp:LinkButton ID="lnkTotal" runat="server" CssClass="btn btn-primary btn-sm primarygrdBtn">Total</asp:LinkButton>
-                                            </FooterTemplate>
-
                                             <ItemStyle Font-Size="10pt" HorizontalAlign="left" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Bal.Qty">
@@ -305,16 +303,7 @@
                                             <HeaderStyle Font-Bold="True" />
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Action">
-                                            <ItemTemplate>
-                                                <asp:LinkButton runat="server" ID="LnkbtnDelete"
-                                                    ToolTip="Delete Item" Width="25px">
-                                                <span class="fa fa-sm fa-trash " style="color:red;" aria-hidden="true"  ></span>&nbsp;
-                                                </asp:LinkButton>
-                                            </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Center" />
-
-                                        </asp:TemplateField>
+                                      
 
                                         <asp:TemplateField HeaderText="Code" Visible="false">
 
