@@ -40,6 +40,8 @@
         }
     </style>
 
+
+
     <script type="text/javascript" language="javascript">
 
         $(document).ready(function () {
@@ -51,6 +53,9 @@
         function pageLoaded() {
 
             $('.chzn-select').chosen({ search_contains: true });
+
+            var gvsupstatus = $('#<%=this.gvsupstatus.ClientID %>');
+            gvsupstatus.Scrollable();
           <%--  $('#<%=this.gvsupstatus.ClientID%>').tblScrollable();--%>
             $(function () {
                 $('[id*=chkSupCategory').multiselect({
@@ -239,7 +244,7 @@
                                         <ItemStyle HorizontalAlign="right" />
                                         <HeaderStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
-                                     <asp:TemplateField HeaderText="Tex Amount">
+                                     <asp:TemplateField HeaderText="Tax Amount">
                                         <ItemTemplate>
                                            <asp:Label ID="lblgvtaxamount" runat="server"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "taxam")).ToString("#,##0.00;(#,##0.00); ") %>'

@@ -1281,7 +1281,7 @@
 
 
 
-                                        <asp:TemplateField HeaderText="Getpass No</Br> (Manual) ">
+                                        <asp:TemplateField HeaderText="Gate Pass No</Br> (Manual) ">
                                             <ItemTemplate>
                                                 <asp:Label ID="lbldapgetmanual" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "getpref")) %>'
@@ -1417,7 +1417,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Getpass No</Br> (Manual) ">
+                                        <asp:TemplateField HeaderText="Gate Pass No</Br> (Manual) ">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblauditgetmanual" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "getpref")) %>'
@@ -1545,7 +1545,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Getpass No</Br> (Manual) ">
+                                        <asp:TemplateField HeaderText="Gate Pass No</Br> (Manual) ">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblaccgetmanual" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "getpref")) %>'

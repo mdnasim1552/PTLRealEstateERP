@@ -1274,6 +1274,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2202000", "2202201", "F_22_Sal", "MonthlySalesBudget?", "Type=Yearly", "Yearly Budget (Sales,Collection & Purchase)", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2202000", "2202202", "F_22_Sal", "MonthlySalesBudget02", "", "Yearly  Sales Budget ", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2202000", "2202205", "F_22_Sal", "MonthlySalesBudget03", "", "Yearly  Sales Budget (All Employee)", "Sales & Recovery", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2202000", "2202206", "F_22_Sal", "MonthlySalesBudget?", "Type=MonthlyTypeWise", "Monthly Sales & Collection Target (Type Wise)", "Sales & Recovery", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "2203000", "2203210", "F_22_Sal", "RptSalSummery?", "Type=SalesRegister", "Sales Register", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203211", "F_22_Sal", "RptSalSummery?", "Type=dSaleVsColl", "Daily Sales & Collection Status", "Sales & Recovery", "False", "False", "False", "False" }); ;
@@ -7489,6 +7490,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000007", "01. Booking Application2", "F_22_Sal/MktBookigApp2?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000008", "03. Sales With Payment Schedule", "F_22_Sal/MktSalsPayment?Type=Sales", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000009", "14. Monthly Budget (Sales & Collection)", "F_22_Sal/MonthlySalesBudget?Type=Monthly", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000009", "14. Monthly Sales & Collection Target (Type Wise)", "F_22_Sal/MonthlySalesBudget?Type=MonthlyTypeWise", "", true, "" });
+
             mnuTbl1.Rows.Add(new Object[] { "0201000010", "14. Yearly  Sales Budget", "F_22_Sal/MonthlySalesBudget02", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000011", "14. Yearly  Sales Budget(All Employee)", "F_22_Sal/MonthlySalesBudget03", "", true, "" });
 
