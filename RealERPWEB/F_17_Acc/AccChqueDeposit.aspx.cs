@@ -55,9 +55,11 @@ namespace RealERPWEB.F_17_Acc
                 string type = this.Request.QueryString["Type"].ToString().Trim();
                 string title = (type == "ChquedepEntry") ? "Cheque Deposit" : (type == "RegChqCl") ? "Cheque Register History"
                     : "Cheque Deposit Report";
-                ((Label)this.Master.FindControl("lblTitle")).Text = title;
+                //((Label)this.Master.FindControl("lblTitle")).Text = title;
 
-                this.Master.Page.Title = title;
+                //this.Master.Page.Title = title;
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 CommonButton();
             }
         }

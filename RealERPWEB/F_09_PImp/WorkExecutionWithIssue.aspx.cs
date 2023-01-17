@@ -50,7 +50,13 @@ namespace RealERPWEB.F_09_PImp
             txtEntryDate.Text = System.DateTime.Now.ToString("dd-MMM-yyyy");
             btnOK.Text = "<span class='fa fa-check-circle' style='color: white;' aria-hidden='true'></span> OK";
             GetProject();
+            txtWRefNo.Text = "";
+            txtSMCR.Text = "";
+            txtDMIRF.Text = "";
             //Default Panel Visible false
+            pnl1.Visible = false;
+            pnl2.Visible = false;
+            
         }
         //----END SETUP----
         protected void btnOK_Click(object sender, EventArgs e)
@@ -78,9 +84,14 @@ namespace RealERPWEB.F_09_PImp
                 //New Click
                 ddlProject.Enabled = true;
                 pnl1.Visible = false;
+                pnl2.Visible = false;
                 btnOK.Text = "<span class='fa fa-check-circle' style='color: white;' aria-hidden='true'></span> OK";
                 //Remove All Session
-                //Grid One and Grid Two Bind Null
+                GetWENIssueNo();
+                GridOne_DataBind();
+                CreateTable();
+                GridTwo_DataBind();
+                InitPage();
             }
         }
         private void GetProject()
@@ -114,10 +125,49 @@ namespace RealERPWEB.F_09_PImp
             this.ddlCategory.DataSource = ds1.Tables[2];
             this.ddlCategory.DataBind();
         }
+
+        public string GetcomItemlock()
+        {
+            string comlockacme = "";
+            string comcod = this.GetComCode();
+            switch (comcod)
+            {
+                case "3338"://Acme
+                case "1205"://P2P engineering
+                case "3351"://Wecon Properties
+                case "3352"://P2P 360
+
+                    comlockacme = "lock";
+                    break;
+
+
+                default:
+                    break;
+
+
+            }
+
+            return comlockacme;
+
+        }
+        //private void GetItem()
+        //{
+        //    Hashtable hst = (Hashtable)Session["tblLogin"];
+        //    string comcod = hst["comcod"].ToString();
+        //    string userid = hst["usrid"].ToString();
+        //    string srchTxt = "%";
+        //    string comlock = GetcomItemlock();
+        //    DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_IRSTDANA", "ITMCODELIST", srchTxt, comlock, userid, "", "", "", "", "", "");
+           
+        //    DataView dv = ds1.Tables[0].DefaultView;
+        //    dv.Sort = "isircode";
+
+        //    Session["tblItmCod"] = dv.ToTable();// ds1.Tables[0];
+        //}
         private void GetItem()
         {
             string itemcode = this.ddlCategory.SelectedValue.Substring(0, 4).ToString() + "%";
-            DataTable dt = ((DataTable)Session["item"]).Copy();
+            DataTable dt = ((DataTable)Session["tblItmCod"]).Copy();
             DataView dv = dt.DefaultView;
             dv.RowFilter = ("itemcode like '" + itemcode + "' ");
             dt = dv.ToTable(true, "itemcode", "workitem");
@@ -266,98 +316,132 @@ namespace RealERPWEB.F_09_PImp
             ViewState["itemlistMaterialsBalance"] = ds1.Tables[0];
             ViewState["specification"] = ds1.Tables[2];
         }
-
+        private void CreateTable()
+        {
+            DataTable tblt01 = new DataTable();
+            tblt01.Columns.Add("comcod", Type.GetType("System.String"));
+            tblt01.Columns.Add("isircode", Type.GetType("System.String"));
+            tblt01.Columns.Add("isirdesc", Type.GetType("System.String"));
+            tblt01.Columns.Add("rsircode", Type.GetType("System.String"));
+            tblt01.Columns.Add("rsirdesc", Type.GetType("System.String"));
+            tblt01.Columns.Add("flrcod", Type.GetType("System.String"));
+            tblt01.Columns.Add("flrdesc", Type.GetType("System.String"));
+            tblt01.Columns.Add("rstdqty", Type.GetType("System.String"));
+            tblt01.Columns.Add("Ratio", Type.GetType("System.Double"));
+            tblt01.Columns.Add("isuqty", Type.GetType("System.Double"));
+            tblt01.Columns.Add("spcfcod", Type.GetType("System.String"));
+            tblt01.Columns.Add("rsirunit", Type.GetType("System.String"));
+            tblt01.Columns.Add("balqty", Type.GetType("System.Double"));
+            tblt01.Columns.Add("useoflocation", Type.GetType("System.String"));
+            tblt01.Columns.Add("remarks", Type.GetType("System.String"));
+            ViewState["materialexefinal"] = tblt01;
+        }
         protected void btnGenerateIssue_Click(object sender, EventArgs e)
         {
-            GetPerMatIssu();
-            Get_Issue_Info();
-            LoopForSession();
-            DataTable tempforgrid = (DataTable)Session["sessionforgrid"]; // Work Execution grid with Session
-            DataTable dt = ((DataTable)ViewState["WorkExeWithIssue"]).Copy(); // Work Execution Issue Standard Analysis
-            DataTable dtMatList = (DataTable)ViewState["itemlistMaterialsBalance"];
-            DataView dv = dt.DefaultView;
-            DataTable dt1 = new DataTable();
-            string strColName = "Ratio";
-            string strColName1 = "isuqty";
-            string strColName2 = "spcfcod";
-            string strColName3 = "rsirunit";
-            string strColName4 = "balqty";
-            string strColName5 = "useoflocation";
-            string strColName6 = "remarks";
-            DataColumn colNew = new DataColumn(strColName, typeof(double));
-            DataColumn colNew1 = new DataColumn(strColName1, typeof(double));
-            DataColumn colNew2 = new DataColumn(strColName2, typeof(string));
-            DataColumn colNew3 = new DataColumn(strColName3, typeof(string));
-            DataColumn colNew4 = new DataColumn(strColName4, typeof(string));
-            DataColumn colNew5 = new DataColumn(strColName5, typeof(string));
-            DataColumn colNew6 = new DataColumn(strColName6, typeof(string));
-            colNew.DefaultValue = 0.00;
-            colNew1.DefaultValue = 0.00;
-            colNew2.DefaultValue = "000000000000";
-            if (!dt.Columns.Contains(strColName))
-                dt.Columns.Add(colNew);
-            if (!dt.Columns.Contains(strColName1))
-                dt.Columns.Add(colNew1);
-            if (!dt.Columns.Contains(strColName2))
-                dt.Columns.Add(colNew2);
-            if (!dt.Columns.Contains(strColName3))
-                dt.Columns.Add(colNew3);
-            if (!dt.Columns.Contains(strColName4))
-                dt.Columns.Add(colNew4);
-            if (!dt.Columns.Contains(strColName5))
-                dt.Columns.Add(colNew5);
-            if (!dt.Columns.Contains(strColName6))
-                dt.Columns.Add(colNew6);
-            string flag = "1";
-            if (tempforgrid.Rows.Count == 0)
+            if (txtWRefNo.Text.Length == 0)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Nothing was selected." + "');", true);
-
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Enter Reference No." + "');", true);
+                return;
             }
             else
             {
-                for (int i = 0; i < tempforgrid.Rows.Count; i++)
+                CreateTable();
+                GetPerMatIssu();
+                Get_Issue_Info();
+                LoopForSession();
+                DataTable tempforgrid = (DataTable)Session["sessionforgrid"]; // Work Execution grid with Session
+                DataTable dt = ((DataTable)ViewState["WorkExeWithIssue"]).Copy(); // Work Execution Issue Standard Analysis
+                DataTable dtMatList = (DataTable)ViewState["itemlistMaterialsBalance"];
+                DataView dv = dt.DefaultView;
+                DataTable dt1 = (DataTable)ViewState["materialexefinal"];
+                string strColName = "Ratio";
+                string strColName1 = "isuqty";
+                string strColName2 = "spcfcod";
+                string strColName3 = "rsirunit";
+                string strColName4 = "balqty";
+                string strColName5 = "useoflocation";
+                string strColName6 = "remarks";
+                DataColumn colNew = new DataColumn(strColName, typeof(double));
+                DataColumn colNew1 = new DataColumn(strColName1, typeof(double));
+                DataColumn colNew2 = new DataColumn(strColName2, typeof(string));
+                DataColumn colNew3 = new DataColumn(strColName3, typeof(string));
+                DataColumn colNew4 = new DataColumn(strColName4, typeof(double));
+                DataColumn colNew5 = new DataColumn(strColName5, typeof(string));
+                DataColumn colNew6 = new DataColumn(strColName6, typeof(string));
+                colNew.DefaultValue = 0.00;
+                colNew1.DefaultValue = 0.00;
+                colNew2.DefaultValue = "000000000000";
+                if (!dt.Columns.Contains(strColName))
+                    dt.Columns.Add(colNew);
+                if (!dt.Columns.Contains(strColName1))
+                    dt.Columns.Add(colNew1);
+                if (!dt.Columns.Contains(strColName2))
+                    dt.Columns.Add(colNew2);
+                if (!dt.Columns.Contains(strColName3))
+                    dt.Columns.Add(colNew3);
+                if (!dt.Columns.Contains(strColName4))
+                    dt.Columns.Add(colNew4);
+                if (!dt.Columns.Contains(strColName5))
+                    dt.Columns.Add(colNew5);
+                if (!dt.Columns.Contains(strColName6))
+                    dt.Columns.Add(colNew6);
+                string flag = "1";
+                if (tempforgrid.Rows.Count == 0)
                 {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Nothing was selected." + "');", true);
 
-                    string isircode = tempforgrid.Rows[i]["itemcode"].ToString();
-                    string flrcode = tempforgrid.Rows[i]["flrcod"].ToString();
-                    double wrkqty = Convert.ToDouble(tempforgrid.Rows[i]["wrkqty"].ToString() == "" ? "0.00" : tempforgrid.Rows[i]["wrkqty"].ToString());
-                    if (wrkqty <= 0)
-                    {
-                        dt1.Rows.Clear();
-                        flag = "0";
-                    }
-                    else
-                    {
-                        dv.RowFilter = ("isircode='" + isircode + "'  and flrcod='" + flrcode + "'");
-                        dt = dv.ToTable();
-                        foreach (DataRow dr in dt.Rows)
-                        {
-                            string rsircode = dr["rsircode"].ToString();
-                            string specification = dr["spcfcod"].ToString();
-                            dr["Ratio"] = wrkqty / 100;
-                            dr["isuqty"] = Convert.ToDouble(dr["RSTDQTY"].ToString() ?? "0.00") * (wrkqty / 100);
-                            dr["rsirunit"] = ((dtMatList).Select("rsircode='" + rsircode + "'"))[0]["rsirunit"];
-                            dr["balqty"] = (((dtMatList).Select("rsircode='" + rsircode + "' and spcfcod='" + specification + "'")).Length == 0) ? "0.00" : Convert.ToDouble(((dtMatList).Select("rsircode='" + rsircode + "' and spcfcod='" + specification + "'"))[0]["bbgdqty"]).ToString();
-                            dr["useoflocation"] = "";
-                            dr["remarks"] = "";
-                        }
-                        dt1.Merge(dt);
-                    }
-                }
-                if (flag != "0")
-                {
-                    ViewState["materialexefinal"] = dt1;
-                    GridTwo_DataBind();
-                    pnl2.Visible = true;
-                    pnl1.Visible = false;
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Quantity must be provided" + "');", true);
+                    for (int i = 0; i < tempforgrid.Rows.Count; i++)
+                    {
 
+                        string isircode = tempforgrid.Rows[i]["itemcode"].ToString();
+                        string flrcode = tempforgrid.Rows[i]["flrcod"].ToString();
+                        double wrkqty = Convert.ToDouble(tempforgrid.Rows[i]["wrkqty"].ToString() == "" ? "0.00" : tempforgrid.Rows[i]["wrkqty"].ToString());
+                        if (wrkqty <= 0)
+                        {
+                            dt1.Rows.Clear();
+                            flag = "0";
+                        }
+                        else
+                        {
+                            dv.RowFilter = ("isircode='" + isircode + "'  and flrcod='" + flrcode + "'");
+                            dt = dv.ToTable();
+                            foreach (DataRow dr in dt.Rows)
+                            {
+                                string rsircode = dr["rsircode"].ToString();
+                                string specification = dr["spcfcod"].ToString();
+                                
+                                if(((dtMatList).Select("rsircode='" + rsircode + "'")).Length > 0)
+                                {
+                                    dr["Ratio"] = wrkqty / 100;
+                                    dr["isuqty"] = Convert.ToDouble(dr["RSTDQTY"].ToString() ?? "0.00") * (wrkqty / 100);
+                                    dr["rsirunit"] = ((dtMatList).Select("rsircode='" + rsircode + "'"))[0]["rsirunit"];
+                                    dr["balqty"] = (((dtMatList).Select("rsircode='" + rsircode + "' and spcfcod='" + specification + "'")).Length == 0) ? "0.00" : Convert.ToDouble(((dtMatList).Select("rsircode='" + rsircode + "' and spcfcod='" + specification + "'"))[0]["bbgdqty"]).ToString();
+                                    dr["useoflocation"] = "";
+                                    dr["remarks"] = "";
+                                }
+                            }
+                           
+                            dt1.Merge(dt.Select("rsirunit<>''").CopyToDataTable());
+                        }
+                    }
+                    if (flag != "0")
+                    {
+                        ViewState["materialexefinal"] = dt1;
+                        GridTwo_DataBind();
+                        pnl2.Visible = true;
+                        pnl1.Visible = false;
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Quantity must be provided" + "');", true);
+
+                    }
                 }
             }
+
 
 
         }
@@ -419,7 +503,7 @@ namespace RealERPWEB.F_09_PImp
                 ddlSpec.DataTextField = "spcfdesc";
                 ddlSpec.DataValueField = "spcfcod";
                 ddlSpec.DataBind();
-                ddlSpec.SelectedValue= Convert.ToString(DataBinder.Eval(e.Row.DataItem, "spcfcod"));
+                ddlSpec.SelectedValue = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "spcfcod"));
             }
         }
 
@@ -448,7 +532,7 @@ namespace RealERPWEB.F_09_PImp
             for (int i = 0; i < this.DataGridTwo.Rows.Count; i++)
             {
                 double txtwrkqty = Convert.ToDouble("0" + ((TextBox)this.DataGridTwo.Rows[i].FindControl("txtAnaQty")).Text.Trim());
-                string txtuol =((TextBox)this.DataGridTwo.Rows[i].FindControl("txtuol")).Text.Trim().ToString();
+                string txtuol = ((TextBox)this.DataGridTwo.Rows[i].FindControl("txtuol")).Text.Trim().ToString();
                 string txtremarks = ((TextBox)this.DataGridTwo.Rows[i].FindControl("txtremarks")).Text.Trim().ToString();
                 TblRowIndex = (DataGridTwo.PageIndex) * DataGridTwo.PageSize + i;
                 double balqty = Convert.ToDouble(dt.Rows[TblRowIndex]["balqty"]);
@@ -490,7 +574,7 @@ namespace RealERPWEB.F_09_PImp
             string CurDate1 = Convert.ToDateTime(this.txtEntryDate.Text.Trim()).ToString("dd-MMM-yyyy");
             string mISSNo = "NEWMISS";
             DataSet ds1 = new DataSet();
-            
+
             ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPURMISSUEINFO", mISSNo, CurDate1,
                          pactcode, "", "", "", "", "", "");
             if (ds1 == null)
@@ -505,7 +589,7 @@ namespace RealERPWEB.F_09_PImp
 
         protected void lnkSave_Click(object sender, EventArgs e)
         {
-           
+
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
@@ -514,7 +598,7 @@ namespace RealERPWEB.F_09_PImp
                 return;
             }
             LoopForSession();
-            
+
             DataTable tbl2 = (DataTable)Session["sessionforgrid"];
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
@@ -532,42 +616,14 @@ namespace RealERPWEB.F_09_PImp
             string mAPPBYDES = "";
             string mISUREF = "";
             string mISURNAR = this.txtNarration.Text.Trim();
-            string mBILLNO =txtWRefNo.Text;
+            string mBILLNO = txtWRefNo.Text;
             string mMISUNO = this.txtMINoPartOne.Text.Trim().Substring(0, 3) + Convert.ToDateTime(this.txtEntryDate.Text).ToString("yyyy")
                   + this.txtMINoPartOne.Text.Trim().Substring(3, 2) + this.txtMINoPartTwo.Text.Trim();
             string mLISUNO = "00000000000000";
 
-            bool result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURISSUEINFO", "PURISSUEB",
-                             mISUNO, mISUDAT, mPACTCODE, "", mISUUSRID, mAPPRUSRID, mAPPRDAT, mISUBYDES, mAPPBYDES, mISUREF, mISURNAR, mBILLNO, usrid, sessionid, trmid, mMISUNO, mLISUNO, "", "", "");
-            if (!result)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
 
+            //------Material issue
 
-
-            for (int i = 0; i < tbl2.Rows.Count; i++)
-            {
-                string fisircode = tbl2.Rows[i]["itemcode"].ToString();
-                double wrkqty = Convert.ToDouble(tbl2.Rows[i]["wrkqty"].ToString());
-                string floorcode = tbl2.Rows[i]["flrcod"].ToString();
-                if (wrkqty > 0)
-                {
-                    result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURISSUEINFO", "PURISSUEA", mISUNO, floorcode, fisircode, wrkqty.ToString(),
-                                "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-                    if (!result)
-                    {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                        return;
-                    }
-                }
-            }
-            //((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
-            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-           
             DataTable dtuser = (DataTable)ViewState["UserLog"];
             string tblPostedByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postedbyid"].ToString();
             string tblPostedtrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postrmid"].ToString();
@@ -587,20 +643,14 @@ namespace RealERPWEB.F_09_PImp
             GridTwoLoopForSession();
             DataTable tbl02 = (DataTable)ViewState["materialexefinal"];
 
-            //DataRow[] dr = tbl2.Select("isuqty=0.00");
 
-            //if (dr.Length > 0)
-            //{
-            //    ((Label)this.Master.FindControl("lblmsg")).Text = "Please Fillup Qtuantity Field ";
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-            //    return;
-            //}
-            string mRef =  this.txtSMCR.Text;
+
+
+            // Duplicate 
+            string mRef = this.txtSMCR.Text;
             string mSmcr = this.txtDMIRF.Text;
 
             string dmirfno = this.txtDMIRF.Text;
-
-
             if (this.Request.QueryString["type"] == "Entry")
             {
 
@@ -617,23 +667,12 @@ namespace RealERPWEB.F_09_PImp
 
                         if (dr1.Length > 0)
                         {
-
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Not Within the Balance";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Balance" + "');", true);
                             return;
                         }
-
-
                         break;
-
-
-
                 }
             }
-            
-            //string mISUDAT = Convert.ToDateTime(this.txtEntryDate.Text.Trim()).ToString("dd-MMM-yyyy");
-
-            // Duplicate 
             switch (comcod)
             {
                 case "3315": // assure 
@@ -648,16 +687,14 @@ namespace RealERPWEB.F_09_PImp
 
                     if (mRef.Length == 0)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "SMCR No Should Not Be Empty";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                        //this.ddlPrevISSList.Items.Clear();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "SMCR No Should Not Be Empty" + "');", true);
                         return;
+
                     }
                     else if (dmirfno.Length == 0)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "DMIRF No Should Not Be Empty";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                        //this.ddlPrevISSList.Items.Clear();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "DMIRF No Should Not Be Empty" + "');", true);
+
                         return;
                     }
 
@@ -675,25 +712,42 @@ namespace RealERPWEB.F_09_PImp
                         { }
                         else
                         {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Found Duplicate SMCR.No');", true);
-                            //this.ddlPrevISSList.Items.Clear();
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Found Duplicate SMCR.No" + "');", true);
                             return;
                         }
                     }
                     break;
             }
+            bool result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURISSUEINFO", "PURISSUEB",
+                             mISUNO, mISUDAT, mPACTCODE, "", mISUUSRID, mAPPRUSRID, mAPPRDAT, mISUBYDES, mAPPBYDES, mISUREF, mISURNAR, mBILLNO, usrid, sessionid, trmid, mMISUNO, mLISUNO, "", "", "");
+            if (!result)
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
+                return;
+            }
 
 
-            //string mPACTCODE = this.ddlprjlist.SelectedValue.ToString().Trim();
-            //string mISURNAR = this.txtISSNarr.Text.Trim();
+
+            for (int i = 0; i < tbl2.Rows.Count; i++)
+            {
+                string fisircode = tbl2.Rows[i]["itemcode"].ToString();
+                double wrkqty = Convert.ToDouble(tbl2.Rows[i]["wrkqty"].ToString());
+                string floorcode = tbl2.Rows[i]["flrcod"].ToString();
+                if (wrkqty > 0)
+                {
+                    result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURISSUEINFO", "PURISSUEA", mISUNO, floorcode, fisircode, wrkqty.ToString(),
+                                "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                    if (!result)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
+                        return;
+                    }
+                }
+            }
             result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURMISSUEINFO", "PURMISSUEB",
-                             mISUNO, mISUDAT, mPACTCODE, mISURNAR, mRef, PostedByid, Posttrmid, PostSession, Posteddat, EditByid, Editdat, mSmcr, "", "");
-            //if (!result)
-            //{
-            //    ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-            //    return;
-            //}
+                             mMISUNO, mISUDAT, mPACTCODE, mISURNAR, mRef, PostedByid, Posttrmid, PostSession, Posteddat, EditByid, Editdat, mSmcr, "", "");
+         
             if (!result)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
@@ -727,6 +781,7 @@ namespace RealERPWEB.F_09_PImp
             this.XmlDataInsert(mMISUNO, dsx);
 
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Update Successfully" + "');", true);
+            InitPage();
             if (ConstantInfo.LogStatus == true)
             {
                 string eventtype = "Materials Issue Information";
@@ -741,7 +796,7 @@ namespace RealERPWEB.F_09_PImp
                 string eventdesc2 = "Issue No: " + mMISUNO;
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
-            
+
         }
         private bool XmlDataInsert(string Reqno, DataSet ds)
         {
@@ -786,6 +841,30 @@ namespace RealERPWEB.F_09_PImp
 
 
             return true;
+        }
+
+        protected void DataGridOne_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            DataTable dt = (DataTable)Session["sessionforgrid"];
+            string mISUNO = this.txtWINoPartOne.Text.Trim().Substring(0, 3) + Convert.ToDateTime(this.txtEntryDate.Text).ToString("yyyy")
+                  + this.txtWINoPartOne.Text.Trim().Substring(3, 2) + this.txtWINoPartTwo.Text.Trim();
+            string Itemcode = ((Label)this.DataGridOne.Rows[e.RowIndex].FindControl("lblitemcode")).Text.Trim();
+            string Flrcode = ((Label)this.DataGridOne.Rows[e.RowIndex].FindControl("lblgvflrCode")).Text.Trim();
+            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "DELETEITEMEISUE", mISUNO,
+                         Itemcode, Flrcode, "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (result == true)
+            {
+                int rowindex = (this.DataGridOne.PageSize) * (this.DataGridOne.PageIndex) + e.RowIndex;
+                dt.Rows[rowindex].Delete();
+            }
+
+            DataView dv = dt.DefaultView;
+            Session.Remove("sessionforgrid");
+            Session["sessionforgrid"] = dv.ToTable();
+            this.GridOne_DataBind();
         }
     }
 }

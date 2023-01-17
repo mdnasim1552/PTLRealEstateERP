@@ -28,6 +28,9 @@ namespace RealERPWEB.F_12_Inv
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 // for Mettroo
@@ -45,11 +48,11 @@ namespace RealERPWEB.F_12_Inv
                 this.VisibleGrid();
                 this.lbtnOk.Text = "New";
                 this.lbtnOk_Click(null, null);
-                ((Label)this.Master.FindControl("lblTitle")).Text = (Request.QueryString["InputType"].ToString() == "Entry") ? "Materials Requisition Information Input/Edit Screen"
-                    : (Request.QueryString["InputType"].ToString() == "Approval") ? "Materials Requisition Approval Screen"
-                    : (Request.QueryString["InputType"].ToString() == "FxtAstEntry") ? "Fixed Assets Requisition Information Input/Edit Screen"
-                     : (Request.QueryString["InputType"].ToString() == "ReqEdit") ? "Materials Requisition Information Input/Edit Screen"
-                     : (Request.QueryString["InputType"].ToString() == "HeadUsed") ? "Material Requisition Input (Central Worehouse)-(H/O Used)" : "Fixed Assets Requisition Approval Screen";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (Request.QueryString["InputType"].ToString() == "Entry") ? "Materials Requisition Information Input/Edit Screen"
+                //    : (Request.QueryString["InputType"].ToString() == "Approval") ? "Materials Requisition Approval Screen"
+                //    : (Request.QueryString["InputType"].ToString() == "FxtAstEntry") ? "Fixed Assets Requisition Information Input/Edit Screen"
+                //     : (Request.QueryString["InputType"].ToString() == "ReqEdit") ? "Materials Requisition Information Input/Edit Screen"
+                //     : (Request.QueryString["InputType"].ToString() == "HeadUsed") ? "Material Requisition Input (Central Worehouse)-(H/O Used)" : "Fixed Assets Requisition Approval Screen";
 
 
             }

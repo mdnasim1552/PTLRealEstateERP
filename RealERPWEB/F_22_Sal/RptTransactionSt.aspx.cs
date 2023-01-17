@@ -36,6 +36,8 @@ namespace RealERPWEB.F_22_Sal
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 string type = this.Request.QueryString["Type"].ToString().Trim();
 
@@ -54,19 +56,19 @@ namespace RealERPWEB.F_22_Sal
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = (type == "TransPrjWise") ? "Daily Transaction(Project Wise) Report"
-                    : (type == "ClientStat") ? "Client Status Report"
-                    : (type == "RepChq") ? "Replacement Cheque Report"
-                    : (type == "TransSummary") ? "Day wise Collection Summary"
-                    : (type == "RectypeWise") ? "Client Details Information"
-                    : (type == "RectypeWise02") ? "Utility & Other Charges 02"
-                    : (type == "Association") ? "Asssoctiation Fee "
-                    : (type == "ServiceCharge") ? "Service Charge Top Sheet  "
-                    : (type == "ServicePayment") ? "Service Charge Payment Details "
-                    : (type == "ServiceCollection") ? "Service Charge Collection Details "
-                    : (type == "Modification") ? " Modification Service Charge  "
-                    : (type == "LOTransDateWise") ? "Day Wise Collection(L/O)"
-                    : "Daily Transaction(Date Wise) Report";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (type == "TransPrjWise") ? "Daily Transaction(Project Wise) Report"
+                //    : (type == "ClientStat") ? "Client Status Report"
+                //    : (type == "RepChq") ? "Replacement Cheque Report"
+                //    : (type == "TransSummary") ? "Day wise Collection Summary"
+                //    : (type == "RectypeWise") ? "Client Details Information"
+                //    : (type == "RectypeWise02") ? "Utility & Other Charges 02"
+                //    : (type == "Association") ? "Asssoctiation Fee "
+                //    : (type == "ServiceCharge") ? "Service Charge Top Sheet  "
+                //    : (type == "ServicePayment") ? "Service Charge Payment Details "
+                //    : (type == "ServiceCollection") ? "Service Charge Collection Details "
+                //    : (type == "Modification") ? " Modification Service Charge  "
+                //    : (type == "LOTransDateWise") ? "Day Wise Collection(L/O)"
+                //    : "Daily Transaction(Date Wise) Report";
 
             }
 

@@ -218,7 +218,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                              <asp:TemplateField HeaderText="Gete pass(Manual)">
+                              <asp:TemplateField HeaderText="Gate pass(Manual)">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgaterefno" runat="server" Style="text-align: left"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "getpref")) %>'
@@ -229,7 +229,7 @@
                             <asp:TemplateField HeaderText="Date">
                                 <ItemTemplate>
                                     <asp:Label ID="lblDate" runat="server"
-                                        Style="font-size: 12px; text-align: center;"
+                                      
                                         Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "tdate")).ToString("dd-MMM-yyyy") %>'
                                         Width="70px"></asp:Label>
                                 </ItemTemplate>

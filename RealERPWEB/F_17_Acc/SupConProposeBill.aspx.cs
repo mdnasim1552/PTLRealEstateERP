@@ -31,9 +31,11 @@ namespace RealERPWEB.F_17_Acc
 
                 string type = this.Request.QueryString["Type"].ToString();
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = type == "Entry" ? "SUB-CONTRACTOR'S PAYMENT PROPOSAL " : "Sub-Contractor Proposed Payment-Approved";
-                this.Master.Page.Title = type == "Entry" ? "SUB-CONTRACTOR'S PAYMENT PROPOSAL " : "Sub-Contractor Proposed Payment-Approved";
+               // ((Label)this.Master.FindControl("lblTitle")).Text = type == "Entry" ? "SUB-CONTRACTOR'S PAYMENT PROPOSAL " : "Sub-Contractor Proposed Payment-Approved";
+                //this.Master.Page.Title = type == "Entry" ? "SUB-CONTRACTOR'S PAYMENT PROPOSAL " : "Sub-Contractor Proposed Payment-Approved";
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 // this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 this.GetContractor();

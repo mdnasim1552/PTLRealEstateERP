@@ -32,10 +32,12 @@ namespace RealERPWEB.F_24_CC
                         (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                     Response.Redirect("~/AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["WType"].ToString().Trim() == "ReqStatus") ? "REQUISITION STATUS REPORT"
-                    : (this.Request.QueryString["WType"].ToString().Trim() == "ReqAppStatus") ? "REQUISITION APPROVAL STATUS REPORT" : (this.Request.QueryString["WType"].ToString().Trim() == "CliBillApproval") ? "CLIENT MODIFICATION REPORT (Bill Approval)" : "CLIENT MODIFICATION REPORT";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["WType"].ToString().Trim() == "ReqStatus") ? "REQUISITION STATUS REPORT"
+                //    : (this.Request.QueryString["WType"].ToString().Trim() == "ReqAppStatus") ? "REQUISITION APPROVAL STATUS REPORT" : (this.Request.QueryString["WType"].ToString().Trim() == "CliBillApproval") ? "CLIENT MODIFICATION REPORT (Bill Approval)" : "CLIENT MODIFICATION REPORT";
 
 
                 this.SelectView();

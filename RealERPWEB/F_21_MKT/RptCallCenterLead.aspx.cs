@@ -32,6 +32,8 @@ namespace RealERPWEB.F_21_MKT
                         (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
                     Response.Redirect("~/AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 string Date = "";
@@ -39,7 +41,7 @@ namespace RealERPWEB.F_21_MKT
                 this.txtfromdate.Text = Convert.ToDateTime("01" + Date.Substring(2)).ToString("dd-MMM-yyyy");
                 this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"] == "SourceWise") ? "Source Wise Leads" : "Sales Person Wise Leads";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"] == "SourceWise") ? "Source Wise Leads" : "Sales Person Wise Leads";
                 this.SelectView();
 
             }

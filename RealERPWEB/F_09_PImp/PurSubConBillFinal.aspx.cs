@@ -37,16 +37,18 @@ namespace RealERPWEB.F_09_PImp
                 //    Response.Redirect("../AcceessError.aspx");
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
 
 
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "BillEntry") ? "Bill Finalization"
-                    : (this.Request.QueryString["Type"].ToString() == "FirstRecom") ? "Bill Finalization-First Recommendation"
-                    : (this.Request.QueryString["Type"].ToString() == "SecRecom") ? "Bill Finalization-Second Recommendation"
-                    : (this.Request.QueryString["Type"].ToString() == "ThirdRecom") ? "Bill Finalization-Third Recommendation"
-                    : (this.Request.QueryString["Type"].ToString() == "BillEdit") ? "Bill Finalization-Edit"
-                    : (this.Request.QueryString["Type"].ToString() == "BillConfirmed") ? "Bill Finalization-Confirmed" : "Labour Issue Information";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "BillEntry") ? "Bill Finalization"
+                //    : (this.Request.QueryString["Type"].ToString() == "FirstRecom") ? "Bill Finalization-First Recommendation"
+                //    : (this.Request.QueryString["Type"].ToString() == "SecRecom") ? "Bill Finalization-Second Recommendation"
+                //    : (this.Request.QueryString["Type"].ToString() == "ThirdRecom") ? "Bill Finalization-Third Recommendation"
+                //    : (this.Request.QueryString["Type"].ToString() == "BillEdit") ? "Bill Finalization-Edit"
+                //    : (this.Request.QueryString["Type"].ToString() == "BillConfirmed") ? "Bill Finalization-Confirmed" : "Labour Issue Information";
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 

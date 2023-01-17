@@ -29,11 +29,14 @@ namespace RealERPWEB.F_24_CC
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Revenue(Utility & Others)";
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Revenue(Utility & Others)";
 
                 Session.Remove("Unit");
                 this.GetProjectName();
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
+
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 this.Page.Title = "Revenue(Utility & Others)";
 
