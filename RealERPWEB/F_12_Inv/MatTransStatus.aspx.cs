@@ -56,7 +56,7 @@ namespace RealERPWEB.F_12_Inv
 
 
                 case "3370": //CPDL
-                    this.grvacc.Columns[2].HeaderText = "MRR No";
+                    this.grvacc.Columns[3].HeaderText = "MRR No";
                     break;
                 default:
                     
