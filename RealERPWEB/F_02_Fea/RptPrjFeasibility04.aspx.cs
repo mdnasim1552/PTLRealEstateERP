@@ -28,9 +28,11 @@ namespace RealERPWEB.F_02_Fea
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = (Request.QueryString["Type"].ToString().Trim() == "SoldUSold") ? "Sales Statement"
-                    : (Request.QueryString["Type"].ToString().Trim() == "PriceList02") ? "Price List 02" : "Feasibility Top Sheet";
+                //((Label)this.Master.FindControl("lblTitle")).Text = (Request.QueryString["Type"].ToString().Trim() == "SoldUSold") ? "Sales Statement"
+                //    : (Request.QueryString["Type"].ToString().Trim() == "PriceList02") ? "Price List 02" : "Feasibility Top Sheet";
                 this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
