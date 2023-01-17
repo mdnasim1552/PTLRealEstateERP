@@ -37,10 +37,12 @@ namespace RealERPWEB.F_08_PPlan
 
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((Label)this.Master.FindControl("lblTitle")).Text = dr1[0]["dscrption"].ToString();
+                this.Master.Page.Title = dr1[0]["dscrption"].ToString();
 
                 string type = this.Request.QueryString["Type"].ToString();
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = type == "Entry" ? "Construction Planning -Time Base " : "Construction Planning - Time Basis(Management)";
+                //((Label)this.Master.FindControl("lblTitle")).Text = type == "Entry" ? "Construction Planning -Time Base " : "Construction Planning - Time Basis(Management)";
 
                 if (this.Request.QueryString["prjcode"].Length > 0)
                 {
